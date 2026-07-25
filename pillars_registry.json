@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "APEX 4 Pillars × 12 Portfolio Pistons",
+  "helix": {
+    "alpha": "production engine logic (what gets built)",
+    "omega": "adversarial prosecutor / verification (how it gets verified)",
+    "spiral": "every output is the next input",
+    "double_helix": "two separate spiral engines pointed at the same star"
+  },
+  "activation": {
+    "L0": "local zero-LLM flippers & filesystem",
+    "L1": "token_saver / MICROWAVE pure_pointer externalization",
+    "L2": "swarm orchestrator VP — 5W1H + spiral",
+    "L3": "path-of-highest-power adaptive matrix"
+  },
+  "control_plane": {
+    "morpheus": "mastermind/morpheus",
+    "highway": "apex_highway.py",
+    "sidecar": "mastermind_sidecar.py per node",
+    "integrity": ".integrity/ fleet-wide"
+  },
+  "pillars": [
+    {
+      "id": "I",
+      "name": "Cognitive OS",
+      "pistons": [
+        {"n": 1, "repo": "AKOS", "role": "cognitive kernel / law"},
+        {"n": 2, "repo": "pro-code", "role": "production vehicle / workers"},
+        {"n": 3, "repo": "token_saver", "role": "context discipline"}
+      ]
+    },
+    {
+      "id": "II",
+      "name": "Compute Physics",
+      "pistons": [
+        {"n": 4, "repo": "xai-colossus-cooling", "role": "thermal physics"},
+        {"n": 5, "repo": "colossus-gateway", "role": "compute bridge"},
+        {"n": 6, "repo": "nvidia-gpu-health", "role": "GPU vitals"}
+      ]
+    },
+    {
+      "id": "III",
+      "name": "Aerospace Helix",
+      "pistons": [
+        {"n": 7, "repo": "spacex-thermal-protection", "role": "TPS domain"},
+        {"n": 8, "repo": "spacex-telemetry", "role": "bus / bridge"},
+        {"n": 9, "repo": "spacex-autonomy", "role": "autonomy ops"}
+      ]
+    },
+    {
+      "id": "IV",
+      "name": "Reasoners & Safety",
+      "pistons": [
+        {"n": 10, "repo": "openai-reasoning-kv-sentinel", "role": "KV / entropy"},
+        {"n": 11, "repo": "deepmind-tpu-mesh-optimizer", "role": "mesh / ICI"},
+        {"n": 12, "repo": "anthropic-safety-monitor", "role": "safety monitor"}
+      ]
+    }
+  ]
+}
