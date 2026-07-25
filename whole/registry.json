@@ -1,0 +1,474 @@
+{
+  "version": 2,
+  "ts": "2026-07-13",
+  "whole_name": "GlacierEQ Hire Whole",
+  "policy": {
+    "legal": "excluded",
+    "visibility": "private-first",
+    "no_fake_metrics": true,
+    "akos_root": true
+  },
+  "frameworks": [
+    {
+      "id": "AKOS",
+      "pass": 1,
+      "role": "Apex Knowledge OS \u2014 identity, governance, portfolio map, swarm bridge",
+      "status": "integrated",
+      "family": "framework",
+      "pointer": "https://github.com/GlacierEQ/AKOS",
+      "akos_bridge": "canonical",
+      "note": "Root of the whole; all exhibits point home here"
+    },
+    {
+      "id": "pro-code",
+      "pass": 2,
+      "role": "Pro_Code engineering standards for agents that ship real code",
+      "status": "integrated",
+      "family": "framework",
+      "pointer": "https://github.com/GlacierEQ/pro-code",
+      "akos_bridge": "documented",
+      "note": "Standards strand of the whole"
+    },
+    {
+      "id": "token_saver",
+      "pass": 3,
+      "role": "Measured token-efficiency stack (pure_pointer / MICROWAVE)",
+      "status": "integrated",
+      "family": "framework",
+      "pointer": "https://github.com/GlacierEQ/token_saver",
+      "akos_bridge": "documented",
+      "note": "pure_pointer elevated 2026-07-13"
+    },
+    {
+      "id": "mastermind",
+      "pass": 4,
+      "role": "Control-plane / multi-repo orchestration",
+      "status": "integrated",
+      "family": "framework",
+      "pointer": "https://github.com/GlacierEQ/mastermind",
+      "akos_bridge": "documented",
+      "note": "Boss API side of the whole"
+    },
+    {
+      "id": "AEON-777",
+      "pass": 5,
+      "role": "AEON MOC tag knowledge index",
+      "status": "integrated",
+      "family": "framework",
+      "pointer": "https://github.com/GlacierEQ/AEON-777",
+      "akos_bridge": "documented",
+      "note": "P1 moc_index elevated 2026-07-13"
+    }
+  ],
+  "exhibits": [
+    {
+      "id": "Pro-comet-agent",
+      "pass": 6,
+      "role": "Pro-* plan/act/reflect agent loop",
+      "status": "integrated",
+      "family": "Anthropic",
+      "pointer": "https://github.com/GlacierEQ/Pro-comet-agent",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "xai-colossus-cooling",
+      "pass": 7,
+      "role": "Physics-first Colossus thermal core (xAI motion)",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-cooling",
+      "akos_bridge": "documented",
+      "note": "Primary xAI compute exhibit"
+    },
+    {
+      "id": "colossus-gateway",
+      "pass": 8,
+      "role": "MCP bridge for Colossus orchestration",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/colossus-gateway",
+      "akos_bridge": "documented",
+      "note": "Gateway exhibit"
+    },
+    {
+      "id": "xai-colossus-energy",
+      "pass": 9,
+      "role": "Colossus energy pillar",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-energy",
+      "akos_bridge": "documented",
+      "note": "Energy motion"
+    },
+    {
+      "id": "xai-colossus-servers",
+      "pass": 10,
+      "role": "Rack placement power + affinity",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-servers",
+      "akos_bridge": "documented",
+      "note": "P1 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "xai-colossus-2",
+      "pass": 11,
+      "role": "Colossus 2 infrastructure surface",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-2",
+      "akos_bridge": "documented",
+      "note": "Infra surface"
+    },
+    {
+      "id": "xai-colossus-security",
+      "pass": 12,
+      "role": "Colossus security pillar",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-security",
+      "akos_bridge": "documented",
+      "note": "Security pillar of colossus family"
+    },
+    {
+      "id": "xai-colossus-nanosphere",
+      "pass": 13,
+      "role": "Colossus nanosphere pillar",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-nanosphere",
+      "akos_bridge": "documented",
+      "note": "Nanosphere pillar"
+    },
+    {
+      "id": "spacex-thermal-protection",
+      "pass": 14,
+      "role": "Heat-shield / reentry protection motion",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-thermal-protection",
+      "akos_bridge": "documented",
+      "note": "Primary SpaceX exhibit"
+    },
+    {
+      "id": "spacex-orbital-mechanics",
+      "pass": 15,
+      "role": "Orbital mechanics module",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-orbital-mechanics",
+      "akos_bridge": "documented",
+      "note": "Orbital motion"
+    },
+    {
+      "id": "spacex-telemetry",
+      "pass": 16,
+      "role": "Telemetry module",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-telemetry",
+      "akos_bridge": "documented",
+      "note": "Telemetry motion"
+    },
+    {
+      "id": "spacex-launch-sequencer",
+      "pass": 17,
+      "role": "Launch stage machine with holds",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-launch-sequencer",
+      "akos_bridge": "documented",
+      "note": "P1 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "spacex-ground-network",
+      "pass": 18,
+      "role": "Ground contact planner elevation/SNR/capacity",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-ground-network",
+      "akos_bridge": "documented",
+      "note": "P1 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "spacex-propulsion-monitor",
+      "pass": 19,
+      "role": "Propulsion health index chamber/MR/vibe",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-propulsion-monitor",
+      "akos_bridge": "documented",
+      "note": "P1 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "spacex-satellite-mesh",
+      "pass": 20,
+      "role": "Multi-hop mesh routing Dijkstra",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-satellite-mesh",
+      "akos_bridge": "documented",
+      "note": "P1 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "spacex-mission-control",
+      "pass": 21,
+      "role": "Mission event bus severity filter",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-mission-control",
+      "akos_bridge": "documented",
+      "note": "P1 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "apex-cli",
+      "pass": 22,
+      "role": "APEX CLI runtime entry",
+      "status": "integrated",
+      "family": "APEX",
+      "pointer": "https://github.com/GlacierEQ/apex-cli",
+      "akos_bridge": "documented",
+      "note": "Runtime CLI"
+    },
+    {
+      "id": "apex-control-plane",
+      "pass": 23,
+      "role": "Worker registry + capacity dispatch",
+      "status": "integrated",
+      "family": "APEX",
+      "pointer": "https://github.com/GlacierEQ/apex-control-plane",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "glaciereq-mcp-stack",
+      "pass": 24,
+      "role": "MCP tool router allow-list",
+      "status": "integrated",
+      "family": "Agents/MCP",
+      "pointer": "https://github.com/GlacierEQ/glaciereq-mcp-stack",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "nvidia-gpu-health",
+      "pass": 25,
+      "role": "GPU health motion (NVIDIA-adjacent)",
+      "status": "integrated",
+      "family": "NVIDIA",
+      "pointer": "https://github.com/GlacierEQ/nvidia-gpu-health",
+      "akos_bridge": "documented",
+      "note": "Elevated ready-ready depth 2026-07-13 (src+tests+AKOS)"
+    },
+    {
+      "id": "nvidia-deep-reasoning",
+      "pass": 26,
+      "role": "Deep reasoning motion (NVIDIA-adjacent)",
+      "status": "integrated",
+      "family": "NVIDIA",
+      "pointer": "https://github.com/GlacierEQ/nvidia-deep-reasoning",
+      "akos_bridge": "documented",
+      "note": "Elevated ready-ready depth 2026-07-13 (src+tests+AKOS)"
+    },
+    {
+      "id": "notion-workflow-intelligence",
+      "pass": 27,
+      "role": "Notion workflow automation (engineering only)",
+      "status": "integrated",
+      "family": "Notion",
+      "pointer": "https://github.com/GlacierEQ/notion-workflow-intelligence",
+      "akos_bridge": "documented",
+      "note": "Workflow engine \u2014 elevated 2026-07-13"
+    },
+    {
+      "id": "notion-workspace-optimizer",
+      "pass": 28,
+      "role": "Workspace page optimizer archive/collapse/split",
+      "status": "integrated",
+      "family": "Notion",
+      "pointer": "https://github.com/GlacierEQ/notion-workspace-optimizer",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "notion-mcp-empowerment-engine",
+      "pass": 29,
+      "role": "Intent\u2192Notion MCP tool chains",
+      "status": "integrated",
+      "family": "Notion",
+      "pointer": "https://github.com/GlacierEQ/notion-mcp-empowerment-engine",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "job-application",
+      "pass": 30,
+      "role": "Private hub mirror of showcase + hire pack",
+      "status": "integrated",
+      "family": "hub",
+      "pointer": "https://github.com/GlacierEQ/job-application",
+      "akos_bridge": "documented",
+      "note": "GitHub hub for the whole"
+    },
+    {
+      "id": "jobapp_showcase",
+      "pass": 31,
+      "role": "Local framework showcase surface (SHOWCASE.md)",
+      "status": "integrated",
+      "family": "hub",
+      "pointer": "https://github.com/GlacierEQ/job-application",
+      "local": "GlacierEQ_Swarm/jobapp_showcase/SHOWCASE.md",
+      "akos_bridge": "documented",
+      "note": "Readable local twin of hire frameworks map"
+    },
+    {
+      "id": "jobapp_hire_package",
+      "pass": 32,
+      "role": "Musk-orbit resume \u00b7 assessment \u00b7 LinkedIn \u00b7 outreach",
+      "status": "integrated",
+      "family": "hub",
+      "pointer": "https://github.com/GlacierEQ/job-application",
+      "local": "GlacierEQ_Swarm/jobapp_hire_package/README.md",
+      "akos_bridge": "documented",
+      "note": "Human-facing hire pack of the whole"
+    },
+    {
+      "id": "xai-colossus-cooling-alpha",
+      "pass": 33,
+      "role": "Cooling Alpha \u2014 thermal envelope",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-cooling-alpha",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "xai-colossus-cooling-omega",
+      "pass": 34,
+      "role": "Cooling Omega \u2014 flow controller",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-cooling-omega",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "xai-colossus-energy-alpha",
+      "pass": 35,
+      "role": "Energy Alpha \u2014 power budget model",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-energy-alpha",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "xai-colossus-energy-omega",
+      "pass": 36,
+      "role": "Energy Omega \u2014 load shed",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/xai-colossus-energy-omega",
+      "akos_bridge": "documented",
+      "note": "P0 complete src+tests+AKOS 2026-07-13"
+    },
+    {
+      "id": "spacex-autonomy",
+      "pass": 37,
+      "role": "Autonomy module",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-autonomy",
+      "akos_bridge": "documented",
+      "note": "Hybrid autonomy mode \u2014 elevated 2026-07-13"
+    },
+    {
+      "id": "spacex-cryogenics",
+      "pass": 38,
+      "role": "Cryogenics module",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-cryogenics",
+      "akos_bridge": "documented",
+      "note": "Boil-off model \u2014 elevated 2026-07-13"
+    },
+    {
+      "id": "anthropic-safety-monitor",
+      "pass": 39,
+      "role": "Tool-use safety policy (Anthropic-class problem space)",
+      "status": "integrated",
+      "family": "Anthropic",
+      "pointer": "https://github.com/GlacierEQ/anthropic-safety-monitor",
+      "akos_bridge": "documented",
+      "note": "Elevated ready-ready depth 2026-07-13"
+    },
+    {
+      "id": "anthropic-agent-coordinator",
+      "pass": 40,
+      "role": "Multi-agent coordinator AZOP waves (Anthropic-class)",
+      "status": "integrated",
+      "family": "Anthropic",
+      "pointer": "https://github.com/GlacierEQ/anthropic-agent-coordinator",
+      "akos_bridge": "documented",
+      "note": "Elevated ready-ready depth 2026-07-13"
+    },
+    {
+      "id": "microsoft-azure-ops",
+      "pass": 41,
+      "role": "Multi-region Azure-class ops health (Microsoft problem space)",
+      "status": "integrated",
+      "family": "Microsoft",
+      "pointer": "https://github.com/GlacierEQ/microsoft-azure-ops",
+      "akos_bridge": "documented",
+      "note": "New Microsoft family 2026-07-13"
+    },
+    {
+      "id": "spacex-conjunction-sentinel",
+      "pass": 42,
+      "role": "Close-approach / conjunction risk sentinel",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-conjunction-sentinel",
+      "akos_bridge": "documented",
+      "note": "iterate innovative angle 2026-07-13"
+    },
+    {
+      "id": "spacex-pad-weather-gate",
+      "pass": 43,
+      "role": "Pad weather GO/NO-GO constraint gate",
+      "status": "integrated",
+      "family": "SpaceX",
+      "pointer": "https://github.com/GlacierEQ/spacex-pad-weather-gate",
+      "akos_bridge": "documented",
+      "note": "iterate innovative angle 2026-07-13"
+    },
+    {
+      "id": "colossus-training-flux",
+      "pass": 44,
+      "role": "Training job packing under MW + thermal caps",
+      "status": "integrated",
+      "family": "xAI/Colossus",
+      "pointer": "https://github.com/GlacierEQ/colossus-training-flux",
+      "akos_bridge": "documented",
+      "note": "iterate innovative angle 2026-07-13"
+    },
+    {
+      "id": "microsoft-identity-zero-trust",
+      "pass": 45,
+      "role": "Zero-trust access decision engine",
+      "status": "integrated",
+      "family": "Microsoft",
+      "pointer": "https://github.com/GlacierEQ/microsoft-identity-zero-trust",
+      "akos_bridge": "documented",
+      "note": "iterate innovative angle 2026-07-13"
+    }
+  ],
+  "surfaces": {
+    "showcase": "GlacierEQ_Swarm/jobapp_showcase/SHOWCASE.md",
+    "hire_pack": "GlacierEQ_Swarm/jobapp_hire_package/README.md",
+    "whole_entry": "GlacierEQ_Swarm/jobapp_whole/WHOLE.md",
+    "registry_md": "GlacierEQ_Swarm/jobapp_whole/REGISTRY.md",
+    "pass_log": "GlacierEQ_Swarm/jobapp_whole/PASS_LOG.md"
+  }
+}

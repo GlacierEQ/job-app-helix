@@ -144,6 +144,5 @@ class APEXHighwayEngine:
 if __name__ == "__main__":
     highway = APEXHighwayEngine()
     health = highway.scan_mesh_health()
+    health["helix_topology"] = highway.pillar_map().get("helix")
     print(json.dumps(health, indent=2))
-    print("--- pillars ---")
-    print(json.dumps(highway.pillar_map().get("helix"), indent=2))
