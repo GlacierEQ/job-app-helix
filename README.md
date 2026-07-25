@@ -162,3 +162,7 @@ python3 ~/GlacierEQ_Swarm/automations/score_jobapp_repos.py
 ## Double helix
 
 See [HELIX.md](HELIX.md). Runner: `jobapp_helix_spiral.py`.
+
+## Library roadmap
+
+See **[GlacierEQ/monolith](https://github.com/GlacierEQ/monolith)** — domains, wholes/parts, foundations, skills.
