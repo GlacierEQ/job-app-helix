@@ -104,3 +104,15 @@ python3 ~/job-app/apex_highway.py
 | Control plane git | [GlacierEQ/job-app-helix](https://github.com/GlacierEQ/job-app-helix) |
 
 **Innovation posture:** not 12 new laws of physics — **four pillars + chassis** so each wheel becomes a vehicle aimed at real stars (flight, thermal, reasoning, safety).
+
+## 6. Issue Contract Law (non-negotiable)
+
+**DONE ⇔ proof(pain) == green.**
+
+Strand / integrity / helix / highway / push are **not** substitutes.
+
+```bash
+python3 ~/job-app/helix/automations/issue_contract_gate.py --write-md
+```
+
+Receipt: `~/GlacierEQ_Swarm/state/issue_contract_gate_last.json`
