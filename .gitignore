@@ -1,0 +1,9 @@
+repos/
+**/__pycache__/
+*.pyc
+.env
+.env.*
+*.env
+.DS_Store
+**/node_modules/
+state/
