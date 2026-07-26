@@ -13,12 +13,13 @@ Diversify **where the runtime contract is real** — not for resume language bin
 
 ## Shipped now
 
-- **ONNX for reasoning KV:** `models/token_keep_importance.onnx` + `OnnxKeepScorer` + `ReasoningKVSentinel(use_onnx=True)`
-- Export: `python3 scripts/export_onnx_importance.py`
-- Docs: `openai-reasoning-kv-sentinel/LANGUAGE_STACK.md`
+- **ONNX for reasoning KV:** `openai-reasoning-kv-sentinel` — `models/token_keep_importance.onnx` + ORT scorer  
+- **Protobuf for telemetry / helix wire:** `spacex-telemetry` — real `.proto` schemas, batch export on bus history, measured ~60–70% smaller than compact JSON (tests fail if no win)  
+  - `protos/telemetry.proto`, `protos/helix_envelope.proto`  
+  - `proto_codec.measure_condensation` · `TelemetryBus.export_protobuf_batch`
 
 ## Next advantageous moves (when hammering)
 
-1. Go or Rust telemetry ingest for 100kHz-class demos  
+1. Go or Rust telemetry ingest **decoding the same protobuf**  
 2. ORT C++/Rust binding consuming the same ONNX weights  
 3. Leave pure science in Python with contracts  

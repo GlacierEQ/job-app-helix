@@ -83,6 +83,8 @@ def piston_telemetry_from_orbit(orbit: dict) -> dict[str, Any]:
         "drops": bus.drops,
         "frames_ok": sum(1 for f in frames if f.get("ok")),
         "stats": bus.stats(),
+        "protobuf": bus.condensation_report(source="helix_bridge"),
+        "protobuf_batch_bytes": len(bus.export_protobuf_batch(source="helix_bridge")),
         "fed_from": orbit.get("piston"),
         "status": "NOMINAL" if bus.accepted >= 4 else "DEGRADED",
     }
