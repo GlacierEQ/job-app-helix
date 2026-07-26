@@ -1,0 +1,37 @@
+# BrainSync Project Memory
+
+> This file is generated from `.brainsync/memory.jsonl`. Edit BrainSync memory instead of hand-editing generated sections.
+
+- Project: job-app
+- Project key: job-app-0bcfaf91676d8e7f
+- Full workspace path: /Users/kcbflux/GlacierEQ_Swarm/job-app
+- Canonical source: https://github.com/GlacierEQ/job-app-helix.git
+- Generated at: 2026-07-25T12:43:46.453Z
+- Memory entries available: 0
+
+## Resume Brief
+
+Use this context to resume the project from another IDE. Preserve the full paths when discussing files, because the same project may be open in Antigravity, Windsurf, Cursor, Cline, or another VS Code-compatible host.
+
+## Critical Rules And Lessons
+
+- No entries yet.
+
+## Decisions And Checkpoints
+
+- No entries yet.
+
+## Conversation State
+
+- No entries yet.
+
+## Project Notes
+
+- No entries yet.
+
+## Agent Handoff
+
+- Before coding, read this file and the current active file.
+- When a meaningful decision, correction, or conversation outcome happens, capture it through BrainSync.
+- Do not assume hidden IDE chat history is available in the next tool; rely on this generated handoff.
+

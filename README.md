@@ -12,6 +12,7 @@ Old paths under `GlacierEQ_Swarm/jobapp_*` remain as **symlinks** so existing sc
 
 | Priority | Open |
 |----------|------|
+| **0** | **[`HIERARCHICAL_PORTFOLIO_MAP.md`](./HIERARCHICAL_PORTFOLIO_MAP.md)** — Master 6-Tier Architecture & 62-Repo Catalog |
 | **0** | **[`demo_heroes.sh`](./demo_heroes.sh)** — always-green hero demo (TPS · NVIDIA couple · cooling physics) |
 | **0** | **[`state/PRODUCTION_READINESS_VERDICT.md`](./state/PRODUCTION_READINESS_VERDICT.md)** — measured green status |
 | **0** | **[`ANALYSIS_2026-07-17.md`](./ANALYSIS_2026-07-17.md)** — full re-analysis (truth only) |

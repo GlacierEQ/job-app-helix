@@ -1,0 +1,32 @@
+{
+  "repo": "job-app-helix-meta",
+  "algorithm": "sha256",
+  "file_count": 25,
+  "hashes": {
+    "apex_highway.py": "2c02eea511de7fda8b100b935b8fbfdd31cf6d1a00f05b6c9125f7f2141e53b5",
+    "helix_registry.json": "b8959ceb6fba1cca9b1764185c99613457edc993836bbe87a253bffe38eda87f",
+    "test_helix_meta.py": "b2e0ba83da3ad4fc71766403ab5a1a11ae6bdfe5dce36abb3aa54078ae491b10",
+    "ISSUE_CONTRACT.md": "dc455dc4e3ef333a34a240fd0bd8574139f25b5564c1d8fc4115d271b6bfd653",
+    "issue_contracts.json": "c2ccccbe76d4dff567eccbb9f93d7a46230636d38d2b1dc087e97ce6b6d9ae8b",
+    "HELIX.md": "7ec1f4da83f001d9112be5ae6780bf970baf9d3bfee21aff69b936a7e3eb28fd",
+    "proofs/proof_tpu_mesh.py": "c45e48bfb592fb6825dcf8c7646236d47f9449f531773120b288430f0af4ed68",
+    "proofs/proof_gpu_health.py": "cdeb84aa1f2c0963ca40a0b466f95813dba1c8aa081b7a8e95e2fdd588c51409",
+    "proofs/proof_openai_kv.py": "1f4563c78b5bd748b9eae530a0e1d1411fabbd24e56d917f665dce39d5a81f05",
+    "proofs/proof_telemetry.py": "6acadd6268813f4ca2a2d4588648262229f306197a1015da9b8634f7804ea5ab",
+    "proofs/proof_agent_coord.py": "0b13ca43b7b77a3047927ac61cb0bc35ce53e2923e559982659922fbde40d971",
+    "proofs/proof_orbital.py": "9e4728db62b8778f562284397d980345ed70b65e422125d062be85fd77555bcc",
+    "proofs/proof_mesh_route.py": "c838b367dfb9b4f3b57cc10e7d6e68992546a67c851cd85f8761f42b933744fc",
+    "proofs/proof_token_saver.py": "7d08d95bdb75b0ff214228c2d6536a0d227e74f12dea1c19014fedfc874b2641",
+    "proofs/proof_ground.py": "3551996d84548f4e3aa877db7634a3d1f7263300042aae090680e0b09aab296b",
+    "proofs/proof_sequencer.py": "016d38f0c83b04d6205afcdbfb20ec23df2c2a0512c4b1b3be93a55cd623b795",
+    "proofs/proof_prop.py": "238f056ce93eee307e6c7e19dd4f236cef2ab1229a04b43580ef3283535aadc7",
+    "proofs/proof_launch_campaign.py": "8c509d05231cbe2d8abfb1e08c87ef92d4599df0b04dc1f2767a52185a6f0f4a",
+    "proofs/proof_mission_console.py": "b773f70950bbf07b7419c6ff0ca6ae7f3138c3ab37031b7acc4dc1384681eda1",
+    "proofs/proof_tasklet.py": "bc190482e2de657e663be48d2ce0a3a4b05e5199d0f45dc0f622b7f0fb3321ee",
+    "proofs/proof_thermal.py": "1ffe0e0f33fb60332445b7fe3ce15d4c20c5660cbef7a0cd8c51431f1f76d681",
+    "proofs/proof_safety_monitor.py": "683ef889459f69a76865ef563780645f6f40023227a729c5b16044866ba9b1b2",
+    "automations/jobapp_solidify_flipper.py": "b8b271da38e88b1590fdc4973592ab165e42384cdef1f5a4cab9e4efeef974ea",
+    "automations/issue_contract_gate.py": "f3933291e7d093a4f7accbd7fb4fb9f15bf0fde5785ebe6efd71006c6adf9bcf",
+    "automations/jobapp_helix_spiral.py": "de57e666c39a28edba2dcc832ffadbf32f469b5e470d76110f8841ae7cb73f3a"
+  }
+}

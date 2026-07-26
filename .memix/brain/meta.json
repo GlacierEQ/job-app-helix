@@ -1,0 +1,20 @@
+{
+  "id": "meta",
+  "project_id": "e79b57699897",
+  "kind": "fact",
+  "content": "{\"projectId\":\"e79b57699897\",\"createdAt\":\"2026-07-25T12:43:52.515Z\",\"lastAccessed\":\"2026-07-25T12:43:52.515Z\",\"totalSessions\":0,\"brainVersion\":\"1.8.7\",\"sizeBytes\":348}",
+  "tags": [
+    "meta",
+    "system"
+  ],
+  "source": "user_manual",
+  "superseded_by": null,
+  "contradicts": [],
+  "parent_id": null,
+  "caused_by": [],
+  "enables": [],
+  "created_at": "2026-07-25T12:43:52.515Z",
+  "updated_at": "2026-07-25T12:43:52.515Z",
+  "access_count": 0,
+  "last_accessed_at": null
+}
