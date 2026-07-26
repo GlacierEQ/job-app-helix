@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kcbflux/.grok/hooks/bin/session-start-maximize.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
