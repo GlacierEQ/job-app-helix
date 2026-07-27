@@ -5,7 +5,7 @@ Operator: **GlacierEQ** · Hireable systems: **AKOS**, **pro-code**, **Pro-*** /
 Targets: **xAI** · **SpaceX** · **Anthropic** · **NVIDIA** · **Notion**.
 
 > **Visibility:** private-first portfolio. Litigation material: **ABSOLUTE_PRIVATE_UNTIL_PROCESSED** — never linked here.  
-> Regenerated: 2026-07-13 UTC · source maps under `GlacierEQ_Swarm/state/`
+> Regenerated: 2026-07-26 UTC · source maps under `GlacierEQ_Swarm/state/`
 
 ---
 

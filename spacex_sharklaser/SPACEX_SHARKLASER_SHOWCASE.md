@@ -5,7 +5,7 @@
 **Not claiming:** employment at SpaceX, flight hardware heritage, or production SLA ownership.  
 **Is claiming:** real portfolio motions (GitHub `GlacierEQ/*`) + agent OS (**AKOS**) + engineering law (**pro-code**) aimed at SpaceX-class bottlenecks.
 
-> Generated: 2026-07-13 UTC · data: `jobapp_whole/registry.json` · orchestration: [`A_TO_Z_CAMPAIGN.md`](./A_TO_Z_CAMPAIGN.md)
+> Generated: 2026-07-26 UTC · data: `jobapp_whole/registry.json` · orchestration: [`A_TO_Z_CAMPAIGN.md`](./A_TO_Z_CAMPAIGN.md)
 
 ---
 
@@ -30,7 +30,7 @@ Related: [`../jobapp_whole/WHOLE.md`](../jobapp_whole/WHOLE.md) · [`../jobapp_h
 | **pro-code** | `integrated` | Pro_Code engineering standards for agents that ship real code | [pro-code](https://github.com/GlacierEQ/pro-code) |
 | **token_saver** | `integrated` | Measured token-efficiency stack (pure_pointer / MICROWAVE) | [token_saver](https://github.com/GlacierEQ/token_saver) |
 | **mastermind** | `integrated` | Control-plane / multi-repo orchestration | [mastermind](https://github.com/GlacierEQ/mastermind) |
-| **Pro-comet-agent** | `integrated` | Pro-* productized agent motion sample | [Pro-comet-agent](https://github.com/GlacierEQ/Pro-comet-agent) |
+| **Pro-comet-agent** | `integrated` | Pro-* plan/act/reflect agent loop | [Pro-comet-agent](https://github.com/GlacierEQ/Pro-comet-agent) |
 
 ---
 
@@ -41,11 +41,15 @@ Related: [`../jobapp_whole/WHOLE.md`](../jobapp_whole/WHOLE.md) · [`../jobapp_h
 | **spacex-thermal-protection** | `integrated` | Heat-shield / reentry protection motion | [spacex-thermal-protection](https://github.com/GlacierEQ/spacex-thermal-protection) |
 | **spacex-orbital-mechanics** | `integrated` | Orbital mechanics module | [spacex-orbital-mechanics](https://github.com/GlacierEQ/spacex-orbital-mechanics) |
 | **spacex-telemetry** | `integrated` | Telemetry module | [spacex-telemetry](https://github.com/GlacierEQ/spacex-telemetry) |
-| **spacex-launch-sequencer** | `integrated` | Launch sequencer module | [spacex-launch-sequencer](https://github.com/GlacierEQ/spacex-launch-sequencer) |
-| **spacex-ground-network** | `integrated` | Ground network module | [spacex-ground-network](https://github.com/GlacierEQ/spacex-ground-network) |
-| **spacex-propulsion-monitor** | `integrated` | Propulsion monitor module | [spacex-propulsion-monitor](https://github.com/GlacierEQ/spacex-propulsion-monitor) |
-| **spacex-satellite-mesh** | `integrated` | Satellite mesh module | [spacex-satellite-mesh](https://github.com/GlacierEQ/spacex-satellite-mesh) |
-| **spacex-mission-control** | `integrated` | Mission control module | [spacex-mission-control](https://github.com/GlacierEQ/spacex-mission-control) |
+| **spacex-launch-sequencer** | `integrated` | Launch stage machine with holds | [spacex-launch-sequencer](https://github.com/GlacierEQ/spacex-launch-sequencer) |
+| **spacex-ground-network** | `integrated` | Ground contact planner elevation/SNR/capacity | [spacex-ground-network](https://github.com/GlacierEQ/spacex-ground-network) |
+| **spacex-propulsion-monitor** | `integrated` | Propulsion health index chamber/MR/vibe | [spacex-propulsion-monitor](https://github.com/GlacierEQ/spacex-propulsion-monitor) |
+| **spacex-satellite-mesh** | `integrated` | Multi-hop mesh routing Dijkstra | [spacex-satellite-mesh](https://github.com/GlacierEQ/spacex-satellite-mesh) |
+| **spacex-mission-control** | `integrated` | Mission event bus severity filter | [spacex-mission-control](https://github.com/GlacierEQ/spacex-mission-control) |
+| **spacex-autonomy** | `integrated` | Autonomy module | [spacex-autonomy](https://github.com/GlacierEQ/spacex-autonomy) |
+| **spacex-cryogenics** | `integrated` | Cryogenics module | [spacex-cryogenics](https://github.com/GlacierEQ/spacex-cryogenics) |
+| **spacex-conjunction-sentinel** | `integrated` | Close-approach / conjunction risk sentinel | [spacex-conjunction-sentinel](https://github.com/GlacierEQ/spacex-conjunction-sentinel) |
+| **spacex-pad-weather-gate** | `integrated` | Pad weather GO/NO-GO constraint gate | [spacex-pad-weather-gate](https://github.com/GlacierEQ/spacex-pad-weather-gate) |
 
 Deferred (later pass): `spacex-autonomy`, `spacex-cryogenics` — see whole PASS_LOG.
 

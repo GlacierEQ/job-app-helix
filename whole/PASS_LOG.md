@@ -1,7 +1,7 @@
 # Pass log — one by one into the beautiful whole
 
 Each row is a deliberate pass: role · status · pointer · AKOS home.
-Generated: 2026-07-13 UTC
+Generated: 2026-07-26 UTC
 
 | # | ID | Status | Family | Role | Pointer |
 |--:|----|--------|--------|------|---------|

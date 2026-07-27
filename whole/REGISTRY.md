@@ -3,7 +3,7 @@
 **Pass-reviewed one-by-one.** Status is explicit: `integrated` · `deferred` · `blocked`.  
 Litigation material is **excluded** (never registered).
 
-- Generated: 2026-07-13 UTC
+- Generated: 2026-07-26 UTC
 - Source: `registry.json`
 - Counts: integrated **45** · deferred **0** · blocked **0**
 - One-by-one audit: [`PASS_LOG.md`](./PASS_LOG.md)

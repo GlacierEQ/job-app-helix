@@ -6,15 +6,15 @@
     "rootPath": "/Users/kcbflux/GlacierEQ_Swarm/job-app",
     "canonical": "https://github.com/GlacierEQ/job-app-helix.git",
     "createdAt": "2026-07-25T12:41:53.529Z",
-    "updatedAt": "2026-07-26T00:45:51.623Z"
+    "updatedAt": "2026-07-26T02:19:44.455Z"
   },
-  "updatedAt": "2026-07-26T00:45:52.028Z",
-  "totalEntries": 88,
+  "updatedAt": "2026-07-26T02:59:15.986Z",
+  "totalEntries": 99,
   "byKind": {
-    "rule": 41,
+    "rule": 43,
     "decision": 5,
     "lesson": 3,
-    "note": 39
+    "note": 48
   },
   "latestEntries": [
     {
@@ -114,6 +114,22 @@
       "projectPath": "/Users/kcbflux/GlacierEQ_Swarm/job-app"
     },
     {
+      "id": "20260726022049-f9d81029113e",
+      "kind": "rule",
+      "title": "⚡ Available Tools (ON-DEMAND only)",
+      "source": ".windsurfrules (ide-delta)",
+      "createdAt": "2026-07-26T02:20:49.892Z",
+      "projectPath": "/Users/kcbflux/GlacierEQ_Swarm/job-app"
+    },
+    {
+      "id": "20260726022042-1e389bb4faa7",
+      "kind": "rule",
+      "title": "⚡ Available Tools (ON-DEMAND only)",
+      "source": ".windsurfrules",
+      "createdAt": "2026-07-26T02:20:42.833Z",
+      "projectPath": "/Users/kcbflux/GlacierEQ_Swarm/job-app"
+    },
+    {
       "id": "20260725211116-0804d46918fc",
       "kind": "rule",
       "title": "Recent fixes",
@@ -159,22 +175,6 @@
       "title": "📚 Comprehensive Expert Skills (READ THESE)",
       "source": ".brainsync/agent-rules.md",
       "createdAt": "2026-07-25T20:05:38.837Z",
-      "projectPath": "/Users/kcbflux/GlacierEQ_Swarm/job-app"
-    },
-    {
-      "id": "20260725124430-2488b36add18",
-      "kind": "rule",
-      "title": "⚡ Available Tools (ON-DEMAND only)",
-      "source": ".windsurfrules (ide-delta)",
-      "createdAt": "2026-07-25T12:44:30.893Z",
-      "projectPath": "/Users/kcbflux/GlacierEQ_Swarm/job-app"
-    },
-    {
-      "id": "20260725124428-ecea1d2dd77f",
-      "kind": "rule",
-      "title": "🛡️ GLOBAL SAFETY RULES",
-      "source": ".windsurfrules",
-      "createdAt": "2026-07-25T12:44:28.095Z",
       "projectPath": "/Users/kcbflux/GlacierEQ_Swarm/job-app"
     }
   ]

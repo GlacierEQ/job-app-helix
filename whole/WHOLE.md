@@ -3,7 +3,7 @@
 **One system.** Not a pile of repos — an operating whole: **AKOS** + **pro-code** + **Pro-*** motions + domain families (xAI/Colossus · SpaceX · agents · GPU · Notion ops).
 
 > Private-first portfolio. Litigation excluded. No invented metrics or employment claims.  
-> Generated: 2026-07-13 UTC · registry: [`REGISTRY.md`](./REGISTRY.md) · data: `registry.json`
+> Generated: 2026-07-26 UTC · registry: [`REGISTRY.md`](./REGISTRY.md) · data: `registry.json`
 
 ---
 

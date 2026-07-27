@@ -29,4 +29,4 @@ Full AZOP: [`../toolbelt/AZOP_ORCHESTRATION.md`](../toolbelt/AZOP_ORCHESTRATION.
 | Hire pack | `jobapp_hire_package/` |
 | AZOP | `toolbelt/AZOP_ORCHESTRATION.md` |
 
-Generated: 2026-07-13 UTC
+Generated: 2026-07-26 UTC
