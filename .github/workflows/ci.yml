@@ -59,9 +59,9 @@ jobs:
         run: python scripts/check_public_surface.py
 
       - name: Upload proof receipts
-        if: always()
+        if: ${{ always() && hashFiles('artifacts/*.json') != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: campaign-proofs-py${{ matrix.python-version }}
           path: artifacts/*.json
-          if-no-files-found: error
+          if-no-files-found: ignore
