@@ -85,11 +85,9 @@ def _assess(scenario: LaunchScenario) -> tuple[StageResult, ...]:
 
 
 def _decision(results: tuple[StageResult, ...]) -> CampaignDecision:
-    return (
-        CampaignDecision.GO
-        if all(result.acceptable for result in results)
-        else CampaignDecision.NO_GO
-    )
+    if all(result.acceptable for result in results):
+        return CampaignDecision.GO
+    return CampaignDecision.NO_GO
 
 
 def _refine(

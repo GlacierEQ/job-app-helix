@@ -1,24 +1,40 @@
-repos/
-**/__pycache__/
-*.pyc
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Generated proof receipts
+artifacts/
+
+# Secrets and local environment
 .env
 .env.*
 *.env
 .DS_Store
-**/node_modules/
+
+# Local portfolio workspace and state
+repos/
 state/
 
-# Auto-generated agent rules (personalized per developer)
-.brainsync/agent-rules.md
-
-# Auto-generated AI agent exclusions
+# IDE and generated agent memory
+.agent/
+.agent-mem/
+.brainsync/
+.cline/
+.cursor/
+.gemini/
+.kiro/
+.windsurf/
+AGENT.md
+AGENTS.md
+CLAUDE.md
+GEMINI.md
 .cursorrules
 .clineRules
-.agent/
 .windsurfrules
-.gemini/
-.cline/
-
-AGENT.md
-CLAUDE.md
-.agent-mem/

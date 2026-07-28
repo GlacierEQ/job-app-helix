@@ -6,19 +6,20 @@
 
 Job-App Helix demonstrates how independently useful engineering components become a coherent system. A domain-building strand produces evidence; a verification strand challenges it; declared contingencies may refine the inputs once; the campaign then issues a transparent **GO** or **NO-GO** decision.
 
-This repository does **not** claim employment at SpaceX, xAI, NVIDIA, OpenAI, Anthropic, or any other referenced company. It is an independent software portfolio and orchestration demonstration.
+This repository is an independent software portfolio. It does not claim employment at, endorsement by, or operational deployment within any company whose problem domain inspired a demonstration.
 
 ## Run the proof
 
 Requirements: Python 3.11 or newer.
 
 ```bash
-python -m pip install -e .
+python -m pip install -e ".[dev]"
 python -m job_app_helix nominal
 python -m job_app_helix recoverable --json
+pytest
 ```
 
-The public core is self-contained. It does not require Casey's home directory, private repositories, IDE state, or the GlacierEQ Swarm runtime.
+The public core is self-contained. It does not require a specific home directory, private repositories, IDE state, or an external orchestration runtime.
 
 ### Built-in scenarios
 
@@ -28,7 +29,7 @@ The public core is self-contained. It does not require Casey's home directory, p
 | `recoverable` | Initial failures have explicitly declared contingency evidence | `NO-GO -> refine -> GO` |
 | `hard-no-go` | Critical failures have no supplied contingency evidence | `NO-GO` |
 
-A proof receipt can be written for inspection or automation:
+Write a machine-readable proof receipt:
 
 ```bash
 python -m job_app_helix recoverable --output artifacts/campaign.json
@@ -43,7 +44,7 @@ The public vocabulary is deliberately small:
 3. **Campaign** — several pistons composed into an end-to-end decision.
 4. **Proof contract** — work is complete only when the stated problem is demonstrably solved.
 
-The launch campaign currently evaluates:
+The launch campaign evaluates:
 
 - Flight telemetry completeness and event severity
 - Propulsion pressure, mixture-ratio error, and vibration
@@ -56,61 +57,38 @@ No component is allowed to silently modify values until it passes.
 ## Engineering qualities
 
 - Typed immutable inputs and result models
-- Deterministic, dependency-free public runtime
+- Deterministic, dependency-free runtime
 - Human-readable CLI and machine-readable JSON
 - Fail-closed campaign decisions
 - Explicit findings explaining every warning or hold
 - Tests for success, recoverable failure, disabled refinement, and hard failure
-- GitHub Actions gates for lint, tests, package execution, public-link hygiene, and secret scanning
+- GitHub Actions gates for lint, tests, executable scenarios, link integrity, credential patterns, and public-boundary hygiene
 
 ## Repository map
 
 ```text
-src/job_app_helix/       public installable campaign engine
-tests/                   behavioral and public-surface tests
+src/job_app_helix/       installable campaign engine
+tests/                   executable behavioral claims
+scripts/                 public-surface verification
 .github/workflows/       reproducible GitHub evidence
-hire_package/            resume and outreach artifacts
-showcase/                longer-form portfolio demonstrations
-helix/                   local multi-repository orchestration layer
-docs/                    architecture, boundaries, and deeper rationale
+docs/                    architecture and evidence boundaries
+hire_package/            concise evidence-linked resume
 ```
 
 Start with:
 
 - [`src/job_app_helix/campaign.py`](src/job_app_helix/campaign.py) — campaign control flow
 - [`src/job_app_helix/pistons.py`](src/job_app_helix/pistons.py) — evidence assessments and refinements
-- [`tests/test_campaign.py`](tests/test_campaign.py) — executable behavioral claims
-- [`HIERARCHICAL_PORTFOLIO_MAP.md`](HIERARCHICAL_PORTFOLIO_MAP.md) — curated portfolio map
-- [`hire_package/RESUME_CASEY_GLACIEREQ.md`](hire_package/RESUME_CASEY_GLACIEREQ.md) — evidence-linked resume
-- [`HELIX.md`](HELIX.md) — extended local-workspace architecture
+- [`tests/test_campaign.py`](tests/test_campaign.py) — executable claims
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — design and extension points
+- [`docs/CLAIMS_AND_LIMITS.md`](docs/CLAIMS_AND_LIMITS.md) — what the project proves and does not prove
+- [`HIERARCHICAL_PORTFOLIO_MAP.md`](HIERARCHICAL_PORTFOLIO_MAP.md) — curated portfolio hierarchy
+- [`hire_package/RESUME_CASEY_GLACIEREQ.md`](hire_package/RESUME_CASEY_GLACIEREQ.md) — human-facing resume
 
-## Public and local modes
+## Evidence boundary
 
-### Public mode
-
-The package under `src/job_app_helix` is the reviewer-facing product. It must clone, install, test, and run on a clean machine.
-
-### Local portfolio mode
-
-The older orchestration layer under `helix/` can connect many sibling GlacierEQ repositories in Casey's private/local workspace. It remains useful as a multi-repository integration harness, but it is not the reproducibility boundary for this public repository.
-
-## Evidence boundaries
-
-- Portfolio models are demonstrations, not operational flight or datacenter control systems.
-- Thresholds in the fixture campaign are documented software-demo envelopes, not manufacturer limits.
-- Legal and family-case systems are excluded from this hiring surface.
-- Generated IDE memory, local backups, secrets, and machine-specific paths are not public product material.
-- A badge is evidence only when the linked GitHub workflow is green for the displayed commit.
-
-## Development
-
-```bash
-python -m pip install -e '.[dev]'
-ruff check .
-pytest
-python -m job_app_helix recoverable --output artifacts/campaign.json
-```
+The public branch is intentionally curated. Generated IDE memory, local backups, machine-specific paths, private state, and legal or family-case workstreams are excluded. Deeper local multi-repository orchestration can exist outside this repository without becoming a prerequisite for evaluating the public proof.
 
 ## License
 
-MIT. See [`LICENSE`](LICENSE) when present; until then, all rights remain with the repository owner.
+MIT. See [`LICENSE`](LICENSE).

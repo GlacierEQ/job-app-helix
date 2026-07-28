@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install package and quality tools
+        run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
+
+      - name: Lint public source
+        run: ruff check src tests scripts
+
+      - name: Run tests
+        run: pytest
+
+      - name: Run nominal campaign
+        run: python -m job_app_helix nominal --output artifacts/nominal.json
+
+      - name: Run recoverable campaign
+        run: python -m job_app_helix recoverable --output artifacts/recoverable.json
+
+      - name: Verify hard failure remains fail-closed
+        shell: bash
+        run: |
+          set +e
+          python -m job_app_helix hard-no-go --json > artifacts/hard-no-go.json
+          status=$?
+          set -e
+          test "$status" -eq 1
+
+      - name: Verify public repository boundary
+        run: python scripts/check_public_surface.py
+
+      - name: Upload proof receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: campaign-proofs-py${{ matrix.python-version }}
+          path: artifacts/*.json
+          if-no-files-found: error
