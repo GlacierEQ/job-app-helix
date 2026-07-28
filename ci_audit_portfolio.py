@@ -1,106 +1,79 @@
 #!/usr/bin/env python3
-"""
-Continuous Integration & Integrity Guardian (ci_audit_portfolio.py).
-Single-command master audit script for the GlacierEQ Job-App Portfolio.
-"""
-import json
+"""Operator-workspace integration audit, separate from public GitHub CI."""
+
+from __future__ import annotations
+
 import os
-import re
 import subprocess
 import sys
 import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-REPOS_DIR = ROOT / "repos"
+REPOS_DIR = Path(os.environ.get("JOB_APP_REPOS_ROOT", ROOT / "repos")).expanduser().resolve()
 
-def log_step(name: str):
-    print(f"\n==================================================")
-    print(f"  CI STEP: {name}")
-    print(f"==================================================")
 
-def step_1_check_hashes():
-    log_step("1. Cryptographic Baseline Verification (62 Repos)")
-    repos = [d for d in REPOS_DIR.iterdir() if d.is_dir() and not d.name.startswith(".")]
-    missing = []
-    for r in repos:
-        hash_file = r / ".integrity" / "file_hashes.json"
-        if not hash_file.exists():
-            missing.append(r.name)
-    print(f"Total Repositories: {len(repos)}")
-    print(f"Repos with SHA-256 Hashes: {len(repos) - len(missing)}/{len(repos)}")
-    assert not missing, f"Missing hashes in: {missing}"
-    print("STATUS: PASS")
+def require_workspace() -> list[Path]:
+    if not REPOS_DIR.is_dir():
+        raise SystemExit(
+            "Workspace root missing. Set JOB_APP_REPOS_ROOT or populate ./repos. "
+            "For fresh-clone verification run `python -m helix.public_runtime demo`."
+        )
+    return [path for path in REPOS_DIR.iterdir() if path.is_dir() and not path.name.startswith(".")]
 
-def step_2_apex_highway():
-    log_step("2. APEX Highway Mesh Health Scan")
+
+def check_hashes(repos: list[Path]) -> None:
+    missing = [repo.name for repo in repos if not (repo / ".integrity" / "file_hashes.json").is_file()]
+    print(f"repositories={len(repos)} manifests={len(repos) - len(missing)}")
+    if missing:
+        raise AssertionError(f"Missing integrity manifests: {missing}")
+
+
+def check_highway() -> None:
     sys.path.insert(0, str(ROOT))
     from apex_highway import APEXHighwayEngine
-    highway = APEXHighwayEngine(root_dir=REPOS_DIR)
-    health = highway.scan_mesh_health()
-    print(f"Mesh Status: {health['mesh_status']}")
-    print(f"Healthy Nodes: {health['healthy_nodes']}/{health['total_nodes_discovered']} ({health['mesh_coverage_percent']}%)")
-    print(f"Scan Latency: {health['scan_latency_ms']} ms")
-    assert health["mesh_status"] == "OPERATIONAL", "Highway mesh must be OPERATIONAL"
-    print("STATUS: PASS")
 
-def step_3_hero_tests():
-    log_step("3. Hero Trio Unit Test Suites Execution")
-    # TPS
-    tps_dir = REPOS_DIR / "spacex-thermal-protection"
-    env_tps = os.environ.copy()
-    env_tps["PYTHONPATH"] = str(tps_dir / "src") + os.pathsep + env_tps.get("PYTHONPATH", "")
-    r_tps = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", "tests"], cwd=tps_dir, env=env_tps, capture_output=True, text=True)
-    print("TPS Discover Tests:", "PASS" if r_tps.returncode == 0 else f"FAIL:\n{r_tps.stderr}")
-    assert r_tps.returncode == 0, "TPS tests failed"
+    health = APEXHighwayEngine(root_dir=REPOS_DIR).scan_mesh_health()
+    print(f"mesh={health['mesh_status']} coverage={health['mesh_coverage_percent']}%")
+    if health["mesh_status"] != "OPERATIONAL":
+        raise AssertionError("workspace mesh is not OPERATIONAL")
 
-    # Cooling
-    c_dir = REPOS_DIR / "xai-colossus-cooling"
-    env_c = os.environ.copy()
-    env_c["PYTHONPATH"] = str(c_dir / "src") + os.pathsep + str(c_dir) + os.pathsep + env_c.get("PYTHONPATH", "")
-    r_c = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", "tests"], cwd=c_dir, env=env_c, capture_output=True, text=True)
-    print("Cooling Discover Tests:", "PASS" if r_c.returncode == 0 else f"FAIL:\n{r_c.stderr}")
-    assert r_c.returncode == 0, "Cooling tests failed"
 
-    # AKOS
-    a_dir = REPOS_DIR / "AKOS"
-    r_a = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", "."], cwd=a_dir, capture_output=True, text=True)
-    print("AKOS Discover Tests:", "PASS" if r_a.returncode == 0 else f'FAIL:\n{r_a.stderr}')
-    assert r_a.returncode == 0, "AKOS tests failed"
-    print("STATUS: PASS")
+def check_hero_tests() -> None:
+    for name in ("spacex-thermal-protection", "xai-colossus-cooling", "AKOS"):
+        repo = REPOS_DIR / name
+        if not repo.is_dir():
+            raise AssertionError(f"required hero repository missing: {name}")
+        env = os.environ.copy()
+        env["PYTHONPATH"] = os.pathsep.join(
+            value for value in (str(repo / "src"), str(repo), env.get("PYTHONPATH", "")) if value
+        )
+        completed = subprocess.run(
+            [sys.executable, "-m", "unittest", "discover", "-s", "." if name == "AKOS" else "tests"],
+            cwd=repo,
+            env=env,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if completed.returncode:
+            raise AssertionError(f"{name} tests failed\n{completed.stdout}\n{completed.stderr}")
+        print(f"{name}: PASS")
 
-def step_4_demo_runner():
-    log_step("4. Live 15-Minute Demo Script Runner")
-    demo_script = ROOT / "showcase" / "demo_15min_run.py"
-    r = subprocess.run([sys.executable, str(demo_script)], cwd=ROOT, capture_output=True, text=True)
-    print("Demo Runner:", "PASS" if r.returncode == 0 else f"FAIL:\n{r.stderr}")
-    assert r.returncode == 0, "Demo runner failed"
-    print("STATUS: PASS")
 
-def step_5_link_verification():
-    log_step("5. Hierarchical Catalog Link Verification")
-    map_file = ROOT / "HIERARCHICAL_PORTFOLIO_MAP.md"
-    text = map_file.read_text(encoding="utf-8")
-    links = re.findall(r"\(file://([^)]+)\)", text)
-    missing = [l for l in links if not Path(l).exists()]
-    print(f"Total file:// links verified: {len(links)}")
-    print(f"Valid links: {len(links) - len(missing)}")
-    assert not missing, f"Missing link targets: {missing}"
-    print("STATUS: PASS")
+def main() -> int:
+    started = time.perf_counter()
+    repos = require_workspace()
+    check_hashes(repos)
+    check_highway()
+    check_hero_tests()
+    completed = subprocess.run([sys.executable, "tools/public_surface_audit.py"], cwd=ROOT, check=False)
+    if completed.returncode:
+        raise AssertionError("public surface audit failed")
+    print(f"WORKSPACE INTEGRATION AUDIT: PASS seconds={time.perf_counter() - started:.3f}")
+    print("Local integration evidence; not a production deployment claim.")
+    return 0
 
-def main():
-    start = time.perf_counter()
-    print("=== GLACIEREQ PORTFOLIO MASTER CI AUDIT ===")
-    step_1_check_hashes()
-    step_2_apex_highway()
-    step_3_hero_tests()
-    step_4_demo_runner()
-    step_5_link_verification()
-    elapsed = round((time.perf_counter() - start) * 1000.0, 2)
-    print(f"\n==================================================")
-    print(f"  ALL 5 CI STEPS PASSED IN {elapsed} ms")
-    print(f"  PORTFOLIO STATUS: 100% SOLID & DEPLOYABLE")
-    print(f"==================================================")
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
