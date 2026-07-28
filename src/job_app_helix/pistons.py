@@ -60,7 +60,10 @@ def assess_flight(inputs: FlightInputs) -> StageResult:
         findings.append(
             Finding(
                 code="FLIGHT_TELEMETRY_DEGRADED",
-                message=f"Telemetry completeness is {completeness:.1%}; investigate dropped frames.",
+                message=(
+                    f"Telemetry completeness is {completeness:.1%}; "
+                    "investigate dropped frames."
+                ),
                 severity=StageStatus.WARN,
             )
         )
@@ -235,7 +238,10 @@ def assess_ground(inputs: GroundInputs) -> StageResult:
     )
 
 
-def refine_flight(inputs: FlightInputs, result: StageResult) -> tuple[FlightInputs, Refinement | None]:
+def refine_flight(
+    inputs: FlightInputs,
+    result: StageResult,
+) -> tuple[FlightInputs, Refinement | None]:
     if result.status is not StageStatus.NO_GO or inputs.backup_frames <= 0:
         return inputs, None
 
@@ -267,11 +273,16 @@ def refine_propulsion(
     return refined, Refinement(
         stage=result.name,
         action="apply-predeclared-derated-profile",
-        rationale="Reassess using a supplied contingency profile rather than silently tuning to pass.",
+        rationale=(
+            "Reassess using a supplied contingency profile rather than silently tuning to pass."
+        ),
     )
 
 
-def refine_ground(inputs: GroundInputs, result: StageResult) -> tuple[GroundInputs, Refinement | None]:
+def refine_ground(
+    inputs: GroundInputs,
+    result: StageResult,
+) -> tuple[GroundInputs, Refinement | None]:
     if result.status is not StageStatus.NO_GO:
         return inputs, None
     if inputs.backup_capacity_mbps <= 0 and not inputs.alternate_route_available:
