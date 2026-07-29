@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Block commits that embed absolute local home/workspace paths.
+# BrainSync generated artifacts should be gitignored; this is defense in depth.
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+SANITIZE="$ROOT/helix/automations/brainsync_path_sanitize.py"
+if [[ ! -f "$SANITIZE" ]]; then
+  echo "pre-commit: missing $SANITIZE" >&2
+  exit 1
+fi
+
+# Fail if staged BrainSync-related files still contain absolute local paths.
+if ! python3 "$SANITIZE" check --staged; then
+  echo "" >&2
+  echo "pre-commit: refuse commit with absolute local paths." >&2
+  echo "Generated BrainSync files belong in .gitignore (not the index)." >&2
+  exit 1
+fi
+
+# Refuse force-adds of known machine-local BrainSync artifacts.
+BLOCKED_REGEX='^(\.brainsync/(memory\.jsonl|index\.json|project\.json|generated-context\.md|sync-state\.json|shared-context\.json|\.context-key|agent-rules\.md)|\.brainsync/(rules|shadows|backups)/|\.mcp\.json)$'
+
+blocked=0
+while IFS= read -r file; do
+  [[ -z "$file" ]] && continue
+  if [[ "$file" =~ $BLOCKED_REGEX ]]; then
+    echo "pre-commit: blocked machine-local BrainSync artifact: $file" >&2
+    blocked=1
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACMR || true)
+
+if [[ "$blocked" -ne 0 ]]; then
+  echo "pre-commit: unstage these files (git rm --cached <path>)." >&2
+  exit 1
+fi
+
+exit 0

@@ -1,40 +1,53 @@
-# Python
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.ruff_cache/
-.venv/
-venv/
-dist/
-build/
-*.egg-info/
-
-# Generated proof receipts
-artifacts/
-
-# Secrets and local environment
+repos/
+**/__pycache__/
+*.pyc
 .env
 .env.*
 *.env
 .DS_Store
-
-# Local portfolio workspace and state
-repos/
+**/node_modules/
 state/
 
-# IDE and generated agent memory
-.agent/
-.agent-mem/
-.brainsync/
-.cline/
-.cursor/
-.gemini/
-.kiro/
-.windsurf/
+# ---------------------------------------------------------------------------
+# BrainSync — machine-local / generated (absolute paths; not portable)
+# Keep intentional hand-authored rules only: .brainsync/ip_rules.md
+# ---------------------------------------------------------------------------
+.brainsync/agent-rules.md
+.brainsync/memory.jsonl
+.brainsync/index.json
+.brainsync/project.json
+.brainsync/generated-context.md
+.brainsync/sync-state.json
+.brainsync/shared-context.json
+.brainsync/.context-key
+.brainsync/rules/
+.brainsync/shadows/
+.brainsync/backups/
+
+# BrainSync-generated agent memory mirrors at repo root
 AGENT.md
 AGENTS.md
 CLAUDE.md
 GEMINI.md
+
+# Auto-generated AI agent exclusions / IDE injections (per-developer)
 .cursorrules
 .clineRules
+.clinerules
+.agent/
+.agent-mem/
 .windsurfrules
+.gemini/
+.cline/
+.cursor/active-context.md
+.cursor/rules/brainsync.mdc
+.kiro/steering/brainsync.md
+.windsurf/rules/brainsync.md
+.agents/rules/brainsyncory.md
+
+# Local MCP wiring (absolute extension paths / secret env paths)
+.mcp.json
+.vscode/mcp.json
+
+# Local agent DB / caches
+.memix/
