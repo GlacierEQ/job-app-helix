@@ -3,7 +3,6 @@
 Live 15-Minute Hero Demo Script Runner (showcase/demo_15min_run.py).
 Executes interactive physics & AI demonstrations across Hero Trio repositories.
 """
-import sys
 import subprocess
 import time
 from pathlib import Path
@@ -27,18 +26,18 @@ def run_hero_demos():
         if (repo_path / "tests").exists():
             res = subprocess.run(["python3", "-m", "unittest", "discover", "-s", "tests"], cwd=repo_path, capture_output=True, text=True)
             if res.returncode == 0:
-                print(f"  Result: PASS (0.01s)")
+                print("  Result: PASS (0.01s)")
                 passed += 1
             else:
                 print(f"  Result: FAIL\n{res.stderr}")
         else:
-            print(f"  Result: PASS (Scaffold verified)")
+            print("  Result: PASS (Scaffold verified)")
             passed += 1
 
     elapsed = round((time.perf_counter() - start) * 1000.0, 2)
-    print(f"\n==========================================")
+    print("\n==========================================")
     print(f"  DEMO RUNNER COMPLETED: {passed}/{len(demos)} PASSED IN {elapsed} ms")
-    print(f"==========================================")
+    print("==========================================")
 
 if __name__ == "__main__":
     run_hero_demos()

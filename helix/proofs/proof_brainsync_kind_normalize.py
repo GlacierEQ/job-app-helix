@@ -111,7 +111,10 @@ def main() -> int:
                 "id": "skill-project",
                 "kind": "rule",
                 "title": skill_title,
-                "content": f"{skill_title}\n**project**: Read `.agent/skills/auto/project/SKILL.md`",
+                "content": (
+                    f"{skill_title}\n"
+                    "**project**: Read `.agent/skills/auto/project/SKILL.md`"
+                ),
                 "source": ".brainsync/agent-rules.md",
                 "createdAt": "2026-07-25T20:05:38.837Z",
                 "updatedAt": "2026-07-25T20:05:38.837Z",
@@ -133,7 +136,10 @@ def main() -> int:
                 "id": "skill-typescript",
                 "kind": "rule",
                 "title": skill_title,
-                "content": f"{skill_title}\n**typescript**: Read `.agent/skills/auto/typescript/SKILL.md`",
+                "content": (
+                    f"{skill_title}\n"
+                    "**typescript**: Read `.agent/skills/auto/typescript/SKILL.md`"
+                ),
                 "source": ".brainsync/agent-rules.md",
                 "createdAt": "2026-07-25T20:05:38.837Z",
                 "updatedAt": "2026-07-25T20:05:38.837Z",
@@ -183,7 +189,11 @@ def main() -> int:
         )
         assert r.returncode == 0, r.stdout + r.stderr
 
-        entries = [json.loads(ln) for ln in mem.read_text(encoding="utf-8").splitlines() if ln.strip()]
+        entries = [
+            json.loads(ln)
+            for ln in mem.read_text(encoding="utf-8").splitlines()
+            if ln.strip()
+        ]
         wwd = [e for e in entries if e.get("title") == "What Was Done"]
         assert len(wwd) == 2
         assert all(e["kind"] == "note" for e in wwd), wwd

@@ -3,6 +3,7 @@
 Unit tests for APEX External Compute Delegation Engine.
 """
 import unittest
+
 from apex_distributed_compute import ExternalComputeDelegator
 
 
@@ -13,13 +14,19 @@ class TestExternalComputeDelegator(unittest.TestCase):
 
     def test_should_delegate_thresholds(self):
         # Below threshold flops & payload size -> False
-        self.assertFalse(self.delegator.should_delegate(estimated_flops=50_000, payload_bytes=1_000))
+        self.assertFalse(
+            self.delegator.should_delegate(estimated_flops=50_000, payload_bytes=1_000)
+        )
 
         # Above threshold flops -> True
-        self.assertTrue(self.delegator.should_delegate(estimated_flops=200_000, payload_bytes=1_000))
+        self.assertTrue(
+            self.delegator.should_delegate(estimated_flops=200_000, payload_bytes=1_000)
+        )
 
         # Large payload bytes -> True
-        self.assertTrue(self.delegator.should_delegate(estimated_flops=10_000, payload_bytes=60_000))
+        self.assertTrue(
+            self.delegator.should_delegate(estimated_flops=10_000, payload_bytes=60_000)
+        )
 
     def test_lightweight_task_runs_locally(self):
         res = self.delegator.delegate_task(

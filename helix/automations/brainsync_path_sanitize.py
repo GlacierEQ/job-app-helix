@@ -23,8 +23,8 @@ import os
 import re
 import subprocess
 import sys
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -117,7 +117,11 @@ def iter_default_files() -> list[Path]:
                     rel_parts = p.relative_to(REPO_ROOT).parts
                 except ValueError:
                     rel_parts = p.parts
-                if len(rel_parts) >= 2 and rel_parts[0] == ".brainsync" and rel_parts[1] == "backups":
+                if (
+                    len(rel_parts) >= 2
+                    and rel_parts[0] == ".brainsync"
+                    and rel_parts[1] == "backups"
+                ):
                     continue
                 found.append(p)
         else:
@@ -352,10 +356,7 @@ def cmd_check(args: argparse.Namespace) -> int:
 
 def cmd_scrub(args: argparse.Namespace) -> int:
     repo = git_repo_root()
-    if args.path:
-        targets = [Path(p).resolve() for p in args.path]
-    else:
-        targets = iter_default_files()
+    targets = [Path(p).resolve() for p in args.path] if args.path else iter_default_files()
 
     changed = 0
     for path in targets:

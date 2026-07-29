@@ -145,7 +145,7 @@ def run_campaign(
         refinements=refinements,
         metadata={
             "engine": "job-app-helix",
-            "engine_version": "0.1.0",
+            "engine_version": "0.2.0",
             "generated_at": datetime.now(UTC).isoformat(),
         },
     )

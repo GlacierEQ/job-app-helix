@@ -32,7 +32,7 @@ import re
 import sys
 from collections import Counter
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -121,7 +121,7 @@ class MemoryEntry:
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
 
 def load_memory(path: Path = MEMORY_PATH) -> list[MemoryEntry]:
@@ -189,7 +189,9 @@ def domains_from_manifest(path: Path = SKILLS_MANIFEST) -> set[str]:
         return set()
     if not isinstance(data, dict):
         return set()
-    return {str(k).lower() for k, v in data.items() if isinstance(v, dict) and v.get("enabled", True)}
+    return {
+        str(k).lower() for k, v in data.items() if isinstance(v, dict) and v.get("enabled", True)
+    }
 
 
 def domains_from_skill_files(root: Path = SKILLS_AUTO) -> set[str]:
@@ -318,7 +320,9 @@ def cmd_audit(args: argparse.Namespace) -> int:
             hard_errors.append(f"SKILL.md files missing domains: {missing}")
             hard_ok = False
         else:
-            soft_warnings.append(f"skills-manifest incomplete (files ok): missing {sorted(expected - man_domains)}")
+            soft_warnings.append(
+                f"skills-manifest incomplete (files ok): missing {sorted(expected - man_domains)}"
+            )
 
     # Soft: latestEntries is a preview — report gaps but do not fail audit unless --strict-index
     missing_latest = sorted(expected - latest_domains)
@@ -339,9 +343,7 @@ def cmd_audit(args: argparse.Namespace) -> int:
         rule_ids = {str(r.get("id") or "") for r in skill_rules if isinstance(r, dict)}
         mem_ids = {e.id for e in skills if e.id}
         if mem_ids - rule_ids:
-            hard_errors.append(
-                f"skillRules missing memory skill ids: {sorted(mem_ids - rule_ids)}"
-            )
+            hard_errors.append(f"skillRules missing memory skill ids: {sorted(mem_ids - rule_ids)}")
             hard_ok = False
         rule_domains = {
             str(r.get("domain")).lower()
@@ -386,7 +388,9 @@ def cmd_audit(args: argparse.Namespace) -> int:
         print(f"  ERROR: {e}", file=sys.stderr)
 
     if hard_ok:
-        print("  RESULT: OK — skill domains preserved; consumers must not rely on latestEntries alone")
+        print(
+            "  RESULT: OK — skill domains preserved; consumers must not rely on latestEntries alone"
+        )
         return 0
     print("  RESULT: FAIL", file=sys.stderr)
     return 1
@@ -485,7 +489,9 @@ def rebuild_latest_entries(
     return out
 
 
-def rebuild_index(memory: list[MemoryEntry], existing: dict[str, Any] | None, cap: int) -> dict[str, Any]:
+def rebuild_index(
+    memory: list[MemoryEntry], existing: dict[str, Any] | None, cap: int
+) -> dict[str, Any]:
     by_kind: Counter[str] = Counter()
     for e in memory:
         by_kind[e.kind or "note"] += 1
@@ -533,15 +539,17 @@ def cmd_repair(args: argparse.Namespace) -> int:
 
     INDEX_PATH.parent.mkdir(parents=True, exist_ok=True)
     if not args.dry_run:
-        INDEX_PATH.write_text(json.dumps(new_index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        INDEX_PATH.write_text(
+            json.dumps(new_index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        )
         print(f"repair: wrote {INDEX_PATH.relative_to(REPO_ROOT)}")
     else:
         print("repair: dry-run (no write)")
 
-    print(f"  totalEntries={new_index['totalEntries']} latestEntries={len(new_index['latestEntries'])} cap={cap}")
-    print(f"  pinned skill ids: {[e.id for e in skills]}")
-    domains = sorted({e.domain for e in skills if e.domain})
-    print(f"  skill domains in latestEntries: {domains}")
+    print(
+        f"  totalEntries={new_index['totalEntries']} "
+        f"latestEntries={len(new_index['latestEntries'])} cap={cap}"
+    )
     return 0
 
 
@@ -558,7 +566,12 @@ def build_parser() -> argparse.ArgumentParser:
     a.set_defaults(func=cmd_audit)
 
     r = sub.add_parser("repair", help="Rewrite index.json latestEntries pinning distinct skills")
-    r.add_argument("--cap", type=int, default=DEFAULT_LATEST_CAP, help=f"latestEntries size (default {DEFAULT_LATEST_CAP})")
+    r.add_argument(
+        "--cap",
+        type=int,
+        default=DEFAULT_LATEST_CAP,
+        help=f"latestEntries size (default {DEFAULT_LATEST_CAP})",
+    )
     r.add_argument("--dry-run", action="store_true")
     r.set_defaults(func=cmd_repair)
 

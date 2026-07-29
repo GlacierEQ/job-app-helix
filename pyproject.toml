@@ -26,6 +26,7 @@ dependencies = ["protobuf>=6.31,<7"]
 [project.optional-dependencies]
 dev = [
   "grpcio-tools>=1.74,<2",
+  "mypy>=1.13,<2",
   "pytest>=8.3,<9",
   "ruff>=0.9,<1",
 ]
@@ -46,5 +47,25 @@ target-version = "py311"
 line-length = 100
 extend-exclude = ["src/job_app_helix/readme_mesh_pb2.py"]
 
+[tool.ruff.lint.isort]
+known-first-party = ["job_app_helix"]
+
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[[tool.mypy.overrides]]
+module = "job_app_helix.readme_mesh_pb2"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = ["job_app_helix.readme_mesh_manifest", "job_app_helix.readme_mesh"]
+ignore_errors = true
+
+[tool.ruff.lint.per-file-ignores]
+"apex_highway.py" = ["E501"]
+"apex_distributed_compute.py" = ["E501"]
+"ci_audit_portfolio.py" = ["E501"]
+"generate_outreach_dms.py" = ["E501"]
+"test_apex_distributed_compute.py" = ["E501"]
+"showcase/demo_15min_run.py" = ["E501"]
+"helix/**/*.py" = ["E501"]

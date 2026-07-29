@@ -9,10 +9,10 @@ from __future__ import annotations
 
 import json
 import time
-import urllib.request
 import urllib.error
-from pathlib import Path
-from typing import Any, Callable, Dict, Optional, Union
+import urllib.request
+from collections.abc import Callable
+from typing import Any
 
 
 class ExternalComputeDelegator:
@@ -20,7 +20,7 @@ class ExternalComputeDelegator:
 
     def __init__(
         self,
-        default_exterior_endpoint: Optional[str] = None,
+        default_exterior_endpoint: str | None = None,
         complexity_threshold_flops: int = 1_000_000,
     ):
         self.default_endpoint = default_exterior_endpoint or "https://generativelanguage.googleapis.com"
@@ -39,11 +39,11 @@ class ExternalComputeDelegator:
     def delegate_task(
         self,
         task_name: str,
-        payload: Dict[str, Any],
+        payload: dict[str, Any],
         estimated_flops: int = 5_000_000,
-        local_fallback_func: Optional[Callable[[Dict[str, Any]], Dict[str, Any]]] = None,
-        custom_endpoint: Optional[str] = None,
-    ) -> Dict[str, Any]:
+        local_fallback_func: Callable[[dict[str, Any]], dict[str, Any]] | None = None,
+        custom_endpoint: str | None = None,
+    ) -> dict[str, Any]:
         """Routes task to exterior compute node or falls back locally if unreachable."""
         start_time = time.perf_counter()
         payload_json = json.dumps(payload)
@@ -60,7 +60,10 @@ class ExternalComputeDelegator:
             req = urllib.request.Request(
                 endpoint,
                 data=payload_json.encode("utf-8"),
-                headers={"Content-Type": "application/json", "User-Agent": "APEX-ExternalComputeEngine/1.0"},
+                headers={
+                    "Content-Type": "application/json",
+                    "User-Agent": "APEX-ExternalComputeEngine/1.0",
+                },
                 method="POST",
             )
             # Timeout rapidly to prevent local thread blocking
@@ -96,11 +99,11 @@ class ExternalComputeDelegator:
     def _run_locally(
         self,
         task_name: str,
-        payload: Dict[str, Any],
-        fallback_func: Optional[Callable[[Dict[str, Any]], Dict[str, Any]]],
+        payload: dict[str, Any],
+        fallback_func: Callable[[dict[str, Any]], dict[str, Any]] | None,
         start_time: float,
-        fallback_reason: Optional[str] = None,
-    ) -> Dict[str, Any]:
+        fallback_reason: str | None = None,
+    ) -> dict[str, Any]:
         """Runs the task locally as fallback or for lightweight workloads."""
         if fallback_func:
             result = fallback_func(payload)
@@ -119,7 +122,7 @@ class ExternalComputeDelegator:
             output["fallback_reason"] = fallback_reason
         return output
 
-    def get_telemetry(self) -> Dict[str, Any]:
+    def get_telemetry(self) -> dict[str, Any]:
         """Returns compute delegation telemetry and offloading metrics."""
         return {
             "status": "ACTIVE",

@@ -38,7 +38,7 @@ import json
 import re
 import sys
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -87,7 +87,7 @@ CONTEXT_GLOBS = (
 
 
 def utc_now_iso() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -116,10 +116,7 @@ def is_session_history_title(title: str | None) -> bool:
     if t in CANONICAL_NOTE_TITLES:
         return True
     # Tolerate leading emoji / numbering noise
-    for canon in CANONICAL_NOTE_TITLES:
-        if t.endswith(canon) or t == canon:
-            return True
-    return False
+    return any(t.endswith(canon) or t == canon for canon in CANONICAL_NOTE_TITLES)
 
 
 def is_expert_skill_entry(entry: dict[str, Any]) -> bool:
@@ -291,6 +288,7 @@ def collect_expert_skill_entries(entries: list[dict[str, Any]]) -> list[dict[str
             # Fall back to hash/content so undated rows still surface
             eid = str(e.get("hash") or content_preview(str(e.get("content") or ""), 64) or id(e))
         by_id[eid] = e
+
     # Header (no domain) first, then domains alpha, then remaining by rank
     def skill_sort_key(e: dict[str, Any]) -> tuple[int, str, tuple[int, str, str]]:
         content = e.get("content") if isinstance(e.get("content"), str) else ""
@@ -416,9 +414,7 @@ def _is_session_history_heading(line: str) -> bool:
         return True
     if re.match(r"^[-*]\s+Last Session Summary\b", stripped):
         return True
-    if re.match(r"^#{1,6}\s+Last Session Summary\b", stripped):
-        return True
-    return False
+    return bool(re.match(r"^#{1,6}\s+Last Session Summary\b", stripped))
 
 
 def patch_context_kind_labels(root: Path = REPO_ROOT) -> int:
@@ -485,7 +481,11 @@ def cmd_check(args: argparse.Namespace) -> int:
     entries = load_jsonl(memory)
     bad = violations(entries)
     by_kind = Counter(str(e.get("kind") or "unknown") for e in entries)
-    wwd = [e for e in entries if is_session_history_title(e.get("title") if isinstance(e.get("title"), str) else None)]
+    wwd = [
+        e
+        for e in entries
+        if is_session_history_title(e.get("title") if isinstance(e.get("title"), str) else None)
+    ]
     wwd_kinds = Counter(str(e.get("kind") or "unknown") for e in wwd)
 
     skills = collect_expert_skill_entries(entries)
@@ -505,14 +505,16 @@ def cmd_check(args: argparse.Namespace) -> int:
     print(f"entries: {len(entries)} byKind={dict(by_kind)}")
     print(f"session-history titles: {len(wwd)} kinds={dict(wwd_kinds)}")
     print(
-        f"expert-skill entries: {len(skills)} "
-        f"domains={skill_domains or ['(header-only or none)']}"
+        f"expert-skill entries: {len(skills)} domains={skill_domains or ['(header-only or none)']}"
     )
 
     if bad:
         print(f"FAIL: {len(bad)} session-history entry(ies) not kind=note:", file=sys.stderr)
         for b in bad[:20]:
-            print(f"  id={b['id']} kind={b['kind']} priority={b['priority']} title={b['title']}", file=sys.stderr)
+            print(
+                f"  id={b['id']} kind={b['kind']} priority={b['priority']} title={b['title']}",
+                file=sys.stderr,
+            )
         print(
             "\nFix:\n  python3 helix/automations/brainsync_kind_normalize.py apply",
             file=sys.stderr,
@@ -546,13 +548,15 @@ def cmd_check(args: argparse.Namespace) -> int:
             return 1
         # No What Was Done as rule in latestEntries
         for le in idx.get("latestEntries") or []:
-            if is_session_history_title(le.get("title") if isinstance(le.get("title"), str) else None):
-                if le.get("kind") != "note":
-                    print(
-                        f"FAIL: latestEntries has session history as kind={le.get('kind')}: {le.get('id')}",
-                        file=sys.stderr,
-                    )
-                    return 1
+            if is_session_history_title(
+                le.get("title") if isinstance(le.get("title"), str) else None
+            ) and le.get("kind") != "note":
+                print(
+                    f"FAIL: latestEntries has session history as kind={le.get('kind')}: "
+                    f"{le.get('id')}",
+                    file=sys.stderr,
+                )
+                return 1
 
         # Distinct expert skills must remain addressable (no title-collapse).
         skill_ids_mem = {str(e.get("id") or "") for e in skills if e.get("id")}
@@ -584,9 +588,7 @@ def cmd_check(args: argparse.Namespace) -> int:
             )
             return 1
         # Domain rows must keep distinct domains (config/project/python/typescript).
-        domains_idx = sorted(
-            {str(r.get("domain")) for r in skill_rules if r.get("domain")}
-        )
+        domains_idx = sorted({str(r.get("domain")) for r in skill_rules if r.get("domain")})
         if domains_idx != skill_domains:
             print(
                 "FAIL: skillRules domains mismatch\n"

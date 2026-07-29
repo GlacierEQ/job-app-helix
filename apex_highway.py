@@ -1,31 +1,19 @@
 #!/usr/bin/env python3
 """
 APEX Highway Mesh Health Engine (apex_highway.py).
-Scans 62 sidecar nodes across portfolio repositories.
+Scans sidecar nodes across portfolio repositories.
 """
 import json
-import os
-import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Optional
 
 ROOT = Path(__file__).resolve().parent
-PILLARS_FILE = ROOT / "docs" / "PORTFOLIO_PILLARS.json"
 
 class APEXHighwayEngine:
-    def __init__(self, root_dir: Path = None):
+    def __init__(self, root_dir: Optional[Path] = None):
         self.root_dir = root_dir or (ROOT / "repos")
-        self.pillars = self._load_pillars()
         self.nodes = {}
-
-    def _load_pillars(self) -> dict:
-        if PILLARS_FILE.exists():
-            try:
-                return json.loads(PILLARS_FILE.read_text(encoding="utf-8"))
-            except Exception:
-                pass
-        return {}
 
     def discover_nodes(self) -> int:
         self.nodes.clear()
