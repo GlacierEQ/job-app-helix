@@ -1,0 +1,144 @@
+{
+  "repositories": [
+    {
+      "repository": "GlacierEQ/xai-colossus-cooling-alpha",
+      "display_name": "Colossus Cooling Alpha",
+      "one_line_purpose": "A stateless thermal specification model for computing cooling requirements and margins.",
+      "innovation": "The Alpha strand isolates physical calculations and immutable thermal evidence from controller behavior.",
+      "evolution": "It evolved as the computational half of a paired thermal-control helix.",
+      "capabilities": [
+        "thermal specification",
+        "cooling requirements",
+        "stateless modeling"
+      ],
+      "evidence": [
+        {
+          "label": "Thermal specification",
+          "path": "https://github.com/GlacierEQ/xai-colossus-cooling-alpha/blob/master/src/thermal_spec.py",
+          "claim": "Computes cooling demand and thermal margins."
+        },
+        {
+          "label": "Tests",
+          "path": "https://github.com/GlacierEQ/xai-colossus-cooling-alpha/blob/master/tests/test_thermal_spec.py",
+          "claim": "Verifies thermal calculations."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "master"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-cooling-omega",
+      "display_name": "Colossus Cooling Omega",
+      "one_line_purpose": "A stateful flow controller that acts on thermal requirements produced by the Alpha strand.",
+      "innovation": "The Omega strand makes actuation, feedback, and control-state transitions independently reviewable.",
+      "evolution": "It evolved as the operational half of a paired thermal-control helix.",
+      "capabilities": [
+        "flow control",
+        "feedback control",
+        "thermal actuation"
+      ],
+      "evidence": [
+        {
+          "label": "Flow controller",
+          "path": "https://github.com/GlacierEQ/xai-colossus-cooling-omega/blob/master/src/flow_controller.py",
+          "claim": "Applies stateful cooling-control decisions."
+        },
+        {
+          "label": "Tests",
+          "path": "https://github.com/GlacierEQ/xai-colossus-cooling-omega/blob/master/tests/test_flow_controller.py",
+          "claim": "Verifies flow-control behavior."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "master"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-energy-alpha",
+      "display_name": "Colossus Energy Alpha",
+      "one_line_purpose": "A stateless power-budget model for compute and infrastructure demand.",
+      "innovation": "It produces explicit energy requirements and reserve margins without mixing them with runtime shedding policy.",
+      "evolution": "It evolved as the computational half of a paired energy-management helix.",
+      "capabilities": [
+        "power budgeting",
+        "capacity modeling",
+        "reserve margins"
+      ],
+      "evidence": [
+        {
+          "label": "Power budget",
+          "path": "https://github.com/GlacierEQ/xai-colossus-energy-alpha/blob/master/src/power_budget.py",
+          "claim": "Computes energy demand and margins."
+        },
+        {
+          "label": "Tests",
+          "path": "https://github.com/GlacierEQ/xai-colossus-energy-alpha/blob/master/tests/test_power_budget.py",
+          "claim": "Verifies budget calculations."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "master"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-energy-omega",
+      "display_name": "Colossus Energy Omega",
+      "one_line_purpose": "A stateful load-shedding controller that protects critical workloads under constrained power.",
+      "innovation": "It turns power shortfall into an ordered, inspectable control response rather than an undifferentiated shutdown.",
+      "evolution": "It evolved as the operational half of a paired energy-management helix.",
+      "capabilities": [
+        "load shedding",
+        "priority control",
+        "energy resilience"
+      ],
+      "evidence": [
+        {
+          "label": "Load shed controller",
+          "path": "https://github.com/GlacierEQ/xai-colossus-energy-omega/blob/master/src/load_shed.py",
+          "claim": "Implements priority-aware power reduction."
+        },
+        {
+          "label": "Tests",
+          "path": "https://github.com/GlacierEQ/xai-colossus-energy-omega/blob/master/tests/test_load_shed.py",
+          "claim": "Verifies load-shedding behavior."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "master"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-servers",
+      "display_name": "Colossus Servers",
+      "one_line_purpose": "A rack-planning model for assigning compute capacity under infrastructure constraints.",
+      "innovation": "It makes rack placement and capacity decisions visible as data instead of burying them in deployment scripts.",
+      "evolution": "It evolved into a compute-capacity provider for the cooling and energy strands.",
+      "capabilities": [
+        "rack planning",
+        "compute capacity",
+        "infrastructure placement"
+      ],
+      "evidence": [
+        {
+          "label": "Rack planner",
+          "path": "https://github.com/GlacierEQ/xai-colossus-servers/blob/main/src/rack_planner.py",
+          "claim": "Computes rack and server placement."
+        },
+        {
+          "label": "Tests",
+          "path": "https://github.com/GlacierEQ/xai-colossus-servers/blob/main/tests/test_rack_planner.py",
+          "claim": "Verifies planning behavior."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "main"
+    }
+  ]
+}

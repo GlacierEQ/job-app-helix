@@ -1,0 +1,13 @@
+{
+  "manifest_kind": "readme_mesh_index",
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-28T00:00:00Z",
+  "canonical_repo": "GlacierEQ/job-app-helix",
+  "fragments": [
+    "readme_mesh.d/core.json",
+    "readme_mesh.d/spacex.json",
+    "readme_mesh.d/agents.json",
+    "readme_mesh.d/colossus.json",
+    "readme_mesh.d/edges.json"
+  ]
+}

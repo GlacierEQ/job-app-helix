@@ -1,0 +1,175 @@
+{
+  "repositories": [
+    {
+      "repository": "GlacierEQ/spacex-telemetry",
+      "display_name": "SpaceX Telemetry",
+      "one_line_purpose": "A telemetry frame bus that rate-limits streams, detects gaps and replays, and exports accepted history through Protobuf.",
+      "innovation": "The design makes transport health measurable at ingestion time and retains a compact wire path instead of treating serialization as an afterthought.",
+      "evolution": "It evolved from frame accounting into real Protobuf batch export and measured JSON-versus-Protobuf condensation.",
+      "capabilities": ["telemetry ingestion", "gap detection", "rate limiting", "Protobuf serialization"],
+      "evidence": [
+        {"label": "Telemetry bus", "path": "https://github.com/GlacierEQ/spacex-telemetry/blob/main/src/telemetry_bus.py", "claim": "Implements per-stream ordering, rate limits, drop accounting, and Protobuf export."},
+        {"label": "Protobuf codec", "path": "https://github.com/GlacierEQ/spacex-telemetry/blob/main/src/proto_codec.py", "claim": "Encodes telemetry history into a real Protocol Buffers batch."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-telemetry/blob/main/tests/test_telemetry_bus.py", "claim": "Exercises telemetry behavior and accounting."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-propulsion-monitor",
+      "display_name": "SpaceX Propulsion Monitor",
+      "one_line_purpose": "A compact propulsion-health evaluator for chamber pressure, mixture-ratio error, and vibration.",
+      "innovation": "It converts heterogeneous sensor margins into a transparent health index while preserving hard RED/YELLOW/GREEN gates.",
+      "evolution": "It evolved into a reusable campaign piston whose outputs can be challenged by Job-App Helix rather than consumed as an unexplained score.",
+      "capabilities": ["propulsion health", "sensor fusion", "threshold gating"],
+      "evidence": [
+        {"label": "Health model", "path": "https://github.com/GlacierEQ/spacex-propulsion-monitor/blob/main/src/prop_health.py", "claim": "Computes weighted health and explicit status gates."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-propulsion-monitor/blob/main/tests/test_prop_health.py", "claim": "Verifies healthy and degraded propulsion scenarios."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-ground-network",
+      "display_name": "SpaceX Ground Network",
+      "one_line_purpose": "A ground-station planner that selects viable links, meets bandwidth demand, and preserves failover options.",
+      "innovation": "It treats routing as a constrained capacity decision instead of a static station list.",
+      "evolution": "It evolved into the campaign network piston that can be combined with telemetry, satellite routing, and mission-control state.",
+      "capabilities": ["ground-network planning", "capacity allocation", "failover"],
+      "evidence": [
+        {"label": "Ground planner", "path": "https://github.com/GlacierEQ/spacex-ground-network/blob/main/src/ground_net.py", "claim": "Selects eligible stations by elevation, SNR, and capacity."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-ground-network/blob/main/tests/test_ground_net.py", "claim": "Verifies capacity and failover behavior."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-launch-sequencer",
+      "display_name": "SpaceX Launch Sequencer",
+      "one_line_purpose": "A dependency-aware launch sequence model that advances only when required stages are satisfied.",
+      "innovation": "It turns launch progression into explicit state transitions and prerequisite checks rather than an opaque script.",
+      "evolution": "It evolved into an orchestration handoff between domain evidence and campaign-level GO/NO-GO logic.",
+      "capabilities": ["state sequencing", "dependency gates", "launch orchestration"],
+      "evidence": [
+        {"label": "Sequencer", "path": "https://github.com/GlacierEQ/spacex-launch-sequencer/blob/main/src/sequencer.py", "claim": "Implements launch-stage ordering and prerequisites."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-launch-sequencer/blob/main/tests/test_sequencer.py", "claim": "Exercises valid and blocked transitions."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-mission-control",
+      "display_name": "SpaceX Mission Control",
+      "one_line_purpose": "A mission-console state model that turns subsystem events into operator-facing status.",
+      "innovation": "It provides a human operational surface while keeping the underlying event and state transformations inspectable.",
+      "evolution": "It evolved from isolated console output into a consumer of telemetry, launch, propulsion, and ground-network evidence.",
+      "capabilities": ["mission state", "operator console", "event interpretation"],
+      "evidence": [
+        {"label": "Mission console", "path": "https://github.com/GlacierEQ/spacex-mission-control/blob/main/src/console.py", "claim": "Aggregates subsystem state for operator review."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-mission-control/blob/main/tests/test_console.py", "claim": "Verifies console and state behavior."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-satellite-mesh",
+      "display_name": "SpaceX Satellite Mesh",
+      "one_line_purpose": "A satellite-mesh route selector that evaluates available paths and communication constraints.",
+      "innovation": "It models routing as an evidence-bearing decision that can compose with ground capacity and mission requirements.",
+      "evolution": "It evolved into the orbital communications strand connecting vehicle state to the ground-network piston.",
+      "capabilities": ["mesh routing", "network resilience", "path selection"],
+      "evidence": [
+        {"label": "Mesh router", "path": "https://github.com/GlacierEQ/spacex-satellite-mesh/blob/main/src/mesh_route.py", "claim": "Computes satellite routing decisions."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-satellite-mesh/blob/main/tests/test_mesh_route.py", "claim": "Verifies route selection behavior."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-autonomy",
+      "display_name": "SpaceX Autonomy",
+      "one_line_purpose": "A hybrid-autonomy model that coordinates automated decisions with bounded human oversight.",
+      "innovation": "It makes authority and handoff boundaries explicit instead of presenting autonomy as an all-or-nothing switch.",
+      "evolution": "It evolved into a reusable decision layer that can consume verified telemetry and mission state.",
+      "capabilities": ["hybrid autonomy", "human oversight", "decision policy"],
+      "evidence": [
+        {"label": "Autonomy runtime", "path": "https://github.com/GlacierEQ/spacex-autonomy/blob/main/src/hybrid_autonomy.py", "claim": "Implements bounded autonomous decision behavior."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-autonomy/blob/main/tests/test_autonomy.py", "claim": "Verifies autonomy and oversight paths."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-cryogenics",
+      "display_name": "SpaceX Cryogenics",
+      "one_line_purpose": "A cryogenic boil-off model for reasoning about thermal loss and propellant preservation.",
+      "innovation": "It captures the relationship between time, temperature, and propellant loss in a small inspectable model.",
+      "evolution": "It evolved into a thermal/propellant capability that can inform launch sequencing and readiness decisions.",
+      "capabilities": ["cryogenic modeling", "boil-off estimation", "thermal reasoning"],
+      "evidence": [
+        {"label": "Boil-off model", "path": "https://github.com/GlacierEQ/spacex-cryogenics/blob/main/src/boiloff.py", "claim": "Computes cryogenic loss behavior."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-cryogenics/blob/main/tests/test_boiloff.py", "claim": "Verifies representative boil-off scenarios."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-conjunction-sentinel",
+      "display_name": "SpaceX Conjunction Sentinel",
+      "one_line_purpose": "A conjunction-risk evaluator that turns relative orbital conditions into a traceable response signal.",
+      "innovation": "It separates risk calculation from response policy so the numerical model can be reviewed independently.",
+      "evolution": "It evolved into a consumer of orbital-mechanics outputs and a provider of mission-control warnings.",
+      "capabilities": ["conjunction analysis", "risk evaluation", "orbital safety signal"],
+      "evidence": [
+        {"label": "Conjunction model", "path": "https://github.com/GlacierEQ/spacex-conjunction-sentinel/blob/main/src/conjunction.py", "claim": "Evaluates close-approach conditions."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-conjunction-sentinel/blob/main/tests/test_conjunction.py", "claim": "Verifies conjunction-risk behavior."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-pad-weather-gate",
+      "display_name": "SpaceX Pad Weather Gate",
+      "one_line_purpose": "A launch-site weather gate that turns environmental conditions into explicit hold or proceed evidence.",
+      "innovation": "It represents weather as a composable decision boundary rather than a narrative checklist.",
+      "evolution": "It evolved into an independent campaign piston that can block an otherwise healthy launch sequence.",
+      "capabilities": ["weather gating", "environmental constraints", "fail-closed readiness"],
+      "evidence": [
+        {"label": "Weather gate", "path": "https://github.com/GlacierEQ/spacex-pad-weather-gate/blob/main/src/weather_gate.py", "claim": "Evaluates launch-site weather conditions."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-pad-weather-gate/blob/main/tests/test_weather_gate.py", "claim": "Verifies proceed and hold scenarios."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-orbital-mechanics",
+      "display_name": "SpaceX Orbital Mechanics",
+      "one_line_purpose": "An orbital-mechanics engine with pure physics solvers and a separate stateful planning layer.",
+      "innovation": "Its Alpha/Omega split separates stateless Kepler and transfer calculations from planning and orchestration.",
+      "evolution": "It evolved into a foundational provider for conjunction analysis, trajectory planning, and campaign verification.",
+      "capabilities": ["orbital mechanics", "Kepler solving", "trajectory planning", "Alpha/Omega separation"],
+      "evidence": [
+        {"label": "Kepler solver", "path": "https://github.com/GlacierEQ/spacex-orbital-mechanics/blob/main/src/alpha/kepler.py", "claim": "Implements stateless orbital computation."},
+        {"label": "Orbit planner", "path": "https://github.com/GlacierEQ/spacex-orbital-mechanics/blob/main/src/omega/orbit_planner.py", "claim": "Orchestrates stateful orbit planning."},
+        {"label": "Architecture", "path": "https://github.com/GlacierEQ/spacex-orbital-mechanics/blob/main/README.md", "claim": "Documents the Alpha/Omega responsibility split."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/spacex-thermal-protection",
+      "display_name": "SpaceX Thermal Protection",
+      "one_line_purpose": "A predictive reentry model that evaluates tile state and proposes bounded trajectory adjustments.",
+      "innovation": "It combines thermal-gradient analysis, signal fusion, and an adaptive controller while keeping the demonstration boundary explicit.",
+      "evolution": "It evolved from a thermal calculation into a closed-loop Alpha/Omega model connecting prediction to controlled response.",
+      "capabilities": ["thermal protection", "reentry modeling", "signal fusion", "adaptive control"],
+      "evidence": [
+        {"label": "Predictive thermal model", "path": "https://github.com/GlacierEQ/spacex-thermal-protection/blob/main/src/alpha/predictive_thermal.py", "claim": "Implements tile-state analysis and adaptive reentry control."},
+        {"label": "Tests", "path": "https://github.com/GlacierEQ/spacex-thermal-protection/blob/main/tests", "claim": "Contains executable thermal-protection scenarios."},
+        {"label": "Architecture", "path": "https://github.com/GlacierEQ/spacex-thermal-protection/blob/main/README.md", "claim": "Documents the Alpha/Omega split and runnable example."}
+      ],
+      "run_commands": ["python -m pytest -q"],
+      "default_branch": "main"
+    }
+  ]
+}
