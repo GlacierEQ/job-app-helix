@@ -1,0 +1,77 @@
+{
+  "repositories": [
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "display_name": "Job-App Helix",
+      "one_line_purpose": "A reproducible campaign engine that turns independent engineering modules into one transparent build-and-verify decision.",
+      "innovation": "It combines human explanation, typed evidence, fail-closed decisions, deterministic scenarios, and a real Protocol Buffers README graph.",
+      "evolution": "It evolved from a local multi-repository demonstration into a clean public control surface that can generate consistent recruiter, expert, and AI views for the portfolio.",
+      "capabilities": [
+        "campaign orchestration",
+        "verification engineering",
+        "README intelligence mesh",
+        "Protocol Buffers"
+      ],
+      "evidence": [
+        {
+          "label": "Campaign control flow",
+          "path": "https://github.com/GlacierEQ/job-app-helix/blob/main/src/job_app_helix/campaign.py",
+          "claim": "Composes stage results into an explicit GO or NO-GO decision."
+        },
+        {
+          "label": "Evidence pistons",
+          "path": "https://github.com/GlacierEQ/job-app-helix/blob/main/src/job_app_helix/pistons.py",
+          "claim": "Implements typed assessments and bounded contingency refinements."
+        },
+        {
+          "label": "Executable claims",
+          "path": "https://github.com/GlacierEQ/job-app-helix/blob/main/tests/test_campaign.py",
+          "claim": "Tests nominal, recoverable, and hard-failure behavior."
+        },
+        {
+          "label": "README Mesh schema",
+          "path": "https://github.com/GlacierEQ/job-app-helix/blob/main/proto/readme_mesh.proto",
+          "claim": "Defines the real Protobuf contract for repository nodes, audience sections, evidence, and typed edges."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "main"
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "display_name": "AKOS",
+      "one_line_purpose": "The governance and operational-cognition layer that keeps a large tool and repository ecosystem coherent, evidence-bound, and capable of completing work.",
+      "innovation": "AKOS joins identity, provenance, execution authority, verification, persistence, and regression guards into one operating model.",
+      "evolution": "It evolved from architectural guidance into executable policy with deterministic authority gates, machine-readable manifests, and tests that convert corrections into durable system behavior.",
+      "capabilities": [
+        "governance",
+        "operational cognition",
+        "execution authority",
+        "provenance"
+      ],
+      "evidence": [
+        {
+          "label": "Foundational laws",
+          "path": "https://github.com/GlacierEQ/AKOS/blob/main/specs/AKOS-LAW-001_FOUNDATIONAL_LAWS.md",
+          "claim": "Defines the durable laws governing AKOS artifacts and behavior."
+        },
+        {
+          "label": "Execution authority runtime",
+          "path": "https://github.com/GlacierEQ/AKOS/blob/main/operational_cognition/execution_authority.py",
+          "claim": "Deterministically chooses execute, confirm, or block."
+        },
+        {
+          "label": "Operational cognition manifest",
+          "path": "https://github.com/GlacierEQ/AKOS/blob/main/manifests/runtime/AKOS_OPERATIONAL_COGNITION.json",
+          "claim": "Publishes machine-readable pipeline, authority, and completion requirements."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "main"
+    }
+  ]
+}

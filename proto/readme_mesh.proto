@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package glaciereq.readme.v1;
+
+option java_multiple_files = true;
+option java_package = "dev.glaciereq.readme.v1";
+option csharp_namespace = "GlacierEQ.Readme.V1";
+
+enum Audience {
+  AUDIENCE_UNSPECIFIED = 0;
+  RECRUITER = 1;
+  EXPERT = 2;
+  AI_AGENT = 3;
+}
+
+enum RelationType {
+  RELATION_UNSPECIFIED = 0;
+  ORCHESTRATES = 1;
+  VERIFIES = 2;
+  PROVIDES_CAPABILITY = 3;
+  CONSUMES = 4;
+  EXTENDS = 5;
+  GOVERNED_BY = 6;
+  PERSISTS_RECEIPTS_TO = 7;
+  EXECUTES_THROUGH = 8;
+}
+
+message EvidenceRef {
+  string label = 1;
+  string path = 2;
+  string claim = 3;
+  string sha256 = 4;
+}
+
+message ReadmeSection {
+  Audience audience = 1;
+  string title = 2;
+  string summary = 3;
+  repeated string highlights = 4;
+  repeated EvidenceRef evidence = 5;
+}
+
+message RepositoryNode {
+  string repository = 1;
+  string display_name = 2;
+  string one_line_purpose = 3;
+  string innovation = 4;
+  string evolution = 5;
+  repeated string capabilities = 6;
+  repeated ReadmeSection sections = 7;
+  repeated string run_commands = 8;
+  string readme_url = 9;
+  string default_branch = 10;
+  bool public_portfolio_eligible = 11;
+}
+
+message RepositoryEdge {
+  string source = 1;
+  string target = 2;
+  RelationType relation = 3;
+  string value = 4;
+  repeated EvidenceRef evidence = 5;
+}
+
+message ReadmeMesh {
+  string schema_version = 1;
+  string generated_at = 2;
+  repeated RepositoryNode repositories = 3;
+  repeated RepositoryEdge edges = 4;
+  string canonical_repo = 5;
+}
