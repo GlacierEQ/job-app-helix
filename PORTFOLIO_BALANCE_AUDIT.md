@@ -55,7 +55,13 @@ The portfolio has **strong structural hygiene** (most repos have README, tests, 
 | xai-colossus-security | Unclear — needs README check | Unknown |
 | xai-colossus-servers | Unclear — needs README check | Unknown |
 
-**Observation:** The alpha/omega split is mostly an implementation detail (research vs. delivery), not a distinct innovation. They read as clones with minor renames.
+**Finding:** Upon closer inspection, the alpha/omega repos already have distinct implementations — not clones:
+- `cooling-alpha`: physics_model.py (fluid thermodynamics, coolant dataclass)
+- `cooling-omega`: control_loop.py + delivery_controller.py (telemetry, VFD controls)
+- `energy-alpha`: grid_model.py (sCO2 waste heat, phase angle physics)
+- `energy-omega`: megapack_controller.py (battery dispatch FSM)
+
+These are differentiated. Update: no cloning concern; they read as complementary alpha/omega strands.
 
 ### SpaceX variants
 All spacex-* repos follow the same template:
@@ -92,37 +98,29 @@ All spacex-* repos follow the same template:
 6. spacex-conjunction-sentinel — thin for "sentinel"
 
 ### Weak repos (needs elevation or removal)
-1. job-app-helix-meta — EMPTY
-2. infinity-gauntlet-mcp-stack — no src/ code
-3. xai-colossus-cooling-alpha — clone of cooling
-4. xai-colossus-cooling-omega — clone of cooling
-5. xai-colossus-energy-alpha — clone of energy
-6. xai-colossus-energy-omega — clone of energy
+1. ~~job-app-helix-meta~~ — DELETED
+2. ~~infinity-gauntlet-mcp-stack~~ — Strong (12 MCP servers, 41 tools, solid README)
+3. ~~xai-colossus-cooling-alpha~~ — Differentiated (physics/chemistry)
+4. ~~xai-colossus-cooling-omega~~ — Differentiated (control/actuation)
+5. ~~xai-colossus-energy-alpha~~ — Differentiated (grid physics)
+6. ~~xai-colossus-energy-omega~~ — Differentiated (battery dispatch)
 
 ---
 
 ## 5. Elevation Plan
 
 ### Phase 1: Remove Empty/Stub Noise
-1. **Delete `job-app-helix-meta`** — empty directory, no purpose
-2. **Elevate `infinity-gauntlet-mcp-stack`** — add src/ implementation with actual MCP server code
+1. ~~**Delete `job-app-helix-meta`** — DONE~~
+2. ~~**Elevate `infinity-gauntlet-mcp-stack`** — already strong, no action needed~~
 
-### Phase 2: Differentiate Clones
-For each alpha/omega repo, add a **distinct technical signature**:
+### Phase 2: NOT NEEDED — Clones Already Differentiated
+The alpha/omega repos have distinct implementations:
+- cooling-alpha: physics/chemistry
+- cooling-omega: control/actuation
+- energy-alpha: grid physics
+- energy-omega: battery dispatch
 
-**xai-colossus-cooling-alpha:**
-- Add: transient fault injection model, coolant chemistry degradation, noise-aware calibration
-
-**xai-colossus-cooling-omega:**
-- Add: model-predictive control loop, adaptive delivery scheduling, pressure surge mitigation
-
-**xai-colossus-energy-alpha:**
-- Add: renewable intermittency model, grid-forming inverter simulation, demand forecasting
-
-**xai-colossus-energy-omega:**
-- Add: real-time market participation, frequency regulation, virtual power plant orchestration
-
-### Phase 3: Elevate Thin Microsoft/Spacex Repos
+### Phase 3: Elevate Thin Repos
 
 **microsoft-identity-zero-trust:**
 - Add: conditional access policy engine, device compliance checker, token lifetime optimizer, risk-based auth simulator
@@ -143,22 +141,22 @@ For each alpha/omega repo, add a **distinct technical signature**:
 
 | Score | Current Count | Target Count |
 |-------|--------------|-------------|
-| A (distinctive polyglot/innovation) | 10 | 15 |
+| A (distinctive polyglot/innovation) | 11 | 15 |
 | B (solid depth, template) | 35 | 30 |
 | C (thin, needs elevation) | 15 | 8 |
-| D (empty/stub) | 3 | 0 |
+| D (empty/stub) | 0 | 0 |
 
-**Current portfolio is C-heavy.** The "continuous impressive skill" bar requires fewer C-repos and more A-repos.
+**Current portfolio is C-heavy.** The "continuous impressive skill" bar requires fewer C-repos and more A-repos. Empty/stub count is now 0.
 
 ---
 
 ## 7. Recommended Actions
 
 ### High Priority
-1. Delete `job-app-helix-meta`
+1. ~~Delete `job-app-helix-meta`~~ — DONE
 2. Add README to `apex-cli` and `apex-control-plane`
-3. Add src/ implementation to `infinity-gauntlet-mcp-stack`
-4. Differentiate xai-colossus alpha/omega variants with distinct algorithms
+3. ~~Add src/ to `infinity-gauntlet-mcp-stack`~~ — already strong
+4. ~~Differentiate xai-colossus alpha/omega~~ — already differentiated
 
 ### Medium Priority
 5. Elevate `microsoft-identity-zero-trust` with conditionality/risk modules
