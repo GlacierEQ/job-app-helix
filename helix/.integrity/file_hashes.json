@@ -1,0 +1,11 @@
+{
+  "repo_name": "job-app-helix-meta",
+  "file_count": 5,
+  "hashes": {
+    "proofs/proof_brainsync_skill_index.py": "216041e10fd66c96862228d7079a7ef470404f67274d90e1cf06b2fbaf6392ff",
+    "proofs/proof_brainsync_kind_normalize.py": "acacdc2e719238e749291b64e155e82786593b753e64169599194d1bc4bbf24b",
+    "automations/brainsync_kind_normalize.py": "ee2f9d6d634d09c45890bbb79b4c5b68af285c874935b33a24938dbe20fd72c6",
+    "automations/brainsync_index_skills.py": "6c70655d9f7b79a253fde0323dbd3d0b1102ea13c2634df5fe7c20882f01933d",
+    "automations/brainsync_path_sanitize.py": "fdb1415cbc628aad4115df9dca7fcf7051587607c2271c12c6fe8a0e177410c3"
+  }
+}
