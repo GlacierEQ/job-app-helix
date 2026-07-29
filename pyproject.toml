@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "job-app-helix"
-version = "0.1.0"
-description = "A reproducible build-and-verify campaign engine for the GlacierEQ portfolio."
+version = "0.2.0"
+description = "A reproducible build-and-verify campaign engine and evidence-bound README intelligence mesh."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }
 authors = [{ name = "Casey Barton" }]
-keywords = ["systems-engineering", "verification", "portfolio", "orchestration"]
+keywords = ["systems-engineering", "verification", "portfolio", "orchestration", "protobuf", "documentation"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -21,16 +21,18 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Topic :: Software Development :: Quality Assurance",
 ]
-dependencies = []
+dependencies = ["protobuf>=6.31,<7"]
 
 [project.optional-dependencies]
 dev = [
+  "grpcio-tools>=1.74,<2",
   "pytest>=8.3,<9",
   "ruff>=0.9,<1",
 ]
 
 [project.scripts]
 job-app-helix = "job_app_helix.cli:main"
+job-app-helix-readme = "job_app_helix.readme_mesh_cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/job_app_helix"]
@@ -42,6 +44,7 @@ testpaths = ["tests"]
 [tool.ruff]
 target-version = "py311"
 line-length = 100
+extend-exclude = ["src/job_app_helix/readme_mesh_pb2.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
