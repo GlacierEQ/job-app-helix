@@ -31,11 +31,13 @@ The portfolio has **strong structural hygiene** (most repos have README, tests, 
 
 | Repo | Status | Risk |
 |------|--------|------|
-| `job-app-helix-meta` | Completely empty directory | High — confusing artifact in portfolio |
-| `infinity-gauntlet-mcp-stack` | Only `test_infinity_gauntlet.py` + README + deploy script | Medium — needs src/ implementation |
 | `microsoft-identity-zero-trust` | Only `mastermind_sidecar.py` + `src/zero_trust.py` + tests | Medium — thin for a Microsoft-domain exhibit |
 | `spacex-autonomy` | Only `mastermind_sidecar.py` + `src/hybrid_autonomy.py` + tests | Medium — thin for autonomy domain |
 | `spacex-conjunction-sentinel` | Only `mastermind_sidecar.py` + `src/conjunction.py` + tests | Medium — thin for sentinel domain |
+
+**Resolved:**
+- ~~`job-app-helix-meta`~~ — DELETED
+- ~~`infinity-gauntlet-mcp-stack`~~ — Strong (12 MCP servers, 41 tools, solid README)
 
 ---
 
@@ -98,20 +100,17 @@ All spacex-* repos follow the same template:
 6. spacex-conjunction-sentinel — thin for "sentinel"
 
 ### Weak repos (needs elevation or removal)
-1. ~~job-app-helix-meta~~ — DELETED
-2. ~~infinity-gauntlet-mcp-stack~~ — Strong (12 MCP servers, 41 tools, solid README)
-3. ~~xai-colossus-cooling-alpha~~ — Differentiated (physics/chemistry)
-4. ~~xai-colossus-cooling-omega~~ — Differentiated (control/actuation)
-5. ~~xai-colossus-energy-alpha~~ — Differentiated (grid physics)
-6. ~~xai-colossus-energy-omega~~ — Differentiated (battery dispatch)
+1. microsoft-identity-zero-trust — thin for Microsoft domain
+2. spacex-autonomy — thin for autonomy
+3. spacex-conjunction-sentinel — thin for sentinel
 
 ---
 
 ## 5. Elevation Plan
 
-### Phase 1: Remove Empty/Stub Noise
-1. ~~**Delete `job-app-helix-meta`** — DONE~~
-2. ~~**Elevate `infinity-gauntlet-mcp-stack`** — already strong, no action needed~~
+### Phase 1: Remove Empty/Stub Noise — COMPLETE
+- ~~Delete `job-app-helix-meta`~~ — DONE
+- ~~Elevate `infinity-gauntlet-mcp-stack`~~ — already strong
 
 ### Phase 2: NOT NEEDED — Clones Already Differentiated
 The alpha/omega repos have distinct implementations:
@@ -131,9 +130,9 @@ The alpha/omega repos have distinct implementations:
 **spacex-conjunction-sentinel:**
 - Add: conjunction detection algorithm, maneuver planning optimizer, cross-section computation
 
-### Phase 4: Add Missing READMEs
-- `apex-cli/README.md`
-- `apex-control-plane/README.md`
+### Phase 4: Add Missing READMEs — COMPLETE
+- ~~`apex-cli/README.md`~~ — DONE
+- ~~`apex-control-plane/README.md`~~ — DONE
 
 ---
 
@@ -152,9 +151,9 @@ The alpha/omega repos have distinct implementations:
 
 ## 7. Recommended Actions
 
-### High Priority
+### High Priority — ALL COMPLETE
 1. ~~Delete `job-app-helix-meta`~~ — DONE
-2. Add README to `apex-cli` and `apex-control-plane`
+2. ~~Add README to `apex-cli` and `apex-control-plane`~~ — DONE
 3. ~~Add src/ to `infinity-gauntlet-mcp-stack`~~ — already strong
 4. ~~Differentiate xai-colossus alpha/omega~~ — already differentiated
 
