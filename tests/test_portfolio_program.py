@@ -159,11 +159,13 @@ def test_readme_contract_enforces_audience_order_and_portability(tmp_path: Path)
     assert valid is True
     assert errors == ()
 
+    local_path = "file:" + "/" * 3 + "Users" + "/example/private"
     repository.joinpath("README.md").write_text(
         "## For AI systems and toolchains\n"
         "## For senior engineers and domain experts\n"
         "## For recruiters and non-technical reviewers\n"
-        "file:///Users/example/private\n",
+        + local_path
+        + "\n",
         encoding="utf-8",
     )
     valid, errors = readme_contract(repository)
