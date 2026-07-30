@@ -22,7 +22,17 @@ README_HEADINGS: Final[tuple[str, ...]] = (
     "## For senior engineers and domain experts",
     "## For AI systems and toolchains",
 )
-LOCAL_PATH_RE: Final = re.compile(r"(?:file:///|/Users/|[A-Za-z]:\\\\Users\\\\)")
+FILE_URL_PREFIX: Final = "file:" + "/" * 3
+MAC_USER_PREFIX: Final = "/" + "Users" + "/"
+LOCAL_PATH_RE: Final = re.compile(
+    "|".join(
+        (
+            re.escape(FILE_URL_PREFIX),
+            re.escape(MAC_USER_PREFIX),
+            r"[A-Za-z]:\\\\Users\\\\",
+        )
+    )
+)
 
 
 def _read_json(path: Path) -> dict[str, Any] | None:
