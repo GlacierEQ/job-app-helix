@@ -120,8 +120,11 @@ This layer must be deterministic, compact, and versioned.
 
 ### Required machine fields
 
+The machine block must use the current compiled wire schema. Documentation-profile evolution must be identified separately so prose requirements do not pretend a new Protobuf package already exists.
+
 ```yaml
-schema: glaciereq.readme.v2
+schema: glaciereq.readme.v1
+profile: glaciereq.readme-impact.v2-draft
 repository: GlacierEQ/example
 canonical_branch: main
 purpose: ...
