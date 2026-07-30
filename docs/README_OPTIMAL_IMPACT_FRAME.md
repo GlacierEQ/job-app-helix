@@ -163,27 +163,28 @@ languages:
     verification_state: ...
 relationships:
   - target: GlacierEQ/AKOS
-    relation: governed_by
+    relation: GOVERNED_BY
     combined_value: ...
 limits:
   - ...
 ```
 
-### Typed relationship verbs
+### Typed relationship enum
 
-Use directional verbs such as:
+Machine-facing `relation` values must match the compiled `glaciereq.readme.v1` Protobuf enum exactly:
 
-- `governed_by`
-- `orchestrates`
-- `verified_by`
-- `provides_capability_to`
-- `consumes`
-- `extends`
-- `persists_receipts_for`
-- `routes_execution_to`
-- `shares_contract_with`
+- `GOVERNED_BY`
+- `ORCHESTRATES`
+- `VERIFIES`
+- `PROVIDES_CAPABILITY`
+- `CONSUMES`
+- `EXTENDS`
+- `PERSISTS_RECEIPTS_TO`
+- `EXECUTES_THROUGH`
 
-A link without a relationship and combined value is not a mesh edge.
+Human prose may say “is governed by” or “provides capability to,” but the serialized value must use the exact enum token. A desired relationship that is not in the compiled enum is an adjacent narrative link, not a typed mesh edge, until the schema is deliberately versioned and the loaders, renderers, tests, and generated bindings support it.
+
+A link without a supported relationship and combined value is not a mesh edge.
 
 ## Verification-status semantics
 
@@ -213,5 +214,5 @@ A README is ready to place in an application only when:
 - architecture and failure behavior are documented;
 - language choices are functional and machine-declared;
 - AI metadata parses deterministically;
-- typed edges explain combined value;
+- typed edges use the compiled enum and explain combined value;
 - limits and unverified areas are explicit.
