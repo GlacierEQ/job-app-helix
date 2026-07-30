@@ -1,73 +1,112 @@
-# Specialized Language Architecture & Domain Assignment ⚡
+# Specialized-Language Architecture
 
-> **Multi-Language Diversification Across the 64-Repository GlacierEQ Ecosystem**
+## Thesis
 
----
+The portfolio’s new trajectory is not “more languages.” It is **better boundary selection**.
 
-## 🌟 Language Placement Matrix
+A specialized language is justified when it produces a measurable advantage in one or more of these areas:
 
-Each specialized language is deployed strictly where its architectural strengths maximize performance, safety, and reliability:
+- correctness or formal verification;
+- memory or concurrency safety;
+- hardware access;
+- numerical expressiveness;
+- deterministic serialization;
+- fault supervision;
+- sandboxing;
+- deployment simplicity;
+- performance that is demonstrated against a reference implementation.
 
-| Specialized Language / IDL | Target Ecosystem Domain | Representative Repository Exhibit | Architectural Rationale |
-| :--- | :--- | :--- | :--- |
-| **Odin (`.odin`)** | **Aerospace Reentry Physics & Simulation** | [repos/spacex-thermal-protection](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/spacex-thermal-protection) | Data-oriented layout, custom memory allocators, zero hidden control flow for real-time Mach 25 physics loops. |
-| **Protocol Buffers (`.proto`)** | **Distributed Telemetry & High-Speed RPCs** | [repos/xai-colossus-cooling](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/xai-colossus-cooling) | Language-neutral, zero-copy binary serialization for 100k GPU liquid cooling telemetry streaming. |
-| **ONNX (`.onnx`)** | **Cross-Hardware Model Inference** | [repos/openai-reasoning-kv-sentinel](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/openai-reasoning-kv-sentinel) | Portable computational graph format for hardware-accelerated KV-cache pruning across GPUs & TPUs. |
-| **Lean 4 (`.lean`)** | **Formal Proof Verification & Safety Gates** | [repos/grokodile](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/grokodile) | Dependent type theory for formal mathematical proofs verifying operator truth gates and action boundaries. |
-| **Rust (`.rs`) / Zig (`.zig`)** | **Low-Level Kernel & Hardware Governors** | [repos/AKOS](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/AKOS) | Zero-cost abstractions, static memory safety, and `comptime` metaprogramming for agent kernel runtimes. |
+A language is not justified when it exists only to enlarge a résumé technology list.
 
----
+## Decision process
 
-## 🚀 Module Implementation Samples
-
-### 1. Odin Physics Module: `repos/spacex-thermal-protection/src/thermal_mesh.odin`
-```odin
-package thermal_mesh
-
-import "core:fmt"
-
-Tile_Thermal_State :: struct {
-    tile_id:      u32,
-    surface_temp: f64, // Kelvin
-    heat_flux:    f64, // MW/m^2
-    pica_x_wear:  f64, // Wear ratio 0.0 - 1.0
-}
-
-compute_reentry_step :: proc(state: ^Tile_Thermal_State, dt: f64) {
-    heat_absorbed := state.heat_flux * dt * 0.042
-    state.surface_temp += heat_absorbed
-    if state.surface_temp > 1923.15 { // 1650°C ablation limit
-        state.pica_x_wear += dt * 0.001
-    }
-}
+```text
+Workload and failure model
+           │
+           ▼
+Required properties
+correctness • latency • hardware • safety • portability
+           │
+           ▼
+Candidate language comparison
+           │
+           ▼
+Boundary + interface contract
+           │
+           ▼
+Build/test/proof/benchmark command
+           │
+           ▼
+Evidence receipt and verification state
 ```
 
-### 2. Protobuf Schema: `repos/xai-colossus-cooling/proto/colossus_telemetry.proto`
-```protobuf
-syntax = "proto3";
+## Placement matrix
 
-package colossus.telemetry.v1;
+| Boundary | Candidate technology | Why it may fit | Required verification |
+|---|---|---|---|
+| Portfolio orchestration and evidence processing | Python | readable control logic, mature validation/testing, Protobuf support | lint, typecheck, tests, deterministic receipt |
+| MCP and web-facing integration | TypeScript | typed JSON contracts and strong connector/UI ecosystem | compile, lint, contract tests, integration fixture |
+| Safety-critical concurrent governor | Rust | ownership, memory safety, explicit error semantics | `cargo test`, denial-path fixtures, concurrency checks |
+| Telemetry and network service | Go | straightforward concurrency and static deployment | race-enabled tests, packet fixtures, ordering tests |
+| Native cache or numerical kernel | C++ | memory-layout control and mature performance tooling | reference-correctness suite and benchmark environment |
+| GPU kernel | CUDA or Triton | direct accelerator execution and fusion opportunities | hardware-backed correctness and performance receipt |
+| Orbital or scientific integration | Julia | numerical expressiveness and scientific computing ecosystem | comparison against known solutions and error bounds |
+| Fault-tolerant distributed gateway | Elixir | supervision trees and message-passing isolation | process-failure and restart tests |
+| Apple accelerator integration | Swift and Metal | native access to Apple frameworks and hardware | device-specific build and execution receipt |
+| Machine-checked invariant | Lean 4 | propositions verified by a proof kernel | successful compile with no `sorry` or equivalent placeholder |
+| Cross-language identity and event schema | Protocol Buffers | versioned contracts and generated bindings | compile, descriptor comparison, round-trip test |
+| Sandboxed portable execution | WebAssembly | constrained host capabilities and portable runtime | host-boundary tests and capability-denial fixtures |
 
-message GPUCoolingTelemetry {
-  uint32 cluster_id = 1;
-  uint32 total_gpus = 2;
-  double flow_rate_lpm = 3;
-  double inlet_temp_celsius = 4;
-  double outlet_temp_celsius = 5;
-  double pue_ratio = 6;
-  uint64 timestamp_ns = 7;
-}
-```
+## Current portfolio posture
 
-### 3. Lean 4 Formal Logic: `repos/grokodile/lean/TruthGate.lean`
-```lean
-import Lean
+### Verified at Job-App Helix
 
-def is_truthful_claim (claim : String) (forbidden : List String) : Bool :=
-  not (forbidden.any (fun f => claim.containsSubstr f))
+The current repository uses Python, Protocol Buffers, JSON, and Markdown at explicit boundaries. Their responsibilities, commands, receipts, and verification states are declared in [`manifests/language_fit.json`](../manifests/language_fit.json).
 
-theorem truth_gate_soundness (claim : String) (forbidden : List String) :
-  is_truthful_claim claim forbidden = true → ∀ f ∈ forbidden, claim.containsSubstr f = false := by
-  intro h f hf
-  sorry
-```
+### Promising but runtime-unverified
+
+Several portfolio repositories have plausible language/domain pairings—for example Go telemetry, Julia orbital mechanics, Rust safety controls, and Protobuf-based contracts—but still require repository-native current receipts before they can be described as working implementations.
+
+### Tower of Babel
+
+[The Tower of Babel](https://github.com/GlacierEQ/the-tower-of-babel) is the portfolio’s most ambitious polyglot reference candidate. Its core idea is strong: match language semantics to workload semantics. Its current public and candidate states must remain separate:
+
+- **innovation:** high;
+- **candidate architecture:** materially stronger than the public baseline;
+- **current release state:** blocked/unverified;
+- **promotion requirement:** close correctness/security findings, obtain green CI, and produce per-language build/test/proof receipts.
+
+A blocked toolchain is not a failure, but it is also not a pass.
+
+## Interface rule
+
+Polyglot systems fail when language boundaries become informal. Every cross-language edge must define:
+
+- message or ABI schema;
+- ownership of state;
+- serialization and versioning rules;
+- timeout and retry behavior;
+- error translation;
+- idempotency expectations;
+- observability and receipt format;
+- backward-compatibility policy.
+
+## Acceptance gate
+
+A specialized implementation is eligible for recruiter-facing promotion only when all conditions are true:
+
+1. the language owns a named responsibility;
+2. the repository explains why the primary language is less suitable at that boundary;
+3. the interface is versioned and testable;
+4. a clean-checkout build or compile command exists;
+5. at least one real test, proof, simulation, or benchmark executes;
+6. the receipt identifies revision and environment;
+7. failure modes are documented;
+8. status is stated without converting blocked or unverified work into success.
+
+## Related artifacts
+
+- [README Optimal Impact Frame](README_OPTIMAL_IMPACT_FRAME.md)
+- [Portable Language Index](LIBRARY_OF_LINKS_AND_NATIVE_LANGUAGES.md)
+- [Language-Fit Manifest](../manifests/language_fit.json)
+- [66-Repository Evidence Audit](PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md)
