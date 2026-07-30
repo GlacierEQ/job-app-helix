@@ -1,0 +1,151 @@
+{
+  "schema": "glaciereq.portfolio.rollout.v1",
+  "portfolio_root": "GlacierEQ/job-app-helix",
+  "inventory_manifest": "manifests/portfolio_repositories.json",
+  "policy": {
+    "default_timeout_seconds": 300,
+    "promotion_path": [
+      "INVENTORY",
+      "DOCUMENTATION",
+      "STATIC_ANALYSIS",
+      "BUILD",
+      "TEST",
+      "INTEGRATION",
+      "DEPLOYMENT"
+    ],
+    "fail_closed": true,
+    "require_atomic_receipts": true,
+    "require_positive_test_count_for_test_evidence": true
+  },
+  "waves": [
+    {
+      "id": "wave-1-native-ci",
+      "priority": 1,
+      "mode": "VERIFY",
+      "objective": "Convert the 20 README Mesh child nodes from documentation evidence into repository-native build and positive-count test evidence, while preserving the recruiter → expert → AI contract.",
+      "current_state": "UNVERIFIED",
+      "current_evidence": "DOCUMENTATION",
+      "target_evidence": "TEST",
+      "acceptance": {
+        "require_readme_contract": true,
+        "require_positive_test_count": true,
+        "require_build_receipt": false
+      },
+      "repositories": [
+        "AKOS",
+        "anthropic-agent-coordinator",
+        "anthropic-safety-monitor",
+        "spacex-autonomy",
+        "spacex-conjunction-sentinel",
+        "spacex-cryogenics",
+        "spacex-ground-network",
+        "spacex-launch-sequencer",
+        "spacex-mission-control",
+        "spacex-orbital-mechanics",
+        "spacex-pad-weather-gate",
+        "spacex-propulsion-monitor",
+        "spacex-satellite-mesh",
+        "spacex-telemetry",
+        "spacex-thermal-protection",
+        "xai-colossus-cooling-alpha",
+        "xai-colossus-cooling-omega",
+        "xai-colossus-energy-alpha",
+        "xai-colossus-energy-omega",
+        "xai-colossus-servers"
+      ]
+    },
+    {
+      "id": "wave-2-tower-repair",
+      "priority": 2,
+      "mode": "VERIFY",
+      "objective": "Repair Tower of Babel until every advertised language boundary has a real compiler, proof, simulation, or test receipt and the public README matches the proven release state.",
+      "current_state": "BLOCKED",
+      "current_evidence": "DOCUMENTATION",
+      "target_evidence": "TEST",
+      "acceptance": {
+        "require_readme_contract": true,
+        "require_positive_test_count": true,
+        "require_build_receipt": true
+      },
+      "repositories": [
+        "the-tower-of-babel"
+      ]
+    },
+    {
+      "id": "wave-3-technical-exhibits",
+      "priority": 3,
+      "mode": "VERIFY",
+      "objective": "Promote the highest-innovation unverified exhibits through reference-correctness checks, native builds, positive-count tests, and benchmark receipts where performance is claimed.",
+      "current_state": "UNVERIFIED",
+      "current_evidence": "INVENTORY",
+      "target_evidence": "TEST",
+      "acceptance": {
+        "require_readme_contract": true,
+        "require_positive_test_count": true,
+        "require_build_receipt": false
+      },
+      "repositories": [
+        "apple-ane-kv-quantizer",
+        "colossus-gateway",
+        "comet-browser-agent-bridge",
+        "deepmind-tpu-mesh-optimizer",
+        "deepseek-mla-moe-sentinel",
+        "glaciereq-mcp-stack",
+        "grokodile",
+        "kimi-mooncake-kv-stream",
+        "nvidia-deep-reasoning",
+        "nvidia-gpu-health",
+        "openai-reasoning-kv-sentinel",
+        "polyglot-systems-architecture",
+        "pro-code",
+        "spiral-engine",
+        "xai-colossus-cooling",
+        "xai-colossus-energy"
+      ]
+    },
+    {
+      "id": "wave-4-consolidation",
+      "priority": 4,
+      "mode": "CONSOLIDATE_OR_ARCHIVE",
+      "objective": "Determine whether each thin or overlapping repository should be completed, merged into a stronger system, retained as a package, or archived with an explicit successor and evidence-preserving migration record.",
+      "current_state": "UNVERIFIED",
+      "current_evidence": "INVENTORY",
+      "target_evidence": "DOCUMENTATION",
+      "acceptance": {
+        "require_readme_contract": true,
+        "require_positive_test_count": false,
+        "require_build_receipt": false
+      },
+      "repositories": [
+        "AEON-777",
+        "GlacierEQ_Swarm",
+        "Pro-comet-agent",
+        "apex-cli",
+        "apex-control-plane",
+        "aws-trainium-neuron-sentinel",
+        "colossus-training-flux",
+        "infinity-gauntlet-mcp-stack",
+        "job-application",
+        "lovable-design-app-synth",
+        "manus-autonomous-web-agent",
+        "mastermind",
+        "meta-llama-collective-sentinel",
+        "microsoft-azure-ops",
+        "microsoft-identity-zero-trust",
+        "notion-mcp-empowerment-engine",
+        "notion-workflow-intelligence",
+        "notion-workspace-optimizer",
+        "openclaw",
+        "opera-neon-spatial-workspace",
+        "qwen-vl-flash-router",
+        "robotics-vla-torque-sentinel",
+        "tasklet-micro-agent-engine",
+        "tesla-fsd-occupancy-stream",
+        "token_saver",
+        "xai-colossus-2",
+        "xai-colossus-nanosphere",
+        "xai-colossus-security"
+      ]
+    }
+  ]
+}

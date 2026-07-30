@@ -40,6 +40,14 @@ jobs:
       - name: Run tests
         run: pytest
 
+      - name: Validate exact portfolio rollout contract
+        run: python -m job_app_helix.portfolio_cli validate
+
+      - name: Render high-level portfolio rollout program
+        run: >-
+          python -m job_app_helix.portfolio_cli render-program
+          --output artifacts/portfolio-rollout.md
+
       - name: Compile and compare the real Protobuf contract
         run: python scripts/check_proto_contract.py
 
