@@ -98,21 +98,23 @@ This layer must make expert scrutiny rewarding.
 
 A language is justified only when it owns a real boundary.
 
-For every language, document:
+For every language or format, document every required field separately:
 
-| Language | Responsibility | Why it fits | Interface | Build/test receipt |
-|---|---|---|---|---|
+| Language / format | Responsibility | Boundary | Interface contract | Build / compile command | Test / proof / benchmark command | Evidence receipt | State |
+|---|---|---|---|---|---|---|---|
+| Rust | ... | ... | ... | `cargo build` | `cargo test` | `artifacts/...` | VERIFIED / BLOCKED / UNVERIFIED |
 
-Acceptance requires all six:
+Acceptance requires all six substantive elements plus an explicit state:
 
 1. named responsibility;
 2. clear boundary;
 3. interface contract;
 4. build/compile command;
 5. test/proof/benchmark command;
-6. evidence receipt.
+6. evidence receipt;
+7. current verification state.
 
-A language used only to increase the language count must be removed or moved to a clearly labeled learning/exhibit directory outside the production architecture.
+These fields must also exist in a machine-readable language-fit manifest so the audit can reject incomplete declarations. A language used only to increase the language count must be removed or moved to a clearly labeled learning/exhibit directory outside the production architecture.
 
 ## Layer 3 — AI ingestion and portfolio mesh
 
@@ -131,9 +133,12 @@ purpose: ...
 status:
   state: PARTIALLY_VERIFIED
   verified_at: 2026-07-29
+  verified_release: <commit-or-release-id>
   verified_scope:
     - ...
   blocked_scope:
+    - ...
+  unverified_scope:
     - ...
 interfaces:
   inputs: [...]
@@ -150,7 +155,12 @@ evidence:
 languages:
   - name: Rust
     responsibility: ...
-    rationale: ...
+    boundary: ...
+    interface_contract: ...
+    build_command: ...
+    test_command: ...
+    evidence_receipt: ...
+    verification_state: ...
 relationships:
   - target: GlacierEQ/AKOS
     relation: governed_by
@@ -201,7 +211,7 @@ A README is ready to place in an application only when:
 - every material claim points to evidence;
 - the quick start works from a clean checkout;
 - architecture and failure behavior are documented;
-- language choices are functional;
+- language choices are functional and machine-declared;
 - AI metadata parses deterministically;
 - typed edges explain combined value;
 - limits and unverified areas are explicit.
