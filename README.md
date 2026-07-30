@@ -2,8 +2,7 @@
 
 Job-App Helix turns a large engineering portfolio into a reviewable system: it decides whether a campaign is ready, verifies what the portfolio can actually prove, and renders one evidence record for recruiters, senior engineers, and AI toolchains.
 
-**Current status:** `PARTIALLY VERIFIED`  
-The README Mesh release passed its Python 3.11–3.13 CI matrix at commit `3a1f0c033bb18309cc8678f91541ae54a7400709`. The current 66-repository runtime surface is not fully verified; the portfolio audit reports verified, blocked, failed, and unverified scope separately.
+**Current status:** `PARTIALLY VERIFIED` — last verified release evidence: **2026-07-28** at commit `3a1f0c033bb18309cc8678f91541ae54a7400709`. The current 66-repository runtime surface is not fully verified; blocked and unverified scope remain distinct.
 
 ## For recruiters and non-technical reviewers
 
@@ -13,7 +12,7 @@ I designed a portfolio control plane that does more than list projects. It separ
 
 The work demonstrates:
 
-- **systems architecture:** a canonical control plane coordinating 66 portfolio repositories;
+- **systems architecture:** a canonical control plane coordinating a 66-repository job-application portfolio;
 - **engineering judgment:** explicit distinction between inventory, documentation, runtime proof, and deployment proof;
 - **verification design:** tests, typed contracts, deterministic serialization, integrity references, and scoped receipts;
 - **technical communication:** one repository record rendered for three audiences without contradictory claims;
@@ -28,11 +27,11 @@ Large portfolios often become difficult to trust: every repository sounds comple
 | Open or run | What it demonstrates |
 |---|---|
 | [`docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md`](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification state, and P0 correction for all 66 repositories. |
-| [`docs/README_OPTIMAL_IMPACT_FRAME.md`](docs/README_OPTIMAL_IMPACT_FRAME.md) | Recruiter → expert → AI documentation contract, including the language-fit gate. |
+| [`docs/README_OPTIMAL_IMPACT_FRAME.md`](docs/README_OPTIMAL_IMPACT_FRAME.md) | Recruiter → expert → AI documentation contract, including the enforceable language-fit gate. |
+| [`manifests/language_fit.json`](manifests/language_fit.json) | Machine-readable proof that every language or format owns a named boundary, command, and receipt. |
 | [`src/job_app_helix/campaign.py`](src/job_app_helix/campaign.py) | Deterministic campaign decision engine with bounded refinement. |
 | [`src/job_app_helix/readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Evidence-bound README graph and Protobuf serialization. |
-| [`tests/`](tests/) | Campaign, failure-path, manifest, rendering, and serialization tests. |
-| `python -m pytest -q` | Repository-native test command. |
+| `python -m pytest -q` | Repository-native regression and contract suite. |
 
 ## For senior engineers and domain experts
 
@@ -43,6 +42,7 @@ Job-App Helix owns:
 - campaign readiness decisions;
 - repository identity and README Mesh topology;
 - evidence references and deterministic serialization;
+- language-boundary declarations;
 - portfolio audit semantics and scoped receipts;
 - rendering of recruiter, expert, and AI views.
 
@@ -54,7 +54,8 @@ It does **not** prove that every connected repository builds, deploys, performs,
 Repository manifests + evidence paths
                  │
                  ▼
-      Manifest validation layer
+      Contract validation layer
+     identity • language fit • links
                  │
        ┌─────────┴─────────┐
        ▼                   ▼
@@ -66,7 +67,7 @@ GO / NO-GO report     human views + Protobuf artifacts
        │                   │
        └─────────┬─────────┘
                  ▼
-       scoped receipts and audit output
+ bounded checks → atomic scoped receipts
 ```
 
 ### Core components
@@ -78,40 +79,49 @@ GO / NO-GO report     human views + Protobuf artifacts
 | [`models.py`](src/job_app_helix/models.py) | Defines typed reports, findings, policies, and decisions. |
 | [`readme_mesh_manifest.py`](src/job_app_helix/readme_mesh_manifest.py) | Loads and validates repository identity, evidence, and typed edges. |
 | [`readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Renders audience views and deterministic Protobuf/ProtoJSON/text outputs. |
-| [`ci_audit_portfolio.py`](ci_audit_portfolio.py) | Audits workspace integrity and mesh health, executes an explicit runtime sample, and writes a scope-bound receipt. |
+| [`manifests/language_fit.json`](manifests/language_fit.json) | Declares responsibility, boundary, interface, commands, evidence, and state for every language/format used here. |
+| [`ci_audit_portfolio.py`](ci_audit_portfolio.py) | Validates inventory, mesh, language fit, bounded runtime samples, demos, links, and atomic success/failure receipts. |
+| [`showcase/demo_15min_run.py`](showcase/demo_15min_run.py) | Executes named demonstrations with timeouts and per-demo results; scaffolds are never counted as passes. |
 | [`apex_highway.py`](apex_highway.py) | Scans portfolio-sidecar metadata and mesh health. |
 
 ### Correctness and failure behavior
 
 - Campaign decisions fail closed when a hard requirement remains unsatisfied.
 - Refinement is bounded to one transparent stroke rather than open-ended mutation.
-- README records must include stable identity, evidence, and typed relationships.
+- README records require stable identity, evidence, and typed relationships.
+- Language entries require a responsibility, boundary, interface contract, build command, test/proof command, receipt, and state.
 - Protobuf bindings are compiled and descriptor-compared in CI.
 - Serialization is deterministic and round-tripped.
-- Missing workspace repositories, missing integrity manifests, failed sample tests, unhealthy mesh state, failed demo execution, and broken local catalog links stop the local portfolio audit.
+- Child processes have explicit timeouts and convert hangs into structured failures.
+- Audit receipts transition through `RUNNING`, then atomically become `FAILED` or `PARTIALLY_VERIFIED`; an old success receipt cannot silently survive a failed rerun.
+- Relative Markdown links and `file://` targets are validated; an empty link scan fails.
+- Missing tests, missing repositories, or demo failures are `UNVERIFIED`, `BLOCKED`, or `FAILED`, never scaffold passes.
 - `UNVERIFIED` and `BLOCKED` are preserved as states; they are never rewritten as `PASSED`.
 
 ### Verification commands
 
 ```bash
 # Install development dependencies
-uv pip install -e ".[dev]"
+python -m pip install -e ".[dev]"
 
 # Lint
-python -m ruff check .
+python -m ruff check src tests scripts
 
 # Type check
 python -m mypy src/job_app_helix/
 
-# Test package, campaign states, README mesh, and failure paths
+# Test package, campaign states, README mesh, audit claims, and failure paths
 python -m pytest -q
 
 # Run the canonical campaign scenario
 python -c "from job_app_helix.campaign import LaunchScenario, run_campaign; print(run_campaign(LaunchScenario.nominal()))"
 
+# Compile and compare the Protobuf contract
+python scripts/check_proto_contract.py
+
 # Validate and build the README Mesh
 job-app-helix-readme --manifest manifests/readme_mesh.json validate
-job-app-helix-readme --manifest manifests/readme_mesh.json build --output-dir artifacts/readme_mesh
+job-app-helix-readme --manifest manifests/readme_mesh.json build --output-dir artifacts/readme-mesh
 
 # Run the local multi-repository audit from the canonical workspace
 python ci_audit_portfolio.py
@@ -119,14 +129,14 @@ python ci_audit_portfolio.py
 
 The final command requires the local `repos/` workspace. Its receipt names the repositories actually executed; it does not certify all discovered repositories.
 
-### Language choice
+### Language and format fit
 
-| Language/format | Responsibility | Why it fits |
-|---|---|---|
-| Python 3.11+ | campaign logic, validation, rendering, CLI, audit orchestration | Fast iteration, strong test ecosystem, readable decision logic, and mature Protobuf tooling. |
-| Protocol Buffers | versioned repository identity and graph serialization | Cross-language deterministic contract for AI and toolchain ingestion. |
-| JSON | human-inspectable manifests and receipts | Broad interoperability and straightforward validation. |
-| Markdown | recruiter and engineering review surface | Openable, diffable, and native to repository workflows. |
+| Language / format | Responsibility | Boundary | Interface contract | Build / compile | Test / proof | Evidence receipt | State |
+|---|---|---|---|---|---|---|---|
+| Python 3.11+ | Campaign logic, validation, rendering, CLI, and audit orchestration | Executable control-plane code under `src/job_app_helix` and bounded repository-local scripts | Console entry points, typed models, JSON receipts, Protobuf-backed records | `python -m pip install -e ".[dev]"` | `python -m pytest -q` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | PARTIALLY_VERIFIED |
+| Protocol Buffers | Versioned cross-language identity and graph serialization | `glaciereq.readme.v1` schema and generated binding | Deterministic binary, ProtoJSON, textproto, descriptors, and SHA-256 | `python scripts/check_proto_contract.py` | `python -m pytest -q` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | VERIFIED |
+| JSON | Human-inspectable manifests, reports, declarations, and receipts | Repository-local interchange; not the canonical wire schema | UTF-8 objects with explicit schema identifiers | `python -m job_app_helix.readme_mesh_cli build --output-dir artifacts/readme-mesh` | `python -m pytest -q` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | VERIFIED |
+| Markdown | Recruiter, expert, and AI-readable documentation | Human review surface generated from evidence records | Stable headings, evidence links, commands, typed mesh tables, and managed markers | `python -m job_app_helix.readme_mesh_cli render-all --output-dir artifacts/readme-mesh/blocks` | `python scripts/check_public_surface.py` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | VERIFIED |
 
 This repository deliberately remains focused rather than adding languages for display. Polyglot work belongs at a boundary where the language materially improves correctness, performance, safety, interoperability, or deployment.
 
@@ -135,6 +145,7 @@ This repository deliberately remains focused rather than adding languages for di
 - Runtime verification is incomplete across the 66-repository portfolio.
 - README Mesh v1 has a verified rollout receipt for 21 declared nodes, not all 66.
 - Connected repositories still need repo-native build/test receipts.
+- The Tower of Babel candidate remains blocked by CI/review closure and cannot yet serve as production proof.
 - Provider deployment, hardware execution, scale, and performance are unverified unless a repository supplies a specific receipt.
 - The local portfolio audit depends on the canonical on-disk workspace and cannot run from this repository alone.
 
@@ -149,9 +160,10 @@ repository: GlacierEQ/job-app-helix
 canonical_branch: main
 purpose: >-
   Govern evidence-bound campaign decisions, portfolio verification semantics,
-  and recruiter/expert/AI views of connected repositories.
+  language-fit declarations, and recruiter/expert/AI views of connected repositories.
 status:
   state: PARTIALLY_VERIFIED
+  verified_at: 2026-07-28
   verified_release: 3a1f0c033bb18309cc8678f91541ae54a7400709
   verified_scope:
     - Python 3.11, 3.12, and 3.13 package matrix at the README Mesh release
@@ -159,63 +171,97 @@ status:
     - manifest validation and deterministic serialization
     - README rendering and idempotency
     - campaign nominal, recoverable, and fail-closed scenarios
+  blocked_scope:
+    - Tower of Babel candidate branch awaiting green CI and review closure
+    - hardware-backed execution where no compatible runner or provider receipt exists
   unverified_scope:
-    - current runtime behavior of every connected repository
-    - portfolio-wide deployment, hardware execution, scale, and performance
+    - current runtime behavior of portfolio repositories without repo-native receipts
+    - portfolio-wide deployment, scale, and performance
 interfaces:
   inputs:
     - manifests/readme_mesh.json
+    - manifests/language_fit.json
     - repository source, tests, workflows, and receipts
     - campaign scenarios and policy
   outputs:
     - campaign decision reports
     - rendered three-audience README blocks
     - deterministic Protobuf, ProtoJSON, textproto, and SHA-256 artifacts
-    - scoped portfolio audit receipt
+    - atomic RUNNING, FAILED, or PARTIALLY_VERIFIED portfolio receipts
   commands:
-    install: uv pip install -e ".[dev]"
+    install: python -m pip install -e ".[dev]"
     test: python -m pytest -q
+    verify_proto: python scripts/check_proto_contract.py
     verify_mesh: job-app-helix-readme --manifest manifests/readme_mesh.json validate
-    build_mesh: job-app-helix-readme --manifest manifests/readme_mesh.json build --output-dir artifacts/readme_mesh
+    build_mesh: job-app-helix-readme --manifest manifests/readme_mesh.json build --output-dir artifacts/readme-mesh
     local_portfolio_audit: python ci_audit_portfolio.py
 evidence:
   source:
     - src/job_app_helix/campaign.py
     - src/job_app_helix/readme_mesh.py
     - src/job_app_helix/readme_mesh_manifest.py
+    - ci_audit_portfolio.py
   tests:
     - tests/
   workflows:
     - .github/workflows/ci.yml
+  receipts:
+    - docs/README_MESH_ROLLOUT_2026-07-28.md
+    - artifacts/portfolio_ci_receipt.json
   audits:
     - docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md
-    - docs/README_MESH_ROLLOUT_2026-07-28.md
+languages:
+  manifest: manifests/language_fit.json
+  entries:
+    - name: Python
+      responsibility: executable control-plane logic
+      verification_state: PARTIALLY_VERIFIED
+    - name: Protocol Buffers
+      responsibility: versioned cross-language wire contract
+      verification_state: VERIFIED
+    - name: JSON
+      responsibility: manifests and scoped receipts
+      verification_state: VERIFIED
+    - name: Markdown
+      responsibility: three-audience review surface
+      verification_state: VERIFIED
+relationships:
+  - target: GlacierEQ/AKOS
+    relation: governed_by
+    combined_value: AKOS supplies authority and completion semantics; Helix supplies portfolio representation and verification.
+  - target: GlacierEQ/the-tower-of-babel
+    relation: evaluates_language_fit_for
+    combined_value: Tower demonstrates workload-language choices; Helix records their evidence and state.
+  - target: SpaceX subsystem family
+    relation: orchestrates
+    combined_value: Independent simulation and control components become one reviewable systems surface.
+  - target: xAI Alpha/Omega family
+    relation: represents
+    combined_value: Stateless requirement computation and stateful response remain separate typed responsibilities.
+  - target: Agent coordinator and safety monitor
+    relation: connects
+    combined_value: Agent motion and independent oversight remain separately testable.
+limits:
+  - A connected edge is not proof that the target repository works.
+  - Hash coverage is not runtime verification.
+  - README verification is not deployment verification.
+  - Local multi-repository checks require the canonical repos workspace.
 ```
 
 The compiled wire contract remains `glaciereq.readme.v1`; `glaciereq.readme-impact.v2-draft` names the expanded documentation profile only.
 
-### Typed portfolio relationships
-
-| Repository/family | Relation | Combined value |
-|---|---|---|
-| [`GlacierEQ/AKOS`](https://github.com/GlacierEQ/AKOS) | `governed_by` | AKOS supplies authority, provenance, maturity, and completion semantics; Helix renders and verifies the portfolio representation. |
-| [`GlacierEQ/the-tower-of-babel`](https://github.com/GlacierEQ/the-tower-of-babel) | `evaluates_language_fit_for` | Tower proves whether a language owns a justified boundary; Helix records the evidence and verification state. |
-| SpaceX subsystem family | `orchestrates` | Independent simulation, control, network, telemetry, and mission components become a reviewable systems-engineering surface. |
-| xAI Alpha/Omega family | `represents` | Stateless requirement computation and stateful response remain distinct, typed responsibilities. |
-| Agent coordinator + safety monitor | `connects` | Motion and independent oversight are presented as separate, composable boundaries. |
-
 Canonical schema: [`proto/readme_mesh.proto`](proto/readme_mesh.proto)  
-Canonical manifest: [`manifests/readme_mesh.json`](manifests/readme_mesh.json)
+Canonical manifests: [`manifests/readme_mesh.json`](manifests/readme_mesh.json), [`manifests/language_fit.json`](manifests/language_fit.json)
 
 ## Repository map
 
 ```text
 src/job_app_helix/          package and CLI
 proto/                      versioned README Mesh contract
-manifests/                  canonical repository graph
+manifests/                  repository graph and language-fit declarations
 schemas/                    validation contracts
 rendered/                   generated audience views
-artifacts/                  deterministic exports and audit receipts
+artifacts/                  deterministic exports and atomic audit receipts
 tests/                      unit, contract, failure, and idempotency tests
 docs/                       architecture, audits, standards, and rollout receipts
 helix/                      BrainSync skill-index audit and repair tooling
