@@ -25,6 +25,7 @@ ROOT: Final = Path(__file__).resolve().parent
 REPOS_DIR: Final = ROOT / "repos"
 RECEIPT_PATH = ROOT / "artifacts" / "portfolio_ci_receipt.json"
 LANGUAGE_FIT_PATH: Final = ROOT / "manifests" / "language_fit.json"
+PORTFOLIO_INVENTORY_PATH: Final = ROOT / "manifests" / "portfolio_repositories.json"
 DEMO_RECEIPT_PATH: Final = ROOT / "artifacts" / "demo_15min_receipt.json"
 
 
@@ -58,6 +59,7 @@ class CommandCheck:
     cwd: Path
     env: dict[str, str] | None = None
     timeout_seconds: int = PROCESS_TIMEOUT_SECONDS
+    minimum_tests: int = 1
 
 
 @dataclass(frozen=True, slots=True)
@@ -67,6 +69,7 @@ class CommandResult:
     returncode: int
     status: str
     timed_out: bool
+    test_count: int | None
     stdout_tail: str
     stderr_tail: str
 
@@ -107,20 +110,69 @@ def require_workspace() -> list[Path]:
     )
 
 
-def step_1_check_hash_coverage(repos: list[Path]) -> dict[str, object]:
-    log_step("1. Inventory integrity coverage (not runtime verification)")
-    missing = [repo.name for repo in repos if not (repo / ".integrity" / "file_hashes.json").exists()]
-    covered = len(repos) - len(missing)
+def step_1_check_hash_coverage(
+    repos: list[Path],
+    inventory_path: Path = PORTFOLIO_INVENTORY_PATH,
+) -> dict[str, object]:
+    log_step("1. Exact portfolio inventory and integrity coverage")
+    payload = json.loads(inventory_path.read_text(encoding="utf-8"))
+    expected_raw = payload.get("workspace_repositories")
+    if not isinstance(expected_raw, list) or not all(
+        isinstance(name, str) and name.strip() for name in expected_raw
+    ):
+        raise AuditStepError(
+            "Portfolio inventory must declare workspace_repositories",
+            {"manifest": str(inventory_path), "errors": ["invalid workspace_repositories"]},
+        )
+
+    expected = set(expected_raw)
+    discovered = {repo.name for repo in repos}
+    declared_total = payload.get("total_repositories")
+    root_repository = payload.get("portfolio_root")
+    missing_repositories = sorted(expected - discovered)
+    unexpected_repositories = sorted(discovered - expected)
+    duplicate_declarations = sorted(
+        name for name in expected if expected_raw.count(name) > 1
+    )
+    count_is_consistent = (
+        isinstance(declared_total, int)
+        and declared_total == len(expected) + 1
+        and isinstance(root_repository, str)
+        and bool(root_repository.strip())
+    )
+    missing_integrity = sorted(
+        repo.name
+        for repo in repos
+        if repo.name in expected and not (repo / ".integrity" / "file_hashes.json").exists()
+    )
+    covered = len(expected) - len(missing_integrity)
     evidence = {
-        "repositories_discovered": len(repos),
+        "manifest": str(inventory_path),
+        "portfolio_root": root_repository,
+        "portfolio_total_declared": declared_total,
+        "workspace_repositories_expected": len(expected),
+        "workspace_repositories_discovered": len(discovered),
+        "missing_repositories": missing_repositories,
+        "unexpected_repositories": unexpected_repositories,
+        "duplicate_declarations": duplicate_declarations,
+        "inventory_count_consistent": count_is_consistent,
         "integrity_manifests": covered,
-        "missing_integrity_manifests": missing,
+        "missing_integrity_manifests": missing_integrity,
     }
-    print(f"Repositories discovered: {len(repos)}")
-    print(f"Repositories with integrity manifests: {covered}/{len(repos)}")
-    if missing:
-        raise AuditStepError(f"Missing integrity manifests: {missing}", evidence)
-    print("STATUS: PASS — inventory coverage only")
+    print(
+        "Workspace repositories: "
+        f"{len(discovered)}/{len(expected)} expected; portfolio total={declared_total}"
+    )
+    print(f"Repositories with integrity manifests: {covered}/{len(expected)}")
+    if (
+        missing_repositories
+        or unexpected_repositories
+        or duplicate_declarations
+        or not count_is_consistent
+        or missing_integrity
+    ):
+        raise AuditStepError("Portfolio inventory or integrity coverage is incomplete", evidence)
+    print("STATUS: PASS — exact 66-repository scope and child integrity coverage")
     return evidence
 
 
@@ -238,6 +290,12 @@ def _runtime_env(check: CommandCheck) -> dict[str, str]:
     return env
 
 
+def _extract_unittest_count(stdout: str | bytes | None, stderr: str | bytes | None) -> int | None:
+    combined = f"{_tail(stdout, 10000)}\n{_tail(stderr, 10000)}"
+    matches = re.findall(r"Ran\s+(\d+)\s+tests?", combined)
+    return int(matches[-1]) if matches else None
+
+
 def _run_command_check(check: CommandCheck) -> CommandResult:
     try:
         completed = subprocess.run(
@@ -256,17 +314,33 @@ def _run_command_check(check: CommandCheck) -> CommandResult:
             returncode=124,
             status="FAILED",
             timed_out=True,
+            test_count=None,
             stdout_tail=_tail(exc.stdout),
             stderr_tail=f"Timed out after {check.timeout_seconds}s. {_tail(exc.stderr)}".strip(),
         )
+    test_count = _extract_unittest_count(completed.stdout, completed.stderr)
+    if completed.returncode != 0:
+        status = "FAILED"
+        stderr_tail = _tail(completed.stderr)
+    elif test_count is None or test_count < check.minimum_tests:
+        status = "UNVERIFIED"
+        stderr_tail = (
+            f"Command exited zero but executed-test count was "
+            f"{test_count!r}; minimum required is {check.minimum_tests}. "
+            f"{_tail(completed.stderr)}"
+        ).strip()
+    else:
+        status = "PASSED"
+        stderr_tail = _tail(completed.stderr)
     return CommandResult(
         repository=check.repository,
         command=list(check.command),
         returncode=completed.returncode,
-        status="PASSED" if completed.returncode == 0 else "FAILED",
+        status=status,
         timed_out=False,
+        test_count=test_count,
         stdout_tail=_tail(completed.stdout),
-        stderr_tail=_tail(completed.stderr),
+        stderr_tail=stderr_tail,
     )
 
 
@@ -279,22 +353,23 @@ def step_4_runtime_sample() -> list[CommandResult]:
                 repository=check.repository,
                 command=list(check.command),
                 returncode=127,
-                status="FAILED",
+                status="BLOCKED",
                 timed_out=False,
+                test_count=None,
                 stdout_tail="",
                 stderr_tail=f"Runtime-check repository missing: {check.cwd}",
             )
         else:
             result = _run_command_check(check)
         results.append(result)
-        print(f"{check.repository}: {result.status}")
+        print(f"{check.repository}: {result.status} ({result.test_count} tests)")
     failures = [result for result in results if result.status != "PASSED"]
     if failures:
         raise AuditStepError(
-            "One or more repository-native runtime checks failed",
+            "One or more repository-native runtime checks failed or were unverified",
             [asdict(result) for result in results],
         )
-    print(f"STATUS: PASS — {len(results)} repositories runtime-checked")
+    print(f"STATUS: PASS — {len(results)} repositories runtime-checked with nonzero tests")
     return results
 
 
@@ -343,11 +418,18 @@ def step_5_demo_runner() -> dict[str, object]:
         and receipt.get("conclusion") == "VERIFIED"
         and isinstance(receipt.get("results"), list)
         and bool(receipt["results"])
-        and all(result.get("status") == "PASSED" for result in receipt["results"])
+        and all(
+            result.get("status") == "PASSED"
+            and isinstance(result.get("test_count"), int)
+            and result["test_count"] > 0
+            for result in receipt["results"]
+            if isinstance(result, dict)
+        )
+        and all(isinstance(result, dict) for result in receipt["results"])
     )
     if completed.returncode != 0 or not receipt_is_verified:
         raise AuditStepError("Demo runner did not produce verified per-demo evidence", evidence)
-    print("STATUS: PASS — every declared demo executed and passed")
+    print("STATUS: PASS — every declared demo executed at least one test and passed")
     return evidence
 
 
@@ -428,9 +510,9 @@ def _base_receipt(conclusion: str, elapsed_ms: float = 0.0) -> dict[str, object]
         "schema": "glaciereq.portfolio.ci-receipt.v1",
         "conclusion": conclusion,
         "scope_note": (
-            "Integrity coverage, language declarations, mesh health, and demos are distinct "
-            "from runtime verification. Only repositories listed in runtime_results were "
-            "executed by the repository-native runtime sample."
+            "Inventory coverage, language declarations, mesh health, runtime samples, and "
+            "demos are distinct evidence scopes. Every repository process executed by this "
+            "audit is listed in runtime_results or demo.receipt.results."
         ),
         "elapsed_ms": elapsed_ms,
     }
@@ -484,13 +566,31 @@ def main() -> None:
     runtime_results = evidence["runtime_results"]
     if not isinstance(runtime_results, list):
         raise AssertionError("runtime_results must be a list")
+    executed_repositories = {
+        result["repository"]
+        for result in runtime_results
+        if isinstance(result, dict) and result.get("returncode") is not None
+    }
+    demo = evidence.get("demo")
+    if isinstance(demo, dict):
+        demo_receipt = demo.get("receipt")
+        if isinstance(demo_receipt, dict) and isinstance(demo_receipt.get("results"), list):
+            executed_repositories.update(
+                result["repository"]
+                for result in demo_receipt["results"]
+                if isinstance(result, dict)
+                and isinstance(result.get("repository"), str)
+                and result.get("returncode") is not None
+            )
+    evidence["executed_repositories"] = sorted(executed_repositories)
     receipt = _base_receipt("PARTIALLY_VERIFIED", elapsed_ms)
     receipt.update(evidence)
     write_receipt(receipt)
 
     print("\n==================================================")
     print(f"  ALL DEFINED AUDIT STEPS PASSED IN {elapsed_ms} ms")
-    print(f"  RUNTIME-VERIFIED REPOSITORIES: {len(runtime_results)}/{len(repos)}")
+    print(f"  RUNTIME-SAMPLE REPOSITORIES: {len(runtime_results)}/{len(repos)}")
+    print(f"  ALL EXECUTED REPOSITORIES: {len(executed_repositories)}")
     print("  PORTFOLIO CONCLUSION: PARTIALLY VERIFIED")
     print("  NO PORTFOLIO-WIDE DEPLOYABILITY CLAIM WAS MADE")
     print("==================================================")
