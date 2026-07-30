@@ -109,9 +109,9 @@ python -m pytest -q
 # Run the canonical campaign scenario
 python -c "from job_app_helix.campaign import LaunchScenario, run_campaign; print(run_campaign(LaunchScenario.nominal()))"
 
-# Validate and export the README Mesh
-job-app-helix-readme validate manifests/readme_mesh.json
-job-app-helix-readme export manifests/readme_mesh.json --output-dir artifacts/readme_mesh
+# Validate and build the README Mesh
+job-app-helix-readme --manifest manifests/readme_mesh.json validate
+job-app-helix-readme --manifest manifests/readme_mesh.json build --output-dir artifacts/readme_mesh
 
 # Run the local multi-repository audit from the canonical workspace
 python ci_audit_portfolio.py
@@ -174,7 +174,8 @@ interfaces:
   commands:
     install: uv pip install -e ".[dev]"
     test: python -m pytest -q
-    verify_mesh: job-app-helix-readme validate manifests/readme_mesh.json
+    verify_mesh: job-app-helix-readme --manifest manifests/readme_mesh.json validate
+    build_mesh: job-app-helix-readme --manifest manifests/readme_mesh.json build --output-dir artifacts/readme_mesh
     local_portfolio_audit: python ci_audit_portfolio.py
 evidence:
   source:
