@@ -136,12 +136,13 @@ def run_pytest(root: Path, timeout: int) -> dict[str, Any]:
             stderr=subprocess.STDOUT,
             timeout=timeout,
             env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            shell=False,
         )
     except subprocess.TimeoutExpired as exc:
         output = (exc.stdout or "")[-8000:] if isinstance(exc.stdout, str) else ""
         return {"status": "BLOCKED_TIMEOUT", "command": command, "exit_code": 124, "summary": output}
 
-    output = proc.stdout[-12000:]
+    output = (proc.stdout or "")[-12000:]
     if proc.returncode == 0:
         status = "VERIFIED"
     elif re.search(r"(?:ModuleNotFoundError|ImportError:|No module named|command not found|could not find)", output, re.I):
