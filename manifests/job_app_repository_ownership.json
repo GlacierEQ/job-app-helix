@@ -1,0 +1,145 @@
+{
+  "schema": "glaciereq.job-app.repository-ownership.v1",
+  "generated_at": "2026-07-30T00:40:00-10:00",
+  "authority": {
+    "repository": "GlacierEQ/job-app-helix",
+    "branch": "audit/proof-weighted-portfolio-2026-07-29",
+    "document": "docs/JOB_APP_SYSTEM_AUDIT_2026-07-30.md"
+  },
+  "uniqueness_constraints": {
+    "portfolio_control_plane": 1,
+    "technology_placement_authority": 1,
+    "private_application_workspace": 1,
+    "public_recruiter_distribution": 1
+  },
+  "repositories": [
+    {
+      "repository": "GlacierEQ/job-app",
+      "visibility": "private",
+      "role": "private_application_workspace",
+      "canonical": true,
+      "owns": [
+        "active_application_packets",
+        "private_resumes",
+        "access_routes",
+        "interview_preparation",
+        "operator_checklists"
+      ],
+      "forbidden_authority": [
+        "portfolio_verification_law",
+        "technology_placement_authority",
+        "public_portfolio_inventory"
+      ],
+      "upstream_authorities": [
+        "GlacierEQ/job-app-helix",
+        "GlacierEQ/the-tower-of-babel"
+      ],
+      "state": "RETAIN_AND_NARROW",
+      "next_gate": "Replace unsupported global metrics and declare upstream evidence contracts."
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "visibility": "public",
+      "role": "public_recruiter_distribution",
+      "canonical": false,
+      "owns": [
+        "generated_resume_bundle",
+        "selected_portfolio_index",
+        "outreach_templates"
+      ],
+      "forbidden_authority": [
+        "portfolio_control_plane",
+        "independent_portfolio_verification",
+        "technology_placement_authority"
+      ],
+      "upstream_authorities": [
+        "GlacierEQ/job-app-helix"
+      ],
+      "state": "CONSOLIDATE_OR_ARCHIVE",
+      "next_gate": "Preserve unique recruiter assets, then generate this surface from Helix or archive it."
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "visibility": "public",
+      "role": "portfolio_control_plane",
+      "canonical": true,
+      "owns": [
+        "portfolio_inventory",
+        "proof_weighted_grades",
+        "verification_states",
+        "readme_mesh",
+        "campaign_readiness",
+        "audit_receipts"
+      ],
+      "forbidden_authority": [
+        "private_application_material",
+        "technology_placement_authority",
+        "nested_child_repository_source"
+      ],
+      "upstream_authorities": [
+        "GlacierEQ/the-tower-of-babel"
+      ],
+      "state": "CANONICAL_PARTIALLY_VERIFIED",
+      "next_gate": "Ingest the merged Tower release receipt and replace stale blocked-state language."
+    },
+    {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "visibility": "public",
+      "role": "technology_placement_authority",
+      "canonical": true,
+      "owns": [
+        "technology_floor_registry",
+        "language_placement",
+        "w4h_how_rationale",
+        "proof_classes",
+        "cross_language_interfaces",
+        "polyglot_flagship",
+        "generated_integration_exports"
+      ],
+      "forbidden_authority": [
+        "portfolio_scoring",
+        "application_tracking",
+        "private_candidate_material"
+      ],
+      "candidate_release": {
+        "branch": "build/canonical-executable-tower",
+        "pull_request": 2,
+        "head_sha": "86e6e387cca1af65cd543d4d8a60a61c4485ed45",
+        "mergeable": true,
+        "floors": 30,
+        "ahead_of_main_commits": 86,
+        "verified_github_jobs": [
+          "portable-floor-compile:c",
+          "portable-floor-compile:go",
+          "portable-floor-compile:rust",
+          "portable-floor-compile:protobuf",
+          "flagship-portable"
+        ],
+        "failed_gate": {
+          "job": "governance",
+          "step": "Reject generated-surface drift",
+          "stale_outputs": [
+            "README.md",
+            "generated/smithery.registry.json",
+            "generated/spiral-engine.registry.json"
+          ]
+        },
+        "cancelled_surface": {
+          "job": "portable-floor-compile:typescript",
+          "boundary": "cancelled during Rust toolchain setup before TypeScript build"
+        },
+        "release_state": "PARTIALLY_VERIFIED_MERGEABLE_DRIFT_BLOCKED"
+      },
+      "state": "PROMOTE_AFTER_DRIFT_REPAIR_AND_GREEN_RECEIPT",
+      "next_gate": "Regenerate three stale outputs, complete Tower Verification, and merge PR #2 against the expected head."
+    }
+  ],
+  "global_rules": [
+    "No second authoritative Tower registry may exist outside GlacierEQ/the-tower-of-babel.",
+    "Job-App Helix may consume pinned Tower exports but may not embed Tower source as a nested project.",
+    "Job-application must consume Helix outputs instead of recalculating portfolio truth.",
+    "Private job-app content must not be projected into public control-plane or analytics surfaces.",
+    "Every aggregate count or grade must name source repository, source ref, verification scope, timestamp, and receipt.",
+    "Mergeability is not release verification; cancellation is not implementation failure; partial CI success is not portfolio-wide certification."
+  ]
+}
