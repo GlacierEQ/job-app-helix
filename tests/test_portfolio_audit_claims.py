@@ -176,6 +176,16 @@ def test_language_fit_rejects_missing_boundary(
     assert "boundary" in json.dumps(raised.value.evidence)
 
 
+def test_declared_language_fit_manifest_is_valid() -> None:
+    module = _load_audit_module()
+
+    result = module.step_3_validate_language_fit()
+
+    assert result["entries_declared"] == 4
+    assert result["entries_validated"] == 4
+    assert result["errors"] == []
+
+
 def test_relative_markdown_links_are_checked(tmp_path: Path) -> None:
     module = _load_audit_module()
     (tmp_path / "README.md").write_text("# proof", encoding="utf-8")
@@ -189,3 +199,27 @@ def test_relative_markdown_links_are_checked(tmp_path: Path) -> None:
 
     assert result["links_checked"] == 1
     assert result["valid"] == 1
+
+
+def test_root_readme_preserves_audience_order_and_machine_contract() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    headings = [
+        "## For recruiters and non-technical reviewers",
+        "## For senior engineers and domain experts",
+        "## For AI systems and toolchains",
+    ]
+    positions = [readme.index(heading) for heading in headings]
+
+    assert positions == sorted(positions)
+    for field in (
+        "schema: glaciereq.readme.v1",
+        "profile: glaciereq.readme-impact.v2-draft",
+        "verified_at:",
+        "blocked_scope:",
+        "unverified_scope:",
+        "languages:",
+        "relationships:",
+        "limits:",
+        "manifests/language_fit.json",
+    ):
+        assert field in readme
