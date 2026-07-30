@@ -174,23 +174,27 @@ def step_3_validate_language_fit(
         if not isinstance(entry, dict):
             errors.append(f"entry {index}: must be an object")
             continue
+        entry_errors: list[str] = []
         missing = [
             field
             for field in required_fields
             if not isinstance(entry.get(field), str) or not entry[field].strip()
         ]
         if missing:
-            errors.append(f"entry {index}: missing non-empty fields {missing}")
+            entry_errors.append(f"missing non-empty fields {missing}")
+        if not missing and entry["verification_state"] not in allowed_states:
+            entry_errors.append(
+                f"invalid verification_state={entry['verification_state']!r}"
+            )
+        if not missing:
+            receipt_path = ROOT / entry["evidence_receipt"]
+            if not receipt_path.is_file():
+                entry_errors.append(
+                    f"evidence receipt does not exist: {entry['evidence_receipt']}"
+                )
+        if entry_errors:
+            errors.extend(f"entry {index}: {message}" for message in entry_errors)
             continue
-        if entry["verification_state"] not in allowed_states:
-            errors.append(
-                f"entry {index}: invalid verification_state={entry['verification_state']!r}"
-            )
-        receipt_path = ROOT / entry["evidence_receipt"]
-        if not receipt_path.is_file():
-            errors.append(
-                f"entry {index}: evidence receipt does not exist: {entry['evidence_receipt']}"
-            )
         validated.append({field: entry[field] for field in required_fields})
 
     evidence: dict[str, object] = {
