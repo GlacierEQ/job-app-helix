@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -46,6 +47,7 @@ class DemoResult:
     status: str
     returncode: int | None
     timed_out: bool
+    test_count: int | None
     elapsed_ms: float
     stdout_tail: str
     stderr_tail: str
@@ -106,6 +108,12 @@ def _write_receipt(payload: dict[str, object]) -> None:
             temp_path.unlink()
 
 
+def _extract_unittest_count(stdout: str | bytes | None, stderr: str | bytes | None) -> int | None:
+    combined = f"{_tail(stdout, 10000)}\n{_tail(stderr, 10000)}"
+    matches = re.findall(r"Ran\s+(\d+)\s+tests?", combined)
+    return int(matches[-1]) if matches else None
+
+
 def _run_demo(check: DemoCheck) -> DemoResult:
     repo_path = REPOS / check.repository
     start = time.perf_counter()
@@ -117,6 +125,7 @@ def _run_demo(check: DemoCheck) -> DemoResult:
             status="BLOCKED",
             returncode=None,
             timed_out=False,
+            test_count=None,
             elapsed_ms=round((time.perf_counter() - start) * 1000.0, 2),
             stdout_tail="",
             stderr_tail=f"Repository missing: {repo_path}",
@@ -129,6 +138,7 @@ def _run_demo(check: DemoCheck) -> DemoResult:
             status="UNVERIFIED",
             returncode=None,
             timed_out=False,
+            test_count=None,
             elapsed_ms=round((time.perf_counter() - start) * 1000.0, 2),
             stdout_tail="",
             stderr_tail=f"Required tests directory missing: {repo_path / 'tests'}",
@@ -151,21 +161,36 @@ def _run_demo(check: DemoCheck) -> DemoResult:
             status="FAILED",
             returncode=124,
             timed_out=True,
+            test_count=None,
             elapsed_ms=round((time.perf_counter() - start) * 1000.0, 2),
             stdout_tail=_tail(exc.stdout),
             stderr_tail=f"Timed out after {DEMO_TIMEOUT_SECONDS}s. {_tail(exc.stderr)}".strip(),
         )
 
+    test_count = _extract_unittest_count(completed.stdout, completed.stderr)
+    if completed.returncode != 0:
+        status = "FAILED"
+        stderr_tail = _tail(completed.stderr)
+    elif test_count is None or test_count < 1:
+        status = "UNVERIFIED"
+        stderr_tail = (
+            f"Command exited zero but executed-test count was {test_count!r}; "
+            f"at least one test is required. {_tail(completed.stderr)}"
+        ).strip()
+    else:
+        status = "PASSED"
+        stderr_tail = _tail(completed.stderr)
     return DemoResult(
         name=check.name,
         repository=check.repository,
         command=list(check.command),
-        status="PASSED" if completed.returncode == 0 else "FAILED",
+        status=status,
         returncode=completed.returncode,
         timed_out=False,
+        test_count=test_count,
         elapsed_ms=round((time.perf_counter() - start) * 1000.0, 2),
         stdout_tail=_tail(completed.stdout),
-        stderr_tail=_tail(completed.stderr),
+        stderr_tail=stderr_tail,
     )
 
 
@@ -176,7 +201,7 @@ def run_hero_demos() -> int:
     for result in results:
         print(
             f"[{result.status}] {result.name} "
-            f"({result.repository}) — {result.elapsed_ms} ms"
+            f"({result.repository}) — {result.test_count} tests — {result.elapsed_ms} ms"
         )
 
     all_passed = bool(results) and all(result.status == "PASSED" for result in results)
