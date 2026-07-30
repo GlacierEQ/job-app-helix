@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from enum import Enum, IntEnum
+from enum import IntEnum, StrEnum
 from pathlib import Path
 
 
@@ -9,7 +9,7 @@ class PortfolioProgramError(RuntimeError):
     """Raised when the portfolio program contract is invalid or unsafe to execute."""
 
 
-class VerificationState(str, Enum):
+class VerificationState(StrEnum):
     VERIFIED = "VERIFIED"
     PARTIALLY_VERIFIED = "PARTIALLY_VERIFIED"
     BLOCKED = "BLOCKED"
@@ -17,7 +17,7 @@ class VerificationState(str, Enum):
     FAILED = "FAILED"
 
 
-class ExecutionMode(str, Enum):
+class ExecutionMode(StrEnum):
     VERIFY = "VERIFY"
     CONSOLIDATE_OR_ARCHIVE = "CONSOLIDATE_OR_ARCHIVE"
 
@@ -32,14 +32,14 @@ class EvidenceLevel(IntEnum):
     DEPLOYMENT = 70
 
     @classmethod
-    def parse(cls, value: str) -> "EvidenceLevel":
+    def parse(cls, value: str) -> EvidenceLevel:
         try:
             return cls[value]
         except KeyError as exc:
             raise PortfolioProgramError(f"unknown evidence level: {value!r}") from exc
 
 
-class ProofMode(str, Enum):
+class ProofMode(StrEnum):
     EXIT_CODE = "EXIT_CODE"
     POSITIVE_TEST_COUNT = "POSITIVE_TEST_COUNT"
     INTERNAL = "INTERNAL"
