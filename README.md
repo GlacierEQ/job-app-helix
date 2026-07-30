@@ -143,7 +143,8 @@ This repository deliberately remains focused rather than adding languages for di
 ### Machine contract
 
 ```yaml
-schema: glaciereq.readme.v2
+schema: glaciereq.readme.v1
+profile: glaciereq.readme-impact.v2-draft
 repository: GlacierEQ/job-app-helix
 canonical_branch: main
 purpose: >-
@@ -190,6 +191,8 @@ evidence:
     - docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md
     - docs/README_MESH_ROLLOUT_2026-07-28.md
 ```
+
+The compiled wire contract remains `glaciereq.readme.v1`; `glaciereq.readme-impact.v2-draft` names the expanded documentation profile only.
 
 ### Typed portfolio relationships
 
