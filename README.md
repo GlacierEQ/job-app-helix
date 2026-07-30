@@ -27,10 +27,10 @@ Large portfolios often become difficult to trust: every repository sounds comple
 | Open or run | What it demonstrates |
 |---|---|
 | [`docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md`](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification state, and P0 correction for all 66 repositories. |
+| [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json) | Exact portfolio boundary: one control-plane root plus 65 workspace repositories. |
 | [`docs/README_OPTIMAL_IMPACT_FRAME.md`](docs/README_OPTIMAL_IMPACT_FRAME.md) | Recruiter → expert → AI documentation contract, including the enforceable language-fit gate. |
 | [`manifests/language_fit.json`](manifests/language_fit.json) | Machine-readable proof that every language or format owns a named boundary, command, and receipt. |
 | [`src/job_app_helix/campaign.py`](src/job_app_helix/campaign.py) | Deterministic campaign decision engine with bounded refinement. |
-| [`src/job_app_helix/readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Evidence-bound README graph and Protobuf serialization. |
 | `python -m pytest -q` | Repository-native regression and contract suite. |
 
 ## For senior engineers and domain experts
@@ -40,7 +40,7 @@ Large portfolios often become difficult to trust: every repository sounds comple
 Job-App Helix owns:
 
 - campaign readiness decisions;
-- repository identity and README Mesh topology;
+- the exact portfolio inventory and README Mesh topology;
 - evidence references and deterministic serialization;
 - language-boundary declarations;
 - portfolio audit semantics and scoped receipts;
@@ -55,7 +55,7 @@ Repository manifests + evidence paths
                  │
                  ▼
       Contract validation layer
-     identity • language fit • links
+ inventory • identity • language fit • links
                  │
        ┌─────────┴─────────┐
        ▼                   ▼
@@ -79,24 +79,27 @@ GO / NO-GO report     human views + Protobuf artifacts
 | [`models.py`](src/job_app_helix/models.py) | Defines typed reports, findings, policies, and decisions. |
 | [`readme_mesh_manifest.py`](src/job_app_helix/readme_mesh_manifest.py) | Loads and validates repository identity, evidence, and typed edges. |
 | [`readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Renders audience views and deterministic Protobuf/ProtoJSON/text outputs. |
+| [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json) | Pins the exact 66-repository audit boundary so a partial workspace cannot silently pass. |
 | [`manifests/language_fit.json`](manifests/language_fit.json) | Declares responsibility, boundary, interface, commands, evidence, and state for every language/format used here. |
 | [`ci_audit_portfolio.py`](ci_audit_portfolio.py) | Validates inventory, mesh, language fit, bounded runtime samples, demos, links, and atomic success/failure receipts. |
-| [`showcase/demo_15min_run.py`](showcase/demo_15min_run.py) | Executes named demonstrations with timeouts and per-demo results; scaffolds are never counted as passes. |
+| [`showcase/demo_15min_run.py`](showcase/demo_15min_run.py) | Executes named demonstrations with timeouts, positive test-count requirements, and per-demo results. |
 | [`apex_highway.py`](apex_highway.py) | Scans portfolio-sidecar metadata and mesh health. |
 
 ### Correctness and failure behavior
 
 - Campaign decisions fail closed when a hard requirement remains unsatisfied.
 - Refinement is bounded to one transparent stroke rather than open-ended mutation.
-- README records require stable identity, evidence, and typed relationships.
+- The workspace must match the checked-in 65-child inventory exactly; missing, unexpected, or duplicate repository declarations fail the audit.
+- README records require stable identity, evidence, and Protobuf-supported typed relationships.
 - Language entries require a responsibility, boundary, interface contract, build command, test/proof command, receipt, and state.
 - Protobuf bindings are compiled and descriptor-compared in CI.
 - Serialization is deterministic and round-tripped.
 - Child processes have explicit timeouts and convert hangs into structured failures.
+- A zero exit code after running zero tests is `UNVERIFIED`, not `PASSED`.
 - Audit receipts transition through `RUNNING`, then atomically become `FAILED` or `PARTIALLY_VERIFIED`; an old success receipt cannot silently survive a failed rerun.
 - Relative Markdown links and `file://` targets are validated; an empty link scan fails.
 - Missing tests, missing repositories, or demo failures are `UNVERIFIED`, `BLOCKED`, or `FAILED`, never scaffold passes.
-- `UNVERIFIED` and `BLOCKED` are preserved as states; they are never rewritten as `PASSED`.
+- Every repository process executed by the runtime sample or demo runner is named in the receipt.
 
 ### Verification commands
 
@@ -105,7 +108,7 @@ GO / NO-GO report     human views + Protobuf artifacts
 python -m pip install -e ".[dev]"
 
 # Lint
-python -m ruff check src tests scripts
+python -m ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
 
 # Type check
 python -m mypy src/job_app_helix/
@@ -127,7 +130,7 @@ job-app-helix-readme --manifest manifests/readme_mesh.json build --output-dir ar
 python ci_audit_portfolio.py
 ```
 
-The final command requires the local `repos/` workspace. Its receipt names the repositories actually executed; it does not certify all discovered repositories.
+The final command requires the local `repos/` workspace. It first proves that all 65 child repositories are present, then names every repository process it actually executes. It does not convert that bounded execution set into portfolio-wide runtime certification.
 
 ### Language and format fit
 
@@ -135,7 +138,7 @@ The final command requires the local `repos/` workspace. Its receipt names the r
 |---|---|---|---|---|---|---|---|
 | Python 3.11+ | Campaign logic, validation, rendering, CLI, and audit orchestration | Executable control-plane code under `src/job_app_helix` and bounded repository-local scripts | Console entry points, typed models, JSON receipts, Protobuf-backed records | `python -m pip install -e ".[dev]"` | `python -m pytest -q` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | PARTIALLY_VERIFIED |
 | Protocol Buffers | Versioned cross-language identity and graph serialization | `glaciereq.readme.v1` schema and generated binding | Deterministic binary, ProtoJSON, textproto, descriptors, and SHA-256 | `python scripts/check_proto_contract.py` | `python -m pytest -q` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | VERIFIED |
-| JSON | Human-inspectable manifests, reports, declarations, and receipts | Repository-local interchange; not the canonical wire schema | UTF-8 objects with explicit schema identifiers | `python -m job_app_helix.readme_mesh_cli build --output-dir artifacts/readme-mesh` | `python -m pytest -q` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | VERIFIED |
+| JSON | Human-inspectable inventories, manifests, reports, declarations, and receipts | Repository-local interchange; not the canonical wire schema | UTF-8 objects with explicit schema identifiers | `python -m job_app_helix.readme_mesh_cli build --output-dir artifacts/readme-mesh` | `python -m pytest -q` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | VERIFIED |
 | Markdown | Recruiter, expert, and AI-readable documentation | Human review surface generated from evidence records | Stable headings, evidence links, commands, typed mesh tables, and managed markers | `python -m job_app_helix.readme_mesh_cli render-all --output-dir artifacts/readme-mesh/blocks` | `python scripts/check_public_surface.py` | [`README_MESH_ROLLOUT_2026-07-28.md`](docs/README_MESH_ROLLOUT_2026-07-28.md) | VERIFIED |
 
 This repository deliberately remains focused rather than adding languages for display. Polyglot work belongs at a boundary where the language materially improves correctness, performance, safety, interoperability, or deployment.
@@ -145,7 +148,7 @@ This repository deliberately remains focused rather than adding languages for di
 - Runtime verification is incomplete across the 66-repository portfolio.
 - README Mesh v1 has a verified rollout receipt for 21 declared nodes, not all 66.
 - Connected repositories still need repo-native build/test receipts.
-- The Tower of Babel candidate remains blocked by CI/review closure and cannot yet serve as production proof.
+- The Tower of Babel candidate remains blocked by CI/review closure and is an adjacent polyglot reference candidate, not a typed edge in the current 21-node mesh.
 - Provider deployment, hardware execution, scale, and performance are unverified unless a repository supplies a specific receipt.
 - The local portfolio audit depends on the canonical on-disk workspace and cannot run from this repository alone.
 
@@ -159,8 +162,8 @@ profile: glaciereq.readme-impact.v2-draft
 repository: GlacierEQ/job-app-helix
 canonical_branch: main
 purpose: >-
-  Govern evidence-bound campaign decisions, portfolio verification semantics,
-  language-fit declarations, and recruiter/expert/AI views of connected repositories.
+  Govern evidence-bound campaign decisions, exact portfolio inventory,
+  verification semantics, language-fit declarations, and recruiter/expert/AI views.
 status:
   state: PARTIALLY_VERIFIED
   verified_at: 2026-07-28
@@ -179,6 +182,7 @@ status:
     - portfolio-wide deployment, scale, and performance
 interfaces:
   inputs:
+    - manifests/portfolio_repositories.json
     - manifests/readme_mesh.json
     - manifests/language_fit.json
     - repository source, tests, workflows, and receipts
@@ -201,6 +205,10 @@ evidence:
     - src/job_app_helix/readme_mesh.py
     - src/job_app_helix/readme_mesh_manifest.py
     - ci_audit_portfolio.py
+  manifests:
+    - manifests/portfolio_repositories.json
+    - manifests/readme_mesh.json
+    - manifests/language_fit.json
   tests:
     - tests/
   workflows:
@@ -220,45 +228,44 @@ languages:
       responsibility: versioned cross-language wire contract
       verification_state: VERIFIED
     - name: JSON
-      responsibility: manifests and scoped receipts
+      responsibility: inventories, manifests, and scoped receipts
       verification_state: VERIFIED
     - name: Markdown
       responsibility: three-audience review surface
       verification_state: VERIFIED
 relationships:
   - target: GlacierEQ/AKOS
-    relation: governed_by
+    relation: GOVERNED_BY
     combined_value: AKOS supplies authority and completion semantics; Helix supplies portfolio representation and verification.
-  - target: GlacierEQ/the-tower-of-babel
-    relation: evaluates_language_fit_for
-    combined_value: Tower demonstrates workload-language choices; Helix records their evidence and state.
-  - target: SpaceX subsystem family
-    relation: orchestrates
-    combined_value: Independent simulation and control components become one reviewable systems surface.
-  - target: xAI Alpha/Omega family
-    relation: represents
-    combined_value: Stateless requirement computation and stateful response remain separate typed responsibilities.
-  - target: Agent coordinator and safety monitor
-    relation: connects
-    combined_value: Agent motion and independent oversight remain separately testable.
+  - target: GlacierEQ/spacex-telemetry
+    relation: ORCHESTRATES
+    combined_value: Ordered telemetry evidence becomes an explicit input to campaign readiness decisions.
+  - target: GlacierEQ/spacex-mission-control
+    relation: ORCHESTRATES
+    combined_value: Combined campaign state becomes a reviewable human-operator surface.
+  - target: GlacierEQ/spacex-thermal-protection
+    relation: ORCHESTRATES
+    combined_value: Predictive thermal evidence and bounded response become part of the campaign decision.
 limits:
   - A connected edge is not proof that the target repository works.
+  - Adjacent projects outside the current manifest are not typed mesh edges.
   - Hash coverage is not runtime verification.
+  - A zero-test process is not runtime verification.
   - README verification is not deployment verification.
   - Local multi-repository checks require the canonical repos workspace.
 ```
 
-The compiled wire contract remains `glaciereq.readme.v1`; `glaciereq.readme-impact.v2-draft` names the expanded documentation profile only.
+The compiled wire contract remains `glaciereq.readme.v1`; `glaciereq.readme-impact.v2-draft` names the expanded documentation profile only. Every machine-facing relation above is representable by the compiled enum and present in the canonical mesh.
 
 Canonical schema: [`proto/readme_mesh.proto`](proto/readme_mesh.proto)  
-Canonical manifests: [`manifests/readme_mesh.json`](manifests/readme_mesh.json), [`manifests/language_fit.json`](manifests/language_fit.json)
+Canonical manifests: [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json), [`manifests/readme_mesh.json`](manifests/readme_mesh.json), [`manifests/language_fit.json`](manifests/language_fit.json)
 
 ## Repository map
 
 ```text
 src/job_app_helix/          package and CLI
 proto/                      versioned README Mesh contract
-manifests/                  repository graph and language-fit declarations
+manifests/                  exact portfolio inventory, repository graph, and language-fit declarations
 schemas/                    validation contracts
 rendered/                   generated audience views
 artifacts/                  deterministic exports and atomic audit receipts
