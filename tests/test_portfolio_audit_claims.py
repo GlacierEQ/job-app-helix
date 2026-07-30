@@ -1,0 +1,323 @@
+from __future__ import annotations
+
+import importlib.util
+import json
+import subprocess
+import sys
+from pathlib import Path
+from types import ModuleType
+
+import pytest
+
+ROOT = Path(__file__).resolve().parents[1]
+AUDIT_PATH = ROOT / "ci_audit_portfolio.py"
+
+
+def _load_audit_module() -> ModuleType:
+    spec = importlib.util.spec_from_file_location("ci_audit_portfolio", AUDIT_PATH)
+    if spec is None or spec.loader is None:
+        raise AssertionError(f"Unable to load {AUDIT_PATH}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.modules.pop(spec.name, None)
+    return module
+
+
+def _stub_successful_audit(
+    module: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> Path:
+    receipt_path = tmp_path / "portfolio_ci_receipt.json"
+    repos = [tmp_path / "repo-a", tmp_path / "repo-b"]
+    monkeypatch.setattr(module, "RECEIPT_PATH", receipt_path)
+    monkeypatch.setattr(module, "require_workspace", lambda: repos)
+    monkeypatch.setattr(
+        module,
+        "step_1_check_hash_coverage",
+        lambda supplied: {"repositories_discovered": len(supplied)},
+    )
+    monkeypatch.setattr(module, "step_2_apex_highway", lambda: {"mesh_status": "OPERATIONAL"})
+    monkeypatch.setattr(module, "step_3_validate_language_fit", lambda: {"entries_validated": 4})
+    monkeypatch.setattr(
+        module,
+        "step_4_runtime_sample",
+        lambda: [
+            module.CommandResult(
+                repository="repo-a",
+                command=["test"],
+                returncode=0,
+                status="PASSED",
+                timed_out=False,
+                test_count=1,
+                stdout_tail="",
+                stderr_tail="",
+            )
+        ],
+    )
+    monkeypatch.setattr(
+        module,
+        "step_5_demo_runner",
+        lambda: {"status": "PASSED", "receipt": {"conclusion": "VERIFIED", "results": []}},
+    )
+    monkeypatch.setattr(module, "step_6_link_verification", lambda: {"links_checked": 3})
+    return receipt_path
+
+
+def test_main_emits_evidence_bound_partial_receipt(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    module = _load_audit_module()
+    receipt_path = _stub_successful_audit(module, monkeypatch, tmp_path)
+
+    module.main()
+
+    payload = json.loads(receipt_path.read_text(encoding="utf-8"))
+    output = capsys.readouterr().out
+    assert payload["conclusion"] == "PARTIALLY_VERIFIED"
+    assert len(payload["runtime_results"]) == 1
+    assert payload["executed_repositories"] == ["repo-a"]
+    assert "PORTFOLIO CONCLUSION: PARTIALLY VERIFIED" in output
+    assert "NO PORTFOLIO-WIDE DEPLOYABILITY CLAIM WAS MADE" in output
+    assert "100% SOLID & DEPLOYABLE" not in output
+
+
+def test_failed_rerun_overwrites_running_receipt_with_failure(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_audit_module()
+    receipt_path = _stub_successful_audit(module, monkeypatch, tmp_path)
+
+    def fail_mesh() -> dict[str, object]:
+        raise module.AuditStepError("mesh failed", {"mesh_status": "FAILED"})
+
+    monkeypatch.setattr(module, "step_2_apex_highway", fail_mesh)
+
+    with pytest.raises(module.AuditStepError):
+        module.main()
+
+    payload = json.loads(receipt_path.read_text(encoding="utf-8"))
+    assert payload["conclusion"] == "FAILED"
+    assert payload["error"]["message"] == "mesh failed"
+    assert payload["evidence"]["mesh"]["mesh_status"] == "FAILED"
+
+
+def test_inventory_manifest_declares_exact_66_repositories() -> None:
+    payload = json.loads(
+        (ROOT / "manifests" / "portfolio_repositories.json").read_text(encoding="utf-8")
+    )
+    workspace = payload["workspace_repositories"]
+
+    assert payload["portfolio_root"] == "job-app-helix"
+    assert payload["total_repositories"] == 66
+    assert len(workspace) == 65
+    assert len(set(workspace)) == 65
+    assert "job-app-helix" not in workspace
+
+
+def test_inventory_scope_rejects_missing_repository(tmp_path: Path) -> None:
+    module = _load_audit_module()
+    repo_a = tmp_path / "repo-a"
+    (repo_a / ".integrity").mkdir(parents=True)
+    (repo_a / ".integrity" / "file_hashes.json").write_text("{}", encoding="utf-8")
+    manifest = tmp_path / "portfolio.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "schema": "glaciereq.portfolio.inventory.v1",
+                "portfolio_root": "root",
+                "total_repositories": 3,
+                "workspace_repositories": ["repo-a", "repo-b"],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(module.AuditStepError) as raised:
+        module.step_1_check_hash_coverage([repo_a], manifest)
+
+    assert raised.value.evidence["missing_repositories"] == ["repo-b"]
+
+
+def test_runtime_verification_scope_is_explicit_and_bounded() -> None:
+    module = _load_audit_module()
+    repositories = tuple(check.repository for check in module.RUNTIME_CHECKS)
+    assert repositories == (
+        "spacex-thermal-protection",
+        "xai-colossus-cooling",
+        "AKOS",
+    )
+
+
+def test_timeout_becomes_structured_failed_result(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_audit_module()
+    check = module.CommandCheck(
+        repository="hung",
+        command=("python", "-m", "unittest"),
+        cwd=tmp_path,
+        timeout_seconds=1,
+    )
+
+    def time_out(*args: object, **kwargs: object) -> subprocess.CompletedProcess[str]:
+        raise subprocess.TimeoutExpired(cmd=["python"], timeout=1, output="partial")
+
+    monkeypatch.setattr(module.subprocess, "run", time_out)
+    result = module._run_command_check(check)
+    assert result.status == "FAILED"
+    assert result.timed_out is True
+    assert result.returncode == 124
+    assert result.test_count is None
+
+
+def test_zero_test_success_is_unverified(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_audit_module()
+    check = module.CommandCheck(
+        repository="empty-tests",
+        command=("python", "-m", "unittest"),
+        cwd=tmp_path,
+    )
+    completed = subprocess.CompletedProcess(
+        args=list(check.command),
+        returncode=0,
+        stdout="",
+        stderr="Ran 0 tests in 0.000s\n\nOK\n",
+    )
+    monkeypatch.setattr(module.subprocess, "run", lambda *args, **kwargs: completed)
+
+    result = module._run_command_check(check)
+
+    assert result.status == "UNVERIFIED"
+    assert result.test_count == 0
+
+
+def test_positive_test_count_is_required_for_pass(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_audit_module()
+    check = module.CommandCheck(
+        repository="tested",
+        command=("python", "-m", "unittest"),
+        cwd=tmp_path,
+    )
+    completed = subprocess.CompletedProcess(
+        args=list(check.command),
+        returncode=0,
+        stdout="",
+        stderr="Ran 7 tests in 0.010s\n\nOK\n",
+    )
+    monkeypatch.setattr(module.subprocess, "run", lambda *args, **kwargs: completed)
+
+    result = module._run_command_check(check)
+
+    assert result.status == "PASSED"
+    assert result.test_count == 7
+
+
+def test_language_fit_rejects_missing_boundary(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_audit_module()
+    receipt = tmp_path / "receipt.md"
+    receipt.write_text("proof", encoding="utf-8")
+    manifest = tmp_path / "language_fit.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "schema": "glaciereq.language-fit.v1",
+                "repository": "GlacierEQ/example",
+                "entries": [
+                    {
+                        "name": "Rust",
+                        "kind": "programming_language",
+                        "responsibility": "safe concurrency",
+                        "boundary": "",
+                        "interface_contract": "FFI",
+                        "build_command": "cargo build",
+                        "test_command": "cargo test",
+                        "evidence_receipt": str(receipt.relative_to(tmp_path)),
+                        "verification_state": "VERIFIED",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "ROOT", tmp_path)
+
+    with pytest.raises(module.AuditStepError) as raised:
+        module.step_3_validate_language_fit(manifest)
+
+    assert "boundary" in json.dumps(raised.value.evidence)
+
+
+def test_declared_language_fit_manifest_is_valid() -> None:
+    module = _load_audit_module()
+
+    result = module.step_3_validate_language_fit()
+
+    assert result["entries_declared"] == 4
+    assert result["entries_validated"] == 4
+    assert result["errors"] == []
+
+
+def test_relative_markdown_links_are_checked(tmp_path: Path) -> None:
+    module = _load_audit_module()
+    (tmp_path / "README.md").write_text("# proof", encoding="utf-8")
+    map_file = tmp_path / "MAP.md"
+    map_file.write_text(
+        "[Local](README.md)\n[External](https://example.com)\n",
+        encoding="utf-8",
+    )
+
+    result = module.step_6_link_verification(map_file)
+
+    assert result["links_checked"] == 1
+    assert result["valid"] == 1
+
+
+def test_root_readme_preserves_audience_order_and_machine_contract() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    headings = [
+        "## For recruiters and non-technical reviewers",
+        "## For senior engineers and domain experts",
+        "## For AI systems and toolchains",
+    ]
+    positions = [readme.index(heading) for heading in headings]
+
+    assert positions == sorted(positions)
+    for field in (
+        "schema: glaciereq.readme.v1",
+        "profile: glaciereq.readme-impact.v2-draft",
+        "verified_at:",
+        "blocked_scope:",
+        "unverified_scope:",
+        "languages:",
+        "relationships:",
+        "limits:",
+        "manifests/language_fit.json",
+        "manifests/portfolio_repositories.json",
+    ):
+        assert field in readme
+
+    for unsupported in (
+        "relation: evaluates_language_fit_for",
+        "relation: represents",
+        "relation: connects",
+        "relation: verified_by",
+        "relation: routes_execution_to",
+    ):
+        assert unsupported not in readme

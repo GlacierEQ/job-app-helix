@@ -1,0 +1,50 @@
+{
+  "schema": "glaciereq.language-fit.v1",
+  "repository": "GlacierEQ/job-app-helix",
+  "entries": [
+    {
+      "name": "Python",
+      "kind": "programming_language",
+      "responsibility": "Campaign decisions, manifest validation, CLI surfaces, README rendering, and bounded audit orchestration.",
+      "boundary": "Executable control-plane logic under src/job_app_helix and the repository-local audit scripts.",
+      "interface_contract": "Console entry points, typed Python models, JSON receipts, and Protobuf-backed repository records.",
+      "build_command": "python -m pip install -e \".[dev]\"",
+      "test_command": "python -m pytest -q",
+      "evidence_receipt": "docs/README_MESH_ROLLOUT_2026-07-28.md",
+      "verification_state": "PARTIALLY_VERIFIED"
+    },
+    {
+      "name": "Protocol Buffers",
+      "kind": "wire_schema",
+      "responsibility": "Versioned cross-language identity, evidence, and typed repository-edge serialization.",
+      "boundary": "The glaciereq.readme.v1 wire contract in proto/readme_mesh.proto and its generated Python binding.",
+      "interface_contract": "Deterministic binary, ProtoJSON, textproto, descriptor comparison, and SHA-256 outputs.",
+      "build_command": "python scripts/check_proto_contract.py",
+      "test_command": "python -m pytest -q",
+      "evidence_receipt": "docs/README_MESH_ROLLOUT_2026-07-28.md",
+      "verification_state": "VERIFIED"
+    },
+    {
+      "name": "JSON",
+      "kind": "data_format",
+      "responsibility": "Human-inspectable manifests, campaign reports, language declarations, and audit receipts.",
+      "boundary": "Repository-local interchange and receipt artifacts; not the canonical cross-language wire schema.",
+      "interface_contract": "UTF-8 JSON objects with explicit schema identifiers and deterministic field semantics.",
+      "build_command": "python -m job_app_helix.readme_mesh_cli build --output-dir artifacts/readme-mesh",
+      "test_command": "python -m pytest -q",
+      "evidence_receipt": "docs/README_MESH_ROLLOUT_2026-07-28.md",
+      "verification_state": "VERIFIED"
+    },
+    {
+      "name": "Markdown",
+      "kind": "documentation_format",
+      "responsibility": "Recruiter, expert, and AI-readable repository explanations and portfolio navigation.",
+      "boundary": "Human review surface generated from evidence-bound records while preserving authored content outside managed blocks.",
+      "interface_contract": "Stable headings, openable evidence links, runnable commands, typed mesh tables, and generated block markers.",
+      "build_command": "python -m job_app_helix.readme_mesh_cli render-all --output-dir artifacts/readme-mesh/blocks",
+      "test_command": "python scripts/check_public_surface.py",
+      "evidence_receipt": "docs/README_MESH_ROLLOUT_2026-07-28.md",
+      "verification_state": "VERIFIED"
+    }
+  ]
+}

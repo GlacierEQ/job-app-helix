@@ -34,8 +34,8 @@ jobs:
       - name: Install package and quality tools
         run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
 
-      - name: Lint public source
-        run: ruff check src tests scripts
+      - name: Lint public source and audit runners
+        run: ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
 
       - name: Run tests
         run: pytest
@@ -52,12 +52,50 @@ jobs:
       - name: Render all repository README blocks
         run: python -m job_app_helix.readme_mesh_cli render-all --output-dir artifacts/readme-mesh/blocks
 
-      - name: Verify canonical README is idempotently generated
+      - name: Verify canonical README and generated projection
         shell: bash
         run: |
           python -m job_app_helix.readme_mesh_cli render GlacierEQ/job-app-helix \
-            --readme README.md --output /tmp/README.generated.md
-          cmp README.md /tmp/README.generated.md
+            --output /tmp/README.generated-block.md
+          python - <<'PY'
+          from pathlib import Path
+
+          readme = Path("README.md").read_text(encoding="utf-8")
+          block = Path("/tmp/README.generated-block.md").read_text(encoding="utf-8")
+
+          ordered_headings = [
+              "## For recruiters and non-technical reviewers",
+              "## For senior engineers and domain experts",
+              "## For AI systems and toolchains",
+          ]
+          positions = [readme.index(heading) for heading in ordered_headings]
+          if positions != sorted(positions):
+              raise SystemExit("canonical README audience layers are out of order")
+
+          required_readme_contract = [
+              "schema: glaciereq.readme.v1",
+              "profile: glaciereq.readme-impact.v2-draft",
+              "manifests/language_fit.json",
+              "blocked_scope:",
+              "unverified_scope:",
+              "relationships:",
+              "limits:",
+          ]
+          missing = [value for value in required_readme_contract if value not in readme]
+          if missing:
+              raise SystemExit(f"canonical README contract missing: {missing}")
+
+          required_projection = [
+              "<!-- README-MESH:BEGIN -->",
+              "### For recruiters and non-specialists",
+              "### For senior engineers and domain experts",
+              "### For AI systems and toolchains",
+              "<!-- README-MESH:END -->",
+          ]
+          missing_projection = [value for value in required_projection if value not in block]
+          if missing_projection:
+              raise SystemExit(f"generated README projection missing: {missing_projection}")
+          PY
 
       - name: Run nominal campaign
         run: python -m job_app_helix nominal --output artifacts/nominal.json

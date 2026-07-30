@@ -1,117 +1,87 @@
-# Executive Portfolio Summary & Recruiter Map 🎯
+# Executive Portfolio Summary
 
-> **A 2-Minute Executive Primer to the GlacierEQ Sovereign Engineering Portfolio**  
-> *Tailored for Hiring Managers, Technical Recruiters, and Special Projects Leaders.*  
-> *(No terminal commands or code execution required — all results and engineering proofs are fully documented below.)*
+## Candidate signal
 
----
+Casey Barton built Job-App Helix to turn a 66-repository engineering portfolio into an evidence-bound review system. The portfolio spans agent governance, distributed systems, model infrastructure, aerospace simulation, telemetry, safety controls, document intelligence, and polyglot architecture.
 
-## 📖 Executive Briefing: Problem, Process & Measurable Outcomes
+The differentiator is not the number of repositories or languages. It is the attempt to make a large body of work **legible, composable, and falsifiable**:
 
-This portfolio showcases candidate capabilities across **64 software, physics, and AI engineering repositories**. Each project demonstrates first-principles problem solving in high-stakes domains without relying on hypothetical claims.
+- every repository receives an individual completeness, innovation, quality, function, and README grade;
+- documentation distinguishes verified, partially verified, blocked, unverified, and failed scope;
+- recruiter, expert, and AI-toolchain views are separated without contradicting one another;
+- language choices must own a real system boundary and provide a build/test receipt;
+- typed repository relationships describe combined value rather than merely cross-linking projects.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                             ENGINEERING METHODOLOGY                              │
-├───────────────────────┬───────────────────────────────┬──────────────────────────┤
-│    1. CORE PROBLEM    │     2. ENGINEERING PROCESS    │  3. MEASURABLE OUTCOME   │
-│   (Real-World Bottleneck) │   (First-Principles Model)    │  (Quantified Result)     │
-├───────────────────────┼───────────────────────────────┼──────────────────────────┤
-│ Starship Heat Shield  │ Mach 25 Reentry Thermodynamics│ Zero Thermal Failure     │
-│ Reentry Degradation   │ & PICA-X Degradation Math     │ Prediction Margin        │
-├───────────────────────┼───────────────────────────────┼──────────────────────────┤
-│ 100k GPU Supercomputer│ Liquid Cooling Fluid Dynamics │ PUE 1.08 Efficiency      │
-│ Thermal Throttling    │ ($Q = \dot{m} c_p \Delta T$)  │ Zero Thermal Throttle    │
-├───────────────────────┼───────────────────────────────┼──────────────────────────┤
-│ 3T Model Context      │ Kimi Delta Linear Attention   │ 98.4% Cache Hit Ratio    │
-│ Prefill Latency       │ & Disaggregated KV Streaming  │ Sub-10ms TTFT Latency    │
-├───────────────────────┼───────────────────────────────┼──────────────────────────┤
-│ Unsafe Agent Actions  │ Double-Helix Cognitive Kernel │ 100% Gated Boundary      │
-│ & Context Drift       │ & Action Boundary Governor    │ Safety Compliance        │
-└───────────────────────┴───────────────────────────────┴──────────────────────────┘
-```
+**Current portfolio status:** `PARTIALLY VERIFIED`. The current audit classifies one repository as partially verified, twenty as README-verified/runtime-unverified, one as blocked/unverified, and forty-four as unverified. `UNVERIFIED` means that current evidence is insufficient to make a working/not-working claim; it does not mean the repository is defective.
 
----
+## What a recruiter should open first
 
-## 🚀 The 3 Flagship Projects (At a Glance)
+| Priority | Artifact | Why it matters |
+|---:|---|---|
+| 1 | [Root README](README.md) | Fast recruiter view, expert architecture, and machine contract in one document. |
+| 2 | [66-repository evidence audit](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification states, and the highest-priority correction for every repository. |
+| 3 | [Exact portfolio inventory](manifests/portfolio_repositories.json) | Pins the audit boundary to one root and sixty-five child repositories. |
+| 4 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
+| 5 | [Language-fit manifest](manifests/language_fit.json) | Shows how language choices are tied to responsibilities, interfaces, commands, receipts, and state. |
+| 6 | [GitHub pull request #5](https://github.com/GlacierEQ/job-app-helix/pull/5) | Reviewable implementation of the evidence-bound audit and documentation system. |
 
-```
-        ┌─────────────────────────────────────────────────────────────┐
-        │                 THE THREE HERO SYSTEMS                      │
-        └──────────────┬───────────────┬───────────────┬──────────────┘
-                       │               │               │
-        ┌──────────────▼──────┐ ┌──────▼─────────────┐ ┌▼─────────────┐
-        │  STARSHIP THERMAL   │ │  COLOSSUS COOLING  │ │   AKOS OS   │
-        │  (Aerospace Reentry)│ │  (100k GPU Cluster)│ │ (Cognitive) │
-        └─────────────────────┘ └────────────────────┘ └──────────────┘
-```
+## Strongest current exhibits
 
-### 1. 🚀 Aerospace Reentry Physics — `spacex-thermal-protection`
-- **The Problem**: Starship atmospheric reentry subjects heat shield tiles to extreme plasma temperatures at Mach 25, risking structural tile detachment.
-- **The Engineering Process**: Implemented thermodynamic differential math simulating heat flux dissipation across PICA-X ceramic tiles.
-- **The Measurable Outcome**: Accurately predicts thermal safety margins and tile wear prior to descent.
-- **Location**: [repos/spacex-thermal-protection](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/spacex-thermal-protection)
+### Job-App Helix
 
-### 2. ⚡ AI Supercomputer Thermal Cooling — `xai-colossus-cooling`
-- **The Problem**: 100,000 H100/H200 GPU supercomputing clusters consume over 150 Megawatts, causing thermal throttling and high power usage.
-- **The Engineering Process**: Modeled closed-loop liquid cooling hydraulics using heat transfer fluid dynamics ($Q = \dot{m} c_p \Delta T$) coupled with NVLink telemetry.
-- **The Measurable Outcome**: Achieved an industry-leading Power Usage Effectiveness (**PUE = 1.08**) with zero GPU thermal throttling.
-- **Location**: [repos/xai-colossus-cooling](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/xai-colossus-cooling)
+**Role:** portfolio control plane and evidence ledger.  
+**Signal:** systems architecture, deterministic decision logic, Protobuf contracts, CI design, documentation engineering, and truth-preserving audit semantics.  
+**Status:** partially verified; repository CI is authoritative for the current branch.
 
-### 3. 🧠 Autonomous Cognitive Kernel — `AKOS`
-- **The Problem**: Large-scale multi-agent AI systems suffer from tool hallucination, context drift, and uncoordinated task execution.
-- **The Engineering Process**: Built a Double-Helix agent operating system with 12 micro-engine workers and a real-time safety boundary governor.
-- **The Measurable Outcome**: Coordinates multi-agent workflows with zero human intervention and 100% task completion.
-- **Location**: [repos/AKOS](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/AKOS)
+### AKOS
 
----
+**Role:** authority, provenance, maturity, and completion semantics for agentic systems.  
+**Signal:** governance architecture and evidence-bound operational reasoning.  
+**Status:** README-verified/runtime-unverified in the current portfolio audit.
 
-## 📋 Recruiter Candidate Skill Mapping
+### SpaceX subsystem family
 
-| Target Hiring Domain | Demonstrated Candidate Capability | Representative Portfolio Exhibit |
-| :--- | :--- | :--- |
-| **Special Projects & Autonomy** | Multi-Agent OS & Autonomous Task Routing | [repos/AKOS](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/AKOS) |
-| **High-Performance Compute / GPU Infra** | 100k GPU Liquid Cooling & PUE 1.08 Optimization | [repos/xai-colossus-cooling](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/xai-colossus-cooling) |
-| **Aerospace / Flight Software** | Starship PICA-X Reentry Thermal Wear Prediction | [repos/spacex-thermal-protection](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/spacex-thermal-protection) |
-| **AI Quality & Safety Engineering** | Real-Time Agent Action Boundary Governors | [repos/anthropic-safety-monitor](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/anthropic-safety-monitor) |
-| **Hardware Acceleration & Telemetry** | NVLink Telemetry & Entropy KV Cache Pruning | [repos/nvidia-deep-reasoning](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/nvidia-deep-reasoning) |
-| **Model Context Protocol (MCP)** | Unified 12-Server / 41-Tool Sovereign MCP Gateway | [repos/infinity-gauntlet-mcp-stack](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/infinity-gauntlet-mcp-stack) |
+**Role:** independent telemetry, mission-control, thermal, orbital, network, sequencing, weather, propulsion, and autonomy components.  
+**Signal:** decomposition of a complex domain into typed, separately reviewable systems.  
+**Status:** documentation quality is strongest in the README Mesh nodes; runtime verification still requires repository-native receipts.
 
----
+### The Tower of Babel
 
-## 🗺️ The 6 Ecosystem Pillars (Recruiter Map)
+**Role:** reference architecture for choosing the right language for the right workload.  
+**Signal:** unusually ambitious polyglot design, with languages assigned to performance, safety, proof, hardware, interoperability, or deployment boundaries.  
+**Status:** high-innovation candidate, currently blocked/unverified until CI and correctness/security review close. It is not presented as production proof.
 
-All 64 repositories are organized into **6 Logical Tiers**:
+## Engineering qualities demonstrated
 
-| Tier | Focus Area | Core Technologies & Repositories |
-| :--- | :--- | :--- |
-| **Tier 1** | **Cognitive OS & Swarm Governance** | [AKOS](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/AKOS), [pro-code](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/pro-code), [token_saver](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/token_saver) |
-| **Tier 2** | **Compute Physics & Energy Engineering** | [xai-colossus-cooling](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/xai-colossus-cooling), [xai-colossus-energy](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/xai-colossus-energy), [nvidia-gpu-health](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/nvidia-gpu-health) |
-| **Tier 3** | **Aerospace & Telemetry Systems** | [spacex-thermal-protection](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/spacex-thermal-protection), [spacex-orbital-mechanics](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/spacex-orbital-mechanics) |
-| **Tier 4** | **AI Reasoners & Hardware Governors** | [openai-reasoning-kv-sentinel](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/openai-reasoning-kv-sentinel), [deepmind-tpu-mesh-optimizer](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/deepmind-tpu-mesh-optimizer) |
-| **Tier 5** | **Company Morphing & Staging Tools** | [job-app-helix-meta](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/job-app-helix-meta), [generate_company_morph.py](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/generate_company_morph.py) |
-| **Tier 6** | **Master Integration & Audit Stack** | [infinity-gauntlet-mcp-stack](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/repos/infinity-gauntlet-mcp-stack), [ci_audit_portfolio.py](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/ci_audit_portfolio.py) |
+- **Architecture over accumulation:** related repositories are modeled as systems with directional relationships.
+- **Evidence discipline:** inventory hashes, README validation, runtime execution, benchmarks, hardware execution, and deployment receipts are treated as different proof classes.
+- **Polyglot judgment:** languages are accepted only when they materially improve a boundary.
+- **Failure semantics:** timeouts, zero-test runs, missing repositories, missing receipts, and blocked toolchains cannot silently become passes.
+- **Human communication:** the first screen explains value; deeper sections reward technical scrutiny; machine blocks support ingestion and orchestration.
 
----
+## Current limitations
 
-## 🔒 Verification & Quality Assurance (No Execution Needed)
+- The complete 66-repository runtime surface has not yet been executed in one authoritative environment.
+- The README Mesh rollout receipt covers twenty-one declared nodes, not all sixty-six repositories.
+- Many repositories still need clean-checkout CI, current test receipts, and README rewrites.
+- Several historical recruiting documents contained machine-local links and overbroad readiness language; the current remediation removes those defects rather than preserving them as marketing copy.
 
-For engineers or technical auditors who wish to run terminal verification, the portfolio includes a 30-second automated master audit script:
+## Verification
+
+From a clean checkout of Job-App Helix:
 
 ```bash
-# Optional automated verification across all 64 repositories:
-python3 ci_audit_portfolio.py
+python -m pip install -e ".[dev]"
+python -m ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
+python -m pytest -q
+python scripts/check_proto_contract.py
+python -m job_app_helix.readme_mesh_cli validate
 ```
 
-- **Current Audit Status**: `ALL 5 CI STEPS PASSED`
-- **Total Repositories Verified**: `64/64` (100% Cryptographic SHA-256 Hashes Verified)
-- **Mesh Health**: `62/62 Nodes Online` (100% Operational)
+The multi-repository audit additionally requires the canonical local `repos/` workspace:
 
----
+```bash
+python ci_audit_portfolio.py
+```
 
-## 📄 Key Documents & Contact Exhibits
-
-- **Full Technical Catalog**: [HIERARCHICAL_PORTFOLIO_MAP.md](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/HIERARCHICAL_PORTFOLIO_MAP.md)
-- **Master Resume**: [hire_package/RESUME_GLACIEREQ_ELITE.md](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/hire_package/RESUME_GLACIEREQ_ELITE.md)
-- **Musk Orbit Resume**: [hire_package/RESUME_MUSK_ORBIT.md](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/hire_package/RESUME_MUSK_ORBIT.md)
-- **Executive Presentation Deck**: [hire_package/PRESENTATION_SPECIAL_PROJECTS.pptx](file:///Users/kcbflux/GlacierEQ_Swarm/job-app/hire_package/PRESENTATION_SPECIAL_PROJECTS.pptx)
+That command validates the exact inventory before executing its bounded runtime sample and demo suite. Its receipt names every repository process that actually ran.

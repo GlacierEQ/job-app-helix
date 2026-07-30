@@ -8,11 +8,11 @@ A portfolio README must work for three readers without forcing any of them to de
 2. **Senior engineer / domain expert** — architecture, constraints, failure behavior, innovations, tradeoffs, and the project's evolution.
 3. **AI system / toolchain** — stable repository identity, typed relationships, evidence pointers, runnable commands, and a versioned serialization contract.
 
-The three views are generated from one evidence-bound repository record. They may differ in vocabulary and depth, but they may not contradict one another.
+The three views are generated from or validated against one evidence-bound repository record. They may differ in vocabulary and depth, but they may not contradict one another.
 
 ## Required README sections
 
-Each portfolio-eligible repository must contain one generated block between:
+Portfolio leaf repositories contain one generated block between:
 
 ```text
 <!-- README-MESH:BEGIN -->
@@ -20,6 +20,17 @@ Each portfolio-eligible repository must contain one generated block between:
 ```
 
 The generator replaces only this block. Human-authored material outside the markers is preserved.
+
+### Canonical orchestrator superset
+
+The canonical portfolio orchestrator may use a richer human-authored README instead of embedding a second, duplicative generated block when all of the following are enforced in CI:
+
+- recruiter, expert, and AI layers exist in that order;
+- the human README exposes the current schema, evidence, verification state, language declarations, relationships, and limits;
+- the generated three-audience projection is rendered and validated independently;
+- the human README and generated projection derive from compatible evidence and do not contradict each other.
+
+This exception exists to preserve elite human communication at the portfolio root without weakening deterministic machine output. It does not exempt leaf repositories from their generated blocks.
 
 ### Recruiter layer
 
@@ -69,6 +80,10 @@ Every audience section requires at least one evidence reference. Claims must poi
 ## Mesh contract
 
 Repository edges are directional and typed. A link must state the combined engineering value rather than merely list another repository. Supported relations include orchestration, verification, capability provision, consumption, extension, governance, receipt persistence, and execution routing.
+
+## Language-fit contract
+
+Every language or format must declare a responsibility, boundary, interface contract, build/compile command, test/proof/benchmark command, evidence receipt, and current state. The declarations must be machine-readable and auditable. Language count is not evidence of mastery.
 
 ## Exclusions
 
