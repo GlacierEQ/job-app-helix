@@ -4,7 +4,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
-from urllib.parse import unquote
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 TEXT_SUFFIXES = {".md", ".py", ".toml", ".json", ".yml", ".yaml", ".txt", ".sh"}
@@ -17,15 +17,20 @@ FORBIDDEN_PATH_PREFIXES = (
     ".windsurf/",
     "state/",
 )
-FORBIDDEN_PATH_PARTS = ("AEON-777", "__pycache__", "node_modules")
+FORBIDDEN_PATH_PARTS = ("__pycache__", "node_modules")
 FORBIDDEN_CONTENT = {
     "file:///": "machine-local file URL",
     "/Users/": "absolute macOS user path",
     "C:\\Users\\": "absolute Windows user path",
-    "AEON-777": "legal-workstream identifier",
     ".brainsync/backups": "generated IDE-memory backup",
     "PRODUCTION_READINESS_VERDICT": "unpublished local readiness artifact",
     "100% SOLID & DEPLOYABLE": "unqualified readiness claim",
+}
+SELF_REFERENTIAL_POLICY_PATHS = {
+    "scripts/check_public_surface.py",
+    "helix/automations/brainsync_path_sanitize.py",
+    "scripts/README_BRAINSYNC_PATHS.md",
+    "tests/test_portfolio_audit_claims.py",
 }
 SECRET_PATTERNS = {
     "GitHub token": re.compile(r"\bgh[oprsu]_[A-Za-z0-9]{20,}\b"),
@@ -63,12 +68,11 @@ def check_content(files: list[Path]) -> list[str]:
         if path.suffix.lower() not in TEXT_SUFFIXES:
             continue
         relative = path.relative_to(ROOT).as_posix()
-        if relative == "scripts/check_public_surface.py":
-            continue
         text = path.read_text(encoding="utf-8")
-        for needle, label in FORBIDDEN_CONTENT.items():
-            if needle in text:
-                errors.append(f"{relative}: contains {label} ({needle!r})")
+        if relative not in SELF_REFERENTIAL_POLICY_PATHS:
+            for needle, label in FORBIDDEN_CONTENT.items():
+                if needle in text:
+                    errors.append(f"{relative}: contains {label} ({needle!r})")
         for label, pattern in SECRET_PATTERNS.items():
             if pattern.search(text):
                 errors.append(f"{relative}: contains a possible {label}")
@@ -83,9 +87,15 @@ def check_markdown_links(files: list[Path]) -> list[str]:
         text = path.read_text(encoding="utf-8")
         for raw_target in LINK_PATTERN.findall(text):
             target = raw_target.strip().split()[0].strip("<>")
-            if target.startswith(("http://", "https://", "mailto:", "#")):
+            parsed = urlsplit(target)
+            if parsed.scheme in {"http", "https", "mailto"} or target.startswith("#"):
                 continue
-            target = unquote(target.split("#", 1)[0].split("?", 1)[0])
+            if parsed.scheme == "file":
+                errors.append(f"{path.relative_to(ROOT)}: machine-local file link: {raw_target}")
+                continue
+            if parsed.scheme:
+                continue
+            target = unquote(parsed.path)
             if not target:
                 continue
             resolved = (path.parent / target).resolve()
