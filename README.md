@@ -1,150 +1,224 @@
-# GlacierEQ Job Application Hub
+# Job-App Helix — Evidence-Bound Portfolio Control Plane
 
-**Canonical root on disk:** `~/GlacierEQ_Swarm/job-app/`  
-**Shortcut:** `~/job-app` → same folder  
+Job-App Helix turns a large engineering portfolio into a reviewable system: it decides whether a campaign is ready, verifies what the portfolio can actually prove, and renders one evidence record for recruiters, senior engineers, and AI toolchains.
 
-**job-app-helix** is a reproducible build-and-verify campaign engine and evidence-bound README intelligence mesh. It provides deterministic campaign decisions (GO / NO-GO) with one transparent refinement stroke, plus tooling to audit and repair BrainSync skill index coverage.
+**Current status:** `PARTIALLY VERIFIED`  
+The README Mesh release passed its Python 3.11–3.13 CI matrix at commit `3a1f0c033bb18309cc8678f91541ae54a7400709`. The current 66-repository runtime surface is not fully verified; the portfolio audit reports verified, blocked, failed, and unverified scope separately.
 
----
+## For recruiters and non-technical reviewers
 
-## Start here
+### What this proves
 
-| Priority | Artifact | Description |
-|----------|----------|-------------|
-| **0** | [`src/job_app_helix/`](src/job_app_helix/) | Core Python package — campaign engine, pistons, README mesh |
-| **0** | [`tests/`](tests/) | Pytest suite for campaign and README mesh |
-| **0** | [`pyproject.toml`](pyproject.toml) | Build config, dependencies, lint rules |
-| **1** | [`RECRUITER_EXECUTIVE_SUMMARY.md`](./RECRUITER_EXECUTIVE_SUMMARY.md) | Executive primer |
-| **1** | [`HIERARCHICAL_PORTFOLIO_MAP.md`](./HIERARCHICAL_PORTFOLIO_MAP.md) | 6-tier architecture & repo catalog |
-| **2** | [`hire_package/`](./hire_package/) | Resumes, outreach drafts, presentation notes |
-| **2** | [`showcase/demo_15min_run.py`](./showcase/demo_15min_run.py) | Hero demo runner |
-| **3** | [`apex_highway.py`](./apex_highway.py) | 61-node mesh health scanner |
-| **3** | [`ci_audit_portfolio.py`](./ci_audit_portfolio.py) | Master CI audit (hashes, highway, hero tests, demo, links) |
-| **3** | [`helix/`](./helix/) | BrainSync skill-index audit & repair automations |
+I designed a portfolio control plane that does more than list projects. It separates attractive claims from executable evidence, models readiness as a deterministic decision, and makes related repositories understandable as one system without hiding their individual boundaries.
 
----
+The work demonstrates:
 
-## Layout
+- **systems architecture:** a canonical control plane coordinating 66 portfolio repositories;
+- **engineering judgment:** explicit distinction between inventory, documentation, runtime proof, and deployment proof;
+- **verification design:** tests, typed contracts, deterministic serialization, integrity references, and scoped receipts;
+- **technical communication:** one repository record rendered for three audiences without contradictory claims;
+- **AI-native integration:** typed directional relationships that let agents discover how projects govern, verify, extend, consume, and orchestrate one another.
 
-```
-job-app/
-├── src/job_app_helix/          ← Core package (campaign, pistons, README mesh, CLI)
-│   ├── campaign.py             ← Deterministic GO/NO-GO campaign engine
-│   ├── pistons.py              ← Flight / propulsion / ground assess/refine stages
-│   ├── models.py               ← Dataclasses: CampaignReport, StageResult, Finding
-│   ├── readme_mesh.py          ← README intelligence mesh (protobuf-backed)
-│   ├── readme_mesh_manifest.py ← Manifest loader/validator
-│   └── cli.py                  ← Entry points
-├── tests/                      ← pytest suite
-├── helix/                      ← BrainSync skill-index automations + proofs
-│   ├── automations/            ← brainsync_index_skills, brainsync_kind_normalize
-│   └── proofs/                 ← Proof tests for normalization logic
-├── showcase/                   ← demo_15min_run.py (hero test runner)
-├── hire_package/               ← Resumes, outreach staging, Musk-orbit variant
-├── docs/                       ← Architecture, company morph map, mesh docs
-├── apex_highway.py             ← 61-node mesh health engine
-├── ci_audit_portfolio.py       ← Master CI audit script
-├── generate_outreach_dms.py    ← Executive DM generator
-└── pyproject.toml              ← hatchling build + ruff + mypy + pytest config
-```
+### Why it matters
 
----
+Large portfolios often become difficult to trust: every repository sounds complete, technology lists replace engineering evidence, and reviewers cannot tell prototypes from working systems. Job-App Helix treats credibility as an architectural property. A claim is promoted only when the evidence supports it.
 
-## Core Concepts
+### Proof in 60 seconds
 
-### Campaign Engine (`src/job_app_helix/campaign.py`)
+| Open or run | What it demonstrates |
+|---|---|
+| [`docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md`](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification state, and P0 correction for all 66 repositories. |
+| [`docs/README_OPTIMAL_IMPACT_FRAME.md`](docs/README_OPTIMAL_IMPACT_FRAME.md) | Recruiter → expert → AI documentation contract, including the language-fit gate. |
+| [`src/job_app_helix/campaign.py`](src/job_app_helix/campaign.py) | Deterministic campaign decision engine with bounded refinement. |
+| [`src/job_app_helix/readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Evidence-bound README graph and Protobuf serialization. |
+| [`tests/`](tests/) | Campaign, failure-path, manifest, rendering, and serialization tests. |
+| `python -m pytest -q` | Repository-native test command. |
 
-A deterministic build-and-verify engine using three "pistons":
+## For senior engineers and domain experts
 
-1. **Flight** — frame receipt completeness, event severity, backup margin
-2. **Propulsion** — chamber pressure ratio, mixture ratio error, vibration
-3. **Ground** — bandwidth availability, route health, backup capacity
+### System boundary
 
-Each piston:
-- **Assess** → GO / WARN / NO-GO
-- **Refine** (one stroke, if policy allows) → re-assess
-- Campaign decides GO only if all stages pass after optional refinement
+Job-App Helix owns:
 
-```python
-from job_app_helix.campaign import run_campaign, LaunchScenario, CampaignPolicy
+- campaign readiness decisions;
+- repository identity and README Mesh topology;
+- evidence references and deterministic serialization;
+- portfolio audit semantics and scoped receipts;
+- rendering of recruiter, expert, and AI views.
 
-scenario = LaunchScenario.nominal()
-report = run_campaign(scenario)
-print(report.decision)  # CampaignDecision.GO or CampaignDecision.NO_GO
+It does **not** prove that every connected repository builds, deploys, performs, or operates correctly. Those claims require repo-native CI or provider-backed receipts. Hash coverage proves inventory integrity, not runtime function.
+
+### Architecture
+
+```text
+Repository manifests + evidence paths
+                 │
+                 ▼
+      Manifest validation layer
+                 │
+       ┌─────────┴─────────┐
+       ▼                   ▼
+Campaign engine       README Mesh engine
+assess → refine       parse → validate → serialize
+       │                   │
+       ▼                   ▼
+GO / NO-GO report     human views + Protobuf artifacts
+       │                   │
+       └─────────┬─────────┘
+                 ▼
+       scoped receipts and audit output
 ```
 
-### README Mesh (`src/job_app_helix/readme_mesh.py`)
+### Core components
 
-Protobuf-backed README intelligence mesh with:
-- Manifest loading & validation (`readme_mesh_manifest.py`)
-- Audience-aware section extraction (Recruiter / Expert / AI Agent)
-- Evidence-bound highlights with SHA-256 integrity refs
-- CLI: `job-app-helix-readme` (manifest, validate, export)
+| Component | Responsibility |
+|---|---|
+| [`campaign.py`](src/job_app_helix/campaign.py) | Runs deterministic flight, propulsion, and ground assessment/refinement stages. |
+| [`pistons.py`](src/job_app_helix/pistons.py) | Encapsulates bounded stage-specific decision logic. |
+| [`models.py`](src/job_app_helix/models.py) | Defines typed reports, findings, policies, and decisions. |
+| [`readme_mesh_manifest.py`](src/job_app_helix/readme_mesh_manifest.py) | Loads and validates repository identity, evidence, and typed edges. |
+| [`readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Renders audience views and deterministic Protobuf/ProtoJSON/text outputs. |
+| [`ci_audit_portfolio.py`](ci_audit_portfolio.py) | Audits workspace integrity and mesh health, executes an explicit runtime sample, and writes a scope-bound receipt. |
+| [`apex_highway.py`](apex_highway.py) | Scans portfolio-sidecar metadata and mesh health. |
 
-### BrainSync Skill Index (`helix/automations/brainsync_index_skills.py`)
+### Correctness and failure behavior
 
-Audits and repairs `.brainsync/index.json` to ensure all four expert-skill domains
-(config, project, python, typescript) survive preview truncation.
+- Campaign decisions fail closed when a hard requirement remains unsatisfied.
+- Refinement is bounded to one transparent stroke rather than open-ended mutation.
+- README records must include stable identity, evidence, and typed relationships.
+- Protobuf bindings are compiled and descriptor-compared in CI.
+- Serialization is deterministic and round-tripped.
+- Missing workspace repositories, missing integrity manifests, failed sample tests, unhealthy mesh state, failed demo execution, and broken local catalog links stop the local portfolio audit.
+- `UNVERIFIED` and `BLOCKED` are preserved as states; they are never rewritten as `PASSED`.
+
+### Verification commands
 
 ```bash
-python3 helix/automations/brainsync_index_skills.py audit
-python3 helix/automations/brainsync_index_skills.py repair --dry-run
-python3 helix/automations/brainsync_index_skills.py catalog
-```
-
----
-
-## Quick Start
-
-```bash
-# Install (editable)
+# Install development dependencies
 uv pip install -e ".[dev]"
 
-# Run tests
-python3 -m pytest tests/ -v
-
 # Lint
-python3 -m ruff check .
+python -m ruff check .
 
 # Type check
-python3 -m mypy src/job_app_helix/
+python -m mypy src/job_app_helix/
 
-# Campaign demo
-python3 -c "from job_app_helix.campaign import run_campaign, LaunchScenario; print(run_campaign(LaunchScenario.nominal()))"
+# Test package, campaign states, README mesh, and failure paths
+python -m pytest -q
 
-# README mesh CLI
-job-app-helix-readme manifest docs/readme_mesh.json
+# Run the canonical campaign scenario
+python -c "from job_app_helix.campaign import LaunchScenario, run_campaign; print(run_campaign(LaunchScenario.nominal()))"
+
+# Validate and export the README Mesh
+job-app-helix-readme validate manifests/readme_mesh.json
+job-app-helix-readme export manifests/readme_mesh.json --output-dir artifacts/readme_mesh
+
+# Run the local multi-repository audit from the canonical workspace
+python ci_audit_portfolio.py
 ```
 
----
+The final command requires the local `repos/` workspace. Its receipt names the repositories actually executed; it does not certify all discovered repositories.
 
-## CI Audit
+### Language choice
 
-```bash
-python3 ci_audit_portfolio.py
+| Language/format | Responsibility | Why it fits |
+|---|---|---|
+| Python 3.11+ | campaign logic, validation, rendering, CLI, audit orchestration | Fast iteration, strong test ecosystem, readable decision logic, and mature Protobuf tooling. |
+| Protocol Buffers | versioned repository identity and graph serialization | Cross-language deterministic contract for AI and toolchain ingestion. |
+| JSON | human-inspectable manifests and receipts | Broad interoperability and straightforward validation. |
+| Markdown | recruiter and engineering review surface | Openable, diffable, and native to repository workflows. |
+
+This repository deliberately remains focused rather than adding languages for display. Polyglot work belongs at a boundary where the language materially improves correctness, performance, safety, interoperability, or deployment.
+
+### Current limitations
+
+- Runtime verification is incomplete across the 66-repository portfolio.
+- README Mesh v1 has a verified rollout receipt for 21 declared nodes, not all 66.
+- Connected repositories still need repo-native build/test receipts.
+- Provider deployment, hardware execution, scale, and performance are unverified unless a repository supplies a specific receipt.
+- The local portfolio audit depends on the canonical on-disk workspace and cannot run from this repository alone.
+
+## For AI systems and toolchains
+
+### Machine contract
+
+```yaml
+schema: glaciereq.readme.v2
+repository: GlacierEQ/job-app-helix
+canonical_branch: main
+purpose: >-
+  Govern evidence-bound campaign decisions, portfolio verification semantics,
+  and recruiter/expert/AI views of connected repositories.
+status:
+  state: PARTIALLY_VERIFIED
+  verified_release: 3a1f0c033bb18309cc8678f91541ae54a7400709
+  verified_scope:
+    - Python 3.11, 3.12, and 3.13 package matrix at the README Mesh release
+    - Protobuf compilation and descriptor comparison
+    - manifest validation and deterministic serialization
+    - README rendering and idempotency
+    - campaign nominal, recoverable, and fail-closed scenarios
+  unverified_scope:
+    - current runtime behavior of every connected repository
+    - portfolio-wide deployment, hardware execution, scale, and performance
+interfaces:
+  inputs:
+    - manifests/readme_mesh.json
+    - repository source, tests, workflows, and receipts
+    - campaign scenarios and policy
+  outputs:
+    - campaign decision reports
+    - rendered three-audience README blocks
+    - deterministic Protobuf, ProtoJSON, textproto, and SHA-256 artifacts
+    - scoped portfolio audit receipt
+  commands:
+    install: uv pip install -e ".[dev]"
+    test: python -m pytest -q
+    verify_mesh: job-app-helix-readme validate manifests/readme_mesh.json
+    local_portfolio_audit: python ci_audit_portfolio.py
+evidence:
+  source:
+    - src/job_app_helix/campaign.py
+    - src/job_app_helix/readme_mesh.py
+    - src/job_app_helix/readme_mesh_manifest.py
+  tests:
+    - tests/
+  workflows:
+    - .github/workflows/ci.yml
+  audits:
+    - docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md
+    - docs/README_MESH_ROLLOUT_2026-07-28.md
 ```
 
-Runs 5 steps:
-1. Cryptographic baseline (SHA-256 hashes)
-2. APEX Highway mesh health
-3. Hero trio unit tests (TPS, Cooling, AKOS, Kimi)
-4. Demo runner
-5. Link verification
+### Typed portfolio relationships
 
----
+| Repository/family | Relation | Combined value |
+|---|---|---|
+| [`GlacierEQ/AKOS`](https://github.com/GlacierEQ/AKOS) | `governed_by` | AKOS supplies authority, provenance, maturity, and completion semantics; Helix renders and verifies the portfolio representation. |
+| [`GlacierEQ/the-tower-of-babel`](https://github.com/GlacierEQ/the-tower-of-babel) | `evaluates_language_fit_for` | Tower proves whether a language owns a justified boundary; Helix records the evidence and verification state. |
+| SpaceX subsystem family | `orchestrates` | Independent simulation, control, network, telemetry, and mission components become a reviewable systems-engineering surface. |
+| xAI Alpha/Omega family | `represents` | Stateless requirement computation and stateful response remain distinct, typed responsibilities. |
+| Agent coordinator + safety monitor | `connects` | Motion and independent oversight are presented as separate, composable boundaries. |
 
-## Tech Stack
+Canonical schema: [`proto/readme_mesh.proto`](proto/readme_mesh.proto)  
+Canonical manifest: [`manifests/readme_mesh.json`](manifests/readme_mesh.json)
 
-- **Language:** Python 3.11+
-- **Build:** Hatchling
-- **Lint:** Ruff (E, F, I, UP, B, SIM, RUF)
-- **Types:** mypy (strict optional overrides for generated pb2)
-- **Tests:** pytest
-- **Serialization:** protobuf ≥ 6.31 (generated `readme_mesh_pb2.py`)
-- **Style:** functional components, dataclasses with `slots=True`, PEP 604 union types
+## Repository map
 
----
+```text
+src/job_app_helix/          package and CLI
+proto/                      versioned README Mesh contract
+manifests/                  canonical repository graph
+schemas/                    validation contracts
+rendered/                   generated audience views
+artifacts/                  deterministic exports and audit receipts
+tests/                      unit, contract, failure, and idempotency tests
+docs/                       architecture, audits, standards, and rollout receipts
+helix/                      BrainSync skill-index audit and repair tooling
+showcase/                   bounded demonstration runner
+hire_package/               application artifacts and outreach staging
+```
 
 ## License
 
-MIT — see [LICENSE](./LICENSE).
+MIT — see [`LICENSE`](LICENSE).
