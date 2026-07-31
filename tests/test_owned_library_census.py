@@ -70,7 +70,8 @@ def test_checked_in_snapshot_preserves_exact_scope_boundaries() -> None:
     assert snapshot["discovery"]["exact_repository_count"] == 1171
     assert snapshot["discovery"]["highest_present_offset"] == 1170
     assert snapshot["discovery"]["first_absent_offset"] == 1171
-    assert snapshot["scopes"]["recruiter_portfolio"]["repository_count"] == 66
+    assert snapshot["scopes"]["recruiter_portfolio"]["repository_count"] == 67
+    assert snapshot["scopes"]["recruiter_portfolio"]["workspace_child_count"] == 66
     assert snapshot["scopes"]["priority_spine"]["repository_count"] == 9
     assert len(snapshot["candidate_expansion"]) == 5
     assert snapshot["mutation_policy"]["blind_pull_push_sync"] is False
@@ -80,7 +81,8 @@ def test_expansion_map_is_truth_bounded_and_public_safe() -> None:
     text = (PACKAGE / "PORTFOLIO_EXPANSION_MAP.md").read_text(encoding="utf-8")
 
     assert "1,171 owner-accessible repositories" in text
-    assert "Exact recruiter boundary: **66 repositories**" in text
+    assert "Exact recruiter boundary: **67 repositories**" in text
+    assert "one root plus sixty-six children" in text
     assert "Blind mass mutation performed: **none**" in text
     assert "1,171 production systems" in text
     assert "does not establish authorship" in text
