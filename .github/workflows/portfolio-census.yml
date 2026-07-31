@@ -1,0 +1,149 @@
+name: Historical portfolio census
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 18 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      repositories: ${{ steps.matrix.outputs.repositories }}
+    steps:
+      - name: Check out current control plane
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Build exact matrix from canonical inventory
+        id: matrix
+        shell: bash
+        run: |
+          repositories="$(
+            jq -c \
+              '["GlacierEQ/job-app-helix"] +
+               [.workspace_repositories[] | "GlacierEQ/" + .]' \
+              manifests/portfolio_repositories.json
+          )"
+          echo "repositories=${repositories}" >> "${GITHUB_OUTPUT}"
+
+  census:
+    needs: prepare
+    name: "Census · ${{ matrix.repository }}"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        repository: ${{ fromJSON(needs.prepare.outputs.repositories) }}
+    steps:
+      - name: Check out current audit engine
+        uses: actions/checkout@v4
+        with:
+          path: audit
+          persist-credentials: false
+
+      - name: Capture repository metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_REPOSITORY: ${{ matrix.repository }}
+        shell: bash
+        run: |
+          set +e
+          gh api "repos/${TARGET_REPOSITORY}" \
+            --jq '{
+              fork,
+              archived,
+              private,
+              visibility,
+              default_branch,
+              size,
+              language,
+              created_at,
+              pushed_at,
+              html_url,
+              parent: (.parent.full_name // null),
+              source: (.source.full_name // null)
+            }' > repo-metadata.json
+          code=$?
+          if [[ "${code}" -ne 0 ]]; then
+            printf '%s\n' \
+              '{"metadata_error":"GitHub metadata unavailable","private":true}' \
+              > repo-metadata.json
+          fi
+
+      - name: Check out target repository
+        id: checkout
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          path: target
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install bounded census dependency
+        run: python -m pip install --upgrade pytest
+
+      - name: Run proof-weighted census
+        if: steps.checkout.outcome == 'success'
+        env:
+          TARGET_REPOSITORY: ${{ matrix.repository }}
+        shell: bash
+        run: |
+          slug="${TARGET_REPOSITORY#*/}"
+          python audit/scripts/proof_weighted_repo_census.py \
+            --repo "${TARGET_REPOSITORY}" \
+            --path target \
+            --metadata repo-metadata.json \
+            --output "census-${slug}.json"
+
+      - name: Record inaccessible repository
+        if: steps.checkout.outcome != 'success'
+        env:
+          TARGET_REPOSITORY: ${{ matrix.repository }}
+        shell: bash
+        run: |
+          slug="${TARGET_REPOSITORY#*/}"
+          python - "${TARGET_REPOSITORY}" "census-${slug}.json" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          payload = {
+              "schema": "glaciereq.portfolio.audit.v1",
+              "repository": sys.argv[1],
+              "admission_class": "private_or_inaccessible_excluded",
+              "structure": None,
+              "readme": None,
+              "verification": {
+                  "python": {
+                      "status": "BLOCKED_ACCESS",
+                      "observed_count": 0,
+                  }
+              },
+          }
+          Path(sys.argv[2]).write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload census receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: census-${{ strategy.job-index }}
+          path: |
+            census-*.json
+            repo-metadata.json
+          if-no-files-found: error
+          retention-days: 30
