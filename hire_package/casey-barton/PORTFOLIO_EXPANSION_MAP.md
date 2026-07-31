@@ -4,7 +4,7 @@
 
 The candidate presentation uses two deliberately different repository scopes:
 
-- **Exact recruiter portfolio — 66 repositories.** This is the bounded, governed hiring surface. Each repository still retains its own proof state.
+- **Exact recruiter portfolio — 67 repositories.** This is the bounded, governed hiring surface: one Helix control-plane root plus sixty-six child repositories. Each repository still retains its own proof state.
 - **Exact owner-accessible library — 1,171 repositories.** This is the complete authenticated inventory boundary captured on July 31, 2026. Ownership alone does not establish authorship, originality, quality, deployment, security, or recruiter relevance.
 
 This separation keeps the hiring story strong without hiding the scale and diversity of the wider library.
@@ -15,11 +15,11 @@ This separation keeps the hiring story strong without hiding the scale and diver
 
 Repositories already admitted into the recruiter portfolio or priority spine through an explicit governance decision. Claims must cite repository-native tests, builds, documentation receipts, or deployment evidence.
 
-Representative anchors include Job-App Helix, AKOS, the Tower of Babel, Job Application, Pro-Code, Mastermind, and the Agent Coordinator candidate track.
+Representative anchors include Job-App Helix, Resume Shapeshifter, AKOS, the Tower of Babel, Job Application, Pro-Code, Mastermind, and the Agent Coordinator candidate track.
 
 ### Layer B — Candidate expansion
 
-Repositories that appear relevant but are not yet recruiter claims. The post-Helix census surfaced these new candidates:
+Repositories that appear relevant but are not yet recruiter claims. The post-Helix census surfaced these candidate or supporting entries:
 
 | Repository | Visibility | Current disposition |
 |---|---|---|
@@ -28,6 +28,8 @@ Repositories that appear relevant but are not yet recruiter claims. The post-Hel
 | Private dashboard candidate — name withheld | Private | Preserve privately; create a bounded exhibit only after review |
 | `GlacierEQ/ECHO` | Public | Discover and verify before promotion |
 | `GlacierEQ/Template` | Public | Treat as supporting infrastructure unless differentiated value is proven |
+
+This tail-derived list is a bounded census finding, not an exhaustive portfolio-candidate ranking. The broader decision ledger remains `manifests/github_repository_curation_2026-07-31.json`.
 
 No candidate-expansion repository is counted as verified recruiter evidence merely because it exists.
 
@@ -62,7 +64,7 @@ The tactical signal is not “1,171 production systems.” The signal is the abi
 ## Truth boundary
 
 - Exact census: **1,171 owner-accessible repositories**.
-- Exact recruiter boundary: **66 repositories**.
+- Exact recruiter boundary: **67 repositories** — one root plus sixty-six children.
 - Exact priority spine: **9 repositories**.
 - Newly surfaced post-Helix candidate or supporting entries: **5**.
 - Blind mass mutation performed: **none**.
