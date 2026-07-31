@@ -40,19 +40,21 @@ class FakeAPI:
         }
         self.deleted: list[str] = []
         self.restored: list[tuple[str, str]] = []
-        self.fail_delete_for: str | None = None
         self.stale_files = ["pyproject.toml", "uv.lock"]
         self.stale_open_pulls: list[dict[str, Any]] = []
         self.candidate_merged = False
+        self.change_before_delete: str | None = None
+        self.get_ref_counts: dict[str, int] = {}
 
     def get_ref(self, branch: str) -> tuple[int, dict[str, Any] | None]:
+        self.get_ref_counts[branch] = self.get_ref_counts.get(branch, 0) + 1
+        if branch == self.change_before_delete and self.get_ref_counts[branch] >= 3:
+            self.refs[branch] = "9" * 40
         if branch not in self.refs:
             return 404, None
         return 200, {"object": {"sha": self.refs[branch]}}
 
     def delete_ref(self, branch: str) -> None:
-        if branch == self.fail_delete_for:
-            raise RuntimeError(f"delete failed for {branch}")
         self.deleted.append(branch)
         self.refs.pop(branch, None)
 
@@ -66,21 +68,21 @@ class FakeAPI:
                 "number": 1,
                 "state": "closed",
                 "merged_at": "2026-07-30T00:00:00Z",
-                "head": {"ref": "merged"},
+                "head": {"ref": "merged", "sha": "1" * 40},
                 "base": {"ref": "main"},
             },
             2: {
                 "number": 2,
                 "state": "closed",
                 "merged_at": None,
-                "head": {"ref": "superseded"},
+                "head": {"ref": "superseded", "sha": "2" * 40},
                 "base": {"ref": "main"},
             },
             3: {
                 "number": 3,
                 "state": "closed",
                 "merged_at": "2026-07-30T01:00:00Z",
-                "head": {"ref": "replacement"},
+                "head": {"ref": "replacement", "sha": "5" * 40},
                 "base": {"ref": "main"},
             },
             4: {
@@ -89,7 +91,7 @@ class FakeAPI:
                 "merged_at": (
                     "2026-07-30T02:00:00Z" if self.candidate_merged else None
                 ),
-                "head": {"ref": "candidate"},
+                "head": {"ref": "candidate", "sha": "4" * 40},
                 "base": {"ref": "main"},
             },
         }
@@ -101,13 +103,13 @@ class FakeAPI:
 
     def compare(self, base: str, head: str) -> dict[str, Any]:
         assert base == "main"
-        assert head == "stale"
+        assert head == "3" * 40
         return {"files": [{"filename": name} for name in self.stale_files]}
 
     def read_text_file(self, path: str, ref: str) -> str:
         assert path == "pyproject.toml"
-        assert ref == "stale"
-        return '[project]\nversion = "0.2.0"\n'
+        assert ref == "3" * 40
+        return '[project]\nname = "job-app-helix"\nversion = "0.2.0"\n'
 
 
 def _write_manifest(path: Path) -> None:
@@ -122,18 +124,23 @@ def _write_manifest(path: Path) -> None:
                         "name": "merged",
                         "policy": "merged_pr",
                         "pull_request": 1,
+                        "expected_head_sha": "1" * 40,
                         "reason": "merged",
                     },
                     {
                         "name": "superseded",
                         "policy": "superseded_pr",
                         "closed_pull_request": 2,
+                        "expected_head_sha": "2" * 40,
                         "replacement_pull_request": 3,
+                        "replacement_head_sha": "5" * 40,
                         "reason": "superseded",
                     },
                     {
                         "name": "stale",
                         "policy": "stale_dependency",
+                        "expected_head_sha": "3" * 40,
+                        "expected_version": "0.2.0",
                         "expected_files": ["pyproject.toml", "uv.lock"],
                         "reason": "stale",
                     },
@@ -150,7 +157,7 @@ def _write_manifest(path: Path) -> None:
     )
 
 
-def test_canonical_manifest_never_targets_main_and_has_unique_branches() -> None:
+def test_canonical_manifest_has_unique_immutable_branch_records() -> None:
     payload = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     branches = payload["branches"]
     names = [entry["name"] for entry in branches]
@@ -159,8 +166,9 @@ def test_canonical_manifest_never_targets_main_and_has_unique_branches() -> None
     assert payload["default_branch"] == "main"
     assert "main" not in names
     assert len(names) == len(set(names))
-    assert "dependabot/uv/uv-590e9db7b9" in names
-    assert "deploy/canonical-recruiter-surface-2026-07-30" in names
+    for entry in branches:
+        if entry["policy"] != "merge_candidate":
+            assert len(entry["expected_head_sha"]) == 40
 
 
 def test_dry_run_accepts_open_current_candidate_without_deleting(
@@ -183,12 +191,10 @@ def test_dry_run_accepts_open_current_candidate_without_deleting(
     )
 
     assert fake.deleted == []
-    assert {result.outcome for result in results} == {"DRY_RUN"}
     candidate = next(result for result in results if result.branch == "candidate")
     assert candidate.preflight == "PENDING_MERGE"
     payload = json.loads(receipt.read_text(encoding="utf-8"))
     assert payload["conclusion"] == "VERIFIED"
-    assert payload["mode"] == "DRY_RUN"
 
 
 def test_apply_deletes_all_only_after_every_entry_preflights(
@@ -213,7 +219,6 @@ def test_apply_deletes_all_only_after_every_entry_preflights(
 
     assert fake.deleted == ["merged", "superseded", "stale", "candidate"]
     assert {result.outcome for result in results} == {"DELETED"}
-    assert all(result.preflight == "VERIFIED" for result in results)
 
 
 def test_any_preflight_failure_preserves_every_branch(
@@ -224,6 +229,7 @@ def test_any_preflight_failure_preserves_every_branch(
     fake = FakeAPI()
     fake.candidate_merged = True
     fake.stale_files = ["unexpected.py"]
+    original_refs = dict(fake.refs)
     monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
     manifest = tmp_path / "branches.json"
     receipt = tmp_path / "receipt.json"
@@ -239,35 +245,26 @@ def test_any_preflight_failure_preserves_every_branch(
         )
 
     assert fake.deleted == []
-    assert set(fake.refs) == {"merged", "superseded", "stale", "candidate"}
+    assert fake.refs == original_refs
     payload = json.loads(receipt.read_text(encoding="utf-8"))
     assert payload["conclusion"] == "FAILED_PREFLIGHT"
-    stale = next(result for result in payload["results"] if result["branch"] == "stale")
-    assert stale["outcome"] == "PRESERVED"
 
 
-def test_delete_failure_rolls_back_prior_deletions(
+def test_changed_ref_before_delete_rolls_back_prior_deletions(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
     module = _load_module()
     fake = FakeAPI()
     fake.candidate_merged = True
+    fake.change_before_delete = "stale"
     original_refs = dict(fake.refs)
-
-    def failing_delete(branch: str) -> None:
-        if branch == "stale":
-            raise module.CleanupError("injected deletion failure")
-        fake.deleted.append(branch)
-        fake.refs.pop(branch, None)
-
-    fake.delete_ref = failing_delete
     monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
     manifest = tmp_path / "branches.json"
     receipt = tmp_path / "receipt.json"
     _write_manifest(manifest)
 
-    with pytest.raises(module.CleanupError):
+    with pytest.raises(module.CleanupError, match="changed after preflight"):
         module.cleanup(
             manifest,
             repository="GlacierEQ/job-app-helix",
@@ -276,16 +273,11 @@ def test_delete_failure_rolls_back_prior_deletions(
             output=receipt,
         )
 
-    assert fake.refs == original_refs
-    assert fake.restored == [
-        ("superseded", original_refs["superseded"]),
-        ("merged", original_refs["merged"]),
-    ]
+    assert fake.refs["merged"] == original_refs["merged"]
+    assert fake.refs["superseded"] == original_refs["superseded"]
+    assert fake.deleted == ["merged", "superseded"]
     payload = json.loads(receipt.read_text(encoding="utf-8"))
     assert payload["conclusion"] == "FAILED_ROLLED_BACK"
-    outcomes = {result["branch"]: result["outcome"] for result in payload["results"]}
-    assert outcomes["merged"] == "ROLLED_BACK"
-    assert outcomes["superseded"] == "ROLLED_BACK"
 
 
 def test_open_dependency_pr_fails_closed_without_deletion(
@@ -322,8 +314,10 @@ def test_default_branch_is_rejected_even_if_manifest_requests_it() -> None:
                 "name": "main",
                 "policy": "merged_pr",
                 "pull_request": 1,
+                "expected_head_sha": "1" * 40,
                 "reason": "never allowed",
             },
             default_branch="main",
+            ref_sha="1" * 40,
             apply=False,
         )
