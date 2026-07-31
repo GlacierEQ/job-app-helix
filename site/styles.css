@@ -28,7 +28,11 @@ body {
   line-height: 1.6;
 }
 a { color: inherit; }
-code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.82em; word-break: break-all; }
+code {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.82em;
+  overflow-wrap: break-word;
+}
 
 .skip-link {
   position: fixed;
