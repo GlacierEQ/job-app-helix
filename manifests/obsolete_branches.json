@@ -111,6 +111,12 @@
       "reason": "The second retirement wave is obsolete after PR #18 merged."
     },
     {
+      "name": "retire/verified-obsolete-refs-wave-3-2026-07-30",
+      "policy": "merge_candidate",
+      "pull_request": 19,
+      "reason": "This final independent retirement wave deletes itself only after PR #19 merges and the current-main apply transaction verifies every candidate."
+    },
+    {
       "name": "status/priority-spine-wave-1-2026-07-31",
       "policy": "merged_pr",
       "pull_request": 14,
