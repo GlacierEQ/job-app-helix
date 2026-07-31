@@ -73,6 +73,12 @@
       "reason": "The Protobuf-backed README Mesh was squash-merged."
     },
     {
+      "name": "fix/cleanup-rollback-transaction-2026-07-30",
+      "policy": "merge_candidate",
+      "pull_request": 16,
+      "reason": "This rollback-repair branch deletes itself only after PR #16 is merged and the repaired current-main apply transaction verifies every candidate."
+    },
+    {
       "name": "fix/public-product-standard",
       "policy": "merged_pr",
       "pull_request": 2,
