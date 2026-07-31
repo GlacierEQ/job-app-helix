@@ -1,0 +1,105 @@
+name: Build final-form recruiter package
+
+on:
+  pull_request:
+    paths:
+      - "hire_package/casey-barton/**"
+      - "site/**"
+      - "scripts/build_recruiter_site.py"
+      - "scripts/build_final_form_package.py"
+      - "tests/test_final_form_package.py"
+      - "tests/test_final_form_package_builder.py"
+      - "tests/test_recruiter_site_deployment.py"
+      - "tests/test_obsolete_branch_cleanup.py"
+      - "scripts/cleanup_obsolete_branches.py"
+      - "LICENSE"
+      - "pyproject.toml"
+      - ".github/workflows/final-form-package.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "hire_package/casey-barton/**"
+      - "site/**"
+      - "scripts/build_recruiter_site.py"
+      - "scripts/build_final_form_package.py"
+      - "LICENSE"
+      - "pyproject.toml"
+      - ".github/workflows/final-form-package.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: final-form-package-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Verify and package canonical candidate surface
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install package and quality tools
+        run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
+
+      - name: Lint permanent final-form implementation
+        run: >-
+          ruff check
+          scripts/build_recruiter_site.py
+          scripts/build_final_form_package.py
+          scripts/cleanup_obsolete_branches.py
+          tests/test_final_form_package.py
+          tests/test_final_form_package_builder.py
+          tests/test_recruiter_site_deployment.py
+          tests/test_obsolete_branch_cleanup.py
+
+      - name: Run final-form, deployment, and cleanup contract tests
+        run: >-
+          python -m pytest -q
+          tests/test_final_form_package.py
+          tests/test_final_form_package_builder.py
+          tests/test_recruiter_site_deployment.py
+          tests/test_obsolete_branch_cleanup.py
+
+      - name: Build immutable static presentation snapshot
+        run: >-
+          python scripts/build_recruiter_site.py
+          --output artifacts/final-form-site
+          --source-commit "${{ github.sha }}"
+
+      - name: Build and verify deterministic final-form ZIP
+        run: >-
+          python scripts/build_final_form_package.py
+          --output artifacts/final-form-package
+          --site-dir artifacts/final-form-site
+          --source-commit "${{ github.sha }}"
+
+      - name: Verify ZIP container and write digest
+        shell: bash
+        run: |
+          zip_path="artifacts/final-form-package/Casey_Barton_Applied_AI_Final_Form_2026-07-30.zip"
+          unzip -t "${zip_path}"
+          sha256sum "${zip_path}" > "${zip_path}.sha256"
+
+      - name: Upload final-form package and proof records
+        uses: actions/upload-artifact@v4
+        with:
+          name: casey-barton-final-form-${{ github.sha }}
+          path: |
+            artifacts/final-form-package/Casey_Barton_Applied_AI_Final_Form_2026-07-30.zip
+            artifacts/final-form-package/Casey_Barton_Applied_AI_Final_Form_2026-07-30.zip.sha256
+            artifacts/final-form-package/Casey_Barton_Applied_AI_Final_Form_2026-07-30/INTEGRITY_MANIFEST.json
+            artifacts/final-form-package/Casey_Barton_Applied_AI_Final_Form_2026-07-30/BUILD_RECEIPT.json
+          if-no-files-found: error
+          retention-days: 90
