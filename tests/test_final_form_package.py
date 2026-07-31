@@ -91,12 +91,13 @@ def test_public_final_form_docs_exclude_direct_contact_pii() -> None:
 
 def test_current_distribution_is_explicitly_proprietary() -> None:
     license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+    normalized_license = " ".join(license_text.split())
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
     classifiers = project["project"]["classifiers"]
 
     assert "PROPRIETARY" in license_text
     assert "LIMITED EVALUATION PERMISSION" in license_text
-    assert "previously granted rights are not retroactively revoked" in license_text
+    assert "previously granted rights are not retroactively revoked" in normalized_license
     assert "License :: Other/Proprietary License" in classifiers
     assert "License :: OSI Approved :: MIT License" not in classifiers
 
