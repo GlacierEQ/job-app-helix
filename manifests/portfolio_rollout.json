@@ -6,7 +6,7 @@
     "repository": "job-app-helix",
     "state": "VERIFIED",
     "evidence": "TEST",
-    "canonical_commit": "47e9defaa23896f5dd7df62092f509cc8aa063d6"
+    "canonical_commit": "a9cd34691859337471ad23b647277dd4d20cd4d0"
   },
   "policy": {
     "default_timeout_seconds": 300,
@@ -47,11 +47,18 @@
             "evidence": "TEST",
             "canonical_commit": "ac977563cfd59deb8e87177f53082184f6468aa8",
             "proof": "62 executed tests passed on the exact Python 3.13.5 candidate; hosted cross-version Actions remained explicitly blocked"
+          },
+          {
+            "repository": "anthropic-safety-monitor",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "a5c21172e32ce6054994402c38d86f7ef94bc56b",
+            "proof": "51 tests passed on Python 3.11, 3.12, and 3.13; 153 matrix executions; all security review threads resolved"
           }
         ],
-        "completed_count": 2,
-        "remaining_count": 18,
-        "next_repository": "anthropic-safety-monitor"
+        "completed_count": 3,
+        "remaining_count": 17,
+        "next_repository": "spacex-autonomy"
       },
       "acceptance": {
         "require_readme_contract": true,

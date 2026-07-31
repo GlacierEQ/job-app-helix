@@ -1,0 +1,109 @@
+{
+  "schema": "glaciereq.portfolio.child-promotion-receipt.v1",
+  "portfolio_root": "GlacierEQ/job-app-helix",
+  "wave": "wave-1-native-ci",
+  "repository": "GlacierEQ/anthropic-safety-monitor",
+  "canonical_branch": "master",
+  "canonical_commits": {
+    "runtime_and_evidence": "c7ab52e0e70a5cd449f9335f90030059d254325f",
+    "verified_public_readme": "a5c21172e32ce6054994402c38d86f7ef94bc56b"
+  },
+  "promotion_pull_requests": [
+    {
+      "number": 1,
+      "purpose": "runtime, package, verification, security hardening, and TEST evidence",
+      "source_head": "ab940b0d30a5cf2e89fc4416c648a38e11d01df8",
+      "merge_commit": "c7ab52e0e70a5cd449f9335f90030059d254325f",
+      "method": "squash"
+    },
+    {
+      "number": 2,
+      "purpose": "canonical VERIFIED recruiter-expert-AI README",
+      "source_head": "74966675784d9fc13b005a8ef630877d05609980",
+      "merge_commit": "a5c21172e32ce6054994402c38d86f7ef94bc56b",
+      "method": "squash"
+    }
+  ],
+  "evidence": {
+    "level": "TEST",
+    "conclusion": "VERIFIED",
+    "workflow": "Safety Monitor Verification",
+    "hardened_run_id": 30645777132,
+    "receipt_head_run_id": 30645921064,
+    "canonical_readme_run_id": 30646622273,
+    "python_versions": [
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "tests_per_version": 51,
+    "executed_per_version": 51,
+    "failures_per_version": 0,
+    "errors_per_version": 0,
+    "skipped_per_version": 0,
+    "total_matrix_executions": 153,
+    "positive_count_enforced": true
+  },
+  "hardened_receipts": [
+    {
+      "python": "3.11",
+      "junit_sha256": "f9c596e8bf3de94f2fe97600088d874908159be6df58576b287e4aee8c88005f",
+      "artifact_id": 8799335708,
+      "artifact_sha256": "bc271eb04ecb46a09866706157fc1325ca3285e232cae576d1ef9c317d863731"
+    },
+    {
+      "python": "3.12",
+      "junit_sha256": "2573601291cf5b9d45abd479f4ae1e3f73cbd4c6b8ea04d855a587f2dd7617a4",
+      "artifact_id": 8799335948,
+      "artifact_sha256": "ab3d1c6258743529acb5f1c5150fb3f9adc725abda4c789c1af15d07f60b186e"
+    },
+    {
+      "python": "3.13",
+      "junit_sha256": "554e5bec654aae672df4207ddf2bd79b92c94c04978f8c0a26c5e410bde054ea",
+      "artifact_id": 8799334031,
+      "artifact_sha256": "259de975bc9ad7e5db9ca24a2dfe06adcafb4edc06c3b94fd662622670c22aab"
+    }
+  ],
+  "review": {
+    "material_threads": 8,
+    "resolved_threads": 8,
+    "unresolved_threads": 0,
+    "verified_repairs": [
+      "shell command segmentation",
+      "sudo and env wrapper normalization",
+      "critical path lexical normalization",
+      "Kubernetes global-option parsing",
+      "Terraform -chdir parsing",
+      "single-descriptor bounded JUnit reads",
+      "DTD entity and external-reference rejection",
+      "pull-request head SHA receipt identity"
+    ]
+  },
+  "branch_disposition": [
+    {
+      "branch": "wave-1/safety-monitor-promotion-2026-07-31",
+      "classification": "MERGED_OBSOLETE",
+      "unique_unmerged_value": false,
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "branch": "docs/canonical-verified-readme-2026-07-31",
+      "classification": "MERGED_OBSOLETE",
+      "unique_unmerged_value": false,
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    }
+  ],
+  "truth_boundary": {
+    "tool_execution_verified": false,
+    "semantic_safety_completeness_verified": false,
+    "automatic_approval_verified": false,
+    "production_detection_coverage_verified": false,
+    "deployment_verified": false,
+    "anthropic_affiliation_claimed": false
+  },
+  "rollout_after_promotion": {
+    "completed": 3,
+    "remaining": 17,
+    "next_repository": "spacex-autonomy"
+  }
+}
