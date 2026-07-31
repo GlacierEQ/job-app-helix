@@ -2,6 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
+ALREADY_ABSENT_RESULT_LINE = (
+    "        result for result in preflight_results "
+    'if result.preflight == "ALREADY_ABSENT"'
+)
+
 
 def lines(*values: str) -> str:
     return "\n".join(values) + "\n"
@@ -42,14 +47,14 @@ def patch_cleanup() -> None:
         lines(
             "    deleted: list[DeletionCandidate] = []",
             "    final_results: list[BranchResult] = [",
-            '        result for result in preflight_results if result.preflight == "ALREADY_ABSENT"',
+            ALREADY_ABSENT_RESULT_LINE,
             "    ]",
         ),
         lines(
             "    deleted: list[DeletionCandidate] = []",
             "    attempted: list[DeletionCandidate] = []",
             "    final_results: list[BranchResult] = [",
-            '        result for result in preflight_results if result.preflight == "ALREADY_ABSENT"',
+            ALREADY_ABSENT_RESULT_LINE,
             "    ]",
         ),
     )
