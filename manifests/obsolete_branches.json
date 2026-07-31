@@ -2,6 +2,15 @@
   "schema": "glaciereq.obsolete-branches.v1",
   "repository": "GlacierEQ/job-app-helix",
   "default_branch": "main",
+  "blocked_refs": [
+    {
+      "name": "cleanup/apply-verified-obsolete-refs-2026-07-30",
+      "pull_request": 15,
+      "expected_head_sha": "34d31d52769aa7bef949f134bb5e8398532e2bca",
+      "state": "DELETE_BLOCKED",
+      "blocker": "Current-main cleanup runs stopped on this first live candidate before later candidates were touched. Preserve the exact ref until the branch-rule or GitHub API restriction is identified and cleared."
+    }
+  ],
   "branches": [
     {
       "name": "audit/evidence-bound-portfolio-2026-07-29",
@@ -27,12 +36,6 @@
       "reason": "Draft audit assets were transplanted, corrected, verified, and merged by PR #10."
     },
     {
-      "name": "cleanup/apply-verified-obsolete-refs-2026-07-30",
-      "policy": "merge_candidate",
-      "pull_request": 15,
-      "reason": "This bounded cleanup-trigger branch deletes itself only after PR #15 is merged and the current-main apply transaction verifies every candidate."
-    },
-    {
       "name": "cleanup/public-reproducible-runtime",
       "policy": "superseded_pr",
       "closed_pull_request": 1,
@@ -56,7 +59,7 @@
       "name": "deploy/canonical-recruiter-surface-2026-07-30",
       "policy": "merge_candidate",
       "pull_request": 11,
-      "reason": "This final consolidation branch deletes itself only after PR #11 is merged into canonical main."
+      "reason": "The final consolidation branch is obsolete after PR #11 merged into canonical main."
     },
     {
       "name": "docs/readme-masterclass-2026-07-30",
@@ -76,7 +79,7 @@
       "name": "fix/cleanup-rollback-transaction-2026-07-30",
       "policy": "merge_candidate",
       "pull_request": 16,
-      "reason": "This rollback-repair branch deletes itself only after PR #16 is merged and the repaired current-main apply transaction verifies every candidate."
+      "reason": "The rollback repair is canonical after PR #16 merged and this temporary branch is obsolete."
     },
     {
       "name": "fix/public-product-standard",
