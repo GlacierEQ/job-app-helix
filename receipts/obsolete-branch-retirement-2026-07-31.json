@@ -1,0 +1,36 @@
+{
+  "schema": "glaciereq.obsolete-branch-retirement-receipt.v1",
+  "repository": "GlacierEQ/job-app-helix",
+  "observed_after_commit": "3f223c632a8b54f8f951e972cbc11a6b61e24295",
+  "record_commit_parent": "636fa8dad06d45ba63242fb33076966057760459",
+  "conclusion": "VERIFIED_WITH_BLOCKED_REFS",
+  "canonical_branch": "main",
+  "canonical_branch_count": 1,
+  "retired_ref_count": 15,
+  "blocked_ref_count": 4,
+  "active_unique_ref_count": 1,
+  "final_expected_branch_inventory": [
+    "cleanup/apply-verified-obsolete-refs-2026-07-30",
+    "docs/readme-masterclass-2026-07-30",
+    "hire-package/spiral-recruiter-presentation-2026-07-30",
+    "main",
+    "program/library-readme-consolidation-2026-07-30",
+    "release/final-form-presentation-2026-07-30"
+  ],
+  "blocked_refs": [
+    "cleanup/apply-verified-obsolete-refs-2026-07-30",
+    "docs/readme-masterclass-2026-07-30",
+    "hire-package/spiral-recruiter-presentation-2026-07-30",
+    "program/library-readme-consolidation-2026-07-30"
+  ],
+  "preserved_active_refs": [
+    "release/final-form-presentation-2026-07-30"
+  ],
+  "truth_boundary": {
+    "pr_closure_is_not_ref_deletion": true,
+    "current_absence_does_not_reconstruct_deletion_mechanism": true,
+    "blocked_refs_are_not_reported_deleted": true,
+    "active_unique_value_is_not_cleanup_eligible": true
+  },
+  "next_action": "Review repository branch rules or administrative deletion permissions for the four exact blocked refs; do not weaken immutable proof checks or delete the active PR #17 branch."
+}
