@@ -49,7 +49,7 @@ def test_builder_emits_verified_numbered_package_and_deterministic_zip(
     )
 
     assert first.zip_sha256 == second.zip_sha256
-    assert first.file_count > 10
+    assert first.file_count > 20
     assert first.total_bytes > 0
     assert first.zip_path.is_file()
     assert (
@@ -65,6 +65,7 @@ def test_builder_emits_verified_numbered_package_and_deterministic_zip(
     assert receipt["state"] == "VERIFIED"
     assert receipt["public_contact_scan"] == "PASSED"
     assert receipt["private_contact_included"] is False
+    assert receipt["static_snapshot_included"] is True
 
     with zipfile.ZipFile(first.zip_path) as archive:
         names = archive.namelist()
@@ -80,6 +81,20 @@ def test_builder_emits_verified_numbered_package_and_deterministic_zip(
         )
         for name in names
     )
+
+
+def test_root_aliases_make_declared_navigation_literal(tmp_path: Path) -> None:
+    builder = _load_builder()
+    result = builder.build_package(tmp_path / "package", source_commit=SOURCE_COMMIT)
+    manifest = json.loads(
+        (result.package_dir / "FINAL_FORM_MANIFEST.json").read_text(encoding="utf-8")
+    )
+
+    declared = [*manifest["reading_order"], *manifest["machine_entrypoints"]]
+    missing = [name for name in declared if not (result.package_dir / name).is_file()]
+    assert missing == []
+    assert (result.package_dir / "SEND_THIS.md").is_file()
+    assert (result.package_dir / "LICENSE").is_file()
 
 
 def test_private_contact_is_isolated_from_public_scan(tmp_path: Path) -> None:
@@ -101,7 +116,12 @@ def test_private_contact_is_isolated_from_public_scan(tmp_path: Path) -> None:
     receipt = json.loads(
         (result.package_dir / "BUILD_RECEIPT.json").read_text(encoding="utf-8")
     )
+    live_readme = (
+        result.package_dir / "07_LIVE_PRESENTATION" / "README.md"
+    ).read_text(encoding="utf-8")
     assert receipt["private_contact_included"] is True
+    assert receipt["static_snapshot_included"] is False
+    assert "No offline static snapshot was included" in live_readme
 
 
 def test_integrity_verifier_fails_after_payload_tampering(tmp_path: Path) -> None:
@@ -117,10 +137,42 @@ def test_integrity_verifier_fails_after_payload_tampering(tmp_path: Path) -> Non
         builder.verify_package(result.package_dir)
 
 
-def test_builder_rejects_source_containing_output_paths() -> None:
+def test_integrity_verifier_rejects_unrecorded_payload(tmp_path: Path) -> None:
     builder = _load_builder()
+    result = builder.build_package(tmp_path / "package", source_commit=SOURCE_COMMIT)
+    (result.package_dir / "EXTRA.txt").write_text("unrecorded\n", encoding="utf-8")
 
-    for forbidden in (ROOT, ROOT.parent, ROOT / "hire_package" / "casey-barton"):
+    with pytest.raises(builder.PackageError, match="does not close over payload"):
+        builder.verify_package(result.package_dir)
+
+
+def test_integrity_verifier_rejects_traversal_record(tmp_path: Path) -> None:
+    builder = _load_builder()
+    result = builder.build_package(tmp_path / "package", source_commit=SOURCE_COMMIT)
+    manifest_path = result.package_dir / "INTEGRITY_MANIFEST.json"
+    receipt_path = result.package_dir / "BUILD_RECEIPT.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["files"][0]["path"] = "../outside.txt"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["integrity_manifest_sha256"] = builder._sha256(manifest_path)
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+
+    with pytest.raises(builder.PackageError, match="path traversal"):
+        builder.verify_package(result.package_dir)
+
+
+def test_builder_allows_only_artifact_outputs_inside_repository() -> None:
+    builder = _load_builder()
+    allowed = ROOT / "artifacts" / "final-form-test"
+
+    assert builder._validate_output(allowed) == allowed.resolve()
+    for forbidden in (
+        ROOT,
+        ROOT.parent,
+        ROOT / "hire_package" / "casey-barton",
+        ROOT / "scripts" / "generated",
+    ):
         with pytest.raises(builder.PackageError, match="protected source"):
             builder.build_package(forbidden, source_commit=SOURCE_COMMIT)
 
