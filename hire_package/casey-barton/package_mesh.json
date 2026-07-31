@@ -14,7 +14,8 @@
         "expert": [
           "02_CASEY_BARTON_DETAILED_RESUME.pdf",
           "03_TECHNICAL_PORTFOLIO_BRIEF.pdf",
-          "HELIX_INTEGRATION/evidence_ledger.json"
+          "HELIX_INTEGRATION/evidence_ledger.json",
+          "HELIX_INTEGRATION/coordinator_candidate_receipt.json"
         ],
         "ai": [
           "05_AI_CANDIDATE_PROFILE.json",
@@ -34,7 +35,8 @@
         "expert": [
           "TECHNICAL_PORTFOLIO_BRIEF.md",
           "CLAIM_REGISTER.md",
-          "evidence_ledger.json"
+          "evidence_ledger.json",
+          "coordinator_candidate_receipt.json"
         ],
         "ai": [
           "candidate_node.json",
