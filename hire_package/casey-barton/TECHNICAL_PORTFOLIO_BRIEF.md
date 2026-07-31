@@ -6,9 +6,9 @@ The portfolio builds the execution and trust layer around intelligent systems: c
 
 ## Spiral engine
 
-`OBSERVE -> RECOVER -> PLAN -> ROUTE -> ACT -> VERIFY -> PERSIST -> IMPROVE -> RESUME`
+`OBSERVE -> RECOVER -> PLAN -> ROUTE -> ACT -> VERIFY -> PERSIST -> RESUME`
 
-Each revolution carries forward more verified state. It is not a 2D iterative loop.
+Each revolution carries forward more verified state. It is not a 2D iterative loop. Improvement is the accumulated effect of verified persistence and resumption, not a separate unbounded mutation stage.
 
 ## Evidence systems
 
