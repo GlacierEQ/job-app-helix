@@ -7,31 +7,39 @@
       "name": "audit/evidence-bound-portfolio-2026-07-29",
       "policy": "merged_pr",
       "pull_request": 5,
+      "expected_head_sha": "3c48fa1a6c4d90315cf2415cb75206dfd06a7736",
       "reason": "Evidence-bound audit was squash-merged and is canonical on main."
     },
     {
       "name": "audit/proof-weighted-mainline-2026-07-30",
       "policy": "merged_pr",
       "pull_request": 10,
+      "expected_head_sha": "8947a485abe2a223f4cc02d193ec88cc52ce50f9",
       "reason": "Proof-weighted audit consolidation was squash-merged onto the current mainline."
     },
     {
       "name": "audit/proof-weighted-portfolio-2026-07-29",
       "policy": "superseded_pr",
       "closed_pull_request": 6,
+      "expected_head_sha": "52f3627a20f96fac6f985efb80c25186fa1687e3",
       "replacement_pull_request": 10,
+      "replacement_head_sha": "8947a485abe2a223f4cc02d193ec88cc52ce50f9",
       "reason": "Draft audit assets were transplanted, corrected, verified, and merged by PR #10."
     },
     {
       "name": "cleanup/public-reproducible-runtime",
       "policy": "superseded_pr",
       "closed_pull_request": 1,
+      "expected_head_sha": "34370b44d9d4d44d93b6364a946454687ece2a75",
       "replacement_pull_request": 2,
+      "replacement_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
       "reason": "The curated public product and later hardening supersede this early runtime branch."
     },
     {
       "name": "dependabot/uv/uv-590e9db7b9",
       "policy": "stale_dependency",
+      "expected_head_sha": "1b0fe1cea61aac7d9bca14f04e8d854b276c782f",
+      "expected_version": "0.2.0",
       "expected_files": [
         "pyproject.toml",
         "uv.lock"
@@ -48,30 +56,35 @@
       "name": "docs/readme-masterclass-2026-07-30",
       "policy": "merged_pr",
       "pull_request": 8,
+      "expected_head_sha": "f2233a7410453672ee93e378480f20350226f0f7",
       "reason": "The three-depth README entrypoint was squash-merged."
     },
     {
       "name": "feat/readme-intelligence-mesh",
       "policy": "merged_pr",
       "pull_request": 3,
+      "expected_head_sha": "bfa9547ff2fcb95b8bc8e88856174b2fe9156958",
       "reason": "The Protobuf-backed README Mesh was squash-merged."
     },
     {
       "name": "fix/public-product-standard",
       "policy": "merged_pr",
       "pull_request": 2,
+      "expected_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
       "reason": "The hire-grade public product rebuild was squash-merged."
     },
     {
       "name": "hire-package/spiral-recruiter-presentation-2026-07-30",
       "policy": "merged_pr",
       "pull_request": 9,
+      "expected_head_sha": "02251af6cffe27a9995695e07afd5031db8f7317",
       "reason": "The canonical recruiter package and candidate surface were squash-merged."
     },
     {
       "name": "program/portfolio-verification-orchestrator-2026-07-29",
       "policy": "merged_pr",
       "pull_request": 7,
+      "expected_head_sha": "863d67dc68908648aa6d3d061bd0252a6e0f504f",
       "reason": "The portfolio verification orchestrator was squash-merged."
     }
   ]
