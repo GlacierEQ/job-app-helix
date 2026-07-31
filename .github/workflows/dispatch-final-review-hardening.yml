@@ -14,6 +14,9 @@ concurrency:
   group: dispatch-final-review-hardening
   cancel-in-progress: false
 
+env:
+  HARDENING_TRANSACTION: "2026-07-30-final-form"
+
 jobs:
   patch-promotion-branch:
     name: Apply, prove, and commit reviewed fixes
