@@ -15,10 +15,10 @@
       "21-node README Mesh rollout"
     ],
     "blocked_scope": [
-      "APEX GitHub App bridge activation",
-      "agent coordinator hosted multi-version promotion"
+      "APEX GitHub App bridge activation"
     ],
     "unverified_scope": [
+      "agent coordinator hosted multi-version promotion",
       "portfolio-wide runtime, deployment, scale, performance, and customer impact"
     ]
   },
@@ -63,8 +63,8 @@
     },
     {
       "target": "GlacierEQ/anthropic-agent-coordinator",
-      "relation": "PROVIDES_CAPABILITY",
-      "combined_value": "The coordinator supplies dependency-aware agent planning as a candidate-state technical exhibit."
+      "relation": "CONSUMES",
+      "combined_value": "The candidate surface consumes the coordinator's dependency-aware planning capability as a candidate-state technical exhibit."
     }
   ],
   "limits": [
