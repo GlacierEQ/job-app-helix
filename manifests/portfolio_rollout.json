@@ -6,7 +6,7 @@
     "repository": "job-app-helix",
     "state": "VERIFIED",
     "evidence": "TEST",
-    "canonical_commit": "a438bba26676f8329a4ec874027029651e80c6fa"
+    "canonical_commit": "47e9defaa23896f5dd7df62092f509cc8aa063d6"
   },
   "policy": {
     "default_timeout_seconds": 300,
@@ -40,11 +40,18 @@
             "evidence": "TEST",
             "canonical_commit": "5ef48a8068a8079f3cbca3f83c5800909b1d5239",
             "proof": "repository-native positive-count verification and branch-family classification"
+          },
+          {
+            "repository": "anthropic-agent-coordinator",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "ac977563cfd59deb8e87177f53082184f6468aa8",
+            "proof": "62 executed tests passed on the exact Python 3.13.5 candidate; hosted cross-version Actions remained explicitly blocked"
           }
         ],
-        "completed_count": 1,
-        "remaining_count": 19,
-        "next_repository": "anthropic-agent-coordinator"
+        "completed_count": 2,
+        "remaining_count": 18,
+        "next_repository": "anthropic-safety-monitor"
       },
       "acceptance": {
         "require_readme_contract": true,
