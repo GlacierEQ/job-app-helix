@@ -20,17 +20,24 @@ class LinkCollector(HTMLParser):
         super().__init__()
         self.links: list[str] = []
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if tag not in {"a", "link", "script"}:
+    def handle_starttag(
+        self,
+        tag: str,
+        attrs: list[tuple[str, str | None]],
+    ) -> None:
+        attribute = {"a": "href", "link": "href", "script": "src"}.get(tag)
+        if attribute is None:
             return
-        attribute = "href" if tag in {"a", "link"} else "src"
         for key, value in attrs:
             if key == attribute and value:
                 self.links.append(value)
 
 
 def _load_builder() -> ModuleType:
-    spec = importlib.util.spec_from_file_location("build_recruiter_site", BUILDER_PATH)
+    spec = importlib.util.spec_from_file_location(
+        "build_recruiter_site",
+        BUILDER_PATH,
+    )
     if spec is None or spec.loader is None:
         raise AssertionError(f"Unable to load {BUILDER_PATH}")
     module = importlib.util.module_from_spec(spec)
@@ -62,24 +69,37 @@ def test_recruiter_site_builds_from_canonical_candidate_records(tmp_path: Path) 
     assert "CANDIDATE" in index
     assert "OBSERVE" in index and "RESUME" in index
     assert SOURCE_COMMIT in index
+    assert f"/blob/{SOURCE_COMMIT}/" in index
+    assert "package-mesh.json" in index
     assert "{{" not in index and "}}" not in index
+
+    assert (output / "candidate-node.json").is_file()
+    assert (output / "package-mesh.json").is_file()
+    assert (output / "source-urls.json").is_file()
 
 
 @pytest.mark.parametrize(
-    "forbidden",
-    ["808-936-5654", "glacier.equilibrium@gmail.com"],
+    "synthetic_contact",
+    [
+        "candidate@example.invalid",
+        "(555) 123-4567",
+        "+1 555.123.4567",
+    ],
 )
-def test_deployed_surface_excludes_direct_contact_pii(tmp_path: Path, forbidden: str) -> None:
+def test_public_surface_rejects_generic_contact_data(
+    tmp_path: Path,
+    synthetic_contact: str,
+) -> None:
     builder = _load_builder()
     output = tmp_path / "site"
     builder.build(output, SOURCE_COMMIT)
-
-    corpus = "\n".join(
-        path.read_text(encoding="utf-8")
-        for path in output.rglob("*")
-        if path.is_file()
+    (output / "injected.json").write_text(
+        json.dumps({"contact": synthetic_contact}),
+        encoding="utf-8",
     )
-    assert forbidden not in corpus
+
+    with pytest.raises(SystemExit, match="contact data"):
+        builder._assert_public_surface(output)
 
 
 def test_deployment_manifest_hashes_every_payload(tmp_path: Path) -> None:
@@ -87,7 +107,9 @@ def test_deployment_manifest_hashes_every_payload(tmp_path: Path) -> None:
     output = tmp_path / "site"
     builder.build(output, SOURCE_COMMIT)
 
-    manifest = json.loads((output / "deployment-manifest.json").read_text(encoding="utf-8"))
+    manifest = json.loads(
+        (output / "deployment-manifest.json").read_text(encoding="utf-8")
+    )
     assert manifest["schema"] == "glaciereq.recruiter-pages-deployment.v1"
     assert manifest["source_commit"] == SOURCE_COMMIT
     assert manifest["entrypoint"] == "index.html"
@@ -141,6 +163,24 @@ def test_candidate_state_semantics_remain_distinct() -> None:
     assert claims["akos_tests"]["state"] == "VERIFIED_TEST"
     assert claims["coordinator_tests"]["state"] == "CANDIDATE_TEST_PROOF"
     assert claims["runner_activation"]["state"] == "IMPLEMENTED_ACTIVATION_BLOCKED"
+    assert claims["akos_tests"]["presentation"]["metric"] == "94/94"
+
+
+def test_output_path_cannot_delete_repository_or_source_directories(tmp_path: Path) -> None:
+    builder = _load_builder()
+
+    for forbidden in (
+        ROOT,
+        ROOT.parent,
+        ROOT / "site",
+        ROOT / "hire_package" / "casey-barton" / "generated",
+    ):
+        with pytest.raises(SystemExit, match="output path|protected source"):
+            builder.build(forbidden, SOURCE_COMMIT)
+
+    safe = tmp_path / "site"
+    builder.build(safe, SOURCE_COMMIT)
+    assert (safe / "index.html").is_file()
 
 
 def test_site_source_has_accessibility_and_security_baseline() -> None:
