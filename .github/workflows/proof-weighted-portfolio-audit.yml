@@ -1,0 +1,246 @@
+name: Proof-weighted portfolio audit
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/proof-weighted-portfolio-audit.yml"
+      - "scripts/proof_weighted_repo_census.py"
+      - "scripts/run_featured_verification.py"
+      - "manifests/job_app_repository_ownership.json"
+      - "tests/test_proof_weighted_audit.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-verification:
+    name: "Python · ${{ matrix.name }}"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: AKOS
+            repository: GlacierEQ/AKOS
+            ref: main
+          - name: spacex-telemetry
+            repository: GlacierEQ/spacex-telemetry
+            ref: main
+          - name: spacex-propulsion-monitor
+            repository: GlacierEQ/spacex-propulsion-monitor
+            ref: main
+          - name: spacex-ground-network
+            repository: GlacierEQ/spacex-ground-network
+            ref: main
+          - name: spacex-launch-sequencer
+            repository: GlacierEQ/spacex-launch-sequencer
+            ref: main
+          - name: spacex-mission-control
+            repository: GlacierEQ/spacex-mission-control
+            ref: main
+          - name: spacex-satellite-mesh
+            repository: GlacierEQ/spacex-satellite-mesh
+            ref: main
+          - name: spacex-autonomy
+            repository: GlacierEQ/spacex-autonomy
+            ref: main
+          - name: spacex-cryogenics
+            repository: GlacierEQ/spacex-cryogenics
+            ref: main
+          - name: spacex-conjunction-sentinel
+            repository: GlacierEQ/spacex-conjunction-sentinel
+            ref: main
+          - name: spacex-pad-weather-gate
+            repository: GlacierEQ/spacex-pad-weather-gate
+            ref: main
+          - name: spacex-orbital-mechanics
+            repository: GlacierEQ/spacex-orbital-mechanics
+            ref: main
+          - name: spacex-thermal-protection
+            repository: GlacierEQ/spacex-thermal-protection
+            ref: main
+          - name: anthropic-agent-coordinator
+            repository: GlacierEQ/anthropic-agent-coordinator
+            ref: master
+          - name: anthropic-safety-monitor
+            repository: GlacierEQ/anthropic-safety-monitor
+            ref: master
+          - name: xai-colossus-cooling-alpha
+            repository: GlacierEQ/xai-colossus-cooling-alpha
+            ref: master
+          - name: xai-colossus-cooling-omega
+            repository: GlacierEQ/xai-colossus-cooling-omega
+            ref: master
+          - name: xai-colossus-energy-alpha
+            repository: GlacierEQ/xai-colossus-energy-alpha
+            ref: master
+          - name: xai-colossus-energy-omega
+            repository: GlacierEQ/xai-colossus-energy-omega
+            ref: master
+          - name: xai-colossus-servers
+            repository: GlacierEQ/xai-colossus-servers
+            ref: main
+          - name: the-tower-of-babel
+            repository: GlacierEQ/the-tower-of-babel
+            ref: main
+    steps:
+      - name: Check out current audit engine
+        uses: actions/checkout@v4
+        with:
+          path: audit
+          persist-credentials: false
+
+      - name: Check out audited repository
+        id: checkout
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.ref }}
+          path: target
+          persist-credentials: false
+
+      - name: Set up Python
+        if: steps.checkout.outcome == 'success'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install bounded audit dependency
+        if: steps.checkout.outcome == 'success'
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Execute bounded Python verification contract
+        if: steps.checkout.outcome == 'success'
+        run: |
+          python audit/scripts/run_featured_verification.py \
+            --name '${{ matrix.name }}' \
+            --repository '${{ matrix.repository }}' \
+            --ref '${{ matrix.ref }}' \
+            --path target \
+            --surface python \
+            --output audit-result.json \
+            --log audit.log
+
+      - name: Record inaccessible repository
+        if: steps.checkout.outcome != 'success'
+        env:
+          REPOSITORY: ${{ matrix.repository }}
+          REF: ${{ matrix.ref }}
+          NAME: ${{ matrix.name }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          payload = {
+              "schema": "glaciereq.portfolio.verification.v1",
+              "repository": os.environ["REPOSITORY"],
+              "ref": os.environ["REF"],
+              "name": os.environ["NAME"],
+              "surface": "python:unknown",
+              "commands": None,
+              "exit_code": 128,
+              "observed_test_count": None,
+              "status": "BLOCKED_ACCESS",
+          }
+          Path("audit-result.json").write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          Path("audit.log").write_text(
+              "Repository checkout was unavailable.\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload audit receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-python-${{ matrix.name }}
+          path: |
+            audit-result.json
+            audit.log
+          if-no-files-found: error
+
+  native-verification:
+    name: "Native · ${{ matrix.name }}"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: telemetry-go
+            repository: GlacierEQ/spacex-telemetry
+            ref: main
+            technology: Go
+          - name: autonomy-go
+            repository: GlacierEQ/spacex-autonomy
+            ref: main
+            technology: Go
+          - name: launch-sequencer-go
+            repository: GlacierEQ/spacex-launch-sequencer
+            ref: main
+            technology: Go
+          - name: pad-weather-go
+            repository: GlacierEQ/spacex-pad-weather-gate
+            ref: main
+            technology: Go
+          - name: orbital-cpp
+            repository: GlacierEQ/spacex-orbital-mechanics
+            ref: main
+            technology: C++
+          - name: thermal-odin
+            repository: GlacierEQ/spacex-thermal-protection
+            ref: main
+            technology: Odin
+    steps:
+      - name: Check out current audit engine
+        uses: actions/checkout@v4
+        with:
+          path: audit
+          persist-credentials: false
+
+      - name: Check out audited repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.ref }}
+          path: target
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Go
+        if: matrix.technology == 'Go'
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.x"
+
+      - name: Execute bounded native verification contract
+        run: |
+          python audit/scripts/run_featured_verification.py \
+            --name '${{ matrix.name }}' \
+            --repository '${{ matrix.repository }}' \
+            --ref '${{ matrix.ref }}' \
+            --path target \
+            --surface native \
+            --output audit-result.json \
+            --log audit.log
+
+      - name: Upload native audit receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-native-${{ matrix.name }}
+          path: |
+            audit-result.json
+            audit.log
+          if-no-files-found: error
