@@ -117,6 +117,12 @@
       "reason": "The portfolio verification orchestrator was squash-merged."
     },
     {
+      "name": "retire/verified-obsolete-refs-wave-2-2026-07-30",
+      "policy": "merge_candidate",
+      "pull_request": 18,
+      "reason": "This independent retirement wave deletes itself only after PR #18 merges and the current-main apply transaction verifies every remaining candidate."
+    },
+    {
       "name": "status/priority-spine-wave-1-2026-07-31",
       "policy": "merged_pr",
       "pull_request": 14,
