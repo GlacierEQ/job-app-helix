@@ -2,7 +2,7 @@
 
 **Outcome:** One evidence-bound application surface connects recruiter value, senior-engineer proof, and AI/ATS ingestion.
 
-**Current status:** `PARTIALLY VERIFIED` - exact 66-repository boundary, AKOS 94/94 tests on Python 3.11-3.13, and a 21-node README Mesh rollout are verified. APEX runner activation remains `BLOCKED`; coordinator hosted promotion remains `UNVERIFIED` while its independent Python 3.13 result is retained as candidate proof.
+**Current status:** `PARTIALLY VERIFIED` - exact 67-repository live boundary, repository-native component receipts, and a 21-node README Mesh rollout are recorded. APEX runner activation remains `BLOCKED`; coordinator hosted promotion remains `UNVERIFIED`. The July 29 portfolio audit remains a historical 66-repository snapshot. Portfolio-wide runtime, deployment, scale, and performance remain unverified.
 
 ## For recruiters
 
@@ -10,10 +10,12 @@ Casey builds the execution and trust layer around intelligent systems: context, 
 
 ## Proof in 60 seconds
 
-- [Job-App Helix](../../README.md) - exact portfolio boundary and evidence control plane.
-- [AKOS immutable verification run](https://github.com/GlacierEQ/AKOS/actions/runs/30532339028) - 94/94 tests across three Python versions.
-- [Coordinator candidate receipt](coordinator_candidate_receipt.json) - 62/62 independent Python 3.13 tests with explicit hosted limitations.
-- [Portfolio evidence audit](../../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) - individual grades and proof states.
+- [Job-App Helix](../../README.md) - exact live portfolio boundary and evidence control plane.
+- [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) - public product flagship with deterministic truthfulness checks and executable TypeScript tests.
+- [AKOS immutable verification run](https://github.com/GlacierEQ/AKOS/actions/runs/30532339028) - named repository-native test evidence.
+- [Coordinator candidate receipt](coordinator_candidate_receipt.json) - 62 independent Python 3.13 tests with explicit hosted limitations.
+- [Historical portfolio evidence audit](../../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) - individual grades and proof states for the original 66-repository boundary.
+- [GitHub curation ledger](../../manifests/github_repository_curation_2026-07-31.json) - admission, deferral, duplicate, private, backup, archive, and external-source decisions.
 - [README impact frame](../../docs/README_OPTIMAL_IMPACT_FRAME.md) - recruiter -> expert -> AI presentation contract.
 - [Executive resume](EXECUTIVE_RESUME.md) - ATS-safe one-page source.
 - [Technical portfolio brief](TECHNICAL_PORTFOLIO_BRIEF.md) - system boundary and proof summary.
@@ -36,9 +38,13 @@ System model: `OBSERVE -> RECOVER -> PLAN -> ROUTE -> ACT -> VERIFY -> PERSIST -
 
 The Tower of Babel remains a separate authority boundary: Helix governs candidate and evidence state; Tower governs technology responsibility, activation conditions, interfaces, proof gates, and exact blockers.
 
+Resume Shapeshifter enters the public system through `job-application`, but its build, tests, and production gaps remain repository-native and are promoted through Helix Wave 3 rather than inherited from portal prose.
+
 ## For AI systems
 
 Machine metadata lives in `candidate_node.json`, `application_spiral.json`, `evidence_ledger.json`, `coordinator_candidate_receipt.json`, `package_mesh.json`, and `PUBLIC_PACKAGE_SYNC_RECEIPT.json`. Typed relationships use only the compiled `glaciereq.readme.v1` enum.
+
+The live repository inventory is `../../manifests/portfolio_repositories.json`; the dated GitHub admission and exclusion decisions are `../../manifests/github_repository_curation_2026-07-31.json`.
 
 ## Claim boundary
 

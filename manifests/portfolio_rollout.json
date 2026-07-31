@@ -128,7 +128,7 @@
       "target_evidence": "TEST",
       "progress": {
         "completed_count": 0,
-        "remaining_count": 16
+        "remaining_count": 17
       },
       "acceptance": {
         "require_readme_contract": true,
@@ -136,6 +136,7 @@
         "require_build_receipt": false
       },
       "repositories": [
+        "JOB-RESUME-BUILDER-",
         "apple-ane-kv-quantizer",
         "colossus-gateway",
         "comet-browser-agent-bridge",

@@ -2,11 +2,12 @@
   "schema": "glaciereq.portfolio.inventory.v1",
   "owner": "GlacierEQ",
   "portfolio_root": "job-app-helix",
-  "total_repositories": 66,
+  "total_repositories": 67,
   "workspace_repositories": [
     "AEON-777",
     "AKOS",
     "GlacierEQ_Swarm",
+    "JOB-RESUME-BUILDER-",
     "Pro-comet-agent",
     "anthropic-agent-coordinator",
     "anthropic-safety-monitor",

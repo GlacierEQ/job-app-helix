@@ -1,12 +1,12 @@
 # Job-App Helix — Evidence-Bound Portfolio Control Plane
 
-> Turns a large engineering portfolio into a system that can be inspected, planned, tested, and trusted without flattening sixty-six repositories into one oversized claim.
+> Turns a large engineering portfolio into a system that can be inspected, planned, tested, and trusted without flattening sixty-seven repositories into one oversized claim.
 
 Job-App Helix is the governance and verification center of the GlacierEQ hiring portfolio. It maintains the exact repository boundary, decides what is ready for promotion, discovers each project's native proof path, executes bounded checks, and emits evidence records that humans and AI systems can read from the same source.
 
 **Release:** `0.3.0`  
-**Current implementation:** `b0973cf621212621a23bf2d2032a816ab79eb78b`  
-**Current posture:** `PARTIALLY_VERIFIED` — the Helix package and portfolio-program contract were verified by GitHub Actions run 46 across Python 3.11, 3.12, and 3.13; the connected sixty-five child repositories retain their own verified, blocked, failed, or unverified states.
+**Canonical branch:** `main`  
+**Current posture:** `PARTIALLY_VERIFIED` — the Helix package and portfolio-program contract have repository-native TEST evidence; the connected sixty-six child repositories retain their own verified, blocked, failed, partially verified, or unverified states.
 
 ## Portfolio signal
 
@@ -16,7 +16,7 @@ A large portfolio becomes weaker when every repository sounds finished, language
 
 It does five things:
 
-1. **Defines the boundary.** One control-plane root plus exactly sixty-five child repositories.
+1. **Defines the boundary.** One control-plane root plus exactly sixty-six child repositories.
 2. **Separates evidence levels.** Inventory, documentation, static analysis, build, test, integration, and deployment are distinct states.
 3. **Finds the native proof path.** Python, Node.js, Rust, Go, Swift, Maven, Gradle, CMake, and .NET repositories receive stack-appropriate plans.
 4. **Fails closed.** Missing tools, zero-test runs, timeouts, absent repositories, unsafe paths, and unauthorized build mutations do not become green evidence.
@@ -27,8 +27,9 @@ It does five things:
 | Open or run | What it proves |
 |---|---|
 | [`docs/PORTFOLIO_EXECUTION_PROGRAM.md`](docs/PORTFOLIO_EXECUTION_PROGRAM.md) | The full operating model: evidence ladder, rollout waves, command planning, execution, receipts, and definition of done. |
-| [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json) | The exact portfolio boundary: this root plus sixty-five workspace repositories. |
+| [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json) | The exact live portfolio boundary: this root plus sixty-six workspace repositories. |
 | [`manifests/portfolio_rollout.json`](manifests/portfolio_rollout.json) | The complete four-wave partition with targets and acceptance gates. |
+| [`manifests/github_repository_curation_2026-07-31.json`](manifests/github_repository_curation_2026-07-31.json) | The dated admission, deferral, duplicate, private, fork, archive, and backup decisions from the GitHub sweep. |
 | [`manifests/readme_mesh.json`](manifests/readme_mesh.json) | Typed repository identities, evidence references, and directional relationships. |
 | [`manifests/language_fit.json`](manifests/language_fit.json) | The responsibility, boundary, command, receipt, and state for each language or format used here. |
 | `job-app-helix-portfolio validate` | Proves that every child repository appears exactly once in the rollout program. |
@@ -37,8 +38,8 @@ It does five things:
 ### What is already real
 
 - a deterministic campaign engine that produces reviewable `GO` or `NO-GO` decisions;
-- an exact sixty-six-repository inventory contract;
-- a complete four-wave rollout partition for all sixty-five child repositories;
+- an exact sixty-seven-repository inventory contract;
+- a complete four-wave rollout partition for all sixty-six child repositories;
 - stack-aware, non-shell command discovery;
 - bounded execution with explicit timeouts and output tails;
 - positive test-count enforcement rather than exit-code optimism;
@@ -46,6 +47,10 @@ It does five things:
 - atomic `RUNNING` to final-state receipts that cannot preserve stale success;
 - a Protocol Buffers-backed README Mesh with deterministic serialization;
 - recruiter, expert, and AI views derived from evidence-bearing records.
+
+### July 31, 2026 boundary migration
+
+`JOB-RESUME-BUILDER-` is the lead product flagship presented by `job-application`, but it was absent from the previous 66-repository Helix boundary. The live inventory now admits it as the sixty-sixth child and routes it through `wave-3-technical-exhibits`. Earlier 66-repository reports remain dated historical evidence; they are not rewritten to imply that the additional repository was part of their original scope.
 
 ### What Helix deliberately does not claim
 
@@ -99,7 +104,7 @@ A repository cannot inherit a higher state from a lower artifact. A README prove
 
 ```text
 manifests/portfolio_repositories.json
-            │ exact 65-child boundary
+            │ exact 66-child boundary
             ▼
 manifests/portfolio_rollout.json
             │ complete wave partition and targets
@@ -124,10 +129,10 @@ RUNNING ───────────────► VERIFIED / PARTIALLY_VE
 |---:|---|---:|---|---|
 | 1 | `wave-1-native-ci` | 20 repositories | Add repository-native CI, positive-count test receipts, and the optimal README contract | `TEST` |
 | 2 | `wave-2-tower-repair` | 1 repository | Repair Tower of Babel until every advertised language boundary has executable proof | `TEST` plus build evidence |
-| 3 | `wave-3-technical-exhibits` | 16 repositories | Promote the strongest unverified technical exhibits with native tests and reference-correctness evidence | `TEST` |
+| 3 | `wave-3-technical-exhibits` | 17 repositories | Promote the strongest unverified technical exhibits with native tests and reference-correctness evidence | `TEST` |
 | 4 | `wave-4-consolidation` | 28 repositories | Complete, merge, package, or archive overlapping systems with explicit successor records | `DOCUMENTATION` decision |
 
-The wave manifest exact-partitions all sixty-five children. Missing, duplicated, or unexpected repository declarations invalidate the program before any command executes.
+The wave manifest exact-partitions all sixty-six children. Missing, duplicated, or unexpected repository declarations invalidate the program before any command executes.
 
 ### Core components
 
@@ -235,7 +240,7 @@ The aggregate receipt uses the strongest adverse state. Many passing repositorie
 ```text
 src/job_app_helix/          campaign, portfolio, README Mesh, and CLI packages
 proto/                      versioned README Mesh wire contract
-manifests/                  exact inventory, rollout, graph, and language-fit declarations
+manifests/                  exact inventory, rollout, graph, curation, and language-fit declarations
 schemas/                    validation contracts
 artifacts/                  deterministic exports and atomic receipts
 rendered/                   generated audience views
@@ -268,7 +273,7 @@ status:
   verified_at: 2026-07-30
   verified_release: b0973cf621212621a23bf2d2032a816ab79eb78b
   verified_scope:
-    - Python 3.11, 3.12, and 3.13 package CI at the current release
+    - Python 3.11, 3.12, and 3.13 package CI at the named verified release
     - exact portfolio rollout contract validation
     - deterministic rollout-program rendering
     - campaign nominal, recoverable, and fail-closed scenarios
@@ -278,16 +283,16 @@ status:
   blocked_scope:
     - repository-native tools or build authorization unavailable to a selected wave
     - hardware-backed execution without a compatible runner or provider receipt
-    - Tower of Babel promotion until each advertised language boundary has native proof
   unverified_scope:
     - child repositories without current repository-native receipts
     - portfolio-wide deployment, scale, performance, and operational reliability
-    - any connected repository beyond the evidence level recorded in its own receipt
+    - the July 31 inventory migration until the migration pull request receives green CI and is merged
 
 interfaces:
   inputs:
     - manifests/portfolio_repositories.json
     - manifests/portfolio_rollout.json
+    - manifests/github_repository_curation_2026-07-31.json
     - manifests/readme_mesh.json
     - manifests/language_fit.json
     - repository source, build manifests, tests, workflows, and receipts
@@ -350,6 +355,9 @@ relationships:
   - target: GlacierEQ/job-application
     relation: ORCHESTRATES
     combined_value: Helix governs the evidence boundary and machine entrypoint behind the public hiring portal.
+  - target: GlacierEQ/JOB-RESUME-BUILDER-
+    relation: ORCHESTRATES
+    combined_value: Helix governs the lead public product flagship's evidence promotion and prevents the recruiter portal from outrunning repository-native proof.
   - target: GlacierEQ/spacex-telemetry
     relation: ORCHESTRATES
     combined_value: Ordered telemetry evidence becomes an explicit campaign-readiness input.
@@ -373,11 +381,12 @@ limits:
 
 - **Inventory:** [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json)
 - **Rollout:** [`manifests/portfolio_rollout.json`](manifests/portfolio_rollout.json)
+- **GitHub curation ledger:** [`manifests/github_repository_curation_2026-07-31.json`](manifests/github_repository_curation_2026-07-31.json)
 - **Repository graph:** [`manifests/readme_mesh.json`](manifests/readme_mesh.json)
 - **Language fit:** [`manifests/language_fit.json`](manifests/language_fit.json)
 - **Wire schema:** [`proto/readme_mesh.proto`](proto/readme_mesh.proto)
 - **Program guide:** [`docs/PORTFOLIO_EXECUTION_PROGRAM.md`](docs/PORTFOLIO_EXECUTION_PROGRAM.md)
-- **Evidence audit:** [`docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md`](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md)
+- **Historical 66-repository evidence audit:** [`docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md`](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md)
 - **README standard:** [`docs/README_OPTIMAL_IMPACT_FRAME.md`](docs/README_OPTIMAL_IMPACT_FRAME.md)
 
 ### System mesh
@@ -397,6 +406,11 @@ limits:
                 ▼                      ▼
         job-application         technical repository waves
         public hiring portal    native CI • repair • proof
+                │
+                │ PRESENTS
+                ▼
+       JOB-RESUME-BUILDER-
+       Resume Shapeshifter
 ```
 
 The control plane succeeds when the public story becomes easier to understand, the engineering proof becomes easier to reproduce, and an AI system can continue the work without inventing relationships, capabilities, or completion states.
