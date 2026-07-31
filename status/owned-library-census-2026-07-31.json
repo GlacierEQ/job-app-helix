@@ -23,8 +23,8 @@
       "state": "DISCOVERED_NOT_PROMOTED"
     },
     {
-      "repository": "GlacierEQ/morpheus-dashboard",
-      "state": "DISCOVERED_PRIVATE_NOT_PROMOTED"
+      "opaque_id": "private-candidate-1",
+      "state": "DISCOVERED_PRIVATE_NAME_WITHHELD"
     },
     {
       "repository": "GlacierEQ/ECHO",
@@ -48,7 +48,8 @@
     "inventory_is_not_production_readiness": true,
     "candidate_expansion_is_not_recruiter_promotion": true,
     "blind_mass_sync_performed": false,
-    "per_repository_mutation_requires_native_proof": true
+    "per_repository_mutation_requires_native_proof": true,
+    "private_candidate_name_published": false
   },
   "next_spiral": {
     "action": "Run repository-native discovery and verification on candidate expansion entries before any portfolio promotion.",
@@ -56,7 +57,7 @@
       "GlacierEQ/ECHO",
       "GlacierEQ/Kimi-K3",
       "GlacierEQ/Attention-Residuals",
-      "GlacierEQ/morpheus-dashboard",
+      "private-candidate-1",
       "GlacierEQ/Template"
     ]
   }
