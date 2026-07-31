@@ -18,20 +18,21 @@ The differentiator is not the number of repositories or languages. It is making 
 
 | Priority | Artifact | Why it matters |
 |---:|---|---|
-| 1 | [Casey Barton candidate surface](hire_package/casey-barton/README.md) | Direct recruiter entry with résumé source, technical proof, claim policy, and AI-readable metadata. |
-| 2 | [Root README](README.md) | Portfolio control-plane outcome, expert architecture, and machine contract. |
-| 3 | [66-repository evidence audit](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification states, and the highest-priority correction for every repository. |
-| 4 | [Exact portfolio inventory](manifests/portfolio_repositories.json) | Pins the audit boundary to one root and sixty-five child repositories. |
-| 5 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
-| 6 | [Language-fit manifest](manifests/language_fit.json) | Shows how language choices are tied to responsibilities, interfaces, commands, receipts, and state. |
+| 1 | [Live recruiter presentation](https://glaciereq.github.io/job-app-helix/) | Deployed recruiter, engineering, and AI reading paths generated from canonical Helix evidence records. |
+| 2 | [Casey Barton candidate source](hire_package/casey-barton/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and immutable evidence links. |
+| 3 | [Root README](README.md) | Portfolio control-plane outcome, expert architecture, and machine contract. |
+| 4 | [66-repository evidence audit](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification states, and the highest-priority correction for every repository. |
+| 5 | [Exact portfolio inventory](manifests/portfolio_repositories.json) | Pins the audit boundary to one root and sixty-five child repositories. |
+| 6 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
+| 7 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how canonical records become a hash-bound Pages deployment from `main`. |
 
 ## Strongest current exhibits
 
 ### Job-App Helix
 
-**Role:** portfolio control plane and evidence ledger.  
-**Signal:** systems architecture, deterministic decision logic, Protobuf contracts, CI design, documentation engineering, and truth-preserving audit semantics.  
-**Status:** partially verified; repository CI is authoritative for the current branch.
+**Role:** portfolio control plane, evidence ledger, and deployed candidate presentation source.  
+**Signal:** systems architecture, deterministic decision logic, Protobuf contracts, CI design, documentation engineering, proof-weighted auditing, and truth-preserving deployment semantics.  
+**Status:** partially verified; repository CI and the Pages deployment workflow are authoritative for their named scopes.
 
 ### AKOS
 
@@ -57,6 +58,7 @@ The differentiator is not the number of repositories or languages. It is making 
 - **Evidence discipline:** inventory hashes, README validation, runtime execution, benchmarks, hardware execution, and deployment receipts are treated as different proof classes.
 - **Polyglot judgment:** languages are accepted only when they materially improve a boundary.
 - **Failure semantics:** timeouts, zero-test runs, missing repositories, missing receipts, and blocked toolchains cannot silently become passes.
+- **Deployment integrity:** the recruiter site is generated from canonical source records and every public payload is SHA-256 listed.
 - **Human communication:** the first screen explains value; deeper sections reward technical scrutiny; machine blocks support ingestion and orchestration.
 
 ## Application spiral
@@ -72,6 +74,7 @@ Each revolution begins from accumulated context, authority, artifacts, failures,
 - The complete 66-repository runtime surface has not yet been executed in one authoritative environment.
 - The README Mesh rollout receipt covers twenty-one declared nodes, not all sixty-six repositories.
 - Many repositories still need clean-checkout CI, current test receipts, and README rewrites.
+- Publishing the recruiter surface proves a static deployment from a named Helix commit; it does not establish portfolio-wide production deployment.
 - Provider deployment, customer impact, portfolio-wide scale, and performance remain unverified unless a specific repository supplies a current receipt.
 
 ## Verification
@@ -84,6 +87,16 @@ python -m ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min
 python -m pytest -q
 python scripts/check_proto_contract.py
 python -m job_app_helix.readme_mesh_cli validate
+```
+
+Build the recruiter surface from canonical records:
+
+```bash
+python scripts/build_recruiter_site.py \
+  --output artifacts/pages-site \
+  --source-commit "$(git rev-parse HEAD)"
+
+python -m pytest -q tests/test_recruiter_site_deployment.py
 ```
 
 The multi-repository audit additionally requires the canonical local `repos/` workspace:
