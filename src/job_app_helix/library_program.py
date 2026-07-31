@@ -55,7 +55,9 @@ def _require_nonempty_text(value: Any, label: str) -> str:
 
 
 def _normalized_alias(value: str) -> str:
-    return "".join(character.lower() for character in value if character.isalnum())
+    """Normalize case and whitespace without collapsing meaningful separators."""
+
+    return " ".join(value.casefold().split())
 
 
 def validate_library_program(path: Path) -> dict[str, Any]:
