@@ -1,7 +1,7 @@
 # Casey Del Carpio Barton
 
 **Applied AI Systems Architect | Forward-Deployed AI Engineer | Agent Infrastructure Engineer**  
-Honolulu, Hawaii | Direct contact in the authorized recruiter package  
+Honolulu, Hawaii | Direct recruiter contact in the downloadable application package  
 Portfolio: https://glaciereq.github.io/job-app-helix/ | GitHub: https://github.com/GlacierEQ
 
 ## Executive Profile
