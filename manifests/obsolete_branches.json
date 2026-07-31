@@ -8,59 +8,68 @@
       "pull_request": 15,
       "expected_head_sha": "34d31d52769aa7bef949f134bb5e8398532e2bca",
       "state": "DELETE_BLOCKED",
-      "blocker": "Current-main cleanup runs stopped on this first live candidate before later candidates were touched. Preserve the exact ref until the branch-rule or GitHub API restriction is identified and cleared."
+      "blocker": "Current-main cleanup runs stopped on this candidate. Preserve the exact ref until the branch-rule or GitHub API restriction is identified and cleared."
+    },
+    {
+      "name": "hire-package/spiral-recruiter-presentation-2026-07-30",
+      "pull_request": 9,
+      "expected_head_sha": "02251af6cffe27a9995695e07afd5031db8f7317",
+      "state": "DELETE_BLOCKED",
+      "blocker": "Wave-two deletion reached this candidate, post-delete verification failed, and rollback restored the exact ref. Preserve until the restriction is identified and cleared."
     }
   ],
-  "branches": [
+  "retired_refs": [
     {
       "name": "audit/evidence-bound-portfolio-2026-07-29",
-      "policy": "merged_pr",
       "pull_request": 5,
       "expected_head_sha": "3c48fa1a6c4d90315cf2415cb75206dfd06a7736",
-      "reason": "Evidence-bound audit was squash-merged and is canonical on main."
+      "state": "REF_ABSENT_VERIFIED"
     },
     {
       "name": "audit/proof-weighted-mainline-2026-07-30",
-      "policy": "merged_pr",
       "pull_request": 10,
       "expected_head_sha": "8947a485abe2a223f4cc02d193ec88cc52ce50f9",
-      "reason": "Proof-weighted audit consolidation was squash-merged onto the current mainline."
+      "state": "REF_ABSENT_VERIFIED"
     },
     {
       "name": "audit/proof-weighted-portfolio-2026-07-29",
-      "policy": "superseded_pr",
-      "closed_pull_request": 6,
+      "pull_request": 6,
       "expected_head_sha": "52f3627a20f96fac6f985efb80c25186fa1687e3",
-      "replacement_pull_request": 10,
-      "replacement_head_sha": "8947a485abe2a223f4cc02d193ec88cc52ce50f9",
-      "reason": "Draft audit assets were transplanted, corrected, verified, and merged by PR #10."
+      "state": "REF_ABSENT_VERIFIED"
     },
     {
       "name": "cleanup/public-reproducible-runtime",
-      "policy": "superseded_pr",
-      "closed_pull_request": 1,
+      "pull_request": 1,
       "expected_head_sha": "34370b44d9d4d44d93b6364a946454687ece2a75",
-      "replacement_pull_request": 2,
-      "replacement_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
-      "reason": "The curated public product and later hardening supersede this early runtime branch."
+      "state": "REF_ABSENT_VERIFIED"
     },
     {
       "name": "dependabot/uv/uv-590e9db7b9",
-      "policy": "stale_dependency",
       "expected_head_sha": "1b0fe1cea61aac7d9bca14f04e8d854b276c782f",
-      "expected_version": "0.2.0",
-      "expected_files": [
-        "pyproject.toml",
-        "uv.lock"
-      ],
-      "reason": "Its pytest security gain is transplanted onto Helix 0.3.0; the stale branch would remove the portfolio CLI and rewind package metadata."
+      "state": "REF_ABSENT_VERIFIED"
     },
     {
       "name": "deploy/canonical-recruiter-surface-2026-07-30",
-      "policy": "merge_candidate",
       "pull_request": 11,
-      "reason": "The final consolidation branch is obsolete after PR #11 merged into canonical main."
+      "expected_head_sha": "a6225b9196c41143a2f1367a7bb322f6ad659f94",
+      "state": "REF_ABSENT_VERIFIED"
     },
+    {
+      "name": "feat/readme-intelligence-mesh",
+      "pull_request": 3,
+      "expected_head_sha": "bfa9547ff2fcb95b8bc8e88856174b2fe9156958",
+      "state": "ABSENT_AFTER_FAILED_TRANSACTION",
+      "note": "Obsolescence remains independently proven by merged PR #3, but the wave-two rollback could not restore this attempted deletion."
+    },
+    {
+      "name": "fix/public-product-standard",
+      "pull_request": 2,
+      "expected_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
+      "state": "ABSENT_AFTER_FAILED_TRANSACTION",
+      "note": "Obsolescence remains independently proven by merged PR #2, but the wave-two rollback could not restore this attempted deletion."
+    }
+  ],
+  "branches": [
     {
       "name": "docs/readme-masterclass-2026-07-30",
       "policy": "merged_pr",
@@ -69,31 +78,10 @@
       "reason": "The three-depth README entrypoint was squash-merged."
     },
     {
-      "name": "feat/readme-intelligence-mesh",
-      "policy": "merged_pr",
-      "pull_request": 3,
-      "expected_head_sha": "bfa9547ff2fcb95b8bc8e88856174b2fe9156958",
-      "reason": "The Protobuf-backed README Mesh was squash-merged."
-    },
-    {
       "name": "fix/cleanup-rollback-transaction-2026-07-30",
       "policy": "merge_candidate",
       "pull_request": 16,
       "reason": "The rollback repair is canonical after PR #16 merged and this temporary branch is obsolete."
-    },
-    {
-      "name": "fix/public-product-standard",
-      "policy": "merged_pr",
-      "pull_request": 2,
-      "expected_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
-      "reason": "The hire-grade public product rebuild was squash-merged."
-    },
-    {
-      "name": "hire-package/spiral-recruiter-presentation-2026-07-30",
-      "policy": "merged_pr",
-      "pull_request": 9,
-      "expected_head_sha": "02251af6cffe27a9995695e07afd5031db8f7317",
-      "reason": "The canonical recruiter package and candidate surface were squash-merged."
     },
     {
       "name": "ops/trigger-final-review-hardening-2026-07-30",
@@ -120,7 +108,7 @@
       "name": "retire/verified-obsolete-refs-wave-2-2026-07-30",
       "policy": "merge_candidate",
       "pull_request": 18,
-      "reason": "This independent retirement wave deletes itself only after PR #18 merges and the current-main apply transaction verifies every remaining candidate."
+      "reason": "The second retirement wave is obsolete after PR #18 merged."
     },
     {
       "name": "status/priority-spine-wave-1-2026-07-31",
