@@ -7,9 +7,9 @@ import os
 import re
 import shutil
 import zipfile
+from collections.abc import Iterable
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE_ROOT = ROOT / "hire_package" / "casey-barton"
