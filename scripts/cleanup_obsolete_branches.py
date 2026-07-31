@@ -525,13 +525,14 @@ def cleanup(
         _write_receipt(output, payload)
         return preflight_results
 
-    deleted: list[DeletionCandidate] = []
-    attempted: list[DeletionCandidate] = []
     final_results: list[BranchResult] = [
         result for result in preflight_results if result.preflight == "ALREADY_ABSENT"
     ]
-    deletion_failure: str | None = None
+    deletion_failures: list[str] = []
+    rollback_failures: list[str] = []
+
     for candidate in candidates:
+        attempted = False
         try:
             current_sha = _ref_sha(api, candidate.branch)
             if current_sha != candidate.ref_sha:
@@ -539,13 +540,12 @@ def cleanup(
                     f"Branch changed after preflight: {candidate.ref_sha} -> {current_sha}"
                 )
             api.delete_ref(candidate.branch)
-            attempted.append(candidate)
+            attempted = True
             after_status, _ = api.get_ref(candidate.branch)
             if after_status != 404:
                 raise CleanupError(
                     f"Branch {candidate.branch} still exists after delete"
                 )
-            deleted.append(candidate)
             final_results.append(
                 BranchResult(
                     branch=candidate.branch,
@@ -558,74 +558,66 @@ def cleanup(
                 )
             )
         except CleanupError as exc:
-            deletion_failure = f"{candidate.branch}: {exc}"
-            break
+            deletion_failures.append(f"{candidate.branch}: {exc}")
+            outcome = "DELETE_BLOCKED_PRESERVED"
+            detail = f"Deletion was blocked before mutation: {exc}"
 
-    if deletion_failure is None:
-        payload = _receipt(
-            repository=repository,
-            default_branch=default_branch,
-            apply=True,
-            conclusion="VERIFIED",
-            results=final_results,
-            failures=[],
-        )
-        _write_receipt(output, payload)
-        return final_results
+            if attempted:
+                try:
+                    status, _ = api.get_ref(candidate.branch)
+                    if status == 404:
+                        api.create_ref(candidate.branch, candidate.ref_sha)
+                    restored_sha = _ref_sha(api, candidate.branch)
+                    if restored_sha != candidate.ref_sha:
+                        raise CleanupError(
+                            f"Branch {candidate.branch} did not restore to "
+                            f"{candidate.ref_sha}"
+                        )
+                    outcome = "DELETE_BLOCKED_ROLLED_BACK"
+                    detail = f"Deletion attempt was restored after failure: {exc}"
+                except CleanupError as rollback_exc:
+                    rollback_failures.append(
+                        f"{candidate.branch}: rollback failed: {rollback_exc}"
+                    )
+                    outcome = "DELETE_BLOCKED_ROLLBACK_FAILED"
+                    detail = (
+                        f"Deletion failed and restoration was not verified: "
+                        f"{exc}; {rollback_exc}"
+                    )
 
-    rollback_failures: list[str] = []
-    rolled_back: set[str] = set()
-    for candidate in reversed(attempted):
-        try:
-            api.create_ref(candidate.branch, candidate.ref_sha)
-            restored_sha = _ref_sha(api, candidate.branch)
-            if restored_sha != candidate.ref_sha:
-                raise CleanupError(
-                    f"Branch {candidate.branch} did not restore to {candidate.ref_sha}"
+            final_results.append(
+                BranchResult(
+                    branch=candidate.branch,
+                    policy=candidate.policy,
+                    reason=candidate.reason,
+                    ref_sha=candidate.ref_sha,
+                    preflight=candidate.preflight,
+                    outcome=outcome,
+                    detail=detail,
                 )
-            rolled_back.add(candidate.branch)
-        except CleanupError as exc:
-            rollback_failures.append(f"{candidate.branch}: {exc}")
-
-    attempted_names = {candidate.branch for candidate in attempted}
-    results_after_rollback: list[BranchResult] = []
-    for result in preflight_results:
-        if result.branch in rolled_back:
-            outcome = "ROLLED_BACK"
-            detail = "Deletion was reversed after a later failure"
-        elif result.branch in attempted_names:
-            outcome = "ROLLBACK_FAILED"
-            detail = "Deletion was attempted and restoration was not verified"
-        elif result.preflight == "ALREADY_ABSENT":
-            outcome = "NO_ACTION"
-            detail = result.detail
-        else:
-            outcome = "PRESERVED"
-            detail = "Branch was not deleted because the transaction failed"
-        results_after_rollback.append(
-            BranchResult(
-                branch=result.branch,
-                policy=result.policy,
-                reason=result.reason,
-                ref_sha=result.ref_sha,
-                preflight=result.preflight,
-                outcome=outcome,
-                detail=detail,
             )
-        )
 
-    all_failures = [deletion_failure, *rollback_failures]
-    conclusion = "FAILED_ROLLED_BACK" if not rollback_failures else "FAILED_ROLLBACK"
+    if rollback_failures:
+        conclusion = "FAILED_ROLLBACK"
+    elif deletion_failures:
+        conclusion = "VERIFIED_WITH_BLOCKED_REFS"
+    else:
+        conclusion = "VERIFIED"
+
+    all_failures = [*deletion_failures, *rollback_failures]
     payload = _receipt(
         repository=repository,
         default_branch=default_branch,
         apply=True,
         conclusion=conclusion,
-        results=results_after_rollback,
+        results=final_results,
         failures=all_failures,
     )
     _write_receipt(output, payload)
-    raise CleanupError("; ".join(all_failures))
+
+    if rollback_failures:
+        raise CleanupError("; ".join(all_failures))
+    return final_results
 
 
 def parse_args() -> argparse.Namespace:
