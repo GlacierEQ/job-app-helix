@@ -9,10 +9,11 @@ import shutil
 import zipfile
 from collections.abc import Iterable
 from dataclasses import asdict, dataclass
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE_ROOT = ROOT / "hire_package" / "casey-barton"
+ARTIFACTS_ROOT = ROOT / "artifacts"
 PACKAGE_NAME = "Casey_Barton_Applied_AI_Final_Form_2026-07-30"
 FIXED_ZIP_TIME = (2026, 7, 30, 12, 0, 0)
 SOURCE_COMMIT_PATTERN = re.compile(r"[0-9a-f]{40}")
@@ -45,14 +46,17 @@ COPY_MAP = {
     "FINAL_FORM_MANIFEST.json": "05_MACHINE_CONTRACTS/FINAL_FORM_MANIFEST.json",
     "LICENSE_SUMMARY.md": "06_LICENSING/LICENSE_SUMMARY.md",
 }
-REQUIRED_PACKAGE_PATHS = {
+BASE_REQUIRED_PACKAGE_PATHS = {
+    *COPY_MAP.keys(),
     *COPY_MAP.values(),
+    "LICENSE",
     "06_LICENSING/LICENSE",
     "07_LIVE_PRESENTATION/OPEN_LIVE_PRESENTATION.html",
     "07_LIVE_PRESENTATION/README.md",
     "INTEGRITY_MANIFEST.json",
     "BUILD_RECEIPT.json",
 }
+INTEGRITY_FILES = {"INTEGRITY_MANIFEST.json", "BUILD_RECEIPT.json"}
 
 
 class PackageError(RuntimeError):
@@ -93,12 +97,12 @@ def _write_json(path: Path, payload: dict[str, object]) -> None:
 
 def _validate_output(output: Path) -> Path:
     resolved = output.resolve()
-    protected = (ROOT.resolve(), CANDIDATE_ROOT.resolve())
-    for source in protected:
-        if resolved == source or source.is_relative_to(resolved):
-            raise PackageError(f"Output path contains protected source: {resolved}")
-        if resolved.is_relative_to(source):
-            raise PackageError(f"Output path is inside protected source: {resolved}")
+    root = ROOT.resolve()
+    artifacts = ARTIFACTS_ROOT.resolve()
+    if resolved == root or root.is_relative_to(resolved):
+        raise PackageError(f"Output path contains protected source: {resolved}")
+    if resolved.is_relative_to(root) and not resolved.is_relative_to(artifacts):
+        raise PackageError(f"Output path is inside protected source: {resolved}")
     return resolved
 
 
@@ -113,8 +117,11 @@ def _copy(source: Path, destination: Path) -> None:
 
 def _copy_candidate_assets(package_dir: Path) -> None:
     for source_name, relative_destination in COPY_MAP.items():
-        _copy(CANDIDATE_ROOT / source_name, package_dir / relative_destination)
+        source = CANDIDATE_ROOT / source_name
+        _copy(source, package_dir / relative_destination)
+        _copy(source, package_dir / source_name)
     _copy(ROOT / "LICENSE", package_dir / "06_LICENSING" / "LICENSE")
+    _copy(ROOT / "LICENSE", package_dir / "LICENSE")
 
 
 def _copy_site(site_dir: Path, package_dir: Path) -> None:
@@ -130,15 +137,20 @@ def _copy_site(site_dir: Path, package_dir: Path) -> None:
         _copy(source, destination_root / relative)
 
 
-def _write_live_entry(package_dir: Path) -> None:
+def _write_live_entry(package_dir: Path, *, snapshot_included: bool) -> None:
     live_url = "https://glaciereq.github.io/job-app-helix/"
     presentation = package_dir / "07_LIVE_PRESENTATION"
     presentation.mkdir(parents=True, exist_ok=True)
+    snapshot_text = (
+        "The adjacent static snapshot is included for offline review and integrity "
+        "inspection."
+        if snapshot_included
+        else "No offline static snapshot was included in this build."
+    )
     (presentation / "README.md").write_text(
         "# Live Presentation\n\n"
         f"Open the canonical presentation: {live_url}\n\n"
-        "The adjacent static snapshot is included for offline review and integrity "
-        "inspection. The live site remains the primary share link.\n",
+        f"{snapshot_text} The live site remains the primary share link.\n",
         encoding="utf-8",
     )
     (presentation / "OPEN_LIVE_PRESENTATION.html").write_text(
@@ -180,10 +192,9 @@ def _scan_public_surface(package_dir: Path) -> None:
 
 
 def _payload_records(package_dir: Path) -> list[FileRecord]:
-    excluded = {"INTEGRITY_MANIFEST.json", "BUILD_RECEIPT.json"}
     records: list[FileRecord] = []
     for path in sorted(package_dir.rglob("*")):
-        if not path.is_file() or path.name in excluded:
+        if not path.is_file() or path.name in INTEGRITY_FILES:
             continue
         records.append(
             FileRecord(
@@ -200,6 +211,7 @@ def _write_manifests(
     *,
     source_commit: str,
     private_contact_included: bool,
+    static_snapshot_included: bool,
 ) -> tuple[int, int]:
     records = _payload_records(package_dir)
     total_bytes = sum(record.bytes for record in records)
@@ -221,6 +233,7 @@ def _write_manifests(
         "source_commit": source_commit,
         "public_contact_scan": "PASSED",
         "private_contact_included": private_contact_included,
+        "static_snapshot_included": static_snapshot_included,
         "license": "PROPRIETARY_SOURCE_VISIBLE",
         "integrity_manifest_sha256": _sha256(integrity_path),
         "payload_file_count": len(records),
@@ -228,6 +241,16 @@ def _write_manifests(
     }
     _write_json(package_dir / "BUILD_RECEIPT.json", receipt_payload)
     return len(records), total_bytes
+
+
+def _validated_manifest_path(package_dir: Path, relative: str) -> Path:
+    pure = PurePosixPath(relative)
+    if not relative or "\\" in relative or pure.is_absolute() or ".." in pure.parts:
+        raise PackageError(f"Integrity path contains path traversal: {relative}")
+    path = (package_dir / relative).resolve()
+    if not path.is_relative_to(package_dir.resolve()) or not path.is_file():
+        raise PackageError(f"Integrity path is missing or escapes package: {relative}")
+    return path
 
 
 def verify_package(package_dir: Path) -> None:
@@ -241,30 +264,51 @@ def verify_package(package_dir: Path) -> None:
         raise PackageError("Unsupported integrity manifest schema")
     if receipt.get("state") != "VERIFIED":
         raise PackageError("Build receipt is not VERIFIED")
+
     actual_paths = {
         path.relative_to(package_dir).as_posix()
         for path in package_dir.rglob("*")
         if path.is_file()
     }
-    missing_required = sorted(REQUIRED_PACKAGE_PATHS - actual_paths)
+    required_paths = set(BASE_REQUIRED_PACKAGE_PATHS)
+    snapshot_included = receipt.get("static_snapshot_included")
+    if not isinstance(snapshot_included, bool):
+        raise PackageError("Build receipt has no static snapshot state")
+    snapshot_index = "07_LIVE_PRESENTATION/STATIC_SITE_SNAPSHOT/index.html"
+    if snapshot_included:
+        required_paths.add(snapshot_index)
+    elif snapshot_index in actual_paths:
+        raise PackageError("Static snapshot exists but receipt reports it absent")
+    missing_required = sorted(required_paths - actual_paths)
     if missing_required:
         raise PackageError(f"Package is missing required paths: {missing_required}")
+
     records = manifest.get("files")
     if not isinstance(records, list) or not records:
         raise PackageError("Integrity manifest has no file records")
+    record_paths: list[str] = []
     for raw in records:
         if not isinstance(raw, dict):
             raise PackageError(f"Invalid integrity record: {raw}")
         relative = raw.get("path")
         if not isinstance(relative, str):
             raise PackageError(f"Integrity record has no path: {raw}")
-        path = (package_dir / relative).resolve()
-        if not path.is_relative_to(package_dir.resolve()) or not path.is_file():
-            raise PackageError(f"Integrity path is missing or escapes package: {relative}")
+        path = _validated_manifest_path(package_dir, relative)
         if path.stat().st_size != raw.get("bytes"):
             raise PackageError(f"Byte count mismatch: {relative}")
         if _sha256(path) != raw.get("sha256"):
             raise PackageError(f"SHA-256 mismatch: {relative}")
+        record_paths.append(relative)
+    if len(record_paths) != len(set(record_paths)):
+        raise PackageError("Integrity manifest contains duplicate paths")
+    actual_payload_paths = actual_paths - INTEGRITY_FILES
+    if set(record_paths) != actual_payload_paths:
+        missing = sorted(actual_payload_paths - set(record_paths))
+        unexpected = sorted(set(record_paths) - actual_payload_paths)
+        raise PackageError(
+            f"Integrity manifest does not close over payload: "
+            f"unrecorded={missing} missing={unexpected}"
+        )
     _scan_public_surface(package_dir)
 
 
@@ -306,16 +350,18 @@ def build_package(
     package_dir = output / PACKAGE_NAME
     package_dir.mkdir()
 
+    snapshot_included = site_dir is not None
     _copy_candidate_assets(package_dir)
-    _write_live_entry(package_dir)
     if site_dir is not None:
         _copy_site(site_dir.resolve(), package_dir)
+    _write_live_entry(package_dir, snapshot_included=snapshot_included)
     _copy_private_contact(contact_file, package_dir)
     _scan_public_surface(package_dir)
     file_count, total_bytes = _write_manifests(
         package_dir,
         source_commit=source_commit,
         private_contact_included=contact_file is not None,
+        static_snapshot_included=snapshot_included,
     )
     verify_package(package_dir)
     zip_path = output / f"{PACKAGE_NAME}.zip"
@@ -336,7 +382,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "artifacts" / "final-form-package",
+        default=ARTIFACTS_ROOT / "final-form-package",
     )
     parser.add_argument(
         "--source-commit",
