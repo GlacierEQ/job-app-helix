@@ -40,8 +40,8 @@ jobs:
           grep -F 'name = "job-app-helix"' uv.lock
           grep -F 'version = "0.3.0"' uv.lock
           grep -F 'name = "pytest"' uv.lock
-          grep -F 'version = "9.0.3"' uv.lock
-          grep -F 'specifier = ">=9.0.3,<10"' uv.lock
+          grep -F 'version = "9.1.1"' uv.lock
+          grep -F 'specifier = ">=9.1.1,<10"' uv.lock
 
       - name: Install exactly from the generated lock
         run: uv sync --extra dev --locked
