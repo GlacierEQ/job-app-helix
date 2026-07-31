@@ -1,7 +1,7 @@
 # Casey Del Carpio Barton
 
 **Applied AI Systems Architect | Agentic Applications | AI Governance**  
-Honolulu, Hawaii | 808-936-5654 | glacier.equilibrium@gmail.com | https://github.com/GlacierEQ | https://github.com/GlacierEQ/job-app-helix
+Honolulu, Hawaii | Direct recruiter contact in the downloadable application package | https://github.com/GlacierEQ | https://github.com/GlacierEQ/job-app-helix
 
 ## Profile
 
