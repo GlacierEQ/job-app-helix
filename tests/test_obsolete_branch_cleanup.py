@@ -260,7 +260,7 @@ def test_any_preflight_failure_preserves_every_branch(
     assert payload["conclusion"] == "FAILED_PREFLIGHT"
 
 
-def test_changed_ref_before_delete_rolls_back_prior_deletions(
+def test_changed_ref_blocks_only_that_candidate_and_continues(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
@@ -268,29 +268,33 @@ def test_changed_ref_before_delete_rolls_back_prior_deletions(
     fake = FakeAPI()
     fake.candidate_merged = True
     fake.change_before_delete = "stale"
-    original_refs = dict(fake.refs)
     monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
     manifest = tmp_path / "branches.json"
     receipt = tmp_path / "receipt.json"
     _write_manifest(manifest)
 
-    with pytest.raises(module.CleanupError, match="changed after preflight"):
-        module.cleanup(
-            manifest,
-            repository="GlacierEQ/job-app-helix",
-            token="token",
-            apply=True,
-            output=receipt,
-        )
+    results = module.cleanup(
+        manifest,
+        repository="GlacierEQ/job-app-helix",
+        token="token",
+        apply=True,
+        output=receipt,
+    )
 
-    assert fake.refs["merged"] == original_refs["merged"]
-    assert fake.refs["superseded"] == original_refs["superseded"]
-    assert fake.deleted == ["merged", "superseded"]
+    assert fake.deleted == ["merged", "superseded", "candidate"]
+    assert fake.refs == {"stale": "9" * 40}
+    outcomes = {result.branch: result.outcome for result in results}
+    assert outcomes == {
+        "merged": "DELETED",
+        "superseded": "DELETED",
+        "stale": "DELETE_BLOCKED_PRESERVED",
+        "candidate": "DELETED",
+    }
     payload = json.loads(receipt.read_text(encoding="utf-8"))
-    assert payload["conclusion"] == "FAILED_ROLLED_BACK"
+    assert payload["conclusion"] == "VERIFIED_WITH_BLOCKED_REFS"
 
 
-def test_post_delete_verification_failure_restores_attempted_branch_and_preserves_rest(
+def test_post_delete_verification_failure_restores_candidate_and_continues(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
@@ -301,32 +305,31 @@ def test_post_delete_verification_failure_restores_attempted_branch_and_preserve
     fake.post_delete_error = module.CleanupError(
         "transient post-delete verification failure"
     )
-    original_refs = dict(fake.refs)
     monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
     manifest = tmp_path / "branches.json"
     receipt = tmp_path / "receipt.json"
     _write_manifest(manifest)
 
-    with pytest.raises(module.CleanupError, match="post-delete verification"):
-        module.cleanup(
-            manifest,
-            repository="GlacierEQ/job-app-helix",
-            token="token",
-            apply=True,
-            output=receipt,
-        )
+    results = module.cleanup(
+        manifest,
+        repository="GlacierEQ/job-app-helix",
+        token="token",
+        apply=True,
+        output=receipt,
+    )
 
-    assert fake.refs == original_refs
-    assert fake.deleted == ["merged"]
-    assert fake.restored == [("merged", original_refs["merged"])]
+    assert fake.refs == {"merged": "1" * 40}
+    assert fake.deleted == ["merged", "superseded", "stale", "candidate"]
+    assert fake.restored == [("merged", "1" * 40)]
+    outcomes = {result.branch: result.outcome for result in results}
+    assert outcomes == {
+        "merged": "DELETE_BLOCKED_ROLLED_BACK",
+        "superseded": "DELETED",
+        "stale": "DELETED",
+        "candidate": "DELETED",
+    }
     payload = json.loads(receipt.read_text(encoding="utf-8"))
-    assert payload["conclusion"] == "FAILED_ROLLED_BACK"
-    outcomes = {result["branch"]: result["outcome"] for result in payload["results"]}
-    assert outcomes["merged"] == "ROLLED_BACK"
-    assert outcomes["superseded"] == "PRESERVED"
-    assert outcomes["stale"] == "PRESERVED"
-    assert outcomes["candidate"] == "PRESERVED"
-    assert "READY" not in outcomes.values()
+    assert payload["conclusion"] == "VERIFIED_WITH_BLOCKED_REFS"
 
 
 def test_open_dependency_pr_fails_closed_without_deletion(

@@ -11,6 +11,13 @@
       "blocker": "Current-main cleanup runs stopped on this candidate. Preserve the exact ref until the branch-rule or GitHub API restriction is identified and cleared."
     },
     {
+      "name": "docs/readme-masterclass-2026-07-30",
+      "pull_request": 8,
+      "expected_head_sha": "f2233a7410453672ee93e378480f20350226f0f7",
+      "state": "DELETE_BLOCKED",
+      "blocker": "Wave-three deletion stopped on this docs-pattern ref before later candidates were touched. Preserve until the restriction is identified and cleared."
+    },
+    {
       "name": "hire-package/spiral-recruiter-presentation-2026-07-30",
       "pull_request": 9,
       "expected_head_sha": "02251af6cffe27a9995695e07afd5031db8f7317",
@@ -71,17 +78,16 @@
   ],
   "branches": [
     {
-      "name": "docs/readme-masterclass-2026-07-30",
-      "policy": "merged_pr",
-      "pull_request": 8,
-      "expected_head_sha": "f2233a7410453672ee93e378480f20350226f0f7",
-      "reason": "The three-depth README entrypoint was squash-merged."
-    },
-    {
       "name": "fix/cleanup-rollback-transaction-2026-07-30",
       "policy": "merge_candidate",
       "pull_request": 16,
       "reason": "The rollback repair is canonical after PR #16 merged and this temporary branch is obsolete."
+    },
+    {
+      "name": "fix/independent-cleanup-transactions-2026-07-30",
+      "policy": "merge_candidate",
+      "pull_request": 20,
+      "reason": "This independent-transaction repair branch deletes itself only after PR #20 merges and the current-main cleanup applies its reviewed policy."
     },
     {
       "name": "ops/trigger-final-review-hardening-2026-07-30",
@@ -114,7 +120,7 @@
       "name": "retire/verified-obsolete-refs-wave-3-2026-07-30",
       "policy": "merge_candidate",
       "pull_request": 19,
-      "reason": "This final independent retirement wave deletes itself only after PR #19 merges and the current-main apply transaction verifies every candidate."
+      "reason": "The third retirement wave is obsolete after PR #19 merged."
     },
     {
       "name": "status/priority-spine-wave-1-2026-07-31",
