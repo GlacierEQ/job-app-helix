@@ -25,7 +25,7 @@ Repositories that appear relevant but are not yet recruiter claims. The post-Hel
 |---|---|---|
 | `GlacierEQ/Kimi-K3` | Public | Discover and verify before promotion |
 | `GlacierEQ/Attention-Residuals` | Public | Discover and verify before promotion |
-| `GlacierEQ/morpheus-dashboard` | Private | Preserve privately; create a bounded exhibit only after review |
+| Private dashboard candidate — name withheld | Private | Preserve privately; create a bounded exhibit only after review |
 | `GlacierEQ/ECHO` | Public | Discover and verify before promotion |
 | `GlacierEQ/Template` | Public | Treat as supporting infrastructure unless differentiated value is proven |
 
