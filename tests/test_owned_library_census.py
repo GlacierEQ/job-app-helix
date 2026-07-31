@@ -121,6 +121,7 @@ def test_discovery_classifies_governed_candidate_and_excluded_repositories() -> 
 
     records = module.discover(
         source,
+        owner="GlacierEQ",
         recruiter_portfolio={"GlacierEQ/AKOS"},
         priority_spine=set(),
         per_page=2,
@@ -152,10 +153,41 @@ def test_discovery_rejects_duplicate_repository_identity() -> None:
     with pytest.raises(module.CensusError, match="Duplicate repository"):
         module.discover(
             source,
+            owner="GlacierEQ",
             recruiter_portfolio=set(),
             priority_spine=set(),
             per_page=1,
         )
+
+
+def test_user_account_requires_matching_authenticated_login(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    module = _load_module()
+    api = module.GitHubAPI("GlacierEQ", "token")
+    responses = {
+        "/users/GlacierEQ": {"type": "User"},
+        "/user": {"login": "GlacierEQ"},
+    }
+    monkeypatch.setattr(api, "_request_json", responses.__getitem__)
+
+    assert api._resolve_repository_endpoint() == "/user/repos"
+    assert api._account_type == "User"
+
+
+def test_organization_account_uses_organization_repository_endpoint(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    module = _load_module()
+    api = module.GitHubAPI("ExampleOrg", "token")
+    monkeypatch.setattr(
+        api,
+        "_request_json",
+        lambda path: {"type": "Organization"},
+    )
+
+    assert api._resolve_repository_endpoint() == "/orgs/ExampleOrg/repos"
+    assert api._account_type == "Organization"
 
 
 def test_github_api_error_does_not_echo_token(
@@ -175,7 +207,9 @@ def test_github_api_error_does_not_echo_token(
         api.list_page(1, 100)
 
     assert token not in str(caught.value)
-    assert str(caught.value) == "GitHub census request failed for page 1"
+    assert str(caught.value) == (
+        "GitHub census request failed for /users/GlacierEQ"
+    )
 
 
 def test_payload_separates_inventory_from_proof() -> None:
