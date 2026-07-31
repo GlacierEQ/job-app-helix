@@ -9,9 +9,11 @@ This program reconciles the complete GlacierEQ-owned GitHub library with the bou
 | Scope | Count | Authority | Meaning |
 |---|---:|---|---|
 | Owner-accessible library | 1,171 | `manifests/owned_library_census_2026-07-31.json` | Exact public-safe summary of the authenticated inventory boundary captured July 31, 2026 |
-| Recruiter portfolio | 66 | `manifests/portfolio_repositories.json` | Exact hiring-oriented portfolio boundary |
+| Recruiter portfolio | 67 | `manifests/portfolio_repositories.json` | Exact hiring-oriented boundary: one Helix root plus sixty-six child repositories |
 | Priority spine | 9 | `manifests/library_priority_spine.json` | Curated governance and presentation authorities |
-| Candidate expansion | 5 | Census summary | Four named public candidates plus one private candidate whose name is withheld |
+| Post-Helix candidate/supporting tail | 5 | Census summary | Four named public entries plus one private candidate whose name is withheld |
+
+The recruiter boundary was reconciled later on July 31, 2026 after Resume Shapeshifter was promoted into the live Helix inventory. The authenticated owner-library count remains the original 1,171-repository census boundary; no new repository was created by that promotion.
 
 ## Summary versus generated receipt
 
@@ -43,12 +45,12 @@ python scripts/census_owned_library.py \
   --output artifacts/owned-library-census.json
 ```
 
-The command is read-only. It pages the GitHub owner repository API, rejects duplicate or malformed identities, classifies every record, and writes the internal receipt atomically. The checked-in public summary must be reviewed and updated separately when a new inventory boundary is approved.
+The command is read-only. It pages the GitHub owner repository API, rejects duplicate or malformed identities, classifies every record against the current live inventory, and writes the internal receipt atomically. The checked-in public summary must be reviewed and updated separately when a new inventory or recruiter boundary is approved.
 
 ## Repository classes
 
 - `PRIORITY_SPINE` — governed authority or strategic anchor.
-- `RECRUITER_PORTFOLIO` — admitted into the exact 66-repository portfolio.
+- `RECRUITER_PORTFOLIO` — admitted into the exact 67-repository portfolio.
 - `CANDIDATE_EXPANSION` — plausible hiring relevance, not yet promoted.
 - `ARCHIVE_BACKUP_OR_FORK` — archive, backup, or explicitly named public-fork archive.
 - `UPSTREAM_OR_FORK_REVIEW` — fork requiring a verified candidate delta.
@@ -65,7 +67,9 @@ The owner-listing tail after `GlacierEQ/job-app-helix` contains eight repositori
 - ECHO;
 - Template.
 
-None is promoted by this discovery alone.
+This tail-derived list is a bounded census observation, not the complete prioritized candidate list. The broader admission, deferral, duplicate, privacy, archive, backup, and upstream-source decisions are recorded in `manifests/github_repository_curation_2026-07-31.json`.
+
+None of the five tail entries is promoted by discovery alone.
 
 ## Presentation routing
 
@@ -82,7 +86,7 @@ The final delivery package routes information by audience:
 The census program is complete when:
 
 - the exact owner count is reproducible;
-- the exact recruiter and priority-spine boundaries remain unchanged unless deliberately revised;
+- the exact recruiter and priority-spine boundaries change only through deliberate, tested governance revisions;
 - new repositories enter candidate expansion rather than silently entering résumé claims;
 - every promotion is backed by repository-native evidence;
 - each mutation wave has its own receipt;
