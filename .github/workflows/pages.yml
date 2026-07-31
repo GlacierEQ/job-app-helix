@@ -1,0 +1,87 @@
+name: Deploy recruiter presentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "hire_package/casey-barton/**"
+      - "site/**"
+      - "scripts/build_recruiter_site.py"
+      - "tests/test_recruiter_site_deployment.py"
+      - "RECRUITER_EXECUTIVE_SUMMARY.md"
+      - "README.md"
+      - ".github/workflows/pages.yml"
+  pull_request:
+    paths:
+      - "hire_package/casey-barton/**"
+      - "site/**"
+      - "scripts/build_recruiter_site.py"
+      - "tests/test_recruiter_site_deployment.py"
+      - "RECRUITER_EXECUTIVE_SUMMARY.md"
+      - "README.md"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recruiter-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build evidence-bound site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Build canonical recruiter surface
+        run: >-
+          python scripts/build_recruiter_site.py
+          --output artifacts/pages-site
+          --source-commit "${{ github.sha }}"
+
+      - name: Run recruiter deployment contract tests
+        run: python -m pytest -q tests/test_recruiter_site_deployment.py
+
+      - name: Verify public repository boundary
+        run: python scripts/check_public_surface.py
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: artifacts/pages-site
+
+      - name: Upload deployment manifest for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: recruiter-pages-manifest-${{ github.sha }}
+          path: artifacts/pages-site/deployment-manifest.json
+          if-no-files-found: error
+
+  deploy:
+    name: Deploy canonical main
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy recruiter presentation
+        id: deployment
+        uses: actions/deploy-pages@v4
