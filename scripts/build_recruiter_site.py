@@ -42,16 +42,37 @@ FORBIDDEN_PUBLIC_PATTERNS = (
 
 ROLE_COPY = {
     "Applied AI Architect": {
-        "summary": "Designs the application, governance, and verification layers that turn model capability into durable operating systems.",
-        "signals": ["agent orchestration", "MCP and tool boundaries", "evidence architecture"],
+        "summary": (
+            "Designs the application, governance, and verification layers that turn "
+            "model capability into durable operating systems."
+        ),
+        "signals": [
+            "agent orchestration",
+            "MCP and tool boundaries",
+            "evidence architecture",
+        ],
     },
     "Forward-Deployed AI Engineer": {
-        "summary": "Translates ambiguous operator needs into bounded implementations, measurable acceptance criteria, and resumable delivery paths.",
-        "signals": ["discovery under ambiguity", "integration ownership", "operator-facing delivery"],
+        "summary": (
+            "Translates ambiguous operator needs into bounded implementations, "
+            "measurable acceptance criteria, and resumable delivery paths."
+        ),
+        "signals": [
+            "discovery under ambiguity",
+            "integration ownership",
+            "operator-facing delivery",
+        ],
     },
     "Agent Infrastructure Engineer": {
-        "summary": "Builds deterministic scheduling, permissions, receipts, context routing, and failure semantics around probabilistic agents.",
-        "signals": ["typed coordination", "least-privilege execution", "observability and provenance"],
+        "summary": (
+            "Builds deterministic scheduling, permissions, receipts, context routing, "
+            "and failure semantics around probabilistic agents."
+        ),
+        "signals": [
+            "typed coordination",
+            "least-privilege execution",
+            "observability and provenance",
+        ],
     },
 }
 
@@ -87,13 +108,20 @@ def _escape(value: object) -> str:
 
 def _list_items(values: list[str]) -> str:
     if not values:
-        return '<li>None recorded.</li>'
+        return "<li>None recorded.</li>"
     return "".join(f"<li>{_escape(value)}</li>" for value in values)
 
 
 def _status_badges(claims: dict[str, dict[str, Any]]) -> str:
     cards: list[str] = []
-    for claim_id in ("helix_inventory", "akos_tests", "mesh_rollout", "coordinator_tests"):
+    for claim_id in (
+        "helix_inventory",
+        "akos_tests",
+        "mesh_rollout",
+        "coordinator_tests",
+    ):
+        if claim_id not in claims:
+            raise SystemExit(f"Missing status claim: {claim_id}")
         metric, label, state = PROOF_PRESENTATION[claim_id]
         cards.append(
             '<div class="status-badge">'
@@ -119,7 +147,12 @@ def _evidence_href(claim_id: str, claim: dict[str, Any]) -> str:
 
 def _proof_cards(claims: dict[str, dict[str, Any]]) -> str:
     rendered: list[str] = []
-    for claim_id in ("helix_inventory", "akos_tests", "mesh_rollout", "coordinator_tests"):
+    for claim_id in (
+        "helix_inventory",
+        "akos_tests",
+        "mesh_rollout",
+        "coordinator_tests",
+    ):
         claim = claims[claim_id]
         metric, label, state = PROOF_PRESENTATION[claim_id]
         state_class = "candidate" if state == "CANDIDATE" else ""
@@ -129,7 +162,8 @@ def _proof_cards(claims: dict[str, dict[str, Any]]) -> str:
             f'<div class="metric">{_escape(metric)}</div>'
             f'<h3>{_escape(label)}</h3>'
             f'<p>{_escape(claim["claim"])}</p>'
-            f'<a href="{_escape(_evidence_href(claim_id, claim))}">Inspect evidence →</a>'
+            f'<a href="{_escape(_evidence_href(claim_id, claim))}">'
+            "Inspect evidence →</a>"
             "</article>"
         )
     return "".join(rendered)
@@ -141,7 +175,9 @@ def _role_cards(roles: list[str]) -> str:
         if role not in ROLE_COPY:
             raise SystemExit(f"Primary role has no presentation contract: {role}")
         copy = ROLE_COPY[role]
-        signals = "".join(f"<li>{_escape(signal)}</li>" for signal in copy["signals"])
+        signals = "".join(
+            f"<li>{_escape(signal)}</li>" for signal in copy["signals"]
+        )
         cards.append(
             '<article class="card role-card">'
             f"<h3>{_escape(role)}</h3>"
@@ -189,13 +225,18 @@ def _validate_contracts(
     if not isinstance(relationships, list):
         raise SystemExit("candidate relationships must be a list")
     for relation in relationships:
-        if not isinstance(relation, dict) or relation.get("relation") not in RELATION_ENUM:
+        if not isinstance(relation, dict):
+            raise SystemExit(f"unsupported relationship: {relation}")
+        if relation.get("relation") not in RELATION_ENUM:
             raise SystemExit(f"unsupported relationship: {relation}")
 
     stages = spiral.get("stages")
     if not isinstance(stages, list):
         raise SystemExit("application spiral stages must be a list")
-    if [stage.get("name") for stage in stages if isinstance(stage, dict)] != CANONICAL_SPIRAL:
+    stage_names = [
+        stage.get("name") for stage in stages if isinstance(stage, dict)
+    ]
+    if stage_names != CANONICAL_SPIRAL:
         raise SystemExit("application spiral does not match canonical stage order")
 
     claims = ledger.get("claims")
@@ -203,9 +244,12 @@ def _validate_contracts(
         raise SystemExit("evidence ledger claims must be a list")
     by_id: dict[str, dict[str, Any]] = {}
     for claim in claims:
-        if not isinstance(claim, dict) or not isinstance(claim.get("id"), str):
+        if not isinstance(claim, dict):
             raise SystemExit(f"invalid evidence claim: {claim}")
-        by_id[claim["id"]] = claim
+        claim_id = claim.get("id")
+        if not isinstance(claim_id, str):
+            raise SystemExit(f"invalid evidence claim: {claim}")
+        by_id[claim_id] = claim
     missing = sorted(set(PROOF_PRESENTATION) - set(by_id))
     if missing:
         raise SystemExit(f"missing recruiter proof claims: {missing}")
@@ -225,14 +269,21 @@ def _copy_public_sources(output: Path) -> None:
         SITE_SOURCE / "styles.css": output / "styles.css",
         SITE_SOURCE / "app.js": output / "app.js",
         CANDIDATE_ROOT / "EXECUTIVE_RESUME.md": output / "executive-resume.md",
-        CANDIDATE_ROOT / "TECHNICAL_PORTFOLIO_BRIEF.md": output / "technical-portfolio-brief.md",
+        CANDIDATE_ROOT / "TECHNICAL_PORTFOLIO_BRIEF.md": (
+            output / "technical-portfolio-brief.md"
+        ),
         CANDIDATE_ROOT / "CLAIM_REGISTER.md": output / "claim-register.md",
         CANDIDATE_ROOT / "candidate_node.json": output / "candidate-node.json",
-        CANDIDATE_ROOT / "application_spiral.json": output / "application-spiral.json",
+        CANDIDATE_ROOT / "application_spiral.json": (
+            output / "application-spiral.json"
+        ),
         CANDIDATE_ROOT / "evidence_ledger.json": output / "evidence-ledger.json",
-        CANDIDATE_ROOT / "coordinator_candidate_receipt.json": output
-        / "coordinator-candidate-receipt.json",
-        ROOT / "RECRUITER_EXECUTIVE_SUMMARY.md": output / "recruiter-executive-summary.md",
+        CANDIDATE_ROOT / "coordinator_candidate_receipt.json": (
+            output / "coordinator-candidate-receipt.json"
+        ),
+        ROOT / "RECRUITER_EXECUTIVE_SUMMARY.md": (
+            output / "recruiter-executive-summary.md"
+        ),
     }
     for source, destination in copies.items():
         if source.is_symlink():
@@ -243,12 +294,13 @@ def _copy_public_sources(output: Path) -> None:
 
 
 def _assert_public_surface(output: Path) -> None:
+    allowed_suffixes = {".html", ".css", ".js", ".md", ".json", ""}
     for path in output.rglob("*"):
         if path.is_symlink():
             raise SystemExit(f"Deployed surface contains symbolic link: {path}")
         if not path.is_file():
             continue
-        if path.suffix.lower() not in {".html", ".css", ".js", ".md", ".json", ""}:
+        if path.suffix.lower() not in allowed_suffixes:
             raise SystemExit(f"Unexpected deployed file type: {path}")
         text = path.read_text(encoding="utf-8")
         if "{{" in text or "}}" in text:
@@ -313,9 +365,15 @@ def build(output: Path, source_commit: str) -> None:
         "{{PROOF_CARDS}}": _proof_cards(claims),
         "{{ROLE_CARDS}}": _role_cards(roles),
         "{{SPIRAL_STEPS}}": _spiral_steps(spiral["stages"]),
-        "{{VERIFIED_LIST}}": _list_items(list(status.get("verified_scope", []))),
-        "{{BLOCKED_LIST}}": _list_items(list(status.get("blocked_scope", []))),
-        "{{UNVERIFIED_LIST}}": _list_items(list(status.get("unverified_scope", []))),
+        "{{VERIFIED_LIST}}": _list_items(
+            list(status.get("verified_scope", []))
+        ),
+        "{{BLOCKED_LIST}}": _list_items(
+            list(status.get("blocked_scope", []))
+        ),
+        "{{UNVERIFIED_LIST}}": _list_items(
+            list(status.get("unverified_scope", []))
+        ),
         "{{SOURCE_COMMIT}}": _escape(source_commit),
     }
     rendered = template
@@ -330,7 +388,9 @@ def build(output: Path, source_commit: str) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build the canonical recruiter GitHub Pages surface")
+    parser = argparse.ArgumentParser(
+        description="Build the canonical recruiter GitHub Pages surface"
+    )
     parser.add_argument(
         "--output",
         type=Path,
