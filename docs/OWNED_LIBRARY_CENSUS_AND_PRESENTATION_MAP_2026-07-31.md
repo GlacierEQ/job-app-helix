@@ -1,0 +1,83 @@
+# Owned Library Census and Presentation Map
+
+## Purpose
+
+This program reconciles the complete GlacierEQ-owned GitHub library with the bounded recruiter portfolio without blindly modifying child repositories or converting repository ownership into unsupported authorship claims.
+
+## Current boundaries
+
+| Scope | Count | Authority | Meaning |
+|---|---:|---|---|
+| Owner-accessible library | 1,171 | `manifests/owned_library_census_2026-07-31.json` | Exact authenticated inventory boundary captured July 31, 2026 |
+| Recruiter portfolio | 66 | `manifests/portfolio_repositories.json` | Exact hiring-oriented portfolio boundary |
+| Priority spine | 9 | `manifests/library_priority_spine.json` | Curated governance and presentation authorities |
+| Candidate expansion | 5 | Census snapshot | Newly surfaced entries requiring repository-native review |
+
+## Why no mass pull/push operation was performed
+
+A blind update across 1,171 heterogeneous repositories would be destructive and evidentially meaningless. The library contains original systems, private work, upstream projects, archived forks, backups, learning material, templates, sensitive case repositories, and experimental branches. Each repository requires its own identity and evidence decision.
+
+The safe synchronization model is therefore control-plane synchronization:
+
+1. discover the entire owner library;
+2. classify every repository before mutation;
+3. compare candidate-specific work with upstream or prior state;
+4. preserve unique branches, receipts, and provenance;
+5. run repository-native tests, builds, security, and documentation checks;
+6. promote only verified value into the recruiter portfolio;
+7. persist an exact receipt.
+
+## Executable census
+
+Run from a trusted environment with an authenticated token capable of listing all owner repositories:
+
+```bash
+python scripts/census_owned_library.py \
+  --expected-count 1171 \
+  --output artifacts/owned-library-census.json
+```
+
+The command is read-only. It pages the GitHub owner repository API, rejects duplicate or malformed identities, classifies every record, and writes the receipt atomically.
+
+## Repository classes
+
+- `PRIORITY_SPINE` — governed authority or strategic anchor.
+- `RECRUITER_PORTFOLIO` — admitted into the exact 66-repository portfolio.
+- `CANDIDATE_EXPANSION` — plausible hiring relevance, not yet promoted.
+- `ARCHIVE_BACKUP_OR_FORK` — archive, backup, or explicitly named public-fork archive.
+- `UPSTREAM_OR_FORK_REVIEW` — fork requiring a verified candidate delta.
+- `PRIVATE_REVIEW_REQUIRED` — private repository excluded from public use by default.
+- `UNGOVERNED_PUBLIC_INVENTORY` — public inventory entry with no current portfolio decision.
+
+## Post-Helix additions
+
+The owner-listing tail after `GlacierEQ/job-app-helix` contains eight repositories. Three were already governed elsewhere: Monolith, OpenClaw, and the Tower of Babel. Five remain candidate or supporting expansion entries:
+
+- Kimi-K3;
+- Attention-Residuals;
+- Morpheus Dashboard;
+- ECHO;
+- Template.
+
+None is promoted by this discovery alone.
+
+## Presentation routing
+
+The final delivery package routes information by audience:
+
+- recruiters receive polished résumé and decision documents;
+- technical reviewers receive architecture, claims, evidence, and expansion maps;
+- ATS and AI systems receive typed JSON contracts and exact state labels;
+- licensing and partnership terms remain isolated and explicit;
+- private and sensitive repository names are not published as a public census.
+
+## Completion standard
+
+The census program is complete when:
+
+- the exact owner count is reproducible;
+- the exact recruiter and priority-spine boundaries remain unchanged unless deliberately revised;
+- new repositories enter candidate expansion rather than silently entering résumé claims;
+- every promotion is backed by repository-native evidence;
+- each mutation wave has its own receipt;
+- the hierarchical recruiter ZIP includes the human and machine census surfaces.
