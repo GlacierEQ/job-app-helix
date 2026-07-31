@@ -1,0 +1,48 @@
+{
+  "schema": "glaciereq.candidate-evidence-ledger.v1",
+  "generated_at": "2026-07-30T17:12:00-10:00",
+  "claims": [
+    {
+      "id": "helix_inventory",
+      "claim": "Job-App Helix governs an exact 66-repository application boundary",
+      "state": "VERIFIED_BOUNDARY",
+      "evidence": "../../manifests/portfolio_repositories.json"
+    },
+    {
+      "id": "akos_tests",
+      "claim": "AKOS passed 94/94 tests across 12 modules on Python 3.11-3.13",
+      "state": "VERIFIED_TEST",
+      "evidence": "https://github.com/GlacierEQ/AKOS/actions/runs/30532339028",
+      "source_commit": "d00eb4a9889fb4b78621d422a70c2677e12a467d",
+      "promotion_merge": "b4b9ecba71f41bf9e3ddffa1f6c2c34c6a9b7192"
+    },
+    {
+      "id": "mesh_rollout",
+      "claim": "README Mesh rollout verified for 21 nodes",
+      "state": "VERIFIED_DOCUMENTATION",
+      "evidence": "../../docs/README_MESH_ROLLOUT_2026-07-28.md"
+    },
+    {
+      "id": "coordinator_tests",
+      "claim": "Agent coordinator passed 62/62 independent Python 3.13 tests",
+      "state": "CANDIDATE_TEST_PROOF",
+      "evidence": "coordinator_candidate_receipt.json"
+    },
+    {
+      "id": "runner_activation",
+      "claim": "Coordinator route is registered through the public runner architecture",
+      "state": "IMPLEMENTED_ACTIVATION_BLOCKED",
+      "evidence": "https://github.com/GlacierEQ/public-actions-runner-host/actions/runs/30573535595",
+      "catalog_merge": "570021d36e7cc0b39305522de167680cad837869",
+      "activation_issue": "https://github.com/GlacierEQ/public-actions-runner-host/issues/58"
+    }
+  ],
+  "excluded": [
+    "400,000 agents",
+    "1,200 files/hour",
+    "production-grade across 1,104 repositories",
+    "top-percentile ranking",
+    "legal compliance conclusion",
+    "AWS master's degree"
+  ]
+}
