@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import argparse
 import os
+from collections.abc import Iterator
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Iterator
 
 import build_final_form_package as base
 
