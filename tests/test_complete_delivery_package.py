@@ -14,7 +14,10 @@ def _load_module() -> ModuleType:
     scripts = str(ROOT / "scripts")
     if scripts not in sys.path:
         sys.path.insert(0, scripts)
-    spec = importlib.util.spec_from_file_location("build_complete_delivery_package", SCRIPT)
+    spec = importlib.util.spec_from_file_location(
+        "build_complete_delivery_package",
+        SCRIPT,
+    )
     if spec is None or spec.loader is None:
         raise AssertionError(f"Unable to load {SCRIPT}")
     module = importlib.util.module_from_spec(spec)
@@ -28,9 +31,10 @@ def _load_module() -> ModuleType:
 
 def test_complete_delivery_package_includes_census_layers(tmp_path: Path) -> None:
     module = _load_module()
-    module.configure_package_contract()
+    original_copy_map = dict(module.base.COPY_MAP)
+    original_required = set(module.base.BASE_REQUIRED_PACKAGE_PATHS)
 
-    result = module.base.build_package(
+    result = module.build_complete_package(
         tmp_path / "output",
         source_commit=SOURCE_COMMIT,
     )
@@ -51,3 +55,22 @@ def test_complete_delivery_package_includes_census_layers(tmp_path: Path) -> Non
     assert result.zip_path.is_file()
 
     module.base.verify_package(package)
+    assert module.base.COPY_MAP == original_copy_map
+    assert module.base.BASE_REQUIRED_PACKAGE_PATHS == original_required
+
+
+def test_base_package_remains_base_after_complete_build(tmp_path: Path) -> None:
+    module = _load_module()
+
+    module.build_complete_package(
+        tmp_path / "complete",
+        source_commit=SOURCE_COMMIT,
+    )
+    base_result = module.base.build_package(
+        tmp_path / "base",
+        source_commit=SOURCE_COMMIT,
+    )
+
+    assert not (base_result.package_dir / "owned_library_census.json").exists()
+    assert not (base_result.package_dir / "PORTFOLIO_EXPANSION_MAP.md").exists()
+    module.base.verify_package(base_result.package_dir)
