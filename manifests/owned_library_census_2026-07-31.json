@@ -1,9 +1,17 @@
 {
-  "schema": "glaciereq.owned-library-census.v1",
+  "schema": "glaciereq.owned-library-census-summary.v1",
+  "kind": "PUBLIC_SAFE_CURATED_SUMMARY",
   "owner": "GlacierEQ",
   "captured_at": "2026-07-31T08:01:00-10:00",
   "canonical_control_plane": "GlacierEQ/job-app-helix",
   "canonical_branch": "main",
+  "generated_receipt": {
+    "schema": "glaciereq.owned-library-census-receipt.v1",
+    "default_path": "artifacts/owned-library-census.json",
+    "distribution": "INTERNAL_FULL_CENSUS",
+    "generator": "scripts/census_owned_library.py",
+    "note": "The generated receipt contains the complete authenticated repository list. This checked-in file is a public-safe summary and is not generated output."
+  },
   "discovery": {
     "source": "authenticated GitHub owner repository listing",
     "ordering": "connector-native owner listing order",
@@ -36,47 +44,48 @@
     {
       "offset": 1162,
       "repository": "GlacierEQ/job-app-helix",
-      "classification": "CANONICAL_CONTROL_PLANE"
+      "classification": "PRIORITY_SPINE"
     },
     {
       "offset": 1163,
       "repository": "GlacierEQ/monolith",
-      "classification": "PRIORITY_SPINE_GOVERNED"
+      "classification": "PRIORITY_SPINE"
     },
     {
       "offset": 1164,
       "repository": "GlacierEQ/openclaw",
-      "classification": "RECRUITER_PORTFOLIO_EXISTING"
+      "classification": "RECRUITER_PORTFOLIO"
     },
     {
       "offset": 1165,
       "repository": "GlacierEQ/Kimi-K3",
-      "classification": "CANDIDATE_EXPANSION_UNVERIFIED"
+      "classification": "CANDIDATE_EXPANSION"
     },
     {
       "offset": 1166,
       "repository": "GlacierEQ/Attention-Residuals",
-      "classification": "CANDIDATE_EXPANSION_UNVERIFIED"
+      "classification": "CANDIDATE_EXPANSION"
     },
     {
       "offset": 1167,
       "repository": "GlacierEQ/the-tower-of-babel",
-      "classification": "PRIORITY_SPINE_GOVERNED"
+      "classification": "PRIORITY_SPINE"
     },
     {
       "offset": 1168,
-      "repository": "GlacierEQ/morpheus-dashboard",
-      "classification": "PRIVATE_CANDIDATE_EXPANSION_UNVERIFIED"
+      "opaque_id": "private-candidate-1",
+      "visibility": "private",
+      "classification": "PRIVATE_REVIEW_REQUIRED"
     },
     {
       "offset": 1169,
       "repository": "GlacierEQ/ECHO",
-      "classification": "CANDIDATE_EXPANSION_UNVERIFIED"
+      "classification": "CANDIDATE_EXPANSION"
     },
     {
       "offset": 1170,
       "repository": "GlacierEQ/Template",
-      "classification": "SUPPORTING_TEMPLATE_UNVERIFIED"
+      "classification": "CANDIDATE_EXPANSION"
     }
   ],
   "candidate_expansion": [
@@ -93,10 +102,9 @@
       "promotion_state": "DISCOVERED_NOT_PROMOTED"
     },
     {
-      "repository": "GlacierEQ/morpheus-dashboard",
+      "opaque_id": "private-candidate-1",
       "visibility": "private",
-      "default_branch": "main",
-      "promotion_state": "DISCOVERED_PRIVATE_NOT_PROMOTED"
+      "promotion_state": "DISCOVERED_PRIVATE_NAME_WITHHELD"
     },
     {
       "repository": "GlacierEQ/ECHO",
@@ -111,13 +119,15 @@
       "promotion_state": "SUPPORTING_TEMPLATE_NOT_RECRUITER_PROMOTED"
     }
   ],
-  "classification_policy": {
-    "canonical_evidence": "Repository-native proof and a governed inclusion decision are both required.",
-    "candidate_expansion": "Newly discovered repository with plausible portfolio relevance; no résumé claim until inspected and verified.",
-    "supporting_or_upstream": "Tool, framework, mirror, educational source, or dependency context; does not become authored candidate evidence by ownership alone.",
-    "private_or_sensitive": "Excluded from public recruiter surfaces unless a separate bounded public exhibit is intentionally created.",
-    "archive_backup_or_fork": "Retained for provenance or research and excluded from recruiter counts by default."
-  },
+  "classification_vocabulary": [
+    "PRIORITY_SPINE",
+    "RECRUITER_PORTFOLIO",
+    "CANDIDATE_EXPANSION",
+    "ARCHIVE_BACKUP_OR_FORK",
+    "UPSTREAM_OR_FORK_REVIEW",
+    "PRIVATE_REVIEW_REQUIRED",
+    "UNGOVERNED_PUBLIC_INVENTORY"
+  ],
   "mutation_policy": {
     "blind_pull_push_sync": false,
     "reason": "Repository mutation requires per-repository discovery, unique-value preservation, native verification, and an auditable merge or receipt.",
