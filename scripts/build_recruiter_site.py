@@ -54,8 +54,8 @@ EMAIL_PATTERN = re.compile(
     re.IGNORECASE,
 )
 PHONE_PATTERN = re.compile(
-    r"(?<!\d)(?:\+?1[\s().-]*)?(?:\(\d{3}\)|\d{3})"
-    r"[\s.-]*\d{3}[\s.-]*\d{4}(?!\d)"
+    r"(?<![0-9A-Fa-f])(?:\+?1[\s().-]*)?(?:\(\d{3}\)|\d{3})"
+    r"[\s.-]*\d{3}[\s.-]*\d{4}(?![0-9A-Fa-f])"
 )
 SOURCE_COMMIT_PATTERN = re.compile(r"[0-9a-f]{40}")
 
