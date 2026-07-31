@@ -14,8 +14,8 @@ The website is not a separately maintained marketing project. It is generated fr
 candidate_node.json
 + evidence_ledger.json
 + application_spiral.json
++ package_mesh.json
 + coordinator_candidate_receipt.json
-+ recruiter and technical Markdown
                      │
                      ▼
 scripts/build_recruiter_site.py
@@ -25,7 +25,8 @@ artifacts/pages-site/
   index.html
   styles.css
   app.js
-  public source records
+  public machine records
+  immutable source URLs
   deployment-manifest.json
                      │
                      ▼
@@ -42,6 +43,8 @@ Only a qualifying `main` event receives:
 - `id-token: write`;
 - access to the `github-pages` environment.
 
+A manual dispatch against any branch other than `main` may build for diagnosis, but the deploy job is skipped.
+
 The deployment uses GitHub's official Pages actions:
 
 - `actions/configure-pages@v5`;
@@ -52,25 +55,29 @@ The deployment uses GitHub's official Pages actions:
 
 Every build must prove:
 
-1. the candidate, evidence ledger, and spiral JSON parse successfully;
+1. the candidate, evidence ledger, package mesh, and spiral JSON parse successfully;
 2. timestamps are timezone-aware;
 3. primary roles have presentation routes;
 4. relationship values use the compiled Helix enum;
 5. AKOS remains `VERIFIED_TEST` with immutable source evidence;
 6. the coordinator remains `CANDIDATE_TEST_PROOF` until its hosted promotion completes;
-7. APEX activation remains `BLOCKED` while bridge credentials are absent;
-8. every local link resolves inside the Pages artifact;
-9. direct phone and email details are absent from public files;
-10. every deployed payload is SHA-256 listed in `deployment-manifest.json`.
+7. APEX activation remains `IMPLEMENTED_ACTIVATION_BLOCKED` while bridge credentials are absent;
+8. recruiter metrics and display states derive from the evidence ledger rather than a parallel table;
+9. repository proof links are pinned to the deployed source commit;
+10. every local link resolves inside the Pages artifact;
+11. generic email and telephone patterns are absent from public files;
+12. every deployed payload is SHA-256 listed in `deployment-manifest.json`.
 
 ## Failure behavior
 
 - An unresolved template marker fails the build.
 - A broken local link fails the build.
 - A symbolic link or unexpected file type fails the build.
-- Evidence-state drift fails the test suite.
+- An output path that contains or overwrites protected repository sources fails before deletion.
+- Evidence-state or presentation-metric drift fails the test suite.
 - A failed build produces no deployment.
 - A pull request cannot publish.
+- A non-`main` manual run cannot publish.
 - A Pages configuration or deployment failure remains visible as a failed workflow rather than being converted into a successful documentation result.
 
 ## Local build
