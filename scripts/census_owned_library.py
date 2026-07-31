@@ -50,22 +50,16 @@ class GitHubAPI:
     def __init__(self, owner: str, token: str) -> None:
         if not token:
             raise CensusError("GITHUB_TOKEN is required for an exact owner census")
+        if not owner:
+            raise CensusError("Repository owner is required")
         self.owner = owner
         self.token = token
+        self._repository_endpoint: str | None = None
+        self._account_type: str | None = None
 
-    def list_page(self, page: int, per_page: int) -> list[dict[str, Any]]:
-        query = urllib.parse.urlencode(
-            {
-                "affiliation": "owner",
-                "visibility": "all",
-                "sort": "created",
-                "direction": "asc",
-                "per_page": per_page,
-                "page": page,
-            }
-        )
+    def _request_json(self, path: str) -> Any:
         request = urllib.request.Request(
-            f"{API_ROOT}/user/repos?{query}",
+            f"{API_ROOT}{path}",
             headers={
                 "Accept": "application/vnd.github+json",
                 "Authorization": f"Bearer {self.token}",
@@ -75,11 +69,60 @@ class GitHubAPI:
         )
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
-                payload = json.loads(response.read().decode("utf-8"))
-        except (urllib.error.URLError, json.JSONDecodeError) as exc:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
             raise CensusError(
-                f"GitHub census request failed for page {page}"
+                f"GitHub census request failed for {path} with HTTP {exc.code}"
             ) from exc
+        except urllib.error.URLError as exc:
+            raise CensusError(f"GitHub census request failed for {path}") from exc
+        except json.JSONDecodeError as exc:
+            raise CensusError(
+                f"GitHub census returned malformed JSON for {path}"
+            ) from exc
+
+    def _resolve_repository_endpoint(self) -> str:
+        if self._repository_endpoint is not None:
+            return self._repository_endpoint
+        quoted_owner = urllib.parse.quote(self.owner, safe="")
+        account = self._request_json(f"/users/{quoted_owner}")
+        if not isinstance(account, dict):
+            raise CensusError(f"Unable to resolve GitHub account {self.owner}")
+        account_type = account.get("type")
+        if account_type == "Organization":
+            self._repository_endpoint = f"/orgs/{quoted_owner}/repos"
+            self._account_type = "Organization"
+            return self._repository_endpoint
+        if account_type != "User":
+            raise CensusError(
+                f"Unsupported GitHub account type for {self.owner}: {account_type}"
+            )
+
+        authenticated = self._request_json("/user")
+        login = authenticated.get("login") if isinstance(authenticated, dict) else None
+        if not isinstance(login, str) or login.casefold() != self.owner.casefold():
+            raise CensusError(
+                f"Exact private census requires authentication as {self.owner}"
+            )
+        self._repository_endpoint = "/user/repos"
+        self._account_type = "User"
+        return self._repository_endpoint
+
+    def list_page(self, page: int, per_page: int) -> list[dict[str, Any]]:
+        endpoint = self._resolve_repository_endpoint()
+        query_values: dict[str, object] = {
+            "sort": "created",
+            "direction": "asc",
+            "per_page": per_page,
+            "page": page,
+        }
+        if self._account_type == "Organization":
+            query_values["type"] = "all"
+        else:
+            query_values["affiliation"] = "owner"
+            query_values["visibility"] = "all"
+        path = f"{endpoint}?{urllib.parse.urlencode(query_values)}"
+        payload = self._request_json(path)
         if not isinstance(payload, list):
             raise CensusError(f"GitHub census page {page} did not return a list")
         return [item for item in payload if isinstance(item, dict)]
@@ -98,15 +141,16 @@ def _load_json(path: Path) -> dict[str, Any]:
 def _governed_sets(
     portfolio_path: Path,
     spine_path: Path,
+    owner: str,
 ) -> tuple[set[str], set[str]]:
     portfolio = _load_json(portfolio_path)
     workspace = portfolio.get("workspace_repositories")
     if not isinstance(workspace, list):
         raise CensusError("Portfolio manifest has no workspace_repositories list")
     portfolio_repositories = {
-        f"GlacierEQ/{name}" for name in workspace if isinstance(name, str)
+        f"{owner}/{name}" for name in workspace if isinstance(name, str)
     }
-    portfolio_repositories.add("GlacierEQ/job-app-helix")
+    portfolio_repositories.add(f"{owner}/job-app-helix")
 
     spine = _load_json(spine_path)
     entries = spine.get("repositories")
@@ -151,12 +195,14 @@ def classify_repository(
 def discover(
     source: RepositorySource,
     *,
+    owner: str,
     recruiter_portfolio: set[str],
     priority_spine: set[str],
     per_page: int = 100,
 ) -> list[RepositoryRecord]:
     if per_page < 1 or per_page > 100:
         raise CensusError("per_page must be between 1 and 100")
+    owner_prefix = f"{owner}/"
     records: list[RepositoryRecord] = []
     seen: set[str] = set()
     page = 1
@@ -170,7 +216,7 @@ def discover(
             default_branch = item.get("default_branch")
             visibility = item.get("visibility")
             if not isinstance(repository, str) or not repository.startswith(
-                "GlacierEQ/"
+                owner_prefix
             ):
                 raise CensusError(
                     f"Invalid owner repository identity on page {page}: {item}"
@@ -255,7 +301,7 @@ def _write_atomic(path: Path, payload: dict[str, object]) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Create an authenticated, non-mutating GlacierEQ repository census"
+        description="Create an authenticated, non-mutating repository census"
     )
     parser.add_argument("--owner", default="GlacierEQ")
     parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN", ""))
@@ -272,9 +318,11 @@ def main() -> int:
         recruiter_portfolio, priority_spine = _governed_sets(
             args.portfolio.resolve(),
             args.priority_spine.resolve(),
+            args.owner,
         )
         records = discover(
             GitHubAPI(args.owner, args.token),
+            owner=args.owner,
             recruiter_portfolio=recruiter_portfolio,
             priority_spine=priority_spine,
         )
