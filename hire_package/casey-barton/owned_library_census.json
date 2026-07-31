@@ -8,7 +8,8 @@
   "exact_priority_spine_count": 9,
   "candidate_expansion_count": 5,
   "canonical_sources": {
-    "owned_library_snapshot": "../../manifests/owned_library_census_2026-07-31.json",
+    "owned_library_summary": "../../manifests/owned_library_census_2026-07-31.json",
+    "internal_generated_receipt": "../../artifacts/owned-library-census.json",
     "recruiter_portfolio": "../../manifests/portfolio_repositories.json",
     "priority_spine": "../../manifests/library_priority_spine.json",
     "human_expansion_map": "PORTFOLIO_EXPANSION_MAP.md"
@@ -16,7 +17,7 @@
   "candidate_expansion": [
     "GlacierEQ/Kimi-K3",
     "GlacierEQ/Attention-Residuals",
-    "GlacierEQ/morpheus-dashboard",
+    "PRIVATE_CANDIDATE_NAME_WITHHELD",
     "GlacierEQ/ECHO",
     "GlacierEQ/Template"
   ],
