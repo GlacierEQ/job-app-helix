@@ -1,0 +1,235 @@
+{
+  "schema": "glaciereq.library.execution-receipt.v1",
+  "program": "library-readme-and-branch-consolidation",
+  "operating_date_hst": "2026-07-30",
+  "recorded_date_utc": "2026-07-31",
+  "canonical_control_plane": "GlacierEQ/job-app-helix",
+  "scope": {
+    "kind": "priority_spine_wave",
+    "repositories": 9,
+    "whole_library_completion_claimed": false,
+    "recruiter_portfolio_completion_claimed": false
+  },
+  "policy": {
+    "main_is_canonical": true,
+    "preserve_unique_value_before_closure": true,
+    "require_repository_native_proof": true,
+    "pr_closure_is_branch_deletion": false,
+    "remote_ref_deletion_capability_available": false
+  },
+  "outcomes": [
+    {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "status": "POLICY_AUTHORITY_PRESERVED",
+      "canonical_branch": "main",
+      "readme": "MASTERCLASS_PRESENT",
+      "proof": "REPOSITORY_NATIVE_RECEIPTS_PRESENT",
+      "branch_dispositions": [
+        {
+          "branch": "feature/canonical-language-manifest",
+          "unique_value": "NONE",
+          "pull_request_disposition": "NO_OPEN_PR",
+          "remote_ref_disposition": "DELETE_REF_REQUIRED"
+        },
+        {
+          "branch": "feature/canonical-language-manifest-v2",
+          "unique_value": "BOOTSTRAP_FRAGMENT_AUDIT_REQUIRED",
+          "pull_request_disposition": "NO_OPEN_PR",
+          "remote_ref_disposition": "PRESERVE_PENDING_CONTENT_AUDIT"
+        }
+      ]
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "status": "MERGED_VERIFIED",
+      "canonical_branch": "main",
+      "merge": {
+        "pull_request": 4,
+        "commit": "1efb16a7017ebae0454d556c5ac31b4149c18673",
+        "method": "squash"
+      },
+      "proof": [
+        "existing CI passed",
+        "portfolio truth gate passed",
+        "generated SHOWCASE drift repaired"
+      ],
+      "superseded_pull_requests": [
+        {
+          "pull_request": 2,
+          "disposition": "CLOSED_WITH_UNIQUE_VALUE_PRESERVED_IN_PR_4"
+        }
+      ],
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "status": "MERGED_VERIFIED",
+      "canonical_branch": "main",
+      "merge": {
+        "pull_request": 12,
+        "commit": "daf6a446d677e274b599b3d2319c06dd7da90987",
+        "method": "squash"
+      },
+      "proof": [
+        "library priority manifest validation passed",
+        "library CLI and renderer tests passed",
+        "Python 3.11, 3.12, and 3.13 CI passed"
+      ],
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/monolith",
+      "status": "PRESERVE_OPEN_BLOCKED",
+      "canonical_branch": "main",
+      "active_pull_request": 2,
+      "active_branch": "feat/monolith-evolution-roadmap",
+      "unique_value": "PRESENT",
+      "blockers": [
+        "Actions execution terminated before executable steps",
+        "catalog/evolution_map.json missing",
+        "status/EVOLUTION_LEVELS.md missing"
+      ],
+      "pull_request_disposition": "PRESERVE_OPEN",
+      "remote_ref_disposition": "PRESERVE_OPEN"
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "status": "MASTERCLASS_PRESERVED_BRANCH_AUDIT_STARTED",
+      "canonical_branch": "main",
+      "proof": "94_OF_94_TESTS_AND_EXPLICIT_DEBT_BOUNDARY_ALREADY_PRESENT",
+      "branch_dispositions": [
+        {
+          "branch": "wave-1/native-ci-readme-evidence-2026-07-29",
+          "pull_request": 9,
+          "merge_state": "MERGED_BY_SQUASH",
+          "remote_ref_disposition": "DELETE_REF_REQUIRED"
+        }
+      ],
+      "remaining_branch_audit": "REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/pro-code",
+      "status": "MERGED_VERIFIED",
+      "canonical_branch": "main",
+      "merge": {
+        "pull_request": 5,
+        "commit": "a9c7697bb9a8b89e201721e29136ae95f1cc57e4",
+        "method": "squash"
+      },
+      "proof": [
+        "TypeScript lint and type-check passed",
+        "16 TypeScript behavior tests passed",
+        "Vite production build passed",
+        "Python contract tests passed",
+        "native Rust tests passed",
+        "native Haskell invariants passed",
+        "Helix verification passed"
+      ],
+      "superseded_pull_requests": [
+        {
+          "pull_request": 4,
+          "disposition": "CLOSED_AFTER_VALUE_TRANSPLANT_TO_CURRENT_MAIN_ANCESTRY"
+        }
+      ],
+      "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_TWO_HARDENING_BRANCHES"
+    },
+    {
+      "repository": "GlacierEQ/Pro_Code",
+      "status": "PRESERVE_OPEN_BLOCKED",
+      "canonical_branch": "main",
+      "active_pull_request": 1,
+      "active_branch": "hardening/doctrine-truth-boundary-2026-07-30",
+      "candidate_value": [
+        "private doctrine truth boundary",
+        "public versus private pro-code strand split",
+        "local doctrine artifact verifier"
+      ],
+      "blockers": [
+        "new doctrine workflow terminated before executable steps",
+        "pre-existing Helix Verify terminated before executable steps"
+      ],
+      "pull_request_disposition": "PRESERVE_OPEN",
+      "remote_ref_disposition": "PRESERVE_OPEN",
+      "superseded_branch_candidates": [
+        "helix-phase-1a",
+        "helix-phase-1b"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "status": "MERGED_VERIFIED_FRONT_DOOR",
+      "canonical_branch": "main",
+      "merge": {
+        "pull_request": 152,
+        "commit": "f82bf6ed9da2d4e27ddc7e1f7d624ed04026cb24",
+        "method": "squash"
+      },
+      "proof": [
+        "orphaned gitlink checkout repaired with non-initializing quarantine descriptors",
+        "bounded Python surfaces compiled",
+        "2 local process-health contract tests passed",
+        "README and branch-family ledger truth validation passed",
+        "active workflow scan rejected production pushes and suppressed failures"
+      ],
+      "security_actions": [
+        "public credential-bearing descriptions on PRs 64, 97, 100, and 103 redacted",
+        "historically exposed credentials still require rotation"
+      ],
+      "workflow_dispositions": [
+        "duplicate external CI retired",
+        "unscoped Python CI retired",
+        "false-green CI retired",
+        "pull-request deployment retired",
+        "scheduled continuous production deployment retired",
+        "legitimate future targets preserved in docs/LEGACY_WORKFLOW_BACKLOG.md"
+      ],
+      "scope_boundary": "FRONT_DOOR_AND_GOVERNANCE_MERGED_BRANCH_FAMILY_BACKLOG_NOT_COMPLETE",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/megaminds-pdf",
+      "status": "PRESERVE_OPEN_BLOCKED_DEPENDENCY_SECURITY",
+      "canonical_branch": "master",
+      "active_pull_request": 3,
+      "active_branch": "hardening/pdf-viewer-truth-contract-2026-07-30",
+      "functional_proof": [
+        "PDF.js worker preparation passed",
+        "4 viewer behavior tests passed",
+        "production build passed"
+      ],
+      "security_blocker": {
+        "locked_install_findings": {
+          "total": 57,
+          "low": 10,
+          "moderate": 15,
+          "high": 29,
+          "critical": 3
+        },
+        "production_scope_findings": {
+          "total": 56,
+          "low": 10,
+          "moderate": 14,
+          "high": 29,
+          "critical": 3
+        },
+        "forced_fix_allowed": false,
+        "required_repair": "MEASURED_TOOLCHAIN_MIGRATION_AND_UNUSED_DEPENDENCY_REMOVAL_WITH_REGENERATED_LOCKFILE"
+      },
+      "dependabot_pull_request": 2,
+      "dependabot_disposition": "PRESERVE_FOR_COMPARISON_NOT_SUFFICIENT_ALONE",
+      "identity_state": "PENDING_USER_INTENT_CONFIRMATION",
+      "pull_request_disposition": "PRESERVE_OPEN",
+      "remote_ref_disposition": "PRESERVE_OPEN"
+    }
+  ],
+  "summary": {
+    "merged_verified_repositories": 4,
+    "policy_or_already_hardened_repositories_preserved": 2,
+    "active_blocked_repositories_preserved_open": 3,
+    "superseded_pull_requests_closed": 2,
+    "credential_bearing_pull_request_descriptions_redacted": 4,
+    "remote_branch_refs_deleted": 0,
+    "remote_branch_refs_requiring_later_deletion": true,
+    "whole_library_complete": false
+  }
+}

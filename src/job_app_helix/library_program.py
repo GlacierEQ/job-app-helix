@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 SCHEMA = "glaciereq.library.priority-spine.v1"
+RECEIPT_SCHEMA = "glaciereq.library.execution-receipt.v1"
 EXPECTED_REPOSITORIES = (
     "GlacierEQ/the-tower-of-babel",
     "GlacierEQ/job-application",
@@ -60,6 +61,12 @@ def _normalized_alias(value: str) -> str:
     return " ".join(value.casefold().split())
 
 
+def _repository_root(program_path: Path) -> Path:
+    if program_path.parent.name == "manifests":
+        return program_path.parent.parent
+    return program_path.parent
+
+
 def validate_library_program(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     root = _require_mapping(payload, "library program")
@@ -70,6 +77,12 @@ def validate_library_program(path: Path) -> dict[str, Any]:
         raise LibraryProgramError("canonical control plane must be GlacierEQ/job-app-helix")
     if root.get("canonical_branch") != "main":
         raise LibraryProgramError("canonical branch must be main")
+
+    receipt_reference = _require_nonempty_text(
+        root.get("latest_execution_receipt"), "latest_execution_receipt"
+    )
+    if Path(receipt_reference).is_absolute() or ".." in Path(receipt_reference).parts:
+        raise LibraryProgramError("latest execution receipt must be repository-relative")
 
     scopes = _require_mapping(root.get("scopes"), "scopes")
     recruiter = _require_mapping(scopes.get("recruiter_portfolio"), "recruiter_portfolio")
@@ -146,6 +159,61 @@ def validate_library_program(path: Path) -> dict[str, Any]:
         raise LibraryProgramError("the megamind alias must remain explicitly unresolved")
 
     return dict(payload)
+
+
+def validate_latest_execution_receipt(
+    program_path: Path, program_payload: Mapping[str, Any]
+) -> dict[str, Any]:
+    receipt_reference = _require_nonempty_text(
+        program_payload.get("latest_execution_receipt"), "latest_execution_receipt"
+    )
+    receipt_path = _repository_root(program_path) / receipt_reference
+    receipt_payload = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt = _require_mapping(receipt_payload, "execution receipt")
+
+    if receipt.get("schema") != RECEIPT_SCHEMA:
+        raise LibraryProgramError(f"execution receipt schema must be {RECEIPT_SCHEMA}")
+    if receipt.get("canonical_control_plane") != program_payload.get(
+        "canonical_control_plane"
+    ):
+        raise LibraryProgramError("execution receipt control plane does not match the program")
+
+    scope = _require_mapping(receipt.get("scope"), "execution receipt scope")
+    if scope.get("kind") != "priority_spine_wave":
+        raise LibraryProgramError("execution receipt must describe a priority_spine_wave")
+    if scope.get("repositories") != len(EXPECTED_REPOSITORIES):
+        raise LibraryProgramError("execution receipt repository count is not exact")
+    if scope.get("whole_library_completion_claimed") is not False:
+        raise LibraryProgramError("execution receipt must not claim whole-library completion")
+
+    outcomes = receipt.get("outcomes")
+    if not isinstance(outcomes, list):
+        raise LibraryProgramError("execution receipt outcomes must be a list")
+    observed = tuple(
+        _require_nonempty_text(
+            _require_mapping(item, f"outcomes[{index}]").get("repository"),
+            f"outcomes[{index}].repository",
+        )
+        for index, item in enumerate(outcomes)
+    )
+    if observed != EXPECTED_REPOSITORIES:
+        raise LibraryProgramError(
+            "execution receipt outcomes must match the exact priority spine order"
+        )
+
+    receipt_policy = _require_mapping(receipt.get("policy"), "execution receipt policy")
+    if receipt_policy.get("pr_closure_is_branch_deletion") is not False:
+        raise LibraryProgramError("execution receipt conflates PR closure with branch deletion")
+    if receipt_policy.get("remote_ref_deletion_capability_available") is not False:
+        raise LibraryProgramError("execution receipt overstates remote-ref deletion capability")
+
+    summary = _require_mapping(receipt.get("summary"), "execution receipt summary")
+    if summary.get("whole_library_complete") is not False:
+        raise LibraryProgramError("execution receipt overstates whole-library completion")
+    if summary.get("remote_branch_refs_deleted") != 0:
+        raise LibraryProgramError("execution receipt overstates remote branch deletion")
+
+    return dict(receipt_payload)
 
 
 def render_library_program(payload: Mapping[str, Any]) -> str:

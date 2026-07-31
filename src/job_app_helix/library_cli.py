@@ -9,6 +9,7 @@ from pathlib import Path
 from .library_program import (
     LibraryProgramError,
     render_library_program,
+    validate_latest_execution_receipt,
     validate_library_program,
 )
 
@@ -36,12 +37,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         payload = validate_library_program(args.program)
         if args.command == "validate":
+            receipt = validate_latest_execution_receipt(args.program, payload)
             print(
                 json.dumps(
                     {
                         "schema": payload["schema"],
                         "repositories": len(payload["repositories"]),
                         "canonical_control_plane": payload["canonical_control_plane"],
+                        "latest_execution_receipt": payload["latest_execution_receipt"],
+                        "receipt_program": receipt["program"],
                         "status": "VALID",
                     },
                     indent=2,
