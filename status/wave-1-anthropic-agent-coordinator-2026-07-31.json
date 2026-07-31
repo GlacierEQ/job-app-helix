@@ -1,0 +1,55 @@
+{
+  "schema": "glaciereq.portfolio.child-promotion-receipt.v1",
+  "portfolio_root": "GlacierEQ/job-app-helix",
+  "wave": "wave-1-native-ci",
+  "repository": "GlacierEQ/anthropic-agent-coordinator",
+  "canonical_branch": "master",
+  "canonical_commit": "ac977563cfd59deb8e87177f53082184f6468aa8",
+  "pull_request": 4,
+  "status": "VERIFIED",
+  "achieved_evidence": "TEST",
+  "acceptance": {
+    "readme_contract": "PASS",
+    "positive_test_count": "PASS",
+    "build_receipt_required": false
+  },
+  "proof": {
+    "verified_executable_commit": "87438f57bdfd2cb380730cf51140611963d7c95b",
+    "python": "3.13.5",
+    "tests_collected": 62,
+    "tests_executed": 62,
+    "tests_passed": 62,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junit_sha256": "2d0b8ba5cbc14f31bd58297f41f55ef46149f5748fbe89885caefc9c5d4ad340",
+    "repository_receipt": "receipts/wave-1-test-verification-2026-07-31.json"
+  },
+  "execution_boundary": {
+    "hosted_matrix": "BLOCKED_ACTIONS_EXECUTION",
+    "python_3_11_hosted_verified": false,
+    "python_3_12_hosted_verified": false,
+    "python_3_13_hosted_verified": false,
+    "blocked_execution_counted_as_pass": false
+  },
+  "branch_classification": {
+    "merged_obsolete": [
+      "wave-1/coordinator-promotion-rebased-2026-07-30"
+    ],
+    "superseded_obsolete": [
+      "wave-1/native-ci-coordinator-core-2026-07-30",
+      "ci-proof/coordinator-base-2026-07-30",
+      "ci-proof/coordinator-head-2026-07-30",
+      "ci/bootstrap-master-pr-filter-2026-07-30"
+    ],
+    "delete_ref_available": false
+  },
+  "nonclaims": {
+    "cross_version_matrix_verified": false,
+    "agent_execution_implemented": false,
+    "provider_calls_implemented": false,
+    "production_scale_verified": false,
+    "deployment_verified": false
+  },
+  "next_repository": "anthropic-safety-monitor"
+}
