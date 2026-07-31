@@ -1,0 +1,60 @@
+name: Promote verified uv lock
+
+on:
+  push:
+    branches:
+      - deploy/canonical-recruiter-surface-2026-07-30
+    paths:
+      - "pyproject.toml"
+      - ".github/workflows/promote-verified-uv-lock.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: promote-verified-uv-lock
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    name: Regenerate, prove, and commit uv.lock
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out promotion branch
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.10.0"
+          enable-cache: true
+
+      - name: Regenerate the current lock
+        run: uv lock --upgrade-package pytest
+
+      - name: Install and test exactly from the generated lock
+        run: |
+          uv sync --extra dev --locked
+          uv run --locked pytest
+          uv run --locked ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
+
+      - name: Promote only a changed verified lock
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if git diff --quiet -- uv.lock; then
+            echo "uv.lock is already current"
+            exit 0
+          fi
+          current_sha="$(gh api "repos/${GITHUB_REPOSITORY}/contents/uv.lock?ref=${GITHUB_REF_NAME}" --jq .sha)"
+          content="$(base64 -w0 uv.lock)"
+          gh api \
+            --method PUT \
+            "repos/${GITHUB_REPOSITORY}/contents/uv.lock" \
+            -f message='chore(deps): promote verified pytest 9.1.1 lock' \
+            -f content="${content}" \
+            -f sha="${current_sha}" \
+            -f branch="${GITHUB_REF_NAME}"
