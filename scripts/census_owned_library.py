@@ -18,10 +18,9 @@ DEFAULT_OUTPUT = ROOT / "artifacts" / "owned-library-census.json"
 DEFAULT_PORTFOLIO = ROOT / "manifests" / "portfolio_repositories.json"
 DEFAULT_SPINE = ROOT / "manifests" / "library_priority_spine.json"
 
-CANDIDATE_EXPANSION = {
+PUBLIC_CANDIDATE_EXPANSION = {
     "GlacierEQ/Kimi-K3",
     "GlacierEQ/Attention-Residuals",
-    "GlacierEQ/morpheus-dashboard",
     "GlacierEQ/ECHO",
     "GlacierEQ/Template",
 }
@@ -78,7 +77,9 @@ class GitHubAPI:
             with urllib.request.urlopen(request, timeout=30) as response:
                 payload = json.loads(response.read().decode("utf-8"))
         except (urllib.error.URLError, json.JSONDecodeError) as exc:
-            raise CensusError(f"GitHub census request failed for page {page}: {exc}") from exc
+            raise CensusError(
+                f"GitHub census request failed for page {page}"
+            ) from exc
         if not isinstance(payload, list):
             raise CensusError(f"GitHub census page {page} did not return a list")
         return [item for item in payload if isinstance(item, dict)]
@@ -134,8 +135,6 @@ def classify_repository(
         return "PRIORITY_SPINE"
     if repository in recruiter_portfolio:
         return "RECRUITER_PORTFOLIO"
-    if repository in CANDIDATE_EXPANSION:
-        return "CANDIDATE_EXPANSION"
     if archived or lowered.startswith("z-backup-") or lowered.endswith(
         "__public_fork_archive"
     ):
@@ -144,6 +143,8 @@ def classify_repository(
         return "UPSTREAM_OR_FORK_REVIEW"
     if visibility == "private":
         return "PRIVATE_REVIEW_REQUIRED"
+    if repository in PUBLIC_CANDIDATE_EXPANSION:
+        return "CANDIDATE_EXPANSION"
     return "UNGOVERNED_PUBLIC_INVENTORY"
 
 
@@ -168,10 +169,16 @@ def discover(
             repository_id = item.get("id")
             default_branch = item.get("default_branch")
             visibility = item.get("visibility")
-            if not isinstance(repository, str) or not repository.startswith("GlacierEQ/"):
-                raise CensusError(f"Invalid owner repository identity on page {page}: {item}")
+            if not isinstance(repository, str) or not repository.startswith(
+                "GlacierEQ/"
+            ):
+                raise CensusError(
+                    f"Invalid owner repository identity on page {page}: {item}"
+                )
             if repository in seen:
-                raise CensusError(f"Duplicate repository returned by GitHub: {repository}")
+                raise CensusError(
+                    f"Duplicate repository returned by GitHub: {repository}"
+                )
             if not isinstance(repository_id, int):
                 raise CensusError(f"Repository {repository} has no numeric id")
             if not isinstance(default_branch, str) or not default_branch:
@@ -213,6 +220,7 @@ def build_payload(records: list[RepositoryRecord], owner: str) -> dict[str, obje
         "schema": "glaciereq.owned-library-census-receipt.v1",
         "owner": owner,
         "state": "VERIFIED_INVENTORY",
+        "distribution": "INTERNAL_FULL_CENSUS",
         "repository_count": len(records),
         "classification_counts": dict(sorted(classification_counts.items())),
         "visibility_counts": dict(sorted(visibility_counts.items())),
@@ -223,6 +231,7 @@ def build_payload(records: list[RepositoryRecord], owner: str) -> dict[str, obje
             "Inventory does not establish authorship or originality.",
             "Inventory does not establish test, build, security, or deployment status.",
             "Only governed recruiter-portfolio entries may support resume claims.",
+            "The full receipt can contain private names and is not a public artifact.",
         ],
     }
 
