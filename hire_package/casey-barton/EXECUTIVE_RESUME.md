@@ -17,7 +17,7 @@ Applied AI systems architect building the application layer between models and d
 ## Selected Impact
 
 - Built Job-App Helix as an evidence-bound application control plane with typed models, exact inventory validation, timeouts, positive test-count rules, deterministic JSON/Protobuf output, and atomic receipts.
-- Re-engineered AKOS governance and operational cognition; preserved 117 preexisting lint findings as visible debt while holding new verification code to a strict quality gate.
+- Re-engineered AKOS governance and operational cognition; preserved preexisting quality debt as a visible non-blocking report while holding new verification code to a strict quality gate.
 - Designed public execution/private governance GitHub Actions patterns using catalog allowlists, scoped credentials, replay protection, nonpersistent checkout, and truthful blocked states.
 - Created a three-audience documentation contract so recruiters, principal engineers, ATS systems, and AI agents receive consistent claims and evidence.
 
