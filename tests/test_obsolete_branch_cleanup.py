@@ -44,12 +44,22 @@ class FakeAPI:
         self.stale_open_pulls: list[dict[str, Any]] = []
         self.candidate_merged = False
         self.change_before_delete: str | None = None
+        self.post_delete_error: Exception | None = None
+        self.post_delete_error_branch: str | None = None
         self.get_ref_counts: dict[str, int] = {}
 
     def get_ref(self, branch: str) -> tuple[int, dict[str, Any] | None]:
         self.get_ref_counts[branch] = self.get_ref_counts.get(branch, 0) + 1
         if branch == self.change_before_delete and self.get_ref_counts[branch] >= 3:
             self.refs[branch] = "9" * 40
+        if (
+            branch == self.post_delete_error_branch
+            and branch in self.deleted
+            and self.post_delete_error is not None
+        ):
+            error = self.post_delete_error
+            self.post_delete_error = None
+            raise error
         if branch not in self.refs:
             return 404, None
         return 200, {"object": {"sha": self.refs[branch]}}
@@ -278,6 +288,45 @@ def test_changed_ref_before_delete_rolls_back_prior_deletions(
     assert fake.deleted == ["merged", "superseded"]
     payload = json.loads(receipt.read_text(encoding="utf-8"))
     assert payload["conclusion"] == "FAILED_ROLLED_BACK"
+
+
+def test_post_delete_verification_failure_restores_attempted_branch_and_preserves_rest(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_module()
+    fake = FakeAPI()
+    fake.candidate_merged = True
+    fake.post_delete_error_branch = "merged"
+    fake.post_delete_error = module.CleanupError(
+        "transient post-delete verification failure"
+    )
+    original_refs = dict(fake.refs)
+    monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
+    manifest = tmp_path / "branches.json"
+    receipt = tmp_path / "receipt.json"
+    _write_manifest(manifest)
+
+    with pytest.raises(module.CleanupError, match="post-delete verification"):
+        module.cleanup(
+            manifest,
+            repository="GlacierEQ/job-app-helix",
+            token="token",
+            apply=True,
+            output=receipt,
+        )
+
+    assert fake.refs == original_refs
+    assert fake.deleted == ["merged"]
+    assert fake.restored == [("merged", original_refs["merged"])]
+    payload = json.loads(receipt.read_text(encoding="utf-8"))
+    assert payload["conclusion"] == "FAILED_ROLLED_BACK"
+    outcomes = {result["branch"]: result["outcome"] for result in payload["results"]}
+    assert outcomes["merged"] == "ROLLED_BACK"
+    assert outcomes["superseded"] == "PRESERVED"
+    assert outcomes["stale"] == "PRESERVED"
+    assert outcomes["candidate"] == "PRESERVED"
+    assert "READY" not in outcomes.values()
 
 
 def test_open_dependency_pr_fails_closed_without_deletion(

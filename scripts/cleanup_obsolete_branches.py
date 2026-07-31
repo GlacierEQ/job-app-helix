@@ -526,6 +526,7 @@ def cleanup(
         return preflight_results
 
     deleted: list[DeletionCandidate] = []
+    attempted: list[DeletionCandidate] = []
     final_results: list[BranchResult] = [
         result for result in preflight_results if result.preflight == "ALREADY_ABSENT"
     ]
@@ -538,6 +539,7 @@ def cleanup(
                     f"Branch changed after preflight: {candidate.ref_sha} -> {current_sha}"
                 )
             api.delete_ref(candidate.branch)
+            attempted.append(candidate)
             after_status, _ = api.get_ref(candidate.branch)
             if after_status != 404:
                 raise CleanupError(
@@ -573,7 +575,7 @@ def cleanup(
 
     rollback_failures: list[str] = []
     rolled_back: set[str] = set()
-    for candidate in reversed(deleted):
+    for candidate in reversed(attempted):
         try:
             api.create_ref(candidate.branch, candidate.ref_sha)
             restored_sha = _ref_sha(api, candidate.branch)
@@ -585,22 +587,32 @@ def cleanup(
         except CleanupError as exc:
             rollback_failures.append(f"{candidate.branch}: {exc}")
 
+    attempted_names = {candidate.branch for candidate in attempted}
     results_after_rollback: list[BranchResult] = []
     for result in preflight_results:
         if result.branch in rolled_back:
-            results_after_rollback.append(
-                BranchResult(
-                    branch=result.branch,
-                    policy=result.policy,
-                    reason=result.reason,
-                    ref_sha=result.ref_sha,
-                    preflight=result.preflight,
-                    outcome="ROLLED_BACK",
-                    detail="Deletion was reversed after a later failure",
-                )
-            )
+            outcome = "ROLLED_BACK"
+            detail = "Deletion was reversed after a later failure"
+        elif result.branch in attempted_names:
+            outcome = "ROLLBACK_FAILED"
+            detail = "Deletion was attempted and restoration was not verified"
+        elif result.preflight == "ALREADY_ABSENT":
+            outcome = "NO_ACTION"
+            detail = result.detail
         else:
-            results_after_rollback.append(result)
+            outcome = "PRESERVED"
+            detail = "Branch was not deleted because the transaction failed"
+        results_after_rollback.append(
+            BranchResult(
+                branch=result.branch,
+                policy=result.policy,
+                reason=result.reason,
+                ref_sha=result.ref_sha,
+                preflight=result.preflight,
+                outcome=outcome,
+                detail=detail,
+            )
+        )
 
     all_failures = [deletion_failure, *rollback_failures]
     conclusion = "FAILED_ROLLED_BACK" if not rollback_failures else "FAILED_ROLLBACK"
