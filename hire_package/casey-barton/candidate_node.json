@@ -23,11 +23,12 @@
     ]
   },
   "primary_role_variants": [
-    "Applied AI Systems Architect",
+    "Applied AI Architect",
     "Forward-Deployed AI Engineer",
     "Agent Infrastructure Engineer"
   ],
   "adjacent_role_families": [
+    "Applied AI Systems Architect",
     "AI Deployment Engineer",
     "AI Solutions Architect"
   ],
