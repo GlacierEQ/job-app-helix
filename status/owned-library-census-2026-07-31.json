@@ -1,0 +1,67 @@
+{
+  "schema": "glaciereq.owned-library-census-snapshot-receipt.v1",
+  "operating_time_hst": "2026-07-31T08:01:00-10:00",
+  "reconciled_on": "2026-07-31",
+  "canonical_control_plane": "GlacierEQ/job-app-helix",
+  "operation": "authenticated owner census and presentation reconciliation",
+  "conclusion": "VERIFIED_INVENTORY_BOUNDARY",
+  "results": {
+    "owner_accessible_repositories": 1171,
+    "highest_present_offset": 1170,
+    "first_absent_offset": 1171,
+    "exact_recruiter_portfolio": 67,
+    "exact_recruiter_workspace_children": 66,
+    "exact_priority_spine": 9,
+    "new_candidate_or_supporting_entries": 5,
+    "child_repositories_mutated": 0
+  },
+  "new_entries": [
+    {
+      "repository": "GlacierEQ/Kimi-K3",
+      "state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "repository": "GlacierEQ/Attention-Residuals",
+      "state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "opaque_id": "private-candidate-1",
+      "state": "DISCOVERED_PRIVATE_NAME_WITHHELD"
+    },
+    {
+      "repository": "GlacierEQ/ECHO",
+      "state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "repository": "GlacierEQ/Template",
+      "state": "SUPPORTING_TEMPLATE_NOT_PROMOTED"
+    }
+  ],
+  "artifacts": [
+    "manifests/owned_library_census_2026-07-31.json",
+    "scripts/census_owned_library.py",
+    "docs/OWNED_LIBRARY_CENSUS_AND_PRESENTATION_MAP_2026-07-31.md",
+    "hire_package/casey-barton/PORTFOLIO_EXPANSION_MAP.md",
+    "hire_package/casey-barton/owned_library_census.json",
+    "scripts/build_complete_delivery_package.py"
+  ],
+  "truth_boundary": {
+    "inventory_is_not_authorship": true,
+    "inventory_is_not_production_readiness": true,
+    "candidate_expansion_is_not_recruiter_promotion": true,
+    "blind_mass_sync_performed": false,
+    "per_repository_mutation_requires_native_proof": true,
+    "private_candidate_name_published": false,
+    "recruiter_boundary_reconciled_after_census": true
+  },
+  "next_spiral": {
+    "action": "Run repository-native discovery and verification on candidate expansion entries before any portfolio promotion.",
+    "priority": [
+      "GlacierEQ/ECHO",
+      "GlacierEQ/Kimi-K3",
+      "GlacierEQ/Attention-Residuals",
+      "private-candidate-1",
+      "GlacierEQ/Template"
+    ]
+  }
+}

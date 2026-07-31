@@ -1,0 +1,50 @@
+{
+  "schema": "glaciereq.candidate-owned-library-boundary.v1",
+  "captured_at": "2026-07-31T08:01:00-10:00",
+  "reconciled_at": "2026-07-31",
+  "owner": "GlacierEQ",
+  "state": "VERIFIED_INVENTORY",
+  "exact_owner_accessible_repository_count": 1171,
+  "exact_recruiter_portfolio_count": 67,
+  "exact_recruiter_workspace_child_count": 66,
+  "exact_priority_spine_count": 9,
+  "candidate_expansion_count": 5,
+  "canonical_sources": {
+    "owned_library_summary": "../../manifests/owned_library_census_2026-07-31.json",
+    "internal_generated_receipt": "../../artifacts/owned-library-census.json",
+    "recruiter_portfolio": "../../manifests/portfolio_repositories.json",
+    "priority_spine": "../../manifests/library_priority_spine.json",
+    "github_curation": "../../manifests/github_repository_curation_2026-07-31.json",
+    "human_expansion_map": "PORTFOLIO_EXPANSION_MAP.md"
+  },
+  "candidate_expansion": [
+    "GlacierEQ/Kimi-K3",
+    "GlacierEQ/Attention-Residuals",
+    "PRIVATE_CANDIDATE_NAME_WITHHELD",
+    "GlacierEQ/ECHO",
+    "GlacierEQ/Template"
+  ],
+  "promotion_policy": [
+    "DISCOVER",
+    "CLASSIFY",
+    "COMPARE",
+    "PRESERVE",
+    "VERIFY",
+    "PROMOTE_OR_EXCLUDE",
+    "RECEIPT"
+  ],
+  "public_presentation_policy": {
+    "include_exact_recruiter_portfolio": true,
+    "include_priority_spine": true,
+    "show_owned_library_as_inventory_boundary": true,
+    "promote_candidate_expansion_without_native_proof": false,
+    "publish_private_or_sensitive_repository_list": false,
+    "count_archives_backups_or_upstream_forks_as_authored_products": false
+  },
+  "nonclaims": [
+    "1171 repositories is an exact owner-accessible inventory count, not a claim of 1171 original production systems.",
+    "Repository ownership does not establish authorship, originality, production readiness, deployment, security, or customer impact.",
+    "The five tail-derived expansion candidates remain outside the exact 67-repository recruiter portfolio until separately reviewed and promoted.",
+    "No blind mass merge, pull, push, or overwrite operation was performed across child repositories."
+  ]
+}

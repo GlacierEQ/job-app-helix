@@ -1,0 +1,152 @@
+{
+  "schema": "glaciereq.owned-library-census-summary.v1",
+  "kind": "PUBLIC_SAFE_CURATED_SUMMARY",
+  "owner": "GlacierEQ",
+  "captured_at": "2026-07-31T08:01:00-10:00",
+  "reconciled_at": "2026-07-31",
+  "canonical_control_plane": "GlacierEQ/job-app-helix",
+  "canonical_branch": "main",
+  "generated_receipt": {
+    "schema": "glaciereq.owned-library-census-receipt.v1",
+    "default_path": "artifacts/owned-library-census.json",
+    "distribution": "INTERNAL_FULL_CENSUS",
+    "generator": "scripts/census_owned_library.py",
+    "note": "The generated receipt contains the complete authenticated repository list. This checked-in file is a public-safe summary and is not generated output."
+  },
+  "discovery": {
+    "source": "authenticated GitHub owner repository listing",
+    "ordering": "connector-native owner listing order",
+    "page_size_probe": 1,
+    "highest_present_offset": 1170,
+    "first_absent_offset": 1171,
+    "exact_repository_count": 1171,
+    "proof_rule": "offset 1170 resolved and offset 1171 returned an empty repository list"
+  },
+  "scopes": {
+    "recruiter_portfolio": {
+      "state": "EXACT_VERIFIED_BOUNDARY",
+      "repository_count": 67,
+      "workspace_child_count": 66,
+      "source": "manifests/portfolio_repositories.json",
+      "purpose": "High-signal recruiter portfolio. Membership does not imply identical proof level."
+    },
+    "priority_spine": {
+      "state": "EXACT_CURATED",
+      "repository_count": 9,
+      "source": "manifests/library_priority_spine.json",
+      "purpose": "Policy, presentation, governance, engineering, intelligence, and consolidation authorities."
+    },
+    "owned_library": {
+      "state": "EXACT_INVENTORY_ONLY",
+      "repository_count": 1171,
+      "purpose": "Complete owner-accessible library boundary. Inventory does not establish authorship, production readiness, deployment, or recruiter inclusion."
+    }
+  },
+  "post_control_plane_tail": [
+    {
+      "offset": 1162,
+      "repository": "GlacierEQ/job-app-helix",
+      "classification": "PRIORITY_SPINE"
+    },
+    {
+      "offset": 1163,
+      "repository": "GlacierEQ/monolith",
+      "classification": "PRIORITY_SPINE"
+    },
+    {
+      "offset": 1164,
+      "repository": "GlacierEQ/openclaw",
+      "classification": "RECRUITER_PORTFOLIO"
+    },
+    {
+      "offset": 1165,
+      "repository": "GlacierEQ/Kimi-K3",
+      "classification": "CANDIDATE_EXPANSION"
+    },
+    {
+      "offset": 1166,
+      "repository": "GlacierEQ/Attention-Residuals",
+      "classification": "CANDIDATE_EXPANSION"
+    },
+    {
+      "offset": 1167,
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "classification": "PRIORITY_SPINE"
+    },
+    {
+      "offset": 1168,
+      "opaque_id": "private-candidate-1",
+      "visibility": "private",
+      "classification": "PRIVATE_REVIEW_REQUIRED"
+    },
+    {
+      "offset": 1169,
+      "repository": "GlacierEQ/ECHO",
+      "classification": "CANDIDATE_EXPANSION"
+    },
+    {
+      "offset": 1170,
+      "repository": "GlacierEQ/Template",
+      "classification": "CANDIDATE_EXPANSION"
+    }
+  ],
+  "candidate_expansion": [
+    {
+      "repository": "GlacierEQ/Kimi-K3",
+      "visibility": "public",
+      "default_branch": "main",
+      "promotion_state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "repository": "GlacierEQ/Attention-Residuals",
+      "visibility": "public",
+      "default_branch": "master",
+      "promotion_state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "opaque_id": "private-candidate-1",
+      "visibility": "private",
+      "promotion_state": "DISCOVERED_PRIVATE_NAME_WITHHELD"
+    },
+    {
+      "repository": "GlacierEQ/ECHO",
+      "visibility": "public",
+      "default_branch": "main",
+      "promotion_state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "repository": "GlacierEQ/Template",
+      "visibility": "public",
+      "default_branch": "main",
+      "promotion_state": "SUPPORTING_TEMPLATE_NOT_RECRUITER_PROMOTED"
+    }
+  ],
+  "classification_vocabulary": [
+    "PRIORITY_SPINE",
+    "RECRUITER_PORTFOLIO",
+    "CANDIDATE_EXPANSION",
+    "ARCHIVE_BACKUP_OR_FORK",
+    "UPSTREAM_OR_FORK_REVIEW",
+    "PRIVATE_REVIEW_REQUIRED",
+    "UNGOVERNED_PUBLIC_INVENTORY"
+  ],
+  "mutation_policy": {
+    "blind_pull_push_sync": false,
+    "reason": "Repository mutation requires per-repository discovery, unique-value preservation, native verification, and an auditable merge or receipt.",
+    "lifecycle": [
+      "DISCOVER",
+      "CLASSIFY",
+      "COMPARE",
+      "PRESERVE",
+      "VERIFY",
+      "PROMOTE_OR_EXCLUDE",
+      "RECEIPT"
+    ]
+  },
+  "nonclaims": [
+    "The 1171-repository census is not a claim that 1171 repositories were authored from scratch.",
+    "The census is not a claim that every repository is production-ready, tested, deployed, secure, or recruiter-relevant.",
+    "Candidate expansion entries are not part of the exact 67-repository recruiter portfolio until separately promoted.",
+    "No child repository was overwritten or mass-merged by this census operation."
+  ]
+}

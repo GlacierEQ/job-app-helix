@@ -4,11 +4,16 @@ on:
   pull_request:
     paths:
       - "hire_package/casey-barton/**"
+      - "manifests/owned_library_census_2026-07-31.json"
       - "site/**"
       - "scripts/build_recruiter_site.py"
       - "scripts/build_final_form_package.py"
+      - "scripts/build_complete_delivery_package.py"
+      - "scripts/census_owned_library.py"
+      - "tests/test_complete_delivery_package.py"
       - "tests/test_final_form_package.py"
       - "tests/test_final_form_package_builder.py"
+      - "tests/test_owned_library_census.py"
       - "tests/test_recruiter_site_deployment.py"
       - "tests/test_obsolete_branch_cleanup.py"
       - "scripts/cleanup_obsolete_branches.py"
@@ -20,9 +25,14 @@ on:
       - main
     paths:
       - "hire_package/casey-barton/**"
+      - "manifests/owned_library_census_2026-07-31.json"
       - "site/**"
       - "scripts/build_recruiter_site.py"
       - "scripts/build_final_form_package.py"
+      - "scripts/build_complete_delivery_package.py"
+      - "scripts/census_owned_library.py"
+      - "tests/test_complete_delivery_package.py"
+      - "tests/test_owned_library_census.py"
       - "LICENSE"
       - "pyproject.toml"
       - ".github/workflows/final-form-package.yml"
@@ -58,17 +68,23 @@ jobs:
           ruff check
           scripts/build_recruiter_site.py
           scripts/build_final_form_package.py
+          scripts/build_complete_delivery_package.py
+          scripts/census_owned_library.py
           scripts/cleanup_obsolete_branches.py
+          tests/test_complete_delivery_package.py
           tests/test_final_form_package.py
           tests/test_final_form_package_builder.py
+          tests/test_owned_library_census.py
           tests/test_recruiter_site_deployment.py
           tests/test_obsolete_branch_cleanup.py
 
-      - name: Run final-form, deployment, and cleanup contract tests
+      - name: Run final-form, census, deployment, and cleanup contract tests
         run: >-
           python -m pytest -q
+          tests/test_complete_delivery_package.py
           tests/test_final_form_package.py
           tests/test_final_form_package_builder.py
+          tests/test_owned_library_census.py
           tests/test_recruiter_site_deployment.py
           tests/test_obsolete_branch_cleanup.py
 
@@ -78,9 +94,9 @@ jobs:
           --output artifacts/final-form-site
           --source-commit "${{ github.sha }}"
 
-      - name: Build and verify deterministic final-form ZIP
+      - name: Build and verify census-extended deterministic ZIP
         run: >-
-          python scripts/build_final_form_package.py
+          python scripts/build_complete_delivery_package.py
           --output artifacts/final-form-package
           --site-dir artifacts/final-form-site
           --source-commit "${{ github.sha }}"
