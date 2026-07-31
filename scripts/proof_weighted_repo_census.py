@@ -323,9 +323,11 @@ def build_result(
         parts = {part.casefold() for part in relative.parts}
         if TEST_NAME.search(path.name) or "tests" in parts:
             test_files += 1
-        if relative.parts[:2] == (".github", "workflows"):
-            if suffix in {".yml", ".yaml"}:
-                workflow_files += 1
+        if (
+            relative.parts[:2] == (".github", "workflows")
+            and suffix in {".yml", ".yaml"}
+        ):
+            workflow_files += 1
 
     local_links = re.findall(
         r"(?:file://|/Users/|[A-Za-z]:\\\\Users\\\\)[^\s)\]>'\"]+",
