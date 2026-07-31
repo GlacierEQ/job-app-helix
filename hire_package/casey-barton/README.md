@@ -2,7 +2,7 @@
 
 **Outcome:** One evidence-bound application surface connects recruiter value, senior-engineer proof, and AI/ATS ingestion.
 
-**Current status:** `PARTIALLY VERIFIED` - exact 67-repository live boundary, repository-native component receipts, and a 21-node README Mesh rollout are recorded. The July 29 portfolio audit remains a historical 66-repository snapshot. Portfolio-wide runtime, deployment, scale, and performance remain unverified.
+**Current status:** `PARTIALLY VERIFIED` - exact 67-repository live boundary, repository-native component receipts, and a 21-node README Mesh rollout are recorded. APEX runner activation remains `BLOCKED`; agent coordinator hosted multi-version promotion remains `UNVERIFIED`. The July 29 portfolio audit remains a historical 66-repository snapshot. Portfolio-wide runtime, deployment, scale, and performance remain unverified.
 
 ## For recruiters
 
