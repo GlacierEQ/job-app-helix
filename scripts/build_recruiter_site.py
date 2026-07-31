@@ -8,8 +8,10 @@ import os
 import re
 import shutil
 from datetime import datetime
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE_SOURCE = ROOT / "site"
@@ -35,10 +37,27 @@ RELATION_ENUM = {
     "PERSISTS_RECEIPTS_TO",
     "EXECUTES_THROUGH",
 }
-FORBIDDEN_PUBLIC_PATTERNS = (
-    re.compile(r"\b808[-.\s]?936[-.\s]?5654\b"),
-    re.compile(r"glacier\.equilibrium@gmail\.com", re.IGNORECASE),
+PROOF_IDS = (
+    "helix_inventory",
+    "akos_tests",
+    "mesh_rollout",
+    "coordinator_tests",
 )
+EXPECTED_DISPLAY_STATES = {
+    "VERIFIED_BOUNDARY": "VERIFIED",
+    "VERIFIED_TEST": "VERIFIED",
+    "VERIFIED_DOCUMENTATION": "VERIFIED",
+    "CANDIDATE_TEST_PROOF": "CANDIDATE",
+}
+EMAIL_PATTERN = re.compile(
+    r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b",
+    re.IGNORECASE,
+)
+PHONE_PATTERN = re.compile(
+    r"(?<!\d)(?:\+?1[\s().-]*)?(?:\(\d{3}\)|\d{3})"
+    r"[\s.-]*\d{3}[\s.-]*\d{4}(?!\d)"
+)
+SOURCE_COMMIT_PATTERN = re.compile(r"[0-9a-f]{40}")
 
 ROLE_COPY = {
     "Applied AI Architect": {
@@ -76,12 +95,23 @@ ROLE_COPY = {
     },
 }
 
-PROOF_PRESENTATION = {
-    "helix_inventory": ("66", "Exact portfolio boundary", "VERIFIED"),
-    "akos_tests": ("94/94", "AKOS tests passed", "VERIFIED"),
-    "mesh_rollout": ("21", "README Mesh nodes", "VERIFIED"),
-    "coordinator_tests": ("62/62", "Coordinator candidate tests", "CANDIDATE"),
-}
+
+class LocalLinkCollector(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.links: list[str] = []
+
+    def handle_starttag(
+        self,
+        tag: str,
+        attrs: list[tuple[str, str | None]],
+    ) -> None:
+        attribute = {"a": "href", "link": "href", "script": "src"}.get(tag)
+        if attribute is None:
+            return
+        for key, value in attrs:
+            if key == attribute and value:
+                self.links.append(value)
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -112,17 +142,36 @@ def _list_items(values: list[str]) -> str:
     return "".join(f"<li>{_escape(value)}</li>" for value in values)
 
 
+def _presentation(claim: dict[str, Any]) -> tuple[str, str, str]:
+    presentation = claim.get("presentation")
+    if not isinstance(presentation, dict):
+        raise SystemExit(f"Claim {claim.get('id')} has no presentation contract")
+    values = (
+        presentation.get("metric"),
+        presentation.get("label"),
+        presentation.get("display_state"),
+    )
+    if not all(isinstance(value, str) and value for value in values):
+        raise SystemExit(f"Claim {claim.get('id')} has invalid presentation values")
+    metric, label, display_state = values
+    expected = EXPECTED_DISPLAY_STATES.get(str(claim.get("state")))
+    if display_state != expected:
+        raise SystemExit(
+            f"Claim {claim.get('id')} presentation state {display_state} "
+            f"does not match evidence state {claim.get('state')}"
+        )
+    if metric not in str(claim.get("claim", "")):
+        raise SystemExit(
+            f"Claim {claim.get('id')} metric {metric} is absent from its claim text"
+        )
+    return metric, label, display_state
+
+
 def _status_badges(claims: dict[str, dict[str, Any]]) -> str:
     cards: list[str] = []
-    for claim_id in (
-        "helix_inventory",
-        "akos_tests",
-        "mesh_rollout",
-        "coordinator_tests",
-    ):
-        if claim_id not in claims:
-            raise SystemExit(f"Missing status claim: {claim_id}")
-        metric, label, state = PROOF_PRESENTATION[claim_id]
+    for claim_id in PROOF_IDS:
+        claim = claims[claim_id]
+        metric, label, state = _presentation(claim)
         cards.append(
             '<div class="status-badge">'
             f"<strong>{_escape(metric)}</strong>"
@@ -132,38 +181,47 @@ def _status_badges(claims: dict[str, dict[str, Any]]) -> str:
     return "".join(cards)
 
 
-def _evidence_href(claim_id: str, claim: dict[str, Any]) -> str:
+def _source_url(source_commit: str, path: str) -> str:
+    return f"{REPO_URL}/blob/{source_commit}/{path}"
+
+
+def _evidence_href(
+    claim_id: str,
+    claim: dict[str, Any],
+    source_commit: str,
+) -> str:
     evidence = str(claim.get("evidence", ""))
     if evidence.startswith("https://"):
         return evidence
     if claim_id == "helix_inventory":
-        return f"{REPO_URL}/blob/main/manifests/portfolio_repositories.json"
+        return _source_url(source_commit, "manifests/portfolio_repositories.json")
     if claim_id == "mesh_rollout":
-        return f"{REPO_URL}/blob/main/docs/README_MESH_ROLLOUT_2026-07-28.md"
+        return _source_url(
+            source_commit,
+            "docs/README_MESH_ROLLOUT_2026-07-28.md",
+        )
     if claim_id == "coordinator_tests":
         return "coordinator-candidate-receipt.json"
     raise SystemExit(f"No deploy-safe evidence route for {claim_id}: {evidence}")
 
 
-def _proof_cards(claims: dict[str, dict[str, Any]]) -> str:
+def _proof_cards(
+    claims: dict[str, dict[str, Any]],
+    source_commit: str,
+) -> str:
     rendered: list[str] = []
-    for claim_id in (
-        "helix_inventory",
-        "akos_tests",
-        "mesh_rollout",
-        "coordinator_tests",
-    ):
+    for claim_id in PROOF_IDS:
         claim = claims[claim_id]
-        metric, label, state = PROOF_PRESENTATION[claim_id]
+        metric, label, state = _presentation(claim)
         state_class = "candidate" if state == "CANDIDATE" else ""
+        evidence_href = _evidence_href(claim_id, claim, source_commit)
         rendered.append(
             '<article class="card proof-card">'
             f'<span class="state {state_class}">{_escape(state)}</span>'
             f'<div class="metric">{_escape(metric)}</div>'
             f'<h3>{_escape(label)}</h3>'
             f'<p>{_escape(claim["claim"])}</p>'
-            f'<a href="{_escape(_evidence_href(claim_id, claim))}">'
-            "Inspect evidence →</a>"
+            f'<a href="{_escape(evidence_href)}">Inspect evidence →</a>'
             "</article>"
         )
     return "".join(rendered)
@@ -250,7 +308,7 @@ def _validate_contracts(
         if not isinstance(claim_id, str):
             raise SystemExit(f"invalid evidence claim: {claim}")
         by_id[claim_id] = claim
-    missing = sorted(set(PROOF_PRESENTATION) - set(by_id))
+    missing = sorted(set((*PROOF_IDS, "runner_activation")) - set(by_id))
     if missing:
         raise SystemExit(f"missing recruiter proof claims: {missing}")
 
@@ -260,29 +318,45 @@ def _validate_contracts(
         raise SystemExit("AKOS proof must pin a source commit")
     if by_id["coordinator_tests"].get("state") != "CANDIDATE_TEST_PROOF":
         raise SystemExit("coordinator proof must remain candidate evidence")
+    runner_state = by_id["runner_activation"].get("state")
+    if runner_state != "IMPLEMENTED_ACTIVATION_BLOCKED":
+        raise SystemExit("APEX runner activation must remain explicitly blocked")
 
+    for claim_id in PROOF_IDS:
+        _presentation(by_id[claim_id])
     return by_id
+
+
+def _validate_output_path(output: Path) -> None:
+    resolved = output.resolve()
+    protected = (
+        ROOT,
+        SITE_SOURCE,
+        CANDIDATE_ROOT,
+        ROOT / "src",
+        ROOT / "scripts",
+        ROOT / "tests",
+    )
+    for path in protected:
+        protected_path = path.resolve()
+        if resolved == protected_path:
+            raise SystemExit(f"Refusing destructive output path: {resolved}")
+        if protected_path.is_relative_to(resolved):
+            raise SystemExit(f"Output path contains protected source: {resolved}")
+        if resolved.is_relative_to(protected_path) and protected_path != ROOT:
+            raise SystemExit(f"Output path is inside protected source: {resolved}")
 
 
 def _copy_public_sources(output: Path) -> None:
     copies = {
         SITE_SOURCE / "styles.css": output / "styles.css",
         SITE_SOURCE / "app.js": output / "app.js",
-        CANDIDATE_ROOT / "EXECUTIVE_RESUME.md": output / "executive-resume.md",
-        CANDIDATE_ROOT / "TECHNICAL_PORTFOLIO_BRIEF.md": (
-            output / "technical-portfolio-brief.md"
-        ),
-        CANDIDATE_ROOT / "CLAIM_REGISTER.md": output / "claim-register.md",
         CANDIDATE_ROOT / "candidate_node.json": output / "candidate-node.json",
-        CANDIDATE_ROOT / "application_spiral.json": (
-            output / "application-spiral.json"
-        ),
+        CANDIDATE_ROOT / "application_spiral.json": output / "application-spiral.json",
         CANDIDATE_ROOT / "evidence_ledger.json": output / "evidence-ledger.json",
+        CANDIDATE_ROOT / "package_mesh.json": output / "package-mesh.json",
         CANDIDATE_ROOT / "coordinator_candidate_receipt.json": (
             output / "coordinator-candidate-receipt.json"
-        ),
-        ROOT / "RECRUITER_EXECUTIVE_SUMMARY.md": (
-            output / "recruiter-executive-summary.md"
         ),
     }
     for source, destination in copies.items():
@@ -293,8 +367,60 @@ def _copy_public_sources(output: Path) -> None:
     (output / ".nojekyll").write_text("", encoding="utf-8")
 
 
+def _write_source_urls(output: Path, source_commit: str) -> None:
+    payload = {
+        "schema": "glaciereq.recruiter-source-urls.v1",
+        "source_commit": source_commit,
+        "executive_resume": _source_url(
+            source_commit,
+            "hire_package/casey-barton/EXECUTIVE_RESUME.md",
+        ),
+        "technical_portfolio_brief": _source_url(
+            source_commit,
+            "hire_package/casey-barton/TECHNICAL_PORTFOLIO_BRIEF.md",
+        ),
+        "claim_register": _source_url(
+            source_commit,
+            "hire_package/casey-barton/CLAIM_REGISTER.md",
+        ),
+        "deployment_contract": _source_url(
+            source_commit,
+            "docs/RECRUITER_SITE_DEPLOYMENT.md",
+        ),
+    }
+    (output / "source-urls.json").write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
+def _local_target(output: Path, link: str) -> Path | None:
+    parsed = urlsplit(link)
+    if parsed.scheme or parsed.netloc or link.startswith("#"):
+        return None
+    relative = parsed.path
+    if not relative:
+        return None
+    target = (output / relative).resolve()
+    if not target.is_relative_to(output.resolve()):
+        raise SystemExit(f"Local link escapes deployment root: {link}")
+    return target
+
+
+def _validate_local_links(output: Path) -> None:
+    parser = LocalLinkCollector()
+    parser.feed((output / "index.html").read_text(encoding="utf-8"))
+    missing: list[str] = []
+    for link in parser.links:
+        target = _local_target(output, link)
+        if target is not None and not target.is_file():
+            missing.append(link)
+    if missing:
+        raise SystemExit(f"Deployed site has broken local links: {sorted(missing)}")
+
+
 def _assert_public_surface(output: Path) -> None:
-    allowed_suffixes = {".html", ".css", ".js", ".md", ".json", ""}
+    allowed_suffixes = {".html", ".css", ".js", ".json", ""}
     for path in output.rglob("*"):
         if path.is_symlink():
             raise SystemExit(f"Deployed surface contains symbolic link: {path}")
@@ -305,9 +431,9 @@ def _assert_public_surface(output: Path) -> None:
         text = path.read_text(encoding="utf-8")
         if "{{" in text or "}}" in text:
             raise SystemExit(f"Unresolved template placeholder in {path}")
-        for pattern in FORBIDDEN_PUBLIC_PATTERNS:
-            if pattern.search(text):
-                raise SystemExit(f"Direct recruiter PII leaked into {path}")
+        if EMAIL_PATTERN.search(text) or PHONE_PATTERN.search(text):
+            raise SystemExit(f"Direct recruiter contact data leaked into {path}")
+    _validate_local_links(output)
 
 
 def _sha256(path: Path) -> str:
@@ -346,6 +472,11 @@ def _write_manifest(output: Path, source_commit: str) -> None:
 
 
 def build(output: Path, source_commit: str) -> None:
+    _validate_output_path(output)
+    if source_commit != "local-uncommitted":
+        if SOURCE_COMMIT_PATTERN.fullmatch(source_commit) is None:
+            raise SystemExit("source commit must be a 40-character lowercase SHA")
+
     candidate = _load_json(CANDIDATE_ROOT / "candidate_node.json")
     ledger = _load_json(CANDIDATE_ROOT / "evidence_ledger.json")
     spiral = _load_json(CANDIDATE_ROOT / "application_spiral.json")
@@ -358,11 +489,19 @@ def build(output: Path, source_commit: str) -> None:
     status = candidate["status"]
     roles = [str(role) for role in candidate["primary_role_variants"]]
     template = (SITE_SOURCE / "template.html").read_text(encoding="utf-8")
+    resume_url = _source_url(
+        source_commit,
+        "hire_package/casey-barton/EXECUTIVE_RESUME.md",
+    )
+    brief_url = _source_url(
+        source_commit,
+        "hire_package/casey-barton/TECHNICAL_PORTFOLIO_BRIEF.md",
+    )
     replacements = {
         "{{CANDIDATE}}": _escape(candidate["candidate"]),
         "{{PRIMARY_ROLE}}": _escape(" · ".join(roles)),
         "{{STATUS_BADGES}}": _status_badges(claims),
-        "{{PROOF_CARDS}}": _proof_cards(claims),
+        "{{PROOF_CARDS}}": _proof_cards(claims, source_commit),
         "{{ROLE_CARDS}}": _role_cards(roles),
         "{{SPIRAL_STEPS}}": _spiral_steps(spiral["stages"]),
         "{{VERIFIED_LIST}}": _list_items(
@@ -375,13 +514,25 @@ def build(output: Path, source_commit: str) -> None:
             list(status.get("unverified_scope", []))
         ),
         "{{SOURCE_COMMIT}}": _escape(source_commit),
+        "executive-resume.md": _escape(resume_url),
+        "technical-portfolio-brief.md": _escape(brief_url),
     }
     rendered = template
     for marker, value in replacements.items():
         rendered = rendered.replace(marker, value)
+    machine_anchor = (
+        '<a class="text-link" href="candidate-node.json">Open machine path →</a>'
+    )
+    machine_links = (
+        machine_anchor
+        + '\n          <a class="text-link" href="package-mesh.json">'
+        + "Open package mesh →</a>"
+    )
+    rendered = rendered.replace(machine_anchor, machine_links)
     (output / "index.html").write_text(rendered, encoding="utf-8")
 
     _copy_public_sources(output)
+    _write_source_urls(output, source_commit)
     _assert_public_surface(output)
     _write_manifest(output, source_commit)
     _assert_public_surface(output)
