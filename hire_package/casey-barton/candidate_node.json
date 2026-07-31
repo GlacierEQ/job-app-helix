@@ -1,0 +1,75 @@
+{
+  "schema": "glaciereq.readme.v1",
+  "profile": "glaciereq.readme-impact.v2-draft",
+  "node_kind": "candidate_application_surface",
+  "candidate": "Casey Del Carpio Barton",
+  "repository": "GlacierEQ/job-app-helix",
+  "canonical_branch": "main",
+  "purpose": "Unify recruiter impact, expert diligence, and AI ingestion around one evidence-bound candidate representation.",
+  "status": {
+    "state": "PARTIALLY_VERIFIED",
+    "verified_at": "2026-07-30",
+    "verified_scope": [
+      "exact 66-repository boundary",
+      "AKOS 94/94 tests on Python 3.11-3.13",
+      "21-node README Mesh rollout"
+    ],
+    "blocked_scope": [
+      "APEX GitHub App bridge activation",
+      "agent coordinator hosted multi-version promotion"
+    ],
+    "unverified_scope": [
+      "portfolio-wide runtime, deployment, scale, performance, and customer impact"
+    ]
+  },
+  "target_roles": [
+    "Applied AI Systems Architect",
+    "Forward-Deployed AI Engineer",
+    "AI Deployment Engineer",
+    "Agent Infrastructure Engineer",
+    "AI Solutions Architect"
+  ],
+  "interfaces": {
+    "inputs": [
+      "Job-App Helix inventory/audit",
+      "repo-native receipts",
+      "candidate experience record",
+      "target job description"
+    ],
+    "outputs": [
+      "ATS resume",
+      "recruiter presentation",
+      "technical brief",
+      "AI candidate profile",
+      "claim register",
+      "role-specific variants"
+    ]
+  },
+  "relationships": [
+    {
+      "target": "GlacierEQ/AKOS",
+      "relation": "GOVERNED_BY",
+      "combined_value": "AKOS supplies authority and completion semantics; the candidate package supplies human and machine presentation."
+    },
+    {
+      "target": "GlacierEQ/job-app-helix",
+      "relation": "CONSUMES",
+      "combined_value": "The package consumes inventory, evidence states, documentation contracts, and typed portfolio relationships."
+    },
+    {
+      "target": "GlacierEQ/public-actions-runner-host",
+      "relation": "EXECUTES_THROUGH",
+      "combined_value": "Public runner architecture supplies the governed execution model used as portfolio evidence."
+    },
+    {
+      "target": "GlacierEQ/anthropic-agent-coordinator",
+      "relation": "PROVIDES_CAPABILITY",
+      "combined_value": "The coordinator supplies dependency-aware agent planning as a candidate-state technical exhibit."
+    }
+  ],
+  "limits": [
+    "No unsupported scale or throughput claims.",
+    "README/hash coverage is not runtime proof.",
+    "Candidate/local evidence is not canonical hosted evidence."
+  ]
+}
