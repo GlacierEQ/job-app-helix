@@ -1,21 +1,70 @@
-MIT License
+GLACIEREQ PROPRIETARY EVALUATION AND PARTNERSHIP LICENSE v1.0
 
-Copyright (c) 2026 Casey Barton
+Copyright (c) 2026 Casey Del Carpio Barton / GlacierEQ.
+All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. CURRENT LICENSE STATUS
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This software, source code, documentation, architecture, data contracts, schemas,
+workflows, designs, examples, generated artifacts, and associated materials
+(collectively, the "Materials") are proprietary and are not open-source software.
+Public visibility or access to the Materials does not grant permission to copy,
+modify, distribute, sublicense, sell, deploy, host, train models on, create
+derivative works from, or commercially use the Materials.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. LIMITED EVALUATION PERMISSION
+
+A recipient may view and internally evaluate the Materials solely for a bona fide
+employment, recruiting, partnership, investment, procurement, research,
+collaboration, or licensing discussion with Casey Del Carpio Barton / GlacierEQ.
+This limited permission is non-exclusive, non-transferable, revocable, and does
+not include production use, external publication, competitive benchmarking,
+redistribution, or disclosure of non-public supporting materials.
+
+3. NO IMPLIED RIGHTS
+
+No patent, trademark, trade-secret, copyright, data, model, deployment,
+integration, or other intellectual-property license is granted by implication,
+estoppel, source visibility, repository access, discussion, contribution, or
+receipt of a copy. "GlacierEQ" and related names, marks, visual identities, and
+product names may not be used without written permission.
+
+4. DISCUSSION, LICENSING, AND GROWTH
+
+GlacierEQ is open to good-faith discussion concerning employment, commercial or
+non-commercial licensing, customer deployment, systems integration, joint
+development, investment, research collaboration, acquisition, source-available
+arrangements, or a separately negotiated open-source release. Any permission
+beyond Section 2 requires a separate written agreement signed by the rights
+holder.
+
+5. THIRD-PARTY MATERIALS
+
+Third-party components, dependencies, standards, and referenced works remain
+subject to their respective licenses. This license governs only the rights held
+by Casey Del Carpio Barton / GlacierEQ and does not expand or restrict rights in
+third-party materials.
+
+6. LICENSE HISTORY
+
+This license applies to versions distributed with this notice. Copies of earlier
+versions that were validly distributed under the MIT License remain governed by
+the MIT License attached to those specific versions; previously granted rights
+are not retroactively revoked. New contributions and new distributions after the
+effective adoption of this notice are proprietary unless a separate written
+agreement states otherwise.
+
+7. NO WARRANTY; LIMITATION OF LIABILITY
+
+THE MATERIALS ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, ACCURACY, SECURITY, OR RELIABILITY.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE RIGHTS HOLDER WILL NOT BE LIABLE FOR
+ANY CLAIM, LOSS, DAMAGE, OR OTHER LIABILITY ARISING FROM ACCESS TO, EVALUATION
+OF, OR USE OF THE MATERIALS.
+
+8. CONTACT
+
+Licensing, partnership, employment, integration, and collaboration discussions
+may be initiated through the public GlacierEQ GitHub profile or the contact
+channel included in the authorized recruiter package.
