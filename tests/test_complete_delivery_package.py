@@ -55,8 +55,8 @@ def test_complete_delivery_package_includes_census_layers(tmp_path: Path) -> Non
     assert result.zip_path.is_file()
 
     module.base.verify_package(package)
-    assert module.base.COPY_MAP == original_copy_map
-    assert module.base.BASE_REQUIRED_PACKAGE_PATHS == original_required
+    assert original_copy_map == module.base.COPY_MAP
+    assert original_required == module.base.BASE_REQUIRED_PACKAGE_PATHS
 
 
 def test_base_package_remains_base_after_complete_build(tmp_path: Path) -> None:
