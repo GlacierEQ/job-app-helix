@@ -8,7 +8,7 @@
   "purpose": "Unify recruiter impact, expert diligence, and AI ingestion around one evidence-bound candidate representation.",
   "status": {
     "state": "PARTIALLY_VERIFIED",
-    "verified_at": "2026-07-30",
+    "verified_at": "2026-07-30T17:12:00-10:00",
     "verified_scope": [
       "exact 66-repository boundary",
       "AKOS 94/94 tests on Python 3.11-3.13",
