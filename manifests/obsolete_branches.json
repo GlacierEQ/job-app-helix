@@ -27,6 +27,12 @@
       "reason": "Draft audit assets were transplanted, corrected, verified, and merged by PR #10."
     },
     {
+      "name": "cleanup/apply-verified-obsolete-refs-2026-07-30",
+      "policy": "merge_candidate",
+      "pull_request": 15,
+      "reason": "This bounded cleanup-trigger branch deletes itself only after PR #15 is merged and the current-main apply transaction verifies every candidate."
+    },
+    {
       "name": "cleanup/public-reproducible-runtime",
       "policy": "superseded_pr",
       "closed_pull_request": 1,
