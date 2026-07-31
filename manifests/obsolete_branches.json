@@ -1,0 +1,72 @@
+{
+  "schema": "glaciereq.obsolete-branches.v1",
+  "repository": "GlacierEQ/job-app-helix",
+  "default_branch": "main",
+  "branches": [
+    {
+      "name": "audit/evidence-bound-portfolio-2026-07-29",
+      "policy": "merged_pr",
+      "pull_request": 5,
+      "reason": "Evidence-bound audit was squash-merged and is canonical on main."
+    },
+    {
+      "name": "audit/proof-weighted-mainline-2026-07-30",
+      "policy": "merged_pr",
+      "pull_request": 10,
+      "reason": "Proof-weighted audit consolidation was squash-merged onto the current mainline."
+    },
+    {
+      "name": "audit/proof-weighted-portfolio-2026-07-29",
+      "policy": "superseded_pr",
+      "closed_pull_request": 6,
+      "replacement_pull_request": 10,
+      "reason": "Draft audit assets were transplanted, corrected, verified, and merged by PR #10."
+    },
+    {
+      "name": "cleanup/public-reproducible-runtime",
+      "policy": "superseded_pr",
+      "closed_pull_request": 1,
+      "replacement_pull_request": 2,
+      "reason": "The curated public product and later hardening supersede this early runtime branch."
+    },
+    {
+      "name": "dependabot/uv/uv-590e9db7b9",
+      "policy": "stale_dependency",
+      "expected_files": [
+        "pyproject.toml",
+        "uv.lock"
+      ],
+      "reason": "The stale dependency branch diverged before Helix 0.3.0 and would remove the portfolio CLI while reverting the project version to 0.2.0."
+    },
+    {
+      "name": "docs/readme-masterclass-2026-07-30",
+      "policy": "merged_pr",
+      "pull_request": 8,
+      "reason": "The three-depth README entrypoint was squash-merged."
+    },
+    {
+      "name": "feat/readme-intelligence-mesh",
+      "policy": "merged_pr",
+      "pull_request": 3,
+      "reason": "The Protobuf-backed README Mesh was squash-merged."
+    },
+    {
+      "name": "fix/public-product-standard",
+      "policy": "merged_pr",
+      "pull_request": 2,
+      "reason": "The hire-grade public product rebuild was squash-merged."
+    },
+    {
+      "name": "hire-package/spiral-recruiter-presentation-2026-07-30",
+      "policy": "merged_pr",
+      "pull_request": 9,
+      "reason": "The canonical recruiter package and candidate surface were squash-merged."
+    },
+    {
+      "name": "program/portfolio-verification-orchestrator-2026-07-29",
+      "policy": "merged_pr",
+      "pull_request": 7,
+      "reason": "The portfolio verification orchestrator was squash-merged."
+    }
+  ]
+}
