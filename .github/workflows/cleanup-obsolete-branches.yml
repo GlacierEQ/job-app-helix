@@ -33,9 +33,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -51,6 +54,7 @@ jobs:
           --output artifacts/obsolete-branch-cleanup.json
 
       - name: Upload preflight receipt
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: obsolete-branch-preflight-${{ github.sha }}
@@ -63,6 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: read
     steps:
       - name: Check out canonical main
         uses: actions/checkout@v6
@@ -75,7 +80,7 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Delete only branches that pass their declared policy
+      - name: Delete only branches that pass every declared policy
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
