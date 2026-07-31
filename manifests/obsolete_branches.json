@@ -36,7 +36,13 @@
         "pyproject.toml",
         "uv.lock"
       ],
-      "reason": "The stale dependency branch diverged before Helix 0.3.0 and would remove the portfolio CLI while reverting the project version to 0.2.0."
+      "reason": "Its pytest security gain is transplanted onto Helix 0.3.0; the stale branch would remove the portfolio CLI and rewind package metadata."
+    },
+    {
+      "name": "deploy/canonical-recruiter-surface-2026-07-30",
+      "policy": "merge_candidate",
+      "pull_request": 11,
+      "reason": "This final consolidation branch deletes itself only after PR #11 is merged into canonical main."
     },
     {
       "name": "docs/readme-masterclass-2026-07-30",
