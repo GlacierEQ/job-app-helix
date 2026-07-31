@@ -6,7 +6,12 @@
       "id": "helix_inventory",
       "claim": "Job-App Helix governs an exact 66-repository application boundary",
       "state": "VERIFIED_BOUNDARY",
-      "evidence": "../../manifests/portfolio_repositories.json"
+      "evidence": "../../manifests/portfolio_repositories.json",
+      "presentation": {
+        "metric": "66",
+        "label": "Exact portfolio boundary",
+        "display_state": "VERIFIED"
+      }
     },
     {
       "id": "akos_tests",
@@ -14,19 +19,34 @@
       "state": "VERIFIED_TEST",
       "evidence": "https://github.com/GlacierEQ/AKOS/actions/runs/30532339028",
       "source_commit": "d00eb4a9889fb4b78621d422a70c2677e12a467d",
-      "promotion_merge": "b4b9ecba71f41bf9e3ddffa1f6c2c34c6a9b7192"
+      "promotion_merge": "b4b9ecba71f41bf9e3ddffa1f6c2c34c6a9b7192",
+      "presentation": {
+        "metric": "94/94",
+        "label": "AKOS tests passed",
+        "display_state": "VERIFIED"
+      }
     },
     {
       "id": "mesh_rollout",
       "claim": "README Mesh rollout verified for 21 nodes",
       "state": "VERIFIED_DOCUMENTATION",
-      "evidence": "../../docs/README_MESH_ROLLOUT_2026-07-28.md"
+      "evidence": "../../docs/README_MESH_ROLLOUT_2026-07-28.md",
+      "presentation": {
+        "metric": "21",
+        "label": "README Mesh nodes",
+        "display_state": "VERIFIED"
+      }
     },
     {
       "id": "coordinator_tests",
       "claim": "Agent coordinator passed 62/62 independent Python 3.13 tests",
       "state": "CANDIDATE_TEST_PROOF",
-      "evidence": "coordinator_candidate_receipt.json"
+      "evidence": "coordinator_candidate_receipt.json",
+      "presentation": {
+        "metric": "62/62",
+        "label": "Coordinator candidate tests",
+        "display_state": "CANDIDATE"
+      }
     },
     {
       "id": "runner_activation",

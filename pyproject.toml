@@ -27,7 +27,7 @@ dependencies = ["protobuf>=6.31,<7"]
 dev = [
   "grpcio-tools>=1.74,<2",
   "mypy>=1.13,<2",
-  "pytest>=8.3,<9",
+  "pytest>=9.1.1,<10",
   "ruff>=0.9,<1",
 ]
 

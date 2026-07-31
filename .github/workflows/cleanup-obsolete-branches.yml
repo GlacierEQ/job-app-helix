@@ -1,0 +1,98 @@
+name: Consolidate obsolete branches
+
+on:
+  pull_request:
+    paths:
+      - "manifests/obsolete_branches.json"
+      - "scripts/cleanup_obsolete_branches.py"
+      - "tests/test_obsolete_branch_cleanup.py"
+      - ".github/workflows/cleanup-obsolete-branches.yml"
+  push:
+    branches: [main]
+    paths:
+      - "manifests/obsolete_branches.json"
+      - "scripts/cleanup_obsolete_branches.py"
+      - "tests/test_obsolete_branch_cleanup.py"
+      - ".github/workflows/cleanup-obsolete-branches.yml"
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Delete branches after all fail-closed preflights pass"
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: obsolete-branch-consolidation
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Verify cleanup plan
+    if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && !inputs.apply)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run fail-closed cleanup preflight
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/cleanup_obsolete_branches.py
+          --repository "${{ github.repository }}"
+          --output artifacts/obsolete-branch-cleanup.json
+
+      - name: Upload preflight receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: obsolete-branch-preflight-${{ github.sha }}
+          path: artifacts/obsolete-branch-cleanup.json
+          if-no-files-found: error
+
+  apply:
+    name: Delete verified obsolete branches
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.apply)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Check out canonical main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Delete only branches that pass every declared policy
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/cleanup_obsolete_branches.py
+          --repository "${{ github.repository }}"
+          --apply
+          --output artifacts/obsolete-branch-cleanup.json
+
+      - name: Upload deletion receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: obsolete-branch-cleanup-${{ github.sha }}
+          path: artifacts/obsolete-branch-cleanup.json
+          if-no-files-found: error

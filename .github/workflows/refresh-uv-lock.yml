@@ -1,0 +1,71 @@
+name: Verify uv lock
+
+on:
+  pull_request:
+    paths:
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/refresh-uv-lock.yml"
+  push:
+    branches: [main]
+    paths:
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/refresh-uv-lock.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-uv-lock-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify exact lock and execute it
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.10.0"
+          enable-cache: true
+
+      - name: Prove the committed lock is current
+        shell: bash
+        run: |
+          uv lock --upgrade-package pytest
+          git diff --exit-code -- uv.lock
+
+      - name: Assert package and pytest contracts
+        shell: bash
+        run: |
+          grep -F 'name = "job-app-helix"' uv.lock
+          grep -F 'version = "0.3.0"' uv.lock
+          grep -F 'name = "pytest"' uv.lock
+          grep -F 'version = "9.1.1"' uv.lock
+          grep -F 'specifier = ">=9.1.1,<10"' uv.lock
+
+      - name: Install exactly from the committed lock
+        run: uv sync --extra dev --locked
+
+      - name: Execute the complete suite from the lock
+        run: uv run --locked pytest
+
+      - name: Run strict lint from the lock
+        run: >-
+          uv run --locked ruff check
+          src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
+
+      - name: Upload verified lock receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-uv-lock-${{ github.sha }}
+          path: uv.lock
+          if-no-files-found: error
