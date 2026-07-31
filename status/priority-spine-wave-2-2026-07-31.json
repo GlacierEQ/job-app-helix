@@ -1,0 +1,201 @@
+{
+  "schema": "glaciereq.library.execution-receipt.v1",
+  "program": "library-readme-and-branch-consolidation",
+  "operating_date_hst": "2026-07-30",
+  "recorded_date_utc": "2026-07-31",
+  "canonical_control_plane": "GlacierEQ/job-app-helix",
+  "scope": {
+    "kind": "priority_spine_wave",
+    "repositories": 9,
+    "whole_library_completion_claimed": false,
+    "recruiter_portfolio_completion_claimed": false
+  },
+  "policy": {
+    "main_is_canonical": true,
+    "preserve_unique_value_before_closure": true,
+    "require_repository_native_proof": true,
+    "pr_closure_is_branch_deletion": false,
+    "remote_ref_deletion_capability_available": false
+  },
+  "outcomes": [
+    {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "status": "MERGED_VERIFIED_CURRENT_RELEASE",
+      "canonical_branch": "main",
+      "merge": {
+        "pull_request": 16,
+        "commit": "dea2661270c343b6e17c617eee29c36123939414",
+        "method": "squash"
+      },
+      "proof": [
+        "registry validation passed",
+        "generated-surface checks passed",
+        "41 Python governance tests passed",
+        "immutable integrity ledger sealed",
+        "job-application integration registered"
+      ],
+      "branch_state": {
+        "hardening_advanced_exhibits": "MERGED_AND_RETIRED",
+        "native_hygiene_removed": [
+          "release/recruiter-package-mainline-2026-07-30",
+          "tmp/tree-api-probe-2026-07-30",
+          "tmp/unused-should-not-have-created"
+        ],
+        "obsolete_refs_remaining": [
+          "release/recruiter-package-hardening-2026-07-30",
+          "release/recruiter-package-hardening-verified-2026-07-30",
+          "tmp/tree-api-probe-2-2026-07-30"
+        ]
+      }
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "status": "MERGED_VERIFIED",
+      "canonical_branch": "main",
+      "merge": {
+        "pull_request": 4,
+        "commit": "1efb16a7017ebae0454d556c5ac31b4149c18673",
+        "method": "squash"
+      },
+      "proof": [
+        "portfolio truth gate passed",
+        "generated showcase drift repaired",
+        "public recruiter distribution remains evidence-bound"
+      ],
+      "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_SUPERSEDED_REFS"
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "status": "CANONICAL_CONTROL_PLANE_VERIFIED",
+      "canonical_branch": "main",
+      "current_commit": "a438bba26676f8329a4ec874027029651e80c6fa",
+      "proof": [
+        "Python 3.11, 3.12, and 3.13 CI verified",
+        "proof-weighted portfolio audit integrated",
+        "final-form recruiter package verified",
+        "branch retirement receipt persisted",
+        "Tower authority synchronization receipt integrated"
+      ],
+      "branch_state": "RETIREMENT_RECEIPT_COMPLETE_WITH_EXACT_DELETE_BLOCKERS"
+    },
+    {
+      "repository": "GlacierEQ/monolith",
+      "status": "PRESERVE_OPEN_BLOCKED",
+      "canonical_branch": "main",
+      "active_pull_request": 2,
+      "active_branch": "feat/monolith-evolution-roadmap",
+      "unique_value": "PRESENT",
+      "blockers": [
+        "GitHub Actions execution unavailable on feature and default branch tests",
+        "catalog/evolution_map.json missing",
+        "status/EVOLUTION_LEVELS.md missing"
+      ],
+      "cleanup": "TEMPORARY_EXECUTION_WORKFLOWS_REMOVED",
+      "pull_request_disposition": "PRESERVE_OPEN"
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "status": "TEST_VERIFIED_BRANCH_FAMILIES_CLASSIFIED",
+      "canonical_branch": "main",
+      "current_commit": "5ef48a8068a8079f3cbca3f83c5800909b1d5239",
+      "proof": [
+        "repository-native verification remains present",
+        "Memory First action protocol present on main",
+        "Finisher implementation present on main",
+        "CASEBRAIN federation contract present on main",
+        "branch classification recorded in issue 11"
+      ],
+      "branch_classification": {
+        "obsolete": 9,
+        "preserve_unique_high_value": 2,
+        "quarantine_extract": 1
+      },
+      "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_NINE_OBSOLETE_REFS"
+    },
+    {
+      "repository": "GlacierEQ/pro-code",
+      "status": "MERGED_VERIFIED",
+      "canonical_branch": "main",
+      "merge_commit": "a9c7697bb9a8b89e201721e29136ae95f1cc57e4",
+      "proof": [
+        "TypeScript lint and type-check passed",
+        "16 TypeScript behavior tests passed",
+        "Vite production build passed",
+        "Python contract tests passed",
+        "native Rust tests passed",
+        "native Haskell invariants passed"
+      ],
+      "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_SUPERSEDED_REFS"
+    },
+    {
+      "repository": "GlacierEQ/Pro_Code",
+      "status": "STATIC_DOCTRINE_AND_RELATIONSHIP_CORPUS_VERIFIED",
+      "canonical_branch": "main",
+      "merge": {
+        "pull_request": 2,
+        "commit": "5f5f718a6a88841ff6efe19c302cd29e8d611d54",
+        "method": "squash"
+      },
+      "proof": [
+        "13 focused tests passed",
+        "direct verifier CLI passed",
+        "eight doctrine and relationship artifacts hash-verified",
+        "automatic inheritance and runtime claims rejected"
+      ],
+      "execution_boundary": "GITHUB_ACTIONS_BLOCKED_NOT_COUNTED_AS_PASSING",
+      "branch_state": "FOUR_OBSOLETE_REFS_CLASSIFIED_DELETE_BLOCKED_TOOLING"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "status": "MERGED_VERIFIED_FRONT_DOOR",
+      "canonical_branch": "main",
+      "merge": {
+        "pull_request": 152,
+        "commit": "f82bf6ed9da2d4e27ddc7e1f7d624ed04026cb24",
+        "method": "squash"
+      },
+      "proof": [
+        "orphaned gitlink checkout repaired",
+        "bounded Python surfaces compiled",
+        "two process-health contract tests passed",
+        "README and branch-family truth validation passed"
+      ],
+      "scope_boundary": "FRONT_DOOR_VERIFIED_BRANCH_FAMILY_BACKLOG_REMAINS"
+    },
+    {
+      "repository": "GlacierEQ/megaminds-pdf",
+      "status": "MERGED_VERIFIED_VITE_MIGRATION",
+      "canonical_branch": "master",
+      "merge": {
+        "pull_request": 3,
+        "commit": "5ddcdc40c9b2bb625d39ddf49e3f44e2e892a773",
+        "method": "squash"
+      },
+      "proof": [
+        "Create React App and react-scripts removed",
+        "clean lock regeneration passed",
+        "locked npm install passed",
+        "four viewer behavior tests passed",
+        "Vite production build passed",
+        "production audit reported zero vulnerabilities"
+      ],
+      "identity_state": "CONFIRMED_FOCUSED_PDF_VIEWER",
+      "nonclaims": [
+        "no deployment receipt",
+        "no upload flow",
+        "no persistent annotations",
+        "no OCR",
+        "no AI document analysis"
+      ]
+    }
+  ],
+  "summary": {
+    "priority_spine_repositories": 9,
+    "verified_or_bounded_outcomes": 8,
+    "active_blocked_repositories_preserved_open": 1,
+    "branch_families_classified": true,
+    "remote_branch_refs_deleted": 0,
+    "remote_branch_refs_requiring_later_deletion": true,
+    "whole_library_complete": false
+  }
+}
