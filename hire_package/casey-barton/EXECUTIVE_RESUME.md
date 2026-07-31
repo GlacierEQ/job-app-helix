@@ -34,7 +34,7 @@ Applied AI systems architect building the application layer between models and d
 - Lead architecture, implementation, verification, and technical communication across agent, memory, document, browser, deployment, and provenance systems.
 - Convert ambiguous workflows into bounded components, explicit interfaces, failure-safe transitions, tests, and resumable operating paths.
 
-**Diamond Head Home Inspections - Certified Home Inspector | 2020-Aug 2024**
+**Diamond Head Home Inspections - Certified Home Inspector | 2020-2024**
 
 - Diagnosed interconnected physical systems and translated evidence into clear client decisions and prioritized action under time pressure.
 
