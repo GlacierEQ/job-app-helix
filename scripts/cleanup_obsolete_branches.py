@@ -4,6 +4,7 @@ import argparse
 import base64
 import json
 import os
+import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -186,6 +187,27 @@ def _load_manifest(path: Path) -> dict[str, Any]:
     return payload
 
 
+def _pull_head_sha(pull: dict[str, Any]) -> str:
+    head = pull.get("head")
+    if not isinstance(head, dict) or not isinstance(head.get("sha"), str):
+        raise CleanupError(f"PR #{pull.get('number')} has no immutable head SHA")
+    return head["sha"]
+
+
+def _expected_sha(entry: dict[str, Any], key: str = "expected_head_sha") -> str:
+    value = entry.get(key)
+    if not isinstance(value, str) or len(value) != 40:
+        raise CleanupError(f"Manifest entry requires a 40-character {key}")
+    return value
+
+
+def _require_ref_sha(ref_sha: str, expected_sha: str, branch: str) -> None:
+    if ref_sha != expected_sha:
+        raise CleanupError(
+            f"Branch {branch} points to {ref_sha}, expected immutable {expected_sha}"
+        )
+
+
 def _validate_pull_branch(
     pull: dict[str, Any],
     *,
@@ -212,6 +234,7 @@ def _preflight_entry(
     entry: dict[str, Any],
     *,
     default_branch: str,
+    ref_sha: str,
     apply: bool,
 ) -> tuple[str, str]:
     branch = entry.get("name")
@@ -224,6 +247,8 @@ def _preflight_entry(
         raise CleanupError(f"Missing cleanup policy for {branch}")
 
     if policy == "merged_pr":
+        expected_sha = _expected_sha(entry)
+        _require_ref_sha(ref_sha, expected_sha, branch)
         pull_number = entry.get("pull_request")
         if not isinstance(pull_number, int):
             raise CleanupError(f"merged_pr policy requires pull_request for {branch}")
@@ -234,6 +259,8 @@ def _preflight_entry(
             default_branch=default_branch,
             merged=True,
         )
+        if _pull_head_sha(pull) != expected_sha:
+            raise CleanupError(f"PR #{pull_number} head does not match manifest")
         return "VERIFIED", f"PR #{pull_number} merged at {pull['merged_at']}"
 
     if policy == "merge_candidate":
@@ -249,6 +276,8 @@ def _preflight_entry(
             raise CleanupError(f"PR #{pull_number} does not belong to {branch}")
         if not isinstance(base, dict) or base.get("ref") != default_branch:
             raise CleanupError(f"PR #{pull_number} does not target {default_branch}")
+        pull_head_sha = _pull_head_sha(pull)
+        _require_ref_sha(ref_sha, pull_head_sha, branch)
         if pull.get("merged_at"):
             return "VERIFIED", f"PR #{pull_number} merged at {pull['merged_at']}"
         if apply:
@@ -258,6 +287,9 @@ def _preflight_entry(
         return "PENDING_MERGE", f"PR #{pull_number} is the current merge candidate"
 
     if policy == "superseded_pr":
+        expected_sha = _expected_sha(entry)
+        replacement_sha = _expected_sha(entry, "replacement_head_sha")
+        _require_ref_sha(ref_sha, expected_sha, branch)
         closed_number = entry.get("closed_pull_request")
         replacement_number = entry.get("replacement_pull_request")
         if not isinstance(closed_number, int) or not isinstance(
@@ -276,6 +308,8 @@ def _preflight_entry(
         )
         if closed.get("merged_at"):
             raise CleanupError(f"Superseded PR #{closed_number} unexpectedly merged")
+        if _pull_head_sha(closed) != expected_sha:
+            raise CleanupError(f"Closed PR #{closed_number} head does not match manifest")
         replacement_base = replacement.get("base")
         if not replacement.get("merged_at"):
             raise CleanupError(f"Replacement PR #{replacement_number} is not merged")
@@ -283,20 +317,26 @@ def _preflight_entry(
             raise CleanupError(f"Replacement PR #{replacement_number} has no base")
         if replacement_base.get("ref") != default_branch:
             raise CleanupError(
-                f"Replacement PR #{replacement_number} does not target main"
+                f"Replacement PR #{replacement_number} does not target {default_branch}"
+            )
+        if _pull_head_sha(replacement) != replacement_sha:
+            raise CleanupError(
+                f"Replacement PR #{replacement_number} head does not match manifest"
             )
         detail = (
-            f"PR #{closed_number} closed unmerged; replacement "
-            f"PR #{replacement_number} merged"
+            f"PR #{closed_number} closed at {expected_sha}; replacement "
+            f"PR #{replacement_number} merged from {replacement_sha}"
         )
         return "VERIFIED", detail
 
     if policy == "stale_dependency":
+        expected_sha = _expected_sha(entry)
+        _require_ref_sha(ref_sha, expected_sha, branch)
         open_pulls = api.open_pulls_for_branch(branch)
         if open_pulls:
             numbers = [pull.get("number") for pull in open_pulls]
             raise CleanupError(f"Stale dependency branch still has open PRs: {numbers}")
-        comparison = api.compare(default_branch, branch)
+        comparison = api.compare(default_branch, expected_sha)
         files = comparison.get("files")
         if not isinstance(files, list):
             raise CleanupError(f"Dependency comparison returned no files for {branch}")
@@ -312,18 +352,25 @@ def _preflight_entry(
                 f"{actual_files} != {expected_files}"
             )
             raise CleanupError(message)
-        pyproject = api.read_text_file("pyproject.toml", branch)
-        if 'version = "0.2.0"' not in pyproject:
+        pyproject_text = api.read_text_file("pyproject.toml", expected_sha)
+        try:
+            pyproject = tomllib.loads(pyproject_text)
+        except tomllib.TOMLDecodeError as exc:
+            raise CleanupError("Stale dependency pyproject is malformed") from exc
+        expected_version = entry.get("expected_version")
+        actual_version = pyproject.get("project", {}).get("version")
+        if actual_version != expected_version:
             raise CleanupError(
-                "Stale dependency branch no longer carries the expected version downgrade"
+                f"Stale dependency version {actual_version} != {expected_version}"
             )
-        if "job-app-helix-portfolio" in pyproject:
+        scripts = pyproject.get("project", {}).get("scripts", {})
+        if "job-app-helix-portfolio" in scripts:
             raise CleanupError(
                 "Stale dependency branch unexpectedly contains the current portfolio CLI"
             )
         return (
             "VERIFIED",
-            "No open PR; patch is limited to pyproject.toml and uv.lock and stale",
+            "No open PR; immutable patch is limited to pyproject.toml and uv.lock",
         )
 
     raise CleanupError(f"Unsupported cleanup policy {policy!r} for {branch}")
@@ -357,6 +404,17 @@ def _write_receipt(output: Path, payload: dict[str, Any]) -> None:
     )
 
 
+def _ref_sha(api: GitHubAPI, branch: str) -> str:
+    status, ref = api.get_ref(branch)
+    if status != 200 or not isinstance(ref, dict):
+        raise CleanupError(f"Branch {branch} is absent or malformed")
+    obj = ref.get("object")
+    sha = obj.get("sha") if isinstance(obj, dict) else None
+    if not isinstance(sha, str):
+        raise CleanupError(f"Branch {branch} has no commit SHA")
+    return sha
+
+
 def cleanup(
     manifest_path: Path,
     *,
@@ -386,7 +444,7 @@ def cleanup(
         policy = str(raw_entry.get("policy", ""))
         reason = str(raw_entry.get("reason", ""))
         try:
-            status, ref = api.get_ref(branch)
+            status, _ = api.get_ref(branch)
             if status == 404:
                 preflight_results.append(
                     BranchResult(
@@ -400,17 +458,12 @@ def cleanup(
                     )
                 )
                 continue
-            if ref is None:
-                raise CleanupError(f"Branch {branch} returned no ref object")
-            obj = ref.get("object")
-            ref_sha = obj.get("sha") if isinstance(obj, dict) else None
-            if not isinstance(ref_sha, str):
-                raise CleanupError(f"Branch {branch} has no commit SHA")
-
+            ref_sha = _ref_sha(api, branch)
             preflight, detail = _preflight_entry(
                 api,
                 raw_entry,
                 default_branch=default_branch,
+                ref_sha=ref_sha,
                 apply=apply,
             )
             candidates.append(
@@ -479,6 +532,11 @@ def cleanup(
     deletion_failure: str | None = None
     for candidate in candidates:
         try:
+            current_sha = _ref_sha(api, candidate.branch)
+            if current_sha != candidate.ref_sha:
+                raise CleanupError(
+                    f"Branch changed after preflight: {candidate.ref_sha} -> {current_sha}"
+                )
             api.delete_ref(candidate.branch)
             after_status, _ = api.get_ref(candidate.branch)
             if after_status != 404:
@@ -518,10 +576,8 @@ def cleanup(
     for candidate in reversed(deleted):
         try:
             api.create_ref(candidate.branch, candidate.ref_sha)
-            status, ref = api.get_ref(candidate.branch)
-            obj = ref.get("object") if isinstance(ref, dict) else None
-            restored_sha = obj.get("sha") if isinstance(obj, dict) else None
-            if status != 200 or restored_sha != candidate.ref_sha:
+            restored_sha = _ref_sha(api, candidate.branch)
+            if restored_sha != candidate.ref_sha:
                 raise CleanupError(
                     f"Branch {candidate.branch} did not restore to {candidate.ref_sha}"
                 )
