@@ -1,6 +1,6 @@
 # Portfolio Execution Program
 
-Job-App Helix now carries a programmatic path from an honest portfolio audit to repository-native proof. The program is intentionally split into two layers:
+Job-App Helix carries a programmatic path from an honest portfolio audit to repository-native proof. The program is intentionally split into two layers:
 
 1. **High-level program control** decides what should be promoted, repaired, consolidated, or archived.
 2. **Low-level proof execution** discovers each repository's actual stack, chooses non-shell command vectors, executes bounded checks, and emits atomic receipts.
@@ -9,7 +9,7 @@ The program never converts inventory, prose, or a zero-test exit into runtime pr
 
 ## Executive outcome
 
-The 66-repository job-application portfolio is managed as one reviewable system without flattening the responsibility of its individual repositories. Each repository moves through an explicit evidence ladder:
+The 67-repository job-application portfolio is managed as one reviewable system without flattening the responsibility of its individual repositories. Each repository moves through an explicit evidence ladder:
 
 ```text
 INVENTORY
@@ -33,7 +33,7 @@ Promotion is monotonic. A repository cannot claim a higher state because a lower
 
 ```text
 portfolio_repositories.json
-          │ exact 65-child boundary
+          │ exact 66-child boundary
           ▼
 portfolio_rollout.json
           │ complete wave partition + evidence targets
@@ -58,10 +58,12 @@ RUNNING ───────────────► VERIFIED / PARTIALLY_VE
 |---:|---|---:|---|---|
 | 1 | `wave-1-native-ci` | 20 | Add repository-native CI and positive-count test receipts to the README Mesh nodes | `TEST` |
 | 2 | `wave-2-tower-repair` | 1 | Repair Tower of Babel until each advertised language boundary has executable proof | `TEST` plus build receipt |
-| 3 | `wave-3-technical-exhibits` | 16 | Promote the strongest unverified technical exhibits with reference correctness and native tests | `TEST` |
+| 3 | `wave-3-technical-exhibits` | 17 | Promote the strongest unverified technical exhibits with reference correctness and native tests | `TEST` |
 | 4 | `wave-4-consolidation` | 28 | Complete, merge, package, or archive overlapping repositories with an explicit successor record | `DOCUMENTATION` decision |
 
-The wave manifest exact-partitions all 65 child repositories. Missing, duplicate, or unexpected repositories invalidate the entire program before any command runs.
+The wave manifest exact-partitions all 66 child repositories. Missing, duplicate, or unexpected repositories invalidate the entire program before any command runs.
+
+`JOB-RESUME-BUILDER-` entered the live boundary on July 31, 2026 because it is the lead public product presented by `job-application`, exposes an executable TypeScript truthfulness test suite, and must not remain outside the control plane that governs its recruiter-facing claims. The prior 66-repository audit artifacts remain immutable historical snapshots of their named boundary.
 
 ## Repository acceptance contract
 
@@ -179,7 +181,7 @@ job-app-helix-portfolio execute \
 
 ### Phase 1 — Contract validation
 
-- Verify the exact 66-repository boundary.
+- Verify the exact 67-repository boundary.
 - Verify that every child appears in exactly one rollout wave.
 - Verify the complete evidence ladder and fail-closed policy.
 - Reject unsafe repository identifiers and path traversal.
