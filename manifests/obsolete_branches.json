@@ -27,6 +27,12 @@
       "reason": "Draft audit assets were transplanted, corrected, verified, and merged by PR #10."
     },
     {
+      "name": "cleanup/apply-verified-obsolete-refs-2026-07-30",
+      "policy": "merge_candidate",
+      "pull_request": 15,
+      "reason": "This bounded cleanup-trigger branch deletes itself only after PR #15 is merged and the current-main apply transaction verifies every candidate."
+    },
+    {
       "name": "cleanup/public-reproducible-runtime",
       "policy": "superseded_pr",
       "closed_pull_request": 1,
@@ -79,6 +85,13 @@
       "pull_request": 9,
       "expected_head_sha": "02251af6cffe27a9995695e07afd5031db8f7317",
       "reason": "The canonical recruiter package and candidate surface were squash-merged."
+    },
+    {
+      "name": "ops/trigger-final-review-hardening-2026-07-30",
+      "policy": "merged_pr",
+      "pull_request": 13,
+      "expected_head_sha": "5b3523eb770b75edc08d7167c8bcd898888288b8",
+      "reason": "The temporary final-review dispatcher completed its bounded transaction through PR #13 and is no longer authoritative."
     },
     {
       "name": "program/library-readme-consolidation-2026-07-30",
