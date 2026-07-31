@@ -1,7 +1,13 @@
-name: Refresh and verify uv lock
+name: Verify uv lock
 
 on:
   pull_request:
+    paths:
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/refresh-uv-lock.yml"
+  push:
+    branches: [main]
     paths:
       - "pyproject.toml"
       - "uv.lock"
@@ -12,12 +18,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: refresh-uv-lock-${{ github.ref }}
+  group: verify-uv-lock-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  refresh:
-    name: Regenerate lock and execute it
+  verify:
+    name: Verify exact lock and execute it
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -31,8 +37,11 @@ jobs:
           version: "0.10.0"
           enable-cache: true
 
-      - name: Regenerate the current 0.3.0 lock
-        run: uv lock --upgrade-package pytest
+      - name: Prove the committed lock is current
+        shell: bash
+        run: |
+          uv lock --upgrade-package pytest
+          git diff --exit-code -- uv.lock
 
       - name: Assert package and pytest contracts
         shell: bash
@@ -43,7 +52,7 @@ jobs:
           grep -F 'version = "9.1.1"' uv.lock
           grep -F 'specifier = ">=9.1.1,<10"' uv.lock
 
-      - name: Install exactly from the generated lock
+      - name: Install exactly from the committed lock
         run: uv sync --extra dev --locked
 
       - name: Execute the complete suite from the lock
@@ -54,7 +63,7 @@ jobs:
           uv run --locked ruff check
           src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
 
-      - name: Upload regenerated lock
+      - name: Upload verified lock receipt
         uses: actions/upload-artifact@v4
         with:
           name: verified-uv-lock-${{ github.sha }}
