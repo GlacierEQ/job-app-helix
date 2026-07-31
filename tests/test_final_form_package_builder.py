@@ -70,8 +70,16 @@ def test_builder_emits_verified_numbered_package_and_deterministic_zip(
         names = archive.namelist()
     assert names == sorted(names)
     assert any(name.endswith("00_START_HERE/SEND_THIS.md") for name in names)
-    assert any(name.endswith("01_RESUME/Casey_Barton_Executive_Resume.md") for name in names)
-    assert any(name.endswith("02_ROADMAP/Casey_Barton_Deployment_and_Growth_Roadmap.md") for name in names)
+    assert any(
+        name.endswith("01_RESUME/Casey_Barton_Executive_Resume.md")
+        for name in names
+    )
+    assert any(
+        name.endswith(
+            "02_ROADMAP/Casey_Barton_Deployment_and_Growth_Roadmap.md"
+        )
+        for name in names
+    )
 
 
 def test_private_contact_is_isolated_from_public_scan(tmp_path: Path) -> None:
