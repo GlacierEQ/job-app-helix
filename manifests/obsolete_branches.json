@@ -81,11 +81,25 @@
       "reason": "The canonical recruiter package and candidate surface were squash-merged."
     },
     {
+      "name": "program/library-readme-consolidation-2026-07-30",
+      "policy": "merged_pr",
+      "pull_request": 12,
+      "expected_head_sha": "3912f44f9bded80d5a73cfe708c75dd63dc47f6a",
+      "reason": "The library-wide README and branch-consolidation program was squash-merged and is canonical on main."
+    },
+    {
       "name": "program/portfolio-verification-orchestrator-2026-07-29",
       "policy": "merged_pr",
       "pull_request": 7,
       "expected_head_sha": "863d67dc68908648aa6d3d061bd0252a6e0f504f",
       "reason": "The portfolio verification orchestrator was squash-merged."
+    },
+    {
+      "name": "status/priority-spine-wave-1-2026-07-31",
+      "policy": "merged_pr",
+      "pull_request": 14,
+      "expected_head_sha": "eeccaf9f00046b1c50572fcba76e7390e410ad1b",
+      "reason": "The validated priority-spine wave-one execution receipt was squash-merged and is canonical on main."
     }
   ]
 }
