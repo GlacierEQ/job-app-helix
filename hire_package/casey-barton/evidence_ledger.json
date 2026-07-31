@@ -12,7 +12,9 @@
       "id": "akos_tests",
       "claim": "AKOS passed 94/94 tests across 12 modules on Python 3.11-3.13",
       "state": "VERIFIED_TEST",
-      "evidence": "https://github.com/GlacierEQ/AKOS"
+      "evidence": "https://github.com/GlacierEQ/AKOS/actions/runs/30532339028",
+      "source_commit": "d00eb4a9889fb4b78621d422a70c2677e12a467d",
+      "promotion_merge": "b4b9ecba71f41bf9e3ddffa1f6c2c34c6a9b7192"
     },
     {
       "id": "mesh_rollout",
