@@ -2,7 +2,7 @@
 
 ## Verified / allowed
 
-- Exact 66-repository Job-App Helix boundary.
+- Exact 67-repository Job-App Helix boundary: one control-plane root plus 66 child repositories.
 - AKOS 94/94 tests across 12 modules on Python 3.11-3.13.
 - Verified 21-node README Mesh rollout.
 - Implemented public execution/private governance architecture.
@@ -19,7 +19,7 @@
 
 - 400,000 agents.
 - 1,200 files per hour.
-- Production-grade across 1,104 repositories.
+- Production-grade across the complete owned-library census.
 - Top-percentile or elite ranking as fact.
 - Programming-language mastery by count.
 - Federal evidence compliance conclusions.
