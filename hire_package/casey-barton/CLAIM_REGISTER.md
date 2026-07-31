@@ -23,7 +23,7 @@
 - Top-percentile or elite ranking as fact.
 - Programming-language mastery by count.
 - Federal evidence compliance conclusions.
-- AWS Cloud Institute described as a master degree.
+- AWS Cloud Institute described as a master's degree.
 - Unsupported compensation, customer, revenue, latency, scale, or deployment claims.
 
 ## Tactical rule
