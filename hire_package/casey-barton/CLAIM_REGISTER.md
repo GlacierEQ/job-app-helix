@@ -7,7 +7,7 @@
 - Verified 21-node README Mesh rollout.
 - Implemented public execution/private governance architecture.
 - B.S. Marine Biology, University of Hawaii at Manoa, 2016.
-- Certified Home Inspector, Diamond Head Home Inspections, 2020-Aug 2024.
+- Certified Home Inspector, Diamond Head Home Inspections, 2020-2024.
 
 ## Candidate / partial
 
