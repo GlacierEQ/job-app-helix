@@ -175,7 +175,7 @@ def test_output_path_cannot_delete_repository_or_source_directories(tmp_path: Pa
         ROOT / "site",
         ROOT / "hire_package" / "casey-barton" / "generated",
     ):
-        with pytest.raises(SystemExit, match="output path|protected source"):
+        with pytest.raises(SystemExit, match=r"output path|protected source"):
             builder.build(forbidden, SOURCE_COMMIT)
 
     safe = tmp_path / "site"
