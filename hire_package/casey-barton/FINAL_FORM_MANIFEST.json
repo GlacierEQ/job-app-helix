@@ -12,6 +12,15 @@
     "FINAL_FORM_README.md",
     "ROLE_POWER_MATRIX.md",
     "TECHNICAL_PORTFOLIO_BRIEF.md",
+    "CLAIM_REGISTER.md",
+    "LICENSE_SUMMARY.md"
+  ],
+  "complete_delivery_reading_order": [
+    "EXECUTIVE_RESUME.md",
+    "ROADMAP.md",
+    "FINAL_FORM_README.md",
+    "ROLE_POWER_MATRIX.md",
+    "TECHNICAL_PORTFOLIO_BRIEF.md",
     "PORTFOLIO_EXPANSION_MAP.md",
     "CLAIM_REGISTER.md",
     "LICENSE_SUMMARY.md"
@@ -23,6 +32,13 @@
     "public_site": "https://glaciereq.github.io/job-app-helix/"
   },
   "machine_entrypoints": [
+    "candidate_node.json",
+    "evidence_ledger.json",
+    "application_spiral.json",
+    "package_mesh.json",
+    "coordinator_candidate_receipt.json"
+  ],
+  "complete_delivery_machine_entrypoints": [
     "candidate_node.json",
     "evidence_ledger.json",
     "application_spiral.json",
