@@ -1,0 +1,152 @@
+{
+  "schema": "glaciereq.portfolio.github-curation.v1",
+  "owner": "GlacierEQ",
+  "reviewed_on": "2026-07-31",
+  "purpose": "Reconcile the public job-application portal, the Helix control-plane boundary, and the wider GitHub estate without admitting private operations, backups, archives, obvious external-source mirrors, or unverified duplicates into the recruiter portfolio.",
+  "live_boundary_after_review": {
+    "portfolio_root": "job-app-helix",
+    "workspace_repositories": 66,
+    "total_repositories": 67,
+    "inventory_manifest": "manifests/portfolio_repositories.json",
+    "rollout_manifest": "manifests/portfolio_rollout.json"
+  },
+  "admitted": [
+    {
+      "repository": "JOB-RESUME-BUILDER-",
+      "public_product_name": "Resume Shapeshifter",
+      "decision": "ADMIT_TO_LIVE_INVENTORY",
+      "wave": "wave-3-technical-exhibits",
+      "reasons": [
+        "It is the lead public product flagship declared by GlacierEQ/job-application.",
+        "Its Next.js and TypeScript source, API routes, deterministic truthfulness guard, tests, package lock, and verification workflow are directly inspectable.",
+        "Leaving it outside Helix allowed the recruiter portal to present a repository that the evidence control plane did not govern."
+      ],
+      "evidence_boundary": {
+        "present": [
+          "README.md",
+          "package.json",
+          "package-lock.json",
+          "app/api/analyze/route.ts",
+          "app/api/tailor/route.ts",
+          "lib/truthfulness.ts",
+          "tests/truthfulness.test.ts",
+          ".github/workflows/verify.yml"
+        ],
+        "unverified": [
+          "production deployment",
+          "end-to-end browser behavior",
+          "document export",
+          "persistence and privacy operations",
+          "calibrated applicant-tracking or hiring outcomes"
+        ]
+      }
+    }
+  ],
+  "involved_but_not_public_inventory": [
+    {
+      "repository": "job-app",
+      "visibility": "private",
+      "decision": "KEEP_PRIVATE_OPERATIONAL_CONTINUATION",
+      "reason": "The public portal declares this repository for application operations, contacts, outreach, and tracking. Those functions are involved in the workflow but intentionally excluded from recruiter-facing evidence."
+    }
+  ],
+  "deferred_candidates": [
+    {
+      "repository": "ECHO",
+      "decision": "DEFER_PENDING_REPOSITORY_NATIVE_AUDIT",
+      "reason": "Public and recently active, but not required by the current recruiter portal and not yet supported by a Helix-grade verification receipt."
+    },
+    {
+      "repository": "ai-auto-driller-unified",
+      "decision": "DEFER_PENDING_REPOSITORY_NATIVE_AUDIT",
+      "reason": "Potential original system; admit only after ownership, function, tests, and relationship to existing orchestration repositories are verified."
+    },
+    {
+      "repository": "grok-build",
+      "decision": "DEFER_PENDING_REPOSITORY_NATIVE_AUDIT",
+      "reason": "Substantial repository surface; provenance, duplication, build path, and recruiter value require focused review before admission."
+    },
+    {
+      "repository": "Kimi-K3",
+      "decision": "DEFER_PENDING_REPOSITORY_NATIVE_AUDIT",
+      "reason": "Substantial repository surface; provenance and differentiated GlacierEQ-owned contribution require verification before public portfolio admission."
+    },
+    {
+      "repository": "public-actions-runner-host",
+      "decision": "DEFER_AS_SUPPORTING_INFRASTRUCTURE",
+      "reason": "Potential proof infrastructure, but not itself a current recruiter flagship or required child of the four-wave program."
+    }
+  ],
+  "consolidation_candidates": [
+    {
+      "repositories": [
+        "grokadile",
+        "grokodile"
+      ],
+      "decision": "DUPLICATE_OR_SUCCESSOR_REVIEW_REQUIRED",
+      "reason": "Near-identical names create recruiter and AI-ingestion ambiguity. Preserve both until content, history, and successor intent are compared."
+    },
+    {
+      "repositories": [
+        "xai-colossal-cooling",
+        "xai-colossus-cooling"
+      ],
+      "decision": "DUPLICATE_OR_SUCCESSOR_REVIEW_REQUIRED",
+      "reason": "Near-identical infrastructure-project names require content and history comparison before either rename, archive, or successor declaration."
+    }
+  ],
+  "excluded_categories": [
+    {
+      "category": "private personal, legal, dispute, or operational repositories",
+      "decision": "EXCLUDE_FROM_PUBLIC_RECRUITER_BOUNDARY",
+      "reason": "Visibility, privacy, and subject matter do not belong in the public hiring evidence surface."
+    },
+    {
+      "category": "backup, recovery, snapshot, and Z-BACKUP repositories",
+      "decision": "EXCLUDE_FROM_CANONICAL_INVENTORY",
+      "reason": "Backups preserve data; they are not independent portfolio systems and would double-count work."
+    },
+    {
+      "category": "archived repositories",
+      "decision": "EXCLUDE_UNLESS_NAMED_AS_HISTORICAL_EVIDENCE",
+      "reason": "Archived state is not a current implementation claim."
+    },
+    {
+      "category": "large upstream-shaped or external-source repositories",
+      "examples": [
+        "kubernetes",
+        "langchain",
+        "uv",
+        "WrenAI",
+        "puppeteer",
+        "mem0",
+        "LocalAI",
+        "kilocode",
+        "runner-images",
+        "github-mcp-server",
+        "MiMo-Code",
+        "SurfSense",
+        "skyrl"
+      ],
+      "decision": "EXCLUDE_PENDING_PROVEN_ORIGINAL_CONTRIBUTION",
+      "reason": "Repository presence alone does not establish authorship or differentiated GlacierEQ engineering. Admit only a scoped fork or derivative when the original contribution and evidence boundary are explicit."
+    },
+    {
+      "category": "thin experiments and naming-only sentinel repositories",
+      "decision": "DEFER_TO_WAVE_4_OR_SEPARATE_CURATION",
+      "reason": "Repository count is not portfolio value. Thin nodes should be completed, packaged, consolidated, or archived before recruiter promotion."
+    }
+  ],
+  "branch_policy": {
+    "observed_state": "Both anchor repositories contain diverged non-main branches with no open pull requests.",
+    "decision": "PRESERVE_UNTIL_TREE_EQUIVALENCE_OR_UNIQUE_VALUE_IS VERIFIED",
+    "reason": "Several branch families appear to have been squash- or cherry-pick-integrated, so ancestry alone cannot safely classify them as disposable. No branch is deleted by this curation migration."
+  },
+  "truth_boundary": {
+    "github_remote_state_reviewed": true,
+    "local_mac_worktree_reviewed": false,
+    "reason_local_unverified": "The connected Desktop Commander device was offline during this review, so uncommitted files and local-only branches could not be inspected or synchronized.",
+    "portfolio_wide_runtime_verified": false,
+    "all_deferred_candidates_functionally_verified": false
+  }
+}
