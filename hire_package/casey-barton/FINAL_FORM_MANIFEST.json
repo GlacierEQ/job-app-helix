@@ -59,7 +59,7 @@
   "evidence": {
     "portfolio_boundary": {
       "state": "VERIFIED_BOUNDARY",
-      "claim": "Exact 66-repository boundary with all 65 child repositories assigned to one rollout wave."
+      "claim": "Exact 67-repository boundary with one Helix root and all 66 child repositories assigned to one rollout wave."
     },
     "owned_library_census": {
       "state": "VERIFIED_INVENTORY",
