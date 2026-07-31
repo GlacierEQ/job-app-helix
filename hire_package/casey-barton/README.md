@@ -6,7 +6,7 @@
 
 ## For recruiters
 
-Casey builds the execution and trust layer around intelligent systems: context, tools, orchestration, permissions, verification, provenance, and resumption. Primary résumé variants cover Applied AI Systems Architect, Forward-Deployed AI Engineer, and Agent Infrastructure Engineer; AI Deployment Engineer and AI Solutions Architect remain adjacent role families for targeted tailoring.
+Casey builds the execution and trust layer around intelligent systems: context, tools, orchestration, permissions, verification, provenance, and resumption. Role-specific variants cover Applied AI Architect, Forward-Deployed AI Engineer, and Agent Infrastructure Engineer. The broader positioning also supports Applied AI Systems Architect, AI Deployment Engineer, and AI Solutions Architect searches through evidence-preserving tailoring.
 
 ## Proof in 60 seconds
 
