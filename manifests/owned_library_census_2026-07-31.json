@@ -1,0 +1,140 @@
+{
+  "schema": "glaciereq.owned-library-census.v1",
+  "owner": "GlacierEQ",
+  "captured_at": "2026-07-31T08:01:00-10:00",
+  "canonical_control_plane": "GlacierEQ/job-app-helix",
+  "canonical_branch": "main",
+  "discovery": {
+    "source": "authenticated GitHub owner repository listing",
+    "ordering": "connector-native owner listing order",
+    "page_size_probe": 1,
+    "highest_present_offset": 1170,
+    "first_absent_offset": 1171,
+    "exact_repository_count": 1171,
+    "proof_rule": "offset 1170 resolved and offset 1171 returned an empty repository list"
+  },
+  "scopes": {
+    "recruiter_portfolio": {
+      "state": "EXACT_VERIFIED_BOUNDARY",
+      "repository_count": 66,
+      "source": "manifests/portfolio_repositories.json",
+      "purpose": "High-signal recruiter portfolio. Membership does not imply identical proof level."
+    },
+    "priority_spine": {
+      "state": "EXACT_CURATED",
+      "repository_count": 9,
+      "source": "manifests/library_priority_spine.json",
+      "purpose": "Policy, presentation, governance, engineering, intelligence, and consolidation authorities."
+    },
+    "owned_library": {
+      "state": "EXACT_INVENTORY_ONLY",
+      "repository_count": 1171,
+      "purpose": "Complete owner-accessible library boundary. Inventory does not establish authorship, production readiness, deployment, or recruiter inclusion."
+    }
+  },
+  "post_control_plane_tail": [
+    {
+      "offset": 1162,
+      "repository": "GlacierEQ/job-app-helix",
+      "classification": "CANONICAL_CONTROL_PLANE"
+    },
+    {
+      "offset": 1163,
+      "repository": "GlacierEQ/monolith",
+      "classification": "PRIORITY_SPINE_GOVERNED"
+    },
+    {
+      "offset": 1164,
+      "repository": "GlacierEQ/openclaw",
+      "classification": "RECRUITER_PORTFOLIO_EXISTING"
+    },
+    {
+      "offset": 1165,
+      "repository": "GlacierEQ/Kimi-K3",
+      "classification": "CANDIDATE_EXPANSION_UNVERIFIED"
+    },
+    {
+      "offset": 1166,
+      "repository": "GlacierEQ/Attention-Residuals",
+      "classification": "CANDIDATE_EXPANSION_UNVERIFIED"
+    },
+    {
+      "offset": 1167,
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "classification": "PRIORITY_SPINE_GOVERNED"
+    },
+    {
+      "offset": 1168,
+      "repository": "GlacierEQ/morpheus-dashboard",
+      "classification": "PRIVATE_CANDIDATE_EXPANSION_UNVERIFIED"
+    },
+    {
+      "offset": 1169,
+      "repository": "GlacierEQ/ECHO",
+      "classification": "CANDIDATE_EXPANSION_UNVERIFIED"
+    },
+    {
+      "offset": 1170,
+      "repository": "GlacierEQ/Template",
+      "classification": "SUPPORTING_TEMPLATE_UNVERIFIED"
+    }
+  ],
+  "candidate_expansion": [
+    {
+      "repository": "GlacierEQ/Kimi-K3",
+      "visibility": "public",
+      "default_branch": "main",
+      "promotion_state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "repository": "GlacierEQ/Attention-Residuals",
+      "visibility": "public",
+      "default_branch": "master",
+      "promotion_state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "repository": "GlacierEQ/morpheus-dashboard",
+      "visibility": "private",
+      "default_branch": "main",
+      "promotion_state": "DISCOVERED_PRIVATE_NOT_PROMOTED"
+    },
+    {
+      "repository": "GlacierEQ/ECHO",
+      "visibility": "public",
+      "default_branch": "main",
+      "promotion_state": "DISCOVERED_NOT_PROMOTED"
+    },
+    {
+      "repository": "GlacierEQ/Template",
+      "visibility": "public",
+      "default_branch": "main",
+      "promotion_state": "SUPPORTING_TEMPLATE_NOT_RECRUITER_PROMOTED"
+    }
+  ],
+  "classification_policy": {
+    "canonical_evidence": "Repository-native proof and a governed inclusion decision are both required.",
+    "candidate_expansion": "Newly discovered repository with plausible portfolio relevance; no résumé claim until inspected and verified.",
+    "supporting_or_upstream": "Tool, framework, mirror, educational source, or dependency context; does not become authored candidate evidence by ownership alone.",
+    "private_or_sensitive": "Excluded from public recruiter surfaces unless a separate bounded public exhibit is intentionally created.",
+    "archive_backup_or_fork": "Retained for provenance or research and excluded from recruiter counts by default."
+  },
+  "mutation_policy": {
+    "blind_pull_push_sync": false,
+    "reason": "Repository mutation requires per-repository discovery, unique-value preservation, native verification, and an auditable merge or receipt.",
+    "lifecycle": [
+      "DISCOVER",
+      "CLASSIFY",
+      "COMPARE",
+      "PRESERVE",
+      "VERIFY",
+      "PROMOTE_OR_EXCLUDE",
+      "RECEIPT"
+    ]
+  },
+  "nonclaims": [
+    "The 1171-repository census is not a claim that 1171 repositories were authored from scratch.",
+    "The census is not a claim that every repository is production-ready, tested, deployed, secure, or recruiter-relevant.",
+    "Candidate expansion entries are not part of the exact 66-repository recruiter portfolio until separately promoted.",
+    "No child repository was overwritten or mass-merged by this census operation."
+  ]
+}
