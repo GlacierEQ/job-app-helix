@@ -1,0 +1,53 @@
+{
+  "schema": "glaciereq.candidate-public-package-sync.v1",
+  "candidate": "Casey Del Carpio Barton",
+  "package_release_date": "2026-07-30",
+  "purpose": "Bind the hardened recruiter package to public canonical repositories without publishing private contact data or application operations.",
+  "repositories": {
+    "job_application": {
+      "repository": "GlacierEQ/job-application",
+      "pulled_main": "1efb16a7017ebae0454d556c5ac31b4149c18673",
+      "role": "public_recruiter_front_door"
+    },
+    "job_app_helix": {
+      "repository": "GlacierEQ/job-app-helix",
+      "pulled_main": "1bcb70ab26b633a7b3cef7a3560a766b56917d80",
+      "final_form_release": "9942936b5fddf2bf5c4b64808253fdf9b0648d93",
+      "role": "evidence_and_release_control_plane"
+    },
+    "tower_of_babel": {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "pulled_main": "1028a58986be6bedd1d8d09a63593876aab52d1d",
+      "role": "technology_placement_and_proof_authority",
+      "governed_floors": 30,
+      "linked_exhibits": 60
+    }
+  },
+  "front_surfaces": [
+    "executive_resume_pdf_docx_ats",
+    "recruiter_decision_brief",
+    "recruiter_readme",
+    "master_of_trade_readme",
+    "ai_ats_ingestion_readme",
+    "role_targeted_resumes",
+    "tower_advanced_exhibit_snapshot"
+  ],
+  "interop_formats": [
+    "pdf",
+    "docx",
+    "markdown",
+    "plain_text",
+    "html",
+    "json",
+    "json_ld",
+    "yaml",
+    "csv",
+    "mermaid"
+  ],
+  "truth_policy": {
+    "fail_closed": true,
+    "private_contact_data_in_public_repo": false,
+    "repository_source_is_deployment_proof": false,
+    "blocked_candidate_and_unverified_states_preserved": true
+  }
+}
