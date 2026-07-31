@@ -22,11 +22,13 @@
       "portfolio-wide runtime, deployment, scale, performance, and customer impact"
     ]
   },
-  "target_roles": [
+  "primary_role_variants": [
     "Applied AI Systems Architect",
     "Forward-Deployed AI Engineer",
+    "Agent Infrastructure Engineer"
+  ],
+  "adjacent_role_families": [
     "AI Deployment Engineer",
-    "Agent Infrastructure Engineer",
     "AI Solutions Architect"
   ],
   "interfaces": {
