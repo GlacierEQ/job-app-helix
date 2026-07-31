@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.candidate-final-form-manifest.v1",
-  "release": "2026-07-30-final-form",
+  "release": "2026-07-31-final-form-census",
   "candidate": "Casey Del Carpio Barton",
   "canonical_url": "https://glaciereq.github.io/job-app-helix/",
   "repository": "GlacierEQ/job-app-helix",
@@ -12,12 +12,14 @@
     "FINAL_FORM_README.md",
     "ROLE_POWER_MATRIX.md",
     "TECHNICAL_PORTFOLIO_BRIEF.md",
+    "PORTFOLIO_EXPANSION_MAP.md",
     "CLAIM_REGISTER.md",
     "LICENSE_SUMMARY.md"
   ],
   "three_layer_surfaces": {
     "candidate": "FINAL_FORM_README.md",
     "role_power": "ROLE_POWER_MATRIX.md",
+    "portfolio_expansion": "PORTFOLIO_EXPANSION_MAP.md",
     "public_site": "https://glaciereq.github.io/job-app-helix/"
   },
   "machine_entrypoints": [
@@ -25,7 +27,8 @@
     "evidence_ledger.json",
     "application_spiral.json",
     "package_mesh.json",
-    "coordinator_candidate_receipt.json"
+    "coordinator_candidate_receipt.json",
+    "owned_library_census.json"
   ],
   "primary_roles": [
     "Applied AI Architect",
@@ -41,6 +44,11 @@
     "portfolio_boundary": {
       "state": "VERIFIED_BOUNDARY",
       "claim": "Exact 66-repository boundary with all 65 child repositories assigned to one rollout wave."
+    },
+    "owned_library_census": {
+      "state": "VERIFIED_INVENTORY",
+      "claim": "Exact authenticated boundary of 1171 owner-accessible repositories captured July 31, 2026.",
+      "limitation": "Inventory does not establish authorship, originality, production readiness, deployment, security, or recruiter inclusion."
     },
     "akos": {
       "state": "VERIFIED_TEST",
@@ -77,12 +85,15 @@
   "public_privacy": {
     "direct_phone_in_public_surface": false,
     "direct_email_in_public_surface": false,
-    "authorized_zip_may_include_private_contact_card": true
+    "authorized_zip_may_include_private_contact_card": true,
+    "private_or_sensitive_repository_names_in_public_census": false
   },
   "truth_policy": {
     "fail_closed": true,
     "evidence_is_monotonic": true,
     "blocked_and_unverified_states_are_preserved": true,
-    "unsupported_scale_claims_are_forbidden": true
+    "unsupported_scale_claims_are_forbidden": true,
+    "repository_ownership_is_not_authorship_proof": true,
+    "candidate_expansion_requires_repository_native_promotion": true
   }
 }
