@@ -1,0 +1,29 @@
+{
+  "schema": "glaciereq.recruiter-package-mesh.v2",
+  "root": "Casey Del Carpio Barton",
+  "portable_entry": "00_OPEN_ME.html",
+  "repository_entry": "hire_package/casey-barton/README.md",
+  "audiences": {
+    "recruiter": [
+      "00_RECRUITER_LAUNCHPAD.pdf",
+      "00_CASEY_BARTON_INTELLIGENT_PRESENTATION.pdf",
+      "01_CASEY_BARTON_EXECUTIVE_RESUME.pdf"
+    ],
+    "expert": [
+      "02_CASEY_BARTON_DETAILED_RESUME.pdf",
+      "03_TECHNICAL_PORTFOLIO_BRIEF.pdf",
+      "hire_package/casey-barton/evidence_ledger.json"
+    ],
+    "ai": [
+      "05_AI_CANDIDATE_PROFILE.json",
+      "hire_package/casey-barton/candidate_node.json",
+      "hire_package/casey-barton/application_spiral.json",
+      "manifest.json"
+    ]
+  },
+  "role_variants": [
+    "Applied_AI_Architect",
+    "Forward_Deployed_AI_Engineer",
+    "Agent_Infrastructure_Engineer"
+  ]
+}
