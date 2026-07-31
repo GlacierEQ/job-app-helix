@@ -3,6 +3,7 @@
   "kind": "PUBLIC_SAFE_CURATED_SUMMARY",
   "owner": "GlacierEQ",
   "captured_at": "2026-07-31T08:01:00-10:00",
+  "reconciled_at": "2026-07-31",
   "canonical_control_plane": "GlacierEQ/job-app-helix",
   "canonical_branch": "main",
   "generated_receipt": {
@@ -24,7 +25,8 @@
   "scopes": {
     "recruiter_portfolio": {
       "state": "EXACT_VERIFIED_BOUNDARY",
-      "repository_count": 66,
+      "repository_count": 67,
+      "workspace_child_count": 66,
       "source": "manifests/portfolio_repositories.json",
       "purpose": "High-signal recruiter portfolio. Membership does not imply identical proof level."
     },
@@ -144,7 +146,7 @@
   "nonclaims": [
     "The 1171-repository census is not a claim that 1171 repositories were authored from scratch.",
     "The census is not a claim that every repository is production-ready, tested, deployed, secure, or recruiter-relevant.",
-    "Candidate expansion entries are not part of the exact 66-repository recruiter portfolio until separately promoted.",
+    "Candidate expansion entries are not part of the exact 67-repository recruiter portfolio until separately promoted.",
     "No child repository was overwritten or mass-merged by this census operation."
   ]
 }
