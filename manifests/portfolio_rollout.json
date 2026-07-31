@@ -2,6 +2,12 @@
   "schema": "glaciereq.portfolio.rollout.v1",
   "portfolio_root": "GlacierEQ/job-app-helix",
   "inventory_manifest": "manifests/portfolio_repositories.json",
+  "root_status": {
+    "repository": "job-app-helix",
+    "state": "VERIFIED",
+    "evidence": "TEST",
+    "canonical_commit": "a438bba26676f8329a4ec874027029651e80c6fa"
+  },
   "policy": {
     "default_timeout_seconds": 300,
     "promotion_path": [
@@ -23,9 +29,23 @@
       "priority": 1,
       "mode": "VERIFY",
       "objective": "Convert the 20 README Mesh child nodes from documentation evidence into repository-native build and positive-count test evidence, while preserving the recruiter → expert → AI contract.",
-      "current_state": "UNVERIFIED",
+      "current_state": "PARTIALLY_VERIFIED",
       "current_evidence": "DOCUMENTATION",
       "target_evidence": "TEST",
+      "progress": {
+        "completed": [
+          {
+            "repository": "AKOS",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "5ef48a8068a8079f3cbca3f83c5800909b1d5239",
+            "proof": "repository-native positive-count verification and branch-family classification"
+          }
+        ],
+        "completed_count": 1,
+        "remaining_count": 19,
+        "next_repository": "anthropic-agent-coordinator"
+      },
       "acceptance": {
         "require_readme_contract": true,
         "require_positive_test_count": true,
@@ -59,9 +79,22 @@
       "priority": 2,
       "mode": "VERIFY",
       "objective": "Repair Tower of Babel until every advertised language boundary has a real compiler, proof, simulation, or test receipt and the public README matches the proven release state.",
-      "current_state": "BLOCKED",
-      "current_evidence": "DOCUMENTATION",
+      "current_state": "VERIFIED",
+      "current_evidence": "TEST",
       "target_evidence": "TEST",
+      "progress": {
+        "completed": [
+          {
+            "repository": "the-tower-of-babel",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "dea2661270c343b6e17c617eee29c36123939414",
+            "proof": "native governance, all-floor evidence, integrity, and recruiter-package integration"
+          }
+        ],
+        "completed_count": 1,
+        "remaining_count": 0
+      },
       "acceptance": {
         "require_readme_contract": true,
         "require_positive_test_count": true,
@@ -79,6 +112,10 @@
       "current_state": "UNVERIFIED",
       "current_evidence": "INVENTORY",
       "target_evidence": "TEST",
+      "progress": {
+        "completed_count": 0,
+        "remaining_count": 16
+      },
       "acceptance": {
         "require_readme_contract": true,
         "require_positive_test_count": true,
@@ -111,6 +148,10 @@
       "current_state": "UNVERIFIED",
       "current_evidence": "INVENTORY",
       "target_evidence": "DOCUMENTATION",
+      "progress": {
+        "completed_count": 0,
+        "remaining_count": 28
+      },
       "acceptance": {
         "require_readme_contract": true,
         "require_positive_test_count": false,
