@@ -1,25 +1,48 @@
 {
   "schema": "glaciereq.recruiter-package-mesh.v2",
   "root": "Casey Del Carpio Barton",
-  "portable_entry": "00_OPEN_ME.html",
-  "repository_entry": "hire_package/casey-barton/README.md",
-  "audiences": {
-    "recruiter": [
-      "00_RECRUITER_LAUNCHPAD.pdf",
-      "00_CASEY_BARTON_INTELLIGENT_PRESENTATION.pdf",
-      "01_CASEY_BARTON_EXECUTIVE_RESUME.pdf"
-    ],
-    "expert": [
-      "02_CASEY_BARTON_DETAILED_RESUME.pdf",
-      "03_TECHNICAL_PORTFOLIO_BRIEF.pdf",
-      "hire_package/casey-barton/evidence_ledger.json"
-    ],
-    "ai": [
-      "05_AI_CANDIDATE_PROFILE.json",
-      "hire_package/casey-barton/candidate_node.json",
-      "hire_package/casey-barton/application_spiral.json",
-      "manifest.json"
-    ]
+  "contexts": {
+    "portable_package": {
+      "base": "package_root",
+      "entry": "00_OPEN_ME.html",
+      "audiences": {
+        "recruiter": [
+          "00_RECRUITER_LAUNCHPAD.pdf",
+          "00_CASEY_BARTON_INTELLIGENT_PRESENTATION.pdf",
+          "01_CASEY_BARTON_EXECUTIVE_RESUME.pdf"
+        ],
+        "expert": [
+          "02_CASEY_BARTON_DETAILED_RESUME.pdf",
+          "03_TECHNICAL_PORTFOLIO_BRIEF.pdf",
+          "HELIX_INTEGRATION/evidence_ledger.json"
+        ],
+        "ai": [
+          "05_AI_CANDIDATE_PROFILE.json",
+          "HELIX_INTEGRATION/candidate_node.json",
+          "HELIX_INTEGRATION/application_spiral.json",
+          "manifest.json"
+        ]
+      }
+    },
+    "repository_source": {
+      "base": "hire_package/casey-barton",
+      "entry": "README.md",
+      "audiences": {
+        "recruiter": [
+          "EXECUTIVE_RESUME.md"
+        ],
+        "expert": [
+          "TECHNICAL_PORTFOLIO_BRIEF.md",
+          "CLAIM_REGISTER.md",
+          "evidence_ledger.json"
+        ],
+        "ai": [
+          "candidate_node.json",
+          "application_spiral.json",
+          "package_mesh.json"
+        ]
+      }
+    }
   },
   "role_variants": [
     "Applied_AI_Architect",
