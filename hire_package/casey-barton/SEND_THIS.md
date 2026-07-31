@@ -30,7 +30,7 @@ This is the canonical first-stop presentation for recruiters, hiring leaders, se
 
 ## Current Truth Boundary
 
-**Verified:** exact 66-repository boundary; complete 65-child rollout partition; AKOS 94/94 tests across Python 3.11-3.13; 21-node README Mesh rollout; recruiter presentation build and deployment contract.  
+**Verified:** exact 67-repository boundary - one Helix root plus 66 child repositories; complete 66-child rollout partition; AKOS 94/94 tests across Python 3.11-3.13; 21-node README Mesh rollout; recruiter presentation build and deployment contract.  
 **Candidate proof:** Agent Coordinator 62/62 Python 3.13 tests.  
 **Pending:** hosted multi-version coordinator promotion and portfolio-wide deployment, scale, performance, reliability, and customer-impact proof.  
 **Blocked when infrastructure is absent:** APEX GitHub App bridge activation.
