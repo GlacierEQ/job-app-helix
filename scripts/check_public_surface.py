@@ -28,6 +28,7 @@ FORBIDDEN_CONTENT = {
 }
 SELF_REFERENTIAL_POLICY_PATHS = {
     "scripts/check_public_surface.py",
+    "scripts/proof_weighted_repo_census.py",
     "helix/automations/brainsync_path_sanitize.py",
     "scripts/README_BRAINSYNC_PATHS.md",
     "tests/test_portfolio_audit_claims.py",

@@ -1,0 +1,119 @@
+{
+  "schema": "glaciereq.job-app.repository-ownership.v1",
+  "effective_at": "2026-07-30T17:58:00-10:00",
+  "authority": {
+    "repository": "GlacierEQ/job-app-helix",
+    "branch": "main",
+    "document": "docs/JOB_APP_SYSTEM_AUDIT_2026-07-30.md"
+  },
+  "uniqueness_constraints": {
+    "portfolio_control_plane": 1,
+    "technology_placement_authority": 1,
+    "private_application_workspace": 1,
+    "public_recruiter_distribution": 1
+  },
+  "repositories": [
+    {
+      "repository": "GlacierEQ/job-app",
+      "visibility": "private",
+      "role": "private_application_workspace",
+      "canonical": true,
+      "owns": [
+        "active_application_packets",
+        "private_resumes",
+        "access_routes",
+        "interview_preparation",
+        "operator_checklists"
+      ],
+      "forbidden_authority": [
+        "portfolio_verification_law",
+        "technology_placement_authority",
+        "public_portfolio_inventory"
+      ],
+      "upstream_authorities": [
+        "GlacierEQ/job-app-helix",
+        "GlacierEQ/the-tower-of-babel"
+      ],
+      "state": "RETAIN_AND_NARROW",
+      "next_gate": "Declare upstream evidence contracts and remove unsupported global metrics."
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "visibility": "public",
+      "role": "public_recruiter_distribution",
+      "canonical": true,
+      "owns": [
+        "evidence_bound_portfolio_portal",
+        "generated_showcase",
+        "public_resume_entrypoint",
+        "selected_flagship_index"
+      ],
+      "forbidden_authority": [
+        "portfolio_control_plane",
+        "independent_portfolio_verification",
+        "technology_placement_authority"
+      ],
+      "upstream_authorities": [
+        "GlacierEQ/job-app-helix"
+      ],
+      "state": "ACTIVE_EVIDENCE_BOUND_PORTAL",
+      "verified_commit": "0ff1946f22049bb22f614ea359b6c13ac0894f5f",
+      "next_gate": "Consume Helix receipts for aggregate status while keeping flagship claims repository-native."
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "visibility": "public",
+      "role": "portfolio_control_plane",
+      "canonical": true,
+      "owns": [
+        "portfolio_inventory",
+        "proof_weighted_grades",
+        "verification_states",
+        "readme_mesh",
+        "campaign_readiness",
+        "audit_receipts"
+      ],
+      "forbidden_authority": [
+        "private_application_material",
+        "technology_placement_authority",
+        "nested_child_repository_source"
+      ],
+      "upstream_authorities": [
+        "GlacierEQ/the-tower-of-babel"
+      ],
+      "state": "CANONICAL_PARTIALLY_VERIFIED",
+      "verified_commit": "04b86016ce4282ad2c6d91a3db62810152bc824e",
+      "next_gate": "Integrate proof-weighted cross-repository audit receipts without inflating child states."
+    },
+    {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "visibility": "public",
+      "role": "technology_placement_authority",
+      "canonical": true,
+      "owns": [
+        "technology_floor_registry",
+        "language_placement",
+        "w4h_how_rationale",
+        "proof_classes",
+        "cross_language_interfaces",
+        "polyglot_flagship",
+        "generated_integration_exports"
+      ],
+      "forbidden_authority": [
+        "portfolio_scoring",
+        "application_tracking",
+        "private_candidate_material"
+      ],
+      "state": "VERIFY_CURRENT_RELEASE_STATE",
+      "next_gate": "Record the current mainline release receipt and expose pinned integration exports to Helix."
+    }
+  ],
+  "global_rules": [
+    "No second authoritative Tower registry may exist outside GlacierEQ/the-tower-of-babel.",
+    "Job-App Helix may consume pinned Tower exports but may not embed Tower source as a nested project.",
+    "Job-application consumes Helix evidence and must not recalculate portfolio-wide truth independently.",
+    "Private job-app content must not be projected into public control-plane or analytics surfaces.",
+    "Every aggregate count or grade names its source repository, source ref, scope, timestamp, and receipt.",
+    "Mergeability is not release verification; cancellation is not implementation failure; partial CI success is not portfolio-wide certification."
+  ]
+}
