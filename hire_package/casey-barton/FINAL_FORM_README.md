@@ -30,8 +30,8 @@ Most portfolios ask the reader to trust polished prose. This one provides a cont
 
 Current evidence includes:
 
-- an exact 66-repository Job-App Helix boundary;
-- a complete four-wave program covering all 65 child repositories;
+- an exact 67-repository Job-App Helix boundary - one root plus 66 child repositories;
+- a complete four-wave program covering all 66 child repositories;
 - AKOS at 94/94 tests across Python 3.11, 3.12, and 3.13;
 - a verified 21-node recruiter / expert / AI README Mesh;
 - an Agent Coordinator candidate receipt at 62/62 Python 3.13 tests, with hosted multi-version promotion still clearly pending.
@@ -190,7 +190,7 @@ languages_and_platforms:
 
 proof:
   portfolio_boundary:
-    claim: exact 66-repository boundary
+    claim: exact 67-repository boundary - one root plus 66 child repositories
     state: VERIFIED_BOUNDARY
   akos:
     claim: 94/94 tests across 12 modules on Python 3.11-3.13
