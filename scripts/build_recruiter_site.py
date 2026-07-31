@@ -431,9 +431,10 @@ def _assert_public_surface(output: Path) -> None:
         text = path.read_text(encoding="utf-8")
         if "{{" in text or "}}" in text:
             raise SystemExit(f"Unresolved template placeholder in {path}")
-        if path.name != "deployment-manifest.json":
-            if EMAIL_PATTERN.search(text) or PHONE_PATTERN.search(text):
-                raise SystemExit(f"Direct recruiter contact data leaked into {path}")
+        if path.name != "deployment-manifest.json" and (
+            EMAIL_PATTERN.search(text) or PHONE_PATTERN.search(text)
+        ):
+            raise SystemExit(f"Direct recruiter contact data leaked into {path}")
     _validate_local_links(output)
 
 
@@ -474,9 +475,11 @@ def _write_manifest(output: Path, source_commit: str) -> None:
 
 def build(output: Path, source_commit: str) -> None:
     _validate_output_path(output)
-    if source_commit != "local-uncommitted":
-        if SOURCE_COMMIT_PATTERN.fullmatch(source_commit) is None:
-            raise SystemExit("source commit must be a 40-character lowercase SHA")
+    if (
+        source_commit != "local-uncommitted"
+        and SOURCE_COMMIT_PATTERN.fullmatch(source_commit) is None
+    ):
+        raise SystemExit("source commit must be a 40-character lowercase SHA")
 
     candidate = _load_json(CANDIDATE_ROOT / "candidate_node.json")
     ledger = _load_json(CANDIDATE_ROOT / "evidence_ledger.json")
