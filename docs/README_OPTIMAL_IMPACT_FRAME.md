@@ -1,6 +1,6 @@
 # README Optimal Impact Frame — Recruiter, Expert, AI Mesh
 
-## Objective
+## The README Is the Interface
 
 Every portfolio README is an evidence interface. It must let three audiences reach the right conclusion without reverse-engineering the repository:
 
@@ -14,7 +14,28 @@ The README is not a marketing brochure, a code dump, a release note, or a substi
 **Machine schema:** `glaciereq.readme.v1`  
 **Authority:** `GlacierEQ/job-app-helix`
 
-## Non-negotiable ordering
+## Header Voice Is Part of the Architecture
+
+A README can be accurate and still erase the excellence of the work through lifeless section labels. Visible H2 headings must therefore carry a project-specific idea, tension, promise, or engineering truth. Audience orientation belongs immediately beneath the heading as a quiet italic subtitle.
+
+**Required pattern**
+
+```markdown
+## Better Fit Without a Better Lie
+
+*Recruiter lens · what the product changes and what it refuses to invent*
+```
+
+**Forbidden as visible primary headers**
+
+- `## For recruiters and non-technical reviewers`
+- `## For senior engineers and domain experts`
+- `## For AI systems and toolchains`
+- `## Portfolio mesh`
+
+Those phrases may survive only as subtitles, accessibility cues, or hidden compatibility markers required by automation. The visible header must sound native to the repository; copying the same clever phrase across every project is merely a more decorative form of blandness.
+
+## The Four-Act Read
 
 ```text
 Title + one-line outcome
@@ -34,7 +55,7 @@ Limits, non-goals, and unresolved work
 
 A reader should never encounter a technology list before understanding the outcome, and should never encounter a material claim without a path to evidence.
 
-## Repository role profiles
+## Every Repository Needs a Role, Not a Costume
 
 The same architecture is applied differently according to repository role.
 
@@ -49,7 +70,9 @@ The same architecture is applied differently according to repository role.
 
 The role must be stated near the top of the README and repeated in the machine block.
 
-## Layer 1 — Recruiter and non-technical impact
+## The First Screen Must Earn the Second
+
+*Recruiter and non-technical impact layer*
 
 This layer should take 30–60 seconds to read.
 
@@ -76,12 +99,14 @@ This layer should take 30–60 seconds to read.
 **Visibility:** PUBLIC  
 **Status:** PARTIALLY_VERIFIED — core contract tests pass; deployment remains unverified.
 
-## For recruiters and non-technical reviewers
+## The Problem Stops Here
+
+*Recruiter lens · 60-second review*
 
 [Project] turns [hard input or state] into [valuable outcome].
 Casey designed [specific components and decisions].
 
-### Proof in 60 seconds
+### Sixty Seconds to Belief
 
 | Open or run | What it proves |
 |---|---|
@@ -119,7 +144,7 @@ Every README must provide a compact proof table. Review paths are chosen by evid
 | Provenance | original, adapted, and generated boundary | generic “built by” statement |
 | Portfolio relationship | typed edge and combined value | untyped link list |
 
-## Claim ledger
+## Claims on Trial
 
 Material claims should be reviewable as a ledger.
 
@@ -138,7 +163,9 @@ Rules:
 4. A historical result retains its date and original boundary.
 5. `BLOCKED`, `UNVERIFIED`, and `FAILED` may never be rewritten as passed.
 
-## Layer 2 — Masters of the trade
+## Where the Claim Meets the Workbench
+
+*Principal engineers, architects, and masters of the trade*
 
 This layer must reward expert scrutiny.
 
@@ -213,7 +240,7 @@ Every major design choice should include both value and cost.
 | private operational split | protects outreach and tracking | requires explicit synchronization |
 | historical preservation | retains provenance | can confuse readers without a successor boundary |
 
-## Language-fit gate
+## Every Language Must Earn Its Seat
 
 A language or format is justified only when it owns a real boundary.
 
@@ -232,7 +259,7 @@ Acceptance requires:
 
 A language used only to increase the language count must be removed or moved to a clearly labeled learning or exhibit directory outside the production architecture.
 
-## Exact contribution and provenance
+## Fingerprints: What Is Actually Ours
 
 Every recruiter-facing README distinguishes:
 
@@ -244,7 +271,9 @@ Every recruiter-facing README distinguishes:
 
 Forks and imported projects must never be presented as original portfolio work merely because they exist under the account.
 
-## Layer 3 — AI ingestion and portfolio mesh
+## The Machine Handshake and the Living Mesh
+
+*AI ingestion, deterministic contracts, and portfolio relationships*
 
 The machine block must be deterministic, compact, versioned, and consistent with the human claim boundary.
 
@@ -308,7 +337,7 @@ Concepts such as `PRESENTS`, `PRESENTED_BY`, `SUPERSEDES`, `EXCLUDES_FROM_PUBLIC
 
 A link without a supported relation and a concrete combined value is not a mesh edge.
 
-## Cross-repository consistency rules
+## The Mesh Cannot Contradict Itself
 
 For the hiring portfolio:
 
@@ -321,7 +350,7 @@ For the hiring portfolio:
 7. Private operational state may be summarized publicly only after redaction and deliberate export.
 8. Repository identity, visibility, status, and typed edges must not contradict the Helix manifests.
 
-## Verification-status semantics
+## Status Words Must Mean Something
 
 - **VERIFIED:** the stated scope passed a reproducible current check.
 - **PARTIALLY_VERIFIED:** named parts passed; named parts remain blocked or untested.
@@ -331,7 +360,7 @@ For the hiring portfolio:
 
 The status belongs to a named scope, not to the repository as an emotional grade.
 
-## Minimum recruiter-ready gate
+## The Door Does Not Open Until
 
 A README is ready to place in an application only when:
 
@@ -344,7 +373,7 @@ A README is ready to place in an application only when:
 - private and historical repositories have explicit public-authority boundaries;
 - limits and unresolved areas are visible without scrolling to a disclaimer graveyard.
 
-## Audit checklist
+## Final Pass: No Dead Headers, No Hollow Claims
 
 ```text
 [ ] Outcome appears before technology list
