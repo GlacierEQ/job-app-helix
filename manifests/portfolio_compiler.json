@@ -1,0 +1,64 @@
+{
+  "schema": "glaciereq.portfolio.compiler.v1",
+  "name": "Job App Helix Portfolio Compiler",
+  "canonical_repository": "https://github.com/GlacierEQ/job-app-helix",
+  "canonical_branch": "main",
+  "source_registry": "manifests/portfolio_repositories.json",
+  "live_link_registry": "manifests/live_repository_links.json",
+  "provenance_report": "status/portfolio-provenance-census.json",
+  "source_of_truth": "canonical_child_repository",
+  "copy_policy": "link_and_generate_only",
+  "stale_on_head_change": true,
+  "continue_on_independent_failure": true,
+  "fail_closed_on_unsupported_claim": true,
+  "provenance_classes": [
+    "HELIX_NATIVE",
+    "GENERATED_PROJECTION",
+    "SHA_BOUND_EVIDENCE",
+    "TEST_FIXTURE",
+    "HARD_COPY_CANDIDATE",
+    "FORBIDDEN_COPY"
+  ],
+  "repository_states": [
+    "DISCOVERED",
+    "LINKED",
+    "CODE_CONFIRMED",
+    "TEST_VERIFIED",
+    "RECRUITER_READY",
+    "ELITE_VERIFIED",
+    "BLOCKED",
+    "EXCLUDED"
+  ],
+  "required_projection_fields": [
+    "repository",
+    "canonical_url",
+    "default_branch",
+    "head_sha",
+    "visibility",
+    "archived",
+    "readme_url",
+    "verification_state",
+    "last_verified_at",
+    "provenance_coverage",
+    "connector_quality_score",
+    "data_quality_score",
+    "blockers",
+    "next_action"
+  ],
+  "forbidden_current_truth_payloads": [
+    "copied_child_source_tree",
+    "copied_child_repository_archive",
+    "manually_duplicated_child_readme",
+    "unversioned_child_code_excerpt"
+  ],
+  "outputs": [
+    "recruiter_site",
+    "executive_resume_evidence",
+    "technical_portfolio_brief",
+    "company_specific_application_packet",
+    "ai_ingestion_manifest",
+    "capability_graph",
+    "dependency_graph",
+    "verification_receipts"
+  ]
+}

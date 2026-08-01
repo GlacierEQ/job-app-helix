@@ -1,0 +1,40 @@
+name: Portfolio Compiler Integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "manifests/**"
+      - "scripts/portfolio_provenance_census.py"
+      - "scripts/validate_live_repository_links.py"
+      - "tests/test_portfolio_compiler_contract.py"
+      - "tests/test_live_repository_links.py"
+      - ".github/workflows/portfolio-compiler-integrity.yml"
+  pull_request:
+    paths:
+      - "manifests/**"
+      - "scripts/portfolio_provenance_census.py"
+      - "scripts/validate_live_repository_links.py"
+      - "tests/test_portfolio_compiler_contract.py"
+      - "tests/test_live_repository_links.py"
+      - ".github/workflows/portfolio-compiler-integrity.yml"
+
+permissions:
+  contents: read
+
+timeout-minutes: 5
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Validate live repository links
+        run: python scripts/validate_live_repository_links.py
+      - name: Run provenance census
+        run: python scripts/portfolio_provenance_census.py --check
+      - name: Run compiler contract tests
+        run: python -m pytest -q tests/test_live_repository_links.py tests/test_portfolio_compiler_contract.py
