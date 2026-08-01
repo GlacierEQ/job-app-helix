@@ -425,7 +425,7 @@ The control plane succeeds when the public story becomes easier to understand, t
 
 *System mesh · how Helix connects the hiring portfolio without collapsing repository boundaries*
 
-Helix is the control plane, not a warehouse of copied projects. The canonical typed edges live in [`manifests/readme_mesh.json`](manifests/readme_mesh.json); this human map shows the combined value without pretending one repository owns another repository&apos;s proof.
+Helix is the control plane, not a warehouse of copied projects. The canonical typed edges live in [`manifests/readme_mesh.json`](manifests/readme_mesh.json); this human map shows the combined value without pretending one repository owns another repository's proof.
 
 ```text
 job-app-helix
