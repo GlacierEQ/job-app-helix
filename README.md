@@ -8,7 +8,9 @@ Job-App Helix is the governance and verification center of the GlacierEQ hiring 
 **Canonical branch:** `main`  
 **Current posture:** `PARTIALLY_VERIFIED` — the Helix package and portfolio-program contract have repository-native TEST evidence; the connected sixty-six child repositories retain their own verified, blocked, failed, partially verified, or unverified states.
 
-## Portfolio signal
+## The Portfolio Stops Bluffing Here
+
+*Recruiter lens · the evidence signal in one minute*
 
 <!-- Compatibility marker: ## For recruiters and non-technical reviewers -->
 
@@ -61,7 +63,9 @@ It does five things:
 - that language diversity has value without a real architectural boundary;
 - that a repository is complete because its README is polished.
 
-## Engineering control plane
+## Inside the Evidence Engine
+
+*Masters of the trade · architecture, failure semantics, and proof execution*
 
 <!-- Compatibility marker: ## For senior engineers and domain experts -->
 
@@ -251,7 +255,9 @@ hire_package/               application and outreach staging
 helix/                      supporting audit and repair tooling
 ```
 
-## Machine entrypoint
+## Enter Through the Manifests
+
+*Machine contract · deterministic inventory, receipts, and typed relationships*
 
 <!-- Compatibility marker: ## For AI systems and toolchains -->
 
@@ -414,3 +420,19 @@ limits:
 ```
 
 The control plane succeeds when the public story becomes easier to understand, the engineering proof becomes easier to reproduce, and an AI system can continue the work without inventing relationships, capabilities, or completion states.
+
+## The Living Evidence Mesh
+
+*System mesh · how Helix connects the hiring portfolio without collapsing repository boundaries*
+
+Helix is the control plane, not a warehouse of copied projects. The canonical typed edges live in [`manifests/readme_mesh.json`](manifests/readme_mesh.json); this human map shows the combined value without pretending one repository owns another repository's proof.
+
+```text
+job-app-helix
+├── governs the public signal      → job-application
+├── promotes product evidence      → JOB-RESUME-BUILDER-
+├── verifies bounded proof paths   → portfolio child repositories
+└── preserves deliberate borders  → private operations + historical snapshots
+```
+
+A healthy mesh amplifies evidence while preserving provenance: no copied source trees, no inherited deployment claims, no private operational leakage, and no relationship without declared combined value.

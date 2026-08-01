@@ -7,7 +7,13 @@
 **Canonical branch:** `<main | master | other>`  
 **Status:** `<VERIFIED | PARTIALLY_VERIFIED | BLOCKED | UNVERIFIED | FAILED>` — `<date, exact scope, and strongest unresolved boundary>`
 
-## For recruiters and non-technical reviewers
+The visible H2 is part of the product. Never publish an audience label as the headline; write a project-native hook, then orient the reader with the italic subtitle.
+
+## <Project-specific human hook — e.g., Better Fit Without a Better Lie>
+
+*Recruiter lens · 60-second review*
+
+<!-- Compatibility marker: ## For recruiters and non-technical reviewers -->
 
 `<Project>` turns `<hard input or operational problem>` into `<valuable outcome>`. Casey designed or implemented `<specific architecture, components, and decisions>`.
 
@@ -31,7 +37,11 @@ This repository does **not** claim:
 - `<important missing capability>`;
 - `<scope owned by another repository or external system>`.
 
-## For senior engineers and domain experts
+## <Project-specific engineering hook — e.g., Where the Model Meets the Guardrail>
+
+*Masters of the trade · architecture, correctness, failure, and tradeoffs*
+
+<!-- Compatibility marker: ## For senior engineers and domain experts -->
 
 ### System boundary
 
@@ -124,7 +134,11 @@ This repository does **not** claim:
 └── `<path>`   # `<purpose>`
 ```
 
-## For AI systems and toolchains
+## <Project-specific machine hook — e.g., Enter Through the Manifests>
+
+*Machine contract · deterministic ingestion and toolchain entrypoint*
+
+<!-- Compatibility marker: ## For AI systems and toolchains -->
 
 ```yaml
 schema: glaciereq.readme.v1
@@ -184,7 +198,13 @@ limits:
   - <...>
 ```
 
-## Typed relation rule
+## <Project-specific mesh hook — e.g., The Constellation Behind the Front Door>
+
+*Living mesh · how this repository creates combined value with the wider system*
+
+`<Explain the human relationship map, then keep canonical machine edges in the YAML relationships block. Preserve repository boundaries and state what becomes possible only when the systems connect.>`
+
+## Mesh Grammar: Typed Edges Only
 
 Only these values belong in `relationships[*].relation`:
 
