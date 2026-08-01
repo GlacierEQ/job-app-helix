@@ -1,0 +1,89 @@
+{
+  "schema": "glaciereq.job-readme-rollout.v1",
+  "profile": "glaciereq.readme-impact.v2.1",
+  "generated_at": "2026-07-31T20:48:00-10:00",
+  "authority": "GlacierEQ/job-app-helix",
+  "scope_rule": "Repositories whose primary purpose is hiring-portfolio governance, recruiter presentation, resume-product proof, private application operations, or historical portfolio organization.",
+  "repositories": [
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "canonical_branch": "main",
+      "role": "CONTROL_PLANE",
+      "visibility": "PUBLIC",
+      "readme_action": "ALIGN_AND_LINK_AUTHORITY",
+      "typed_relationship_policy": "COMPILED_ENUM_ONLY"
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "canonical_branch": "main",
+      "role": "PUBLIC_PORTAL",
+      "visibility": "PUBLIC",
+      "readme_action": "HARDEN_AND_CORRECT_TYPED_EDGES",
+      "typed_relationship_policy": "COMPILED_ENUM_ONLY"
+    },
+    {
+      "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "canonical_branch": "main",
+      "role": "PRODUCT_FLAGSHIP",
+      "visibility": "PUBLIC",
+      "readme_action": "HARDEN_AND_CORRECT_TYPED_EDGES",
+      "typed_relationship_policy": "COMPILED_ENUM_ONLY"
+    },
+    {
+      "repository": "GlacierEQ/job-app",
+      "canonical_branch": "master",
+      "role": "PRIVATE_OPERATIONS",
+      "visibility": "PRIVATE",
+      "readme_action": "FULL_REWRITE_WITH_PRIVACY_BOUNDARY",
+      "typed_relationship_policy": "COMPILED_ENUM_ONLY"
+    },
+    {
+      "repository": "GlacierEQ/portfolio-organization-master",
+      "canonical_branch": "main",
+      "role": "HISTORICAL_SNAPSHOT",
+      "visibility": "PRIVATE",
+      "readme_action": "FULL_REWRITE_WITH_SUCCESSOR_BOUNDARY",
+      "typed_relationship_policy": "COMPILED_ENUM_ONLY"
+    }
+  ],
+  "excluded": [
+    {
+      "category": "technical portfolio repositories",
+      "reason": "They are governed by the wider Helix rollout and are not primarily job-application infrastructure."
+    },
+    {
+      "category": "forks and imported upstream repositories",
+      "reason": "Account presence alone does not establish original portfolio authorship."
+    }
+  ],
+  "acceptance": {
+    "required_sections": [
+      "role_visibility_status",
+      "recruiter_layer",
+      "proof_in_60_seconds",
+      "claim_boundary",
+      "expert_layer",
+      "security_and_failure_behavior",
+      "exact_contribution",
+      "machine_contract",
+      "limits"
+    ],
+    "allowed_typed_relations": [
+      "GOVERNED_BY",
+      "ORCHESTRATES",
+      "VERIFIES",
+      "PROVIDES_CAPABILITY",
+      "CONSUMES",
+      "EXTENDS",
+      "PERSISTS_RECEIPTS_TO",
+      "EXECUTES_THROUGH"
+    ],
+    "forbidden_typed_relations": [
+      "PRESENTS",
+      "PRESENTED_BY",
+      "SUPERSEDES",
+      "EXCLUDES_FROM_PUBLIC_SURFACE",
+      "ARCHIVED_BY"
+    ]
+  }
+}
