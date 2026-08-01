@@ -4,6 +4,28 @@
   "generated_at": "2026-07-31T20:48:00-10:00",
   "authority": "GlacierEQ/job-app-helix",
   "scope_rule": "Repositories whose primary purpose is hiring-portfolio governance, recruiter presentation, resume-product proof, private application operations, or historical portfolio organization.",
+  "scope_audit": {
+    "queries": [
+      "job",
+      "resume",
+      "portfolio",
+      "application",
+      "career",
+      "hiring",
+      "candidate",
+      "recruiter",
+      "interview",
+      "linkedin"
+    ],
+    "completed_at": "2026-07-31T21:18:00-10:00",
+    "reviewed_outliers": [
+      {
+        "repository": "GlacierEQ/awesome-generative-ai-guide",
+        "decision": "EXCLUDED_REFERENCE_REPOSITORY",
+        "reason": "The repository presents a broad external-origin Generative AI learning and research guide. Interview materials are incidental resources rather than the repository's primary purpose, and the README attributes course and guide material to the external origin project."
+      }
+    ]
+  },
   "repositories": [
     {
       "repository": "GlacierEQ/job-app-helix",
@@ -52,8 +74,8 @@
       "reason": "They are governed by the wider Helix rollout and are not primarily job-application infrastructure."
     },
     {
-      "category": "forks and imported upstream repositories",
-      "reason": "Account presence alone does not establish original portfolio authorship."
+      "category": "forks, mirrors, reference collections, and imported upstream repositories",
+      "reason": "Account presence, interview-resource content, or reference value alone does not establish a primary job-system role or original portfolio authorship."
     }
   ],
   "acceptance": {
