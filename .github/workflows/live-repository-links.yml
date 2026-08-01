@@ -1,0 +1,45 @@
+name: Live Repository Link Contract
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "manifests/portfolio_repositories.json"
+      - "manifests/live_repository_links.json"
+      - "scripts/validate_live_repository_links.py"
+      - "tests/test_live_repository_links.py"
+      - ".github/workflows/live-repository-links.yml"
+  pull_request:
+    paths:
+      - "manifests/portfolio_repositories.json"
+      - "manifests/live_repository_links.json"
+      - "scripts/validate_live_repository_links.py"
+      - "tests/test_live_repository_links.py"
+      - ".github/workflows/live-repository-links.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-repository-links-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out canonical Helix
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Validate link-only portfolio contract
+        run: python scripts/validate_live_repository_links.py
+
+      - name: Run focused regression tests
+        run: python -m pytest -q tests/test_live_repository_links.py
