@@ -365,6 +365,7 @@ The status belongs to a named scope, not to the repository as an emotional grade
 A README is ready to place in an application only when:
 
 - the first screen states outcome, contribution, role, visibility, status, and proof;
+- visible H2 headers carry project-specific voice while audience labels remain subtitles or hidden compatibility markers;
 - every material claim points to evidence or is explicitly labeled unverified;
 - the quick-start or verification path works from a clean checkout, or the blocker is named;
 - architecture, failure behavior, security, tradeoffs, and exact contribution are documented;
@@ -377,6 +378,7 @@ A README is ready to place in an application only when:
 
 ```text
 [ ] Outcome appears before technology list
+[ ] Visible H2 headers carry project-specific voice; audience labels do not masquerade as headlines
 [ ] Role and visibility are explicit
 [ ] Status includes scope and date
 [ ] Proof panel uses current repository artifacts
