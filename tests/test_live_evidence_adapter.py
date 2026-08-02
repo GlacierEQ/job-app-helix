@@ -16,6 +16,7 @@ OBSERVATION = ROOT / "observations" / "repositories" / (
     "GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json"
 )
 HEAD = "1607c0d27897ea963eb572062300342f1922b84c"
+OLD_HEAD = "0d80007b5bb8248221a9e6d7032bccda45c3dcea"
 
 
 def load_observation() -> dict:
@@ -89,8 +90,33 @@ def test_success_requires_provider_receipt() -> None:
     )
 
 
+def test_old_provider_receipt_is_stale_not_current() -> None:
+    observation = load_observation()
+    observation["execution"]["build"] = {
+        "state": "SUCCESS",
+        "receipts": [
+            f"https://github.com/GlacierEQ/AKOS/actions/runs/998/build?sha={OLD_HEAD}"
+        ],
+        "test_count": None,
+        "notes": [],
+    }
+
+    result = compile_repository_observation(observation)
+
+    assert result["assessment"]["dimensions"]["build"]["state"] == "STALE"
+    assert "not bound to the observed HEAD" in " ".join(
+        result["assessment"]["dimensions"]["build"]["findings"]
+    )
+
+
 def test_test_success_requires_positive_executed_count() -> None:
     observation = load_observation()
+    observation["execution"]["build"] = {
+        "state": "SUCCESS",
+        "receipts": [current_receipt("build")],
+        "test_count": None,
+        "notes": [],
+    }
     observation["execution"]["tests"] = {
         "state": "SUCCESS",
         "receipts": [current_receipt("tests")],
@@ -101,6 +127,7 @@ def test_test_success_requires_positive_executed_count() -> None:
     result = compile_repository_observation(observation)
 
     assert result["assessment"]["dimensions"]["tests"]["state"] == "UNVERIFIED"
+    assert result["assessment"]["dimensions"]["reality"]["state"] == "PARTIALLY_VERIFIED"
     assert "positive executed-test count" in " ".join(
         result["assessment"]["dimensions"]["tests"]["findings"]
     )
