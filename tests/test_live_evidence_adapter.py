@@ -9,23 +9,24 @@ import pytest
 from job_app_helix.live_evidence_adapter import (
     LiveEvidenceAdapterError,
     compile_repository_observation,
+    load_adapter_policy,
+    load_observation_schema,
 )
+from job_app_helix.repository_health import load_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 OBSERVATION = ROOT / "observations" / "repositories" / (
     "GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json"
 )
-POLICY = ROOT / "manifests" / "live_evidence_adapter_policy.json"
+ADAPTER_POLICY = ROOT / "manifests" / "live_evidence_adapter_policy.json"
+HEALTH_POLICY = ROOT / "manifests" / "repository_health_policy.json"
+OBSERVATION_SCHEMA = ROOT / "schemas" / "repository_observation.schema.json"
 HEAD = "1607c0d27897ea963eb572062300342f1922b84c"
 OLD_HEAD = "0d80007b5bb8248221a9e6d7032bccda45c3dcea"
 
 
 def load_observation() -> dict:
     return json.loads(OBSERVATION.read_text(encoding="utf-8"))
-
-
-def load_adapter_policy() -> dict:
-    return json.loads(POLICY.read_text(encoding="utf-8"))
 
 
 def current_receipt(kind: str) -> str:
@@ -55,6 +56,14 @@ def test_akos_probe_is_truthfully_partial() -> None:
     assert len(assessment["blockers"]) == 2
 
 
+def test_installed_resources_match_canonical_contracts() -> None:
+    assert load_adapter_policy() == json.loads(ADAPTER_POLICY.read_text(encoding="utf-8"))
+    assert load_policy() == json.loads(HEALTH_POLICY.read_text(encoding="utf-8"))
+    assert load_observation_schema() == json.loads(
+        OBSERVATION_SCHEMA.read_text(encoding="utf-8")
+    )
+
+
 def test_observation_is_deterministic() -> None:
     first = compile_repository_observation(load_observation())
     second = compile_repository_observation(load_observation())
@@ -62,6 +71,27 @@ def test_observation_is_deterministic() -> None:
     assert first["observation_id"] == second["observation_id"]
     assert first["assessment"]["assessment_id"] == second["assessment"]["assessment_id"]
     assert first["integrity"] == second["integrity"]
+
+
+def test_non_object_observation_is_rejected() -> None:
+    with pytest.raises(LiveEvidenceAdapterError, match="must be an object"):
+        compile_repository_observation(None)  # type: ignore[arg-type]
+
+
+def test_missing_required_field_is_rejected_by_schema() -> None:
+    observation = load_observation()
+    del observation["observed_at"]
+
+    with pytest.raises(LiveEvidenceAdapterError, match="violates schema"):
+        compile_repository_observation(observation)
+
+
+def test_unknown_field_is_rejected_by_schema() -> None:
+    observation = load_observation()
+    observation["unexpected"] = True
+
+    with pytest.raises(LiveEvidenceAdapterError, match="violates schema"):
+        compile_repository_observation(observation)
 
 
 def test_copied_child_bytes_are_rejected() -> None:
@@ -72,13 +102,13 @@ def test_copied_child_bytes_are_rejected() -> None:
         compile_repository_observation(observation)
 
 
-def test_unbound_artifact_receipt_is_rejected() -> None:
+def test_branch_floating_artifact_receipt_is_rejected() -> None:
     observation = load_observation()
     observation["artifacts"]["source_files"][0]["url"] = (
         "https://github.com/GlacierEQ/AKOS/blob/main/operational_cognition/engine.py"
     )
 
-    with pytest.raises(LiveEvidenceAdapterError, match="canonical repository"):
+    with pytest.raises(LiveEvidenceAdapterError, match="declared path"):
         compile_repository_observation(observation)
 
 
@@ -88,7 +118,17 @@ def test_foreign_artifact_receipt_with_head_substring_is_rejected() -> None:
         f"https://example.invalid/GlacierEQ/AKOS/blob/{HEAD}/engine.py"
     )
 
-    with pytest.raises(LiveEvidenceAdapterError, match="canonical repository"):
+    with pytest.raises(LiveEvidenceAdapterError, match="declared path"):
+        compile_repository_observation(observation)
+
+
+def test_artifact_url_must_match_declared_path() -> None:
+    observation = load_observation()
+    observation["artifacts"]["source_files"][0]["url"] = (
+        f"https://github.com/GlacierEQ/AKOS/blob/{HEAD}/README.md"
+    )
+
+    with pytest.raises(LiveEvidenceAdapterError, match="declared path"):
         compile_repository_observation(observation)
 
 
@@ -121,11 +161,12 @@ def test_foreign_provider_receipt_cannot_verify_execution() -> None:
     result = compile_repository_observation(observation)
     build = result["assessment"]["dimensions"]["build"]
 
-    assert build["state"] == "STALE"
-    assert "untrusted or not bound" in " ".join(build["findings"])
+    assert build["state"] == "UNVERIFIED"
+    assert build["receipts"] == []
+    assert "non-current or untrusted" in " ".join(build["findings"])
 
 
-def test_old_provider_receipt_is_stale_not_current() -> None:
+def test_old_provider_receipt_is_unverified_not_current() -> None:
     observation = load_observation()
     observation["execution"]["build"] = {
         "state": "SUCCESS",
@@ -139,8 +180,30 @@ def test_old_provider_receipt_is_stale_not_current() -> None:
     result = compile_repository_observation(observation)
     build = result["assessment"]["dimensions"]["build"]
 
-    assert build["state"] == "STALE"
-    assert "untrusted or not bound" in " ".join(build["findings"])
+    assert build["state"] == "UNVERIFIED"
+    assert build["receipts"] == []
+    assert "non-current or untrusted" in " ".join(build["findings"])
+
+
+def test_current_failure_wins_over_mixed_old_receipt() -> None:
+    observation = load_observation()
+    observation["execution"]["tests"] = {
+        "state": "FAILURE",
+        "receipts": [
+            current_receipt("tests"),
+            f"https://github.com/GlacierEQ/AKOS/actions/runs/998/tests?sha={OLD_HEAD}",
+        ],
+        "test_count": 94,
+        "notes": ["one or more tests failed"],
+    }
+
+    result = compile_repository_observation(observation)
+    tests = result["assessment"]["dimensions"]["tests"]
+
+    assert tests["state"] == "FAILED"
+    assert tests["receipts"] == [current_receipt("tests")]
+    assert "ignored 1" in " ".join(tests["findings"])
+    assert result["assessment"]["health_state"] == "FAILED"
 
 
 def test_test_success_requires_positive_executed_count() -> None:
@@ -263,7 +326,7 @@ def test_invalid_git_digest_length_is_rejected() -> None:
     observation = load_observation()
     observation["observed_head_sha"] = "a" * 41
 
-    with pytest.raises(LiveEvidenceAdapterError, match="exactly 40 or 64"):
+    with pytest.raises(LiveEvidenceAdapterError, match="violates schema"):
         compile_repository_observation(observation)
 
 
@@ -273,4 +336,13 @@ def test_empty_policy_lists_are_rejected_before_scoring() -> None:
     policy["critical_execution_fields"] = []
 
     with pytest.raises(LiveEvidenceAdapterError, match="non-empty array"):
+        compile_repository_observation(observation, adapter_policy=policy)
+
+
+def test_policy_execution_state_mismatch_is_rejected() -> None:
+    observation = load_observation()
+    policy = load_adapter_policy()
+    policy["execution_states"] = ["SUCCESS", "FAILURE"]
+
+    with pytest.raises(LiveEvidenceAdapterError, match="execution_states"):
         compile_repository_observation(observation, adapter_policy=policy)
