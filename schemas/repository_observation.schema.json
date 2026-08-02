@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/GlacierEQ/job-app-helix/schemas/repository_observation.schema.json",
+  "title": "GlacierEQ Live Repository Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "repository",
+    "repository_id",
+    "canonical_url",
+    "default_branch",
+    "observed_head_sha",
+    "observed_at",
+    "visibility",
+    "archived",
+    "connector",
+    "artifacts",
+    "execution",
+    "provenance",
+    "blockers"
+  ],
+  "properties": {
+    "schema": {"const": "glaciereq.repository-observation.v1"},
+    "repository": {"type": "string", "pattern": "^[^/\\s]+/[^/\\s]+$"},
+    "repository_id": {"type": ["string", "integer"]},
+    "canonical_url": {"type": "string", "format": "uri"},
+    "default_branch": {"type": "string", "minLength": 1},
+    "observed_head_sha": {"type": "string", "pattern": "^[0-9a-f]{40,64}$"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "visibility": {"enum": ["public", "private", "internal", "unknown"]},
+    "archived": {"type": "boolean"},
+    "connector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "read_mode",
+        "authentication_state",
+        "last_successful_probe",
+        "error_state",
+        "receipts"
+      ],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "read_mode": {"enum": ["READ_ONLY", "READ_WRITE", "UNKNOWN"]},
+        "authentication_state": {
+          "enum": ["AUTHENTICATED", "NOT_REQUIRED_PUBLIC", "NOT_ASSERTED", "BLOCKED"]
+        },
+        "last_successful_probe": {"type": ["string", "null"], "format": "date-time"},
+        "error_state": {"enum": ["NONE", "PARTIAL", "BLOCKED"]},
+        "receipts": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "readme",
+        "package_manifest",
+        "workflows",
+        "source_files",
+        "test_files",
+        "architecture_files",
+        "integration_files",
+        "ai_files",
+        "recruiter_files"
+      ],
+      "properties": {
+        "readme": {"$ref": "#/$defs/optionalArtifact"},
+        "package_manifest": {"$ref": "#/$defs/optionalArtifact"},
+        "license": {"$ref": "#/$defs/optionalArtifact"},
+        "security_policy": {"$ref": "#/$defs/optionalArtifact"},
+        "workflows": {"$ref": "#/$defs/artifactArray"},
+        "source_files": {"$ref": "#/$defs/artifactArray"},
+        "test_files": {"$ref": "#/$defs/artifactArray"},
+        "architecture_files": {"$ref": "#/$defs/artifactArray"},
+        "integration_files": {"$ref": "#/$defs/artifactArray"},
+        "ai_files": {"$ref": "#/$defs/artifactArray"},
+        "recruiter_files": {"$ref": "#/$defs/artifactArray"}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["build", "tests", "documentation", "security"],
+      "properties": {
+        "build": {"$ref": "#/$defs/executionEvidence"},
+        "tests": {"$ref": "#/$defs/executionEvidence"},
+        "documentation": {"$ref": "#/$defs/executionEvidence"},
+        "security": {"$ref": "#/$defs/executionEvidence"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_linked", "head_sha_bound", "original_bytes_copied", "notes"],
+      "properties": {
+        "source_linked": {"type": "boolean"},
+        "head_sha_bound": {"type": "boolean"},
+        "original_bytes_copied": {"type": "boolean"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "url"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"}
+      }
+    },
+    "optionalArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "path", "url"],
+      "properties": {
+        "present": {"type": "boolean"},
+        "path": {"type": ["string", "null"]},
+        "url": {"type": ["string", "null"], "format": "uri"}
+      }
+    },
+    "artifactArray": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/artifact"}
+    },
+    "executionEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "receipts", "test_count", "notes"],
+      "properties": {
+        "state": {
+          "enum": ["SUCCESS", "FAILURE", "IN_PROGRESS", "AMBIGUOUS", "NOT_CONFIGURED", "NOT_RUN"]
+        },
+        "receipts": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "test_count": {"type": ["integer", "null"], "minimum": 0},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
