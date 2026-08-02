@@ -1,74 +1,38 @@
 {
   "schema": "glaciereq.live-evidence-adapter-bootstrap-receipt.v1",
   "date": "2026-08-02",
-  "state": "HOSTED_VERIFIED_PENDING_MERGE",
+  "state": "TRUST_HARDENING_PENDING_HOSTED_VERIFICATION",
   "branch": "feat/live-evidence-adapter-v1",
   "pull_request": 33,
-  "verified_head_sha": "6e8a51090ee20f22371e449f4617631e1bef78dd",
-  "verification": {
-    "focused_workflow": {
-      "run_id": 30747341121,
-      "conclusion": "success",
-      "compile": "success",
-      "lint": "success",
-      "adapter_and_health_regressions": "success",
-      "akos_observation_compilation": "success",
-      "fail_closed_boundary": "success",
-      "artifact_id": 8833297323,
-      "artifact_digest": "sha256:aa319adcefe7d60a255d74b6dd861f3732aceab9d1c361cf9b96dafb0b461ce4"
-    },
-    "repository_ci": {
-      "run_id": 30747341114,
-      "conclusion": "success",
-      "python_versions": ["3.11", "3.12", "3.13"],
-      "lint": "success",
-      "full_tests": "success",
-      "portfolio_contract": "success",
-      "protobuf_contract": "success",
-      "readme_mesh": "success",
-      "campaign_proofs": "success",
-      "public_boundary": "success"
-    }
+  "superseded_verification": {
+    "focused_run_id": 30747341121,
+    "repository_ci_run_id": 30747341114,
+    "reason": "Review identified receipt-provenance, execution-coverage, authentication-quality, data-quality, digest-length, documentation-failure, and CLI-error-contract gaps. The prior generated assessment was deleted and may not be presented as current."
   },
   "first_observation": {
     "repository": "GlacierEQ/AKOS",
     "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
-    "state": "PARTIALLY_VERIFIED",
-    "health_score": 30.76,
-    "evidence_coverage": 100.0,
-    "confidence_score": 48.75,
-    "connector_quality_score": 75.0,
-    "data_quality_score": 85.0,
-    "assessment_id": "b9115f2c755066f3be1914b56b37782ce6ff3d2423257e4a7ae343c1fe4cbdb3",
-    "observation_id": "1065d8bbe173731640bf95a3ce191c88bc4c3634a4085fc2895d562a86f44291",
-    "blockers": [
-      "Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.",
-      "No current security verification receipt is available for the observed SHA."
-    ]
+    "expected_state": "PARTIALLY_VERIFIED",
+    "connector_invocation_state": "PARTIAL",
+    "runtime_verification_state": "AMBIGUOUS",
+    "expected_health_score": 30.76,
+    "expected_evidence_coverage": 55.0,
+    "expected_connector_quality_score": 75.0,
+    "expected_data_quality_score": 80.0
   },
-  "artifacts": [
-    "manifests/live_evidence_adapter_policy.json",
-    "manifests/live_repository_evidence.json",
-    "schemas/repository_observation.schema.json",
-    "src/job_app_helix/live_evidence_adapter.py",
-    "scripts/compile_live_repository_evidence.py",
-    "tests/test_live_evidence_adapter.py",
-    "observations/repositories/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
-    "status/repository-assessments/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
-    "docs/LIVE_REPOSITORY_EVIDENCE_ADAPTER.md",
-    ".github/workflows/live-repository-evidence.yml"
-  ],
-  "guarantees": [
-    "child repository source bytes are not copied into Helix",
-    "artifact references must be bound to the observed Git SHA",
-    "provider execution receipts must be bound to the observed Git SHA",
-    "workflow configuration cannot become a successful execution claim",
-    "test success requires a positive executed-test count",
-    "connector quality and data quality remain separate",
-    "ambiguous current CI state remains unverified",
-    "the exact hosted-generated AKOS assessment is persisted in the canonical branch proposal"
+  "hardening": [
+    "require trusted github.com or api.github.com repository provenance",
+    "require exact canonical repository path and current SHA binding",
+    "require 40- or 64-character Git object identifiers",
+    "exclude artifact-presence links from unverified execution receipts",
+    "count only final SUCCESS or FAILURE execution states as resolved",
+    "cap NOT_ASSERTED authentication connector quality",
+    "preserve reported documentation failure instead of README promotion",
+    "preserve JSON CLI error contract when output persistence fails",
+    "disable checkout credential persistence"
   ],
   "not_claimed": [
+    "the superseded assessment remains valid",
     "AKOS currently passes its configured workflow at the observed SHA",
     "AKOS is recruiter ready or elite verified",
     "README claims establish current provider execution",
