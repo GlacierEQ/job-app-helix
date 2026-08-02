@@ -16,9 +16,17 @@
       "repository": "GlacierEQ/AKOS",
       "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
       "observation": "observations/repositories/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
-      "current_assessment": null,
-      "state": "OBSERVED_PENDING_HOSTED_COMPILATION",
-      "next_action": "Compile and verify the source-linked observation in hosted CI."
+      "current_assessment": "status/repository-assessments/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
+      "assessment_id": "b9115f2c755066f3be1914b56b37782ce6ff3d2423257e4a7ae343c1fe4cbdb3",
+      "state": "PARTIALLY_VERIFIED",
+      "health_score": 30.76,
+      "connector_quality_score": 75.0,
+      "data_quality_score": 85.0,
+      "blockers": [
+        "Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.",
+        "No current security verification receipt is available for the observed SHA."
+      ],
+      "next_action": "Acquire current provider receipts for build, tests, and security at the observed SHA."
     }
   ]
 }
