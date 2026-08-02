@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import tempfile
 from pathlib import Path
 
 from job_app_helix.live_evidence_adapter import (
@@ -12,6 +14,28 @@ from job_app_helix.live_evidence_adapter import (
     compile_repository_observation,
 )
 from job_app_helix.repository_health import RepositoryHealthError
+
+
+def atomic_write_text(path: Path, content: str) -> None:
+    """Write a complete UTF-8 file and atomically replace the destination."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        text=True,
+    )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    except BaseException:
+        temporary.unlink(missing_ok=True)
+        raise
 
 
 def main() -> int:
@@ -26,8 +50,7 @@ def main() -> int:
         result = compile_repository_observation(observation)
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered, encoding="utf-8")
+            atomic_write_text(args.output, rendered)
     except (
         OSError,
         json.JSONDecodeError,
