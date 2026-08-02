@@ -5,9 +5,10 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections.abc import Mapping
 from copy import deepcopy
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_POLICY = ROOT / "manifests" / "repository_health_policy.json"
