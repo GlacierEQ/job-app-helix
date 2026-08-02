@@ -6,14 +6,16 @@ import hashlib
 import json
 from collections.abc import Mapping, Sequence
 from copy import deepcopy
-from pathlib import Path
+from importlib.resources import files
+from pathlib import Path, PurePosixPath
 from typing import Any
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
+
+from jsonschema import Draft202012Validator, FormatChecker
+from jsonschema.exceptions import SchemaError, ValidationError
 
 from .repository_health import assess_repository_health, load_policy
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_ADAPTER_POLICY = ROOT / "manifests" / "live_evidence_adapter_policy.json"
 HEALTH_DIMENSIONS = {
     "reality",
     "build",
@@ -53,6 +55,7 @@ AUTHENTICATION_STATES = {
     "BLOCKED",
 }
 CONNECTOR_ERROR_STATES = {"NONE", "PARTIAL", "BLOCKED"}
+RESOURCE_PACKAGE = "job_app_helix.resources"
 
 
 class LiveEvidenceAdapterError(ValueError):
@@ -71,11 +74,17 @@ def sha256_json(value: Any) -> str:
     return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
 
 
-def load_adapter_policy(path: Path = DEFAULT_ADAPTER_POLICY) -> dict[str, Any]:
-    """Load and validate the adapter policy."""
+def _load_json_resource(name: str) -> dict[str, Any]:
+    text = files(RESOURCE_PACKAGE).joinpath(name).read_text(encoding="utf-8")
+    value = json.loads(text)
+    if not isinstance(value, dict):
+        raise LiveEvidenceAdapterError(f"installed resource {name} must be an object")
+    return value
 
-    policy = json.loads(path.read_text(encoding="utf-8"))
-    defaults = policy.get("dimension_defaults", {})
+
+def _validate_adapter_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
+    normalized = deepcopy(dict(policy))
+    defaults = normalized.get("dimension_defaults", {})
     if set(defaults) != HEALTH_DIMENSIONS:
         missing = sorted(HEALTH_DIMENSIONS - set(defaults))
         extra = sorted(set(defaults) - HEALTH_DIMENSIONS)
@@ -83,7 +92,13 @@ def load_adapter_policy(path: Path = DEFAULT_ADAPTER_POLICY) -> dict[str, Any]:
             f"adapter policy dimensions mismatch; missing={missing}, extra={extra}"
         )
 
-    required_categories = policy.get("required_artifact_categories")
+    execution_states = normalized.get("execution_states")
+    if not isinstance(execution_states, list) or set(execution_states) != EXECUTION_STATES:
+        raise LiveEvidenceAdapterError(
+            "adapter policy execution_states must match implemented execution states"
+        )
+
+    required_categories = normalized.get("required_artifact_categories")
     if not isinstance(required_categories, list) or not required_categories:
         raise LiveEvidenceAdapterError(
             "adapter policy required_artifact_categories must be a non-empty array"
@@ -93,7 +108,7 @@ def load_adapter_policy(path: Path = DEFAULT_ADAPTER_POLICY) -> dict[str, Any]:
             "adapter policy required_artifact_categories must match known categories"
         )
 
-    critical_fields = policy.get("critical_execution_fields")
+    critical_fields = normalized.get("critical_execution_fields")
     if not isinstance(critical_fields, list) or not critical_fields:
         raise LiveEvidenceAdapterError(
             "adapter policy critical_execution_fields must be a non-empty array"
@@ -102,7 +117,53 @@ def load_adapter_policy(path: Path = DEFAULT_ADAPTER_POLICY) -> dict[str, Any]:
         raise LiveEvidenceAdapterError(
             "adapter policy critical_execution_fields must match known fields"
         )
-    return policy
+    return normalized
+
+
+def load_adapter_policy(path: Path | None = None) -> dict[str, Any]:
+    """Load and validate the adapter policy from a file or installed resource."""
+
+    if path is None:
+        policy = _load_json_resource("live_evidence_adapter_policy.json")
+    else:
+        value = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(value, dict):
+            raise LiveEvidenceAdapterError("adapter policy must be an object")
+        policy = value
+    return _validate_adapter_policy(policy)
+
+
+def load_observation_schema(path: Path | None = None) -> dict[str, Any]:
+    """Load and validate the repository observation JSON Schema."""
+
+    if path is None:
+        schema = _load_json_resource("repository_observation.schema.json")
+    else:
+        value = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(value, dict):
+            raise LiveEvidenceAdapterError("repository observation schema must be an object")
+        schema = value
+    try:
+        Draft202012Validator.check_schema(schema)
+    except SchemaError as exc:
+        raise LiveEvidenceAdapterError(f"invalid repository observation schema: {exc.message}") from exc
+    return schema
+
+
+def _validate_observation_contract(observation: Mapping[str, Any]) -> dict[str, Any]:
+    payload = deepcopy(dict(observation))
+    validator = Draft202012Validator(
+        load_observation_schema(),
+        format_checker=FormatChecker(),
+    )
+    errors = sorted(validator.iter_errors(payload), key=lambda item: list(item.absolute_path))
+    if errors:
+        error = errors[0]
+        location = ".".join(str(part) for part in error.absolute_path) or "$"
+        raise LiveEvidenceAdapterError(
+            f"repository observation violates schema at {location}: {error.message}"
+        ) from error
+    return payload
 
 
 def _require_mapping(value: Any, name: str) -> Mapping[str, Any]:
@@ -117,29 +178,81 @@ def _require_sequence(value: Any, name: str) -> Sequence[Any]:
     return value
 
 
-def _artifact_receipts(value: Any, name: str) -> list[str]:
+def _canonical_path(canonical_url: str) -> str:
+    parsed = urlparse(canonical_url)
+    if parsed.scheme != "https" or parsed.netloc != "github.com":
+        raise LiveEvidenceAdapterError("canonical repository URL must use github.com HTTPS")
+    parts = [part for part in parsed.path.split("/") if part]
+    if len(parts) != 2:
+        raise LiveEvidenceAdapterError("canonical repository URL must use owner/name form")
+    return f"/{parts[0]}/{parts[1]}"
+
+
+def _normalize_artifact_path(path: str, name: str) -> str:
+    if not path or "\\" in path:
+        raise LiveEvidenceAdapterError(f"{name}.path must be a non-empty POSIX path")
+    candidate = PurePosixPath(path)
+    if candidate.is_absolute() or any(part in {"", ".", ".."} for part in candidate.parts):
+        raise LiveEvidenceAdapterError(f"{name}.path must be a safe repository-relative path")
+    normalized = candidate.as_posix()
+    if normalized != path:
+        raise LiveEvidenceAdapterError(f"{name}.path must be normalized: {normalized}")
+    return normalized
+
+
+def _trusted_artifact_url(
+    receipt: str,
+    declared_path: str,
+    head_sha: str,
+    canonical_url: str,
+) -> bool:
+    parsed = urlparse(receipt)
+    if parsed.scheme != "https" or parsed.netloc != "github.com":
+        return False
+    if parsed.query or parsed.fragment:
+        return False
+    expected = f"{_canonical_path(canonical_url)}/blob/{head_sha}/{declared_path}"
+    return unquote(parsed.path) == expected
+
+
+def _artifact_receipts(
+    value: Any,
+    name: str,
+    head_sha: str,
+    canonical_url: str,
+) -> list[str]:
     receipts: list[str] = []
     for index, artifact in enumerate(_require_sequence(value, name)):
-        item = _require_mapping(artifact, f"{name}[{index}]")
-        path = str(item.get("path", "")).strip()
+        item_name = f"{name}[{index}]"
+        item = _require_mapping(artifact, item_name)
+        path = _normalize_artifact_path(str(item.get("path", "")).strip(), item_name)
         url = str(item.get("url", "")).strip()
-        if not path or not url:
-            raise LiveEvidenceAdapterError(f"{name}[{index}] requires path and url")
+        if not url or not _trusted_artifact_url(url, path, head_sha, canonical_url):
+            raise LiveEvidenceAdapterError(
+                f"{item_name}.url must resolve to its declared path at the observed HEAD"
+            )
         receipts.append(url)
     return sorted(set(receipts))
 
 
-def _optional_artifact_receipts(value: Any, name: str) -> list[str]:
+def _optional_artifact_receipts(
+    value: Any,
+    name: str,
+    head_sha: str,
+    canonical_url: str,
+) -> list[str]:
     item = _require_mapping(value, name)
     present = item.get("present")
     if not isinstance(present, bool):
         raise LiveEvidenceAdapterError(f"{name}.present must be boolean")
     if not present:
         return []
-    path = str(item.get("path", "")).strip()
+    path = _normalize_artifact_path(str(item.get("path", "")).strip(), name)
     url = str(item.get("url", "")).strip()
-    if not path or not url:
-        raise LiveEvidenceAdapterError(f"present {name} requires path and url")
+    if not url or not _trusted_artifact_url(url, path, head_sha, canonical_url):
+        raise LiveEvidenceAdapterError(
+            f"{name}.url must resolve to its declared path at the observed HEAD"
+        )
     return [url]
 
 
@@ -176,16 +289,6 @@ def _execution_item(value: Any, name: str) -> dict[str, Any]:
     }
 
 
-def _canonical_path(canonical_url: str) -> str:
-    parsed = urlparse(canonical_url)
-    if parsed.scheme != "https" or parsed.netloc != "github.com":
-        raise LiveEvidenceAdapterError("canonical repository URL must use github.com HTTPS")
-    parts = [part for part in parsed.path.split("/") if part]
-    if len(parts) != 2:
-        raise LiveEvidenceAdapterError("canonical repository URL must use owner/name form")
-    return f"/{parts[0]}/{parts[1]}"
-
-
 def _trusted_metadata_receipt(receipt: str, canonical_url: str) -> bool:
     canonical_path = _canonical_path(canonical_url)
     parsed = urlparse(receipt)
@@ -218,7 +321,12 @@ def _trusted_receipt_bound_to_head(
             return not parsed.query
         if relative_path in {f"commit/{head_sha}", f"commit/{head_sha}/"}:
             return not parsed.query
-        if relative_path.startswith("actions/runs/"):
+        path_parts = relative_path.split("/")
+        if (
+            len(path_parts) >= 3
+            and path_parts[:2] == ["actions", "runs"]
+            and path_parts[2].isdigit()
+        ):
             return parse_qs(parsed.query).get("sha") == [head_sha]
         return False
 
@@ -230,17 +338,6 @@ def _trusted_receipt_bound_to_head(
     return False
 
 
-def _receipts_bound_to_head(
-    receipts: Sequence[str],
-    head_sha: str,
-    canonical_url: str,
-) -> bool:
-    return bool(receipts) and all(
-        _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
-        for receipt in receipts
-    )
-
-
 def _execution_can_verify(
     item: Mapping[str, Any],
     head_sha: str,
@@ -250,7 +347,10 @@ def _execution_can_verify(
 ) -> bool:
     if item["state"] != "SUCCESS":
         return False
-    if not _receipts_bound_to_head(item["receipts"], head_sha, canonical_url):
+    if not item["receipts"] or not all(
+        _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+        for receipt in item["receipts"]
+    ):
         return False
     return not require_positive_test_count or bool(item["test_count"])
 
@@ -287,18 +387,40 @@ def _compile_execution_dimension(
     receipts = item["receipts"]
     state = item["state"]
     findings = list(item["notes"])
+    current_receipts = [
+        receipt
+        for receipt in receipts
+        if _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+    ]
+    rejected_receipts = sorted(set(receipts) - set(current_receipts))
 
-    if receipts and not _receipts_bound_to_head(receipts, head_sha, canonical_url):
+    if state == "FAILURE":
+        if current_receipts:
+            if rejected_receipts:
+                findings.append(
+                    f"ignored {len(rejected_receipts)} non-current or untrusted receipt(s)"
+                )
+            return _evidence(
+                state="FAILED",
+                raw_score=0,
+                confidence=1,
+                head_sha=head_sha,
+                receipts=current_receipts,
+                findings=findings or [f"{name} verification failed"],
+            )
+        if receipts:
+            findings.append(
+                f"{name} failure lacked a trusted receipt for the observed HEAD"
+            )
+        else:
+            findings.append(f"{name} failure was reported without a provider receipt")
         return _evidence(
-            state="STALE",
-            raw_score=float(defaults["raw_score"]),
-            confidence=float(defaults["confidence"]),
+            state="UNVERIFIED",
+            raw_score=0,
+            confidence=0,
             head_sha=head_sha,
-            receipts=receipts,
-            findings=[
-                *findings,
-                "provider receipt is untrusted or not bound to the observed HEAD",
-            ],
+            receipts=[],
+            findings=findings,
         )
 
     if state == "SUCCESS":
@@ -311,13 +433,25 @@ def _compile_execution_dimension(
                 receipts=[],
                 findings=[*findings, "success was reported without a provider receipt"],
             )
+        if rejected_receipts:
+            return _evidence(
+                state="UNVERIFIED",
+                raw_score=0,
+                confidence=0,
+                head_sha=head_sha,
+                receipts=[],
+                findings=[
+                    *findings,
+                    "success included a non-current or untrusted provider receipt",
+                ],
+            )
         if name == "tests" and not item["test_count"]:
             return _evidence(
                 state="UNVERIFIED",
                 raw_score=0,
                 confidence=0,
                 head_sha=head_sha,
-                receipts=receipts,
+                receipts=current_receipts,
                 findings=[*findings, "test success lacked a positive executed-test count"],
             )
         if name == "tests":
@@ -327,18 +461,8 @@ def _compile_execution_dimension(
             raw_score=float(defaults["raw_score"]),
             confidence=float(defaults["confidence"]),
             head_sha=head_sha,
-            receipts=receipts,
+            receipts=current_receipts,
             findings=findings,
-        )
-
-    if state == "FAILURE" and receipts:
-        return _evidence(
-            state="FAILED",
-            raw_score=0,
-            confidence=1,
-            head_sha=head_sha,
-            receipts=receipts,
-            findings=findings or [f"{name} verification failed"],
         )
 
     if state == "IN_PROGRESS":
@@ -349,15 +473,17 @@ def _compile_execution_dimension(
         findings.append(f"{name} verification is not configured")
     elif state == "NOT_RUN":
         findings.append(f"{name} verification has not been run for the observed SHA")
-    elif state == "FAILURE":
-        findings.append(f"{name} failure was reported without a provider receipt")
 
+    if rejected_receipts:
+        findings.append(
+            f"ignored {len(rejected_receipts)} non-current or untrusted receipt(s)"
+        )
     return _evidence(
         state="UNVERIFIED",
         raw_score=0,
         confidence=0,
         head_sha=head_sha,
-        receipts=receipts,
+        receipts=current_receipts,
         findings=findings,
     )
 
@@ -386,13 +512,13 @@ def _connector_quality(
         for receipt in receipts
     ):
         score += float(points["head_commit_receipt"])
-    if artifact_receipts and _receipts_bound_to_head(
-        artifact_receipts, head_sha, canonical_url
+    if artifact_receipts and all(
+        _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+        for receipt in artifact_receipts
     ):
         score += float(points["sha_bound_artifact_receipts"])
     if all(
-        item["state"] in FINAL_EXECUTION_STATES
-        for item in critical_execution.values()
+        item["state"] in FINAL_EXECUTION_STATES for item in critical_execution.values()
     ):
         score += float(points["resolved_ci_invocation_state"])
 
@@ -450,14 +576,12 @@ def compile_repository_observation(
 ) -> dict[str, Any]:
     """Compile one source-linked observation into a deterministic health assessment."""
 
-    payload = deepcopy(dict(observation))
-    if payload.get("schema") != "glaciereq.repository-observation.v1":
-        raise LiveEvidenceAdapterError("unsupported repository observation schema")
+    if not isinstance(observation, Mapping):
+        raise LiveEvidenceAdapterError("repository observation must be an object")
+    payload = _validate_observation_contract(observation)
 
-    repository = str(payload.get("repository", "")).strip()
-    if repository.count("/") != 1 or any(not part for part in repository.split("/")):
-        raise LiveEvidenceAdapterError("repository must use owner/name form")
-    canonical_url = str(payload.get("canonical_url", "")).rstrip("/")
+    repository = str(payload["repository"]).strip()
+    canonical_url = str(payload["canonical_url"]).rstrip("/")
     expected_url = f"https://github.com/{repository}"
     if canonical_url != expected_url:
         raise LiveEvidenceAdapterError(
@@ -465,7 +589,7 @@ def compile_repository_observation(
         )
     _canonical_path(canonical_url)
 
-    head_sha = str(payload.get("observed_head_sha", "")).lower()
+    head_sha = str(payload["observed_head_sha"]).lower()
     if len(head_sha) not in {40, 64} or any(
         character not in "0123456789abcdef" for character in head_sha
     ):
@@ -473,7 +597,7 @@ def compile_repository_observation(
             "observed_head_sha must contain exactly 40 or 64 lowercase hex characters"
         )
 
-    provenance = _require_mapping(payload.get("provenance"), "provenance")
+    provenance = _require_mapping(payload["provenance"], "provenance")
     if provenance.get("original_bytes_copied") is not False:
         raise LiveEvidenceAdapterError("copied repository bytes are forbidden")
     if provenance.get("source_linked") is not True:
@@ -481,76 +605,76 @@ def compile_repository_observation(
     if provenance.get("head_sha_bound") is not True:
         raise LiveEvidenceAdapterError("head-SHA-bound provenance is required")
 
-    active_policy = deepcopy(dict(adapter_policy or load_adapter_policy()))
-    required_categories = active_policy.get("required_artifact_categories")
-    critical_fields = active_policy.get("critical_execution_fields")
-    if not isinstance(required_categories, list) or not required_categories:
-        raise LiveEvidenceAdapterError(
-            "adapter policy required_artifact_categories must be a non-empty array"
-        )
-    if set(required_categories) != ARTIFACT_CATEGORIES:
-        raise LiveEvidenceAdapterError(
-            "adapter policy required_artifact_categories must match known categories"
-        )
-    if not isinstance(critical_fields, list) or not critical_fields:
-        raise LiveEvidenceAdapterError(
-            "adapter policy critical_execution_fields must be a non-empty array"
-        )
-    if set(critical_fields) != CRITICAL_EXECUTION_FIELDS:
-        raise LiveEvidenceAdapterError(
-            "adapter policy critical_execution_fields must match known fields"
-        )
-
+    active_policy = _validate_adapter_policy(adapter_policy or load_adapter_policy())
     defaults = active_policy["dimension_defaults"]
-    artifacts = _require_mapping(payload.get("artifacts"), "artifacts")
-    connector = _require_mapping(payload.get("connector"), "connector")
-    execution = _require_mapping(payload.get("execution"), "execution")
+    artifacts = _require_mapping(payload["artifacts"], "artifacts")
+    connector = _require_mapping(payload["connector"], "connector")
+    execution = _require_mapping(payload["execution"], "execution")
 
-    authentication_state = str(
-        connector.get("authentication_state", "NOT_ASSERTED")
-    ).upper()
+    authentication_state = str(connector["authentication_state"]).upper()
     if authentication_state not in AUTHENTICATION_STATES:
         raise LiveEvidenceAdapterError(
             f"connector.authentication_state is invalid: {authentication_state}"
         )
 
-    readme = _optional_artifact_receipts(artifacts.get("readme"), "artifacts.readme")
+    readme = _optional_artifact_receipts(
+        artifacts["readme"], "artifacts.readme", head_sha, canonical_url
+    )
     package_manifest = _optional_artifact_receipts(
-        artifacts.get("package_manifest"), "artifacts.package_manifest"
+        artifacts["package_manifest"],
+        "artifacts.package_manifest",
+        head_sha,
+        canonical_url,
     )
     license_receipts = _optional_artifact_receipts(
         artifacts.get("license", {"present": False, "path": None, "url": None}),
         "artifacts.license",
+        head_sha,
+        canonical_url,
     )
     security_policy_receipts = _optional_artifact_receipts(
         artifacts.get(
             "security_policy", {"present": False, "path": None, "url": None}
         ),
         "artifacts.security_policy",
+        head_sha,
+        canonical_url,
     )
     category_receipts = {
         "readme": readme,
         "package_manifest": package_manifest,
         "workflows": _artifact_receipts(
-            artifacts.get("workflows"), "artifacts.workflows"
+            artifacts["workflows"], "artifacts.workflows", head_sha, canonical_url
         ),
         "source_files": _artifact_receipts(
-            artifacts.get("source_files"), "artifacts.source_files"
+            artifacts["source_files"],
+            "artifacts.source_files",
+            head_sha,
+            canonical_url,
         ),
         "test_files": _artifact_receipts(
-            artifacts.get("test_files"), "artifacts.test_files"
+            artifacts["test_files"], "artifacts.test_files", head_sha, canonical_url
         ),
         "architecture_files": _artifact_receipts(
-            artifacts.get("architecture_files"), "artifacts.architecture_files"
+            artifacts["architecture_files"],
+            "artifacts.architecture_files",
+            head_sha,
+            canonical_url,
         ),
         "integration_files": _artifact_receipts(
-            artifacts.get("integration_files"), "artifacts.integration_files"
+            artifacts["integration_files"],
+            "artifacts.integration_files",
+            head_sha,
+            canonical_url,
         ),
         "ai_files": _artifact_receipts(
-            artifacts.get("ai_files"), "artifacts.ai_files"
+            artifacts["ai_files"], "artifacts.ai_files", head_sha, canonical_url
         ),
         "recruiter_files": _artifact_receipts(
-            artifacts.get("recruiter_files"), "artifacts.recruiter_files"
+            artifacts["recruiter_files"],
+            "artifacts.recruiter_files",
+            head_sha,
+            canonical_url,
         ),
     }
     artifact_receipts = sorted(
@@ -562,19 +686,10 @@ def compile_repository_observation(
         | set(license_receipts)
         | set(security_policy_receipts)
     )
-    unbound = [
-        receipt
-        for receipt in artifact_receipts
-        if not _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
-    ]
-    if unbound:
-        raise LiveEvidenceAdapterError(
-            "artifact receipts must use the canonical repository and observed HEAD: "
-            + ", ".join(unbound)
-        )
 
     critical_execution = {
-        name: _execution_item(execution.get(name), name) for name in critical_fields
+        name: _execution_item(execution[name], name)
+        for name in active_policy["critical_execution_fields"]
     }
 
     dimensions: dict[str, Any] = {}
@@ -721,15 +836,13 @@ def compile_repository_observation(
     health_input = {
         "repository": repository,
         "observed_head_sha": head_sha,
-        "observed_at": payload.get("observed_at"),
+        "observed_at": payload["observed_at"],
         "dimensions": dimensions,
         "quality_context": {
             "connector_quality_score": connector_quality,
             "data_quality_score": data_quality,
         },
-        "blockers": sorted(
-            {str(item) for item in payload.get("blockers", []) if str(item)}
-        ),
+        "blockers": sorted({str(item) for item in payload["blockers"] if str(item)}),
     }
     active_health_policy = deepcopy(dict(health_policy or load_policy()))
     assessment = assess_repository_health(health_input, active_health_policy)
