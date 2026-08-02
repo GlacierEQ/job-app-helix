@@ -156,9 +156,7 @@ def _execution_can_verify(
         return False
     if not _receipts_bound_to_head(item["receipts"], head_sha):
         return False
-    if require_positive_test_count and not item["test_count"]:
-        return False
-    return True
+    return not (require_positive_test_count and not item["test_count"])
 
 
 def _evidence(
