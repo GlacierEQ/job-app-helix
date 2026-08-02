@@ -21,7 +21,10 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Topic :: Software Development :: Quality Assurance",
 ]
-dependencies = ["protobuf>=6.31,<7"]
+dependencies = [
+  "jsonschema>=4.23,<5",
+  "protobuf>=6.31,<7",
+]
 
 [project.optional-dependencies]
 dev = [

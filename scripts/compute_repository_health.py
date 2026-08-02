@@ -14,7 +14,6 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from job_app_helix.repository_health import (  # noqa: E402
-    DEFAULT_POLICY,
     RepositoryHealthError,
     assess_repository_health,
     load_policy,
@@ -29,8 +28,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--policy",
         type=Path,
-        default=DEFAULT_POLICY,
-        help="Repository-health policy JSON",
+        help="Optional repository-health policy JSON; defaults to the installed policy",
     )
     parser.add_argument("--output", type=Path, help="Optional assessment output path")
     parser.add_argument(

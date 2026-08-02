@@ -1,0 +1,182 @@
+{
+  "schema": "glaciereq.repository-observation.v1",
+  "repository": "GlacierEQ/AKOS",
+  "repository_id": "1289648128",
+  "canonical_url": "https://github.com/GlacierEQ/AKOS",
+  "default_branch": "main",
+  "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+  "observed_at": "2026-08-02T12:00:00Z",
+  "visibility": "public",
+  "archived": false,
+  "connector": {
+    "name": "GitHub",
+    "read_mode": "READ_ONLY",
+    "authentication_state": "NOT_REQUIRED_PUBLIC",
+    "last_successful_probe": "2026-08-02T12:00:00Z",
+    "error_state": "PARTIAL",
+    "receipts": [
+      "https://api.github.com/repos/GlacierEQ/AKOS",
+      "https://github.com/GlacierEQ/AKOS/commit/1607c0d27897ea963eb572062300342f1922b84c"
+    ]
+  },
+  "artifacts": {
+    "readme": {
+      "present": true,
+      "path": "README.md",
+      "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md"
+    },
+    "package_manifest": {
+      "present": true,
+      "path": "pyproject.toml",
+      "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/pyproject.toml"
+    },
+    "license": {
+      "present": false,
+      "path": null,
+      "url": null
+    },
+    "security_policy": {
+      "present": true,
+      "path": "SECURITY_AND_FLEET_OPS.md",
+      "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/SECURITY_AND_FLEET_OPS.md"
+    },
+    "workflows": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/.github/workflows/ci.yml"
+      },
+      {
+        "path": ".github/workflows/integrity.yml",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/.github/workflows/integrity.yml"
+      },
+      {
+        "path": ".github/workflows/finisher.yml",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/.github/workflows/finisher.yml"
+      }
+    ],
+    "source_files": [
+      {
+        "path": "operational_cognition/engine.py",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/engine.py"
+      },
+      {
+        "path": "finisher/finisher.py",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/finisher/finisher.py"
+      },
+      {
+        "path": "scripts/verify_repository.py",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_repository.py"
+      }
+    ],
+    "test_files": [
+      {
+        "path": "tests/test_verification_tools.py",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/tests/test_verification_tools.py"
+      },
+      {
+        "path": "operational_cognition/test_contracts.py",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/test_contracts.py"
+      }
+    ],
+    "architecture_files": [
+      {
+        "path": "SPECIFICATION.md",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/SPECIFICATION.md"
+      },
+      {
+        "path": "docs/architecture/PUBLIC_ACTION_FACE.md",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/docs/architecture/PUBLIC_ACTION_FACE.md"
+      },
+      {
+        "path": "AKOS_MANIFEST.yaml",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml"
+      }
+    ],
+    "integration_files": [
+      {
+        "path": "operational_cognition/connectors/live_memory.py",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/live_memory.py"
+      },
+      {
+        "path": "operational_cognition/connectors/kimi_memory.py",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/kimi_memory.py"
+      },
+      {
+        "path": "supabase/migrations/0001_casebrain_core.sql",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/supabase/migrations/0001_casebrain_core.sql"
+      }
+    ],
+    "ai_files": [
+      {
+        "path": "AKOS_MANIFEST.yaml",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml"
+      },
+      {
+        "path": "manifests/agents/AGENT-MEMORY-CURATOR.yaml",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/manifests/agents/AGENT-MEMORY-CURATOR.yaml"
+      },
+      {
+        "path": "governance/glaciereq.nervous-system.v1.json",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/governance/glaciereq.nervous-system.v1.json"
+      }
+    ],
+    "recruiter_files": [
+      {
+        "path": "README.md",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md"
+      },
+      {
+        "path": "scripts/verify_readme_contract.py",
+        "url": "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"
+      }
+    ]
+  },
+  "execution": {
+    "build": {
+      "state": "AMBIGUOUS",
+      "receipts": [],
+      "test_count": null,
+      "notes": [
+        "The current default-branch head was observed, but the available status probe returned no status contexts and did not establish a successful build for this SHA."
+      ]
+    },
+    "tests": {
+      "state": "AMBIGUOUS",
+      "receipts": [],
+      "test_count": null,
+      "notes": [
+        "README claims and workflow configuration were observed, but no current provider run receipt was available for the observed SHA."
+      ]
+    },
+    "documentation": {
+      "state": "AMBIGUOUS",
+      "receipts": [],
+      "test_count": null,
+      "notes": [
+        "README and its verifier are present; execution of the documentation contract is unverified for the observed SHA."
+      ]
+    },
+    "security": {
+      "state": "NOT_RUN",
+      "receipts": [],
+      "test_count": null,
+      "notes": [
+        "Security documentation exists, but no current security-scan or policy-execution receipt was observed."
+      ]
+    }
+  },
+  "provenance": {
+    "source_linked": true,
+    "head_sha_bound": true,
+    "original_bytes_copied": false,
+    "notes": [
+      "The observation stores canonical URLs and public metadata only.",
+      "The public GitHub repository and immutable public artifact URLs do not require an authenticated connector session.",
+      "No child-repository source tree, archive, README copy, or raw provider payload is stored in Helix."
+    ]
+  },
+  "blockers": [
+    "Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.",
+    "No current security verification receipt is available for the observed SHA."
+  ]
+}

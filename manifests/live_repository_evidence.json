@@ -1,0 +1,35 @@
+{
+  "schema": "glaciereq.live-repository-evidence-registry.v1",
+  "version": "1.0.0",
+  "authority": "GlacierEQ/job-app-helix",
+  "observation_schema": "schemas/repository_observation.schema.json",
+  "adapter_policy": "manifests/live_evidence_adapter_policy.json",
+  "health_policy": "manifests/repository_health_policy.json",
+  "adapter": "src/job_app_helix/live_evidence_adapter.py",
+  "compiler_cli": "scripts/compile_live_repository_evidence.py",
+  "observation_root": "observations/repositories",
+  "assessment_root": "status/repository-assessments",
+  "source_mode": "canonical_links_and_receipts_only",
+  "copied_source_bytes": "forbidden",
+  "repositories": [
+    {
+      "repository": "GlacierEQ/AKOS",
+      "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+      "observation": "observations/repositories/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
+      "current_assessment": "status/repository-assessments/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
+      "observation_id": "49daddbd413db11746942adf5321707d4039d922ae335a7be2eb4f5136d0d1c3",
+      "assessment_id": "5280c451d0ddedd1fcbbf5308ee6598dcbc96eb9a3a2fc25e2d706a6244ae866",
+      "state": "PARTIALLY_VERIFIED",
+      "health_score": 30.76,
+      "evidence_coverage": 55.0,
+      "confidence_score": 48.75,
+      "connector_quality_score": 75.0,
+      "data_quality_score": 80.0,
+      "blockers": [
+        "Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.",
+        "No current security verification receipt is available for the observed SHA."
+      ],
+      "next_action": "Acquire trusted current provider receipts for build, tests, and security at the observed SHA."
+    }
+  ]
+}

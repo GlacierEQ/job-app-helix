@@ -1,0 +1,72 @@
+{
+  "schema": "glaciereq.live-evidence-adapter-bootstrap-receipt.v1",
+  "date": "2026-08-02",
+  "state": "FINAL_PARITY_PENDING_HOSTED_VERIFICATION",
+  "branch": "feat/live-evidence-adapter-v1",
+  "pull_request": 33,
+  "pre_final_verification": {
+    "verified_head_sha": "0a86c21e6d7e7925cd65227c19f6ab5db23c14a9",
+    "focused_run_id": 30748272915,
+    "focused_conclusion": "success",
+    "lock_run_id": 30748272922,
+    "lock_conclusion": "success",
+    "health_run_id": 30748272940,
+    "health_conclusion": "success",
+    "repository_ci_run_id": 30748272945,
+    "repository_ci_conclusion": "success",
+    "assessment_artifact_id": 8833587761,
+    "assessment_artifact_digest": "sha256:dea3d5b7a80d32fb83621931110260f0eeb7940244c50c058e4f0e67d152a13c"
+  },
+  "first_observation": {
+    "repository": "GlacierEQ/AKOS",
+    "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+    "state": "PARTIALLY_VERIFIED",
+    "health_score": 30.76,
+    "evidence_coverage": 55.0,
+    "confidence_score": 48.75,
+    "connector_quality_score": 75.0,
+    "data_quality_score": 80.0,
+    "observation_id": "49daddbd413db11746942adf5321707d4039d922ae335a7be2eb4f5136d0d1c3",
+    "assessment_id": "5280c451d0ddedd1fcbbf5308ee6598dcbc96eb9a3a2fc25e2d706a6244ae866",
+    "persisted_assessment": "status/repository-assessments/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
+    "blockers": [
+      "Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.",
+      "No current security verification receipt is available for the observed SHA."
+    ]
+  },
+  "hardening": [
+    "validate the complete observation with Draft 2020-12 JSON Schema and format checks",
+    "package adapter, health, and observation contracts as installed resources",
+    "verify wheel execution outside the source checkout",
+    "require trusted github.com or api.github.com repository provenance",
+    "require exact canonical repository path, artifact path, and current SHA binding",
+    "require 40- or 64-character Git object identifiers",
+    "exclude artifact-presence links from unverified execution receipts",
+    "count only final SUCCESS or FAILURE execution states as resolved",
+    "cap NOT_ASSERTED authentication connector quality",
+    "preserve reported documentation failure instead of README promotion",
+    "prioritize current trusted failure evidence over mixed stale receipts",
+    "persist CLI output through atomic replacement",
+    "preserve JSON CLI error contracts",
+    "disable checkout credential persistence",
+    "regenerate and verify the exact uv lock",
+    "enforce generated, persisted, and registry assessment parity"
+  ],
+  "final_gate": {
+    "required_head": "PENDING_AFTER_THIS_RECEIPT_COMMIT",
+    "required_checks": [
+      "Live Repository Evidence Adapter",
+      "Exact uv lock",
+      "Repository Health Engine",
+      "CI Python 3.11",
+      "CI Python 3.12",
+      "CI Python 3.13"
+    ]
+  },
+  "not_claimed": [
+    "AKOS currently passes its configured workflow at the observed SHA",
+    "AKOS is recruiter ready or elite verified",
+    "README claims establish current provider execution",
+    "all portfolio repositories have live observations"
+  ]
+}

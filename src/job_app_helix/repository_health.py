@@ -7,12 +7,11 @@ import json
 import re
 from collections.abc import Mapping
 from copy import deepcopy
+from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_POLICY = ROOT / "manifests" / "repository_health_policy.json"
-SHA_PATTERN = re.compile(r"^[0-9a-f]{40,64}$")
+SHA_PATTERN = re.compile(r"^([0-9a-f]{40}|[0-9a-f]{64})$")
 KNOWN_STATES = {
     "VERIFIED",
     "PARTIALLY_VERIFIED",
@@ -39,10 +38,18 @@ def sha256_json(value: Any) -> str:
     return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
 
 
-def load_policy(path: Path = DEFAULT_POLICY) -> dict[str, Any]:
+def load_policy(path: Path | None = None) -> dict[str, Any]:
     """Load and validate the repository-health scoring policy."""
 
-    policy = json.loads(path.read_text(encoding="utf-8"))
+    if path is None:
+        text = (
+            files("job_app_helix.resources")
+            .joinpath("repository_health_policy.json")
+            .read_text(encoding="utf-8")
+        )
+    else:
+        text = path.read_text(encoding="utf-8")
+    policy = json.loads(text)
     dimensions = policy.get("dimensions", {})
     if not dimensions:
         raise RepositoryHealthError("policy must define at least one dimension")
