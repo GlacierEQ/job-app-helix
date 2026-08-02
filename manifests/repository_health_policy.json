@@ -1,0 +1,43 @@
+{
+  "schema": "glaciereq.repository-health-policy.v1",
+  "version": "1.0.0",
+  "authority": "GlacierEQ/job-app-helix",
+  "principles": {
+    "unknown_evidence_scores_zero": true,
+    "repository_presence_is_not_quality_proof": true,
+    "documentation_is_not_runtime_proof": true,
+    "verified_evidence_must_match_observed_head": true,
+    "connector_quality_is_scored_separately": true,
+    "data_quality_is_scored_separately": true,
+    "unsupported_claims_fail_closed": true
+  },
+  "evidence_state_caps": {
+    "VERIFIED": 1.0,
+    "PARTIALLY_VERIFIED": 0.7,
+    "STALE": 0.4,
+    "UNVERIFIED": 0.0,
+    "BLOCKED": 0.0,
+    "FAILED": 0.0
+  },
+  "dimensions": {
+    "reality": {"weight": 15, "critical": true},
+    "build": {"weight": 15, "critical": true},
+    "tests": {"weight": 20, "critical": true},
+    "documentation": {"weight": 10, "critical": true},
+    "architecture": {"weight": 10, "critical": false},
+    "security": {"weight": 10, "critical": true},
+    "integration": {"weight": 10, "critical": false},
+    "recruiter_impact": {"weight": 5, "critical": false},
+    "ai_readiness": {"weight": 5, "critical": false}
+  },
+  "promotion": {
+    "recruiter_ready_min_score": 80,
+    "elite_verified_min_score": 90,
+    "elite_verified_min_evidence_coverage": 95,
+    "elite_verified_min_data_quality": 90,
+    "elite_verified_min_connector_quality": 80,
+    "elite_requires_all_critical_verified": true,
+    "elite_forbids_blockers": true
+  },
+  "score_precision": 2
+}
