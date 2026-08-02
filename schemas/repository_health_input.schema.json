@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/GlacierEQ/job-app-helix/schemas/repository_health_input.schema.json",
+  "title": "GlacierEQ Repository Health Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "repository",
+    "observed_head_sha",
+    "dimensions",
+    "quality_context",
+    "blockers"
+  ],
+  "properties": {
+    "repository": {
+      "type": "string",
+      "pattern": "^[^/\\s]+/[^/\\s]+$"
+    },
+    "observed_head_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40,64}$"
+    },
+    "observed_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reality": {"$ref": "#/$defs/evidence"},
+        "build": {"$ref": "#/$defs/evidence"},
+        "tests": {"$ref": "#/$defs/evidence"},
+        "documentation": {"$ref": "#/$defs/evidence"},
+        "architecture": {"$ref": "#/$defs/evidence"},
+        "security": {"$ref": "#/$defs/evidence"},
+        "integration": {"$ref": "#/$defs/evidence"},
+        "recruiter_impact": {"$ref": "#/$defs/evidence"},
+        "ai_readiness": {"$ref": "#/$defs/evidence"}
+      }
+    },
+    "quality_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "connector_quality_score": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "data_quality_score": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "raw_score", "confidence", "receipts"],
+      "properties": {
+        "state": {
+          "enum": [
+            "VERIFIED",
+            "PARTIALLY_VERIFIED",
+            "STALE",
+            "UNVERIFIED",
+            "BLOCKED",
+            "FAILED"
+          ]
+        },
+        "raw_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "verified_sha": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{40,64}$"
+        },
+        "receipts": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "findings": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "blockers": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}
