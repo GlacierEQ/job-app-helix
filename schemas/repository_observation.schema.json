@@ -26,7 +26,10 @@
     "repository_id": {"type": ["string", "integer"]},
     "canonical_url": {"type": "string", "format": "uri"},
     "default_branch": {"type": "string", "minLength": 1},
-    "observed_head_sha": {"type": "string", "pattern": "^[0-9a-f]{40,64}$"},
+    "observed_head_sha": {
+      "type": "string",
+      "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"
+    },
     "observed_at": {"type": "string", "format": "date-time"},
     "visibility": {"enum": ["public", "private", "internal", "unknown"]},
     "archived": {"type": "boolean"},
