@@ -11,7 +11,7 @@
   "connector": {
     "name": "GitHub",
     "read_mode": "READ_ONLY",
-    "authentication_state": "NOT_ASSERTED",
+    "authentication_state": "NOT_REQUIRED_PUBLIC",
     "last_successful_probe": "2026-08-02T12:00:00Z",
     "error_state": "PARTIAL",
     "receipts": [
@@ -171,6 +171,7 @@
     "original_bytes_copied": false,
     "notes": [
       "The observation stores canonical URLs and public metadata only.",
+      "The public GitHub repository and immutable public artifact URLs do not require an authenticated connector session.",
       "No child-repository source tree, archive, README copy, or raw provider payload is stored in Helix."
     ]
   },
