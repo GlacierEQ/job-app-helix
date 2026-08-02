@@ -1,8 +1,32 @@
 {
   "schema": "glaciereq.repository-health-bootstrap-receipt.v1",
   "date": "2026-08-01",
-  "state": "IMPLEMENTED_PENDING_HOSTED_VERIFICATION",
-  "branch": "feat/repository-health-engine-v1",
+  "state": "HOSTED_VERIFIED_AND_MERGED",
+  "pull_request": 32,
+  "verified_head_sha": "7dd2cfdb4e4dcac1f61af2788cfe1348611ace59",
+  "merge_sha": "8f225b717f9e36aa86d6743d1bfe7eb4ce2d099b",
+  "verification": {
+    "focused_workflow": {
+      "run_id": 30734705993,
+      "conclusion": "success",
+      "python": "3.13",
+      "regression_tests": 9,
+      "compile": "success",
+      "deterministic_cli_elite_gate": "success"
+    },
+    "repository_ci": {
+      "run_id": 30734705995,
+      "conclusion": "success",
+      "python_versions": ["3.11", "3.12", "3.13"],
+      "lint": "success",
+      "full_tests": "success",
+      "portfolio_contract": "success",
+      "protobuf_contract": "success",
+      "readme_mesh": "success",
+      "campaign_proofs": "success",
+      "public_boundary": "success"
+    }
+  },
   "artifacts": [
     "manifests/repository_health_policy.json",
     "schemas/repository_health_input.schema.json",
@@ -19,11 +43,12 @@
     "SHA drift normalizes current claims to stale",
     "connector quality and data quality remain separate from repository health",
     "critical failures prevent elite promotion",
-    "identical input and policy produce an identical assessment ID"
+    "identical input and policy produce an identical assessment ID",
+    "focused and repository-wide hosted verification passed before merge"
   ],
   "not_claimed": [
     "all portfolio repositories have been assessed",
     "any current child repository is elite verified by this bootstrap",
-    "hosted CI has passed before the pull request run completes"
+    "synthetic fixture success proves a real repository is elite"
   ]
 }
