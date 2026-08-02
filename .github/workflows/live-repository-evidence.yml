@@ -6,6 +6,7 @@ on:
     paths:
       - "pyproject.toml"
       - "manifests/live_evidence_adapter_policy.json"
+      - "manifests/live_repository_evidence.json"
       - "manifests/repository_health_policy.json"
       - "schemas/repository_observation.schema.json"
       - "src/job_app_helix/live_evidence_adapter.py"
@@ -14,14 +15,18 @@ on:
       - "scripts/compile_live_repository_evidence.py"
       - "tests/test_live_evidence_adapter.py"
       - "tests/test_live_evidence_cli.py"
+      - "tests/test_live_assessment_registry.py"
       - "tests/test_repository_health.py"
       - "observations/repositories/**"
+      - "status/repository-assessments/**"
+      - "status/live-evidence-adapter-bootstrap-*.json"
       - "docs/LIVE_REPOSITORY_EVIDENCE_ADAPTER.md"
       - ".github/workflows/live-repository-evidence.yml"
   pull_request:
     paths:
       - "pyproject.toml"
       - "manifests/live_evidence_adapter_policy.json"
+      - "manifests/live_repository_evidence.json"
       - "manifests/repository_health_policy.json"
       - "schemas/repository_observation.schema.json"
       - "src/job_app_helix/live_evidence_adapter.py"
@@ -30,8 +35,11 @@ on:
       - "scripts/compile_live_repository_evidence.py"
       - "tests/test_live_evidence_adapter.py"
       - "tests/test_live_evidence_cli.py"
+      - "tests/test_live_assessment_registry.py"
       - "tests/test_repository_health.py"
       - "observations/repositories/**"
+      - "status/repository-assessments/**"
+      - "status/live-evidence-adapter-bootstrap-*.json"
       - "docs/LIVE_REPOSITORY_EVIDENCE_ADAPTER.md"
       - ".github/workflows/live-repository-evidence.yml"
 
@@ -67,6 +75,7 @@ jobs:
           scripts/compile_live_repository_evidence.py
           tests/test_live_evidence_adapter.py
           tests/test_live_evidence_cli.py
+          tests/test_live_assessment_registry.py
 
       - name: Lint adapter surfaces
         run: >-
@@ -76,12 +85,14 @@ jobs:
           scripts/compile_live_repository_evidence.py
           tests/test_live_evidence_adapter.py
           tests/test_live_evidence_cli.py
+          tests/test_live_assessment_registry.py
 
-      - name: Run adapter and health regressions
+      - name: Run adapter, registry, and health regressions
         run: >-
           python -m pytest -q
           tests/test_live_evidence_adapter.py
           tests/test_live_evidence_cli.py
+          tests/test_live_assessment_registry.py
           tests/test_repository_health.py
 
       - name: Compile the current AKOS observation
@@ -91,16 +102,23 @@ jobs:
             --output /tmp/akos-live-assessment.json \
             --require-state PARTIALLY_VERIFIED
 
-      - name: Verify the fail-closed AKOS boundary
+      - name: Verify generated and persisted fail-closed AKOS boundaries
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          result = json.loads(Path('/tmp/akos-live-assessment.json').read_text())
-          assessment = result['assessment']
-          assert result['repository'] == 'GlacierEQ/AKOS'
-          assert result['observed_head_sha'] == '1607c0d27897ea963eb572062300342f1922b84c'
+          generated = json.loads(Path('/tmp/akos-live-assessment.json').read_text())
+          persisted = json.loads(Path(
+              'status/repository-assessments/'
+              'GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json'
+          ).read_text())
+          assert generated == persisted
+          assessment = generated['assessment']
+          assert generated['repository'] == 'GlacierEQ/AKOS'
+          assert generated['observed_head_sha'] == '1607c0d27897ea963eb572062300342f1922b84c'
+          assert generated['observation_id'] == '49daddbd413db11746942adf5321707d4039d922ae335a7be2eb4f5136d0d1c3'
+          assert assessment['assessment_id'] == '5280c451d0ddedd1fcbbf5308ee6598dcbc96eb9a3a2fc25e2d706a6244ae866'
           assert assessment['health_state'] == 'PARTIALLY_VERIFIED'
           assert assessment['health_score'] == 30.76
           assert assessment['evidence_coverage'] == 55
@@ -114,8 +132,6 @@ jobs:
           assert assessment['quality_context']['connector_quality_score'] == 75
           assert assessment['quality_context']['data_quality_score'] == 80
           assert len(assessment['blockers']) == 2
-          print(result['observation_id'])
-          print(assessment['assessment_id'])
           PY
 
       - name: Build and execute the installed wheel outside the checkout
