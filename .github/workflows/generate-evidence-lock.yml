@@ -1,0 +1,56 @@
+name: Generate evidence lock artifacts
+
+on:
+  pull_request:
+    paths:
+      - "pyproject.toml"
+      - "src/job_app_helix/live_evidence_adapter.py"
+      - ".github/workflows/generate-evidence-lock.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@e92bafb6253dcd438e0484186d7669ea7a8ca1cc # v6
+
+      - name: Apply deterministic lint-only normalization
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('src/job_app_helix/live_evidence_adapter.py')
+          content = path.read_text(encoding='utf-8')
+          content = content.replace(
+              'from jsonschema.exceptions import SchemaError, ValidationError',
+              'from jsonschema.exceptions import SchemaError',
+          )
+          content = content.replace(
+              '        raise LiveEvidenceAdapterError(f"invalid repository observation schema: {exc.message}") from exc',
+              '        raise LiveEvidenceAdapterError(\n'
+              '            f"invalid repository observation schema: {exc.message}"\n'
+              '        ) from exc',
+          )
+          path.write_text(content, encoding='utf-8')
+          PY
+
+      - name: Generate exact lock
+        run: uv lock
+
+      - name: Upload generated files
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: evidence-lock-generated-files
+          path: |
+            uv.lock
+            src/job_app_helix/live_evidence_adapter.py
+          if-no-files-found: error
