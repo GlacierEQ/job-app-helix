@@ -1,0 +1,24 @@
+{
+  "schema": "glaciereq.live-repository-evidence-registry.v1",
+  "version": "1.0.0",
+  "authority": "GlacierEQ/job-app-helix",
+  "observation_schema": "schemas/repository_observation.schema.json",
+  "adapter_policy": "manifests/live_evidence_adapter_policy.json",
+  "health_policy": "manifests/repository_health_policy.json",
+  "adapter": "src/job_app_helix/live_evidence_adapter.py",
+  "compiler_cli": "scripts/compile_live_repository_evidence.py",
+  "observation_root": "observations/repositories",
+  "assessment_root": "status/repository-assessments",
+  "source_mode": "canonical_links_and_receipts_only",
+  "copied_source_bytes": "forbidden",
+  "repositories": [
+    {
+      "repository": "GlacierEQ/AKOS",
+      "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+      "observation": "observations/repositories/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
+      "current_assessment": null,
+      "state": "OBSERVED_PENDING_HOSTED_COMPILATION",
+      "next_action": "Compile and verify the source-linked observation in hosted CI."
+    }
+  ]
+}
