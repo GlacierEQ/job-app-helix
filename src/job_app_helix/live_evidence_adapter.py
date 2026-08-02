@@ -32,6 +32,13 @@ EXECUTION_STATES = {
     "NOT_CONFIGURED",
     "NOT_RUN",
 }
+AUTHENTICATION_STATES = {
+    "AUTHENTICATED",
+    "NOT_REQUIRED_PUBLIC",
+    "NOT_ASSERTED",
+    "BLOCKED",
+}
+CONNECTOR_ERROR_STATES = {"NONE", "PARTIAL", "BLOCKED"}
 
 
 class LiveEvidenceAdapterError(ValueError):
@@ -39,14 +46,20 @@ class LiveEvidenceAdapterError(ValueError):
 
 
 def canonical_json(value: Any) -> str:
+    """Return deterministic JSON for hashes and receipt identities."""
+
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
 def sha256_json(value: Any) -> str:
+    """Hash a JSON-compatible object using canonical serialization."""
+
     return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
 
 
 def load_adapter_policy(path: Path = DEFAULT_ADAPTER_POLICY) -> dict[str, Any]:
+    """Load and validate the adapter policy."""
+
     policy = json.loads(path.read_text(encoding="utf-8"))
     defaults = policy.get("dimension_defaults", {})
     if set(defaults) != HEALTH_DIMENSIONS:
@@ -104,7 +117,9 @@ def _execution_item(value: Any, name: str) -> dict[str, Any]:
     receipts = sorted(
         {
             str(receipt).strip()
-            for receipt in _require_sequence(item.get("receipts", []), f"execution.{name}.receipts")
+            for receipt in _require_sequence(
+                item.get("receipts", []), f"execution.{name}.receipts"
+            )
             if str(receipt).strip()
         }
     )
@@ -125,6 +140,25 @@ def _execution_item(value: Any, name: str) -> dict[str, Any]:
         "test_count": test_count,
         "notes": notes,
     }
+
+
+def _receipts_bound_to_head(receipts: Sequence[str], head_sha: str) -> bool:
+    return bool(receipts) and all(head_sha in receipt for receipt in receipts)
+
+
+def _execution_can_verify(
+    item: Mapping[str, Any],
+    head_sha: str,
+    *,
+    require_positive_test_count: bool = False,
+) -> bool:
+    if item["state"] != "SUCCESS":
+        return False
+    if not _receipts_bound_to_head(item["receipts"], head_sha):
+        return False
+    if require_positive_test_count and not item["test_count"]:
+        return False
+    return True
 
 
 def _evidence(
@@ -160,6 +194,16 @@ def _compile_execution_dimension(
     state = item["state"]
     findings = list(item["notes"])
 
+    if receipts and not _receipts_bound_to_head(receipts, head_sha):
+        return _evidence(
+            state="STALE",
+            raw_score=float(defaults["raw_score"]),
+            confidence=float(defaults["confidence"]),
+            head_sha=head_sha,
+            receipts=receipts,
+            findings=[*findings, "provider receipt is not bound to the observed HEAD"],
+        )
+
     if state == "SUCCESS":
         if not receipts:
             return _evidence(
@@ -179,16 +223,15 @@ def _compile_execution_dimension(
                 receipts=receipts,
                 findings=[*findings, "test success lacked a positive executed-test count"],
             )
-        executed_findings = findings
         if name == "tests":
-            executed_findings = [*findings, f"executed test count: {item['test_count']}"]
+            findings.append(f"executed test count: {item['test_count']}")
         return _evidence(
             state="VERIFIED",
             raw_score=float(defaults["raw_score"]),
             confidence=float(defaults["confidence"]),
             head_sha=head_sha,
             receipts=receipts,
-            findings=executed_findings,
+            findings=findings,
         )
 
     if state == "FAILURE" and receipts:
@@ -234,15 +277,17 @@ def _connector_quality(
     score = 0.0
     if receipts and observation.get("repository_id") and observation.get("canonical_url"):
         score += float(points["repository_metadata_receipt"])
-    head = str(observation["observed_head_sha"])
-    if any(head in receipt or "/commit/" in receipt for receipt in receipts):
+    head_sha = str(observation["observed_head_sha"])
+    if any(head_sha in receipt or "/commit/" in receipt for receipt in receipts):
         score += float(points["head_commit_receipt"])
-    if artifact_receipts and all(head in receipt for receipt in artifact_receipts):
+    if artifact_receipts and all(head_sha in receipt for receipt in artifact_receipts):
         score += float(points["sha_bound_artifact_receipts"])
     if all(item["state"] != "AMBIGUOUS" for item in critical_execution.values()):
         score += float(points["resolved_ci_invocation_state"])
 
     error_state = str(connector.get("error_state", "BLOCKED")).upper()
+    if error_state not in CONNECTOR_ERROR_STATES:
+        raise LiveEvidenceAdapterError(f"connector.error_state is invalid: {error_state}")
     if error_state == "BLOCKED":
         return 0.0
     if error_state == "PARTIAL":
@@ -268,7 +313,9 @@ def _data_quality(
     present = sum(1 for name in required if category_receipts.get(name))
     score += float(points["required_artifact_categories_observed"]) * present / len(required)
 
-    resolved = sum(1 for item in critical_execution.values() if item["state"] != "AMBIGUOUS")
+    resolved = sum(
+        1 for item in critical_execution.values() if item["state"] != "AMBIGUOUS"
+    )
     score += float(points["critical_execution_states_resolved"]) * resolved / len(
         critical_execution
     )
@@ -288,6 +335,8 @@ def compile_repository_observation(
         raise LiveEvidenceAdapterError("unsupported repository observation schema")
 
     repository = str(payload.get("repository", "")).strip()
+    if repository.count("/") != 1 or any(not part for part in repository.split("/")):
+        raise LiveEvidenceAdapterError("repository must use owner/name form")
     canonical_url = str(payload.get("canonical_url", "")).rstrip("/")
     expected_url = f"https://github.com/{repository}"
     if canonical_url != expected_url:
@@ -296,7 +345,9 @@ def compile_repository_observation(
         )
 
     head_sha = str(payload.get("observed_head_sha", "")).lower()
-    if len(head_sha) < 40 or any(character not in "0123456789abcdef" for character in head_sha):
+    if len(head_sha) < 40 or any(
+        character not in "0123456789abcdef" for character in head_sha
+    ):
         raise LiveEvidenceAdapterError("observed_head_sha must be a lowercase Git SHA")
 
     provenance = _require_mapping(payload.get("provenance"), "provenance")
@@ -312,6 +363,14 @@ def compile_repository_observation(
     artifacts = _require_mapping(payload.get("artifacts"), "artifacts")
     connector = _require_mapping(payload.get("connector"), "connector")
     execution = _require_mapping(payload.get("execution"), "execution")
+
+    authentication_state = str(
+        connector.get("authentication_state", "NOT_ASSERTED")
+    ).upper()
+    if authentication_state not in AUTHENTICATION_STATES:
+        raise LiveEvidenceAdapterError(
+            f"connector.authentication_state is invalid: {authentication_state}"
+        )
 
     readme = _optional_artifact_receipts(artifacts.get("readme"), "artifacts.readme")
     package_manifest = _optional_artifact_receipts(
@@ -330,18 +389,24 @@ def compile_repository_observation(
     category_receipts = {
         "readme": readme,
         "package_manifest": package_manifest,
-        "workflows": _artifact_receipts(artifacts.get("workflows"), "artifacts.workflows"),
+        "workflows": _artifact_receipts(
+            artifacts.get("workflows"), "artifacts.workflows"
+        ),
         "source_files": _artifact_receipts(
             artifacts.get("source_files"), "artifacts.source_files"
         ),
-        "test_files": _artifact_receipts(artifacts.get("test_files"), "artifacts.test_files"),
+        "test_files": _artifact_receipts(
+            artifacts.get("test_files"), "artifacts.test_files"
+        ),
         "architecture_files": _artifact_receipts(
             artifacts.get("architecture_files"), "artifacts.architecture_files"
         ),
         "integration_files": _artifact_receipts(
             artifacts.get("integration_files"), "artifacts.integration_files"
         ),
-        "ai_files": _artifact_receipts(artifacts.get("ai_files"), "artifacts.ai_files"),
+        "ai_files": _artifact_receipts(
+            artifacts.get("ai_files"), "artifacts.ai_files"
+        ),
         "recruiter_files": _artifact_receipts(
             artifacts.get("recruiter_files"), "artifacts.recruiter_files"
         ),
@@ -369,10 +434,12 @@ def compile_repository_observation(
     dimensions: dict[str, Any] = {}
     source_receipts = [*package_manifest, *category_receipts["source_files"]]
     if package_manifest and category_receipts["source_files"]:
-        reality_verified = all(
-            critical_execution[name]["state"] == "SUCCESS"
-            and critical_execution[name]["receipts"]
-            for name in ("build", "tests")
+        reality_verified = _execution_can_verify(
+            critical_execution["build"], head_sha
+        ) and _execution_can_verify(
+            critical_execution["tests"],
+            head_sha,
+            require_positive_test_count=True,
         )
         dimensions["reality"] = _evidence(
             state="VERIFIED" if reality_verified else "PARTIALLY_VERIFIED",
@@ -439,7 +506,9 @@ def compile_repository_observation(
             confidence=float(defaults["architecture"]["confidence"]),
             head_sha=head_sha,
             receipts=category_receipts["architecture_files"],
-            findings=["architecture artifacts were observed; implementation alignment is unexecuted"],
+            findings=[
+                "architecture artifacts were observed; implementation alignment is unexecuted"
+            ],
         )
     else:
         dimensions["architecture"] = _evidence(
@@ -460,13 +529,21 @@ def compile_repository_observation(
     )
 
     for dimension, category, finding in (
-        ("integration", "integration_files", "integration surfaces were observed but not executed"),
+        (
+            "integration",
+            "integration_files",
+            "integration surfaces were observed but not executed",
+        ),
         (
             "recruiter_impact",
             "recruiter_files",
             "recruiter-facing surfaces were observed but impact is not a runtime claim",
         ),
-        ("ai_readiness", "ai_files", "machine-readable AI surfaces were observed but not executed"),
+        (
+            "ai_readiness",
+            "ai_files",
+            "machine-readable AI surfaces were observed but not executed",
+        ),
     ):
         receipts = category_receipts[category]
         if receipts:
@@ -510,7 +587,9 @@ def compile_repository_observation(
             "connector_quality_score": connector_quality,
             "data_quality_score": data_quality,
         },
-        "blockers": sorted({str(item) for item in payload.get("blockers", []) if str(item)}),
+        "blockers": sorted(
+            {str(item) for item in payload.get("blockers", []) if str(item)}
+        ),
     }
     active_health_policy = deepcopy(dict(health_policy or load_policy()))
     assessment = assess_repository_health(health_input, active_health_policy)
