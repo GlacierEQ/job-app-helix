@@ -1,21 +1,57 @@
 {
   "schema": "glaciereq.live-evidence-adapter-bootstrap-receipt.v1",
   "date": "2026-08-02",
-  "state": "FINAL_PARITY_PENDING_HOSTED_VERIFICATION",
-  "branch": "feat/live-evidence-adapter-v1",
+  "state": "HOSTED_VERIFIED_AND_MERGED",
   "pull_request": 33,
-  "pre_final_verification": {
-    "verified_head_sha": "0a86c21e6d7e7925cd65227c19f6ab5db23c14a9",
-    "focused_run_id": 30748272915,
-    "focused_conclusion": "success",
-    "lock_run_id": 30748272922,
-    "lock_conclusion": "success",
-    "health_run_id": 30748272940,
-    "health_conclusion": "success",
-    "repository_ci_run_id": 30748272945,
-    "repository_ci_conclusion": "success",
-    "assessment_artifact_id": 8833587761,
-    "assessment_artifact_digest": "sha256:dea3d5b7a80d32fb83621931110260f0eeb7940244c50c058e4f0e67d152a13c"
+  "verified_head_sha": "a72078ac6f0ac297737e67ed525dfe9cf123a768",
+  "merge_sha": "b3ab885da7a0f63e6f620c9ed5dc44e33f1be377",
+  "verification": {
+    "focused_adapter": {
+      "run_id": 30748505426,
+      "conclusion": "success",
+      "compile": "success",
+      "lint": "success",
+      "adapter_cli_registry_and_health_regressions": "success",
+      "generated_persisted_registry_parity": "success",
+      "installed_wheel_outside_checkout": "success",
+      "assessment_artifact_id": 8833658687,
+      "assessment_artifact_digest": "sha256:b94a2f337c13ef442170cc75f83864b0193dfbbcb043672340459beef4aa8092"
+    },
+    "exact_uv_lock": {
+      "run_id": 30748505404,
+      "conclusion": "success",
+      "lock_current": "success",
+      "exact_install": "success",
+      "full_suite": "success",
+      "strict_lint": "success"
+    },
+    "repository_health_engine": {
+      "run_id": 30748505403,
+      "conclusion": "success",
+      "health_regressions": "success",
+      "deterministic_cli_gate": "success"
+    },
+    "repository_ci": {
+      "run_id": 30748505416,
+      "conclusion": "success",
+      "python_versions": ["3.11", "3.12", "3.13"],
+      "lint": "success",
+      "full_tests": "success",
+      "portfolio_contract": "success",
+      "protobuf_contract": "success",
+      "readme_mesh": "success",
+      "campaign_proofs": "success",
+      "public_boundary": "success"
+    },
+    "recruiter_package": {
+      "run_id": 30748505408,
+      "conclusion": "success",
+      "final_form_verification": "success"
+    },
+    "review_threads": {
+      "unresolved": 0,
+      "resolution_basis": "code, regression tests, installed-wheel execution, exact lock verification, and final hosted gates"
+    }
   },
   "first_observation": {
     "repository": "GlacierEQ/AKOS",
@@ -34,35 +70,18 @@
       "No current security verification receipt is available for the observed SHA."
     ]
   },
-  "hardening": [
-    "validate the complete observation with Draft 2020-12 JSON Schema and format checks",
-    "package adapter, health, and observation contracts as installed resources",
-    "verify wheel execution outside the source checkout",
-    "require trusted github.com or api.github.com repository provenance",
-    "require exact canonical repository path, artifact path, and current SHA binding",
-    "require 40- or 64-character Git object identifiers",
-    "exclude artifact-presence links from unverified execution receipts",
-    "count only final SUCCESS or FAILURE execution states as resolved",
-    "cap NOT_ASSERTED authentication connector quality",
-    "preserve reported documentation failure instead of README promotion",
-    "prioritize current trusted failure evidence over mixed stale receipts",
-    "persist CLI output through atomic replacement",
-    "preserve JSON CLI error contracts",
-    "disable checkout credential persistence",
-    "regenerate and verify the exact uv lock",
-    "enforce generated, persisted, and registry assessment parity"
+  "guarantees": [
+    "child repository source bytes are not copied into Helix",
+    "the complete observation is validated against the packaged Draft 2020-12 schema",
+    "artifact and execution receipts require canonical repository, exact path, trusted provider, and current SHA binding",
+    "unverified execution dimensions receive no fallback execution coverage",
+    "current trusted failures remain failures even when stale receipts are mixed in",
+    "connector quality and data quality remain independent",
+    "default policies and schema work from an installed wheel outside the source checkout",
+    "assessment writes use atomic replacement",
+    "the exact uv lock, focused adapter, health engine, full repository matrix, recruiter package, and review closure passed before merge",
+    "the persisted assessment, generated assessment, and live registry are identical"
   ],
-  "final_gate": {
-    "required_head": "PENDING_AFTER_THIS_RECEIPT_COMMIT",
-    "required_checks": [
-      "Live Repository Evidence Adapter",
-      "Exact uv lock",
-      "Repository Health Engine",
-      "CI Python 3.11",
-      "CI Python 3.12",
-      "CI Python 3.13"
-    ]
-  },
   "not_claimed": [
     "AKOS currently passes its configured workflow at the observed SHA",
     "AKOS is recruiter ready or elite verified",
