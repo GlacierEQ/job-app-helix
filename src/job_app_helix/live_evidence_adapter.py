@@ -8,6 +8,7 @@ from collections.abc import Mapping, Sequence
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
+from urllib.parse import parse_qs, urlparse
 
 from .repository_health import assess_repository_health, load_policy
 
@@ -24,6 +25,17 @@ HEALTH_DIMENSIONS = {
     "recruiter_impact",
     "ai_readiness",
 }
+ARTIFACT_CATEGORIES = {
+    "readme",
+    "package_manifest",
+    "workflows",
+    "source_files",
+    "test_files",
+    "architecture_files",
+    "integration_files",
+    "ai_files",
+    "recruiter_files",
+}
 EXECUTION_STATES = {
     "SUCCESS",
     "FAILURE",
@@ -32,6 +44,8 @@ EXECUTION_STATES = {
     "NOT_CONFIGURED",
     "NOT_RUN",
 }
+CRITICAL_EXECUTION_FIELDS = {"build", "tests", "documentation", "security"}
+FINAL_EXECUTION_STATES = {"SUCCESS", "FAILURE"}
 AUTHENTICATION_STATES = {
     "AUTHENTICATED",
     "NOT_REQUIRED_PUBLIC",
@@ -67,6 +81,26 @@ def load_adapter_policy(path: Path = DEFAULT_ADAPTER_POLICY) -> dict[str, Any]:
         extra = sorted(set(defaults) - HEALTH_DIMENSIONS)
         raise LiveEvidenceAdapterError(
             f"adapter policy dimensions mismatch; missing={missing}, extra={extra}"
+        )
+
+    required_categories = policy.get("required_artifact_categories")
+    if not isinstance(required_categories, list) or not required_categories:
+        raise LiveEvidenceAdapterError(
+            "adapter policy required_artifact_categories must be a non-empty array"
+        )
+    if set(required_categories) != ARTIFACT_CATEGORIES:
+        raise LiveEvidenceAdapterError(
+            "adapter policy required_artifact_categories must match known categories"
+        )
+
+    critical_fields = policy.get("critical_execution_fields")
+    if not isinstance(critical_fields, list) or not critical_fields:
+        raise LiveEvidenceAdapterError(
+            "adapter policy critical_execution_fields must be a non-empty array"
+        )
+    if set(critical_fields) != CRITICAL_EXECUTION_FIELDS:
+        raise LiveEvidenceAdapterError(
+            "adapter policy critical_execution_fields must match known fields"
         )
     return policy
 
@@ -142,21 +176,83 @@ def _execution_item(value: Any, name: str) -> dict[str, Any]:
     }
 
 
-def _receipts_bound_to_head(receipts: Sequence[str], head_sha: str) -> bool:
-    return bool(receipts) and all(head_sha in receipt for receipt in receipts)
+def _canonical_path(canonical_url: str) -> str:
+    parsed = urlparse(canonical_url)
+    if parsed.scheme != "https" or parsed.netloc != "github.com":
+        raise LiveEvidenceAdapterError("canonical repository URL must use github.com HTTPS")
+    parts = [part for part in parsed.path.split("/") if part]
+    if len(parts) != 2:
+        raise LiveEvidenceAdapterError("canonical repository URL must use owner/name form")
+    return f"/{parts[0]}/{parts[1]}"
+
+
+def _trusted_metadata_receipt(receipt: str, canonical_url: str) -> bool:
+    canonical_path = _canonical_path(canonical_url)
+    parsed = urlparse(receipt)
+    if parsed.scheme != "https" or parsed.query or parsed.fragment:
+        return False
+    return (
+        parsed.netloc == "github.com" and parsed.path.rstrip("/") == canonical_path
+    ) or (
+        parsed.netloc == "api.github.com"
+        and parsed.path.rstrip("/") == f"/repos{canonical_path}"
+    )
+
+
+def _trusted_receipt_bound_to_head(
+    receipt: str,
+    head_sha: str,
+    canonical_url: str,
+) -> bool:
+    canonical_path = _canonical_path(canonical_url)
+    parsed = urlparse(receipt)
+    if parsed.scheme != "https" or parsed.fragment:
+        return False
+
+    if parsed.netloc == "github.com":
+        prefix = f"{canonical_path}/"
+        if not parsed.path.startswith(prefix):
+            return False
+        relative_path = parsed.path[len(prefix) :]
+        if relative_path.startswith(f"blob/{head_sha}/"):
+            return not parsed.query
+        if relative_path in {f"commit/{head_sha}", f"commit/{head_sha}/"}:
+            return not parsed.query
+        if relative_path.startswith("actions/runs/"):
+            return parse_qs(parsed.query).get("sha") == [head_sha]
+        return False
+
+    if parsed.netloc == "api.github.com":
+        prefix = f"/repos{canonical_path}/"
+        if not parsed.path.startswith(prefix):
+            return False
+        return parse_qs(parsed.query).get("sha") == [head_sha]
+    return False
+
+
+def _receipts_bound_to_head(
+    receipts: Sequence[str],
+    head_sha: str,
+    canonical_url: str,
+) -> bool:
+    return bool(receipts) and all(
+        _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+        for receipt in receipts
+    )
 
 
 def _execution_can_verify(
     item: Mapping[str, Any],
     head_sha: str,
+    canonical_url: str,
     *,
     require_positive_test_count: bool = False,
 ) -> bool:
     if item["state"] != "SUCCESS":
         return False
-    if not _receipts_bound_to_head(item["receipts"], head_sha):
+    if not _receipts_bound_to_head(item["receipts"], head_sha, canonical_url):
         return False
-    return not (require_positive_test_count and not item["test_count"])
+    return not require_positive_test_count or bool(item["test_count"])
 
 
 def _evidence(
@@ -184,22 +280,25 @@ def _compile_execution_dimension(
     name: str,
     execution: Mapping[str, Any],
     head_sha: str,
+    canonical_url: str,
     defaults: Mapping[str, Any],
-    fallback_receipts: Sequence[str] = (),
 ) -> dict[str, Any]:
     item = _execution_item(execution.get(name), name)
     receipts = item["receipts"]
     state = item["state"]
     findings = list(item["notes"])
 
-    if receipts and not _receipts_bound_to_head(receipts, head_sha):
+    if receipts and not _receipts_bound_to_head(receipts, head_sha, canonical_url):
         return _evidence(
             state="STALE",
             raw_score=float(defaults["raw_score"]),
             confidence=float(defaults["confidence"]),
             head_sha=head_sha,
             receipts=receipts,
-            findings=[*findings, "provider receipt is not bound to the observed HEAD"],
+            findings=[
+                *findings,
+                "provider receipt is untrusted or not bound to the observed HEAD",
+            ],
         )
 
     if state == "SUCCESS":
@@ -209,7 +308,7 @@ def _compile_execution_dimension(
                 raw_score=0,
                 confidence=0,
                 head_sha=head_sha,
-                receipts=fallback_receipts,
+                receipts=[],
                 findings=[*findings, "success was reported without a provider receipt"],
             )
         if name == "tests" and not item["test_count"]:
@@ -258,7 +357,7 @@ def _compile_execution_dimension(
         raw_score=0,
         confidence=0,
         head_sha=head_sha,
-        receipts=[*receipts, *fallback_receipts],
+        receipts=receipts,
         findings=findings,
     )
 
@@ -272,24 +371,43 @@ def _connector_quality(
 ) -> float:
     points = policy["connector_quality_points"]
     receipts = [str(item) for item in connector.get("receipts", [])]
-    score = 0.0
-    if receipts and observation.get("repository_id") and observation.get("canonical_url"):
-        score += float(points["repository_metadata_receipt"])
+    canonical_url = str(observation["canonical_url"])
     head_sha = str(observation["observed_head_sha"])
-    if any(head_sha in receipt or "/commit/" in receipt for receipt in receipts):
+    score = 0.0
+
+    if (
+        observation.get("repository_id")
+        and any(_trusted_metadata_receipt(receipt, canonical_url) for receipt in receipts)
+    ):
+        score += float(points["repository_metadata_receipt"])
+    if any(
+        _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+        and "/commit/" in urlparse(receipt).path
+        for receipt in receipts
+    ):
         score += float(points["head_commit_receipt"])
-    if artifact_receipts and all(head_sha in receipt for receipt in artifact_receipts):
+    if artifact_receipts and _receipts_bound_to_head(
+        artifact_receipts, head_sha, canonical_url
+    ):
         score += float(points["sha_bound_artifact_receipts"])
-    if all(item["state"] != "AMBIGUOUS" for item in critical_execution.values()):
+    if all(
+        item["state"] in FINAL_EXECUTION_STATES
+        for item in critical_execution.values()
+    ):
         score += float(points["resolved_ci_invocation_state"])
 
+    authentication_state = str(
+        connector.get("authentication_state", "NOT_ASSERTED")
+    ).upper()
     error_state = str(connector.get("error_state", "BLOCKED")).upper()
     if error_state not in CONNECTOR_ERROR_STATES:
         raise LiveEvidenceAdapterError(f"connector.error_state is invalid: {error_state}")
-    if error_state == "BLOCKED":
+    if authentication_state == "BLOCKED" or error_state == "BLOCKED":
         return 0.0
+    if authentication_state == "NOT_ASSERTED":
+        score = min(score, 50.0)
     if error_state == "PARTIAL":
-        return min(score, 75.0)
+        score = min(score, 75.0)
     return min(score, 100.0)
 
 
@@ -309,10 +427,14 @@ def _data_quality(
 
     required = policy["required_artifact_categories"]
     present = sum(1 for name in required if category_receipts.get(name))
-    score += float(points["required_artifact_categories_observed"]) * present / len(required)
+    score += float(points["required_artifact_categories_observed"]) * present / len(
+        required
+    )
 
     resolved = sum(
-        1 for item in critical_execution.values() if item["state"] != "AMBIGUOUS"
+        1
+        for item in critical_execution.values()
+        if item["state"] in FINAL_EXECUTION_STATES
     )
     score += float(points["critical_execution_states_resolved"]) * resolved / len(
         critical_execution
@@ -341,12 +463,15 @@ def compile_repository_observation(
         raise LiveEvidenceAdapterError(
             f"canonical_url must equal {expected_url}, got {canonical_url}"
         )
+    _canonical_path(canonical_url)
 
     head_sha = str(payload.get("observed_head_sha", "")).lower()
-    if len(head_sha) < 40 or any(
+    if len(head_sha) not in {40, 64} or any(
         character not in "0123456789abcdef" for character in head_sha
     ):
-        raise LiveEvidenceAdapterError("observed_head_sha must be a lowercase Git SHA")
+        raise LiveEvidenceAdapterError(
+            "observed_head_sha must contain exactly 40 or 64 lowercase hex characters"
+        )
 
     provenance = _require_mapping(payload.get("provenance"), "provenance")
     if provenance.get("original_bytes_copied") is not False:
@@ -357,6 +482,25 @@ def compile_repository_observation(
         raise LiveEvidenceAdapterError("head-SHA-bound provenance is required")
 
     active_policy = deepcopy(dict(adapter_policy or load_adapter_policy()))
+    required_categories = active_policy.get("required_artifact_categories")
+    critical_fields = active_policy.get("critical_execution_fields")
+    if not isinstance(required_categories, list) or not required_categories:
+        raise LiveEvidenceAdapterError(
+            "adapter policy required_artifact_categories must be a non-empty array"
+        )
+    if set(required_categories) != ARTIFACT_CATEGORIES:
+        raise LiveEvidenceAdapterError(
+            "adapter policy required_artifact_categories must match known categories"
+        )
+    if not isinstance(critical_fields, list) or not critical_fields:
+        raise LiveEvidenceAdapterError(
+            "adapter policy critical_execution_fields must be a non-empty array"
+        )
+    if set(critical_fields) != CRITICAL_EXECUTION_FIELDS:
+        raise LiveEvidenceAdapterError(
+            "adapter policy critical_execution_fields must match known fields"
+        )
+
     defaults = active_policy["dimension_defaults"]
     artifacts = _require_mapping(payload.get("artifacts"), "artifacts")
     connector = _require_mapping(payload.get("connector"), "connector")
@@ -418,25 +562,30 @@ def compile_repository_observation(
         | set(license_receipts)
         | set(security_policy_receipts)
     )
-    unbound = [receipt for receipt in artifact_receipts if head_sha not in receipt]
+    unbound = [
+        receipt
+        for receipt in artifact_receipts
+        if not _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+    ]
     if unbound:
         raise LiveEvidenceAdapterError(
-            f"artifact receipts must be bound to observed HEAD: {', '.join(unbound)}"
+            "artifact receipts must use the canonical repository and observed HEAD: "
+            + ", ".join(unbound)
         )
 
     critical_execution = {
-        name: _execution_item(execution.get(name), name)
-        for name in active_policy["critical_execution_fields"]
+        name: _execution_item(execution.get(name), name) for name in critical_fields
     }
 
     dimensions: dict[str, Any] = {}
     source_receipts = [*package_manifest, *category_receipts["source_files"]]
     if package_manifest and category_receipts["source_files"]:
         reality_verified = _execution_can_verify(
-            critical_execution["build"], head_sha
+            critical_execution["build"], head_sha, canonical_url
         ) and _execution_can_verify(
             critical_execution["tests"],
             head_sha,
+            canonical_url,
             require_positive_test_count=True,
         )
         dimensions["reality"] = _evidence(
@@ -461,28 +610,25 @@ def compile_repository_observation(
         )
 
     dimensions["build"] = _compile_execution_dimension(
-        "build",
-        execution,
-        head_sha,
-        defaults["build"],
-        category_receipts["workflows"],
+        "build", execution, head_sha, canonical_url, defaults["build"]
     )
     dimensions["tests"] = _compile_execution_dimension(
-        "tests",
-        execution,
-        head_sha,
-        defaults["tests"],
-        [*category_receipts["workflows"], *category_receipts["test_files"]],
+        "tests", execution, head_sha, canonical_url, defaults["tests"]
     )
 
+    documentation_item = critical_execution["documentation"]
     documentation_execution = _compile_execution_dimension(
         "documentation",
         execution,
         head_sha,
+        canonical_url,
         defaults["documentation"],
-        [*readme, *category_receipts["recruiter_files"]],
     )
-    if documentation_execution["state"] == "UNVERIFIED" and readme:
+    if (
+        documentation_execution["state"] == "UNVERIFIED"
+        and readme
+        and documentation_item["state"] != "FAILURE"
+    ):
         dimensions["documentation"] = _evidence(
             state="PARTIALLY_VERIFIED",
             raw_score=float(defaults["documentation"]["raw_score"]),
@@ -519,11 +665,7 @@ def compile_repository_observation(
         )
 
     dimensions["security"] = _compile_execution_dimension(
-        "security",
-        execution,
-        head_sha,
-        defaults["security"],
-        security_policy_receipts,
+        "security", execution, head_sha, canonical_url, defaults["security"]
     )
 
     for dimension, category, finding in (
