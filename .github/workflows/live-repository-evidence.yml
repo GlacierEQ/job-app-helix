@@ -4,23 +4,33 @@ on:
   push:
     branches: [main]
     paths:
+      - "pyproject.toml"
       - "manifests/live_evidence_adapter_policy.json"
+      - "manifests/repository_health_policy.json"
       - "schemas/repository_observation.schema.json"
       - "src/job_app_helix/live_evidence_adapter.py"
+      - "src/job_app_helix/repository_health.py"
+      - "src/job_app_helix/resources/**"
       - "scripts/compile_live_repository_evidence.py"
       - "tests/test_live_evidence_adapter.py"
       - "tests/test_live_evidence_cli.py"
+      - "tests/test_repository_health.py"
       - "observations/repositories/**"
       - "docs/LIVE_REPOSITORY_EVIDENCE_ADAPTER.md"
       - ".github/workflows/live-repository-evidence.yml"
   pull_request:
     paths:
+      - "pyproject.toml"
       - "manifests/live_evidence_adapter_policy.json"
+      - "manifests/repository_health_policy.json"
       - "schemas/repository_observation.schema.json"
       - "src/job_app_helix/live_evidence_adapter.py"
+      - "src/job_app_helix/repository_health.py"
+      - "src/job_app_helix/resources/**"
       - "scripts/compile_live_repository_evidence.py"
       - "tests/test_live_evidence_adapter.py"
       - "tests/test_live_evidence_cli.py"
+      - "tests/test_repository_health.py"
       - "observations/repositories/**"
       - "docs/LIVE_REPOSITORY_EVIDENCE_ADAPTER.md"
       - ".github/workflows/live-repository-evidence.yml"
@@ -34,7 +44,7 @@ env:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
     steps:
       - name: Check out reviewed source
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -53,6 +63,7 @@ jobs:
         run: >-
           python -m compileall -q
           src/job_app_helix/live_evidence_adapter.py
+          src/job_app_helix/repository_health.py
           scripts/compile_live_repository_evidence.py
           tests/test_live_evidence_adapter.py
           tests/test_live_evidence_cli.py
@@ -61,6 +72,7 @@ jobs:
         run: >-
           ruff check
           src/job_app_helix/live_evidence_adapter.py
+          src/job_app_helix/repository_health.py
           scripts/compile_live_repository_evidence.py
           tests/test_live_evidence_adapter.py
           tests/test_live_evidence_cli.py
@@ -104,6 +116,39 @@ jobs:
           assert len(assessment['blockers']) == 2
           print(result['observation_id'])
           print(assessment['assessment_id'])
+          PY
+
+      - name: Build and execute the installed wheel outside the checkout
+        env:
+          OBSERVATION_PATH: ${{ github.workspace }}/observations/repositories/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json
+        run: |
+          python -m pip wheel . --no-deps --wheel-dir /tmp/helix-wheel
+          python -m venv /tmp/helix-wheel-venv
+          /tmp/helix-wheel-venv/bin/python -m pip install /tmp/helix-wheel/job_app_helix-*.whl
+          cd /tmp
+          /tmp/helix-wheel-venv/bin/python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          import job_app_helix.live_evidence_adapter as adapter_module
+          import job_app_helix.repository_health as health_module
+          from job_app_helix.live_evidence_adapter import (
+              compile_repository_observation,
+              load_adapter_policy,
+              load_observation_schema,
+          )
+          from job_app_helix.repository_health import load_policy
+
+          assert '/tmp/helix-wheel-venv/' in adapter_module.__file__
+          assert '/tmp/helix-wheel-venv/' in health_module.__file__
+          assert load_adapter_policy()['version'] == '1.0.0'
+          assert load_policy()['version'] == '1.0.0'
+          assert load_observation_schema()['title'] == 'GlacierEQ Live Repository Observation'
+          observation = json.loads(Path(os.environ['OBSERVATION_PATH']).read_text())
+          result = compile_repository_observation(observation)
+          assert result['assessment']['health_state'] == 'PARTIALLY_VERIFIED'
+          assert result['assessment']['evidence_coverage'] == 55
           PY
 
       - name: Upload generated assessment receipt
