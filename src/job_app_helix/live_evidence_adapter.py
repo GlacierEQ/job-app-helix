@@ -12,7 +12,7 @@ from typing import Any
 from urllib.parse import parse_qs, unquote, urlparse
 
 from jsonschema import Draft202012Validator, FormatChecker
-from jsonschema.exceptions import SchemaError, ValidationError
+from jsonschema.exceptions import SchemaError
 
 from .repository_health import assess_repository_health, load_policy
 
@@ -146,7 +146,9 @@ def load_observation_schema(path: Path | None = None) -> dict[str, Any]:
     try:
         Draft202012Validator.check_schema(schema)
     except SchemaError as exc:
-        raise LiveEvidenceAdapterError(f"invalid repository observation schema: {exc.message}") from exc
+        raise LiveEvidenceAdapterError(
+            f"invalid repository observation schema: {exc.message}"
+        ) from exc
     return schema
 
 
