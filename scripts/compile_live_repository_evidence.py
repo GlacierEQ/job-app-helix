@@ -24,16 +24,20 @@ def main() -> int:
     try:
         observation = json.loads(args.observation.read_text(encoding="utf-8"))
         result = compile_repository_observation(observation)
-    except (OSError, json.JSONDecodeError, LiveEvidenceAdapterError, RepositoryHealthError) as exc:
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered, encoding="utf-8")
+    except (
+        OSError,
+        json.JSONDecodeError,
+        LiveEvidenceAdapterError,
+        RepositoryHealthError,
+    ) as exc:
         print(json.dumps({"state": "ERROR", "error": str(exc)}, indent=2))
         return 2
 
-    rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(rendered, encoding="utf-8")
     print(rendered, end="")
-
     if args.require_state and result["assessment"]["health_state"] != args.require_state:
         return 3
     return 0
