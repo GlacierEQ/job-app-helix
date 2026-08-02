@@ -1,0 +1,38 @@
+{
+  "schema": "glaciereq.live-evidence-adapter-bootstrap-receipt.v1",
+  "date": "2026-08-02",
+  "state": "IMPLEMENTED_PENDING_HOSTED_VERIFICATION",
+  "branch": "feat/live-evidence-adapter-v1",
+  "first_observation": {
+    "repository": "GlacierEQ/AKOS",
+    "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+    "expected_state": "PARTIALLY_VERIFIED",
+    "connector_invocation_state": "PARTIAL",
+    "runtime_verification_state": "AMBIGUOUS"
+  },
+  "artifacts": [
+    "manifests/live_evidence_adapter_policy.json",
+    "schemas/repository_observation.schema.json",
+    "src/job_app_helix/live_evidence_adapter.py",
+    "scripts/compile_live_repository_evidence.py",
+    "tests/test_live_evidence_adapter.py",
+    "observations/repositories/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
+    "docs/LIVE_REPOSITORY_EVIDENCE_ADAPTER.md",
+    ".github/workflows/live-repository-evidence.yml"
+  ],
+  "guarantees": [
+    "child repository source bytes are not copied into Helix",
+    "artifact references must be bound to the observed Git SHA",
+    "provider execution receipts must be bound to the observed Git SHA",
+    "workflow configuration cannot become a successful execution claim",
+    "test success requires a positive executed-test count",
+    "connector quality and data quality remain separate",
+    "ambiguous current CI state remains unverified"
+  ],
+  "not_claimed": [
+    "AKOS currently passes its configured workflow at the observed SHA",
+    "AKOS is recruiter ready or elite verified",
+    "README claims establish current provider execution",
+    "all portfolio repositories have live observations"
+  ]
+}
