@@ -15,12 +15,17 @@ ROOT = Path(__file__).resolve().parents[1]
 OBSERVATION = ROOT / "observations" / "repositories" / (
     "GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json"
 )
+POLICY = ROOT / "manifests" / "live_evidence_adapter_policy.json"
 HEAD = "1607c0d27897ea963eb572062300342f1922b84c"
 OLD_HEAD = "0d80007b5bb8248221a9e6d7032bccda45c3dcea"
 
 
 def load_observation() -> dict:
     return json.loads(OBSERVATION.read_text(encoding="utf-8"))
+
+
+def load_adapter_policy() -> dict:
+    return json.loads(POLICY.read_text(encoding="utf-8"))
 
 
 def current_receipt(kind: str) -> str:
@@ -34,15 +39,19 @@ def test_akos_probe_is_truthfully_partial() -> None:
     assert result["repository"] == "GlacierEQ/AKOS"
     assert result["observed_head_sha"] == HEAD
     assert assessment["health_state"] == "PARTIALLY_VERIFIED"
+    assert assessment["health_score"] == 30.76
+    assert assessment["evidence_coverage"] == 55
     assert assessment["elite_eligible"] is False
     assert assessment["dimensions"]["reality"]["state"] == "PARTIALLY_VERIFIED"
     assert assessment["dimensions"]["build"]["state"] == "UNVERIFIED"
+    assert assessment["dimensions"]["build"]["receipts"] == []
     assert assessment["dimensions"]["tests"]["state"] == "UNVERIFIED"
+    assert assessment["dimensions"]["tests"]["receipts"] == []
     assert assessment["dimensions"]["documentation"]["state"] == "PARTIALLY_VERIFIED"
     assert assessment["dimensions"]["security"]["state"] == "UNVERIFIED"
+    assert assessment["dimensions"]["security"]["receipts"] == []
     assert assessment["quality_context"]["connector_quality_score"] == 75
-    assert assessment["quality_context"]["data_quality_score"] == 85
-    assert assessment["health_score"] < 80
+    assert assessment["quality_context"]["data_quality_score"] == 80
     assert len(assessment["blockers"]) == 2
 
 
@@ -69,11 +78,21 @@ def test_unbound_artifact_receipt_is_rejected() -> None:
         "https://github.com/GlacierEQ/AKOS/blob/main/operational_cognition/engine.py"
     )
 
-    with pytest.raises(LiveEvidenceAdapterError, match="bound to observed HEAD"):
+    with pytest.raises(LiveEvidenceAdapterError, match="canonical repository"):
         compile_repository_observation(observation)
 
 
-def test_success_requires_provider_receipt() -> None:
+def test_foreign_artifact_receipt_with_head_substring_is_rejected() -> None:
+    observation = load_observation()
+    observation["artifacts"]["source_files"][0]["url"] = (
+        f"https://example.invalid/GlacierEQ/AKOS/blob/{HEAD}/engine.py"
+    )
+
+    with pytest.raises(LiveEvidenceAdapterError, match="canonical repository"):
+        compile_repository_observation(observation)
+
+
+def test_success_requires_provider_receipt_without_fallback_coverage() -> None:
     observation = load_observation()
     observation["execution"]["build"] = {
         "state": "SUCCESS",
@@ -83,11 +102,27 @@ def test_success_requires_provider_receipt() -> None:
     }
 
     result = compile_repository_observation(observation)
+    build = result["assessment"]["dimensions"]["build"]
 
-    assert result["assessment"]["dimensions"]["build"]["state"] == "UNVERIFIED"
-    assert "without a provider receipt" in " ".join(
-        result["assessment"]["dimensions"]["build"]["findings"]
-    )
+    assert build["state"] == "UNVERIFIED"
+    assert build["receipts"] == []
+    assert "without a provider receipt" in " ".join(build["findings"])
+
+
+def test_foreign_provider_receipt_cannot_verify_execution() -> None:
+    observation = load_observation()
+    observation["execution"]["build"] = {
+        "state": "SUCCESS",
+        "receipts": [f"https://example.invalid/actions/runs/999?sha={HEAD}"],
+        "test_count": None,
+        "notes": [],
+    }
+
+    result = compile_repository_observation(observation)
+    build = result["assessment"]["dimensions"]["build"]
+
+    assert build["state"] == "STALE"
+    assert "untrusted or not bound" in " ".join(build["findings"])
 
 
 def test_old_provider_receipt_is_stale_not_current() -> None:
@@ -102,11 +137,10 @@ def test_old_provider_receipt_is_stale_not_current() -> None:
     }
 
     result = compile_repository_observation(observation)
+    build = result["assessment"]["dimensions"]["build"]
 
-    assert result["assessment"]["dimensions"]["build"]["state"] == "STALE"
-    assert "not bound to the observed HEAD" in " ".join(
-        result["assessment"]["dimensions"]["build"]["findings"]
-    )
+    assert build["state"] == "STALE"
+    assert "untrusted or not bound" in " ".join(build["findings"])
 
 
 def test_test_success_requires_positive_executed_count() -> None:
@@ -131,6 +165,23 @@ def test_test_success_requires_positive_executed_count() -> None:
     assert "positive executed-test count" in " ".join(
         result["assessment"]["dimensions"]["tests"]["findings"]
     )
+
+
+def test_documentation_failure_is_not_promoted_by_readme_presence() -> None:
+    observation = load_observation()
+    observation["execution"]["documentation"] = {
+        "state": "FAILURE",
+        "receipts": [],
+        "test_count": None,
+        "notes": ["documentation contract failed"],
+    }
+
+    result = compile_repository_observation(observation)
+    documentation = result["assessment"]["dimensions"]["documentation"]
+
+    assert documentation["state"] == "UNVERIFIED"
+    assert documentation["points"] == 0
+    assert documentation["receipts"] == []
 
 
 def test_verified_runtime_still_does_not_create_an_elite_claim() -> None:
@@ -191,6 +242,35 @@ def test_connector_quality_and_data_quality_are_independent() -> None:
         "quality_context"
     ]
 
-    assert normal["data_quality_score"] == degraded["data_quality_score"]
+    assert normal["data_quality_score"] == degraded["data_quality_score"] == 80
     assert normal["connector_quality_score"] == 75
     assert degraded["connector_quality_score"] == 0
+
+
+def test_not_asserted_authentication_caps_connector_quality() -> None:
+    observation = load_observation()
+    observation["connector"]["error_state"] = "NONE"
+    observation["connector"]["authentication_state"] = "NOT_ASSERTED"
+
+    quality = compile_repository_observation(observation)["assessment"][
+        "quality_context"
+    ]
+
+    assert quality["connector_quality_score"] == 50
+
+
+def test_invalid_git_digest_length_is_rejected() -> None:
+    observation = load_observation()
+    observation["observed_head_sha"] = "a" * 41
+
+    with pytest.raises(LiveEvidenceAdapterError, match="exactly 40 or 64"):
+        compile_repository_observation(observation)
+
+
+def test_empty_policy_lists_are_rejected_before_scoring() -> None:
+    observation = load_observation()
+    policy = load_adapter_policy()
+    policy["critical_execution_fields"] = []
+
+    with pytest.raises(LiveEvidenceAdapterError, match="non-empty array"):
+        compile_repository_observation(observation, adapter_policy=policy)
