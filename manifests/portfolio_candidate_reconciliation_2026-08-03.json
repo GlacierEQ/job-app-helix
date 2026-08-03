@@ -1,0 +1,333 @@
+{
+  "schema": "glaciereq.portfolio-candidate-reconciliation.v1",
+  "generated_at": "2026-08-03T01:23:00-10:00",
+  "authority": "GlacierEQ/job-app-helix",
+  "purpose": "Reconcile the governed hiring portfolio against current company tracks, original GlacierEQ systems, private architecture references, upstream repositories, duplicate families, and the deployed V12 Systems Atlas.",
+  "policy": {
+    "strong_claim_is_target_contract": true,
+    "upgrade_code_before_weakening_earnable_claim": true,
+    "admission_requires": [
+      "clear original or substantially differentiated contribution",
+      "one canonical repository identity",
+      "public-safe provenance",
+      "runnable or inspectable implementation",
+      "explicit claim boundary",
+      "current-commit verification plan",
+      "typed relationship to the portfolio graph"
+    ],
+    "flagship_promotion_requires": [
+      "recruiter-readable operational value",
+      "master-level architecture and tradeoffs",
+      "machine-readable contract",
+      "clean install or build",
+      "positive-count tests",
+      "current-SHA CI receipt",
+      "security and dependency controls",
+      "failure and recovery behavior",
+      "known limitations and promotion targets",
+      "canonical public source or explicit private-reference boundary"
+    ],
+    "never_infer": [
+      "authorship from repository ownership",
+      "current behavior from workflow presence",
+      "deployment from build success",
+      "company affiliation from company-aligned naming",
+      "production scale from architecture",
+      "originality from a forked or mirrored repository"
+    ]
+  },
+  "immediate_admission_candidates": [
+    {
+      "repository": "GlacierEQ/ECHO",
+      "proposed_role": "CROWN_JEWEL_CANDIDATE",
+      "reason": "Original runnable continuity engine with FastAPI, durable storage, deterministic identity, hashing, bounded jobs, receipts, CLI, Docker, and behavioral tests.",
+      "current_boundary": "No current-head GitHub status receipt was attached during reconciliation; README test count and deployment language must be synchronized to current evidence.",
+      "required_actions": [
+        "pin GitHub Actions dependencies",
+        "run current-head CI and persist positive-count receipts",
+        "add database migration and rollback verification",
+        "add authenticated API integration tests",
+        "publish deployment and outage receipts",
+        "replace stale three-layer headings with current four-act README architecture"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/sigma-glue",
+      "proposed_role": "EMERGING_FLAGSHIP",
+      "reason": "Current main implements a reversible orchestration slice with exact approval binding, plan integrity, durable local state, redacted audit receipts, Colossus-only dispatch, recovery, restart-readable idempotency, and 24 tests.",
+      "current_boundary": "Live Gatekeeper/Colossus adapters, production storage, platform adapters, provider duplicate suppression, and offline/resume behavior remain unverified.",
+      "required_actions": [
+        "synchronize root README with current implementation status",
+        "add pinned read-only CI and current-SHA receipt",
+        "publish package/build contract",
+        "add no-scope-broadening tests beyond static registry declarations",
+        "add multi-process idempotency and concurrency tests",
+        "exercise a live read-only adapter before any mutation promotion"
+      ]
+    }
+  ],
+  "existing_inventory_promotion_priorities": [
+    {
+      "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "priority": "P0",
+      "target": "DEPLOYED_PRODUCT_FLAGSHIP",
+      "required_actions": [
+        "integration tests for analyze and tailor APIs",
+        "browser end-to-end tests",
+        "document/PDF export",
+        "request limits, rate limiting, audit logging, and observability",
+        "privacy, retention, deletion, and external-model disclosure policy",
+        "semantic truthfulness evaluation corpus",
+        "preview and production deployment receipts"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "priority": "P0",
+      "target": "CANONICAL_CONTROL_PLANE_OR_ARCHIVED_LAB",
+      "required_actions": [
+        "cluster branches and generated variants by purpose",
+        "extract unique runnable modules onto current ancestry",
+        "replace simulated health with bounded probes",
+        "rotate any historically exposed credentials",
+        "prove one canonical runtime beyond the local process sidecar",
+        "archive or close duplicate families only after value preservation"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "priority": "P0",
+      "target": "EVIDENCE_GATED_POLYGLOT_FLAGSHIP",
+      "required_actions": [
+        "keep unsupported hardware paths blocked rather than falsely verified",
+        "build real JAX/XLA, CUDA, and hardware admission runners",
+        "compare outputs to trusted reference implementations",
+        "record disclosed-hardware correctness and benchmark receipts",
+        "activate and verify the main ruleset",
+        "promote evidence states automatically when thresholds are earned"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "priority": "P0",
+      "target": "VERIFIED_RUNTIME_FLAGSHIP",
+      "required_actions": [
+        "generate a fresh Helix health observation at current main",
+        "attach current workflow execution receipts rather than source-only evidence",
+        "exercise one real connector through INVOKED, RETURNED, VERIFIED, and PERSISTED",
+        "exercise one artifact through READY_FOR_USE",
+        "publish a reversible authorized-write probe receipt",
+        "keep PSYSOC-X and Infinity Stone promotion receipts current"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "priority": "P0",
+      "target": "CANONICAL_DEPLOYED_PORTAL",
+      "required_actions": [
+        "commit the complete V12 deployable source rather than preserving the live build only as an external artifact",
+        "deploy automatically from canonical Git source",
+        "add route, API, mobile, accessibility, and machine-contract regression receipts",
+        "synchronize the website graph to this reconciliation manifest",
+        "publish role-specific application packets"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/anthropic-agent-coordinator",
+      "priority": "P1",
+      "target": "ANTHROPIC_TRACK_FLAGSHIP",
+      "required_actions": [
+        "refresh current-SHA hosted verification",
+        "preserve deterministic scheduling and budget-control scope",
+        "add failure-injection, restart, and concurrency tests",
+        "publish one bounded end-to-end coordination receipt"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/anthropic-safety-monitor",
+      "priority": "P1",
+      "target": "ANTHROPIC_TRACK_VERIFIED_SUPPORTING_SYSTEM",
+      "required_actions": [
+        "refresh current-SHA matrix receipt",
+        "add adversarial and distribution-shift evaluation cases",
+        "document false-positive and false-negative limits",
+        "connect results to the shared portfolio evidence graph"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/spacex-autonomy",
+      "priority": "P1",
+      "target": "SPACEFLIGHT_SUITE_FLAGSHIP",
+      "required_actions": [
+        "complete native CI and current-SHA test receipts",
+        "add scenario and fault-injection tests",
+        "define simulation-to-real-system boundary",
+        "present the twelve public SpaceX repositories as one mission-systems suite"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-cooling",
+      "priority": "P1",
+      "target": "XAI_INFRASTRUCTURE_SUITE_FLAGSHIP",
+      "required_actions": [
+        "verify current computation and model assumptions",
+        "add unit consistency and sensitivity tests",
+        "publish reproducible input and output fixtures",
+        "consolidate alpha and omega variants as experiments or release lines rather than separate recruiter systems"
+      ]
+    }
+  ],
+  "audit_before_admission": [
+    {
+      "repository": "GlacierEQ/openai-codex-mcp",
+      "reason": "Potential original OpenAI/Codex integration exhibit; authorship, overlap, tests, and current compatibility require review."
+    },
+    {
+      "repository": "GlacierEQ/project_openai_codex",
+      "reason": "Potential differentiated Codex tooling; provenance and product identity require review."
+    },
+    {
+      "repository": "GlacierEQ/MCP-Bridge",
+      "reason": "Potential connector interoperability proof; needs originality, security, and runtime audit."
+    },
+    {
+      "repository": "GlacierEQ/browser-operator-core",
+      "reason": "Large public operator surface with possible recruiter value; vendored assets, provenance, build size, security, and original contribution must be established."
+    },
+    {
+      "repository": "GlacierEQ/products-suggestions-api",
+      "reason": "Potential practical AWS/cloud application proof; needs provenance, deployment, and test audit."
+    },
+    {
+      "repository": "GlacierEQ/TextCraft",
+      "reason": "Potential document/product proof; upstream origin and GlacierEQ differentiation must be established."
+    }
+  ],
+  "reference_or_upstream_not_candidate_evidence": [
+    {
+      "repository": "GlacierEQ/codex-supermemory",
+      "reason": "Package metadata points to supermemoryai/codex-supermemory and author Supermemory. Treat as integration reference unless a GlacierEQ contribution delta is isolated."
+    },
+    {
+      "repository": "GlacierEQ/megapdf-sdk",
+      "reason": "Package metadata points to megapdf/megapdf-sdk and author MegaPDF Team. Not a GlacierEQ flagship."
+    },
+    {
+      "repository": "GlacierEQ/Office-Word-MCP-Server",
+      "reason": "README identifies GongRzhe as canonical source. Treat as a connected capability, not authored portfolio proof."
+    },
+    {
+      "repository": "GlacierEQ/openai-python",
+      "reason": "Upstream SDK-shaped repository; exclude absent a separately documented original contribution."
+    },
+    {
+      "repository": "GlacierEQ/openai-node",
+      "reason": "Upstream SDK-shaped repository; exclude absent a separately documented original contribution."
+    },
+    {
+      "repository": "GlacierEQ/openai-agents-python",
+      "reason": "Upstream framework-shaped repository; exclude absent a separately documented original contribution."
+    },
+    {
+      "repository": "GlacierEQ/openai-agents-js",
+      "reason": "Upstream framework-shaped repository; exclude absent a separately documented original contribution."
+    },
+    {
+      "repository": "GlacierEQ/Microsoft-Build2025-Samples",
+      "reason": "Sample/reference repository; not candidate evidence without a clearly isolated GlacierEQ extension."
+    }
+  ],
+  "private_architecture_references": [
+    "GlacierEQ/FILEBOSS",
+    "GlacierEQ/MEGA-PDF",
+    "GlacierEQ/Mega_PDF",
+    "GlacierEQ/apple-mcp",
+    "GlacierEQ/spacex-recovery-dynamics",
+    "GlacierEQ/spacex-orbital-assembly",
+    "GlacierEQ/xai-colossus-waterplant",
+    "GlacierEQ/xai-colossus-build",
+    "GlacierEQ/xai-colossus-community",
+    "GlacierEQ/xai-colossus-microcode",
+    "GlacierEQ/portfolio-organization-master",
+    "GlacierEQ/job-app"
+  ],
+  "company_track_status": {
+    "apple": {
+      "public_inventory_complete": true,
+      "public_repositories": ["GlacierEQ/apple-ane-kv-quantizer"],
+      "gap": "Only one small public exhibit; needs real Swift/Metal/ANE correctness and performance evidence before flagship promotion."
+    },
+    "nvidia": {
+      "public_inventory_complete": true,
+      "public_repositories": ["GlacierEQ/nvidia-deep-reasoning", "GlacierEQ/nvidia-gpu-health"],
+      "gap": "Both are thin and unverified; add real CUDA/toolchain, hardware, correctness, and benchmark receipts."
+    },
+    "anthropic": {
+      "public_inventory_complete": true,
+      "public_repositories": ["GlacierEQ/anthropic-agent-coordinator", "GlacierEQ/anthropic-safety-monitor"],
+      "gap": "Strongest current company track; refresh current-SHA evidence and present as one coordinated safety/runtime story."
+    },
+    "spacex": {
+      "public_inventory_complete": true,
+      "public_repository_count": 12,
+      "gap": "Current human surfaces that say ten are stale. Present one mission-systems suite and promote one verified flagship."
+    },
+    "xai": {
+      "public_inventory_complete": true,
+      "gap": "Too many alpha/omega variants are treated as independent children. Consolidate into flagship, supporting systems, and experiments."
+    },
+    "tasklet": {
+      "public_inventory_complete": true,
+      "public_repositories": ["GlacierEQ/tasklet-micro-agent-engine"],
+      "gap": "Needs a real micro-agent runtime, typed contracts, tests, and receipts before promotion."
+    },
+    "openai": {
+      "public_inventory_complete": false,
+      "admitted_original_exhibit": "GlacierEQ/openai-reasoning-kv-sentinel",
+      "gap": "Audit original Codex/MCP candidates while excluding upstream SDK and framework mirrors."
+    },
+    "google_deepmind": {
+      "public_inventory_complete": true,
+      "public_repositories": ["GlacierEQ/deepmind-tpu-mesh-optimizer"],
+      "gap": "Needs XLA/TPU simulation, correctness, and performance proof before promotion."
+    },
+    "microsoft": {
+      "public_inventory_complete": false,
+      "admitted_repositories": ["GlacierEQ/microsoft-azure-ops", "GlacierEQ/microsoft-identity-zero-trust"],
+      "gap": "Audit original document and operator systems; exclude upstream Word MCP and Build samples from authorship claims."
+    },
+    "aws": {
+      "public_inventory_complete": false,
+      "admitted_repositories": ["GlacierEQ/aws-trainium-neuron-sentinel"],
+      "gap": "Audit products-suggestions-api and create public-safe Cloud Institute evidence only where privacy and originality permit."
+    },
+    "meta": {
+      "public_inventory_complete": true,
+      "public_repositories": ["GlacierEQ/meta-llama-collective-sentinel"],
+      "gap": "Technical exhibit only until current tests and distributed-behavior evidence exist."
+    },
+    "tesla": {
+      "public_inventory_complete": true,
+      "public_repositories": ["GlacierEQ/tesla-fsd-occupancy-stream"],
+      "gap": "Technical exhibit only until stream, latency, correctness, and failure evidence exist."
+    }
+  },
+  "next_release_gate": {
+    "required_before_public_graph_promotion": [
+      "current-SHA observation",
+      "positive-count test receipt",
+      "README impact contract",
+      "provenance classification",
+      "security boundary",
+      "typed portfolio relationships",
+      "no unresolved critical blocker"
+    ],
+    "website_actions": [
+      "add ECHO after current-SHA verification",
+      "add Sigma Glue as emerging rather than production-complete",
+      "replace raw company repo walls with suite pages",
+      "show current verification state and promotion target per system",
+      "keep upstream references out of Crown Jewels"
+    ]
+  }
+}
