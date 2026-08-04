@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "manifests" / "portfolio_candidate_reconciliation_2026-08-03.json"
 
