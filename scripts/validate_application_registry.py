@@ -141,9 +141,7 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
         fail("external flagship registry authority mismatch")
 
     required_company_fields = string_set(
-        require_list(
-            index, "company_record_required_fields", "company_dossiers"
-        ),
+        require_list(index, "company_record_required_fields", "company_dossiers"),
         "company_dossiers.company_record_required_fields",
     )
     required_company_fields_expected = {
@@ -163,9 +161,7 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
             f"actual={sorted(required_company_fields)}"
         )
 
-    defaults_contract = require_dict(
-        index, "shard_defaults_contract", "company_dossiers"
-    )
+    defaults_contract = require_dict(index, "shard_defaults_contract", "company_dossiers")
     if defaults_contract.get("allowed") is not True:
         fail("shard defaults contract must explicitly allow governed inheritance")
     if defaults_contract.get("required_marker") != "defaults_apply_to_all_companies":
@@ -191,12 +187,31 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
             fail(f"repository_record_enums.{field} must be a non-empty array")
         allowed_values[field] = string_set(values, f"repository_record_enums.{field}")
 
-    classification_notes = require_dict(
-        index, "classification_notes", "company_dossiers"
+    legacy_alias_contract = require_dict(
+        index, "repository_record_legacy_aliases", "company_dossiers"
     )
+    if set(legacy_alias_contract) != {"promotion_state"}:
+        fail("legacy aliases may exist only for promotion_state")
+    promotion_aliases_raw = legacy_alias_contract["promotion_state"]
+    if not isinstance(promotion_aliases_raw, dict) or not promotion_aliases_raw:
+        fail("promotion_state legacy aliases must be a non-empty object")
+    promotion_aliases: dict[str, str] = {}
+    for source, target in promotion_aliases_raw.items():
+        if not isinstance(source, str) or not source:
+            fail("legacy promotion alias source must be a non-empty string")
+        if not isinstance(target, str) or target not in allowed_values["promotion_state"]:
+            fail(f"legacy promotion alias target is invalid: {target!r}")
+        if source in allowed_values["promotion_state"]:
+            fail(f"legacy promotion alias source is still a valid promotion state: {source}")
+        promotion_aliases[source] = target
+
+    classification_notes = require_dict(index, "classification_notes", "company_dossiers")
     experiment_note = classification_notes.get("l1_private_experiment_boundary")
     if not isinstance(experiment_note, str) or not experiment_note:
         fail("l1_private_experiment_boundary classification note is required")
+    alias_note = classification_notes.get("legacy_promotion_alias_boundary")
+    if not isinstance(alias_note, str) or not alias_note:
+        fail("legacy_promotion_alias_boundary classification note is required")
 
     dossier_files = require_list(index, "dossier_files", "company_dossiers")
     companies: list[dict[str, Any]] = []
@@ -265,6 +280,7 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
 
     mapped: dict[str, list[str]] = {}
     l1_private_experiment_count = 0
+    normalized_legacy_promotion_aliases = 0
     for company in companies:
         company_id = company["company_id"]
         repositories = company["repositories"]
@@ -288,6 +304,12 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
                 fail(f"foreign owner: {repository}")
             if level not in levels:
                 fail(f"bad level: {repository}")
+
+            raw_promotion_state = record["promotion_state"]
+            if raw_promotion_state in promotion_aliases:
+                record["promotion_state"] = promotion_aliases[raw_promotion_state]
+                normalized_legacy_promotion_aliases += 1
+
             for field in sorted(ENUM_FIELDS):
                 value = record[field]
                 if value not in allowed_values[field]:
@@ -312,6 +334,8 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
             "classification note must explain that ORIGINAL_CANDIDATE is "
             "candidate provenance for L1 private experiments"
         )
+    if normalized_legacy_promotion_aliases and "never a recruiter admission state" not in alias_note:
+        fail("legacy promotion alias note must deny recruiter admission semantics")
 
     mapped_names = set(mapped)
     if mapped_names != workspace_repositories:
@@ -422,6 +446,7 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
             1 for company in companies if company["track_state"] == "NO_DIRECT_EXHIBIT_VERIFIED"
         ),
         "l1_private_experiments_documented": l1_private_experiment_count,
+        "normalized_legacy_promotion_aliases": normalized_legacy_promotion_aliases,
         "zero_direct_omission_gate": True,
     }
 
