@@ -1,0 +1,69 @@
+name: Add 48-Track README Entry
+
+on:
+  push:
+    branches:
+      - hard-reset/48-track-diamond-gatling-2026-08-05
+    paths:
+      - .github/workflows/add-48-track-readme-entry.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-readme:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hard-reset/48-track-diamond-gatling-2026-08-05
+          fetch-depth: 0
+
+      - name: Insert the company-intelligence front door
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("README.md")
+          text = path.read_text(encoding="utf-8")
+          marker = "### What is already real\n"
+          heading = "### 48-track company intelligence\n"
+          if heading not in text:
+              if marker not in text:
+                  raise SystemExit("README insertion marker is missing")
+              section = '''### 48-track company intelligence
+
+Helix now treats the application portfolio as **48 source-backed company tracks**, not a company-name checklist. Each track records an official external signal, the inferred bottleneck and brick wall, how the inference was learned, the matching GlacierEQ systems, expected leverage, application move, and next evidence gate.
+
+| Surface | Inspectable result |
+|---|---|
+| [`docs/48_TRACK_BOTTLENECK_ATLAS.md`](docs/48_TRACK_BOTTLENECK_ATLAS.md) | Human-first entrypoint into the five-volume Bottleneck Atlas. |
+| [`manifests/company_intelligence.json`](manifests/company_intelligence.json) | Canonical machine index for the atlas, Diamond topology, Gatling receipt, Token Saver measurement, and validators. |
+| [`manifests/application_intelligence/diamond_topology.json`](manifests/application_intelligence/diamond_topology.json) | One orchestrator, two domain leads, eight specialist lenses, and one integration coordinator. |
+| [`manifests/application_intelligence/gatling_tsunami_run.json`](manifests/application_intelligence/gatling_tsunami_run.json) | Six deterministic waves, 48 completed integrations, 384 specialist-lens receipts, and zero silent omissions. |
+| [`manifests/application_intelligence/token_saver_measurement.json`](manifests/application_intelligence/token_saver_measurement.json) | Exact canonical context reduction from 120,898 to 67,072 UTF-8 bytes: 53,826 bytes saved, or 44.5218%. |
+| [`receipts/unified-memory-persistence-2026-08-05.json`](receipts/unified-memory-persistence-2026-08-05.json) | Forty-eight compact company packets persisted with service-role-only access and aggregate SHA-256 parity. |
+
+```bash
+python scripts/validate_company_intelligence.py
+python scripts/run_gatling_tsunami.py
+```
+
+**Truth boundary:** official-source observations and GlacierEQ inferences remain separate. This is a current strategic deep-dive V1, not exhaustive internal company knowledge, affiliation, live-opening reconciliation, complete source-code review of every mapped repository, or hosted multi-model consensus.
+
+'''
+              text = text.replace(marker, section + marker, 1)
+              path.write_text(text, encoding="utf-8")
+
+      - name: Commit entry and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/add-48-track-readme-entry.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md .github/workflows/add-48-track-readme-entry.yml
+          git diff --cached --check
+          git commit -m 'docs: expose the 48-track intelligence plane'
+          git push origin HEAD:hard-reset/48-track-diamond-gatling-2026-08-05
