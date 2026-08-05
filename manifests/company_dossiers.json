@@ -45,8 +45,7 @@
       "PRIVATE_UPSTREAM_REFERENCE",
       "PROMOTED",
       "QUARANTINED",
-      "REFERENCE_ONLY",
-      "UPSTREAM_OR_SAMPLE"
+      "REFERENCE_ONLY"
     ],
     "visibility": ["private", "public"],
     "inventory_scope": [
@@ -61,8 +60,14 @@
       "UPSTREAM_SHAPED"
     ]
   },
+  "repository_record_legacy_aliases": {
+    "promotion_state": {
+      "UPSTREAM_OR_SAMPLE": "EXCLUDED_AUTHORSHIP"
+    }
+  },
   "classification_notes": {
-    "l1_private_experiment_boundary": "An L1 PRIVATE_EXPERIMENT with ORIGINAL_CANDIDATE provenance is an owner-estate or direct-name discovery that has not received semantic source, originality, or runnable-proof verification. ORIGINAL_CANDIDATE means candidate provenance, not verified authorship. These records remain excluded from recruiter surfaces until evidence supports promotion to L2 or higher."
+    "l1_private_experiment_boundary": "An L1 PRIVATE_EXPERIMENT with ORIGINAL_CANDIDATE provenance is an owner-estate or direct-name discovery that has not received semantic source, originality, or runnable-proof verification. ORIGINAL_CANDIDATE means candidate provenance, not verified authorship. These records remain excluded from recruiter surfaces until evidence supports promotion to L2 or higher.",
+    "legacy_promotion_alias_boundary": "UPSTREAM_OR_SAMPLE is retained only as a raw migration alias in one legacy row and resolves to EXCLUDED_AUTHORSHIP before validation or consumption. It remains a provenance value on the separate provenance axis and is never a recruiter admission state."
   },
   "truth_boundary": {
     "catalog_membership_is_not_runtime_proof": true,
