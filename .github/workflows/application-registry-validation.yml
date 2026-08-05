@@ -39,13 +39,24 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import sys
           from pathlib import Path
+
           paths = [
               Path('manifests/company_dossiers.json'),
               Path('manifests/flagship_registry.json'),
+              Path('manifests/portfolio_repositories.json'),
               *sorted(Path('manifests/company_dossiers').glob('*.json')),
           ]
           for path in paths:
-              json.loads(path.read_text(encoding='utf-8'))
+              try:
+                  raw = path.read_text(encoding='utf-8')
+                  json.loads(raw)
+              except FileNotFoundError:
+                  print(f'JSON FAIL: missing {path}', file=sys.stderr)
+                  raise SystemExit(1)
+              except json.JSONDecodeError as exc:
+                  print(f'JSON FAIL: {path} - {exc}', file=sys.stderr)
+                  raise SystemExit(1)
               print(f'JSON PASS: {path}')
           PY
