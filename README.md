@@ -37,6 +37,26 @@ It does five things:
 | `job-app-helix-portfolio validate` | Proves that every child repository appears exactly once in the rollout program. |
 | `python -m pytest -q` | Exercises campaign logic, portfolio contracts, evidence semantics, README Mesh behavior, and failure paths. |
 
+### 48-track company intelligence
+
+Helix now treats the application portfolio as **48 source-backed company tracks**, not a company-name checklist. Each track records an official external signal, the inferred bottleneck and brick wall, how the inference was learned, the matching GlacierEQ systems, expected leverage, application move, and next evidence gate.
+
+| Surface | Inspectable result |
+|---|---|
+| [`docs/48_TRACK_BOTTLENECK_ATLAS.md`](docs/48_TRACK_BOTTLENECK_ATLAS.md) | Human-first entrypoint into the five-volume Bottleneck Atlas. |
+| [`manifests/company_intelligence.json`](manifests/company_intelligence.json) | Canonical machine index for the atlas, Diamond topology, Gatling receipt, Token Saver measurement, and validators. |
+| [`manifests/application_intelligence/diamond_topology.json`](manifests/application_intelligence/diamond_topology.json) | One orchestrator, two domain leads, eight specialist lenses, and one integration coordinator. |
+| [`manifests/application_intelligence/gatling_tsunami_run.json`](manifests/application_intelligence/gatling_tsunami_run.json) | Six deterministic waves, 48 completed integrations, 384 specialist-lens receipts, and zero silent omissions. |
+| [`manifests/application_intelligence/token_saver_measurement.json`](manifests/application_intelligence/token_saver_measurement.json) | Exact canonical context reduction from 120,898 to 67,072 UTF-8 bytes: 53,826 bytes saved, or 44.5218%. |
+| [`receipts/unified-memory-persistence-2026-08-05.json`](receipts/unified-memory-persistence-2026-08-05.json) | Forty-eight compact company packets persisted with service-role-only access and aggregate SHA-256 parity. |
+
+```bash
+python scripts/validate_company_inteligence.py
+python scripts/run_gatling_tsunami.py
+```
+
+**Truth boundary:** official-source observations and GlacierEQ inferences remain separate. This is a current strategic deep-dive V1, not exhaustive internal company knowledge, affiliation, live-opening reconciliation, complete source-code review of every mapped repository, or hosted multi-model consensus.
+
 ### What is already real
 
 - a deterministic campaign engine that produces reviewable `GO` or `NO-GO` decisions;
