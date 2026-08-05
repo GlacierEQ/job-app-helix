@@ -10,6 +10,40 @@
     "inventory_scope",
     "provenance_state"
   ],
+  "repository_record_enums": {
+    "promotion_state": [
+      "ARCHIVE",
+      "AUDIT_BEFORE_ADMISSION",
+      "AUDIT_UPSTREAM_DELTA",
+      "BLOCKED",
+      "BLOCKED_SECURITY",
+      "EXCLUDED_AUTHORSHIP",
+      "EXPERIMENT",
+      "PRIVATE_CANDIDATE",
+      "PRIVATE_DOCTRINE",
+      "PRIVATE_EDUCATION_OR_ARCHITECTURE",
+      "PRIVATE_EXPERIMENT",
+      "PRIVATE_REFERENCE",
+      "PRIVATE_STUDY",
+      "PRIVATE_UPSTREAM_REFERENCE",
+      "PROMOTED",
+      "QUARANTINED",
+      "REFERENCE_ONLY",
+      "UPSTREAM_OR_SAMPLE"
+    ],
+    "visibility": ["private", "public"],
+    "inventory_scope": [
+      "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+      "HELIX_ADMITTED"
+    ],
+    "provenance_state": [
+      "ORIGINAL_CANDIDATE",
+      "UPSTREAM",
+      "UPSTREAM_OR_SAMPLE",
+      "UPSTREAM_SAMPLE",
+      "UPSTREAM_SHAPED"
+    ]
+  },
   "truth_boundary": {
     "catalog_membership_is_not_runtime_proof": true,
     "company_naming_does_not_imply_affiliation": true,
