@@ -23,6 +23,14 @@ ENUM_FIELDS = {
     "inventory_scope",
     "provenance_state",
 }
+COMPANY_STRING_FIELDS = {
+    "company_id",
+    "display_name",
+    "track_state",
+    "recruiter_thesis",
+    "gap_or_next_gate",
+    "non_affiliation",
+}
 
 
 class RegistryValidationError(ValueError):
@@ -74,6 +82,45 @@ def string_set(values: list[Any], source: str) -> set[str]:
     return strings
 
 
+def resolve_company_records(
+    shard: dict[str, Any], relative_path: str, required_fields: set[str]
+) -> list[dict[str, Any]]:
+    raw_companies = require_list(shard, "companies", relative_path)
+    defaults_raw = shard.get("defaults")
+    if defaults_raw is None:
+        defaults: dict[str, Any] = {}
+    else:
+        if not isinstance(defaults_raw, dict):
+            fail(f"{relative_path}.defaults must be an object")
+        if shard.get("defaults_apply_to_all_companies") is not True:
+            fail(
+                f"{relative_path} defines defaults without "
+                "defaults_apply_to_all_companies=true"
+            )
+        defaults = defaults_raw
+
+    resolved_companies: list[dict[str, Any]] = []
+    for raw_company in raw_companies:
+        if not isinstance(raw_company, dict):
+            fail(f"{relative_path}.companies contains a non-object record")
+        company = {**defaults, **raw_company}
+        missing = sorted(required_fields - set(company))
+        if missing:
+            fail(f"{relative_path} company record missing fields: {missing}")
+        for field in COMPANY_STRING_FIELDS:
+            value = company.get(field)
+            if not isinstance(value, str) or not value:
+                fail(f"{relative_path}.{field} must be a non-empty string")
+        target_roles = company.get("target_roles")
+        if not isinstance(target_roles, list) or not target_roles:
+            fail(f"{relative_path}.target_roles must be a non-empty array")
+        string_set(target_roles, f"{relative_path}.target_roles")
+        if not isinstance(company.get("repositories"), list):
+            fail(f"{relative_path}.repositories must be an array")
+        resolved_companies.append(company)
+    return resolved_companies
+
+
 def validate_registry(root: Path = ROOT) -> dict[str, Any]:
     """Validate governing registry files rooted at a repository checkout."""
     index = load_json(root / "manifests" / "company_dossiers.json")
@@ -86,18 +133,52 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
     if flagships.get("authority") != authority:
         fail("flagship authority does not match company-dossier authority")
 
-    columns = require_list(
-        index, "repository_record_columns", "company_dossiers"
+    external_registry_path = index.get("external_flagship_registry")
+    if not isinstance(external_registry_path, str) or not external_registry_path:
+        fail("company_dossiers.external_flagship_registry is required")
+    external_registry = load_json(root / external_registry_path)
+    if external_registry.get("authority") != authority:
+        fail("external flagship registry authority mismatch")
+
+    required_company_fields = string_set(
+        require_list(
+            index, "company_record_required_fields", "company_dossiers"
+        ),
+        "company_dossiers.company_record_required_fields",
     )
+    required_company_fields_expected = {
+        "company_id",
+        "display_name",
+        "track_state",
+        "target_roles",
+        "recruiter_thesis",
+        "gap_or_next_gate",
+        "non_affiliation",
+        "repositories",
+    }
+    if required_company_fields != required_company_fields_expected:
+        fail(
+            "company_record_required_fields mismatch "
+            f"expected={sorted(required_company_fields_expected)} "
+            f"actual={sorted(required_company_fields)}"
+        )
+
+    defaults_contract = require_dict(
+        index, "shard_defaults_contract", "company_dossiers"
+    )
+    if defaults_contract.get("allowed") is not True:
+        fail("shard defaults contract must explicitly allow governed inheritance")
+    if defaults_contract.get("required_marker") != "defaults_apply_to_all_companies":
+        fail("shard defaults contract has an unexpected required marker")
+
+    columns = require_list(index, "repository_record_columns", "company_dossiers")
     if tuple(columns) != REPOSITORY_COLUMNS:
         fail(
             "repository_record_columns must exactly equal "
             f"{list(REPOSITORY_COLUMNS)}"
         )
 
-    enum_contract = require_dict(
-        index, "repository_record_enums", "company_dossiers"
-    )
+    enum_contract = require_dict(index, "repository_record_enums", "company_dossiers")
     if set(enum_contract) != ENUM_FIELDS:
         fail(
             "repository_record_enums fields mismatch "
@@ -108,9 +189,14 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
         values = enum_contract.get(field)
         if not isinstance(values, list) or not values:
             fail(f"repository_record_enums.{field} must be a non-empty array")
-        allowed_values[field] = string_set(
-            values, f"repository_record_enums.{field}"
-        )
+        allowed_values[field] = string_set(values, f"repository_record_enums.{field}")
+
+    classification_notes = require_dict(
+        index, "classification_notes", "company_dossiers"
+    )
+    experiment_note = classification_notes.get("l1_private_experiment_boundary")
+    if not isinstance(experiment_note, str) or not experiment_note:
+        fail("l1_private_experiment_boundary classification note is required")
 
     dossier_files = require_list(index, "dossier_files", "company_dossiers")
     companies: list[dict[str, Any]] = []
@@ -118,19 +204,11 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
         if not isinstance(relative_path, str) or not relative_path:
             fail("company_dossiers.dossier_files contains an invalid path")
         shard = load_json(root / relative_path)
-        shard_companies = require_list(shard, "companies", relative_path)
-        for company in shard_companies:
-            if not isinstance(company, dict):
-                fail(f"{relative_path}.companies contains a non-object record")
-            companies.append(company)
+        companies.extend(
+            resolve_company_records(shard, relative_path, required_company_fields)
+        )
 
-    company_ids: list[str] = []
-    for company in companies:
-        company_id = company.get("company_id")
-        if not isinstance(company_id, str) or not company_id:
-            fail("company record is missing a valid company_id")
-        company_ids.append(company_id)
-
+    company_ids = [company["company_id"] for company in companies]
     if len(company_ids) != len(set(company_ids)):
         fail("duplicate company_id")
 
@@ -146,9 +224,7 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
             f"missing={missing} unexpected={unexpected}"
         )
 
-    level_definitions = require_dict(
-        index, "level_definitions", "company_dossiers"
-    )
+    level_definitions = require_dict(index, "level_definitions", "company_dossiers")
     if not level_definitions:
         fail("company_dossiers.level_definitions must not be empty")
     if not all(
@@ -188,9 +264,10 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
         fail("portfolio_repositories.portfolio_root must be job-app-helix")
 
     mapped: dict[str, list[str]] = {}
+    l1_private_experiment_count = 0
     for company in companies:
         company_id = company["company_id"]
-        repositories = require_list(company, "repositories", company_id)
+        repositories = company["repositories"]
         seen: set[str] = set()
         for row in repositories:
             if not isinstance(row, list):
@@ -219,9 +296,22 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
                         f"allowed={sorted(allowed_values[field])}"
                     )
 
+            if (
+                level == "L1"
+                and record["promotion_state"] == "PRIVATE_EXPERIMENT"
+                and record["provenance_state"] == "ORIGINAL_CANDIDATE"
+            ):
+                l1_private_experiment_count += 1
+
             repository_name = repository.split("/", 1)[1]
             if repository_name in workspace_repositories:
                 mapped.setdefault(repository_name, []).append(company_id)
+
+    if l1_private_experiment_count and "candidate provenance" not in experiment_note:
+        fail(
+            "classification note must explain that ORIGINAL_CANDIDATE is "
+            "candidate provenance for L1 private experiments"
+        )
 
     mapped_names = set(mapped)
     if mapped_names != workspace_repositories:
@@ -254,9 +344,7 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
         flagships_by_id[system_id] = record
 
     required_flagships = string_set(
-        require_list(
-            flagships, "required_named_flagships", "flagship_registry"
-        ),
+        require_list(flagships, "required_named_flagships", "flagship_registry"),
         "flagship_registry.required_named_flagships",
     )
     if set(flagship_ids) != required_flagships:
@@ -270,10 +358,56 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
     if root_flagship is None or root_flagship.get("repository") != authority:
         fail("Helix root flagship is missing or points to the wrong repository")
 
+    verified_external_repositories = string_set(
+        require_list(
+            external_registry,
+            "verified_owner_estate_external_repositories",
+            "flagship_external_repositories",
+        ),
+        "flagship_external_repositories.verified_owner_estate_external_repositories",
+    )
+    unresolved_system_ids = string_set(
+        require_list(
+            external_registry,
+            "unresolved_system_ids",
+            "flagship_external_repositories",
+        ),
+        "flagship_external_repositories.unresolved_system_ids",
+    )
+
+    observed_external_repositories: set[str] = set()
+    observed_unresolved_system_ids: set[str] = set()
     for record in flagship_records:
+        system_id = record["system_id"]
         level = record.get("level")
         if level not in levels:
-            fail(f"bad flagship level: {record['system_id']}")
+            fail(f"bad flagship level: {system_id}")
+        repository = record.get("repository")
+        if repository is None:
+            observed_unresolved_system_ids.add(system_id)
+            continue
+        if not isinstance(repository, str) or not repository.startswith("GlacierEQ/"):
+            fail(f"invalid flagship repository for {system_id}: {repository!r}")
+        if repository == authority:
+            continue
+        repository_name = repository.split("/", 1)[1]
+        if repository_name not in workspace_repositories:
+            observed_external_repositories.add(repository)
+
+    if observed_external_repositories != verified_external_repositories:
+        missing = sorted(verified_external_repositories - observed_external_repositories)
+        unexpected = sorted(observed_external_repositories - verified_external_repositories)
+        fail(
+            "external flagship repository identity mismatch "
+            f"missing={missing} unexpected={unexpected}"
+        )
+    if observed_unresolved_system_ids != unresolved_system_ids:
+        missing = sorted(unresolved_system_ids - observed_unresolved_system_ids)
+        unexpected = sorted(observed_unresolved_system_ids - unresolved_system_ids)
+        fail(
+            "unresolved flagship identity mismatch "
+            f"missing={missing} unexpected={unexpected}"
+        )
 
     return {
         "status": "PASS",
@@ -282,6 +416,12 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
         "helix_children_exactly_once": True,
         "company_tracks": len(company_ids),
         "named_flagships": len(flagship_ids),
+        "external_flagship_repositories": len(verified_external_repositories),
+        "unresolved_flagships": len(unresolved_system_ids),
+        "inherited_company_dossiers": sum(
+            1 for company in companies if company["track_state"] == "NO_DIRECT_EXHIBIT_VERIFIED"
+        ),
+        "l1_private_experiments_documented": l1_private_experiment_count,
         "zero_direct_omission_gate": True,
     }
 
