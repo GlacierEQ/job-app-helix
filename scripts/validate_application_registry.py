@@ -334,7 +334,10 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
             "classification note must explain that ORIGINAL_CANDIDATE is "
             "candidate provenance for L1 private experiments"
         )
-    if normalized_legacy_promotion_aliases and "never a recruiter admission state" not in alias_note:
+    if (
+        normalized_legacy_promotion_aliases
+        and "never a recruiter admission state" not in alias_note
+    ):
         fail("legacy promotion alias note must deny recruiter admission semantics")
 
     mapped_names = set(mapped)
