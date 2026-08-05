@@ -19,7 +19,13 @@ class ApplicationRegistryTests(unittest.TestCase):
             check=False,
         )
         self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
-        result = json.loads(completed.stdout)
+        try:
+            result = json.loads(completed.stdout)
+        except json.JSONDecodeError as exc:
+            self.fail(
+                "Validation script output is not valid JSON: "
+                f"{exc}\nstdout={completed.stdout!r}\nstderr={completed.stderr!r}"
+            )
         self.assertEqual(result["status"], "PASS")
         self.assertEqual(result["helix_children_mapped"], 66)
         self.assertTrue(result["helix_children_exactly_once"])
