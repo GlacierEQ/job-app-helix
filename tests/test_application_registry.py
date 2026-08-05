@@ -65,6 +65,10 @@ class ApplicationRegistryTests(unittest.TestCase):
         self.assertTrue(result["helix_children_exactly_once"])
         self.assertEqual(result["company_tracks"], 48)
         self.assertEqual(result["named_flagships"], 17)
+        self.assertEqual(result["external_flagship_repositories"], 9)
+        self.assertEqual(result["unresolved_flagships"], 1)
+        self.assertEqual(result["inherited_company_dossiers"], 25)
+        self.assertGreater(result["l1_private_experiments_documented"], 0)
         self.assertTrue(result["zero_direct_omission_gate"])
 
     def test_duplicate_workspace_inventory_is_rejected(self) -> None:
@@ -134,6 +138,42 @@ class ApplicationRegistryTests(unittest.TestCase):
             self.write_json(path, payload)
             with self.assertRaisesRegex(
                 RegistryValidationError, "invalid promotion_state"
+            ):
+                validate_registry(root)
+
+    def test_defaults_without_inheritance_marker_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_dossiers" / "additional_targets.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload.pop("defaults_apply_to_all_companies")
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                RegistryValidationError, "defines defaults without"
+            ):
+                validate_registry(root)
+
+    def test_external_flagship_allowlist_drift_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "flagship_external_repositories.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["verified_owner_estate_external_repositories"].pop()
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                RegistryValidationError, "external flagship repository identity mismatch"
+            ):
+                validate_registry(root)
+
+    def test_missing_experiment_boundary_note_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_dossiers.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["classification_notes"].pop("l1_private_experiment_boundary")
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                RegistryValidationError, "classification note is required"
             ):
                 validate_registry(root)
 
