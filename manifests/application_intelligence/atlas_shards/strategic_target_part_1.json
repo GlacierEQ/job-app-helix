@@ -1,0 +1,377 @@
+{
+  "category_id": "strategic_target_part_1",
+  "schema": "glaciereq.job-app-helix.company-bottleneck-atlas-shard.v1",
+  "records": [
+    {
+      "application_move": "Map the estate graph to an ontology-style application intelligence system with traceable actions.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "palantir",
+      "display_name": "Palantir",
+      "how_learned": "Palantir AIP and MCP materials emphasize ontology-backed tools, tool discovery, token reduction, governance, and general availability.",
+      "inferred_bottleneck": "Allowing models to discover and use tools while preserving ontology, permissions, lineage, and operational semantics.",
+      "inferred_brick_wall": "Enabling rapid agent creation without bypassing enterprise security, audit, and data governance.",
+      "leverage": {
+        "expected_impact": "Improves governed tool discovery and reduces context overhead in operational agents.",
+        "glaciereq_systems": [
+          "Sigma Federation",
+          "Job-App Helix",
+          "Token Saver",
+          "Unified Memory MCP"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use typed system boundaries, compact tool catalogs, evidence-linked actions, and authority-aware memory."
+      },
+      "next_deep_dive": "Build a small ontology-backed application workflow and quantify tool-search token savings.",
+      "observed_current_pressure": "Enterprise agents are being embedded directly into governed operational data and ontology layers.",
+      "official_sources": [
+        {
+          "observed_signal": "Governed agent actions over ontology-backed enterprise operations.",
+          "publisher": "Palantir",
+          "source_id": "SRC-23",
+          "source_sha256": "c3debe19f893bdf1f3bc3771c2110f3233e3d24d72d82982b954685245a35b2d",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Palantir AIP",
+          "url": "https://www.palantir.com/platforms/aip/"
+        }
+      ],
+      "record_sha256": "d422139eac714a6d7e5e39868a1ac4f5e84375416f758e0d7c653e53a3cad683",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 23
+    },
+    {
+      "application_move": "Present federation and bounded-agent work as mission-orchestration infrastructure, not weapons capability.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "anduril",
+      "display_name": "Anduril",
+      "how_learned": "Anduril autonomy materials describe intent-to-task translation, dynamic planning, resource management, sensor fusion, and mission autonomy.",
+      "inferred_bottleneck": "Distributed mission planning, sensor fusion, resource allocation, and degraded-communications operation.",
+      "inferred_brick_wall": "Maintaining safe human authority and mission effectiveness under uncertainty, adversarial conditions, and partial connectivity.",
+      "leverage": {
+        "expected_impact": "Makes distributed autonomy more inspectable and resilient to incomplete communication.",
+        "glaciereq_systems": [
+          "Sigma Federation",
+          "Make-It-Heavy",
+          "Job-App Helix",
+          "Robotics VLA Sentinel"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use command-intent decomposition, decentralized state packets, invariant checks, and human escalation."
+      },
+      "next_deep_dive": "Build a non-weapon logistics simulation with degraded links and auditable command authority.",
+      "observed_current_pressure": "Autonomous systems must coordinate sensors, vehicles, missions, and human intent in contested environments.",
+      "official_sources": [
+        {
+          "observed_signal": "Distributed autonomous mission orchestration and sensor-to-action systems.",
+          "publisher": "Anduril",
+          "source_id": "SRC-24",
+          "source_sha256": "d390f1d59248c61d4a08ec378b029e18e0c24e4e2577fde27d600cd6b3d894af",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Anduril Lattice",
+          "url": "https://www.anduril.com/lattice/"
+        }
+      ],
+      "record_sha256": "234328a214cf548ac449796cf2bc0cdaf13dda17c91c027435b04115a8699464",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 24
+    },
+    {
+      "application_move": "Offer Helix evidence ladders as an evaluation control plane for repository and agent behavior.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "scale_ai",
+      "display_name": "Scale AI",
+      "how_learned": "Scale evaluation materials discuss rigorous evaluation programs and limitations of conventional benchmarks for frontier systems.",
+      "inferred_bottleneck": "Creating representative, contamination-resistant, non-gameable evaluations for agents and models.",
+      "inferred_brick_wall": "Measuring real capability and risk without overfitting, leaking benchmarks, or mistaking narrow scores for deployment readiness.",
+      "leverage": {
+        "expected_impact": "Improves evaluation validity and prevents single-score overclaiming.",
+        "glaciereq_systems": [
+          "Job-App Helix",
+          "Pro-DOCTOR-STRANGE",
+          "Make-It-Heavy",
+          "anthropic-safety-monitor"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use proof ladders, independent readers, contradiction preservation, and scenario-specific completion tests."
+      },
+      "next_deep_dive": "Create a benchmark-contamination threat model and multi-reader evaluation suite.",
+      "observed_current_pressure": "Agent evaluation must move beyond static benchmarks into open-ended product behavior and safety.",
+      "official_sources": [
+        {
+          "observed_signal": "Evaluation of model and agent capability, safety, and product behavior.",
+          "publisher": "Scale AI",
+          "source_id": "SRC-25",
+          "source_sha256": "3d44b75b8132340f5e4f7d45a42a52de38f265373dabad7fca3e482327aa0650",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Scale AI Evaluations",
+          "url": "https://scale.com/evals"
+        }
+      ],
+      "record_sha256": "9227905d757413d47236d249171c4bce6ee91633637463ffdc4d47d30a5508ab",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 25
+    },
+    {
+      "application_move": "Demonstrate a provider-swappable enterprise research agent with identical receipts.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "mistral",
+      "display_name": "Mistral AI",
+      "how_learned": "Mistral enterprise materials emphasize proprietary grounding, sovereign deployment, and long-running agent work.",
+      "inferred_bottleneck": "Grounding and operating models on proprietary context across cloud and on-prem environments.",
+      "inferred_brick_wall": "Preserving reliable long-horizon behavior, privacy, control, and cost efficiency across heterogeneous deployments.",
+      "leverage": {
+        "expected_impact": "Reduces vendor lock-in and improves private-context reliability.",
+        "glaciereq_systems": [
+          "Tower of Babel",
+          "Unified Memory MCP",
+          "Job-App Helix",
+          "Make-It-Heavy"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use provider-neutral adapters, private source-hashed memory, bounded task graphs, and deployable evidence contracts."
+      },
+      "next_deep_dive": "Test Mistral access when available and compare on-prem-like constraints with cloud providers.",
+      "observed_current_pressure": "Enterprises want sovereign, customizable models and long-running coding and agent workflows under their own control.",
+      "official_sources": [
+        {
+          "observed_signal": "Custom and sovereign enterprise models with agentic workflows.",
+          "publisher": "Mistral AI",
+          "source_id": "SRC-26",
+          "source_sha256": "97639b608d3058ffca48aae22cf9f939ccfd5dfd05c94d5677afbdcf32bdb8d0",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Mistral Enterprise",
+          "url": "https://mistral.ai/solutions/enterprise"
+        }
+      ],
+      "record_sha256": "fb01ba3370b03b96550f7e1a702dc901b294032d85849bfaab7aa555b9d7cef2",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 26
+    },
+    {
+      "application_move": "Build a multilingual application dossier benchmark with retrieval and token-cost evidence.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "cohere",
+      "display_name": "Cohere",
+      "how_learned": "Cohere enterprise materials emphasize sovereign deployment, efficiency, multilingual capability, retrieval, and production economics.",
+      "inferred_bottleneck": "Secure retrieval, multilingual grounding, serving efficiency, and production operations.",
+      "inferred_brick_wall": "Crossing the prototype-to-production gap without retrieval failure, access leakage, unfair serving, or runaway TCO.",
+      "leverage": {
+        "expected_impact": "Improves enterprise readiness and makes TCO and retrieval quality measurable.",
+        "glaciereq_systems": [
+          "Unified Memory MCP",
+          "Token Saver",
+          "Job-App Helix",
+          "Tower of Babel"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Combine compact retrieval packets, multilingual evidence labels, private deployment boundaries, and cost receipts."
+      },
+      "next_deep_dive": "Evaluate current Cohere models on retrieval quality, multilingual fidelity, and deployment constraints.",
+      "observed_current_pressure": "Private multilingual enterprise AI must move from prototype to production with predictable performance and total cost.",
+      "official_sources": [
+        {
+          "observed_signal": "Private, multilingual, efficient enterprise model deployment.",
+          "publisher": "Cohere",
+          "source_id": "SRC-27",
+          "source_sha256": "a0236c2d413b8c1ca332061604762f7def64b9ddcf1fa7e48dd8a2634bf383d9",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Cohere Enterprise AI",
+          "url": "https://cohere.com/enterprise"
+        }
+      ],
+      "record_sha256": "b8105455d6e6c5e55647691cb003912308345304d1667cfe0e7d27cd56640dbe",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 27
+    },
+    {
+      "application_move": "Map Helix artifacts directly to an agent lifecycle: source, build, eval, deployment, observation.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "databricks",
+      "display_name": "Databricks",
+      "how_learned": "Databricks Mosaic AI Agent Framework describes an end-to-end lifecycle with evaluation, governance, deployment, and monitoring.",
+      "inferred_bottleneck": "Unifying structured and unstructured data, permissions, evaluation, and observability for production agents.",
+      "inferred_brick_wall": "Maintaining data governance and product quality when agents operate over changing enterprise data and tools.",
+      "leverage": {
+        "expected_impact": "Improves traceability from source data to production agent behavior.",
+        "glaciereq_systems": [
+          "Job-App Helix",
+          "Unified Memory MCP",
+          "Sigma Federation",
+          "Pro-DOCTOR-STRANGE"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Represent evidence, data lineage, evaluation, deployment, and provider receipts in one governed graph."
+      },
+      "next_deep_dive": "Prototype the 48-track atlas as a lineage graph and measure incremental update behavior.",
+      "observed_current_pressure": "Organizations need one lifecycle for proprietary data, agent development, evaluation, deployment, and monitoring.",
+      "official_sources": [
+        {
+          "observed_signal": "Integrated data, agent development, evaluation, deployment, and observability.",
+          "publisher": "Databricks",
+          "source_id": "SRC-28",
+          "source_sha256": "faf1339fde5500cc02d6dca2605142a208ec634d3d75a2dff4ae17bbd28ae164",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Mosaic AI Agent Framework",
+          "url": "https://www.databricks.com/product/machine-learning/ai-agents"
+        }
+      ],
+      "record_sha256": "5e602c6d307ade59d293a5f596aa8cc9a0d47079942acd30fbed4365b07eeee6",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 28
+    },
+    {
+      "application_move": "Demonstrate a governed company-intelligence update stream with freshness and lineage.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "snowflake",
+      "display_name": "Snowflake",
+      "how_learned": "Snowflake Cortex and AI Data Cloud materials frame trusted governed context as a prerequisite for enterprise agents.",
+      "inferred_bottleneck": "Converting heterogeneous governed data into fresh, low-latency, permission-correct agent context.",
+      "inferred_brick_wall": "Preserving identity, lineage, semantics, freshness, and cost controls across data, models, and actions.",
+      "leverage": {
+        "expected_impact": "Improves context quality while reducing data movement and prompt overhead.",
+        "glaciereq_systems": [
+          "Unified Memory MCP",
+          "Sigma Federation",
+          "Job-App Helix",
+          "Token Saver"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use semantic memory packets with lineage, freshness, permissions, and compact retrieval."
+      },
+      "next_deep_dive": "Implement incremental refresh and stale-source detection for the atlas.",
+      "observed_current_pressure": "Enterprise data platforms are becoming context and action layers for governed agents.",
+      "official_sources": [
+        {
+          "observed_signal": "Governed AI and agent experiences directly over enterprise data.",
+          "publisher": "Snowflake",
+          "source_id": "SRC-29",
+          "source_sha256": "cc78944978603c619a0caceabea00430485e01397ba2b84c8584ccd942f3eebc",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Snowflake Cortex AI",
+          "url": "https://www.snowflake.com/en/product/features/cortex/"
+        }
+      ],
+      "record_sha256": "375e8b49c01ea846616e712d497c1ab9203dee701de5be8934e9c4bbec083a1c",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 29
+    },
+    {
+      "application_move": "Present the 48-track Atlas as a concrete agent-estate governance demonstration.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "ibm",
+      "display_name": "IBM",
+      "how_learned": "IBM watsonx governance materials describe an agentic control plane and governance of heterogeneous agent estates.",
+      "inferred_bottleneck": "Near-real-time governance, observability, policy, and lifecycle control across agent estates.",
+      "inferred_brick_wall": "Preventing agent sprawl, inconsistent controls, and untraceable actions across vendors and business units.",
+      "leverage": {
+        "expected_impact": "Makes a mixed agent estate visible and governable without forcing one runtime.",
+        "glaciereq_systems": [
+          "Sigma Federation",
+          "Job-App Helix",
+          "Unified Memory MCP",
+          "Pro-DOCTOR-STRANGE"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Provide cross-provider inventories, typed authority, normalized receipts, and risk and status propagation."
+      },
+      "next_deep_dive": "Add policy evaluation and drift detection to the Atlas memory plane.",
+      "observed_current_pressure": "Enterprises are accumulating large heterogeneous estates of agents, models, and automation tools.",
+      "official_sources": [
+        {
+          "observed_signal": "Governance, monitoring, risk, and lifecycle control for enterprise AI and agents.",
+          "publisher": "IBM",
+          "source_id": "SRC-30",
+          "source_sha256": "5616cd8d0649cbd1cf553cc4c07ebbcf936a26e2a847b8dc029059f2c2b58a8a",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "IBM watsonx.governance",
+          "url": "https://www.ibm.com/products/watsonx-governance"
+        }
+      ],
+      "record_sha256": "1121741f5a73b522c3541aa466690889505f69716868431b75725c9c1254f81e",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 30
+    },
+    {
+      "application_move": "Build a vendor-neutral inference topology exhibit with measurable workload boundaries.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "intel",
+      "display_name": "Intel",
+      "how_learned": "Intel data-center AI materials emphasize open rack-scale architecture, accelerators, networking, and software ecosystems.",
+      "inferred_bottleneck": "Software and systems integration across compute, memory, networking, and accelerator ecosystems.",
+      "inferred_brick_wall": "Delivering competitive utilization and developer usability while hardware and model workloads diversify.",
+      "leverage": {
+        "expected_impact": "Improves portability and makes heterogeneous infrastructure tradeoffs explicit.",
+        "glaciereq_systems": [
+          "Tower of Babel",
+          "Colossus Gateway",
+          "Token Saver",
+          "Job-App Helix"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use polyglot adapters, topology models, compact context, and workload-specific proof."
+      },
+      "next_deep_dive": "Benchmark one open stack across CPU and accelerator paths and document bottlenecks.",
+      "observed_current_pressure": "AI infrastructure must support open, disaggregated, rack-scale training and inference across heterogeneous accelerators.",
+      "official_sources": [
+        {
+          "observed_signal": "Open heterogeneous AI infrastructure and rack-scale systems.",
+          "publisher": "Intel",
+          "source_id": "SRC-31",
+          "source_sha256": "271e1a6f94532ecc97dbc87e1c26d7c5d664542dfcdfc35816f0e1451afa0bdf",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Intel AI Infrastructure",
+          "url": "https://www.intel.com/content/www/us/en/artificial-intelligence/overview.html"
+        }
+      ],
+      "record_sha256": "66f0ae931093410c9f4e0be9788d559f9e610d52990683f2399169f7c038ea3d",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 31
+    }
+  ],
+  "record_count": 9,
+  "shard_sha256": "732adb0d0f207502967b4f9402b235f2520be7836d8984e5ecce51c039eb68f9"
+}

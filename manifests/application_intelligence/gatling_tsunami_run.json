@@ -1,0 +1,112 @@
+{
+  "schema": "glaciereq.job-app-helix.gatling-tsunami-receipt.v1",
+  "run_id": "gatling-tsunami-48-track-2026-08-05",
+  "generated_at": "2026-08-05T04:21:00-10:00",
+  "execution_mode": "DETERMINISTIC_LOCAL_TOPOLOGY_RUNNER",
+  "truth_boundary": {
+    "hosted_model_workers_invoked": false,
+    "make_it_heavy_method_applied": true,
+    "diamond_topology_applied": true,
+    "unified_memory_packets_generated": true,
+    "token_saver_canonical_measurement_applied": true
+  },
+  "topology_sha256": "cc052a3233bb2d531104c40276d84b3477958d36813b8070d6b4f8385d90168e",
+  "expanded_atlas_sha256": "2a00b5354a8a3d8a9bb6ad16db0d7ec7fb2d7cb926fefd2e26eb1a46cade2cf2",
+  "wave_count": 6,
+  "tracks_per_wave": 8,
+  "track_count": 48,
+  "specialist_lenses_per_track": 8,
+  "specialist_task_count": 384,
+  "integration_count": 48,
+  "silent_omissions": 0,
+  "status": "FIRST_PASS_COMPLETE",
+  "waves": [
+    {
+      "wave": 1,
+      "tracks": [
+        "openai",
+        "anthropic",
+        "google_deepmind",
+        "xai",
+        "microsoft",
+        "aws",
+        "spacex",
+        "nvidia"
+      ],
+      "wave_sha256": "5c0a72c1842df72d07488c4af1cc6d0ffd007e562077aec253712a694aa58520"
+    },
+    {
+      "wave": 2,
+      "tracks": [
+        "apple",
+        "meta",
+        "tesla",
+        "notion",
+        "deepseek",
+        "kimi",
+        "qwen",
+        "opera"
+      ],
+      "wave_sha256": "440b8eb734b6973165589276be8da053edc0453de6504f747fbf52ac13a5fded"
+    },
+    {
+      "wave": 3,
+      "tracks": [
+        "tasklet",
+        "robotics",
+        "perplexity",
+        "manus",
+        "lovable",
+        "openclaw",
+        "palantir",
+        "anduril"
+      ],
+      "wave_sha256": "f801e584da3c7013c1cfca6f3cfc78054e1817f61262b2e92055e7d5d208ef88"
+    },
+    {
+      "wave": 4,
+      "tracks": [
+        "scale_ai",
+        "mistral",
+        "cohere",
+        "databricks",
+        "snowflake",
+        "ibm",
+        "intel",
+        "amd"
+      ],
+      "wave_sha256": "6b43e21afc799bf3b9b13b99812021312f6ecb5ddb163e9881e1c76197972cd5"
+    },
+    {
+      "wave": 5,
+      "tracks": [
+        "qualcomm",
+        "oracle",
+        "salesforce",
+        "adobe",
+        "cloudflare",
+        "vercel",
+        "hugging_face",
+        "groq"
+      ],
+      "wave_sha256": "79957b2e06886a8776e81761e77e73107da081d6e959e6468ff027d0936febfc"
+    },
+    {
+      "wave": 6,
+      "tracks": [
+        "cerebras",
+        "coreweave",
+        "waymo",
+        "zoox",
+        "blue_origin",
+        "rocket_lab",
+        "nasa",
+        "glaciereq_core"
+      ],
+      "wave_sha256": "4d30ee86537c238584e9afdf095fe2b442f10f5bb4f4c8a1543f020f2a74a838"
+    }
+  ],
+  "expanded_run_sha256": "9e041d93db9bba649efb4757e602c8c3e522e326ddc314c27b74ec4ca33a07c6",
+  "derivation": "Detailed specialist receipts are deterministically regenerated from each expanded record hash, the eight lens definitions, and the topology hash.",
+  "compact_run_sha256": "7341e2b4e22d89ebc6edbd06fc8650d48a4a0b886219c8d69a42b8cdcc4052a4"
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "glaciereq.job-app-helix.company-bottleneck-atlas.v1",
+  "version": "1.0.0",
+  "generated_at": "2026-08-05T04:21:00-10:00",
+  "authority": "GlacierEQ/job-app-helix",
+  "branch": "hard-reset/48-track-diamond-gatling-2026-08-05",
+  "research_scope": {
+    "track_count": 48,
+    "official_source_count": 48,
+    "first_pass_complete": true,
+    "exhaustive_source_code_review_complete": false,
+    "live_job_opening_reconciliation_complete": false,
+    "truth_boundary": "Observed official-source signals are separated from GlacierEQ inference. V1 is a current strategic deep dive, not a claim of exhaustive organizational knowledge."
+  },
+  "category_order": [
+    "frontier_ai",
+    "platform_infrastructure",
+    "model_agent_product",
+    "strategic_target",
+    "cross_company_authority"
+  ],
+  "defaults": {
+    "as_of": "2026-08-05T04:21:00-10:00",
+    "research_state": "OFFICIAL_SOURCE_DEEP_DIVE_V1",
+    "inference_boundary": "The source establishes the observed signal. The bottleneck, brick wall, leverage, impact, and application move are GlacierEQ synthesis—not a statement confirmed by the organization.",
+    "confidence": {
+      "observed_signal": "HIGH",
+      "bottleneck_inference": "MEDIUM_HIGH",
+      "brick_wall_inference": "MEDIUM",
+      "leverage_fit": "MEDIUM_HIGH"
+    },
+    "non_affiliation": "Independent GlacierEQ analysis and portfolio work. No affiliation, endorsement, employment, proprietary access, or production deployment by the named organization is claimed.",
+    "source_defaults": {
+      "observed_on": "2026-08-05",
+      "official": true
+    }
+  },
+  "shards": [
+    {
+      "category_id": "frontier_ai",
+      "path": "manifests/application_intelligence/atlas_shards/frontier_ai.json",
+      "record_count": 4,
+      "shard_sha256": "9fd7437faf7b1a5b8b9df35438282f6ee7128e7894c2626903dfff502eda69b4"
+    },
+    {
+      "category_id": "platform_infrastructure",
+      "path": "manifests/application_intelligence/atlas_shards/platform_infrastructure.json",
+      "record_count": 8,
+      "shard_sha256": "5c52b2a27601c7e5fd493b5d020dc33e781327ded55421edbf4874ac1412a164"
+    },
+    {
+      "category_id": "model_agent_product",
+      "path": "manifests/application_intelligence/atlas_shards/model_agent_product.json",
+      "record_count": 10,
+      "shard_sha256": "7263ff639b19146aa73e0b165eb5df39e3a975c42d746968b04a731c5e2fb36c"
+    },
+    {
+      "category_id": "strategic_target_part_1",
+      "path": "manifests/application_intelligence/atlas_shards/strategic_target_part_1.json",
+      "record_count": 9,
+      "shard_sha256": "732adb0d0f207502967b4f9402b235f2520be7836d8984e5ecce51c039eb68f9"
+    },
+    {
+      "category_id": "strategic_target_part_2",
+      "path": "manifests/application_intelligence/atlas_shards/strategic_target_part_2.json",
+      "record_count": 9,
+      "shard_sha256": "264203af915240e176efcd187c2626bc98c8bb408996094c42c49e03d3a8c9ce"
+    },
+    {
+      "category_id": "strategic_target_part_3",
+      "path": "manifests/application_intelligence/atlas_shards/strategic_target_part_3.json",
+      "record_count": 7,
+      "shard_sha256": "f8d76e8664cb87b4d8edfc9f21a67e953dfaef33fba082a07bff4dcbb0f9265d"
+    },
+    {
+      "category_id": "cross_company_authority",
+      "path": "manifests/application_intelligence/atlas_shards/cross_company_authority.json",
+      "record_count": 1,
+      "shard_sha256": "afddc90366fb9d534a6100fe9dba79296f6e22f63e03692dc18027d1f492bf5b"
+    }
+  ],
+  "record_count": 48,
+  "expanded_atlas_sha256": "2a00b5354a8a3d8a9bb6ad16db0d7ec7fb2d7cb926fefd2e26eb1a46cade2cf2",
+  "manifest_sha256": "28686b475c4dd8136d793ca7d63d7f9d7c6ab2f5e07f658c408c7452079efaa8"
+}

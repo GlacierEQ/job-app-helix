@@ -1,0 +1,30 @@
+{
+  "schema": "glaciereq.job-app-helix.company-intelligence-index.v1",
+  "generated_at": "2026-08-05T04:21:00-10:00",
+  "track_count": 48,
+  "existing_dossier_index": "manifests/company_dossiers.json",
+  "files": {
+    "atlas": "manifests/application_intelligence/company_bottleneck_atlas.json",
+    "diamond_topology": "manifests/application_intelligence/diamond_topology.json",
+    "gatling_receipt": "manifests/application_intelligence/gatling_tsunami_run.json",
+    "token_saver_measurement": "manifests/application_intelligence/token_saver_measurement.json",
+    "presentation": "docs/48_TRACK_BOTTLENECK_ATLAS.md",
+    "presentation_volumes": [
+      "docs/48-track-bottleneck-atlas-frontier-ai.md",
+      "docs/48-track-bottleneck-atlas-platform-infrastructure.md",
+      "docs/48-track-bottleneck-atlas-model-agent-product.md",
+      "docs/48-track-bottleneck-atlas-strategic-targets.md",
+      "docs/48-track-bottleneck-atlas-glaciereq-core.md"
+    ]
+  },
+  "hashes": {
+    "atlas_manifest_sha256": "28686b475c4dd8136d793ca7d63d7f9d7c6ab2f5e07f658c408c7452079efaa8",
+    "expanded_atlas_sha256": "2a00b5354a8a3d8a9bb6ad16db0d7ec7fb2d7cb926fefd2e26eb1a46cade2cf2",
+    "topology_sha256": "cc052a3233bb2d531104c40276d84b3477958d36813b8070d6b4f8385d90168e",
+    "expanded_run_sha256": "9e041d93db9bba649efb4757e602c8c3e522e326ddc314c27b74ec4ca33a07c6",
+    "compact_run_sha256": "7341e2b4e22d89ebc6edbd06fc8650d48a4a0b886219c8d69a42b8cdcc4052a4",
+    "measurement_sha256": "c046f4a31d7816bede4b02c5ac0b5f0e3ac8a78ab3023a381574bf4c8cd13858"
+  },
+  "truth_boundary": "V1 completes a source-backed strategic deep dive across all 48 tracks. It does not claim exhaustive source-code review, current-opening parity, or independently hosted multi-model execution.",
+  "index_sha256": "19a59d6fc9b881ca54143aa94e93908f74bc64e2d3347f87073c09b55e306f97"
+}

@@ -1,0 +1,190 @@
+{
+  "schema": "glaciereq.job-app-helix.diamond-agent-topology.v1",
+  "version": "1.0.0",
+  "generated_at": "2026-08-05T04:21:00-10:00",
+  "execution_truth": {
+    "topology_applied": true,
+    "model_backed_make_it_heavy_runtime_invoked": false,
+    "reason": "The Make-It-Heavy method was integrated, but no external model credential or hosted worker execution was used in this build.",
+    "gatling_execution_mode": "DETERMINISTIC_LOCAL_TOPOLOGY_RUNNER",
+    "unified_memory_mode": "SOURCE_HASHED_JSONL_AND_DATABASE_READY_PACKETS",
+    "token_saver_mode": "CANONICAL_BYTE_MEASUREMENT_AND_COMPACT_DECISION_PACKETS"
+  },
+  "tiers": [
+    {
+      "tier": 0,
+      "nodes": [
+        {
+          "id": "D0",
+          "role": "Mission Orchestrator",
+          "responsibility": "Own exact 48-track boundary, wave schedule, fail-closed completion, and receipts."
+        }
+      ]
+    },
+    {
+      "tier": 1,
+      "nodes": [
+        {
+          "id": "D1",
+          "role": "Evidence Domain Lead",
+          "responsibility": "Supervise official-source extraction, freshness, contradiction, and inference separation."
+        },
+        {
+          "id": "D2",
+          "role": "Application Domain Lead",
+          "responsibility": "Supervise repository mapping, leverage, impact, role fit, and presentation."
+        }
+      ]
+    },
+    {
+      "tier": 2,
+      "nodes": [
+        {
+          "id": "S1",
+          "role": "Official Source Analyst",
+          "responsibility": "Extract observed pressure and source signal."
+        },
+        {
+          "id": "S2",
+          "role": "Systems Bottleneck Analyst",
+          "responsibility": "Infer the constraining system, preserving uncertainty."
+        },
+        {
+          "id": "S3",
+          "role": "Brick-Wall / Failure Analyst",
+          "responsibility": "Identify the hard limit, failure modes, and counterevidence."
+        },
+        {
+          "id": "S4",
+          "role": "Repository Evidence Mapper",
+          "responsibility": "Map relevant GlacierEQ systems and evidence states."
+        },
+        {
+          "id": "S5",
+          "role": "Leverage Architect",
+          "responsibility": "Design the smallest high-leverage technical contribution."
+        },
+        {
+          "id": "S6",
+          "role": "Impact Analyst",
+          "responsibility": "Estimate operational and recruiter impact without invented metrics."
+        },
+        {
+          "id": "S7",
+          "role": "Application Strategist",
+          "responsibility": "Convert findings into a role-specific application move."
+        },
+        {
+          "id": "S8",
+          "role": "Truth / Presentation Auditor",
+          "responsibility": "Enforce non-affiliation, inference boundaries, and concise presentation."
+        }
+      ]
+    },
+    {
+      "tier": 3,
+      "nodes": [
+        {
+          "id": "D11",
+          "role": "Integration Coordinator",
+          "responsibility": "Merge eight specialist outputs, deduplicate context, write memory packets, and verify all hashes."
+        }
+      ]
+    }
+  ],
+  "flow": [
+    [
+      "D0",
+      "D1"
+    ],
+    [
+      "D0",
+      "D2"
+    ],
+    [
+      "D1",
+      "S1"
+    ],
+    [
+      "D1",
+      "S2"
+    ],
+    [
+      "D1",
+      "S3"
+    ],
+    [
+      "D1",
+      "S4"
+    ],
+    [
+      "D2",
+      "S5"
+    ],
+    [
+      "D2",
+      "S6"
+    ],
+    [
+      "D2",
+      "S7"
+    ],
+    [
+      "D2",
+      "S8"
+    ],
+    [
+      "S1",
+      "D11"
+    ],
+    [
+      "S2",
+      "D11"
+    ],
+    [
+      "S3",
+      "D11"
+    ],
+    [
+      "S4",
+      "D11"
+    ],
+    [
+      "S5",
+      "D11"
+    ],
+    [
+      "S6",
+      "D11"
+    ],
+    [
+      "S7",
+      "D11"
+    ],
+    [
+      "S8",
+      "D11"
+    ]
+  ],
+  "make_it_heavy_contract": {
+    "decompose": true,
+    "parallel_worker_lanes": 8,
+    "independent_outputs": true,
+    "preserve_contradictions": true,
+    "synthesize": true,
+    "external_mutation": "GitHub writes occur only after deterministic validation and explicit branch isolation."
+  },
+  "quality_gates": [
+    "exact_48_track_parity",
+    "official_source_per_track",
+    "source_hash_present",
+    "observed_vs_inferred_boundary",
+    "non_affiliation_present",
+    "application_move_present",
+    "next_deep_dive_present",
+    "record_hash_valid",
+    "memory_packet_hash_valid",
+    "zero_silent_omission"
+  ],
+  "topology_sha256": "cc052a3233bb2d531104c40276d84b3477958d36813b8070d6b4f8385d90168e"
+}

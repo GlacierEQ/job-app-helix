@@ -1,0 +1,295 @@
+{
+  "category_id": "strategic_target_part_3",
+  "schema": "glaciereq.job-app-helix.company-bottleneck-atlas-shard.v1",
+  "records": [
+    {
+      "application_move": "Design a provider comparison that tests whether lower latency enables better iterative reasoning.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "cerebras",
+      "display_name": "Cerebras",
+      "how_learned": "Cerebras materials emphasize exceptionally fast inference and distributed inference architecture.",
+      "inferred_bottleneck": "Integrating extreme-speed inference into reliable, broadly available production systems.",
+      "inferred_brick_wall": "Maintaining model breadth, availability, distributed-system efficiency, and quality as demand grows.",
+      "leverage": {
+        "expected_impact": "Shows where speed materially changes agent design rather than merely benchmark numbers.",
+        "glaciereq_systems": [
+          "Pro-DOCTOR-STRANGE",
+          "Token Saver",
+          "Colossus Gateway",
+          "Job-App Helix"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Measure latency-quality tradeoffs, route tasks by model behavior, and preserve exact response receipts."
+      },
+      "next_deep_dive": "Run with real access and record model, version, and request identifiers.",
+      "observed_current_pressure": "Ultra-fast inference is being used to improve interactive reasoning and agent quality.",
+      "official_sources": [
+        {
+          "observed_signal": "High-speed inference positioned as a quality and interactivity lever.",
+          "publisher": "Cerebras",
+          "source_id": "SRC-41",
+          "source_sha256": "de56be4490e271d4e0738770817619db04b846b74e377707da8a8f9e640a3e54",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Cerebras Inference",
+          "url": "https://www.cerebras.ai/inference"
+        }
+      ],
+      "record_sha256": "d14dcd6dc90a3477b8f72fb120f3c1812850c9c6dd2187f123bba2e0a1c5b7a9",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 41
+    },
+    {
+      "application_move": "Build a failure-and-recovery topology case study around the GPU health system.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "coreweave",
+      "display_name": "CoreWeave",
+      "how_learned": "CoreWeave materials emphasize specialized AI-cloud capacity, large GPU clusters, power, and failure recovery.",
+      "inferred_bottleneck": "Power, hardware reliability, scheduling, checkpointing, recovery, and utilization at cluster scale.",
+      "inferred_brick_wall": "Maintaining economic and operational reliability amid component failures and huge infrastructure expansion.",
+      "leverage": {
+        "expected_impact": "Improves infrastructure resilience and communicates operational depth.",
+        "glaciereq_systems": [
+          "nvidia-gpu-health",
+          "Colossus Gateway",
+          "Job-App Helix",
+          "Make-It-Heavy"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use health-driven scheduling, dependency graphs, checkpoint receipts, and failure-injection review."
+      },
+      "next_deep_dive": "Create a simulated cluster failure benchmark with clearly bounded claims.",
+      "observed_current_pressure": "AI clouds must operate mega-clusters across training, inference, observability, and rapidly expanding data-center capacity.",
+      "official_sources": [
+        {
+          "observed_signal": "Specialized AI cloud spanning large GPU clusters, training, inference, and observability.",
+          "publisher": "CoreWeave",
+          "source_id": "SRC-42",
+          "source_sha256": "429a197ac944e1aeffa6a31319c582a371ba0134dbfe4540f75d5df3a15f12b7",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "CoreWeave AI Cloud",
+          "url": "https://www.coreweave.com/"
+        }
+      ],
+      "record_sha256": "e8097c78cfa50f43faf1929c24102651908811cd7825a8ce3991a8bb6fe2bbce",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 42
+    },
+    {
+      "application_move": "Present a neutral autonomy-evaluation framework rather than claiming vehicle competence.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "waymo",
+      "display_name": "Waymo",
+      "how_learned": "Waymo safety reporting presents fleet-scale safety metrics and geographic expansion.",
+      "inferred_bottleneck": "Maintaining consistent safety and operational quality across new environments and long-tail scenarios.",
+      "inferred_brick_wall": "Proving safe generalization while scaling fleet operations, maps, remote assistance, and public trust.",
+      "leverage": {
+        "expected_impact": "Improves safety-case presentation and focuses work on long-tail uncertainty.",
+        "glaciereq_systems": [
+          "Tesla FSD Stream",
+          "Robotics VLA Sentinel",
+          "Job-App Helix",
+          "Make-It-Heavy"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use scenario taxonomies, counterexample generation, evidence ladders, and transparent boundary reporting."
+      },
+      "next_deep_dive": "Build a scenario corpus and compare how evidence changes across geographies.",
+      "observed_current_pressure": "Driverless service is expanding to more geographies while public and regulatory scrutiny remains intense.",
+      "official_sources": [
+        {
+          "observed_signal": "Safety evidence and operational scaling across driverless-service markets.",
+          "publisher": "Waymo",
+          "source_id": "SRC-43",
+          "source_sha256": "166b9ed9ba7895b199c8fb75cf6b751af06ea6c669eebbbb675bdd6c13fc873c",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Waymo Safety",
+          "url": "https://waymo.com/safety/"
+        }
+      ],
+      "record_sha256": "39637fc6f2f59dc04ca3020f5b88e8b5356f7db366f5e8a4d8067c9f7a970ede",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 43
+    },
+    {
+      "application_move": "Create a redundancy and mission-control architecture exhibit using non-vehicle simulations.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "zoox",
+      "display_name": "Zoox",
+      "how_learned": "Zoox safety materials emphasize redundant vehicle design, mission control, purpose-built manufacturing, and service expansion.",
+      "inferred_bottleneck": "Integrating vehicle safety architecture, autonomy, mission control, manufacturing, and market operations.",
+      "inferred_brick_wall": "Preserving no-single-point-failure safety and reliable remote and operational support across diverse environments.",
+      "leverage": {
+        "expected_impact": "Demonstrates systems integration and fault-domain reasoning.",
+        "glaciereq_systems": [
+          "Robotics VLA Sentinel",
+          "Sigma Federation",
+          "Job-App Helix",
+          "Make-It-Heavy"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Map independent safety channels, operational escalation, and physical-system receipts."
+      },
+      "next_deep_dive": "Define a no-single-point-failure model and test representative failure paths.",
+      "observed_current_pressure": "A purpose-built robotaxi must scale from engineering validation into public service and manufacturing.",
+      "official_sources": [
+        {
+          "observed_signal": "Purpose-built autonomous vehicle with redundancy and operational mission control.",
+          "publisher": "Zoox",
+          "source_id": "SRC-44",
+          "source_sha256": "bfdf1dbc342c74edf39783af61bcc4635ce8d0ba6ab5740de1441e80520b7f6c",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Zoox Safety",
+          "url": "https://zoox.com/safety"
+        }
+      ],
+      "record_sha256": "8a4ddf73f63444a588b1dc815fa757a146335705ebff39589a786a13723f9e18",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 44
+    },
+    {
+      "application_move": "Translate aerospace repos into a neutral launch-and-mission systems portfolio.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "blue_origin",
+      "display_name": "Blue Origin",
+      "how_learned": "Blue Origin careers show broad hiring across manufacturing, test, lunar, engines, ground, and software.",
+      "inferred_bottleneck": "Production, integration, test, quality, and software coordination across complex physical programs.",
+      "inferred_brick_wall": "Meeting reliability and schedule while hardware, facilities, suppliers, and mission requirements evolve together.",
+      "leverage": {
+        "expected_impact": "Improves program visibility and reduces integration ambiguity.",
+        "glaciereq_systems": [
+          "Aerospace mission-control suite",
+          "Tower of Babel",
+          "Job-App Helix",
+          "Make-It-Heavy"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use program dependency maps, test evidence, change-impact analysis, and cross-discipline artifact contracts."
+      },
+      "next_deep_dive": "Map current software and systems roles to public proof and identify missing physical-test boundaries.",
+      "observed_current_pressure": "Launch vehicles, engines, lunar systems, manufacturing, test, and mission software are scaling in parallel.",
+      "official_sources": [
+        {
+          "observed_signal": "Large cross-disciplinary hiring across production and mission systems.",
+          "publisher": "Blue Origin",
+          "source_id": "SRC-45",
+          "source_sha256": "89c97ecc6fe9ff830b31d89b06eedc9a45b7fce5e0b358024551e0facf06fb94",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Blue Origin Careers",
+          "url": "https://www.blueorigin.com/careers"
+        }
+      ],
+      "record_sha256": "6c4b93f9361e4378682b6c37e5be58f4c3770b6cc50e3dec5a64080d240a5e54",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 45
+    },
+    {
+      "application_move": "Build a flight-software release and simulation evidence case study.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "rocket_lab",
+      "display_name": "Rocket Lab",
+      "how_learned": "Rocket Lab software materials include flight software, simulation, test, ground, and mission operations.",
+      "inferred_bottleneck": "Maintaining one reliable software lifecycle across vehicles, spacecraft, test, simulation, and operations.",
+      "inferred_brick_wall": "Versioning and validating mission-critical software as products and missions diversify.",
+      "leverage": {
+        "expected_impact": "Shows complete software-lifecycle thinking for aerospace systems.",
+        "glaciereq_systems": [
+          "Aerospace mission-control suite",
+          "Job-App Helix",
+          "Tower of Babel",
+          "Make-It-Heavy"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use versioned interfaces, simulation receipts, release manifests, and mission-specific acceptance gates."
+      },
+      "next_deep_dive": "Choose one mission thread and validate every interface and test boundary.",
+      "observed_current_pressure": "Launch and spacecraft products require integrated flight software, simulation, ground systems, and rapid mission cadence.",
+      "official_sources": [
+        {
+          "observed_signal": "Flight software, simulation, test, ground, and mission operations as a product suite.",
+          "publisher": "Rocket Lab",
+          "source_id": "SRC-46",
+          "source_sha256": "e89c8f6b51e93bd6c1338bd94f6f54e2d214020e62a7b983b34a2878adc44585",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Rocket Lab Software",
+          "url": "https://www.rocketlabusa.com/space-systems/software/"
+        }
+      ],
+      "record_sha256": "c1f2ffbb0edc38a679af0a7dcf9810f995552b9bd3c50fac6e337d170c89e88c",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 46
+    },
+    {
+      "application_move": "Map Helix evidence ladders to NASA-style technology readiness and verification.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "nasa",
+      "display_name": "NASA",
+      "how_learned": "NASA AI and onboard autonomy materials describe mission use, autonomy levels, verification, and harsh environments.",
+      "inferred_bottleneck": "Verification, validation, explainability, integration, and technology-readiness progression.",
+      "inferred_brick_wall": "Certifying autonomy for radiation, delay, limited compute, uncertain sensing, and no immediate human intervention.",
+      "leverage": {
+        "expected_impact": "Improves credibility by separating concept, simulation, test, integration, and deployment evidence.",
+        "glaciereq_systems": [
+          "Robotics VLA Sentinel",
+          "Job-App Helix",
+          "Make-It-Heavy",
+          "Tower of Babel"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use technology-readiness gates, invariant checks, simulation evidence, and explicit mission-environment boundaries."
+      },
+      "next_deep_dive": "Produce a TRL-style assessment for one autonomy repository.",
+      "observed_current_pressure": "AI and autonomy must transition from research into mission-certified systems operating under extreme constraints.",
+      "official_sources": [
+        {
+          "observed_signal": "AI and autonomous systems advancing from research to mission operations.",
+          "publisher": "NASA",
+          "source_id": "SRC-47",
+          "source_sha256": "a7122ceb1440fbfcb411a23e019f261c7f6bc4a280946867e856bc5ad53c1d08",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "NASA Artificial Intelligence",
+          "url": "https://www.nasa.gov/artificial-intelligence/"
+        }
+      ],
+      "record_sha256": "aef0ab04f51be265a1d080a511851fb559f10d86def46b575096a43b154f7656",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 47
+    }
+  ],
+  "record_count": 7,
+  "shard_sha256": "f8d76e8664cb87b4d8edfc9f21a67e953dfaef33fba082a07bff4dcbb0f9265d"
+}

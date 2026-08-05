@@ -1,0 +1,30 @@
+{
+  "atlas": {
+    "atlas_sha256": "2a00b5354a8a3d8a9bb6ad16db0d7ec7fb2d7cb926fefd2e26eb1a46cade2cf2",
+    "silent_omissions": 0,
+    "source_count": 48,
+    "status": "PASS",
+    "track_count": 48
+  },
+  "gatling": {
+    "run_sha256": "9e041d93db9bba649efb4757e602c8c3e522e326ddc314c27b74ec4ca33a07c6",
+    "specialist_tasks": 384,
+    "status": "PASS",
+    "tracks": 48,
+    "waves": 6
+  },
+  "index_sha256": "7eb54078c1617e002ca296fa2e7a78092702e71e3a639e5b6bed89f789551666",
+  "measurement": {
+    "after": 67072,
+    "before": 120898,
+    "reduction_ratio": 0.445218,
+    "saved": 53826,
+    "status": "PASS"
+  },
+  "memory": {
+    "packet_count": 48,
+    "status": "PASS"
+  },
+  "silent_omissions": 0,
+  "status": "PASS"
+}

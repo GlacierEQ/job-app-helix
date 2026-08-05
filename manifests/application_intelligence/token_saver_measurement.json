@@ -1,0 +1,20 @@
+{
+  "schema": "glaciereq.token-saver-max.measurement.v1",
+  "generated_at": "2026-08-05T04:21:00-10:00",
+  "implementation_basis": {
+    "repository": "GlacierEQ/token_saver",
+    "source_file": "token_saver_elite_core.py",
+    "source_blob_sha": "7fbcf722a55c37bb92c542168db33353a496853f",
+    "method": "Canonical UTF-8 byte measurement, source-hash reuse, compact decision packets, no semantic compression claim."
+  },
+  "record_count": 48,
+  "canonical_bytes_before": 120898,
+  "canonical_bytes_after": 67072,
+  "measured_bytes_saved": 53826,
+  "measured_reduction_ratio": 0.445218,
+  "approx_tokens_before": 30225,
+  "approx_tokens_after": 16768,
+  "approx_tokens_saved": 13457,
+  "truth_boundary": "Token counts are character-based approximations. Byte savings are exact for canonical UTF-8 JSON. No claim is made that arbitrary text compression preserves semantics.",
+  "measurement_sha256": "c046f4a31d7816bede4b02c5ac0b5f0e3ac8a78ab3023a381574bf4c8cd13858"
+}
