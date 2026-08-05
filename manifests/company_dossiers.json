@@ -1,0 +1,39 @@
+{
+  "schema": "glaciereq.company-dossiers-index.v2",
+  "generated_at": "2026-08-04T18:46:00-10:00",
+  "authority": "GlacierEQ/job-app-helix",
+  "repository_record_columns": [
+    "repository",
+    "skill_innovation_level",
+    "promotion_state",
+    "visibility",
+    "inventory_scope",
+    "provenance_state"
+  ],
+  "truth_boundary": {
+    "catalog_membership_is_not_runtime_proof": true,
+    "company_naming_does_not_imply_affiliation": true,
+    "repository_ownership_does_not_prove_authorship": true,
+    "public_recruiter_admission_states": ["PROMOTED", "REFERENCE_ONLY"],
+    "current_sha_null_means_refresh_required": true,
+    "coverage": "All 67 Helix inventory entries must map. Direct-named discoveries for enumerated families are included. Semantic relevance across the 1,165+ estate remains continuing review and is not falsely claimed complete."
+  },
+  "level_definitions": {
+    "L5": "FLAGSHIP_AUTHORITY: original reusable system with current executable proof and senior-level depth.",
+    "L4": "ADVANCED_SYSTEM: substantial original system or suite with strong architecture and meaningful verification; some gates remain.",
+    "L3": "FOCUSED_PROTOTYPE: distinct bounded exhibit needing stronger current tests, hardware, provider, or deployment evidence.",
+    "L2": "REFERENCE_ARCHITECTURE: doctrine, concept, private architecture, or integration candidate; not executable recruiter proof.",
+    "L1": "STUDY_OR_UPSTREAM: upstream/sample/mirror/fork/study; never GlacierEQ authorship proof.",
+    "L0": "QUARANTINED: unsafe, sensitive, misleading, duplicate-unresolved, or materially failing."
+  },
+  "required_company_tracks": [
+    "openai", "anthropic", "google_deepmind", "xai", "microsoft", "aws", "spacex", "nvidia", "apple", "meta", "tesla", "notion", "deepseek", "kimi", "qwen", "opera", "tasklet", "robotics", "perplexity", "manus", "lovable", "openclaw", "palantir", "anduril", "scale_ai", "mistral", "cohere", "databricks", "snowflake", "ibm", "intel", "amd", "qualcomm", "oracle", "salesforce", "adobe", "cloudflare", "vercel", "hugging_face", "groq", "cerebras", "coreweave", "waymo", "zoox", "blue_origin", "rocket_lab", "nasa", "glaciereq_core"
+  ],
+  "dossier_files": [
+    "manifests/company_dossiers/frontier_ai.json",
+    "manifests/company_dossiers/platform_infrastructure.json",
+    "manifests/company_dossiers/model_product_companies.json",
+    "manifests/company_dossiers/additional_targets.json",
+    "manifests/company_dossiers/glaciereq_core.json"
+  ]
+}
