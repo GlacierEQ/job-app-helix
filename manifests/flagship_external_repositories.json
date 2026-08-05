@@ -1,0 +1,17 @@
+{
+  "schema": "glaciereq.flagship-external-repositories.v1",
+  "authority": "GlacierEQ/job-app-helix",
+  "verified_owner_estate_external_repositories": [
+    "GlacierEQ/ECHO",
+    "GlacierEQ/FILEBOSS",
+    "GlacierEQ/MEGA-PDF",
+    "GlacierEQ/Pro-DOCTOR-STRANGE",
+    "GlacierEQ/Pro_Code",
+    "GlacierEQ/make-it-heavy",
+    "GlacierEQ/megamind",
+    "GlacierEQ/monolith",
+    "GlacierEQ/sigma-glue"
+  ],
+  "unresolved_system_ids": ["aos"],
+  "truth_boundary": "These are verified connected owner-estate repository identities outside the 66 Helix child inventory. Presence proves identity and availability only; it does not prove authorship, runtime correctness, maturity, or recruiter admission."
+}
