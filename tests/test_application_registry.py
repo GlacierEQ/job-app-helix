@@ -69,6 +69,7 @@ class ApplicationRegistryTests(unittest.TestCase):
         self.assertEqual(result["unresolved_flagships"], 1)
         self.assertEqual(result["inherited_company_dossiers"], 25)
         self.assertGreater(result["l1_private_experiments_documented"], 0)
+        self.assertEqual(result["normalized_legacy_promotion_aliases"], 1)
         self.assertTrue(result["zero_direct_omission_gate"])
 
     def test_duplicate_workspace_inventory_is_rejected(self) -> None:
@@ -174,6 +175,87 @@ class ApplicationRegistryTests(unittest.TestCase):
             self.write_json(path, payload)
             with self.assertRaisesRegex(
                 RegistryValidationError, "classification note is required"
+            ):
+                validate_registry(root)
+
+    def test_missing_required_company_track_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_dossiers.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["required_company_tracks"].remove("nasa")
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                RegistryValidationError, "company-track coverage mismatch"
+            ):
+                validate_registry(root)
+
+    def test_duplicate_flagship_system_id_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "flagship_registry.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["flagships"].append(dict(payload["flagships"][0]))
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(RegistryValidationError, "duplicate flagship"):
+                validate_registry(root)
+
+    def test_invalid_flagship_level_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "flagship_registry.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["flagships"][0]["level"] = "L99"
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(RegistryValidationError, "bad flagship level"):
+                validate_registry(root)
+
+    def test_foreign_owner_repository_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_dossiers" / "frontier_ai.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["companies"][0]["repositories"][0][0] = "OtherOwner/repo"
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(RegistryValidationError, "foreign owner"):
+                validate_registry(root)
+
+    def test_helix_mapping_omission_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_dossiers" / "frontier_ai.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            repositories = payload["companies"][0]["repositories"]
+            payload["companies"][0]["repositories"] = [
+                row
+                for row in repositories
+                if row[0] != "GlacierEQ/openai-reasoning-kv-sentinel"
+            ]
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(RegistryValidationError, "Helix mismatch"):
+                validate_registry(root)
+
+    def test_missing_company_field_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_dossiers" / "frontier_ai.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["companies"][0].pop("non_affiliation")
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                RegistryValidationError, "company record missing fields"
+            ):
+                validate_registry(root)
+
+    def test_legacy_promotion_alias_contract_is_required(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_dossiers.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["repository_record_legacy_aliases"]["promotion_state"].clear()
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                RegistryValidationError, "legacy aliases must be a non-empty object"
             ):
                 validate_registry(root)
 
