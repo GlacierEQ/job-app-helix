@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -7,13 +8,27 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-
-from scripts.validate_application_registry import (
-    RegistryValidationError,
-    validate_registry,
-)
+from types import ModuleType
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+VALIDATOR_PATH = ROOT / "scripts" / "validate_application_registry.py"
+
+
+def load_validator_module() -> ModuleType:
+    spec = importlib.util.spec_from_file_location(
+        "application_registry_validator", VALIDATOR_PATH
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"could not load validator module: {VALIDATOR_PATH}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+VALIDATOR = load_validator_module()
+RegistryValidationError = VALIDATOR.RegistryValidationError
+validate_registry = VALIDATOR.validate_registry
 
 
 class ApplicationRegistryTests(unittest.TestCase):
@@ -22,7 +37,7 @@ class ApplicationRegistryTests(unittest.TestCase):
         shutil.copytree(ROOT / "manifests", root / "manifests")
         return root
 
-    def write_json(self, path: Path, payload: dict[str, object]) -> None:
+    def write_json(self, path: Path, payload: dict[str, Any]) -> None:
         path.write_text(
             json.dumps(payload, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
@@ -30,7 +45,7 @@ class ApplicationRegistryTests(unittest.TestCase):
 
     def test_zero_omission_registry_gate(self) -> None:
         completed = subprocess.run(
-            [sys.executable, str(ROOT / "scripts" / "validate_application_registry.py")],
+            [sys.executable, str(VALIDATOR_PATH)],
             cwd=ROOT,
             text=True,
             capture_output=True,
