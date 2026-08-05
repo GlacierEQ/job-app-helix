@@ -1,0 +1,27 @@
+{
+  "schema": "glaciereq.job-app-helix.unified-memory-persistence-receipt.v1",
+  "generated_at": "2026-08-05T05:30:00-10:00",
+  "status": "PASS",
+  "branch": "hard-reset/48-track-diamond-gatling-2026-08-05",
+  "source_commit_sha": "1c7ae73ee09aaf88854f19d8b306222e9fd141ee",
+  "run_sha256": "9e041d93db9bba649efb4757e602c8c3e522e326ddc314c27b74ec4ca33a07c6",
+  "atlas_sha256": "2a00b5354a8a3d8a9bb6ad16db0d7ec7fb2d7cb926fefd2e26eb1a46cade2cf2",
+  "index_sha256": "19a59d6fc9b881ca54143aa94e93908f74bc64e2d3347f87073c09b55e306f97",
+  "topology_sha256": "cc052a3233bb2d531104c40276d84b3477958d36813b8070d6b4f8385d90168e",
+  "aggregate_packet_sha256": "eeb788d0a28047a302f23063f49a57a193407c73d24f225129f847ad4f5a42cd",
+  "track_count": 48,
+  "packet_count": 48,
+  "official_source_count": 48,
+  "wave_count": 6,
+  "specialist_task_count": 384,
+  "silent_omissions": 0,
+  "storage": {
+    "run_table": "public.helix_company_intelligence_runs",
+    "packet_table": "public.helix_company_memory_packets",
+    "row_level_security": true,
+    "anon_access": false,
+    "authenticated_access": false,
+    "service_role_access": true
+  },
+  "truth_boundary": "Packets preserve official-source observations and GlacierEQ inference as distinct fields. Persistence proves deterministic storage and hash parity, not exhaustive organizational knowledge, live-opening reconciliation, or internal company validation."
+}
