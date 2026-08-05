@@ -51,7 +51,7 @@ Helix now treats the application portfolio as **48 source-backed company tracks*
 | [`receipts/unified-memory-persistence-2026-08-05.json`](receipts/unified-memory-persistence-2026-08-05.json) | Forty-eight compact company packets persisted with service-role-only access and aggregate SHA-256 parity. |
 
 ```bash
-python scripts/validate_company_inteligence.py
+python scripts/validate_company_intelligence.py
 python scripts/run_gatling_tsunami.py
 ```
 
