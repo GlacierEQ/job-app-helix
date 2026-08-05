@@ -25,6 +25,19 @@ jobs:
           ref: hard-reset/48-track-diamond-gatling-2026-08-05
           fetch-depth: 0
 
+      - name: Set up declared Python boundary
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install Helix development dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+
       - name: Download and verify immutable bundle
         shell: bash
         run: |
