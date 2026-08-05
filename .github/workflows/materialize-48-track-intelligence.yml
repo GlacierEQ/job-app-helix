@@ -50,11 +50,12 @@ jobs:
           echo '2875b3edafd6349d8160930c30f662654158e15e783c27fc1fb7efc0dd6a2564  /tmp/helix48.tar.xz' | sha256sum --check --strict
           test "$(stat -c%s /tmp/helix48.tar.xz)" = '33516'
 
-      - name: Materialize intelligence plane
+      - name: Materialize and normalize intelligence plane
         shell: bash
         run: |
           set -euo pipefail
           tar -xJf /tmp/helix48.tar.xz -C .
+          sed -i 's/[[:space:]]\+$//' docs/48_TRACK_BOTTLENECK_ATLAS.md
           python scripts/validate_company_intelligence.py
           python -m pytest -q tests/test_company_intelligence.py
 
