@@ -21,40 +21,26 @@ jobs:
           fetch-depth: 0
 
       - name: Insert the company-intelligence front door
-        shell: python
+        shell: bash
+        env:
+          SECTION_B64: IyMjIDQ4LXRyYWNrIGNvbXBhbnkgaW50ZWxsaWdlbmNlCgpIZWxpeCBub3cgdHJlYXRzIHRoZSBhcHBsaWNhdGlvbiBwb3J0Zm9saW8gYXMgKio0OCBzb3VyY2UtYmFja2VkIGNvbXBhbnkgdHJhY2tzKiosIG5vdCBhIGNvbXBhbnktbmFtZSBjaGVja2xpc3QuIEVhY2ggdHJhY2sgcmVjb3JkcyBhbiBvZmZpY2lhbCBleHRlcm5hbCBzaWduYWwsIHRoZSBpbmZlcnJlZCBib3R0bGVuZWNrIGFuZCBicmljayB3YWxsLCBob3cgdGhlIGluZmVyZW5jZSB3YXMgbGVhcm5lZCwgdGhlIG1hdGNoaW5nIEdsYWNpZXJFUSBzeXN0ZW1zLCBleHBlY3RlZCBsZXZlcmFnZSwgYXBwbGljYXRpb24gbW92ZSwgYW5kIG5leHQgZXZpZGVuY2UgZ2F0ZS4KCnwgU3VyZmFjZSB8IEluc3BlY3RhYmxlIHJlc3VsdCB8CnwtLS18LS0tfAp8IFtgZG9jcy80OF9UUkFDS19CT1RUTEVORUNLX0FUTEFTLm1kYF0oZG9jcy80OF9UUkFDS19CT1RUTEVORUNLX0FUTEFTLm1kKSB8IEh1bWFuLWZpcnN0IGVudHJ5cG9pbnQgaW50byB0aGUgZml2ZS12b2x1bWUgQm90dGxlbmVjayBBdGxhcy4gfAp8IFtgbWFuaWZlc3RzL2NvbXBhbnlfaW50ZWxsaWdlbmNlLmpzb25gXShtYW5pZmVzdHMvY29tcGFueV9pbnRlbGxpZ2VuY2UuanNvbikgfCBDYW5vbmljYWwgbWFjaGluZSBpbmRleCBmb3IgdGhlIGF0bGFzLCBEaWFtb25kIHRvcG9sb2d5LCBHYXRsaW5nIHJlY2VpcHQsIFRva2VuIFNhdmVyIG1lYXN1cmVtZW50LCBhbmQgdmFsaWRhdG9ycy4gfAp8IFtgbWFuaWZlc3RzL2FwcGxpY2F0aW9uX2ludGVsbGlnZW5jZS9kaWFtb25kX3RvcG9sb2d5Lmpzb25gXShtYW5pZmVzdHMvYXBwbGljYXRpb25faW50ZWxsaWdlbmNlL2RpYW1vbmRfdG9wb2xvZ3kuanNvbikgfCBPbmUgb3JjaGVzdHJhdG9yLCB0d28gZG9tYWluIGxlYWRzLCBlaWdodCBzcGVjaWFsaXN0IGxlbnNlcywgYW5kIG9uZSBpbnRlZ3JhdGlvbiBjb29yZGluYXRvci4gfAp8IFtgbWFuaWZlc3RzL2FwcGxpY2F0aW9uX2ludGVsbGlnZW5jZS9nYXRsaW5nX3RzdW5hbWlfcnVuLmpzb25gXShtYW5pZmVzdHMvYXBwbGljYXRpb25faW50ZWxsaWdlbmNlL2dhdGxpbmdfdHN1bmFtaV9ydW4uanNvbikgfCBTaXggZGV0ZXJtaW5pc3RpYyB3YXZlcywgNDggY29tcGxldGVkIGludGVncmF0aW9ucywgMzg0IHNwZWNpYWxpc3QtbGVucyByZWNlaXB0cywgYW5kIHplcm8gc2lsZW50IG9taXNzaW9ucy4gfAp8IFtgbWFuaWZlc3RzL2FwcGxpY2F0aW9uX2ludGVsbGlnZW5jZS90b2tlbl9zYXZlcl9tZWFzdXJlbWVudC5qc29uYF0obWFuaWZlc3RzL2FwcGxpY2F0aW9uX2ludGVsbGlnZW5jZS90b2tlbl9zYXZlcl9tZWFzdXJlbWVudC5qc29uKSB8IEV4YWN0IGNhbm9uaWNhbCBjb250ZXh0IHJlZHVjdGlvbiBmcm9tIDEyMCw4OTggdG8gNjcsMDcyIFVURi04IGJ5dGVzOiA1Myw4MjYgYnl0ZXMgc2F2ZWQsIG9yIDQ0LjUyMTglLiB8CnwgW2ByZWNlaXB0cy91bmlmaWVkLW1lbW9yeS1wZXJzaXN0ZW5jZS0yMDI2LTA4LTA1Lmpzb25gXShyZWNlaXB0cy91bmlmaWVkLW1lbW9yeS1wZXJzaXN0ZW5jZS0yMDI2LTA4LTA1Lmpzb24pIHwgRm9ydHktZWlnaHQgY29tcGFjdCBjb21wYW55IHBhY2tldHMgcGVyc2lzdGVkIHdpdGggc2VydmljZS1yb2xlLW9ubHkgYWNjZXNzIGFuZCBhZ2dyZWdhdGUgU0hBLTI1NiBwYXJpdHkuIHwKCmBgYGJhc2gKcHl0aG9uIHNjcmlwdHMvdmFsaWRhdGVfY29tcGFueV9pbnRlbGlnZW5jZS5weQpweXRob24gc2NyaXB0cy9ydW5fZ2F0bGluZ190c3VuYW1pLnB5CmBgYAoKKipUcnV0aCBib3VuZGFyeToqKiBvZmZpY2lhbC1zb3VyY2Ugb2JzZXJ2YXRpb25zIGFuZCBHbGFjaWVyRVEgaW5mZXJlbmNlcyByZW1haW4gc2VwYXJhdGUuIFRoaXMgaXMgYSBjdXJyZW50IHN0cmF0ZWdpYyBkZWVwLWRpdmUgVjEsIG5vdCBleGhhdXN0aXZlIGludGVybmFsIGNvbXBhbnkga25vd2xlZGdlLCBhZmZpbGlhdGlvbiwgbGl2ZS1vcGVuaW5nIHJlY29uY2lsaWF0aW9uLCBjb21wbGV0ZSBzb3VyY2UtY29kZSByZXZpZXcgb2YgZXZlcnkgbWFwcGVkIHJlcG9zaXRvcnksIG9yIGhvc3RlZCBtdWx0aS1tb2RlbCBjb25zZW5zdXMuCgo=
         run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64
+          import os
           from pathlib import Path
 
           path = Path("README.md")
           text = path.read_text(encoding="utf-8")
           marker = "### What is already real\n"
           heading = "### 48-track company intelligence\n"
+          section = base64.b64decode(os.environ["SECTION_B64"]).decode("utf-8")
           if heading not in text:
               if marker not in text:
                   raise SystemExit("README insertion marker is missing")
-              section = '''### 48-track company intelligence
-
-Helix now treats the application portfolio as **48 source-backed company tracks**, not a company-name checklist. Each track records an official external signal, the inferred bottleneck and brick wall, how the inference was learned, the matching GlacierEQ systems, expected leverage, application move, and next evidence gate.
-
-| Surface | Inspectable result |
-|---|---|
-| [`docs/48_TRACK_BOTTLENECK_ATLAS.md`](docs/48_TRACK_BOTTLENECK_ATLAS.md) | Human-first entrypoint into the five-volume Bottleneck Atlas. |
-| [`manifests/company_intelligence.json`](manifests/company_intelligence.json) | Canonical machine index for the atlas, Diamond topology, Gatling receipt, Token Saver measurement, and validators. |
-| [`manifests/application_intelligence/diamond_topology.json`](manifests/application_intelligence/diamond_topology.json) | One orchestrator, two domain leads, eight specialist lenses, and one integration coordinator. |
-| [`manifests/application_intelligence/gatling_tsunami_run.json`](manifests/application_intelligence/gatling_tsunami_run.json) | Six deterministic waves, 48 completed integrations, 384 specialist-lens receipts, and zero silent omissions. |
-| [`manifests/application_intelligence/token_saver_measurement.json`](manifests/application_intelligence/token_saver_measurement.json) | Exact canonical context reduction from 120,898 to 67,072 UTF-8 bytes: 53,826 bytes saved, or 44.5218%. |
-| [`receipts/unified-memory-persistence-2026-08-05.json`](receipts/unified-memory-persistence-2026-08-05.json) | Forty-eight compact company packets persisted with service-role-only access and aggregate SHA-256 parity. |
-
-```bash
-python scripts/validate_company_intelligence.py
-python scripts/run_gatling_tsunami.py
-```
-
-**Truth boundary:** official-source observations and GlacierEQ inferences remain separate. This is a current strategic deep-dive V1, not exhaustive internal company knowledge, affiliation, live-opening reconciliation, complete source-code review of every mapped repository, or hosted multi-model consensus.
-
-'''
-              text = text.replace(marker, section + marker, 1)
-              path.write_text(text, encoding="utf-8")
+              path.write_text(text.replace(marker, section + marker, 1), encoding="utf-8")
+          PY
 
       - name: Commit entry and remove one-shot workflow
         shell: bash
