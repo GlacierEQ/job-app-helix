@@ -3,14 +3,6 @@ name: Application Registry Validation
 on:
   pull_request:
     branches: [main]
-    paths:
-      - ".github/workflows/application-registry-validation.yml"
-      - "manifests/company_dossiers.json"
-      - "manifests/company_dossiers/**"
-      - "manifests/flagship_registry.json"
-      - "manifests/portfolio_repositories.json"
-      - "scripts/validate_application_registry.py"
-      - "tests/test_application_registry.py"
   workflow_dispatch:
 
 permissions:
@@ -45,6 +37,7 @@ jobs:
           paths = [
               Path('manifests/company_dossiers.json'),
               Path('manifests/flagship_registry.json'),
+              Path('manifests/flagship_external_repositories.json'),
               Path('manifests/portfolio_repositories.json'),
               *sorted(Path('manifests/company_dossiers').glob('*.json')),
           ]
