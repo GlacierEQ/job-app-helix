@@ -1,0 +1,94 @@
+name: Portfolio Root Truth
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "manifests/portfolio_root_truth.json"
+      - "manifests/portfolio_repositories.json"
+      - "manifests/portfolio_compiler.json"
+      - "manifests/live_repository_links.json"
+      - "manifests/live_repository_evidence.json"
+      - "manifests/flagship_registry.json"
+      - "manifests/company_dossiers.json"
+      - "manifests/company_dossiers/**"
+      - "manifests/language_fit.json"
+      - "manifests/library_priority_spine.json"
+      - "manifests/repository_health_policy.json"
+      - "schemas/portfolio_root_truth.schema.json"
+      - "scripts/validate_portfolio_root_schema.py"
+      - "scripts/validate_portfolio_root_truth.py"
+      - "tests/test_portfolio_root_truth.py"
+      - ".github/workflows/portfolio-root-truth.yml"
+  pull_request:
+    paths:
+      - "manifests/portfolio_root_truth.json"
+      - "manifests/portfolio_repositories.json"
+      - "manifests/portfolio_compiler.json"
+      - "manifests/live_repository_links.json"
+      - "manifests/live_repository_evidence.json"
+      - "manifests/flagship_registry.json"
+      - "manifests/company_dossiers.json"
+      - "manifests/company_dossiers/**"
+      - "manifests/language_fit.json"
+      - "manifests/library_priority_spine.json"
+      - "manifests/repository_health_policy.json"
+      - "schemas/portfolio_root_truth.schema.json"
+      - "scripts/validate_portfolio_root_schema.py"
+      - "scripts/validate_portfolio_root_truth.py"
+      - "tests/test_portfolio_root_truth.py"
+      - ".github/workflows/portfolio-root-truth.yml"
+  schedule:
+    - cron: "17 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-root-truth-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install pinned validation dependencies
+        run: python -m pip install --disable-pip-version-check pytest==9.1.1 jsonschema==4.25.1
+      - name: Validate Draft 2020-12 schema
+        run: python scripts/validate_portfolio_root_schema.py
+      - name: Validate and write deterministic receipt
+        run: python scripts/validate_portfolio_root_truth.py --write-receipt artifacts/portfolio-root-truth-receipt.json
+      - name: Run root-truth regression tests
+        run: python -m pytest -q tests/test_portfolio_root_truth.py
+      - name: Verify receipt contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          receipt = json.loads(Path('artifacts/portfolio-root-truth-receipt.json').read_text())
+          assert receipt['schema'] == 'glaciereq.portfolio-root-truth-receipt.v1'
+          assert receipt['status'] == 'PASS'
+          assert receipt['scope'] == 'CONTROL_PLANE_SOURCES_ONLY'
+          assert receipt['projection_freshness']['all_projections_current'] is False
+          assert receipt['counts']['total_repositories'] == 67
+          assert receipt['counts']['workspace_repositories'] == 66
+          assert all(receipt['invariants'].values())
+          print(receipt['receipt_sha256'])
+          PY
+      - name: Upload root-truth receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-root-truth-receipt-${{ github.sha }}
+          path: artifacts/portfolio-root-truth-receipt.json
+          if-no-files-found: error
+          retention-days: 30

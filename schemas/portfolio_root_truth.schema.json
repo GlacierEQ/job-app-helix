@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/schemas/portfolio_root_truth.schema.json",
+  "title": "GlacierEQ Portfolio Root Truth",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "authority",
+    "purpose",
+    "truth_model",
+    "sources",
+    "projections",
+    "update_contract",
+    "invariants",
+    "receipt"
+  ],
+  "properties": {
+    "schema": {"const": "glaciereq.portfolio-root-truth.v1"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "branch", "path", "raw_url"],
+      "properties": {
+        "repository": {"const": "GlacierEQ/job-app-helix"},
+        "branch": {"const": "main"},
+        "path": {"type": "string", "minLength": 1},
+        "raw_url": {"type": "string", "format": "uri"}
+      }
+    },
+    "purpose": {"type": "string", "minLength": 1},
+    "truth_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "control_plane",
+        "child_source_authority",
+        "portfolio_authority",
+        "projection_rule",
+        "stale_on_source_head_change",
+        "fail_closed_on_missing_or_unsupported_evidence"
+      ],
+      "properties": {
+        "control_plane": {"const": "GlacierEQ/job-app-helix"},
+        "child_source_authority": {"type": "string", "minLength": 1},
+        "portfolio_authority": {"type": "string", "minLength": 1},
+        "projection_rule": {"type": "string", "minLength": 1},
+        "stale_on_source_head_change": {"const": true},
+        "fail_closed_on_missing_or_unsupported_evidence": {"const": true}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "role", "required"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "path": {"type": "string", "pattern": "^(manifests|status|generated)/"},
+          "role": {"type": "string", "minLength": 1},
+          "required": {"type": "boolean"}
+        }
+      }
+    },
+    "projections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "repository",
+          "mode",
+          "required_sources",
+          "outputs",
+          "may_publish_private_records"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "repository": {"type": "string", "pattern": "^GlacierEQ/[A-Za-z0-9_.-]+$"},
+          "consumer_pointer": {"type": "string", "minLength": 1},
+          "mode": {"enum": ["build_time_pull", "generated_projection", "link_only"]},
+          "required_sources": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string"}
+          },
+          "outputs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "may_publish_private_records": {"type": "boolean"},
+          "boundary": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "update_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_schedule",
+        "event_triggers",
+        "required_sequence",
+        "consumer_behavior"
+      ],
+      "properties": {
+        "canonical_schedule": {"type": "string", "minLength": 1},
+        "event_triggers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "required_sequence": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "consumer_behavior": {"type": "string", "minLength": 1}
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "generator", "default_output", "hash_algorithm"],
+      "properties": {
+        "schema": {"const": "glaciereq.portfolio-root-truth-receipt.v1"},
+        "generator": {"type": "string", "minLength": 1},
+        "default_output": {"type": "string", "minLength": 1},
+        "hash_algorithm": {"const": "sha256"}
+      }
+    }
+  }
+}

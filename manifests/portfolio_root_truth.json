@@ -1,0 +1,174 @@
+{
+  "schema": "glaciereq.portfolio-root-truth.v1",
+  "version": "1.0.0",
+  "authority": {
+    "repository": "GlacierEQ/job-app-helix",
+    "branch": "main",
+    "path": "manifests/portfolio_root_truth.json",
+    "raw_url": "https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/manifests/portfolio_root_truth.json"
+  },
+  "purpose": "Keep the job-application ecosystem current from one governed source without copying child repository source or maintaining competing inventories.",
+  "truth_model": {
+    "control_plane": "GlacierEQ/job-app-helix",
+    "child_source_authority": "Each canonical child repository owns its code, README, tests, releases, and repository-native receipts.",
+    "portfolio_authority": "Helix owns admission, classification, company alignment, projection policy, and cross-repository evidence state.",
+    "projection_rule": "Downstream systems consume links and generated snapshots only. They do not become independent sources of portfolio truth.",
+    "stale_on_source_head_change": true,
+    "fail_closed_on_missing_or_unsupported_evidence": true
+  },
+  "sources": [
+    {
+      "id": "inventory",
+      "path": "manifests/portfolio_repositories.json",
+      "role": "Canonical 67-repository admission boundary",
+      "required": true
+    },
+    {
+      "id": "compiler",
+      "path": "manifests/portfolio_compiler.json",
+      "role": "Projection, provenance, and no-copy policy",
+      "required": true
+    },
+    {
+      "id": "live_links",
+      "path": "manifests/live_repository_links.json",
+      "role": "Canonical repository URLs and live-link contract",
+      "required": true
+    },
+    {
+      "id": "live_evidence",
+      "path": "manifests/live_repository_evidence.json",
+      "role": "SHA-bound repository observations and evidence state",
+      "required": true
+    },
+    {
+      "id": "flagships",
+      "path": "manifests/flagship_registry.json",
+      "role": "Crown-jewel hierarchy, public boundary, and next gates",
+      "required": true
+    },
+    {
+      "id": "companies",
+      "path": "manifests/company_dossiers.json",
+      "role": "Company-track index and dossier shard contract",
+      "required": true
+    },
+    {
+      "id": "language_fit",
+      "path": "manifests/language_fit.json",
+      "role": "Intentional language-boundary projection",
+      "required": true
+    },
+    {
+      "id": "priority_spine",
+      "path": "manifests/library_priority_spine.json",
+      "role": "Execution and promotion priority",
+      "required": true
+    },
+    {
+      "id": "repository_health_policy",
+      "path": "manifests/repository_health_policy.json",
+      "role": "Fail-closed repository-quality scoring policy",
+      "required": true
+    }
+  ],
+  "projections": [
+    {
+      "id": "public_portal",
+      "repository": "GlacierEQ/job-application",
+      "consumer_pointer": "portfolio-source.json",
+      "mode": "build_time_pull",
+      "required_sources": ["inventory", "flagships", "companies", "language_fit", "live_evidence"],
+      "outputs": [
+        "recruiter presentation",
+        "master technical atlas",
+        "machine contracts",
+        "public evidence mesh"
+      ],
+      "may_publish_private_records": false
+    },
+    {
+      "id": "resume_shapeshifter",
+      "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "consumer_pointer": "portfolio-source.json",
+      "mode": "build_time_pull",
+      "required_sources": ["flagships", "companies", "language_fit", "live_evidence"],
+      "outputs": [
+        "human resume",
+        "ATS resume",
+        "machine resume",
+        "role-calibrated evidence selection"
+      ],
+      "may_publish_private_records": false
+    },
+    {
+      "id": "company_application_packets",
+      "repository": "GlacierEQ/job-app-helix",
+      "mode": "generated_projection",
+      "required_sources": ["companies", "flagships", "live_evidence", "priority_spine"],
+      "outputs": ["company dossiers", "role-fit packets", "promotion queues"],
+      "may_publish_private_records": false
+    },
+    {
+      "id": "machine_runtime",
+      "repository": "GlacierEQ/job-application",
+      "mode": "generated_projection",
+      "required_sources": ["inventory", "flagships", "companies", "live_links", "live_evidence"],
+      "outputs": ["JSON", "ProtoJSON", "Protocol Buffers", "llms.txt"],
+      "may_publish_private_records": false
+    },
+    {
+      "id": "cloud_indexes",
+      "repository": "GlacierEQ/job-app-helix",
+      "mode": "link_only",
+      "required_sources": ["inventory", "flagships", "companies"],
+      "outputs": [
+        "Google Drive index",
+        "Dropbox index",
+        "Box index",
+        "Notion operations projection"
+      ],
+      "may_publish_private_records": true,
+      "boundary": "Cloud projections may hold private operational metadata, but public projections must consume only public-safe fields."
+    }
+  ],
+  "update_contract": {
+    "canonical_schedule": "daily",
+    "event_triggers": [
+      "portfolio source change",
+      "child default-branch head change",
+      "repository visibility or archive change",
+      "verification receipt change",
+      "company or flagship classification change"
+    ],
+    "required_sequence": [
+      "load root manifest",
+      "validate all required source files",
+      "reconcile the 67-repository boundary",
+      "resolve company-shard defaults",
+      "verify every HELIX_ADMITTED repository maps to inventory",
+      "verify every inventory child maps to at least one governed track",
+      "compile public-safe and private projections separately",
+      "write deterministic receipt",
+      "publish projections only after validation"
+    ],
+    "consumer_behavior": "Consumers must reject missing required sources, schema drift, duplicate identities, private-record leakage, unsupported claims, and stale source receipts."
+  },
+  "invariants": [
+    "The root plus workspace repository count equals total_repositories.",
+    "Workspace repository identities are unique.",
+    "Every HELIX_ADMITTED dossier repository exists in the canonical inventory.",
+    "Every canonical inventory child appears in at least one company or GlacierEQ Core dossier.",
+    "Flagship system IDs are unique.",
+    "L0, QUARANTINED, EXCLUDED, and private-only records never enter public recruiter projections.",
+    "Company naming never implies affiliation, endorsement, employment, proprietary access, or production deployment.",
+    "Repository ownership does not by itself establish authorship, originality, security, runtime success, or recruiter readiness.",
+    "Downstream projections may change presentation but may not change factual IDs, evidence states, test counts, blockers, or authority boundaries."
+  ],
+  "receipt": {
+    "schema": "glaciereq.portfolio-root-truth-receipt.v1",
+    "generator": "scripts/validate_portfolio_root_truth.py",
+    "default_output": "artifacts/portfolio-root-truth-receipt.json",
+    "hash_algorithm": "sha256"
+  }
+}
