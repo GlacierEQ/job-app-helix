@@ -10,8 +10,23 @@ import os
 from pathlib import Path
 from typing import Any
 
+from jsonschema import Draft202012Validator, FormatChecker
+
 ROOT = Path(__file__).resolve().parents[1]
 ROOT_MANIFEST = ROOT / "manifests" / "portfolio_root_truth.json"
+ROOT_SCHEMA = ROOT / "schemas" / "portfolio_root_truth.schema.json"
+RECRUITER_ELIGIBLE_STATES = {"PROMOTED", "REFERENCE_ONLY"}
+PUBLIC_NON_RECRUITER_STATES = {
+    "QUARANTINED",
+    "EXCLUDED",
+    "BLOCKED",
+    "BLOCKED_SECURITY",
+    "BLOCKED_PUBLIC",
+    "EXCLUDED_AUTHORSHIP",
+    "AUDIT_BEFORE_ADMISSION",
+    "AUDIT_UPSTREAM_DELTA",
+    "ARCHIVE",
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -39,6 +54,30 @@ def require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
+def repository_file(relative: str, label: str) -> Path:
+    candidate = ROOT / relative
+    try:
+        resolved = candidate.resolve(strict=True)
+    except FileNotFoundError as exc:
+        raise ValueError(f"missing {label}: {relative}") from exc
+    require(resolved.is_relative_to(ROOT), f"{label} escapes repository root: {relative}")
+    require(resolved.is_file(), f"{label} is not a file: {relative}")
+    return resolved
+
+
+def validate_schema(manifest: dict[str, Any]) -> None:
+    schema = load_json(ROOT_SCHEMA)
+    Draft202012Validator.check_schema(schema)
+    validator = Draft202012Validator(schema, format_checker=FormatChecker())
+    errors = sorted(validator.iter_errors(manifest), key=lambda error: list(error.absolute_path))
+    if errors:
+        details = []
+        for error in errors:
+            location = ".".join(str(part) for part in error.absolute_path) or "<root>"
+            details.append(f"{location}: {error.message}")
+        raise ValueError("root manifest schema validation failed: " + "; ".join(details))
+
+
 def normalize_company(shard: dict[str, Any], company: dict[str, Any]) -> dict[str, Any]:
     defaults = shard.get("defaults", {})
     require(isinstance(defaults, dict), f"{shard.get('group_id')}: defaults must be an object")
@@ -47,8 +86,13 @@ def normalize_company(shard: dict[str, Any], company: dict[str, Any]) -> dict[st
     return merged
 
 
+def public_projection_eligible(level: str, promotion_state: str, visibility: str) -> bool:
+    return visibility == "public" and level != "L0" and promotion_state in RECRUITER_ELIGIBLE_STATES
+
+
 def validate() -> dict[str, Any]:
     root = load_json(ROOT_MANIFEST)
+    validate_schema(root)
     require(root.get("schema") == "glaciereq.portfolio-root-truth.v1", "unexpected root-truth schema")
     require(root.get("authority", {}).get("repository") == "GlacierEQ/job-app-helix", "invalid authority repository")
     require(root.get("truth_model", {}).get("stale_on_source_head_change") is True, "root must become stale on source-head change")
@@ -66,9 +110,7 @@ def validate() -> dict[str, Any]:
         require(isinstance(source_id, str) and source_id, "source id is required")
         require(source_id not in source_ids, f"duplicate source id: {source_id}")
         require(isinstance(path_text, str) and path_text, f"source path is required for {source_id}")
-        path = (ROOT / path_text).resolve()
-        require(ROOT in path.parents, f"source escapes repository root: {path_text}")
-        require(path.is_file(), f"missing source file: {path_text}")
+        path = repository_file(path_text, "source file")
         source_ids.add(source_id)
         source_paths[source_id] = path
         source_hashes[path_text] = sha256_file(path)
@@ -76,6 +118,7 @@ def validate() -> dict[str, Any]:
     projections = root.get("projections")
     require(isinstance(projections, list) and projections, "projections must be a nonempty list")
     projection_ids: set[str] = set()
+    projection_states: dict[str, dict[str, Any]] = {}
     for projection in projections:
         require(isinstance(projection, dict), "projection rows must be objects")
         projection_id = projection.get("id")
@@ -86,6 +129,12 @@ def validate() -> dict[str, Any]:
         require(isinstance(required_sources, list) and required_sources, f"{projection_id}: required_sources must be nonempty")
         unknown = sorted(set(required_sources) - source_ids)
         require(not unknown, f"{projection_id}: unknown source ids: {unknown}")
+        projection_states[projection_id] = {
+            "consumer_repository": projection.get("repository"),
+            "contract_state": "DECLARED",
+            "freshness_state": "PENDING_CONSUMER_RECEIPT",
+            "required_sources": sorted(required_sources),
+        }
 
     inventory = load_json(source_paths["inventory"])
     workspace = inventory.get("workspace_repositories")
@@ -98,7 +147,10 @@ def validate() -> dict[str, Any]:
 
     flagships = load_json(source_paths["flagships"])
     flagship_rows = flagships.get("flagships")
+    required_flagships = flagships.get("required_named_flagships")
     require(isinstance(flagship_rows, list) and flagship_rows, "flagship registry must be nonempty")
+    require(isinstance(required_flagships, list) and required_flagships, "required_named_flagships must be nonempty")
+    require(len(required_flagships) == len(set(required_flagships)), "required_named_flagships contains duplicates")
     flagship_ids: set[str] = set()
     for flagship in flagship_rows:
         require(isinstance(flagship, dict), "flagship entries must be objects")
@@ -113,6 +165,7 @@ def validate() -> dict[str, Any]:
         public_surface = flagship.get("public_surface")
         if state in {"QUARANTINED", "BLOCKED_SECURITY", "BLOCKED"}:
             require(public_surface not in {"PUBLIC_RECRUITER", "PUBLIC_PROMOTED"}, f"unsafe flagship is publicly promoted: {system_id}")
+    require(flagship_ids == set(required_flagships), "flagship entries must exactly match required_named_flagships")
 
     companies_index = load_json(source_paths["companies"])
     required_tracks = companies_index.get("required_company_tracks")
@@ -125,13 +178,13 @@ def validate() -> dict[str, Any]:
     mapped_inventory: set[str] = set()
     admitted_rows = 0
     public_recruiter_rows = 0
+    public_non_recruiter_rows = 0
     private_rows = 0
     repository_memberships = 0
 
     for relative in dossier_files:
         require(isinstance(relative, str) and relative, "dossier path must be a nonempty string")
-        shard_path = (ROOT / relative).resolve()
-        require(ROOT in shard_path.parents and shard_path.is_file(), f"missing dossier shard: {relative}")
+        shard_path = repository_file(relative, "dossier shard")
         source_hashes[relative] = sha256_file(shard_path)
         shard = load_json(shard_path)
         companies = shard.get("companies")
@@ -157,8 +210,14 @@ def validate() -> dict[str, Any]:
                 repository_memberships += 1
                 if visibility == "private":
                     private_rows += 1
-                if visibility == "public" and promotion_state in {"PROMOTED", "REFERENCE_ONLY"}:
+                    require(not public_projection_eligible(level, promotion_state, visibility), f"{repository}: private record became projection eligible")
+                elif public_projection_eligible(level, promotion_state, visibility):
                     public_recruiter_rows += 1
+                else:
+                    public_non_recruiter_rows += 1
+                    if level == "L0":
+                        require(promotion_state in PUBLIC_NON_RECRUITER_STATES, f"{repository}: public L0 record has unsafe promotion state {promotion_state}")
+                    require(not promotion_state.startswith("PRIVATE_"), f"{repository}: private-only promotion state appears on a public row")
                 if inventory_scope == "HELIX_ADMITTED":
                     admitted_rows += 1
                     name = repository.split("/", 1)[1]
@@ -177,10 +236,17 @@ def validate() -> dict[str, Any]:
     receipt = {
         "schema": "glaciereq.portfolio-root-truth-receipt.v1",
         "status": "PASS",
+        "scope": "CONTROL_PLANE_SOURCES_ONLY",
         "root_version": root.get("version"),
         "evaluated_commit": os.environ.get("GITHUB_SHA", "LOCAL"),
         "source_digest": source_digest,
         "source_hashes": dict(sorted(source_hashes.items())),
+        "projection_freshness": {
+            "all_projections_current": False,
+            "state": "PENDING_CONSUMER_RECEIPTS",
+            "projections": projection_states,
+            "boundary": "Root validation proves source and contract integrity only. Each downstream consumer must emit its own current-source receipt before release.",
+        },
         "counts": {
             "total_repositories": total,
             "workspace_repositories": len(workspace),
@@ -189,18 +255,21 @@ def validate() -> dict[str, Any]:
             "repository_memberships": repository_memberships,
             "helix_admitted_memberships": admitted_rows,
             "public_recruiter_memberships": public_recruiter_rows,
+            "public_non_recruiter_memberships": public_non_recruiter_rows,
             "private_memberships": private_rows,
             "projections": len(projections),
             "required_sources": len(source_paths),
         },
         "invariants": {
+            "root_schema_valid": True,
             "inventory_unique": True,
             "inventory_count_matches": True,
-            "flagship_ids_unique": True,
+            "flagship_ids_exact": True,
             "required_company_tracks_complete": True,
             "all_admitted_repositories_in_inventory": True,
             "all_inventory_children_mapped": True,
             "projection_source_ids_resolve": True,
+            "public_projection_policy_enforced": True,
         },
     }
     receipt["receipt_sha256"] = hashlib.sha256(canonical_bytes(receipt)).hexdigest()
@@ -213,7 +282,7 @@ def main() -> int:
     args = parser.parse_args()
     try:
         receipt = validate()
-    except ValueError as exc:
+    except (ValueError, OSError) as exc:
         print(f"portfolio root truth: FAIL: {exc}")
         return 1
 
