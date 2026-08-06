@@ -45,8 +45,6 @@ on:
 permissions:
   contents: read
 
-timeout-minutes: 10
-
 concurrency:
   group: portfolio-root-truth-${{ github.ref }}
   cancel-in-progress: true
@@ -54,6 +52,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - name: Checkout exact source
         uses: actions/checkout@v4
@@ -79,6 +78,8 @@ jobs:
           receipt = json.loads(Path('artifacts/portfolio-root-truth-receipt.json').read_text())
           assert receipt['schema'] == 'glaciereq.portfolio-root-truth-receipt.v1'
           assert receipt['status'] == 'PASS'
+          assert receipt['scope'] == 'CONTROL_PLANE_SOURCES_ONLY'
+          assert receipt['projection_freshness']['all_projections_current'] is False
           assert receipt['counts']['total_repositories'] == 67
           assert receipt['counts']['workspace_repositories'] == 66
           assert all(receipt['invariants'].values())
