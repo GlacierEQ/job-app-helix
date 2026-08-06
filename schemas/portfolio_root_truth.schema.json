@@ -104,16 +104,34 @@
     },
     "update_contract": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "canonical_schedule",
         "event_triggers",
         "required_sequence",
         "consumer_behavior"
-      ]
+      ],
+      "properties": {
+        "canonical_schedule": {"type": "string", "minLength": 1},
+        "event_triggers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "required_sequence": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "consumer_behavior": {"type": "string", "minLength": 1}
+      }
     },
     "invariants": {
       "type": "array",
       "minItems": 1,
+      "uniqueItems": true,
       "items": {"type": "string", "minLength": 1}
     },
     "receipt": {
