@@ -59,8 +59,7 @@ def test_resolve_commit_sha_fails_closed_outside_git(tmp_path: Path) -> None:
 def test_pytest_collection_produces_machine_observed_test_count(tmp_path: Path) -> None:
     module = load_verifier()
     (tmp_path / "test_fixture.py").write_text(
-        "def test_one():\n    assert True\n\n"
-        "def test_two():\n    assert 2 + 2 == 4\n",
+        "def test_one():\n    assert True\n\ndef test_two():\n    assert 2 + 2 == 4\n",
         encoding="utf-8",
     )
     argv = [sys.executable, "-m", "pytest", "-q"]
@@ -82,8 +81,7 @@ def test_run_commands_preserves_collection_count_when_quiet_summary_is_absent(
     module = load_verifier()
     (tmp_path / "pytest.ini").write_text("[pytest]\naddopts = -q\n", encoding="utf-8")
     (tmp_path / "test_fixture.py").write_text(
-        "def test_one():\n    assert True\n\n"
-        "def test_two():\n    assert True\n",
+        "def test_one():\n    assert True\n\ndef test_two():\n    assert True\n",
         encoding="utf-8",
     )
 
