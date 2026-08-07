@@ -158,23 +158,30 @@ def assess_repository(
 ) -> dict[str, object]:
     canonical_ref = f"{remote}/{canonical}"
     branches = list_remote_branches(repo, canonical=canonical, remote=remote)
-    assessments = [assess_branch(repo, canonical_ref, f"{remote}/{branch}") for branch in branches]
+    assessments = [
+        assess_branch(repo, canonical_ref, f"{remote}/{branch}")
+        for branch in branches
+    ]
+    priority_order = {
+        "DIVERGED_UNIQUE_VALUE": 0,
+        "CURRENT_UNIQUE_VALUE": 1,
+        "PATCH_EQUIVALENT_EXHAUSTED": 2,
+        "ANCESTRY_EXHAUSTED": 3,
+    }
+    assessments.sort(
+        key=lambda item: (
+            priority_order.get(item.classification, 99),
+            -len(item.unique_patch_commits),
+            item.branch.casefold(),
+        )
+    )
     return {
-        "repository": repo.resolve().name,
-        "canonical_ref": canonical_ref,
-        "branches": [assessment.to_dict() for assessment in assessments],
-        "counts": {
-            "total": len(assessments),
-            "retirement_ready": sum(assessment.retirement_ready for assessment in assessments),
-            "diverged_unique_value": sum(
-                assessment.classification == "DIVERGED_UNIQUE_VALUE"
-                for assessment in assessments
-            ),
-            "current_unique_value": sum(
-                assessment.classification == "CURRENT_UNIQUE_VALUE"
-                for assessment in assessments
-            ),
-        },
+        "repository": repo.name,
+        "canonical": canonical_ref,
+        "branch_count": len(assessments),
+        "actionable_unique": sum(not item.retirement_ready for item in assessments),
+        "retirement_ready": sum(item.retirement_ready for item in assessments),
+        "branches": [item.to_dict() for item in assessments],
     }
 
 
