@@ -262,20 +262,36 @@ def discover(
 def build_payload(records: list[RepositoryRecord], owner: str) -> dict[str, object]:
     classification_counts = Counter(record.classification for record in records)
     visibility_counts = Counter(record.visibility for record in records)
+    native_records = [record for record in records if not record.fork]
+    fork_records = [record for record in records if record.fork]
+    native_visibility_counts = Counter(record.visibility for record in native_records)
+    fork_visibility_counts = Counter(record.visibility for record in fork_records)
+    active_native_count = sum(not record.archived for record in native_records)
+    archived_native_count = sum(record.archived for record in native_records)
     return {
         "schema": "glaciereq.owned-library-census-receipt.v1",
         "owner": owner,
         "state": "VERIFIED_INVENTORY",
         "distribution": "INTERNAL_FULL_CENSUS",
         "repository_count": len(records),
+        "native_repository_count": len(native_records),
+        "fork_repository_count": len(fork_records),
+        "active_native_repository_count": active_native_count,
+        "archived_native_repository_count": archived_native_count,
         "classification_counts": dict(sorted(classification_counts.items())),
         "visibility_counts": dict(sorted(visibility_counts.items())),
+        "native_visibility_counts": dict(sorted(native_visibility_counts.items())),
+        "fork_visibility_counts": dict(sorted(fork_visibility_counts.items())),
         "archived_count": sum(record.archived for record in records),
-        "fork_count": sum(record.fork for record in records),
+        "fork_count": len(fork_records),
         "repositories": [asdict(record) for record in records],
         "nonclaims": [
             "Inventory does not establish authorship or originality.",
             "Inventory does not establish test, build, security, or deployment status.",
+            (
+                "Native repository count excludes forks but does not itself "
+                "establish original authorship."
+            ),
             "Only governed recruiter-portfolio entries may support resume claims.",
             "The full receipt can contain private names and is not a public artifact.",
         ],
@@ -307,6 +323,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN", ""))
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--expected-count", type=int)
+    parser.add_argument("--expected-native-count", type=int)
+    parser.add_argument("--expected-fork-count", type=int)
     parser.add_argument("--portfolio", type=Path, default=DEFAULT_PORTFOLIO)
     parser.add_argument("--priority-spine", type=Path, default=DEFAULT_SPINE)
     return parser.parse_args()
@@ -326,9 +344,24 @@ def main() -> int:
             recruiter_portfolio=recruiter_portfolio,
             priority_spine=priority_spine,
         )
+        native_count = sum(not record.fork for record in records)
+        fork_count = sum(record.fork for record in records)
         if args.expected_count is not None and len(records) != args.expected_count:
             raise CensusError(
                 f"Owned-library count drifted: {len(records)} != {args.expected_count}"
+            )
+        if (
+            args.expected_native_count is not None
+            and native_count != args.expected_native_count
+        ):
+            raise CensusError(
+                "Owned-library native count drifted: "
+                f"{native_count} != {args.expected_native_count}"
+            )
+        if args.expected_fork_count is not None and fork_count != args.expected_fork_count:
+            raise CensusError(
+                "Owned-library fork count drifted: "
+                f"{fork_count} != {args.expected_fork_count}"
             )
         _write_atomic(args.output.resolve(), build_payload(records, args.owner))
     except CensusError as exc:
@@ -336,7 +369,8 @@ def main() -> int:
         return 1
     print(
         "Owned-library census VERIFIED: "
-        f"repositories={len(records)} output={args.output.resolve()}"
+        f"repositories={len(records)} native={native_count} forks={fork_count} "
+        f"output={args.output.resolve()}"
     )
     return 0
 
