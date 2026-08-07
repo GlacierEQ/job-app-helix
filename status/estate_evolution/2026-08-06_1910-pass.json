@@ -1,0 +1,92 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "timestamp": "2026-08-06T19:10:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "legal_spine": {
+    "repository": "GlacierEQ/monolith",
+    "drift_detected": false,
+    "registry_blob": "c78526a5a738a25699fc02bedccb5c2e23cc186d",
+    "discovery_blob": "02a35c71ec91cd3614e33e7bebdb12741d169927",
+    "sync_receipt_blob": "1c7a36c27bda4e58e08cc4fb5662b33de2936b0b",
+    "decision": "PRESERVE_CURRENT_DETERMINISTIC_PROJECTION"
+  },
+  "news": {
+    "window_hours": 24,
+    "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
+    "radar_changed": false,
+    "decision": "NO_NEW_PRIMARY_SOURCE_SIGNAL_CLEARED_ACTIONABILITY_AND_FRESHNESS_GATE",
+    "background_sources_reviewed": [
+      "Anthropic 2026 State of AI Agents report",
+      "Anthropic 2026 Agentic Coding Trends report",
+      "OpenAI GPT-5.1-Codex-Max system card",
+      "OpenAI Building an AI-native engineering team"
+    ],
+    "note": "Useful background reinforced existing governance, compaction, security, MCP, and human-review controls but did not justify duplicating an existing active radar signal."
+  },
+  "repositories": [
+    {
+      "repository": "GlacierEQ/AKOS",
+      "default_branch": "main",
+      "fork_status": "not_observed_as_fork",
+      "canonical_head_before": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
+      "canonical_head_after": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
+      "branch": "feature/career-intelligence-platform-v2",
+      "merge_base": "c91f7d8ec70f6a5657ed689a6e85cff89ea2d729",
+      "ahead": 2,
+      "behind": 19,
+      "unique_patch_commits": 2,
+      "files_changed": 34,
+      "decision": "KEEP_AND_SYNTHESIZE_LATER_ON_FRESH_CANONICAL",
+      "preservation": "The branch contains a substantial v2 career platform layered on career-intelligence runtime components that are already present on current main. The stale tip was not merged. The latest branch hardening adds explicit ATS projection failure handling and mid-read resource indexing failure handling with tests; these remain useful unique value.",
+      "verification": "NOT_REEXECUTED_THIS_PASS; semantic dependency inspection completed; promotion blocked until fresh-ancestry synthesis receives repository-native verification",
+      "remote_ref_disposition": "KEEP"
+    },
+    {
+      "repository": "GlacierEQ/pro-code",
+      "default_branch": "main",
+      "fork_status": "not_observed_as_fork",
+      "canonical_head_before": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "canonical_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "branch": "hardening/native-proof-mainline-2026-07-31",
+      "merge_base": "ec26b8e5a20b00dbd23e4d581577ff8493a84fe8",
+      "ahead": 8,
+      "behind": 10,
+      "unique_patch_commits": 8,
+      "files_changed": 8,
+      "decision": "SEMANTIC_CONSOLIDATION_REQUIRED",
+      "preservation": "Branch still carries native-proof CI, Rust governor, memory, Haskell test, Vite and operating-protocol deltas. It was not merged because current main has ten newer commits and the delta overlaps a sibling hardening branch.",
+      "verification": "NOT_REEXECUTED_THIS_PASS",
+      "remote_ref_disposition": "KEEP"
+    },
+    {
+      "repository": "GlacierEQ/pro-code",
+      "default_branch": "main",
+      "fork_status": "not_observed_as_fork",
+      "canonical_head_before": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "canonical_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "branch": "hardening/readme-native-proof-2026-07-30",
+      "merge_base": "f720cb8346fc19aae60a56e0a21eafbbd3cf1f55",
+      "ahead": 7,
+      "behind": 11,
+      "unique_patch_commits": 7,
+      "files_changed": 7,
+      "decision": "COMPARE_AS_SIBLING_FAMILY_BEFORE_RETIREMENT",
+      "preservation": "Observed near-overlap with native-proof-mainline across CI, README, governor, memory, Haskell test, Vite environment and config. Do not count branch divergence as unique value until patch-equivalence and current-main content are reconciled.",
+      "verification": "NOT_REEXECUTED_THIS_PASS",
+      "remote_ref_disposition": "KEEP"
+    }
+  ],
+  "innovation_inputs": [
+    "Preserve context compaction/precompute as an existing active estate pattern rather than creating duplicate radar doctrine.",
+    "Treat overlapping branch families as one semantic consolidation unit before deleting any member."
+  ],
+  "blockers": [
+    "Current connector exposes no remote branch-ref deletion action.",
+    "Large multi-file synthesis requires a fresh-ancestry integration commit plus repository-native verification before canonical promotion."
+  ],
+  "next_cursor": {
+    "repository": "GlacierEQ/AKOS",
+    "branch_family": ["feature/career-intelligence-runtime-v1", "feature/career-intelligence-platform-v2"],
+    "action": "SYNTHESIZE_V2_DELTA_ON_CURRENT_MAIN_AND_VERIFY_AS_ONE_CAREER_INTELLIGENCE_FAMILY; THEN_RETURN_TO_PRO_CODE_NATIVE_PROOF_SIBLING_RECONCILIATION"
+  }
+}
