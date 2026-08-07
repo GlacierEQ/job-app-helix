@@ -288,7 +288,10 @@ def build_payload(records: list[RepositoryRecord], owner: str) -> dict[str, obje
         "nonclaims": [
             "Inventory does not establish authorship or originality.",
             "Inventory does not establish test, build, security, or deployment status.",
-            "Native repository count excludes forks but does not itself establish original authorship.",
+            (
+                "Native repository count excludes forks but does not itself "
+                "establish original authorship."
+            ),
             "Only governed recruiter-portfolio entries may support resume claims.",
             "The full receipt can contain private names and is not a public artifact.",
         ],
