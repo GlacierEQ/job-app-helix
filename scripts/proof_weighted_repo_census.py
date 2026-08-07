@@ -149,6 +149,15 @@ CLAIM_PATTERNS = {
     ),
 }
 
+EXPLICIT_DOWNSTREAM_MARKERS = (
+    "GLACIEREQ_DOWNSTREAM.md",
+    "UPSTREAM.md",
+)
+UPSTREAM_LINEAGE_MARKERS = (
+    "SOURCE_REV",
+    "THIRD-PARTY-NOTICES",
+)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -281,16 +290,47 @@ def run_pytest(root: Path, timeout: int) -> dict[str, Any]:
     }
 
 
-def classify_admission(metadata: dict[str, Any], readme: str) -> str:
+def detect_provenance(root: Path, metadata: dict[str, Any]) -> dict[str, object]:
+    if metadata.get("fork"):
+        return {
+            "state": "GITHUB_FORK",
+            "markers": ["metadata.fork=true"],
+        }
+
+    markers: list[str] = []
+    for name in (*EXPLICIT_DOWNSTREAM_MARKERS, *UPSTREAM_LINEAGE_MARKERS):
+        if (root / name).is_file():
+            markers.append(name)
+
+    if any(name in markers for name in EXPLICIT_DOWNSTREAM_MARKERS):
+        state = "EXPLICIT_DOWNSTREAM"
+    elif all(name in markers for name in UPSTREAM_LINEAGE_MARKERS):
+        state = "EXPLICIT_UPSTREAM_LINEAGE"
+    else:
+        state = "UNRESOLVED"
+
+    return {
+        "state": state,
+        "markers": markers,
+    }
+
+
+def classify_admission(
+    metadata: dict[str, Any],
+    readme: str,
+    provenance_state: str,
+) -> str:
     if metadata.get("private") or metadata.get("visibility") == "private":
         return "private_excluded"
     if metadata.get("archived"):
         return "archive_or_retired"
-    if metadata.get("fork"):
+    if metadata.get("fork") or provenance_state == "GITHUB_FORK":
         return "supporting_reference_fork"
     if not readme.strip():
         return "candidate_missing_readme"
-    return "candidate_original_public"
+    if provenance_state in {"EXPLICIT_DOWNSTREAM", "EXPLICIT_UPSTREAM_LINEAGE"}:
+        return "candidate_attributed_downstream"
+    return "candidate_public_unresolved_provenance"
 
 
 def sha256_text(text: str) -> str:
@@ -305,6 +345,7 @@ def build_result(
     timeout: int,
 ) -> dict[str, Any]:
     readme_path, readme = read_readme(root)
+    provenance = detect_provenance(root, metadata)
     languages: Counter[str] = Counter()
     source_files = 0
     source_lines = 0
@@ -342,10 +383,15 @@ def build_result(
     }
 
     return {
-        "schema": "glaciereq.portfolio.audit.v1",
+        "schema": "glaciereq.portfolio.audit.v2",
         "repository": repo,
         "metadata": metadata,
-        "admission_class": classify_admission(metadata, readme),
+        "provenance": provenance,
+        "admission_class": classify_admission(
+            metadata,
+            readme,
+            str(provenance["state"]),
+        ),
         "structure": {
             "total_files_scanned": total_files,
             "source_files": source_files,
@@ -364,6 +410,11 @@ def build_result(
             "claim_flags": claim_flags,
         },
         "verification": {"python": run_pytest(root, timeout)},
+        "nonclaims": [
+            "Public and non-fork metadata does not establish authorship or originality.",
+            "Unresolved provenance blocks an original-work admission class.",
+            "Structural presence does not establish deployment, production use, or impact.",
+        ],
     }
 
 
