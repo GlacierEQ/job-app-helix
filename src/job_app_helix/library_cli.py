@@ -5,7 +5,7 @@ import json
 import subprocess
 import sys
 from collections.abc import Sequence
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from .branch_steward import BranchStewardError, assess_repository, write_receipt
@@ -61,7 +61,7 @@ def _branch_command(args: argparse.Namespace) -> int:
             )
 
     payload = assess_repository(repository, canonical=args.canonical, remote=args.remote)
-    payload["timestamp"] = datetime.now(timezone.utc).isoformat()
+    payload["timestamp"] = datetime.now(UTC).isoformat()
     payload["policy"] = {
         "never_merge_stale_tip_directly": True,
         "preserve_unique_value_before_retirement": True,
