@@ -29,6 +29,9 @@ def load_json(relative: str):
 
 def test_root_truth_validation_passes() -> None:
     receipt = load_validator().validate()
+    company_dossiers = load_json("manifests/company_dossiers.json")
+    required_company_tracks = company_dossiers["required_company_tracks"]
+
     assert receipt["status"] == "PASS"
     assert receipt["scope"] == "CONTROL_PLANE_SOURCES_ONLY"
     assert receipt["projection_freshness"]["all_projections_current"] is False
@@ -36,7 +39,8 @@ def test_root_truth_validation_passes() -> None:
     assert set(receipt["projection_freshness"]["projections"]) == EXPECTED_PROJECTIONS
     assert receipt["counts"]["total_repositories"] == 67
     assert receipt["counts"]["workspace_repositories"] == 66
-    assert receipt["counts"]["company_tracks"] == 48
+    assert len(required_company_tracks) == 48
+    assert receipt["counts"]["company_tracks"] == len(required_company_tracks)
     assert receipt["counts"]["flagship_systems"] == 17
     assert receipt["counts"]["projections"] == len(EXPECTED_PROJECTIONS)
     assert len(receipt["source_digest"]) == 64
