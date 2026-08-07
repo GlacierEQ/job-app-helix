@@ -16,6 +16,7 @@ from typing import Any
 PYTHON = sys.executable
 PASSED_COUNT = re.compile(r"(?P<count>\d+) passed(?:,|\s)")
 RAN_COUNT = re.compile(r"Ran (?P<count>\d+) tests?")
+GIT_SHA = re.compile(r"^[0-9a-f]{40}$")
 
 PYTHON_CONTRACTS: dict[str, list[list[str]]] = {
     "job-app-helix": [
@@ -114,6 +115,29 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def resolve_commit_sha(cwd: Path) -> str | None:
+    """Resolve the exact commit checked out for execution, or fail closed."""
+
+    try:
+        process = subprocess.run(
+            ["git", "rev-parse", "--verify", "HEAD^{commit}"],
+            cwd=cwd,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            timeout=30,
+            check=False,
+            shell=False,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+
+    resolved = (process.stdout or "").strip().lower()
+    if process.returncode != 0 or GIT_SHA.fullmatch(resolved) is None:
+        return None
+    return resolved
+
+
 def observed_test_count(output: str) -> int | None:
     for pattern in (PASSED_COUNT, RAN_COUNT):
         match = pattern.search(output)
@@ -199,8 +223,17 @@ def main() -> int:
         args.name,
         args.surface,
     )
+    resolved_commit_sha = resolve_commit_sha(args.path)
 
-    if not commands:
+    if resolved_commit_sha is None:
+        status = "BLOCKED_IDENTITY"
+        exit_code = 4
+        log = (
+            "Unable to resolve an exact Git commit for the checked-out execution path. "
+            "No verification state may be promoted without content identity.\n"
+        )
+        test_count = None
+    elif not commands:
         status = "INVALID_CONTRACT"
         exit_code = 2
         log = f"No bounded execution contract for {args.name}.\n"
@@ -223,6 +256,7 @@ def main() -> int:
         "schema": "glaciereq.portfolio.verification.v1",
         "repository": args.repository,
         "ref": args.ref,
+        "resolved_commit_sha": resolved_commit_sha,
         "name": args.name,
         "surface": f"{args.surface}:{technology}",
         "commands": commands,
