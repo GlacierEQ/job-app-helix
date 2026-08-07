@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.estate-evolution.execution-receipt.v1",
-  "observed_at": "2026-08-07T04:54:00Z",
+  "observed_at": "2026-08-07T04:57:00Z",
   "control_plane": "GlacierEQ/job-app-helix",
   "scope": "priority-spine branch consolidation, AI-coding intelligence, and maintenance",
   "legal_spine": {
@@ -46,7 +46,7 @@
       "repository": "GlacierEQ/AKOS",
       "canonical_branch": "main",
       "canonical_head_before": "acbd2bd6a47f82553722ac296de1f045e2110b93",
-      "canonical_head_after": "acbd2bd6a47f82553722ac296de1f045e2110b93",
+      "canonical_head_after": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
       "source_branch": "runtime-v0.3-promotion",
       "source_merge_base": "9f4c124f1f4977ddc8731e3372b764b165b3cb89",
       "source_ahead": 17,
@@ -57,8 +57,8 @@
       "synthesis_head_initial": "5d5ccc3dbdeda988f52bf4c929c123f9fe5fca56",
       "synthesis_head_repaired": "478ae52af57de561e6548a8b1f5caf0b6e067d32",
       "pull_request": 19,
-      "decision": "PRESERVE_ON_CURRENT_MAIN_AND_REPAIR_VERIFICATION_FAILURE",
-      "preservation_action": "Transplanted only the 13 useful source blobs onto fresh current main ancestry; did not merge stale branch history.",
+      "decision": "VERIFIED_SYNTHESIS_SQUASH_MERGED",
+      "preservation_action": "Transplanted only the 13 useful source blobs onto fresh current main ancestry; did not merge stale branch history. Repaired the imported workflow to disable persisted checkout credentials before promotion.",
       "verification_result": {
         "initial_runtime_ci": "SUCCESS",
         "initial_integrity_gate": "SUCCESS",
@@ -66,15 +66,17 @@
         "failure": "akos-runtime-ci.yml checkout omitted persist-credentials:false, violating repository-wide read-only workflow contract",
         "repair_commit": "478ae52af57de561e6548a8b1f5caf0b6e067d32",
         "post_repair_integrity_gate": "SUCCESS",
-        "post_repair_runtime_ci": "IN_PROGRESS_AT_RECEIPT",
-        "post_repair_repository_verification": "IN_PROGRESS_AT_RECEIPT"
+        "post_repair_runtime_ci": "SUCCESS",
+        "post_repair_repository_verification": "SUCCESS",
+        "promotion": "SQUASH_MERGED_WITH_EXPECTED_HEAD_GUARD",
+        "canonical_commit": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9"
       },
-      "remote_ref_disposition": "KEEP_SOURCE_UNTIL_SYNTHESIS_FULLY_VERIFIED_AND_MERGED"
+      "remote_ref_disposition": "SOURCE_AND_SYNTH_REFS_DELETE_REF_REQUIRED_AFTER_PATCH_EQUIVALENCE_RECHECK"
     },
     {
       "repository": "GlacierEQ/AKOS",
       "branch": "akos-operational-cognition-2026-07-21",
-      "canonical_head": "acbd2bd6a47f82553722ac296de1f045e2110b93",
+      "canonical_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
       "observed_status": "behind",
       "ahead": 0,
       "behind": 164,
@@ -86,7 +88,7 @@
     {
       "repository": "GlacierEQ/AKOS",
       "branch": "repair/integrity-gate-20260724",
-      "canonical_head": "acbd2bd6a47f82553722ac296de1f045e2110b93",
+      "canonical_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
       "observed_status": "behind",
       "ahead": 0,
       "behind": 138,
@@ -98,26 +100,25 @@
     {
       "repository": "GlacierEQ/AKOS",
       "branch": "feature/career-intelligence-platform-v2",
-      "canonical_head": "acbd2bd6a47f82553722ac296de1f045e2110b93",
+      "canonical_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
       "merge_base": "c91f7d8ec70f6a5657ed689a6e85cff89ea2d729",
       "observed_status": "diverged",
       "ahead": 2,
       "behind": 18,
       "files_affected": 34,
       "decision": "NEXT_SEMANTIC_SYNTHESIS_REVIEW",
-      "unique_patch_value": "Substantial v2 career-intelligence platform; must be compared by current capability and patch equivalence rather than stale-tip merge.",
+      "unique_patch_value": "Substantial v2 career-intelligence platform; must be compared against the new post-runtime canonical head by capabilities and patch equivalence rather than stale-tip merge.",
       "remote_ref_disposition": "KEEP"
     }
   ],
   "blockers": [
     "The current GitHub connector exposes no proven remote branch-ref deletion action, so retirement-ready branches are recorded as DELETE_REF_REQUIRED rather than falsely reported deleted.",
-    "Monolith PR #45 still needs executable repository-native verification before promotion.",
-    "AKOS PR #19 post-repair Runtime CI and repository-wide verification were still running when this receipt was written."
+    "Monolith PR #45 still needs executable repository-native verification before promotion."
   ],
   "next_cursor": {
     "repository": "GlacierEQ/AKOS",
     "branch": "feature/career-intelligence-platform-v2",
     "after_repository": "GlacierEQ/pro-code",
-    "instruction": "First re-check PR #19 post-repair verification. If fully green, evaluate promotion with expected-head guard. Then compare career-intelligence-platform-v2 against current main by capabilities, tests, interfaces, and patch equivalence; synthesize only superior remaining delta onto fresh ancestry."
+    "instruction": "Compare career-intelligence-platform-v2 against current AKOS main after runtime-v0.3 promotion by capabilities, tests, interfaces, and patch equivalence. Do not merge the behind branch tip. Preserve only superior remaining delta on fresh ancestry; then reclassify source/synthesis runtime refs for retirement."
   }
 }
