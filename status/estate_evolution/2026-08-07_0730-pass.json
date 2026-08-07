@@ -1,0 +1,77 @@
+{
+  "schema": "glaciereq.estate-evolution.execution-receipt.v1",
+  "timestamp": "2026-08-07T07:30:00Z",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "repository": "GlacierEQ/mastermind",
+  "canonical_head_before": "88067e9dfca8c91f1bfcec76158592f06547a06a",
+  "canonical_head_after": "d15c6d238179878b724c36234f855b14b8012a07",
+  "branch": "multiple families; fresh synthesis branches only for preserved live deltas",
+  "merge_base": "family-specific; recorded in GlacierEQ/mastermind status/branch_consolidation receipts",
+  "ahead": "family-specific",
+  "behind": "family-specific",
+  "unique_patch_commits": [
+    "sentinel Mem0 live-provider behavior",
+    "Bolt router per-worker failure isolation"
+  ],
+  "files_changed": [
+    "GlacierEQ/mastermind:engines/mem0_live_adapter.py",
+    "GlacierEQ/mastermind:tests/test_mem0_live_adapter.py",
+    "GlacierEQ/mastermind:powerhouse/logic/relevance_router.py",
+    "GlacierEQ/mastermind:tests/test_relevance_router_failure_isolation.py",
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0718.json",
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0727.json",
+    "GlacierEQ/monolith:status/estate_evolution/mastermind.json",
+    "GlacierEQ/job-app-helix:status/estate_evolution/state.json"
+  ],
+  "decision": "TWO_FRESH_HEAD_SYNTHESIS_PROMOTIONS_PLUS_MULTI_FAMILY_NON_RESURRECTION_CLASSIFICATION",
+  "preservation": {
+    "mem0": {
+      "source_families": ["sentinel-mem0", "bolt-async-memory"],
+      "synthesis_branch": "synth/mem0-live-adapter-20260807",
+      "pull_request": 154,
+      "merge_sha": "a14b3996553e73a13161d980a8452467779cf44b"
+    },
+    "router": {
+      "source_family": "bolt-parallel-router",
+      "synthesis_branch": "synth/router-failure-isolation-20260807",
+      "pull_request": 155,
+      "merge_sha": "3a564606111568657a3a0aca2f1c0044ddd0f69f"
+    }
+  },
+  "verification": {
+    "legal_spine": "NO_DRIFT; source blobs still match deterministic sync receipt",
+    "mem0_synthesis": "Mastermind truth contract run 20 SUCCESS before expected-head guarded merge",
+    "router_synthesis": "Mastermind truth contract run 23 SUCCESS before expected-head guarded merge",
+    "palette_sampling": "six branches sampled; dashboard target absent on main; one strict ancestor",
+    "sentinel_removed_surface": "Overleaf target absent on current main",
+    "sentinel_path_traversal": "centralized current-main Pillar._safe_join inspected and supersedes sampled local branch variant"
+  },
+  "remote_ref_disposition": "No remote refs deleted. Proven delete-ref capability is unavailable in the current connector. Retirement candidates remain DELETE_REF_REQUIRED.",
+  "news_inputs": {
+    "window_hours": 24,
+    "radar_changed": false,
+    "decision": "NO_NEW_ACTIONABLE_SIGNAL_IN_STRICT_WINDOW",
+    "context": "Older Reuters reporting on agent security incidents reinforces the already-active production-agent-governance signal; no duplicate radar entry added."
+  },
+  "innovation_inputs": [
+    "preserve local mode while adding explicit live provider transport",
+    "offload blocking provider calls from async event loop",
+    "parallel worker failure isolation with explicit team_errors",
+    "removed-surface non-resurrection as branch-retirement criterion"
+  ],
+  "blockers": [
+    "Remote branch ref deletion cannot be proven with the current GitHub connector."
+  ],
+  "next_cursor": {
+    "repository": "GlacierEQ/mastermind",
+    "family": "remaining palette-ui siblings",
+    "then": "bolt hashing/router siblings",
+    "after": "next priority repository/family from library_priority_spine and estate policy"
+  },
+  "controlling_receipts": [
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0718.json",
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0727.json",
+    "GlacierEQ/job-app-helix:status/estate_evolution/state.json",
+    "GlacierEQ/monolith:status/estate_evolution/mastermind.json"
+  ]
+}
