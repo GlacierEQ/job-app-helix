@@ -51,8 +51,8 @@ def validate_receipt(payload: dict[str, Any]) -> list[dict[str, Any]]:
         repository = _require(raw, "repository", str)
         _require(raw, "classification", str)
         visibility = _require(raw, "visibility", str)
-        fork = _require(raw, "fork", bool)
-        archived = _require(raw, "archived", bool)
+        _require(raw, "fork", bool)
+        _require(raw, "archived", bool)
         position = _require(raw, "position", int)
         if visibility not in {"public", "private", "internal"}:
             raise QueueError(f"Invalid visibility for {repository}: {visibility}")
