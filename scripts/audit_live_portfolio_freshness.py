@@ -14,14 +14,15 @@ private-state inference is made from a scoped 404.
 from __future__ import annotations
 
 import argparse
-from collections import defaultdict
-from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
 import sys
-from typing import Any, Callable
+from collections import defaultdict
+from collections.abc import Callable
+from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
@@ -39,9 +40,13 @@ def load_json(path: Path) -> dict[str, Any]:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError as exc:
-        raise AuditError(f"missing required file: {path.relative_to(ROOT)}") from exc
+        raise AuditError(
+            f"missing required file: {path.relative_to(ROOT)}"
+        ) from exc
     except json.JSONDecodeError as exc:
-        raise AuditError(f"invalid JSON in {path.relative_to(ROOT)}: {exc}") from exc
+        raise AuditError(
+            f"invalid JSON in {path.relative_to(ROOT)}: {exc}"
+        ) from exc
     if not isinstance(value, dict):
         raise AuditError(f"expected JSON object: {path.relative_to(ROOT)}")
     return value
@@ -49,7 +54,13 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def canonical_bytes(value: Any) -> bytes:
     return (
-        json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False) + "\n"
+        json.dumps(
+            value,
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=False,
+        )
+        + "\n"
     ).encode("utf-8")
 
 
@@ -57,24 +68,37 @@ def digest(value: Any) -> str:
     return hashlib.sha256(canonical_bytes(value)).hexdigest()
 
 
-def normalize_company(shard: dict[str, Any], company: dict[str, Any]) -> dict[str, Any]:
+def normalize_company(
+    shard: dict[str, Any],
+    company: dict[str, Any],
+) -> dict[str, Any]:
     defaults = shard.get("defaults", {})
     if not isinstance(defaults, dict):
-        raise AuditError(f"{shard.get('group_id')}: defaults must be an object")
+        raise AuditError(
+            f"{shard.get('group_id')}: defaults must be an object"
+        )
     merged = dict(defaults)
     merged.update(company)
     return merged
 
 
 def recruiter_eligible(level: str, state: str, visibility: str) -> bool:
-    return visibility == "public" and level != "L0" and state in RECRUITER_ELIGIBLE_STATES
+    return (
+        visibility == "public"
+        and level != "L0"
+        and state in RECRUITER_ELIGIBLE_STATES
+    )
 
 
 def compile_portfolio() -> dict[str, Any]:
     inventory = load_json(ROOT / "manifests" / "portfolio_repositories.json")
     workspace = inventory.get("workspace_repositories", [])
-    if not isinstance(workspace, list) or not all(isinstance(v, str) and v for v in workspace):
-        raise AuditError("portfolio_repositories.json has invalid workspace_repositories")
+    if not isinstance(workspace, list) or not all(
+        isinstance(value, str) and value for value in workspace
+    ):
+        raise AuditError(
+            "portfolio_repositories.json has invalid workspace_repositories"
+        )
     inventory_repositories = {f"GlacierEQ/{name}" for name in workspace}
 
     companies_index = load_json(ROOT / "manifests" / "company_dossiers.json")
@@ -102,8 +126,17 @@ def compile_portfolio() -> dict[str, Any]:
                 raise AuditError(f"{company_id}: repositories must be a list")
             for row in rows:
                 if not isinstance(row, list) or len(row) != 6:
-                    raise AuditError(f"{company_id}: invalid repository row {row!r}")
-                repository, level, promotion_state, visibility, inventory_scope, provenance = row
+                    raise AuditError(
+                        f"{company_id}: invalid repository row {row!r}"
+                    )
+                (
+                    repository,
+                    level,
+                    promotion_state,
+                    visibility,
+                    inventory_scope,
+                    provenance,
+                ) = row
                 declarations[str(repository)].append(
                     {
                         "company_id": company_id,
@@ -118,26 +151,41 @@ def compile_portfolio() -> dict[str, Any]:
     flagship_doc = load_json(ROOT / "manifests" / "flagship_registry.json")
     flagships = flagship_doc.get("flagships", [])
     if not isinstance(flagships, list):
-        raise AuditError("flagship_registry.json: flagships must be a list")
+        raise AuditError(
+            "flagship_registry.json: flagships must be a list"
+        )
 
-    evidence_doc = load_json(ROOT / "manifests" / "live_repository_evidence.json")
+    evidence_doc = load_json(
+        ROOT / "manifests" / "live_repository_evidence.json"
+    )
     evidence_rows = evidence_doc.get("repositories", [])
     if not isinstance(evidence_rows, list):
-        raise AuditError("live_repository_evidence.json: repositories must be a list")
+        raise AuditError(
+            "live_repository_evidence.json: repositories must be a list"
+        )
     evidence_by_repository = {
         row["repository"]: row
         for row in evidence_rows
         if isinstance(row, dict) and isinstance(row.get("repository"), str)
     }
 
-    external = load_json(ROOT / "manifests" / "flagship_external_repositories.json")
-    external_repositories = external.get("verified_owner_estate_external_repositories", [])
+    external = load_json(
+        ROOT / "manifests" / "flagship_external_repositories.json"
+    )
+    external_repositories = external.get(
+        "verified_owner_estate_external_repositories",
+        [],
+    )
     if not isinstance(external_repositories, list):
-        raise AuditError("flagship_external_repositories.json has invalid repository list")
+        raise AuditError(
+            "flagship_external_repositories.json has invalid repository list"
+        )
 
-    all_repositories = set(declarations) | inventory_repositories | {
-        str(value) for value in external_repositories
-    }
+    all_repositories = (
+        set(declarations)
+        | inventory_repositories
+        | {str(value) for value in external_repositories}
+    )
     all_repositories.update(
         row["repository"]
         for row in flagships
@@ -157,7 +205,9 @@ def compile_portfolio() -> dict[str, Any]:
 
 def github_getter(token: str) -> Callable[[str], dict[str, Any]]:
     if not token:
-        raise AuditError("live audit requires GITHUB_TOKEN; use --fixture for offline verification")
+        raise AuditError(
+            "live audit requires GITHUB_TOKEN; use --fixture offline"
+        )
 
     def get(path: str) -> dict[str, Any]:
         request = Request(
@@ -176,11 +226,17 @@ def github_getter(token: str) -> Callable[[str], dict[str, Any]]:
             if exc.code == 404:
                 return {"_unobservable": True, "_http_status": 404}
             detail = exc.read().decode("utf-8", errors="replace")[:500]
-            raise AuditError(f"GitHub API {exc.code} for {path}: {detail}") from exc
+            raise AuditError(
+                f"GitHub API {exc.code} for {path}: {detail}"
+            ) from exc
         except (URLError, TimeoutError) as exc:
-            raise AuditError(f"GitHub API transport failure for {path}: {exc}") from exc
+            raise AuditError(
+                f"GitHub API transport failure for {path}: {exc}"
+            ) from exc
         except json.JSONDecodeError as exc:
-            raise AuditError(f"GitHub API returned invalid JSON for {path}") from exc
+            raise AuditError(
+                f"GitHub API returned invalid JSON for {path}"
+            ) from exc
         if not isinstance(payload, dict):
             raise AuditError(f"GitHub API returned non-object for {path}")
         return payload
@@ -205,7 +261,10 @@ def fixture_getter(path: Path) -> Callable[[str], dict[str, Any]]:
         if not isinstance(row, dict):
             raise AuditError(f"fixture is missing {repository}")
         if len(parts) == 3:
-            visibility = row.get("visibility", "private" if row.get("private") else "public")
+            visibility = row.get(
+                "visibility",
+                "private" if row.get("private") else "public",
+            )
             return {
                 "full_name": repository,
                 "private": visibility == "private",
@@ -213,7 +272,10 @@ def fixture_getter(path: Path) -> Callable[[str], dict[str, Any]]:
                 "archived": bool(row.get("archived", False)),
                 "fork": bool(row.get("fork", False)),
                 "default_branch": row.get("default_branch", "main"),
-                "html_url": row.get("html_url", f"https://github.com/{repository}"),
+                "html_url": row.get(
+                    "html_url",
+                    f"https://github.com/{repository}",
+                ),
                 "pushed_at": row.get("pushed_at"),
             }
         if len(parts) >= 5 and parts[3] == "commits":
@@ -223,24 +285,49 @@ def fixture_getter(path: Path) -> Callable[[str], dict[str, Any]]:
     return get
 
 
-def finding(code: str, severity: str, repository: str | None, message: str, **details: Any) -> dict[str, Any]:
-    value: dict[str, Any] = {"code": code, "severity": severity, "message": message}
+def finding(
+    code: str,
+    severity: str,
+    repository: str | None,
+    message: str,
+    **details: Any,
+) -> dict[str, Any]:
+    value: dict[str, Any] = {
+        "code": code,
+        "severity": severity,
+        "message": message,
+    }
     if repository:
         value["repository"] = repository
     value.update(details)
     return value
 
 
-def declared_visibility(declarations: dict[str, list[dict[str, Any]]], repository: str) -> set[str]:
-    return {str(row.get("visibility")) for row in declarations.get(repository, [])}
+def declared_visibility(
+    declarations: dict[str, list[dict[str, Any]]],
+    repository: str,
+) -> set[str]:
+    return {
+        str(row.get("visibility"))
+        for row in declarations.get(repository, [])
+    }
 
 
-def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, Any]:
+def audit(
+    get: Callable[[str], dict[str, Any]],
+    observed_at: str,
+) -> dict[str, Any]:
     portfolio = compile_portfolio()
-    declarations: dict[str, list[dict[str, Any]]] = portfolio["declarations"]
+    declarations: dict[str, list[dict[str, Any]]] = portfolio[
+        "declarations"
+    ]
     flagships: list[dict[str, Any]] = portfolio["flagships"]
-    evidence_by_repository: dict[str, dict[str, Any]] = portfolio["evidence_by_repository"]
-    inventory_repositories: set[str] = portfolio["inventory_repositories"]
+    evidence_by_repository: dict[str, dict[str, Any]] = portfolio[
+        "evidence_by_repository"
+    ]
+    inventory_repositories: set[str] = portfolio[
+        "inventory_repositories"
+    ]
 
     findings: list[dict[str, Any]] = []
     metadata: dict[str, dict[str, Any]] = {}
@@ -250,14 +337,17 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
         repo = get(f"/repos/{quote(owner)}/{quote(name)}")
         if repo.get("_unobservable"):
             declared = declared_visibility(declarations, repository)
-            metadata[repository] = {"observable": False, "visibility": None}
+            metadata[repository] = {
+                "observable": False,
+                "visibility": None,
+            }
             if "public" in declared:
                 findings.append(
                     finding(
                         "DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE",
                         "ERROR",
                         repository,
-                        "Repository is declared public but was not observable from GitHub.",
+                        "Declared public repository was not observable.",
                     )
                 )
             else:
@@ -266,7 +356,10 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
                         "PRIVATE_OR_SCOPED_REPOSITORY_UNOBSERVABLE",
                         "INFO",
                         repository,
-                        "Repository metadata is not visible to this token; no private visibility inference was made.",
+                        (
+                            "Repository metadata is not visible to this token; "
+                            "no private visibility inference was made."
+                        ),
                     )
                 )
             continue
@@ -288,9 +381,14 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
                     "DECLARATION_VISIBILITY_CONFLICT",
                     "ERROR",
                     repository,
-                    "The same repository has conflicting visibility declarations across company dossiers.",
+                    (
+                        "Repository has conflicting visibility declarations "
+                        "across company dossiers."
+                    ),
                     declared=sorted(visibilities),
-                    company_ids=sorted({str(row.get("company_id")) for row in rows}),
+                    company_ids=sorted(
+                        {str(row.get("company_id")) for row in rows}
+                    ),
                 )
             )
         actual = metadata.get(repository, {}).get("visibility")
@@ -302,13 +400,17 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
                             "LIVE_VISIBILITY_MISMATCH",
                             "ERROR",
                             repository,
-                            "Helix declared visibility does not match current GitHub visibility.",
+                            (
+                                "Helix declared visibility does not match "
+                                "current GitHub visibility."
+                            ),
                             declared=declared,
                             actual=actual,
                         )
                     )
         if metadata.get(repository, {}).get("archived") and any(
-            row.get("inventory_scope") == "HELIX_ADMITTED" for row in rows
+            row.get("inventory_scope") == "HELIX_ADMITTED"
+            for row in rows
         ):
             findings.append(
                 finding(
@@ -340,9 +442,17 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
             evidence_state = str(evidence.get("state", "UNKNOWN"))
             evidence_head = evidence.get("observed_head_sha")
             default_branch = meta.get("default_branch")
-            if meta.get("observable") and isinstance(default_branch, str) and default_branch:
+            if (
+                meta.get("observable")
+                and isinstance(default_branch, str)
+                and default_branch
+            ):
                 owner, name = repository.split("/", 1)
-                head = get(f"/repos/{quote(owner)}/{quote(name)}/commits/{quote(default_branch, safe='')}")
+                path = (
+                    f"/repos/{quote(owner)}/{quote(name)}/commits/"
+                    f"{quote(default_branch, safe='')}"
+                )
+                head = get(path)
                 if not head.get("_unobservable"):
                     current_head = head.get("sha")
                     head_matches = bool(
@@ -356,32 +466,48 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
                                 "STALE_FLAGSHIP_LIVE_EVIDENCE",
                                 "ERROR",
                                 repository,
-                                "Flagship live-evidence receipt is not bound to the current default-branch head.",
+                                (
+                                    "Flagship live-evidence receipt is not "
+                                    "bound to the current default-branch head."
+                                ),
                                 observed_head=evidence_head,
                                 current_head=current_head,
                                 state=state,
                             )
                         )
 
-        if state in RECRUITER_ELIGIBLE_STATES and actual_visibility == "public" and evidence is None:
+        if (
+            state in RECRUITER_ELIGIBLE_STATES
+            and actual_visibility == "public"
+            and evidence is None
+        ):
             findings.append(
                 finding(
                     "MISSING_FLAGSHIP_LIVE_EVIDENCE",
                     "WARNING",
                     repository,
-                    "Recruiter-eligible public flagship has no live-evidence registry row.",
+                    (
+                        "Recruiter-eligible public flagship has no "
+                        "live-evidence registry row."
+                    ),
                     state=state,
                     public_surface=public_surface,
                 )
             )
 
-        if public_surface in PUBLIC_FLAGSHIP_SURFACES and actual_visibility == "private":
+        if (
+            public_surface in PUBLIC_FLAGSHIP_SURFACES
+            and actual_visibility == "private"
+        ):
             findings.append(
                 finding(
                     "AMBIGUOUS_PUBLIC_SURFACE_PRIVATE_SOURCE",
                     "WARNING",
                     repository,
-                    "Presentation visibility and source-repository visibility are conflated for this flagship.",
+                    (
+                        "Presentation visibility and source-repository "
+                        "visibility are conflated for this flagship."
+                    ),
                     public_surface=public_surface,
                     source_visibility=actual_visibility,
                 )
@@ -415,11 +541,20 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
         )
     )
     recruiter_missing_evidence = sorted(
-        repository for repository in recruiter_eligible_repositories if repository not in evidence_by_repository
+        repository
+        for repository in recruiter_eligible_repositories
+        if repository not in evidence_by_repository
     )
 
     def count(code: str) -> int:
         return sum(row["code"] == code for row in findings)
+
+    stale_count = count("STALE_FLAGSHIP_LIVE_EVIDENCE")
+    missing_flagship_count = count("MISSING_FLAGSHIP_LIVE_EVIDENCE")
+    visibility_mismatch_count = count("LIVE_VISIBILITY_MISMATCH")
+    public_unobservable_count = count(
+        "DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE"
+    )
 
     result = {
         "schema": "glaciereq.portfolio-live-freshness-receipt.v1",
@@ -432,36 +567,58 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
             "inventory_children": len(inventory_repositories),
             "company_tracks": len(portfolio["company_ids"]),
             "dossier_repositories": len(declarations),
-            "owner_estate_repositories_audited": len(portfolio["all_repositories"]),
+            "owner_estate_repositories_audited": len(
+                portfolio["all_repositories"]
+            ),
             "flagships": len(flagships),
             "live_evidence_rows": len(evidence_by_repository),
-            "recruiter_eligible_dossier_repositories": len(recruiter_eligible_repositories),
-            "recruiter_eligible_missing_live_evidence": len(recruiter_missing_evidence),
+            "recruiter_eligible_dossier_repositories": len(
+                recruiter_eligible_repositories
+            ),
+            "recruiter_eligible_missing_live_evidence": len(
+                recruiter_missing_evidence
+            ),
         },
         "freshness": {
-            "visibility_mismatches": count("LIVE_VISIBILITY_MISMATCH"),
-            "declared_public_unobservable": count("DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE"),
-            "stale_flagship_evidence": count("STALE_FLAGSHIP_LIVE_EVIDENCE"),
-            "missing_flagship_live_evidence": count("MISSING_FLAGSHIP_LIVE_EVIDENCE"),
-            "ambiguous_public_surface_private_source": count("AMBIGUOUS_PUBLIC_SURFACE_PRIVATE_SOURCE"),
-            "all_recruiter_eligible_have_live_evidence": not recruiter_missing_evidence,
-            "all_flagship_evidence_current": not count("STALE_FLAGSHIP_LIVE_EVIDENCE") and not count("MISSING_FLAGSHIP_LIVE_EVIDENCE"),
-            "declared_visibility_matches_live": not count("LIVE_VISIBILITY_MISMATCH") and not count("DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE"),
+            "visibility_mismatches": visibility_mismatch_count,
+            "declared_public_unobservable": public_unobservable_count,
+            "stale_flagship_evidence": stale_count,
+            "missing_flagship_live_evidence": missing_flagship_count,
+            "ambiguous_public_surface_private_source": count(
+                "AMBIGUOUS_PUBLIC_SURFACE_PRIVATE_SOURCE"
+            ),
+            "all_recruiter_eligible_have_live_evidence": (
+                not recruiter_missing_evidence
+            ),
+            "all_flagship_evidence_current": (
+                not stale_count and not missing_flagship_count
+            ),
+            "declared_visibility_matches_live": (
+                not visibility_mismatch_count
+                and not public_unobservable_count
+            ),
         },
-        "recruiter_eligible_missing_live_evidence": recruiter_missing_evidence,
+        "recruiter_eligible_missing_live_evidence": (
+            recruiter_missing_evidence
+        ),
         "flagships": flagship_results,
         "findings": sorted(
             findings,
             key=lambda row: (
-                {"ERROR": 0, "WARNING": 1, "INFO": 2}.get(row["severity"], 3),
+                {"ERROR": 0, "WARNING": 1, "INFO": 2}.get(
+                    row["severity"],
+                    3,
+                ),
                 row["code"],
                 row.get("repository", ""),
             ),
         ),
         "truth_boundary": (
-            "This receipt verifies observable GitHub metadata and evidence freshness only. "
-            "A scoped 404 is never treated as proof that a private repository is absent. "
-            "The receipt does not prove authorship, runtime correctness, deployment, hardware behavior, employer affiliation, or business impact."
+            "This receipt verifies observable GitHub metadata and evidence "
+            "freshness only. A scoped 404 is never treated as proof that a "
+            "private repository is absent. The receipt does not prove "
+            "authorship, runtime correctness, deployment, hardware behavior, "
+            "employer affiliation, or business impact."
         ),
     }
     result["receipt_sha256"] = digest(result)
@@ -470,14 +627,34 @@ def audit(get: Callable[[str], dict[str, Any]], observed_at: str) -> dict[str, A
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--fixture", type=Path, help="Offline GitHub metadata fixture")
+    parser.add_argument(
+        "--fixture",
+        type=Path,
+        help="Offline GitHub metadata fixture",
+    )
     parser.add_argument("--write-receipt", type=Path)
-    parser.add_argument("--strict", action="store_true", help="Return exit code 2 when ERROR findings exist")
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Return exit code 2 when ERROR findings exist",
+    )
     args = parser.parse_args()
 
     try:
-        get = fixture_getter(args.fixture) if args.fixture else github_getter(os.environ.get("PORTFOLIO_AUDIT_GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN", ""))
-        observed_at = "FIXTURE" if args.fixture else datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+        if args.fixture:
+            get = fixture_getter(args.fixture)
+            observed_at = "FIXTURE"
+        else:
+            token = os.environ.get(
+                "PORTFOLIO_AUDIT_GITHUB_TOKEN"
+            ) or os.environ.get("GITHUB_TOKEN", "")
+            get = github_getter(token)
+            observed_at = (
+                datetime.now(UTC)
+                .replace(microsecond=0)
+                .isoformat()
+                .replace("+00:00", "Z")
+            )
         receipt = audit(get, observed_at)
     except (AuditError, OSError, ValueError) as exc:
         print(f"portfolio live freshness: FAIL: {exc}", file=sys.stderr)
@@ -492,7 +669,9 @@ def main() -> int:
         print(f"wrote {output.relative_to(ROOT)}")
 
     print(json.dumps(receipt, indent=2, sort_keys=True))
-    if args.strict and any(row["severity"] == "ERROR" for row in receipt["findings"]):
+    if args.strict and any(
+        row["severity"] == "ERROR" for row in receipt["findings"]
+    ):
         return 2
     return 0
 
