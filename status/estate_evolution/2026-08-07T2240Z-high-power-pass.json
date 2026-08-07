@@ -41,9 +41,16 @@
     "priority_spine_quick_checks": {
       "AKOS_open_user_prs": 0,
       "pro_code_open_user_prs": 0
+    },
+    "control_plane_receipt_promotion": {
+      "pr": 60,
+      "head": "359d1a3aba917e565f52440e0d4267d883880dff",
+      "application_registry_validation": "success",
+      "ci": "success",
+      "merge": "squash_with_expected_head_guard"
     }
   },
-  "canonical_head_after": "PENDING_RECEIPT_PROMOTION",
+  "canonical_head_after": "0a46632d46f342a200e7a0e0cb22115c77e55c86",
   "remote_ref_disposition": {
     "GlacierEQ/mastermind:sentinel-harden-overleaf-mcp-12743448724538258220": "DELETE_REF_REQUIRED",
     "GlacierEQ/mastermind:sentinel-harden-apex-vault-3924747673028592930": "DELETE_REF_REQUIRED",
