@@ -101,6 +101,14 @@
           "source_ref": "commit:e3778353e92b404de43f41963a0c7bffb84897ac",
           "visibility": "public",
           "verification_state": "VERIFIED"
+        },
+        {
+          "id": "lockheed_inspection_tower_receipt",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/the-tower-of-babel/blob/e3778353e92b404de43f41963a0c7bffb84897ac/src/tower/receipt.py",
+          "source_ref": "commit:e3778353e92b404de43f41963a0c7bffb84897ac",
+          "visibility": "public",
+          "verification_state": "VERIFIED"
         }
       ],
       "claim_ceiling": "inspected_implementation_alignment",
