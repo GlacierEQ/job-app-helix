@@ -1,0 +1,84 @@
+{
+  "schema": "glaciereq.estate-evolution.policy.v1",
+  "owner": "GlacierEQ",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "topology_source": "GlacierEQ/monolith",
+  "intelligence_source": "GlacierEQ/mastermind",
+  "canonical_link_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
+  "cadence": "hourly",
+  "execution_budget": "continue_until_time_or_tool_budget_is_exhausted",
+  "priority": [
+    "priority_spine",
+    "legal_spines",
+    "repositories_with_active_unique_branch_value",
+    "repositories_with_failing_or_stale_automation",
+    "portfolio_wave_order",
+    "remaining_owned_library"
+  ],
+  "news_policy": {
+    "window_hours": 24,
+    "prefer_primary_sources": true,
+    "secondary_sources": ["Reuters", "peer-reviewed or preprint research"],
+    "promote_only_when_actionable": true,
+    "actionable_threshold": "changes architecture, reliability, agent configuration, testing, security, context engineering, model routing, cost, or developer workflow",
+    "retire_obsolete_links": true,
+    "preserve_replacement_chain": true
+  },
+  "branch_policy": {
+    "canonical_branch_default": "main",
+    "never_merge_stale_tip_directly": true,
+    "synthesis_base": "fresh_canonical_head",
+    "compare_patch_equivalence": true,
+    "inspect_unique_files_and_commits": true,
+    "require_repository_native_verification": true,
+    "require_expected_head_guard": true,
+    "delete_only_after_zero_unique_value": true,
+    "delete_only_after_canonical_contains_preserved_value": true,
+    "delete_truth_boundary": "remote ref deletion must have a deletion receipt; PR closure is not deletion",
+    "no_fixed_one_branch_limit": true
+  },
+  "fork_policy": {
+    "preserve_upstream_purity": true,
+    "durable_branches": ["upstream-tracking", "canonical-overlay"],
+    "upstream_tracking_rule": "fast-forward only from source/upstream; never place GlacierEQ custom commits on this line",
+    "overlay_rule": "GlacierEQ changes are composed on top of refreshed upstream state rather than copied through or substituted for source internals",
+    "integration_rule": "refresh upstream first, synthesize custom delta on current ancestry, verify, then promote",
+    "short_lived_integration_branches": true
+  },
+  "maintenance_policy": {
+    "repair_before_expand": true,
+    "upgrade_dependencies_when_supported_by_tests": true,
+    "remove_dead_configuration_only_with_usage_evidence": true,
+    "improve_tests_before_risky_refactors": true,
+    "prefer_current_upstream_patterns": true,
+    "innovation_requires_measurable_benefit": true,
+    "never_refactor_for_novelty": true
+  },
+  "mutation_gates": {
+    "direct_main_update": "only_after_verified_synthesis_and_expected-head-check",
+    "pull_request": "preferred_for_nontrivial_or_cross-cutting changes",
+    "branch_deletion": "only_after exhausted-value proof and deletion capability",
+    "fork_upstream_branch": "never receives custom overlay commits"
+  },
+  "receipt": {
+    "path": "status/estate_evolution/",
+    "required_fields": [
+      "timestamp",
+      "repository",
+      "canonical_head_before",
+      "branch",
+      "merge_base",
+      "ahead",
+      "behind",
+      "unique_patch_commits",
+      "files_changed",
+      "decision",
+      "preservation",
+      "verification",
+      "canonical_head_after",
+      "remote_ref_disposition",
+      "news_inputs",
+      "innovation_inputs"
+    ]
+  }
+}
