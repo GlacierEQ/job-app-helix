@@ -16,7 +16,8 @@ from typing import Any
 PYTHON = sys.executable
 PASSED_COUNT = re.compile(r"(?P<count>\d+) passed(?:,|\s)")
 RAN_COUNT = re.compile(r"Ran (?P<count>\d+) tests?")
-COMMIT_SHA = re.compile(r"^[0-9a-f]{40}$")
+COLLECTED_COUNT = re.compile(r"(?P<count>\d+) tests? collected", re.IGNORECASE)
+GIT_SHA = re.compile(r"^[0-9a-f]{40}$")
 
 PYTHON_CONTRACTS: dict[str, list[list[str]]] = {
     "job-app-helix": [
@@ -115,38 +116,97 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def observed_test_count(output: str) -> int | None:
-    for pattern in (PASSED_COUNT, RAN_COUNT):
-        match = pattern.search(output)
-        if match:
-            return int(match.group("count"))
-    return None
-
-
-def command_requires_test_proof(argv: list[str]) -> bool:
-    joined = " ".join(argv)
-    return "pytest" in argv or "unittest" in argv or " test" in f" {joined}"
-
-
 def resolve_commit_sha(cwd: Path) -> str | None:
-    """Resolve the exact checked-out commit without trusting the supplied mutable ref."""
+    """Resolve the exact commit checked out for execution, or fail closed."""
+
     try:
         process = subprocess.run(
-            ["git", "rev-parse", "HEAD"],
+            ["git", "rev-parse", "--verify", "HEAD^{commit}"],
             cwd=cwd,
             text=True,
-            capture_output=True,
-            timeout=15,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            timeout=30,
             check=False,
             shell=False,
         )
     except (OSError, subprocess.TimeoutExpired):
         return None
 
-    candidate = (process.stdout or "").strip().lower()
-    if process.returncode != 0 or COMMIT_SHA.fullmatch(candidate) is None:
+    resolved = (process.stdout or "").strip().lower()
+    if process.returncode != 0 or GIT_SHA.fullmatch(resolved) is None:
         return None
-    return candidate
+    return resolved
+
+
+def observed_test_count(output: str) -> int | None:
+    for pattern in (PASSED_COUNT, RAN_COUNT, COLLECTED_COUNT):
+        match = pattern.search(output)
+        if match:
+            return int(match.group("count"))
+    return None
+
+
+def is_pytest_command(argv: list[str]) -> bool:
+    return "pytest" in argv
+
+
+def command_requires_test_proof(argv: list[str]) -> bool:
+    joined = " ".join(argv)
+    return is_pytest_command(argv) or "unittest" in argv or " test" in f" {joined}"
+
+
+def pytest_collection_command(argv: list[str]) -> list[str]:
+    """Build a deterministic collection command independent of quiet addopts."""
+
+    pytest_index = argv.index("pytest")
+    prefix = argv[: pytest_index + 1]
+    suffix = [arg for arg in argv[pytest_index + 1 :] if arg not in {"-q", "--quiet"}]
+    return [*prefix, "--collect-only", "-q", "-o", "addopts=", *suffix]
+
+
+def count_collected_pytest_nodes(output: str) -> int:
+    """Count collected pytest node ids, falling back to pytest's collection summary."""
+
+    node_ids = {
+        line.strip()
+        for line in output.splitlines()
+        if "::" in line and not line.lstrip().startswith(("=", "<"))
+    }
+    if node_ids:
+        return len(node_ids)
+    return observed_test_count(output) or 0
+
+
+def collect_pytest_count(
+    argv: list[str],
+    cwd: Path,
+    timeout: int,
+    env: dict[str, str],
+) -> tuple[int, str, int]:
+    """Collect pytest tests before execution so proof does not depend on console prose."""
+
+    collection_argv = pytest_collection_command(argv)
+    try:
+        process = subprocess.run(
+            collection_argv,
+            cwd=cwd,
+            env=env,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            timeout=timeout,
+            check=False,
+            shell=False,
+        )
+    except subprocess.TimeoutExpired as exc:
+        output = exc.stdout if isinstance(exc.stdout, str) else ""
+        return 124, output, 0
+    except OSError as exc:
+        return 126, f"COLLECTION EXECUTION ERROR: {exc}", 0
+
+    output = process.stdout or ""
+    return process.returncode, output, count_collected_pytest_nodes(output)
 
 
 def run_commands(
@@ -160,6 +220,25 @@ def run_commands(
     maximum_test_count: int | None = None
 
     for argv in commands:
+        collection_count: int | None = None
+        if is_pytest_command(argv):
+            collection_argv = pytest_collection_command(argv)
+            lines.append(f"$ {json.dumps(collection_argv)}")
+            collection_code, collection_output, collection_count = collect_pytest_count(
+                argv,
+                cwd,
+                timeout,
+                env,
+            )
+            lines.append(collection_output)
+            if collection_code != 0:
+                lines.append("UNVERIFIED: pytest collection failed")
+                return collection_code, "\n".join(lines), maximum_test_count
+            if collection_count <= 0:
+                lines.append("UNVERIFIED: pytest collected zero tests")
+                return 3, "\n".join(lines), 0
+            maximum_test_count = max(maximum_test_count or 0, collection_count)
+
         lines.append(f"$ {json.dumps(argv)}")
         try:
             process = subprocess.run(
@@ -192,6 +271,9 @@ def run_commands(
         if command_requires_test_proof(argv) and count == 0:
             lines.append("UNVERIFIED: test command reported zero tests")
             return 3, "\n".join(lines), 0
+        if is_pytest_command(argv) and collection_count is None:
+            lines.append("UNVERIFIED: pytest execution lacked collection proof")
+            return 3, "\n".join(lines), 0
 
     return 0, "\n".join(lines), maximum_test_count
 
@@ -217,13 +299,21 @@ def resolve_contract(
 def main() -> int:
     args = parse_args()
     started = now()
-    resolved_commit_sha = resolve_commit_sha(args.path)
     commands, technology, tool, environment = resolve_contract(
         args.name,
         args.surface,
     )
+    resolved_commit_sha = resolve_commit_sha(args.path)
 
-    if not commands:
+    if resolved_commit_sha is None:
+        status = "BLOCKED_IDENTITY"
+        exit_code = 4
+        log = (
+            "Unable to resolve an exact Git commit for the checked-out execution path. "
+            "No verification state may be promoted without content identity.\n"
+        )
+        test_count = None
+    elif not commands:
         status = "INVALID_CONTRACT"
         exit_code = 2
         log = f"No bounded execution contract for {args.name}.\n"
@@ -240,11 +330,7 @@ def main() -> int:
             args.timeout,
             environment,
         )
-        if exit_code == 0 and resolved_commit_sha is None:
-            status = "BLOCKED_IDENTITY"
-            log += "\nUNVERIFIED: checked-out commit SHA could not be resolved.\n"
-        else:
-            status = "VERIFIED" if exit_code == 0 else "FAILED"
+        status = "VERIFIED" if exit_code == 0 else "FAILED"
 
     payload = {
         "schema": "glaciereq.portfolio.verification.v1",
