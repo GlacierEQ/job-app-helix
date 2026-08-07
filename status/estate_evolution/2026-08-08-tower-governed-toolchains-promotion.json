@@ -1,0 +1,47 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "timestamp": "2026-08-08",
+  "repository": "GlacierEQ/the-tower-of-babel",
+  "canonical_branch": "main",
+  "canonical_head_before": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+  "branch": "fix/governed-tool-contracts-20260808",
+  "merge_base": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+  "ahead": 9,
+  "behind": 0,
+  "unique_patch_commits": "combined PR #28 branch-hygiene/integrity repair plus governed admission of seven registry-declared specialized toolchain frontends and regression coverage",
+  "files_changed": [
+    ".github/workflows/branch-hygiene.yml",
+    ".integrity/file_hashes.json",
+    "src/tower/build.py",
+    "tests/test_security_boundaries.py"
+  ],
+  "decision": "PROMOTED_VERIFIED_SYNTHESIS",
+  "preservation": "PR #29 preserved PR #28 branch-hygiene and native integrity value while adding the independent governed-toolchain repair; stale PR #28 tip was not merged separately",
+  "verification": {
+    "exact_head": "9c6e285213bc1363021621ba44c1a87d69656045",
+    "advanced_exhibit_gate": "success",
+    "spiral_engine_verification": "success",
+    "nervous_system_contract": "success",
+    "tower_quality_gate": "success",
+    "tower_verification": "success"
+  },
+  "canonical_head_after": "e3778353e92b404de43f41963a0c7bffb84897ac",
+  "remote_ref_disposition": {
+    "fix/governed-tool-contracts-20260808": "DELETE_REF_REQUIRED_UNLESS_NATIVE_BRANCH_HYGIENE_PROVES_DELETION",
+    "fix/branch-hygiene-synthesis-prefixes-20260807": "DELETE_REF_REQUIRED",
+    "pr_28": "CLOSED_SUPERSEDED_ZERO_PR_LAYER_UNIQUE_VALUE"
+  },
+  "news_inputs": [
+    "Reuters 2026-08-07 corporate AI economics signal already represented in Mastermind radar",
+    "strict primary-vendor scan found no new qualifying 24-hour engineering signal requiring radar mutation"
+  ],
+  "innovation_inputs": [
+    "governed executable allowlist remains explicit and argv-only",
+    "specialized toolchain admission is registry-driven rather than arbitrary executable expansion",
+    "branch cleanup preserves same-repository, exact-head, and protected-ref safeguards"
+  ],
+  "blockers": [
+    "remote branch deletion requires a deletion-capable surface or native branch-hygiene proof"
+  ],
+  "next_cursor": "GlacierEQ/monolith PR #48 legal-live reconciliation native verification gate, then next unresolved priority-spine branch family"
+}
