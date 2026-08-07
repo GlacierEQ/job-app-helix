@@ -1,37 +1,41 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-07T07:19:00Z",
+  "updated_at": "2026-08-07T07:28:00Z",
   "control_plane": "GlacierEQ/job-app-helix",
   "phase": "PRIORITY_SPINE_BRANCH_CONSOLIDATION",
   "cursor": {
     "repository": "GlacierEQ/mastermind",
     "canonical_branch": "main",
-    "next_branch": "palette-ui siblings",
+    "next_branch": "remaining palette-ui siblings",
     "after_family": "bolt hashing/router siblings, then next priority repository/family"
   },
   "current_repository": {
     "repository": "GlacierEQ/mastermind",
-    "canonical_head_observed_before_receipt": "88067e9dfca8c91f1bfcec76158592f06547a06a",
-    "canonical_head_after_receipt": "6e205f51eb26362cc3b7c70f8bf7458ed654a1ef",
-    "next_decision": "FINISH PALETTE AND BOLT SIBLING PATCH-EQUIVALENCE SWEEPS; RETIRE ONLY ZERO-VALUE REFS; DO NOT RESURRECT REMOVED UI/FORENSICS SURFACES"
+    "canonical_head_observed_before_pass": "88067e9dfca8c91f1bfcec76158592f06547a06a",
+    "canonical_head_after_promotions": "3a564606111568657a3a0aca2f1c0044ddd0f69f",
+    "canonical_head_after_receipts": "d15c6d238179878b724c36234f855b14b8012a07",
+    "next_decision": "FINISH PALETTE SIBLING CLASSIFICATION; THEN BOLT HASHING/ROUTER SIBLINGS; PRESERVE ONLY LIVE CURRENT-SURFACE DELTAS"
   },
   "completed_this_pass": [
     {
       "repository": "GlacierEQ/mastermind",
-      "branch_family": [
-        "sentinel/redact-mem0-keys-10362752005782221452",
-        "sentinel/redact-mem0-keys-44486167670151120",
-        "sentinel/fix-hardcoded-mem0-keys-11028817579529563272",
-        "bolt/async-multi-memory-orchestrator-10502223738840060164"
-      ],
+      "branch_family": "sentinel-mem0-plus-bolt-async-memory",
       "synthesis_branch": "synth/mem0-live-adapter-20260807",
       "pull_request": 154,
-      "canonical_head_before": "88067e9dfca8c91f1bfcec76158592f06547a06a",
-      "canonical_head_after_synthesis": "a14b3996553e73a13161d980a8452467779cf44b",
-      "canonical_head_after_receipt": "6e205f51eb26362cc3b7c70f8bf7458ed654a1ef",
+      "canonical_head_after": "a14b3996553e73a13161d980a8452467779cf44b",
       "decision": "SYNTHESIZED_VERIFIED_AND_PROMOTED",
-      "verification": "MASTER MIND TRUTH CONTRACT RUN 20 SUCCESS; PR MERGED WITH EXPECTED HEAD GUARD",
+      "verification": "MASTER MIND TRUTH CONTRACT RUN 20 SUCCESS; EXPECTED-HEAD GUARDED MERGE",
       "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_FINAL_PATCH_EQUIVALENCE_SWEEP"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "branch_family": "bolt-parallel-router",
+      "synthesis_branch": "synth/router-failure-isolation-20260807",
+      "pull_request": 155,
+      "canonical_head_after": "3a564606111568657a3a0aca2f1c0044ddd0f69f",
+      "decision": "SYNTHESIZED_VERIFIED_AND_PROMOTED",
+      "verification": "MASTER MIND TRUTH CONTRACT RUN 23 SUCCESS; EXPECTED-HEAD GUARDED MERGE",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_SIBLING_PATCH_EQUIVALENCE_SWEEP"
     },
     {
       "repository": "GlacierEQ/mastermind",
@@ -46,6 +50,13 @@
       "decision": "SECURITY_VALUE_SUPERSEDED_BY_SHARED_MAIN_IMPLEMENTATION",
       "verification": "CURRENT CENTRALIZED PILLAR SAFE-JOIN IMPLEMENTATION INSPECTED",
       "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_SIBLING_CONFIRMATION"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "branch_family": "palette-ui-sampled",
+      "decision": "REMOVED-SURFACE NON-RESURRECTION; ONE STRICT-ANCESTOR REF RETIREMENT-READY",
+      "verification": "SIX REPRESENTATIVE BRANCHES COMPARED; ACTIVE DASHBOARD TARGET ABSENT FROM CURRENT MAIN",
+      "remote_ref_disposition": "MIXED_KEEP_AND_DELETE_REF_REQUIRED_PENDING_FULL_FAMILY_SWEEP"
     }
   ],
   "preserved_prior_completions": [
@@ -57,14 +68,14 @@
   "pending": [
     {
       "repository": "GlacierEQ/mastermind",
-      "branch_family": "palette-ui",
-      "decision": "REPRESENTATIVE BRANCH TARGETS REMOVED APPS/WEB SURFACE; COMPLETE SIBLING CONFIRMATION",
+      "branch_family": "remaining palette-ui siblings",
+      "decision": "CONFIRM REMOVED-SURFACE OR STRICT-ANCESTOR STATUS",
       "remote_ref_disposition": "KEEP_PENDING_FAMILY_SWEEP"
     },
     {
       "repository": "GlacierEQ/mastermind",
       "branch_family": "bolt-hashing-router",
-      "decision": "REPRESENTATIVE HASHING BRANCH TARGETS REMOVED DUPLICATED FS/FORENSICS SURFACES; COMPLETE SIBLING CONFIRMATION AND ROUTER REVIEW",
+      "decision": "HASHING REPRESENTATIVE TARGETS REMOVED HISTORICAL SURFACES; ROUTER FAMILY HAS LIVE SURFACE AND REQUIRES PATCH-EQUIVALENCE AFTER PROMOTION",
       "remote_ref_disposition": "KEEP_PENDING_FAMILY_SWEEP"
     },
     {
@@ -96,7 +107,8 @@
     "github_hosted_actions_available_this_pass": true
   },
   "latest_receipts": [
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0718.json"
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0718.json",
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0727.json"
   ],
-  "next_run_contract": "Build on this state. Do not revisit preserved AKOS/pro-code/Pro_Code/Mastermind canonical families except for proven ref deletion. Finish Mastermind Palette sibling comparison, then Bolt hashing/router families. Treat removed historical surfaces as non-resurrection candidates. Preserve superior unique behavior only by synthesis onto fresh current main with tests and expected-head guarded promotion."
+  "next_run_contract": "Build on this state. Do not revisit already promoted Mem0 or router synthesis except for patch-equivalence/ref retirement. Finish remaining Palette siblings, then Bolt hashing/router siblings. Removed historical surfaces must not be resurrected. Any surviving live behavior must be synthesized onto fresh current main, tested, and merged only with expected-head guards."
 }
