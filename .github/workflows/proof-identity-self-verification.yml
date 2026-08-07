@@ -1,0 +1,97 @@
+name: Proof Identity Self Verification
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/run_featured_verification.py"
+      - "tests/test_proof_identity_receipts.py"
+      - ".github/workflows/proof-identity-self-verification.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  self-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact pull-request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Helix development dependencies
+        run: python -m pip install -e '.[dev]'
+
+      - name: Run content-addressed Helix verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="$(git rev-parse HEAD)"
+          python scripts/run_featured_verification.py \
+            --name job-app-helix \
+            --repository GlacierEQ/job-app-helix \
+            --ref "$expected" \
+            --path . \
+            --surface python \
+            --output proof-identity-result.json \
+            --log proof-identity.log
+
+      - name: Enforce receipt identity and executable proof
+        shell: python
+        run: |
+          import json
+          import subprocess
+          from pathlib import Path
+
+          expected = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"], text=True
+          ).strip()
+          receipt = json.loads(
+              Path("proof-identity-result.json").read_text(encoding="utf-8")
+          )
+          if receipt.get("resolved_commit_sha") != expected:
+              raise SystemExit(
+                  "receipt commit identity diverges from the executed checkout"
+              )
+          if receipt.get("identity_status") != "RESOLVED":
+              raise SystemExit("verification receipt identity is not RESOLVED")
+          if receipt.get("ref") != expected:
+              raise SystemExit("supplied verification ref was not pinned to the PR head")
+          if receipt.get("status") != "VERIFIED":
+              raise SystemExit(
+                  f"self verification is not VERIFIED: {receipt.get('status')}"
+              )
+          if int(receipt.get("observed_test_count") or 0) <= 0:
+              raise SystemExit("verification did not observe a positive test count")
+          print(
+              json.dumps(
+                  {
+                      "status": "PASS",
+                      "identity_status": receipt["identity_status"],
+                      "resolved_commit_sha": expected,
+                      "observed_test_count": receipt["observed_test_count"],
+                  },
+                  indent=2,
+              )
+          )
+
+      - name: Upload proof identity receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: proof-identity-${{ github.event.pull_request.head.sha }}
+          path: |
+            proof-identity-result.json
+            proof-identity.log
+          if-no-files-found: warn
+          retention-days: 30
