@@ -111,7 +111,9 @@ def test_featured_verifier_rejects_mutable_ref_as_commit_identity(
     assert module.resolve_commit_sha(tmp_path) is None
 
 
-def test_census_reports_missing_tests_without_inventing_proof(tmp_path: Path) -> None:
+def test_census_reports_missing_tests_without_inventing_provenance(
+    tmp_path: Path,
+) -> None:
     module = load_script("proof_weighted_repo_census")
     (tmp_path / "README.md").write_text(
         "# Example\n\nWhy it matters.\n\n## Architecture\n\n## Machine-readable contract\n",
@@ -122,10 +124,77 @@ def test_census_reports_missing_tests_without_inventing_proof(tmp_path: Path) ->
     result = module.build_result(
         repo="GlacierEQ/example",
         root=tmp_path,
-        metadata={"visibility": "public"},
+        metadata={"visibility": "public", "fork": False},
         timeout=10,
     )
 
+    assert result["schema"] == "glaciereq.portfolio.audit.v2"
     assert result["verification"]["python"]["status"] == "NO_TEST_PATH"
     assert result["verification"]["python"]["observed_count"] == 0
-    assert result["admission_class"] == "candidate_original_public"
+    assert result["provenance"] == {"state": "UNRESOLVED", "markers": []}
+    assert result["admission_class"] == "candidate_public_unresolved_provenance"
+
+
+def test_census_recognizes_explicit_downstream_without_claiming_originality(
+    tmp_path: Path,
+) -> None:
+    module = load_script("proof_weighted_repo_census")
+    (tmp_path / "README.md").write_text("# Downstream\n", encoding="utf-8")
+    (tmp_path / "GLACIEREQ_DOWNSTREAM.md").write_text(
+        "Upstream: example/upstream\n",
+        encoding="utf-8",
+    )
+
+    result = module.build_result(
+        repo="GlacierEQ/downstream",
+        root=tmp_path,
+        metadata={"visibility": "public", "fork": False},
+        timeout=10,
+    )
+
+    assert result["provenance"] == {
+        "state": "EXPLICIT_DOWNSTREAM",
+        "markers": ["GLACIEREQ_DOWNSTREAM.md"],
+    }
+    assert result["admission_class"] == "candidate_attributed_downstream"
+
+
+def test_census_recognizes_paired_upstream_lineage_markers(tmp_path: Path) -> None:
+    module = load_script("proof_weighted_repo_census")
+    (tmp_path / "README.md").write_text("# Derived\n", encoding="utf-8")
+    (tmp_path / "SOURCE_REV").write_text("abc123\n", encoding="utf-8")
+    (tmp_path / "THIRD-PARTY-NOTICES").write_text(
+        "Upstream notices\n",
+        encoding="utf-8",
+    )
+
+    result = module.build_result(
+        repo="GlacierEQ/derived",
+        root=tmp_path,
+        metadata={"visibility": "public", "fork": False},
+        timeout=10,
+    )
+
+    assert result["provenance"] == {
+        "state": "EXPLICIT_UPSTREAM_LINEAGE",
+        "markers": ["SOURCE_REV", "THIRD-PARTY-NOTICES"],
+    }
+    assert result["admission_class"] == "candidate_attributed_downstream"
+
+
+def test_census_keeps_github_forks_in_reference_class(tmp_path: Path) -> None:
+    module = load_script("proof_weighted_repo_census")
+    (tmp_path / "README.md").write_text("# Fork\n", encoding="utf-8")
+
+    result = module.build_result(
+        repo="GlacierEQ/forked",
+        root=tmp_path,
+        metadata={"visibility": "public", "fork": True},
+        timeout=10,
+    )
+
+    assert result["provenance"] == {
+        "state": "GITHUB_FORK",
+        "markers": ["metadata.fork=true"],
+    }
+    assert result["admission_class"] == "supporting_reference_fork"
