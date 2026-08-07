@@ -122,6 +122,20 @@ def test_inventory_declared_total_must_match_root_plus_workspace() -> None:
         raise AssertionError("Mismatched declared repository total did not fail closed")
 
 
+def test_inventory_rejects_empty_workspace() -> None:
+    module = load_script("aggregate_portfolio_census")
+    bad_inventory = inventory()
+    bad_inventory["total_repositories"] = 1
+    bad_inventory["workspace_repositories"] = []
+
+    try:
+        module.expected_repositories(bad_inventory)
+    except ValueError as exc:
+        assert "workspace_repositories" in str(exc)
+    else:
+        raise AssertionError("Empty canonical workspace did not fail closed")
+
+
 def test_aggregate_fails_on_missing_expected_receipt(tmp_path: Path) -> None:
     module = load_script("aggregate_portfolio_census")
     write_receipt(
