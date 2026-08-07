@@ -107,7 +107,7 @@ class CompanySecondDepthTests(unittest.TestCase):
         )
         self.assertEqual(len(resolved["role_evidence"]), 1)
         self.assertEqual(len(resolved["problem_evidence"]), 1)
-        self.assertEqual(len(resolved["inspected_repositories"]), 3)
+        self.assertEqual(len(resolved["inspected_repositories"]), 4)
         self.assertEqual(resolved["proof_artifacts"], [])
         self.assertEqual(resolved["claim_receipts"], [])
         self.assertIn("company_specific_remedy_not_bounded", resolved["blockers"])
@@ -123,6 +123,53 @@ class CompanySecondDepthTests(unittest.TestCase):
                 for item in resolved["inspected_repositories"]
             )
         )
+
+    def test_repository_inspection_manifest_covers_every_declared_path(self) -> None:
+        second_depth = json.loads(
+            (ROOT / "manifests" / "company_second_depth.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        defaults = second_depth["default_company_state"]
+        evidence_root = ROOT / "evidence" / "company_second_depth"
+
+        for company_directory in sorted(evidence_root.iterdir()):
+            if not company_directory.is_dir():
+                continue
+            captures = sorted(
+                company_directory.glob("repository_inspection*.json")
+            )
+            if not captures:
+                continue
+
+            company_id = company_directory.name
+            override = second_depth["company_overrides"].get(company_id, {})
+            state = {**defaults, **override}
+            manifest_refs = {
+                (item["source_identity"], item["source_ref"])
+                for item in state["inspected_repositories"]
+            }
+            declared_refs: set[tuple[str, str]] = set()
+
+            for capture_path in captures:
+                capture = json.loads(capture_path.read_text(encoding="utf-8"))
+                self.assertEqual(
+                    capture["schema"], "glaciereq.repository-inspection.v1"
+                )
+                self.assertEqual(capture["company_id"], company_id)
+                for inspection in capture["inspections"]:
+                    repository = inspection["repository"]
+                    commit = inspection["commit"]
+                    self.assertEqual(len(commit), 40)
+                    for path in inspection["paths"]:
+                        declared_refs.add(
+                            (
+                                f"https://github.com/{repository}/blob/{commit}/{path}",
+                                f"commit:{commit}",
+                            )
+                        )
+
+            self.assertEqual(manifest_refs, declared_refs)
 
     def test_valid_pinned_public_role_evidence_can_advance_one_stage(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
