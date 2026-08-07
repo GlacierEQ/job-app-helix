@@ -56,7 +56,7 @@
   "priority_wave": ["lockheed_martin", "openai", "anthropic", "nvidia", "spacex", "xai", "microsoft", "notion"],
   "company_overrides": {
     "lockheed_martin": {
-      "stage": "PROBLEM_BOUNDED",
+      "stage": "CODE_INSPECTED",
       "role_evidence": [
         {
           "id": "lockheed_role_734997br",
@@ -77,9 +77,35 @@
           "verification_state": "VERIFIED"
         }
       ],
-      "claim_ceiling": "externally_bounded_problem_alignment",
-      "blockers": ["repository_code_not_inspected", "company_specific_remedy_not_bounded", "proof_not_reproduced"],
-      "next_gate": "Inspect exact public GlacierEQ code paths that could materially address the bounded trusted-agentic-AI integration problem; do not infer Lockheed adoption or internal architecture."
+      "inspected_repositories": [
+        {
+          "id": "lockheed_inspection_akos_runtime",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/AKOS/blob/89403272a76dda8e1f9f317e16bfce5b60c1a3f5/runtime/src/index.ts",
+          "source_ref": "commit:89403272a76dda8e1f9f317e16bfce5b60c1a3f5",
+          "visibility": "public",
+          "verification_state": "VERIFIED"
+        },
+        {
+          "id": "lockheed_inspection_apex_control_plane",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/apex-control-plane/blob/340834cf8d6c65832196b6cc0b6df281574842f8/src/control_plane_runtime.py",
+          "source_ref": "commit:340834cf8d6c65832196b6cc0b6df281574842f8",
+          "visibility": "public",
+          "verification_state": "VERIFIED"
+        },
+        {
+          "id": "lockheed_inspection_tower_integrity",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/the-tower-of-babel/blob/e3778353e92b404de43f41963a0c7bffb84897ac/src/tower/integrity.py",
+          "source_ref": "commit:e3778353e92b404de43f41963a0c7bffb84897ac",
+          "visibility": "public",
+          "verification_state": "VERIFIED"
+        }
+      ],
+      "claim_ceiling": "inspected_implementation_alignment",
+      "blockers": ["company_specific_remedy_not_bounded", "implementation_not_created", "proof_not_reproduced"],
+      "next_gate": "Bound a Lockheed-specific candidate remedy from the inspected AKOS, APEX control-plane, and Tower integrity capabilities without changing those source systems or claiming company adoption."
     },
     "openai": {"next_gate": "Verify a current public OpenAI role/team and inspect the exact admitted KV-sentinel implementation before connecting it to any company-specific engineering problem."},
     "anthropic": {"next_gate": "Verify a current public Anthropic role/team, then inspect the exact promoted coordinator and safety-monitor code paths and their native proof before bounding a company-specific remedy."},
