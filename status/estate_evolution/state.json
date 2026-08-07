@@ -1,125 +1,109 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-07T07:40:00Z",
+  "updated_at": "2026-08-07T11:18:00Z",
   "control_plane": "GlacierEQ/job-app-helix",
-  "phase": "PRIORITY_SPINE_BRANCH_CONSOLIDATION",
+  "phase": "PRIORITY_SPINE_VERIFICATION_AND_CONTINUATION",
   "cursor": {
-    "repository": "GlacierEQ/mastermind",
+    "repository": "GlacierEQ/monolith",
     "canonical_branch": "main",
-    "next_branch": "remaining bolt hashing/router variants",
-    "after_family": "next priority repository/family"
+    "next_branch": "synthesize/legal-live-reconciliation-20260807",
+    "next_pull_request": 48,
+    "after_family": "next unresolved priority-spine repository/family"
   },
   "current_repository": {
-    "repository": "GlacierEQ/mastermind",
-    "canonical_head_after_promotions": "3a564606111568657a3a0aca2f1c0044ddd0f69f",
-    "canonical_head_after_latest_receipt": "8ec392eea6f7b370551099504a113104bf900339",
-    "next_decision": "FINISH BOLT HASHING/ROUTER SIBLINGS; RETIRE HISTORICAL REMOVED-SURFACE OPTIMIZATIONS; KEEP BROAD CROSS-CUTTING VARIANTS UNTIL SEMANTIC REVIEW PROVES EXHAUSTION"
+    "repository": "GlacierEQ/monolith",
+    "canonical_head_observed": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+    "verification_candidate_head": "f686505aa521faf5f9511e423124832ad08aae3a",
+    "next_decision": "KEEP PR 48 VERIFICATION-GATED UNTIL EXECUTABLE PROOF SUCCEEDS; DO NOT MERGE ON REVIEW COMMENT OR CONFLICT-FREE STATUS ALONE"
   },
   "completed_this_pass": [
     {
       "repository": "GlacierEQ/mastermind",
-      "branch_family": "sentinel-mem0-plus-bolt-async-memory",
-      "synthesis_branch": "synth/mem0-live-adapter-20260807",
-      "pull_request": 154,
-      "canonical_head_after": "a14b3996553e73a13161d980a8452467779cf44b",
-      "decision": "SYNTHESIZED_VERIFIED_AND_PROMOTED",
-      "verification": "MASTERMIND TRUTH CONTRACT SUCCESS; EXPECTED-HEAD GUARDED MERGE",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_FINAL_PATCH_EQUIVALENCE_SWEEP"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-parallel-router",
-      "synthesis_branch": "synth/router-failure-isolation-20260807",
-      "pull_request": 155,
-      "canonical_head_after": "3a564606111568657a3a0aca2f1c0044ddd0f69f",
-      "decision": "SYNTHESIZED_VERIFIED_AND_PROMOTED",
-      "verification": "MASTERMIND TRUTH CONTRACT SUCCESS; EXPECTED-HEAD GUARDED MERGE",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_FINAL_PATCH_EQUIVALENCE_SWEEP"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "sentinel-overleaf-command-injection",
-      "decision": "HISTORICAL_REMEDIATION_DO_NOT_RESURRECT_REMOVED_SURFACE",
-      "verification": "MULTIPLE SIBLINGS TARGET ABSENT OVERLEAF-POWERHOUSE MCP TREE",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_REMAINING_SIBLING_CONFIRMATION"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "sentinel-path-traversal",
-      "decision": "RETIREMENT_READY_SECURITY_VALUE_CENTRALIZED_ON_MAIN",
-      "verification": "CURRENT SHARED PILLAR SAFE-JOIN CONTAINMENT SUPERSEDES BRANCH-LOCAL VARIANTS",
+      "branch_family": "bolt-hashing-and-skills",
+      "decision": "RETIREMENT_READY_WITHOUT_RESURRECTING_REMOVED_SURFACES",
+      "canonical_head_after": "08b1cf4bdaa972ded72c7435af54f618904eaaed",
+      "verification": "MASTERMIND TRUTH CONTRACT SUCCEEDED BEFORE PR 158 PROMOTION",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
       "repository": "GlacierEQ/mastermind",
-      "branch_family": "palette-ui",
-      "branch_count": 18,
-      "decision": "RETIREMENT_READY_AS_IMPLEMENTATION_FAMILY",
-      "verification": "ALL 18 REFS ENUMERATED; DIVERGENT VARIANTS TARGET RETIRED APPS/WEB DASHBOARD TREE; ONE STRICT ANCESTOR",
-      "preservation": "ACCESSIBILITY/DYNAMIC-DASHBOARD/COPY/HYDRATION UX IDEAS RETAINED AS DESIGN LINEAGE IN RECEIPT",
+      "branch_family": "bolt-router-broad",
+      "branch": "bolt-parallelize-router-18197549124199743234",
+      "decision": "RETIREMENT_READY_DO_NOT_MERGE_STALE_TIP",
+      "canonical_head_after": "d2125bf3993a59514cb0da1dca9c5c9ceacca0d8",
+      "verification": "MERGED PR 124 AND LATER MAIN HARDENING PRESERVE/IMPROVE SEMANTIC VALUE; MASTERMIND TRUTH CONTRACT SUCCEEDED BEFORE PR 159 PROMOTION",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "branch_family": "ai-coding-radar",
+      "decision": "ACTIONABLE_SIGNAL_PROMOTED",
+      "canonical_head_after": "fcd0ce4e9ba7063d46be0c3244baf02046b91cab",
+      "verification": "MASTERMIND TRUTH CONTRACT SUCCEEDED BEFORE PR 160 PROMOTION; RADAR PUBLISHER MAPS ACTIVE SIGNALS INTO LIBRARY_OF_LINKS",
+      "remote_ref_disposition": "NOT_APPLICABLE"
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "decision": "CONTROL_PLANE_CURSOR_ADVANCED",
+      "receipt": "status/estate_evolution/2026-08-07_1118Z.json",
+      "remote_ref_disposition": "NOT_APPLICABLE"
     }
   ],
   "preserved_prior_completions": [
     "GlacierEQ/AKOS career-intelligence v2 synthesis promoted",
     "GlacierEQ/pro-code native-proof sibling family retirement-ready",
     "GlacierEQ/Pro_Code doctrine family retirement-ready",
-    "GlacierEQ/mastermind canonical/runtime/piston/truth family retirement-ready"
+    "GlacierEQ/mastermind canonical/runtime/piston/truth family retirement-ready",
+    "GlacierEQ/mastermind Mem0 and router failure-isolation synthesis promoted",
+    "GlacierEQ/mastermind Palette and Bolt implementation families classified without stale-tip merges"
   ],
   "pending": [
     {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-hashing",
-      "decision": "MULTIPLE HASH VARIANTS TARGET REMOVED DUPLICATED ANALYZER/FILEBOSS/FORENSICS SURFACES; COMPLETE REMAINING SIBLING CONFIRMATION",
-      "remote_ref_disposition": "KEEP_PENDING_FAMILY_SWEEP"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-router-broad",
-      "branch": "bolt-parallelize-router-18197549124199743234",
-      "decision": "KEEP_FOR_FRESH_ANCESTRY_SEMANTIC_REVIEW",
+      "repository": "GlacierEQ/monolith",
+      "pull_request": 48,
+      "branch": "synthesize/legal-live-reconciliation-20260807",
+      "decision": "VERIFICATION_GATED",
+      "verification_blocker": "Monolith Catalog Evolution Gate run 31167473936 failed; no merge until repository-native/executable proof succeeds",
       "remote_ref_disposition": "KEEP"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-skills-lookup",
-      "branch": "bolt-optimize-skills-lookup-10386955524801931510",
-      "decision": "HISTORICAL_OPTIMIZATION_ACROSS REMOVED DUPLICATED TREES; FINAL LINEAGE REVIEW BEFORE RETIREMENT",
-      "remote_ref_disposition": "KEEP_PENDING_FAMILY_SWEEP"
-    },
-    {
-      "repository": "GlacierEQ/AKOS",
-      "branch_family": ["feature/career-intelligence-runtime-v1", "feature/career-intelligence-platform-v2", "synth/career-intelligence-v2-20260806"],
-      "decision": "VALUE_PRESERVED_ON_MAIN; RETIRE WHEN DELETE CAPABILITY EXISTS",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
       "repository": "GlacierEQ/monolith",
-      "pull_request": 45,
-      "decision": "VERIFICATION_GATED",
+      "pull_request": 49,
+      "branch": "status/mastermind-estate-20260807",
+      "decision": "STATUS_PROJECTION_PREPARED_BUT_NOT_PROMOTED",
+      "verification_blocker": "Monolith Catalog Evolution Gate run 31167582533 failed",
       "remote_ref_disposition": "KEEP"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "decision": "RETIREMENT_READY_REFS_AWAIT_PROVEN_DELETE_CAPABILITY",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
     }
   ],
   "intelligence": {
     "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
+    "canonical_head": "fcd0ce4e9ba7063d46be0c3244baf02046b91cab",
+    "changed_immediately_before_this_pass": true,
     "changed_this_pass": false,
-    "decision": "NO_NEW_SIGNAL_CLEARED_STRICT_24H_ACTIONABILITY_GATE"
+    "decision": "CRASH_RESUME SIGNAL ALREADY PROMOTED; NO ADDITIONAL PRIMARY-VENDOR 24H SIGNAL CLEARED ACTIONABILITY GATE",
+    "library_integration": "engines/ai_coding_radar.py::publish_to_library"
   },
   "legal_spine": {
     "drift_detected": false,
-    "registry_blob": "c78526a5a738a25699fc02bedccb5c2e23cc186d",
-    "discovery_blob": "02a35c71ec91cd3614e33e7bebdb12741d169927",
-    "sync_receipt_blob": "1c7a36c27bda4e58e08cc4fb5662b33de2936b0b"
+    "contract_preserved": true,
+    "pr_48_changed_files_touch_legal_spine_generated_artifacts": false,
+    "prior_registry_blob": "c78526a5a738a25699fc02bedccb5c2e23cc186d",
+    "prior_discovery_blob": "02a35c71ec91cd3614e33e7bebdb12741d169927",
+    "prior_sync_receipt_blob": "1c7a36c27bda4e58e08cc4fb5662b33de2936b0b"
   },
   "tooling": {
     "remote_ref_delete_action_available_in_current_connector": false,
-    "github_hosted_actions_available_this_pass": true
+    "github_hosted_actions_observed": true,
+    "monolith_hosted_action_result": "FAILURE"
   },
   "latest_receipts": [
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0718.json",
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0727.json",
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0725-sentinel-palette.json",
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0735-palette-bolt.json"
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0936-router-broad.json",
+    "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07_1118Z.json"
   ],
-  "next_run_contract": "Build on this state. Do not revisit promoted Mem0/router synthesis or completed Palette family except for proven ref deletion. Finish remaining Bolt hashing/router variants. Removed historical surfaces must not be resurrected. Preserve any surviving live behavior only by fresh-current-main synthesis, repository-native proof, and expected-head guarded promotion."
+  "next_run_contract": "Build from Monolith PR 48 and the 2026-08-07_1118Z Helix receipt. Preserve the deterministic legal-spine synchronization contract. Do not merge PR 48 or PR 49 without executable proof. Do not revisit completed Mastermind Bolt families except for proven remote-ref deletion. If the Monolith execution path remains blocked, record the blocker and continue to the next unresolved priority-spine repository/family."
 }
