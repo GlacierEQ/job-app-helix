@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -53,6 +54,48 @@ def test_resolve_commit_sha_fails_closed_outside_git(tmp_path: Path) -> None:
     module = load_verifier()
 
     assert module.resolve_commit_sha(tmp_path) is None
+
+
+def test_pytest_collection_produces_machine_observed_test_count(tmp_path: Path) -> None:
+    module = load_verifier()
+    (tmp_path / "test_fixture.py").write_text(
+        "def test_one():\n    assert True\n\n"
+        "def test_two():\n    assert 2 + 2 == 4\n",
+        encoding="utf-8",
+    )
+    argv = [sys.executable, "-m", "pytest", "-q"]
+
+    code, output, count = module.collect_pytest_count(
+        argv,
+        tmp_path,
+        30,
+        dict(os.environ),
+    )
+
+    assert code == 0, output
+    assert count == 2
+
+
+def test_run_commands_preserves_collection_count_when_quiet_summary_is_absent(
+    tmp_path: Path,
+) -> None:
+    module = load_verifier()
+    (tmp_path / "pytest.ini").write_text("[pytest]\naddopts = -q\n", encoding="utf-8")
+    (tmp_path / "test_fixture.py").write_text(
+        "def test_one():\n    assert True\n\n"
+        "def test_two():\n    assert True\n",
+        encoding="utf-8",
+    )
+
+    code, log, count = module.run_commands(
+        [[sys.executable, "-m", "pytest", "-q"]],
+        tmp_path,
+        30,
+    )
+
+    assert code == 0, log
+    assert count == 2
+    assert "--collect-only" in log
 
 
 def test_receipt_records_resolved_commit_even_for_invalid_contract(
