@@ -129,8 +129,12 @@ def validate_state(
 
 
 def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
-    index = load_json(root / "manifests" / "company_dossiers.json")
-    registry_path = require_string(index, "second_depth_registry", "company_dossiers")
+    company_index = load_json(root / "manifests" / "company_dossiers.json")
+    registry_path = require_string(
+        company_index,
+        "second_depth_registry",
+        "company_dossiers",
+    )
     registry = load_json(root / registry_path)
 
     if registry.get("schema") != "glaciereq.company-second-depth.v1":
@@ -141,7 +145,7 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
         fail("second-depth company index pointer drift")
 
     required_tracks = string_set(
-        require_list(index, "required_company_tracks", "company_dossiers"),
+        require_list(company_index, "required_company_tracks", "company_dossiers"),
         "company_dossiers.required_company_tracks",
     )
 
@@ -159,13 +163,16 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
         minimum_evidence = require_list(row, "minimum_evidence", stage_id)
         unknown_fields = set(minimum_evidence) - EVIDENCE_FIELDS
         if unknown_fields:
-            fail(f"stage {stage_id} references unknown evidence fields: {sorted(unknown_fields)}")
+            fail(
+                f"stage {stage_id} references unknown evidence fields: "
+                f"{sorted(unknown_fields)}"
+            )
         require_string(row, "public_claim_ceiling", stage_id)
         stage_ids.append(stage_id)
         stage_contract[stage_id] = row
     if stage_ids != EXPECTED_STAGES:
         fail(f"second-depth stage order mismatch: {stage_ids}")
-    stage_index = {stage_id: index for index, stage_id in enumerate(stage_ids)}
+    stage_index = {stage_id: ordinal for ordinal, stage_id in enumerate(stage_ids)}
 
     defaults = registry.get("default_company_state")
     if not isinstance(defaults, dict):
@@ -178,14 +185,21 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
         fail("company_second_depth.company_overrides must be an object")
     unknown_overrides = set(overrides) - required_tracks
     if unknown_overrides:
-        fail(f"second-depth overrides reference unknown companies: {sorted(unknown_overrides)}")
+        fail(
+            "second-depth overrides reference unknown companies: "
+            f"{sorted(unknown_overrides)}"
+        )
 
     priority_wave = string_set(
         require_list(registry, "priority_wave", "company_second_depth"),
         "company_second_depth.priority_wave",
     )
     if not priority_wave <= required_tracks:
-        fail(f"second-depth priority wave references unknown companies: {sorted(priority_wave - required_tracks)}")
+        unknown_priority = sorted(priority_wave - required_tracks)
+        fail(
+            "second-depth priority wave references unknown companies: "
+            f"{unknown_priority}"
+        )
 
     resolved: dict[str, dict[str, Any]] = {}
     for company_id in sorted(required_tracks):
@@ -197,13 +211,21 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
         resolved[company_id] = state
 
     invariants = require_list(registry, "promotion_invariants", "company_second_depth")
-    if len(invariants) < 8 or not all(isinstance(item, str) and item for item in invariants):
+    if len(invariants) < 8 or not all(
+        isinstance(item, str) and item for item in invariants
+    ):
         fail("company_second_depth.promotion_invariants is incomplete")
 
     consumer = registry.get("consumer_contract")
     if not isinstance(consumer, dict):
         fail("company_second_depth.consumer_contract must be an object")
-    for field in ("merge_rule", "missing_override_behavior", "public_projection", "promotion_writer"):
+    consumer_fields = (
+        "merge_rule",
+        "missing_override_behavior",
+        "public_projection",
+        "promotion_writer",
+    )
+    for field in consumer_fields:
         require_string(consumer, field, "company_second_depth.consumer_contract")
 
     counts: dict[str, int] = {stage: 0 for stage in EXPECTED_STAGES}
