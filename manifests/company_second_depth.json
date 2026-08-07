@@ -2,17 +2,10 @@
   "schema": "glaciereq.company-second-depth.v1",
   "authority": "GlacierEQ/job-app-helix",
   "company_index": "manifests/company_dossiers.json",
-  "generated_at": "2026-08-07T11:43:00-10:00",
+  "generated_at": "2026-08-07T13:18:00-10:00",
   "purpose": "Govern progression from company mapping to company-specific, reproducible, truth-bounded technical claims without allowing portfolio presence or company naming to masquerade as second-depth proof.",
   "evidence_reference_contract": {
-    "required_fields": [
-      "id",
-      "kind",
-      "source_identity",
-      "source_ref",
-      "visibility",
-      "verification_state"
-    ],
+    "required_fields": ["id", "kind", "source_identity", "source_ref", "visibility", "verification_state"],
     "visibility": "public",
     "verification_states": ["VERIFIED", "REPRODUCED"],
     "field_kinds": {
@@ -38,54 +31,14 @@
     "public_safety_rule": "Only the six declared fields may appear in a public second-depth evidence reference. Source identity and immutable source_ref are mandatory; private metadata belongs outside the public projection."
   },
   "stage_order": [
-    {
-      "id": "MAPPED_ONLY",
-      "ordinal": 0,
-      "minimum_evidence": [],
-      "public_claim_ceiling": "company_alignment_only"
-    },
-    {
-      "id": "ROLE_VERIFIED",
-      "ordinal": 1,
-      "minimum_evidence": ["role_evidence"],
-      "public_claim_ceiling": "verified_role_alignment"
-    },
-    {
-      "id": "PROBLEM_BOUNDED",
-      "ordinal": 2,
-      "minimum_evidence": ["role_evidence", "problem_evidence"],
-      "public_claim_ceiling": "externally_bounded_problem_alignment"
-    },
-    {
-      "id": "CODE_INSPECTED",
-      "ordinal": 3,
-      "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories"],
-      "public_claim_ceiling": "inspected_implementation_alignment"
-    },
-    {
-      "id": "REMEDY_BOUNDED",
-      "ordinal": 4,
-      "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories", "gap_queue"],
-      "public_claim_ceiling": "bounded_remedy_design"
-    },
-    {
-      "id": "IMPLEMENTED",
-      "ordinal": 5,
-      "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories", "gap_queue", "implementation_receipts"],
-      "public_claim_ceiling": "implemented_candidate_capability"
-    },
-    {
-      "id": "PROOF_REPRODUCED",
-      "ordinal": 6,
-      "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories", "gap_queue", "implementation_receipts", "proof_artifacts"],
-      "public_claim_ceiling": "reproducible_company_specific_proof"
-    },
-    {
-      "id": "CLAIM_PROMOTED",
-      "ordinal": 7,
-      "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories", "gap_queue", "implementation_receipts", "proof_artifacts", "claim_receipts"],
-      "public_claim_ceiling": "proof_bound_company_specific"
-    }
+    {"id": "MAPPED_ONLY", "ordinal": 0, "minimum_evidence": [], "public_claim_ceiling": "company_alignment_only"},
+    {"id": "ROLE_VERIFIED", "ordinal": 1, "minimum_evidence": ["role_evidence"], "public_claim_ceiling": "verified_role_alignment"},
+    {"id": "PROBLEM_BOUNDED", "ordinal": 2, "minimum_evidence": ["role_evidence", "problem_evidence"], "public_claim_ceiling": "externally_bounded_problem_alignment"},
+    {"id": "CODE_INSPECTED", "ordinal": 3, "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories"], "public_claim_ceiling": "inspected_implementation_alignment"},
+    {"id": "REMEDY_BOUNDED", "ordinal": 4, "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories", "gap_queue"], "public_claim_ceiling": "bounded_remedy_design"},
+    {"id": "IMPLEMENTED", "ordinal": 5, "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories", "gap_queue", "implementation_receipts"], "public_claim_ceiling": "implemented_candidate_capability"},
+    {"id": "PROOF_REPRODUCED", "ordinal": 6, "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories", "gap_queue", "implementation_receipts", "proof_artifacts"], "public_claim_ceiling": "reproducible_company_specific_proof"},
+    {"id": "CLAIM_PROMOTED", "ordinal": 7, "minimum_evidence": ["role_evidence", "problem_evidence", "inspected_repositories", "gap_queue", "implementation_receipts", "proof_artifacts", "claim_receipts"], "public_claim_ceiling": "proof_bound_company_specific"}
   ],
   "default_company_state": {
     "stage": "MAPPED_ONLY",
@@ -97,56 +50,34 @@
     "proof_artifacts": [],
     "claim_receipts": [],
     "claim_ceiling": "company_alignment_only",
-    "blockers": [
-      "current_role_not_verified",
-      "company_problem_not_bounded",
-      "repository_code_not_inspected",
-      "proof_not_reproduced"
-    ],
+    "blockers": ["current_role_not_verified", "company_problem_not_bounded", "repository_code_not_inspected", "proof_not_reproduced"],
     "next_gate": "Verify a current public role or operating context before making any company-specific problem or implementation claim."
   },
-  "priority_wave": [
-    "lockheed_martin",
-    "openai",
-    "anthropic",
-    "nvidia",
-    "spacex",
-    "xai",
-    "microsoft",
-    "notion"
-  ],
+  "priority_wave": ["lockheed_martin", "openai", "anthropic", "nvidia", "spacex", "xai", "microsoft", "notion"],
   "company_overrides": {
     "lockheed_martin": {
-      "blockers": [
-        "no_direct_company_repository_verified",
-        "current_role_not_verified",
-        "company_problem_not_bounded",
-        "repository_code_not_inspected",
-        "proof_not_reproduced"
+      "stage": "ROLE_VERIFIED",
+      "role_evidence": [
+        {
+          "id": "lockheed_role_734997br",
+          "kind": "role",
+          "source_identity": "https://www.lockheedmartinjobs.com/job/sunnyvale/architecture-and-algorithms-agentic-ai-ml-engineer-level-2-3/694/97838518096",
+          "source_ref": "sha256:e3a0306982ef5f73f81107bbf9197c0c3a949909103fb4ac0b47e530fd4c3d01",
+          "visibility": "public",
+          "verification_state": "VERIFIED"
+        }
       ],
-      "next_gate": "Verify a current public Lockheed Martin role and team, preserve the public source, bound one externally supportable problem, then inspect only genuinely relevant GlacierEQ implementations before proposing a remedy."
+      "claim_ceiling": "verified_role_alignment",
+      "blockers": ["company_problem_not_bounded", "repository_code_not_inspected", "proof_not_reproduced"],
+      "next_gate": "Bound one externally supportable Lockheed Martin Space AI engineering problem from preserved public sources before inspecting candidate GlacierEQ implementations."
     },
-    "openai": {
-      "next_gate": "Verify a current public OpenAI role/team and inspect the exact admitted KV-sentinel implementation before connecting it to any company-specific engineering problem."
-    },
-    "anthropic": {
-      "next_gate": "Verify a current public Anthropic role/team, then inspect the exact promoted coordinator and safety-monitor code paths and their native proof before bounding a company-specific remedy."
-    },
-    "nvidia": {
-      "next_gate": "Verify a current public NVIDIA role/team, identify one externally supportable infrastructure problem, then inspect only the governed NVIDIA-aligned repositories that could materially address it."
-    },
-    "spacex": {
-      "next_gate": "Verify a current public SpaceX role/team and operating problem, then reconcile it against the governed SpaceX repository family and existing README Mesh before any implementation claim."
-    },
-    "xai": {
-      "next_gate": "Verify a current public xAI role/team, select one bounded infrastructure problem, then reconcile successor/unique-value status across the Colossus repository family before any company-specific claim."
-    },
-    "microsoft": {
-      "next_gate": "Verify a current public Microsoft role/team and inspect the exact recruiter-admitted Microsoft-aligned repositories before promoting beyond general systems alignment."
-    },
-    "notion": {
-      "next_gate": "Verify a current public Notion role/team and inspect the exact recruiter-admitted Notion-aligned repositories before promoting beyond general platform alignment."
-    }
+    "openai": {"next_gate": "Verify a current public OpenAI role/team and inspect the exact admitted KV-sentinel implementation before connecting it to any company-specific engineering problem."},
+    "anthropic": {"next_gate": "Verify a current public Anthropic role/team, then inspect the exact promoted coordinator and safety-monitor code paths and their native proof before bounding a company-specific remedy."},
+    "nvidia": {"next_gate": "Verify a current public NVIDIA role/team, identify one externally supportable infrastructure problem, then inspect only the governed NVIDIA-aligned repositories that could materially address it."},
+    "spacex": {"next_gate": "Verify a current public SpaceX role/team and operating problem, then reconcile it against the governed SpaceX repository family and existing README Mesh before any implementation claim."},
+    "xai": {"next_gate": "Verify a current public xAI role/team, select one bounded infrastructure problem, then reconcile successor/unique-value status across the Colossus repository family before any company-specific claim."},
+    "microsoft": {"next_gate": "Verify a current public Microsoft role/team and inspect the exact recruiter-admitted Microsoft-aligned repositories before promoting beyond general systems alignment."},
+    "notion": {"next_gate": "Verify a current public Notion role/team and inspect the exact recruiter-admitted Notion-aligned repositories before promoting beyond general platform alignment."}
   },
   "promotion_invariants": [
     "Stages are monotonic and may not be skipped merely because a repository is public, named for a company, or recruiter-admitted.",
