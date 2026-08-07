@@ -1,17 +1,19 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-06T20:45:00-10:00",
+  "updated_at": "2026-08-06T21:02:00-10:00",
   "control_plane": "GlacierEQ/job-app-helix",
   "phase": "PRIORITY_SPINE_BRANCH_CONSOLIDATION",
   "cursor": {
-    "repository": "GlacierEQ/Pro_Code",
+    "repository": "GlacierEQ/mastermind",
     "canonical_branch": "main",
-    "next_branch": "highest-priority noncanonical branch family",
-    "after_repository": "GlacierEQ/mastermind"
+    "next_branch": "sentinel-security family",
+    "after_family": "palette-ui then bolt-integrity"
   },
   "current_repository": {
-    "repository": "GlacierEQ/Pro_Code",
-    "next_decision": "DISCOVER_BRANCH_TOPOLOGY; PRESERVE_UNIQUE_OPERATOR_DOCTRINE; RETIRE ONLY PATCH-EXHAUSTED REFS"
+    "repository": "GlacierEQ/mastermind",
+    "canonical_head_observed_before_receipt": "8ccc35fcc1f69f867b9bd22d1b3660ef3bddb579",
+    "canonical_head_after_receipt": "88067e9dfca8c91f1bfcec76158592f06547a06a",
+    "next_decision": "CLUSTER_SECURITY_BRANCHES; PROVE REDACTION CONTAINMENT; PRESERVE LIVE CAPABILITY DELTAS ON FRESH ANCESTRY; NEVER RESURRECT REMOVED SURFACES BY STALE MERGE"
   },
   "completed_this_pass": [
     {
@@ -27,36 +29,38 @@
     },
     {
       "repository": "GlacierEQ/pro-code",
-      "branch": "hardening/native-proof-mainline-2026-07-31",
-      "merge_base": "ec26b8e5a20b00dbd23e4d581577ff8493a84fe8",
-      "ahead": 8,
-      "behind": 10,
-      "files_changed": 8,
+      "branch_family": ["hardening/native-proof-mainline-2026-07-31", "hardening/readme-native-proof-2026-07-30"],
       "decision": "RETIREMENT_READY_DO_NOT_MERGE",
+      "verification": "CANONICAL_BLOB_EQUIVALENCE_PLUS_SUPERSESSION",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
-      "repository": "GlacierEQ/pro-code",
-      "branch": "hardening/readme-native-proof-2026-07-30",
-      "merge_base": "f720cb8346fc19aae60a56e0a21eafbbd3cf1f55",
-      "ahead": 7,
-      "behind": 11,
-      "files_changed": 7,
+      "repository": "GlacierEQ/Pro_Code",
+      "branch_family": ["helix-phase-1a", "helix-phase-1b", "hardening/doctrine-truth-boundary-2026-07-30", "hardening/doctrine-verified-2026-07-31"],
       "decision": "RETIREMENT_READY_DO_NOT_MERGE",
+      "verification": "STRICT_ANCESTOR_OR_CANONICAL_BLOB_EQUIVALENCE_AND_LATER_MAIN_EVOLUTION",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "branch_family": ["canonical/mastermind-family-v1", "canonical/bind-piston-registry-v1", "program/mastermind-truth-consolidation-2026-07-30"],
+      "decision": "RETIREMENT_READY_PATCH_VALUE_PRESERVED_ON_MAIN",
+      "verification": "CANONICAL_RUNTIME_REGISTRY_PISTON_ADAPTER_AND_TRUTH_VERIFIER_BLOB_EQUIVALENCE",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     }
   ],
   "pending": [
     {
-      "repository": "GlacierEQ/AKOS",
-      "branch_family": ["feature/career-intelligence-runtime-v1", "feature/career-intelligence-platform-v2", "synth/career-intelligence-v2-20260806"],
-      "decision": "PATCH_VALUE_PRESERVED_ON_MAIN; DELETE_REFS_WHEN PROVEN DELETE CAPABILITY EXISTS",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+      "repository": "GlacierEQ/mastermind",
+      "branch_family": "sentinel-security",
+      "decision": "SECURITY_FIRST_RECONCILIATION",
+      "known_unique_delta": "Old Mem0 redaction branch also carries live MemoryClient behavior absent from current simulated/local main implementation; preserve for fresh-ancestry adapter review.",
+      "remote_ref_disposition": "MIXED_KEEP_AND_DELETE_REF_REQUIRED"
     },
     {
-      "repository": "GlacierEQ/pro-code",
-      "branch_family": ["hardening/native-proof-mainline-2026-07-31", "hardening/readme-native-proof-2026-07-30"],
-      "decision": "RETIREMENT_READY",
+      "repository": "GlacierEQ/AKOS",
+      "branch_family": ["feature/career-intelligence-runtime-v1", "feature/career-intelligence-platform-v2", "synth/career-intelligence-v2-20260806"],
+      "decision": "VALUE_PRESERVED_ON_MAIN; RETIRE WHEN DELETE CAPABILITY EXISTS",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
@@ -81,6 +85,10 @@
     "remote_ref_delete_action_available_in_current_connector": false,
     "github_hosted_actions_last_known_available": true
   },
-  "latest_receipt": "status/estate_evolution/2026-08-06_2045-pass.json",
-  "next_run_contract": "Build on this receipt. AKOS Career Intelligence Platform v2 is now canonically promoted through a fresh-main synthesis with all five workflow families green. Do not re-merge old career refs; only confirm patch-equivalent exhaustion and retire when deletion can be proven. pro-code hardening siblings are retirement-ready because their useful native proof files are already canonical and their remaining memory delta is superseded. Continue at Pro_Code, then Mastermind, preserving current main and synthesizing only superior unique branch value."
+  "latest_receipts": [
+    "status/estate_evolution/2026-08-06_2045-pass.json",
+    "status/estate_evolution/2026-08-06_2050-pro-code.json",
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-06_2100.json"
+  ],
+  "next_run_contract": "Build on these receipts. Do not revisit already-preserved canonical or doctrine families except to delete refs when a proven delete-ref capability exists. Continue Mastermind sentinel-security family: distinguish already-contained redactions from live-capability deltas and removed-surface historical fixes. Synthesize only superior live behavior onto fresh current main with tests; never merge old security tips or resurrect removed architecture."
 }
