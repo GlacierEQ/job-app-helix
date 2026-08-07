@@ -12,23 +12,35 @@
     "status/estate_evolution/2026-08-07_1118Z.json",
     "status/estate_evolution/state.json"
   ],
-  "decision": "ADVANCE_CONTROL_PLANE_FROM_COMPLETED_MASTERMIND_BOLT_SWEEP_TO_MONOLITH_VERIFICATION_GATE",
+  "decision": "ADVANCE_CONTROL_PLANE_FROM_COMPLETED_MASTERMIND_BOLT_SWEEP_TO_MONOLITH_VERIFICATION_GATE_AND_CONTINUE_PRIORITY_SPINE_INSPECTION",
   "preservation": {
     "mastermind_completed_receipts": [
       "status/branch_consolidation/2026-08-07_0936-router-broad.json"
     ],
     "mastermind_canonical_head_observed": "fcd0ce4e9ba7063d46be0c3244baf02046b91cab",
     "monolith_legal_spine_contract": "PRESERVED; PR 48 changed-file set does not touch catalog/legal_spines or generated legal-spine synchronization artifacts",
-    "stale_branch_policy": "NO_STALE_TIP_MERGED"
+    "stale_branch_policy": "NO_STALE_TIP_MERGED",
+    "tower_operational_evidence_branch": "PRESERVED_UNMERGED_PENDING_FRESH_SYNTHESIS_AND_GREEN_GOVERNANCE"
   },
   "verification": {
     "mastermind": "Current main includes verified retirement receipts for remaining Bolt hashing/skills and broad router families and the active crash-resume radar signal.",
     "library_of_links": "engines/ai_coding_radar.py publishes every active radar signal into LibraryOfLinks through signal_to_link/publish_to_library; no duplicate hand-maintained link registry is required.",
     "monolith_pr_48": "Fresh synthesis is one commit ahead of current Monolith main and preserves the legal-spine synchronization contract, but Monolith Catalog Evolution Gate run 31167473936 failed and executable proof is insufficient for merge.",
-    "monolith_pr_49": "Topology-only projection is prepared but its Monolith Catalog Evolution Gate run 31167582533 also failed; canonical left untouched."
+    "monolith_pr_49": "Topology-only projection is prepared but its Monolith Catalog Evolution Gate run 31167582533 also failed; canonical left untouched.",
+    "tower_pr_25": {
+      "canonical_head": "8c96d1cc36b5d85a25dade434f452482dce98bdb",
+      "branch": "fix/operational-evidence-selection",
+      "branch_head": "ed8720db5ff565e9c1bbd3b5fc24da4bbb7284d6",
+      "merge_base": "a7e2543e8acba2cfe6a67dc02dc217536b63bf2e",
+      "ahead": 1,
+      "behind": 1,
+      "unique_patch_value": "Evidence-tier/runtime-admission hardening remains useful, but stale tip is not promotable directly.",
+      "native_verification": "Portable flagship and compile jobs succeeded; governance failed at tower validate because advanced claim contracts are missing for fortran, java, kotlin, and lua.",
+      "decision": "KEEP_UNMERGED; REPAIR/REGENERATE CLAIM-CONTRACT COVERAGE ON FRESH MAIN BEFORE PROMOTION"
+    }
   },
-  "canonical_head_after": "PENDING_THIS_RECEIPT_AND_STATE_COMMIT",
-  "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_ALREADY_EXHAUSTED_MASTERMIND_FAMILIES; CONNECTOR_HAS_NO_PROVEN_DELETE_REF_ACTION",
+  "canonical_head_after": "829737fa0d6aa774f6c43719989dbdc94b28830a",
+  "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_ALREADY_EXHAUSTED_MASTERMIND_FAMILIES; TOWER_PR25_KEEP; CONNECTOR_HAS_NO_PROVEN_DELETE_REF_ACTION",
   "news_inputs": [
     {
       "window": "last_24_hours",
@@ -43,15 +55,18 @@
   ],
   "innovation_inputs": [
     "Crash-resumable long-running agent harnesses with persistent activity/checkpoint state",
-    "Single-source radar-to-LibraryOfLinks publication rather than duplicated knowledge registries"
+    "Single-source radar-to-LibraryOfLinks publication rather than duplicated knowledge registries",
+    "Evidence-gated runtime admission instead of claim-only capability selection"
   ],
   "blockers": [
     "Monolith repository-native workflow gate is failing before adequate verification can be established for PR 48 and PR 49.",
+    "Tower PR 25 governance gate fails because advanced claim contracts are missing for fortran, java, kotlin, and lua; stale one-behind branch must not be merged directly.",
     "Remote branch-ref deletion is not exposed by the current GitHub connector, so retirement-ready refs remain DELETE_REF_REQUIRED."
   ],
   "next_cursor": {
     "repository": "GlacierEQ/monolith",
     "target": "PR 48 executable verification path / runner bridge configuration",
+    "parallel_priority": "GlacierEQ/the-tower-of-babel PR 25 fresh-head claim-contract repair/synthesis",
     "after": "next unresolved priority-spine repository without replaying completed AKOS, pro-code, Pro_Code, or Mastermind families"
   }
 }
