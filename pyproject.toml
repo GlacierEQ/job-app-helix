@@ -73,4 +73,5 @@ ignore_errors = true
 "generate_outreach_dms.py" = ["E501"]
 "test_apex_distributed_compute.py" = ["E501"]
 "showcase/demo_15min_run.py" = ["E501"]
+"scripts/validate_portfolio_root_truth.py" = ["E501"]
 "helix/**/*.py" = ["E501"]
