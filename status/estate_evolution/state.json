@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-06T18:34:00-10:00",
+  "updated_at": "2026-08-06T18:57:00-10:00",
   "control_plane": "GlacierEQ/job-app-helix",
   "phase": "PRIORITY_SPINE_BRANCH_CONSOLIDATION",
   "cursor": {
@@ -11,8 +11,8 @@
   },
   "current_repository": {
     "repository": "GlacierEQ/AKOS",
-    "canonical_head_observed": "5056bbc1b0e84838dec99594592fbe1bb4b47493",
-    "next_decision": "COMPARE_CURRENT_RUNTIME_TO_V2_BY_CAPABILITY_TESTS_AND_PATCH_EQUIVALENCE"
+    "canonical_head_observed": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
+    "next_decision": "COMPARE_CAREER_INTELLIGENCE_V2_TO_POST_RUNTIME_CANONICAL_BY_CAPABILITY_TESTS_INTERFACES_AND_PATCH_EQUIVALENCE"
   },
   "completed_this_pass": [
     {
@@ -20,37 +20,67 @@
       "source_branch": "integrate/legal-live-reconciliation-20260803",
       "observed_status": "diverged",
       "observed_ahead": 20,
-      "observed_behind": 52,
-      "useful_delta": "historical source-inspection overlay, legal integration contract, bounded validator/tests, hardening state",
-      "synthesis_branch": "synthesize/legal-live-reconciliation-20260806",
-      "synthesis_head": "6a48200efe839079d8efc4f65c523cb3452f1ed4",
-      "pull_request": 45,
-      "decision": "PRESERVED_ON_CURRENT_MAIN_VERIFICATION_GATED",
-      "topology_reconciliation": {
-        "historical_canonical_population": 71,
-        "current_canonical_population": 72,
-        "historical_inspections": 18,
-        "promoted_since_baseline": ["GlacierEQ/apex-legal-case"],
-        "current_overlay_only": 17
+      "observed_behind": 55,
+      "decision": "KEEP_STRONGER_PRIOR_SYNTHESIS_PR_45",
+      "duplicate_pull_request_closed": 46,
+      "remote_ref_disposition": "DUPLICATE_SYNTH_REF_DELETE_REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "source_branch": "runtime-v0.3-promotion",
+      "source_ahead": 17,
+      "source_behind": 251,
+      "synthesis_branch": "integrate/runtime-v0.3-synth-20260806",
+      "repaired_synthesis_head": "478ae52af57de561e6548a8b1f5caf0b6e067d32",
+      "pull_request": 19,
+      "verification": {
+        "runtime_ci": "SUCCESS",
+        "integrity_gate": "SUCCESS",
+        "repository_verification": "SUCCESS"
       },
-      "remote_ref_disposition": "KEEP_UNTIL_SYNTHESIS_VERIFIED_AND_MERGED"
+      "canonical_commit": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
+      "decision": "VERIFIED_SYNTHESIS_SQUASH_MERGED",
+      "remote_ref_disposition": "SOURCE_AND_SYNTH_REFS_DELETE_REF_REQUIRED_AFTER_RECHECK"
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "branch": "akos-operational-cognition-2026-07-21",
+      "ahead": 0,
+      "behind": 164,
+      "decision": "RETIREMENT_READY",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "branch": "repair/integrity-gate-20260724",
+      "ahead": 0,
+      "behind": 138,
+      "decision": "RETIREMENT_READY",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
     }
   ],
   "pending": [
     {
       "repository": "GlacierEQ/AKOS",
       "branch": "feature/career-intelligence-platform-v2",
-      "observed_status": "diverged",
-      "observed_ahead": 2,
-      "observed_behind": 18,
-      "decision": "SEMANTIC_SYNTHESIS_REVIEW_REQUIRED",
+      "last_observed_status": "diverged",
+      "last_observed_ahead": 2,
+      "last_observed_behind": 18,
+      "decision": "SEMANTIC_SYNTHESIS_REVIEW_REQUIRED_AGAINST_NEW_CANONICAL",
+      "remote_ref_disposition": "KEEP"
+    },
+    {
+      "repository": "GlacierEQ/monolith",
+      "pull_request": 45,
+      "decision": "VERIFICATION_GATED",
       "remote_ref_disposition": "KEEP"
     }
   ],
   "intelligence": {
     "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
-    "changed_this_pass": false,
-    "decision": "NO_NEW_24H_SIGNAL_PROMOTED"
+    "changed_this_pass": true,
+    "commit": "8ccc35fcc1f69f867b9bd22d1b3660ef3bddb579",
+    "promoted_signal": "2026-08-production-agent-governance"
   },
   "legal_spine": {
     "drift_detected": false,
@@ -59,8 +89,8 @@
   },
   "tooling": {
     "remote_ref_delete_action_available_in_current_connector": false,
-    "github_hosted_actions_available": false
+    "github_hosted_actions_available": true
   },
-  "latest_receipt": "status/estate_evolution/2026-08-06_1806-pass.json",
-  "next_run_contract": "Resume from AKOS feature/career-intelligence-platform-v2. Compare current canonical career_intelligence runtime against v2 by capability, tests, interfaces, and patch-equivalent value. Do not merge the behind branch tip. Preserve any superior delta on fresh current ancestry."
+  "latest_receipt": "status/estate_evolution/2026-08-06_1854-pass.json",
+  "next_run_contract": "Resume from AKOS feature/career-intelligence-platform-v2 against canonical 30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9. Compare capabilities, tests, interfaces, and patch-equivalent unique value. Never merge the stale branch tip. Preserve only superior remaining delta on fresh current ancestry, then recheck runtime source/synthesis refs for retirement."
 }
