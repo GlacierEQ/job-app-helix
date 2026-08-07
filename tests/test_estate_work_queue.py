@@ -105,6 +105,26 @@ def test_queue_routes_every_repository_exactly_once() -> None:
     }
 
 
+def test_governed_repository_retains_lane_even_when_archived() -> None:
+    module = _load_module()
+    records = [
+        _record(0, "priority-archive", "PRIORITY_SPINE", archived=True),
+        _record(
+            1,
+            "recruiter-archive",
+            "RECRUITER_PORTFOLIO",
+            archived=True,
+        ),
+    ]
+
+    result = module.build_queue(_receipt(records))
+
+    assert {item["lane"] for item in result["preserve_queue"]} == {
+        "PRESERVE_GOVERNED_PRIORITY",
+        "PRESERVE_GOVERNED_RECRUITER",
+    }
+
+
 def test_archived_or_backup_classification_is_preserved_before_fork_review() -> None:
     module = _load_module()
     records = [
@@ -121,6 +141,17 @@ def test_archived_or_backup_classification_is_preserved_before_fork_review() -> 
 
     assert result["fork_reference_work_count"] == 0
     assert result["preserve_queue"][0]["lane"] == "PRESERVE_ARCHIVE_BACKUP"
+
+
+def test_unknown_classification_routes_to_manual_triage() -> None:
+    module = _load_module()
+    records = [_record(0, "future-class", "FUTURE_CLASSIFICATION")]
+
+    result = module.build_queue(_receipt(records))
+
+    item = result["native_work_queue"][0]
+    assert item["lane"] == "MANUAL_TRIAGE"
+    assert item["priority"] == 0
 
 
 def test_queue_fails_closed_when_census_cardinality_does_not_reconcile() -> None:
