@@ -1,0 +1,27 @@
+{
+  "boundary": "This capture verifies the public existence and stated requirements of the role only. It does not assert applicant eligibility, employment, clearance, affiliation, or hiring outcome.",
+  "business_unit": "SPACE",
+  "captured_at": "2026-08-07T13:18:00-10:00",
+  "career_area": "Artificial Intelligence",
+  "company_id": "lockheed_martin",
+  "date_posted": "2026-07-15",
+  "employment_type": "Full-Time",
+  "job_id": "734997BR",
+  "location": "Sunnyvale, California",
+  "public_requirements": [
+    "machine learning concepts and algorithms",
+    "strong Python and other programming skills",
+    "agile software development",
+    "Agentic AI expertise receives priority consideration",
+    "cloud and cloud-native technologies including AWS and Kubernetes",
+    "MLOps or DevOps and CI/CD processes",
+    "unit testing and debugging",
+    "integration of disparate software systems"
+  ],
+  "schema": "glaciereq.public-role-evidence.v1",
+  "source_kind": "official_careers_posting",
+  "source_url": "https://www.lockheedmartinjobs.com/job/sunnyvale/architecture-and-algorithms-agentic-ai-ml-engineer-level-2-3/694/97838518096",
+  "team_context": "Space AI Talent Center",
+  "title": "Architecture & Algorithms / Agentic AI ML Engineer (Level 2 - 3)",
+  "work_mode": "Onsite Full-time"
+}

@@ -63,14 +63,24 @@ class CompanySecondDepthTests(unittest.TestCase):
         self.assertEqual(result["company_tracks"], 49)
         self.assertEqual(result["stage_count"], 8)
         self.assertEqual(result["priority_wave"], 8)
-        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 49)
+        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 48)
+        self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
+        for stage in (
+            "ROLE_VERIFIED",
+            "PROBLEM_BOUNDED",
+            "REMEDY_BOUNDED",
+            "IMPLEMENTED",
+            "PROOF_REPRODUCED",
+            "CLAIM_PROMOTED",
+        ):
+            self.assertEqual(result["stage_counts"][stage], 0)
         self.assertEqual(sum(result["stage_counts"].values()), 49)
         self.assertTrue(result["evidence_reference_schema_enforced"])
         self.assertTrue(result["stage_contract_locked"])
         self.assertTrue(result["claim_promotion_requires_receipt"])
         self.assertTrue(result["zero_implicit_completion"])
 
-    def test_lockheed_is_truth_bounded_scaffold_without_repository_proof(self) -> None:
+    def test_lockheed_remains_truth_bounded_without_direct_repository_proof(self) -> None:
         dossier_path = ROOT / "manifests" / "company_dossiers" / "additional_targets.json"
         dossier = json.loads(dossier_path.read_text(encoding="utf-8"))
         lockheed = next(
@@ -91,12 +101,75 @@ class CompanySecondDepthTests(unittest.TestCase):
         defaults = second_depth["default_company_state"]
         override = second_depth["company_overrides"]["lockheed_martin"]
         resolved = {**defaults, **override}
-        self.assertEqual(resolved["stage"], "MAPPED_ONLY")
-        self.assertEqual(resolved["claim_ceiling"], "company_alignment_only")
-        self.assertEqual(resolved["role_evidence"], [])
-        self.assertEqual(resolved["problem_evidence"], [])
-        self.assertEqual(resolved["inspected_repositories"], [])
-        self.assertIn("no_direct_company_repository_verified", resolved["blockers"])
+        self.assertEqual(resolved["stage"], "CODE_INSPECTED")
+        self.assertEqual(
+            resolved["claim_ceiling"], "inspected_implementation_alignment"
+        )
+        self.assertEqual(len(resolved["role_evidence"]), 1)
+        self.assertEqual(len(resolved["problem_evidence"]), 1)
+        self.assertEqual(len(resolved["inspected_repositories"]), 4)
+        self.assertEqual(resolved["proof_artifacts"], [])
+        self.assertEqual(resolved["claim_receipts"], [])
+        self.assertIn("company_specific_remedy_not_bounded", resolved["blockers"])
+        self.assertIn("proof_not_reproduced", resolved["blockers"])
+        self.assertNotIn("no_direct_company_repository_verified", resolved["blockers"])
+        self.assertEqual(
+            {item["kind"] for item in resolved["inspected_repositories"]},
+            {"repository_inspection"},
+        )
+        self.assertTrue(
+            all(
+                item["verification_state"] == "VERIFIED"
+                for item in resolved["inspected_repositories"]
+            )
+        )
+
+    def test_repository_inspection_manifest_covers_every_declared_path(self) -> None:
+        second_depth = json.loads(
+            (ROOT / "manifests" / "company_second_depth.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        defaults = second_depth["default_company_state"]
+        evidence_root = ROOT / "evidence" / "company_second_depth"
+
+        for company_directory in sorted(evidence_root.iterdir()):
+            if not company_directory.is_dir():
+                continue
+            captures = sorted(
+                company_directory.glob("repository_inspection*.json")
+            )
+            if not captures:
+                continue
+
+            company_id = company_directory.name
+            override = second_depth["company_overrides"].get(company_id, {})
+            state = {**defaults, **override}
+            manifest_refs = {
+                (item["source_identity"], item["source_ref"])
+                for item in state["inspected_repositories"]
+            }
+            declared_refs: set[tuple[str, str]] = set()
+
+            for capture_path in captures:
+                capture = json.loads(capture_path.read_text(encoding="utf-8"))
+                self.assertEqual(
+                    capture["schema"], "glaciereq.repository-inspection.v1"
+                )
+                self.assertEqual(capture["company_id"], company_id)
+                for inspection in capture["inspections"]:
+                    repository = inspection["repository"]
+                    commit = inspection["commit"]
+                    self.assertEqual(len(commit), 40)
+                    for path in inspection["paths"]:
+                        declared_refs.add(
+                            (
+                                f"https://github.com/{repository}/blob/{commit}/{path}",
+                                f"commit:{commit}",
+                            )
+                        )
+
+            self.assertEqual(manifest_refs, declared_refs)
 
     def test_valid_pinned_public_role_evidence_can_advance_one_stage(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -113,7 +186,8 @@ class CompanySecondDepthTests(unittest.TestCase):
             self.write_json(path, payload)
             result = validate_second_depth(root)
             self.assertEqual(result["stage_counts"]["ROLE_VERIFIED"], 1)
-            self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 48)
+            self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
+            self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 47)
 
     def test_role_verified_cannot_be_claimed_without_role_evidence(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
