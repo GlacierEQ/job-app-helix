@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """Audit live GitHub state against Helix portfolio declarations.
 
-This is an operational freshness audit, not a source-of-truth replacement. It
-compares the canonical Helix inventory, company dossiers, flagship registry,
-and live-evidence registry with current GitHub repository metadata.
+This is a read-only freshness layer, not a source-of-truth replacement. It
+compares canonical Helix declarations with observable GitHub metadata and the
+current live-evidence registry, then emits a deterministic-shape receipt.
 
-A repository-scoped GitHub Actions token cannot inspect sibling private repos.
-A 404 is therefore represented as UNOBSERVABLE unless Helix declares the repo
-public, in which case it is an actionable visibility/existence error. No
-private-state inference is made from a scoped 404.
+A repository-scoped Actions token cannot inspect sibling private repositories.
+A 404 is therefore represented as UNOBSERVABLE unless Helix declares the
+repository public. No private-state inference is made from a scoped 404.
 """
 
 from __future__ import annotations
@@ -18,9 +17,11 @@ import hashlib
 import json
 import os
 import sys
+import time
 from collections import defaultdict
 from collections.abc import Callable
 from datetime import UTC, datetime
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
@@ -30,25 +31,31 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 RECRUITER_ELIGIBLE_STATES = {"PROMOTED", "REFERENCE_ONLY"}
 PUBLIC_FLAGSHIP_SURFACES = {"PUBLIC", "PUBLIC_RECRUITER", "PUBLIC_PROMOTED"}
+RETRYABLE_HTTP = {403, 429, 500, 502, 503, 504}
+MAX_ATTEMPTS = 3
+MAX_BACKOFF_SECONDS = 20.0
 
 
 class AuditError(RuntimeError):
     """Raised when the audit itself cannot be trusted."""
 
 
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def load_json(path: Path) -> dict[str, Any]:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError as exc:
-        raise AuditError(
-            f"missing required file: {path.relative_to(ROOT)}"
-        ) from exc
+        raise AuditError(f"missing required file: {display_path(path)}") from exc
     except json.JSONDecodeError as exc:
-        raise AuditError(
-            f"invalid JSON in {path.relative_to(ROOT)}: {exc}"
-        ) from exc
+        raise AuditError(f"invalid JSON in {display_path(path)}: {exc}") from exc
     if not isinstance(value, dict):
-        raise AuditError(f"expected JSON object: {path.relative_to(ROOT)}")
+        raise AuditError(f"expected JSON object: {display_path(path)}")
     return value
 
 
@@ -66,6 +73,28 @@ def canonical_bytes(value: Any) -> bytes:
 
 def digest(value: Any) -> str:
     return hashlib.sha256(canonical_bytes(value)).hexdigest()
+
+
+def parse_repository_identifier(repository: str) -> tuple[str, str]:
+    parts = repository.split("/")
+    if len(parts) != 2 or not all(parts):
+        raise AuditError(
+            "invalid repository identifier; expected owner/name: "
+            f"{repository!r}"
+        )
+    return parts[0], parts[1]
+
+
+def repository_api_path(repository: str) -> str:
+    owner, name = parse_repository_identifier(repository)
+    return f"/repos/{quote(owner, safe='')}/{quote(name, safe='')}"
+
+
+def commit_api_path(repository: str, branch: str) -> str:
+    return (
+        f"{repository_api_path(repository)}/commits/"
+        f"{quote(branch, safe='')}"
+    )
 
 
 def normalize_company(
@@ -137,7 +166,9 @@ def compile_portfolio() -> dict[str, Any]:
                     inventory_scope,
                     provenance,
                 ) = row
-                declarations[str(repository)].append(
+                repository = str(repository)
+                parse_repository_identifier(repository)
+                declarations[repository].append(
                     {
                         "company_id": company_id,
                         "level": level,
@@ -151,9 +182,7 @@ def compile_portfolio() -> dict[str, Any]:
     flagship_doc = load_json(ROOT / "manifests" / "flagship_registry.json")
     flagships = flagship_doc.get("flagships", [])
     if not isinstance(flagships, list):
-        raise AuditError(
-            "flagship_registry.json: flagships must be a list"
-        )
+        raise AuditError("flagship_registry.json: flagships must be a list")
 
     evidence_doc = load_json(
         ROOT / "manifests" / "live_repository_evidence.json"
@@ -169,10 +198,10 @@ def compile_portfolio() -> dict[str, Any]:
         if isinstance(row, dict) and isinstance(row.get("repository"), str)
     }
 
-    external = load_json(
+    external_doc = load_json(
         ROOT / "manifests" / "flagship_external_repositories.json"
     )
-    external_repositories = external.get(
+    external_repositories = external_doc.get(
         "verified_owner_estate_external_repositories",
         [],
     )
@@ -191,6 +220,8 @@ def compile_portfolio() -> dict[str, Any]:
         for row in flagships
         if isinstance(row, dict) and isinstance(row.get("repository"), str)
     )
+    for repository in all_repositories:
+        parse_repository_identifier(repository)
 
     return {
         "inventory_total": inventory.get("total_repositories"),
@@ -203,6 +234,30 @@ def compile_portfolio() -> dict[str, Any]:
     }
 
 
+def retry_delay(exc: HTTPError, attempt: int) -> float:
+    retry_after = exc.headers.get("Retry-After")
+    if retry_after:
+        try:
+            return min(MAX_BACKOFF_SECONDS, max(0.0, float(retry_after)))
+        except ValueError:
+            try:
+                retry_time = parsedate_to_datetime(retry_after)
+                delay = retry_time.timestamp() - time.time()
+                return min(MAX_BACKOFF_SECONDS, max(0.0, delay))
+            except (TypeError, ValueError, OverflowError):
+                pass
+
+    reset = exc.headers.get("X-RateLimit-Reset")
+    if reset:
+        try:
+            delay = float(reset) - time.time()
+            return min(MAX_BACKOFF_SECONDS, max(0.0, delay))
+        except ValueError:
+            pass
+
+    return min(MAX_BACKOFF_SECONDS, float(2 ** (attempt - 1)))
+
+
 def github_getter(token: str) -> Callable[[str], dict[str, Any]]:
     if not token:
         raise AuditError(
@@ -210,6 +265,8 @@ def github_getter(token: str) -> Callable[[str], dict[str, Any]]:
         )
 
     def get(path: str) -> dict[str, Any]:
+        if not path.startswith("/repos/GlacierEQ/"):
+            raise AuditError(f"disallowed GitHub API path: {path!r}")
         request = Request(
             f"https://api.github.com{path}",
             headers={
@@ -219,27 +276,37 @@ def github_getter(token: str) -> Callable[[str], dict[str, Any]]:
                 "User-Agent": "GlacierEQ-Portfolio-Freshness-Audit/1.0",
             },
         )
-        try:
-            with urlopen(request, timeout=15) as response:
-                payload = json.loads(response.read().decode("utf-8"))
-        except HTTPError as exc:
-            if exc.code == 404:
-                return {"_unobservable": True, "_http_status": 404}
-            detail = exc.read().decode("utf-8", errors="replace")[:500]
-            raise AuditError(
-                f"GitHub API {exc.code} for {path}: {detail}"
-            ) from exc
-        except (URLError, TimeoutError) as exc:
-            raise AuditError(
-                f"GitHub API transport failure for {path}: {exc}"
-            ) from exc
-        except json.JSONDecodeError as exc:
-            raise AuditError(
-                f"GitHub API returned invalid JSON for {path}"
-            ) from exc
-        if not isinstance(payload, dict):
-            raise AuditError(f"GitHub API returned non-object for {path}")
-        return payload
+        for attempt in range(1, MAX_ATTEMPTS + 1):
+            try:
+                with urlopen(request, timeout=15) as response:
+                    payload = json.loads(response.read().decode("utf-8"))
+                if not isinstance(payload, dict):
+                    raise AuditError(
+                        f"GitHub API returned non-object for {path}"
+                    )
+                return payload
+            except HTTPError as exc:
+                if exc.code == 404:
+                    return {"_unobservable": True, "_http_status": 404}
+                if exc.code in RETRYABLE_HTTP and attempt < MAX_ATTEMPTS:
+                    time.sleep(retry_delay(exc, attempt))
+                    continue
+                detail = exc.read().decode("utf-8", errors="replace")[:500]
+                raise AuditError(
+                    f"GitHub API {exc.code} for {path}: {detail}"
+                ) from exc
+            except (URLError, TimeoutError) as exc:
+                if attempt < MAX_ATTEMPTS:
+                    time.sleep(min(MAX_BACKOFF_SECONDS, float(2 ** (attempt - 1))))
+                    continue
+                raise AuditError(
+                    f"GitHub API transport failure for {path}: {exc}"
+                ) from exc
+            except json.JSONDecodeError as exc:
+                raise AuditError(
+                    f"GitHub API returned invalid JSON for {path}"
+                ) from exc
+        raise AuditError(f"GitHub API retry loop exhausted for {path}")
 
     return get
 
@@ -333,8 +400,7 @@ def audit(
     metadata: dict[str, dict[str, Any]] = {}
 
     for repository in portfolio["all_repositories"]:
-        owner, name = repository.split("/", 1)
-        repo = get(f"/repos/{quote(owner)}/{quote(name)}")
+        repo = get(repository_api_path(repository))
         if repo.get("_unobservable"):
             declared = declared_visibility(declarations, repository)
             metadata[repository] = {
@@ -447,12 +513,7 @@ def audit(
                 and isinstance(default_branch, str)
                 and default_branch
             ):
-                owner, name = repository.split("/", 1)
-                path = (
-                    f"/repos/{quote(owner)}/{quote(name)}/commits/"
-                    f"{quote(default_branch, safe='')}"
-                )
-                head = get(path)
+                head = get(commit_api_path(repository, default_branch))
                 if not head.get("_unobservable"):
                     current_head = head.get("sha")
                     head_matches = bool(
@@ -666,7 +727,7 @@ def main() -> int:
             output = ROOT / output
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_bytes(canonical_bytes(receipt))
-        print(f"wrote {output.relative_to(ROOT)}")
+        print(f"wrote {display_path(output)}")
 
     print(json.dumps(receipt, indent=2, sort_keys=True))
     if args.strict and any(
