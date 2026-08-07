@@ -1,6 +1,14 @@
 name: Historical portfolio census
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/portfolio-census.yml"
+      - "scripts/proof_weighted_repo_census.py"
+      - "scripts/aggregate_portfolio_census.py"
+      - "manifests/portfolio_repositories.json"
+      - "tests/test_portfolio_census_aggregate.py"
   workflow_dispatch:
   schedule:
     - cron: "17 18 * * 1"
@@ -120,8 +128,13 @@ jobs:
           from pathlib import Path
 
           payload = {
-              "schema": "glaciereq.portfolio.audit.v1",
+              "schema": "glaciereq.portfolio.audit.v2",
               "repository": sys.argv[1],
+              "metadata": {"access": "unavailable"},
+              "provenance": {
+                  "state": "BLOCKED_ACCESS",
+                  "markers": [],
+              },
               "admission_class": "private_or_inaccessible_excluded",
               "structure": None,
               "readme": None,
@@ -131,6 +144,10 @@ jobs:
                       "observed_count": 0,
                   }
               },
+              "nonclaims": [
+                  "Repository checkout was unavailable to this census run.",
+                  "No authorship, originality, verification, or recruiter claim is inferred.",
+              ],
           }
           Path(sys.argv[2]).write_text(
               json.dumps(payload, indent=2, sort_keys=True) + "\n",
@@ -145,5 +162,42 @@ jobs:
           path: |
             census-*.json
             repo-metadata.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: [prepare, census]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current control plane
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Download all census receipts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: census-*
+          path: census-artifacts
+          merge-multiple: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Reconcile canonical census
+        run: |
+          python scripts/aggregate_portfolio_census.py \
+            --receipts-dir census-artifacts \
+            --inventory manifests/portfolio_repositories.json \
+            --output portfolio-census-summary.json
+
+      - name: Upload reconciled census summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-census-summary
+          path: portfolio-census-summary.json
           if-no-files-found: error
           retention-days: 30
