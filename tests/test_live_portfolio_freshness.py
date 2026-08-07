@@ -1,14 +1,18 @@
 from __future__ import annotations
 
-import importlib.util
+from importlib import util
 from pathlib import Path
 from unittest.mock import patch
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "audit_live_portfolio_freshness.py"
-spec = importlib.util.spec_from_file_location("audit_live_portfolio_freshness", SCRIPT)
+SCRIPT = (
+    Path(__file__).resolve().parents[1]
+    / "scripts"
+    / "audit_live_portfolio_freshness.py"
+)
+spec = util.spec_from_file_location("audit_live_portfolio_freshness", SCRIPT)
 assert spec and spec.loader
-module = importlib.util.module_from_spec(spec)
+module = util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 
@@ -71,7 +75,12 @@ def portfolio(*, evidence_head: str | None = None):
     }
 
 
-def getter(*, public_visibility: str = "public", public_head: str = "abc", private_unobservable: bool = True):
+def getter(
+    *,
+    public_visibility: str = "public",
+    public_head: str = "abc",
+    private_unobservable: bool = True,
+):
     def get(path: str):
         if path == "/repos/GlacierEQ/public-system":
             return {
@@ -105,26 +114,47 @@ def finding_codes(receipt):
 
 
 def test_scoped_private_404_is_not_treated_as_missing_repository():
-    with patch.object(module, "compile_portfolio", return_value=portfolio(evidence_head="abc")):
+    with patch.object(
+        module,
+        "compile_portfolio",
+        return_value=portfolio(evidence_head="abc"),
+    ):
         receipt = module.audit(getter(private_unobservable=True), "FIXTURE")
-    assert "PRIVATE_OR_SCOPED_REPOSITORY_UNOBSERVABLE" in finding_codes(receipt)
-    assert "DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE" not in finding_codes(receipt)
+    assert "PRIVATE_OR_SCOPED_REPOSITORY_UNOBSERVABLE" in finding_codes(
+        receipt
+    )
+    assert "DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE" not in finding_codes(
+        receipt
+    )
     assert receipt["freshness"]["declared_visibility_matches_live"] is True
 
 
 def test_declared_public_visibility_mismatch_is_an_error():
-    with patch.object(module, "compile_portfolio", return_value=portfolio(evidence_head="abc")):
+    with patch.object(
+        module,
+        "compile_portfolio",
+        return_value=portfolio(evidence_head="abc"),
+    ):
         receipt = module.audit(
-            getter(public_visibility="private", private_unobservable=False),
+            getter(
+                public_visibility="private",
+                private_unobservable=False,
+            ),
             "FIXTURE",
         )
     assert "LIVE_VISIBILITY_MISMATCH" in finding_codes(receipt)
-    assert "AMBIGUOUS_PUBLIC_SURFACE_PRIVATE_SOURCE" in finding_codes(receipt)
+    assert "AMBIGUOUS_PUBLIC_SURFACE_PRIVATE_SOURCE" in finding_codes(
+        receipt
+    )
     assert receipt["freshness"]["declared_visibility_matches_live"] is False
 
 
 def test_missing_live_evidence_is_visible_without_fabricating_failure():
-    with patch.object(module, "compile_portfolio", return_value=portfolio(evidence_head=None)):
+    with patch.object(
+        module,
+        "compile_portfolio",
+        return_value=portfolio(evidence_head=None),
+    ):
         receipt = module.audit(getter(), "FIXTURE")
     assert "MISSING_FLAGSHIP_LIVE_EVIDENCE" in finding_codes(receipt)
     assert receipt["portfolio"]["recruiter_eligible_missing_live_evidence"] == 1
@@ -132,18 +162,31 @@ def test_missing_live_evidence_is_visible_without_fabricating_failure():
 
 
 def test_stale_live_evidence_is_an_error():
-    with patch.object(module, "compile_portfolio", return_value=portfolio(evidence_head="old")):
+    with patch.object(
+        module,
+        "compile_portfolio",
+        return_value=portfolio(evidence_head="old"),
+    ):
         receipt = module.audit(getter(public_head="new"), "FIXTURE")
     assert "STALE_FLAGSHIP_LIVE_EVIDENCE" in finding_codes(receipt)
-    flagship = next(row for row in receipt["flagships"] if row["system_id"] == "public")
+    flagship = next(
+        row for row in receipt["flagships"] if row["system_id"] == "public"
+    )
     assert flagship["evidence_head"] == "old"
     assert flagship["current_head"] == "new"
     assert flagship["head_matches"] is False
 
 
 def test_current_evidence_and_public_visibility_can_be_clean():
-    with patch.object(module, "compile_portfolio", return_value=portfolio(evidence_head="abc")):
+    with patch.object(
+        module,
+        "compile_portfolio",
+        return_value=portfolio(evidence_head="abc"),
+    ):
         receipt = module.audit(getter(public_head="abc"), "FIXTURE")
-    assert not [row for row in receipt["findings"] if row["severity"] == "ERROR"]
+    errors = [
+        row for row in receipt["findings"] if row["severity"] == "ERROR"
+    ]
+    assert not errors
     assert receipt["freshness"]["all_flagship_evidence_current"] is True
     assert receipt["freshness"]["declared_visibility_matches_live"] is True
