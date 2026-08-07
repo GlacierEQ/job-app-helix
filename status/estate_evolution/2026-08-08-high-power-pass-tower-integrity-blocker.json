@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-08-08",
+  "repository": "GlacierEQ/the-tower-of-babel",
+  "canonical_head_before": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+  "branch": "fix/branch-hygiene-synthesis-prefixes-20260807",
+  "merge_base": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+  "ahead": 1,
+  "behind": 0,
+  "unique_patch_commits": 1,
+  "files_changed": [".github/workflows/branch-hygiene.yml", ".integrity/file_hashes.json (generated candidate, not yet committed)"],
+  "decision": "HOLD_PROMOTION_REPAIR_GENERATED_INTEGRITY_LEDGER",
+  "preservation": "PR #28 remains open; no stale-tip merge; exact native-generated integrity candidate recovered from Actions artifact 8995490871.",
+  "verification": {
+    "spiral_engine": "success",
+    "nervous_system_contract": "success",
+    "tower_verification": "failure",
+    "governance_pre_integrity_steps": "success",
+    "immutable_integrity_ledger": "failure",
+    "portable_flagship": "success",
+    "generated_candidate_file_count": 200,
+    "generated_candidate_branch_hygiene_sha256": "a02ad748ee978a15f227d4870823246312bda929a9c3839f99c9df8ec92cfa6e"
+  },
+  "canonical_head_after": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+  "remote_ref_disposition": "KEEP_UNTIL_VERIFIED; prior merged synthesis ref remains DELETE_REF_REQUIRED unless exact deletion is proven",
+  "news_inputs": [
+    "Reuters: Meta Muse Code/Muse Spark crash-resumable agent harness signal (already represented; no duplicate promotion)",
+    "Reuters: OpenAI/Anthropic agent evaluation security incidents (reinforces existing fail-closed permission and verification controls)",
+    "arXiv 2608.03392 Self-Evolving Coding Agents (outside strict 24h window; no radar promotion this run)"
+  ],
+  "innovation_inputs": ["GlacierEQ/make-it-heavy execution harness contract retained; no novelty-only replacement"],
+  "blockers": ["Current GitHub contents write surface requires full replacement content for .integrity/file_hashes.json; the exact native candidate was recovered, but no safe partial-file mutation primitive is exposed in this run."],
+  "next_cursor_priority": "Commit the exact 200-entry native-generated .integrity/file_hashes.json candidate to PR #28, rerun all required Tower gates, then merge only with expected-head guard if fully green; continue priority spine afterward."
+}
