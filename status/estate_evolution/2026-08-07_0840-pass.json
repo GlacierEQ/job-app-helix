@@ -14,7 +14,16 @@
     "decision": "PRESERVE_CURRENT_DETERMINISTIC_PROJECTIONS_NO_REWRITE",
     "verification": "Controlling source blob identities still match the prior Estate receipt and Monolith sync receipt.",
     "blocker": "PR 45 remains verification-gated; hosted catalog validation failed and usable job logs were unavailable.",
-    "repair_path": "GlacierEQ/public-actions-runner-host is an existing owner-gated source-read-only execution face, but code.monolith.validate-legal-live-reconciliation is not yet in its canonical action catalog."
+    "repair": {
+      "repository": "GlacierEQ/public-actions-runner-host",
+      "pull_request": 93,
+      "branch": "feat/monolith-legal-live-validation-20260807",
+      "head": "401d627c15f7abf59a02a3d877bf11e7bed569c7",
+      "action": "code.monolith.validate-legal-live-reconciliation",
+      "source_ref": "6a48200efe839079d8efc4f65c523cb3452f1ed4",
+      "execution_mode": "source-read-only",
+      "status": "PREPARED_AND_QUEUED_FOR_RUNNER_NATIVE_PROOF"
+    }
   },
   "intelligence": {
     "repository": "GlacierEQ/mastermind",
@@ -22,38 +31,26 @@
     "radar_blob": "0d4be8b7e1abd1e91a0a027f71cde76ea11b4e03",
     "window_hours": 24,
     "decision": "NO_NEW_ACTIONABLE_SIGNAL",
-    "preservation": "No radar or Library-of-Links mutation. Existing working methods remain unchanged.",
-    "news_inputs": "Vendor-focused current searches did not surface a new qualifying primary-source development inside the strict 24-hour window beyond already represented signals."
+    "preservation": "No radar or Library-of-Links mutation; existing working methods remain unchanged."
   },
   "maintenance": [
     {
       "repository": "GlacierEQ/mastermind",
-      "canonical_head_before": "8ec392eea6f7b370551099504a113104bf900339",
-      "canonical_head_after": "8ec392eea6f7b370551099504a113104bf900339",
       "branch": "bolt hashing family",
-      "merge_base": "various historical bases; exact values recorded in owning receipt",
       "ahead": "1-4",
       "behind": "334-338",
-      "unique_patch_value": "Historical optimization code targets removed duplicate analyzer/FILEBOSS/forensics surfaces; one broad branch also carries stale-tree reversion/deletion risk.",
-      "files_affected": "Historical analyzer, PDF analyzer, FILEBOSS, forensics, and evidence/exhibit paths",
+      "unique_patch_value": "Historical optimization code targets removed duplicate analyzer/FILEBOSS/forensics surfaces; one broad branch also carries stale-tree reversion risk.",
       "decision": "RETIREMENT_READY_SEMANTICALLY; DO_NOT_MERGE_STALE_TIPS",
-      "preservation_action": "Retain optimization aspiration as lineage only; require a current-surface bottleneck before reimplementation.",
-      "verification_result": "GitHub branch enumeration + compare API + current-main absence checks. Exact patch-id equivalence not claimed because current connector exposes no git-cherry/patch-id primitive.",
+      "verification_result": "GitHub compare API + current-main surface checks; exact patch-id equivalence not claimed.",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
       "repository": "GlacierEQ/mastermind",
-      "canonical_head_before": "8ec392eea6f7b370551099504a113104bf900339",
-      "canonical_head_after": "8ec392eea6f7b370551099504a113104bf900339",
       "branch": "Bolt parallel router siblings",
-      "merge_base": "00b566f366f4a2fa733fb5c3f6c36dc7a8218af8 or f386cf49983c898eb17eb82f3ba813e1859dea8c",
       "ahead": 4,
       "behind": "320-327",
-      "unique_patch_value": "Parallel-dispatch benefit is already canonical; current main is stronger because PR 155 added per-worker failure isolation and team_errors with regression coverage.",
-      "files_affected": "powerhouse/logic/relevance_router.py plus historical sibling edits",
+      "unique_patch_value": "Parallel dispatch is already canonical and PR 155 preserved stronger per-worker failure isolation with regression coverage.",
       "decision": "RETIREMENT_READY_SUPERSEDED",
-      "preservation_action": "Preserve current failure-isolated parallel router and benchmark; reject unrelated stale-tree edits.",
-      "verification_result": "Current main code/test inspection plus merged PR 155 provenance.",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
@@ -62,34 +59,35 @@
       "merge_base": "a7d50d7cd9bf9af7fec5836069ab0d3a7dd4929b",
       "ahead": "2-5",
       "behind": 369,
-      "unique_patch_value": "Class-level data caching and O(1) skill ID lookup observed in historical integrations/skills_module.py; current live target not yet established.",
-      "decision": "KEEP_PENDING_SEMANTIC_REVIEW",
-      "preservation_action": "Preserve performance aspiration without resurrecting removed duplicated architecture.",
-      "verification_result": "Current main has no integrations/skills_module.py and no matching indexed current skill-data surface found in this pass.",
-      "remote_ref_disposition": "KEEP"
+      "unique_patch_value": "Historical class-level JSON cache and O(1) skill-ID lookup; integrations/skills_module.py and its historical data contract are absent from current main.",
+      "decision": "HISTORICAL_IMPLEMENTATION_RETIREMENT_READY; PERFORMANCE_ASPIRATION_PRESERVED",
+      "preservation_action": "Do not transplant stale module. Apply cache/index behavior only if a current skills-registry surface and measurable bottleneck are established.",
+      "verification_result": "Compare API, focused branch inspection, current-main file fetch, and current-main searches.",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
     }
   ],
   "prepared_changes": {
-    "mastermind_receipt_branch": "estate/bolt-family-retirement-20260807",
-    "mastermind_receipt_commit": "e37e6af2a4d4e3102778d4d14f47cc459588c8c3",
     "mastermind_pull_request": 156,
-    "mastermind_verification": "Mastermind truth contract queued at receipt time; canonical untouched until it succeeds."
+    "mastermind_head": "f50a6024508fcc77040412fad86a5a4159aa2884",
+    "mastermind_scope": "Bolt hash, router, and skills lineage receipts only",
+    "helix_pull_request": 40,
+    "runner_pull_request": 93
   },
   "innovation_inputs": [
-    "Failure-isolated parallel routing is retained because it is already repository-native and test-backed.",
-    "Public source-read-only action face identified as the correct execution boundary for repairing Monolith PR45 proof, rather than weakening verification gates."
+    "Retain failure-isolated parallel routing already canonical and test-backed.",
+    "Preserve O(1) skills lookup/cache as a benchmark-gated aspiration, not a stale implementation transplant.",
+    "Use the existing owner-gated source-read-only public action face to prove Monolith PR45 rather than weakening verification."
   ],
   "blockers": [
     "Current GitHub connector has no remote branch-ref deletion action, so retirement-ready refs remain DELETE_REF_REQUIRED.",
-    "Current GitHub connector cannot directly prove patch-id equivalence; semantic supersession is recorded separately from exact patch equivalence.",
-    "Monolith PR45 lacks a successful executable legal-live reconciliation receipt; public runner action is not yet cataloged.",
-    "Mastermind PR156 truth contract remained queued at the checkpoint."
+    "Current GitHub connector cannot directly prove patch-id equivalence; semantic supersession is kept distinct from exact patch equivalence.",
+    "Hosted Actions for Mastermind PR156, Helix PR40, and runner PR93 are queued; canonical promotion remains blocked until native proof completes."
   ],
   "next_cursor": {
     "priority": 1,
-    "repository": "GlacierEQ/mastermind",
-    "branch_family": "bolt skills lookup",
-    "after": "register and execute the Monolith legal-live reconciliation action through the public runner, then continue next priority repository/family",
-    "rule": "Do not revisit completed Mem0, router failure-isolation, Palette, Bolt hash, or Bolt router families except for proven remote ref deletion or new contradictory evidence."
+    "repository": "GlacierEQ/public-actions-runner-host",
+    "branch_family": "PR93 legal-live validation action",
+    "after": "consume exact-SHA PR45 execution receipt, then continue next uncompleted priority-spine/legal-spine family",
+    "rule": "Do not revisit completed Mem0, router failure-isolation, Palette, Bolt hash, Bolt router, or Bolt skills implementations except for proven remote ref deletion or contradictory new evidence."
   }
 }
