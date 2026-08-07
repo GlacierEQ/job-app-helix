@@ -16,6 +16,7 @@ from typing import Any
 PYTHON = sys.executable
 PASSED_COUNT = re.compile(r"(?P<count>\d+) passed(?:,|\s)")
 RAN_COUNT = re.compile(r"Ran (?P<count>\d+) tests?")
+COLLECTED_COUNT = re.compile(r"(?P<count>\d+) tests? collected", re.IGNORECASE)
 GIT_SHA = re.compile(r"^[0-9a-f]{40}$")
 
 PYTHON_CONTRACTS: dict[str, list[list[str]]] = {
@@ -139,16 +140,73 @@ def resolve_commit_sha(cwd: Path) -> str | None:
 
 
 def observed_test_count(output: str) -> int | None:
-    for pattern in (PASSED_COUNT, RAN_COUNT):
+    for pattern in (PASSED_COUNT, RAN_COUNT, COLLECTED_COUNT):
         match = pattern.search(output)
         if match:
             return int(match.group("count"))
     return None
 
 
+def is_pytest_command(argv: list[str]) -> bool:
+    return "pytest" in argv
+
+
 def command_requires_test_proof(argv: list[str]) -> bool:
     joined = " ".join(argv)
-    return "pytest" in argv or "unittest" in argv or " test" in f" {joined}"
+    return is_pytest_command(argv) or "unittest" in argv or " test" in f" {joined}"
+
+
+def pytest_collection_command(argv: list[str]) -> list[str]:
+    """Build a deterministic collection command independent of quiet addopts."""
+
+    pytest_index = argv.index("pytest")
+    prefix = argv[: pytest_index + 1]
+    suffix = [arg for arg in argv[pytest_index + 1 :] if arg not in {"-q", "--quiet"}]
+    return [*prefix, "--collect-only", "-q", "-o", "addopts=", *suffix]
+
+
+def count_collected_pytest_nodes(output: str) -> int:
+    """Count collected pytest node ids, falling back to pytest's collection summary."""
+
+    node_ids = {
+        line.strip()
+        for line in output.splitlines()
+        if "::" in line and not line.lstrip().startswith(("=", "<"))
+    }
+    if node_ids:
+        return len(node_ids)
+    return observed_test_count(output) or 0
+
+
+def collect_pytest_count(
+    argv: list[str],
+    cwd: Path,
+    timeout: int,
+    env: dict[str, str],
+) -> tuple[int, str, int]:
+    """Collect pytest tests before execution so proof does not depend on console prose."""
+
+    collection_argv = pytest_collection_command(argv)
+    try:
+        process = subprocess.run(
+            collection_argv,
+            cwd=cwd,
+            env=env,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            timeout=timeout,
+            check=False,
+            shell=False,
+        )
+    except subprocess.TimeoutExpired as exc:
+        output = exc.stdout if isinstance(exc.stdout, str) else ""
+        return 124, output, 0
+    except OSError as exc:
+        return 126, f"COLLECTION EXECUTION ERROR: {exc}", 0
+
+    output = process.stdout or ""
+    return process.returncode, output, count_collected_pytest_nodes(output)
 
 
 def run_commands(
@@ -162,6 +220,25 @@ def run_commands(
     maximum_test_count: int | None = None
 
     for argv in commands:
+        collection_count: int | None = None
+        if is_pytest_command(argv):
+            collection_argv = pytest_collection_command(argv)
+            lines.append(f"$ {json.dumps(collection_argv)}")
+            collection_code, collection_output, collection_count = collect_pytest_count(
+                argv,
+                cwd,
+                timeout,
+                env,
+            )
+            lines.append(collection_output)
+            if collection_code != 0:
+                lines.append("UNVERIFIED: pytest collection failed")
+                return collection_code, "\n".join(lines), maximum_test_count
+            if collection_count <= 0:
+                lines.append("UNVERIFIED: pytest collected zero tests")
+                return 3, "\n".join(lines), 0
+            maximum_test_count = max(maximum_test_count or 0, collection_count)
+
         lines.append(f"$ {json.dumps(argv)}")
         try:
             process = subprocess.run(
@@ -193,6 +270,9 @@ def run_commands(
             return process.returncode, "\n".join(lines), maximum_test_count
         if command_requires_test_proof(argv) and count == 0:
             lines.append("UNVERIFIED: test command reported zero tests")
+            return 3, "\n".join(lines), 0
+        if is_pytest_command(argv) and collection_count is None:
+            lines.append("UNVERIFIED: pytest execution lacked collection proof")
             return 3, "\n".join(lines), 0
 
     return 0, "\n".join(lines), maximum_test_count
