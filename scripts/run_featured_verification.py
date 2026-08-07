@@ -16,6 +16,7 @@ from typing import Any
 PYTHON = sys.executable
 PASSED_COUNT = re.compile(r"(?P<count>\d+) passed(?:,|\s)")
 RAN_COUNT = re.compile(r"Ran (?P<count>\d+) tests?")
+COMMIT_SHA = re.compile(r"^[0-9a-f]{40}$")
 
 PYTHON_CONTRACTS: dict[str, list[list[str]]] = {
     "job-app-helix": [
@@ -127,6 +128,27 @@ def command_requires_test_proof(argv: list[str]) -> bool:
     return "pytest" in argv or "unittest" in argv or " test" in f" {joined}"
 
 
+def resolve_commit_sha(cwd: Path) -> str | None:
+    """Resolve the exact checked-out commit without trusting the supplied mutable ref."""
+    try:
+        process = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=cwd,
+            text=True,
+            capture_output=True,
+            timeout=15,
+            check=False,
+            shell=False,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+
+    candidate = (process.stdout or "").strip().lower()
+    if process.returncode != 0 or COMMIT_SHA.fullmatch(candidate) is None:
+        return None
+    return candidate
+
+
 def run_commands(
     commands: list[list[str]],
     cwd: Path,
@@ -195,6 +217,7 @@ def resolve_contract(
 def main() -> int:
     args = parse_args()
     started = now()
+    resolved_commit_sha = resolve_commit_sha(args.path)
     commands, technology, tool, environment = resolve_contract(
         args.name,
         args.surface,
@@ -217,12 +240,18 @@ def main() -> int:
             args.timeout,
             environment,
         )
-        status = "VERIFIED" if exit_code == 0 else "FAILED"
+        if exit_code == 0 and resolved_commit_sha is None:
+            status = "BLOCKED_IDENTITY"
+            log += "\nUNVERIFIED: checked-out commit SHA could not be resolved.\n"
+        else:
+            status = "VERIFIED" if exit_code == 0 else "FAILED"
 
     payload = {
         "schema": "glaciereq.portfolio.verification.v1",
         "repository": args.repository,
         "ref": args.ref,
+        "resolved_commit_sha": resolved_commit_sha,
+        "identity_status": "RESOLVED" if resolved_commit_sha else "UNRESOLVED",
         "name": args.name,
         "surface": f"{args.surface}:{technology}",
         "commands": commands,

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import subprocess
 import sys
 from pathlib import Path
 from types import ModuleType
@@ -67,6 +68,39 @@ def test_featured_verifier_rejects_zero_test_success(tmp_path: Path) -> None:
     assert exit_code == 3
     assert observed == 0
     assert "UNVERIFIED" in output
+
+
+def test_featured_verifier_resolves_exact_checked_out_commit(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    module = load_script("run_featured_verification")
+    expected = "a" * 40
+
+    def fake_run(argv, **kwargs):
+        assert argv == ["git", "rev-parse", "HEAD"]
+        assert kwargs["cwd"] == tmp_path
+        assert kwargs["shell"] is False
+        return subprocess.CompletedProcess(argv, 0, expected + "\n", "")
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+
+    assert module.resolve_commit_sha(tmp_path) == expected
+
+
+def test_featured_verifier_rejects_mutable_ref_as_commit_identity(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    module = load_script("run_featured_verification")
+
+    def fake_run(argv, **kwargs):
+        del kwargs
+        return subprocess.CompletedProcess(argv, 0, "main\n", "")
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+
+    assert module.resolve_commit_sha(tmp_path) is None
 
 
 def test_census_reports_missing_tests_without_inventing_proof(tmp_path: Path) -> None:
