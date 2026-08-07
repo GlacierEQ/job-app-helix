@@ -50,7 +50,10 @@ def test_current_public_portal_and_control_plane_commits_are_recorded() -> None:
     )
 
 
-def test_featured_verifier_rejects_zero_test_success(tmp_path: Path) -> None:
+def test_featured_verifier_rejects_zero_test_success(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
     module = load_script("run_featured_verification")
     command = [
         sys.executable,
@@ -58,6 +61,11 @@ def test_featured_verifier_rejects_zero_test_success(tmp_path: Path) -> None:
         "print('0 passed in 0.01s')",
         "pytest",
     ]
+    monkeypatch.setattr(
+        module,
+        "collect_pytest_count",
+        lambda argv, cwd, timeout, env: (0, "", 0),
+    )
 
     exit_code, output, observed = module.run_commands(
         [command],
@@ -78,7 +86,7 @@ def test_featured_verifier_resolves_exact_checked_out_commit(
     expected = "a" * 40
 
     def fake_run(argv, **kwargs):
-        assert argv == ["git", "rev-parse", "HEAD"]
+        assert argv == ["git", "rev-parse", "--verify", "HEAD^{commit}"]
         assert kwargs["cwd"] == tmp_path
         assert kwargs["shell"] is False
         return subprocess.CompletedProcess(argv, 0, expected + "\n", "")
