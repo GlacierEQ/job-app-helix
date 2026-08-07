@@ -1,0 +1,61 @@
+{
+  "schema": "glaciereq.estate-evolution.pass-receipt.v1",
+  "timestamp": "2026-08-06T20:50:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "repository": "GlacierEQ/Pro_Code",
+  "canonical_branch": "main",
+  "canonical_head_before": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
+  "canonical_head_after": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
+  "decision": "NO_CANONICAL_MUTATION_REQUIRED_BRANCH_FAMILY_EXHAUSTED",
+  "branches": [
+    {
+      "branch": "helix-phase-1a",
+      "merge_base": "d31e5ba9d468f6150b0bd0b7bede9dbf7a884bd4",
+      "ahead": 0,
+      "behind": 20,
+      "files_changed": 0,
+      "unique_patch_value": "ZERO",
+      "decision": "RETIREMENT_READY",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "branch": "helix-phase-1b",
+      "merge_base": "d7f1ffd06964cc082817ab61b8f24f7b9f88a9a5",
+      "ahead": 0,
+      "behind": 11,
+      "files_changed": 0,
+      "unique_patch_value": "ZERO",
+      "decision": "RETIREMENT_READY",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "branch": "hardening/doctrine-verified-2026-07-31",
+      "merge_base": "0b8f7484a181e35ef1d6f019d488e2c348a98c49",
+      "ahead": 10,
+      "behind": 6,
+      "files_changed": 16,
+      "unique_patch_value": "NO_SUPERIOR_VALUE_IDENTIFIED_AFTER_PATCH_INSPECTION",
+      "preservation": "Canonical main is byte-identical for README.md, .github/workflows/ci.yml, scripts/verify_doctrine.py, and LINK-LIBRARY.md, while main has subsequently evolved PLAYBOOK.md beyond the branch.",
+      "decision": "RETIREMENT_READY_DO_NOT_MERGE",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "branch": "hardening/doctrine-truth-boundary-2026-07-30",
+      "merge_base": "c345e87db439e4a84ae28faa0271afede2a238b0",
+      "ahead": 15,
+      "behind": 10,
+      "files_changed": 12,
+      "unique_patch_value": "SUPERSEDED_BY_LATER_VERIFIED_DOCTRINE_AND_CANONICAL_MAIN",
+      "preservation": "Later doctrine-verified branch added nervous-system verification and canonical main contains the verified doctrine corpus plus newer aspiration/deployment calibration.",
+      "decision": "RETIREMENT_READY_DO_NOT_MERGE",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    }
+  ],
+  "verification": {
+    "method": "Git ancestry plus canonical blob equality plus semantic successor inspection",
+    "main_unchanged": true,
+    "stale_tip_merged": false
+  },
+  "blocker": "Remote branch deletion cannot be truthfully performed because the current connector exposes no proven delete-ref action.",
+  "next_cursor": "GlacierEQ/mastermind"
+}
