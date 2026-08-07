@@ -49,8 +49,8 @@ jobs:
                   'f"HELIX_ADMITTED repository is absent from "\n'
                   '                            f"canonical inventory: {repository}",'
               ),
-              '"Root-truth projection validates control-plane source integrity only. Each downstream consumer must emit its own current-source receipt before release.",': (
-                  '"Root-truth projection validates control-plane source integrity only. "\n'
+              '"Root validation proves source and contract integrity only. Each downstream consumer must emit its own current-source receipt before release.",': (
+                  '"Root validation proves source and contract integrity only. "\n'
                   '                "Each downstream consumer must emit its own current-source receipt before release.",'
               ),
           }
