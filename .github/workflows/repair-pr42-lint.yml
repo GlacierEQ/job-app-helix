@@ -28,7 +28,7 @@ jobs:
       - name: Install declared development toolchain
         run: python -m pip install -e '.[dev]'
 
-      - name: Apply only Ruff-safe mechanical repairs
+      - name: Apply bounded mechanical repairs then enforce clean lint
         shell: bash
         run: |
           set -euo pipefail
@@ -40,7 +40,7 @@ jobs:
             tests/test_portfolio_root_truth.py
             tests/test_proof_identity_receipts.py
           )
-          ruff check --fix "${targets[@]}"
+          ruff check --fix "${targets[@]}" || true
           ruff format "${targets[@]}"
           ruff check "${targets[@]}"
 
