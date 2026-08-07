@@ -31,6 +31,7 @@ def expected_repositories(inventory: dict[str, Any]) -> tuple[str, list[str]]:
     owner = inventory.get("owner")
     root = inventory.get("portfolio_root")
     workspace = inventory.get("workspace_repositories")
+    declared_total = inventory.get("total_repositories")
     if not isinstance(owner, str) or not owner:
         raise ValueError("Inventory owner is required")
     if not isinstance(root, str) or not root:
@@ -44,6 +45,14 @@ def expected_repositories(inventory: dict[str, Any]) -> tuple[str, list[str]]:
     repositories = [root_repository, *(f"{owner}/{item}" for item in workspace)]
     if len(repositories) != len(set(repositories)):
         raise ValueError("Canonical inventory contains duplicate repositories")
+    if declared_total is not None:
+        if not isinstance(declared_total, int) or declared_total < 1:
+            raise ValueError("Inventory total_repositories must be a positive integer")
+        if declared_total != len(repositories):
+            raise ValueError(
+                "Inventory total_repositories does not match root + workspace: "
+                f"declared={declared_total} calculated={len(repositories)}"
+            )
     return root_repository, repositories
 
 
@@ -68,6 +77,9 @@ def action_queues(records: list[dict[str, Any]]) -> dict[str, list[str]]:
         "access_review": [],
         "reference_only": [],
         "retired": [],
+        "verification_failed": [],
+        "verification_dependency_blocked": [],
+        "verification_no_test_path": [],
     }
     for record in records:
         repository = record.get("repository")
@@ -77,6 +89,15 @@ def action_queues(records: list[dict[str, Any]]) -> dict[str, list[str]]:
         provenance = record.get("provenance")
         provenance_state = (
             provenance.get("state") if isinstance(provenance, dict) else None
+        )
+        verification = record.get("verification")
+        python_verification = (
+            verification.get("python") if isinstance(verification, dict) else None
+        )
+        verification_state = (
+            python_verification.get("status")
+            if isinstance(python_verification, dict)
+            else None
         )
 
         if provenance_state == "UNRESOLVED":
@@ -91,6 +112,12 @@ def action_queues(records: list[dict[str, Any]]) -> dict[str, list[str]]:
             queues["reference_only"].append(repository)
         if admission == "archive_or_retired":
             queues["retired"].append(repository)
+        if verification_state == "FAILED":
+            queues["verification_failed"].append(repository)
+        if verification_state == "BLOCKED_DEPENDENCY":
+            queues["verification_dependency_blocked"].append(repository)
+        if verification_state == "NO_TEST_PATH":
+            queues["verification_no_test_path"].append(repository)
 
     return {name: sorted(values) for name, values in queues.items()}
 
@@ -146,6 +173,7 @@ def build_summary(receipts_dir: Path, inventory: dict[str, Any]) -> dict[str, An
         "schema": SUMMARY_SCHEMA,
         "owner": inventory["owner"],
         "portfolio_root": root_repository,
+        "declared_repository_count": inventory.get("total_repositories"),
         "expected_repository_count": len(expected),
         "workspace_repository_count": len(workspace_records),
         "coverage": {
