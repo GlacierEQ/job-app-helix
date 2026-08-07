@@ -1,19 +1,18 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-07T07:40:00Z",
+  "updated_at": "2026-08-07T08:40:00Z",
   "control_plane": "GlacierEQ/job-app-helix",
   "phase": "PRIORITY_SPINE_BRANCH_CONSOLIDATION",
   "cursor": {
     "repository": "GlacierEQ/mastermind",
     "canonical_branch": "main",
-    "next_branch": "remaining bolt hashing/router variants",
-    "after_family": "next priority repository/family"
+    "next_branch": "bolt skills lookup family",
+    "after_family": "repair Monolith PR45 proof through public-actions-runner-host, then next priority repository/family"
   },
   "current_repository": {
     "repository": "GlacierEQ/mastermind",
-    "canonical_head_after_promotions": "3a564606111568657a3a0aca2f1c0044ddd0f69f",
     "canonical_head_after_latest_receipt": "8ec392eea6f7b370551099504a113104bf900339",
-    "next_decision": "FINISH BOLT HASHING/ROUTER SIBLINGS; RETIRE HISTORICAL REMOVED-SURFACE OPTIMIZATIONS; KEEP BROAD CROSS-CUTTING VARIANTS UNTIL SEMANTIC REVIEW PROVES EXHAUSTION"
+    "next_decision": "MAP BOLT SKILLS CACHE/O1 LOOKUP ASPIRATION TO A CURRENT LIVE SURFACE OR RETIRE THE HISTORICAL IMPLEMENTATION; DO NOT RESURRECT REMOVED DUPLICATED TREES"
   },
   "completed_this_pass": [
     {
@@ -21,9 +20,7 @@
       "branch_family": "sentinel-mem0-plus-bolt-async-memory",
       "synthesis_branch": "synth/mem0-live-adapter-20260807",
       "pull_request": 154,
-      "canonical_head_after": "a14b3996553e73a13161d980a8452467779cf44b",
       "decision": "SYNTHESIZED_VERIFIED_AND_PROMOTED",
-      "verification": "MASTERMIND TRUTH CONTRACT SUCCESS; EXPECTED-HEAD GUARDED MERGE",
       "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_FINAL_PATCH_EQUIVALENCE_SWEEP"
     },
     {
@@ -31,23 +28,8 @@
       "branch_family": "bolt-parallel-router",
       "synthesis_branch": "synth/router-failure-isolation-20260807",
       "pull_request": 155,
-      "canonical_head_after": "3a564606111568657a3a0aca2f1c0044ddd0f69f",
       "decision": "SYNTHESIZED_VERIFIED_AND_PROMOTED",
-      "verification": "MASTERMIND TRUTH CONTRACT SUCCESS; EXPECTED-HEAD GUARDED MERGE",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_FINAL_PATCH_EQUIVALENCE_SWEEP"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "sentinel-overleaf-command-injection",
-      "decision": "HISTORICAL_REMEDIATION_DO_NOT_RESURRECT_REMOVED_SURFACE",
-      "verification": "MULTIPLE SIBLINGS TARGET ABSENT OVERLEAF-POWERHOUSE MCP TREE",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_REMAINING_SIBLING_CONFIRMATION"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "sentinel-path-traversal",
-      "decision": "RETIREMENT_READY_SECURITY_VALUE_CENTRALIZED_ON_MAIN",
-      "verification": "CURRENT SHARED PILLAR SAFE-JOIN CONTAINMENT SUPERSEDES BRANCH-LOCAL VARIANTS",
+      "verification": "REPOSITORY-NATIVE TRUTH CONTRACT; EXPECTED-HEAD GUARDED MERGE",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
@@ -55,53 +37,66 @@
       "branch_family": "palette-ui",
       "branch_count": 18,
       "decision": "RETIREMENT_READY_AS_IMPLEMENTATION_FAMILY",
-      "verification": "ALL 18 REFS ENUMERATED; DIVERGENT VARIANTS TARGET RETIRED APPS/WEB DASHBOARD TREE; ONE STRICT ANCESTOR",
-      "preservation": "ACCESSIBILITY/DYNAMIC-DASHBOARD/COPY/HYDRATION UX IDEAS RETAINED AS DESIGN LINEAGE IN RECEIPT",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "branch_family": "bolt-hashing",
+      "branches_reviewed": 10,
+      "decision": "RETIREMENT_READY_HISTORICAL_REMOVED_SURFACES",
+      "verification": "COMPARE_API_PLUS_CURRENT_MAIN_SURFACE_CHECK; EXACT_PATCH_ID_NOT_CLAIMED",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "receipt_pr": 156
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "branch_family": "bolt-router-siblings",
+      "branches_reviewed": 5,
+      "decision": "RETIREMENT_READY_SUPERSEDED_BY_CURRENT_FAILURE_ISOLATED_ROUTER",
+      "verification": "CURRENT_MAIN_PLUS_MERGED_PR155_AND_REGRESSION_TEST",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "receipt_pr": 156
     }
   ],
   "preserved_prior_completions": [
     "GlacierEQ/AKOS career-intelligence v2 synthesis promoted",
     "GlacierEQ/pro-code native-proof sibling family retirement-ready",
     "GlacierEQ/Pro_Code doctrine family retirement-ready",
-    "GlacierEQ/mastermind canonical/runtime/piston/truth family retirement-ready"
+    "GlacierEQ/mastermind canonical/runtime/piston/truth family retirement-ready",
+    "GlacierEQ/mastermind sentinel security and removed-surface families classified"
   ],
   "pending": [
     {
       "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-hashing",
-      "decision": "MULTIPLE HASH VARIANTS TARGET REMOVED DUPLICATED ANALYZER/FILEBOSS/FORENSICS SURFACES; COMPLETE REMAINING SIBLING CONFIRMATION",
-      "remote_ref_disposition": "KEEP_PENDING_FAMILY_SWEEP"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-router-broad",
-      "branch": "bolt-parallelize-router-18197549124199743234",
-      "decision": "KEEP_FOR_FRESH_ANCESTRY_SEMANTIC_REVIEW",
+      "branch_family": "bolt-skills-lookup",
+      "branches": ["bolt-optimize-skills-lookup-10386955524801931510", "bolt-skills-engine-opt-14770661168618465838"],
+      "decision": "KEEP_PENDING_CURRENT_SURFACE_MAPPING",
+      "known_unique_delta": "Historical class-level data cache and O(1) skill ID lookup with tests; current integrations/skills_module.py surface is absent from main.",
       "remote_ref_disposition": "KEEP"
     },
     {
       "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-skills-lookup",
-      "branch": "bolt-optimize-skills-lookup-10386955524801931510",
-      "decision": "HISTORICAL_OPTIMIZATION_ACROSS REMOVED DUPLICATED TREES; FINAL LINEAGE REVIEW BEFORE RETIREMENT",
-      "remote_ref_disposition": "KEEP_PENDING_FAMILY_SWEEP"
+      "pull_request": 156,
+      "decision": "RECEIPT_PREPARED_VERIFICATION_QUEUED",
+      "remote_ref_disposition": "KEEP_UNTIL_TRUTH_CONTRACT_SUCCESS"
+    },
+    {
+      "repository": "GlacierEQ/monolith",
+      "pull_request": 45,
+      "decision": "VERIFICATION_GATED_PUBLIC_RUNNER_REPAIR_PATH_IDENTIFIED",
+      "blocker": "code.monolith.validate-legal-live-reconciliation is not yet registered in GlacierEQ/public-actions-runner-host action catalog",
+      "remote_ref_disposition": "KEEP"
     },
     {
       "repository": "GlacierEQ/AKOS",
       "branch_family": ["feature/career-intelligence-runtime-v1", "feature/career-intelligence-platform-v2", "synth/career-intelligence-v2-20260806"],
       "decision": "VALUE_PRESERVED_ON_MAIN; RETIRE WHEN DELETE CAPABILITY EXISTS",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
-    },
-    {
-      "repository": "GlacierEQ/monolith",
-      "pull_request": 45,
-      "decision": "VERIFICATION_GATED",
-      "remote_ref_disposition": "KEEP"
     }
   ],
   "intelligence": {
     "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
+    "radar_blob": "0d4be8b7e1abd1e91a0a027f71cde76ea11b4e03",
     "changed_this_pass": false,
     "decision": "NO_NEW_SIGNAL_CLEARED_STRICT_24H_ACTIONABILITY_GATE"
   },
@@ -109,17 +104,19 @@
     "drift_detected": false,
     "registry_blob": "c78526a5a738a25699fc02bedccb5c2e23cc186d",
     "discovery_blob": "02a35c71ec91cd3614e33e7bebdb12741d169927",
-    "sync_receipt_blob": "1c7a36c27bda4e58e08cc4fb5662b33de2936b0b"
+    "sync_receipt_blob": "1c7a36c27bda4e58e08cc4fb5662b33de2936b0b",
+    "decision": "PRESERVE_DETERMINISTIC_SOURCE_PROJECTION_CONTRACT",
+    "next_repair": "Register owner-gated source-read-only legal-live reconciliation action in public-actions-runner-host and execute PR45 head by exact SHA."
   },
   "tooling": {
     "remote_ref_delete_action_available_in_current_connector": false,
-    "github_hosted_actions_available_this_pass": true
+    "exact_patch_id_action_available_in_current_connector": false,
+    "github_hosted_actions_available_this_pass": true,
+    "public_actions_runner_host_available": true
   },
   "latest_receipts": [
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0718.json",
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0727.json",
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0725-sentinel-palette.json",
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0735-palette-bolt.json"
+    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0834-bolt-family.json (PR 156 pending proof)",
+    "status/estate_evolution/2026-08-07_0840-pass.json"
   ],
-  "next_run_contract": "Build on this state. Do not revisit promoted Mem0/router synthesis or completed Palette family except for proven ref deletion. Finish remaining Bolt hashing/router variants. Removed historical surfaces must not be resurrected. Preserve any surviving live behavior only by fresh-current-main synthesis, repository-native proof, and expected-head guarded promotion."
+  "next_run_contract": "Build on this state. Do not revisit promoted Mem0/router synthesis, completed Palette, Bolt hashing, or Bolt router families except to delete refs with proven capability or if new contradictory evidence appears. Finish Bolt skills lookup lineage against current live surfaces. Then repair Monolith PR45 verification by adding the missing source-read-only action to public-actions-runner-host and executing the exact PR45 head. Preserve legal-spine source authority and do not weaken proof gates."
 }
