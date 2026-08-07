@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-08-07T01:56:00-10:00",
+  "repository": "GlacierEQ/make-it-heavy",
+  "canonical_head_before": "0a928a3ab8a29be38948cc1a4f5d076bbe7ecba3",
+  "branch": "innovation/worker-turn-02-proof-slice-2026-08-06",
+  "merge_base": "0a928a3ab8a29be38948cc1a4f5d076bbe7ecba3",
+  "ahead": 8,
+  "behind": 0,
+  "unique_patch_commits": 8,
+  "files_changed": 8,
+  "decision": "PROMOTE_VERIFIED_WORKER_TURN_2_AND_ADOPT_AS_ESTATE_EXECUTION_HARNESS",
+  "preservation": "Squash-merged PR #13 with expected-head guard; Estate control plane integration isolated on integration/make-it-heavy-estate-harness-20260807 pending its own verification.",
+  "verification": {
+    "repository_native": true,
+    "workflow": "Adaptive Worker Integrity",
+    "workflow_run_id": 31149480516,
+    "conclusion": "success",
+    "mergeable_before_merge": true,
+    "expected_head_guard": "9e1bf17a91ba06123c51e2547715743725464f2c"
+  },
+  "canonical_head_after": "72edb1e1f3e5bb0ae3eca54a9491bddfcd9c1f3b",
+  "remote_ref_disposition": "SOURCE_BRANCH_RETAINED_PENDING_ZERO_UNIQUE_VALUE_RETIREMENT_PROOF",
+  "news_inputs": [],
+  "innovation_inputs": [
+    "claim-discipline hard gate",
+    "logical worker count separated from provider concurrency width",
+    "wave-scaled timeout budgeting",
+    "per-turn structural quality and marginal-benefit scoring",
+    "immutable worker receipts",
+    "decision-critical output first; reduce scope before lowering gate"
+  ],
+  "blockers": [],
+  "next_cursor": "Use GlacierEQ/make-it-heavy as the adaptive execution and proof harness for subsequent Estate Evolution repository inspections; repository-native verification remains authoritative for canonical promotion."
+}
