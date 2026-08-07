@@ -29,6 +29,22 @@ SecondDepthValidationError = VALIDATOR.SecondDepthValidationError
 validate_second_depth = VALIDATOR.validate_second_depth
 
 
+def evidence_reference(
+    kind: str,
+    *,
+    verification_state: str = "VERIFIED",
+    visibility: str = "public",
+) -> dict[str, str]:
+    return {
+        "id": f"fixture:{kind}",
+        "kind": kind,
+        "source_identity": "https://example.com/public-evidence",
+        "source_ref": f"sha256:{'a' * 64}",
+        "visibility": visibility,
+        "verification_state": verification_state,
+    }
+
+
 class CompanySecondDepthTests(unittest.TestCase):
     def fixture_root(self, temporary_directory: str) -> Path:
         root = Path(temporary_directory)
@@ -49,6 +65,8 @@ class CompanySecondDepthTests(unittest.TestCase):
         self.assertEqual(result["priority_wave"], 8)
         self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 49)
         self.assertEqual(sum(result["stage_counts"].values()), 49)
+        self.assertTrue(result["evidence_reference_schema_enforced"])
+        self.assertTrue(result["stage_contract_locked"])
         self.assertTrue(result["claim_promotion_requires_receipt"])
         self.assertTrue(result["zero_implicit_completion"])
 
@@ -80,6 +98,23 @@ class CompanySecondDepthTests(unittest.TestCase):
         self.assertEqual(resolved["inspected_repositories"], [])
         self.assertIn("no_direct_company_repository_verified", resolved["blockers"])
 
+    def test_valid_pinned_public_role_evidence_can_advance_one_stage(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_second_depth.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["company_overrides"]["openai"].update(
+                {
+                    "stage": "ROLE_VERIFIED",
+                    "role_evidence": [evidence_reference("role")],
+                    "claim_ceiling": "verified_role_alignment",
+                }
+            )
+            self.write_json(path, payload)
+            result = validate_second_depth(root)
+            self.assertEqual(result["stage_counts"]["ROLE_VERIFIED"], 1)
+            self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 48)
+
     def test_role_verified_cannot_be_claimed_without_role_evidence(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = self.fixture_root(temporary_directory)
@@ -98,18 +133,77 @@ class CompanySecondDepthTests(unittest.TestCase):
             ):
                 validate_second_depth(root)
 
+    def test_malformed_evidence_object_cannot_satisfy_prerequisite(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_second_depth.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["company_overrides"]["openai"].update(
+                {
+                    "stage": "ROLE_VERIFIED",
+                    "role_evidence": [{"id": "fabricated"}],
+                    "claim_ceiling": "verified_role_alignment",
+                }
+            )
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                SecondDepthValidationError,
+                "evidence keys must exactly equal",
+            ):
+                validate_second_depth(root)
+
+    def test_private_evidence_reference_cannot_satisfy_public_stage(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_second_depth.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["company_overrides"]["openai"].update(
+                {
+                    "stage": "ROLE_VERIFIED",
+                    "role_evidence": [evidence_reference("role", visibility="private")],
+                    "claim_ceiling": "verified_role_alignment",
+                }
+            )
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                SecondDepthValidationError,
+                "visibility must be public",
+            ):
+                validate_second_depth(root)
+
     def test_proof_artifacts_cannot_appear_at_mapping_stage(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = self.fixture_root(temporary_directory)
             path = root / "manifests" / "company_second_depth.json"
             payload = json.loads(path.read_text(encoding="utf-8"))
             payload["company_overrides"]["openai"]["proof_artifacts"] = [
-                "unsupported-proof"
+                evidence_reference(
+                    "proof_artifact",
+                    verification_state="REPRODUCED",
+                )
             ]
             self.write_json(path, payload)
             with self.assertRaisesRegex(
                 SecondDepthValidationError,
                 "proof artifacts cannot precede PROOF_REPRODUCED",
+            ):
+                validate_second_depth(root)
+
+    def test_stage_contract_cannot_drop_earlier_prerequisites(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = self.fixture_root(temporary_directory)
+            path = root / "manifests" / "company_second_depth.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            proof_stage = next(
+                stage
+                for stage in payload["stage_order"]
+                if stage["id"] == "PROOF_REPRODUCED"
+            )
+            proof_stage["minimum_evidence"].remove("gap_queue")
+            self.write_json(path, payload)
+            with self.assertRaisesRegex(
+                SecondDepthValidationError,
+                "PROOF_REPRODUCED minimum_evidence contract drift",
             ):
                 validate_second_depth(root)
 
