@@ -8,6 +8,16 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+KNOWN_CLASSIFICATIONS = {
+    "PRIORITY_SPINE",
+    "RECRUITER_PORTFOLIO",
+    "ARCHIVE_BACKUP_OR_FORK",
+    "UPSTREAM_OR_FORK_REVIEW",
+    "PRIVATE_REVIEW_REQUIRED",
+    "CANDIDATE_EXPANSION",
+    "UNGOVERNED_PUBLIC_INVENTORY",
+}
+
 
 class QueueError(RuntimeError):
     pass
@@ -87,7 +97,22 @@ def route_record(record: dict[str, Any]) -> dict[str, Any]:
     fork = record["fork"]
     archived = record["archived"]
 
-    if archived or classification == "ARCHIVE_BACKUP_OR_FORK":
+    if classification == "PRIORITY_SPINE":
+        lane = "PRESERVE_GOVERNED_PRIORITY"
+        priority = 100
+        actionable = False
+        reason = "Priority-spine repositories retain their explicit governance lane."
+    elif classification == "RECRUITER_PORTFOLIO":
+        lane = "PRESERVE_GOVERNED_RECRUITER"
+        priority = 100
+        actionable = False
+        reason = "Recruiter-portfolio repositories retain their existing governance lane."
+    elif classification not in KNOWN_CLASSIFICATIONS:
+        lane = "MANUAL_TRIAGE"
+        priority = 0
+        actionable = True
+        reason = "Unknown census classification requires explicit routing review."
+    elif archived or classification == "ARCHIVE_BACKUP_OR_FORK":
         lane = "PRESERVE_ARCHIVE_BACKUP"
         priority = 90
         actionable = False
@@ -97,16 +122,6 @@ def route_record(record: dict[str, Any]) -> dict[str, Any]:
         priority = 60
         actionable = True
         reason = "Forks are reviewed separately for upstream value or verified local delta."
-    elif classification == "PRIORITY_SPINE":
-        lane = "PRESERVE_GOVERNED_PRIORITY"
-        priority = 100
-        actionable = False
-        reason = "Priority-spine repositories already have an explicit governance lane."
-    elif classification == "RECRUITER_PORTFOLIO":
-        lane = "PRESERVE_GOVERNED_RECRUITER"
-        priority = 100
-        actionable = False
-        reason = "Recruiter-portfolio repositories remain governed by their existing gates."
     elif classification == "CANDIDATE_EXPANSION":
         lane = "NATIVE_CANDIDATE_AUDIT"
         priority = 10
