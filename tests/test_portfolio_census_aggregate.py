@@ -45,6 +45,7 @@ def inventory() -> dict[str, object]:
     return {
         "owner": "GlacierEQ",
         "portfolio_root": "job-app-helix",
+        "total_repositories": 3,
         "workspace_repositories": ["alpha", "downstream"],
     }
 
@@ -67,6 +68,7 @@ def test_aggregate_reconciles_exact_inventory_and_action_queues(
         "GlacierEQ/alpha",
         admission="candidate_public_unresolved_provenance",
         provenance="UNRESOLVED",
+        verification="FAILED",
     )
     write_receipt(
         tmp_path,
@@ -74,11 +76,13 @@ def test_aggregate_reconciles_exact_inventory_and_action_queues(
         "GlacierEQ/downstream",
         admission="candidate_attributed_downstream",
         provenance="EXPLICIT_DOWNSTREAM",
+        verification="BLOCKED_DEPENDENCY",
     )
 
     summary = module.build_summary(tmp_path, inventory())
 
     assert summary["schema"] == "glaciereq.portfolio.census.summary.v1"
+    assert summary["declared_repository_count"] == 3
     assert summary["expected_repository_count"] == 3
     assert summary["workspace_repository_count"] == 2
     assert summary["coverage"]["complete"] is True
@@ -90,12 +94,32 @@ def test_aggregate_reconciles_exact_inventory_and_action_queues(
         "EXPLICIT_DOWNSTREAM": 1,
         "UNRESOLVED": 1,
     }
-    assert summary["workspace"]["action_queues"]["provenance_review"] == [
-        "GlacierEQ/alpha"
+    assert summary["workspace"]["python_verification_states"] == {
+        "BLOCKED_DEPENDENCY": 1,
+        "FAILED": 1,
+    }
+    queues = summary["workspace"]["action_queues"]
+    assert queues["provenance_review"] == ["GlacierEQ/alpha"]
+    assert queues["attributed_downstream_review"] == ["GlacierEQ/downstream"]
+    assert queues["verification_failed"] == ["GlacierEQ/alpha"]
+    assert queues["verification_dependency_blocked"] == [
+        "GlacierEQ/downstream"
     ]
-    assert summary["workspace"]["action_queues"][
-        "attributed_downstream_review"
-    ] == ["GlacierEQ/downstream"]
+    assert queues["verification_no_test_path"] == []
+
+
+def test_inventory_declared_total_must_match_root_plus_workspace() -> None:
+    module = load_script("aggregate_portfolio_census")
+    bad_inventory = inventory()
+    bad_inventory["total_repositories"] = 4
+
+    try:
+        module.expected_repositories(bad_inventory)
+    except ValueError as exc:
+        assert "total_repositories" in str(exc)
+        assert "declared=4 calculated=3" in str(exc)
+    else:
+        raise AssertionError("Mismatched declared repository total did not fail closed")
 
 
 def test_aggregate_fails_on_missing_expected_receipt(tmp_path: Path) -> None:
