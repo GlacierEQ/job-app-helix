@@ -1,7 +1,7 @@
 {
   "schema": "glaciereq.company-dossiers-shard.v2",
   "group_id": "additional_targets",
-  "generated_at": "2026-08-07T08:10:00-10:00",
+  "generated_at": "2026-08-07T11:43:00-10:00",
   "defaults_apply_to_all_companies": true,
   "defaults": {
     "track_state": "NO_DIRECT_EXHIBIT_VERIFIED",
@@ -76,6 +76,19 @@
     {"company_id": "zoox", "display_name": "Zoox", "repositories": []},
     {"company_id": "blue_origin", "display_name": "Blue Origin", "repositories": []},
     {"company_id": "rocket_lab", "display_name": "Rocket Lab", "repositories": []},
+    {
+      "company_id": "lockheed_martin",
+      "display_name": "Lockheed Martin",
+      "target_roles": [
+        "AI / ML Systems Engineer",
+        "Mission Systems Software Engineer",
+        "Systems Architect"
+      ],
+      "recruiter_thesis": "Mission-critical software, governed automation, evidence-bound engineering, recovery-oriented architecture, and cross-domain systems reasoning are candidate alignment themes only; no Lockheed-specific implementation claim is made without direct evidence.",
+      "gap_or_next_gate": "No Lockheed Martin-named repository or recruiter-admitted company-specific proof was found in the connected GlacierEQ estate. Verify a current public role and team, bound one externally supportable problem, then inspect only genuinely relevant GlacierEQ implementations before raising the claim ceiling.",
+      "non_affiliation": "Independent GlacierEQ work; no Lockheed Martin affiliation, endorsement, employment, proprietary access, contract relationship, clearance, or production deployment is claimed.",
+      "repositories": []
+    },
     {"company_id": "nasa", "display_name": "NASA", "repositories": []}
   ]
 }

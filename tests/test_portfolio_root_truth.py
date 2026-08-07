@@ -39,10 +39,12 @@ def test_root_truth_validation_passes() -> None:
     assert set(receipt["projection_freshness"]["projections"]) == EXPECTED_PROJECTIONS
     assert receipt["counts"]["total_repositories"] == 67
     assert receipt["counts"]["workspace_repositories"] == 66
-    assert len(required_company_tracks) == 48
+    assert len(required_company_tracks) == 49
     assert receipt["counts"]["company_tracks"] == len(required_company_tracks)
     assert receipt["counts"]["flagship_systems"] == 17
     assert receipt["counts"]["projections"] == len(EXPECTED_PROJECTIONS)
+    assert receipt["counts"]["required_sources"] == 10
+    assert "manifests/company_second_depth.json" in receipt["source_hashes"]
     assert len(receipt["source_digest"]) == 64
     assert len(receipt["receipt_sha256"]) == 64
     assert all(receipt["invariants"].values())
@@ -53,10 +55,12 @@ def test_every_projection_resolves_declared_sources() -> None:
     source_ids = {source["id"] for source in manifest["sources"]}
     projection_ids = {projection["id"] for projection in manifest["projections"]}
     assert len(source_ids) == len(manifest["sources"])
+    assert "company_second_depth" in source_ids
     assert projection_ids == EXPECTED_PROJECTIONS
     for projection in manifest["projections"]:
         assert projection["required_sources"]
         assert set(projection["required_sources"]) <= source_ids
+        assert "company_second_depth" in projection["required_sources"]
 
 
 def test_flagships_exactly_match_required_named_registry() -> None:
@@ -85,6 +89,7 @@ def test_public_projections_cannot_publish_private_records() -> None:
     assert public_ids <= rows.keys()
     for projection_id in public_ids:
         assert rows[projection_id]["may_publish_private_records"] is False
+        assert "company_second_depth" in rows[projection_id]["required_sources"]
 
 
 def test_public_projection_admission_is_fail_closed() -> None:
