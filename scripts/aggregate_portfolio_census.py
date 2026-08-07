@@ -70,7 +70,9 @@ def action_queues(records: list[dict[str, Any]]) -> dict[str, list[str]]:
         "retired": [],
     }
     for record in records:
-        repository = str(record["repository"])
+        repository = record.get("repository")
+        if not isinstance(repository, str) or not repository:
+            raise ValueError("Missing repository identity in action queue input")
         admission = record.get("admission_class")
         provenance = record.get("provenance")
         provenance_state = (
