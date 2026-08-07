@@ -25,8 +25,12 @@ jobs:
           check-latest: false
       - name: Validate exact application coverage
         run: python scripts/validate_application_registry.py
-      - name: Run registry regression test
-        run: python -m unittest tests.test_application_registry -v
+      - name: Validate company second-depth progression
+        run: python scripts/validate_company_second_depth.py
+      - name: Run registry regression tests
+        run: |
+          python -m unittest tests.test_application_registry -v
+          python -m unittest tests.test_company_second_depth -v
       - name: Parse every governing JSON artifact
         run: |
           python - <<'PY'
@@ -36,6 +40,7 @@ jobs:
 
           paths = [
               Path('manifests/company_dossiers.json'),
+              Path('manifests/company_second_depth.json'),
               Path('manifests/flagship_registry.json'),
               Path('manifests/flagship_external_repositories.json'),
               Path('manifests/portfolio_repositories.json'),
