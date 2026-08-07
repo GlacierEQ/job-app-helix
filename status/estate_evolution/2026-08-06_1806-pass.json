@@ -1,0 +1,60 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "observed_at": "2026-08-06T18:06:44-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "news": {
+    "window": "last_24_hours",
+    "radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
+    "radar_changed": false,
+    "decision": "NO_NEW_SIGNAL_PROMOTED",
+    "reason": "No newly published primary-source AI coding or software-engineering development inside the configured 24-hour window materially exceeded the active radar. The newest material coding-agent launch found was outside the strict window and was not promoted."
+  },
+  "monolith": {
+    "repository": "GlacierEQ/monolith",
+    "legal_spine_drift": false,
+    "legal_spine_source_registry_blob": "c78526a5a738a25699fc02bedccb5c2e23cc186d",
+    "legal_spine_discovery_blob": "02a35c71ec91cd3614e33e7bebdb12741d169927",
+    "canonical_head": "b20e249f25c6cd7549572b0c62bf861de998e442",
+    "source_branch": "integrate/legal-live-reconciliation-20260803",
+    "source_branch_status": "diverged",
+    "source_ahead": 20,
+    "source_behind": 52,
+    "source_unique_files": 8,
+    "decision": "SYNTHESIZED_ON_CURRENT_ANCESTRY_PR_VERIFICATION_GATED",
+    "synthesis_branch": "synthesize/legal-live-reconciliation-20260806",
+    "synthesis_head": "6a48200efe839079d8efc4f65c523cb3452f1ed4",
+    "pull_request": 45,
+    "pull_request_state": "DRAFT_OPEN",
+    "files_changed": 9,
+    "current_topology_reconciliation": {
+      "historical_canonical_population": 71,
+      "current_canonical_population": 72,
+      "historical_source_inspections": 18,
+      "promoted_since_baseline": ["GlacierEQ/apex-legal-case"],
+      "current_overlay_only_population": 17
+    },
+    "verification": "PENDING_EXECUTABLE_RUNTIME_PROOF",
+    "remote_ref_disposition": "KEEP_SOURCE_BRANCH_UNTIL_SYNTHESIS_VERIFIED_AND_MERGED",
+    "blocker": "Hosted Actions have recently failed before repository test steps execute; no unverified synthesis was merged."
+  },
+  "akos": {
+    "repository": "GlacierEQ/AKOS",
+    "canonical_head_observed": "5056bbc1b0e84838dec99594592fbe1bb4b47493",
+    "branch_inspected": "feature/career-intelligence-platform-v2",
+    "branch_status": "diverged",
+    "ahead": 2,
+    "behind": 18,
+    "decision": "KEEP_FOR_SEMANTIC_SYNTHESIS_REVIEW",
+    "reason": "The branch contains a substantial alternate career-intelligence platform family while current main owns a different career-intelligence runtime. File-count superiority is not treated as semantic superiority.",
+    "remote_ref_disposition": "KEEP"
+  },
+  "deletions": {
+    "remote_ref_delete_action_available": false,
+    "remote_refs_deleted": 0
+  },
+  "next_cursor": {
+    "repository": "GlacierEQ/AKOS",
+    "branch": "feature/career-intelligence-platform-v2",
+    "action": "COMPARE_CURRENT_RUNTIME_TO_V2_BY_CAPABILITY_TESTS_AND_PATCH_EQUIVALENCE"
+  }
+}
