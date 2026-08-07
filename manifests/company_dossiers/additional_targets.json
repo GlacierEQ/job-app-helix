@@ -1,7 +1,7 @@
 {
   "schema": "glaciereq.company-dossiers-shard.v2",
   "group_id": "additional_targets",
-  "generated_at": "2026-08-04T18:46:00-10:00",
+  "generated_at": "2026-08-07T08:10:00-10:00",
   "defaults_apply_to_all_companies": true,
   "defaults": {
     "track_state": "NO_DIRECT_EXHIBIT_VERIFIED",
@@ -30,7 +30,16 @@
     {"company_id": "databricks", "display_name": "Databricks", "repositories": []},
     {"company_id": "snowflake", "display_name": "Snowflake", "repositories": []},
     {"company_id": "ibm", "display_name": "IBM", "repositories": []},
-    {"company_id": "intel", "display_name": "Intel", "repositories": []},
+    {
+      "company_id": "intel",
+      "display_name": "Intel",
+      "track_state": "DIRECT_ESTATE_DISCOVERED_NOT_RECRUITER_READY",
+      "gap_or_next_gate": "A private Intel NPU repository and an archived public fork-shaped copy exist. Audit provenance and unique GlacierEQ implementation before any recruiter promotion.",
+      "repositories": [
+        ["GlacierEQ/intel-npu-acceleration-library", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/intel-npu-acceleration-library__public_fork_archive", "L1", "EXCLUDED_AUTHORSHIP", "public", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM"]
+      ]
+    },
     {"company_id": "amd", "display_name": "AMD", "repositories": []},
     {"company_id": "qualcomm", "display_name": "Qualcomm", "repositories": []},
     {"company_id": "oracle", "display_name": "Oracle", "repositories": []},
@@ -39,9 +48,30 @@
     {"company_id": "cloudflare", "display_name": "Cloudflare", "repositories": []},
     {"company_id": "vercel", "display_name": "Vercel", "repositories": []},
     {"company_id": "hugging_face", "display_name": "Hugging Face", "repositories": []},
-    {"company_id": "groq", "display_name": "Groq", "repositories": []},
+    {
+      "company_id": "groq",
+      "display_name": "Groq",
+      "track_state": "DIRECT_ESTATE_DISCOVERED_NOT_RECRUITER_READY",
+      "gap_or_next_gate": "groqchat explicitly derives from an external FreeGenius implementation; claude-code-kimi-groq is inspired by an external proxy. Preserve both as provenance-audit references until original delta, tests, and security boundaries are measured.",
+      "repositories": [
+        ["GlacierEQ/groqchat", "L1", "AUDIT_UPSTREAM_DELTA", "public", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM_SHAPED"],
+        ["GlacierEQ/claude-code-kimi-groq", "L2", "AUDIT_UPSTREAM_DELTA", "public", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM_SHAPED"]
+      ]
+    },
     {"company_id": "cerebras", "display_name": "Cerebras", "repositories": []},
-    {"company_id": "coreweave", "display_name": "CoreWeave", "repositories": []},
+    {
+      "company_id": "coreweave",
+      "display_name": "CoreWeave",
+      "track_state": "DIRECT_ESTATE_DISCOVERED_NOT_RECRUITER_READY",
+      "gap_or_next_gate": "Five direct CoreWeave-named private prototypes exist. Audit provenance, implementation depth, tests, and runtime evidence before selecting any public or recruiter-facing flagship.",
+      "repositories": [
+        ["GlacierEQ/coreweave-state-fusion", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/coreweave-temporal-router", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/coreweave-circuit-breaker", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/coreweave-shadow-monitor", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/coreweave-entropy-engine", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"]
+      ]
+    },
     {"company_id": "waymo", "display_name": "Waymo", "repositories": []},
     {"company_id": "zoox", "display_name": "Zoox", "repositories": []},
     {"company_id": "blue_origin", "display_name": "Blue Origin", "repositories": []},

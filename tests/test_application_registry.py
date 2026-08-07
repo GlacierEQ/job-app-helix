@@ -65,9 +65,14 @@ class ApplicationRegistryTests(unittest.TestCase):
         self.assertTrue(result["helix_children_exactly_once"])
         self.assertEqual(result["company_tracks"], 48)
         self.assertEqual(result["named_flagships"], 17)
-        self.assertEqual(result["external_flagship_repositories"], 9)
+        # ECHO and Sigma Glue moved from the external flagship set into the
+        # governed 66-child workspace; seven owner-estate flagships remain
+        # intentionally external to that active inventory boundary.
+        self.assertEqual(result["external_flagship_repositories"], 7)
         self.assertEqual(result["unresolved_flagships"], 1)
-        self.assertEqual(result["inherited_company_dossiers"], 25)
+        # Intel, Groq, and CoreWeave now carry explicit discovered-candidate
+        # records rather than inheriting the empty-track defaults.
+        self.assertEqual(result["inherited_company_dossiers"], 22)
         self.assertGreater(result["l1_private_experiments_documented"], 0)
         self.assertEqual(result["normalized_legacy_promotion_aliases"], 1)
         self.assertTrue(result["zero_direct_omission_gate"])
