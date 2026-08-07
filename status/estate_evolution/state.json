@@ -1,0 +1,73 @@
+{
+  "schema": "glaciereq.estate-evolution.state.v1",
+  "updated_at": "2026-08-06T18:08:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "phase": "PRIORITY_SPINE_BRANCH_CONSOLIDATION",
+  "cursor": {
+    "repository": "GlacierEQ/monolith",
+    "canonical_branch": "main",
+    "next_branch": "integrate/legal-live-reconciliation-20260803",
+    "after_repository": "GlacierEQ/AKOS"
+  },
+  "current_repository": {
+    "repository": "GlacierEQ/monolith",
+    "observed_noncanonical_branches": 41,
+    "canonical_head_after_current_pass": "b20e249f25c6cd7549572b0c62bf861de998e442"
+  },
+  "branch_work": [
+    {
+      "branch": "map/legal-powerhouse-counterpart-20260806",
+      "observed_status": "diverged",
+      "observed_ahead": 2,
+      "observed_behind": 4,
+      "useful_delta": [
+        "foundations/legal-powerhouse.md",
+        "AGENTS.md aspiration and direction-of-correction doctrine"
+      ],
+      "preservation": [
+        "c8ed62a8bb019fd6b299261c8d9f3087b4cf2d2c",
+        "44ca481f460d99de48c33c84622fa40e238deacb"
+      ],
+      "decision": "PRESERVED_ON_CURRENT_MAIN_RECHECK_PATCH_EQUIVALENCE",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED_AFTER_EXHAUSTION_RECHECK"
+    },
+    {
+      "branch": "update/dynamic-catalog-20260806",
+      "observed_status": "diverged",
+      "observed_ahead": 1,
+      "observed_behind": 5,
+      "useful_delta": [
+        "scheduled live catalog regeneration",
+        "validated generated catalog commit path"
+      ],
+      "preservation": [
+        "b20e249f25c6cd7549572b0c62bf861de998e442"
+      ],
+      "decision": "CORE_CAPABILITY_SYNTHESIZED_INTO_EXISTING_CATALOG_GATE_REVIEW_REMAINDER",
+      "remote_ref_disposition": "KEEP_UNTIL_REMAINDER_AND_PATCH_EQUIVALENCE_ARE_REVIEWED"
+    },
+    {
+      "branch": "integrate/legal-live-reconciliation-20260803",
+      "observed_status": "diverged",
+      "observed_ahead": 20,
+      "observed_behind": 52,
+      "observed_files": 8,
+      "decision": "NEXT_HIGH_VALUE_BRANCH",
+      "remote_ref_disposition": "KEEP"
+    }
+  ],
+  "intelligence": {
+    "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
+    "current_seed_commits": [
+      "4cd211f9cdcb96a4fc71c230e55a11d30e85b4c8",
+      "4316938b98bf3345d35159df1b99d98fa3cee1f2"
+    ]
+  },
+  "tooling": {
+    "branch_analysis_engine_commit": "f0cf6289baaa455de2f55fbd3bc291befab2e80e",
+    "branch_safety_tests_commit": "2d3c319f0e86ddab0626ee143e2bdc89976da720",
+    "remote_ref_delete_action_available_in_current_connector": false,
+    "github_hosted_actions_available": false
+  },
+  "next_run_contract": "Resume from cursor. Do not rescan completed branch work unless canonical head or source branch changed."
+}
