@@ -1,0 +1,181 @@
+{
+  "schema": "glaciereq.estate-public-audit-wave.v1",
+  "observed_at": "2026-08-07",
+  "owner": "GlacierEQ",
+  "scope": {
+    "kind": "PUBLIC_NATIVE_DEFERRED_CANDIDATES",
+    "repository_count": 5,
+    "estate_context": {
+      "total_holdings": 1180,
+      "native_repositories": 598,
+      "active_native_repositories": 578,
+      "public_active_native_repositories": 75,
+      "private_active_native_repositories": 503,
+      "archived_native_repositories": 20,
+      "fork_repositories": 582
+    }
+  },
+  "repositories": [
+    {
+      "repository": "GlacierEQ/ECHO",
+      "head_sha": "d87276166041d655452abd4e992a755565f9201c",
+      "head_commit_signature_verified": false,
+      "disposition": "PROMOTION_CANDIDATE",
+      "verification_state": "REFRESH_REQUIRED",
+      "recruiter_use": "CANDIDATE_AFTER_FRESH_VERIFICATION",
+      "observed_surfaces": [
+        "README.md",
+        "echo/",
+        "api/",
+        "tests/",
+        ".github/workflows/ci.yml",
+        "Dockerfile",
+        "docker-compose.yml",
+        "pyproject.toml",
+        "manifests/",
+        "docs/"
+      ],
+      "supported_findings": [
+        "Current repository surface contains a Python application/package, API surface, tests, CI, container configuration, manifests, and documentation.",
+        "The CI contract includes compilation, Ruff correctness lint, dependency audit, pytest, and CLI verification.",
+        "The current test tree includes behavioral, authority, hardening, database, production-configuration, managed-Postgres, and integration-oriented tests."
+      ],
+      "boundaries": [
+        "No workflow run was observed for the exact audited head during this wave.",
+        "README assertions that tests pass are not promoted to current verification without an exact-head run.",
+        "Current head commit signature is not verified."
+      ],
+      "next_action": "Run or obtain exact-head verification, reconcile README test language to the current test surface, then evaluate recruiter promotion."
+    },
+    {
+      "repository": "GlacierEQ/ai-auto-driller-unified",
+      "head_sha": "7da88292548f72da31c73080069a32baf11a34a7",
+      "head_commit_signature_verified": true,
+      "disposition": "PROMOTION_CANDIDATE",
+      "verification_state": "REFRESH_REQUIRED",
+      "recruiter_use": "CANDIDATE_AFTER_FRESH_VERIFICATION_AND_DOCS",
+      "observed_surfaces": [
+        "package.json",
+        "package-lock.json",
+        "scripts/",
+        ".github/workflows/ci.yml",
+        "docs/",
+        "INSTALL.md",
+        "test-driller.html"
+      ],
+      "supported_findings": [
+        "Package scripts define legacy and master validation harnesses.",
+        "CI runs the validation suite and separate userscript metadata and safety-contract checks.",
+        "The current head is a verified signed commit associated with GlacierEQ."
+      ],
+      "boundaries": [
+        "No workflow run was observed for the exact audited head during this wave.",
+        "No root README.md was observed in the audited repository root.",
+        "Lint in the current CI workflow is explicitly non-blocking."
+      ],
+      "next_action": "Refresh exact-head verification, add a root README that states purpose and evidence boundaries, and decide whether lint should become a blocking gate."
+    },
+    {
+      "repository": "GlacierEQ/grok-build",
+      "head_sha": "acb4b85b8f02e3ebcf92ab4293ffd9fe007c817f",
+      "head_commit_signature_verified": true,
+      "disposition": "CUSTOMIZED_DOWNSTREAM",
+      "verification_state": "REFRESH_REQUIRED",
+      "recruiter_use": "DOWNSTREAM_DELTA_ONLY_WITH_ATTRIBUTION",
+      "upstream": "xai-org/grok-build",
+      "observed_surfaces": [
+        "GLACIEREQ_DOWNSTREAM.md",
+        "GLACIEREQ_RELATIONSHIPS.yaml",
+        "SOURCE_REV",
+        "THIRD-PARTY-NOTICES",
+        "Cargo.toml",
+        "Cargo.lock",
+        ".github/",
+        ".grok/",
+        "AGENTS.md",
+        "SECURITY.md"
+      ],
+      "supported_findings": [
+        "The repository explicitly identifies itself as an actively customized downstream of xai-org/grok-build.",
+        "The downstream contract separates writable GlacierEQ main from an upstream/main mirror and documents required Rust validation.",
+        "The relationship manifest records a GlacierEQ native extension pack and provenance-backed relationships.",
+        "The current head is a verified signed GlacierEQ commit describing the Echo, Trust Spine, and Repo Holograph native pack."
+      ],
+      "boundaries": [
+        "The repository must not be represented as wholly original GlacierEQ source.",
+        "The relationship manifest explicitly records live_integrations_verified as false.",
+        "No workflow run was observed for the exact audited head during this wave."
+      ],
+      "next_action": "Measure the GlacierEQ-only delta against the recorded upstream source revision and verify that delta on the exact current head before using it as attributed downstream engineering evidence."
+    },
+    {
+      "repository": "GlacierEQ/Kimi-K3",
+      "head_sha": "7c5be9599120d7993748de66a76128614f15f210",
+      "head_commit_signature_verified": false,
+      "disposition": "REFERENCE_IMPORT",
+      "verification_state": "REFERENCE_ONLY",
+      "recruiter_use": "EXCLUDE_AS_GLACIEREQ_ENGINEERING",
+      "observed_surfaces": [
+        "README.md",
+        "LICENSE",
+        "assets/",
+        "k3_tech_report.pdf"
+      ],
+      "supported_findings": [
+        "The audited root contains documentation, assets, license material, and a technical-report PDF rather than an observed GlacierEQ implementation/test/build surface.",
+        "The README presents Moonshot AI and Kimi project material and links to Moonshot/Kimi resources.",
+        "The current head is authored and committed by an external GitHub identity rather than GlacierEQ."
+      ],
+      "boundaries": [
+        "Non-fork GitHub metadata does not establish GlacierEQ authorship or originality.",
+        "No GlacierEQ-specific implementation delta was observed in the audited root or README.",
+        "This audit does not determine how the repository was originally imported; it only classifies the current observed surface."
+      ],
+      "next_action": "Retain as reference material unless a separate provenance audit discovers a meaningful GlacierEQ-authored delta."
+    },
+    {
+      "repository": "GlacierEQ/public-actions-runner-host",
+      "head_sha": "5d462af53b1e8dc8183669e3398f4ec2e206e022",
+      "head_commit_signature_verified": true,
+      "disposition": "SUPPORTING_INFRASTRUCTURE",
+      "verification_state": "IMPLEMENTED_NOT_ACTIVATED",
+      "recruiter_use": "SUPPORTING_CANDIDATE_WITH_ACTIVATION_BOUNDARY",
+      "observed_surfaces": [
+        "README.md",
+        ".github/",
+        "Dockerfile",
+        "dispatcher/",
+        "github-app/",
+        "jobs/",
+        "registry/",
+        "config/",
+        "docs/",
+        "START_APEX_RUNNER_BRIDGE.cmd"
+      ],
+      "supported_findings": [
+        "The repository contains a substantial public execution-face implementation with dispatcher, GitHub App, job, registry, configuration, Docker, documentation, and workflow surfaces.",
+        "The README documents fail-closed identity checks, strict job envelopes, scoped runtime tokens, immutable private receipts, and a canary-before-workload model.",
+        "The current head is a verified signed GlacierEQ commit tightening explicit activation-run requirements."
+      ],
+      "boundaries": [
+        "The README explicitly states that the private bridge is not activated until the required owner consent flow and completion receipt succeed.",
+        "No workflow run was observed for the exact audited head during this wave.",
+        "Implementation presence must not be described as live private execution activation."
+      ],
+      "next_action": "Preserve the not-activated boundary, obtain the explicit activation completion receipt if activation is intended, and only then evaluate live-operation claims."
+    }
+  ],
+  "wave_summary": {
+    "promotion_candidates": 2,
+    "customized_downstreams": 1,
+    "reference_imports": 1,
+    "supporting_infrastructure": 1,
+    "currently_fresh_verified_for_promotion": 0
+  },
+  "nonclaims": [
+    "This wave audits five previously deferred public native repositories, not all 75 public native repositories.",
+    "Native or non-fork repository status does not establish authorship or originality.",
+    "A repository disposition does not itself establish test, deployment, customer, business-impact, or production status.",
+    "No private repository names are included in this public audit receipt."
+  ]
+}
