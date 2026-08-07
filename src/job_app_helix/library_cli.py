@@ -2,10 +2,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from collections.abc import Sequence
+from datetime import datetime, timezone
 from pathlib import Path
 
+from .branch_steward import BranchStewardError, assess_repository, write_receipt
 from .library_program import (
     LibraryProgramError,
     render_library_program,
@@ -19,7 +22,7 @@ DEFAULT_PROGRAM = Path("manifests/library_priority_spine.json")
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-library",
-        description="Validate and render the GlacierEQ library README and branch program.",
+        description="Validate, render, and execute GlacierEQ library stewardship policy.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -29,12 +32,54 @@ def build_parser() -> argparse.ArgumentParser:
     render_parser = subparsers.add_parser("render")
     render_parser.add_argument("--program", type=Path, default=DEFAULT_PROGRAM)
     render_parser.add_argument("--output", type=Path)
+
+    branch_parser = subparsers.add_parser(
+        "branches",
+        help="Analyze remote branches by ancestry and patch-equivalent unique value.",
+    )
+    branch_parser.add_argument("repository", type=Path)
+    branch_parser.add_argument("--canonical", default="main")
+    branch_parser.add_argument("--remote", default="origin")
+    branch_parser.add_argument("--fetch", action="store_true")
+    branch_parser.add_argument("--receipt", type=Path)
     return parser
+
+
+def _branch_command(args: argparse.Namespace) -> int:
+    repository = args.repository.resolve()
+    if args.fetch:
+        completed = subprocess.run(
+            ["git", "fetch", "--all", "--prune"],
+            cwd=repository,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        if completed.returncode != 0:
+            raise BranchStewardError(
+                f"git fetch failed ({completed.returncode}): {completed.stderr.strip()}"
+            )
+
+    payload = assess_repository(repository, canonical=args.canonical, remote=args.remote)
+    payload["timestamp"] = datetime.now(timezone.utc).isoformat()
+    payload["policy"] = {
+        "never_merge_stale_tip_directly": True,
+        "preserve_unique_value_before_retirement": True,
+        "patch_equivalence_checked": True,
+        "remote_ref_deletion_requires_separate_receipt": True,
+    }
+    if args.receipt:
+        write_receipt(payload, args.receipt)
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command == "branches":
+            return _branch_command(args)
+
         payload = validate_library_program(args.program)
         if args.command == "validate":
             receipt = validate_latest_execution_receipt(args.program, payload)
@@ -61,7 +106,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             else:
                 print(rendered, end="")
             return 0
-    except (OSError, json.JSONDecodeError, LibraryProgramError) as exc:
+    except (OSError, json.JSONDecodeError, LibraryProgramError, BranchStewardError) as exc:
         print(f"library program error: {exc}", file=sys.stderr)
         return 2
     raise AssertionError(f"unhandled command: {args.command}")
