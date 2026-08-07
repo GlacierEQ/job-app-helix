@@ -56,7 +56,7 @@
   "priority_wave": ["lockheed_martin", "openai", "anthropic", "nvidia", "spacex", "xai", "microsoft", "notion"],
   "company_overrides": {
     "lockheed_martin": {
-      "stage": "ROLE_VERIFIED",
+      "stage": "PROBLEM_BOUNDED",
       "role_evidence": [
         {
           "id": "lockheed_role_734997br",
@@ -67,9 +67,19 @@
           "verification_state": "VERIFIED"
         }
       ],
-      "claim_ceiling": "verified_role_alignment",
-      "blockers": ["company_problem_not_bounded", "repository_code_not_inspected", "proof_not_reproduced"],
-      "next_gate": "Bound one externally supportable Lockheed Martin Space AI engineering problem from preserved public sources before inspecting candidate GlacierEQ implementations."
+      "problem_evidence": [
+        {
+          "id": "lockheed_problem_trusted_agentic_ai_integration",
+          "kind": "problem",
+          "source_identity": "https://www.lockheedmartin.com/en-us/capabilities/artificial-intelligence-machine-learning.html",
+          "source_ref": "sha256:87cc52bdc656fd2348ae30ec9a9bbfc3cb5b47927147f2cb2557062fa48ecd75",
+          "visibility": "public",
+          "verification_state": "VERIFIED"
+        }
+      ],
+      "claim_ceiling": "externally_bounded_problem_alignment",
+      "blockers": ["repository_code_not_inspected", "company_specific_remedy_not_bounded", "proof_not_reproduced"],
+      "next_gate": "Inspect exact public GlacierEQ code paths that could materially address the bounded trusted-agentic-AI integration problem; do not infer Lockheed adoption or internal architecture."
     },
     "openai": {"next_gate": "Verify a current public OpenAI role/team and inspect the exact admitted KV-sentinel implementation before connecting it to any company-specific engineering problem."},
     "anthropic": {"next_gate": "Verify a current public Anthropic role/team, then inspect the exact promoted coordinator and safety-monitor code paths and their native proof before bounding a company-specific remedy."},
