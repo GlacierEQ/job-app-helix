@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -19,15 +20,83 @@ EXPECTED_STAGES = [
     "PROOF_REPRODUCED",
     "CLAIM_PROMOTED",
 ]
-EVIDENCE_FIELDS = {
-    "role_evidence",
-    "problem_evidence",
-    "inspected_repositories",
-    "gap_queue",
-    "implementation_receipts",
-    "proof_artifacts",
-    "claim_receipts",
+EXPECTED_STAGE_REQUIREMENTS = {
+    "MAPPED_ONLY": (),
+    "ROLE_VERIFIED": ("role_evidence",),
+    "PROBLEM_BOUNDED": ("role_evidence", "problem_evidence"),
+    "CODE_INSPECTED": (
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+    ),
+    "REMEDY_BOUNDED": (
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+        "gap_queue",
+    ),
+    "IMPLEMENTED": (
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+        "gap_queue",
+        "implementation_receipts",
+    ),
+    "PROOF_REPRODUCED": (
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+        "gap_queue",
+        "implementation_receipts",
+        "proof_artifacts",
+    ),
+    "CLAIM_PROMOTED": (
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+        "gap_queue",
+        "implementation_receipts",
+        "proof_artifacts",
+        "claim_receipts",
+    ),
 }
+EXPECTED_STAGE_CEILINGS = {
+    "MAPPED_ONLY": "company_alignment_only",
+    "ROLE_VERIFIED": "verified_role_alignment",
+    "PROBLEM_BOUNDED": "externally_bounded_problem_alignment",
+    "CODE_INSPECTED": "inspected_implementation_alignment",
+    "REMEDY_BOUNDED": "bounded_remedy_design",
+    "IMPLEMENTED": "implemented_candidate_capability",
+    "PROOF_REPRODUCED": "reproducible_company_specific_proof",
+    "CLAIM_PROMOTED": "proof_bound_company_specific",
+}
+EVIDENCE_KIND_BY_FIELD = {
+    "role_evidence": "role",
+    "problem_evidence": "problem",
+    "inspected_repositories": "repository_inspection",
+    "gap_queue": "bounded_gap",
+    "implementation_receipts": "implementation_receipt",
+    "proof_artifacts": "proof_artifact",
+    "claim_receipts": "claim_receipt",
+}
+EVIDENCE_FIELDS = set(EVIDENCE_KIND_BY_FIELD)
+EVIDENCE_REQUIRED_FIELDS = {
+    "id",
+    "kind",
+    "source_identity",
+    "source_ref",
+    "visibility",
+    "verification_state",
+}
+MINIMUM_VERIFICATION_STATE = {
+    field: "REPRODUCED" if field == "proof_artifacts" else "VERIFIED"
+    for field in EVIDENCE_FIELDS
+}
+VERIFICATION_RANK = {"VERIFIED": 1, "REPRODUCED": 2}
+SOURCE_IDENTITY_PREFIXES = ("https://", "GlacierEQ/")
+EVIDENCE_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:-]*$")
+COMMIT_REF_PATTERN = re.compile(r"^commit:[a-f0-9]{40}$")
+SHA256_REF_PATTERN = re.compile(r"^sha256:[a-f0-9]{64}$")
 
 
 class SecondDepthValidationError(ValueError):
@@ -78,11 +147,93 @@ def resolved_state(defaults: dict[str, Any], override: dict[str, Any]) -> dict[s
     return {**defaults, **override}
 
 
+def validate_evidence_contract(registry: dict[str, Any]) -> None:
+    contract = registry.get("evidence_reference_contract")
+    if not isinstance(contract, dict):
+        fail("company_second_depth.evidence_reference_contract must be an object")
+
+    required_fields = require_list(
+        contract,
+        "required_fields",
+        "company_second_depth.evidence_reference_contract",
+    )
+    if set(required_fields) != EVIDENCE_REQUIRED_FIELDS:
+        fail("evidence_reference_contract.required_fields drift from canonical schema")
+    if contract.get("visibility") != "public":
+        fail("evidence_reference_contract.visibility must be public")
+    if contract.get("verification_states") != ["VERIFIED", "REPRODUCED"]:
+        fail("evidence_reference_contract.verification_states drift")
+    if contract.get("field_kinds") != EVIDENCE_KIND_BY_FIELD:
+        fail("evidence_reference_contract.field_kinds drift")
+    if contract.get("minimum_verification_state") != MINIMUM_VERIFICATION_STATE:
+        fail("evidence_reference_contract.minimum_verification_state drift")
+    if contract.get("source_identity_prefixes") != list(SOURCE_IDENTITY_PREFIXES):
+        fail("evidence_reference_contract.source_identity_prefixes drift")
+    expected_ref_formats = [
+        "commit:<40-lowercase-hex>",
+        "sha256:<64-lowercase-hex>",
+    ]
+    if contract.get("source_ref_formats") != expected_ref_formats:
+        fail("evidence_reference_contract.source_ref_formats drift")
+    require_string(
+        contract,
+        "public_safety_rule",
+        "company_second_depth.evidence_reference_contract",
+    )
+
+
+def validate_evidence_reference(
+    company_id: str,
+    field: str,
+    item: Any,
+) -> None:
+    if not isinstance(item, dict):
+        fail(f"{company_id}.{field} evidence entries must be objects")
+    if set(item) != EVIDENCE_REQUIRED_FIELDS:
+        fail(
+            f"{company_id}.{field} evidence keys must exactly equal "
+            f"{sorted(EVIDENCE_REQUIRED_FIELDS)}"
+        )
+
+    for key in EVIDENCE_REQUIRED_FIELDS:
+        value = item.get(key)
+        if not isinstance(value, str) or not value:
+            fail(f"{company_id}.{field}.{key} must be a non-empty string")
+
+    evidence_id = item["id"]
+    if not EVIDENCE_ID_PATTERN.fullmatch(evidence_id):
+        fail(f"{company_id}.{field}.id has an invalid format")
+    if item["kind"] != EVIDENCE_KIND_BY_FIELD[field]:
+        fail(f"{company_id}.{field}.kind does not match the evidence field")
+
+    source_identity = item["source_identity"]
+    if not source_identity.startswith(SOURCE_IDENTITY_PREFIXES):
+        fail(f"{company_id}.{field}.source_identity is not public-addressable")
+
+    source_ref = item["source_ref"]
+    if not (
+        COMMIT_REF_PATTERN.fullmatch(source_ref)
+        or SHA256_REF_PATTERN.fullmatch(source_ref)
+    ):
+        fail(f"{company_id}.{field}.source_ref is not an immutable supported ref")
+
+    if item["visibility"] != "public":
+        fail(f"{company_id}.{field}.visibility must be public")
+
+    verification_state = item["verification_state"]
+    if verification_state not in VERIFICATION_RANK:
+        fail(f"{company_id}.{field}.verification_state is invalid")
+    minimum = MINIMUM_VERIFICATION_STATE[field]
+    if VERIFICATION_RANK[verification_state] < VERIFICATION_RANK[minimum]:
+        fail(
+            f"{company_id}.{field}.verification_state must be at least {minimum}"
+        )
+
+
 def validate_state(
     company_id: str,
     state: dict[str, Any],
     stage_index: dict[str, int],
-    stage_contract: dict[str, dict[str, Any]],
 ) -> None:
     stage = state.get("stage")
     if stage not in stage_index:
@@ -92,8 +243,8 @@ def validate_state(
         value = state.get(field)
         if not isinstance(value, list):
             fail(f"{company_id}.{field} must be an array")
-        if not all(isinstance(item, (str, dict)) for item in value):
-            fail(f"{company_id}.{field} contains an unsupported evidence value")
+        for item in value:
+            validate_evidence_reference(company_id, field, item)
 
     blockers = state.get("blockers")
     if not isinstance(blockers, list) or not all(
@@ -109,13 +260,12 @@ def validate_state(
     if not isinstance(claim_ceiling, str) or not claim_ceiling:
         fail(f"{company_id}.claim_ceiling must be a non-empty string")
 
-    contract = stage_contract[stage]
-    required_evidence = contract["minimum_evidence"]
+    required_evidence = EXPECTED_STAGE_REQUIREMENTS[stage]
     for field in required_evidence:
         if not state.get(field):
             fail(f"{company_id}: stage {stage} requires non-empty {field}")
 
-    expected_ceiling = contract["public_claim_ceiling"]
+    expected_ceiling = EXPECTED_STAGE_CEILINGS[stage]
     if claim_ceiling != expected_ceiling:
         fail(
             f"{company_id}: claim ceiling {claim_ceiling!r} does not match "
@@ -144,6 +294,8 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
     if registry.get("company_index") != "manifests/company_dossiers.json":
         fail("second-depth company index pointer drift")
 
+    validate_evidence_contract(registry)
+
     required_tracks = string_set(
         require_list(company_index, "required_company_tracks", "company_dossiers"),
         "company_dossiers.required_company_tracks",
@@ -153,7 +305,7 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
     if len(stage_rows) != len(EXPECTED_STAGES):
         fail("second-depth stage count mismatch")
     stage_ids: list[str] = []
-    stage_contract: dict[str, dict[str, Any]] = {}
+    previous_requirements: set[str] = set()
     for ordinal, row in enumerate(stage_rows):
         if not isinstance(row, dict):
             fail("company_second_depth.stage_order contains a non-object")
@@ -161,15 +313,18 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
         if row.get("ordinal") != ordinal:
             fail(f"stage {stage_id} has non-monotonic ordinal")
         minimum_evidence = require_list(row, "minimum_evidence", stage_id)
-        unknown_fields = set(minimum_evidence) - EVIDENCE_FIELDS
-        if unknown_fields:
-            fail(
-                f"stage {stage_id} references unknown evidence fields: "
-                f"{sorted(unknown_fields)}"
-            )
-        require_string(row, "public_claim_ceiling", stage_id)
+        expected_requirements = list(EXPECTED_STAGE_REQUIREMENTS.get(stage_id, ()))
+        if minimum_evidence != expected_requirements:
+            fail(f"stage {stage_id} minimum_evidence contract drift")
+        if not previous_requirements <= set(minimum_evidence):
+            fail(f"stage {stage_id} drops an earlier evidence prerequisite")
+        previous_requirements = set(minimum_evidence)
+
+        claim_ceiling = require_string(row, "public_claim_ceiling", stage_id)
+        if claim_ceiling != EXPECTED_STAGE_CEILINGS.get(stage_id):
+            fail(f"stage {stage_id} public_claim_ceiling contract drift")
         stage_ids.append(stage_id)
-        stage_contract[stage_id] = row
+
     if stage_ids != EXPECTED_STAGES:
         fail(f"second-depth stage order mismatch: {stage_ids}")
     stage_index = {stage_id: ordinal for ordinal, stage_id in enumerate(stage_ids)}
@@ -207,11 +362,11 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
         if not isinstance(override, dict):
             fail(f"{company_id}: override must be an object")
         state = resolved_state(defaults, override)
-        validate_state(company_id, state, stage_index, stage_contract)
+        validate_state(company_id, state, stage_index)
         resolved[company_id] = state
 
     invariants = require_list(registry, "promotion_invariants", "company_second_depth")
-    if len(invariants) < 8 or not all(
+    if len(invariants) < 10 or not all(
         isinstance(item, str) and item for item in invariants
     ):
         fail("company_second_depth.promotion_invariants is incomplete")
@@ -239,6 +394,8 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
         "priority_wave": len(priority_wave),
         "company_overrides": len(overrides),
         "stage_counts": counts,
+        "evidence_reference_schema_enforced": True,
+        "stage_contract_locked": True,
         "claim_promotion_requires_receipt": True,
         "zero_implicit_completion": True,
     }
