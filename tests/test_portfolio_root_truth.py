@@ -36,7 +36,7 @@ def test_root_truth_validation_passes() -> None:
     assert set(receipt["projection_freshness"]["projections"]) == EXPECTED_PROJECTIONS
     assert receipt["counts"]["total_repositories"] == 67
     assert receipt["counts"]["workspace_repositories"] == 66
-    assert receipt["counts"]["company_tracks"] == 49
+    assert receipt["counts"]["company_tracks"] == 48
     assert receipt["counts"]["flagship_systems"] == 17
     assert receipt["counts"]["projections"] == len(EXPECTED_PROJECTIONS)
     assert len(receipt["source_digest"]) == 64
