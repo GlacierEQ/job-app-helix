@@ -36,8 +36,10 @@ def expected_repositories(inventory: dict[str, Any]) -> tuple[str, list[str]]:
         raise ValueError("Inventory owner is required")
     if not isinstance(root, str) or not root:
         raise ValueError("Inventory portfolio_root is required")
-    if not isinstance(workspace, list) or not all(
-        isinstance(item, str) and item for item in workspace
+    if (
+        not isinstance(workspace, list)
+        or not workspace
+        or not all(isinstance(item, str) and item for item in workspace)
     ):
         raise ValueError("Inventory workspace_repositories must be non-empty strings")
 
@@ -106,7 +108,7 @@ def action_queues(records: list[dict[str, Any]]) -> dict[str, list[str]]:
             queues["attributed_downstream_review"].append(repository)
         if admission == "candidate_missing_readme":
             queues["documentation_gap_review"].append(repository)
-        if admission == "private_or_inaccessible_excluded":
+        if admission in {"private_excluded", "private_or_inaccessible_excluded"}:
             queues["access_review"].append(repository)
         if admission == "supporting_reference_fork":
             queues["reference_only"].append(repository)
