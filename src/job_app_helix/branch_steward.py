@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import json
 import subprocess
+from collections.abc import Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Sequence
 
 
 class BranchStewardError(RuntimeError):
@@ -103,7 +103,8 @@ def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
         safe_direct_merge = False
         retirement_ready = False
         reason = (
-            "branch is behind canonical and still contains unique patches; synthesize its useful delta "
+            "branch is behind canonical and still contains unique patches; "
+            "synthesize its useful delta "
             "onto fresh canonical ancestry instead of merging the stale tip directly"
         )
 
@@ -141,7 +142,7 @@ def list_remote_branches(
         prefix = f"{remote}/"
         if not row.startswith(prefix):
             continue
-        branch = row[len(prefix):]
+        branch = row[len(prefix) :]
         if branch in {"HEAD", canonical}:
             continue
         if branch.casefold().startswith(protected):
@@ -157,10 +158,7 @@ def assess_repository(
 ) -> dict[str, object]:
     canonical_ref = f"{remote}/{canonical}"
     branches = list_remote_branches(repo, canonical=canonical, remote=remote)
-    assessments = [
-        assess_branch(repo, canonical_ref, f"{remote}/{branch}")
-        for branch in branches
-    ]
+    assessments = [assess_branch(repo, canonical_ref, f"{remote}/{branch}") for branch in branches]
     priority_order = {
         "DIVERGED_UNIQUE_VALUE": 0,
         "CURRENT_UNIQUE_VALUE": 1,
