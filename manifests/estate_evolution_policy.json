@@ -4,6 +4,7 @@
   "control_plane": "GlacierEQ/job-app-helix",
   "topology_source": "GlacierEQ/monolith",
   "intelligence_source": "GlacierEQ/mastermind",
+  "execution_harness_source": "GlacierEQ/make-it-heavy",
   "canonical_link_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
   "cadence": "hourly",
   "execution_budget": "continue_until_time_or_tool_budget_is_exhausted",
@@ -53,6 +54,16 @@
     "prefer_current_upstream_patterns": true,
     "innovation_requires_measurable_benefit": true,
     "never_refactor_for_novelty": true
+  },
+  "execution_harness_policy": {
+    "repository": "GlacierEQ/make-it-heavy",
+    "purpose": "adaptive worker execution, claim-discipline gating, provider-width control, per-turn scoring, and immutable worker proof",
+    "preserve_logical_worker_count_separately_from_provider_concurrency": true,
+    "require_claim_classes": ["OBSERVED[source-id]", "INFERENCE", "PROPOSED", "BLOCKED"],
+    "decision_critical_output_first": true,
+    "reduce_scope_before_lowering_gate": true,
+    "worker_output_is_not_repository_truth_without_native_verification": true,
+    "canonical_promotion_requires_repository_native_verification": true
   },
   "mutation_gates": {
     "direct_main_update": "only_after_verified_synthesis_and_expected-head-check",
