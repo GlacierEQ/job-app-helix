@@ -63,16 +63,17 @@ class ApplicationRegistryTests(unittest.TestCase):
         self.assertEqual(result["total_inventory_repositories"], 67)
         self.assertEqual(result["helix_children_mapped"], 66)
         self.assertTrue(result["helix_children_exactly_once"])
-        self.assertEqual(result["company_tracks"], 48)
+        self.assertEqual(result["company_tracks"], 49)
         self.assertEqual(result["named_flagships"], 17)
         # ECHO and Sigma Glue moved from the external flagship set into the
         # governed 66-child workspace; seven owner-estate flagships remain
         # intentionally external to that active inventory boundary.
         self.assertEqual(result["external_flagship_repositories"], 7)
         self.assertEqual(result["unresolved_flagships"], 1)
-        # Intel, Groq, and CoreWeave now carry explicit discovered-candidate
-        # records rather than inheriting the empty-track defaults.
-        self.assertEqual(result["inherited_company_dossiers"], 22)
+        # Intel, Groq, and CoreWeave carry explicit discovered-candidate
+        # records. Lockheed Martin is intentionally an inherited Scaffold
+        # until role/problem/code evidence clears the second-depth gates.
+        self.assertEqual(result["inherited_company_dossiers"], 23)
         self.assertGreater(result["l1_private_experiments_documented"], 0)
         self.assertEqual(result["normalized_legacy_promotion_aliases"], 1)
         self.assertTrue(result["zero_direct_omission_gate"])
