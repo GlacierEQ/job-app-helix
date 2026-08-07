@@ -42,6 +42,54 @@ jobs:
           )
           ruff check --fix "${targets[@]}" || true
           ruff format "${targets[@]}"
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path('scripts/validate_portfolio_root_truth.py')
+          text = root.read_text(encoding='utf-8')
+          replacements = {
+              'f"{repository}: public L0 record has unsafe promotion state {promotion_state}",': (
+                  '(\n'
+                  '                                f"{repository}: public L0 record has unsafe promotion "\n'
+                  '                                f"state {promotion_state}"\n'
+                  '                            ),'
+              ),
+              'f"HELIX_ADMITTED repository is absent from canonical inventory: {repository}",': (
+                  '(\n'
+                  '                            "HELIX_ADMITTED repository is absent from canonical "\n'
+                  '                            f"inventory: {repository}"\n'
+                  '                        ),'
+              ),
+              '"boundary": "Root validation proves source and contract integrity only. Each downstream consumer must emit its own current-source receipt before release.",': (
+                  '"boundary": (\n'
+                  '                "Root validation proves source and contract integrity only. "\n'
+                  '                "Each downstream consumer must emit its own current-source receipt "\n'
+                  '                "before release."\n'
+                  '            ),'
+              ),
+          }
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'expected root-truth literal not found: {old}')
+              text = text.replace(old, new, 1)
+          root.write_text(text, encoding='utf-8')
+
+          branch = Path('src/job_app_helix/branch_steward.py')
+          text = branch.read_text(encoding='utf-8')
+          old = (
+              '"branch is behind canonical and still contains unique patches; synthesize its useful delta "\n'
+              '            "onto fresh canonical ancestry instead of merging the stale tip directly"'
+          )
+          new = (
+              '"branch is behind canonical and still contains unique patches; "\n'
+              '            "synthesize its useful delta onto fresh canonical ancestry instead of "\n'
+              '            "merging the stale tip directly"'
+          )
+          if old not in text:
+              raise SystemExit('expected branch-steward literal not found')
+          branch.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          ruff format "${targets[@]}"
           ruff check "${targets[@]}"
 
       - name: Commit repairs and remove one-shot workflow
