@@ -31,7 +31,11 @@ def compile_all(
     native = native_records(census)
     companies, repo_meta = load_company_catalog(ROOT, company_index)
     canonical, repo_to_system = build_canonical_registry(
-        native, flagships, lineage, policy
+        native,
+        flagships,
+        lineage,
+        policy,
+        repo_meta,
     )
     capability, by_system = build_capability_registry(
         canonical, flagships, assessment_by_repo, policy

@@ -1,9 +1,14 @@
 {
-  "schema": "glaciereq.estate-lineage-assertions.v1",
+  "schema": "glaciereq.estate-lineage-assertions.v2",
   "truth_boundary": {
     "candidate_relationships_do_not_collapse_lineage": true,
-    "verified_relationships_require_repository_native_evidence": true
+    "verified_relationships_require_repository_native_evidence": true,
+    "support_relationships_do_not_become_independent_accomplishments": true,
+    "standalone_canonical_systems_require_verified_assertion_or_existing_flagship_governance": true,
+    "namespace_assertions_control_sensitive_internal_separation": true
   },
+  "canonical_assertions": [],
+  "namespace_assertions": [],
   "relationships": [
     {
       "member_repository": "GlacierEQ/grokadile",

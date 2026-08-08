@@ -10,6 +10,16 @@ class EstateCompilerError(RuntimeError):
     pass
 
 
+COLLAPSE_RELATIONS = {
+    "SUCCESSOR_OF",
+    "DUPLICATE_OF",
+    "BACKUP_OF",
+    "ARCHIVE_OF",
+    "COMPONENT_OF",
+}
+SUPPORT_RELATIONS = {"DEPENDENCY_OF", "REFERENCE_OF"}
+
+
 def load_json(path: Path, *, optional: bool = False) -> dict[str, Any]:
     if optional and not path.exists():
         return {}
@@ -76,24 +86,23 @@ def flagship_map(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return result
 
 
-def lineage_roots(
+def _assert_native(repository: str, native: set[str], context: str) -> None:
+    if repository not in native:
+        raise EstateCompilerError(f"{context} leaves native census: {repository}")
+
+
+def lineage_graph(
     payload: dict[str, Any],
     native: set[str],
-) -> tuple[dict[str, str], list[dict[str, Any]]]:
+) -> tuple[dict[str, str], dict[str, str], list[dict[str, Any]]]:
     rows = payload.get("relationships", [])
     if not isinstance(rows, list):
         raise EstateCompilerError("Lineage relationships must be a list")
-    roots: dict[str, str] = {}
-    allowed = {
-        "SUCCESSOR_OF",
-        "DUPLICATE_OF",
-        "BACKUP_OF",
-        "ARCHIVE_OF",
-        "DEPENDENCY_OF",
-        "REFERENCE_OF",
-        "COMPONENT_OF",
-    }
+    collapse_roots: dict[str, str] = {}
+    support_roots: dict[str, str] = {}
     normalized: list[dict[str, Any]] = []
+    allowed = COLLAPSE_RELATIONS | SUPPORT_RELATIONS
+
     for row in rows:
         if not isinstance(row, dict):
             raise EstateCompilerError("Lineage row is invalid")
@@ -109,24 +118,96 @@ def lineage_roots(
         if not isinstance(member, str) or not isinstance(root, str) or member == root:
             raise EstateCompilerError(f"Invalid lineage identity: {row}")
         if state == "VERIFIED":
-            if member not in native or root not in native:
-                raise EstateCompilerError(
-                    f"Verified lineage leaves native census: {member} -> {root}"
-                )
-            if member in roots and roots[member] != root:
+            _assert_native(member, native, "Verified relationship")
+            _assert_native(root, native, "Verified relationship")
+            target = collapse_roots if relation in COLLAPSE_RELATIONS else support_roots
+            if member in target and target[member] != root:
                 raise EstateCompilerError(f"Multiple canonical roots for {member}")
-            roots[member] = root
+            target[member] = root
         normalized.append(dict(row))
-    for member in list(roots):
+
+    for member in list(collapse_roots):
         seen: set[str] = set()
         cursor = member
-        while cursor in roots:
+        while cursor in collapse_roots:
             if cursor in seen:
                 raise EstateCompilerError(f"Lineage cycle at {cursor}")
             seen.add(cursor)
-            cursor = roots[cursor]
-        roots[member] = cursor
-    return roots, normalized
+            cursor = collapse_roots[cursor]
+        collapse_roots[member] = cursor
+
+    for member, root in list(support_roots.items()):
+        seen: set[str] = {member}
+        cursor = root
+        while cursor in collapse_roots:
+            if cursor in seen:
+                raise EstateCompilerError(f"Support relationship enters cycle at {cursor}")
+            seen.add(cursor)
+            cursor = collapse_roots[cursor]
+        support_roots[member] = cursor
+
+    return collapse_roots, support_roots, normalized
+
+
+def canonical_assertions(payload: dict[str, Any], native: set[str]) -> set[str]:
+    rows = payload.get("canonical_assertions", [])
+    if not isinstance(rows, list):
+        raise EstateCompilerError("canonical_assertions must be a list")
+    verified: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict):
+            raise EstateCompilerError("Canonical assertion is invalid")
+        repo = row.get("repository")
+        state = row.get("state")
+        refs = row.get("evidence_refs", [])
+        if not isinstance(repo, str) or state not in {
+            "VERIFIED",
+            "CANDIDATE_REVIEW_REQUIRED",
+        }:
+            raise EstateCompilerError(f"Invalid canonical assertion: {row}")
+        if not isinstance(refs, list) or any(not isinstance(item, str) for item in refs):
+            raise EstateCompilerError(f"Invalid canonical evidence refs: {repo}")
+        if state == "VERIFIED":
+            _assert_native(repo, native, "Verified canonical assertion")
+            if not refs:
+                raise EstateCompilerError(
+                    f"Verified canonical assertion requires evidence refs: {repo}"
+                )
+            verified.add(repo)
+    return verified
+
+
+def namespace_assertions(payload: dict[str, Any], native: set[str]) -> dict[str, str]:
+    rows = payload.get("namespace_assertions", [])
+    if not isinstance(rows, list):
+        raise EstateCompilerError("namespace_assertions must be a list")
+    namespaces: dict[str, str] = {}
+    allowed = {"ENGINEERING", "RESTRICTED_LEGAL", "REFERENCE", "HISTORY"}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise EstateCompilerError("Namespace assertion is invalid")
+        repo = row.get("repository")
+        namespace = row.get("namespace")
+        state = row.get("state")
+        refs = row.get("evidence_refs", [])
+        if (
+            not isinstance(repo, str)
+            or namespace not in allowed
+            or state not in {"VERIFIED", "CANDIDATE_REVIEW_REQUIRED"}
+        ):
+            raise EstateCompilerError(f"Invalid namespace assertion: {row}")
+        if not isinstance(refs, list) or any(not isinstance(item, str) for item in refs):
+            raise EstateCompilerError(f"Invalid namespace evidence refs: {repo}")
+        if state == "VERIFIED":
+            _assert_native(repo, native, "Verified namespace assertion")
+            if not refs:
+                raise EstateCompilerError(
+                    f"Verified namespace assertion requires evidence refs: {repo}"
+                )
+            if repo in namespaces and namespaces[repo] != namespace:
+                raise EstateCompilerError(f"Conflicting namespace assertions: {repo}")
+            namespaces[repo] = namespace
+    return namespaces
 
 
 def backup_like(repo: str) -> bool:

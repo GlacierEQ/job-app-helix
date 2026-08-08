@@ -53,6 +53,13 @@ def _census() -> dict:
             "UNGOVERNED_PUBLIC_INVENTORY",
         ),
         (
+            "GlacierEQ/dep-reference",
+            "public",
+            False,
+            False,
+            "UNGOVERNED_PUBLIC_INVENTORY",
+        ),
+        (
             "GlacierEQ/AKOS-backup",
             "private",
             True,
@@ -85,8 +92,8 @@ def _census() -> dict:
         for repo, visibility, archived, fork, classification in rows
     ]
     return {
-        "repository_count": 6,
-        "native_repository_count": 5,
+        "repository_count": 7,
+        "native_repository_count": 6,
         "fork_repository_count": 1,
         "repositories": records,
     }
@@ -119,14 +126,22 @@ def _flagships() -> dict:
 
 def _lineage(state: str = "VERIFIED") -> dict:
     return {
+        "canonical_assertions": [],
+        "namespace_assertions": [],
         "relationships": [
             {
                 "member_repository": "GlacierEQ/alpha-old",
                 "canonical_repository": "GlacierEQ/alpha",
                 "relation": "SUCCESSOR_OF",
                 "state": state,
-            }
-        ]
+            },
+            {
+                "member_repository": "GlacierEQ/dep-reference",
+                "canonical_repository": "GlacierEQ/AKOS",
+                "relation": "REFERENCE_OF",
+                "state": "VERIFIED",
+            },
+        ],
     }
 
 
@@ -154,7 +169,7 @@ def _catalog() -> tuple[dict, dict]:
             "repository": repo,
             "promotion_state": "PROMOTED",
             "visibility": "public",
-            "provenance_state": "ORIGINAL_VERIFIED",
+            "provenance_state": "ORIGINAL_CANDIDATE",
         }
         for repo in ("GlacierEQ/AKOS", "GlacierEQ/alpha")
     ]
@@ -199,7 +214,7 @@ def _run(monkeypatch, lineage: dict | None = None) -> dict:
     )
 
 
-def test_verified_lineage_collapses_member_not_history(monkeypatch) -> None:
+def test_verified_lineage_collapses_member_not_history_or_support(monkeypatch) -> None:
     result = _run(monkeypatch)
     registry = result["canonical_system_registry"]
     assert registry["current_declared_canonical_system_count"] == 2
@@ -208,6 +223,7 @@ def test_verified_lineage_collapses_member_not_history(monkeypatch) -> None:
         for row in registry["repository_dispositions"]
     }
     assert states["GlacierEQ/alpha-old"] == "LINEAGE_MEMBER"
+    assert states["GlacierEQ/dep-reference"] == "DEPENDENCY_REFERENCE"
     assert states["GlacierEQ/AKOS-backup"] == "HISTORICAL_PROVENANCE"
     assert states["GlacierEQ/legal-case"] == "RESTRICTED_NAMESPACE_CANDIDATE"
 
@@ -219,6 +235,23 @@ def test_candidate_lineage_never_collapses(monkeypatch) -> None:
         for row in result["canonical_system_registry"]["repository_dispositions"]
     }
     assert states["GlacierEQ/alpha-old"] == "UNRESOLVED_REVIEW"
+
+
+def test_verified_standalone_canonical_assertion_requires_evidence(monkeypatch) -> None:
+    lineage = _lineage("CANDIDATE_REVIEW_REQUIRED")
+    lineage["canonical_assertions"] = [
+        {
+            "repository": "GlacierEQ/alpha-old",
+            "state": "VERIFIED",
+            "evidence_refs": ["receipt:alpha-old"],
+        }
+    ]
+    result = _run(monkeypatch, lineage)
+    systems = {
+        row["canonical_repository"]
+        for row in result["canonical_system_registry"]["systems"]
+    }
+    assert "GlacierEQ/alpha-old" in systems
 
 
 def test_capability_pattern_requires_multiple_systems(monkeypatch) -> None:
@@ -244,6 +277,7 @@ def test_public_projection_hides_private_estate(monkeypatch) -> None:
     public = json.dumps(result["public_projection"], sort_keys=True)
     assert "GlacierEQ/legal-case" not in public
     assert "GlacierEQ/AKOS-backup" not in public
+    assert "GlacierEQ/dep-reference" not in public
     assert "native_repository_count" not in public
     assert "repository_count" not in public
 
