@@ -142,83 +142,135 @@ def _assert_compiled_surface(output: Path) -> None:
 
 def _section() -> str:
     return """
-    <section class="section shell compiler-section" id="compiler"
+    <section class="section compiler-stage" id="compiler"
              aria-labelledby="compiler-title">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">Portfolio compiler</div>
-          <h2 id="compiler-title">Route the evidence to the reviewer</h2>
+      <div class="shell compiler-section">
+        <div class="compiler-masthead">
+          <div>
+            <div class="eyebrow">Application intelligence compiler</div>
+            <h2 id="compiler-title">Start with the company problem. Compile the proof.</h2>
+          </div>
+          <p>Helix projects one canonical evidence graph into the smallest proof
+          surface that matters for a specific company, role, and reviewer—without
+          exposing private identities or raw estate cardinality.</p>
         </div>
-        <p>One canonical evidence graph, projected by company, role, and
-        review depth. Private identities and raw estate counts stay internal.</p>
-      </div>
-      <div class="compiler-controls">
-        <label>
-          <span>Company</span><select id="compiler-company"></select>
-        </label>
-        <label>
-          <span>Role</span><select id="compiler-role"></select>
-        </label>
-        <label>
-          <span>Review depth</span>
-          <select id="compiler-depth">
-            <option value="recruiter">Recruiter</option>
-            <option value="company_reviewer">Company reviewer</option>
-            <option value="senior_engineer">Senior engineer</option>
-          </select>
-        </label>
-      </div>
-      <div class="compiler-route-header">
-        <div>
-          <span class="compiler-kicker">Compiled route</span>
-          <h3 id="compiler-route-title">Public projection loading</h3>
+
+        <div class="compiler-workbench" aria-label="Application compiler controls">
+          <div class="compiler-controls">
+            <label>
+              <span>Target company</span>
+              <select id="compiler-company" aria-label="Target company"></select>
+            </label>
+            <label>
+              <span>Target role</span>
+              <select id="compiler-role" aria-label="Target role"></select>
+            </label>
+            <label>
+              <span>Review depth</span>
+              <select id="compiler-depth" aria-label="Review depth">
+                <option value="recruiter">Recruiter · signal</option>
+                <option value="company_reviewer">Company reviewer · intervention</option>
+                <option value="senior_engineer">Senior engineer · diligence</option>
+              </select>
+            </label>
+          </div>
+          <div class="compiler-route-actions">
+            <span class="compiler-freshness" id="compiler-freshness">
+              Validated public projection
+            </span>
+            <a class="button button-quiet compiler-route-link"
+               id="compiler-route-link" href="#compiler">Share this route</a>
+          </div>
         </div>
-        <span class="compiler-freshness" id="compiler-freshness">
-          Validated public data
-        </span>
-      </div>
-      <div class="compiler-intelligence-grid">
-        <article class="compiler-intel-card observed">
-          <span class="compiler-state">Observed · source-backed</span>
-          <h3>Operating pressure</h3>
-          <p id="compiler-pressure">Select a company route.</p>
-          <div class="compiler-source-links" id="compiler-sources"></div>
-        </article>
-        <article class="compiler-intel-card inferred">
-          <span class="compiler-state">GlacierEQ inference</span>
-          <h3>Engineering bottleneck</h3>
-          <p id="compiler-bottleneck">No inference loaded.</p>
-        </article>
-        <article class="compiler-intel-card intervention">
-          <span class="compiler-state">Transferable intervention</span>
-          <h3>Application move</h3>
-          <p id="compiler-intervention">No intervention loaded.</p>
-        </article>
-      </div>
-      <div class="compiler-proof-heading">
-        <div>
-          <span class="compiler-kicker">Role-specific proof</span>
-          <h3>Systems selected by capability fit and evidence</h3>
+
+        <div class="compiler-route-header" aria-live="polite">
+          <div>
+            <span class="compiler-kicker">Compiled application route</span>
+            <h3 id="compiler-route-title">Public projection loading</h3>
+          </div>
+          <p id="compiler-route-summary">
+            Selecting the strongest public evidence path for this reviewer.
+          </p>
         </div>
-        <p id="compiler-problem-boundary">
-          Dossier gate: projection loading
-        </p>
-      </div>
-      <div class="compiler-system-grid" id="compiler-systems">
-        <article class="compiler-system-card compiler-system-empty">
-          <h3>Loading validated public proof.</h3>
-          <p>The rest of the recruiter presentation remains usable without
-          this layer.</p>
-        </article>
-      </div>
-      <div class="compiler-contract">
-        <strong>Truth contract.</strong>
-        <span>Observed pressure is source-backed. Bottlenecks and interventions
-        are GlacierEQ inferences. Role fit is capability overlap—not
-        affiliation, endorsement, or a hiring prediction.</span>
-        <a class="text-link" href="estate-projection.json">
-          Inspect machine projection →
-        </a>
+
+        <ol class="compiler-chain" aria-label="Company problem to proof compilation chain">
+          <li>
+            <span class="compiler-chain-index">01</span>
+            <span class="compiler-chain-label">Operating pressure</span>
+            <strong id="compiler-chain-pressure">Source-backed signal</strong>
+          </li>
+          <li>
+            <span class="compiler-chain-index">02</span>
+            <span class="compiler-chain-label">Capability route</span>
+            <strong id="compiler-chain-capability">Role-fit capabilities</strong>
+          </li>
+          <li>
+            <span class="compiler-chain-index">03</span>
+            <span class="compiler-chain-label">Canonical systems</span>
+            <strong id="compiler-chain-systems">Promoted proof only</strong>
+          </li>
+          <li>
+            <span class="compiler-chain-index">04</span>
+            <span class="compiler-chain-label">Evidence surface</span>
+            <strong id="compiler-chain-proof">Fail-closed verification</strong>
+          </li>
+        </ol>
+
+        <div class="compiler-intelligence-grid">
+          <article class="compiler-intel-card observed">
+            <span class="compiler-state">Observed · source-backed</span>
+            <h3>Operating pressure</h3>
+            <p id="compiler-pressure">Select a company route.</p>
+            <div class="compiler-source-links" id="compiler-sources"></div>
+          </article>
+          <article class="compiler-intel-card inferred">
+            <span class="compiler-state">GlacierEQ inference</span>
+            <h3>Engineering bottleneck</h3>
+            <p id="compiler-bottleneck">No inference loaded.</p>
+          </article>
+          <article class="compiler-intel-card intervention">
+            <span class="compiler-state">Transferable intervention</span>
+            <h3>Application move</h3>
+            <p id="compiler-intervention">No intervention loaded.</p>
+          </article>
+        </div>
+
+        <div class="compiler-capability-panel">
+          <div>
+            <span class="compiler-kicker">Capability donor route</span>
+            <h3>What the selected systems repeatedly prove</h3>
+          </div>
+          <div class="compiler-capabilities" id="compiler-capabilities">
+            <span class="capability-chip">Capability projection loading</span>
+          </div>
+        </div>
+
+        <div class="compiler-proof-heading">
+          <div>
+            <span class="compiler-kicker">Role-specific proof surface</span>
+            <h3>Canonical systems selected by fit and verification strength</h3>
+          </div>
+          <p id="compiler-problem-boundary">
+            Dossier gate: projection loading
+          </p>
+        </div>
+        <div class="compiler-system-grid" id="compiler-systems" aria-live="polite">
+          <article class="compiler-system-card compiler-system-empty">
+            <h3>Loading validated public proof.</h3>
+            <p>The rest of the recruiter presentation remains usable if this
+            projection is unavailable.</p>
+          </article>
+        </div>
+
+        <div class="compiler-contract">
+          <strong>Truth contract.</strong>
+          <span>Observed pressure is source-backed. Bottlenecks and interventions
+          are explicitly labeled GlacierEQ inferences. Role fit is capability
+          overlap—not affiliation, endorsement, or a hiring prediction.</span>
+          <a class="text-link" href="estate-projection.json">
+            Inspect machine projection →
+          </a>
+        </div>
       </div>
     </section>
     """
@@ -252,13 +304,15 @@ def _inject(index: str) -> str:
                 f"Canonical recruiter anchor changed: {old}"
             )
         index = index.replace(old, new, 1)
-    if "</main>" not in index:
+
+    package_anchor = '    <section class="section shell" id="package"'
+    if index.count(package_anchor) != 1:
         raise ProjectionError(
-            "Canonical recruiter template has no </main>"
+            "Canonical recruiter package anchor changed"
         )
     return index.replace(
-        "</main>",
-        _section() + "\n  </main>",
+        package_anchor,
+        _section() + "\n" + package_anchor,
         1,
     )
 
