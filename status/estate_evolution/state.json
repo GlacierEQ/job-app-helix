@@ -1,94 +1,108 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-08T04:09:00Z",
+  "updated_at": "2026-08-08T07:26:00Z",
   "control_plane": "GlacierEQ/job-app-helix",
-  "phase": "PRIORITY_SPINE_VERIFICATION_AND_CONTINUATION",
+  "phase": "FRESH_HEAD_SYNTHESIS_VERIFICATION_GATED",
   "cursor": {
-    "repository": "GlacierEQ/mastermind",
+    "repository": "GlacierEQ/monolith",
     "canonical_branch": "main",
-    "family": "sentinel Mem0 credential-redaction overlap",
-    "pull_requests": [103, 100, 97],
-    "action": "COMPARE_CURRENT_MAIN_LIVE_TARGETS_AND_OVERLAPPING_STALE_COVERAGE_THEN_SYNTHESIZE_OR_RETIRE"
+    "canonical_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "pull_request": 54,
+    "branch": "synthesize/legal-live-reconciliation-20260808",
+    "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
+    "action": "COMPLETE_APEX_GITHUB_APP_OWNER_CONSENT_BOOTSTRAP_FOR_PINNED_RUN_31246092472_THEN_RERUN_FIXED_COMMAND_VALIDATION_AND_FULL_LEGAL_SPINE_GATE"
   },
   "current_repository": {
-    "repository": "GlacierEQ/mastermind",
+    "repository": "GlacierEQ/monolith",
     "default_branch": "main",
     "fork": false,
-    "canonical_head_observed": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
-    "decision": "STALE_FAMILY_PR_SHELLS_RETIRED_WITHOUT_CANONICAL_MUTATION"
+    "canonical_head_observed": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "decision": "FRESH_SYNTHESIS_CREATED_CANONICAL_UNTOUCHED"
   },
   "completed_this_pass": [
     {
-      "repository": "GlacierEQ/the-tower-of-babel",
-      "pull_request": 31,
-      "decision": "MERGED_VERIFIED_SYNTHESIS",
-      "verified_head": "dddf14d811489e20ebb9e51f20676b987c248ac5",
-      "canonical_head_after": "c68c4205472b23f9b2b42b8fb1dc678d8e312de8",
-      "verification": "ALL SIX REQUIRED WORKFLOW FAMILIES GREEN",
-      "remote_ref_disposition": "DELETED_BY_VERIFIED_BRANCH_HYGIENE"
-    },
-    {
-      "repository": "GlacierEQ/the-tower-of-babel",
-      "pull_request": 25,
+      "repository": "GlacierEQ/monolith",
+      "pull_request": 48,
       "decision": "RETIREMENT_READY_PR_CLOSED",
+      "topology": "2 ahead / 1 behind current main",
+      "preservation": "Exact ten-file legal-live delta replayed onto current main in PR #54",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
+      "repository": "GlacierEQ/monolith",
+      "pull_request": 54,
+      "decision": "FRESH_SYNTHESIS_VERIFICATION_GATED",
+      "canonical_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+      "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
+      "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+      "ahead": 1,
+      "behind": 0,
+      "legal_spine_generated_drift": false,
+      "remote_ref_disposition": "KEEP_PENDING_VERIFICATION"
+    },
+    {
+      "repository": "GlacierEQ/public-actions-runner-host",
+      "decision": "PINNED_EXACT_PR54_PUBLIC_VALIDATION_PATH",
+      "job_commit": "2261472e354ca72cde4fe4d3b8feac0bedf8f1ab",
+      "activation_target_commit": "178010328b15278cf50948354d506e1f53695920",
+      "workflow_run_id": 31246092472,
+      "verification": "PUBLIC_INGRESS_AND_ENVELOPE_GREEN; PRIVATE_BRIDGE_NOT_PROVISIONED; WORKLOAD_NOT_EXECUTED"
+    },
+    {
       "repository": "GlacierEQ/mastermind",
-      "decision": "RETIRE_ALREADY_ADJUDICATED_STALE_PR_SHELLS",
-      "pull_requests_closed": [108, 107, 114, 112, 110, 109, 106, 105, 139, 127, 104, 101, 98, 95, 91, 88, 87, 102, 99, 96, 93, 90, 86, 94, 92, 89, 85],
-      "preservation": "Palette design lineage, hashing optimization lineage, Overleaf security intent, Triple Helix aspirations, and response-processor concept preserved without resurrecting removed trees or stale operational claims",
+      "pull_requests_closed": [60, 47],
+      "decision": "RETIRE_STALE_SUPERSEDED_BRANCH_VALUE",
+      "preservation": "APEX integration aspiration preserved through current provider/receipt contracts; MORPHEUS aspiration preserved through current consent-based canonical implementation",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
       "repository": "GlacierEQ/job-app-helix",
-      "decision": "DURABLE_RECEIPTS_WRITTEN",
-      "receipts": [
-        "status/estate_evolution/2026-08-07T1750-HST-high-power-pass.json",
-        "status/estate_evolution/2026-08-07T1809-HST-mastermind-retirement-sweep.json"
-      ]
+      "decision": "DURABLE_RECEIPT_WRITTEN",
+      "receipt": "status/estate_evolution/2026-08-08T0725Z-high-power-pass.json"
     }
   ],
   "pending": [
     {
-      "repository": "GlacierEQ/mastermind",
-      "pull_requests": [103, 100, 97],
-      "decision": "SECURITY_EQUIVALENCE_AUDIT_REQUIRED",
-      "reason": "credential-redaction family overlaps live canonical Mem0 configuration surfaces; do not bulk-retire or merge stale tips"
-    },
-    {
       "repository": "GlacierEQ/monolith",
-      "pull_request": 48,
-      "branch": "synthesize/legal-live-reconciliation-20260807",
+      "pull_request": 54,
       "decision": "VERIFICATION_GATED",
-      "verification_blocker": "HOSTED LEGAL-LIVE AND CATALOG JOBS FAIL BEFORE EXPOSING EXECUTABLE STEP LISTS; NO CODE-FAILURE PROOF",
-      "remote_ref_disposition": "KEEP"
+      "verification_blockers": [
+        "PRIVATE_GITHUB_ACTIONS_BUDGET_PREVENTS_RUNNER_ALLOCATION",
+        "APEX_RUNNER_APP_CLIENT_ID_AND_PRIVATE_KEY_NOT_PROVISIONED_ON_PUBLIC_VALIDATION_HOST"
+      ],
+      "required_proof": [
+        "code.monolith.validate-legal-live-reconciliation on exact 204b3b30328a476cf43106e5830e36aec9829011",
+        "python3 scripts/validate_legal_case.py",
+        "python3 -m unittest tests.test_legal_case tests.test_legal_spine tests.test_sync_legal_spines",
+        "python3 scripts/sync_legal_spines.py --check",
+        "git diff --check"
+      ]
     }
   ],
   "intelligence": {
     "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
     "changed_this_pass": false,
-    "decision": "NO NEW STRICT-24H PRIMARY-VENDOR SIGNAL CLEARED ACTIONABILITY GATE; AUGUST 7 AGENT COST/CARDINALITY SIGNAL ALREADY PRESENT",
+    "decision": "NO_NEW_STRICT_24H_PRIMARY_VENDOR_SIGNAL_CLEARED_ACTIONABILITY_GATE",
     "library_integration": "engines/ai_coding_radar.py::publish_to_library"
   },
   "legal_spine": {
     "drift_detected": false,
     "contract_preserved": true,
-    "pr_48_changed_files_touch_legal_spine_generated_artifacts": false,
-    "canonical_head_observed": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
-    "candidate_head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8",
-    "ahead": 2,
+    "candidate_changed_files_touch_generated_legal_spine_artifacts": false,
+    "canonical_head_observed": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
+    "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "ahead": 1,
     "behind": 0
   },
   "tooling": {
     "remote_ref_delete_action_available_in_current_connector": false,
-    "github_hosted_actions_observed": true,
-    "monolith_hosted_action_result": "INFRASTRUCTURE_BLOCKED_BEFORE_EXECUTABLE_STEPS",
-    "tower_exact_head_gate": "FULL_GREEN"
+    "private_github_hosted_actions": "ACCOUNT_BUDGET_BLOCKED_BEFORE_RUNNER_ALLOCATION",
+    "public_fixed_command_runner": "AVAILABLE_BUT_GITHUB_APP_OWNER_CONSENT_ACTIVATION_REQUIRED",
+    "public_validation_run": 31246092472
   },
   "latest_receipts": [
-    "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07T1750-HST-high-power-pass.json",
-    "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07T1809-HST-mastermind-retirement-sweep.json"
+    "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-08T0725Z-high-power-pass.json"
   ],
-  "next_run_contract": "Begin at Mastermind Mem0 credential-redaction PRs 103/100/97. Compare stale changed-file coverage against current-main live targets and current environment-variable configuration. If current main fully contains the security value, retire with explicit equivalence receipt; if residual unique security value remains, synthesize only that delta from current main and verify natively. Never merge stale tips. Keep Monolith legal-spine canonical untouched until executable proof exists."
+  "next_run_contract": "Begin at Monolith PR #54 exact head 204b3b30328a476cf43106e5830e36aec9829011. Preserve canonical main and legal-spine generated surfaces. Complete only the owner-consent GitHub App bootstrap pinned to public-runner workflow 31246092472, rerun its failed jobs, and require exact-SHA fixed-command success plus the full legal case/spine checks before expected-head promotion. If that external consent boundary remains unresolved, continue non-conflicting portfolio maintenance while retaining PR #54 as verification-gated."
 }
