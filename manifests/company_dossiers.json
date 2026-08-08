@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.company-dossiers-index.v2",
-  "generated_at": "2026-08-07T11:43:00-10:00",
+  "generated_at": "2026-08-08T12:54:00-10:00",
   "authority": "GlacierEQ/job-app-helix",
   "external_flagship_registry": "manifests/flagship_external_repositories.json",
   "second_depth_registry": "manifests/company_second_depth.json",
@@ -76,7 +76,7 @@
     "repository_ownership_does_not_prove_authorship": true,
     "public_recruiter_admission_states": ["PROMOTED", "REFERENCE_ONLY"],
     "current_sha_null_means_refresh_required": true,
-    "coverage": "All 67 Helix inventory entries must map. Direct-named discoveries for enumerated families are included. Semantic relevance across the 1,165+ estate remains continuing review and is not falsely claimed complete."
+    "coverage": "All current Helix inventory entries must map. Direct-named discoveries for enumerated families are included. Expansion targets may intentionally begin with zero direct repositories until exact-name and semantic estate discovery, provenance review, and proof admission complete. Semantic relevance across the full estate remains continuing review and is not falsely claimed complete."
   },
   "level_definitions": {
     "L5": "FLAGSHIP_AUTHORITY: original reusable system with current executable proof and senior-level depth.",
@@ -87,13 +87,16 @@
     "L0": "QUARANTINED: unsafe, sensitive, misleading, duplicate-unresolved, or materially failing."
   },
   "required_company_tracks": [
-    "openai", "anthropic", "google_deepmind", "xai", "microsoft", "aws", "spacex", "nvidia", "apple", "meta", "tesla", "notion", "deepseek", "kimi", "qwen", "opera", "tasklet", "robotics", "perplexity", "manus", "lovable", "openclaw", "palantir", "anduril", "scale_ai", "mistral", "cohere", "databricks", "snowflake", "ibm", "intel", "amd", "qualcomm", "oracle", "salesforce", "adobe", "cloudflare", "vercel", "hugging_face", "groq", "cerebras", "coreweave", "waymo", "zoox", "blue_origin", "rocket_lab", "lockheed_martin", "nasa", "glaciereq_core"
+    "openai", "anthropic", "google_deepmind", "xai", "microsoft", "aws", "spacex", "nvidia", "apple", "meta", "tesla", "notion", "deepseek", "kimi", "qwen", "opera", "tasklet", "robotics", "perplexity", "manus", "lovable", "openclaw", "palantir", "anduril", "scale_ai", "mistral", "cohere", "databricks", "snowflake", "ibm", "intel", "amd", "qualcomm", "oracle", "salesforce", "adobe", "cloudflare", "vercel", "hugging_face", "groq", "cerebras", "coreweave", "waymo", "zoox", "blue_origin", "rocket_lab", "lockheed_martin", "nasa",
+    "cursor", "glean", "replit", "cognition", "github", "supabase", "mongodb", "gitlab", "atlassian", "lambda", "nebius", "crusoe", "together_ai", "modal", "baseten", "fireworks_ai", "replicate", "runpod", "sourcegraph", "windsurf", "linear", "elastic", "redis", "pinecone", "weaviate", "qdrant", "motherduck",
+    "glaciereq_core"
   ],
   "dossier_files": [
     "manifests/company_dossiers/frontier_ai.json",
     "manifests/company_dossiers/platform_infrastructure.json",
     "manifests/company_dossiers/model_product_companies.json",
     "manifests/company_dossiers/additional_targets.json",
+    "manifests/company_dossiers/expansion_targets.json",
     "manifests/company_dossiers/glaciereq_core.json"
   ]
 }
