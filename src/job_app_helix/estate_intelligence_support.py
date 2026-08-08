@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import re
 from collections.abc import Mapping, Sequence
 from typing import Any
 
 SUPPORT_RELATIONS = {"DEPENDENCY_OF", "REFERENCE_OF"}
+CAPABILITY_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
 def repository_system_map(bundle: Mapping[str, Any]) -> dict[str, str]:
@@ -58,6 +60,141 @@ def support_rows(
             }
         )
     return result
+
+
+def capability_rows(
+    facts: Mapping[str, Any] | None,
+    repository_names: set[str],
+) -> list[dict[str, Any]]:
+    if not facts:
+        return []
+    rows = facts.get("capabilities", [])
+    if not isinstance(rows, list):
+        raise ValueError("estate facts capabilities must be a list")
+    result: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            raise ValueError(f"capability row {index} must be an object")
+        repository = row.get("repository")
+        capability_id = row.get("capability_id")
+        refs = row.get("evidence_refs")
+        evidence = row.get("evidence")
+        if repository not in repository_names:
+            raise ValueError(f"capability row {index} references unknown repository")
+        if not isinstance(capability_id, str) or not CAPABILITY_ID.fullmatch(capability_id):
+            raise ValueError(f"capability row {index} has invalid capability_id")
+        if (
+            not isinstance(refs, list)
+            or not refs
+            or not all(isinstance(item, str) and item for item in refs)
+        ):
+            raise ValueError(f"capability row {index} requires evidence_refs")
+        if evidence is not None and (
+            not isinstance(evidence, str) or not evidence.strip()
+        ):
+            raise ValueError(f"capability row {index} evidence must be a non-empty string")
+        key = (repository, capability_id)
+        if key in seen:
+            raise ValueError(f"duplicate capability assertion: {key}")
+        seen.add(key)
+        result.append(
+            {
+                "repository": repository,
+                "capability_id": capability_id,
+                "evidence_refs": list(refs),
+                "evidence": evidence,
+                "verification_state": "EVIDENCE_BOUND",
+            }
+        )
+    return result
+
+
+def apply_capability_assertions(
+    bundle: dict[str, Any],
+    facts: Mapping[str, Any] | None,
+    census: Mapping[str, Any] | None,
+) -> list[dict[str, Any]]:
+    rows = facts.get("capabilities", []) if facts else []
+    if not rows:
+        return []
+    if census is None:
+        raise ValueError("capability assertions require the authenticated census")
+
+    repository_names = {
+        row["repository"]
+        for row in census.get("repositories", [])
+        if isinstance(row, dict) and isinstance(row.get("repository"), str)
+    }
+    assertions = capability_rows(facts, repository_names)
+    repo_to_system = repository_system_map(bundle)
+    registry = bundle["capability_donor_registry"]
+    capabilities = registry.get("capabilities", [])
+    if not isinstance(capabilities, list):
+        raise ValueError("capability donor registry capabilities must be a list")
+
+    by_id: dict[str, dict[str, Any]] = {}
+    for row in capabilities:
+        capability_id = row.get("capability_id") if isinstance(row, dict) else None
+        if not isinstance(capability_id, str):
+            raise ValueError("capability donor registry contains invalid capability row")
+        by_id[capability_id] = row
+
+    applied: list[dict[str, Any]] = []
+    for assertion in assertions:
+        repository = assertion["repository"]
+        system_id = repo_to_system.get(repository)
+        if system_id is None:
+            raise ValueError(
+                "capability assertion must resolve to a canonical engineering system: "
+                f"{repository}"
+            )
+        capability_id = assertion["capability_id"]
+        capability = by_id.get(capability_id)
+        if capability is None:
+            capability = {
+                "capability_id": capability_id,
+                "donor_systems": [],
+                "independent_donor_count": 0,
+                "repeat_pattern": False,
+                "proof_refs": [],
+                "verification_state": "EVIDENCE_BOUND",
+            }
+            capabilities.append(capability)
+            by_id[capability_id] = capability
+
+        donor_systems = capability.setdefault("donor_systems", [])
+        if system_id not in donor_systems:
+            donor_systems.append(system_id)
+            donor_systems.sort()
+
+        proof_refs = capability.setdefault("proof_refs", [])
+        proof = {
+            "system_id": system_id,
+            "source": "estate_facts.capabilities",
+            "repository": repository,
+            "evidence_refs": assertion["evidence_refs"],
+        }
+        if assertion.get("evidence"):
+            proof["evidence"] = assertion["evidence"]
+        if proof not in proof_refs:
+            proof_refs.append(proof)
+
+        capability["independent_donor_count"] = len(donor_systems)
+        capability["repeat_pattern"] = len(donor_systems) >= 2
+        capability["verification_state"] = "EVIDENCE_BOUND"
+        applied.append(
+            {
+                **assertion,
+                "system_id": system_id,
+            }
+        )
+
+    capabilities.sort(key=lambda row: str(row["capability_id"]))
+    policy = registry.setdefault("policy", {})
+    policy["estate_capability_assertions_require_evidence_refs"] = True
+    policy["estate_capability_assertions_require_canonical_engineering_system"] = True
+    return applied
 
 
 def capabilities_by_system(bundle: Mapping[str, Any]) -> dict[str, set[str]]:
@@ -120,9 +257,7 @@ def minimal_surface(
         selected.append(system_id)
         uncovered -= newly_covered
         remaining = [
-            row
-            for row in remaining
-            if row.get("system_id") != system_id
+            row for row in remaining if row.get("system_id") != system_id
         ]
     return selected
 
