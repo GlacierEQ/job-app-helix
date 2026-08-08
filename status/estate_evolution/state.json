@@ -1,69 +1,73 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-07T11:18:00Z",
+  "updated_at": "2026-08-08T02:46:00Z",
   "control_plane": "GlacierEQ/job-app-helix",
   "phase": "PRIORITY_SPINE_VERIFICATION_AND_CONTINUATION",
   "cursor": {
-    "repository": "GlacierEQ/monolith",
+    "repository": "GlacierEQ/the-tower-of-babel",
     "canonical_branch": "main",
-    "next_branch": "synthesize/legal-live-reconciliation-20260807",
-    "next_pull_request": 48,
-    "after_family": "next unresolved priority-spine repository/family"
+    "next_branch": "fix/operational-evidence-selection",
+    "next_pull_request": 25,
+    "action": "FRESH_HEAD_SYNTHESIS_REQUIRED"
   },
   "current_repository": {
-    "repository": "GlacierEQ/monolith",
-    "canonical_head_observed": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
-    "verification_candidate_head": "f686505aa521faf5f9511e423124832ad08aae3a",
-    "next_decision": "KEEP PR 48 VERIFICATION-GATED UNTIL EXECUTABLE PROOF SUCCEEDS; DO NOT MERGE ON REVIEW COMMENT OR CONFLICT-FREE STATUS ALONE"
+    "repository": "GlacierEQ/the-tower-of-babel",
+    "canonical_head_observed": "5c3247ed6d6e964214afd37180d859e929875483",
+    "stale_candidate_head": "ed8720db5ff565e9c1bbd3b5fc24da4bbb7284d6",
+    "merge_base": "a7e2543e8acba2cfe6a67dc02dc217536b63bf2e",
+    "ahead": 1,
+    "behind": 5,
+    "next_decision": "SYNTHESIZE UNIQUE ANTI-THEATER EVIDENCE-SELECTION VALUE ONTO CURRENT MAIN; DO NOT MERGE STALE PR 25 TIP"
   },
   "completed_this_pass": [
     {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-hashing-and-skills",
-      "decision": "RETIREMENT_READY_WITHOUT_RESURRECTING_REMOVED_SURFACES",
-      "canonical_head_after": "08b1cf4bdaa972ded72c7435af54f618904eaaed",
-      "verification": "MASTERMIND TRUTH CONTRACT SUCCEEDED BEFORE PR 158 PROMOTION",
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "pull_request": 30,
+      "decision": "MERGED_VERIFIED_SYNTHESIS",
+      "verified_head": "c7e18956e2aac0785707343a44ced1bda6027873",
+      "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
+      "verification": "ALL FIVE REQUIRED NATIVE WORKFLOW FAMILIES SUCCEEDED; EXPECTED-HEAD GUARD SATISFIED",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "bolt-router-broad",
-      "branch": "bolt-parallelize-router-18197549124199743234",
-      "decision": "RETIREMENT_READY_DO_NOT_MERGE_STALE_TIP",
-      "canonical_head_after": "d2125bf3993a59514cb0da1dca9c5c9ceacca0d8",
-      "verification": "MERGED PR 124 AND LATER MAIN HARDENING PRESERVE/IMPROVE SEMANTIC VALUE; MASTERMIND TRUTH CONTRACT SUCCEEDED BEFORE PR 159 PROMOTION",
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "pull_request": 24,
+      "branch": "build/spaceflight-expansion-audit",
+      "decision": "RETIREMENT_READY_PATCH_EQUIVALENT",
+      "verification": "BOTH UNIQUE SOURCE FILE BLOBS IDENTICAL TO CANONICAL AFTER PR 30",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
-      "repository": "GlacierEQ/mastermind",
-      "branch_family": "ai-coding-radar",
-      "decision": "ACTIONABLE_SIGNAL_PROMOTED",
-      "canonical_head_after": "fcd0ce4e9ba7063d46be0c3244baf02046b91cab",
-      "verification": "MASTERMIND TRUTH CONTRACT SUCCEEDED BEFORE PR 160 PROMOTION; RADAR PUBLISHER MAPS ACTIVE SIGNALS INTO LIBRARY_OF_LINKS",
-      "remote_ref_disposition": "NOT_APPLICABLE"
+      "repository": "GlacierEQ/job-application",
+      "branch_family": "release/v16-tree-probe*",
+      "decision": "RETIREMENT_READY_CONTAINED",
+      "branch_head": "5c12b17bc2da4ee9cc49a3f3a6f9110c483b5e29",
+      "canonical_head_observed": "7355d13503a6c50c426d780f283707c89a272c3f",
+      "verification": "BRANCH HEAD IS MERGE BASE / ANCESTOR; CANONICAL IS 93 COMMITS AHEAD",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
       "repository": "GlacierEQ/job-app-helix",
-      "decision": "CONTROL_PLANE_CURSOR_ADVANCED",
-      "receipt": "status/estate_evolution/2026-08-07_1118Z.json",
+      "decision": "CONTROL_PLANE_RECEIPT_ADVANCED",
+      "receipt": "status/estate_evolution/2026-08-07T1646-HST-high-power-pass.json",
       "remote_ref_disposition": "NOT_APPLICABLE"
     }
   ],
-  "preserved_prior_completions": [
-    "GlacierEQ/AKOS career-intelligence v2 synthesis promoted",
-    "GlacierEQ/pro-code native-proof sibling family retirement-ready",
-    "GlacierEQ/Pro_Code doctrine family retirement-ready",
-    "GlacierEQ/mastermind canonical/runtime/piston/truth family retirement-ready",
-    "GlacierEQ/mastermind Mem0 and router failure-isolation synthesis promoted",
-    "GlacierEQ/mastermind Palette and Bolt implementation families classified without stale-tip merges"
-  ],
   "pending": [
+    {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "pull_request": 25,
+      "branch": "fix/operational-evidence-selection",
+      "decision": "FRESH_HEAD_SYNTHESIS_REQUIRED",
+      "verification_blocker": "STALE TIP IS 1 AHEAD / 5 BEHIND AND OVERLAPS INTERVENING REGISTRY/GENERATED HARDENING",
+      "remote_ref_disposition": "KEEP_UNTIL_SYNTHESIS_PROVES PRESERVATION"
+    },
     {
       "repository": "GlacierEQ/monolith",
       "pull_request": 48,
       "branch": "synthesize/legal-live-reconciliation-20260807",
       "decision": "VERIFICATION_GATED",
-      "verification_blocker": "Monolith Catalog Evolution Gate run 31167473936 failed; no merge until repository-native/executable proof succeeds",
+      "verification_blocker": "HOSTED JOB EXPOSED NO EXECUTABLE STEPS; LOG BLOB UNAVAILABLE; NO SEMANTIC FAILURE PROOF",
       "remote_ref_disposition": "KEEP"
     },
     {
@@ -71,39 +75,30 @@
       "pull_request": 49,
       "branch": "status/mastermind-estate-20260807",
       "decision": "STATUS_PROJECTION_PREPARED_BUT_NOT_PROMOTED",
-      "verification_blocker": "Monolith Catalog Evolution Gate run 31167582533 failed",
       "remote_ref_disposition": "KEEP"
-    },
-    {
-      "repository": "GlacierEQ/mastermind",
-      "decision": "RETIREMENT_READY_REFS_AWAIT_PROVEN_DELETE_CAPABILITY",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED"
     }
   ],
   "intelligence": {
     "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
-    "canonical_head": "fcd0ce4e9ba7063d46be0c3244baf02046b91cab",
-    "changed_immediately_before_this_pass": true,
     "changed_this_pass": false,
-    "decision": "CRASH_RESUME SIGNAL ALREADY PROMOTED; NO ADDITIONAL PRIMARY-VENDOR 24H SIGNAL CLEARED ACTIONABILITY GATE",
+    "decision": "NO NEW PRIMARY-VENDOR 24H SIGNAL CLEARED ACTIONABILITY GATE; REUTERS COST/CARDINALITY GOVERNANCE SIGNAL REINFORCES EXISTING AGENT-ECONOMICS CONTROL",
     "library_integration": "engines/ai_coding_radar.py::publish_to_library"
   },
   "legal_spine": {
     "drift_detected": false,
     "contract_preserved": true,
     "pr_48_changed_files_touch_legal_spine_generated_artifacts": false,
-    "prior_registry_blob": "c78526a5a738a25699fc02bedccb5c2e23cc186d",
-    "prior_discovery_blob": "02a35c71ec91cd3614e33e7bebdb12741d169927",
-    "prior_sync_receipt_blob": "1c7a36c27bda4e58e08cc4fb5662b33de2936b0b"
+    "canonical_head_observed": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+    "candidate_head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8"
   },
   "tooling": {
     "remote_ref_delete_action_available_in_current_connector": false,
     "github_hosted_actions_observed": true,
-    "monolith_hosted_action_result": "FAILURE"
+    "monolith_hosted_action_result": "INFRASTRUCTURE_BLOCKED"
   },
   "latest_receipts": [
-    "GlacierEQ/mastermind:status/branch_consolidation/2026-08-07_0936-router-broad.json",
-    "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07_1118Z.json"
+    "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07T1637-HST-high-power-pass.json",
+    "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07T1646-HST-high-power-pass.json"
   ],
-  "next_run_contract": "Build from Monolith PR 48 and the 2026-08-07_1118Z Helix receipt. Preserve the deterministic legal-spine synchronization contract. Do not merge PR 48 or PR 49 without executable proof. Do not revisit completed Mastermind Bolt families except for proven remote-ref deletion. If the Monolith execution path remains blocked, record the blocker and continue to the next unresolved priority-spine repository/family."
+  "next_run_contract": "Begin from Tower canonical 5c3247ed6d6e964214afd37180d859e929875483 and synthesize PR 25 anti-theater evidence-selection value onto fresh current-main ancestry. Preserve intervening registry/generator hardening, regenerate derived surfaces, require repository-native proof, and never merge the stale tip directly. Keep Monolith legal-spine canonical untouched until executable proof exists. Do not revisit retirement-ready refs except for proven deletion."
 }
