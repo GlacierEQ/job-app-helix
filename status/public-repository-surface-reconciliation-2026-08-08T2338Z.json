@@ -1,0 +1,101 @@
+{
+  "schema": "glaciereq.repository-surface-reconciliation.v1",
+  "observed_at": "2026-08-08T23:38:00Z",
+  "historical_audit": "status/public-repository-surface-audit-2026-08-08.json",
+  "compiler_commit": "38cae04dd70336b817cb74e98988ae22265bc174",
+  "monolith_definition_commit": "019a7ac4304c1d4666532c1d32bd3c18ce3cceaf",
+  "reconciliation_base": "1554694203ec95ef1bde7568caf597ea57c5b0f3",
+  "xai_p0": {
+    "original_count": 7,
+    "repaired_count": 7,
+    "remaining_public_truth_failures_from_original_p0": 0,
+    "repositories": [
+      {
+        "repository": "GlacierEQ/xai-colossus-2",
+        "branch": "master",
+        "canonical_head": "30df3d8c4ad995d0a06f2ff02ab53a665a37a536",
+        "repair": "public evidence receipt router",
+        "promotion_gates": ["CI", "Public Receipt Router Truth Gate"]
+      },
+      {
+        "repository": "GlacierEQ/xai-colossus-cooling",
+        "branch": "main",
+        "canonical_head": "b7e8b3131337990a98e26954d58ace102c7ae94b",
+        "repair": "bounded cooling simulation/core truth surface",
+        "promotion_gates": ["CI", "Cooling Core Truth Gate"]
+      },
+      {
+        "repository": "GlacierEQ/xai-colossus-security",
+        "branch": "main",
+        "canonical_head": "3cf3c0b4fc415dd9f35cff749093b2d9da6a7498",
+        "repair": "receipt-bound non-executing security proposal engine",
+        "promotion_gates": ["CI", "Security Proposal Truth Gate"]
+      },
+      {
+        "repository": "GlacierEQ/xai-colossus-servers",
+        "branch": "main",
+        "canonical_head": "d25311ca3d65771ec9252ea13e52b21b13ac56b9",
+        "repair": "bounded deterministic rack-placement planner",
+        "promotion_gates": ["CI", "Servers Placement Truth Gate"]
+      },
+      {
+        "repository": "GlacierEQ/xai-colossus-energy",
+        "branch": "main",
+        "canonical_head": "1c51c2d279cf456d62525f6f46d0e7034af7e6eb",
+        "repair": "bounded Energy Alpha/Omega scenario family",
+        "promotion_gates": ["CI", "Energy Family Truth Gate", "Memory Health Check"]
+      },
+      {
+        "repository": "GlacierEQ/xai-colossus-nanosphere",
+        "branch": "main",
+        "canonical_head": "ed355724c864983ccfaac2172eee88c158d51c92",
+        "repair": "validated nanofluid scenario model",
+        "promotion_gates": ["CI", "Nanosphere Model Truth Gate"]
+      },
+      {
+        "repository": "GlacierEQ/xai-colossal-cooling",
+        "branch": "main",
+        "canonical_head": "0d4aeff8d127eb8842a659fab57343612dc45297",
+        "repair": "bounded deterministic liquid-cooling scenario laboratory",
+        "promotion_gates": ["Cooling Model Truth Gate: Python 3.11", "Cooling Model Truth Gate: Python 3.13"]
+      }
+    ]
+  },
+  "preserved_lineage": {
+    "GlacierEQ/xai-colossal-cooling#1": {
+      "state": "PRESERVE_UNIQUE_VALUE_PENDING_CLASSIFICATION",
+      "topology_against_truth_hardening_head": "diverged",
+      "unique_files": 9,
+      "reason": "legacy orchestrator/docs branch contains unique code and documentation but retains unsupported production-style claims; do not merge or close until value extraction/classification is complete"
+    }
+  },
+  "xai_alpha_omega_followup": {
+    "state": "P1_COMPLETION_NOT_P0",
+    "repositories": [
+      "GlacierEQ/xai-colossus-cooling-alpha",
+      "GlacierEQ/xai-colossus-cooling-omega",
+      "GlacierEQ/xai-colossus-energy-alpha",
+      "GlacierEQ/xai-colossus-energy-omega"
+    ],
+    "reason": "independent-project/non-affiliation boundaries were already present at first audit; deeper surface admission remains incomplete"
+  },
+  "metadata": {
+    "remediation_manifest": "manifests/public_repository_metadata_remediation_2026-08-08.json",
+    "direct_mutation_state": "BLOCKED_CONNECTOR_CAPABILITY",
+    "reason": "connected GitHub actions expose repository reads and file/PR mutations but no repository description/homepage/topics update action"
+  },
+  "newly_deepened_findings": [
+    {
+      "repository": "GlacierEQ/openai-reasoning-kv-sentinel",
+      "state": "README_TRUTH_HARDENING_REQUIRED_BEFORE_METADATA_PROMOTION",
+      "reason": "deeper README inspection surfaced unbounded pruning, reasoning-quality, MCP, and mesh-integration language beyond the original metadata-only audit"
+    }
+  ],
+  "truth_boundary": [
+    "This reconciliation closes only the seven original xAI P0 public-truth failures from the first surface audit.",
+    "The first audit is preserved as historical observation and is not rewritten after repair.",
+    "Current canonical heads were read back after promotion.",
+    "Metadata fields are not claimed changed because the connected GitHub action set does not expose that mutation.",
+    "Legacy and newly discovered claim-risk surfaces remain fail-visible until separately reconciled."
+  ]
+}
