@@ -1,0 +1,83 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "run_id": "2026-08-08T0222-HST-operational-evidence-regression-preservation",
+  "recorded_at": "2026-08-08T12:22:00Z",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "control_plane_head_observed": "4d0d8ddc8ce6f6af73d016819d9da55406ecaa3e",
+  "repository": "GlacierEQ/the-tower-of-babel",
+  "default_branch": "main",
+  "fork": false,
+  "canonical_head_before": "e878c2eac4a1a6f0eac32de86c6048149f55ec0a",
+  "canonical_head_after": "9055c92c638d3f5f98d17c2ac07f56afdc227cd1",
+  "branch": "synthesize/operational-evidence-regressions-20260808",
+  "pull_request": 33,
+  "merge_base": "e878c2eac4a1a6f0eac32de86c6048149f55ec0a",
+  "ahead_before_promotion": 3,
+  "behind_before_promotion": 0,
+  "unique_patch_value": [
+    "Regression boundary proving JAX, CUDA, and RHL-Quant illustrative exhibits cannot self-promote to VERIFIED without executable runtime evidence.",
+    "Selector regression proving concept-only tensor_cores cannot satisfy minimum evidence state tested and must return NO_VERIFIED_MATCH.",
+    "Positive selector control aligned to the actually tested ONNX/onnxruntime candidate."
+  ],
+  "files_affected": [
+    "tests/test_claim_contracts.py",
+    ".integrity/file_hashes.json"
+  ],
+  "decision": "SYNTHESIZE_UNIQUE_TEST_VALUE_AND_PROMOTE_AFTER_FULL_NATIVE_GREEN",
+  "preservation_action": {
+    "source_branch": "fix/operational-evidence-selection",
+    "source_pr": 25,
+    "implementation_disposition": "NOT_REPLAYED_STALE_IMPLEMENTATION_ALREADY_CANONICAL_VIA_VERIFIED_LINEAGE",
+    "test_value": "EXTRACTED_ONTO_FRESH_CANONICAL_ANCESTRY",
+    "checkout_branch": "synthesize/checkout-v7-20260807",
+    "checkout_disposition": "SEMANTIC_VALUE_ALREADY_CANONICAL_VIA_MERGED_PR_27"
+  },
+  "verification": {
+    "first_candidate_head": "561db21cd049d3487c66f0dbdb0426834c8262f3",
+    "first_result": "1 failed, 61 passed, 7 subtests passed; stale python_api positive-control assumption rejected by native tests",
+    "corrected_candidate_head": "0f633d3a2ce7a7dc52179c0af7ee2ece5d012968",
+    "correction": "positive selector control changed to tested ONNX/onnxruntime without weakening selector evidence thresholds",
+    "integrity_candidate_artifact_id": 9021562033,
+    "integrity_candidate_source_head": "0f633d3a2ce7a7dc52179c0af7ee2ece5d012968",
+    "integrity_candidate_artifact_digest": "sha256:d92434f9e37a417badbf9c707fe08ab119e3cd2ecfcfed5b328aa7c908dd07d7",
+    "integrity_candidate_git_blob": "0445928a5896f50f9cbe01cba89eb3cdc11b5420",
+    "final_verified_head": "c4f7f9c2574a6cf93b56399e21a30b680770682e",
+    "tower_verification": "success",
+    "advanced_exhibit_gate": "success",
+    "tower_quality_gate": "success",
+    "spiral_engine_verification": "success",
+    "nervous_system_contract": "success",
+    "immutable_integrity": "success",
+    "promotion": "squash merge with expected_head_sha=c4f7f9c2574a6cf93b56399e21a30b680770682e"
+  },
+  "remote_ref_disposition": {
+    "fix/operational-evidence-selection": "DELETE_REF_REQUIRED",
+    "synthesize/checkout-v7-20260807": "DELETE_REF_REQUIRED",
+    "synthesize/operational-evidence-regressions-20260808": "ABSENT_AFTER_MERGE_TOOL_CONFIRMED"
+  },
+  "monolith_legal_spine_preservation": {
+    "repository": "GlacierEQ/monolith",
+    "pull_request": 54,
+    "canonical_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
+    "ahead": 1,
+    "behind": 0,
+    "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "changed_files": 10,
+    "generated_legal_spine_files_changed": 0,
+    "decision": "FRESH_SYNTHESIS_VERIFICATION_GATED",
+    "verification_state": "native workflow runs remain failed; canonical untouched"
+  },
+  "news_inputs": [],
+  "innovation_inputs": [
+    "value-not-history preservation",
+    "stale-branch regression mining",
+    "native tests used to invalidate stale test assumptions",
+    "exact native-generated integrity artifact bound by Git blob identity"
+  ],
+  "blockers": [
+    "Monolith PR #54 remains verification-gated; its latest native workflows are failed and canonical remains untouched.",
+    "No available connector action proves deletion of the two surviving historical Tower refs, so both remain DELETE_REF_REQUIRED."
+  ],
+  "next_cursor": "Continue from Tower canonical 9055c92c638d3f5f98d17c2ac07f56afdc227cd1; preserve Monolith PR #54 until executable proof succeeds; retire surviving historical Tower refs only with deletion proof; continue priority-spine maintenance from latest Helix main."
+}
