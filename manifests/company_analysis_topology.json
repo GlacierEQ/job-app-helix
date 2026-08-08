@@ -1,0 +1,71 @@
+{
+  "schema": "glaciereq.company-analysis-topology.v2",
+  "authority": "GlacierEQ/job-app-helix",
+  "visibility": "internal_planning_only",
+  "execution_mode": "deterministic_plan_generation",
+  "historical_donor": {
+    "pull_request": 37,
+    "branch": "hard-reset/48-track-diamond-gatling-2026-08-05",
+    "head": "f3b2092fe0709a6532202a007852121d1ca982e4",
+    "topology_sha256": "cc052a3233bb2d531104c40276d84b3477958d36813b8070d6b4f8385d90168e",
+    "preserved_value": "hierarchical decomposition, independent specialist lanes, contradiction preservation, deterministic wave scheduling, integration receipts, and zero-omission accounting",
+    "not_carried_forward": [
+      "stale 48-track atlas content",
+      "historical company source snapshots",
+      "historical Unified Memory persistence claims",
+      "fixed 48-track cardinality",
+      "fixed six-wave and 384-task counts"
+    ]
+  },
+  "mission_orchestrator": {
+    "id": "D0",
+    "responsibility": "Own the canonical company-track boundary, wave schedule, fail-closed completion, and deterministic receipts."
+  },
+  "domain_leads": [
+    {
+      "id": "D1",
+      "role": "Evidence Domain Lead",
+      "responsibility": "Supervise official-source extraction, freshness, contradictions, and observed-versus-inferred separation."
+    },
+    {
+      "id": "D2",
+      "role": "Application Domain Lead",
+      "responsibility": "Supervise repository mapping, leverage, impact, role fit, and bounded presentation."
+    }
+  ],
+  "specialists": [
+    {"id": "S1", "role": "Official Source Analyst", "responsibility": "Extract current observed pressure and immutable source references."},
+    {"id": "S2", "role": "Systems Bottleneck Analyst", "responsibility": "Infer the constraining system while preserving uncertainty."},
+    {"id": "S3", "role": "Failure and Counterevidence Analyst", "responsibility": "Identify brick walls, failure modes, limiting evidence, and contradictions."},
+    {"id": "S4", "role": "Repository Evidence Mapper", "responsibility": "Map current canonical systems, capability donors, and evidence states."},
+    {"id": "S5", "role": "Leverage Architect", "responsibility": "Design the smallest high-leverage technical contribution consistent with the evidence ceiling."},
+    {"id": "S6", "role": "Impact Analyst", "responsibility": "Estimate operational and reviewer impact without inventing metrics."},
+    {"id": "S7", "role": "Application Strategist", "responsibility": "Convert verified findings into a role-specific application move and next gate."},
+    {"id": "S8", "role": "Truth and Presentation Auditor", "responsibility": "Enforce non-affiliation, privacy, provenance, claim ceilings, and concise projection."
+    }
+  ],
+  "integration_coordinator": {
+    "id": "D11",
+    "responsibility": "Integrate specialist outputs without erasing contradictions; reject omissions, duplicate tasks, and unsupported promotion."
+  },
+  "wave_size": 8,
+  "quality_gates": [
+    "canonical_track_parity",
+    "unique_track_assignment",
+    "complete_specialist_matrix",
+    "unique_task_identity",
+    "contradiction_preservation",
+    "observed_inferred_boundary",
+    "non_affiliation_boundary",
+    "zero_silent_omission",
+    "deterministic_plan_digest"
+  ],
+  "truth_boundary": {
+    "plan_is_execution": false,
+    "plan_is_model_consensus": false,
+    "plan_is_company_affiliation": false,
+    "plan_is_runtime_proof": false,
+    "hosted_model_workers_invoked_by_planner": false,
+    "track_cardinality_source": "manifests/company_dossiers.json::required_company_tracks"
+  }
+}
