@@ -8,9 +8,10 @@ import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
+from collections.abc import Iterable
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 API_ROOT = "https://api.github.com"
