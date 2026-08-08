@@ -177,6 +177,7 @@ jobs:
             > /tmp/public-estate-facts.json
           python scripts/compile_estate_graph.py \
             --census /tmp/public-portfolio-census.json \
+            --estate-facts /tmp/public-estate-facts.json \
             --output-dir /tmp/public-estate-compiler
 
       - name: Project public portfolio company intelligence
