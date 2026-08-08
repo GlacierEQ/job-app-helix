@@ -1,0 +1,199 @@
+{
+  "schema": "glaciereq.company-experiment-family-audit.v1",
+  "company_id": "coreweave",
+  "experiment_family": "coreweave-reliability-lab",
+  "audited_at": "2026-08-08T06:35:00-10:00",
+  "state": "PRIVATE_EXPERIMENTS_NOT_RECRUITER_READY",
+  "family_decision": {
+    "independent_accomplishment_count": 0,
+    "treat_as_one_rd_family": true,
+    "public_repository_identities_allowed": false,
+    "recruiter_promotion_allowed": false,
+    "reason": "The five direct company-named repositories are prototype mechanisms without positive test/runtime receipts. The audit also found unsupported outcome claims and concrete implementation or verification defects."
+  },
+  "shared_findings": [
+    {
+      "finding_id": "CW-LAB-001",
+      "severity": "HIGH",
+      "finding": "Four repositories use the identical CI workflow blob 4e55a776a8a4926708530125b00ecc38f5a7a0c8, which triggers on main/develop while each audited repository defaults to master. Default-branch changes therefore lack the intended CI coverage.",
+      "repositories": [
+        "GlacierEQ/coreweave-state-fusion",
+        "GlacierEQ/coreweave-temporal-router",
+        "GlacierEQ/coreweave-circuit-breaker",
+        "GlacierEQ/coreweave-entropy-engine"
+      ],
+      "evidence_refs": [
+        "github:coreweave-state-fusion/.github/workflows/ci.yml@4e55a776a8a4926708530125b00ecc38f5a7a0c8",
+        "github:coreweave-temporal-router/.github/workflows/ci.yml@4e55a776a8a4926708530125b00ecc38f5a7a0c8",
+        "github:coreweave-circuit-breaker/.github/workflows/ci.yml@4e55a776a8a4926708530125b00ecc38f5a7a0c8",
+        "github:coreweave-entropy-engine/.github/workflows/ci.yml@4e55a776a8a4926708530125b00ecc38f5a7a0c8"
+      ],
+      "promotion_gate": "CI must execute on the actual default branch and produce a positive receipt."
+    },
+    {
+      "finding_id": "CW-LAB-002",
+      "severity": "HIGH",
+      "finding": "No audited repository currently provides evidence sufficient to support production-effectiveness, comparative-performance, or failure-prediction claims.",
+      "repositories": [
+        "GlacierEQ/coreweave-state-fusion",
+        "GlacierEQ/coreweave-temporal-router",
+        "GlacierEQ/coreweave-circuit-breaker",
+        "GlacierEQ/coreweave-shadow-monitor",
+        "GlacierEQ/coreweave-entropy-engine"
+      ],
+      "evidence_refs": [
+        "source-audit:2026-08-08"
+      ],
+      "promotion_gate": "Replace unsupported outcome language with bounded mechanism claims or attach reproducible benchmark/runtime receipts."
+    }
+  ],
+  "repositories": [
+    {
+      "repository": "GlacierEQ/coreweave-state-fusion",
+      "visibility": "private",
+      "default_branch": "master",
+      "source": {
+        "path": "src/state_fusion.py",
+        "blob_sha": "12c7735836b1bd062129d4252a2f977524880e66"
+      },
+      "readme_blob_sha": "5302ec55c7c4352610397d8f17f8fd3cefdb8d31",
+      "observed_mechanism": "Confidence-weighted aggregation of same-named metrics across infrastructure layers plus a simple aggregate health score.",
+      "defects_or_claim_gaps": [
+        "Stored timestamps are not used to reject or down-weight stale layer observations.",
+        "A same-named metric with contributors whose confidence weights sum to zero can divide by zero.",
+        "The current example mostly uses disjoint metrics, so the claimed fusion behavior is only lightly demonstrated.",
+        "No deterministic test or runtime benchmark receipt was observed."
+      ],
+      "required_next_evidence": [
+        "staleness semantics and tests",
+        "zero-confidence behavior and tests",
+        "multi-layer overlapping-metric fusion tests",
+        "runtime receipt"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/coreweave-temporal-router",
+      "visibility": "private",
+      "default_branch": "master",
+      "source": {
+        "path": "src/temporal_router.py",
+        "blob_sha": "7473183474e107b75847ecdcc750f9f1b669f220"
+      },
+      "readme_blob_sha": "55f3585afbfda9c4e0330730926f57c40f4701b5",
+      "observed_mechanism": "Current-state candidate filtering and weighted scoring across cost, latency, GPU availability, and provider preference.",
+      "defects_or_claim_gaps": [
+        "The implementation is not a time-expanded graph router and does not pre-compute future resource windows as claimed in the module documentation.",
+        "The claimed 15-25 percent utilization improvement over greedy scheduling has no observed benchmark receipt.",
+        "The executable example calls random.uniform before importing random and therefore fails before routing.",
+        "The checked-in CI workflow does not trigger on the repository default branch master."
+      ],
+      "required_next_evidence": [
+        "truth-bounded documentation",
+        "executable demo repair",
+        "deterministic routing tests",
+        "actual temporal-planning implementation or removal of that claim",
+        "comparative benchmark before any utilization claim",
+        "default-branch CI receipt"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/coreweave-circuit-breaker",
+      "visibility": "private",
+      "default_branch": "master",
+      "source": {
+        "path": "src/circuit_breaker.py",
+        "blob_sha": "6a1a0b86efbfcb0070996647943bf3f255f8f1ed"
+      },
+      "readme_blob_sha": "f1a676e24ec349ea233e3e9544a536cebc041294",
+      "observed_mechanism": "Per-GPU closed/open/half-open circuit-breaker state with a failure threshold and timeout-based recovery probe.",
+      "defects_or_claim_gaps": [
+        "can_execute mutates breaker state, so status inspection can change state.",
+        "evaluate_gpu calls can_execute more than once per evaluation.",
+        "The example records only one failure on the failing GPU and therefore does not demonstrate the default three-failure isolation threshold.",
+        "No deterministic test receipt was observed.",
+        "The checked-in CI workflow does not trigger on the repository default branch master."
+      ],
+      "required_next_evidence": [
+        "side-effect-free status semantics",
+        "state-transition tests",
+        "threshold/isolation demonstration",
+        "timeout recovery tests using an injectable clock",
+        "default-branch CI receipt"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/coreweave-shadow-monitor",
+      "visibility": "private",
+      "default_branch": "master",
+      "source": {
+        "path": "src/shadow_monitor.py",
+        "blob_sha": "76664f4acde2424be4d7932af1f5dc22c9475f65"
+      },
+      "readme_blob_sha": "e06967af023d6d905ea257c3c0b3b41ed33434e8",
+      "observed_mechanism": "Behavioral metric baselines, z-score anomaly detection, and windowed trend comparison.",
+      "defects_or_claim_gaps": [
+        "ingest updates the baseline with the current reading before evaluating that reading, contaminating the reference distribution and potentially reducing anomaly sensitivity.",
+        "Alert callback exceptions are swallowed without an observable failure record.",
+        "No CI workflow was present in the audited root tree.",
+        "No benchmark was observed for claims that the mechanism detects degradation before user impact or catches failures threshold monitoring misses."
+      ],
+      "required_next_evidence": [
+        "evaluate-before-update baseline semantics",
+        "deterministic anomaly and trend tests",
+        "observable callback failure behavior",
+        "CI workflow on master",
+        "comparative detection benchmark before outcome claims"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/coreweave-entropy-engine",
+      "visibility": "private",
+      "default_branch": "master",
+      "source": {
+        "path": "src/entropy_engine.py",
+        "blob_sha": "cec62d79fb2930945a021953aaf3cb1f75b462e6"
+      },
+      "readme_blob_sha": null,
+      "observed_mechanism": "Binned Shannon entropy over metric windows, averaged system entropy, and a heuristic entropy-trend warning path.",
+      "defects_or_claim_gaps": [
+        "The source claims no one has built this, which is not established by repository evidence.",
+        "The demo never calls update_baselines, so its per-metric entropy anomaly path is not demonstrated against a learned baseline.",
+        "The failure prediction time horizon is a heuristic formula rather than an empirically calibrated estimate.",
+        "Claims about predicting failure before metric alarms and saving downtime have no observed runtime or benchmark receipt.",
+        "The checked-in CI workflow does not trigger on the repository default branch master."
+      ],
+      "required_next_evidence": [
+        "remove universal novelty claim",
+        "explicit baseline lifecycle",
+        "deterministic entropy tests",
+        "calibration dataset and evaluation protocol before prediction claims",
+        "default-branch CI receipt"
+      ]
+    }
+  ],
+  "promotion_ladder": [
+    {
+      "stage": "DISTINCT_VALUE",
+      "requires": ["unique_value_evidence"]
+    },
+    {
+      "stage": "TESTED",
+      "requires": ["positive_count_test_receipt"]
+    },
+    {
+      "stage": "SYSTEM_COMPONENT",
+      "requires": ["canonical_system_integration_receipt"]
+    },
+    {
+      "stage": "FLAGSHIP_DONOR",
+      "requires": ["capability_proof", "promotion_score_gate"]
+    }
+  ],
+  "truth_boundary": {
+    "company_affiliation_claimed": false,
+    "production_deployment_claimed": false,
+    "comparative_performance_claimed": false,
+    "failure_prediction_accuracy_claimed": false,
+    "novelty_priority_claimed": false
+  }
+}
