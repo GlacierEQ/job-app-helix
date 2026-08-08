@@ -68,16 +68,30 @@ jobs:
           import json
           from pathlib import Path
 
-          public_path = Path("/tmp/estate-compiler/public-safe-company-projection-v2.json")
-          receipt_path = Path("/tmp/estate-compiler/estate-intelligence-receipt.json")
+          public_path = Path(
+              "/tmp/estate-compiler/public-safe-company-projection-v2.json"
+          )
+          receipt_path = Path(
+              "/tmp/estate-compiler/estate-intelligence-receipt.json"
+          )
           public = json.loads(public_path.read_text(encoding="utf-8"))
           receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
           assert public["schema"] == "glaciereq.estate-public-projection.v2"
           boundary = public["boundary"]
           assert boundary["private_repository_identities_omitted"] is True
           assert boundary["legal_private_records_omitted"] is True
-          assert boundary["native_estate_cardinality_intentionally_not_published"] is True
-          assert receipt["invariants"]["support_references_do_not_collapse_lineage"] is True
+          assert (
+              boundary[
+                  "native_estate_cardinality_intentionally_not_published"
+              ]
+              is True
+          )
+          assert (
+              receipt["invariants"][
+                  "support_references_do_not_collapse_lineage"
+              ]
+              is True
+          )
 
           forbidden = {
               "repository_count",
@@ -87,31 +101,34 @@ jobs:
               "legal_private_repositories",
               "canonical_accomplishments",
           }
+
           def walk(value, path="$"):
               if isinstance(value, dict):
                   for key, child in value.items():
                       if key in forbidden:
-                          raise SystemExit(f"forbidden public key {path}.{key}")
+                          raise SystemExit(
+                              f"forbidden public key {path}.{key}"
+                          )
                       walk(child, f"{path}.{key}")
               elif isinstance(value, list):
                   for index, child in enumerate(value):
                       walk(child, f"{path}[{index}]")
+
           walk(public)
           PY
 
-      - name: Stage only public-safe compiler outputs
+      - name: Stage only sanitized public projection
         run: |
           set -euo pipefail
           mkdir -p artifacts/estate-compiler-public
-          cp /tmp/estate-compiler/estate-intelligence-receipt.json \
-            artifacts/estate-compiler-public/estate-intelligence-receipt.json
           cp /tmp/estate-compiler/public-safe-company-projection-v2.json \
             artifacts/estate-compiler-public/public-safe-company-projection-v2.json
           test ! -e artifacts/owned-library-census.json
           test ! -e artifacts/estate-compiler/canonical-system-registry.json
           test ! -e artifacts/estate-compiler/company-projection-registry.json
+          test ! -e artifacts/estate-compiler-public/estate-intelligence-receipt.json
 
-      - name: Upload only public-safe compiler outputs
+      - name: Upload only sanitized public projection
         uses: actions/upload-artifact@v4
         with:
           name: estate-compiler-public-safe-${{ github.run_id }}
