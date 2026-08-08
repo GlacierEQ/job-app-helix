@@ -1,0 +1,112 @@
+name: Promote Lockheed Mission Assurance
+
+on:
+  push:
+    branches:
+      - promotion/lockheed-mission-assurance-claim
+    paths:
+      - ".github/workflows/promote-lockheed-mission-assurance.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: promotion/lockheed-mission-assurance-claim
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Promote canonical Lockheed state
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('manifests/company_second_depth.json')
+          data = json.loads(path.read_text())
+          state = data['company_overrides']['lockheed_martin']
+          state['stage'] = 'CLAIM_PROMOTED'
+          state['gap_queue'] = [
+              {
+                  'id': 'lockheed_remedy_mission_assurance',
+                  'kind': 'bounded_gap',
+                  'source_identity': 'https://github.com/GlacierEQ/job-app-helix/blob/61f025ff5d3dea8114d54010c58eed8c831e9149/evidence/company_second_depth/lockheed_martin/remedy_bounded_mission_assurance.json',
+                  'source_ref': 'commit:61f025ff5d3dea8114d54010c58eed8c831e9149',
+                  'visibility': 'public',
+                  'verification_state': 'VERIFIED',
+              }
+          ]
+          state['implementation_receipts'] = [
+              {
+                  'id': 'lockheed_implementation_mission_assurance',
+                  'kind': 'implementation_receipt',
+                  'source_identity': 'https://github.com/GlacierEQ/job-app-helix/blob/585be20965b543516dcc49e6c31f1fc401d27fc4/evidence/company_second_depth/lockheed_martin/implementation_receipt_mission_assurance.json',
+                  'source_ref': 'commit:585be20965b543516dcc49e6c31f1fc401d27fc4',
+                  'visibility': 'public',
+                  'verification_state': 'VERIFIED',
+              }
+          ]
+          state['proof_artifacts'] = [
+              {
+                  'id': 'lockheed_proof_mission_assurance',
+                  'kind': 'proof_artifact',
+                  'source_identity': 'https://github.com/GlacierEQ/job-app-helix/blob/d08dfdb69b0359ce8bc7787a557d94b8ce2fd428/evidence/company_second_depth/lockheed_martin/proof_reproduced_mission_assurance.json',
+                  'source_ref': 'commit:d08dfdb69b0359ce8bc7787a557d94b8ce2fd428',
+                  'visibility': 'public',
+                  'verification_state': 'REPRODUCED',
+              }
+          ]
+          state['claim_receipts'] = [
+              {
+                  'id': 'lockheed_claim_mission_assurance',
+                  'kind': 'claim_receipt',
+                  'source_identity': 'https://github.com/GlacierEQ/job-app-helix/blob/49f9a23fce2004f963268b4cbdeac4f4d49d79da/evidence/company_second_depth/lockheed_martin/claim_promoted_mission_assurance.json',
+                  'source_ref': 'commit:49f9a23fce2004f963268b4cbdeac4f4d49d79da',
+                  'visibility': 'public',
+                  'verification_state': 'VERIFIED',
+              }
+          ]
+          state['claim_ceiling'] = 'proof_bound_company_specific'
+          state['blockers'] = []
+          state['next_gate'] = 'Application packaging may consume only the promoted proof-bound claim or narrower language; reverify role freshness before submission.'
+          data['generated_at'] = '2026-08-07T15:14:00-10:00'
+          path.write_text(json.dumps(data, indent=2, sort_keys=False) + '\n')
+          PY
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('manifests/company_second_depth.json').read_text())
+          state = data['company_overrides']['lockheed_martin']
+          assert state['stage'] == 'CLAIM_PROMOTED'
+          assert state['claim_ceiling'] == 'proof_bound_company_specific'
+          assert not state['blockers']
+          required = ['role_evidence','problem_evidence','inspected_repositories','gap_queue','implementation_receipts','proof_artifacts','claim_receipts']
+          assert all(state.get(key) for key in required)
+          expected_kinds = {
+              'gap_queue': 'bounded_gap',
+              'implementation_receipts': 'implementation_receipt',
+              'proof_artifacts': 'proof_artifact',
+              'claim_receipts': 'claim_receipt',
+          }
+          for field, kind in expected_kinds.items():
+              for ref in state[field]:
+                  assert set(ref) == {'id','kind','source_identity','source_ref','visibility','verification_state'}
+                  assert ref['kind'] == kind
+                  assert ref['visibility'] == 'public'
+                  assert ref['source_ref'].startswith('commit:')
+          assert state['proof_artifacts'][0]['verification_state'] == 'REPRODUCED'
+          print('Lockheed canonical second-depth promotion verified')
+          PY
+      - name: Commit canonical promotion
+        run: |
+          set -euo pipefail
+          git config user.name casey
+          git config user.email GLACIER.EQUILIBRIUM@GMAIL.COM
+          git add manifests/company_second_depth.json
+          git commit -m 'helix: promote Lockheed to proof-bound claim'
+          git push origin HEAD:promotion/lockheed-mission-assurance-claim
