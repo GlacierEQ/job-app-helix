@@ -61,14 +61,9 @@ jobs:
               subprocess.run(['git', 'add', *paths], check=True)
               subprocess.run(['git', 'commit', '-m', message], check=True)
 
-          # 1. CODE_INSPECTED -> REMEDY_BOUNDED
           data = manifest()
           lockheed = data['company_overrides']['lockheed_martin']
-          remedy_ref = ref(
-              'lockheed_remedy_mission_agentic_ai_assurance',
-              'bounded_gap',
-              'machine/remedy.json',
-          )
+          remedy_ref = ref('lockheed_remedy_mission_agentic_ai_assurance', 'bounded_gap', 'machine/remedy.json')
           lockheed.update({
               'stage': 'REMEDY_BOUNDED',
               'gap_queue': [remedy_ref],
@@ -83,7 +78,8 @@ jobs:
           })
           data['generated_at'] = '2026-08-07T15:05:00-10:00'
           write_json(manifest_path, data)
-          remedy_capture = {
+          remedy_path = evidence_dir / 'remedy_mission_agentic_ai_assurance.json'
+          write_json(remedy_path, {
               'schema': 'glaciereq.bounded-remedy-evidence.v1',
               'company_id': 'lockheed_martin',
               'remedy_id': 'mission_agentic_ai_assurance',
@@ -104,33 +100,22 @@ jobs:
               'unresolved_gaps': ['durable_distributed_state', 'authenticated_workload_identity', 'tamper_evident_external_store', 'real_telemetry_adapters', 'sandboxed_executor', 'cross_language_conformance', 'signed_release_attestations', 'load_chaos_recovery_benchmarks'],
               'acceptance_contract': ['valid_evidence_can_allow', 'missing_evidence_fails_closed', 'content_hash_mismatch_rejected', 'non_finite_metrics_rejected', 'concurrent_identical_calls_execute_once', 'conflicting_replay_rejected', 'executor_failures_receipted', 'exact_demo_reproduction', 'fixed_set_proof_manifest_verifies'],
               'boundary': 'Independent public candidate architecture derived from public requirements and inspected GlacierEQ mechanisms; no Lockheed Martin adoption, deployment, affiliation, proprietary access, contract, clearance, certification, or measured impact is claimed.',
-          }
-          remedy_path = evidence_dir / 'remedy_mission_agentic_ai_assurance.json'
-          write_json(remedy_path, remedy_capture)
+          })
           commit('second-depth(lockheed): promote to REMEDY_BOUNDED', [str(manifest_path), str(remedy_path)])
 
-          # 2. REMEDY_BOUNDED -> IMPLEMENTED
           data = manifest()
           lockheed = data['company_overrides']['lockheed_martin']
-          implementation_ref = ref(
-              'lockheed_implementation_mission_agentic_ai_assurance',
-              'implementation_receipt',
-              'proof/implementation_receipt.json',
-          )
+          implementation_ref = ref('lockheed_implementation_mission_agentic_ai_assurance', 'implementation_receipt', 'proof/implementation_receipt.json')
           lockheed.update({
               'stage': 'IMPLEMENTED',
               'implementation_receipts': [implementation_ref],
               'claim_ceiling': 'implemented_candidate_capability',
-              'blockers': [
-                  'proof_not_yet_promoted_in_helix',
-                  'distributed_state_not_implemented',
-                  'workload_identity_not_implemented',
-                  'production_scale_not_demonstrated',
-              ],
+              'blockers': ['proof_not_yet_promoted_in_helix', 'distributed_state_not_implemented', 'workload_identity_not_implemented', 'production_scale_not_demonstrated'],
               'next_gate': 'Reproduce the committed deterministic proof and admit it as a REPRODUCED proof artifact before raising the claim ceiling.',
           })
           write_json(manifest_path, data)
-          implementation_capture = {
+          implementation_path = evidence_dir / 'implementation_mission_agentic_ai_assurance.json'
+          write_json(implementation_path, {
               'schema': 'glaciereq.implementation-evidence.v1',
               'company_id': 'lockheed_martin',
               'implementation_id': 'mission_agentic_ai_assurance',
@@ -141,35 +126,22 @@ jobs:
               'source_paths': ['src/mission_assurance/core.py', 'src/mission_assurance/__init__.py'],
               'implemented_capabilities': ['content_bound_public_evidence_snapshot_validation', 'canonical_request_hashing', 'canonical_machine_payload_adapter', 'finite_metric_validation', 'policy_gate', 'scalar_drift_gate', 'thread_safe_single_process_idempotent_replay', 'idempotency_conflict_detection', 'circuit_breaker', 'executor_failure_receipts', 'deterministic_assurance_receipts'],
               'boundary': 'Reference implementation only; single-process idempotency, not distributed exactly-once; no company deployment or production-scale claim.',
-          }
-          implementation_path = evidence_dir / 'implementation_mission_agentic_ai_assurance.json'
-          write_json(implementation_path, implementation_capture)
+          })
           commit('second-depth(lockheed): promote to IMPLEMENTED', [str(manifest_path), str(implementation_path)])
 
-          # 3. IMPLEMENTED -> PROOF_REPRODUCED
           data = manifest()
           lockheed = data['company_overrides']['lockheed_martin']
-          proof_ref = ref(
-              'lockheed_proof_mission_agentic_ai_assurance',
-              'proof_artifact',
-              'proof/reproduced_receipt.json',
-              'REPRODUCED',
-          )
+          proof_ref = ref('lockheed_proof_mission_agentic_ai_assurance', 'proof_artifact', 'proof/reproduced_receipt.json', 'REPRODUCED')
           lockheed.update({
               'stage': 'PROOF_REPRODUCED',
               'proof_artifacts': [proof_ref],
               'claim_ceiling': 'reproducible_company_specific_proof',
-              'blockers': [
-                  'claim_receipt_not_yet_promoted_in_helix',
-                  'distributed_state_not_implemented',
-                  'workload_identity_not_implemented',
-                  'production_scale_not_demonstrated',
-                  'certification_not_claimed',
-              ],
+              'blockers': ['claim_receipt_not_yet_promoted_in_helix', 'distributed_state_not_implemented', 'workload_identity_not_implemented', 'production_scale_not_demonstrated', 'certification_not_claimed'],
               'next_gate': 'Admit the explicit proof-bound claim receipt only if its wording stays within the reproduced reference implementation and preserves all non-affiliation and non-production boundaries.',
           })
           write_json(manifest_path, data)
-          proof_capture = {
+          proof_path = evidence_dir / 'proof_mission_agentic_ai_assurance.json'
+          write_json(proof_path, {
               'schema': 'glaciereq.reproduced-proof-evidence.v1',
               'company_id': 'lockheed_martin',
               'proof_id': 'mission_agentic_ai_assurance',
@@ -185,36 +157,22 @@ jobs:
               'external_model_required': False,
               'verification_state': 'REPRODUCED',
               'boundary': 'Reproducible proof of the independent reference implementation only; not proof of Lockheed Martin use, deployment, certification, production scale, or business impact.',
-          }
-          proof_path = evidence_dir / 'proof_mission_agentic_ai_assurance.json'
-          write_json(proof_path, proof_capture)
+          })
           commit('second-depth(lockheed): promote to PROOF_REPRODUCED', [str(manifest_path), str(proof_path)])
 
-          # 4. PROOF_REPRODUCED -> CLAIM_PROMOTED
           data = manifest()
           lockheed = data['company_overrides']['lockheed_martin']
-          claim_ref = ref(
-              'lockheed_claim_mission_agentic_ai_assurance',
-              'claim_receipt',
-              'proof/claim_receipt.json',
-          )
+          claim_ref = ref('lockheed_claim_mission_agentic_ai_assurance', 'claim_receipt', 'proof/claim_receipt.json')
           lockheed.update({
               'stage': 'CLAIM_PROMOTED',
               'claim_receipts': [claim_ref],
               'claim_ceiling': 'proof_bound_company_specific',
-              'blockers': [
-                  'distributed_state_not_implemented',
-                  'workload_identity_not_implemented',
-                  'durable_tamper_evident_store_not_implemented',
-                  'real_telemetry_adapters_not_implemented',
-                  'sandboxed_executor_not_implemented',
-                  'production_scale_not_demonstrated',
-                  'aerospace_defense_certification_not_claimed',
-              ],
+              'blockers': ['distributed_state_not_implemented', 'workload_identity_not_implemented', 'durable_tamper_evident_store_not_implemented', 'real_telemetry_adapters_not_implemented', 'sandboxed_executor_not_implemented', 'production_scale_not_demonstrated', 'aerospace_defense_certification_not_claimed'],
               'next_gate': 'Preserve this proof-bound claim while evolving the Mesh aspiration gaps through separately tested adapters; do not raise production-scale, certification, adoption, or company-deployment claims without new independent evidence.',
           })
           write_json(manifest_path, data)
-          claim_capture = {
+          claim_path = evidence_dir / 'claim_mission_agentic_ai_assurance.json'
+          write_json(claim_path, {
               'schema': 'glaciereq.claim-promotion-evidence.v1',
               'company_id': 'lockheed_martin',
               'claim_id': 'mission_agentic_ai_assurance',
@@ -224,40 +182,7 @@ jobs:
               'allowed_claim': 'Built and reproducibly tested an independent mission-agent assurance gateway combining content-bound public provenance snapshots, deterministic receipts, thread-safe single-process idempotency, finite-metric drift gating, policy decisions, and circuit breaking, using public mission-AI requirements as a bounded design lens.',
               'prohibited_claims': ['Lockheed Martin deployment or adoption', 'Lockheed Martin affiliation, employment, endorsement, contract, clearance, or proprietary access', 'distributed exactly-once semantics', 'production-scale distributed assurance', 'aerospace or defense certification', 'validation on classified or proprietary systems'],
               'boundary': 'Claim promotion means the public application wording is now proof-bound to the immutable reference implementation; it does not change company relationship or production-use facts.',
-          }
-          claim_path = evidence_dir / 'claim_mission_agentic_ai_assurance.json'
-          write_json(claim_path, claim_capture)
+          })
           commit('second-depth(lockheed): promote to CLAIM_PROMOTED', [str(manifest_path), str(claim_path)])
-
-          # Lock regression tests to the new canonical truth, without weakening adversarial cases.
-          test_path = ROOT / 'tests/test_company_second_depth.py'
-          text = test_path.read_text(encoding='utf-8')
-          text = text.replace(
-              'self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)',
-              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
-              1,
-          )
-          text = text.replace(
-              '            "CLAIM_PROMOTED",\n',
-              '            "CODE_INSPECTED",\n',
-              1,
-          )
-          text = text.replace(
-              '        self.assertEqual(resolved["stage"], "CODE_INSPECTED")',
-              '        self.assertEqual(resolved["stage"], "CLAIM_PROMOTED")',
-          )
-          text = text.replace(
-              '            resolved["claim_ceiling"], "inspected_implementation_alignment"\n',
-              '            resolved["claim_ceiling"], "proof_bound_company_specific"\n',
-          )
-          text = text.replace(
-              '        self.assertEqual(resolved["proof_artifacts"], [])\n        self.assertEqual(resolved["claim_receipts"], [])\n        self.assertIn("company_specific_remedy_not_bounded", resolved["blockers"])\n        self.assertIn("proof_not_reproduced", resolved["blockers"])\n',
-              '        self.assertEqual(len(resolved["gap_queue"]), 1)\n        self.assertEqual(len(resolved["implementation_receipts"]), 1)\n        self.assertEqual(len(resolved["proof_artifacts"]), 1)\n        self.assertEqual(resolved["proof_artifacts"][0]["verification_state"], "REPRODUCED")\n        self.assertEqual(len(resolved["claim_receipts"]), 1)\n        self.assertIn("production_scale_not_demonstrated", resolved["blockers"])\n        self.assertIn("aerospace_defense_certification_not_claimed", resolved["blockers"])\n',
-          )
-          test_path.write_text(text, encoding='utf-8')
-          subprocess.run(['python', '-m', 'unittest', 'tests.test_company_second_depth', '-v'], check=True)
-          subprocess.run(['python', 'scripts/validate_company_second_depth.py'], check=True)
-          subprocess.run(['git', 'add', str(test_path)], check=True)
-          subprocess.run(['git', 'commit', '-m', 'test: lock Lockheed CLAIM_PROMOTED second-depth truth'], check=True)
           PY
           git push origin HEAD:second-depth/lockheed-v21-complete
