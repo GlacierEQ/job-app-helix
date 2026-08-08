@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.public-repository-metadata-remediation.v1",
-  "observed_at": "2026-08-08T23:38:00Z",
+  "observed_at": "2026-08-08T23:46:00Z",
   "mutation_state": "BLOCKED_CONNECTOR_CAPABILITY",
   "mutation_boundary": "Do not claim GitHub About metadata changed until a repository description/homepage/topics mutation is executed and read back.",
   "canonical_portfolio_url": "https://casey-barton-glaciereq.vercel.app/",
@@ -51,15 +51,29 @@
     },
     {
       "repository": "GlacierEQ/openai-reasoning-kv-sentinel",
-      "priority": "P0_BEFORE_METADATA",
-      "current_findings": ["description missing", "homepage missing", "topics missing", "license metadata absent", "README claim boundary requires hardening"],
-      "desired_after_truth_hardening": {
-        "description": "Independent C++/Python KV-cache entropy pruning experiment with a reproducible local test harness and evidence-bounded claims.",
-        "homepage": "https://casey-barton-glaciereq.vercel.app/",
-        "topics": ["cpp", "inference-optimization", "kv-cache", "portfolio", "reasoning"]
+      "priority": "P1",
+      "current_findings": ["description missing", "homepage missing", "topics missing", "license metadata absent"],
+      "truth_hardening": {
+        "state": "SATISFIED",
+        "canonical_head": "65f4e9c1b0a7c0e355d9b314cd975ebbee48b574",
+        "gate": "Public Reasoning Retention Truth Gate",
+        "verified_python_versions": ["3.11", "3.12"],
+        "canonical_capability": "reasoning_record_retention_policy",
+        "nonclaims": [
+          "no KV tensor mutation",
+          "no model-server integration",
+          "no reasoning-quality benchmark",
+          "no OpenAI affiliation or private access",
+          "no live mesh integration",
+          "no external tool execution"
+        ]
       },
-      "license_action": "NO_CHANGE_WITHOUT_REPOSITORY_LICENSE_DECISION",
-      "gate": "HARDEN_README_AND_VERIFY_NATIVE_BEHAVIOR_FIRST"
+      "desired": {
+        "description": "Independent reasoning-trajectory retention policy with Shannon-entropy selection, optional ONNX scoring, and reproducible local verification.",
+        "homepage": "https://casey-barton-glaciereq.vercel.app/",
+        "topics": ["inference-optimization", "kv-cache", "onnx", "portfolio", "reasoning"]
+      },
+      "license_action": "NO_CHANGE_WITHOUT_REPOSITORY_LICENSE_DECISION"
     }
   ]
 }
