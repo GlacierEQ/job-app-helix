@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DOSSIER = ROOT / "manifests" / "company_dossiers" / "additional_targets.json"
@@ -13,19 +14,29 @@ AUDIT = (
 )
 
 EXPECTED_REPOSITORIES = {
-    "GlacierEQ/coreweave-state-fusion": "12c7735836b1bd062129d4252a2f977524880e66",
-    "GlacierEQ/coreweave-temporal-router": "7473183474e107b75847ecdcc750f9f1b669f220",
-    "GlacierEQ/coreweave-circuit-breaker": "6a1a0b86efbfcb0070996647943bf3f255f8f1ed",
-    "GlacierEQ/coreweave-shadow-monitor": "76664f4acde2424be4d7932af1f5dc22c9475f65",
-    "GlacierEQ/coreweave-entropy-engine": "cec62d79fb2930945a021953aaf3cb1f75b462e6",
+    "GlacierEQ/coreweave-state-fusion": (
+        "12c7735836b1bd062129d4252a2f977524880e66"
+    ),
+    "GlacierEQ/coreweave-temporal-router": (
+        "7473183474e107b75847ecdcc750f9f1b669f220"
+    ),
+    "GlacierEQ/coreweave-circuit-breaker": (
+        "6a1a0b86efbfcb0070996647943bf3f255f8f1ed"
+    ),
+    "GlacierEQ/coreweave-shadow-monitor": (
+        "76664f4acde2424be4d7932af1f5dc22c9475f65"
+    ),
+    "GlacierEQ/coreweave-entropy-engine": (
+        "cec62d79fb2930945a021953aaf3cb1f75b462e6"
+    ),
 }
 
 
-def load(path: Path) -> dict[str, object]:
+def load(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def coreweave_company() -> dict[str, object]:
+def coreweave_company() -> dict[str, Any]:
     dossier = load(DOSSIER)
     return next(
         company
