@@ -1,0 +1,27 @@
+{
+  "boundary": "Reference implementation only; single-process idempotency, not distributed exactly-once; no company deployment or production-scale claim.",
+  "commit": "4328fa7078e6e4125f895768142c6af0c5ec1234",
+  "company_id": "lockheed_martin",
+  "implementation_id": "mission_agentic_ai_assurance",
+  "implementation_receipt": "proof/implementation_receipt.json",
+  "implemented_capabilities": [
+    "content_bound_public_evidence_snapshot_validation",
+    "canonical_request_hashing",
+    "canonical_machine_payload_adapter",
+    "finite_metric_validation",
+    "policy_gate",
+    "scalar_drift_gate",
+    "thread_safe_single_process_idempotent_replay",
+    "idempotency_conflict_detection",
+    "circuit_breaker",
+    "executor_failure_receipts",
+    "deterministic_assurance_receipts"
+  ],
+  "repository": "GlacierEQ/job-application",
+  "root": "projects/mission-agentic-ai-assurance",
+  "schema": "glaciereq.implementation-evidence.v1",
+  "source_paths": [
+    "src/mission_assurance/core.py",
+    "src/mission_assurance/__init__.py"
+  ]
+}

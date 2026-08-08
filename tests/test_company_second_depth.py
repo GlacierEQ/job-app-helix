@@ -64,14 +64,14 @@ class CompanySecondDepthTests(unittest.TestCase):
         self.assertEqual(result["stage_count"], 8)
         self.assertEqual(result["priority_wave"], 8)
         self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 48)
-        self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
+        self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
         for stage in (
             "ROLE_VERIFIED",
             "PROBLEM_BOUNDED",
             "REMEDY_BOUNDED",
             "IMPLEMENTED",
             "PROOF_REPRODUCED",
-            "CLAIM_PROMOTED",
+            "CODE_INSPECTED",
         ):
             self.assertEqual(result["stage_counts"][stage], 0)
         self.assertEqual(sum(result["stage_counts"].values()), 49)
@@ -101,17 +101,24 @@ class CompanySecondDepthTests(unittest.TestCase):
         defaults = second_depth["default_company_state"]
         override = second_depth["company_overrides"]["lockheed_martin"]
         resolved = {**defaults, **override}
-        self.assertEqual(resolved["stage"], "CODE_INSPECTED")
+        self.assertEqual(resolved["stage"], "CLAIM_PROMOTED")
         self.assertEqual(
-            resolved["claim_ceiling"], "inspected_implementation_alignment"
+            resolved["claim_ceiling"], "proof_bound_company_specific"
         )
         self.assertEqual(len(resolved["role_evidence"]), 1)
         self.assertEqual(len(resolved["problem_evidence"]), 1)
         self.assertEqual(len(resolved["inspected_repositories"]), 4)
-        self.assertEqual(resolved["proof_artifacts"], [])
-        self.assertEqual(resolved["claim_receipts"], [])
-        self.assertIn("company_specific_remedy_not_bounded", resolved["blockers"])
-        self.assertIn("proof_not_reproduced", resolved["blockers"])
+        self.assertEqual(len(resolved["gap_queue"]), 1)
+        self.assertEqual(len(resolved["implementation_receipts"]), 1)
+        self.assertEqual(len(resolved["proof_artifacts"]), 1)
+        self.assertEqual(
+            resolved["proof_artifacts"][0]["verification_state"], "REPRODUCED"
+        )
+        self.assertEqual(len(resolved["claim_receipts"]), 1)
+        self.assertIn("production_scale_not_demonstrated", resolved["blockers"])
+        self.assertIn(
+            "aerospace_defense_certification_not_claimed", resolved["blockers"]
+        )
         self.assertNotIn("no_direct_company_repository_verified", resolved["blockers"])
         self.assertEqual(
             {item["kind"] for item in resolved["inspected_repositories"]},
@@ -186,7 +193,7 @@ class CompanySecondDepthTests(unittest.TestCase):
             self.write_json(path, payload)
             result = validate_second_depth(root)
             self.assertEqual(result["stage_counts"]["ROLE_VERIFIED"], 1)
-            self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
+            self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
             self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 47)
 
     def test_role_verified_cannot_be_claimed_without_role_evidence(self) -> None:
