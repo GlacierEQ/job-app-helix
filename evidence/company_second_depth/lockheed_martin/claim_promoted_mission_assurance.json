@@ -1,0 +1,32 @@
+{
+  "schema": "glaciereq.second-depth-promotion-receipt.v1",
+  "company_id": "lockheed_martin",
+  "from_stage": "PROOF_REPRODUCED",
+  "to_stage": "CLAIM_PROMOTED",
+  "promoted_at": "2026-08-07T15:14:00-10:00",
+  "prior_stage_receipt": {
+    "source_identity": "https://github.com/GlacierEQ/job-app-helix/blob/d08dfdb69b0359ce8bc7787a557d94b8ce2fd428/evidence/company_second_depth/lockheed_martin/proof_reproduced_mission_assurance.json",
+    "source_ref": "commit:d08dfdb69b0359ce8bc7787a557d94b8ce2fd428"
+  },
+  "claim_source": {
+    "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/claim_receipt.json",
+    "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+    "proof_receipt_id": "b7a3e3cba968e19bb91ed8f6881b69e37efc97d7e8414be0aca431dff501123f"
+  },
+  "allowed_claim": "Built and reproducibly tested an independent mission-agent assurance gateway combining content-bound public provenance snapshots, deterministic receipts, thread-safe single-process idempotency, finite-metric drift gating, policy decisions, and circuit breaking, using public mission-AI requirements as a bounded design lens.",
+  "prohibited_claims": [
+    "Lockheed Martin deployment or adoption",
+    "Lockheed Martin affiliation, employment, endorsement, contract, clearance, or proprietary access",
+    "distributed exactly-once semantics",
+    "production-scale distributed assurance",
+    "aerospace or defense certification",
+    "validation on classified or proprietary systems"
+  ],
+  "claim_ceiling": "proof_bound_company_specific",
+  "application_use": {
+    "role_id": "734997BR",
+    "role_title": "Architecture & Algorithms / Agentic AI ML Engineer (Level 2 - 3)",
+    "use": "portfolio, resume, outreach, and interview language may use the allowed claim verbatim or narrower language only"
+  },
+  "decision": "PROMOTE"
+}
