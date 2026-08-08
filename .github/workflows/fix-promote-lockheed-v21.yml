@@ -1,0 +1,44 @@
+name: Fix Lockheed V21 Promoter
+
+on:
+  push:
+    branches:
+      - second-depth/lockheed-v21-complete
+    paths:
+      - .github/workflows/fix-promote-lockheed-v21.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: second-depth/lockheed-v21-complete
+      - name: Make baseline replacement cover both assertions
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/promote-lockheed-v21.yml')
+          text = path.read_text()
+          old = '''          text = text.replace(
+              'self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)',
+              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
+              1,
+          )'''
+          new = '''          text = text.replace(
+              'self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)',
+              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
+          )'''
+          if old not in text:
+              raise SystemExit('expected promoter snippet not found')
+          path.write_text(text.replace(old, new, 1))
+          PY
+          git config user.name casey
+          git config user.email GLACIER.EQUILIBRIUM@GMAIL.COM
+          git add .github/workflows/promote-lockheed-v21.yml
+          git commit -m 'ci: fix V21 Lockheed baseline test migration'
+          git push origin HEAD:second-depth/lockheed-v21-complete
