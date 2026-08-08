@@ -8,11 +8,13 @@ on:
       - "site/**"
       - "scripts/build_recruiter_site.py"
       - "scripts/build_compiled_recruiter_site.py"
+      - "scripts/census_public_portfolio.py"
       - "scripts/compile_estate_graph.py"
       - "scripts/project_estate_intelligence.py"
       - "src/job_app_helix/estate_compiler.py"
       - "src/job_app_helix/estate_intelligence*.py"
       - "src/job_app_helix/company_intelligence.py"
+      - "manifests/portfolio_repositories.json"
       - "manifests/estate_compiler.json"
       - "manifests/estate_projection_policy.json"
       - "manifests/estate_facts.json"
@@ -24,6 +26,7 @@ on:
       - "tests/test_estate_compiler.py"
       - "tests/test_estate_intelligence.py"
       - "tests/test_compiled_recruiter_site.py"
+      - "tests/test_public_portfolio_census.py"
       - "RECRUITER_EXECUTIVE_SUMMARY.md"
       - "README.md"
       - ".github/workflows/pages.yml"
@@ -33,11 +36,13 @@ on:
       - "site/**"
       - "scripts/build_recruiter_site.py"
       - "scripts/build_compiled_recruiter_site.py"
+      - "scripts/census_public_portfolio.py"
       - "scripts/compile_estate_graph.py"
       - "scripts/project_estate_intelligence.py"
       - "src/job_app_helix/estate_compiler.py"
       - "src/job_app_helix/estate_intelligence*.py"
       - "src/job_app_helix/company_intelligence.py"
+      - "manifests/portfolio_repositories.json"
       - "manifests/estate_compiler.json"
       - "manifests/estate_projection_policy.json"
       - "manifests/estate_facts.json"
@@ -49,6 +54,7 @@ on:
       - "tests/test_estate_compiler.py"
       - "tests/test_estate_intelligence.py"
       - "tests/test_compiled_recruiter_site.py"
+      - "tests/test_public_portfolio_census.py"
       - "RECRUITER_EXECUTIVE_SUMMARY.md"
       - "README.md"
       - ".github/workflows/pages.yml"
@@ -90,6 +96,7 @@ jobs:
           tests/test_estate_compiler.py
           tests/test_estate_intelligence.py
           tests/test_compiled_recruiter_site.py
+          tests/test_public_portfolio_census.py
 
       - name: Detect live estate census authority
         id: estate-auth
@@ -102,15 +109,8 @@ jobs:
             echo "available=true" >> "${GITHUB_OUTPUT}"
           else
             echo "available=false" >> "${GITHUB_OUTPUT}"
-            echo "Live private-estate projection unavailable; deploying static boundary."
+            echo "Live private-estate authority unavailable; compiling the governed public portfolio instead."
           fi
-
-      - name: Build pull-request static boundary
-        if: github.event_name == 'pull_request'
-        run: >-
-          python scripts/build_compiled_recruiter_site.py
-          --output artifacts/pages-site
-          --source-commit "${{ github.sha }}"
 
       - name: Census live owner estate
         if: >-
@@ -155,26 +155,63 @@ jobs:
           --source-commit "${{ github.sha }}"
           --public-projection /tmp/estate-compiler/public-safe-company-projection-v2.json
 
-      - name: Build static fallback without private census authority
+      - name: Census governed public recruiter portfolio
         if: >-
-          github.event_name != 'pull_request' &&
+          github.event_name == 'pull_request' ||
+          steps.estate-auth.outputs.available != 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/census_public_portfolio.py
+          --token "${GITHUB_TOKEN}"
+          --output /tmp/public-portfolio-census.json
+
+      - name: Compile public portfolio fallback graph
+        if: >-
+          github.event_name == 'pull_request' ||
+          steps.estate-auth.outputs.available != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s\n' '{"namespaces":[],"relationships":[]}' \
+            > /tmp/public-estate-facts.json
+          python scripts/compile_estate_graph.py \
+            --census /tmp/public-portfolio-census.json \
+            --estate-facts /tmp/public-estate-facts.json \
+            --output-dir /tmp/public-estate-compiler
+
+      - name: Project public portfolio company intelligence
+        if: >-
+          github.event_name == 'pull_request' ||
+          steps.estate-auth.outputs.available != 'true'
+        run: >-
+          python scripts/project_estate_intelligence.py
+          --bundle /tmp/public-estate-compiler/estate-compiler-bundle.json
+          --census /tmp/public-portfolio-census.json
+          --estate-facts /tmp/public-estate-facts.json
+          --output /tmp/public-estate-compiler/estate-intelligence-bundle.json
+          --public-output /tmp/public-estate-compiler/public-safe-company-projection-v2.json
+
+      - name: Build public compiler fallback surface
+        if: >-
+          github.event_name == 'pull_request' ||
           steps.estate-auth.outputs.available != 'true'
         run: >-
           python scripts/build_compiled_recruiter_site.py
           --output artifacts/pages-site
           --source-commit "${{ github.sha }}"
+          --public-projection /tmp/public-estate-compiler/public-safe-company-projection-v2.json
 
-      - name: Verify no private compiler inputs entered Pages artifact
+      - name: Verify no compiler inputs entered Pages artifact
         run: |
           set -euo pipefail
           test ! -e artifacts/pages-site/owned-library-census.json
+          test ! -e artifacts/pages-site/public-portfolio-census.json
           test ! -e artifacts/pages-site/canonical-system-registry.json
           test ! -e artifacts/pages-site/capability-donor-registry.json
           test ! -e artifacts/pages-site/company-projection-registry.json
           test ! -e artifacts/pages-site/estate-intelligence-bundle.json
-          if [ "${{ steps.estate-auth.outputs.available }}" = "true" ]; then
-            test -s artifacts/pages-site/estate-projection.json
-          fi
+          test -s artifacts/pages-site/estate-projection.json
 
       - name: Verify public repository boundary
         run: python scripts/check_public_surface.py
