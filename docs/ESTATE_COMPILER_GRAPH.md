@@ -32,13 +32,16 @@ Generated full registries remain internal because the authenticated census can c
 
 `LEGAL_PRIVATE` is a graph boundary, not a UI filter. Raw legal repository identities and case material cannot feed company projections. A legal system may donate a sanitized engineering pattern only through a separately reviewed public-safe engineering artifact.
 
-Forks are isolated as `FORK_REFERENCE`. They may prove ancestry or an attributable downstream delta, but they are never counted as native accomplishments.
+Exact legal-namespace membership is evidence-bound. The compiler accepts explicit namespace assertions through `--estate-facts`; each assertion requires source references. Conservative filename heuristics are fallback discovery only. They do **not** establish that a claimed legal-repository count is complete.
+
+Forks are isolated as `FORK_REFERENCE` directly from authenticated GitHub metadata. They may prove ancestry or an attributable downstream delta, but they are never counted as native accomplishments.
 
 ## Lineage
 
 Automatic collapse is conservative:
 
 - explicit typed lineage with evidence may collapse;
+- `EXPLICIT_SUCCESSOR_OF` makes the asserted successor the canonical root;
 - high-confidence backup/archive identity plus authenticated census metadata may collapse;
 - similar normalized names without sufficient evidence emit `UNRESOLVED_LINEAGE_CANDIDATE`;
 - cycles fail closed;
@@ -62,11 +65,13 @@ Every canonical system receives five equal-weight dimensions:
 - transferability;
 - target-company relevance.
 
-Visibility is intentionally separate. A technically strong private or sensitive system may score highly while remaining internal or sanitized-only.
+`ORIGINAL_CANDIDATE` is treated as a candidate provenance signal, not verified authorship. Visibility is intentionally separate. A technically strong private or sensitive system may score highly while remaining internal or sanitized-only.
 
 ## Bounded proof-surface compiler
 
 Company projection uses a bounded greedy capability set-cover. For each target, Helix chooses at most five canonical systems that maximize distinct capability coverage and proof strength. This minimizes redundant repository exposure while preserving the full ranked evidence graph internally.
+
+The public-safe pass is stricter than the internal graph: a repository must be public **and** its company-level promotion state must be recruiter-eligible (`PROMOTED` or `REFERENCE_ONLY`). Public experiments, blocked candidates, private systems, and legal-private records are excluded.
 
 This is the key transformation from catalog to compiler: repository volume becomes a hidden search space, while each reviewer receives the smallest high-signal proof surface relevant to them.
 
@@ -87,18 +92,20 @@ The compiler is deterministic and source-digest bound:
 - unsupported capability inference remains metadata-only;
 - one unresolved family does not block independent systems;
 - registry hashes support stale detection downstream;
-- public output is regenerated from the internal bundle, never edited by hand.
+- public output is regenerated from the internal bundle, never edited by hand;
+- a private full repository identity detected in public output fails the projection.
 
 ## Runtime
 
 ```bash
 python scripts/census_owned_library.py --token "$GITHUB_TOKEN"
 python scripts/compile_estate_graph.py \
+  --estate-facts path/to/governed-estate-facts.json \
   --public-output artifacts/estate-compiler/public-safe-company-projection.json
 ```
 
-Optional explicit lineage assertions are accepted only when every relationship includes a typed relation, target repository, and non-empty evidence references.
+`--estate-facts` is optional. It can supply two evidence-bound collections: `namespaces[]` for exact graph isolation and `relationships[]` for explicit lineage. The legacy `--lineage` argument remains an alias for compatibility.
 
 ## Completion contract
 
-A run is complete only after it emits the canonical-system registry, capability-donor registry, company-projection registry, experiment pipeline, deterministic receipt, and—when requested—a public-safe projection. Unresolved lineage is a valid fail-visible state; it is never permission to guess.
+A run is complete only after it emits the canonical-system registry, capability-donor registry, company-projection registry, experiment pipeline, deterministic receipt, and—when requested—a public-safe projection. Unresolved lineage or incomplete namespace classification is a valid fail-visible state; it is never permission to guess.
