@@ -1,0 +1,55 @@
+{
+  "schema": "glaciereq.company-dossiers-shard.v2",
+  "group_id": "expansion_targets",
+  "generated_at": "2026-08-08T12:54:00-10:00",
+  "defaults_apply_to_all_companies": true,
+  "defaults": {
+    "track_state": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+    "target_roles": [
+      "Applied AI Systems Engineer",
+      "Agent Infrastructure Engineer",
+      "Forward-Deployed Engineer",
+      "Platform / Reliability Engineer"
+    ],
+    "recruiter_thesis": "High-fit strategic target identified from estate capability alignment. No company-specific accomplishment is claimed without direct repository and proof admission.",
+    "gap_or_next_gate": "Run exact-name plus semantic estate discovery, verify provenance and unique value, map current public company pressures from official sources, then admit only repositories with bounded evidence.",
+    "non_affiliation": "Independent GlacierEQ work; no affiliation, endorsement, employment, proprietary access, or production deployment with the named target is claimed.",
+    "repositories": [],
+    "applicable_flagships": [
+      "job_app_helix",
+      "akos",
+      "doctor_strange",
+      "tower_of_babel",
+      "job_application"
+    ]
+  },
+  "companies": [
+    {"company_id":"cursor","display_name":"Cursor / Anysphere"},
+    {"company_id":"glean","display_name":"Glean"},
+    {"company_id":"replit","display_name":"Replit"},
+    {"company_id":"cognition","display_name":"Cognition"},
+    {"company_id":"github","display_name":"GitHub"},
+    {"company_id":"supabase","display_name":"Supabase"},
+    {"company_id":"mongodb","display_name":"MongoDB"},
+    {"company_id":"gitlab","display_name":"GitLab"},
+    {"company_id":"atlassian","display_name":"Atlassian"},
+    {"company_id":"lambda","display_name":"Lambda"},
+    {"company_id":"nebius","display_name":"Nebius"},
+    {"company_id":"crusoe","display_name":"Crusoe"},
+    {"company_id":"together_ai","display_name":"Together AI"},
+    {"company_id":"modal","display_name":"Modal"},
+    {"company_id":"baseten","display_name":"Baseten"},
+    {"company_id":"fireworks_ai","display_name":"Fireworks AI"},
+    {"company_id":"replicate","display_name":"Replicate"},
+    {"company_id":"runpod","display_name":"Runpod"},
+    {"company_id":"sourcegraph","display_name":"Sourcegraph"},
+    {"company_id":"windsurf","display_name":"Windsurf"},
+    {"company_id":"linear","display_name":"Linear"},
+    {"company_id":"elastic","display_name":"Elastic"},
+    {"company_id":"redis","display_name":"Redis"},
+    {"company_id":"pinecone","display_name":"Pinecone"},
+    {"company_id":"weaviate","display_name":"Weaviate"},
+    {"company_id":"qdrant","display_name":"Qdrant"},
+    {"company_id":"motherduck","display_name":"MotherDuck"}
+  ]
+}
