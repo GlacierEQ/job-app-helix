@@ -251,13 +251,13 @@ jobs:
 
       - name: Configure existing GitHub Pages
         if: steps.pages-ready.outputs.available == 'true'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Enable and configure GitHub Pages
         if: >-
           steps.pages-ready.outputs.available != 'true' &&
           steps.pages-bootstrap.outputs.available == 'true'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         with:
           enablement: true
           token: ${{ secrets.GLACIEREQ_PAGES_TOKEN }}
