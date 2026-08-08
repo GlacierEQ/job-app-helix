@@ -1,0 +1,54 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "timestamp": "2026-08-07T18:07:00-10:00",
+  "repository": "GlacierEQ/mastermind",
+  "default_branch": "main",
+  "fork": false,
+  "canonical_head_before": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
+  "canonical_head_after": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
+  "decision": "RETIRE_OVERLAPPING_STALE_MEM0_SECURITY_BRANCHES_WITHOUT_MERGE",
+  "branches": [
+    {
+      "pull_request": 103,
+      "branch": "sentinel/redact-mem0-keys-9236799832226564865",
+      "merge_base": "91660d7b014584d47806b345bbb923fb57db1ea0",
+      "ahead": 1,
+      "behind": 341,
+      "unique_patch_value": "ZERO_AGAINST_CURRENT_CANONICAL_SECURITY_CONFIGURATION",
+      "decision": "RETIREMENT_READY_PR_CLOSED",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "pull_request": 100,
+      "branch": "sentinel/redact-mem0-keys-10362752005782221452",
+      "merge_base": "91660d7b014584d47806b345bbb923fb57db1ea0",
+      "ahead": 2,
+      "behind": 341,
+      "unique_patch_value": "ZERO_AFTER_CURRENT_CANONICAL_AND_PR103_FAMILY_RECONCILIATION",
+      "decision": "RETIREMENT_READY_PR_CLOSED",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    },
+    {
+      "pull_request": 97,
+      "branch": "sentinel/redact-mem0-keys-44486167670151120",
+      "merge_base": "91660d7b014584d47806b345bbb923fb57db1ea0",
+      "ahead": 1,
+      "behind": 341,
+      "unique_patch_value": "ZERO_AFTER_CURRENT_CANONICAL_AND_OVERLAP_RECONCILIATION",
+      "decision": "RETIREMENT_READY_PR_CLOSED",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    }
+  ],
+  "preservation_action": "Current canonical Mem0 configuration was inspected without exposing credential values. Surviving canonical memory surfaces already import os and read MEM0_PRIMARY_KEY/MEM0_SECONDARY_KEY from the environment; at least one legacy path targeted by the stale branches is absent from current main. No stale security branch was merged.",
+  "verification_result": {
+    "current_canonical_mem0_environment_search": "PRESENT",
+    "current_core_engines_apex_multi_memory": "USES_ENVIRONMENT_KEYS_WITH_OS_IMPORT",
+    "legacy_apex_core_test_raw_api_path": "ABSENT_FROM_CURRENT_MAIN",
+    "credential_values_exposed_in_receipt": false
+  },
+  "blockers": [
+    "Remote branch deletion cannot be proven with the current GitHub connector.",
+    "Repository source cleanup cannot prove external credential revocation; historical exposure, if any, remains an account-level rotation concern rather than a stale-branch merge task."
+  ],
+  "next_cursor": "Continue Mastermind open backlog with the next highest security or unique operational-value family. Prefer closing old Overleaf security branches that target removed surfaces, then stale Bolt/Palette families already superseded by canonical architecture; synthesize only if a currently existing canonical surface lacks the intended safeguard."
+}
