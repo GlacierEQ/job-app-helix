@@ -194,7 +194,11 @@ def validate_topology(profile: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def validate_plan(plan: dict[str, Any], tracks: list[str], specialist_ids: list[str]) -> None:
+def validate_plan(
+    plan: dict[str, Any],
+    tracks: list[str],
+    specialist_ids: list[str],
+) -> None:
     waves = plan.get("waves")
     if not isinstance(waves, list) or not waves:
         raise CompanyAnalysisPlanError("plan must contain waves")
@@ -209,7 +213,11 @@ def validate_plan(plan: dict[str, Any], tracks: list[str], specialist_ids: list[
         company_ids = wave.get("company_ids")
         tasks = wave.get("specialist_tasks")
         integrations = wave.get("integrations")
-        if not isinstance(company_ids, list) or not isinstance(tasks, list) or not isinstance(integrations, list):
+        if (
+            not isinstance(company_ids, list)
+            or not isinstance(tasks, list)
+            or not isinstance(integrations, list)
+        ):
             raise CompanyAnalysisPlanError("wave payload is incomplete")
         assigned_tracks.extend(company_ids)
         for task in tasks:
@@ -218,7 +226,8 @@ def validate_plan(plan: dict[str, Any], tracks: list[str], specialist_ids: list[
             task_id = task.get("task_id")
             company_id = task.get("company_id")
             specialist_id = task.get("specialist_id")
-            if not all(isinstance(value, str) and value for value in (task_id, company_id, specialist_id)):
+            task_identity = (task_id, company_id, specialist_id)
+            if not all(isinstance(value, str) and value for value in task_identity):
                 raise CompanyAnalysisPlanError("specialist task identity is invalid")
             if specialist_id not in specialist_ids:
                 raise CompanyAnalysisPlanError(f"unknown specialist id: {specialist_id}")
@@ -232,7 +241,11 @@ def validate_plan(plan: dict[str, Any], tracks: list[str], specialist_ids: list[
             company_id = integration.get("company_id")
             if not isinstance(company_id, str) or not company_id:
                 raise CompanyAnalysisPlanError("integration company identity is invalid")
-            if integration.get("status") != "PLANNED" or integration.get("execution_claim") is not False:
+            integration_is_unexecuted = (
+                integration.get("status") == "PLANNED"
+                and integration.get("execution_claim") is False
+            )
+            if not integration_is_unexecuted:
                 raise CompanyAnalysisPlanError("planner must not claim integration execution")
             integration_tracks.append(company_id)
 
