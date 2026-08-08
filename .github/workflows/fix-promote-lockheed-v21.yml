@@ -24,18 +24,14 @@ jobs:
           from pathlib import Path
           path = Path('.github/workflows/promote-lockheed-v21.yml')
           text = path.read_text()
-          old = '''          text = text.replace(
-              'self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)',
-              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
+          target = '''              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
               1,
           )'''
-          new = '''          text = text.replace(
-              'self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)',
-              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
+          replacement = '''              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
           )'''
-          if old not in text:
-              raise SystemExit('expected promoter snippet not found')
-          path.write_text(text.replace(old, new, 1))
+          if target not in text:
+              raise SystemExit('expected replacement-count snippet not found')
+          path.write_text(text.replace(target, replacement, 1))
           PY
           git config user.name casey
           git config user.email GLACIER.EQUILIBRIUM@GMAIL.COM
