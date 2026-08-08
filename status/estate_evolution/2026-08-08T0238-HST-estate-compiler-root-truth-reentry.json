@@ -1,0 +1,92 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "run_id": "2026-08-08T0238-HST-estate-compiler-root-truth-reentry",
+  "recorded_at": "2026-08-08T12:38:53Z",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "execution_mode": "CHECKPOINT_FIRST_TOOL_FIRST_FAIL_CLOSED",
+  "expected_control_plane_head": "9add29a6dfa8113935c5dfa1eb4f98cc2b319bfa",
+  "control_plane_head_observed": "9add29a6dfa8113935c5dfa1eb4f98cc2b319bfa",
+  "root_truth": {
+    "live_nonfork_repository_count": 598,
+    "github_search_incomplete_results": false,
+    "census_checkpoint_date": "2026-08-07",
+    "census_nonfork_repository_count": 598,
+    "count_drift": 0,
+    "classification_checkpoint": {
+      "original_build": 126,
+      "company_study": 93,
+      "canonical_flagship": 14,
+      "infrastructure": 80,
+      "legal_isolated": 54,
+      "experiment": 35,
+      "duplicate_successor": 73,
+      "backup": 61,
+      "archive": 10,
+      "dependency_reference": 52
+    }
+  },
+  "checkpoint_integrity": {
+    "state_file": "status/estate_evolution/state.json",
+    "state_file_updated_at": "2026-08-08T10:10:00Z",
+    "state_file_next_run_head": "27d74d72491a1c6c9769a7cb98d778a3a878335c",
+    "live_main_head": "9add29a6dfa8113935c5dfa1eb4f98cc2b319bfa",
+    "compare_status": "ahead",
+    "live_head_ahead_by": 4,
+    "live_head_behind_by": 0,
+    "stale_checkpoint_detected": true,
+    "decision": "DO_NOT_TREAT_STATE_JSON_NEXT_RUN_HEAD_AS_CONTROLLING_UNTIL_RECONCILED"
+  },
+  "preserved_promotions_after_stale_cursor": [
+    {
+      "pull_request": 73,
+      "merge_commit": "93ee64455bd96b693b14f2de172fb75a4833ea63",
+      "value": "estate intelligence projection, role-capability fit, bounded company intelligence, public-safe recruiter projection"
+    },
+    {
+      "pull_request": 74,
+      "merge_commit": "4d0d8ddc8ce6f6af73d016819d9da55406ecaa3e",
+      "value": "frontier repository innovation engine, 21-state execution policy, schema contracts, expected-head promotion guards"
+    },
+    {
+      "commit": "9add29a6dfa8113935c5dfa1eb4f98cc2b319bfa",
+      "value": "Tower operational-evidence regression preservation receipt"
+    }
+  ],
+  "helix_identity_drift": {
+    "checkpoint_missing_identity_count": 20,
+    "resolved_this_pass": [
+      {
+        "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+        "live_state": "EXISTS_AS_FORK",
+        "classification_effect": "EXCLUDE_FROM_NATIVE_598; RETAIN_AS_FORK_REFERENCE_OR_PROJECTION_CONSUMER"
+      },
+      {
+        "repository": "GlacierEQ/Microsoft-Build2025-Samples",
+        "live_state": "EXISTS_AS_FORK",
+        "classification_effect": "EXCLUDE_FROM_NATIVE_598; RETAIN_AS_FORK_REFERENCE"
+      }
+    ],
+    "remaining_unresolved": 18,
+    "promotion_rule": "NO_IDENTITY_DRIFT_CLOSURE_UNTIL_ALL_20_CHECKPOINT_IDENTITIES_ARE_LIVE-RESOLVED"
+  },
+  "existing_runtime_preserved": {
+    "estate_compiler": "CANONICAL_ON_MAIN",
+    "estate_intelligence_projection": "CANONICAL_ON_MAIN",
+    "frontier_innovation_engine": "CANONICAL_ON_MAIN",
+    "impact_intervention_application_constellation_contracts": "NOT_PROMOTED_BY_THIS_RECEIPT"
+  },
+  "mutation_safety": {
+    "canonical_main_modified": false,
+    "branch_only": true,
+    "branch": "estate/root-truth-reentry-20260808-0238",
+    "stale_open_pull_requests_closed": false,
+    "repositories_or_branches_deleted": false,
+    "legal_namespace_modified": false
+  },
+  "blocked": [
+    "Eighteen of the twenty checkpoint Helix/company-registry drift identities remain to be live-resolved.",
+    "The full 598-record classification delta has not yet been recomputed against current repository metadata.",
+    "Monolith PR #54 remains independently verification-gated according to the latest controlling receipt; no legal-spine promotion is authorized here."
+  ],
+  "next_cursor": "Resolve the remaining 18 Helix drift identities against live GitHub metadata, then compile the exact 598-record delta from the August 7 census before changing state.json or promoting any root-truth mutation."
+}
