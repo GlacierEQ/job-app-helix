@@ -1,0 +1,177 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "timestamp": "2026-08-08T06:36:00-10:00",
+  "run_mode": "max_scope_single_turn_final",
+  "linked_prior_receipt_commit": "92237be8379b50ad9e6243769e75e6139448d495",
+  "control_plane": {
+    "repository": "GlacierEQ/job-app-helix",
+    "initial_extension_checkpoint": "8b95cecec5a7e9325b8ac67dd9349ccf6346372d",
+    "initial_extension_tree": "2cbc66dfe9ab5eeb7154ce76068bb54ae5b41484",
+    "first_receipt_candidate_commit": "41f3ed9918e19d1678994310950290ef307878f9",
+    "first_receipt_candidate_disposition": "DISCARDED_STALE_PARENT_NOT_REFERENCED",
+    "new_controlling_head_before_final_receipt": "72366771365b50685afa318623b05697c2a67cb5",
+    "new_controlling_tree": "2cbc66dfe9ab5eeb7154ce76068bb54ae5b41484",
+    "race_policy": "expected-head fail closed; rebuild on newest controlling parent; never force"
+  },
+  "estate_root": {
+    "github_query": "org:GlacierEQ fork:false",
+    "search_visible_nonfork_count": 598,
+    "ordinal_598": "GlacierEQ/megamind",
+    "ordinal_599": null,
+    "truth_boundary": "Repository cardinality only; not canonical-system, deployment, or capability count."
+  },
+  "major_promotions": {
+    "make_it_heavy_semantic_firewall": {
+      "pr": 38,
+      "verified_head": "3d480f83a93009462e8006250508459ea7dd7a40",
+      "canonical": "d921bcc125ca08972f78fda5f921740dd3cdc6e1",
+      "proof": "Adaptive Worker Integrity passed Python 3.9-3.13; sampled lane 132 passed",
+      "value": "exact-span OBSERVED claim entailment, missing-span fail close, contradiction escalation, semantic quality cap, receipt-lineage integration"
+    },
+    "apex_family_normalization": {
+      "pr": 18,
+      "verified_head": "975444a9ef64b36177caee121c29681a01fba7dd",
+      "merge_sha": "a27ab9987b90e3d68f8bafe0c75c18effdef7e6d",
+      "current_main": "8ab209f5d75726f221436227e73ef4d1a39a6c87",
+      "proof": "CI + CASEBRAIN Pro-Code Gates + Secret Leakage Scanner",
+      "value": "stacked version/backup family normalization without obsolete workflow replay"
+    },
+    "aeon_legal_data_head": {
+      "pr": 84,
+      "verified_head": "18ba133c0655059c5775e79bd9e3c4b3ca9d9182",
+      "proof": "AEON CI + AEON AI Evals",
+      "canonical_after": "af30d0e34835fad6e6584e4499fc10642d252e6d"
+    },
+    "aeon_resource_pointer_authority": {
+      "source_pr": 78,
+      "fresh_pr": 85,
+      "fresh_head": "d0256e8cbb0ac745dc72fb088d62d9b102249b78",
+      "fresh_topology": "1 ahead / 0 behind",
+      "replayed_files": 13,
+      "newer_canonical_path_overlap": 0,
+      "canonical_after": "cf58bd96def652f8f7f4473e3789fd15b6262170",
+      "current_main": "e31f47df82ca9e0c810a762c0605cb0954fd4964",
+      "follow_on": "Evidence Intake Gate now binds evidence promotion to canonical Resource Pointer and Provenance Receipt contracts"
+    },
+    "helix_company_topology": {
+      "pr": 80,
+      "final_head": "f37d801625571ed56f3b67c3fe9f8c9d2fe59d78",
+      "merge_sha": "ae9027b23fe3ef0741cad10c891c3445bbcfd1a5",
+      "value": "deterministic internal company-analysis topology with PLANNED_ONLY boundaries"
+    },
+    "helix_worker_science": {
+      "pr": 79,
+      "final_head": "628e192380a4c2a5d91793d660b7883a56ce920b",
+      "reconciled_base": "ae9027b23fe3ef0741cad10c891c3445bbcfd1a5",
+      "merge_sha": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "value": "longitudinal worker science; provider-invalid turns excluded; causal value requires valid ablation"
+    },
+    "public_runner_safe_path": {
+      "pr": 107,
+      "verified_head": "dd2e799062a19b8b0828bd419d8e9ce9fb97849c",
+      "canonical_after": "1a98ebee9e40b5e9511a4bdd08acbeafa4063c86",
+      "proof": "CI + Public Runner Team Contract",
+      "value": "retain PYTHONSAFEPATH=1 while exposing only exact attested workload root via PYTHONPATH"
+    },
+    "public_runner_full_monolith_gate": {
+      "pr": 110,
+      "verified_head": "8cb76c25c6cff7527ed95bfa5e232956cf6b1ec0",
+      "canonical_after": "063834d8c909f9cd6636b53a1b5e6907afaddcb4",
+      "current_main": "c6d662b9be5162455e122177adf57856b8081697",
+      "proof": "CI + Public Runner Team Contract",
+      "value": "all seven PR #54 promotion commands are individually executed and receipted"
+    },
+    "monolith_legal_live": {
+      "pr": 54,
+      "verified_head": "db92a505b34a27d3caf7b8e57722f2d06428b344",
+      "canonical": "41bc29decca088bccdb3fc8014f840bab5074dbd",
+      "legal_population": 72,
+      "atlas_repair": "legal-powerhouse added to canonical Legal/Case Atlas projection; legal_spines not modified",
+      "r7": {
+        "public_runner_run_id": 31266892921,
+        "private_result": "GlacierEQ/llm-runner-teams:results/monolith-legal-live-pr54-r7-20260808.json",
+        "private_result_blob": "653c4ac36c734c6e356a42b328896e703c69bca3",
+        "source_sha": "db92a505b34a27d3caf7b8e57722f2d06428b344",
+        "command_contract_sha256": "258a3cbfc662139562e9dc0f351f2a117b8f927d43fb82bde8249eb4827366e3",
+        "status": "completed",
+        "legal_live_tests": 8,
+        "legal_case_spine_sync_tests": 17,
+        "legal_spine_drift": [],
+        "git_diff_check": "pass",
+        "workspace_before_clean": true,
+        "workspace_after_clean": true
+      }
+    }
+  },
+  "monolith_proof_progression": {
+    "r4": "OIDC/Keymaster issue ingress, private checkout, isolated adapter, publication and revocation chain succeeded; failure moved into workload result",
+    "r5": "overlay-specific three-command slice passed with 8 tests",
+    "r6": "complete gate exposed authoritative projection drift: legal population 72 but Legal/Case Atlas expected 71 and omitted legal-powerhouse",
+    "r7": "authoritative Atlas repaired; all seven declared promotion commands passed; PR #54 exact-head merged",
+    "trust_decision": "PR-event Keymaster 401 diagnostic did not justify broadening live OIDC trust; proven issue ingress remained canonical"
+  },
+  "prepared_not_promoted": {
+    "monolith_pr_56": {
+      "head": "335c63911be684f50512df3fe5cd64d362aa20df",
+      "base": "41bc29decca088bccdb3fc8014f840bab5074dbd",
+      "topology": "1 ahead / 0 behind",
+      "files": ["catalog/category_heads.json", "foundations/category-heads.md"],
+      "source": "stale PR #55 exact value replayed on verified Monolith head",
+      "decision": "PROOF_GATED",
+      "required_gate": [
+        "python3 scripts/enrich_3layer_schema.py",
+        "python3 -m json.tool catalog/capabilities_3layer.json",
+        "python3 tests/test_3layer_schema.py",
+        "git diff --check"
+      ],
+      "why_not_promoted": "existing governed public Atlas/Evolution actions do not reproduce this exact 3-layer catalog gate; no near-match accepted as proof"
+    }
+  },
+  "fail_closed": {
+    "fiat_justitia_pr_7": {
+      "head": "4117055cd1cb11b2eafad149ce0fdb292804073b",
+      "Spiral Engine Verification": "success",
+      "Advanced Exhibit Gate": "failure",
+      "Tower Verification": "failure",
+      "Tower of Babel Quality Gate": "failure",
+      "Nervous System Contract": "failure"
+    },
+    "computer_user_pr_15": {
+      "head_when_checked": "6b0faccf131bd7bfeef5d361a6a8e9b31a47206e",
+      "blocker": "native GitHub Actions job did not allocate due account spending/budget limit; no native proof"
+    }
+  },
+  "stale_surface_retirement": {
+    "closed_unmerged": [
+      "GlacierEQ/make-it-heavy#31",
+      "GlacierEQ/make-it-heavy#33",
+      "GlacierEQ/job-app-helix#75",
+      "GlacierEQ/AEON-777#78",
+      "GlacierEQ/monolith#55",
+      "GlacierEQ/public-actions-runner-host#93",
+      "GlacierEQ/public-actions-runner-host#106"
+    ],
+    "remote_branch_deletion_claim": "NONE",
+    "remote_branch_status": "DELETE_REF_REQUIRED"
+  },
+  "radar": {
+    "repository": "GlacierEQ/mastermind",
+    "path": "knowledge/ai_coding_radar.json",
+    "observed_blob": "3152c7a5b8eba584de734e1ee30efaf86865a2b4",
+    "mutation": false
+  },
+  "current_heads_observed": {
+    "GlacierEQ/job-app-helix": "72366771365b50685afa318623b05697c2a67cb5",
+    "GlacierEQ/monolith": "41bc29decca088bccdb3fc8014f840bab5074dbd",
+    "GlacierEQ/public-actions-runner-host": "c6d662b9be5162455e122177adf57856b8081697",
+    "GlacierEQ/AEON-777": "e31f47df82ca9e0c810a762c0605cb0954fd4964",
+    "GlacierEQ/apex-control-plane": "8ab209f5d75726f221436227e73ef4d1a39a6c87",
+    "GlacierEQ/make-it-heavy": "d921bcc125ca08972f78fda5f921740dd3cdc6e1"
+  },
+  "next_cursor": {
+    "primary": "implement or expose a correctly scoped governed exact-SHA validator for Monolith PR #56's four-command Catalog Evolution Gate, then promote only if exact head 335c63911be684f50512df3fe5cd64d362aa20df remains current and all four commands pass",
+    "secondary": "repair Fiat Justitia PR #7's four failing Tower-derived gate families",
+    "tertiary": "re-run computer-user PR #15 only when native Actions capacity or an exact equivalent read-only proof path is available",
+    "cleanup": "delete retirement-ready remote refs only when direct delete-ref proof exists"
+  }
+}
