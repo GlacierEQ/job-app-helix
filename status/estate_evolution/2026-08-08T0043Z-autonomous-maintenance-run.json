@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "run": {
+    "kind": "autonomous_estate_maintenance",
+    "timestamp_utc": "2026-08-08T00:43:28Z",
+    "canonical_registry": "GlacierEQ/monolith:catalog/application_estate_registry.json",
+    "coverage": "accessible GitHub estate inventory plus prioritized active runtime/security/deployment lanes; per-repository deep inspection remains partial where connector pagination or write surfaces are unavailable"
+  },
+  "classification_model": [
+    "canonical-control-plane",
+    "production-runtime",
+    "memory-connector",
+    "legal-process",
+    "experimental",
+    "archived",
+    "unknown-ownership"
+  ],
+  "verified_deltas": [
+    {
+      "repository": "GlacierEQ/servers",
+      "class": "production-runtime",
+      "event": "upstream_sync_merged_and_verified",
+      "pr": 10,
+      "merge_commit": "4b915bbe0e9815a4e30f7ffb29505ade16469166",
+      "workflow": {
+        "name": "Upstream Core Sync",
+        "run_id": 31230867985,
+        "conclusion": "success"
+      },
+      "secondary_workflow": {
+        "name": "Smithery GitHub Sync Kick",
+        "run_id": 31230861010,
+        "conclusion": "success"
+      },
+      "before": "PR open with PR-triggered Python/TypeScript runs blocked action_required before job creation",
+      "after": "PR merged; main upstream sync successful; Smithery sync kick successful",
+      "verification": "read back from GitHub Actions on exact merge commit"
+    },
+    {
+      "repository": "GlacierEQ/servers",
+      "class": "production-runtime",
+      "event": "dependency_security_lanes_preserved",
+      "prs": [5, 6],
+      "state": "open_non_mergeable",
+      "reason": "both branches are stale/non-mergeable after canonical upstream synchronization; no unsafe merge performed",
+      "security_relevance": [
+        "Hono and @hono/node-server authorization/static-path fixes",
+        "js-yaml prototype-pollution fix",
+        "AJV and brace-expansion ReDoS fixes",
+        "fast-uri security fixes",
+        "Starlette range parsing fix",
+        "pytest insecure temporary directory fix",
+        "filelock TOCTOU fixes"
+      ],
+      "remaining_gate": "refresh/regenerate dependency branches against synchronized main, then rerun complete verification"
+    },
+    {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "class": "canonical-control-plane",
+      "event": "stale_cursor_resolved",
+      "pr": 28,
+      "state": "closed_unmerged",
+      "finding": "prior estate cursor is stale; current main already contains the relevant branch-hygiene behavior, so PR was not reopened"
+    },
+    {
+      "service": "Supabase",
+      "project_id": "dyhprklicgewmrimecey",
+      "class": "production-runtime/security",
+      "event": "security_advisors_triaged",
+      "warnings": [
+        "authenticated users can execute SECURITY DEFINER public.create_conversation(p_title text, p_participants uuid[])",
+        "authenticated users can execute SECURITY DEFINER public.user_has_file_access(file_record public.files)",
+        "email OTP expiry exceeds one hour",
+        "Postgres supabase-postgres-17.4.1.054 has outstanding security patches"
+      ],
+      "info": "multiple tables have RLS enabled with no policies; this is deny-by-default unless privileged/server paths are intended",
+      "source_trace": "GlacierEQ/nexus-cosmic-weave/supabase/migrations/20260807_revoke_anon_definer_rpc.sql",
+      "action": "no blind privilege revoke performed because repository migration intentionally distinguishes anon from authenticated; authorization semantics require function-body validation before changing grants",
+      "remaining_gate": "validate function-internal authorization, lower OTP expiry, schedule Postgres upgrade"
+    },
+    {
+      "service": "Vercel",
+      "class": "production-runtime",
+      "event": "priority_deployment_check",
+      "project_id": "prj_fstQXOI5Kgw5omGnHE6Q1sHPndZq",
+      "state": "ready",
+      "action": "no redeploy performed because current production deployment was ready and no verified runtime regression required mutation"
+    }
+  ],
+  "estate_governance_findings": [
+    "canonical estate registry exists at GlacierEQ/monolith/catalog/application_estate_registry.json and remains the registry substrate",
+    "multiple active Z-BACKUP repositories and several repositories with noncanonical-looking default branches require reference-aware disposition, not blind archival or branch rewriting",
+    "repository inventory is sufficiently large that registry generation must remain automated and canonical rather than manually maintained"
+  ],
+  "unknowns": [
+    "complete per-repository deep inspection was not achieved for every accessible repository in this connector session",
+    "GitHub connector does not expose Actions cache/artifact/run deletion endpoints, so Actions storage cleanup remains externally gated",
+    "Supabase connector does not expose auth configuration or database upgrade mutation in the currently available action surface"
+  ]
+}
