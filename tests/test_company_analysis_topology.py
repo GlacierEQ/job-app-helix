@@ -20,6 +20,7 @@ CompanyAnalysisPlanError = planner.CompanyAnalysisPlanError
 build_plan = planner.build_plan
 canonical_sha256 = planner.canonical_sha256
 load_json = planner.load_json
+source_label = planner.source_label
 validate_company_index = planner.validate_company_index
 validate_plan = planner.validate_plan
 validate_topology = planner.validate_topology
@@ -55,7 +56,8 @@ def test_current_company_tracks_drive_wave_and_task_counts_without_fixed_48():
         "integrations": len(tracks),
         "silent_omissions": 0,
     }
-    assert [company for wave in plan["waves"] for company in wave["company_ids"]] == tracks
+    assigned = [company for wave in plan["waves"] for company in wave["company_ids"]]
+    assert assigned == tracks
     assert "fixed 48-track cardinality" in topology["historical_donor"]["not_carried_forward"]
 
 
@@ -129,3 +131,76 @@ def test_missing_specialist_task_is_detected_as_omission():
 
     with pytest.raises(CompanyAnalysisPlanError, match="specialist matrix is incomplete"):
         validate_plan(plan, tracks, specialist_ids)
+
+
+def test_v2_topology_requires_all_eight_canonical_specialist_lanes():
+    index, topology = canonical_inputs()
+    broken = copy.deepcopy(topology)
+    broken["specialists"].pop()
+
+    with pytest.raises(CompanyAnalysisPlanError, match="specialist identity drift"):
+        build_plan(
+            index,
+            broken,
+            index_sha256="9" * 64,
+            topology_sha256="a" * 64,
+        )
+
+
+def test_v2_topology_requires_canonical_coordinator_identity():
+    index, topology = canonical_inputs()
+    broken = copy.deepcopy(topology)
+    broken["integration_coordinator"]["id"] = "D12"
+
+    with pytest.raises(CompanyAnalysisPlanError, match="coordinator identity drift"):
+        build_plan(
+            index,
+            broken,
+            index_sha256="b" * 64,
+            topology_sha256="c" * 64,
+        )
+
+
+def test_v2_topology_requires_every_truth_and_integrity_gate():
+    index, topology = canonical_inputs()
+    broken = copy.deepcopy(topology)
+    broken["quality_gates"].remove("non_affiliation_boundary")
+
+    with pytest.raises(CompanyAnalysisPlanError, match="non_affiliation_boundary"):
+        build_plan(
+            index,
+            broken,
+            index_sha256="d" * 64,
+            topology_sha256="e" * 64,
+        )
+
+
+def test_integrations_bind_the_validated_coordinator_identity():
+    _, topology, plan = build_current_plan()
+    coordinator_id = topology["integration_coordinator"]["id"]
+
+    for wave in plan["waves"]:
+        for integration in wave["integrations"]:
+            assert integration["coordinator_id"] == coordinator_id
+            assert integration["integration_id"].endswith(f":{coordinator_id}")
+
+
+def test_source_receipt_preserves_configured_input_paths(tmp_path):
+    index, topology = canonical_inputs()
+    custom_index = tmp_path / "custom-index.json"
+    custom_topology = tmp_path / "custom-topology.json"
+    custom_index.write_text("{}", encoding="utf-8")
+    custom_topology.write_text("{}", encoding="utf-8")
+
+    plan = build_plan(
+        index,
+        topology,
+        index_sha256="f" * 64,
+        topology_sha256="0" * 64,
+        company_index_source=source_label(custom_index),
+        topology_source=source_label(custom_topology),
+    )
+
+    assert plan["source_identity"]["company_index"] == custom_index.resolve().as_posix()
+    assert plan["source_identity"]["topology_profile"] == custom_topology.resolve().as_posix()
+    assert source_label(INDEX_PATH) == "manifests/company_dossiers.json"
