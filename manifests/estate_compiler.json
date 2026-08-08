@@ -1,0 +1,105 @@
+{
+  "schema": "glaciereq.estate-compiler-policy.v1",
+  "authority": "GlacierEQ/job-app-helix",
+  "purpose": "Compile the authenticated owned repository estate into lineage-collapsed canonical systems, reusable capability donors, and company/role projections without exposing private or legal source material.",
+  "pipeline": [
+    "authenticated_owned_library_census",
+    "namespace_isolation",
+    "lineage_collapse",
+    "canonical_system_registry",
+    "capability_donor_registry",
+    "proof_binding",
+    "company_projection_registry",
+    "role_specific_projection"
+  ],
+  "inputs": {
+    "authenticated_census": "artifacts/owned-library-census.json",
+    "flagships": "manifests/flagship_registry.json",
+    "company_index": "manifests/company_dossiers.json",
+    "company_shards": "resolved_from_company_index",
+    "evidence_bound_estate_facts": "optional runtime JSON passed with --estate-facts; supports namespaces[] and relationships[] with nonempty evidence_refs"
+  },
+  "namespace_policy": {
+    "engineering": "Eligible for lineage, capability, proof, and company projection subject to evidence gates.",
+    "fork_reference": "Derived from GitHub fork metadata; reference/upstream ancestry only and never counted as a native accomplishment.",
+    "legal_private": "Hard graph boundary. Raw repository identities and case material cannot enter company or recruiter projections.",
+    "exact_legal_namespace": "Requires evidence-bound explicit namespace assertions; filename heuristics are fallback discovery only and never prove a complete legal count."
+  },
+  "lineage_policy": {
+    "automatic_collapse": [
+      "structural_high_confidence_backup",
+      "structural_high_confidence_archive"
+    ],
+    "explicit_collapse_requires": [
+      "typed_relation",
+      "target_repository",
+      "nonempty_evidence_refs"
+    ],
+    "successor_semantics": "EXPLICIT_SUCCESSOR_OF makes the asserted successor the canonical root.",
+    "ambiguous_name_family": "emit_unresolved_lineage_candidate",
+    "cycle_policy": "fail_closed",
+    "silent_merge": false
+  },
+  "promotion_score": {
+    "axes": [
+      "originality",
+      "technical_depth",
+      "verification_strength",
+      "transferability",
+      "target_company_relevance"
+    ],
+    "weights": {
+      "originality": 0.2,
+      "technical_depth": 0.2,
+      "verification_strength": 0.2,
+      "transferability": 0.2,
+      "target_company_relevance": 0.2
+    },
+    "original_candidate_is_not_verified_authorship": true,
+    "public_visibility_is_separate": true
+  },
+  "projection_policy": {
+    "company_problem_source": "existing Helix company dossier gap_or_next_gate unless separately refreshed by current research",
+    "selection": "bounded_greedy_capability_set_cover",
+    "company_surface_max_systems": 5,
+    "public_recruiter_states": [
+      "PROMOTED",
+      "REFERENCE_ONLY"
+    ],
+    "goal": "Maximize distinct relevant capability proof while minimizing repository exposure and redundant evidence."
+  },
+  "experiment_pipeline": [
+    "EXPERIMENT",
+    "DISTINCT_VALUE",
+    "TESTED",
+    "SYSTEM_COMPONENT",
+    "FLAGSHIP_DONOR"
+  ],
+  "privacy": {
+    "full_census_may_contain_private_names": true,
+    "commit_full_generated_registries": false,
+    "public_projection_excludes_private_repository_identities": true,
+    "public_projection_excludes_non_recruiter_promotion_states": true,
+    "workflow_uploads": [
+      "estate-compiler-receipt.json",
+      "public-safe-company-projection.json"
+    ]
+  },
+  "self_healing": {
+    "source_digest": "sha256 canonical JSON over all compiler inputs",
+    "registry_hashes": true,
+    "stale_inputs": "recompile",
+    "independent_failure": "preserve unrelated systems and emit unresolved queue",
+    "unsupported_claim": "fail closed or retain metadata-only state"
+  },
+  "outputs": {
+    "internal_directory": "artifacts/estate-compiler",
+    "canonical_system_registry": "canonical-system-registry.json",
+    "capability_donor_registry": "capability-donor-registry.json",
+    "company_projection_registry": "company-projection-registry.json",
+    "experiment_pipeline": "experiment-pipeline.json",
+    "receipt": "estate-compiler-receipt.json",
+    "bundle": "estate-compiler-bundle.json",
+    "public_safe_projection": "public-safe-company-projection.json"
+  }
+}
