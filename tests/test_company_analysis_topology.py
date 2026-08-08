@@ -1,22 +1,28 @@
 import copy
+import importlib.util
 import math
 from pathlib import Path
 
 import pytest
 
-from scripts.build_company_analysis_plan import (
-    CompanyAnalysisPlanError,
-    build_plan,
-    canonical_sha256,
-    load_json,
-    validate_company_index,
-    validate_plan,
-    validate_topology,
-)
-
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = ROOT / "manifests" / "company_dossiers.json"
 TOPOLOGY_PATH = ROOT / "manifests" / "company_analysis_topology.json"
+PLANNER_PATH = ROOT / "scripts" / "build_company_analysis_plan.py"
+
+SPEC = importlib.util.spec_from_file_location("company_analysis_plan", PLANNER_PATH)
+if SPEC is None or SPEC.loader is None:
+    raise RuntimeError(f"could not load company analysis planner: {PLANNER_PATH}")
+planner = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(planner)
+
+CompanyAnalysisPlanError = planner.CompanyAnalysisPlanError
+build_plan = planner.build_plan
+canonical_sha256 = planner.canonical_sha256
+load_json = planner.load_json
+validate_company_index = planner.validate_company_index
+validate_plan = planner.validate_plan
+validate_topology = planner.validate_topology
 
 
 def canonical_inputs():
