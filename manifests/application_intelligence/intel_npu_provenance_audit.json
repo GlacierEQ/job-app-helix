@@ -1,0 +1,124 @@
+{
+  "schema": "glaciereq.upstream-derived-repository-audit.v1",
+  "company_id": "intel",
+  "audited_at": "2026-08-08T07:18:00-10:00",
+  "repository": "GlacierEQ/intel-npu-acceleration-library",
+  "state": "UPSTREAM_DERIVED_DELTA_AUDIT",
+  "decision": {
+    "repo_level_original_accomplishment": false,
+    "recruiter_admission_allowed": false,
+    "public_source_link_allowed": false,
+    "candidate_delta_donor_exists": true,
+    "candidate_delta_donor": "SDPA robustness and validation changes",
+    "candidate_delta_donor_verified": false,
+    "reason": "The private repository is explicitly described as a converted divergence from Intel's NPU Acceleration Library. Its Casey-side lineage contains direct edits, but those edits are mixed with Intel-origin source, imported feature branches, generated documentation, history snapshots, vendored node_modules, maintenance pins, and unsupported quality claims."
+  },
+  "repository_metadata": {
+    "visibility": "private",
+    "github_fork_flag": false,
+    "default_branch": "main",
+    "description": "Private diverged from intel/intel-npu-acceleration-library (ahead=38) · converted 2026-07-12",
+    "observed_head": "a5db9628c51c13ee586179b8d8f7d4acd886e50f",
+    "source_repository": "intel/intel-npu-acceleration-library"
+  },
+  "public_archive": {
+    "repository": "GlacierEQ/intel-npu-acceleration-library__public_fork_archive",
+    "github_fork_flag": true,
+    "archived": true,
+    "description": "[ARCHIVED public fork] superseded by private intel-npu-acceleration-library",
+    "parent": "intel/intel-npu-acceleration-library",
+    "authorship_class": "UPSTREAM_REFERENCE"
+  },
+  "upstream_graph": {
+    "upstream_archived_main": "073ad6a3a1eb20fdd1ba00d72c7241586372ebee",
+    "casey_side_tip_before_private_merge": "19cf4d923300781c0972aa38182efa7c0c5af11e",
+    "merge_base": "c779203fab19b4bd9af230d778b44528bc7d472b",
+    "comparison_status": "diverged",
+    "casey_side_ahead_by": 37,
+    "casey_side_behind_by": 2,
+    "private_merge_commit": "f41236fc77ae5f3098692b0a7adf1fe4f8a5df65",
+    "private_merge_parents": [
+      "19cf4d923300781c0972aa38182efa7c0c5af11e",
+      "073ad6a3a1eb20fdd1ba00d72c7241586372ebee"
+    ],
+    "count_warning": "Ahead-by is a Git-history count, not an originality or accomplishment count."
+  },
+  "observed_casey_side_commits": [
+    {
+      "sha": "f587e5a563389ef7939ee3d436960980dc16882c",
+      "message": "first",
+      "classification": "MIXED_DIRECT_SOURCE_AND_HISTORY_DELTA",
+      "observed_value": "Adds input validation and robustness changes around active SDPA paths while also creating historical snapshots. The active code remains Intel-origin and carries Intel copyright headers.",
+      "donor_status": "CANDIDATE_NEEDS_ISOLATION_AND_TESTS"
+    },
+    {
+      "sha": "f70ad53f6ea7fc2797ded1f95dc1de5f8e65e075",
+      "message": "first",
+      "classification": "HIGH_NOISE_MIXED_DELTA",
+      "observed_value": "Large mixed change touching setup material, generated documentation, history records and active files. Commit granularity is too poor for recruiter-grade authorship claims.",
+      "donor_status": "DO_NOT_PROMOTE_AS_COMMIT"
+    },
+    {
+      "sha": "0082f189c8a248ca07bb47aa6b31c605b72224a6",
+      "message": "Create test_quantization_20250225101709.py",
+      "classification": "HISTORY_SNAPSHOT_ONLY",
+      "observed_value": "Adds a 150-line quantization test under .history rather than the active test tree.",
+      "donor_status": "PROVENANCE_ONLY"
+    },
+    {
+      "sha": "a8c7841b64ef7ca6b854d6674abe59c68eb0200a",
+      "message": "Security: Upgrade urllib3 2.0.7 to 2.6.3",
+      "classification": "MAINTENANCE_DELTA",
+      "observed_value": "Pins urllib3 in dev_requirements.txt; the same commit object exists in Intel's repository history object store.",
+      "donor_status": "MAINTENANCE_ONLY"
+    },
+    {
+      "sha": "19cf4d923300781c0972aa38182efa7c0c5af11e",
+      "message": "docs(quality): Universal Chunk-Power Quality Maximization (Remote Edit)",
+      "classification": "UNSUPPORTED_QUALITY_CLAIM",
+      "observed_value": "Adds QUALITY_ASSURANCE_MANIFEST.md with claims including MAXIMIZED & VERIFIED, zero-bottleneck execution, and an Exascale 900+ sweep while also stating MACBOOK-NATIVE simulation.",
+      "donor_status": "QUARANTINE_CLAIMS"
+    },
+    {
+      "sha": "a5db9628c51c13ee586179b8d8f7d4acd886e50f",
+      "message": "ci: migrate to public runner team reusable workflow",
+      "classification": "PRIVATE_ONLY_CI_DELTA",
+      "observed_value": "Adds a 14-line GlacierEQ reusable CI workflow wrapper after the upstream/private lineage merge.",
+      "donor_status": "INFRASTRUCTURE_MAINTENANCE_ONLY"
+    }
+  ],
+  "imported_history_boundary": {
+    "merge_import_example": "e9c39900e8418b8e5fd1bc94e048555704f8929d",
+    "merge_message": "Merge ssounda1/example/transformerinference into main",
+    "rule": "Merge authorship does not transfer authorship of the imported branch implementation to GlacierEQ."
+  },
+  "delta_noise_observed": [
+    ".history snapshots",
+    "generated Sphinx documentation and HTML",
+    "generated static assets",
+    "node_modules",
+    "setup and funding scaffolding",
+    "maintenance dependency pins",
+    "imported feature-branch merges"
+  ],
+  "promotion_gate": {
+    "next_action": "Extract the candidate Casey-authored SDPA robustness delta as a minimal patch against the archived Intel base and verify it independently.",
+    "requires": [
+      "minimal provenance-clean patch",
+      "active tests rather than .history snapshots",
+      "positive deterministic test receipt",
+      "hardware or explicitly labeled simulation boundary",
+      "removal or quarantine of unsupported QA claims",
+      "proof that imported branch code is not counted as Casey authorship",
+      "promotion-score gate before capability-donor admission"
+    ]
+  },
+  "truth_boundary": {
+    "intel_affiliation_claimed": false,
+    "intel_code_claimed_as_glaciereq_original": false,
+    "ahead_commit_count_claimed_as_originality": false,
+    "upstream_merge_claimed_as_authorship": false,
+    "candidate_sdpa_delta_claimed_as_verified": false,
+    "repo_claimed_as_recruiter_ready": false
+  }
+}

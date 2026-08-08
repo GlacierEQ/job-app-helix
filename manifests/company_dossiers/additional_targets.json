@@ -33,10 +33,11 @@
     {
       "company_id": "intel",
       "display_name": "Intel",
-      "track_state": "DIRECT_ESTATE_DISCOVERED_NOT_RECRUITER_READY",
-      "gap_or_next_gate": "A private Intel NPU repository and an archived public fork-shaped copy exist. Audit provenance and unique GlacierEQ implementation before any recruiter promotion.",
+      "track_state": "UPSTREAM_DERIVED_DELTA_AUDIT",
+      "recruiter_thesis": "The private NPU repository is a converted, diverged continuation of Intel's upstream library, not an original GlacierEQ system. Casey-side history contains some direct robustness and test edits, but those deltas must be isolated from Intel-authored code, imported feature branches, generated artifacts, and maintenance-only changes before any donor credit is assigned.",
+      "gap_or_next_gate": "Keep both repositories below recruiter admission. Isolate candidate Casey-side SDPA robustness changes into a clean patch against the archived Intel base, remove generated/history/node_modules noise and unsupported QA claims, then require deterministic tests and a provenance receipt before considering capability-donor promotion.",
       "repositories": [
-        ["GlacierEQ/intel-npu-acceleration-library", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/intel-npu-acceleration-library", "L2", "AUDIT_UPSTREAM_DELTA", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM_SHAPED"],
         ["GlacierEQ/intel-npu-acceleration-library__public_fork_archive", "L1", "EXCLUDED_AUTHORSHIP", "public", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM"]
       ]
     },
