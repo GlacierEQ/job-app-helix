@@ -7,12 +7,13 @@
     },
     "lockheed_martin": {
       "blockers": [
-        "proof_not_yet_promoted_in_helix",
+        "claim_receipt_not_yet_promoted_in_helix",
         "distributed_state_not_implemented",
         "workload_identity_not_implemented",
-        "production_scale_not_demonstrated"
+        "production_scale_not_demonstrated",
+        "certification_not_claimed"
       ],
-      "claim_ceiling": "implemented_candidate_capability",
+      "claim_ceiling": "reproducible_company_specific_proof",
       "gap_queue": [
         {
           "id": "lockheed_remedy_mission_agentic_ai_assurance",
@@ -67,7 +68,7 @@
           "visibility": "public"
         }
       ],
-      "next_gate": "Reproduce the committed deterministic proof and admit it as a REPRODUCED proof artifact before raising the claim ceiling.",
+      "next_gate": "Admit the explicit proof-bound claim receipt only if its wording stays within the reproduced reference implementation and preserves all non-affiliation and non-production boundaries.",
       "problem_evidence": [
         {
           "id": "lockheed_problem_trusted_agentic_ai_integration",
@@ -75,6 +76,16 @@
           "source_identity": "https://www.lockheedmartin.com/en-us/capabilities/artificial-intelligence-machine-learning.html",
           "source_ref": "sha256:87cc52bdc656fd2348ae30ec9a9bbfc3cb5b47927147f2cb2557062fa48ecd75",
           "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "proof_artifacts": [
+        {
+          "id": "lockheed_proof_mission_agentic_ai_assurance",
+          "kind": "proof_artifact",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/reproduced_receipt.json",
+          "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+          "verification_state": "REPRODUCED",
           "visibility": "public"
         }
       ],
@@ -88,7 +99,7 @@
           "visibility": "public"
         }
       ],
-      "stage": "IMPLEMENTED"
+      "stage": "PROOF_REPRODUCED"
     },
     "microsoft": {
       "next_gate": "Verify a current public Microsoft role/team and inspect the exact recruiter-admitted Microsoft-aligned repositories before promoting beyond general systems alignment."

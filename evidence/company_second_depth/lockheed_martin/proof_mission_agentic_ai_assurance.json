@@ -1,0 +1,21 @@
+{
+  "acceptance_tests": 17,
+  "boundary": "Reproducible proof of the independent reference implementation only; not proof of Lockheed Martin use, deployment, certification, production scale, or business impact.",
+  "commit": "4328fa7078e6e4125f895768142c6af0c5ec1234",
+  "company_id": "lockheed_martin",
+  "credentials_required": false,
+  "external_model_required": false,
+  "network_required": false,
+  "proof_id": "mission_agentic_ai_assurance",
+  "proof_manifest": "projects/mission-agentic-ai-assurance/proof/proof_manifest.json",
+  "proof_receipt": "projects/mission-agentic-ai-assurance/proof/reproduced_receipt.json",
+  "python_versions": [
+    "3.11",
+    "3.12",
+    "3.13"
+  ],
+  "receipt_id": "b7a3e3cba968e19bb91ed8f6881b69e37efc97d7e8414be0aca431dff501123f",
+  "repository": "GlacierEQ/job-application",
+  "schema": "glaciereq.reproduced-proof-evidence.v1",
+  "verification_state": "REPRODUCED"
+}
