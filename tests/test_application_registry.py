@@ -63,7 +63,7 @@ class ApplicationRegistryTests(unittest.TestCase):
         self.assertEqual(result["total_inventory_repositories"], 67)
         self.assertEqual(result["helix_children_mapped"], 66)
         self.assertTrue(result["helix_children_exactly_once"])
-        self.assertEqual(result["company_tracks"], 49)
+        self.assertEqual(result["company_tracks"], 76)
         self.assertEqual(result["named_flagships"], 17)
         # ECHO and Sigma Glue moved from the external flagship set into the
         # governed 66-child workspace; seven owner-estate flagships remain
@@ -143,9 +143,7 @@ class ApplicationRegistryTests(unittest.TestCase):
             payload = json.loads(path.read_text(encoding="utf-8"))
             payload["companies"][0]["repositories"][0][2] = "NOT_A_STATE"
             self.write_json(path, payload)
-            with self.assertRaisesRegex(
-                RegistryValidationError, "invalid promotion_state"
-            ):
+            with self.assertRaisesRegex(RegistryValidationError, "invalid promotion_state"):
                 validate_registry(root)
 
     def test_defaults_without_inheritance_marker_are_rejected(self) -> None:
