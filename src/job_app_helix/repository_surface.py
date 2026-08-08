@@ -108,12 +108,15 @@ def audit_repository_surface(payload: Mapping[str, Any]) -> dict[str, Any]:
 
     if readme.get("exists") is False:
         findings.append("README_MISSING")
-    findings.extend(_false_findings("README", {k: v for k, v in readme.items() if k != "exists"}))
+    readme_checks = {key: value for key, value in readme.items() if key != "exists"}
+    findings.extend(_false_findings("README", readme_checks))
     findings.extend(_false_findings("METADATA", metadata))
 
     affiliation = _strings(risk.get("affiliation"), "risk.affiliation")
     scale = _strings(risk.get("scale_or_performance"), "risk.scale_or_performance")
-    integration = _strings(risk.get("integration_or_deployment"), "risk.integration_or_deployment")
+    integration = _strings(
+        risk.get("integration_or_deployment"), "risk.integration_or_deployment"
+    )
     privacy = _strings(risk.get("privacy"), "risk.privacy")
     stale_claims = _strings(risk.get("stale_claims"), "risk.stale_claims")
 
@@ -137,11 +140,17 @@ def audit_repository_surface(payload: Mapping[str, Any]) -> dict[str, Any]:
     non_affiliation_boundary = item.get("non_affiliation_boundary")
     if company_named and non_affiliation_boundary is False:
         findings.append("COMPANY_AFFILIATION_BOUNDARY_MISSING")
-    elif company_named and non_affiliation_boundary is None and assessment_state != "UNASSESSED":
+    elif (
+        company_named
+        and non_affiliation_boundary is None
+        and assessment_state != "UNASSESSED"
+    ):
         findings.append("COMPANY_AFFILIATION_BOUNDARY_UNRESOLVED")
 
     health_state = str(health.get("health_state", "UNASSESSED")).upper()
-    stale_authority = bool(proof.get("newer_authority_conflicts", False)) or health_state == "STALE"
+    stale_authority = (
+        bool(proof.get("newer_authority_conflicts", False)) or health_state == "STALE"
+    )
     if proof.get("receipt_fresh") is False or proof.get("source_head_bound") is False:
         stale_authority = True
     if stale_authority:
@@ -176,11 +185,17 @@ def audit_repository_surface(payload: Mapping[str, Any]) -> dict[str, Any]:
         "STALE_AUTHORITY",
     }
     p1_prefixes = ("README_", "METADATA_", "STALE_PUBLIC_CLAIM", "HEALTH_")
-    if admission in {"QUARANTINED", "STALE_AUTHORITY"} or p0_markers.intersection(findings):
+    if (
+        admission in {"QUARANTINED", "STALE_AUTHORITY"}
+        or p0_markers.intersection(findings)
+    ):
         repair_priority: str | None = "P0"
     elif admission == "ADMIT":
         repair_priority = None
-    elif any(value.startswith(p1_prefixes) for value in findings) or assessment_state == "PARTIAL":
+    elif (
+        any(value.startswith(p1_prefixes) for value in findings)
+        or assessment_state == "PARTIAL"
+    ):
         repair_priority = "P1"
     else:
         repair_priority = "P2"
@@ -227,8 +242,9 @@ def _expand_observations(payload: Mapping[str, Any]) -> list[dict[str, Any]]:
     overrides = _object(payload.get("overrides"), "overrides")
     unknown_overrides = sorted(set(overrides) - set(names))
     if unknown_overrides:
+        joined = ", ".join(unknown_overrides)
         raise RepositorySurfaceError(
-            "overrides reference repositories outside the census: " + ", ".join(unknown_overrides)
+            f"overrides reference repositories outside the census: {joined}"
         )
 
     expanded: list[dict[str, Any]] = []
@@ -253,7 +269,9 @@ def compile_surface_report(
 
     admission_counts = Counter(item["admission"] for item in records)
     assessment_counts = Counter(item["assessment_state"] for item in records)
-    priority_counts = Counter(item["repair_priority"] for item in records if item["repair_priority"])
+    priority_counts = Counter(
+        item["repair_priority"] for item in records if item["repair_priority"]
+    )
 
     repair_queue = [
         {
@@ -266,17 +284,22 @@ def compile_surface_report(
         if item["repair_priority"]
     ]
     priority_rank = {"P0": 0, "P1": 1, "P2": 2}
-    repair_queue.sort(key=lambda item: (priority_rank[item["priority"]], item["repository"]))
+    repair_queue.sort(
+        key=lambda item: (priority_rank[item["priority"]], item["repository"])
+    )
 
+    company_family_by_repository = {
+        record["repository"]: record["company_family"] for record in records
+    }
     xai_queue = [
-        item for item in repair_queue if next(
-            record["company_family"] == "xai"
-            for record in records
-            if record["repository"] == item["repository"]
-        )
+        item
+        for item in repair_queue
+        if company_family_by_repository.get(item["repository"]) == "xai"
     ]
     metadata_queue = [
-        item for item in repair_queue if any(value.startswith("METADATA_") for value in item["findings"])
+        item
+        for item in repair_queue
+        if any(value.startswith("METADATA_") for value in item["findings"])
     ]
 
     body = {
