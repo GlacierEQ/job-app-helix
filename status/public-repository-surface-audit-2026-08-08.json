@@ -1,0 +1,95 @@
+{
+  "schema": "glaciereq.repository-surface-report-summary.v1",
+  "observed_at": "2026-08-08T13:16:19-10:00",
+  "source_query": "user:GlacierEQ fork:false is:public",
+  "source_manifest": "manifests/public_repository_surface_observations_2026-08-08.json",
+  "compiler": "src/job_app_helix/repository_surface.py",
+  "cli": "job-app-helix-library surface-audit --expected-public-count 75",
+  "definition": {
+    "repository": "GlacierEQ/monolith",
+    "commit": "019a7ac4304c1d4666532c1d32bd3c18ce3cceaf",
+    "path": "foundations/repo-surface-compiler.md"
+  },
+  "identity_coverage": {
+    "public_repository_count": 75,
+    "complete": true
+  },
+  "summary": {
+    "admission": {"REPAIR_REQUIRED": 75},
+    "assessment": {"PARTIAL": 17, "UNASSESSED": 58},
+    "repair_priority": {"P0": 7, "P1": 10, "P2": 58},
+    "xai_repair_count": 11,
+    "metadata_repair_count": 5
+  },
+  "p0_truth_hardening": [
+    {
+      "repository": "GlacierEQ/xai-colossal-cooling",
+      "reason": "default-branch README missing; independent-project boundary absent"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-2",
+      "reason": "affiliation boundary absent; 1.5GW/200000-GPU scale and autonomous-control claims exceed bounded public proof"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-cooling",
+      "reason": "affiliation boundary absent; 100000+ GPU coordination and current mesh-integration claims"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-energy",
+      "reason": "affiliation boundary absent; 150MW+ load-management and current grid/mesh-integration claims"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-nanosphere",
+      "reason": "affiliation boundary absent; current MCP/APEX integration claims"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-security",
+      "reason": "affiliation boundary absent; current xAI-cluster security/control and mesh-integration claims"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-servers",
+      "reason": "affiliation boundary absent; 100000+ GPU datacenter, remediation, availability-context, and mesh-integration claims"
+    }
+  ],
+  "xai_boundary_present_but_incomplete": [
+    "GlacierEQ/xai-colossus-cooling-alpha",
+    "GlacierEQ/xai-colossus-cooling-omega",
+    "GlacierEQ/xai-colossus-energy-alpha",
+    "GlacierEQ/xai-colossus-energy-omega"
+  ],
+  "p1_metadata_cleanup": [
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "findings": ["description drift", "homepage missing", "topics missing"]
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "findings": ["description drift", "homepage points to AKOS instead of canonical evaluator surface", "license metadata absent"]
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "findings": ["description drift", "license metadata absent"]
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "findings": ["description conflicts with consolidation front door", "homepage points to AKOS", "license metadata absent"]
+    },
+    {
+      "repository": "GlacierEQ/openai-reasoning-kv-sentinel",
+      "findings": ["description missing", "homepage missing", "topics missing", "license metadata absent"]
+    }
+  ],
+  "state_conflicts": [
+    {
+      "repository": "GlacierEQ/pro-code",
+      "finding": "README machine state says UNVERIFIED_PENDING_CURRENT_PR_CI while the Helix priority spine records native TypeScript, Python, Rust, and Haskell CI as verified",
+      "next_gate": "resolve controlling authority and synchronize the stale surface"
+    }
+  ],
+  "truth_boundary": [
+    "This is the first estate-wide identity-complete surface report, not a claim that all 75 repositories received deep source review.",
+    "Unassessed repositories fail visible as P2 rather than receiving inferred quality or admission.",
+    "Repair priority never overrides privacy, stale-authority, affiliation, or evidence gates.",
+    "No repository visibility, metadata, branch, archive state, or public content is mutated by this report."
+  ]
+}
