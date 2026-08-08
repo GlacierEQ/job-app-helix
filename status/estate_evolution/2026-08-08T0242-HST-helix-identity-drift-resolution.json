@@ -7,7 +7,7 @@
   "parent_reentry_receipt": "status/estate_evolution/2026-08-08T0238-HST-estate-compiler-root-truth-reentry.json",
   "checkpoint_identity_count": 20,
   "identity_surface_resolution": {
-    "resolved_count": 20,
+    "identity_surface_resolved_count": 20,
     "live_fork_count": 18,
     "absent_exact_identity_count": 2,
     "unknown_identity_state_count": 0,
@@ -52,8 +52,8 @@
     }
   ],
   "classification_effect": {
-    "forks": "EXCLUDE_FROM_NATIVE_598; RETAIN_ONLY_AS FORK/REFERENCE/PROJECTION INPUT WHERE USEFUL AND TRUTH-BOUND",
-    "absent_exact_identities": "REMOVE_FROM LIVE IDENTITY ASSUMPTIONS; PRESERVE HISTORICAL CHECKPOINT REFERENCE UNTIL LINEAGE ADJUDICATION",
+    "forks": "EXCLUDE_FROM_NATIVE_598; RETAIN_ONLY_AS_FORK/REFERENCE/PROJECTION_INPUT_WHERE_USEFUL_AND_TRUTH_BOUND",
+    "absent_exact_identities": "REMOVE_FROM_LIVE_IDENTITY_ASSUMPTIONS; PRESERVE_HISTORICAL_CHECKPOINT_REFERENCE_UNTIL_LINEAGE_ADJUDICATION",
     "native_598_cardinality_effect": 0
   },
   "non_affiliation_boundary": "Fork or company-name presence confers no employment, endorsement, partnership, adoption, proprietary access, or original-authorship claim.",
