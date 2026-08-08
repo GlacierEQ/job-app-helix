@@ -1,0 +1,112 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "timestamp": "2026-08-07T17:56:00-10:00",
+  "repository": "GlacierEQ/job-app-helix",
+  "decision": "HIGH_POWER_PASS_ADVANCED",
+  "repositories": [
+    {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "default_branch": "main",
+      "fork": false,
+      "canonical_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
+      "canonical_head_after": "e878c2eac4a1a6f0eac32de86c6048149f55ec0a",
+      "branches": [
+        {
+          "branch": "synthesize/operational-evidence-selection-20260807",
+          "source_pull_request": 25,
+          "pull_request": 31,
+          "merge_base": "5c3247ed6d6e964214afd37180d859e929875483",
+          "verified_head": "dddf14d811489e20ebb9e51f20676b987c248ac5",
+          "unique_patch_value": "Evidence-gated technology selection, explicit evidence tiers, and truthful CUDA/JAX/RHL reference-only demotions.",
+          "decision": "MERGED_VERIFIED_FRESH_HEAD_SYNTHESIS",
+          "verification_result": "ALL FIVE REQUIRED NATIVE WORKFLOW FAMILIES SUCCESS",
+          "remote_ref_disposition": "DELETE_REF_REQUIRED"
+        },
+        {
+          "branch": "synthesize/claim-contract-evidence-gates-20260807",
+          "source_pull_request": 25,
+          "pull_request": 32,
+          "merge_base": "c68c4205472b23f9b2b42b8fb1dc678d8e312de8",
+          "verified_head": "7d4c705751a5b1719726f55648f2fcdb282dab8a",
+          "unique_patch_value": "Executable promotion gates for CUDA, JAX, and RHL-Quant requiring backend/device/sharding/numerical/throughput evidence before stronger claims.",
+          "files_affected": [
+            "registry/advanced-claim-contracts.json",
+            "src/tower/data/advanced-claim-contracts.json",
+            "tests/test_evidence_promotion_requirements.py",
+            "quality/advanced_exhibit_atlas.json",
+            "ADVANCED_EXHIBITS.md",
+            ".integrity/file_hashes.json"
+          ],
+          "decision": "MERGED_VERIFIED_FRESH_HEAD_RESIDUAL",
+          "verification_result": "ADVANCED_EXHIBIT_GATE SUCCESS; NERVOUS_SYSTEM SUCCESS; SPIRAL SUCCESS; QUALITY SUCCESS; TOWER_VERIFICATION SUCCESS INCLUDING INTEGRITY, GOVERNED FLOORS, BENCHMARKS, AND FLAGSHIP",
+          "remote_ref_disposition": "DELETE_REF_REQUIRED"
+        },
+        {
+          "branch": "fix/operational-evidence-selection",
+          "pull_request": 25,
+          "merge_base": "a7e2543e8acba2cfe6a67dc02dc217536b63bf2e",
+          "ahead": 1,
+          "behind": 7,
+          "unique_patch_value": "ZERO_AFTER_PR31_AND_PR32_SEMANTIC_SYNTHESIS",
+          "decision": "RETIREMENT_READY",
+          "preservation_action": "Unique semantics were split across fresh current-head PRs 31 and 32; stale generated representations were not merged.",
+          "remote_ref_disposition": "DELETE_REF_REQUIRED"
+        }
+      ]
+    },
+    {
+      "repository": "GlacierEQ/monolith",
+      "default_branch": "main",
+      "canonical_head_before": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "canonical_head_after": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "branch": "synthesize/legal-live-reconciliation-20260807",
+      "pull_request": 48,
+      "merge_base": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "ahead": 2,
+      "behind": 0,
+      "decision": "CANONICAL_HELD",
+      "preservation_action": "Legal-spine generated surfaces remain untouched; candidate remains isolated.",
+      "verification_result": "HOSTED WORKFLOWS RERUN BUT STILL FAIL BEFORE EXPOSING EXECUTABLE STEPS",
+      "remote_ref_disposition": "KEEP"
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "default_branch": "main",
+      "canonical_head_after": "7355d13503a6c50c426d780f283707c89a272c3f",
+      "fork": false,
+      "branch": "synthesize/company-atlas-current-main-20260808",
+      "pull_request": 26,
+      "merge_base": "19babb44b825aa6807a02d0dfe69ccaa66749bf2",
+      "observed_stale_state": "1_AHEAD_82_BEHIND_CURRENT_MAIN",
+      "decision": "RETIREMENT_READY_AFTER_VERIFIED_MERGE",
+      "preservation_action": "PR 26 already merged its fresh-head company-atlas synthesis; current stale branch ref is historical only.",
+      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+    }
+  ],
+  "news_inputs": [
+    "OpenAI primary-source last-24-hour scan",
+    "Anthropic primary-source last-24-hour scan",
+    "GitHub engineering last-24-hour scan",
+    "Google developer/AI last-24-hour scan",
+    "Meta engineering last-24-hour scan",
+    "Reuters August 7, 2026 corporate AI cost/governance reporting as secondary evidence"
+  ],
+  "innovation_inputs": [
+    "deterministic evidence threshold before operational technology selection",
+    "simulation-to-reference-only truth boundary",
+    "explicit executable promotion contracts",
+    "fresh-head generated-surface regeneration",
+    "native immutable-ledger sealing",
+    "expected-head guarded promotion"
+  ],
+  "mastermind": {
+    "radar_changed": false,
+    "library_links_changed": false,
+    "decision": "NO NEW STRICT_LAST_24H_PRIMARY_SIGNAL CLEARED MATERIAL ACTIONABILITY THRESHOLD; REUTERS COST/GOVERNANCE SIGNAL REINFORCES EXISTING AGENT-ECONOMICS CONTROLS"
+  },
+  "blockers": [
+    "Monolith PR 48 verification infrastructure fails before executable steps are exposed.",
+    "Remote branch deletion cannot be proven with the currently available GitHub connector, so retirement-ready refs remain DELETE_REF_REQUIRED."
+  ],
+  "next_cursor": "Continue job-application branch topology retirement/unique-value analysis from current main 7355d13503a6c50c426d780f283707c89a272c3f, then Helix/Monolith priority surfaces. Do not revisit Tower PR25 except for proven remote deletion."
+}
