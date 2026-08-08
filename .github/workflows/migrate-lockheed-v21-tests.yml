@@ -1,0 +1,93 @@
+name: Migrate Lockheed V21 Regression Baseline
+
+on:
+  push:
+    branches:
+      - second-depth/lockheed-v21-complete
+    paths:
+      - .github/workflows/migrate-lockheed-v21-tests.yml
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: second-depth/lockheed-v21-complete
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Update only the canonical Lockheed baseline expectations
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('tests/test_company_second_depth.py')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  '        self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)\n',
+                  '        self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)\n',
+                  2,
+              ),
+              (
+                  '            "CLAIM_PROMOTED",\n',
+                  '            "CODE_INSPECTED",\n',
+                  1,
+              ),
+              (
+                  '        self.assertEqual(resolved["stage"], "CODE_INSPECTED")\n',
+                  '        self.assertEqual(resolved["stage"], "CLAIM_PROMOTED")\n',
+                  1,
+              ),
+              (
+                  '            resolved["claim_ceiling"], "inspected_implementation_alignment"\n',
+                  '            resolved["claim_ceiling"], "proof_bound_company_specific"\n',
+                  1,
+              ),
+              (
+                  '        self.assertEqual(resolved["proof_artifacts"], [])\n'
+                  '        self.assertEqual(resolved["claim_receipts"], [])\n'
+                  '        self.assertIn("company_specific_remedy_not_bounded", resolved["blockers"])\n'
+                  '        self.assertIn("proof_not_reproduced", resolved["blockers"])\n',
+                  '        self.assertEqual(len(resolved["gap_queue"]), 1)\n'
+                  '        self.assertEqual(len(resolved["implementation_receipts"]), 1)\n'
+                  '        self.assertEqual(len(resolved["proof_artifacts"]), 1)\n'
+                  '        self.assertEqual(\n'
+                  '            resolved["proof_artifacts"][0]["verification_state"], "REPRODUCED"\n'
+                  '        )\n'
+                  '        self.assertEqual(len(resolved["claim_receipts"]), 1)\n'
+                  '        self.assertIn("production_scale_not_demonstrated", resolved["blockers"])\n'
+                  '        self.assertIn(\n'
+                  '            "aerospace_defense_certification_not_claimed", resolved["blockers"]\n'
+                  '        )\n',
+                  1,
+              ),
+          ]
+
+          for old, new, expected_count in replacements:
+              actual = text.count(old)
+              if actual != expected_count:
+                  raise SystemExit(
+                      f'baseline replacement count drift: expected {expected_count}, got {actual}: {old!r}'
+                  )
+              text = text.replace(old, new, expected_count)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+          python -m unittest tests.test_company_second_depth -v
+          python scripts/validate_company_second_depth.py
+      - name: Commit migrated regression baseline
+        run: |
+          set -euo pipefail
+          git config user.name casey
+          git config user.email GLACIER.EQUILIBRIUM@GMAIL.COM
+          git add tests/test_company_second_depth.py
+          git commit -m 'test: lock Lockheed CLAIM_PROMOTED second-depth truth'
+          git push origin HEAD:second-depth/lockheed-v21-complete
