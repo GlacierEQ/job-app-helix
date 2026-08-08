@@ -74,7 +74,7 @@ def test_every_projection_resolves_declared_sources() -> None:
     projection_ids = {projection["id"] for projection in manifest["projections"]}
     assert len(source_ids) == len(manifest["sources"])
     assert "company_second_depth" in source_ids
-    assert ESTATE_SOURCE_IDS <= source_ids
+    assert source_ids >= ESTATE_SOURCE_IDS
     assert projection_ids == EXPECTED_PROJECTIONS
     for projection in manifest["projections"]:
         assert projection["required_sources"]
@@ -89,7 +89,7 @@ def test_public_estate_projection_boundary_is_fail_closed() -> None:
 
     for projection_id in public_ids:
         sources = set(rows[projection_id]["required_sources"])
-        assert PUBLIC_SAFE_ESTATE_SOURCE_IDS <= sources
+        assert sources >= PUBLIC_SAFE_ESTATE_SOURCE_IDS
         assert "estate_facts" not in sources
         assert rows[projection_id]["may_publish_private_records"] is False
         boundary = rows[projection_id].get("boundary", "")
