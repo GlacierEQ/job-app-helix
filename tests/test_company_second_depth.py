@@ -60,10 +60,10 @@ class CompanySecondDepthTests(unittest.TestCase):
     def test_current_registry_is_fail_closed_and_complete(self) -> None:
         result = validate_second_depth(ROOT)
         self.assertEqual(result["status"], "PASS")
-        self.assertEqual(result["company_tracks"], 49)
+        self.assertEqual(result["company_tracks"], 76)
         self.assertEqual(result["stage_count"], 8)
         self.assertEqual(result["priority_wave"], 8)
-        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 48)
+        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 75)
         self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
         for stage in (
             "ROLE_VERIFIED",
@@ -74,7 +74,7 @@ class CompanySecondDepthTests(unittest.TestCase):
             "CODE_INSPECTED",
         ):
             self.assertEqual(result["stage_counts"][stage], 0)
-        self.assertEqual(sum(result["stage_counts"].values()), 49)
+        self.assertEqual(sum(result["stage_counts"].values()), 76)
         self.assertTrue(result["evidence_reference_schema_enforced"])
         self.assertTrue(result["stage_contract_locked"])
         self.assertTrue(result["claim_promotion_requires_receipt"])
@@ -194,7 +194,7 @@ class CompanySecondDepthTests(unittest.TestCase):
             result = validate_second_depth(root)
             self.assertEqual(result["stage_counts"]["ROLE_VERIFIED"], 1)
             self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
-            self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 47)
+            self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 74)
 
     def test_role_verified_cannot_be_claimed_without_role_evidence(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
