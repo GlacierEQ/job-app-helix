@@ -1,0 +1,138 @@
+{
+  "schema": "glaciereq.company-experiment-family-remediation.v1",
+  "company_id": "coreweave",
+  "experiment_family": "coreweave-reliability-lab",
+  "as_of": "2026-08-08T07:02:00-10:00",
+  "governance": {
+    "helix_pr": "https://github.com/GlacierEQ/job-app-helix/pull/86",
+    "merge_commit": "f98a7feb0b992a6e565230ee37aa9fe2622691e6",
+    "result": "MERGED_PRIVATE_EXPERIMENT_GOVERNANCE",
+    "exact_head_gates": 6,
+    "exact_head_gates_passed": 6
+  },
+  "promotion_state": "BLOCKED_BELOW_TESTED",
+  "promotion_reason": "The repair branches exist, but none has a positive hosted test receipt. Four private-repository jobs were prevented from starting by the account Actions budget; the entropy-engine repair has no observed workflow run at this checkpoint.",
+  "repairs": [
+    {
+      "repository": "GlacierEQ/coreweave-temporal-router",
+      "pull_request": "https://github.com/GlacierEQ/coreweave-temporal-router/pull/1",
+      "head_sha": "51257f733e13517c93597d3318d7dcc8470776ef",
+      "state": "OPEN_UNMERGED",
+      "repair_scope": [
+        "future availability-window routing",
+        "deterministic routing tests",
+        "executable demo repair",
+        "default-branch CI",
+        "remove unsupported utilization claim"
+      ],
+      "verification": {
+        "workflow_run_id": 31267997518,
+        "workflow_conclusion": "failure",
+        "runner_started": false,
+        "gate": "ACTIONS_BUDGET",
+        "annotation": "The job was not started because an Actions budget is preventing further use."
+      },
+      "promotion_allowed": false
+    },
+    {
+      "repository": "GlacierEQ/coreweave-state-fusion",
+      "pull_request": "https://github.com/GlacierEQ/coreweave-state-fusion/pull/2",
+      "head_sha": "f200afedad37c997b2145e6566fc7a89d3002da0",
+      "state": "OPEN_UNMERGED",
+      "repair_scope": [
+        "freshness semantics",
+        "zero-confidence fail-closed behavior",
+        "metric provenance",
+        "deterministic fusion tests",
+        "default-branch CI",
+        "bounded reliability claims"
+      ],
+      "verification": {
+        "workflow_run_id": 31268138920,
+        "workflow_conclusion": "failure",
+        "runner_started": false,
+        "gate": "ACTIONS_BUDGET",
+        "annotation": "The job was not started because an Actions budget is preventing further use."
+      },
+      "promotion_allowed": false
+    },
+    {
+      "repository": "GlacierEQ/coreweave-shadow-monitor",
+      "pull_request": "https://github.com/GlacierEQ/coreweave-shadow-monitor/pull/1",
+      "head_sha": "c8352dea8e73ec5dc48d63aa23b38370bb80f590",
+      "state": "OPEN_UNMERGED",
+      "repair_scope": [
+        "evaluate-before-update baseline semantics",
+        "observable callback failures",
+        "deterministic anomaly and trend tests",
+        "first default-branch CI workflow",
+        "remove unmeasured early-detection claim"
+      ],
+      "verification": {
+        "workflow_run_id": 31268201142,
+        "workflow_conclusion": "failure",
+        "runner_started": false,
+        "gate": "ACTIONS_BUDGET",
+        "annotation": "The job was not started because an Actions budget is preventing further use."
+      },
+      "promotion_allowed": false
+    },
+    {
+      "repository": "GlacierEQ/coreweave-circuit-breaker",
+      "pull_request": "https://github.com/GlacierEQ/coreweave-circuit-breaker/pull/1",
+      "head_sha": "ee963b28a521c8d258c94026088d0d4e64d91168",
+      "state": "OPEN_UNMERGED",
+      "repair_scope": [
+        "side-effect-free status reads",
+        "explicit half-open transition",
+        "injectable test clock",
+        "state-transition tests",
+        "threshold demonstration",
+        "default-branch CI"
+      ],
+      "verification": {
+        "workflow_run_id": 31268260228,
+        "workflow_conclusion": "failure",
+        "runner_started": false,
+        "gate": "ACTIONS_BUDGET",
+        "annotation": "The job was not started because an Actions budget is preventing further use."
+      },
+      "promotion_allowed": false
+    },
+    {
+      "repository": "GlacierEQ/coreweave-entropy-engine",
+      "pull_request": "https://github.com/GlacierEQ/coreweave-entropy-engine/pull/1",
+      "head_sha": "7f3954bfc6ef6f91fa7eba23765c34d822580a3c",
+      "state": "OPEN_UNMERGED",
+      "repair_scope": [
+        "explicit entropy calibration",
+        "entropy-drift signals instead of failure prediction",
+        "remove novelty-priority claim",
+        "remove synthetic time-to-failure semantics",
+        "deterministic calibration and drift tests",
+        "default-branch CI"
+      ],
+      "verification": {
+        "workflow_run_id": null,
+        "workflow_conclusion": null,
+        "runner_started": false,
+        "gate": "NO_WORKFLOW_RUN_OBSERVED",
+        "annotation": "No workflow run was returned for the exact repair head at this checkpoint. Cause not inferred."
+      },
+      "promotion_allowed": false
+    }
+  ],
+  "next_gate": {
+    "required": "POSITIVE_TEST_RECEIPT_PER_REPOSITORY",
+    "merge_before_gate": false,
+    "advance_to_tested_before_gate": false,
+    "advance_to_system_component_before_integration_receipt": false
+  },
+  "truth_boundary": {
+    "budget_block_is_not_code_failure": true,
+    "missing_workflow_run_is_not_assumed_to_be_budget_block": true,
+    "open_repair_pr_is_not_completed_repair": true,
+    "unmerged_branch_is_not_canonical_repository_state": true,
+    "no_company_affiliation_or_production_deployment_claim": true
+  }
+}
