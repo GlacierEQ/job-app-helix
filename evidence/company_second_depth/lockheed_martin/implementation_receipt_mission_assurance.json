@@ -1,0 +1,40 @@
+{
+  "schema": "glaciereq.second-depth-promotion-receipt.v1",
+  "company_id": "lockheed_martin",
+  "from_stage": "REMEDY_BOUNDED",
+  "to_stage": "IMPLEMENTED",
+  "promoted_at": "2026-08-07T15:14:00-10:00",
+  "prior_stage_receipt": {
+    "source_identity": "https://github.com/GlacierEQ/job-app-helix/blob/61f025ff5d3dea8114d54010c58eed8c831e9149/evidence/company_second_depth/lockheed_martin/remedy_bounded_mission_assurance.json",
+    "source_ref": "commit:61f025ff5d3dea8114d54010c58eed8c831e9149"
+  },
+  "implementation": {
+    "repository": "GlacierEQ/job-application",
+    "merge_commit": "4328fa7078e6e4125f895768142c6af0c5ec1234",
+    "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/implementation_receipt.json",
+    "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+    "status": "IMPLEMENTED_REFERENCE",
+    "acceptance_test_count": 17,
+    "review_findings_resolved_before_merge": true
+  },
+  "implemented_capabilities": [
+    "content-bound public evidence snapshot validation",
+    "canonical machine payload adapter",
+    "normalized hash/execution payload",
+    "finite metric validation",
+    "policy and drift gating",
+    "thread-safe single-process idempotent replay",
+    "idempotency conflict detection",
+    "circuit breaker",
+    "executor and noncanonical outcome failure receipts",
+    "deterministic assurance receipts"
+  ],
+  "claim_ceiling": "implemented_candidate_capability",
+  "limits_retained": [
+    "single-process idempotency only",
+    "no company adoption claim",
+    "no production-scale claim",
+    "no certification claim"
+  ],
+  "decision": "PROMOTE"
+}
