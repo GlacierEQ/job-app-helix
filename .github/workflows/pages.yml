@@ -7,7 +7,21 @@ on:
       - "hire_package/casey-barton/**"
       - "site/**"
       - "scripts/build_recruiter_site.py"
+      - "scripts/build_compiled_recruiter_site.py"
+      - "scripts/compile_estate_projection.py"
+      - "scripts/estate_compiler/**"
+      - "policies/estate_intelligence_compiler.json"
+      - "manifests/estate_lineage_assertions.json"
+      - "manifests/application_intelligence/**"
+      - "manifests/company_dossiers.json"
+      - "manifests/company_dossiers/**"
+      - "manifests/company_second_depth.json"
+      - "manifests/flagship_registry.json"
+      - "status/repository-assessments/**"
       - "tests/test_recruiter_site_deployment.py"
+      - "tests/test_compiled_recruiter_site.py"
+      - "tests/test_estate_projection_compiler.py"
+      - "tests/test_estate_role_intelligence.py"
       - "RECRUITER_EXECUTIVE_SUMMARY.md"
       - "README.md"
       - ".github/workflows/pages.yml"
@@ -16,7 +30,21 @@ on:
       - "hire_package/casey-barton/**"
       - "site/**"
       - "scripts/build_recruiter_site.py"
+      - "scripts/build_compiled_recruiter_site.py"
+      - "scripts/compile_estate_projection.py"
+      - "scripts/estate_compiler/**"
+      - "policies/estate_intelligence_compiler.json"
+      - "manifests/estate_lineage_assertions.json"
+      - "manifests/application_intelligence/**"
+      - "manifests/company_dossiers.json"
+      - "manifests/company_dossiers/**"
+      - "manifests/company_second_depth.json"
+      - "manifests/flagship_registry.json"
+      - "status/repository-assessments/**"
       - "tests/test_recruiter_site_deployment.py"
+      - "tests/test_compiled_recruiter_site.py"
+      - "tests/test_estate_projection_compiler.py"
+      - "tests/test_estate_role_intelligence.py"
       - "RECRUITER_EXECUTIVE_SUMMARY.md"
       - "README.md"
       - ".github/workflows/pages.yml"
@@ -33,6 +61,9 @@ jobs:
   build:
     name: Build evidence-bound site
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      OWNER_CENSUS_TOKEN: ${{ secrets.OWNER_CENSUS_TOKEN }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -50,14 +81,65 @@ jobs:
           python -m pip install --upgrade pip &&
           python -m pip install -e ".[dev]"
 
-      - name: Build canonical recruiter surface
+      - name: Run recruiter and compiler contract tests
         run: >-
-          python scripts/build_recruiter_site.py
+          python -m pytest -q
+          tests/test_recruiter_site_deployment.py
+          tests/test_compiled_recruiter_site.py
+          tests/test_estate_projection_compiler.py
+          tests/test_estate_role_intelligence.py
+
+      - name: Build pull-request static boundary
+        if: github.event_name == 'pull_request'
+        run: >-
+          python scripts/build_compiled_recruiter_site.py
           --output artifacts/pages-site
           --source-commit "${{ github.sha }}"
 
-      - name: Run recruiter deployment contract tests
-        run: python -m pytest -q tests/test_recruiter_site_deployment.py
+      - name: Require live census authority
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${OWNER_CENSUS_TOKEN:-}" ]; then
+            echo "OWNER_CENSUS_TOKEN is required to compile the live estate."
+            exit 1
+          fi
+
+      - name: Census live owner estate
+        if: github.event_name != 'pull_request'
+        run: >-
+          python scripts/census_owned_library.py
+          --owner GlacierEQ
+          --token "$OWNER_CENSUS_TOKEN"
+          --output /tmp/owned-library-census.json
+
+      - name: Compile live public projection
+        if: github.event_name != 'pull_request'
+        run: >-
+          python scripts/compile_estate_projection.py
+          --census /tmp/owned-library-census.json
+          --output /tmp/estate-intelligence
+
+      - name: Build canonical compiled recruiter surface
+        if: github.event_name != 'pull_request'
+        run: >-
+          python scripts/build_compiled_recruiter_site.py
+          --output artifacts/pages-site
+          --source-commit "${{ github.sha }}"
+          --public-projection /tmp/estate-intelligence/public_projection.json
+
+      - name: Verify no private compiler inputs entered Pages artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e artifacts/pages-site/owned-library-census.json
+          test ! -e artifacts/pages-site/canonical_system_registry.json
+          test ! -e artifacts/pages-site/capability_donor_registry.json
+          test ! -e artifacts/pages-site/company_projection_registry.json
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            test -s artifacts/pages-site/estate-projection.json
+          fi
 
       - name: Verify public repository boundary
         run: python scripts/check_public_surface.py
