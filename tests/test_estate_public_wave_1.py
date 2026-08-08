@@ -27,9 +27,20 @@ def test_wave_1_scope_and_estate_arithmetic_are_explicit() -> None:
     assert scope["native_repository_count"] + scope["fork_repository_count"] == 5
 
     estate = scope["estate_context"]
-    assert estate["native_repositories"] + estate["fork_repositories"] == estate["total_holdings"]
-    assert estate["active_native_repositories"] + estate["archived_native_repositories"] == estate["native_repositories"]
-    assert estate["public_active_native_repositories"] + estate["private_active_native_repositories"] == estate["active_native_repositories"]
+    assert (
+        estate["native_repositories"] + estate["fork_repositories"]
+        == estate["total_holdings"]
+    )
+    assert (
+        estate["active_native_repositories"]
+        + estate["archived_native_repositories"]
+        == estate["native_repositories"]
+    )
+    assert (
+        estate["public_active_native_repositories"]
+        + estate["private_active_native_repositories"]
+        == estate["active_native_repositories"]
+    )
 
 
 def test_wave_1_records_are_unique_exact_head_observations() -> None:
@@ -53,8 +64,22 @@ def test_wave_1_dispositions_and_summary_reconcile() -> None:
     payload = _load()
     records = payload["repositories"]
     counts = Counter(record["disposition"] for record in records)
-    assert counts == {"PROMOTION_CANDIDATE": 2, "CUSTOMIZED_FORK_DOWNSTREAM": 1, "REFERENCE_FORK": 1, "SUPPORTING_INFRASTRUCTURE": 1}
-    assert payload["wave_summary"] == {"native_records": 3, "fork_records": 2, "promotion_candidates": 2, "customized_fork_downstreams": 1, "reference_forks": 1, "supporting_infrastructure": 1, "current_head_verified_promotion_candidates": 2, "activation_blocked_native_infrastructure": 1}
+    assert counts == {
+        "PROMOTION_CANDIDATE": 2,
+        "CUSTOMIZED_FORK_DOWNSTREAM": 1,
+        "REFERENCE_FORK": 1,
+        "SUPPORTING_INFRASTRUCTURE": 1,
+    }
+    assert payload["wave_summary"] == {
+        "native_records": 3,
+        "fork_records": 2,
+        "promotion_candidates": 2,
+        "customized_fork_downstreams": 1,
+        "reference_forks": 1,
+        "supporting_infrastructure": 1,
+        "current_head_verified_promotion_candidates": 2,
+        "activation_blocked_native_infrastructure": 1,
+    }
 
 
 def test_wave_1_preserves_exact_verification_and_activation_boundaries() -> None:
@@ -71,7 +96,10 @@ def test_wave_1_preserves_exact_verification_and_activation_boundaries() -> None
     assert grok["estate_layer"] == "FORK_REFERENCE"
     assert grok["upstream"] == "xai-org/grok-build"
     assert grok["recruiter_use"] == "DOWNSTREAM_DELTA_ONLY_WITH_ATTRIBUTION"
-    assert {item["conclusion"] for item in grok["execution_evidence"]} == {"success", "failure"}
+    assert {item["conclusion"] for item in grok["execution_evidence"]} == {
+        "success",
+        "failure",
+    }
     kimi = by_repo["GlacierEQ/Kimi-K3"]
     assert kimi["github_fork"] is True
     assert kimi["estate_layer"] == "FORK_REFERENCE"
@@ -83,7 +111,9 @@ def test_wave_1_preserves_exact_verification_and_activation_boundaries() -> None
     by_workflow = {item["workflow"]: item for item in runner["execution_evidence"]}
     assert by_workflow["CI"]["conclusion"] == "success"
     assert by_workflow["APEX Public Action Face"]["conclusion"] == "failure"
-    assert "APEX_RUNNER_APP_CLIENT_ID" in by_workflow["APEX Public Action Face"]["failure_boundary"]
+    assert "APEX_RUNNER_APP_CLIENT_ID" in by_workflow["APEX Public Action Face"][
+        "failure_boundary"
+    ]
 
 
 def test_wave_1_forks_do_not_count_as_native() -> None:
