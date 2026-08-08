@@ -1,0 +1,72 @@
+{
+  "schema": "glaciereq.estate-intelligence-compiler-policy.v1",
+  "promotion_score_weights": {
+    "originality": 0.2,
+    "technical_depth": 0.2,
+    "verification": 0.2,
+    "transferability": 0.2,
+    "target_relevance": 0.2
+  },
+  "audience_caps": {
+    "recruiter": 10,
+    "senior_engineer": 20,
+    "company_reviewer": 5
+  },
+  "restricted_namespace_tokens": [
+    "legal",
+    "court",
+    "case",
+    "custody",
+    "divorce",
+    "tro",
+    "fdv",
+    "fda",
+    "csea",
+    "evidence"
+  ],
+  "experiment_lifecycle": [
+    "EXPERIMENT",
+    "DISTINCT_VALUE",
+    "TESTED",
+    "SYSTEM_COMPONENT",
+    "FLAGSHIP_DONOR"
+  ],
+  "capability_taxonomy": {
+    "agent_orchestration": {
+      "signals": ["orchestration", "orchestrator", "agent coordination", "coordinator"]
+    },
+    "mcp_and_tool_integration": {
+      "signals": ["mcp", "tool boundary", "connector", "integration surfaces"]
+    },
+    "memory_and_context_continuity": {
+      "signals": ["memory", "context recovery", "continuity", "resumable"]
+    },
+    "provenance_and_receipts": {
+      "signals": ["provenance", "receipt", "evidence", "audit"]
+    },
+    "deterministic_verification": {
+      "signals": ["verification", "verified", "deterministic", "replay"]
+    },
+    "permissions_and_fail_closed_control": {
+      "signals": ["permission", "authority", "fail-closed", "least-privilege"]
+    },
+    "distributed_state_and_recovery": {
+      "signals": ["distributed", "state", "recovery", "retry", "dead-letter"]
+    },
+    "document_intelligence": {
+      "signals": ["document", "pdf", "ocr", "transcription"]
+    },
+    "browser_and_operator_control": {
+      "signals": ["browser", "operator", "web agent", "computer control"]
+    },
+    "infrastructure_diagnostics": {
+      "signals": ["diagnostic", "health", "telemetry", "infrastructure"]
+    },
+    "accelerator_and_compute_reasoning": {
+      "signals": ["gpu", "cuda", "tpu", "accelerator", "distributed compute"]
+    },
+    "truth_constrained_generation": {
+      "signals": ["truth", "claim", "bounded", "truthfulness"]
+    }
+  }
+}

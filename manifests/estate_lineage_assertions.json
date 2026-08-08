@@ -1,0 +1,27 @@
+{
+  "schema": "glaciereq.estate-lineage-assertions.v1",
+  "truth_boundary": {
+    "candidate_relationships_do_not_collapse_lineage": true,
+    "verified_relationships_require_repository_native_evidence": true
+  },
+  "relationships": [
+    {
+      "member_repository": "GlacierEQ/grokadile",
+      "canonical_repository": "GlacierEQ/grokodile",
+      "relation": "DUPLICATE_OF",
+      "state": "CANDIDATE_REVIEW_REQUIRED",
+      "evidence_refs": [
+        "manifests/github_repository_curation_2026-07-31.json"
+      ]
+    },
+    {
+      "member_repository": "GlacierEQ/xai-colossal-cooling",
+      "canonical_repository": "GlacierEQ/xai-colossus-cooling",
+      "relation": "SUCCESSOR_OF",
+      "state": "CANDIDATE_REVIEW_REQUIRED",
+      "evidence_refs": [
+        "manifests/github_repository_curation_2026-07-31.json"
+      ]
+    }
+  ]
+}
