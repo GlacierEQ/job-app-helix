@@ -21,17 +21,17 @@ jobs:
         run: |
           set -euo pipefail
           python - <<'PY'
+          import re
           from pathlib import Path
           path = Path('.github/workflows/promote-lockheed-v21.yml')
           text = path.read_text()
-          target = '''              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
-              1,
-          )'''
-          replacement = '''              'self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)',
-          )'''
-          if target not in text:
-              raise SystemExit('expected replacement-count snippet not found')
-          path.write_text(text.replace(target, replacement, 1))
+          pattern = re.compile(
+              r'''('self\.assertEqual\(result\["stage_counts"\]\["CLAIM_PROMOTED"\], 1\)',\n)\s*1,\n(\s*\))'''
+          )
+          text, count = pattern.subn(r'\1\2', text, count=1)
+          if count != 1:
+              raise SystemExit(f'expected one replacement-count block, found {count}')
+          path.write_text(text)
           PY
           git config user.name casey
           git config user.email GLACIER.EQUILIBRIUM@GMAIL.COM
