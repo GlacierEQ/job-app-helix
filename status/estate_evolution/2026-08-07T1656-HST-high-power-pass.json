@@ -1,0 +1,89 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "timestamp": "2026-08-07T16:56:50-10:00",
+  "repository": "GlacierEQ/the-tower-of-babel",
+  "canonical_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
+  "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
+  "branch": "synthesize/operational-evidence-selection-20260807",
+  "pull_request": 31,
+  "source_pull_request": 25,
+  "source_branch": "fix/operational-evidence-selection",
+  "source_head": "ed8720db5ff565e9c1bbd3b5fc24da4bbb7284d6",
+  "merge_base": "5c3247ed6d6e964214afd37180d859e929875483",
+  "ahead": 9,
+  "behind": 0,
+  "unique_patch_value": "Evidence-gated deterministic technology selection plus truthful demotion of unproven CUDA, JAX/XLA, and RHL-Quant runtime claims to reference-only states while preserving intervening canonical hardening.",
+  "files_affected": [
+    "src/babel_registry.py",
+    "registry/tower.d/compute-graphs.json",
+    "registry/tower.d/nextgen-innovations.json",
+    "src/tower/data/tower.d/compute-graphs.json",
+    "src/tower/data/tower.d/nextgen-innovations.json",
+    "languages/cuda/advanced_nvidia_flash_attention_kernel.cu",
+    "languages/jax/advanced_grok_distributed_mesh.py",
+    "languages/rhl_quant/advanced_rhl_quant_engine.py",
+    "src/tower/generate.py",
+    "tools/audit_advanced_exhibits.py",
+    "tests/test_cuda_nvidia_flagship.py",
+    "tests/test_jax_grok_flagship.py"
+  ],
+  "decision": "PREPARED_FRESH_HEAD_INTEGRATION_PR_DO_NOT_PROMOTE",
+  "preservation_action": "Did not merge stale PR 25 tip and did not copy overlapping stale generated, claim-contract, atlas, documentation, or integrity surfaces. Replayed non-overlapping source semantics onto current canonical ancestry and restored generator/audit support from the stale source only where intervening main had not changed those files.",
+  "verification_result": {
+    "pr_31_initial_head": "17a64489b2ddba1c0164b64f9cd09d582596ef1c",
+    "pr_31_current_head": "ec10d0c2469ea9edbb4f54e8e90626da25c273b0",
+    "canonical_registry": "PASS_40_TECHNOLOGIES_ON_INITIAL_NATIVE_RUN",
+    "spiral_engine": "PASS_ON_INITIAL_NATIVE_RUN",
+    "generated_surface_gate": "FAILED_AS_EXPECTED_BEFORE_GENERATOR_REPLAY",
+    "initial_generated_drift": [
+      "README.md",
+      "src/babel_registry.py",
+      "generated/build_commands.json",
+      "generated/maturity.json",
+      "generated/megamind.technology-map.json",
+      "generated/link_library.md",
+      "generated/tower_topology.json",
+      "generated/tower_interface_graph.dot"
+    ],
+    "current_native_gate": "QUEUED_AFTER_GENERATOR_AND_AUDIT_SYNTHESIS"
+  },
+  "remote_ref_disposition": {
+    "synthesize/operational-evidence-selection-20260807": "KEEP_UNTIL_FULL_NATIVE_PROOF",
+    "fix/operational-evidence-selection": "KEEP_UNTIL_PATCH_EQUIVALENCE_OR_RETIREMENT_PROVEN",
+    "build/spaceflight-expansion-audit": "DELETE_REF_REQUIRED"
+  },
+  "monolith": {
+    "repository": "GlacierEQ/monolith",
+    "canonical_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+    "candidate_pr": 48,
+    "candidate_head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8",
+    "ahead": 2,
+    "behind": 0,
+    "legal_spine_generated_drift": false,
+    "verification": "FAILED_BEFORE_EXPOSING_EXECUTABLE_STEPS_ON_RERUN; CANONICAL_UNTOUCHED"
+  },
+  "job_application": {
+    "latest_material_promotion": 36,
+    "verified_head": "5350637e53753b9869977b65986bf7795fab45fd",
+    "observed_native_checks": ["CI_SUCCESS", "V15_FINAL_HIRING_RELEASE_SUCCESS"]
+  },
+  "news_inputs": [
+    "strict last-24-hour vendor/engineering scan",
+    "Reuters Meta Muse Code coverage outside strict 24-hour window used only as secondary reinforcement",
+    "existing Mastermind agent-economics, resumability, security, and context-engineering signals"
+  ],
+  "innovation_inputs": [
+    "deterministic evidence threshold before runtime technology selection",
+    "reference-only state for simulated or unbenchmarked frontier claims",
+    "fresh-head synthesis with generated-surface regeneration instead of stale generated-file replay"
+  ],
+  "mastermind_radar": {
+    "changed": false,
+    "decision": "NO_NEW_ACTIONABLE_STRICT_24H_SIGNAL"
+  },
+  "blockers": [
+    "Tower PR 31 current head requires complete native rerun and regenerated derived surfaces before promotion.",
+    "Monolith PR 48 hosted verification still fails before exposing executable steps."
+  ],
+  "next_cursor": "Observe Tower PR 31 head ec10d0c2469ea9edbb4f54e8e90626da25c273b0 native gate; materialize only generator-produced current-head surfaces, reconcile overlapping claim-contract/atlas changes semantically, update integrity from a native candidate, and merge only if the complete exact-head gate is green."
+}
