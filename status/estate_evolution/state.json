@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-08T03:16:00Z",
+  "updated_at": "2026-08-08T03:28:00Z",
   "control_plane": "GlacierEQ/job-app-helix",
   "phase": "PRIORITY_SPINE_VERIFICATION_AND_CONTINUATION",
   "cursor": {
@@ -9,53 +9,42 @@
     "next_branch": "synthesize/operational-evidence-selection-20260807",
     "next_pull_request": 31,
     "source_pull_request": 25,
-    "action": "REGENERATE_CURRENT_HEAD_DERIVED_SURFACES_AND_REQUIRE_NATIVE_PROOF"
+    "action": "COMPLETE_EXACT_HEAD_NATIVE_GATE_THEN_RECONCILE_INTEGRITY_OR_PROMOTE"
   },
   "current_repository": {
     "repository": "GlacierEQ/the-tower-of-babel",
+    "default_branch": "main",
+    "fork": false,
     "canonical_head_observed": "5c3247ed6d6e964214afd37180d859e929875483",
     "fresh_synthesis_branch": "synthesize/operational-evidence-selection-20260807",
     "fresh_synthesis_base": "5c3247ed6d6e964214afd37180d859e929875483",
-    "fresh_synthesis_head": "ec10d0c2469ea9edbb4f54e8e90626da25c273b0",
+    "fresh_synthesis_head": "3b5ce109524acf43ab38e2a11dc631b8e41809f0",
     "fresh_synthesis_pull_request": 31,
+    "ahead": 14,
+    "behind": 0,
     "stale_source_branch": "fix/operational-evidence-selection",
     "stale_candidate_head": "ed8720db5ff565e9c1bbd3b5fc24da4bbb7284d6",
     "stale_merge_base": "a7e2543e8acba2cfe6a67dc02dc217536b63bf2e",
     "stale_ahead": 1,
     "stale_behind": 5,
-    "next_decision": "MATERIALIZE ONLY CURRENT-HEAD GENERATOR OUTPUTS; SEMANTICALLY RECONCILE OVERLAPPING CLAIM-CONTRACT/ATLAS SURFACES; REQUIRE COMPLETE NATIVE GREEN BEFORE PROMOTION"
+    "next_decision": "NATIVE GENERATED/ATLAS DRIFT IS NOW GREEN ON EXACT HEAD; ALLOW GOVERNED EXHIBIT/INTEGRITY GATES TO FINISH; PROMOTE ONLY IF COMPLETE EXACT-HEAD GATE IS GREEN"
   },
   "completed_this_pass": [
     {
       "repository": "GlacierEQ/the-tower-of-babel",
-      "pull_request": 30,
-      "decision": "MERGED_VERIFIED_SYNTHESIS",
-      "verified_head": "c7e18956e2aac0785707343a44ced1bda6027873",
-      "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
-      "verification": "ALL OBSERVED REQUIRED NATIVE WORKFLOW FAMILIES SUCCEEDED",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED"
-    },
-    {
-      "repository": "GlacierEQ/the-tower-of-babel",
       "pull_request": 31,
       "branch": "synthesize/operational-evidence-selection-20260807",
-      "decision": "FRESH_HEAD_SYNTHESIS_PREPARED",
+      "decision": "FRESH_HEAD_SYNTHESIS_AND_DERIVED_SURFACE_REGENERATION_PREPARED",
       "canonical_base": "5c3247ed6d6e964214afd37180d859e929875483",
-      "current_head": "ec10d0c2469ea9edbb4f54e8e90626da25c273b0",
-      "preservation": "STALE PR 25 TIP NOT MERGED; NON-OVERLAPPING SOURCE SEMANTICS REPLAYED; INTERVENING CANONICAL HARDENING PRESERVED",
+      "current_head": "3b5ce109524acf43ab38e2a11dc631b8e41809f0",
+      "unique_patch_value": "DETERMINISTIC EVIDENCE-GATED TECHNOLOGY SELECTION; CUDA/JAX/RHL CLAIM DEMOTION TO REFERENCE-ONLY UNTIL EXECUTION PROOF; EXPLICIT EVIDENCE TIERS",
+      "preservation": "STALE PR 25 TIP NOT MERGED; CURRENT CANONICAL REGISTRY/GENERATOR HARDENING PRESERVED; DERIVED SURFACES GENERATED FROM FRESH SYNTHESIS TREE; EPHEMERAL MATERIALIZER SELF-REMOVED",
+      "verification": "CANONICAL REGISTRY PASS 40; GENERATED+ATLAS DRIFT PASS; PINNED NERVOUS SYSTEM PASS; REPOSITORY TESTS PASS; SPIRAL PASS; GOVERNED EXHIBIT GATE IN PROGRESS",
       "remote_ref_disposition": "KEEP"
     },
     {
-      "repository": "GlacierEQ/job-application",
-      "pull_request": 36,
-      "decision": "LATEST_MATERIAL_PROMOTION_OBSERVED",
-      "verified_head": "5350637e53753b9869977b65986bf7795fab45fd",
-      "verification": "CI AND V15 FINAL HIRING RELEASE OBSERVED GREEN",
-      "remote_ref_disposition": "MERGED"
-    },
-    {
       "repository": "GlacierEQ/job-app-helix",
-      "decision": "CONTROL_PLANE_RECEIPT_ADVANCED",
+      "decision": "CONTROL_PLANE_STATE_ADVANCED",
       "receipt": "status/estate_evolution/2026-08-07T1656-HST-high-power-pass.json",
       "remote_ref_disposition": "NOT_APPLICABLE"
     }
@@ -67,7 +56,7 @@
       "source_pull_request": 25,
       "branch": "synthesize/operational-evidence-selection-20260807",
       "decision": "NATIVE_VERIFICATION_IN_PROGRESS",
-      "verification_blocker": "INITIAL NATIVE RUN PROVED CANONICAL REGISTRY VALID AND IDENTIFIED EXACT GENERATED-SURFACE DRIFT; GENERATOR/AUDIT SUPPORT HAS NOW BEEN SYNTHESIZED AND A NEW EXACT-HEAD RUN IS QUEUED",
+      "verification_blocker": "NO SEMANTIC BLOCKER AT GENERATED/ATLAS/TEST STAGES; WAITING FOR GOVERNED EXHIBIT, INTEGRITY, TOWER VERIFICATION, QUALITY, AND NERVOUS-SYSTEM COMPLETION ON EXACT HEAD",
       "remote_ref_disposition": "KEEP"
     },
     {
@@ -89,7 +78,7 @@
   "intelligence": {
     "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
     "changed_this_pass": false,
-    "decision": "NO NEW PRIMARY-VENDOR STRICT-24H SIGNAL CLEARED ACTIONABILITY GATE; EXISTING AGENT-ECONOMICS, RESUMABILITY, SECURITY, AND CONTEXT-ENGINEERING SIGNALS REMAIN CONTROLLING",
+    "decision": "NO NEW STRICT-24H PRIMARY-VENDOR SIGNAL CLEARED ACTIONABILITY GATE; REUTERS AUGUST 7 COST/GOVERNANCE REPORT REINFORCES EXISTING AGENT-ECONOMICS CONTROLS RATHER THAN REPLACING THEM",
     "library_integration": "engines/ai_coding_radar.py::publish_to_library"
   },
   "legal_spine": {
@@ -105,11 +94,11 @@
     "remote_ref_delete_action_available_in_current_connector": false,
     "github_hosted_actions_observed": true,
     "monolith_hosted_action_result": "INFRASTRUCTURE_BLOCKED_BEFORE_EXECUTABLE_STEPS",
-    "tower_native_generated_surface_gate_observed": true
+    "tower_current_head_generated_surface_materialization": "SUCCEEDED_AND_SELF_REMOVED",
+    "tower_native_generated_and_atlas_gate": "PASS"
   },
   "latest_receipts": [
-    "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07T1646-HST-high-power-pass.json",
     "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07T1656-HST-high-power-pass.json"
   ],
-  "next_run_contract": "Begin at Tower PR 31 exact head ec10d0c2469ea9edbb4f54e8e90626da25c273b0. Read its complete native gate. Materialize only current-head generator outputs, reconcile overlapping claim-contract and Atlas semantics without stale wholesale replacement, then accept a native integrity candidate and promote only on full exact-head green. Keep Monolith legal-spine canonical untouched until executable proof exists. Do not revisit retirement-ready refs except for proven deletion."
+  "next_run_contract": "Begin at Tower PR 31 exact head 3b5ce109524acf43ab38e2a11dc631b8e41809f0. Read the complete native gate. If only immutable integrity remains, use the exact native-generated candidate and rerun. Merge only with an expected-head guard after every required workflow is green. Keep Monolith legal-spine canonical untouched until executable proof exists. Do not revisit retirement-ready refs except for proven deletion."
 }
