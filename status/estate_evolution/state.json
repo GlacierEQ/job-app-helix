@@ -1,23 +1,26 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-08T02:46:00Z",
+  "updated_at": "2026-08-08T02:48:00Z",
   "control_plane": "GlacierEQ/job-app-helix",
   "phase": "PRIORITY_SPINE_VERIFICATION_AND_CONTINUATION",
   "cursor": {
     "repository": "GlacierEQ/the-tower-of-babel",
     "canonical_branch": "main",
-    "next_branch": "fix/operational-evidence-selection",
-    "next_pull_request": 25,
-    "action": "FRESH_HEAD_SYNTHESIS_REQUIRED"
+    "next_branch": "synthesize/operational-evidence-selection-20260807",
+    "source_pull_request": 25,
+    "action": "SYNTHESIZE_UNIQUE_VALUE_ON_FRESH_HEAD"
   },
   "current_repository": {
     "repository": "GlacierEQ/the-tower-of-babel",
     "canonical_head_observed": "5c3247ed6d6e964214afd37180d859e929875483",
+    "fresh_synthesis_branch": "synthesize/operational-evidence-selection-20260807",
+    "fresh_synthesis_base": "5c3247ed6d6e964214afd37180d859e929875483",
+    "stale_source_branch": "fix/operational-evidence-selection",
     "stale_candidate_head": "ed8720db5ff565e9c1bbd3b5fc24da4bbb7284d6",
-    "merge_base": "a7e2543e8acba2cfe6a67dc02dc217536b63bf2e",
-    "ahead": 1,
-    "behind": 5,
-    "next_decision": "SYNTHESIZE UNIQUE ANTI-THEATER EVIDENCE-SELECTION VALUE ONTO CURRENT MAIN; DO NOT MERGE STALE PR 25 TIP"
+    "stale_merge_base": "a7e2543e8acba2cfe6a67dc02dc217536b63bf2e",
+    "stale_ahead": 1,
+    "stale_behind": 5,
+    "next_decision": "REPLAY ONLY UNIQUE ANTI-THEATER EVIDENCE-SELECTION SEMANTICS; PRESERVE INTERVENING REGISTRY/GENERATOR HARDENING; REGENERATE DERIVED SURFACES; REQUIRE NATIVE PROOF"
   },
   "completed_this_pass": [
     {
@@ -47,6 +50,13 @@
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
+      "repository": "GlacierEQ/the-tower-of-babel",
+      "branch": "synthesize/operational-evidence-selection-20260807",
+      "decision": "FRESH_SYNTHESIS_BRANCH_PREPARED",
+      "canonical_base": "5c3247ed6d6e964214afd37180d859e929875483",
+      "remote_ref_disposition": "KEEP"
+    },
+    {
       "repository": "GlacierEQ/job-app-helix",
       "decision": "CONTROL_PLANE_RECEIPT_ADVANCED",
       "receipt": "status/estate_evolution/2026-08-07T1646-HST-high-power-pass.json",
@@ -56,11 +66,12 @@
   "pending": [
     {
       "repository": "GlacierEQ/the-tower-of-babel",
-      "pull_request": 25,
-      "branch": "fix/operational-evidence-selection",
-      "decision": "FRESH_HEAD_SYNTHESIS_REQUIRED",
-      "verification_blocker": "STALE TIP IS 1 AHEAD / 5 BEHIND AND OVERLAPS INTERVENING REGISTRY/GENERATED HARDENING",
-      "remote_ref_disposition": "KEEP_UNTIL_SYNTHESIS_PROVES PRESERVATION"
+      "source_pull_request": 25,
+      "source_branch": "fix/operational-evidence-selection",
+      "synthesis_branch": "synthesize/operational-evidence-selection-20260807",
+      "decision": "SYNTHESIS_IN_PROGRESS",
+      "verification_blocker": "UNIQUE VALUE SPANS 22 INTERDEPENDENT SURFACES AND OVERLAPS INTERVENING REGISTRY/GENERATED HARDENING; STALE TIP MUST NOT BE MERGED OR COPIED WHOLESALE",
+      "remote_ref_disposition": "KEEP"
     },
     {
       "repository": "GlacierEQ/monolith",
@@ -100,5 +111,5 @@
     "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07T1637-HST-high-power-pass.json",
     "GlacierEQ/job-app-helix:status/estate_evolution/2026-08-07T1646-HST-high-power-pass.json"
   ],
-  "next_run_contract": "Begin from Tower canonical 5c3247ed6d6e964214afd37180d859e929875483 and synthesize PR 25 anti-theater evidence-selection value onto fresh current-main ancestry. Preserve intervening registry/generator hardening, regenerate derived surfaces, require repository-native proof, and never merge the stale tip directly. Keep Monolith legal-spine canonical untouched until executable proof exists. Do not revisit retirement-ready refs except for proven deletion."
+  "next_run_contract": "Continue on Tower branch synthesize/operational-evidence-selection-20260807 anchored at canonical 5c3247ed6d6e964214afd37180d859e929875483. Replay only the unique semantics from stale PR 25, preserve intervening registry/generator hardening, regenerate derived surfaces, and require repository-native proof before promotion. Keep Monolith legal-spine canonical untouched until executable proof exists. Do not revisit retirement-ready refs except for proven deletion."
 }
