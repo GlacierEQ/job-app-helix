@@ -263,9 +263,11 @@ def compile_surface_report(
 
     records = [audit_repository_surface(item) for item in _expand_observations(payload)]
     if expected_public_count is not None and len(records) != expected_public_count:
-        raise RepositorySurfaceError(
-            f"public repository count mismatch: expected {expected_public_count}, got {len(records)}"
+        count_error = (
+            f"public repository count mismatch: expected {expected_public_count}, "
+            f"got {len(records)}"
         )
+        raise RepositorySurfaceError(count_error)
 
     admission_counts = Counter(item["admission"] for item in records)
     assessment_counts = Counter(item["assessment_state"] for item in records)
