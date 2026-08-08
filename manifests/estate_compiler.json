@@ -80,9 +80,9 @@
     "commit_full_generated_registries": false,
     "public_projection_excludes_private_repository_identities": true,
     "public_projection_excludes_non_recruiter_promotion_states": true,
+    "internal_receipts_remain_runner_local": true,
     "workflow_uploads": [
-      "estate-compiler-receipt.json",
-      "public-safe-company-projection.json"
+      "public-safe-company-projection-v2.json"
     ]
   },
   "self_healing": {
@@ -100,6 +100,6 @@
     "experiment_pipeline": "experiment-pipeline.json",
     "receipt": "estate-compiler-receipt.json",
     "bundle": "estate-compiler-bundle.json",
-    "public_safe_projection": "public-safe-company-projection.json"
+    "public_safe_projection": "public-safe-company-projection-v2.json"
   }
 }

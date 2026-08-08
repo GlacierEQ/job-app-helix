@@ -13,6 +13,17 @@ EXPECTED_PROJECTIONS = {
     "machine_runtime",
     "cloud_indexes",
 }
+ESTATE_SOURCE_IDS = {
+    "estate_compiler_policy",
+    "estate_projection_policy",
+    "estate_facts",
+    "external_company_intelligence",
+}
+PUBLIC_SAFE_ESTATE_SOURCE_IDS = {
+    "estate_compiler_policy",
+    "estate_projection_policy",
+    "external_company_intelligence",
+}
 
 
 def load_validator():
@@ -43,8 +54,15 @@ def test_root_truth_validation_passes() -> None:
     assert receipt["counts"]["company_tracks"] == len(required_company_tracks)
     assert receipt["counts"]["flagship_systems"] == 17
     assert receipt["counts"]["projections"] == len(EXPECTED_PROJECTIONS)
-    assert receipt["counts"]["required_sources"] == 10
+    assert receipt["counts"]["required_sources"] == 14
     assert "manifests/company_second_depth.json" in receipt["source_hashes"]
+    assert "manifests/estate_compiler.json" in receipt["source_hashes"]
+    assert "manifests/estate_projection_policy.json" in receipt["source_hashes"]
+    assert "manifests/estate_facts.json" in receipt["source_hashes"]
+    assert (
+        "manifests/application_intelligence/company_bottleneck_atlas.external.json"
+        in receipt["source_hashes"]
+    )
     assert len(receipt["source_digest"]) == 64
     assert len(receipt["receipt_sha256"]) == 64
     assert all(receipt["invariants"].values())
@@ -56,11 +74,39 @@ def test_every_projection_resolves_declared_sources() -> None:
     projection_ids = {projection["id"] for projection in manifest["projections"]}
     assert len(source_ids) == len(manifest["sources"])
     assert "company_second_depth" in source_ids
+    assert source_ids >= ESTATE_SOURCE_IDS
     assert projection_ids == EXPECTED_PROJECTIONS
     for projection in manifest["projections"]:
         assert projection["required_sources"]
         assert set(projection["required_sources"]) <= source_ids
         assert "company_second_depth" in projection["required_sources"]
+
+
+def test_public_estate_projection_boundary_is_fail_closed() -> None:
+    manifest = load_json("manifests/portfolio_root_truth.json")
+    rows = {projection["id"]: projection for projection in manifest["projections"]}
+    public_ids = {"public_portal", "resume_shapeshifter", "machine_runtime"}
+
+    for projection_id in public_ids:
+        sources = set(rows[projection_id]["required_sources"])
+        assert sources >= PUBLIC_SAFE_ESTATE_SOURCE_IDS
+        assert "estate_facts" not in sources
+        assert rows[projection_id]["may_publish_private_records"] is False
+        boundary = rows[projection_id].get("boundary", "")
+        assert "private" in boundary.lower()
+
+    assert "estate_facts" in rows["company_application_packets"]["required_sources"]
+    assert "estate_facts" in rows["cloud_indexes"]["required_sources"]
+
+
+def test_estate_compiler_policy_matches_public_v2_artifact_boundary() -> None:
+    policy = load_json("manifests/estate_compiler.json")
+    privacy = policy["privacy"]
+    outputs = policy["outputs"]
+
+    assert privacy["internal_receipts_remain_runner_local"] is True
+    assert privacy["workflow_uploads"] == ["public-safe-company-projection-v2.json"]
+    assert outputs["public_safe_projection"] == "public-safe-company-projection-v2.json"
 
 
 def test_flagships_exactly_match_required_named_registry() -> None:
@@ -80,6 +126,7 @@ def test_root_manifest_forbids_competing_truth() -> None:
     assert model["stale_on_source_head_change"] is True
     assert model["fail_closed_on_missing_or_unsupported_evidence"] is True
     assert "do not become independent sources" in model["projection_rule"]
+    assert "authenticated-estate" in model["portfolio_authority"]
 
 
 def test_public_projections_cannot_publish_private_records() -> None:
