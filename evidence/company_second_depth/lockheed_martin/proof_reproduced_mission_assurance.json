@@ -1,0 +1,38 @@
+{
+  "schema": "glaciereq.second-depth-promotion-receipt.v1",
+  "company_id": "lockheed_martin",
+  "from_stage": "IMPLEMENTED",
+  "to_stage": "PROOF_REPRODUCED",
+  "promoted_at": "2026-08-07T15:14:00-10:00",
+  "prior_stage_receipt": {
+    "source_identity": "https://github.com/GlacierEQ/job-app-helix/blob/585be20965b543516dcc49e6c31f1fc401d27fc4/evidence/company_second_depth/lockheed_martin/implementation_receipt_mission_assurance.json",
+    "source_ref": "commit:585be20965b543516dcc49e6c31f1fc401d27fc4"
+  },
+  "proof": {
+    "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/reproduced_receipt.json",
+    "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+    "verification_state": "REPRODUCED",
+    "receipt_id": "b7a3e3cba968e19bb91ed8f6881b69e37efc97d7e8414be0aca431dff501123f",
+    "acceptance_tests": 17,
+    "main_branch_gate": {
+      "workflow": "Mission Agentic AI Assurance",
+      "run_id": 31231783075,
+      "head_sha": "4328fa7078e6e4125f895768142c6af0c5ec1234",
+      "conclusion": "success"
+    }
+  },
+  "reproduced_behavior": {
+    "decision": "ALLOW",
+    "drift": 0.04,
+    "breaker_state": "CLOSED",
+    "reason_count": 0
+  },
+  "claim_ceiling": "reproducible_company_specific_proof",
+  "limits_retained": [
+    "public requirements are a bounded design lens, not proprietary company architecture",
+    "single-process idempotency only",
+    "no Lockheed Martin adoption or deployment claim",
+    "no production-scale or certification claim"
+  ],
+  "decision": "PROMOTE"
+}
