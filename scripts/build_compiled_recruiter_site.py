@@ -63,6 +63,23 @@ def _load_projection(path: Path) -> dict[str, Any]:
     return value
 
 
+def _assert_no_template_markers(value: Any, path: str = "$") -> None:
+    if isinstance(value, dict):
+        for key, child in value.items():
+            if "{{" in key or "}}" in key:
+                raise ProjectionError(
+                    f"Unresolved template marker in JSON key {path}.{key}"
+                )
+            _assert_no_template_markers(child, f"{path}.{key}")
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            _assert_no_template_markers(child, f"{path}[{index}]")
+    elif isinstance(value, str) and ("{{" in value or "}}" in value):
+        raise ProjectionError(
+            f"Unresolved template marker in JSON string at {path}"
+        )
+
+
 def _walk(value: Any, path: str = "$") -> None:
     if isinstance(value, dict):
         for key, child in value.items():
@@ -94,6 +111,33 @@ def validate_public_projection(value: dict[str, Any]) -> None:
     if not isinstance(value.get("company_projections"), list):
         raise ProjectionError("company_projections must be a list")
     _walk(value)
+    _assert_no_template_markers(value)
+
+
+def _assert_compiled_surface(output: Path) -> None:
+    allowed_suffixes = {".html", ".css", ".js", ".json", ""}
+    for path in output.rglob("*"):
+        if path.is_symlink():
+            raise ProjectionError(
+                f"Deployed surface contains symbolic link: {path}"
+            )
+        if not path.is_file():
+            continue
+        if path.suffix.lower() not in allowed_suffixes:
+            raise ProjectionError(f"Unexpected deployed file type: {path}")
+        text = path.read_text(encoding="utf-8")
+        if path.suffix.lower() == ".json":
+            try:
+                value = json.loads(text)
+            except json.JSONDecodeError as exc:
+                raise ProjectionError(
+                    f"Invalid deployed JSON in {path}: {exc}"
+                ) from exc
+            _assert_no_template_markers(value, f"${path.name}")
+        elif "{{" in text or "}}" in text:
+            raise ProjectionError(
+                f"Unresolved template placeholder in {path}"
+            )
 
 
 def _section() -> str:
@@ -241,9 +285,9 @@ def build(
         public_projection,
         output / "estate-projection.json",
     )
-    base._assert_public_surface(output)
+    _assert_compiled_surface(output)
     base._write_manifest(output, source_commit)
-    base._assert_public_surface(output)
+    _assert_compiled_surface(output)
 
 
 def parse_args() -> argparse.Namespace:
