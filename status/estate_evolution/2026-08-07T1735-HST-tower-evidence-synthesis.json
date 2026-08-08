@@ -1,0 +1,90 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "timestamp": "2026-08-07T17:35:00-10:00",
+  "repository": "GlacierEQ/the-tower-of-babel",
+  "canonical_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
+  "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
+  "default_branch": "main",
+  "fork": false,
+  "branch": "synthesize/operational-evidence-selection-20260807",
+  "pull_request": 31,
+  "source_pull_request": 25,
+  "merge_base": "5c3247ed6d6e964214afd37180d859e929875483",
+  "ahead": 14,
+  "behind": 0,
+  "exact_verification_head": "dddf14d811489e20ebb9e51f20676b987c248ac5",
+  "unique_patch_value": "Deterministic evidence-gated technology selection; explicit evidence tiers; demotion of simulated CUDA/JAX/RHL runtime claims to reference-only until executable proof exists.",
+  "files_affected": [
+    "src/babel_registry.py",
+    "src/tower/generate.py",
+    "tools/audit_advanced_exhibits.py",
+    "tests/test_cuda_nvidia_flagship.py",
+    "tests/test_jax_grok_flagship.py",
+    "registry/tower.d/compute-graphs.json",
+    "registry/tower.d/nextgen-innovations.json",
+    "src/tower/data/tower.d/compute-graphs.json",
+    "src/tower/data/tower.d/nextgen-innovations.json",
+    "languages/cuda/advanced_nvidia_flash_attention_kernel.cu",
+    "languages/jax/advanced_grok_distributed_mesh.py",
+    "languages/rhl_quant/advanced_rhl_quant_engine.py",
+    "README.md",
+    "ADVANCED_EXHIBITS.md",
+    "quality/advanced_exhibit_atlas.json",
+    "generated/build_commands.json",
+    "generated/link_library.md",
+    "generated/maturity.json",
+    "generated/megamind.technology-map.json",
+    "generated/tower_interface_graph.dot",
+    "generated/tower_topology.json",
+    ".integrity/file_hashes.json"
+  ],
+  "decision": "PREPARED_FRESH_HEAD_SYNTHESIS_AND_APPLIED_NATIVE_INTEGRITY_CANDIDATE; CANONICAL_HELD_PENDING_COMPLETE_GREEN",
+  "preservation_action": "Stale PR 25 was never merged directly. Intervening canonical changes were preserved. Derived surfaces were regenerated from the current synthesis tree using Tower-native generators. Temporary branch-only materialization workflows self-removed. The immutable ledger was regenerated from the exact current tree using tower.integrity.write_manifest and verified before commit.",
+  "verification_result": {
+    "canonical_registry": "PASS_40",
+    "generated_surface_drift": "PASS",
+    "advanced_atlas_drift": "PASS",
+    "repository_tests": "PASS",
+    "nervous_system": "PASS",
+    "spiral_engine": "PASS",
+    "portable_floor_compiles_observed": "PASS",
+    "flagship_portable_observed": "PASS",
+    "native_integrity_candidate_artifact": 9015845497,
+    "native_integrity_candidate_digest": "sha256:8e1f794864783005f014d661b98ed14db7dec00212981de8277225c829ec7b6c",
+    "integrity_candidate_file_count": 202,
+    "exact_head_complete_gate": "IN_PROGRESS"
+  },
+  "remote_ref_disposition": {
+    "synthesize/operational-evidence-selection-20260807": "KEEP_UNTIL_COMPLETE_EXACT_HEAD_GREEN",
+    "fix/operational-evidence-selection": "KEEP_UNTIL_PATCH_EQUIVALENCE_AFTER_PR31_PROMOTION",
+    "build/spaceflight-expansion-audit": "DELETE_REF_REQUIRED"
+  },
+  "monolith": {
+    "canonical_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+    "candidate_pr": 48,
+    "candidate_head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8",
+    "ahead": 2,
+    "behind": 0,
+    "legal_spine_generated_drift": false,
+    "verification": "HOSTED_JOBS_FAIL_BEFORE_EXPOSING_EXECUTABLE_STEPS_AFTER_RERUN; CANONICAL_UNTOUCHED"
+  },
+  "news_inputs": [
+    "Strict last-24-hour primary vendor/engineering source scan",
+    "Reuters August 7 corporate AI cost/governance report as secondary reinforcement"
+  ],
+  "innovation_inputs": [
+    "evidence threshold before operational technology selection",
+    "reference-only classification for simulation without runtime proof",
+    "fresh-head native regeneration instead of stale generated-file merge",
+    "native immutable-ledger candidate with exact-tree verification"
+  ],
+  "mastermind_radar": {
+    "changed": false,
+    "decision": "NO_NEW_ACTIONABLE_STRICT_24H_SIGNAL; EXISTING AGENT ECONOMICS, RESUMABILITY, SECURITY, CONTEXT, AND COST-TO-PROOF CONTROLS REMAIN CONTROLLING"
+  },
+  "blockers": [
+    "Tower PR 31 complete exact-head workflow family is still executing; canonical promotion is prohibited until every required workflow succeeds.",
+    "Monolith PR 48 hosted verification remains infrastructure-blocked before executable steps."
+  ],
+  "next_cursor": "Read every workflow on Tower PR 31 exact head dddf14d811489e20ebb9e51f20676b987c248ac5. Merge with expected-head guard only if all required workflows are success; otherwise repair the first failing native stage. Then prove stale PR25 patch-equivalence and mark its ref retirement-ready."
+}
