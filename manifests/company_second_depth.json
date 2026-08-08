@@ -7,13 +7,25 @@
     },
     "lockheed_martin": {
       "blockers": [
-        "claim_receipt_not_yet_promoted_in_helix",
         "distributed_state_not_implemented",
         "workload_identity_not_implemented",
+        "durable_tamper_evident_store_not_implemented",
+        "real_telemetry_adapters_not_implemented",
+        "sandboxed_executor_not_implemented",
         "production_scale_not_demonstrated",
-        "certification_not_claimed"
+        "aerospace_defense_certification_not_claimed"
       ],
-      "claim_ceiling": "reproducible_company_specific_proof",
+      "claim_ceiling": "proof_bound_company_specific",
+      "claim_receipts": [
+        {
+          "id": "lockheed_claim_mission_agentic_ai_assurance",
+          "kind": "claim_receipt",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/claim_receipt.json",
+          "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
       "gap_queue": [
         {
           "id": "lockheed_remedy_mission_agentic_ai_assurance",
@@ -68,7 +80,7 @@
           "visibility": "public"
         }
       ],
-      "next_gate": "Admit the explicit proof-bound claim receipt only if its wording stays within the reproduced reference implementation and preserves all non-affiliation and non-production boundaries.",
+      "next_gate": "Preserve this proof-bound claim while evolving the Mesh aspiration gaps through separately tested adapters; do not raise production-scale, certification, adoption, or company-deployment claims without new independent evidence.",
       "problem_evidence": [
         {
           "id": "lockheed_problem_trusted_agentic_ai_integration",
@@ -99,7 +111,7 @@
           "visibility": "public"
         }
       ],
-      "stage": "PROOF_REPRODUCED"
+      "stage": "CLAIM_PROMOTED"
     },
     "microsoft": {
       "next_gate": "Verify a current public Microsoft role/team and inspect the exact recruiter-admitted Microsoft-aligned repositories before promoting beyond general systems alignment."
