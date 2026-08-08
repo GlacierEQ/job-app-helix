@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/verification.schema.json",
+  "title": "Escalating Verification Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "verification_id", "repository", "source_head", "status", "steps", "limitations"],
+  "properties": {
+    "schema": {"const": "glaciereq.verification.v1"},
+    "verification_id": {"type": "string", "minLength": 1},
+    "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "source_head": {"type": "string", "minLength": 6},
+    "status": {"enum": ["VERIFIED", "FAILED", "PARTIAL", "BLOCKED"]},
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "result", "evidence_refs"],
+        "properties": {
+          "kind": {"enum": ["STATIC", "UNIT", "INTEGRATION", "PROPERTY", "FAILURE_INJECTION", "CONCURRENCY", "DETERMINISTIC_REPLAY", "BENCHMARK", "LOAD", "REGRESSION", "END_TO_END"]},
+          "command": {"type": ["string", "null"]},
+          "result": {"enum": ["PASS", "FAIL", "BLOCKED", "NOT_RUN"]},
+          "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "VERIFIED"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "steps": {
+            "items": {
+              "type": "object",
+              "properties": {"result": {"const": "PASS"}},
+              "required": ["result"]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

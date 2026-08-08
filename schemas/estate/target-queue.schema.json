@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/target-queue.schema.json",
+  "title": "Ranked Estate Engineering Queue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "estate_bundle_hash", "estate_source_digest", "targets"],
+  "properties": {
+    "schema": {"const": "glaciereq.frontier-target-queue.v1"},
+    "estate_bundle_hash": {"type": "string", "minLength": 1},
+    "estate_source_digest": {"type": "string", "minLength": 1},
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["schema", "repository", "system_id", "bottleneck_importance", "repository_fit", "proofability", "cross_repo_compounding", "enterprise_relevance", "expected_value", "implementation_cost", "regression_risk", "uncertainty", "rationale_refs", "priority_score", "rank"],
+        "properties": {
+          "schema": {"const": "glaciereq.target-assessment.v1"},
+          "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+          "system_id": {"type": "string", "minLength": 1},
+          "bottleneck_importance": {"type": "number", "minimum": 0, "maximum": 1},
+          "repository_fit": {"type": "number", "minimum": 0, "maximum": 1},
+          "proofability": {"type": "number", "minimum": 0, "maximum": 1},
+          "cross_repo_compounding": {"type": "number", "minimum": 0, "maximum": 1},
+          "enterprise_relevance": {"type": "number", "minimum": 0, "maximum": 1},
+          "expected_value": {"type": "number", "minimum": 0, "maximum": 1},
+          "implementation_cost": {"type": "number", "minimum": 0, "maximum": 1},
+          "regression_risk": {"type": "number", "minimum": 0, "maximum": 1},
+          "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+          "rationale_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "priority_score": {"type": "number", "minimum": 0},
+          "rank": {"type": "integer", "minimum": 1}
+        }
+      }
+    }
+  }
+}

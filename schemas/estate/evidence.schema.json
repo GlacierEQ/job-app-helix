@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/evidence.schema.json",
+  "title": "Engineering Evidence Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "claim_id", "claim", "status", "mechanism", "implementation", "verification", "measured_results", "limitations", "source_head"],
+  "properties": {
+    "schema": {"const": "glaciereq.evidence.v1"},
+    "claim_id": {"type": "string", "minLength": 1},
+    "claim": {"type": "string", "minLength": 1},
+    "status": {"enum": ["VERIFIED", "MEASURED", "DEMONSTRATED", "EXPERIMENTAL", "PARTIALLY_VERIFIED", "UNMEASURED", "BLOCKED", "INVALIDATED"]},
+    "mechanism": {"type": "string", "minLength": 1},
+    "implementation": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "verification": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "measured_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric", "unit", "methodology_ref", "evidence_ref"],
+        "properties": {
+          "metric": {"type": "string", "minLength": 1},
+          "unit": {"type": "string", "minLength": 1},
+          "value": {"type": "number"},
+          "before": {"type": "number"},
+          "after": {"type": "number"},
+          "sample_size": {"type": "integer", "minimum": 1},
+          "methodology_ref": {"type": "string", "minLength": 1},
+          "evidence_ref": {"type": "string", "minLength": 1}
+        },
+        "anyOf": [
+          {"required": ["value"]},
+          {"required": ["before", "after"]}
+        ]
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "source_head": {"type": "string", "minLength": 6}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"enum": ["VERIFIED", "MEASURED"]}}, "required": ["status"]},
+      "then": {"properties": {"verification": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"status": {"const": "MEASURED"}}, "required": ["status"]},
+      "then": {"properties": {"measured_results": {"minItems": 1}}}
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/lineage.schema.json",
+  "title": "Repository Lineage Family",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "lineage_id", "canonical_repository", "members", "unresolved"],
+  "properties": {
+    "schema": {"const": "glaciereq.lineage.v1"},
+    "lineage_id": {"type": "string", "minLength": 1},
+    "canonical_repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "unresolved": {"type": "boolean"},
+    "members": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repository", "relation", "evidence_refs"],
+        "properties": {
+          "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+          "relation": {"enum": ["CANONICAL", "BACKUP_OF", "ARCHIVE_OF", "PREDECESSOR_OF", "SUCCESSOR_OF", "DUPLICATE_OF", "RELATED_UNRESOLVED"]},
+          "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+        }
+      }
+    }
+  }
+}

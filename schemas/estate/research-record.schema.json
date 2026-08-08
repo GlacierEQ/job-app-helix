@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/research-record.schema.json",
+  "title": "Frontier Research Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "research_record_id", "bottleneck_id", "sources", "standard_practice", "obvious_alternatives", "open_questions", "evidence_refs"],
+  "properties": {
+    "schema": {"const": "glaciereq.research-record.v1"},
+    "research_record_id": {"type": "string", "minLength": 1},
+    "bottleneck_id": {"type": "string", "minLength": 1},
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ref", "kind", "finding"],
+        "properties": {
+          "ref": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["REPOSITORY", "PRIMARY_DOCUMENTATION", "STANDARD", "PAPER", "BENCHMARK", "PRODUCTION_SYSTEM", "OTHER"]},
+          "finding": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "standard_practice": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "obvious_alternatives": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "open_questions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}
