@@ -1,0 +1,34 @@
+{
+  "schema": "glaciereq.second-depth-promotion-receipt.v1",
+  "company_id": "lockheed_martin",
+  "from_stage": "CODE_INSPECTED",
+  "to_stage": "REMEDY_BOUNDED",
+  "promoted_at": "2026-08-07T15:14:00-10:00",
+  "bounded_problem_id": "trusted_agentic_ai_integration",
+  "candidate_remedy": {
+    "name": "Mission Agentic AI Assurance",
+    "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/machine/remedy.json",
+    "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+    "status": "REFERENCE_IMPLEMENTATION",
+    "bounded_mechanisms": [
+      "content-bound public evidence references",
+      "canonical request hashing and payload adaptation",
+      "policy and finite-metric drift gates",
+      "thread-safe single-process idempotency",
+      "circuit breaking",
+      "deterministic assurance receipts"
+    ]
+  },
+  "prerequisites_retained": {
+    "role_evidence": "lockheed_role_734997br",
+    "problem_evidence": "lockheed_problem_trusted_agentic_ai_integration",
+    "repository_inspection_count": 4
+  },
+  "claim_ceiling": "bounded_remedy_design",
+  "nonclaims": [
+    "Lockheed Martin adoption, deployment, endorsement, employment, contract, clearance, or proprietary access",
+    "production-scale distributed assurance",
+    "aerospace or defense certification"
+  ],
+  "decision": "PROMOTE"
+}
