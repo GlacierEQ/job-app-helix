@@ -11,6 +11,10 @@ from job_app_helix.repository_surface import (
     compile_surface_report,
 )
 
+OBSERVATIONS = Path(
+    "manifests/public_repository_surface_observations_2026-08-08.json"
+)
+
 
 def clean_record() -> dict:
     return {
@@ -122,27 +126,30 @@ def test_expected_public_count_is_enforced() -> None:
 
 
 def test_first_public_estate_manifest_compiles_all_75() -> None:
-    path = Path("manifests/public_repository_surface_observations_2026-08-08.json")
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload = json.loads(OBSERVATIONS.read_text(encoding="utf-8"))
     report = compile_surface_report(payload, expected_public_count=75)
-    assert report["identity_coverage"] == {"public_repository_count": 75, "complete": True}
+    assert report["identity_coverage"] == {
+        "public_repository_count": 75,
+        "complete": True,
+    }
     assert len(report["repositories"]) == 75
     assert len({item["repository"] for item in report["repositories"]}) == 75
     assert report["summary"]["xai_repair_count"] == 11
     assert report["summary"]["metadata_repair_count"] >= 5
     assert any(
-        item["repository"] == "GlacierEQ/xai-colossus-2" and item["priority"] == "P0"
+        item["repository"] == "GlacierEQ/xai-colossus-2"
+        and item["priority"] == "P0"
         for item in report["repair_queue"]
     )
     assert any(
-        item["repository"] == "GlacierEQ/job-application" and item["priority"] == "P1"
+        item["repository"] == "GlacierEQ/job-application"
+        and item["priority"] == "P1"
         for item in report["metadata_cleanup_queue"]
     )
 
 
 def test_first_public_estate_report_is_deterministic() -> None:
-    path = Path("manifests/public_repository_surface_observations_2026-08-08.json")
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload = json.loads(OBSERVATIONS.read_text(encoding="utf-8"))
     first = compile_surface_report(payload, expected_public_count=75)
     second = compile_surface_report(payload, expected_public_count=75)
     assert first == second
