@@ -140,6 +140,8 @@ class GitHubPublicPortfolioSource:
             raise PublicPortfolioCensusError("Repository owner is required")
         self.owner = owner
         self.token = token.strip()
+        self._repository_endpoint: str | None = None
+        self._account_type: str | None = None
 
     def _request_json(self, path: str) -> Any:
         headers = {
@@ -154,6 +156,14 @@ class GitHubPublicPortfolioSource:
             with urllib.request.urlopen(request, timeout=30) as response:
                 return json.loads(response.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
+            if (
+                exc.code == 403
+                and exc.headers.get("X-RateLimit-Remaining") == "0"
+            ):
+                reset = exc.headers.get("X-RateLimit-Reset", "unknown")
+                raise PublicPortfolioCensusError(
+                    f"GitHub API rate limit exceeded; reset epoch={reset}"
+                ) from exc
             raise PublicPortfolioCensusError(
                 f"GitHub public census failed with HTTP {exc.code}"
             ) from exc
@@ -164,23 +174,44 @@ class GitHubPublicPortfolioSource:
                 "GitHub public census returned malformed JSON"
             ) from exc
 
-    def list_all(self) -> list[dict[str, Any]]:
+    def _resolve_repository_endpoint(self) -> str:
+        if self._repository_endpoint is not None:
+            return self._repository_endpoint
         quoted_owner = urllib.parse.quote(self.owner, safe="")
+        account = self._request_json(f"/users/{quoted_owner}")
+        if not isinstance(account, dict):
+            raise PublicPortfolioCensusError(
+                f"Unable to resolve GitHub account {self.owner}"
+            )
+        account_type = account.get("type")
+        if account_type == "Organization":
+            self._repository_endpoint = f"/orgs/{quoted_owner}/repos"
+            self._account_type = "Organization"
+        elif account_type == "User":
+            self._repository_endpoint = f"/users/{quoted_owner}/repos"
+            self._account_type = "User"
+        else:
+            raise PublicPortfolioCensusError(
+                f"Unsupported GitHub account type for {self.owner}: {account_type}"
+            )
+        return self._repository_endpoint
+
+    def list_all(self) -> list[dict[str, Any]]:
+        endpoint = self._resolve_repository_endpoint()
         rows: list[dict[str, Any]] = []
         page = 1
         while True:
-            query = urllib.parse.urlencode(
-                {
-                    "type": "owner",
-                    "sort": "full_name",
-                    "direction": "asc",
-                    "per_page": 100,
-                    "page": page,
-                }
+            query_values: dict[str, object] = {
+                "sort": "full_name",
+                "direction": "asc",
+                "per_page": 100,
+                "page": page,
+            }
+            query_values["type"] = (
+                "public" if self._account_type == "Organization" else "owner"
             )
-            payload = self._request_json(
-                f"/users/{quoted_owner}/repos?{query}"
-            )
+            query = urllib.parse.urlencode(query_values)
+            payload = self._request_json(f"{endpoint}?{query}")
             if not isinstance(payload, list):
                 raise PublicPortfolioCensusError(
                     f"GitHub public census page {page} was not a list"
