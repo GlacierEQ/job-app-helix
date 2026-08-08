@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/novelty-review.schema.json",
+  "title": "Novelty Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "novelty_review_id", "hypothesis_id", "alternatives", "wrapper_only", "standard_functionality_rebranded", "existing_library_superior", "meaningful_new_combination", "ignored_information", "operational_steps_eliminated", "asymptotic_change", "failure_characteristic_change", "enables_previously_impractical", "measurable_improvement", "decision", "evidence_refs", "limitations"],
+  "properties": {
+    "schema": {"const": "glaciereq.novelty-review.v1"},
+    "novelty_review_id": {"type": "string", "minLength": 1},
+    "hypothesis_id": {"type": "string", "minLength": 1},
+    "alternatives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "why_not_selected", "evidence_refs"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "why_not_selected": {"type": "string", "minLength": 1},
+          "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "wrapper_only": {"type": "boolean"},
+    "standard_functionality_rebranded": {"type": "boolean"},
+    "existing_library_superior": {"type": "boolean"},
+    "meaningful_new_combination": {"type": "boolean"},
+    "ignored_information": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "operational_steps_eliminated": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "asymptotic_change": {"type": ["string", "null"]},
+    "failure_characteristic_change": {"type": ["string", "null"]},
+    "enables_previously_impractical": {"type": ["string", "null"]},
+    "measurable_improvement": {"type": ["string", "null"]},
+    "decision": {"enum": ["REJECT", "ADAPT", "PROCEED"]},
+    "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  }
+}
