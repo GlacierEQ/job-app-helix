@@ -37,7 +37,7 @@ def test_intel_repository_is_not_an_original_candidate() -> None:
     )
     assert private_repo[2] == "AUDIT_UPSTREAM_DELTA"
     assert private_repo[3] == "private"
-    assert private_repo[5] == "UPSTREAM_DERIVED_PRIVATE"
+    assert private_repo[5] == "UPSTREAM_SHAPED"
 
 
 def test_ahead_count_is_not_treated_as_originality() -> None:
