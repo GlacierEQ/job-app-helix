@@ -1,0 +1,50 @@
+{
+  "excluded_company_ids": [
+    "glaciereq_core"
+  ],
+  "freshness_state": "HISTORICAL_SOURCE_SNAPSHOT_REQUIRES_REFRESH_BEFORE_LIVE_APPLICATION",
+  "inference_boundary": "Observed current pressure and official-source signals are source-backed snapshot facts; bottlenecks, brick walls, leverage mechanisms, expected impact, and application moves are GlacierEQ inferences and must not be presented as employer-confirmed internal conditions.",
+  "record_count": 47,
+  "research_as_of": "2026-08-05",
+  "schema": "glaciereq.external-company-bottleneck-atlas.v1",
+  "shards": [
+    {
+      "path": "manifests/application_intelligence/atlas_shards/frontier_ai.json",
+      "record_count": 4,
+      "shard_sha256": "9fd7437faf7b1a5b8b9df35438282f6ee7128e7894c2626903dfff502eda69b4"
+    },
+    {
+      "path": "manifests/application_intelligence/atlas_shards/platform_infrastructure.json",
+      "record_count": 8,
+      "shard_sha256": "5c52b2a27601c7e5fd493b5d020dc33e781327ded55421edbf4874ac1412a164"
+    },
+    {
+      "path": "manifests/application_intelligence/atlas_shards/model_agent_product.json",
+      "record_count": 10,
+      "shard_sha256": "7263ff639b19146aa73e0b165eb5df39e3a975c42d746968b04a731c5e2fb36c"
+    },
+    {
+      "path": "manifests/application_intelligence/atlas_shards/strategic_target_part_1.json",
+      "record_count": 9,
+      "shard_sha256": "732adb0d0f207502967b4f9402b235f2520be7836d8984e5ecce51c039eb68f9"
+    },
+    {
+      "path": "manifests/application_intelligence/atlas_shards/strategic_target_part_2.json",
+      "record_count": 9,
+      "shard_sha256": "264203af915240e176efcd187c2626bc98c8bb408996094c42c49e03d3a8c9ce"
+    },
+    {
+      "path": "manifests/application_intelligence/atlas_shards/strategic_target_part_3.json",
+      "record_count": 7,
+      "shard_sha256": "f8d76e8664cb87b4d8edfc9f21a67e953dfaef33fba082a07bff4dcbb0f9265d"
+    }
+  ],
+  "source_commit": "f3b2092fe0709a6532202a007852121d1ca982e4",
+  "truth_boundary": {
+    "external_company_records_only": true,
+    "glaciereq_core_recomputed_from_live_census": true,
+    "live_job_opening_parity_not_claimed": true,
+    "official_source_observation_separate_from_glaciereq_inference": true,
+    "source_snapshot_requires_refresh_for_live_application": true
+  }
+}

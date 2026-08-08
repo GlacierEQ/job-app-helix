@@ -1,0 +1,13 @@
+{
+  "schema": "glaciereq.estate-facts.v2",
+  "namespaces": [],
+  "relationships": [],
+  "supports": [],
+  "truth_boundary": {
+    "candidate_duplicate_or_successor_leads_not_promoted_without_repository_native_evidence": true,
+    "support_assertions_require_nonempty_evidence_refs": true,
+    "support_assertions_do_not_collapse_lineage": true,
+    "support_assertions_do_not_count_as_independent_accomplishments": true,
+    "exact_legal_namespace_membership_requires_evidence_bound_assertions": true
+  }
+}

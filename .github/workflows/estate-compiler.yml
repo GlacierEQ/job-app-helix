@@ -11,16 +11,18 @@ permissions:
 jobs:
   compile:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check out Helix
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
+          cache: pip
 
       - name: Install package and test dependencies
         run: python -m pip install -e ".[dev]"
@@ -35,35 +37,101 @@ jobs:
           }
           python scripts/census_owned_library.py \
             --token "${GITHUB_TOKEN}" \
-            --output artifacts/owned-library-census.json
+            --output /tmp/owned-library-census.json
 
-      - name: Verify estate compiler contract
-        run: python -m pytest tests/test_estate_compiler.py
+      - name: Verify canonical compiler and projection contracts
+        run: >-
+          python -m pytest -q
+          tests/test_estate_compiler.py
+          tests/test_estate_intelligence.py
+          tests/test_compiled_recruiter_site.py
 
-      - name: Compile systems, donors, and company projections
+      - name: Compile canonical estate bundle
         run: |
           python scripts/compile_estate_graph.py \
-            --census artifacts/owned-library-census.json \
-            --output-dir artifacts/estate-compiler \
-            --public-output artifacts/estate-compiler/public-safe-company-projection.json
+            --census /tmp/owned-library-census.json \
+            --estate-facts manifests/estate_facts.json \
+            --output-dir /tmp/estate-compiler
+
+      - name: Project role fit and company intelligence
+        run: |
+          python scripts/project_estate_intelligence.py \
+            --bundle /tmp/estate-compiler/estate-compiler-bundle.json \
+            --census /tmp/owned-library-census.json \
+            --estate-facts manifests/estate_facts.json \
+            --output /tmp/estate-compiler/estate-intelligence-bundle.json \
+            --public-output /tmp/estate-compiler/public-safe-company-projection-v2.json
 
       - name: Verify public-safe boundary
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          public = json.loads(Path("artifacts/estate-compiler/public-safe-company-projection.json").read_text())
-          receipt = json.loads(Path("artifacts/estate-compiler/estate-compiler-receipt.json").read_text())
-          assert public["schema"] == "glaciereq.estate-public-projection.v1"
-          assert receipt["invariants"]["legal_private_namespace_not_company_projectable"] is True
+
+          public_path = Path(
+              "/tmp/estate-compiler/public-safe-company-projection-v2.json"
+          )
+          receipt_path = Path(
+              "/tmp/estate-compiler/estate-intelligence-receipt.json"
+          )
+          public = json.loads(public_path.read_text(encoding="utf-8"))
+          receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+          assert public["schema"] == "glaciereq.estate-public-projection.v2"
+          boundary = public["boundary"]
+          assert boundary["private_repository_identities_omitted"] is True
+          assert boundary["legal_private_records_omitted"] is True
+          assert (
+              boundary[
+                  "native_estate_cardinality_intentionally_not_published"
+              ]
+              is True
+          )
+          assert (
+              receipt["invariants"][
+                  "support_references_do_not_collapse_lineage"
+              ]
+              is True
+          )
+
+          forbidden = {
+              "repository_count",
+              "native_repository_count",
+              "fork_repository_count",
+              "private_repository_count",
+              "legal_private_repositories",
+              "canonical_accomplishments",
+          }
+
+          def walk(value, path="$"):
+              if isinstance(value, dict):
+                  for key, child in value.items():
+                      if key in forbidden:
+                          raise SystemExit(
+                              f"forbidden public key {path}.{key}"
+                          )
+                      walk(child, f"{path}.{key}")
+              elif isinstance(value, list):
+                  for index, child in enumerate(value):
+                      walk(child, f"{path}[{index}]")
+
+          walk(public)
           PY
 
-      - name: Upload only public-safe compiler outputs
+      - name: Stage only sanitized public projection
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/estate-compiler-public
+          cp /tmp/estate-compiler/public-safe-company-projection-v2.json \
+            artifacts/estate-compiler-public/public-safe-company-projection-v2.json
+          test ! -e artifacts/owned-library-census.json
+          test ! -e artifacts/estate-compiler/canonical-system-registry.json
+          test ! -e artifacts/estate-compiler/company-projection-registry.json
+          test ! -e artifacts/estate-compiler-public/estate-intelligence-receipt.json
+
+      - name: Upload only sanitized public projection
         uses: actions/upload-artifact@v4
         with:
           name: estate-compiler-public-safe-${{ github.run_id }}
-          path: |
-            artifacts/estate-compiler/estate-compiler-receipt.json
-            artifacts/estate-compiler/public-safe-company-projection.json
+          path: artifacts/estate-compiler-public
           if-no-files-found: error
           retention-days: 30

@@ -7,7 +7,23 @@ on:
       - "hire_package/casey-barton/**"
       - "site/**"
       - "scripts/build_recruiter_site.py"
+      - "scripts/build_compiled_recruiter_site.py"
+      - "scripts/compile_estate_graph.py"
+      - "scripts/project_estate_intelligence.py"
+      - "src/job_app_helix/estate_compiler.py"
+      - "src/job_app_helix/estate_intelligence*.py"
+      - "src/job_app_helix/company_intelligence.py"
+      - "manifests/estate_compiler.json"
+      - "manifests/estate_projection_policy.json"
+      - "manifests/estate_facts.json"
+      - "manifests/application_intelligence/**"
+      - "manifests/company_dossiers.json"
+      - "manifests/company_dossiers/**"
+      - "manifests/flagship_registry.json"
       - "tests/test_recruiter_site_deployment.py"
+      - "tests/test_estate_compiler.py"
+      - "tests/test_estate_intelligence.py"
+      - "tests/test_compiled_recruiter_site.py"
       - "RECRUITER_EXECUTIVE_SUMMARY.md"
       - "README.md"
       - ".github/workflows/pages.yml"
@@ -16,7 +32,23 @@ on:
       - "hire_package/casey-barton/**"
       - "site/**"
       - "scripts/build_recruiter_site.py"
+      - "scripts/build_compiled_recruiter_site.py"
+      - "scripts/compile_estate_graph.py"
+      - "scripts/project_estate_intelligence.py"
+      - "src/job_app_helix/estate_compiler.py"
+      - "src/job_app_helix/estate_intelligence*.py"
+      - "src/job_app_helix/company_intelligence.py"
+      - "manifests/estate_compiler.json"
+      - "manifests/estate_projection_policy.json"
+      - "manifests/estate_facts.json"
+      - "manifests/application_intelligence/**"
+      - "manifests/company_dossiers.json"
+      - "manifests/company_dossiers/**"
+      - "manifests/flagship_registry.json"
       - "tests/test_recruiter_site_deployment.py"
+      - "tests/test_estate_compiler.py"
+      - "tests/test_estate_intelligence.py"
+      - "tests/test_compiled_recruiter_site.py"
       - "RECRUITER_EXECUTIVE_SUMMARY.md"
       - "README.md"
       - ".github/workflows/pages.yml"
@@ -33,6 +65,7 @@ jobs:
   build:
     name: Build evidence-bound site
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -50,14 +83,98 @@ jobs:
           python -m pip install --upgrade pip &&
           python -m pip install -e ".[dev]"
 
-      - name: Build canonical recruiter surface
+      - name: Run recruiter and compiler contract tests
         run: >-
-          python scripts/build_recruiter_site.py
+          python -m pytest -q
+          tests/test_recruiter_site_deployment.py
+          tests/test_estate_compiler.py
+          tests/test_estate_intelligence.py
+          tests/test_compiled_recruiter_site.py
+
+      - name: Detect live estate census authority
+        id: estate-auth
+        if: github.event_name != 'pull_request'
+        env:
+          ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
+        shell: bash
+        run: |
+          if [ -n "${ESTATE_TOKEN:-}" ]; then
+            echo "available=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "available=false" >> "${GITHUB_OUTPUT}"
+            echo "Live private-estate projection unavailable; deploying static boundary."
+          fi
+
+      - name: Build pull-request static boundary
+        if: github.event_name == 'pull_request'
+        run: >-
+          python scripts/build_compiled_recruiter_site.py
           --output artifacts/pages-site
           --source-commit "${{ github.sha }}"
 
-      - name: Run recruiter deployment contract tests
-        run: python -m pytest -q tests/test_recruiter_site_deployment.py
+      - name: Census live owner estate
+        if: >-
+          github.event_name != 'pull_request' &&
+          steps.estate-auth.outputs.available == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
+        run: >-
+          python scripts/census_owned_library.py
+          --token "${GITHUB_TOKEN}"
+          --output /tmp/owned-library-census.json
+
+      - name: Compile canonical estate bundle
+        if: >-
+          github.event_name != 'pull_request' &&
+          steps.estate-auth.outputs.available == 'true'
+        run: >-
+          python scripts/compile_estate_graph.py
+          --census /tmp/owned-library-census.json
+          --estate-facts manifests/estate_facts.json
+          --output-dir /tmp/estate-compiler
+
+      - name: Project public estate intelligence
+        if: >-
+          github.event_name != 'pull_request' &&
+          steps.estate-auth.outputs.available == 'true'
+        run: >-
+          python scripts/project_estate_intelligence.py
+          --bundle /tmp/estate-compiler/estate-compiler-bundle.json
+          --census /tmp/owned-library-census.json
+          --estate-facts manifests/estate_facts.json
+          --output /tmp/estate-compiler/estate-intelligence-bundle.json
+          --public-output /tmp/estate-compiler/public-safe-company-projection-v2.json
+
+      - name: Build canonical compiled recruiter surface
+        if: >-
+          github.event_name != 'pull_request' &&
+          steps.estate-auth.outputs.available == 'true'
+        run: >-
+          python scripts/build_compiled_recruiter_site.py
+          --output artifacts/pages-site
+          --source-commit "${{ github.sha }}"
+          --public-projection /tmp/estate-compiler/public-safe-company-projection-v2.json
+
+      - name: Build static fallback without private census authority
+        if: >-
+          github.event_name != 'pull_request' &&
+          steps.estate-auth.outputs.available != 'true'
+        run: >-
+          python scripts/build_compiled_recruiter_site.py
+          --output artifacts/pages-site
+          --source-commit "${{ github.sha }}"
+
+      - name: Verify no private compiler inputs entered Pages artifact
+        run: |
+          set -euo pipefail
+          test ! -e artifacts/pages-site/owned-library-census.json
+          test ! -e artifacts/pages-site/canonical-system-registry.json
+          test ! -e artifacts/pages-site/capability-donor-registry.json
+          test ! -e artifacts/pages-site/company-projection-registry.json
+          test ! -e artifacts/pages-site/estate-intelligence-bundle.json
+          if [ "${{ steps.estate-auth.outputs.available }}" = "true" ]; then
+            test -s artifacts/pages-site/estate-projection.json
+          fi
 
       - name: Verify public repository boundary
         run: python scripts/check_public_surface.py
