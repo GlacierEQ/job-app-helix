@@ -201,7 +201,7 @@ def validate_topology(profile: dict[str, Any]) -> dict[str, Any]:
     )
 
     gates = _unique_string_list(profile.get("quality_gates"), "quality_gates")
-    if not REQUIRED_QUALITY_GATES <= set(gates):
+    if not set(gates) >= REQUIRED_QUALITY_GATES:
         missing = sorted(REQUIRED_QUALITY_GATES - set(gates))
         raise CompanyAnalysisPlanError(f"topology is missing required quality gates: {missing}")
 
