@@ -9,10 +9,82 @@ from .common import EstateCompilerError
 PUBLIC_STATES = {"PROMOTED", "REFERENCE_ONLY"}
 
 
+def _role_capabilities(role: str, policy: dict[str, Any]) -> list[str]:
+    taxonomy = policy.get("capability_taxonomy", {})
+    if not isinstance(taxonomy, dict):
+        raise EstateCompilerError("capability_taxonomy is invalid")
+    if "role_capability_rules" not in policy:
+        return sorted(taxonomy)
+    rules = policy.get("role_capability_rules")
+    if not isinstance(rules, list):
+        raise EstateCompilerError("role_capability_rules is invalid")
+    normalized = role.casefold()
+    desired: set[str] = set()
+    for rule in rules:
+        if not isinstance(rule, dict):
+            raise EstateCompilerError("role_capability_rules entries must be objects")
+        matches = rule.get("match_any")
+        capabilities = rule.get("capabilities")
+        if (
+            not isinstance(matches, list)
+            or not all(isinstance(item, str) and item for item in matches)
+            or not isinstance(capabilities, list)
+            or not all(isinstance(item, str) and item for item in capabilities)
+        ):
+            raise EstateCompilerError("role_capability_rules entry is invalid")
+        if any(token.casefold() in normalized for token in matches):
+            unknown = set(capabilities) - set(taxonomy)
+            if unknown:
+                raise EstateCompilerError(
+                    f"role_capability_rules references unknown capabilities: {sorted(unknown)}"
+                )
+            desired.update(capabilities)
+    return sorted(desired)
+
+
+def _role_fit(
+    capabilities: list[str],
+    role: str,
+    policy: dict[str, Any],
+) -> dict[str, Any]:
+    profile = _role_capabilities(role, policy)
+    if not profile:
+        return {
+            "fit_score": None,
+            "profile_capabilities": [],
+            "matched_capabilities": [],
+            "coverage_state": "UNMAPPED_ROLE",
+        }
+    available = set(capabilities)
+    matched = sorted(available & set(profile))
+    return {
+        "fit_score": round(100.0 * len(matched) / len(profile), 2),
+        "profile_capabilities": profile,
+        "matched_capabilities": matched,
+        "coverage_state": "MAPPED_ROLE",
+    }
+
+
+def _target_relevance(
+    capabilities: list[str],
+    target_roles: list[str],
+    policy: dict[str, Any],
+) -> float | None:
+    values = []
+    for role in target_roles:
+        if not isinstance(role, str):
+            continue
+        fit = _role_fit(capabilities, role, policy)
+        if fit["fit_score"] is not None:
+            values.append(float(fit["fit_score"]))
+    return max(values) if values else None
+
+
 def _score(
     repo_meta: dict[str, Any],
     assessment: dict[str, Any] | None,
     capabilities: list[str],
+    target_roles: list[str],
     policy: dict[str, Any],
 ) -> dict[str, Any]:
     weights = policy.get("promotion_score_weights", {})
@@ -65,7 +137,7 @@ def _score(
         "technical_depth": depth,
         "verification": verification,
         "transferability": transferability,
-        "target_relevance": 100.0,
+        "target_relevance": _target_relevance(capabilities, target_roles, policy),
     }
     coverage = sum(
         numeric[key] for key, value in components.items() if value is not None
@@ -92,6 +164,44 @@ def _company_state(company_id: str, second_depth: dict[str, Any]) -> dict[str, A
     return {**default, **override}
 
 
+def _role_projection(
+    target_roles: list[str],
+    ordered: list[dict[str, Any]],
+    policy: dict[str, Any],
+) -> dict[str, Any]:
+    projection: dict[str, Any] = {}
+    for role in target_roles:
+        if not isinstance(role, str):
+            continue
+        ranked = []
+        profile = _role_capabilities(role, policy)
+        for candidate in ordered:
+            fit = _role_fit(candidate["capabilities"], role, policy)
+            if fit["fit_score"] is None or fit["fit_score"] <= 0:
+                continue
+            ranked.append(
+                {
+                    "system_id": candidate["system_id"],
+                    "fit_score": fit["fit_score"],
+                    "matched_capabilities": fit["matched_capabilities"],
+                    "promotion_score": candidate["promotion_score"]["score"],
+                }
+            )
+        ranked.sort(
+            key=lambda item: (
+                -float(item["fit_score"]),
+                -(float(item["promotion_score"]) if item["promotion_score"] is not None else -1),
+                item["system_id"],
+            )
+        )
+        projection[role] = {
+            "profile_capabilities": profile,
+            "coverage_state": "MAPPED_ROLE" if profile else "UNMAPPED_ROLE",
+            "systems": ranked,
+        }
+    return projection
+
+
 def build_company_registry(
     companies: dict[str, dict[str, Any]],
     repo_meta: dict[str, dict[str, Any]],
@@ -101,8 +211,15 @@ def build_company_registry(
     capability_by_system: dict[str, list[str]],
     assessment_by_repo: dict[str, dict[str, Any]],
     policy: dict[str, Any],
+    intelligence_by_company: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     systems = {item["system_id"]: item for item in canonical["systems"]}
+    intelligence_by_company = intelligence_by_company or {}
+    unknown_intelligence = set(intelligence_by_company) - set(companies)
+    if unknown_intelligence:
+        raise EstateCompilerError(
+            f"Company intelligence references unknown dossiers: {sorted(unknown_intelligence)}"
+        )
     caps = policy.get("audience_caps", {})
     limits = {
         "recruiter": int(caps.get("recruiter", 10)),
@@ -111,6 +228,9 @@ def build_company_registry(
     }
     output = []
     for company_id, company in sorted(companies.items()):
+        target_roles = [
+            role for role in company.get("target_roles", []) if isinstance(role, str)
+        ]
         candidates: dict[str, dict[str, Any]] = {}
         for row in company.get("repositories", []):
             repo = row.get("repository")
@@ -118,15 +238,17 @@ def build_company_registry(
             if not sid or sid not in systems:
                 continue
             root_repo = systems[sid]["canonical_repository"]
+            system_capabilities = capability_by_system.get(sid, [])
             candidates[sid] = {
                 "system_id": sid,
                 "visibility": row.get("visibility"),
                 "company_repository_state": row.get("promotion_state"),
-                "capabilities": capability_by_system.get(sid, []),
+                "capabilities": system_capabilities,
                 "promotion_score": _score(
                     repo_meta.get(root_repo, {}),
                     assessment_by_repo.get(root_repo),
-                    capability_by_system.get(sid, []),
+                    system_capabilities,
+                    target_roles,
                     policy,
                 ),
             }
@@ -139,30 +261,35 @@ def build_company_registry(
             ),
         )
         state = _company_state(company_id, second_depth)
+        intelligence = intelligence_by_company.get(company_id, {})
         output.append(
             {
                 "company_id": company_id,
                 "display_name": company.get("display_name", company_id),
                 "track_state": company.get("track_state"),
-                "target_roles": company.get("target_roles", []),
+                "target_roles": target_roles,
                 "recruiter_thesis": company.get("recruiter_thesis"),
                 "second_depth_stage": state.get("stage"),
                 "claim_ceiling": state.get("claim_ceiling"),
                 "problem_evidence": state.get("problem_evidence", []),
                 "next_gate": state.get("next_gate"),
+                "intelligence": intelligence or None,
                 "system_candidates": ordered,
                 "audience_projection": {
                     name: [item["system_id"] for item in ordered[:limit]]
                     for name, limit in limits.items()
                 },
+                "role_projection": _role_projection(target_roles, ordered, policy),
             }
         )
     result = {
-        "schema": "glaciereq.company-projection-registry.v1",
+        "schema": "glaciereq.company-projection-registry.v2",
         "audience_caps": limits,
         "truth_boundary": {
             "company_pages_are_projections_of_one_graph": True,
-            "unbounded_company_bottlenecks_are_not_invented": True,
+            "observed_company_pressure_is_source_backed_when_intelligence_present": True,
+            "bottleneck_and_brick_wall_are_explicit_glaciereq_inferences": True,
+            "role_projection_is_capability_fit_not_employer_endorsement": True,
             "promotion_score_never_overrides_public_safety": True,
         },
         "companies": output,
@@ -224,6 +351,7 @@ def build_public_projection(
             and row.get("company_repository_state") in PUBLIC_STATES
         ]
         allowed = {row["system_id"] for row in systems}
+        intelligence = company.get("intelligence")
         public_companies.append(
             {
                 **{
@@ -239,20 +367,33 @@ def build_public_projection(
                         "next_gate",
                     )
                 },
+                "intelligence": intelligence,
                 "systems": systems,
                 "audience_projection": {
                     name: [sid for sid in values if sid in allowed]
                     for name, values in company["audience_projection"].items()
                 },
+                "role_projection": {
+                    role: {
+                        "profile_capabilities": payload["profile_capabilities"],
+                        "coverage_state": payload["coverage_state"],
+                        "systems": [
+                            row for row in payload["systems"] if row["system_id"] in allowed
+                        ],
+                    }
+                    for role, payload in company["role_projection"].items()
+                },
             }
         )
     result = {
-        "schema": "glaciereq.public-portfolio-projection.v1",
+        "schema": "glaciereq.public-portfolio-projection.v2",
         "truth_boundary": {
             "native_estate_cardinality_intentionally_not_published": True,
             "private_repository_identities_omitted": True,
             "restricted_namespaces_omitted": True,
             "projection_is_derived_not_hand_curated": True,
+            "observed_pressure_and_inferred_bottleneck_are_distinct": True,
+            "role_projection_is_capability_fit_not_employer_endorsement": True,
         },
         "systems": public_systems,
         "capabilities": public_capabilities,
