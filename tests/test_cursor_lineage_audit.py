@@ -39,8 +39,18 @@ def test_cursor_nonfork_reference_remains_provenance_unresolved() -> None:
 
 def test_cursor_dossier_matches_lineage_decision() -> None:
     dossier = _load(DOSSIER)
-    cursor = next(row for row in dossier["companies"] if row["company_id"] == "cursor")
+    cursor = next(
+        (row for row in dossier["companies"] if row["company_id"] == "cursor"),
+        None,
+    )
+    assert cursor is not None, "Cursor company not found in expansion_targets.json"
+
     repos = {row[0]: row for row in cursor["repositories"]}
+    for repo_name, repo_data in repos.items():
+        assert len(repo_data) >= 6, (
+            f"Repository {repo_name} has insufficient fields: "
+            f"expected at least 6, got {len(repo_data)}"
+        )
 
     assert cursor["track_state"] == "DIRECT_ESTATE_DISCOVERED_PROVENANCE_AUDIT"
     assert repos["GlacierEQ/cursor"][2] == "EXCLUDED_AUTHORSHIP"
