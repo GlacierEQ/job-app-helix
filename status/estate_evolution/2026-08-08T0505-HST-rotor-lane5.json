@@ -1,0 +1,124 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "run_id": "2026-08-08T0505-HST-rotor-lane5",
+  "recorded_at": "2026-08-08T15:18:00Z",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "primary_lane": "portfolio_proof_capability_harvest",
+  "execution_mode": "CHECKPOINT_FIRST_TOOL_FIRST_FAIL_CLOSED",
+  "canonical_head_before": "f1234df9101dec2934e46a7935569e68a0eb23c5",
+  "branch": "estate/rotor-lane5-20260808-0505-hst",
+  "repo_atlas": {
+    "seed_document": "GlacierEQ/colossus-gateway:docs/REPO_ATLAS_V1.md",
+    "seed_snapshot_total": 1180,
+    "seed_snapshot_originals": 598,
+    "seed_snapshot_forks": 582,
+    "seed_snapshot_archived": 53,
+    "current_native_count_evidence": {
+      "count": 598,
+      "source": "GlacierEQ/job-app-helix PR #75 root-truth re-entry receipt",
+      "github_search_incomplete_results": false
+    },
+    "application_projection_inventory": {
+      "rows": 1179,
+      "latest_fetch": "2026-08-05T11:15:09.384693Z",
+      "decision": "STALE_PROJECTION_DO_NOT_USE_TO_REPLACE_GITHUB_CANONICAL_COUNTS"
+    },
+    "count_decision": "PRESERVE_1180_SEED_TOTAL_AND_598_NATIVE_COUNT_UNTIL_A_FULL_LIVE_ATLAS_REFRESH_RECOMPUTES_TOTAL_FORK_PRIVATE_PUBLIC_ARCHIVE_COUNTS"
+  },
+  "capability_harvest": [
+    {
+      "repository": "GlacierEQ/Pro-Colossus",
+      "github_state": {
+        "fork": false,
+        "default_branch": "main",
+        "canonical_source": "README.md"
+      },
+      "prior_projection": {
+        "capability_id": "ENERGY_COOLING_AND_DATACENTER",
+        "basis": "NAME_SIGNAL",
+        "confidence": 0.64
+      },
+      "direct_repository_evidence": [
+        "README declares Pro-Colossus the Colossus infrastructure flagship and registry",
+        "README enumerates thermal management, power delivery, GPU cluster, networking, monitoring, fire suppression, access control, and water-treatment child systems"
+      ],
+      "projection_action": "PROMOTE_TO_CURATED_CAPABILITY_IDENTITY",
+      "projection_store": "Supabase application_repo_curated_capability_identity",
+      "projection_after": {
+        "capability_id": "ENERGY_COOLING_AND_DATACENTER",
+        "evidence_level": "DOCUMENTATION_LEVEL",
+        "runtime_or_deployment_proof_claimed": false
+      },
+      "company_study_candidate": {
+        "employer_id": "xai",
+        "existing_membership_basis": "DIRECT_COMPANY_SIGNAL",
+        "existing_confidence": 0.9,
+        "decision": "RETAIN_AS_HIGH_PRIORITY_XAI_STUDY_CANDIDATE_WITH_NON_AFFILIATION_BOUNDARY"
+      }
+    }
+  ],
+  "cross_lane_lineage_check": {
+    "source_receipt": "GlacierEQ/job-app-helix PR #75 identity-drift resolution",
+    "targets": [
+      {
+        "repository": "GlacierEQ/infinity-gauntlet-mcp-stack",
+        "exact_repo_lookup": "ABSENT",
+        "org_repository_name_search": "NO_MATCH",
+        "code_reference_evidence": [
+          "Historical Helix portfolio audit described it as strong with 12 MCP servers and 41 tools",
+          "Monolith MCP domain still lists it as a worked-on local job-app leaf"
+        ],
+        "successor": "UNPROVEN",
+        "decision": "PRESERVE_HISTORICAL_REFERENCE; DO_NOT_INFER_DELETION_REASON_RENAME_OR_SUCCESSOR"
+      },
+      {
+        "repository": "GlacierEQ/polyglot-systems-architecture",
+        "exact_repo_lookup": "ABSENT",
+        "org_repository_name_search": "NO_MATCH",
+        "code_reference_evidence": [
+          "Historical Helix portfolio audit ranked it as a strong polyglot/core system with 11 specialized language implementations, a benchmark runner, and W4 framework",
+          "Monolith long-tail domain lists both polyglot-systems-architecture and the-tower-of-babel as separate worked-on entries"
+        ],
+        "candidate_related_repository": "GlacierEQ/the-tower-of-babel",
+        "direct_lineage_declaration_found": false,
+        "successor": "UNPROVEN",
+        "decision": "DO_NOT_COLLAPSE_TO_TOWER_WITHOUT_REPOSITORY_NATIVE_LINEAGE_EVIDENCE"
+      }
+    ]
+  },
+  "pr_maintenance": {
+    "pull_request": 75,
+    "candidate_head": "8fdc04ae77463d95b6cc589cfe77a34524e9e516",
+    "current_main": "f1234df9101dec2934e46a7935569e68a0eb23c5",
+    "merge_base": "9add29a6dfa8113935c5dfa1eb4f98cc2b319bfa",
+    "ahead": 3,
+    "behind": 1,
+    "status": "DIVERGED",
+    "native_ci": [
+      "CI:success",
+      "Application Registry Validation:success"
+    ],
+    "decision": "DO_NOT_MERGE_STALE_TIP; PRESERVE_TWO_RECEIPT_DELTA_FOR_FRESH_HEAD_SYNTHESIS_OR_CONTAINMENT_CHECK"
+  },
+  "mutations": {
+    "github_canonical_main_modified": false,
+    "supabase_projection_rows_upserted": 1,
+    "repositories_deleted": 0,
+    "branches_deleted": 0,
+    "legal_namespace_modified": false,
+    "credentials_exposed": false
+  },
+  "verification": {
+    "pro_colossus_live_read": "PASS",
+    "supabase_curated_capability_readback": "PASS",
+    "pr75_ci_readback": "PASS",
+    "pr75_freshness_compare": "DIVERGED_3_AHEAD_1_BEHIND",
+    "lineage_searches": "NO_DIRECT_SUCCESSOR_PROOF"
+  },
+  "blockers": [
+    "Full live Repo Atlas total/fork/private/public/archive refresh was not recomputed in this lane; the older 1179-row application projection is stale and cannot replace GitHub canonical counts.",
+    "No repository-native lineage declaration was found for infinity-gauntlet-mcp-stack or polyglot-systems-architecture.",
+    "PR #75 is one commit behind current main and must not merge as-is."
+  ],
+  "next_cursor": "On the next applicable lane, refresh the full live Atlas inventory and synthesize only the still-unique PR #75 receipt delta onto fresh job-app-helix main if containment is not already established. Continue capability harvesting from PROMOTE candidates using direct repository evidence and keep documentation-level proof distinct from runtime proof."
+}
