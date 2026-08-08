@@ -109,3 +109,32 @@ def test_public_census_rejects_manifest_cardinality_drift() -> None:
             owner="GlacierEQ",
             repositories=[],
         )
+
+
+@pytest.mark.parametrize(
+    ("account_type", "expected_fragment", "expected_type"),
+    [
+        ("User", "/users/GlacierEQ/repos?", "type=owner"),
+        ("Organization", "/orgs/GlacierEQ/repos?", "type=public"),
+    ],
+)
+def test_public_source_resolves_user_and_organization_endpoints(
+    account_type: str,
+    expected_fragment: str,
+    expected_type: str,
+) -> None:
+    module = _module()
+    source = module.GitHubPublicPortfolioSource("GlacierEQ")
+    calls: list[str] = []
+
+    def fake_request(path: str):
+        calls.append(path)
+        if len(calls) == 1:
+            return {"type": account_type}
+        return []
+
+    source._request_json = fake_request
+    assert source.list_all() == []
+    assert calls[0] == "/users/GlacierEQ"
+    assert expected_fragment in calls[1]
+    assert expected_type in calls[1]
