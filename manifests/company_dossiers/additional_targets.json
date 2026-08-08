@@ -62,14 +62,16 @@
     {
       "company_id": "coreweave",
       "display_name": "CoreWeave",
-      "track_state": "DIRECT_ESTATE_DISCOVERED_NOT_RECRUITER_READY",
-      "gap_or_next_gate": "Five direct CoreWeave-named private prototypes exist. Audit provenance, implementation depth, tests, and runtime evidence before selecting any public or recruiter-facing flagship.",
+      "track_state": "PRIVATE_RELIABILITY_LAB_EXPERIMENTS",
+      "experiment_family": "coreweave-reliability-lab",
+      "recruiter_thesis": "Five private CoreWeave-named prototypes form one reliability R&D family, not five independent accomplishments. None is recruiter proof until claims are bounded and positive verification receipts exist.",
+      "gap_or_next_gate": "Promote only through the experiment ladder: prove unique value, add deterministic tests and runtime receipts, integrate surviving mechanisms into a canonical system, then require capability proof and the promotion-score gate. Current source audit found unverified claims and concrete implementation defects, so all five remain private experiments.",
       "repositories": [
-        ["GlacierEQ/coreweave-state-fusion", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
-        ["GlacierEQ/coreweave-temporal-router", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
-        ["GlacierEQ/coreweave-circuit-breaker", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
-        ["GlacierEQ/coreweave-shadow-monitor", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
-        ["GlacierEQ/coreweave-entropy-engine", "L2", "PRIVATE_CANDIDATE", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"]
+        ["GlacierEQ/coreweave-state-fusion", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/coreweave-temporal-router", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/coreweave-circuit-breaker", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/coreweave-shadow-monitor", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
+        ["GlacierEQ/coreweave-entropy-engine", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"]
       ]
     },
     {"company_id": "waymo", "display_name": "Waymo", "repositories": []},
