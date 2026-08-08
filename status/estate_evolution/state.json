@@ -1,75 +1,113 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-08T10:10:00Z",
+  "updated_at": "2026-08-08T16:15:15Z",
   "control_plane": "GlacierEQ/job-app-helix",
-  "phase": "ESTATE_COMPILER_CANONICAL_MONOLITH_VERIFICATION_BLOCKED",
+  "phase": "HELIX_CANONICAL_CLEAN_MONOLITH_EXACT_HEAD_PROOF_BLOCKED",
   "cursor": {
     "repository": "GlacierEQ/monolith",
     "canonical_branch": "main",
     "canonical_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
     "pull_request": 54,
     "branch": "synthesize/legal-live-reconciliation-20260808",
-    "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
-    "action": "PRESERVE_FRESH_1_AHEAD_0_BEHIND_CANDIDATE; REQUIRE_NATIVE_PROOF_AFTER_ACTIONS_BUDGET_OR_APPROVED_PUBLIC_RUNNER_BRIDGE_IS_RESTORED"
+    "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
+    "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "ahead": 7,
+    "behind": 0,
+    "files_changed": 10,
+    "draft": true,
+    "mergeable": true,
+    "action": "PRESERVE_FRESH_7_AHEAD_0_BEHIND_CANDIDATE; DO_NOT_MERGE_UNTIL_NATIVE_OR_EQUIVALENT_EXACT_HEAD_PROOF_EXECUTES"
   },
   "completed_this_pass": [
     {
       "repository": "GlacierEQ/job-app-helix",
-      "pull_request": 72,
-      "canonical_head_before": "13d3d3aa0a3f403d8e0ef244459cbafe45e6a0d4",
-      "candidate_head": "fd0e9dd64b8a50f5b89c5be8bdbb0ecc2d74f9a6",
-      "merge_base": "13d3d3aa0a3f403d8e0ef244459cbafe45e6a0d4",
-      "ahead": 12,
-      "behind": 0,
-      "files_changed": 7,
-      "decision": "VERIFIED_EXPECTED_HEAD_SQUASH_MERGE",
-      "verification": ["CI:success","Application Registry Validation:success","Portfolio Compiler Integrity:success","Portfolio Root Truth:success"],
-      "canonical_head_after": "27d74d72491a1c6c9769a7cb98d778a3a878335c",
-      "preservation": "Estate compiler graph, capability donor registry, company projection registry, experiment promotion ladder, privacy-safe projection",
-      "remote_ref_disposition": "MERGED_REF_DELETION_NOT_CLAIMED"
+      "pull_request": 80,
+      "decision": "VERIFIED_CURRENT_HEAD_SYNTHESIS_PROMOTED",
+      "verified_head": "f37d801625571ed56f3b67c3fe9f8c9d2fe59d78",
+      "canonical_head_after": "ae9027b23fe3ef0741cad10c891c3445bbcfd1a5",
+      "preservation": "Diamond/Gatling planning mechanics rebuilt on the canonical company registry with dynamic cardinality, exact v2 topology identity, nine truth/integrity gates, deterministic digesting, and PLANNED_ONLY execution boundaries.",
+      "verification": [
+        "CI:success:python-3.11",
+        "CI:success:python-3.12",
+        "CI:success:python-3.13",
+        "Portfolio Compiler Integrity:success",
+        "Application Registry Validation:success"
+      ]
     },
     {
       "repository": "GlacierEQ/job-app-helix",
-      "pull_requests_closed": [70,53],
-      "decision": "RETIREMENT_READY_PR_CLOSED",
-      "preservation": "Canonical already contains the exact Wave 1 3-native/2-fork truth correction and regression tests via verified PR #71.",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+      "pull_request": 79,
+      "decision": "VERIFIED_FRESH_HEAD_SYNTHESIS_PROMOTED_CONCURRENTLY",
+      "verified_head": "628e192380a4c2a5d91793d660b7883a56ce920b",
+      "canonical_head_after": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "preservation": "Longitudinal worker-science bridge with packaged schema identity, matched controls, infrastructure-invalid exclusion, complete worker roster, ablation-gated causal attribution, and mission-family learned-topology gating.",
+      "verification": [
+        "CI:success:python-3.11",
+        "CI:success:python-3.12",
+        "CI:success:python-3.13",
+        "Portfolio Compiler Integrity:success",
+        "Application Registry Validation:success",
+        "Frontier Innovation Engine:success"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "decision": "OPEN_PR_SURFACE_CLEAN",
+      "open_pull_request_count": 0,
+      "retired_unmerged": [58, 42, 40, 39, 34, 37],
+      "remote_ref_disposition": "BRANCH_HISTORY_PRESERVED; REF_DELETION_NOT_REQUIRED_FOR_CANONICAL_TRUTH"
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "canonical_head": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "post_merge_verification": [
+        "CI:success",
+        "Portfolio Compiler Integrity:success"
+      ]
     }
   ],
   "pending": [
     {
       "repository": "GlacierEQ/monolith",
       "pull_request": 54,
-      "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
+      "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
       "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
-      "ahead": 1,
+      "ahead": 7,
       "behind": 0,
       "files_changed": 10,
-      "decision": "EXTERNAL_VERIFICATION_BLOCKED",
-      "verification_blockers": ["PRIVATE_GITHUB_ACTIONS_BUDGET_PREVENTS_RUNNER_ALLOCATION","APEX_RUNNER_APP_CLIENT_ID_AND_PRIVATE_KEY_NOT_PROVISIONED_ON_PUBLIC_VALIDATION_HOST"]
+      "decision": "EXACT_HEAD_PROOF_NOT_EXECUTED",
+      "verification_observations": [
+        "Legal Live Reconciliation Verification job concluded failure with zero executed steps",
+        "Monolith Catalog Evolution Gate validate-catalog job concluded failure with zero executed steps",
+        "Catalog dependent regeneration job skipped",
+        "No validator assertion failure was observed"
+      ],
+      "verification_blocker": "PRE_STEP_NATIVE_JOB_FAILURE; PR_BODY_CONTINUES_TO_REPORT_PRIVATE_ACTIONS_BUDGET_BLOCK_BEFORE_RUNNER_ALLOCATION",
+      "alternate_proof_state": "NO_EQUIVALENT_EXACT_HEAD_PUBLIC_VALIDATOR_SUCCESS_OBSERVED"
     }
   ],
   "intelligence": {
-    "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
-    "changed_this_pass": false,
-    "decision": "NO_NEW_STRICT_24H_PRIMARY_VENDOR_SIGNAL_CLEARED_ACTIONABILITY_GATE",
-    "secondary_inputs": ["Reuters 2026-08-07 autonomous-agent liability/security","Reuters 2026-08-07 corporate agent inventory/cost governance"],
-    "library_integration": "engines/ai_coding_radar.py::publish_to_library"
+    "canonical_company_registry": "manifests/company_dossiers.json",
+    "company_analysis_topology": "manifests/company_analysis_topology.json",
+    "company_analysis_planner": "scripts/build_company_analysis_plan.py",
+    "worker_science_bridge": "src/job_app_helix/worker_science.py",
+    "changed_this_pass": true,
+    "decision": "CURRENT_HELIX_CANON_NOW_INCLUDES_DYNAMIC_COMPANY_ANALYSIS_TOPOLOGY_AND_ABLATION_GATED_WORKER_SCIENCE"
   },
   "legal_spine": {
     "drift_detected": false,
     "contract_preserved": true,
-    "candidate_changed_files_touch_generated_legal_spine_artifacts": false,
+    "monolith_candidate_changed_files_touch_generated_legal_spine_artifacts": false,
     "canonical_head_observed": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
-    "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
+    "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
     "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
-    "ahead": 1,
+    "ahead": 7,
     "behind": 0
   },
   "tooling": {
-    "remote_ref_delete_action_available_in_current_connector": false,
-    "private_github_hosted_actions": "ACCOUNT_BUDGET_BLOCKED_BEFORE_RUNNER_ALLOCATION",
-    "public_fixed_command_runner": "AVAILABLE_BUT_GITHUB_APP_OWNER_CONSENT_ACTIVATION_REQUIRED"
+    "helix_post_merge_native_ci": "GREEN_ON_17c666190d84b1f8b49a3e377808a23011bd63a8",
+    "monolith_private_github_hosted_actions": "WORKFLOW_RUNS_CREATED_BUT_FAILURE_OCCURRED_BEFORE_JOB_STEPS_EXECUTED",
+    "public_fixed_command_runner": "AVAILABLE_IN_ESTATE; MONOLITH_a93c3f79_EXACT_HEAD_SUCCESS_NOT_OBSERVED"
   },
-  "next_run_contract": "Begin from Helix canonical 27d74d72491a1c6c9769a7cb98d778a3a878335c with Estate Compiler Graph canonical. Preserve Monolith PR #54 as fresh 1-ahead/0-behind legal-live reconciliation and do not merge until repository-native proof executes. Continue retirement of stale Helix PRs only where canonical containment is proven; remote refs remain DELETE_REF_REQUIRED without deletion proof."
+  "next_run_contract": "Begin from Helix canonical 17c666190d84b1f8b49a3e377808a23011bd63a8 with zero open Helix PRs, dynamic company-analysis topology canonical, and worker-science bridge canonical. Preserve Monolith PR #54 at a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03; do not merge until exact-head legal/catalog proof executes. Treat pre-step workflow failure as an execution blocker, not a validator failure."
 }
