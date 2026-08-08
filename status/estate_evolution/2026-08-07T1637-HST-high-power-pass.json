@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-08-07T16:37:39-10:00",
+  "repository": "GlacierEQ/the-tower-of-babel",
+  "canonical_head_before": "e3778353e92b404de43f41963a0c7bffb84897ac",
+  "branch": "synthesize/spaceflight-expansion-audit-20260807",
+  "merge_base": "e3778353e92b404de43f41963a0c7bffb84897ac",
+  "ahead": 4,
+  "behind": 0,
+  "unique_patch_commits": 4,
+  "files_changed": [
+    ".integrity/file_hashes.json",
+    "docs/SPACEFLIGHT_EXPANSION_AUDIT.md",
+    "registry/proposals/spaceflight-expansion.candidates.json"
+  ],
+  "decision": "MERGED_VERIFIED_SYNTHESIS",
+  "preservation": "Preserved only the governed spaceflight proposal/audit value from the stale branch lineage; no active Tower floor was admitted. Prior src/tower/registry.py drift was reconciled out of the final branch delta before promotion.",
+  "verification": {
+    "exact_head": "c7e18956e2aac0785707343a44ced1bda6027873",
+    "required_workflows": {
+      "Spiral Engine Verification": "success",
+      "Nervous System Contract": "success",
+      "Advanced Exhibit Gate": "success",
+      "Tower Verification": "success",
+      "Tower of Babel Quality Gate": "success"
+    },
+    "expected_head_guard": "satisfied"
+  },
+  "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
+  "remote_ref_disposition": "DELETE_REF_REQUIRED",
+  "news_inputs": [
+    {
+      "window": "24h",
+      "result": "NO_NEW_ACTIONABLE_SIGNAL",
+      "notes": "Fresh primary-source search did not produce a material coding/engineering development beyond existing Mastermind controls; no radar churn performed."
+    }
+  ],
+  "innovation_inputs": [],
+  "blockers": [
+    {
+      "repository": "GlacierEQ/monolith",
+      "branch": "synthesize/legal-live-reconciliation-20260807",
+      "head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8",
+      "merge_base": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "ahead": 2,
+      "behind": 0,
+      "files_changed": 10,
+      "legal_spine_generated_surfaces_changed": false,
+      "verification": {
+        "Monolith Catalog Evolution Gate": "failure",
+        "Legal Live Reconciliation Verification": "failure"
+      },
+      "decision": "KEEP_CANONICAL_UNTOUCHED"
+    }
+  ],
+  "next_cursor": "Inspect Monolith PR #48 failing workflow jobs/logs to distinguish infrastructure failure from code failure; then continue priority spine."
+}
