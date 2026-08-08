@@ -1,0 +1,65 @@
+{
+  "schema": "glaciereq.public-repository-metadata-remediation.v1",
+  "observed_at": "2026-08-08T23:38:00Z",
+  "mutation_state": "BLOCKED_CONNECTOR_CAPABILITY",
+  "mutation_boundary": "Do not claim GitHub About metadata changed until a repository description/homepage/topics mutation is executed and read back.",
+  "canonical_portfolio_url": "https://casey-barton-glaciereq.vercel.app/",
+  "items": [
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "priority": "P1",
+      "current_findings": ["description drift", "homepage missing", "topics missing"],
+      "desired": {
+        "description": "Evidence-bound portfolio compiler that turns the GlacierEQ repository estate into verified capabilities and evaluator-specific projections.",
+        "homepage": "https://casey-barton-glaciereq.vercel.app/",
+        "topics": ["evidence", "job-application", "portfolio", "repository-analysis", "systems-engineering"]
+      },
+      "license_action": "PRESERVE_CURRENT_LICENSE_STATE"
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "priority": "P1",
+      "current_findings": ["description drift", "homepage points to AKOS", "license metadata absent"],
+      "desired": {
+        "description": "Evidence-bound engineering portfolio compiled from verified GlacierEQ systems for recruiter, engineer, and machine review.",
+        "homepage": "https://casey-barton-glaciereq.vercel.app/",
+        "topics": ["evidence", "glaciereq", "job-application", "portfolio", "systems-engineering"]
+      },
+      "license_action": "NO_CHANGE_WITHOUT_REPOSITORY_LICENSE_DECISION"
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "priority": "P1",
+      "current_findings": ["description drift", "license metadata absent"],
+      "desired": {
+        "description": "Governed AI knowledge and orchestration system with identity, sessions, policy, connectors, and verifiable execution surfaces.",
+        "homepage": "PRESERVE_CURRENT",
+        "topics": "PRESERVE_CURRENT"
+      },
+      "license_action": "NO_CHANGE_WITHOUT_REPOSITORY_LICENSE_DECISION"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "priority": "P1",
+      "current_findings": ["description conflicts with consolidation front door", "homepage points to AKOS", "license metadata absent"],
+      "desired": {
+        "description": "Intelligence-orchestration laboratory under consolidation, with verified local entrypoints separated from broader platform ambition.",
+        "homepage": "https://casey-barton-glaciereq.vercel.app/",
+        "topics": "PRESERVE_CURRENT"
+      },
+      "license_action": "NO_CHANGE_WITHOUT_REPOSITORY_LICENSE_DECISION"
+    },
+    {
+      "repository": "GlacierEQ/openai-reasoning-kv-sentinel",
+      "priority": "P0_BEFORE_METADATA",
+      "current_findings": ["description missing", "homepage missing", "topics missing", "license metadata absent", "README claim boundary requires hardening"],
+      "desired_after_truth_hardening": {
+        "description": "Independent C++/Python KV-cache entropy pruning experiment with a reproducible local test harness and evidence-bounded claims.",
+        "homepage": "https://casey-barton-glaciereq.vercel.app/",
+        "topics": ["cpp", "inference-optimization", "kv-cache", "portfolio", "reasoning"]
+      },
+      "license_action": "NO_CHANGE_WITHOUT_REPOSITORY_LICENSE_DECISION",
+      "gate": "HARDEN_README_AND_VERIFY_NATIVE_BEHAVIOR_FIRST"
+    }
+  ]
+}
