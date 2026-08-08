@@ -17,6 +17,23 @@ COMPANY_INDEX = ROOT / "manifests" / "company_dossiers.json"
 TOPOLOGY_PROFILE = ROOT / "manifests" / "company_analysis_topology.json"
 EXPECTED_PROFILE_SCHEMA = "glaciereq.company-analysis-topology.v2"
 EXPECTED_INDEX_SCHEMA = "glaciereq.company-dossiers-index.v2"
+CANONICAL_ORCHESTRATOR_ID = "D0"
+CANONICAL_DOMAIN_LEAD_IDS = ("D1", "D2")
+CANONICAL_SPECIALIST_IDS = tuple(f"S{index}" for index in range(1, 9))
+CANONICAL_COORDINATOR_ID = "D11"
+REQUIRED_QUALITY_GATES = frozenset(
+    {
+        "canonical_track_parity",
+        "unique_track_assignment",
+        "complete_specialist_matrix",
+        "unique_task_identity",
+        "contradiction_preservation",
+        "observed_inferred_boundary",
+        "non_affiliation_boundary",
+        "zero_silent_omission",
+        "deterministic_plan_digest",
+    }
+)
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -51,6 +68,15 @@ def canonical_sha256(payload: Any) -> str:
         ensure_ascii=False,
     ).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
+
+
+def source_label(path: Path) -> str:
+    resolved_root = ROOT.resolve()
+    resolved_path = path.resolve()
+    try:
+        return resolved_path.relative_to(resolved_root).as_posix()
+    except ValueError:
+        return resolved_path.as_posix()
 
 
 def _required_string(payload: dict[str, Any], field: str, source: str) -> str:
@@ -109,6 +135,32 @@ def _validate_nodes(nodes: Any, source: str) -> list[dict[str, str]]:
     return normalized
 
 
+def _require_canonical_node_ids(
+    orchestrator_id: str,
+    domain_leads: list[dict[str, str]],
+    specialists: list[dict[str, str]],
+    coordinator_id: str,
+) -> None:
+    if orchestrator_id != CANONICAL_ORCHESTRATOR_ID:
+        raise CompanyAnalysisPlanError(
+            "topology orchestrator identity drift requires a schema version change"
+        )
+    domain_ids = tuple(node["id"] for node in domain_leads)
+    if domain_ids != CANONICAL_DOMAIN_LEAD_IDS:
+        raise CompanyAnalysisPlanError(
+            "topology domain-lead identity drift requires a schema version change"
+        )
+    specialist_ids = tuple(node["id"] for node in specialists)
+    if specialist_ids != CANONICAL_SPECIALIST_IDS:
+        raise CompanyAnalysisPlanError(
+            "topology specialist identity drift requires a schema version change"
+        )
+    if coordinator_id != CANONICAL_COORDINATOR_ID:
+        raise CompanyAnalysisPlanError(
+            "topology coordinator identity drift requires a schema version change"
+        )
+
+
 def validate_topology(profile: dict[str, Any]) -> dict[str, Any]:
     if profile.get("schema") != EXPECTED_PROFILE_SCHEMA:
         raise CompanyAnalysisPlanError("unexpected company analysis topology schema")
@@ -141,16 +193,16 @@ def validate_topology(profile: dict[str, Any]) -> dict[str, Any]:
     all_ids.extend(node["id"] for node in specialists)
     if len(all_ids) != len(set(all_ids)):
         raise CompanyAnalysisPlanError("topology node ids must be globally unique")
+    _require_canonical_node_ids(
+        orchestrator_id,
+        domain_leads,
+        specialists,
+        coordinator_id,
+    )
 
     gates = _unique_string_list(profile.get("quality_gates"), "quality_gates")
-    required_gates = {
-        "canonical_track_parity",
-        "complete_specialist_matrix",
-        "zero_silent_omission",
-        "deterministic_plan_digest",
-    }
-    if not required_gates <= set(gates):
-        missing = sorted(required_gates - set(gates))
+    if not REQUIRED_QUALITY_GATES <= set(gates):
+        missing = sorted(REQUIRED_QUALITY_GATES - set(gates))
         raise CompanyAnalysisPlanError(f"topology is missing required quality gates: {missing}")
 
     boundary = profile.get("truth_boundary")
@@ -282,12 +334,15 @@ def build_plan(
     *,
     index_sha256: str,
     topology_sha256: str,
+    company_index_source: str = "manifests/company_dossiers.json",
+    topology_source: str = "manifests/company_analysis_topology.json",
 ) -> dict[str, Any]:
     tracks = validate_company_index(company_index)
     topology = validate_topology(topology_profile)
     wave_size = topology["wave_size"]
     specialists = topology["specialists"]
     specialist_ids = [node["id"] for node in specialists]
+    coordinator_id = topology["coordinator_id"]
 
     waves: list[dict[str, Any]] = []
     for wave_index, start in enumerate(range(0, len(tracks), wave_size), 1):
@@ -310,9 +365,9 @@ def build_plan(
                 )
             integrations.append(
                 {
-                    "integration_id": f"W{wave_index:02d}:{company_id}:D11",
+                    "integration_id": f"W{wave_index:02d}:{company_id}:{coordinator_id}",
                     "company_id": company_id,
-                    "coordinator_id": topology["coordinator_id"],
+                    "coordinator_id": coordinator_id,
                     "status": "PLANNED",
                     "execution_claim": False,
                 }
@@ -330,9 +385,9 @@ def build_plan(
         "schema": "glaciereq.company-analysis-plan.v1",
         "authority": "GlacierEQ/job-app-helix",
         "source_identity": {
-            "company_index": "manifests/company_dossiers.json",
+            "company_index": company_index_source,
             "company_index_sha256": index_sha256,
-            "topology_profile": "manifests/company_analysis_topology.json",
+            "topology_profile": topology_source,
             "topology_profile_sha256": topology_sha256,
         },
         "execution_truth": {
@@ -346,7 +401,7 @@ def build_plan(
             "orchestrator_id": topology["orchestrator_id"],
             "domain_lead_ids": [node["id"] for node in topology["domain_leads"]],
             "specialist_ids": specialist_ids,
-            "integration_coordinator_id": topology["coordinator_id"],
+            "integration_coordinator_id": coordinator_id,
             "wave_size": wave_size,
         },
         "counts": {
@@ -388,6 +443,8 @@ def main() -> int:
             topology_profile,
             index_sha256=file_sha256(args.company_index),
             topology_sha256=file_sha256(args.topology),
+            company_index_source=source_label(args.company_index),
+            topology_source=source_label(args.topology),
         )
     except (CompanyAnalysisPlanError, OSError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
