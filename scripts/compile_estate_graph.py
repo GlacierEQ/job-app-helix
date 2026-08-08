@@ -22,7 +22,9 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def atomic_write(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, prefix=f".{path.name}.", delete=False) as stream:
+    with tempfile.NamedTemporaryFile(
+        mode="w", encoding="utf-8", dir=path.parent, prefix=f".{path.name}.", delete=False
+    ) as stream:
         temp = Path(stream.name)
         json.dump(value, stream, indent=2, sort_keys=True)
         stream.write("\n")
@@ -32,12 +34,35 @@ def atomic_write(path: Path, value: object) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Compile the authenticated GlacierEQ estate into systems, capabilities, and company projections.")
-    parser.add_argument("--census", type=Path, default=ROOT / "artifacts" / "owned-library-census.json")
-    parser.add_argument("--flagships", type=Path, default=ROOT / "manifests" / "flagship_registry.json")
-    parser.add_argument("--companies", type=Path, default=ROOT / "manifests" / "company_dossiers.json")
-    parser.add_argument("--lineage", type=Path)
-    parser.add_argument("--output-dir", type=Path, default=ROOT / "artifacts" / "estate-compiler")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Compile the authenticated GlacierEQ estate into systems, capabilities, "
+            "and company projections."
+        )
+    )
+    parser.add_argument(
+        "--census",
+        type=Path,
+        default=ROOT / "artifacts" / "owned-library-census.json",
+    )
+    parser.add_argument(
+        "--flagships",
+        type=Path,
+        default=ROOT / "manifests" / "flagship_registry.json",
+    )
+    parser.add_argument(
+        "--companies",
+        type=Path,
+        default=ROOT / "manifests" / "company_dossiers.json",
+    )
+    facts = parser.add_mutually_exclusive_group()
+    facts.add_argument("--estate-facts", type=Path)
+    facts.add_argument("--lineage", dest="estate_facts", type=Path)
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=ROOT / "artifacts" / "estate-compiler",
+    )
     parser.add_argument("--public-output", type=Path)
     return parser.parse_args()
 
@@ -51,8 +76,15 @@ def main() -> int:
     if not isinstance(shard_paths, list):
         raise ValueError("company_dossiers.dossier_files must be a list")
     shards = [load_json(ROOT / path) for path in shard_paths]
-    lineage = load_json(args.lineage) if args.lineage else None
-    bundle = compile_estate(census, flagships=flagships, company_index=index, company_shards=shards, lineage=lineage)
+    estate_facts = load_json(args.estate_facts) if args.estate_facts else None
+
+    bundle = compile_estate(
+        census,
+        flagships=flagships,
+        company_index=index,
+        company_shards=shards,
+        lineage=estate_facts,
+    )
     out = args.output_dir
     atomic_write(out / "canonical-system-registry.json", bundle["canonical_system_registry"])
     atomic_write(out / "capability-donor-registry.json", bundle["capability_donor_registry"])
