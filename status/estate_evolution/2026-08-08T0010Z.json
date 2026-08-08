@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-08-08T00:10:00Z",
+  "repository": "GlacierEQ/job-app-helix",
+  "canonical_head_before": "170a0e3523f6691c744755454c6f914aa055ffbf",
+  "branch": "main",
+  "merge_base": "170a0e3523f6691c744755454c6f914aa055ffbf",
+  "ahead": 0,
+  "behind": 0,
+  "unique_patch_commits": [],
+  "files_changed": ["status/estate_evolution/2026-08-08T0010Z.json"],
+  "decision": "CONTINUE_TOWER_INTEGRITY_RECONCILIATION",
+  "preservation": "Monolith PR #48 remains unmerged at 2 ahead/0 behind; generated legal-spine surfaces remain outside its ten-file delta. Job Application PR #31 is now merged after all five native workflow families passed on exact head 3c7826d6776dcf3c0440548a684aee439009a4f8. Tower PR #30 is fresh at 2 ahead/0 behind and preserves only the two proposal files from stale PR #24.",
+  "verification": "Tower PR #30: Nervous System and Spiral pass; Tower Verification, Quality Gate, and Advanced Exhibit Gate fail at immutable integrity because two new governed proposal files are absent from the 200-entry ledger. Native workflow generated artifact 9012525164 with a 202-entry candidate. No canonical promotion performed.",
+  "canonical_head_after": "PENDING_THIS_RECEIPT_COMMIT",
+  "remote_ref_disposition": "PR #30 retained; no deletion. Monolith PR #48 retained. Job Application PR #31 merged before this pass and verified from its exact merge head.",
+  "news_inputs": ["24h primary-vendor search: no new qualifying primary signal", "Reuters Meta Muse Code result is outside strict 24h and already represented", "Reuters AISI agent-security result is outside strict 24h and reinforces existing security controls"],
+  "innovation_inputs": [],
+  "blockers": ["Tower PR #30 requires committing exact native-generated 202-entry .integrity/file_hashes.json candidate and full rerun before promotion", "Monolith PR #48 hosted verification still fails before usable test steps execute"],
+  "next_cursor": "Tower PR #30 exact native integrity candidate artifact 9012525164 -> commit with current blob SHA guard -> full gate -> expected-head promotion only if green; then inspect Tower PR #25 unique anti-theater evidence-selection value."
+}
