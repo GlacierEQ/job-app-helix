@@ -15,14 +15,18 @@ from .library_program import (
     validate_latest_execution_receipt,
     validate_library_program,
 )
+from .repository_surface import RepositorySurfaceError, compile_surface_report
 
 DEFAULT_PROGRAM = Path("manifests/library_priority_spine.json")
+DEFAULT_SURFACE_OBSERVATIONS = Path(
+    "manifests/public_repository_surface_observations_2026-08-08.json"
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-library",
-        description="Validate, render, and execute GlacierEQ library stewardship policy.",
+        description="Validate, render, audit, and execute GlacierEQ library stewardship policy.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -42,6 +46,16 @@ def build_parser() -> argparse.ArgumentParser:
     branch_parser.add_argument("--remote", default="origin")
     branch_parser.add_argument("--fetch", action="store_true")
     branch_parser.add_argument("--receipt", type=Path)
+
+    surface_parser = subparsers.add_parser(
+        "surface-audit",
+        help="Compile fail-closed public repository-surface admission from a census manifest.",
+    )
+    surface_parser.add_argument(
+        "--observations", type=Path, default=DEFAULT_SURFACE_OBSERVATIONS
+    )
+    surface_parser.add_argument("--expected-public-count", type=int, default=75)
+    surface_parser.add_argument("--output", type=Path)
     return parser
 
 
@@ -74,11 +88,28 @@ def _branch_command(args: argparse.Namespace) -> int:
     return 0
 
 
+def _surface_command(args: argparse.Namespace) -> int:
+    payload = json.loads(args.observations.read_text(encoding="utf-8"))
+    report = compile_surface_report(
+        payload, expected_public_count=args.expected_public_count
+    )
+    rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(rendered, encoding="utf-8")
+        print(args.output)
+    else:
+        print(rendered, end="")
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.command == "branches":
             return _branch_command(args)
+        if args.command == "surface-audit":
+            return _surface_command(args)
 
         payload = validate_library_program(args.program)
         if args.command == "validate":
@@ -106,7 +137,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             else:
                 print(rendered, end="")
             return 0
-    except (OSError, json.JSONDecodeError, LibraryProgramError, BranchStewardError) as exc:
+    except (
+        OSError,
+        json.JSONDecodeError,
+        LibraryProgramError,
+        BranchStewardError,
+        RepositorySurfaceError,
+    ) as exc:
         print(f"library program error: {exc}", file=sys.stderr)
         return 2
     raise AssertionError(f"unhandled command: {args.command}")
