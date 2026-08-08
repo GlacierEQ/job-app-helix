@@ -206,9 +206,81 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Configure GitHub Pages
+      - name: Probe GitHub Pages readiness
+        id: pages-ready
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(
+            curl --silent --show-error \
+              --output /tmp/pages.json \
+              --write-out "%{http_code}" \
+              --header "Accept: application/vnd.github+json" \
+              --header "Authorization: Bearer ${GH_TOKEN}" \
+              --header "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages"
+          )"
+          case "${status}" in
+            200)
+              echo "available=true" >> "${GITHUB_OUTPUT}"
+              ;;
+            404)
+              echo "available=false" >> "${GITHUB_OUTPUT}"
+              echo "::warning::GitHub Pages is not enabled for this repository."
+              ;;
+            *)
+              cat /tmp/pages.json >&2 || true
+              echo "Unexpected GitHub Pages probe status: ${status}" >&2
+              exit 1
+              ;;
+          esac
+
+      - name: Detect Pages bootstrap authority
+        id: pages-bootstrap
+        env:
+          PAGES_TOKEN: ${{ secrets.GLACIEREQ_PAGES_TOKEN }}
+        shell: bash
+        run: |
+          if [ -n "${PAGES_TOKEN:-}" ]; then
+            echo "available=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "available=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Configure existing GitHub Pages
+        if: steps.pages-ready.outputs.available == 'true'
         uses: actions/configure-pages@v5
+
+      - name: Enable and configure GitHub Pages
+        if: >-
+          steps.pages-ready.outputs.available != 'true' &&
+          steps.pages-bootstrap.outputs.available == 'true'
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+          token: ${{ secrets.GLACIEREQ_PAGES_TOKEN }}
 
       - name: Deploy recruiter presentation
         id: deployment
+        if: >-
+          steps.pages-ready.outputs.available == 'true' ||
+          steps.pages-bootstrap.outputs.available == 'true'
         uses: actions/deploy-pages@v4
+
+      - name: Record Pages enablement gate
+        if: >-
+          steps.pages-ready.outputs.available != 'true' &&
+          steps.pages-bootstrap.outputs.available != 'true'
+        shell: bash
+        run: |
+          {
+            echo "### Recruiter deployment gate"
+            echo
+            echo "The recruiter artifact was built and privacy-verified, but GitHub Pages is disabled."
+            echo "No deployment was attempted."
+            echo
+            echo "To permit automatic bootstrap, configure GLACIEREQ_PAGES_TOKEN with"
+            echo "repository administration/write and Pages/write authority."
+          } >> "${GITHUB_STEP_SUMMARY}"
