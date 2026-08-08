@@ -131,6 +131,12 @@ def test_compiled_site_routes_public_estate_projection(
     )
     assert 'id="compiler"' in index
     assert 'href="#compiler"' in index
+    assert index.index('id="compiler"') < index.index('id="package"')
+    assert "Start with the company problem. Compile the proof." in index
+    assert 'id="compiler-chain-pressure"' in index
+    assert 'id="compiler-chain-capability"' in index
+    assert 'id="compiler-chain-systems"' in index
+    assert 'id="compiler-chain-proof"' in index
     assert "Observed · source-backed" in index
     assert "GlacierEQ inference" in index
     assert "connect-src 'self'" in index
@@ -163,11 +169,16 @@ def test_compiled_manifest_hashes_projection_assets(
         assert rows[relative]["sha256"] == expected
 
 
-def test_compiler_javascript_is_same_origin_and_safe_dom() -> None:
+def test_compiler_javascript_is_same_origin_safe_and_routable() -> None:
     script = (ROOT / "site" / "compiler.js").read_text(encoding="utf-8")
     assert "innerHTML" not in script
     assert 'fetch("estate-projection.json"' in script
     assert 'credentials: "same-origin"' in script
+    assert "renderCompanies" in script
+    assert "companySelect.appendChild(option)" in script
+    assert "URLSearchParams" in script
+    assert "window.history.replaceState" in script
+    assert 'document.createElement("meter")' in script
 
 
 def test_false_public_boundary_fails_closed(tmp_path: Path) -> None:

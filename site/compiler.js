@@ -3,29 +3,48 @@
   const roleSelect = document.getElementById("compiler-role");
   const depthSelect = document.getElementById("compiler-depth");
   const routeTitle = document.getElementById("compiler-route-title");
+  const routeSummary = document.getElementById("compiler-route-summary");
+  const routeLink = document.getElementById("compiler-route-link");
   const freshness = document.getElementById("compiler-freshness");
   const pressure = document.getElementById("compiler-pressure");
   const bottleneck = document.getElementById("compiler-bottleneck");
   const intervention = document.getElementById("compiler-intervention");
   const sources = document.getElementById("compiler-sources");
+  const capabilitiesRoot = document.getElementById("compiler-capabilities");
   const problemBoundary = document.getElementById("compiler-problem-boundary");
   const systemsRoot = document.getElementById("compiler-systems");
+  const chainPressure = document.getElementById("compiler-chain-pressure");
+  const chainCapability = document.getElementById("compiler-chain-capability");
+  const chainSystems = document.getElementById("compiler-chain-systems");
+  const chainProof = document.getElementById("compiler-chain-proof");
 
-  if (
-    !companySelect ||
-    !roleSelect ||
-    !depthSelect ||
-    !routeTitle ||
-    !freshness ||
-    !pressure ||
-    !bottleneck ||
-    !intervention ||
-    !sources ||
-    !problemBoundary ||
-    !systemsRoot
-  ) {
-    return;
-  }
+  const required = [
+    companySelect,
+    roleSelect,
+    depthSelect,
+    routeTitle,
+    routeSummary,
+    routeLink,
+    freshness,
+    pressure,
+    bottleneck,
+    intervention,
+    sources,
+    capabilitiesRoot,
+    problemBoundary,
+    systemsRoot,
+    chainPressure,
+    chainCapability,
+    chainSystems,
+    chainProof,
+  ];
+  if (required.some((node) => !node)) return;
+
+  const DEPTH_LABELS = {
+    recruiter: "Recruiter signal surface",
+    company_reviewer: "Company intervention surface",
+    senior_engineer: "Senior-engineer diligence surface",
+  };
 
   const clear = (node) => {
     while (node.firstChild) node.removeChild(node.firstChild);
@@ -80,11 +99,28 @@
     const roleIds =
       roleRow && Array.isArray(roleRow.systems)
         ? roleRow.systems
-            .map((row) => (row && typeof row.system_id === "string" ? row.system_id : null))
+            .map((row) =>
+              row && typeof row.system_id === "string" ? row.system_id : null,
+            )
             .filter(Boolean)
         : [];
     const routed = roleIds.filter((systemId) => allowed.has(systemId));
     return routed.length ? routed : Array.from(allowed);
+  };
+
+  const renderCompanies = (companies, preferredCompany) => {
+    clear(companySelect);
+    companies.forEach((company) => {
+      const option = document.createElement("option");
+      option.value = company.company_id;
+      option.textContent = company.display_name || titleCase(company.company_id);
+      companySelect.appendChild(option);
+    });
+    const ids = companies.map((company) => company.company_id);
+    companySelect.value = ids.includes(preferredCompany)
+      ? preferredCompany
+      : ids[0] || "";
+    return companySelect.value;
   };
 
   const renderRoles = (company, preferredRole) => {
@@ -130,8 +166,86 @@
       link.rel = "noopener noreferrer";
       link.textContent =
         typeof source.title === "string" ? source.title : "Official source";
+      if (typeof source.publisher === "string" && source.publisher) {
+        link.setAttribute("aria-label", `${link.textContent} · ${source.publisher}`);
+      }
       sources.appendChild(link);
     });
+  };
+
+  const renderCapabilities = (company, role, ids) => {
+    clear(capabilitiesRoot);
+    const payload = rolePayload(company, role);
+    const fits = fitMap(company, role);
+    const profile =
+      payload && Array.isArray(payload.profile_capabilities)
+        ? payload.profile_capabilities.filter((value) => typeof value === "string")
+        : [];
+    const matched = new Set();
+    ids.forEach((systemId) => {
+      const fit = fits.get(systemId);
+      if (!fit || !Array.isArray(fit.matched_capabilities)) return;
+      fit.matched_capabilities.forEach((capability) => {
+        if (typeof capability === "string") matched.add(capability);
+      });
+    });
+
+    const capabilities = profile.length
+      ? profile
+      : Array.from(matched).length
+        ? Array.from(matched)
+        : Array.isArray(company.capabilities)
+          ? company.capabilities.filter((value) => typeof value === "string")
+          : [];
+
+    if (!capabilities.length) {
+      appendText(
+        capabilitiesRoot,
+        "span",
+        "Capability route not yet promoted.",
+        "capability-chip capability-chip-muted",
+      );
+      chainCapability.textContent = "Capability mapping pending";
+      return;
+    }
+
+    capabilities.slice(0, 10).forEach((capability) => {
+      const chip = appendText(
+        capabilitiesRoot,
+        "span",
+        titleCase(capability),
+        matched.has(capability)
+          ? "capability-chip capability-chip-match"
+          : "capability-chip",
+      );
+      if (matched.has(capability)) chip.title = "Matched by promoted proof";
+    });
+
+    const strongest = Array.from(matched).slice(0, 2).map(titleCase);
+    chainCapability.textContent = strongest.length
+      ? strongest.join(" + ")
+      : `${capabilities.length} mapped capabilities`;
+  };
+
+  const appendScore = (parent, label, value, className) => {
+    const wrapper = appendText(parent, "div", "", "compiler-score");
+    const row = appendText(wrapper, "div", "", "compiler-score-row");
+    appendText(row, "span", label);
+    appendText(
+      row,
+      "strong",
+      typeof value === "number" ? `${Math.round(value)}` : "Pending",
+    );
+    const meter = document.createElement("meter");
+    meter.min = 0;
+    meter.max = 100;
+    meter.value = typeof value === "number" ? Math.max(0, Math.min(100, value)) : 0;
+    meter.className = className;
+    meter.setAttribute(
+      "aria-label",
+      `${label}: ${typeof value === "number" ? Math.round(value) : "pending"}`,
+    );
+    wrapper.appendChild(meter);
   };
 
   const renderSystems = (company, role, depth) => {
@@ -139,6 +253,7 @@
     const evidence = evidenceMap(company);
     const fits = fitMap(company, role);
     const ids = depthIds(company, role, depth);
+    const rendered = [];
 
     if (!ids.length) {
       const empty = appendText(
@@ -153,6 +268,9 @@
         "p",
         "The compiler fails closed rather than filling the gap with an unsupported claim.",
       );
+      chainSystems.textContent = "No public systems promoted";
+      chainProof.textContent = "Fail-closed boundary held";
+      renderCapabilities(company, role, []);
       return;
     }
 
@@ -160,55 +278,101 @@
       const row = evidence.get(systemId);
       if (!row) return;
       const fit = fits.get(systemId) || {};
+      rendered.push({ row, fit, systemId });
+
       const card = appendText(
         systemsRoot,
         "article",
         "",
         "compiler-system-card",
       );
-      const metrics = appendText(card, "div", "", "compiler-system-metrics");
+      const sourceName =
+        typeof row.source_repository === "string"
+          ? row.source_repository.split("/").pop()
+          : systemId;
       appendText(
-        metrics,
+        card,
         "span",
-        typeof fit.fit_score === "number"
-          ? `${Math.round(fit.fit_score)}% role fit`
-          : "Role fit pending",
+        row.promotion_state === "PROMOTED" ? "Canonical proof donor" : "Public evidence donor",
+        "compiler-card-kicker",
       );
-      appendText(
-        metrics,
-        "span",
-        typeof row.promotion_score === "number"
-          ? `${Math.round(row.promotion_score)}/100 proof score`
-          : "Evidence incomplete",
-      );
-      appendText(card, "h3", titleCase(systemId));
+      appendText(card, "h3", titleCase(sourceName || systemId));
 
+      const scoreGrid = appendText(card, "div", "", "compiler-score-grid");
+      appendScore(
+        scoreGrid,
+        "Role fit",
+        typeof fit.fit_score === "number" ? fit.fit_score : null,
+        "fit-meter",
+      );
+      appendScore(
+        scoreGrid,
+        "Proof",
+        typeof row.promotion_score === "number" ? row.promotion_score : null,
+        "proof-meter",
+      );
+
+      const matched =
+        Array.isArray(fit.matched_capabilities) && fit.matched_capabilities.length
+          ? fit.matched_capabilities
+          : Array.isArray(row.capabilities)
+            ? row.capabilities
+            : [];
       const chips = appendText(card, "div", "", "capability-chips");
-      (Array.isArray(row.capabilities) ? row.capabilities : [])
-        .slice(0, 7)
-        .forEach((capability) => {
-          appendText(chips, "span", titleCase(capability), "capability-chip");
-        });
+      matched.slice(0, 6).forEach((capability) => {
+        if (typeof capability !== "string") return;
+        appendText(chips, "span", titleCase(capability), "capability-chip");
+      });
 
       if (
         typeof row.source_repository === "string" &&
         row.source_repository.startsWith("GlacierEQ/")
       ) {
         const link = document.createElement("a");
-        link.className = "text-link";
+        link.className = "text-link compiler-source-link";
         link.href = `https://github.com/${row.source_repository}`;
         link.rel = "noopener noreferrer";
         link.textContent = "Inspect canonical source →";
         card.appendChild(link);
       }
     });
+
+    chainSystems.textContent = `${rendered.length} system${rendered.length === 1 ? "" : "s"} on this proof surface`;
+    const proofScores = rendered
+      .map(({ row }) => row.promotion_score)
+      .filter((value) => typeof value === "number");
+    chainProof.textContent = proofScores.length
+      ? `Top proof ${Math.round(Math.max(...proofScores))}/100`
+      : "Verification score pending";
+    renderCapabilities(
+      company,
+      role,
+      rendered.map(({ systemId }) => systemId),
+    );
   };
 
-  const render = (payload, company, preferredRole) => {
-    const role = renderRoles(company, preferredRole || roleSelect.value);
+  const updateRouteUrl = (company, role, depth) => {
+    const params = new URLSearchParams();
+    if (company && company.company_id) params.set("company", company.company_id);
+    if (role) params.set("role", role);
+    if (depth) params.set("depth", depth);
+    const query = params.toString();
+    const route = `${window.location.pathname}${query ? `?${query}` : ""}#compiler`;
+    routeLink.href = route;
+    if (window.history && typeof window.history.replaceState === "function") {
+      window.history.replaceState(null, "", route);
+    }
+  };
+
+  const renderRoute = (company, role) => {
+    const depth = depthSelect.value;
     routeTitle.textContent = `${company.display_name || company.company_id} · ${
-      role || "Role pending"
+      role || "Role route pending"
     }`;
+    routeSummary.textContent =
+      company.recruiter_thesis ||
+      company.operating_problem ||
+      `${DEPTH_LABELS[depth] || "Evidence surface"} compiled from promoted public proof.`;
 
     const state = company.freshness_state
       ? titleCase(company.freshness_state)
@@ -226,12 +390,24 @@
       company.application_move ||
       company.recruiter_thesis ||
       "No transferable intervention is promoted for this route.";
-    problemBoundary.textContent = `Dossier gate: ${
+    problemBoundary.textContent = `${DEPTH_LABELS[depth] || "Evidence surface"} · dossier gate: ${
       company.dossier_next_gate || "not loaded"
     }`;
+    chainPressure.textContent = company.display_name
+      ? `${company.display_name} operating signal`
+      : "Source-backed operating signal";
 
     renderSources(company);
-    renderSystems(company, role, depthSelect.value);
+    renderSystems(company, role, depth);
+    updateRouteUrl(company, role, depth);
+    document.title = `${company.display_name || company.company_id} · ${
+      role || "Applied AI"
+    } — Casey Barton`;
+  };
+
+  const renderCompany = (company, preferredRole) => {
+    const role = renderRoles(company, preferredRole);
+    renderRoute(company, role);
   };
 
   fetch("estate-projection.json", { credentials: "same-origin" })
@@ -248,42 +424,41 @@
         throw new Error("invalid public estate projection");
       }
 
-      const companies = new Map(
-        payload.company_projections
-          .filter((row) => row && typeof row.company_id === "string")
-          .map((row) => [row.company_id, row]),
+      const companies = payload.company_projections.filter(
+        (row) => row && typeof row.company_id === "string",
       );
-      const currentCompany = () => companies.get(companySelect.value);
+      if (!companies.length) throw new Error("empty public company projection");
+      const companyMap = new Map(companies.map((row) => [row.company_id, row]));
+      const params = new URLSearchParams(window.location.search);
+      const requestedCompany = params.get("company") || "";
+      const requestedRole = params.get("role") || "";
+      const requestedDepth = params.get("depth") || "";
+      if (Object.hasOwn(DEPTH_LABELS, requestedDepth)) {
+        depthSelect.value = requestedDepth;
+      }
+
+      const initialCompanyId = renderCompanies(companies, requestedCompany);
+      const currentCompany = () => companyMap.get(companySelect.value);
+      const initial = companyMap.get(initialCompanyId) || companies[0];
+      renderCompany(initial, requestedRole);
 
       companySelect.addEventListener("change", () => {
         const company = currentCompany();
-        if (company) render(payload, company, null);
+        if (company) renderCompany(company, "");
       });
       roleSelect.addEventListener("change", () => {
         const company = currentCompany();
-        if (!company) return;
-        routeTitle.textContent = `${company.display_name || company.company_id} · ${
-          roleSelect.value || "Role pending"
-        }`;
-        renderSystems(company, roleSelect.value, depthSelect.value);
+        if (company) renderRoute(company, roleSelect.value);
       });
       depthSelect.addEventListener("change", () => {
         const company = currentCompany();
-        if (company) {
-          renderSystems(company, roleSelect.value, depthSelect.value);
-        }
+        if (company) renderRoute(company, roleSelect.value);
       });
-
-      const initial =
-        currentCompany() || payload.company_projections.find((row) => row);
-      if (initial) {
-        if (typeof initial.company_id === "string") {
-          companySelect.value = initial.company_id;
-        }
-        render(payload, initial, roleSelect.value);
-      }
     })
     .catch(() => {
-      // Preserve the server-rendered fallback if projection fetch/validation fails.
+      freshness.textContent = "Static recruiter surface · compiler data unavailable";
+      routeTitle.textContent = "Evidence compiler unavailable";
+      routeSummary.textContent =
+        "The static recruiter package remains available. No unsupported company route was synthesized.";
     });
 })();
