@@ -1,0 +1,78 @@
+name: Live Experience Graph
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-experience-graph
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OWNER_CENSUS_TOKEN: ${{ secrets.OWNER_CENSUS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install package and quality tools
+        run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
+
+      - name: Require exact owner-census authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${OWNER_CENSUS_TOKEN:-}" ]; then
+            echo "OWNER_CENSUS_TOKEN is required for the complete private owner estate."
+            exit 1
+          fi
+
+      - name: Verify discovery and public-boundary contracts
+        run: >-
+          pytest -q tests/test_experience_graph_discovery.py
+          tests/test_public_experience_graph.py
+
+      - name: Census the live owner estate
+        run: >-
+          python scripts/census_owned_library.py
+          --owner GlacierEQ
+          --token "$OWNER_CENSUS_TOKEN"
+          --output /tmp/owned-library-census.json
+
+      - name: Compile the internal experience graph
+        run: >-
+          python scripts/discover_experience_graph.py
+          --census /tmp/owned-library-census.json
+          --output /tmp/live-experience-graph.json
+
+      - name: Export only the public-safe projection
+        run: >-
+          python scripts/export_public_experience_graph.py
+          --input /tmp/live-experience-graph.json
+          --output artifacts/discovery/public-experience-graph.json
+
+      - name: Verify no internal inventory was staged
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e artifacts/owned-library-census.json
+          test ! -e artifacts/discovery/live-experience-graph.json
+          test -s artifacts/discovery/public-experience-graph.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-live-experience-graph
+          path: artifacts/discovery/public-experience-graph.json
+          if-no-files-found: error
+          retention-days: 7

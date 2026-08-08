@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.dev/schemas/live-experience-graph.schema.json",
+  "title": "GlacierEQ Live Experience Graph",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "snapshot_id",
+    "source_digests",
+    "truth_boundary",
+    "counts",
+    "companies",
+    "flagships",
+    "paradigms",
+    "family_candidates",
+    "graph"
+  ],
+  "properties": {
+    "schema": {
+      "const": "glaciereq.live-experience-graph.v1"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_digests": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "required": ["census", "companies", "flagships", "policy"]
+    },
+    "truth_boundary": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "companies": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "flagships": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "paradigms": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "family_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "graph": {
+      "type": "object",
+      "required": ["internal", "public"],
+      "properties": {
+        "internal": {
+          "$ref": "#/$defs/graph"
+        },
+        "public": {
+          "$ref": "#/$defs/graph"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "graph": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "kind"]
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["source", "target", "relationship"]
+          }
+        }
+      }
+    }
+  }
+}
