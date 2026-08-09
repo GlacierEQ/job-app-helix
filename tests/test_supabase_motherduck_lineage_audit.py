@@ -65,7 +65,7 @@ def test_motherduck_backup_stays_private_read_only_reference() -> None:
 def test_company_dossier_matches_supabase_and_motherduck_lineage() -> None:
     supabase = _company("supabase")
     supabase_repos = {row[0]: row for row in supabase["repositories"]}
-    assert supabase["track_state"] == "DIRECT_ESTATE_DISCOVERED_MIXED_PROVENANCE"
+    assert supabase["track_state"] == "SEMANTIC_CAPABILITY_DONORS_ADMITTED"
     assert supabase_repos["GlacierEQ/supabase"][2] == "EXCLUDED_AUTHORSHIP"
     assert supabase_repos["GlacierEQ/supabase-mcp"][2] == "EXCLUDED_AUTHORSHIP"
     assert supabase_repos["GlacierEQ/supabase-grafana"][2] == "EXCLUDED_AUTHORSHIP"
@@ -73,6 +73,7 @@ def test_company_dossier_matches_supabase_and_motherduck_lineage() -> None:
 
     motherduck = _company("motherduck")
     motherduck_repos = {row[0]: row for row in motherduck["repositories"]}
-    assert motherduck["track_state"] == "DIRECT_ESTATE_DISCOVERED_PRIVATE_BACKUP_REFERENCE"
+    expected_state = "SEMANTIC_CAPABILITY_DONORS_ADMITTED_WITH_DEPLOYMENT_BOUNDARY"
+    assert motherduck["track_state"] == expected_state
     assert motherduck_repos["GlacierEQ/Z-BACKUP-apex-motherduck-engine"][2] == "PRIVATE_REFERENCE"
     assert motherduck_repos["GlacierEQ/Z-BACKUP-apex-motherduck-engine"][5] == "ORIGINAL_CANDIDATE"
