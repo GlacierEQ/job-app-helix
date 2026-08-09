@@ -7,6 +7,7 @@
     "admission_requires_current_exact_head_success_receipts": true,
     "ancestor_proof_does_not_automatically_admit_a_newer_head": true,
     "source_continuity_may_explain_drift_but_does_not_replace_current_head_proof": true,
+    "content_digest_proof_does_not_replace_commit_head_binding": true,
     "privacy_and_quarantine_blockers_remain_fail_closed": true
   },
   "items": [
@@ -97,6 +98,29 @@
         "proof_scope": "The prior Supabase connector source remains unchanged, but current-head admission is withheld because the present canonical head has no observed repository-native workflow receipt."
       },
       "next_gate": "Produce a successful repository-native proof receipt on exact current main; do not inherit ADMIT from the older donor proof head."
+    },
+    {
+      "repository": "GlacierEQ/aws-trainium-neuron-sentinel",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "REPAIR_REQUIRED",
+      "repair_priority": "P1",
+      "excellence_state": "PROMOTED_CONTENT_PROOF_COMMIT_BINDING_PENDING",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "f5331709efa52e5930208ee14c10911fadf9740b",
+        "helix_wave_b_receipt": "excellence/receipts/wave_b_closed.json",
+        "helix_wave_b_state": "PROMOTED",
+        "helix_wave_b_result": "PASS",
+        "native_proof_receipt": "machine/proof_receipt.json",
+        "native_proof_result": "PASS",
+        "native_promotion_authority": "machine/promotion_authority.json",
+        "native_promotion_authority_verified": true,
+        "proof_receipt_source_digest": "39f99cc0f9a88071ddd9615ff789128d771f450a2da65ad8f72624987fbdcd6a",
+        "proof_receipt_digest": "69f73df998fc04a21b171341e6c6b4016139142abba3bdb98d44e78588bf009e",
+        "current_head_workflow_run_count": 0,
+        "proof_scope": "Wave B reproduces operability, adversarial tests, and promotion authority, but the shipped receipt binds a content/source digest rather than the current 40-hex Git commit identity."
+      },
+      "next_gate": "Emit or run a repository-native proof receipt explicitly bound to exact current Git head f5331709efa52e5930208ee14c10911fadf9740b before public ADMIT."
     }
   ]
 }
