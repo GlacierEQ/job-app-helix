@@ -3,15 +3,15 @@
   "identity": {
     "repository": "GlacierEQ/apex-github-worker",
     "repository_id": "1260799790",
-    "canonical_head": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
+    "canonical_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "default_branch": "main",
     "lineage_action": "EXTEND_CANONICAL"
   },
-  "state": "OPERABLE",
+  "state": "PROOF_REPRODUCED",
   "canonical_role": "SPECIALIST_COMPONENT",
   "scores": {
     "target_architecture": 9.5,
-    "current_proof": "B",
+    "current_proof": "A",
     "company_fit": 9.6,
     "canonical_confidence": 0.99
   },
@@ -30,19 +30,25 @@
     "evolution_cursor_defined": true
   },
   "proof_receipt": {
-    "identity": "GlacierEQ/apex-github-worker/proof/merge-authority-provider-operability-2026-08-09.json",
-    "source_sha": "ee447b11cce29556050c73ea99ddc37ae7cc3542",
-    "canonical_merge_sha": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
-    "evidence_level": "REAL_PROVIDER_RUNTIME",
+    "identity": "GlacierEQ/apex-github-worker/proof/merge-authority-canonical-reproduction-2026-08-09.json",
+    "source_sha": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
+    "canonical_merge_sha": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "evidence_level": "CANONICAL_SOURCE_REAL_PROVIDER_REPRODUCTION",
     "deterministic_and_adversarial_tests": {"passed": 26, "failed": 0},
     "gateway_host_tests": {"passed": 38, "failed": 0},
+    "production_dependency_high_severity_findings": 0,
     "provider": {
       "repository": "GlacierEQ/public-actions-runner-host",
-      "target_branch": "operability/merge-authority-v3",
-      "merge_sha": "2a3ca4d73808248c935e8598873f7a4f5cc3de7c",
-      "canonical_readback_sha": "2a3ca4d73808248c935e8598873f7a4f5cc3de7c",
+      "target_branch": "operability/merge-authority-v4",
+      "receipt_branch": "receipts/merge-authority-v4",
+      "merge_sha": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
+      "canonical_readback_sha": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
+      "patch_sha256": "27c40028f1471dbc9d60eab4fbfd628151d3ffb93c19f57796c0d19cd385310a",
+      "canonical_receipt_blob_sha": "175d6e236eb460d2913b711f5d72c13c8c5ef4cd",
+      "replay_receipt_blob_sha": "166f4f86a095392fc38a7a6e657e9e2b172f3cc5",
       "replay_result": "DUPLICATE_ALREADY_COMPLETED",
       "replay_merge_attempted": false,
+      "provider_commit_signature_verified": true,
       "target_main_mutated": false,
       "token_revoked": true
     }
@@ -65,34 +71,36 @@
   ],
   "company_evidence": {
     "company": "GitHub",
-    "claim_ceiling": "IMPLEMENTED",
+    "stage": "PROOF_REPRODUCED",
+    "claim_ceiling": "reproducible_company_specific_proof",
     "official_sources": [
       "https://github.blog/changelog/2026-06-09-security-validation-for-third-party-coding-agents/",
       "https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/",
       "https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/"
     ],
-    "bounded_problem": "As coding agents act directly in repositories, agent-generated changes require security validation, policy-constrained workflow execution, human approval at sensitive boundaries, and trustworthy promotion into canonical repository state."
+    "bounded_problem": "As coding agents act directly in repositories, agent-generated changes require security validation, policy-constrained workflow execution, human approval at sensitive boundaries, and trustworthy promotion into canonical repository state.",
+    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence."
   },
   "blockers": [
     {
-      "id": "canonical_source_provider_reproduction_not_yet_promoted_in_helix",
-      "stage": "PROOF_REPRODUCED",
-      "meaning": "The OPERABLE provider path is real and receipt-backed; Helix advances to PROOF_REPRODUCED only after the canonical Apex source reproduction receipt is merged into Apex main and bound here."
+      "id": "outward_projection_not_yet_synchronized",
+      "stage": "PROMOTED",
+      "meaning": "The canonical-source proof is reproduced, but recruiter/company/public machine surfaces must carry the same bounded truth before claim promotion."
     },
     {
       "id": "github_actions_budget",
       "stage": "HOSTED_CI",
-      "meaning": "GitHub-hosted private-repository jobs remain blocked before execution by account Actions budget; this does not negate independently reproduced provider evidence."
+      "meaning": "GitHub-hosted private-repository jobs remain blocked before execution by account Actions budget; independently reproduced canonical-source provider proof is current evidence."
     }
   ],
   "evolution": {
-    "next_gate": "PROOF_REPRODUCED",
-    "cursor": "Bind the fresh provider reproduction executed against canonical Apex main, verify canonical receipt/replay/provider commit independently, then advance exactly one state before outward claim promotion."
+    "next_gate": "PROMOTED",
+    "cursor": "Compile the reproduced Merge Authority capability into the outward GitHub company and portfolio surfaces, preserve independent-work/non-adoption boundaries, validate all projection contracts, then promote exactly one state."
   },
   "nonclaims": [
-    "The real-provider proof mutated disposable proof branches only; the target repository main branch was not changed.",
+    "The reproduced real-provider proof mutated disposable proof branches only; the target repository main branch was not changed.",
     "No production deployment, production-scale reliability, latency, throughput, or durability is claimed.",
     "No GitHub affiliation, endorsement, employment, or adoption is implied.",
-    "The OPERABLE state applies to the Merge Authority Graph capability, not the repository's older Notion/Neon/memory surfaces."
+    "The PROOF_REPRODUCED state applies to the Merge Authority Graph capability, not the repository's older Notion/Neon/memory surfaces."
   ]
 }
