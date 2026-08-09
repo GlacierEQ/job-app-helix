@@ -145,6 +145,10 @@ def _is_safe_repo_path(value: object) -> bool:
     return all(segment not in {"", ".", ".."} for segment in normalized.split("/"))
 
 
+def _is_verified_state(value: object) -> bool:
+    return isinstance(value, str) and "VERIFIED" in value.split("_")
+
+
 def _public_capability_proofs(
     bundle: Mapping[str, Any],
     projection: Mapping[str, Any],
@@ -206,7 +210,7 @@ def _public_capability_proofs(
             if admission_state not in PUBLIC_ADMISSION_STATES:
                 raise ValueError(f"{capability_id}: semantic donor is not publicly admitted")
             proof_state = proof.get("proof_state")
-            if not isinstance(proof_state, str) or "VERIFIED" not in proof_state:
+            if not _is_verified_state(proof_state):
                 raise ValueError(f"{capability_id}: semantic donor proof state is not verified")
 
             evidence_refs = proof.get("evidence_refs", [])
