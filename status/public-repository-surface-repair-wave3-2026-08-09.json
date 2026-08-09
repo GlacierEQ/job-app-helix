@@ -1,0 +1,92 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-wave.v3",
+  "generated_at": "2026-08-09T13:00:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "base_head": "6721873d1a9f241065a5ea7ba21c1e32d53c34dd",
+  "prior_checkpoint_head": "ed16c38cf39bdc34fb1430739b869baf15a4d970",
+  "concurrent_delta_preserved": {
+    "ahead_by": 1,
+    "changed_files": ["excellence/receipts/wave_b_closed.json"]
+  },
+  "predecessor_receipt": "status/public-repository-surface-repair-wave2-2026-08-09.json",
+  "predecessor_reconciliation": "manifests/public_repository_surface_reconciliation_2026-08-09.json",
+  "reconciliation": "manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json",
+  "historical_decision_subset": {
+    "before": {
+      "ADMIT": 4,
+      "REPAIR_REQUIRED": 50,
+      "QUARANTINED": 3,
+      "REFERENCE": 1
+    },
+    "after_this_wave": {
+      "ADMIT": 6,
+      "REPAIR_REQUIRED": 48,
+      "QUARANTINED": 3,
+      "REFERENCE": 1
+    },
+    "unassessed": 0
+  },
+  "closed_repairs": [
+    {
+      "repository": "GlacierEQ/ECHO",
+      "canonical_head": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
+      "decision": "ADMIT",
+      "repair": "Removed direct family-court repository projection from the public mesh and locked the sanitized transferable-capability admission boundary with regression tests.",
+      "proof": [
+        {
+          "workflow_run": 31340641961,
+          "name": "ECHO CI",
+          "conclusion": "success"
+        },
+        {
+          "workflow_run": 31340641959,
+          "name": "AI Autonomous Deploy",
+          "conclusion": "success"
+        }
+      ],
+      "boundary": "Case-specific, legal, credential-bearing, personal, or sensitive repositories are not projected through ECHO's public mesh."
+    },
+    {
+      "repository": "GlacierEQ/apple-ane-kv-quantizer",
+      "canonical_head": "32f69cfa064cbb833b663bc43ace04507f8570c5",
+      "decision": "ADMIT",
+      "repair": "Replaced broken file paths and unsupported ANE/performance claims with a deterministic KV storage/transfer model, fail-closed inputs, correct file map, explicit nonclaims, and the repository's first native Public Truth Gate.",
+      "proof": [
+        {
+          "workflow_run": 31340687801,
+          "name": "Public Truth Gate",
+          "conclusion": "success",
+          "python_versions": ["3.11", "3.13"]
+        }
+      ],
+      "evidence_token": "MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT",
+      "boundary": "Admission covers deterministic modeled quantization only; it does not establish ANE execution, hardware latency/bandwidth, model accuracy, production integration, affiliation, or proprietary access."
+    }
+  ],
+  "still_observed_for_future_repair": [
+    {
+      "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
+      "canonical_head": "101baed3f8411d0d049fe601eaf3175b0841adce",
+      "current_head_workflow_run_count": 0
+    },
+    {
+      "repository": "GlacierEQ/deepseek-mla-moe-sentinel",
+      "canonical_head": "4d7df95e1976078c265e8cff42d9654bd4094b7b",
+      "current_head_workflow_run_count": 0
+    },
+    {
+      "repository": "GlacierEQ/kimi-mooncake-kv-stream",
+      "canonical_head": "fed1d31d4a85c51dfe70fee22e0e66bd5f082a89",
+      "current_head_workflow_run_count": 0
+    }
+  ],
+  "invariants": [
+    "Historical observations remain unchanged.",
+    "The original 58-decision snapshot remains reproducible.",
+    "Wave 2 reconciliation remains intact as a predecessor checkpoint.",
+    "Current surface-audit applies reconciliation layers in order.",
+    "Every new ADMIT is bound to an exact current Git head and successful current-head proof receipt.",
+    "Privacy and hardware/runtime nonclaims remain fail closed.",
+    "The concurrent Wave B receipt update is preserved on the exact branch base."
+  ]
+}

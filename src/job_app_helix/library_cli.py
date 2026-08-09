@@ -29,8 +29,9 @@ DEFAULT_SURFACE_OBSERVATIONS = Path(
 DEFAULT_SURFACE_DECISIONS = Path(
     "manifests/public_repository_surface_decisions_2026-08-08.json"
 )
-DEFAULT_SURFACE_RECONCILIATION = Path(
-    "manifests/public_repository_surface_reconciliation_2026-08-09.json"
+DEFAULT_SURFACE_RECONCILIATIONS = (
+    Path("manifests/public_repository_surface_reconciliation_2026-08-09.json"),
+    Path("manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json"),
 )
 
 
@@ -62,7 +63,7 @@ def build_parser() -> argparse.ArgumentParser:
         "surface-audit",
         help=(
             "Compile fail-closed public repository-surface admission from historical "
-            "observations, governed decisions, and current reconciliation."
+            "observations, governed decisions, and ordered current reconciliation."
         ),
     )
     surface_parser.add_argument(
@@ -72,7 +73,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--decisions", type=Path, default=DEFAULT_SURFACE_DECISIONS
     )
     surface_parser.add_argument(
-        "--reconciliation", type=Path, default=DEFAULT_SURFACE_RECONCILIATION
+        "--reconciliation",
+        action="append",
+        type=Path,
+        help=(
+            "Ordered reconciliation layer; repeat to override the default ordered layers."
+        ),
     )
     history_group = surface_parser.add_mutually_exclusive_group()
     history_group.add_argument(
@@ -133,10 +139,16 @@ def _surface_command(args: argparse.Namespace) -> int:
             expected_public_count=args.expected_public_count,
         )
         if not args.decision_only:
-            reconciliation = json.loads(
-                args.reconciliation.read_text(encoding="utf-8")
+            reconciliation_paths = (
+                tuple(args.reconciliation)
+                if args.reconciliation
+                else DEFAULT_SURFACE_RECONCILIATIONS
             )
-            report = apply_surface_reconciliation(report, reconciliation)
+            for reconciliation_path in reconciliation_paths:
+                reconciliation = json.loads(
+                    reconciliation_path.read_text(encoding="utf-8")
+                )
+                report = apply_surface_reconciliation(report, reconciliation)
     rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

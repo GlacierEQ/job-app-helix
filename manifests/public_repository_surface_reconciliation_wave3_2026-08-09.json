@@ -1,0 +1,64 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-09T13:00:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_2026-08-09.json",
+  "truth_boundary": {
+    "predecessor_reconciliation_is_not_rewritten": true,
+    "admission_requires_current_exact_head_success_receipts": true,
+    "privacy_boundary_must_be_part_of_native_proof": true,
+    "hardware_or_deployment_claims_do_not_inherit_from_repository_name": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/ECHO",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "PUBLIC_BOUNDARY_VERIFIED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
+        "surface_repair": "Removed direct family-court repository projection from the public mesh and required separately admitted sanitized transferable capabilities.",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31340641961,
+            "name": "ECHO CI",
+            "head_sha": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31340641959,
+            "name": "AI Autonomous Deploy",
+            "head_sha": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Current canonical head passes compile, correctness lint, dependency audit, behavioral tests, CLI verification, public-boundary regression, and the repository deployment-evidence workflow. Private/legal repository identity is not projected through the public mesh."
+      },
+      "next_gate": "Keep ECHO admission exact-head bound; any future public-mesh, privacy, or canonical-head drift reopens repair."
+    },
+    {
+      "repository": "GlacierEQ/apple-ane-kv-quantizer",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "MODELED_CAPABILITY_VERIFIED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "32f69cfa064cbb833b663bc43ace04507f8570c5",
+        "evidence_token": "MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31340687801,
+            "name": "Public Truth Gate",
+            "head_sha": "32f69cfa064cbb833b663bc43ace04507f8570c5",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Python 3.11 and 3.13 compile and deterministic tests verify 4-bit/8-bit KV storage modeling, modeled transfer arithmetic, invalid-input handling, correct public paths, non-affiliation, and hardware nonclaims. Go/Swift files remain reference examples and do not inherit ANE hardware proof."
+      },
+      "next_gate": "Keep admission scoped to deterministic modeled quantization; hardware execution, latency, accuracy, integration, or Apple-affiliation claims require separate higher-level evidence."
+    }
+  ]
+}
