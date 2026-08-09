@@ -17,7 +17,43 @@ def _load(path: Path) -> dict:
 
 
 def _company(dossier: dict, company_id: str) -> dict:
-    return next(row for row in dossier["companies"] if row["company_id"] == company_id)
+    matches = [row for row in dossier["companies"] if row["company_id"] == company_id]
+    assert len(matches) == 1, f"expected one company {company_id!r}, found {len(matches)}"
+    return matches[0]
+
+
+def _capability(donors: dict, capability_id: str) -> dict:
+    matches = [
+        row for row in donors["capabilities"] if row["capability_id"] == capability_id
+    ]
+    assert len(matches) == 1, (
+        f"expected one capability {capability_id!r}, found {len(matches)}"
+    )
+    return matches[0]
+
+
+def _assert_projection_is_canonical(
+    donors: dict,
+    dossier_company: dict,
+    company_id: str,
+) -> None:
+    projection = donors["company_projection"][company_id]
+    canonical = {
+        row["capability_id"]: row
+        for row in donors["capabilities"]
+        if row["company_id"] == company_id
+    }
+    assert canonical
+
+    dossier_ids = {row[1] for row in dossier_company["capability_donors"]}
+    dossier_repos = {row[0] for row in dossier_company["capability_donors"]}
+    projected_ids = set(projection["capability_ids"])
+    projected_repos = set(projection["donor_repositories"])
+    canonical_repos = {row["donor_repository"] for row in canonical.values()}
+
+    assert projected_ids == dossier_ids == set(canonical)
+    assert projected_repos == dossier_repos == canonical_repos
+    assert projected_repos <= set(donors["donor_systems"])
 
 
 def test_private_and_legal_lineage_sources_never_become_donor_systems() -> None:
@@ -50,6 +86,9 @@ def test_every_admitted_capability_is_public_evidence_bound_and_exact_headed() -
         assert donor["fork"] is False
         assert re.fullmatch(r"[0-9a-f]{40}", donor["head_sha"])
         assert donor["proof_state"]
+        inventory = donor["evidence_inventory"]
+        assert isinstance(inventory, list) and inventory
+        assert all(isinstance(ref, str) and ref.strip() for ref in inventory)
 
     for capability in donors["capabilities"]:
         capability_id = capability["capability_id"]
@@ -58,7 +97,11 @@ def test_every_admitted_capability_is_public_evidence_bound_and_exact_headed() -
         assert capability["donor_repository"] in donor_systems
         donor = donor_systems[capability["donor_repository"]]
         assert capability["head_sha"] == donor["head_sha"]
-        assert capability["evidence_refs"]
+
+        evidence_refs = capability["evidence_refs"]
+        assert isinstance(evidence_refs, list) and evidence_refs
+        assert all(isinstance(ref, str) and ref.strip() for ref in evidence_refs)
+        assert set(evidence_refs) <= set(donor["evidence_inventory"])
         assert capability["mechanism"]
         assert capability["recruiter_safe_claim"]
 
@@ -74,11 +117,7 @@ def test_supabase_company_projection_uses_only_public_semantic_donors() -> None:
     assert supabase["track_state"] == "SEMANTIC_CAPABILITY_DONORS_ADMITTED"
     assert projection["state"] == supabase["track_state"]
     assert projection["affiliation_claim"] is False
-
-    dossier_ids = {row[1] for row in supabase["capability_donors"]}
-    assert dossier_ids == set(projection["capability_ids"])
-    dossier_repos = {row[0] for row in supabase["capability_donors"]}
-    assert dossier_repos == set(projection["donor_repositories"])
+    _assert_projection_is_canonical(donors, supabase, "supabase")
 
     private_refs = {
         row[0] for row in supabase["repositories"] if row[2] == "PRIVATE_REFERENCE"
@@ -97,11 +136,7 @@ def test_motherduck_projection_preserves_no_deployment_boundary() -> None:
     assert projection["state"] == expected_state
     assert projection["affiliation_claim"] is False
     assert projection["deployment_claim"] is False
-
-    dossier_ids = {row[1] for row in motherduck["capability_donors"]}
-    assert dossier_ids == set(projection["capability_ids"])
-    dossier_repos = {row[0] for row in motherduck["capability_donors"]}
-    assert dossier_repos == set(projection["donor_repositories"])
+    _assert_projection_is_canonical(donors, motherduck, "motherduck")
 
     private_refs = {
         row[0]
@@ -113,16 +148,14 @@ def test_motherduck_projection_preserves_no_deployment_boundary() -> None:
     xai_donor = donors["donor_systems"]["GlacierEQ/xai-colossus-cooling"]
     expected_proof = "SOURCE_AND_CORE_CI_VERIFIED_DEPLOYMENT_NOT_CLAIMED"
     assert xai_donor["proof_state"] == expected_proof
-    assert xai_donor["proof"]["deployment_workflow"].endswith(":failure")
+    assert xai_donor["proof"]["deployment_workflow"] == (
+        ".github/workflows/deploy.yml:failure"
+    )
 
 
 def test_motherduck_gateway_claim_excludes_case_specific_helpers() -> None:
     donors = _load(DONORS)
-    capability = next(
-        row
-        for row in donors["capabilities"]
-        if row["capability_id"] == "motherduck-query-health-facade"
-    )
+    capability = _capability(donors, "motherduck-query-health-facade")
     assert capability["donor_repository"] == "GlacierEQ/colossus-gateway"
     assert set(capability["excluded_scope"]) == {
         "createCaseTable",
