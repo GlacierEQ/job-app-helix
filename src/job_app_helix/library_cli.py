@@ -101,7 +101,7 @@ def _branch_command(args: argparse.Namespace) -> int:
             check=False,
         )
         if completed.returncode != 0:
-            raise BranchSteardError(
+            raise BranchStewardError(
                 f"git fetch failed ({completed.returncode}): {completed.stderr.strip()}"
             )
 
