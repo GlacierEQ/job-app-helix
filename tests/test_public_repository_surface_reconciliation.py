@@ -43,7 +43,7 @@ def test_reconciliation_closes_two_stale_repairs_without_rewriting_predecessor()
 
     assert report["base_report_id"] == predecessor["base_report_id"]
     assert report["governed_overlay"] == predecessor["governed_overlay"]
-    assert report["reconciliation_overlay"]["item_count"] == 3
+    assert report["reconciliation_overlay"]["item_count"] == 4
     assert report["summary"]["admission"]["ADMIT"] == (
         predecessor["summary"]["admission"]["ADMIT"] + 2
     )
@@ -89,6 +89,25 @@ def test_apex_control_plane_does_not_inherit_ancestor_admission() -> None:
     )
     assert apex["decision_evidence"]["current_head_workflow_run_count"] == 0
     assert "exact current main" in apex["decision_next_gate"]
+
+
+def test_aws_wave_b_proof_does_not_bypass_exact_git_head_binding() -> None:
+    report = apply_surface_reconciliation(governed_report(), load(RECONCILIATION))
+    aws = by_repository(report)["GlacierEQ/aws-trainium-neuron-sentinel"]
+
+    assert aws["admission"] == "REPAIR_REQUIRED"
+    assert aws["repair_priority"] == "P1"
+    assert aws["decision_excellence_state"] == (
+        "PROMOTED_CONTENT_PROOF_COMMIT_BINDING_PENDING"
+    )
+    assert aws["decision_evidence"]["canonical_head"] == (
+        "f5331709efa52e5930208ee14c10911fadf9740b"
+    )
+    assert aws["decision_evidence"]["helix_wave_b_state"] == "PROMOTED"
+    assert aws["decision_evidence"]["native_proof_result"] == "PASS"
+    assert aws["decision_evidence"]["native_promotion_authority_verified"] is True
+    assert aws["decision_evidence"]["current_head_workflow_run_count"] == 0
+    assert "exact current Git head" in aws["decision_next_gate"]
 
 
 def test_admit_reconciliation_rejects_non_hex_or_mismatched_receipts() -> None:
