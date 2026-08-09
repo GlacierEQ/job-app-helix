@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from collections import Counter
 from copy import deepcopy
 from pathlib import Path
 
@@ -60,15 +61,32 @@ def report_through(path: Path | None = None) -> dict:
     return report
 
 
+def governed_subset_counts(report: dict) -> Counter:
+    governed_repositories = {item["repository"] for item in load(DECISIONS)["items"]}
+    return Counter(
+        item["admission"]
+        for item in report["repositories"]
+        if item["repository"] in governed_repositories
+    )
+
+
 def test_wave4_reduces_repair_debt_by_three_without_rewriting_prior_layers() -> None:
     before = report_through()
     after = report_through(WAVE4)
-    before_counts = before["summary"]["admission"]
-    after_counts = after["summary"]["admission"]
-    assert after_counts["ADMIT"] == before_counts["ADMIT"] + 3
-    assert after_counts["REPAIR_REQUIRED"] == before_counts["REPAIR_REQUIRED"] - 3
-    assert after_counts["ADMIT"] == 9
-    assert after_counts["REPAIR_REQUIRED"] == 45
+
+    before_global = before["summary"]["admission"]
+    after_global = after["summary"]["admission"]
+    assert after_global["ADMIT"] == before_global["ADMIT"] + 3
+    assert after_global["REPAIR_REQUIRED"] == before_global["REPAIR_REQUIRED"] - 3
+
+    before_subset = governed_subset_counts(before)
+    after_subset = governed_subset_counts(after)
+    assert before_subset == Counter(
+        {"ADMIT": 6, "REPAIR_REQUIRED": 48, "QUARANTINED": 3, "REFERENCE": 1}
+    )
+    assert after_subset == Counter(
+        {"ADMIT": 9, "REPAIR_REQUIRED": 45, "QUARANTINED": 3, "REFERENCE": 1}
+    )
     assert after["governed_overlay"] == before["governed_overlay"]
 
 
