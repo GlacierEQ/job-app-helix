@@ -2,7 +2,12 @@
   "schema": "glaciereq.public-repository-surface-repair-wave.v3",
   "generated_at": "2026-08-09T13:00:00-10:00",
   "control_plane": "GlacierEQ/job-app-helix",
-  "base_head": "ed16c38cf39bdc34fb1430739b869baf15a4d970",
+  "base_head": "6721873d1a9f241065a5ea7ba21c1e32d53c34dd",
+  "prior_checkpoint_head": "ed16c38cf39bdc34fb1430739b869baf15a4d970",
+  "concurrent_delta_preserved": {
+    "ahead_by": 1,
+    "changed_files": ["excellence/receipts/wave_b_closed.json"]
+  },
   "predecessor_receipt": "status/public-repository-surface-repair-wave2-2026-08-09.json",
   "predecessor_reconciliation": "manifests/public_repository_surface_reconciliation_2026-08-09.json",
   "reconciliation": "manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json",
@@ -81,6 +86,7 @@
     "Wave 2 reconciliation remains intact as a predecessor checkpoint.",
     "Current surface-audit applies reconciliation layers in order.",
     "Every new ADMIT is bound to an exact current Git head and successful current-head proof receipt.",
-    "Privacy and hardware/runtime nonclaims remain fail closed."
+    "Privacy and hardware/runtime nonclaims remain fail closed.",
+    "The concurrent Wave B receipt update is preserved on the exact branch base."
   ]
 }
