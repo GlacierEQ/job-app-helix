@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Any, Mapping
+from typing import Any
 
 PRINCIPAL_STATES = (
     "DISCOVERED",
@@ -93,7 +94,12 @@ def validate_score_vector(raw: Mapping[str, Any]) -> ScoreVector:
     if not isinstance(confidence, (int, float)) or not 0 <= float(confidence) <= 1:
         raise ExcellenceContractError("canonical_confidence must be 0..1")
 
-    return ScoreVector(float(target), str(proof), None if company is None else float(company), float(confidence))
+    return ScoreVector(
+        float(target),
+        str(proof),
+        None if company is None else float(company),
+        float(confidence),
+    )
 
 
 def allowed_transition(current: str, target: str) -> bool:
@@ -117,7 +123,14 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
     identity = payload.get("identity")
     if not isinstance(identity, Mapping):
         raise ExcellenceContractError("identity must be an object")
-    for field in ("repository", "repository_id", "canonical_head", "default_branch", "lineage_action"):
+    identity_fields = (
+        "repository",
+        "repository_id",
+        "canonical_head",
+        "default_branch",
+        "lineage_action",
+    )
+    for field in identity_fields:
         _require_text(identity.get(field), f"identity.{field}")
 
     state = _require_text(payload.get("state"), "state")
