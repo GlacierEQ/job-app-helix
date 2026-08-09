@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from job_app_helix.repo_excellence import (
     REQUIRED_EXCELLENT_GATES,
     ExcellenceContractError,
@@ -90,3 +93,16 @@ def test_unknown_gate_is_rejected():
         assert "unknown excellence gates" in str(exc)
     else:
         raise AssertionError("unknown prose gate should be rejected")
+
+
+def test_apex_merge_authority_record_is_machine_valid_and_bounded():
+    root = Path(__file__).resolve().parents[1]
+    record_path = root / "manifests" / "repo_excellence" / "apex-github-worker.json"
+    record = json.loads(record_path.read_text(encoding="utf-8"))
+    validated = validate_repo_excellence_record(record)
+
+    assert validated["state"] == "ADVERSARIAL_VERIFIED"
+    assert validated["scores"]["current_proof"] == "B"
+    assert validated["gates"]["runtime_behavior_observed"] is False
+    assert validated["evolution"]["next_gate"] == "OPERABLE"
+    assert validated["company_evidence"]["claim_ceiling"] == "IMPLEMENTED"
