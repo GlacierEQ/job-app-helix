@@ -64,12 +64,18 @@ def test_historical_unknowns_are_resolved_without_visibility_overclaim() -> None
     boundary = receipt["privacy_and_visibility_boundary"]
     assert boundary["compiler_quarantine_changes_repository_visibility"] is False
     assert boundary["repository_visibility_mutation_performed"] is False
-    assert boundary["public_legal_or_private_content_projected_as_recruiter_capability"] is False
+    assert (
+        boundary["public_legal_or_private_content_projected_as_recruiter_capability"]
+        is False
+    )
 
 
-def test_priority_spine_points_to_current_pro_code_authority_without_rewriting_july_receipt() -> None:
+def test_priority_spine_points_to_current_pro_code_authority_without_rewriting_july_receipt(
+) -> None:
     spine = load(SPINE)
-    assert spine["latest_execution_receipt"] == "status/priority-spine-wave-2-2026-07-31.json"
+    assert spine["latest_execution_receipt"] == (
+        "status/priority-spine-wave-2-2026-07-31.json"
+    )
     pro_code = next(
         item for item in spine["repositories"] if item["repository"] == "GlacierEQ/pro-code"
     )
