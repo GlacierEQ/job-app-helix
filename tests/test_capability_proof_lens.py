@@ -197,3 +197,18 @@ def test_public_capability_proof_packet_fails_closed_on_receipt_head_drift() -> 
 
     with pytest.raises(ValueError, match="receipt head does not match donor head"):
         public_intelligence_projection(bundle)
+
+
+@pytest.mark.parametrize(
+    "unsafe_path",
+    ["../secret.txt", "/etc/passwd", "src//connector.py", "src/./connector.py"],
+)
+def test_public_capability_proof_packet_rejects_unsafe_evidence_paths(
+    unsafe_path: str,
+) -> None:
+    bundle = _bundle()
+    proof = bundle["capability_donor_registry"]["capabilities"][0]["proof_refs"][0]
+    proof["evidence_refs"] = [unsafe_path]
+
+    with pytest.raises(ValueError, match="evidence refs are unsafe"):
+        public_intelligence_projection(bundle)
