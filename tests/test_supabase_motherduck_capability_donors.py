@@ -87,7 +87,7 @@ def test_every_admitted_capability_is_public_evidence_bound_and_exact_headed() -
         assert donor["visibility"] == "public"
         assert donor["fork"] is False
         assert re.fullmatch(r"[0-9a-f]{40}", donor["head_sha"])
-        assert "VERIFIED" in donor["proof_state"]
+        assert "VERIFIED" in donor["proof_state"].split("_")
 
         inventory = donor["evidence_inventory"]
         assert isinstance(inventory, list) and inventory
@@ -196,3 +196,34 @@ def test_motherduck_gateway_claim_excludes_case_specific_helpers_and_false_fallb
     excluded = " ".join(health["excluded_claims"]).casefold()
     assert "no fallback claim" in excluded
     assert "no live service availability" in excluded
+
+
+def test_recruiter_copy_stays_capability_led_not_lineage_led() -> None:
+    dossier = _load(DOSSIER)
+    supabase = _company(dossier, "supabase")
+    motherduck = _company(dossier, "motherduck")
+
+    supabase_copy = " ".join(
+        [supabase["recruiter_thesis"], supabase["gap_or_next_gate"]]
+    ).casefold()
+    motherduck_copy = " ".join(
+        [motherduck["recruiter_thesis"], motherduck["gap_or_next_gate"]]
+    ).casefold()
+
+    for forbidden in ("aspen grove", "private", "legal/evidence", "direct-name"):
+        assert forbidden not in supabase_copy
+    for forbidden in (
+        "z-backup",
+        "xai-colossus-cooling",
+        "private",
+        "blocked",
+        "legal/evidence",
+    ):
+        assert forbidden not in motherduck_copy
+
+    assert "least-privilege" in supabase_copy
+    assert "idempotent" in supabase_copy
+    assert "connector health" in supabase_copy
+    assert "query facade" in motherduck_copy
+    assert "health telemetry" in motherduck_copy
+    assert "no production deployment" in motherduck_copy
