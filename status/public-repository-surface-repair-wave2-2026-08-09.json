@@ -1,0 +1,82 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-wave.v2",
+  "generated_at": "2026-08-09T12:30:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "base_head": "21d90206aa7fced5077b44569a654f578ec1419a",
+  "predecessor_decisions": "manifests/public_repository_surface_decisions_2026-08-08.json",
+  "reconciliation": "manifests/public_repository_surface_reconciliation_2026-08-09.json",
+  "historical_decision_subset": {
+    "before": {
+      "ADMIT": 2,
+      "REPAIR_REQUIRED": 52,
+      "QUARANTINED": 3,
+      "REFERENCE": 1
+    },
+    "after_this_wave": {
+      "ADMIT": 4,
+      "REPAIR_REQUIRED": 50,
+      "QUARANTINED": 3,
+      "REFERENCE": 1
+    },
+    "unassessed": 0
+  },
+  "closed_repairs": [
+    {
+      "repository": "GlacierEQ/sigma-glue",
+      "canonical_head": "4a1ca8e5c88a62e8a94a43213b2c509af6afcea3",
+      "decision": "ADMIT",
+      "proof": [
+        {
+          "workflow_run": 31279895312,
+          "name": "github-provider-live-proof",
+          "conclusion": "success"
+        },
+        {
+          "workflow_run": 31279895318,
+          "name": "verify",
+          "conclusion": "success"
+        }
+      ],
+      "boundary": "No provider-transactional exactly-once guarantee is inferred."
+    },
+    {
+      "repository": "GlacierEQ/colossus-gateway",
+      "canonical_head": "3b41af0465c55a7128e8d22130d0dd7e52b02a8b",
+      "decision": "ADMIT",
+      "predecessor_capability_proof_head": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+      "source_continuity": "The only intervening files are LICENSE and LICENSE_NOTICE.md; admitted capability source paths are unchanged.",
+      "proof": [
+        {
+          "workflow_run": 31299171638,
+          "name": "TypeScript Gateway CI",
+          "conclusion": "success"
+        },
+        {
+          "workflow_run": 31299171649,
+          "name": "Gauntlet Memory CI",
+          "conclusion": "success"
+        }
+      ],
+      "boundary": "No live Supabase or MotherDuck service deployment is inferred."
+    }
+  ],
+  "still_blocked": [
+    {
+      "repository": "GlacierEQ/apex-control-plane",
+      "canonical_head": "641b55787ea13c6c0b742eb045406803893fbfc5",
+      "decision": "REPAIR_REQUIRED",
+      "repair_priority": "P1",
+      "predecessor_capability_proof_head": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
+      "intervening_change_scope": "audit and action-queue artifacts only",
+      "current_head_workflow_run_count": 0,
+      "next_gate": "Successful repository-native proof on exact current main."
+    }
+  ],
+  "invariants": [
+    "Historical observations remain unchanged.",
+    "The original 58-decision snapshot remains reproducible.",
+    "Current reconciliation is additive and exact-head bound.",
+    "Ancestor proof never automatically admits a newer canonical head.",
+    "Quarantine, privacy, stale-authority, and hard health blockers remain fail closed."
+  ]
+}
