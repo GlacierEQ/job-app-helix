@@ -1,0 +1,69 @@
+{
+  "schema": "glaciereq.repo-excellence.state-machine.v1",
+  "authority": "GlacierEQ/job-app-helix",
+  "principal_states": [
+    "DISCOVERED",
+    "IDENTITY_RESOLVED",
+    "PROBLEM_VERIFIED",
+    "TARGET_CONTRACTED",
+    "SEEDED",
+    "VERTICAL_SLICE",
+    "IMPLEMENTED",
+    "TESTED",
+    "ADVERSARIAL_VERIFIED",
+    "OPERABLE",
+    "PROOF_REPRODUCED",
+    "PROMOTED",
+    "CANONICAL",
+    "EVOLVING"
+  ],
+  "side_exits": [
+    "BLOCKED",
+    "EXPERIMENT",
+    "REFERENCE",
+    "SUPERSEDED",
+    "RETIREMENT_READY",
+    "QUARANTINE"
+  ],
+  "transition_rule": "Principal-state promotion is one step at a time. Side exits are always allowed. Re-entry from a side exit restarts at DISCOVERED unless a future version defines an evidence-preserving re-entry rule.",
+  "excellent_gate_conjunction": [
+    "problem_verified",
+    "unique_value_known",
+    "canonical_identity_known",
+    "central_mechanism_implemented",
+    "deterministic_tests_pass",
+    "adversarial_tests_pass",
+    "runtime_behavior_observed",
+    "security_authority_bounded",
+    "proof_receipt_bound_to_sha",
+    "reusable_capabilities_extracted",
+    "projections_truth_consistent",
+    "evolution_cursor_defined"
+  ],
+  "score_axes": {
+    "target_architecture": {"range": [0, 10], "meaning": "quality of intended architecture independent of implementation maturity"},
+    "current_proof": {"values": ["A", "B", "C", "D", "Q"], "meaning": "strength of exact-source executable evidence"},
+    "company_fit": {"range": [0, 10], "nullable": true, "meaning": "relevance to a bounded current company bottleneck"},
+    "canonical_confidence": {"range": [0, 1], "meaning": "confidence this repository is the correct estate authority for the capability"}
+  },
+  "canonical_roles": [
+    "CANONICAL_SYSTEM",
+    "SPECIALIST_COMPONENT",
+    "EXPERIMENT",
+    "DONOR",
+    "REFERENCE",
+    "SUPERSEDED",
+    "BACKUP",
+    "RETIREMENT_READY"
+  ],
+  "company_claim_ceiling": [
+    "MAPPED_ONLY",
+    "PROBLEM_VERIFIED",
+    "REPO_INSPECTED",
+    "REMEDY_DEFINED",
+    "IMPLEMENTED",
+    "PROOF_REPRODUCED",
+    "CLAIM_PROMOTED"
+  ],
+  "governing_rule": "A repository never advances because prose sounds finished. It advances only when the next gate's required evidence changes state."
+}
