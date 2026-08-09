@@ -20,6 +20,7 @@ PUBLIC_FIELDS = (
     "intelligence_state",
     "dossier_next_gate",
 )
+PUBLIC_ADMISSION_STATES = {"PROMOTED", "REFERENCE_ONLY"}
 
 
 def public_intelligence_projection(
@@ -62,6 +63,11 @@ def public_intelligence_projection(
             projection,
             source,
         )
+        projection["capability_proofs"] = _public_capability_proofs(
+            bundle,
+            projection,
+            safe_ids,
+        )
 
     public["schema"] = "glaciereq.estate-public-projection.v2"
     public["boundary"] = {
@@ -73,6 +79,7 @@ def public_intelligence_projection(
         "native_estate_cardinality_intentionally_not_published": True,
         "observed_pressure_and_inferred_bottleneck_are_distinct": True,
         "role_projection_is_capability_fit_not_employer_endorsement": True,
+        "semantic_capability_proof_is_exact_head_and_public_only": True,
     }
     return public
 
@@ -121,3 +128,122 @@ def _public_ranked_evidence(
             }
         )
     return result
+
+
+def _is_sha(value: object) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 40
+        and all(character in "0123456789abcdef" for character in value)
+    )
+
+
+def _public_capability_proofs(
+    bundle: Mapping[str, Any],
+    projection: Mapping[str, Any],
+    safe_ids: set[str],
+) -> list[dict[str, Any]]:
+    company_id = str(projection["company_id"])
+    allowed_capabilities = {
+        value
+        for value in projection.get("capabilities", [])
+        if isinstance(value, str)
+    }
+    registry = bundle.get("capability_donor_registry", {})
+    rows = registry.get("capabilities", []) if isinstance(registry, Mapping) else []
+    if not isinstance(rows, list):
+        raise ValueError("capability donor registry must expose a capability list")
+
+    packets: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for capability in rows:
+        if not isinstance(capability, Mapping):
+            continue
+        capability_id = capability.get("capability_id")
+        if not isinstance(capability_id, str) or capability_id not in allowed_capabilities:
+            continue
+        proof_refs = capability.get("proof_refs", [])
+        if not isinstance(proof_refs, list):
+            raise ValueError(f"{capability_id}: proof_refs must be a list")
+        for proof in proof_refs:
+            if not isinstance(proof, Mapping):
+                continue
+            if proof.get("source") != "semantic_capability_map":
+                continue
+            if proof.get("company_id") != company_id:
+                continue
+            system_id = proof.get("system_id")
+            if not isinstance(system_id, str) or system_id not in safe_ids:
+                continue
+            repository = proof.get("repository")
+            if not isinstance(repository, str) or not repository.startswith("GlacierEQ/"):
+                raise ValueError(f"{capability_id}: public semantic donor repository is unsafe")
+            head_sha = proof.get("head_sha")
+            if not _is_sha(head_sha):
+                raise ValueError(f"{capability_id}: public semantic donor head is invalid")
+            admission_state = proof.get("admission_state")
+            if admission_state not in PUBLIC_ADMISSION_STATES:
+                raise ValueError(f"{capability_id}: semantic donor is not publicly admitted")
+            proof_state = proof.get("proof_state")
+            if not isinstance(proof_state, str) or not proof_state:
+                raise ValueError(f"{capability_id}: semantic donor proof state is missing")
+
+            evidence_refs = proof.get("evidence_refs", [])
+            if not isinstance(evidence_refs, list) or not evidence_refs:
+                raise ValueError(f"{capability_id}: semantic donor evidence is missing")
+            if not all(isinstance(ref, str) and ref for ref in evidence_refs):
+                raise ValueError(f"{capability_id}: semantic donor evidence refs are invalid")
+
+            receipts = proof.get("proof_receipts", [])
+            if not isinstance(receipts, list) or not receipts:
+                raise ValueError(f"{capability_id}: semantic donor receipts are missing")
+            public_receipts: list[dict[str, Any]] = []
+            for receipt in receipts:
+                if not isinstance(receipt, Mapping):
+                    raise ValueError(f"{capability_id}: semantic donor receipt is invalid")
+                if receipt.get("kind") != "check_run":
+                    raise ValueError(f"{capability_id}: unsupported public receipt kind")
+                receipt_id = receipt.get("id")
+                receipt_name = receipt.get("name")
+                if not isinstance(receipt_id, int) or receipt_id <= 0:
+                    raise ValueError(f"{capability_id}: receipt id is invalid")
+                if not isinstance(receipt_name, str) or not receipt_name:
+                    raise ValueError(f"{capability_id}: receipt name is invalid")
+                if receipt.get("head_sha") != head_sha:
+                    raise ValueError(f"{capability_id}: receipt head does not match donor head")
+                if receipt.get("conclusion") != "success":
+                    raise ValueError(f"{capability_id}: only successful receipts are public")
+                public_receipts.append(
+                    {
+                        "kind": "check_run",
+                        "id": receipt_id,
+                        "name": receipt_name,
+                        "head_sha": head_sha,
+                        "conclusion": "success",
+                    }
+                )
+
+            key = (capability_id, system_id)
+            if key in seen:
+                continue
+            seen.add(key)
+            packets.append(
+                {
+                    "capability_id": capability_id,
+                    "system_id": system_id,
+                    "source_repository": repository,
+                    "head_sha": head_sha,
+                    "proof_state": proof_state,
+                    "admission_state": admission_state,
+                    "evidence_refs": list(evidence_refs),
+                    "proof_receipts": public_receipts,
+                }
+            )
+
+    return sorted(
+        packets,
+        key=lambda row: (
+            str(row["capability_id"]),
+            str(row["source_repository"]),
+        ),
+    )
