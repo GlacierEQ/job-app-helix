@@ -106,6 +106,20 @@ def _is_safe_repo_path(value: object) -> bool:
 
 
 def _validate_capability_proofs(company: dict[str, Any], path: str) -> None:
+    ranked_evidence = company.get("ranked_evidence", [])
+    if not isinstance(ranked_evidence, list):
+        raise ProjectionError(f"{path}.ranked_evidence must be a list")
+    public_evidence_pairs = {
+        (row.get("system_id"), row.get("source_repository"))
+        for row in ranked_evidence
+        if isinstance(row, dict)
+        and row.get("visibility") == "public"
+        and row.get("visibility_decision") == "PUBLIC_ELIGIBLE"
+        and row.get("promotion_state") in PUBLIC_ADMISSION_STATES
+        and isinstance(row.get("system_id"), str)
+        and isinstance(row.get("source_repository"), str)
+    }
+
     proofs = company.get("capability_proofs", [])
     if not isinstance(proofs, list):
         raise ProjectionError(f"{path}.capability_proofs must be a list")
@@ -126,10 +140,12 @@ def _validate_capability_proofs(company: dict[str, Any], path: str) -> None:
             raise ProjectionError(f"{proof_path}.system_id is required")
         if not isinstance(repository, str) or not repository.startswith("GlacierEQ/"):
             raise ProjectionError(f"{proof_path}.source_repository is not public-safe")
+        if (system_id, repository) not in public_evidence_pairs:
+            raise ProjectionError(f"{proof_path} does not match public ranked_evidence")
         if not isinstance(head_sha, str) or re.fullmatch(r"[0-9a-f]{40}", head_sha) is None:
             raise ProjectionError(f"{proof_path}.head_sha must be exact")
-        if not isinstance(proof_state, str) or not proof_state:
-            raise ProjectionError(f"{proof_path}.proof_state is required")
+        if not isinstance(proof_state, str) or "VERIFIED" not in proof_state:
+            raise ProjectionError(f"{proof_path}.proof_state is not verified")
         if admission_state not in PUBLIC_ADMISSION_STATES:
             raise ProjectionError(f"{proof_path}.admission_state is not public")
         key = (capability_id, system_id)
