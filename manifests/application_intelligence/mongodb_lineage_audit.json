@@ -1,0 +1,45 @@
+{
+  "schema": "glaciereq.company-lineage-audit.v1",
+  "company_id": "mongodb",
+  "company": "MongoDB",
+  "audited_at": "2026-08-08T15:04:54-10:00",
+  "source_head": "15734b45b5fb009a47651d14582ef4865f144a1b",
+  "verdict": "DIRECT_NAME_REPOSITORIES_ARE_UPSTREAM_FORKS",
+  "recruiter_ready_direct_repositories": 0,
+  "repositories": [
+    {
+      "repository": "GlacierEQ/mongodb-mcp-server",
+      "repository_id": 1071198842,
+      "fork": true,
+      "upstream": "mongodb-js/mongodb-mcp-server",
+      "classification": "EXCLUDED_AUTHORSHIP",
+      "provenance_state": "UPSTREAM",
+      "reason": "GitHub repository metadata identifies the repository as a fork whose parent/source is mongodb-js/mongodb-mcp-server."
+    },
+    {
+      "repository": "GlacierEQ/mongodb-kubernetes",
+      "repository_id": 1103204745,
+      "fork": true,
+      "upstream": "mongodb/mongodb-kubernetes",
+      "classification": "EXCLUDED_AUTHORSHIP",
+      "provenance_state": "UPSTREAM",
+      "reason": "GitHub repository metadata identifies the repository as a fork whose parent/source is mongodb/mongodb-kubernetes."
+    },
+    {
+      "repository": "GlacierEQ/mongodb-memory-server",
+      "repository_id": 1035597353,
+      "fork": true,
+      "upstream": "typegoose/mongodb-memory-server",
+      "classification": "EXCLUDED_AUTHORSHIP",
+      "provenance_state": "UPSTREAM",
+      "reason": "GitHub repository metadata identifies the repository as a fork whose parent/source is typegoose/mongodb-memory-server."
+    }
+  ],
+  "truth_boundary": {
+    "name_match_is_not_authorship": true,
+    "fork_presence_is_reference_evidence_only": true,
+    "unique_glaciereq_delta_not_yet_proven": true,
+    "semantic_company_fit_requires_separate_canonical_system_mapping": true
+  },
+  "next_cursor": "Search the canonical GlacierEQ estate for original MongoDB-relevant capabilities such as governed MCP access, memory/state persistence, database-grounded agents, connector security, and observability; admit only implementations with verified provenance and current proof."
+}
