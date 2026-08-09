@@ -113,10 +113,13 @@
       "default_branch": "main",
       "role": "executable-polyglot-engineering-and-public-proof-strand",
       "action": "HARDEN_AND_VERIFY",
-      "readme_state": "MASTERCLASS_TRUTH_BOUNDARY_MERGED",
-      "proof_state": "TYPESCRIPT_PYTHON_RUST_HASKELL_NATIVE_CI_VERIFIED",
-      "branch_state": "NATIVE_PROOF_MERGED_SUPERSEDED_REFS_DELETE_REQUIRED",
+      "readme_state": "LOCAL_OPERABLE_TRUTH_BOUNDARY_MERGED",
+      "proof_state": "LOCAL_NEXUS_AUTOMATION_NATIVE_CI_HELIX_AND_NERVOUS_SYSTEM_VERIFIED",
+      "branch_state": "AUTHORITY_SYNC_MERGED_SUPERSEDED_REFS_DELETE_REQUIRED",
       "identity_state": "CONFIRMED",
+      "authority_state": "CURRENT",
+      "authority_head": "c9aa2faa0dcede7d6b7e7e6891b7930ee87040ab",
+      "authority_receipt": "status/public-repository-governance-wave-2026-08-08.json",
       "aliases": ["pro-code"]
     },
     {
