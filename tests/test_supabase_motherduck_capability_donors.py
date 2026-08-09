@@ -54,6 +54,7 @@ def _assert_projection_is_canonical(
     assert projected_ids == dossier_ids == set(canonical)
     assert projected_repos == dossier_repos == canonical_repos
     assert projected_repos <= set(donors["donor_systems"])
+    assert all(row[3] == "REFERENCE_ONLY" for row in dossier_company["capability_donors"])
 
 
 def test_private_and_legal_lineage_sources_never_become_donor_systems() -> None:
@@ -65,6 +66,7 @@ def test_private_and_legal_lineage_sources_never_become_donor_systems() -> None:
     assert truth["private_or_legal_lineage_sources_are_read_only_inputs"] is True
     assert truth["private_or_legal_lineage_sources_are_never_capability_donors"] is True
     assert truth["no_private_code_or_data_is_copied"] is True
+    assert truth["blocked_repository_cannot_be_recruiter_capability_donor"] is True
 
     private_reference_repos = {
         repo[0]
@@ -85,10 +87,26 @@ def test_every_admitted_capability_is_public_evidence_bound_and_exact_headed() -
         assert donor["visibility"] == "public"
         assert donor["fork"] is False
         assert re.fullmatch(r"[0-9a-f]{40}", donor["head_sha"])
-        assert donor["proof_state"]
+        assert "VERIFIED" in donor["proof_state"]
+
         inventory = donor["evidence_inventory"]
         assert isinstance(inventory, list) and inventory
-        assert all(isinstance(ref, str) and ref.strip() for ref in inventory)
+        inventory_paths = set()
+        for evidence in inventory:
+            assert isinstance(evidence, dict)
+            assert isinstance(evidence.get("path"), str) and evidence["path"].strip()
+            assert re.fullmatch(r"[0-9a-f]{40}", evidence["blob_sha"])
+            inventory_paths.add(evidence["path"])
+        assert len(inventory_paths) == len(inventory)
+
+        receipts = donor["proof_receipts"]
+        assert isinstance(receipts, list) and receipts
+        for receipt in receipts:
+            assert receipt["kind"] == "check_run"
+            assert isinstance(receipt["id"], int) and receipt["id"] > 0
+            assert receipt["head_sha"] == donor["head_sha"]
+            assert receipt["conclusion"] == "success"
+            assert isinstance(receipt["name"], str) and receipt["name"].strip()
 
     for capability in donors["capabilities"]:
         capability_id = capability["capability_id"]
@@ -101,7 +119,8 @@ def test_every_admitted_capability_is_public_evidence_bound_and_exact_headed() -
         evidence_refs = capability["evidence_refs"]
         assert isinstance(evidence_refs, list) and evidence_refs
         assert all(isinstance(ref, str) and ref.strip() for ref in evidence_refs)
-        assert set(evidence_refs) <= set(donor["evidence_inventory"])
+        inventory_paths = {row["path"] for row in donor["evidence_inventory"]}
+        assert set(evidence_refs) <= inventory_paths
         assert capability["mechanism"]
         assert capability["recruiter_safe_claim"]
 
@@ -144,21 +163,36 @@ def test_motherduck_projection_preserves_no_deployment_boundary() -> None:
         if row[2] == "PRIVATE_REFERENCE"
     }
     assert private_refs.isdisjoint(projection["donor_repositories"])
+    assert set(projection["donor_repositories"]) == {"GlacierEQ/colossus-gateway"}
+    assert set(projection["capability_ids"]) == {
+        "motherduck-query-facade",
+        "motherduck-structured-health-telemetry",
+    }
 
-    xai_donor = donors["donor_systems"]["GlacierEQ/xai-colossus-cooling"]
-    expected_proof = "SOURCE_AND_CORE_CI_VERIFIED_DEPLOYMENT_NOT_CLAIMED"
-    assert xai_donor["proof_state"] == expected_proof
-    assert xai_donor["proof"]["deployment_workflow"] == (
-        ".github/workflows/deploy.yml:failure"
+
+def test_blocked_xai_mechanisms_are_leads_not_admitted_donors() -> None:
+    donors = _load(DONORS)
+    blocked = donors["blocked_candidate_systems"]["GlacierEQ/xai-colossus-cooling"]
+    assert blocked["governing_state"] == "BLOCKED"
+    assert blocked["recruiter_admission"] is False
+    assert "GlacierEQ/xai-colossus-cooling" not in donors["donor_systems"]
+    assert all(
+        capability["donor_repository"] != "GlacierEQ/xai-colossus-cooling"
+        for capability in donors["capabilities"]
     )
 
 
-def test_motherduck_gateway_claim_excludes_case_specific_helpers() -> None:
+def test_motherduck_gateway_claim_excludes_case_specific_helpers_and_false_fallback() -> None:
     donors = _load(DONORS)
-    capability = _capability(donors, "motherduck-query-health-facade")
+    capability = _capability(donors, "motherduck-query-facade")
     assert capability["donor_repository"] == "GlacierEQ/colossus-gateway"
     assert set(capability["excluded_scope"]) == {
         "createCaseTable",
         "upsertCase",
         "searchDocuments",
     }
+
+    health = _capability(donors, "motherduck-structured-health-telemetry")
+    excluded = " ".join(health["excluded_claims"]).casefold()
+    assert "no fallback claim" in excluded
+    assert "no live service availability" in excluded
