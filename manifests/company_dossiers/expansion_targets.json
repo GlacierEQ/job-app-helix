@@ -1,7 +1,7 @@
 {
   "schema": "glaciereq.company-dossiers-shard.v2",
   "group_id": "expansion_targets",
-  "generated_at": "2026-08-08T15:04:54-10:00",
+  "generated_at": "2026-08-08T15:42:00-10:00",
   "defaults_apply_to_all_companies": true,
   "defaults": {
     "track_state": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
@@ -40,7 +40,19 @@
     {"company_id":"replit","display_name":"Replit"},
     {"company_id":"cognition","display_name":"Cognition"},
     {"company_id":"github","display_name":"GitHub"},
-    {"company_id":"supabase","display_name":"Supabase"},
+    {
+      "company_id":"supabase",
+      "display_name":"Supabase",
+      "track_state":"DIRECT_ESTATE_DISCOVERED_MIXED_PROVENANCE",
+      "recruiter_thesis":"Three direct-name Supabase repositories are verified upstream forks and remain excluded from authorship. The only non-fork direct-name candidate is a private Aspen Grove legal-ops system; it is useful as read-only architecture evidence but is not recruiter-admitted company proof while provenance, sensitivity boundaries, and reusable non-legal capability extraction remain unresolved.",
+      "gap_or_next_gate":"Keep GlacierEQ/supabase, GlacierEQ/supabase-mcp, and GlacierEQ/supabase-grafana excluded from authorship. Treat GlacierEQ/aspen-grove-supabase as a private reference only; inspect it read-only, isolate reusable Supabase-native mechanisms from case-specific evidence, and promote only a non-sensitive canonical donor with current tests/runtime receipts.",
+      "repositories":[
+        ["GlacierEQ/supabase","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
+        ["GlacierEQ/supabase-mcp","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
+        ["GlacierEQ/supabase-grafana","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
+        ["GlacierEQ/aspen-grove-supabase","L2","PRIVATE_REFERENCE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]
+      ]
+    },
     {
       "company_id":"mongodb",
       "display_name":"MongoDB",
@@ -72,6 +84,15 @@
     {"company_id":"pinecone","display_name":"Pinecone"},
     {"company_id":"weaviate","display_name":"Weaviate"},
     {"company_id":"qdrant","display_name":"Qdrant"},
-    {"company_id":"motherduck","display_name":"MotherDuck"}
+    {
+      "company_id":"motherduck",
+      "display_name":"MotherDuck",
+      "track_state":"DIRECT_ESTATE_DISCOVERED_PRIVATE_BACKUP_REFERENCE",
+      "recruiter_thesis":"One direct-name estate repository exists and is not a GitHub fork, with Casey-authored commit history and a concrete DuckDB/MotherDuck integration design. Its Z-BACKUP identity and direct family-court evidence scope make it a private reference, not a recruiter-ready company-specific accomplishment.",
+      "gap_or_next_gate":"Do not mutate or publish the legal/evidence source. Preserve it as a private backup/reference and extract only reusable, non-sensitive analytics mechanisms—cross-system SQL materialization, DuckDB/MotherDuck federation, connector normalization, and provenance-aware query flows—into a fresh canonical technical donor before any MotherDuck capability claim is promoted.",
+      "repositories":[
+        ["GlacierEQ/Z-BACKUP-apex-motherduck-engine","L2","PRIVATE_REFERENCE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]
+      ]
+    }
   ]
 }
