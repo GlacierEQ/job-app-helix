@@ -3,17 +3,17 @@
   "identity": {
     "repository": "GlacierEQ/apex-github-worker",
     "repository_id": "1260799790",
-    "canonical_head": "2f862b4e97a05d50fe3d50b89c57ce7104ff0992",
+    "canonical_head": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
     "default_branch": "main",
     "lineage_action": "EXTEND_CANONICAL"
   },
-  "state": "ADVERSARIAL_VERIFIED",
+  "state": "OPERABLE",
   "canonical_role": "SPECIALIST_COMPONENT",
   "scores": {
-    "target_architecture": 9.4,
+    "target_architecture": 9.5,
     "current_proof": "B",
-    "company_fit": 9.5,
-    "canonical_confidence": 0.98
+    "company_fit": 9.6,
+    "canonical_confidence": 0.99
   },
   "gates": {
     "problem_verified": true,
@@ -22,7 +22,7 @@
     "central_mechanism_implemented": true,
     "deterministic_tests_pass": true,
     "adversarial_tests_pass": true,
-    "runtime_behavior_observed": false,
+    "runtime_behavior_observed": true,
     "security_authority_bounded": true,
     "proof_receipt_bound_to_sha": true,
     "reusable_capabilities_extracted": true,
@@ -30,23 +30,38 @@
     "evolution_cursor_defined": true
   },
   "proof_receipt": {
-    "identity": "GlacierEQ/apex-github-worker/proof/merge-authority-local-reproduction-2026-08-08.json",
-    "source_sha": "217afd9f339b61c2a351588a54ef14971649e813",
-    "canonical_merge_sha": "2f862b4e97a05d50fe3d50b89c57ce7104ff0992",
-    "evidence_level": "ADVERSARIAL_TEST",
-    "deterministic_tests": {"passed": 17, "failed": 0},
-    "proof_scenarios": {"passed": 6, "failed": 0}
+    "identity": "GlacierEQ/apex-github-worker/proof/merge-authority-provider-operability-2026-08-09.json",
+    "source_sha": "ee447b11cce29556050c73ea99ddc37ae7cc3542",
+    "canonical_merge_sha": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
+    "evidence_level": "REAL_PROVIDER_RUNTIME",
+    "deterministic_and_adversarial_tests": {"passed": 26, "failed": 0},
+    "gateway_host_tests": {"passed": 38, "failed": 0},
+    "provider": {
+      "repository": "GlacierEQ/public-actions-runner-host",
+      "target_branch": "operability/merge-authority-v3",
+      "merge_sha": "2a3ca4d73808248c935e8598873f7a4f5cc3de7c",
+      "canonical_readback_sha": "2a3ca4d73808248c935e8598873f7a4f5cc3de7c",
+      "replay_result": "DUPLICATE_ALREADY_COMPLETED",
+      "replay_merge_attempted": false,
+      "target_main_mutated": false,
+      "token_revoked": true
+    }
   },
   "capabilities": [
     "expected_head_mutation_guard",
     "immutable_patch_identity",
     "exact_change_approval_binding",
+    "provider_exact_byte_rebinding",
     "required_check_gate",
     "idempotent_mutation_replay_guard",
+    "replay_before_stale_head_rejection",
     "provider_confirmation_before_completion",
+    "bounded_eventual_readback_reconciliation",
     "canonical_post_action_readback",
     "receipt_backed_terminal_state",
-    "preflight_before_provider_access"
+    "preflight_before_provider_access",
+    "short_lived_repository_scoped_authority",
+    "revoke_on_completion_or_failed_audit"
   ],
   "company_evidence": {
     "company": "GitHub",
@@ -60,24 +75,24 @@
   },
   "blockers": [
     {
-      "id": "real_github_provider_adapter_not_exercised",
-      "stage": "OPERABLE",
-      "meaning": "The current proof exercises the provider-independent control kernel with in-memory adapters; a real bounded GitHub mutation path has not been executed by this implementation."
+      "id": "canonical_source_provider_reproduction_not_yet_promoted_in_helix",
+      "stage": "PROOF_REPRODUCED",
+      "meaning": "The OPERABLE provider path is real and receipt-backed; Helix advances to PROOF_REPRODUCED only after the canonical Apex source reproduction receipt is merged into Apex main and bound here."
     },
     {
       "id": "github_actions_budget",
       "stage": "HOSTED_CI",
-      "meaning": "GitHub-hosted proof jobs were blocked before execution by the account Actions budget; exact-source local reproduction is the current executable proof."
+      "meaning": "GitHub-hosted private-repository jobs remain blocked before execution by account Actions budget; this does not negate independently reproduced provider evidence."
     }
   ],
   "evolution": {
-    "next_gate": "OPERABLE",
-    "cursor": "Implement a GitHub provider adapter using bounded short-lived repository authority; exercise expected-head mutation, provider confirmation, canonical readback, replay prevention, and receipt persistence against a disposable or otherwise reversible target; then reproduce the proof on canonical source before any further promotion."
+    "next_gate": "PROOF_REPRODUCED",
+    "cursor": "Bind the fresh provider reproduction executed against canonical Apex main, verify canonical receipt/replay/provider commit independently, then advance exactly one state before outward claim promotion."
   },
   "nonclaims": [
-    "No production GitHub mutation or deployment is established by the current proof.",
-    "No production reliability, scale, latency, or throughput is claimed.",
+    "The real-provider proof mutated disposable proof branches only; the target repository main branch was not changed.",
+    "No production deployment, production-scale reliability, latency, throughput, or durability is claimed.",
     "No GitHub affiliation, endorsement, employment, or adoption is implied.",
-    "The proof state applies to the Merge Authority Graph capability, not the repository's older Notion/Neon/memory surfaces."
+    "The OPERABLE state applies to the Merge Authority Graph capability, not the repository's older Notion/Neon/memory surfaces."
   ]
 }
