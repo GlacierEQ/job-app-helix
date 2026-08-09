@@ -1,5 +1,5 @@
 {
-  "ts": "2026-08-09T22:37Z",
+  "ts": "2026-08-09T22:57Z",
   "run": "WAVE-B-CLOSED",
   "schema": "glaciereq.wave-b-receipt.v1",
   "wave_b": {
@@ -23,12 +23,19 @@
       "PROOF_REPRODUCED",
       "PROMOTED"
     ],
-    "law": "gate state changed; prose did not"
+    "law": "gate state changed; continuous history; prose did not",
+    "fixes": [
+      "continuous DISCOVERED\u2192PROMOTED history",
+      "source_sha = deterministic src|scripts|tests content hash",
+      "real grant verify against proof_receipt digest",
+      "aws operate exact tokens_per_core + throughput"
+    ]
   },
   "nonclaims": [
     "does not re-open Wave A residual",
     "does not claim CANONICAL or estate-wide mass promote",
-    "no employer affiliation or production deployment"
+    "no employer affiliation or production deployment",
+    "LOCAL_OPERATOR_SECRET is reference-only not production key material"
   ],
   "result": "PASS",
   "results": [
@@ -36,138 +43,105 @@
       "leaf": "anduril-lattice-dissent-freeze",
       "ok": true,
       "errors": [],
+      "source_sha": "5dc841f8aed23ef8f6d59c068072abfd93818f32b34925153fa49ebc0cc0027d",
+      "source_sha_matches_tree": true,
+      "proof_digest": "8ed29642d5a69e57c29d8317aab2cd7e1725d0f8c54c0973a4ae86d4ecfc80ca",
       "validator_rc": 0,
       "validator_out": "PASS",
       "principal_state": "PROMOTED",
-      "primary": {
-        "expected": "FROZEN_DISSENT",
-        "fingerprint": "f6b075767a198fabab2277616c5e1d31d3790ebe8bb60ca972ab85a2a1763a2e",
-        "majority_label": null,
-        "ok": true,
-        "recommendation": "FROZEN_DISSENT",
-        "track_id": "T1"
-      },
-      "proof_digest": "6fc131e4b7444a2a4e8369af8567530f6e3862b7c26af4b4ee38ea3895e4457f"
+      "history_len": 11,
+      "continuous": true
     },
     {
       "leaf": "anduril-track-envelope-compiler",
       "ok": true,
       "errors": [],
+      "source_sha": "37775d0f678b73cd9cac19248f0314452afaf4e095963406c35dc3e362283797",
+      "source_sha_matches_tree": true,
+      "proof_digest": "aad4a324074f903f73b313eea19aaa8bbb9099f64245918bcb6d877cd018cfd5",
       "validator_rc": 0,
       "validator_out": "PASS",
       "principal_state": "PROMOTED",
-      "primary": {
-        "expected_x_max": 3.0,
-        "expected_x_min": -1.0,
-        "fingerprint": "83252bb1b71d4e32691881ffb26e513a4a40858ec1e01463b98bb034c0ae3292",
-        "ok": true,
-        "residual_uncertainty": 0.16198562070582861,
-        "track_id": "T1",
-        "x_max": 3.0,
-        "x_min": -1.0
-      },
-      "proof_digest": "72a79518ab22b4400898ca227eeab5b909870c0fcd834e29e86ce01c5d342a34"
+      "history_len": 11,
+      "continuous": true
     },
     {
       "leaf": "cloudflare-workers-agent-cap",
       "ok": true,
       "errors": [],
+      "source_sha": "3a3b1b9331acef5b6b5b8cb6e5821c87c8f290fc78f4f305baa9a80b50404005",
+      "source_sha_matches_tree": true,
+      "proof_digest": "7dfbb2504b067e44b92345a9af08125d2923ebcb3e994a17496eb3df6dfead26",
       "validator_rc": 0,
       "validator_out": "PASS",
       "principal_state": "PROMOTED",
-      "primary": {
-        "expected_reason": "CAPABILITY_NOT_GRANTED",
-        "expected_verdict": "REFUSE",
-        "ok": true,
-        "reason": "CAPABILITY_NOT_GRANTED",
-        "token_fp": "379527d163ccf77f4889ca04943ffbe1ebf26268c67f4233fd3b222bc3472151",
-        "verdict": "REFUSE"
-      },
-      "proof_digest": "00a7f8e4fcb4603df77dfad6751d8da8beb8fd41a43d28be2314dd92c66507a0"
+      "history_len": 11,
+      "continuous": true
     },
     {
       "leaf": "groq-batch-admission-gate",
       "ok": true,
       "errors": [],
+      "source_sha": "3b456931fb30e7ae91cddf2a88b8a9fa878e47bcaa62dc19b0e3623411525ed4",
+      "source_sha_matches_tree": true,
+      "proof_digest": "5503e04513107a5d82cab9b924cb398c87552763b6ca7c94c0d13d6b2a719af6",
       "validator_rc": 0,
       "validator_out": "PASS",
       "principal_state": "PROMOTED",
-      "primary": {
-        "decision": "REFUSE",
-        "expected_decision": "REFUSE",
-        "expected_reason": "MAX_INFLIGHT",
-        "fingerprint": "bd5f9440bc1097ca2dae7cc1b0914e040e30cb73b5a9302ce27d5fdb98931ce3",
-        "ok": true,
-        "predicted_p95_ms": 70.0,
-        "reason": "MAX_INFLIGHT"
-      },
-      "proof_digest": "80f507bb01b39f8cc9eaf2fd63ea986fe3aaf35a80d92772dfeca8331ead6cda"
+      "history_len": 11,
+      "continuous": true
     },
     {
       "leaf": "groq-jitter-envelope-contract",
       "ok": true,
       "errors": [],
+      "source_sha": "7a94dce78fbd8ded8049c435afee50dd5c61701dd98ab11d26309a70c48257c5",
+      "source_sha_matches_tree": true,
+      "proof_digest": "f958b0c6c66c8a0af30b5586150e75975068e105722c64336fbfe128e8192b57",
       "validator_rc": 0,
       "validator_out": "PASS",
       "principal_state": "PROMOTED",
-      "primary": {
-        "expected_violation": "BURST_TOO_HIGH",
-        "fingerprint": "a53a2f2759855d763822ef2001fea4320a9da33be36788dcb83400c29c5b7e32",
-        "max_ms": 50.0,
-        "ok": true,
-        "ok_flag": false,
-        "violation": "BURST_TOO_HIGH"
-      },
-      "proof_digest": "c27ac1beb92a0f5e25733ee372d123ab5144e96593874114a7bbe9a7de3a9a64"
+      "history_len": 11,
+      "continuous": true
     },
     {
       "leaf": "databricks-feature-lineage-passport",
       "ok": true,
       "errors": [],
+      "source_sha": "35f056c7ba00622e52ee7ef0f5cc499076c6d3422d65d220f2ca73be71d57052",
+      "source_sha_matches_tree": true,
+      "proof_digest": "92e52c3ebad30f3c6901446fdb0b7a2b91d30be682ab623d327ae355e1fea96e",
       "validator_rc": 0,
       "validator_out": "PASS",
       "principal_state": "PROMOTED",
-      "primary": {
-        "bad": [
-          "f2"
-        ],
-        "decision": "REFUSE",
-        "expected_decision": "REFUSE",
-        "ok": true
-      },
-      "proof_digest": "9e361733d8918a3caa75921052322da0f3f756148f5f07a11cd4c3b60dbcd119"
+      "history_len": 11,
+      "continuous": true
     },
     {
       "leaf": "databricks-notebook-claim-fence",
       "ok": true,
       "errors": [],
+      "source_sha": "709ada2f16f26b67732c42a1e1625b4053e5082edd9c014518160f34e3778529",
+      "source_sha_matches_tree": true,
+      "proof_digest": "9259742408b8bf7cbce424749e6ab3b070700d2ad52445a9da650b8e8afeef30",
       "validator_rc": 0,
       "validator_out": "PASS",
       "principal_state": "PROMOTED",
-      "primary": {
-        "claim_ok": false,
-        "expected_reason": "UNPROMOTED_PRODUCTION_CLAIM",
-        "ok": true,
-        "reason": "UNPROMOTED_PRODUCTION_CLAIM"
-      },
-      "proof_digest": "7cddf42ffc48fba273b42edcc01c6b21e59aecbeeb269ca0c5a8dd204899b02e"
+      "history_len": 11,
+      "continuous": true
     },
     {
       "leaf": "aws-trainium-neuron-sentinel",
       "ok": true,
       "errors": [],
+      "source_sha": "37c9ba5e3f6a962bcb9da3aab932a02ee1a3e3191e22288cbe6115773b9a1cbe",
+      "source_sha_matches_tree": true,
+      "proof_digest": "609a5a5c7cfcf41d62602105522c20c380bab24367ad9a79298875f270d23a6c",
       "validator_rc": 0,
       "validator_out": "PASS",
       "principal_state": "PROMOTED",
-      "primary": {
-        "expected_status": "NEURON_PIPELINE_OPTIMAL",
-        "fingerprint": "2fbd3c8b6b1fc34ff50a675a930d981ec82abdc1a30b819647173a151a41e7e4",
-        "ok": true,
-        "status": "NEURON_PIPELINE_OPTIMAL",
-        "throughput_tokens_per_sec": 6990506666.7,
-        "tokens_per_core": 131072.0
-      },
-      "proof_digest": "69f73df998fc04a21b171341e6c6b4016139142abba3bdb98d44e78588bf009e"
+      "history_len": 11,
+      "continuous": true
     }
   ]
 }
