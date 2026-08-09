@@ -250,6 +250,27 @@ def test_capability_proof_head_drift_fails_closed(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize(
+    "unsafe_path",
+    ["../secret.txt", "/etc/passwd", "src//connector.py", "src/./connector.py"],
+)
+def test_capability_proof_unsafe_evidence_path_fails_closed(
+    tmp_path: Path,
+    unsafe_path: str,
+) -> None:
+    builder = _builder()
+    payload = _projection()
+    payload["company_projections"][0]["capability_proofs"][0][
+        "evidence_refs"
+    ] = [unsafe_path]
+    with pytest.raises(builder.ProjectionError, match="evidence_refs are unsafe"):
+        builder.build(
+            tmp_path / "site",
+            SOURCE_COMMIT,
+            _write(tmp_path, payload),
+        )
+
+
+@pytest.mark.parametrize(
     "forbidden",
     ["native_repository_count", "canonical_accomplishments"],
 )
