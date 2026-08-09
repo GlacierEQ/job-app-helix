@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 from collections import Counter
 from copy import deepcopy
@@ -7,6 +8,12 @@ from pathlib import Path
 
 import pytest
 
+from job_app_helix.library_cli import (
+    DEFAULT_SURFACE_DECISIONS,
+    DEFAULT_SURFACE_OBSERVATIONS,
+    DEFAULT_SURFACE_RECONCILIATIONS,
+    _resolve_reconciliation_paths,
+)
 from job_app_helix.repository_surface import (
     RepositorySurfaceError,
     compile_governed_surface_report,
@@ -123,3 +130,29 @@ def test_wave4_rejects_head_drift_receipt_drift_and_predecessor_drift() -> None:
     prior["items"][2]["prior_decision"] = "ADMIT"
     with pytest.raises(RepositorySurfaceError, match="prior decision drift"):
         apply_surface_reconciliation(predecessor, prior)
+
+
+def test_custom_sources_require_explicit_reconciliation_chain() -> None:
+    canonical_args = argparse.Namespace(
+        observations=DEFAULT_SURFACE_OBSERVATIONS,
+        decisions=DEFAULT_SURFACE_DECISIONS,
+        reconciliation=None,
+    )
+    assert _resolve_reconciliation_paths(canonical_args) == DEFAULT_SURFACE_RECONCILIATIONS
+
+    custom_args = argparse.Namespace(
+        observations=Path("custom-observations.json"),
+        decisions=DEFAULT_SURFACE_DECISIONS,
+        reconciliation=None,
+    )
+    with pytest.raises(RepositorySurfaceError, match="require explicit --reconciliation"):
+        _resolve_reconciliation_paths(custom_args)
+
+    explicit_args = argparse.Namespace(
+        observations=Path("custom-observations.json"),
+        decisions=Path("custom-decisions.json"),
+        reconciliation=[Path("custom-reconciliation.json")],
+    )
+    assert _resolve_reconciliation_paths(explicit_args) == (
+        Path("custom-reconciliation.json"),
+    )
