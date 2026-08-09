@@ -13,11 +13,19 @@ from job_app_helix.repository_surface import (
 from job_app_helix.surface_reconciliation import apply_surface_reconciliation
 
 ROOT = Path(__file__).resolve().parents[1]
-OBSERVATIONS = ROOT / "manifests/public_repository_surface_observations_2026-08-08.json"
+OBSERVATIONS = ROOT / (
+    "manifests/public_repository_surface_observations_2026-08-08.json"
+)
 DECISIONS = ROOT / "manifests/public_repository_surface_decisions_2026-08-08.json"
-WAVE2 = ROOT / "manifests/public_repository_surface_reconciliation_2026-08-09.json"
-WAVE3 = ROOT / "manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json"
-WAVE4 = ROOT / "manifests/public_repository_surface_reconciliation_wave4_2026-08-09.json"
+WAVE2 = ROOT / (
+    "manifests/public_repository_surface_reconciliation_2026-08-09.json"
+)
+WAVE3 = ROOT / (
+    "manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json"
+)
+WAVE4 = ROOT / (
+    "manifests/public_repository_surface_reconciliation_wave4_2026-08-09.json"
+)
 
 EXPECTED = {
     "GlacierEQ/deepmind-tpu-mesh-optimizer": (
@@ -41,7 +49,9 @@ def load(path: Path) -> dict:
 
 def report_through(path: Path | None = None) -> dict:
     report = compile_governed_surface_report(
-        load(OBSERVATIONS), load(DECISIONS), expected_public_count=75
+        load(OBSERVATIONS),
+        load(DECISIONS),
+        expected_public_count=75,
     )
     for layer in (WAVE2, WAVE3):
         report = apply_surface_reconciliation(report, load(layer))
@@ -53,10 +63,12 @@ def report_through(path: Path | None = None) -> dict:
 def test_wave4_reduces_repair_debt_by_three_without_rewriting_prior_layers() -> None:
     before = report_through()
     after = report_through(WAVE4)
-    assert after["summary"]["admission"]["ADMIT"] == before["summary"]["admission"]["ADMIT"] + 3
-    assert after["summary"]["admission"]["REPAIR_REQUIRED"] == before["summary"]["admission"]["REPAIR_REQUIRED"] - 3
-    assert after["summary"]["admission"]["ADMIT"] == 9
-    assert after["summary"]["admission"]["REPAIR_REQUIRED"] == 45
+    before_counts = before["summary"]["admission"]
+    after_counts = after["summary"]["admission"]
+    assert after_counts["ADMIT"] == before_counts["ADMIT"] + 3
+    assert after_counts["REPAIR_REQUIRED"] == before_counts["REPAIR_REQUIRED"] - 3
+    assert after_counts["ADMIT"] == 9
+    assert after_counts["REPAIR_REQUIRED"] == 45
     assert after["governed_overlay"] == before["governed_overlay"]
 
 
@@ -69,9 +81,11 @@ def test_wave4_admits_only_exact_current_heads_with_success_receipts() -> None:
         assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
         assert record["decision_evidence"]["canonical_head"] == head
         receipts = record["decision_evidence"]["proof_receipts"]
-        assert [(item["id"], item["head_sha"], item["conclusion"]) for item in receipts] == [
-            (run_id, head, "success")
+        observed = [
+            (item["id"], item["head_sha"], item["conclusion"])
+            for item in receipts
         ]
+        assert observed == [(run_id, head, "success")]
 
 
 def test_wave4_rejects_head_drift_receipt_drift_and_predecessor_drift() -> None:
