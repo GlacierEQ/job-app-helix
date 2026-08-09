@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -13,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "scripts" / "build_recruiter_site.py"
 CSS = ROOT / "site" / "compiler.css"
 JS = ROOT / "site" / "compiler.js"
+PROOF_CSS = ROOT / "site" / "capability_proof_lens.css"
+PROOF_JS = ROOT / "site" / "capability_proof_lens.js"
 EXPECTED_SCHEMA = "glaciereq.estate-public-projection.v2"
 FORBIDDEN_KEYS = {
     "repository_count",
@@ -31,7 +34,9 @@ REQUIRED_BOUNDARY = {
     "native_estate_cardinality_intentionally_not_published",
     "observed_pressure_and_inferred_bottleneck_are_distinct",
     "role_projection_is_capability_fit_not_employer_endorsement",
+    "semantic_capability_proof_is_exact_head_and_public_only",
 }
+PUBLIC_ADMISSION_STATES = {"PROMOTED", "REFERENCE_ONLY"}
 
 
 class ProjectionError(RuntimeError):
@@ -93,6 +98,91 @@ def _walk(value: Any, path: str = "$") -> None:
             _walk(child, f"{path}[{index}]")
 
 
+def _is_safe_repo_path(value: object) -> bool:
+    if not isinstance(value, str) or not value or value.startswith(("/", "\\")):
+        return False
+    normalized = value.replace("\\", "/")
+    return all(segment not in {"", ".", ".."} for segment in normalized.split("/"))
+
+
+def _is_verified_state(value: object) -> bool:
+    return isinstance(value, str) and "VERIFIED" in value.split("_")
+
+
+def _validate_capability_proofs(company: dict[str, Any], path: str) -> None:
+    ranked_evidence = company.get("ranked_evidence", [])
+    if not isinstance(ranked_evidence, list):
+        raise ProjectionError(f"{path}.ranked_evidence must be a list")
+    public_evidence_pairs = {
+        (row.get("system_id"), row.get("source_repository"))
+        for row in ranked_evidence
+        if isinstance(row, dict)
+        and row.get("visibility") == "public"
+        and row.get("visibility_decision") == "PUBLIC_ELIGIBLE"
+        and row.get("promotion_state") in PUBLIC_ADMISSION_STATES
+        and isinstance(row.get("system_id"), str)
+        and isinstance(row.get("source_repository"), str)
+    }
+
+    proofs = company.get("capability_proofs", [])
+    if not isinstance(proofs, list):
+        raise ProjectionError(f"{path}.capability_proofs must be a list")
+    seen: set[tuple[str, str]] = set()
+    for index, value in enumerate(proofs):
+        proof_path = f"{path}.capability_proofs[{index}]"
+        if not isinstance(value, dict):
+            raise ProjectionError(f"{proof_path} must be an object")
+        capability_id = value.get("capability_id")
+        system_id = value.get("system_id")
+        repository = value.get("source_repository")
+        head_sha = value.get("head_sha")
+        proof_state = value.get("proof_state")
+        admission_state = value.get("admission_state")
+        if not isinstance(capability_id, str) or not capability_id:
+            raise ProjectionError(f"{proof_path}.capability_id is required")
+        if not isinstance(system_id, str) or not system_id:
+            raise ProjectionError(f"{proof_path}.system_id is required")
+        if not isinstance(repository, str) or not repository.startswith("GlacierEQ/"):
+            raise ProjectionError(f"{proof_path}.source_repository is not public-safe")
+        if (system_id, repository) not in public_evidence_pairs:
+            raise ProjectionError(f"{proof_path} does not match public ranked_evidence")
+        if not isinstance(head_sha, str) or re.fullmatch(r"[0-9a-f]{40}", head_sha) is None:
+            raise ProjectionError(f"{proof_path}.head_sha must be exact")
+        if not _is_verified_state(proof_state):
+            raise ProjectionError(f"{proof_path}.proof_state is not verified")
+        if admission_state not in PUBLIC_ADMISSION_STATES:
+            raise ProjectionError(f"{proof_path}.admission_state is not public")
+        key = (capability_id, system_id)
+        if key in seen:
+            raise ProjectionError(f"duplicate public capability proof: {key}")
+        seen.add(key)
+
+        evidence_refs = value.get("evidence_refs")
+        if not isinstance(evidence_refs, list) or not evidence_refs:
+            raise ProjectionError(f"{proof_path}.evidence_refs must be non-empty")
+        if not all(_is_safe_repo_path(ref) for ref in evidence_refs):
+            raise ProjectionError(f"{proof_path}.evidence_refs are unsafe")
+
+        receipts = value.get("proof_receipts")
+        if not isinstance(receipts, list) or not receipts:
+            raise ProjectionError(f"{proof_path}.proof_receipts must be non-empty")
+        for receipt_index, receipt in enumerate(receipts):
+            receipt_path = f"{proof_path}.proof_receipts[{receipt_index}]"
+            if not isinstance(receipt, dict):
+                raise ProjectionError(f"{receipt_path} must be an object")
+            if receipt.get("kind") != "check_run":
+                raise ProjectionError(f"{receipt_path}.kind is unsupported")
+            receipt_id = receipt.get("id")
+            if not isinstance(receipt_id, int) or receipt_id <= 0:
+                raise ProjectionError(f"{receipt_path}.id must be positive")
+            if not isinstance(receipt.get("name"), str) or not receipt["name"]:
+                raise ProjectionError(f"{receipt_path}.name is required")
+            if receipt.get("head_sha") != head_sha:
+                raise ProjectionError(f"{receipt_path}.head_sha drifted")
+            if receipt.get("conclusion") != "success":
+                raise ProjectionError(f"{receipt_path} is not successful")
+
+
 def validate_public_projection(value: dict[str, Any]) -> None:
     if value.get("schema") != EXPECTED_SCHEMA:
         raise ProjectionError(f"Expected {EXPECTED_SCHEMA}")
@@ -108,8 +198,13 @@ def validate_public_projection(value: dict[str, Any]) -> None:
         raise ProjectionError(
             f"Public projection boundary failed closed: {missing}"
         )
-    if not isinstance(value.get("company_projections"), list):
+    companies = value.get("company_projections")
+    if not isinstance(companies, list):
         raise ProjectionError("company_projections must be a list")
+    for index, company in enumerate(companies):
+        if not isinstance(company, dict):
+            raise ProjectionError(f"company_projections[{index}] must be an object")
+        _validate_capability_proofs(company, f"$.company_projections[{index}]")
     _walk(value)
     _assert_no_template_markers(value)
 
@@ -245,6 +340,24 @@ def _section() -> str:
           </div>
         </div>
 
+        <div class="capability-proof-lens" aria-labelledby="capability-proof-title">
+          <div class="capability-proof-heading">
+            <div>
+              <span class="compiler-kicker">Capability proof lens</span>
+              <h3 id="capability-proof-title">Inspect why a semantic donor is admissible</h3>
+            </div>
+            <p id="compiler-capability-proof-summary">
+              Exact-head capability proof packets load only for admitted public donors.
+            </p>
+          </div>
+          <div class="capability-proof-grid" id="compiler-capability-proofs" aria-live="polite">
+            <article class="capability-proof-card capability-proof-empty">
+              <span class="compiler-card-kicker">Proof packet</span>
+              <h4>Waiting for a validated company route.</h4>
+            </article>
+          </div>
+        </div>
+
         <div class="compiler-proof-heading">
           <div>
             <span class="compiler-kicker">Role-specific proof surface</span>
@@ -285,12 +398,14 @@ def _inject(index: str) -> str:
         (
             '<link rel="stylesheet" href="styles.css">',
             '<link rel="stylesheet" href="styles.css">\n'
-            '  <link rel="stylesheet" href="compiler.css">',
+            '  <link rel="stylesheet" href="compiler.css">\n'
+            '  <link rel="stylesheet" href="capability_proof_lens.css">',
         ),
         (
             '<script src="app.js" defer></script>',
             '<script src="app.js" defer></script>\n'
-            '  <script src="compiler.js" defer></script>',
+            '  <script src="compiler.js" defer></script>\n'
+            '  <script src="capability_proof_lens.js" defer></script>',
         ),
         (
             '<a href="#package">Package</a>',
@@ -335,6 +450,8 @@ def build(
     )
     shutil.copyfile(CSS, output / "compiler.css")
     shutil.copyfile(JS, output / "compiler.js")
+    shutil.copyfile(PROOF_CSS, output / "capability_proof_lens.css")
+    shutil.copyfile(PROOF_JS, output / "capability_proof_lens.js")
     shutil.copyfile(
         public_projection,
         output / "estate-projection.json",
