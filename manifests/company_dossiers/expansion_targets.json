@@ -44,8 +44,8 @@
       "company_id":"supabase",
       "display_name":"Supabase",
       "track_state":"SEMANTIC_CAPABILITY_DONORS_ADMITTED",
-      "recruiter_thesis":"Direct-name Supabase forks remain excluded from authorship and the private Aspen Grove legal-ops repository remains reference-only. Public non-fork GlacierEQ systems provide independently evidenced, transferable Supabase mechanisms: server-side least-privilege Edge Function brokerage, idempotent state/audit persistence, and connector health-state classification.",
-      "gap_or_next_gate":"Keep direct-name forks excluded and the private source read-only. Compile only the admitted public semantic donor relationships and their exact-head proof into Supabase role projections; do not promote the private legal/evidence repository itself.",
+      "recruiter_thesis":"Public non-fork GlacierEQ systems provide independently evidenced, transferable Supabase mechanisms: server-side least-privilege Edge Function brokerage, idempotent state/audit persistence, and connector health-state classification. Recruiter projection is capability- and proof-led rather than repository-name-led.",
+      "gap_or_next_gate":"Compile the admitted public semantic donor relationships and their exact-head proof into Supabase role projections. Expand the public claim surface only when additional public donor mechanisms satisfy the same provenance and verification gates.",
       "repositories":[
         ["GlacierEQ/supabase","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
         ["GlacierEQ/supabase-mcp","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
@@ -94,8 +94,8 @@
       "company_id":"motherduck",
       "display_name":"MotherDuck",
       "track_state":"SEMANTIC_CAPABILITY_DONORS_ADMITTED_WITH_DEPLOYMENT_BOUNDARY",
-      "recruiter_thesis":"The private Z-BACKUP legal/evidence repository remains reference-only and is not promoted. A public non-fork canonical gateway donor provides two transferable MotherDuck mechanisms: a bounded query facade and structured connector health telemetry. The separately discovered xai-colossus-cooling mechanisms remain blocked extraction candidates and are not recruiter admitted.",
-      "gap_or_next_gate":"Keep the private source read-only and the blocked xAI repository outside recruiter admission. Compile only the public gateway donor's bounded MotherDuck capabilities; promote additional generic analytics mechanisms only after they exist in a neutral eligible donor or the governing xAI block is independently resolved.",
+      "recruiter_thesis":"A public non-fork canonical gateway donor provides two transferable MotherDuck mechanisms: a bounded query facade and structured connector health telemetry. Recruiter projection stays capability-led and makes no production deployment or affiliation claim.",
+      "gap_or_next_gate":"Compile the public gateway donor's bounded MotherDuck capabilities and exact-head proof into role projections. Promote additional generic analytics mechanisms only after they exist in a neutral recruiter-eligible donor with independently verified evidence.",
       "repositories":[
         ["GlacierEQ/Z-BACKUP-apex-motherduck-engine","L2","PRIVATE_REFERENCE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]
       ],
