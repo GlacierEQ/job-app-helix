@@ -44,8 +44,8 @@
       "company_id":"supabase",
       "display_name":"Supabase",
       "track_state":"SEMANTIC_CAPABILITY_DONORS_ADMITTED",
-      "recruiter_thesis":"Direct-name Supabase forks remain excluded from authorship and the private Aspen Grove legal-ops repository remains reference-only. Public non-fork GlacierEQ systems now provide independently evidenced, transferable Supabase mechanisms: server-side least-privilege Edge Function brokerage, idempotent state/audit persistence, and connector health-state classification.",
-      "gap_or_next_gate":"Keep direct-name forks excluded and the private source read-only. Feed the admitted public donor capabilities into the authenticated estate compiler and bind only current public proof into Supabase role projections; do not promote the private legal/evidence repository itself.",
+      "recruiter_thesis":"Direct-name Supabase forks remain excluded from authorship and the private Aspen Grove legal-ops repository remains reference-only. Public non-fork GlacierEQ systems provide independently evidenced, transferable Supabase mechanisms: server-side least-privilege Edge Function brokerage, idempotent state/audit persistence, and connector health-state classification.",
+      "gap_or_next_gate":"Keep direct-name forks excluded and the private source read-only. Compile only the admitted public semantic donor relationships and their exact-head proof into Supabase role projections; do not promote the private legal/evidence repository itself.",
       "repositories":[
         ["GlacierEQ/supabase","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
         ["GlacierEQ/supabase-mcp","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
@@ -53,9 +53,9 @@
         ["GlacierEQ/aspen-grove-supabase","L2","PRIVATE_REFERENCE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]
       ],
       "capability_donors":[
-        ["GlacierEQ/colossus-gateway","supabase-edge-broker-least-privilege","SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED"],
-        ["GlacierEQ/colossus-gateway","supabase-idempotent-state-audit-persistence","SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED"],
-        ["GlacierEQ/apex-control-plane","supabase-connector-health-state-machine","SOURCE_AND_EXACT_HEAD_REPOSITORY_SECURITY_VERIFIED"]
+        ["GlacierEQ/colossus-gateway","supabase-edge-broker-least-privilege","SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED","REFERENCE_ONLY"],
+        ["GlacierEQ/colossus-gateway","supabase-idempotent-state-audit-persistence","SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED","REFERENCE_ONLY"],
+        ["GlacierEQ/apex-control-plane","supabase-connector-health-state-machine","SOURCE_AND_EXACT_HEAD_REPOSITORY_SECURITY_VERIFIED","REFERENCE_ONLY"]
       ],
       "capability_map":"manifests/application_intelligence/supabase_motherduck_capability_donors.json"
     },
@@ -94,15 +94,14 @@
       "company_id":"motherduck",
       "display_name":"MotherDuck",
       "track_state":"SEMANTIC_CAPABILITY_DONORS_ADMITTED_WITH_DEPLOYMENT_BOUNDARY",
-      "recruiter_thesis":"The private Z-BACKUP legal/evidence repository remains reference-only and is not promoted. Public non-fork engineering donors now provide transferable MotherDuck/DuckDB mechanisms: a query-and-health facade plus cloud/local analytical fallback and parameter-bound batch/time-window analytics. The second implementation donor has green core CI but a failed deployment workflow, so no production deployment is claimed.",
-      "gap_or_next_gate":"Keep the private source read-only. Project only the bounded generic capabilities from the public donor map, preserve the explicit no-deployment boundary, and either close the donor deployment failure or promote the generic MotherDuck mechanisms into a neutral public canonical donor before raising the proof level.",
+      "recruiter_thesis":"The private Z-BACKUP legal/evidence repository remains reference-only and is not promoted. A public non-fork canonical gateway donor provides two transferable MotherDuck mechanisms: a bounded query facade and structured connector health telemetry. The separately discovered xai-colossus-cooling mechanisms remain blocked extraction candidates and are not recruiter admitted.",
+      "gap_or_next_gate":"Keep the private source read-only and the blocked xAI repository outside recruiter admission. Compile only the public gateway donor's bounded MotherDuck capabilities; promote additional generic analytics mechanisms only after they exist in a neutral eligible donor or the governing xAI block is independently resolved.",
       "repositories":[
         ["GlacierEQ/Z-BACKUP-apex-motherduck-engine","L2","PRIVATE_REFERENCE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]
       ],
       "capability_donors":[
-        ["GlacierEQ/colossus-gateway","motherduck-query-health-facade","SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED"],
-        ["GlacierEQ/xai-colossus-cooling","motherduck-cloud-local-analytics-fallback","SOURCE_AND_CORE_CI_VERIFIED_DEPLOYMENT_NOT_CLAIMED"],
-        ["GlacierEQ/xai-colossus-cooling","motherduck-parameterized-batch-analytics","SOURCE_AND_CORE_CI_VERIFIED_DEPLOYMENT_NOT_CLAIMED"]
+        ["GlacierEQ/colossus-gateway","motherduck-query-facade","SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED","REFERENCE_ONLY"],
+        ["GlacierEQ/colossus-gateway","motherduck-structured-health-telemetry","SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED","REFERENCE_ONLY"]
       ],
       "capability_map":"manifests/application_intelligence/supabase_motherduck_capability_donors.json"
     }
