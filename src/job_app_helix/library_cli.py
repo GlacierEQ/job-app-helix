@@ -32,6 +32,7 @@ DEFAULT_SURFACE_DECISIONS = Path(
 DEFAULT_SURFACE_RECONCILIATIONS = (
     Path("manifests/public_repository_surface_reconciliation_2026-08-09.json"),
     Path("manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json"),
+    Path("manifests/public_repository_surface_reconciliation_wave4_2026-08-09.json"),
 )
 
 
