@@ -1,0 +1,43 @@
+{
+  "schema": "glaciereq.company-capability-projection.v1",
+  "company": "GitHub",
+  "projection_id": "github_merge_authority_graph",
+  "claim_ceiling": "IMPLEMENTED",
+  "public_problem": {
+    "summary": "GitHub is expanding agentic repository work while adding security validation for third-party coding agents, policy-constrained agentic workflows, and approval requirements before bot-created pull requests can run CI/CD workflows.",
+    "official_sources": [
+      {
+        "title": "Security validation for third-party coding agents",
+        "url": "https://github.blog/changelog/2026-06-09-security-validation-for-third-party-coding-agents/",
+        "observed": "2026-08-08"
+      },
+      {
+        "title": "GitHub Agentic Workflows is now in public preview",
+        "url": "https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/",
+        "observed": "2026-08-08"
+      },
+      {
+        "title": "Bot-created pull requests can run workflows if approved",
+        "url": "https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/",
+        "observed": "2026-08-08"
+      }
+    ]
+  },
+  "bottleneck": "Agent-generated repository changes need a trustworthy promotion boundary that binds the intended change, current canonical state, required validation, authorized approval, mutation identity, provider result, and post-action readback.",
+  "reusable_invariant": "A repository mutation is complete only when the exact intended patch was authorized against the expected canonical head, required gates passed, the mutation executed once, and canonical readback confirms the resulting provider identity.",
+  "implementation": {
+    "repository": "GlacierEQ/apex-github-worker",
+    "canonical_head": "2f862b4e97a05d50fe3d50b89c57ce7104ff0992",
+    "capability": "merge_authority_graph",
+    "state": "ADVERSARIAL_VERIFIED",
+    "proof_source_sha": "217afd9f339b61c2a351588a54ef14971649e813",
+    "proof_receipt": "proof/merge-authority-local-reproduction-2026-08-08.json"
+  },
+  "transfer_argument": "The verified control kernel demonstrates expected-head guards, exact patch and approval binding, required-check enforcement, idempotent replay protection, explicit provider-failure states, canonical post-action readback, and receipt-backed terminal outcomes. These mechanisms align with the operating problem created when more autonomous coding agents act inside repository workflows.",
+  "current_proof": {
+    "grade": "B",
+    "observed": "17/17 deterministic and adversarial Node tests passed on the exact tested source; six proof-runner scenarios passed.",
+    "limitation": "A real GitHub provider adapter has not been operationally exercised by this implementation."
+  },
+  "next_company_gate": "Exercise the same control contract through a real bounded GitHub provider adapter, reproduce provider-side mutation and canonical readback evidence, then consider PROOF_REPRODUCED. No GitHub adoption or production use is claimed."
+}
