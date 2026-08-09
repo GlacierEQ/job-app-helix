@@ -73,11 +73,11 @@ def test_historical_report_remains_reproducible_without_overlay() -> None:
     assert all("base_admission" not in item for item in historical["repositories"])
 
 
-def test_admit_decision_requires_an_exact_sha() -> None:
+def test_admit_decision_requires_an_exact_hex_sha() -> None:
     historical = compile_surface_report(load(OBSERVATIONS), expected_public_count=75)
     decisions = deepcopy(load(DECISIONS))
     item = next(value for value in decisions["items"] if value["decision"] == "ADMIT")
-    item["evidence"]["canonical_head"] = "not-a-sha"
+    item["evidence"]["canonical_head"] = "z" * 40
     with pytest.raises(RepositorySurfaceError, match="exact canonical_head"):
         apply_surface_decisions(historical, decisions)
 
@@ -87,4 +87,30 @@ def test_decision_outside_public_census_fails_closed() -> None:
     decisions = deepcopy(load(DECISIONS))
     decisions["items"][0]["repository"] = "GlacierEQ/not-in-public-census"
     with pytest.raises(RepositorySurfaceError, match="outside surface report"):
+        apply_surface_decisions(historical, decisions)
+
+
+def test_truncated_overlay_cannot_leave_historical_unknown_unresolved() -> None:
+    historical = compile_surface_report(load(OBSERVATIONS), expected_public_count=75)
+    decisions = deepcopy(load(DECISIONS))
+    decisions["items"].pop()
+    with pytest.raises(RepositorySurfaceError, match="exactly cover historical UNASSESSED"):
+        apply_surface_decisions(historical, decisions)
+
+
+def test_admit_cannot_override_private_or_quarantined_base_state() -> None:
+    historical = compile_surface_report(load(OBSERVATIONS), expected_public_count=75)
+    decisions = deepcopy(load(DECISIONS))
+    admitted_repository = next(
+        item["repository"] for item in decisions["items"] if item["decision"] == "ADMIT"
+    )
+    base_record = next(
+        item for item in historical["repositories"] if item["repository"] == admitted_repository
+    )
+    base_record["public"] = False
+    base_record["admission"] = "QUARANTINED"
+    base_record["lineage_state"] = "QUARANTINED"
+    base_record["findings"] = sorted(set(base_record["findings"] + ["PRIVACY_RISK"]))
+
+    with pytest.raises(RepositorySurfaceError, match="conflicts with base blockers"):
         apply_surface_decisions(historical, decisions)
