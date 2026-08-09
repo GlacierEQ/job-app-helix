@@ -1,9 +1,10 @@
 # 🔍 Project Audit Report — job-app-helix
 
-**Date:** 2026-07-28 (verified 2026-07-29)  
-**Auditor:** Cline (automated)  
-**Commit:** `8a18651`  
-**Python tested:** 3.11.15 (via `.venv`)
+**Date:** 2026-07-28 (verified 2026-08-08)  
+**Auditor:** Cline (automated) + GlacierEQ (updated)  
+**Commit:** `1554694`  
+**Python tested:** 3.11.15 (via `.venv`)  
+**Version:** 0.3.0
 
 ---
 
@@ -28,7 +29,7 @@
 ## 1. Test Results
 
 ```
-12 passed in 2.87s
+12 passed in 2.87s (as of 2026-07-29)
 ```
 
 | Test File | Tests | Status |
@@ -86,9 +87,9 @@ Success: no issues found in 10 source files
 
 | Location | Version |
 |----------|---------|
-| `src/job_app_helix/__init__.py` | `0.2.0` |
-| `pyproject.toml` | `0.2.0` |
-| `src/job_app_helix/campaign.py` (engine_version) | `0.2.0` ✅ |
+| `src/job_app_helix/__init__.py` | `0.3.0` |
+| `pyproject.toml` | `0.3.0` |
+| `src/job_app_helix/campaign.py` (engine_version) | `0.3.0` ✅ |
 
 ---
 
@@ -137,4 +138,4 @@ Success: no issues found in 10 source files
 
 ---
 
-*Audit completed 2026-07-29 — all high-priority items resolved.*
+*Audit completed 2026-07-29 — all high-priority items resolved. Updated 2026-08-08 with version sync and current metadata.*
