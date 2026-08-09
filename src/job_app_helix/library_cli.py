@@ -32,6 +32,7 @@ DEFAULT_SURFACE_DECISIONS = Path(
 DEFAULT_SURFACE_RECONCILIATIONS = (
     Path("manifests/public_repository_surface_reconciliation_2026-08-09.json"),
     Path("manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json"),
+    Path("manifests/public_repository_surface_reconciliation_wave4_2026-08-09.json"),
 )
 
 
@@ -125,6 +126,21 @@ def _branch_command(args: argparse.Namespace) -> int:
     return 0
 
 
+def _resolve_reconciliation_paths(args: argparse.Namespace) -> tuple[Path, ...]:
+    if args.reconciliation:
+        return tuple(args.reconciliation)
+    custom_sources = (
+        args.observations != DEFAULT_SURFACE_OBSERVATIONS
+        or args.decisions != DEFAULT_SURFACE_DECISIONS
+    )
+    if custom_sources:
+        raise RepositorySurfaceError(
+            "custom observations or decisions require explicit --reconciliation; "
+            "use --decision-only when no reconciliation should be applied"
+        )
+    return DEFAULT_SURFACE_RECONCILIATIONS
+
+
 def _surface_command(args: argparse.Namespace) -> int:
     observations = json.loads(args.observations.read_text(encoding="utf-8"))
     if args.historical_only:
@@ -139,12 +155,7 @@ def _surface_command(args: argparse.Namespace) -> int:
             expected_public_count=args.expected_public_count,
         )
         if not args.decision_only:
-            reconciliation_paths = (
-                tuple(args.reconciliation)
-                if args.reconciliation
-                else DEFAULT_SURFACE_RECONCILIATIONS
-            )
-            for reconciliation_path in reconciliation_paths:
+            for reconciliation_path in _resolve_reconciliation_paths(args):
                 reconciliation = json.loads(
                     reconciliation_path.read_text(encoding="utf-8")
                 )
