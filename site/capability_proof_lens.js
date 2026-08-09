@@ -51,17 +51,19 @@
     return new Set(routed.length ? routed : Array.from(allowed));
   };
 
-  const routeCapabilities = (company, role) => {
+  const routeCapabilities = (company, role, systemIds) => {
     const payload = rolePayload(company, role);
     const capabilities = new Set();
-    if (payload && Array.isArray(payload.profile_capabilities)) {
-      payload.profile_capabilities.forEach((value) => {
-        if (typeof value === "string") capabilities.add(value);
-      });
-    }
     if (payload && Array.isArray(payload.systems)) {
       payload.systems.forEach((row) => {
-        if (!row || !Array.isArray(row.matched_capabilities)) return;
+        if (
+          !row ||
+          typeof row.system_id !== "string" ||
+          !systemIds.has(row.system_id) ||
+          !Array.isArray(row.matched_capabilities)
+        ) {
+          return;
+        }
         row.matched_capabilities.forEach((value) => {
           if (typeof value === "string") capabilities.add(value);
         });
@@ -70,21 +72,31 @@
     return capabilities;
   };
 
+  const safeEvidencePath = (ref) => {
+    if (typeof ref !== "string" || !ref || ref.startsWith("/") || ref.startsWith("\\")) {
+      return null;
+    }
+    const normalized = ref.replaceAll("\\", "/");
+    const segments = normalized.split("/");
+    if (segments.some((segment) => !segment || segment === "." || segment === "..")) {
+      return null;
+    }
+    return segments;
+  };
+
   const evidenceHref = (proof, ref) => {
+    const segments = safeEvidencePath(ref);
     if (
       !proof ||
       typeof proof.source_repository !== "string" ||
       !proof.source_repository.startsWith("GlacierEQ/") ||
       typeof proof.head_sha !== "string" ||
       !/^[0-9a-f]{40}$/.test(proof.head_sha) ||
-      typeof ref !== "string" ||
-      !ref ||
-      ref.startsWith("/") ||
-      ref.split("/").includes("..")
+      !segments
     ) {
       return null;
     }
-    const encoded = ref.split("/").map(encodeURIComponent).join("/");
+    const encoded = segments.map(encodeURIComponent).join("/");
     return `https://github.com/${proof.source_repository}/blob/${proof.head_sha}/${encoded}`;
   };
 
@@ -187,7 +199,7 @@
     const role = roleSelect.value;
     const depth = depthSelect.value;
     const systemIds = depthIds(company, role, depth);
-    const roleCaps = routeCapabilities(company, role);
+    const roleCaps = routeCapabilities(company, role, systemIds);
     const proofs = (Array.isArray(company.capability_proofs) ? company.capability_proofs : [])
       .filter(
         (proof) =>
