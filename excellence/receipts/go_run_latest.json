@@ -1,5 +1,5 @@
 {
-  "ts": "2026-08-09T07:32Z",
+  "ts": "2026-08-09T07:40Z",
   "run": "GO-RESIDUAL-CLOSED",
   "successor_of": "GO",
   "p0": {
@@ -16,7 +16,8 @@
       "shared_extract": false
     },
     "consumers_count": 2,
-    "next": "optional shared expected-head extract unblocked; not required for residual close"
+    "next": "optional shared expected-head extract unblocked; not required for residual close",
+    "scratch_log": "p0/expected_head_second_consumer.log"
   },
   "wave_a": {
     "leaves": [
@@ -39,7 +40,30 @@
       "PROOF_REPRODUCED",
       "PROMOTED"
     ],
-    "law": "gate state changed; prose did not"
+    "law": "gate state changed; prose did not",
+    "scratch": {
+      "proof_logs": [
+        "wave_a/anduril-sensor-health-quorum/proof.log",
+        "wave_a/anthropic-refusal-replay-harness/proof.log",
+        "wave_a/cloudflare-bot-intent-receipt/proof.log",
+        "wave_a/nvidia-nan-circuit-breaker/proof.log",
+        "wave_a/palantir-object-authority-matrix/proof.log",
+        "wave_a/vercel-preview-truth-gate/proof.log",
+        "wave_a/waymo-uncertainty-lane-graph/proof.log",
+        "wave_a/xai-claim-promotion-fence/proof.log"
+      ],
+      "launch_logs": [
+        "wave_a/anduril-sensor-health-quorum/launch.log",
+        "wave_a/anthropic-refusal-replay-harness/launch.log",
+        "wave_a/cloudflare-bot-intent-receipt/launch.log",
+        "wave_a/nvidia-nan-circuit-breaker/launch.log",
+        "wave_a/palantir-object-authority-matrix/launch.log",
+        "wave_a/vercel-preview-truth-gate/launch.log",
+        "wave_a/waymo-uncertainty-lane-graph/launch.log",
+        "wave_a/xai-claim-promotion-fence/launch.log"
+      ],
+      "validator_all": "wave_a/validator_all.log"
+    }
   },
   "closed_receipt": "job-app/excellence/receipts/go_residual_closed.json"
 }
