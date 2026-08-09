@@ -156,6 +156,16 @@ def _public_capability_proofs(
         for value in projection.get("capabilities", [])
         if isinstance(value, str)
     }
+    safe_evidence_pairs = {
+        (row.get("system_id"), row.get("source_repository"))
+        for row in projection.get("ranked_evidence", [])
+        if isinstance(row, Mapping)
+        and row.get("system_id") in safe_ids
+        and row.get("visibility") == "public"
+        and row.get("visibility_decision") == "PUBLIC_ELIGIBLE"
+        and row.get("promotion_state") in PUBLIC_ADMISSION_STATES
+        and isinstance(row.get("source_repository"), str)
+    }
     registry = bundle.get("capability_donor_registry", {})
     rows = registry.get("capabilities", []) if isinstance(registry, Mapping) else []
     if not isinstance(rows, list):
@@ -185,6 +195,10 @@ def _public_capability_proofs(
             repository = proof.get("repository")
             if not isinstance(repository, str) or not repository.startswith("GlacierEQ/"):
                 raise ValueError(f"{capability_id}: public semantic donor repository is unsafe")
+            if (system_id, repository) not in safe_evidence_pairs:
+                raise ValueError(
+                    f"{capability_id}: semantic donor does not match public ranked evidence"
+                )
             head_sha = proof.get("head_sha")
             if not _is_sha(head_sha):
                 raise ValueError(f"{capability_id}: public semantic donor head is invalid")
@@ -192,8 +206,8 @@ def _public_capability_proofs(
             if admission_state not in PUBLIC_ADMISSION_STATES:
                 raise ValueError(f"{capability_id}: semantic donor is not publicly admitted")
             proof_state = proof.get("proof_state")
-            if not isinstance(proof_state, str) or not proof_state:
-                raise ValueError(f"{capability_id}: semantic donor proof state is missing")
+            if not isinstance(proof_state, str) or "VERIFIED" not in proof_state:
+                raise ValueError(f"{capability_id}: semantic donor proof state is not verified")
 
             evidence_refs = proof.get("evidence_refs", [])
             if not isinstance(evidence_refs, list) or not evidence_refs:
