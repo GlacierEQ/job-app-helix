@@ -764,7 +764,7 @@ def _semantic_capability_assertions(
         if rows and not isinstance(company.get("capability_map"), str):
             raise ValueError(f"{company_id}: capability_donors require capability_map")
         seen: set[tuple[str, str]] = set()
-        for index, row in enumerate(rows):
+        for row in rows:
             if not isinstance(row, list) or len(row) != 4:
                 raise ValueError(
                     f"{company_id}: capability donor row must have four columns"
