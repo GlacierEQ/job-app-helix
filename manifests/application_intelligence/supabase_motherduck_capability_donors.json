@@ -1,5 +1,5 @@
 {
-  "schema": "glaciereq.company-capability-donor-map.v1",
+  "schema": "glaciereq.company-capability-donor-map.v2",
   "generated_at": "2026-08-08T17:39:00-10:00",
   "purpose": "Promote reusable, non-sensitive technical mechanisms into public canonical capability donors without promoting private legal/evidence lineage sources.",
   "truth_boundary": {
@@ -8,7 +8,8 @@
     "no_private_code_or_data_is_copied": true,
     "company_mapping_is_semantic_relevance_not_affiliation": true,
     "deployment_is_not_inferred_from_source_or_ci": true,
-    "direct_name_upstream_forks_remain_excluded_from_authorship": true
+    "direct_name_upstream_forks_remain_excluded_from_authorship": true,
+    "blocked_repository_cannot_be_recruiter_capability_donor": true
   },
   "lineage_inputs": [
     "manifests/application_intelligence/supabase_lineage_audit.json",
@@ -21,22 +22,51 @@
       "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
       "canonical_role": "public_gateway_and_connector_system",
       "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+      "proof_scope": "Capability mechanisms are source-evidenced at the immutable donor head. Exact-head check receipts prove repository-head verification, not separate live runtime certification of each connector.",
       "evidence_inventory": [
-        "supabase/functions/apex-github-repo-atlas-seed/index.ts",
-        "src/godmind/connectors/supabase.ts",
-        "src/godmind/connectors/motherduck.ts"
+        {
+          "path": "supabase/functions/apex-github-repo-atlas-seed/index.ts",
+          "blob_sha": "528f78edd08b0f9f007479d27404a83980222b71"
+        },
+        {
+          "path": "src/godmind/connectors/supabase.ts",
+          "blob_sha": "5fb6c03deed31fe480b5469f3439c53b5c83ae56"
+        },
+        {
+          "path": "src/godmind/connectors/motherduck.ts",
+          "blob_sha": "89e3f3a4fe53ef32cc105097fa2ef7ea868877c8"
+        }
       ],
-      "proof": {
-        "exact_head_check_runs": [
-          "Memory Hooks Unit Tests:success",
-          "Gauntlet Patch Status:success",
-          "Memory Backend Health:success",
-          "Socket Security Project Report:success"
-        ],
-        "commit_statuses": [
-          "Vercel:success"
-        ]
-      }
+      "proof_receipts": [
+        {
+          "kind": "check_run",
+          "id": 93175025513,
+          "name": "Memory Hooks Unit Tests",
+          "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+          "conclusion": "success"
+        },
+        {
+          "kind": "check_run",
+          "id": 93175025486,
+          "name": "Gauntlet Patch Status",
+          "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+          "conclusion": "success"
+        },
+        {
+          "kind": "check_run",
+          "id": 93175025461,
+          "name": "Memory Backend Health",
+          "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+          "conclusion": "success"
+        },
+        {
+          "kind": "check_run",
+          "id": 93175027796,
+          "name": "Socket Security: Project Report",
+          "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+          "conclusion": "success"
+        }
+      ]
     },
     "GlacierEQ/apex-control-plane": {
       "visibility": "public",
@@ -44,32 +74,34 @@
       "head_sha": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
       "canonical_role": "public_control_plane",
       "proof_state": "SOURCE_AND_EXACT_HEAD_REPOSITORY_SECURITY_VERIFIED",
+      "proof_scope": "The connector state machine is source-evidenced at the immutable donor head; the receipt proves exact-head repository security status rather than a live Supabase service session.",
       "evidence_inventory": [
-        "connectors/supabase_validator.py"
+        {
+          "path": "connectors/supabase_validator.py",
+          "blob_sha": "a0761c08c6e5e1b8c1c3160a7b0f096747170696"
+        }
       ],
-      "proof": {
-        "exact_head_check_runs": [
-          "Repository security / Status:success"
-        ]
-      }
-    },
+      "proof_receipts": [
+        {
+          "kind": "check_run",
+          "id": 93145100197,
+          "name": "Repository security / 📊 Status",
+          "head_sha": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
+          "conclusion": "success"
+        }
+      ]
+    }
+  },
+  "blocked_candidate_systems": {
     "GlacierEQ/xai-colossus-cooling": {
-      "visibility": "public",
-      "fork": false,
-      "head_sha": "b7e8b3131337990a98e26954d58ace102c7ae94b",
-      "canonical_role": "public_analytics_implementation_donor",
-      "proof_state": "SOURCE_AND_CORE_CI_VERIFIED_DEPLOYMENT_NOT_CLAIMED",
-      "evidence_inventory": [
-        "connectors/motherduck_analytics.py"
-      ],
-      "proof": {
-        "exact_head_workflows": [
-          "CI:success",
-          "Cooling Core Truth Gate:success"
-        ],
-        "deployment_workflow": ".github/workflows/deploy.yml:failure"
-      },
-      "projection_boundary": "Admit only generic MotherDuck/DuckDB connector mechanisms. Do not project xAI affiliation, production deployment, system scale, cooling performance, or company-specific accomplishment."
+      "governing_source": "manifests/company_dossiers/frontier_ai.json",
+      "governing_state": "BLOCKED",
+      "recruiter_admission": false,
+      "reason": "The governing xAI dossier keeps this repository outside recruiter admission pending successor/unique-value analysis. Its generic MotherDuck/DuckDB mechanisms remain extraction leads only and are not capability donors.",
+      "candidate_mechanisms": [
+        "motherduck-cloud-local-analytics-fallback",
+        "motherduck-parameterized-batch-analytics"
+      ]
     }
   },
   "capabilities": [
@@ -116,15 +148,15 @@
       "excluded_claims": []
     },
     {
-      "capability_id": "motherduck-query-health-facade",
+      "capability_id": "motherduck-query-facade",
       "company_id": "motherduck",
       "donor_repository": "GlacierEQ/colossus-gateway",
       "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
       "evidence_refs": [
         "src/godmind/connectors/motherduck.ts"
       ],
-      "mechanism": "A token-configured MotherDuck query facade exposes a bounded connector object and structured latency/error health probe.",
-      "recruiter_safe_claim": "Implemented a MotherDuck connector facade with environment-scoped configuration and structured query health telemetry.",
+      "mechanism": "A token- and database-configured MotherDuck REST query facade provides a bounded connector object and typed query result path.",
+      "recruiter_safe_claim": "Implemented a MotherDuck query facade with environment-scoped token/database configuration and typed result handling.",
       "excluded_scope": [
         "createCaseTable",
         "upsertCase",
@@ -136,32 +168,18 @@
       ]
     },
     {
-      "capability_id": "motherduck-cloud-local-analytics-fallback",
+      "capability_id": "motherduck-structured-health-telemetry",
       "company_id": "motherduck",
-      "donor_repository": "GlacierEQ/xai-colossus-cooling",
-      "head_sha": "b7e8b3131337990a98e26954d58ace102c7ae94b",
+      "donor_repository": "GlacierEQ/colossus-gateway",
+      "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
       "evidence_refs": [
-        "connectors/motherduck_analytics.py"
+        "src/godmind/connectors/motherduck.ts"
       ],
-      "mechanism": "The analytics connector attempts MotherDuck cloud DuckDB and degrades to local in-memory DuckDB when cloud connectivity is unavailable.",
-      "recruiter_safe_claim": "Implemented a DuckDB analytics connector with MotherDuck cloud preference and local in-memory fallback for resilient analytical execution.",
+      "mechanism": "The MotherDuck connector performs a bounded SELECT 1 probe and returns structured connector health with success, latency, timestamp, or captured error.",
+      "recruiter_safe_claim": "Implemented structured MotherDuck connector health telemetry with bounded query probing, latency measurement, timestamps, and error capture.",
       "excluded_claims": [
-        "No xAI affiliation or production deployment claim.",
-        "The exact-head deployment workflow is failed, so deployment is explicitly not part of this proof."
-      ]
-    },
-    {
-      "capability_id": "motherduck-parameterized-batch-analytics",
-      "company_id": "motherduck",
-      "donor_repository": "GlacierEQ/xai-colossus-cooling",
-      "head_sha": "b7e8b3131337990a98e26954d58ace102c7ae94b",
-      "evidence_refs": [
-        "connectors/motherduck_analytics.py"
-      ],
-      "mechanism": "The connector uses parameter-bound executemany ingestion and parameterized time-window queries to support batch telemetry analytics and aggregate/anomaly computations.",
-      "recruiter_safe_claim": "Built parameter-bound batch ingestion and time-window analytics over DuckDB/MotherDuck-compatible data paths.",
-      "excluded_claims": [
-        "No xAI affiliation, production deployment, infrastructure scale, or cooling-performance claim."
+        "The source comment mentions local DuckDB fallback, but no fallback implementation exists in this file at the admitted head; no fallback claim is made.",
+        "No live service availability or production deployment is inferred from repository checks."
       ]
     }
   ],
@@ -183,15 +201,13 @@
     "motherduck": {
       "state": "SEMANTIC_CAPABILITY_DONORS_ADMITTED_WITH_DEPLOYMENT_BOUNDARY",
       "capability_ids": [
-        "motherduck-query-health-facade",
-        "motherduck-cloud-local-analytics-fallback",
-        "motherduck-parameterized-batch-analytics"
+        "motherduck-query-facade",
+        "motherduck-structured-health-telemetry"
       ],
       "donor_repositories": [
-        "GlacierEQ/colossus-gateway",
-        "GlacierEQ/xai-colossus-cooling"
+        "GlacierEQ/colossus-gateway"
       ],
-      "semantic_fit": "Analytical query facades, DuckDB/MotherDuck cloud-local resilience, parameter-bound batch ingestion, and time-window aggregation are transferable analytics-engineering capabilities relevant to MotherDuck.",
+      "semantic_fit": "A bounded MotherDuck query facade and structured health telemetry are transferable analytics-integration capabilities relevant to MotherDuck. Additional cloud/local fallback and batch-analytics mechanisms remain blocked extraction candidates and are not recruiter admitted.",
       "affiliation_claim": false,
       "deployment_claim": false
     }
