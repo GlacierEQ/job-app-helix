@@ -15,11 +15,18 @@ from .library_program import (
     validate_latest_execution_receipt,
     validate_library_program,
 )
-from .repository_surface import RepositorySurfaceError, compile_surface_report
+from .repository_surface import (
+    RepositorySurfaceError,
+    compile_governed_surface_report,
+    compile_surface_report,
+)
 
 DEFAULT_PROGRAM = Path("manifests/library_priority_spine.json")
 DEFAULT_SURFACE_OBSERVATIONS = Path(
     "manifests/public_repository_surface_observations_2026-08-08.json"
+)
+DEFAULT_SURFACE_DECISIONS = Path(
+    "manifests/public_repository_surface_decisions_2026-08-08.json"
 )
 
 
@@ -49,10 +56,21 @@ def build_parser() -> argparse.ArgumentParser:
 
     surface_parser = subparsers.add_parser(
         "surface-audit",
-        help="Compile fail-closed public repository-surface admission from a census manifest.",
+        help=(
+            "Compile fail-closed public repository-surface admission from historical "
+            "observations plus the current governed-decision overlay."
+        ),
     )
     surface_parser.add_argument(
         "--observations", type=Path, default=DEFAULT_SURFACE_OBSERVATIONS
+    )
+    surface_parser.add_argument(
+        "--decisions", type=Path, default=DEFAULT_SURFACE_DECISIONS
+    )
+    surface_parser.add_argument(
+        "--historical-only",
+        action="store_true",
+        help="Reproduce the historical observation report without later decisions.",
     )
     surface_parser.add_argument("--expected-public-count", type=int, default=75)
     surface_parser.add_argument("--output", type=Path)
@@ -89,10 +107,18 @@ def _branch_command(args: argparse.Namespace) -> int:
 
 
 def _surface_command(args: argparse.Namespace) -> int:
-    payload = json.loads(args.observations.read_text(encoding="utf-8"))
-    report = compile_surface_report(
-        payload, expected_public_count=args.expected_public_count
-    )
+    observations = json.loads(args.observations.read_text(encoding="utf-8"))
+    if args.historical_only:
+        report = compile_surface_report(
+            observations, expected_public_count=args.expected_public_count
+        )
+    else:
+        decisions = json.loads(args.decisions.read_text(encoding="utf-8"))
+        report = compile_governed_surface_report(
+            observations,
+            decisions,
+            expected_public_count=args.expected_public_count,
+        )
     rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
