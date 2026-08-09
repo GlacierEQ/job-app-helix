@@ -138,6 +138,13 @@ def _is_sha(value: object) -> bool:
     )
 
 
+def _is_safe_repo_path(value: object) -> bool:
+    if not isinstance(value, str) or not value or value.startswith(("/", "\\")):
+        return False
+    normalized = value.replace("\\", "/")
+    return all(segment not in {"", ".", ".."} for segment in normalized.split("/"))
+
+
 def _public_capability_proofs(
     bundle: Mapping[str, Any],
     projection: Mapping[str, Any],
@@ -191,8 +198,8 @@ def _public_capability_proofs(
             evidence_refs = proof.get("evidence_refs", [])
             if not isinstance(evidence_refs, list) or not evidence_refs:
                 raise ValueError(f"{capability_id}: semantic donor evidence is missing")
-            if not all(isinstance(ref, str) and ref for ref in evidence_refs):
-                raise ValueError(f"{capability_id}: semantic donor evidence refs are invalid")
+            if not all(_is_safe_repo_path(ref) for ref in evidence_refs):
+                raise ValueError(f"{capability_id}: semantic donor evidence refs are unsafe")
 
             receipts = proof.get("proof_receipts", [])
             if not isinstance(receipts, list) or not receipts:
