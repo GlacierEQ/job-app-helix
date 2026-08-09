@@ -1,0 +1,73 @@
+{
+  "schema": "glaciereq.company-second-depth-company.v1",
+  "company_id": "github",
+  "state": {
+    "stage": "PROOF_REPRODUCED",
+    "claim_ceiling": "reproducible_company_specific_proof",
+    "role_evidence": [
+      {
+        "id": "github_role_mission_control_5611",
+        "kind": "role",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/evidence/github-role-5611.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "problem_evidence": [
+      {
+        "id": "github_problem_agentic_repository_promotion",
+        "kind": "problem",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/evidence/github-problem.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "inspected_repositories": [
+      {
+        "id": "github_inspection_merge_authority_private_hash_boundary",
+        "kind": "repository_inspection",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/machine/implementation-inspection.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "gap_queue": [
+      {
+        "id": "github_remedy_merge_authority_contract",
+        "kind": "bounded_gap",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/machine/remedy-contract.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "implementation_receipts": [
+      {
+        "id": "github_implementation_merge_authority",
+        "kind": "implementation_receipt",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/proof/implementation-receipt.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "proof_artifacts": [
+      {
+        "id": "github_proof_merge_authority_canonical_reproduction",
+        "kind": "proof_artifact",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/proof/canonical-reproduction.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "REPRODUCED",
+        "visibility": "public"
+      }
+    ],
+    "claim_receipts": [],
+    "blockers": [
+      "outward_company_projection_not_yet_compiled_from_this_effective_state"
+    ],
+    "next_gate": "Compile and validate the outward GitHub company surface from this canonical PROOF_REPRODUCED state, verify public readback preserves the same independent-work claim boundary, then add the public claim receipt and advance exactly one stage to CLAIM_PROMOTED."
+  }
+}
