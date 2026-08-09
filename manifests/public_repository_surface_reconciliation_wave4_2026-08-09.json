@@ -1,0 +1,83 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-09T13:30:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_names_do_not_imply_affiliation_or_proprietary_access": true,
+    "modeled_scenarios_do_not_inherit_hardware_model_or_deployment_claims": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "MODELED_MESH_CAPABILITY_VERIFIED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "66864aed96061dc681555973452c0abdaeadc405",
+        "evidence_token": "MODELED_MESH_SCENARIO_NOT_TPU_MEASUREMENT",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31341623265,
+            "name": "Public Truth Gate",
+            "head_sha": "66864aed96061dc681555973452c0abdaeadc405",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Exact-current-head Python 3.11/3.13 proof verifies deterministic mesh timing/planning arithmetic, finite/integer validation, global-token conservation, public path correctness, and Google/DeepMind non-affiliation. Verilog and Mojo remain reference artifacts without TPU hardware proof."
+      },
+      "next_gate": "Reopen repair on canonical-head, public-boundary, scenario-model, or hardware-claim drift."
+    },
+    {
+      "repository": "GlacierEQ/deepseek-mla-moe-sentinel",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "MODELED_MLA_MOE_CAPABILITY_VERIFIED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "09ee2cfff69498ac3ccdd2d805ea83a3cd917bab",
+        "evidence_token": "MODELED_MLA_MOE_SCENARIO_NOT_MODEL_EXECUTION",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31341886084,
+            "name": "Public Truth Gate",
+            "head_sha": "09ee2cfff69498ac3ccdd2d805ea83a3cd917bab",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Exact-current-head Python 3.11/3.13 proof verifies deterministic storage/routing arithmetic and literal evidence-token integrity; both C reference sources compile successfully after the native bool-header defect was repaired. No DeepSeek model execution or performance claim is inherited."
+      },
+      "next_gate": "Reopen repair on canonical-head, evidence-token, C-build, public-boundary, or model-performance claim drift."
+    },
+    {
+      "repository": "GlacierEQ/kimi-mooncake-kv-stream",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "POLYGLOT_LOCAL_KV_MECHANISMS_VERIFIED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "5abe714fb6a2fc5088d8f80e1a6169373e944510",
+        "evidence_tokens": [
+          "MODELED_DISAGGREGATED_KV_SCENARIO_NOT_KIMI_RUNTIME",
+          "MODELED_KIMI_ARCHITECTURE_SCENARIO_NOT_MODEL_EXECUTION"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31341805561,
+            "name": "Public Truth Gate",
+            "head_sha": "5abe714fb6a2fc5088d8f80e1a6169373e944510",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Exact-current-head Python 3.11/3.13, Rust, and Go proof verifies modeled cache/scheduling arithmetic, corrected FIFO pop semantics, scheduler request preservation/validation, and public non-affiliation/transport boundaries. No Kimi model, Mooncake deployment, RDMA, or measured performance claim is inherited."
+      },
+      "next_gate": "Reopen repair on canonical-head, polyglot behavior, transport/runtime claim, or public-boundary drift."
+    }
+  ]
+}
