@@ -1,0 +1,45 @@
+{
+  "ts": "2026-08-09T07:32Z",
+  "run": "GO-RESIDUAL-CLOSED",
+  "schema": "glaciereq.go-residual-receipt.v1",
+  "p0": {
+    "capability": "merge_authority_graph",
+    "harvest": "monolith/catalog/capabilities/merge_authority_graph.json",
+    "principal_state": "PROOF_REPRODUCED",
+    "second_consumer": {
+      "id": "monolith_integrity_release_dual_key",
+      "repository": "GlacierEQ/monolith",
+      "surface": ".integrity/engines/expected_head_mutation_guard.py + release_dual_key.py",
+      "tests": "tests/test_expected_head_mutation_guard.py",
+      "status": "EARNED",
+      "independent": true,
+      "shared_extract": false
+    },
+    "consumers_count": 2,
+    "next": "optional shared expected-head extract unblocked; not required for residual close"
+  },
+  "wave_a": {
+    "leaves": [
+      "anduril-sensor-health-quorum",
+      "anthropic-refusal-replay-harness",
+      "cloudflare-bot-intent-receipt",
+      "nvidia-nan-circuit-breaker",
+      "palantir-object-authority-matrix",
+      "vercel-preview-truth-gate",
+      "waymo-uncertainty-lane-graph",
+      "xai-claim-promotion-fence"
+    ],
+    "proof": "8/8",
+    "operable": "8/8",
+    "promoted": "8/8",
+    "principal_state": "PROMOTED",
+    "not_yet": [],
+    "cleared": [
+      "OPERABLE",
+      "PROOF_REPRODUCED",
+      "PROMOTED"
+    ],
+    "law": "gate state changed; prose did not"
+  },
+  "result": "PASS"
+}
