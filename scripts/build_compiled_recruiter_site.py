@@ -105,6 +105,10 @@ def _is_safe_repo_path(value: object) -> bool:
     return all(segment not in {"", ".", ".."} for segment in normalized.split("/"))
 
 
+def _is_verified_state(value: object) -> bool:
+    return isinstance(value, str) and "VERIFIED" in value.split("_")
+
+
 def _validate_capability_proofs(company: dict[str, Any], path: str) -> None:
     ranked_evidence = company.get("ranked_evidence", [])
     if not isinstance(ranked_evidence, list):
@@ -144,7 +148,7 @@ def _validate_capability_proofs(company: dict[str, Any], path: str) -> None:
             raise ProjectionError(f"{proof_path} does not match public ranked_evidence")
         if not isinstance(head_sha, str) or re.fullmatch(r"[0-9a-f]{40}", head_sha) is None:
             raise ProjectionError(f"{proof_path}.head_sha must be exact")
-        if not isinstance(proof_state, str) or "VERIFIED" not in proof_state:
+        if not _is_verified_state(proof_state):
             raise ProjectionError(f"{proof_path}.proof_state is not verified")
         if admission_state not in PUBLIC_ADMISSION_STATES:
             raise ProjectionError(f"{proof_path}.admission_state is not public")
