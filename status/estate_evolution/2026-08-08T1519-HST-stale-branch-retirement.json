@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "kind": "stale_branch_retirement_receipt",
+  "repository": "GlacierEQ/job-app-helix",
+  "canonical_head": "45e3684966553cd21c63665d278db738d10633bb",
+  "decision": "RETIREMENT_READY_NO_DELETE",
+  "invariant": "No stale automation branch may be merged solely because it remains ahead of its historical merge base. Unique patch value must be compared against current canonical state first.",
+  "branches": [
+    {
+      "branch": "automation/company-atlas-expansion-20260808",
+      "ahead_by": 2,
+      "behind_by": 20,
+      "merge_base": "79fb8ceb43d4a34df08922b47afe229c1bc71acd",
+      "unique_files_vs_main": ["manifests/company_dossiers.json", "manifests/company_dossiers/expansion_targets.json"],
+      "canonical_readback": "Current main contains expansion_targets.json with the original 27-company expansion plus later direct-lineage hardening.",
+      "classification": "SUPERSEDED_AUTOMATION_BRANCH",
+      "action": "retain as provenance; do not merge"
+    },
+    {
+      "branch": "automation/company-atlas-expansion-current-20260808",
+      "ahead_by": 5,
+      "behind_by": 18,
+      "merge_base": "99fd957f69292123a7ca445005feae171ff66326",
+      "unique_files_vs_main": ["manifests/company_dossiers.json", "manifests/company_dossiers/expansion_targets.json", "tests/test_application_registry.py", "tests/test_company_second_depth.py", "tests/test_portfolio_root_truth.py"],
+      "canonical_readback": "The company expansion and registry/test invariant updates have been incorporated and subsequently evolved on main; this branch is stale and must not be merged.",
+      "classification": "SUPERSEDED_AUTOMATION_BRANCH",
+      "action": "retain as provenance; do not merge"
+    },
+    {
+      "branch": "automation/company-atlas-expansion-fresh-20260808",
+      "ahead_by": 2,
+      "behind_by": 19,
+      "merge_base": "f29719d11eb7e50ce7ca83424dde692317447dac",
+      "unique_files_vs_main": ["manifests/company_dossiers.json", "manifests/company_dossiers/expansion_targets.json"],
+      "canonical_readback": "Current main contains the same target expansion family with newer lineage evidence; no stale-tip merge is permitted.",
+      "classification": "SUPERSEDED_AUTOMATION_BRANCH",
+      "action": "retain as provenance; do not merge"
+    },
+    {
+      "branch": "automation/estate-maintenance-20260808",
+      "ahead_by": 1,
+      "behind_by": 60,
+      "merge_base": "c748a0652c3494992bc06ccf97c8fa6563a0fb34",
+      "unique_files_vs_main": ["status/estate_evolution/2026-08-08T0043Z-autonomous-maintenance-run.json"],
+      "canonical_readback": "The exact maintenance receipt already exists on current main with matching repository path and preserved source bytes.",
+      "classification": "SUPERSEDED_RECEIPT_BRANCH",
+      "action": "retain as provenance; do not merge"
+    }
+  ],
+  "destructive_action_performed": false,
+  "branch_deletion_performed": false,
+  "next_cursor": "Continue lane-3 retirement classification for other canonical repositories only when no nearer unfinished PR/CI/deployment gate exists."
+}
