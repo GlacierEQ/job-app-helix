@@ -35,7 +35,11 @@ def test_supabase_verified_forks_are_excluded_from_authorship() -> None:
 
 def test_aspen_grove_supabase_stays_private_read_only_reference() -> None:
     audit = _load(SUPABASE_AUDIT)
-    row = next(row for row in audit["repositories"] if row["repository"] == "GlacierEQ/aspen-grove-supabase")
+    row = next(
+        row
+        for row in audit["repositories"]
+        if row["repository"] == "GlacierEQ/aspen-grove-supabase"
+    )
     assert row["fork"] is False
     assert row["classification"] == "PRIVATE_REFERENCE"
     assert row["provenance_state"] == "ORIGINAL_CANDIDATE"
