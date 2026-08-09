@@ -21,6 +21,11 @@
       "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
       "canonical_role": "public_gateway_and_connector_system",
       "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+      "evidence_inventory": [
+        "supabase/functions/apex-github-repo-atlas-seed/index.ts",
+        "src/godmind/connectors/supabase.ts",
+        "src/godmind/connectors/motherduck.ts"
+      ],
       "proof": {
         "exact_head_check_runs": [
           "Memory Hooks Unit Tests:success",
@@ -39,6 +44,9 @@
       "head_sha": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
       "canonical_role": "public_control_plane",
       "proof_state": "SOURCE_AND_EXACT_HEAD_REPOSITORY_SECURITY_VERIFIED",
+      "evidence_inventory": [
+        "connectors/supabase_validator.py"
+      ],
       "proof": {
         "exact_head_check_runs": [
           "Repository security / Status:success"
@@ -51,6 +59,9 @@
       "head_sha": "b7e8b3131337990a98e26954d58ace102c7ae94b",
       "canonical_role": "public_analytics_implementation_donor",
       "proof_state": "SOURCE_AND_CORE_CI_VERIFIED_DEPLOYMENT_NOT_CLAIMED",
+      "evidence_inventory": [
+        "connectors/motherduck_analytics.py"
+      ],
       "proof": {
         "exact_head_workflows": [
           "CI:success",
