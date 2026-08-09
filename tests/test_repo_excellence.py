@@ -101,8 +101,13 @@ def test_apex_merge_authority_record_is_machine_valid_and_bounded():
     record = json.loads(record_path.read_text(encoding="utf-8"))
     validated = validate_repo_excellence_record(record)
 
-    assert validated["state"] == "ADVERSARIAL_VERIFIED"
-    assert validated["scores"]["current_proof"] == "B"
-    assert validated["gates"]["runtime_behavior_observed"] is False
-    assert validated["evolution"]["next_gate"] == "OPERABLE"
-    assert validated["company_evidence"]["claim_ceiling"] == "IMPLEMENTED"
+    assert validated["state"] == "PROOF_REPRODUCED"
+    assert validated["scores"]["current_proof"] == "A"
+    assert validated["gates"]["runtime_behavior_observed"] is True
+    assert validated["gates"]["projections_truth_consistent"] is False
+    assert validated["evolution"]["next_gate"] == "PROMOTED"
+    assert validated["company_evidence"]["stage"] == "PROOF_REPRODUCED"
+    assert (
+        validated["company_evidence"]["claim_ceiling"]
+        == "reproducible_company_specific_proof"
+    )
