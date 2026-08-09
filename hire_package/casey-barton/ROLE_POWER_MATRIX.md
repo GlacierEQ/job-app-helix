@@ -1,199 +1,214 @@
-# Role Power Matrix - Three-Layer Candidate Routing
+# Role Power Matrix - Senior AI Architecture Routing
 
-> The same candidate power, expressed for human hiring decisions, technical diligence, and machine matching.
+> The same verified capability base, expressed for human hiring decisions, technical diligence, and machine matching.
 
-## 1. Applied AI Architect
+## 1. Forward-Deployed AI Architect
 
-### Layer 1 - Human value
+### Human value
 
-Casey designs the complete operating system around AI: what the model should do, which tools it may use, what context it receives, where human approval is required, how failures recover, and how the organization knows the result is trustworthy.
+Casey enters an ambiguous real-world environment, learns how operators and systems actually work, identifies the smallest high-value operating slice, designs the target architecture, builds the integration path, and stays through verification and adoption.
 
-**Best when:** a company has strong models or prototypes but needs a coherent architecture that can survive real users, security requirements, integrations, and change.
+**Best when:** a customer or internal team has a real workflow and fragmented systems but no clean AI architecture yet.
 
-**Business outcomes:** faster path from prototype to approved pilot, lower integration ambiguity, clearer ownership, safer automation, reusable platform patterns, and evidence-backed release decisions.
+**Business outcomes:** faster discovery-to-deployment, fewer handoff losses, bounded automation, clearer acceptance criteria, safer integrations, and reusable platform patterns derived from field evidence.
 
-### Layer 2 - Engineering scope
-
-- model, tool, context, memory, and orchestration architecture;
-- typed interfaces and structured-output contracts;
-- deterministic policy surrounding probabilistic reasoning;
-- authority, permission, and approval boundaries;
-- evaluation, verification, provenance, and receipts;
-- release, rollback, recovery, and resumability;
-- architectural decomposition across application, control, execution, and persistence layers.
-
-**Portfolio proof:** Job-App Helix exact inventory and evidence ladder; AKOS authority/completion semantics; README Mesh human-machine artifact twins; public execution/private governance patterns.
-
-### Layer 3 - ATS / AI routing
-
-```yaml
-role: Applied AI Architect
-aliases:
-  - Applied AI Systems Architect
-  - AI Solutions Architect
-  - AI Platform Architect
-keywords:
-  - agent orchestration
-  - Model Context Protocol
-  - RAG
-  - context engineering
-  - tool calling
-  - memory systems
-  - structured outputs
-  - evaluation
-  - AI governance
-  - human-in-the-loop
-  - architecture decision records
-  - least privilege
-  - provenance
-  - platform design
-match_signal: architecture ownership across model, tool, data, security, evaluation, and operations
-```
-
----
-
-## 2. Forward-Deployed AI Engineer
-
-### Layer 1 - Human value
-
-Casey enters an ambiguous real-world environment, learns how people actually work, identifies the smallest high-value workflow, builds the full vertical slice, integrates it with existing systems, and stays through verification and adoption.
-
-**Best when:** the customer or internal team knows the pain but cannot yet specify the complete product or integration.
-
-**Business outcomes:** rapid discovery, fewer handoff losses, working value earlier, direct operator feedback, measurable acceptance criteria, and a roadmap based on real deployment evidence.
-
-### Layer 2 - Engineering scope
+### Engineering scope
 
 - stakeholder and workflow discovery;
-- current-state and failure-path mapping;
-- rapid architecture and vertical-slice implementation;
-- API, data, identity, browser, document, and enterprise-tool integrations;
-- operator-facing UX and human approval paths;
+- application / control / execution / persistence decomposition;
+- API, data, identity, document, browser, repository, and enterprise-tool integration;
+- agent orchestration, context, memory, and tool architecture;
+- security and authority boundaries;
 - evaluation harnesses and deployment receipts;
-- runbooks, handoff, measurement, and iterative expansion.
+- recovery, runbooks, operator handoff, and iterative expansion.
 
-**Portfolio proof:** bounded execution planning; stack-aware repository discovery; operator-centered application spiral; home-inspection evidence discipline translated into systems integration and technical communication.
-
-### Layer 3 - ATS / AI routing
+**Portfolio proof:** Helix governed portfolio control plane; Make-It-Heavy longitudinal worker evaluation; Sigma Glue durable recovery and reconciliation; FileBoss capability-governed MCP execution; AKOS authority/completion semantics.
 
 ```yaml
-role: Forward-Deployed AI Engineer
+role: Forward-Deployed AI Architect
 aliases:
-  - Forward Deployed Engineer
-  - AI Deployment Engineer
-  - Customer AI Engineer
-  - Solutions Engineer, AI
+  - Forward Deployed AI Engineer
+  - AI Deployment Architect
+  - Customer AI Architect
+  - Applied AI Architect
 keywords:
   - customer discovery
   - ambiguous requirements
-  - rapid prototyping
   - vertical slice
   - systems integration
-  - API integration
-  - workflow automation
-  - operator experience
-  - deployment
+  - agent orchestration
   - evaluation
-  - technical communication
-  - adoption
-  - field engineering
-match_signal: owns discovery through integration, verification, operator handoff, and expansion
+  - security architecture
+  - deployment
+  - operator adoption
+  - recovery
+match_signal: owns discovery, architecture, implementation, verification, and operating adoption across real systems
 ```
 
 ---
 
-## 3. Agent Infrastructure Engineer
+## 2. Principal Agentic Systems Architect
 
-### Layer 1 - Human value
+### Human value
 
-Casey builds the infrastructure that prevents agent systems from becoming opaque chains of model calls. He makes tasks schedulable, permissions bounded, context deliberate, tool actions auditable, failures recoverable, and outcomes resumable.
+Casey designs the deterministic control substrate around probabilistic workers and agents: how tasks are decomposed, what tools may execute, what context is visible, how workers are evaluated, how uncertainty is preserved, and how the system improves without confusing heuristic scores with causal evidence.
 
-**Best when:** an organization is moving from individual AI features to multi-step agents, autonomous workflows, or reusable internal agent infrastructure.
+**Best when:** an organization is moving from individual LLM features to multi-step agents, autonomous workflows, or a reusable agent platform.
 
-**Business outcomes:** safer autonomy, predictable operations, lower debugging cost, clearer failure ownership, reusable agent components, and stronger deployment confidence.
+### Engineering scope
 
-### Layer 2 - Engineering scope
+- multi-agent topology and orchestration;
+- dependency-aware scheduling and explicit deferral;
+- context routing and memory boundaries;
+- tool catalogs, allowlists, leases, credentials, and approvals;
+- matched worker experiments, topology freezing, prompt isolation, and ablation;
+- structural quality vs causal-value separation;
+- provenance, immutable receipts, replay containment, and failure injection.
 
-- dependency-aware task coordination and scheduling;
-- role capacities and global resource budgets;
-- cycle detection and explicit deferral semantics;
-- context routing, memory boundaries, and state persistence;
-- tool catalogs, allowlists, credentials, approvals, and replay protection;
-- idempotency, retries, timeout policy, and rollback;
-- observability, provenance, immutable receipts, and failure injection;
-- public execution/private governance separation.
-
-**Portfolio proof:** Agent Coordinator candidate receipt at 62/62 Python 3.13 tests; AKOS operational cognition; Helix bounded execution; public runner architecture with explicit blocked activation.
-
-### Layer 3 - ATS / AI routing
+**Portfolio proof:** Make-It-Heavy merged matched-experiment substrate; 8/8-worker Baseline Zero at 77.7375/100 average supervisory quality; Agent Coordinator 62/62 candidate-local tests; AKOS and Helix control-plane semantics.
 
 ```yaml
-role: Agent Infrastructure Engineer
+role: Principal Agentic Systems Architect
 aliases:
-  - AI Infrastructure Engineer
-  - Agent Platform Engineer
-  - LLM Platform Engineer
-  - AI Systems Engineer
+  - Agent Systems Architect
+  - Agent Platform Architect
+  - LLM Systems Architect
+  - Agent Infrastructure Architect
 keywords:
+  - multi-agent systems
   - agent runtime
   - orchestration
-  - scheduling
-  - dependency graph
-  - tool execution
-  - permissions
-  - context routing
+  - worker evaluation
+  - ablation
+  - context engineering
   - memory
-  - idempotency
-  - retries
-  - observability
+  - tool execution
   - provenance
-  - audit logs
   - replay protection
-  - GitHub Actions
-  - distributed systems
-match_signal: builds deterministic execution, control, and evidence layers around probabilistic agents
+match_signal: designs and verifies the control, evaluation, authority, and persistence substrate around probabilistic agents
 ```
 
 ---
 
-## 4. AI Solutions Architect
+## 3. Principal AI Platform / Automation Architect
 
-### Layer 1 - Human value
+### Human value
+
+Casey builds reusable AI infrastructure rather than isolated demos. He turns recurring integration, execution, evaluation, security, and recovery needs into platform contracts that multiple workflows can reuse.
+
+**Best when:** an organization needs a shared AI control plane across models, tools, data, agents, and operator workflows.
+
+### Engineering scope
+
+- typed platform contracts and structured outputs;
+- durable state and idempotency;
+- provider execution and reconciliation;
+- capability security and least privilege;
+- observability, audit, provenance, and recovery;
+- reusable integration adapters;
+- model / tool routing boundaries;
+- release, rollback, and platform evolution.
+
+**Portfolio proof:** Sigma Glue 109/109 exact-head recovery hardening plus provider-aware reconciliation; FileBoss lease-gated MCP capability fabric; Helix portfolio control plane; README Mesh human-machine artifact twins.
+
+```yaml
+role: Principal AI Platform Architect
+aliases:
+  - Principal AI Automation Architect
+  - AI Infrastructure Architect
+  - AI Control Plane Architect
+  - AI Orchestration Architect
+keywords:
+  - AI platform
+  - control plane
+  - idempotency
+  - recovery
+  - provider reconciliation
+  - least privilege
+  - MCP
+  - observability
+  - provenance
+  - automation
+match_signal: converts repeated AI execution and integration problems into reusable governed platform infrastructure
+```
+
+---
+
+## 4. Staff / Principal Applied AI Engineer
+
+### Human value
+
+Casey is a hands-on senior IC who can move between architecture and implementation. He can build the control-plane code, integration adapters, test harnesses, data contracts, and verification paths rather than stopping at diagrams.
+
+**Best when:** the company uses Staff or Principal engineering ladders instead of architect titles but expects broad system ownership.
+
+### Engineering scope
+
+- Python, TypeScript / Node.js, SQL, Bash;
+- APIs and distributed workflow integration;
+- agent and tool execution;
+- evaluation and adversarial testing;
+- concurrency, idempotency, retries, recovery, and reconciliation;
+- CI/CD and repository-native verification;
+- technical design and cross-system debugging.
+
+**Portfolio proof:** AKOS 94/94 across Python 3.11-3.13; Sigma Glue exact-head reliability tests; Make-It-Heavy longitudinal worker science; Helix multi-repository control-plane work.
+
+```yaml
+role: Staff Applied AI Engineer
+aliases:
+  - Principal Applied AI Engineer
+  - Staff AI Systems Engineer
+  - Principal AI Engineer
+keywords:
+  - applied AI
+  - Python
+  - TypeScript
+  - distributed systems
+  - agent systems
+  - testing
+  - reliability
+  - integrations
+  - architecture
+match_signal: senior hands-on IC ownership across AI architecture, implementation, integration, and verification
+```
+
+---
+
+## 5. AI Solutions Architect
+
+### Human value
 
 Casey connects business outcomes to an implementable AI system without losing the operational realities between strategy and code. He can explain the opportunity to leaders, define the architecture with engineers, and keep the delivery path grounded in user workflow and evidence.
 
-**Best when:** an organization needs one owner who can bridge executive intent, customer workflow, platform choices, security, integration, and implementation planning.
+**Best when:** an organization needs one owner to bridge executive intent, customer workflow, platform choices, security, integration, and implementation planning.
 
-### Layer 2 - Engineering scope
+### Engineering scope
 
 - solution discovery and opportunity qualification;
 - target architecture and integration design;
-- model/tool/provider selection boundaries;
+- model / tool / provider selection boundaries;
 - data, identity, security, and compliance coordination;
 - proof-of-value and pilot design;
 - technical diligence and tradeoff communication;
-- implementation roadmap, acceptance criteria, and transfer to delivery teams.
+- implementation roadmap and acceptance criteria.
 
-**Portfolio proof:** three-audience documentation architecture; typed candidate and portfolio contracts; explicit proof/limit register; 30/60/90-day deployment roadmap.
-
-### Layer 3 - ATS / AI routing
+**Portfolio proof:** three-audience documentation architecture; typed candidate and portfolio contracts; explicit proof / limit register; architecture proof matrix; 30/60/90-day deployment roadmap.
 
 ```yaml
 role: AI Solutions Architect
 aliases:
-  - AI Solution Architect
   - GenAI Solutions Architect
   - Applied AI Consultant
+  - AI Solution Architect
 keywords:
   - solution architecture
-  - business requirements
   - AI strategy
   - technical discovery
   - proof of value
   - enterprise integration
   - security architecture
   - stakeholder communication
-  - implementation roadmap
   - technical diligence
 match_signal: bridges business intent, architecture, integration constraints, and executable delivery
 ```
@@ -202,21 +217,25 @@ match_signal: bridges business intent, architecture, integration constraints, an
 
 ## Cross-Role Power
 
-| Capability | Architect | Forward-Deployed | Infrastructure | Solutions |
-|---|:---:|:---:|:---:|:---:|
-| Ambiguous workflow discovery | Strong | Primary | Supporting | Primary |
-| System decomposition | Primary | Strong | Primary | Strong |
-| Agent orchestration | Primary | Strong | Primary | Strong |
-| Tool and enterprise integration | Strong | Primary | Strong | Strong |
-| Permissions and trust boundaries | Primary | Strong | Primary | Strong |
-| Verification and evidence | Primary | Primary | Primary | Strong |
-| Humanized technical communication | Strong | Primary | Strong | Primary |
-| Operator adoption and handoff | Strong | Primary | Strong | Strong |
-| Platform reuse and compounding value | Primary | Strong | Primary | Strong |
+| Capability | Forward-Deployed Architect | Agentic Systems Architect | Platform Architect | Staff/Principal Engineer | Solutions Architect |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Ambiguous workflow discovery | Primary | Strong | Strong | Strong | Primary |
+| System decomposition | Primary | Primary | Primary | Strong | Strong |
+| Agent orchestration | Strong | Primary | Strong | Strong | Strong |
+| Evaluation / experiment design | Strong | Primary | Strong | Strong | Supporting |
+| Reliability / recovery | Strong | Primary | Primary | Primary | Strong |
+| Capability security | Strong | Primary | Primary | Strong | Strong |
+| Tool and enterprise integration | Primary | Strong | Primary | Strong | Strong |
+| Verification and evidence | Primary | Primary | Primary | Primary | Strong |
+| Operator adoption and handoff | Primary | Strong | Strong | Strong | Strong |
+| Platform reuse / compounding value | Strong | Primary | Primary | Strong | Strong |
 
 ## Routing Rule
 
-Use **Applied AI Architect** when the role owns the complete AI system design.  
-Use **Forward-Deployed AI Engineer** when the role owns discovery through customer or operator deployment.  
-Use **Agent Infrastructure Engineer** when the role owns runtime, execution, governance, and reliability substrate.  
-Use **AI Solutions Architect** when the role bridges business objectives and implementable enterprise architecture.
+Use **Forward-Deployed AI Architect** when the role owns discovery through architecture, integration, verification, and adoption.  
+Use **Principal Agentic Systems Architect** when the role owns agent runtime, worker evaluation, orchestration, authority, and memory/control boundaries.  
+Use **Principal AI Platform / Automation Architect** when the role owns reusable AI infrastructure, reliability, capability security, provider integration, and control-plane patterns.  
+Use **Staff / Principal Applied AI Engineer** when the company uses an IC ladder but expects the same hands-on systems ownership.  
+Use **AI Solutions Architect** when the role is weighted more toward business-to-architecture translation and technical solution design.
+
+For exact evidence, claim ceilings, and the remaining promotion gates, use `AI_ARCHITECT_PROOF_MATRIX.md`.
