@@ -219,11 +219,17 @@
 
     clear(proofRoot);
     const systems = new Set(proofs.map((proof) => proof.system_id));
-    const receiptCount = proofs.reduce(
-      (total, proof) =>
-        total + (Array.isArray(proof.proof_receipts) ? proof.proof_receipts.length : 0),
-      0,
-    );
+    const distinctReceipts = new Set();
+    proofs.forEach((proof) => {
+      const receipts = Array.isArray(proof.proof_receipts) ? proof.proof_receipts : [];
+      receipts.forEach((receipt) => {
+        if (!receipt || !Number.isInteger(receipt.id)) return;
+        distinctReceipts.add(
+          `${proof.source_repository}|${proof.head_sha}|${receipt.id}`,
+        );
+      });
+    });
+    const receiptCount = distinctReceipts.size;
     proofSummary.textContent = `${proofs.length} capability proof packet${proofs.length === 1 ? "" : "s"} · ${systems.size} public donor system${systems.size === 1 ? "" : "s"} · ${receiptCount} successful exact-head check${receiptCount === 1 ? "" : "s"}.`;
     proofs.slice(0, depth === "recruiter" ? 3 : 6).forEach((proof) =>
       renderProof(proof, depth, roleCaps),
