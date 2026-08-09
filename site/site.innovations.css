@@ -1,0 +1,374 @@
+/* ═══════════════════════════════════════════════════════════════
+   GLACIEREQ SITE INNOVATIONS — v1.0
+   Additive CSS-only enhancements. Script-free. Evidence-bound.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── READING PROGRESS BAR ─── */
+@property --scroll-progress {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes scroll-progress {
+  from { --scroll-progress: 0%; }
+  to { --scroll-progress: 100%; }
+}
+
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--mint), var(--cyan), var(--violet));
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 10000;
+  pointer-events: none;
+  animation: scroll-progress linear;
+  animation-timeline: scroll(root);
+}
+
+/* ─── CARD HOVER MICRO-INTERACTIONS ─── */
+.card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-deep);
+}
+
+.bento-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--mint), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+}
+
+/* ─── LAYER DECK HOVER ─── */
+.layer-deck > a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.layer-deck > a:hover {
+  transform: translateX(6px);
+  border-color: rgba(156, 246, 216, 0.25);
+}
+
+/* ─── PROOF METRIC HOVER ─── */
+.proof-metric {
+  transition: all 0.2s ease;
+}
+
+.proof-metric:hover {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(156, 246, 216, 0.15);
+}
+
+.proof-metric b {
+  transition: color 0.2s ease;
+}
+
+.proof-metric:hover b {
+  color: var(--mint);
+}
+
+/* ─── PIPELINE STEP HOVER ─── */
+.pipe {
+  transition: all 0.2s ease;
+}
+
+.pipe:hover {
+  background: rgba(156, 246, 216, 0.06);
+  border-color: rgba(156, 246, 216, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ─── DECISION ROW HOVER ─── */
+.decision-row {
+  transition: background 0.2s ease;
+}
+
+.decision-row:hover {
+  background: rgba(156, 246, 216, 0.03);
+}
+
+.decision-row code {
+  transition: all 0.2s ease;
+}
+
+.decision-row:hover code {
+  color: var(--mint);
+  text-shadow: 0 0 12px rgba(156, 246, 216, 0.3);
+}
+
+/* ─── STAR CHAIN HOVER ─── */
+.star-chain > div {
+  transition: all 0.2s ease;
+}
+
+.star-chain > div:hover {
+  background: rgba(156, 246, 216, 0.04);
+}
+
+/* ─── ROLE PROOF HOVER ─── */
+.role-proof {
+  transition: all 0.3s ease;
+}
+
+.role-proof:hover {
+  transform: translateY(-3px);
+  border-color: rgba(156, 246, 216, 0.2);
+}
+
+/* ─── LIGHT MODE ─── */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f8fafb;
+    --bg2: #eef2f5;
+    --panel: rgba(255, 255, 255, 0.92);
+    --panel-strong: #fff;
+    --ink: #1a2332;
+    --ink-soft: #3d4f5f;
+    --muted: #5a6e7d;
+    --muted-2: #7a8c9a;
+    --line: rgba(0, 40, 60, 0.1);
+    --line-strong: rgba(0, 40, 60, 0.18);
+    --mint: #0d9488;
+    --cyan: #0891b2;
+    --violet: #7c3aed;
+    --amber: #d97706;
+    --green: #16a34a;
+    --red: #dc2626;
+    --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --shadow-deep: 0 16px 50px rgba(0, 0, 0, 0.12);
+  }
+
+  body {
+    background:
+      radial-gradient(900px 620px at 8% -8%, rgba(13, 148, 136, 0.06), transparent 62%),
+      radial-gradient(820px 560px at 94% 4%, rgba(8, 145, 178, 0.05), transparent 58%),
+      radial-gradient(760px 620px at 58% 94%, rgba(124, 58, 237, 0.04), transparent 58%),
+      linear-gradient(180deg, #f8fafb 0%, #eef2f5 45%, #f8fafb 100%) !important;
+    color: var(--ink) !important;
+  }
+
+  body:before { opacity: 0.06 !important; }
+  body:after { opacity: 0.3 !important; }
+
+  .signal-bar {
+    background: rgba(248, 250, 251, 0.96) !important;
+    color: #4a5e6d !important;
+    border-bottom-color: var(--line) !important;
+  }
+
+  .site-header {
+    background: rgba(248, 250, 251, 0.88) !important;
+    border-bottom-color: var(--line) !important;
+    backdrop-filter: blur(24px) saturate(145%) !important;
+  }
+
+  .mark {
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.15) !important;
+  }
+
+  .links {
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
+
+  .links a:hover,
+  .links a[aria-current="page"] {
+    background: rgba(13, 148, 136, 0.08) !important;
+  }
+
+  .nav-cta {
+    background: var(--ink) !important;
+    color: #fff !important;
+  }
+
+  .nav-cta:hover {
+    background: #1a2332 !important;
+    color: #fff !important;
+  }
+
+  .button.primary {
+    background: var(--ink) !important;
+    color: #fff !important;
+  }
+
+  .button.primary:hover {
+    background: #1a2332 !important;
+    color: #fff !important;
+  }
+
+  .button.secondary {
+    border-color: rgba(13, 148, 136, 0.3) !important;
+    background: rgba(13, 148, 136, 0.06) !important;
+    color: #0d7368 !important;
+  }
+
+  .button.ghost {
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+    color: #3d4f5f !important;
+  }
+
+  .hero-v21 h1 em {
+    background: linear-gradient(90deg, #0d9488, #0891b2 52%, #7c3aed) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+
+  .hero-proof-rail,
+  .proof-star,
+  .card,
+  .bento-card,
+  .role-proof,
+  .layer-deck > a,
+  .cta-stage {
+    background: #fff !important;
+    border-color: rgba(0, 40, 60, 0.1) !important;
+    box-shadow: var(--shadow-soft) !important;
+  }
+
+  .proof-band-grid {
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .proof-band-item {
+    border-right-color: var(--line) !important;
+  }
+
+  .claim-box {
+    background: rgba(8, 145, 178, 0.04) !important;
+    border-color: rgba(8, 145, 178, 0.15) !important;
+  }
+
+  .limit-box {
+    background: rgba(217, 119, 6, 0.04) !important;
+    border-color: rgba(217, 119, 6, 0.15) !important;
+  }
+
+  .receipt {
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
+
+  .footer {
+    background: #eef2f5 !important;
+    color: #5a6e7d !important;
+  }
+
+  .section.alt {
+    background: linear-gradient(180deg, rgba(0, 40, 60, 0.03), rgba(0, 0, 0, 0.01)) !important;
+  }
+
+  .resume-shell {
+    border-color: #d5e0dd !important;
+  }
+
+  .resume-head {
+    background: linear-gradient(135deg, #071417, #0b2c30 62%, #12383b) !important;
+  }
+
+  .resume-rail {
+    background: #edf4f2 !important;
+  }
+}
+
+/* ─── HIGH CONTRAST MODE ─── */
+@media (prefers-contrast: high) {
+  :root {
+    --line: rgba(156, 246, 216, 0.4);
+    --line-strong: rgba(156, 246, 216, 0.6);
+  }
+
+  .card,
+  .bento-card,
+  .role-proof,
+  .layer-deck > a,
+  .hero-proof-rail,
+  .proof-star {
+    border-width: 2px;
+  }
+
+  .button {
+    border-width: 2px;
+  }
+
+  .links a {
+    border-width: 2px;
+  }
+}
+
+/* ─── PRINT IMPROVEMENTS ─── */
+@media print {
+  .reading-progress-bar {
+    display: none !important;
+  }
+
+  body {
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+
+  h1 { font-size: 24pt; }
+  h2 { font-size: 16pt; }
+  h3 { font-size: 12pt; }
+
+  .card, .bento-card, .role-proof {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666;
+  }
+
+  .nav-cta[href]::after,
+  .button[href]::after {
+    content: none;
+  }
+}
+
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress-bar {
+    animation: none !important;
+  }
+
+  .card,
+  .bento-card,
+  .role-proof,
+  .layer-deck > a,
+  .pipe {
+    transition: none !important;
+  }
+
+  .card:hover,
+  .bento-card:hover,
+  .role-proof:hover,
+  .layer-deck > a:hover,
+  .pipe:hover {
+    transform: none !important;
+  }
+}
