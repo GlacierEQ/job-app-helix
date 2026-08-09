@@ -20,6 +20,7 @@ from .repository_surface import (
     compile_governed_surface_report,
     compile_surface_report,
 )
+from .surface_reconciliation import apply_surface_reconciliation
 
 DEFAULT_PROGRAM = Path("manifests/library_priority_spine.json")
 DEFAULT_SURFACE_OBSERVATIONS = Path(
@@ -27,6 +28,9 @@ DEFAULT_SURFACE_OBSERVATIONS = Path(
 )
 DEFAULT_SURFACE_DECISIONS = Path(
     "manifests/public_repository_surface_decisions_2026-08-08.json"
+)
+DEFAULT_SURFACE_RECONCILIATION = Path(
+    "manifests/public_repository_surface_reconciliation_2026-08-09.json"
 )
 
 
@@ -58,7 +62,7 @@ def build_parser() -> argparse.ArgumentParser:
         "surface-audit",
         help=(
             "Compile fail-closed public repository-surface admission from historical "
-            "observations plus the current governed-decision overlay."
+            "observations, governed decisions, and current reconciliation."
         ),
     )
     surface_parser.add_argument(
@@ -68,9 +72,18 @@ def build_parser() -> argparse.ArgumentParser:
         "--decisions", type=Path, default=DEFAULT_SURFACE_DECISIONS
     )
     surface_parser.add_argument(
+        "--reconciliation", type=Path, default=DEFAULT_SURFACE_RECONCILIATION
+    )
+    history_group = surface_parser.add_mutually_exclusive_group()
+    history_group.add_argument(
         "--historical-only",
         action="store_true",
-        help="Reproduce the historical observation report without later decisions.",
+        help="Reproduce the original observation report without later decisions.",
+    )
+    history_group.add_argument(
+        "--decision-only",
+        action="store_true",
+        help="Reproduce the original governed-decision snapshot without reconciliation.",
     )
     surface_parser.add_argument("--expected-public-count", type=int, default=75)
     surface_parser.add_argument("--output", type=Path)
@@ -119,6 +132,11 @@ def _surface_command(args: argparse.Namespace) -> int:
             decisions,
             expected_public_count=args.expected_public_count,
         )
+        if not args.decision_only:
+            reconciliation = json.loads(
+                args.reconciliation.read_text(encoding="utf-8")
+            )
+            report = apply_surface_reconciliation(report, reconciliation)
     rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
