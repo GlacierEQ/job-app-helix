@@ -350,6 +350,7 @@ def _validate_output_path(output: Path) -> None:
 def _copy_public_sources(output: Path) -> None:
     copies = {
         SITE_SOURCE / "styles.css": output / "styles.css",
+        SITE_SOURCE / "site.innovations.css": output / "site.innovations.css",
         SITE_SOURCE / "app.js": output / "app.js",
         CANDIDATE_ROOT / "candidate_node.json": output / "candidate-node.json",
         CANDIDATE_ROOT / "application_spiral.json": output / "application-spiral.json",
