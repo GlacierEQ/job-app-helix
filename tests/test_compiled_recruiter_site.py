@@ -40,6 +40,7 @@ def _projection() -> dict:
         "native_estate_cardinality_intentionally_not_published": True,
         "observed_pressure_and_inferred_bottleneck_are_distinct": True,
         "role_projection_is_capability_fit_not_employer_endorsement": True,
+        "semantic_capability_proof_is_exact_head_and_public_only": True,
     }
     role = "Agent Infrastructure Engineer"
     capabilities = [
@@ -101,6 +102,26 @@ def _projection() -> dict:
             }
         },
         "ranked_evidence": [system],
+        "capability_proofs": [
+            {
+                "capability_id": "provenance-and-evidence",
+                "system_id": "sys-helix",
+                "source_repository": "GlacierEQ/job-app-helix",
+                "head_sha": "a" * 40,
+                "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+                "admission_state": "REFERENCE_ONLY",
+                "evidence_refs": ["src/job_app_helix/estate_compiler.py"],
+                "proof_receipts": [
+                    {
+                        "kind": "check_run",
+                        "id": 12345,
+                        "name": "CI",
+                        "head_sha": "a" * 40,
+                        "conclusion": "success",
+                    }
+                ],
+            }
+        ],
         "non_affiliation": "No affiliation implied.",
     }
     return {
@@ -137,12 +158,17 @@ def test_compiled_site_routes_public_estate_projection(
     assert 'id="compiler-chain-capability"' in index
     assert 'id="compiler-chain-systems"' in index
     assert 'id="compiler-chain-proof"' in index
+    assert 'id="compiler-capability-proofs"' in index
+    assert 'id="compiler-capability-proof-summary"' in index
+    assert "Capability proof lens" in index
     assert "Observed · source-backed" in index
     assert "GlacierEQ inference" in index
     assert "connect-src 'self'" in index
     assert "connect-src 'none'" not in index
     assert (output / "compiler.css").is_file()
     assert (output / "compiler.js").is_file()
+    assert (output / "capability_proof_lens.css").is_file()
+    assert (output / "capability_proof_lens.js").is_file()
     assert "native_repository_count" not in projection
     assert "canonical_accomplishments" not in projection
 
@@ -162,6 +188,8 @@ def test_compiled_manifest_hashes_projection_assets(
     for relative in (
         "compiler.css",
         "compiler.js",
+        "capability_proof_lens.css",
+        "capability_proof_lens.js",
         "estate-projection.json",
     ):
         path = output / relative
@@ -181,11 +209,39 @@ def test_compiler_javascript_is_same_origin_safe_and_routable() -> None:
     assert 'document.createElement("meter")' in script
 
 
+def test_capability_proof_lens_is_same_origin_and_depth_aware() -> None:
+    script = (ROOT / "site" / "capability_proof_lens.js").read_text(
+        encoding="utf-8"
+    )
+    assert "innerHTML" not in script
+    assert 'fetch("estate-projection.json"' in script
+    assert 'credentials: "same-origin"' in script
+    assert "MutationObserver" in script
+    assert 'depth === "senior_engineer"' in script
+    assert "evidenceHref" in script
+    assert "proof_receipts" in script
+    assert "source_repository.startsWith(\"GlacierEQ/\")" in script
+
+
 def test_false_public_boundary_fails_closed(tmp_path: Path) -> None:
     builder = _builder()
     payload = _projection()
     payload["boundary"]["legal_private_records_omitted"] = False
     with pytest.raises(builder.ProjectionError, match="boundary"):
+        builder.build(
+            tmp_path / "site",
+            SOURCE_COMMIT,
+            _write(tmp_path, payload),
+        )
+
+
+def test_capability_proof_head_drift_fails_closed(tmp_path: Path) -> None:
+    builder = _builder()
+    payload = _projection()
+    payload["company_projections"][0]["capability_proofs"][0][
+        "proof_receipts"
+    ][0]["head_sha"] = "b" * 40
+    with pytest.raises(builder.ProjectionError, match="head_sha drifted"):
         builder.build(
             tmp_path / "site",
             SOURCE_COMMIT,
