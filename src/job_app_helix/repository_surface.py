@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections import Counter
 from collections.abc import Mapping
 from copy import deepcopy
@@ -47,6 +48,29 @@ GOVERNED_DECISION_STATES = {
     "SUPERSEDED",
 }
 GOVERNED_DECISION_SCHEMA = "glaciereq.public-repository-surface-decisions.v1"
+ADMIT_FORBIDDEN_BASE_ADMISSIONS = {
+    "INTERNAL_ONLY",
+    "QUARANTINED",
+    "STALE_AUTHORITY",
+    "SUPERSEDED",
+}
+ADMIT_FORBIDDEN_LINEAGE_STATES = {
+    "QUARANTINED",
+    "SUPERSEDED",
+    "ARCHIVED_PROVENANCE",
+}
+ADMIT_FORBIDDEN_FINDINGS = {
+    "AFFILIATION_RISK",
+    "COMPANY_AFFILIATION_BOUNDARY_MISSING",
+    "COMPANY_AFFILIATION_BOUNDARY_UNRESOLVED",
+    "INTEGRATION_OR_DEPLOYMENT_CLAIM_RISK",
+    "PRIVACY_RISK",
+    "SCALE_OR_PERFORMANCE_CLAIM_RISK",
+    "STALE_AUTHORITY",
+    "HEALTH_BLOCKED",
+    "HEALTH_FAILED",
+}
+EXACT_SHA_RE = re.compile(r"[0-9a-fA-F]{40}")
 
 
 class RepositorySurfaceError(ValueError):
@@ -373,6 +397,25 @@ def _decision_priority_map(payload: Mapping[str, Any]) -> dict[str, str]:
     return priorities
 
 
+def _admit_base_blockers(record: Mapping[str, Any]) -> list[str]:
+    blockers: list[str] = []
+    if record.get("public") is not True:
+        blockers.append("repository_not_public")
+
+    base_admission = str(record.get("admission", "")).upper()
+    if base_admission in ADMIT_FORBIDDEN_BASE_ADMISSIONS:
+        blockers.append(f"base_admission:{base_admission}")
+
+    lineage_state = str(record.get("lineage_state", "")).upper()
+    if lineage_state in ADMIT_FORBIDDEN_LINEAGE_STATES:
+        blockers.append(f"lineage_state:{lineage_state}")
+
+    findings = {str(value).upper() for value in record.get("findings", [])}
+    for finding in sorted(findings.intersection(ADMIT_FORBIDDEN_FINDINGS)):
+        blockers.append(f"finding:{finding}")
+    return blockers
+
+
 def apply_surface_decisions(
     report: Mapping[str, Any], decisions: Mapping[str, Any]
 ) -> dict[str, Any]:
@@ -388,6 +431,12 @@ def apply_surface_decisions(
     by_repository = {str(item.get("repository", "")): item for item in records}
     if len(by_repository) != len(records):
         raise RepositorySurfaceError("surface report contains duplicate repositories")
+
+    historical_unassessed = {
+        repository
+        for repository, record in by_repository.items()
+        if record.get("assessment_state") == "UNASSESSED"
+    }
 
     raw_items = decisions.get("items")
     if not isinstance(raw_items, list) or not raw_items:
@@ -419,14 +468,20 @@ def apply_surface_decisions(
                 f"governed decision for {repository} requires next_gate"
             )
         evidence = _object(decision_item.get("evidence"), f"items[{index}].evidence")
+        record = by_repository[repository]
         if decision == "ADMIT":
             canonical_head = str(evidence.get("canonical_head", "")).strip()
-            if len(canonical_head) != 40:
+            if EXACT_SHA_RE.fullmatch(canonical_head) is None:
                 raise RepositorySurfaceError(
                     f"ADMIT decision for {repository} requires exact canonical_head"
                 )
+            base_blockers = _admit_base_blockers(record)
+            if base_blockers:
+                joined = ", ".join(base_blockers)
+                raise RepositorySurfaceError(
+                    f"ADMIT decision for {repository} conflicts with base blockers: {joined}"
+                )
 
-        record = by_repository[repository]
         record["base_admission"] = record["admission"]
         record["base_assessment_state"] = record["assessment_state"]
         record["base_repair_priority"] = record["repair_priority"]
@@ -457,6 +512,14 @@ def apply_surface_decisions(
         else:
             record["repair_priority"] = None
 
+    if seen != historical_unassessed:
+        missing = sorted(historical_unassessed - seen)
+        unexpected = sorted(seen - historical_unassessed)
+        raise RepositorySurfaceError(
+            "governed decisions must exactly cover historical UNASSESSED repositories: "
+            f"missing={missing}, unexpected={unexpected}"
+        )
+
     governed_counts = Counter(
         item["governed_decision"]
         for item in records
@@ -471,6 +534,10 @@ def apply_surface_decisions(
     unassessed_after_decisions = sum(
         1 for item in records if item["assessment_state"] == "UNASSESSED"
     )
+    if unassessed_after_decisions:
+        raise RepositorySurfaceError(
+            "governed surface overlay left unresolved UNASSESSED repositories"
+        )
 
     body["base_report_id"] = body.pop("report_id", None)
     body.update(_surface_summary(records))
