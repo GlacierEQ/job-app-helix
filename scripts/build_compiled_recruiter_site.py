@@ -98,6 +98,13 @@ def _walk(value: Any, path: str = "$") -> None:
             _walk(child, f"{path}[{index}]")
 
 
+def _is_safe_repo_path(value: object) -> bool:
+    if not isinstance(value, str) or not value or value.startswith(("/", "\\")):
+        return False
+    normalized = value.replace("\\", "/")
+    return all(segment not in {"", ".", ".."} for segment in normalized.split("/"))
+
+
 def _validate_capability_proofs(company: dict[str, Any], path: str) -> None:
     proofs = company.get("capability_proofs", [])
     if not isinstance(proofs, list):
@@ -133,8 +140,8 @@ def _validate_capability_proofs(company: dict[str, Any], path: str) -> None:
         evidence_refs = value.get("evidence_refs")
         if not isinstance(evidence_refs, list) or not evidence_refs:
             raise ProjectionError(f"{proof_path}.evidence_refs must be non-empty")
-        if not all(isinstance(ref, str) and ref for ref in evidence_refs):
-            raise ProjectionError(f"{proof_path}.evidence_refs are invalid")
+        if not all(_is_safe_repo_path(ref) for ref in evidence_refs):
+            raise ProjectionError(f"{proof_path}.evidence_refs are unsafe")
 
         receipts = value.get("proof_receipts")
         if not isinstance(receipts, list) or not receipts:
