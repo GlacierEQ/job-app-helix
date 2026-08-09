@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from job_app_helix.estate_compiler import compile_estate, public_safe_projection
 
 
@@ -79,6 +81,73 @@ def company_shards():
     ]
 
 
+def semantic_company_shards():
+    shards = company_shards()
+    company = shards[0]["companies"][0]
+    company["track_state"] = "SEMANTIC_TEST"
+    company["capability_map"] = "fixture-semantic-map.json"
+    company["capability_donors"] = [
+        [
+            "GlacierEQ/alpha_v2",
+            "semantic-health",
+            "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+            "REFERENCE_ONLY",
+        ]
+    ]
+    return shards
+
+
+def semantic_capabilities():
+    head = "a" * 40
+    return {
+        "schema": "fixture.semantic-capabilities.v1",
+        "truth_boundary": {
+            "blocked_repository_cannot_be_recruiter_capability_donor": True,
+        },
+        "donor_systems": {
+            "GlacierEQ/alpha_v2": {
+                "visibility": "public",
+                "fork": False,
+                "head_sha": head,
+                "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+                "evidence_inventory": [
+                    {"path": "src/health.py", "blob_sha": "b" * 40}
+                ],
+                "proof_receipts": [
+                    {
+                        "kind": "check_run",
+                        "id": 123,
+                        "name": "CI",
+                        "head_sha": head,
+                        "conclusion": "success",
+                    }
+                ],
+            }
+        },
+        "blocked_candidate_systems": {},
+        "capabilities": [
+            {
+                "capability_id": "semantic-health",
+                "company_id": "acme",
+                "donor_repository": "GlacierEQ/alpha_v2",
+                "head_sha": head,
+                "evidence_refs": ["src/health.py"],
+                "mechanism": "Structured connector health.",
+                "recruiter_safe_claim": "Implemented structured connector health.",
+            }
+        ],
+        "company_projection": {
+            "acme": {
+                "state": "SEMANTIC_TEST",
+                "capability_ids": ["semantic-health"],
+                "donor_repositories": ["GlacierEQ/alpha_v2"],
+                "affiliation_claim": False,
+                "deployment_claim": False,
+            }
+        },
+    }
+
+
 def test_compiler_collapses_only_high_confidence_history():
     bundle = compile_estate(
         census(),
@@ -148,6 +217,79 @@ def test_public_projection_excludes_legal_private_namespace():
     public = public_safe_projection(bundle)
     rendered = str(public)
     assert "case-1FDV-private" not in rendered
+
+
+def test_semantic_capability_donor_compiles_into_company_and_public_projection():
+    bundle = compile_estate(
+        census(),
+        flagships=flagships(),
+        company_index=company_index(),
+        company_shards=semantic_company_shards(),
+        semantic_capabilities=semantic_capabilities(),
+    )
+    capability = next(
+        row
+        for row in bundle["capability_donor_registry"]["capabilities"]
+        if row["capability_id"] == "semantic-health"
+    )
+    proof = capability["proof_refs"][0]
+    assert proof["head_sha"] == "a" * 40
+    assert proof["proof_receipts"][0]["head_sha"] == proof["head_sha"]
+
+    projection = bundle["company_projection_registry"]["projections"][0]
+    assert "semantic-health" in projection["capabilities"]
+    semantic_rows = [
+        row
+        for row in projection["ranked_evidence"]
+        if row["mapping_kind"] == "semantic_capability_donor"
+    ]
+    assert len(semantic_rows) == 1
+    assert semantic_rows[0]["promotion_state"] == "REFERENCE_ONLY"
+    assert semantic_rows[0]["capability_ids"] == ["semantic-health"]
+
+    public = public_safe_projection(bundle)["company_projections"][0]
+    assert "semantic-health" in public["capabilities"]
+    assert any(
+        row["mapping_kind"] == "semantic_capability_donor"
+        for row in public["ranked_evidence"]
+    )
+
+
+def test_semantic_capability_donor_rejects_non_recruiter_governing_state():
+    shards = semantic_company_shards()
+    shards[0]["companies"][0]["repositories"].append(
+        [
+            "GlacierEQ/alpha_v2",
+            "L2",
+            "BLOCKED",
+            "public",
+            "HELIX_ADMITTED",
+            "ORIGINAL_CANDIDATE",
+        ]
+    )
+    with pytest.raises(ValueError, match="non-recruiter governing states"):
+        compile_estate(
+            census(),
+            flagships=flagships(),
+            company_index=company_index(),
+            company_shards=shards,
+            semantic_capabilities=semantic_capabilities(),
+        )
+
+
+def test_semantic_capability_donor_rejects_receipt_head_drift():
+    semantic = semantic_capabilities()
+    semantic["donor_systems"]["GlacierEQ/alpha_v2"]["proof_receipts"][0][
+        "head_sha"
+    ] = "c" * 40
+    with pytest.raises(ValueError, match="proof receipt head SHA drift"):
+        compile_estate(
+            census(),
+            flagships=flagships(),
+            company_index=company_index(),
+            company_shards=semantic_company_shards(),
+            semantic_capabilities=semantic,
+        )
 
 
 def test_explicit_namespace_assertion_is_evidence_bound() -> None:

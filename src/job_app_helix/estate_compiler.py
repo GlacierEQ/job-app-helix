@@ -483,6 +483,7 @@ def build_capabilities(
     systems: Mapping[str, Any],
     repo_to_system: Mapping[str, str],
     flagships: Mapping[str, Any] | None,
+    semantic_assertions: Mapping[str, Sequence[Mapping[str, Any]]] | None = None,
 ) -> dict[str, Any]:
     donors: dict[str, dict[str, Any]] = {}
     for row in (flagships or {}).get("flagships", []):
@@ -520,6 +521,29 @@ def build_capabilities(
                     }
                 )
 
+    for company_id, rows in (semantic_assertions or {}).items():
+        for row in rows:
+            capability = str(row["capability_id"])
+            system_id = str(row["system_id"])
+            donor = donors.setdefault(
+                capability,
+                {"systems": set(), "proof_refs": []},
+            )
+            donor["systems"].add(system_id)
+            donor["proof_refs"].append(
+                {
+                    "system_id": system_id,
+                    "source": "semantic_capability_map",
+                    "company_id": company_id,
+                    "repository": row["repository"],
+                    "head_sha": row["head_sha"],
+                    "proof_state": row["proof_state"],
+                    "admission_state": row["admission_state"],
+                    "evidence_refs": list(row["evidence_refs"]),
+                    "proof_receipts": list(row["proof_receipts"]),
+                }
+            )
+
     capabilities: list[dict[str, Any]] = []
     for capability_id in sorted(donors):
         donor = donors[capability_id]
@@ -544,6 +568,7 @@ def build_capabilities(
             "multi_donor_claim_requires": 2,
             "metadata_inference_is_not_runtime_proof": True,
             "legal_private_namespace_may_export_raw_records": False,
+            "semantic_donors_require_public_exact_head_receipts": True,
         },
     }
     registry["content_hash"] = digest(registry)
@@ -587,6 +612,226 @@ def _companies(
             f"company track drift: missing={missing}, unexpected={unexpected}"
         )
     return companies
+
+
+def _semantic_capability_assertions(
+    payload: Mapping[str, Any] | None,
+    companies: Sequence[Mapping[str, Any]],
+    repo_to_system: Mapping[str, str],
+    systems: Mapping[str, Any],
+) -> dict[str, list[dict[str, Any]]]:
+    dossier_rows_present = any(company.get("capability_donors") for company in companies)
+    if not payload:
+        if dossier_rows_present:
+            raise ValueError("company capability_donors require a semantic capability map")
+        return {}
+
+    donor_systems = payload.get("donor_systems")
+    capabilities = payload.get("capabilities")
+    projections = payload.get("company_projection")
+    if not isinstance(donor_systems, dict):
+        raise ValueError("semantic capability map donor_systems must be an object")
+    if not isinstance(capabilities, list):
+        raise ValueError("semantic capability map capabilities must be a list")
+    if not isinstance(projections, dict):
+        raise ValueError("semantic capability map company_projection must be an object")
+
+    company_by_id = {str(company["company_id"]): company for company in companies}
+    system_by_id = {str(row["system_id"]): row for row in systems["systems"]}
+    repository_states: dict[str, set[str]] = defaultdict(set)
+    for company in companies:
+        rows = company.get("repositories", [])
+        if not isinstance(rows, list):
+            raise ValueError(f"{company['company_id']}: repositories must be a list")
+        for row in rows:
+            if not isinstance(row, list) or len(row) != 6:
+                raise ValueError(f"{company['company_id']}: repository row must have six columns")
+            repository_states[str(row[0])].add(str(row[2]))
+
+    blocked = payload.get("blocked_candidate_systems", {})
+    if blocked is not None and not isinstance(blocked, dict):
+        raise ValueError("blocked_candidate_systems must be an object")
+    blocked_names = set(blocked or {})
+    if blocked_names & set(donor_systems):
+        raise ValueError("blocked candidate system cannot also be a semantic donor")
+
+    validated_donors: dict[str, dict[str, Any]] = {}
+    for repository, value in donor_systems.items():
+        if not isinstance(repository, str) or not repository:
+            raise ValueError("semantic donor repository must be a non-empty string")
+        raw = _mapping(value, f"semantic donor {repository}")
+        system_id = repo_to_system.get(repository)
+        if system_id is None:
+            raise ValueError(f"semantic donor is not a native engineering system: {repository}")
+        system = system_by_id[system_id]
+        if system.get("visibility") != "public" or raw.get("visibility") != "public":
+            raise ValueError(f"semantic donor must be public: {repository}")
+        if raw.get("fork") is not False:
+            raise ValueError(f"semantic donor must be a verified non-fork: {repository}")
+        head_sha = raw.get("head_sha")
+        if not isinstance(head_sha, str) or re.fullmatch(r"[0-9a-f]{40}", head_sha) is None:
+            raise ValueError(f"semantic donor requires an exact head SHA: {repository}")
+        proof_state = raw.get("proof_state")
+        if not isinstance(proof_state, str) or "VERIFIED" not in proof_state:
+            raise ValueError(f"semantic donor requires verified proof state: {repository}")
+
+        inventory = raw.get("evidence_inventory")
+        if not isinstance(inventory, list) or not inventory:
+            raise ValueError(f"semantic donor requires evidence_inventory: {repository}")
+        inventory_paths: set[str] = set()
+        for index, item in enumerate(inventory):
+            evidence = _mapping(item, f"{repository}.evidence_inventory[{index}]")
+            path = evidence.get("path")
+            blob_sha = evidence.get("blob_sha")
+            if not isinstance(path, str) or not path:
+                raise ValueError(f"{repository}: evidence path must be non-empty")
+            if not isinstance(blob_sha, str) or re.fullmatch(r"[0-9a-f]{40}", blob_sha) is None:
+                raise ValueError(f"{repository}: evidence blob must be an exact SHA")
+            if path in inventory_paths:
+                raise ValueError(f"{repository}: duplicate evidence path {path}")
+            inventory_paths.add(path)
+
+        receipts = raw.get("proof_receipts")
+        if not isinstance(receipts, list) or not receipts:
+            raise ValueError(f"semantic donor requires exact-head proof receipts: {repository}")
+        for index, item in enumerate(receipts):
+            receipt = _mapping(item, f"{repository}.proof_receipts[{index}]")
+            if receipt.get("kind") != "check_run":
+                raise ValueError(f"{repository}: unsupported proof receipt kind")
+            if not isinstance(receipt.get("id"), int) or receipt["id"] <= 0:
+                raise ValueError(f"{repository}: proof receipt requires positive id")
+            if not isinstance(receipt.get("name"), str) or not receipt["name"]:
+                raise ValueError(f"{repository}: proof receipt requires name")
+            if receipt.get("head_sha") != head_sha:
+                raise ValueError(f"{repository}: proof receipt head SHA drift")
+            if receipt.get("conclusion") != "success":
+                raise ValueError(f"{repository}: proof receipt is not successful")
+
+        disallowed_states = repository_states.get(repository, set()) - PUBLIC_RECRUITER_STATES
+        if disallowed_states:
+            raise ValueError(
+                f"semantic donor {repository} has non-recruiter governing states: "
+                f"{sorted(disallowed_states)}"
+            )
+        validated_donors[repository] = {
+            "system_id": system_id,
+            "head_sha": head_sha,
+            "proof_state": proof_state,
+            "inventory_paths": inventory_paths,
+            "proof_receipts": tuple(dict(item) for item in receipts),
+        }
+
+    capability_by_id: dict[str, dict[str, Any]] = {}
+    expected_by_company: dict[str, set[str]] = defaultdict(set)
+    for index, value in enumerate(capabilities):
+        raw = _mapping(value, f"semantic capabilities[{index}]")
+        capability_id = raw.get("capability_id")
+        company_id = raw.get("company_id")
+        repository = raw.get("donor_repository")
+        if not isinstance(capability_id, str) or re.fullmatch(
+            r"[a-z0-9]+(?:-[a-z0-9]+)*", capability_id
+        ) is None:
+            raise ValueError(f"invalid semantic capability id at row {index}")
+        if capability_id in capability_by_id:
+            raise ValueError(f"duplicate semantic capability id: {capability_id}")
+        if not isinstance(company_id, str) or company_id not in company_by_id:
+            raise ValueError(f"{capability_id}: unknown company_id")
+        if not isinstance(repository, str) or repository not in validated_donors:
+            raise ValueError(f"{capability_id}: unknown or ineligible donor repository")
+        donor = validated_donors[repository]
+        if raw.get("head_sha") != donor["head_sha"]:
+            raise ValueError(f"{capability_id}: donor head SHA drift")
+        evidence_refs = raw.get("evidence_refs")
+        if not isinstance(evidence_refs, list) or not evidence_refs:
+            raise ValueError(f"{capability_id}: evidence_refs must be non-empty")
+        if not all(isinstance(ref, str) and ref for ref in evidence_refs):
+            raise ValueError(f"{capability_id}: evidence_refs must be strings")
+        if not set(evidence_refs) <= donor["inventory_paths"]:
+            raise ValueError(f"{capability_id}: evidence ref is outside donor inventory")
+        if not isinstance(raw.get("recruiter_safe_claim"), str) or not raw[
+            "recruiter_safe_claim"
+        ].strip():
+            raise ValueError(f"{capability_id}: recruiter_safe_claim is required")
+        capability_by_id[capability_id] = dict(raw)
+        expected_by_company[company_id].add(capability_id)
+
+    assertions: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for company in companies:
+        company_id = str(company["company_id"])
+        rows = company.get("capability_donors", [])
+        if not isinstance(rows, list):
+            raise ValueError(f"{company_id}: capability_donors must be a list")
+        if rows and not isinstance(company.get("capability_map"), str):
+            raise ValueError(f"{company_id}: capability_donors require capability_map")
+        seen: set[tuple[str, str]] = set()
+        for row in rows:
+            if not isinstance(row, list) or len(row) != 4:
+                raise ValueError(
+                    f"{company_id}: capability donor row must have four columns"
+                )
+            repository, capability_id, proof_state, admission_state = row
+            if not all(
+                isinstance(item, str) and item
+                for item in (repository, capability_id, proof_state, admission_state)
+            ):
+                raise ValueError(f"{company_id}: capability donor columns must be strings")
+            key = (repository, capability_id)
+            if key in seen:
+                raise ValueError(f"{company_id}: duplicate capability donor {key}")
+            seen.add(key)
+            capability = capability_by_id.get(capability_id)
+            if capability is None:
+                raise ValueError(f"{company_id}: unknown semantic capability {capability_id}")
+            if capability["company_id"] != company_id:
+                raise ValueError(f"{company_id}: semantic capability belongs to another company")
+            if capability["donor_repository"] != repository:
+                raise ValueError(f"{company_id}: semantic donor repository mismatch")
+            donor = validated_donors[repository]
+            if proof_state != donor["proof_state"]:
+                raise ValueError(f"{company_id}: semantic donor proof state drift")
+            if admission_state not in PUBLIC_RECRUITER_STATES:
+                raise ValueError(f"{company_id}: semantic donor is not recruiter-admissible")
+            assertions[company_id].append(
+                {
+                    "repository": repository,
+                    "system_id": donor["system_id"],
+                    "capability_id": capability_id,
+                    "head_sha": donor["head_sha"],
+                    "proof_state": proof_state,
+                    "admission_state": admission_state,
+                    "evidence_refs": tuple(capability["evidence_refs"]),
+                    "proof_receipts": donor["proof_receipts"],
+                }
+            )
+
+    for company_id, expected_ids in expected_by_company.items():
+        projection = _mapping(
+            projections.get(company_id),
+            f"semantic company_projection.{company_id}",
+        )
+        projection_ids = projection.get("capability_ids")
+        projection_repositories = projection.get("donor_repositories")
+        if not isinstance(projection_ids, list) or set(projection_ids) != expected_ids:
+            raise ValueError(f"{company_id}: semantic projection capability drift")
+        expected_repositories = {
+            capability_by_id[capability_id]["donor_repository"]
+            for capability_id in expected_ids
+        }
+        if not isinstance(projection_repositories, list) or set(
+            projection_repositories
+        ) != expected_repositories:
+            raise ValueError(f"{company_id}: semantic projection donor drift")
+        if projection.get("state") != company_by_id[company_id].get("track_state"):
+            raise ValueError(f"{company_id}: semantic projection track state drift")
+        if projection.get("affiliation_claim") is not False:
+            raise ValueError(f"{company_id}: semantic projection must deny affiliation")
+        if projection.get("deployment_claim") is True:
+            raise ValueError(f"{company_id}: semantic projection cannot infer deployment")
+        asserted_ids = {row["capability_id"] for row in assertions.get(company_id, [])}
+        if asserted_ids != expected_ids:
+            raise ValueError(f"{company_id}: dossier semantic donor coverage drift")
+
+    return dict(assertions)
 
 
 def _verification_score(state: object) -> float:
@@ -676,6 +921,7 @@ def build_company_projections(
     repo_to_system: Mapping[str, str],
     index: Mapping[str, Any] | None,
     shards: Sequence[Mapping[str, Any]],
+    semantic_assertions: Mapping[str, Sequence[Mapping[str, Any]]] | None = None,
 ) -> dict[str, Any]:
     system_by_id = {row["system_id"]: row for row in systems["systems"]}
     capability_ids: dict[str, list[str]] = defaultdict(list)
@@ -708,10 +954,32 @@ def build_company_projections(
                     "visibility": visibility,
                     "inventory_scope": scope,
                     "provenance_state": provenance_state,
+                    "mapping_kind": "repository",
+                    "capability_ids": sorted(set(capability_ids[system_id])),
                 }
             )
             company_ids[system_id].add(company_id)
             provenance[system_id].add(str(provenance_state))
+
+        for assertion in (semantic_assertions or {}).get(company_id, ()):
+            system_id = str(assertion["system_id"])
+            system = system_by_id[system_id]
+            mappings[company_id].append(
+                {
+                    "system_id": system_id,
+                    "source_repository": assertion["repository"],
+                    "level": system.get("flagship_level") or "L0",
+                    "promotion_state": assertion["admission_state"],
+                    "visibility": system.get("visibility"),
+                    "inventory_scope": "SEMANTIC_CAPABILITY_DONOR",
+                    "provenance_state": "SEMANTIC_DONOR_ASSERTION",
+                    "mapping_kind": "semantic_capability_donor",
+                    "semantic_proof_state": assertion["proof_state"],
+                    "capability_ids": [assertion["capability_id"]],
+                }
+            )
+            company_ids[system_id].add(company_id)
+            provenance[system_id].add("SEMANTIC_DONOR_ASSERTION")
 
     scores: dict[str, dict[str, Any]] = {}
     for system_id, system in system_by_id.items():
@@ -737,8 +1005,17 @@ def build_company_projections(
         deduped: dict[str, dict[str, Any]] = {}
         for row in mappings[company_id]:
             current = deduped.get(row["system_id"])
-            if current is None or _level(row["level"]) > _level(current["level"]):
-                deduped[row["system_id"]] = row
+            if current is None:
+                deduped[row["system_id"]] = dict(row)
+                continue
+            combined = sorted(
+                set(current.get("capability_ids", [])) | set(row.get("capability_ids", []))
+            )
+            preferred = row if _level(row["level"]) > _level(current["level"]) else current
+            merged = dict(preferred)
+            merged["capability_ids"] = combined
+            deduped[row["system_id"]] = merged
+
         ranked = sorted(
             deduped.values(),
             key=lambda row: (
@@ -747,6 +1024,9 @@ def build_company_projections(
             ),
         )
         system_ids = [row["system_id"] for row in ranked]
+        scoped_capabilities: dict[str, set[str]] = defaultdict(set)
+        for row in ranked:
+            scoped_capabilities[row["system_id"]].update(row.get("capability_ids", []))
         projections.append(
             {
                 "company_id": company_id,
@@ -760,12 +1040,12 @@ def build_company_projections(
                     {
                         capability
                         for system_id in system_ids
-                        for capability in capability_ids[system_id]
+                        for capability in scoped_capabilities[system_id]
                     }
                 ),
                 "minimal_proof_surface": _minimal_surface(
                     ranked,
-                    capability_ids,
+                    scoped_capabilities,
                     scores,
                 ),
                 "projection_innovation": "bounded_greedy_capability_set_cover",
@@ -799,6 +1079,7 @@ def build_company_projections(
             "public_visibility_is_derived_separately": True,
             "company_projection_cannot_publish_legal_private_namespace": True,
             "company_surface_max_systems": 5,
+            "semantic_capability_donors_are_company_scoped": True,
         },
     }
     registry["content_hash"] = digest(registry)
@@ -858,6 +1139,7 @@ def compile_estate(
     company_index: Mapping[str, Any] | None = None,
     company_shards: Sequence[Mapping[str, Any]] = (),
     lineage: Mapping[str, Any] | None = None,
+    semantic_capabilities: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     repos = load_census(census)
     namespace_assertions = _namespace_assertions(lineage)
@@ -868,13 +1150,26 @@ def compile_estate(
         namespace_assertions,
         flagships,
     )
-    capabilities = build_capabilities(systems, repo_to_system, flagships)
+    company_records = _companies(company_index, company_shards)
+    semantic_assertions = _semantic_capability_assertions(
+        semantic_capabilities,
+        company_records,
+        repo_to_system,
+        systems,
+    )
+    capabilities = build_capabilities(
+        systems,
+        repo_to_system,
+        flagships,
+        semantic_assertions,
+    )
     companies = build_company_projections(
         systems,
         capabilities,
         repo_to_system,
         company_index,
         company_shards,
+        semantic_assertions,
     )
     experiments = build_experiments(company_shards, repo_to_system)
     source_digest = digest(
@@ -884,6 +1179,7 @@ def compile_estate(
             "company_index": company_index,
             "company_shards": list(company_shards),
             "estate_facts": lineage,
+            "semantic_capabilities": semantic_capabilities,
         }
     )
     receipt = {
@@ -907,6 +1203,9 @@ def compile_estate(
             "lineage_edges": len(systems["lineage_edges"]),
             "unresolved_lineage_candidates": len(systems["unresolved_lineage"]),
             "capabilities": len(capabilities["capabilities"]),
+            "semantic_capability_assertions": sum(
+                len(rows) for rows in semantic_assertions.values()
+            ),
             "company_projections": len(companies["projections"]),
             "experiments": len(experiments),
         },
@@ -921,6 +1220,8 @@ def compile_estate(
             "ambiguous_lineage_not_silently_collapsed": True,
             "public_visibility_separate_from_promotion_score": True,
             "unsupported_capabilities_not_promoted_as_runtime_proof": True,
+            "blocked_repositories_not_semantic_capability_donors": True,
+            "semantic_donor_proof_receipts_match_exact_head": True,
         },
     }
     bundle: dict[str, Any] = {
@@ -961,16 +1262,25 @@ def public_safe_projection(bundle: Mapping[str, Any]) -> dict[str, Any]:
             and row["visibility"] == "public"
             and row["promotion_state"] in PUBLIC_RECRUITER_STATES
         ]
+        safe_capabilities_by_system: dict[str, set[str]] = defaultdict(set)
+        for row in evidence:
+            row_capabilities = row.get("capability_ids")
+            if isinstance(row_capabilities, list):
+                safe_capabilities_by_system[row["system_id"]].update(row_capabilities)
+            else:
+                safe_capabilities_by_system[row["system_id"]].update(
+                    capabilities_by_system[row["system_id"]]
+                )
         safe_ids = {row["system_id"] for row in evidence}
         safe_capabilities = sorted(
             {
                 capability
                 for system_id in safe_ids
-                for capability in capabilities_by_system[system_id]
+                for capability in safe_capabilities_by_system[system_id]
             }
         )
         safe_surface = (
-            _minimal_surface(evidence, capabilities_by_system, scores)
+            _minimal_surface(evidence, safe_capabilities_by_system, scores)
             if evidence
             else []
         )
