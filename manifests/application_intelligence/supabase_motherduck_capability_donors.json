@@ -1,0 +1,188 @@
+{
+  "schema": "glaciereq.company-capability-donor-map.v1",
+  "generated_at": "2026-08-08T17:39:00-10:00",
+  "purpose": "Promote reusable, non-sensitive technical mechanisms into public canonical capability donors without promoting private legal/evidence lineage sources.",
+  "truth_boundary": {
+    "private_or_legal_lineage_sources_are_read_only_inputs": true,
+    "private_or_legal_lineage_sources_are_never_capability_donors": true,
+    "no_private_code_or_data_is_copied": true,
+    "company_mapping_is_semantic_relevance_not_affiliation": true,
+    "deployment_is_not_inferred_from_source_or_ci": true,
+    "direct_name_upstream_forks_remain_excluded_from_authorship": true
+  },
+  "lineage_inputs": [
+    "manifests/application_intelligence/supabase_lineage_audit.json",
+    "manifests/application_intelligence/motherduck_lineage_audit.json"
+  ],
+  "donor_systems": {
+    "GlacierEQ/colossus-gateway": {
+      "visibility": "public",
+      "fork": false,
+      "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+      "canonical_role": "public_gateway_and_connector_system",
+      "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+      "proof": {
+        "exact_head_check_runs": [
+          "Memory Hooks Unit Tests:success",
+          "Gauntlet Patch Status:success",
+          "Memory Backend Health:success",
+          "Socket Security Project Report:success"
+        ],
+        "commit_statuses": [
+          "Vercel:success"
+        ]
+      }
+    },
+    "GlacierEQ/apex-control-plane": {
+      "visibility": "public",
+      "fork": false,
+      "head_sha": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
+      "canonical_role": "public_control_plane",
+      "proof_state": "SOURCE_AND_EXACT_HEAD_REPOSITORY_SECURITY_VERIFIED",
+      "proof": {
+        "exact_head_check_runs": [
+          "Repository security / Status:success"
+        ]
+      }
+    },
+    "GlacierEQ/xai-colossus-cooling": {
+      "visibility": "public",
+      "fork": false,
+      "head_sha": "b7e8b3131337990a98e26954d58ace102c7ae94b",
+      "canonical_role": "public_analytics_implementation_donor",
+      "proof_state": "SOURCE_AND_CORE_CI_VERIFIED_DEPLOYMENT_NOT_CLAIMED",
+      "proof": {
+        "exact_head_workflows": [
+          "CI:success",
+          "Cooling Core Truth Gate:success"
+        ],
+        "deployment_workflow": ".github/workflows/deploy.yml:failure"
+      },
+      "projection_boundary": "Admit only generic MotherDuck/DuckDB connector mechanisms. Do not project xAI affiliation, production deployment, system scale, cooling performance, or company-specific accomplishment."
+    }
+  },
+  "capabilities": [
+    {
+      "capability_id": "supabase-edge-broker-least-privilege",
+      "company_id": "supabase",
+      "donor_repository": "GlacierEQ/colossus-gateway",
+      "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+      "evidence_refs": [
+        "supabase/functions/apex-github-repo-atlas-seed/index.ts"
+      ],
+      "mechanism": "Server-side Edge Function brokerage resolves privileged material at runtime, mints a least-privilege metadata-only credential, avoids persistence of installation tokens, clears sensitive in-memory variables, and writes durable audit state.",
+      "recruiter_safe_claim": "Implemented a server-side Supabase Edge Function pattern for ephemeral least-privilege credential brokerage with metadata-only access and durable audit receipts.",
+      "excluded_claims": [
+        "No claim that Supabase operated or endorsed the system.",
+        "No claim that private legal/evidence data was exposed or copied."
+      ]
+    },
+    {
+      "capability_id": "supabase-idempotent-state-audit-persistence",
+      "company_id": "supabase",
+      "donor_repository": "GlacierEQ/colossus-gateway",
+      "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+      "evidence_refs": [
+        "supabase/functions/apex-github-repo-atlas-seed/index.ts",
+        "src/godmind/connectors/supabase.ts"
+      ],
+      "mechanism": "Supabase-backed state uses idempotent snapshot/upsert behavior, explicit conflict keys, bounded query surfaces, storage upserts, health checks, and durable queue/audit records.",
+      "recruiter_safe_claim": "Built idempotent Supabase-backed state and audit flows with conflict-aware writes, health checks, and durable read-backable records.",
+      "excluded_claims": [
+        "No private case table, actor, evidence, or filing semantics are part of the admitted capability."
+      ]
+    },
+    {
+      "capability_id": "supabase-connector-health-state-machine",
+      "company_id": "supabase",
+      "donor_repository": "GlacierEQ/apex-control-plane",
+      "head_sha": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
+      "evidence_refs": [
+        "connectors/supabase_validator.py"
+      ],
+      "mechanism": "Connector validation distinguishes missing declaration, action-capable authentication, authentication failure, and unreachable service states rather than collapsing all failures into one boolean.",
+      "recruiter_safe_claim": "Implemented a Supabase connector health state machine that distinguishes configuration, authentication, reachability, and action-capable states.",
+      "excluded_claims": []
+    },
+    {
+      "capability_id": "motherduck-query-health-facade",
+      "company_id": "motherduck",
+      "donor_repository": "GlacierEQ/colossus-gateway",
+      "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+      "evidence_refs": [
+        "src/godmind/connectors/motherduck.ts"
+      ],
+      "mechanism": "A token-configured MotherDuck query facade exposes a bounded connector object and structured latency/error health probe.",
+      "recruiter_safe_claim": "Implemented a MotherDuck connector facade with environment-scoped configuration and structured query health telemetry.",
+      "excluded_scope": [
+        "createCaseTable",
+        "upsertCase",
+        "searchDocuments"
+      ],
+      "excluded_claims": [
+        "Case-specific SQL helpers are excluded from the admitted reusable mechanism.",
+        "No production MotherDuck deployment is claimed from this connector alone."
+      ]
+    },
+    {
+      "capability_id": "motherduck-cloud-local-analytics-fallback",
+      "company_id": "motherduck",
+      "donor_repository": "GlacierEQ/xai-colossus-cooling",
+      "head_sha": "b7e8b3131337990a98e26954d58ace102c7ae94b",
+      "evidence_refs": [
+        "connectors/motherduck_analytics.py"
+      ],
+      "mechanism": "The analytics connector attempts MotherDuck cloud DuckDB and degrades to local in-memory DuckDB when cloud connectivity is unavailable.",
+      "recruiter_safe_claim": "Implemented a DuckDB analytics connector with MotherDuck cloud preference and local in-memory fallback for resilient analytical execution.",
+      "excluded_claims": [
+        "No xAI affiliation or production deployment claim.",
+        "The exact-head deployment workflow is failed, so deployment is explicitly not part of this proof."
+      ]
+    },
+    {
+      "capability_id": "motherduck-parameterized-batch-analytics",
+      "company_id": "motherduck",
+      "donor_repository": "GlacierEQ/xai-colossus-cooling",
+      "head_sha": "b7e8b3131337990a98e26954d58ace102c7ae94b",
+      "evidence_refs": [
+        "connectors/motherduck_analytics.py"
+      ],
+      "mechanism": "The connector uses parameter-bound executemany ingestion and parameterized time-window queries to support batch telemetry analytics and aggregate/anomaly computations.",
+      "recruiter_safe_claim": "Built parameter-bound batch ingestion and time-window analytics over DuckDB/MotherDuck-compatible data paths.",
+      "excluded_claims": [
+        "No xAI affiliation, production deployment, infrastructure scale, or cooling-performance claim."
+      ]
+    }
+  ],
+  "company_projection": {
+    "supabase": {
+      "state": "SEMANTIC_CAPABILITY_DONORS_ADMITTED",
+      "capability_ids": [
+        "supabase-edge-broker-least-privilege",
+        "supabase-idempotent-state-audit-persistence",
+        "supabase-connector-health-state-machine"
+      ],
+      "donor_repositories": [
+        "GlacierEQ/colossus-gateway",
+        "GlacierEQ/apex-control-plane"
+      ],
+      "semantic_fit": "Secure server-side data/platform integration, least-privilege credential handling, durable Postgres-backed state, idempotent writes, and connector observability are transferable platform-engineering capabilities relevant to Supabase.",
+      "affiliation_claim": false
+    },
+    "motherduck": {
+      "state": "SEMANTIC_CAPABILITY_DONORS_ADMITTED_WITH_DEPLOYMENT_BOUNDARY",
+      "capability_ids": [
+        "motherduck-query-health-facade",
+        "motherduck-cloud-local-analytics-fallback",
+        "motherduck-parameterized-batch-analytics"
+      ],
+      "donor_repositories": [
+        "GlacierEQ/colossus-gateway",
+        "GlacierEQ/xai-colossus-cooling"
+      ],
+      "semantic_fit": "Analytical query facades, DuckDB/MotherDuck cloud-local resilience, parameter-bound batch ingestion, and time-window aggregation are transferable analytics-engineering capabilities relevant to MotherDuck.",
+      "affiliation_claim": false,
+      "deployment_claim": false
+    }
+  }
+}
