@@ -2,9 +2,10 @@
   "schema": "glaciereq.company-capability-projection.v1",
   "company": "GitHub",
   "projection_id": "github_merge_authority_graph",
-  "claim_ceiling": "IMPLEMENTED",
+  "stage": "PROOF_REPRODUCED",
+  "claim_ceiling": "reproducible_company_specific_proof",
   "public_problem": {
-    "summary": "GitHub is expanding agentic repository work while adding security validation for third-party coding agents, policy-constrained agentic workflows, and approval requirements before bot-created pull requests can run CI/CD workflows.",
+    "summary": "GitHub is expanding agentic repository work while adding security validation, policy-constrained agentic workflows, approval boundaries, and platform-level lifecycle/authorization concerns for coding agents.",
     "official_sources": [
       {
         "title": "Security validation for third-party coding agents",
@@ -20,24 +21,40 @@
         "title": "Bot-created pull requests can run workflows if approved",
         "url": "https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/",
         "observed": "2026-08-08"
+      },
+      {
+        "title": "Staff Software Engineer — Mission Control, job 5611",
+        "url": "https://www.github.careers/careers-home/jobs/5611?lang=en-us",
+        "observed": "2026-08-08"
       }
     ]
   },
-  "bottleneck": "Agent-generated repository changes need a trustworthy promotion boundary that binds the intended change, current canonical state, required validation, authorized approval, mutation identity, provider result, and post-action readback.",
-  "reusable_invariant": "A repository mutation is complete only when the exact intended patch was authorized against the expected canonical head, required gates passed, the mutation executed once, and canonical readback confirms the resulting provider identity.",
+  "bottleneck": "Agent-generated repository changes need a trustworthy promotion boundary that binds the intended change, current canonical state, required validation, authorized approval, exact mutation bytes, provider result, eventual-state reconciliation, post-action readback, replay behavior, and durable evidence.",
+  "reusable_invariant": "A repository mutation is complete only when the exact intended bytes were authorized against the expected canonical head, required gates passed, bounded authority executed the mutation once, provider state reconciled to the returned mutation identity, canonical readback confirmed it, replay could not duplicate it, and a terminal receipt preserved the result.",
   "implementation": {
     "repository": "GlacierEQ/apex-github-worker",
-    "canonical_head": "2f862b4e97a05d50fe3d50b89c57ce7104ff0992",
+    "visibility": "private",
+    "canonical_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "capability": "merge_authority_graph",
-    "state": "ADVERSARIAL_VERIFIED",
-    "proof_source_sha": "217afd9f339b61c2a351588a54ef14971649e813",
-    "proof_receipt": "proof/merge-authority-local-reproduction-2026-08-08.json"
+    "state": "PROOF_REPRODUCED",
+    "proof_source_sha": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
+    "proof_receipt": "proof/merge-authority-canonical-reproduction-2026-08-09.json",
+    "public_safe_proof_package": "GlacierEQ/job-application@7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13:projects/github-merge-authority-proof/"
   },
-  "transfer_argument": "The verified control kernel demonstrates expected-head guards, exact patch and approval binding, required-check enforcement, idempotent replay protection, explicit provider-failure states, canonical post-action readback, and receipt-backed terminal outcomes. These mechanisms align with the operating problem created when more autonomous coding agents act inside repository workflows.",
+  "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, expected repository state, required validation, bounded approval, short-lived repository authority, exact provider bytes, provider mutation identity, bounded eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. This is transferable engineering evidence for the public GitHub operating problem; it is not GitHub adoption evidence.",
   "current_proof": {
-    "grade": "B",
-    "observed": "17/17 deterministic and adversarial Node tests passed on the exact tested source; six proof-runner scenarios passed.",
-    "limitation": "A real GitHub provider adapter has not been operationally exercised by this implementation."
+    "grade": "A",
+    "observed": "26/26 exact Merge Authority tests and 38/38 proof-host gateway tests passed; canonical Apex source was reproduced through a real GitHub provider mutation on disposable branches; canonical readback matched the provider commit; replay returned DUPLICATE_ALREADY_COMPLETED without a second mutation; the short-lived token was revoked; target main remained unchanged.",
+    "public_provider_mutation": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
+    "public_completed_receipt_blob": "175d6e236eb460d2913b711f5d72c13c8c5ef4cd",
+    "public_replay_receipt_blob": "166f4f86a095392fc38a7a6e657e9e2b172f3cc5",
+    "limitation": "The proof is independent GlacierEQ work on disposable proof branches. No GitHub adoption, employment, endorsement, production deployment, production-scale reliability, latency, throughput, or durability is established. The private implementation source remains private."
   },
-  "next_company_gate": "Exercise the same control contract through a real bounded GitHub provider adapter, reproduce provider-side mutation and canonical readback evidence, then consider PROOF_REPRODUCED. No GitHub adoption or production use is claimed."
+  "public_projection": {
+    "package_repository": "GlacierEQ/job-application",
+    "package_commit": "7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+    "package_path": "projects/github-merge-authority-proof/",
+    "disclosure_class": "PUBLIC_SAFE_WITH_PRIVATE_IMPLEMENTATION_HASH_BOUNDARY"
+  },
+  "next_company_gate": "Compile this canonical PROOF_REPRODUCED state into the outward GitHub company surface, validate exact public evidence and non-adoption boundaries, perform public readback, then bind the claim receipt and advance exactly one stage to CLAIM_PROMOTED."
 }
