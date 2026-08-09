@@ -1,152 +1,140 @@
 # Audit: casey-barton-GlacierEQ.vercel.app + connected repos
 
-**TS:** 2026-08-09T23:11Z  
+**TS:** 2026-08-09T23:23Z  
 **Live:** https://casey-barton-GlacierEQ.vercel.app  
-**Deploy source:** GlacierEQ/job-application (`job-app/repos/job-application`, site-v15)  
-**Scope:** site-named + machine/portfolio/atlas-projected + local excellence cohort backing those claims (not full org crawl)
+**Version authority (use this):** Vercel production headers + `/data/current-proof.json` + `/data/helix-root.json` + `job-app-helix` manifests  
+**Do not use as version:** `portfolio.release.name = "V15 Final Hiring Release"` — **stale residue**
+
+---
+
+## Live version stack (from Vercel)
+
+| Layer | Value | Evidence |
+|-------|-------|----------|
+| PSYSOC-X release header | `V25-APPLICATION-COMPILER` | `vercel_live_headers.json` |
+| Title release header | `V26-TRUE-ALGERIAN-TITLE` | same |
+| current-proof release | `V21 First Star Completion` · `PRODUCTION_READY_VERIFIED` | `site/data_current-proof.json.log` |
+| Helix root ref | `83549cda4af3714304f202d0f4d35b29d28da9f7` | `site/data_helix-root.json.body` |
+| Helix authority | `job-app-helix` manifests | helix-root `source.authority` |
+| portfolio.release.name | **V15 Final Hiring Release (STALE)** | `live_vs_local_portfolio.json` |
+| Local site trees | site-v13 / v14 / **v15 only** (no site-v23+) | `job-application/` |
+
+**Conclusion:** Production is a **V21–V26 compiled stack**. V15 is an old static folder + a fossil field inside portfolio.json — not the product version.
+
+Full: `live_version_stack.json`
 
 ---
 
 ## Executive scorecard
 
-| Surface | HTTP | Primary content | Evidence |
-|--------|------|-----------------|----------|
-| `/` home | **200** | Non-empty (V23 brand) | `site/home.log`, `site/home_text.txt` |
-| `/master` | **200** | Non-empty technical master | `site/master.log` |
-| `/machine` | **200** | Non-empty machine contracts | `site/machine.log`, `site/machine_text.txt` |
-| `/resume` | **200** | Non-empty | `site/resume.log` |
-| `/companies` | **200** | Non-empty (49 lenses claim) | `site/companies.log`, `site/companies_text.txt` |
-| `/atlas` | **200** | Non-empty index | `site/atlas.log` |
-| `/data/resume.json` | **200** | Valid JSON (~9.7KB) | `site/data_resume.json.log` |
-| `/data/portfolio.json` | **200** | Valid JSON flagships×10 | `site/data_portfolio.json.log` |
-| `/portfolio`, `/proofs` | **404** | — | `site/portfolio.log`, `site/proofs.log` |
-| `/data/atlas.json`, `/data/machine.json`, `/data/companies.json` | **404** | — | `site_scorecard.json` → `routes_bad` |
+| Surface | HTTP | Notes | Evidence |
+|---------|------|-------|----------|
+| `/` home | **200** | Non-empty; V23/V22/V21 UI copy | `site/home.log` |
+| `/master` `/machine` `/resume` `/companies` `/atlas` | **200** | Non-empty | `site/*.log` |
+| `/data/resume.json` | **200** | Valid JSON | `site/data_resume.json.log` |
+| `/data/portfolio.json` | **200** | Valid JSON; **release name still V15** | `site/data_portfolio.json.log` |
+| `/data/company-families.json` | **200** | Advertised on `/machine` | `machine_data_endpoints.json` |
+| `/data/psysoc-x-profiles.json` | **200** | Advertised on `/machine` | same |
+| `/data/current-proof.json` | **200** | V21 star proof | same |
+| `/data/helix-root.json` | **200** | Public helix projection | same |
+| `/data/atlas.json`, `/data/machine.json`, `/data/companies.json`, `/data/helix.json` | **404** | Not loaded | `machine_data_endpoints.json` → `not_200` |
 
-**Overall presentation grade: B−** — recruiter shell is alive and relatively honest about limits, but **proof surface lags** behind (a) branded V23, (b) local Wave A/B PROMOTED excellence, and (c) reproducible cold-start tests for several flagships.
-
-Full scorecard: `site_scorecard.json`
+**Grade: B−** — live shell is advanced; **version labeling and some flagship cold-starts lag**.
 
 ---
 
 ## 1. Missing
 
-1. **`xai-colossus-microcode` not in local `job-app/repos`** while still a live portfolio flagship (`REVIEWED_EXECUTION_BLOCKED`, labeled primary pending).  
-   Evidence: `connected_repos.json` → `xai-colossus-microcode.local_path_or_missing=MISSING`; `site/data_portfolio.json.body` flagships.
+1. **`xai-colossus-microcode` absent under `job-app/repos`** while still a portfolio flagship.  
+   Evidence: `connected_repos.json`.
 
-2. **Sixteen Wave A/B leaves at `principal_state=PROMOTED` are invisible on the hire site flagship list** (Anduril/Palantir/xAI/Cloudflare/Vercel/Waymo/NVIDIA/Groq/Databricks/AWS Trainium mechanisms). Site still leads with colossus-era flagships.  
-   Evidence: `connected_repos.json` (16× PROMOTED); `job-app/excellence/receipts/wave_b_closed.json`; `job-app/excellence/receipts/go_run_latest.json`; portfolio flagships only 10 entries in `site/data_portfolio.json.body`.
+2. **Wave A/B `PROMOTED` leaves mostly absent from hire flagship narrative** (excellence earned, presentation lag).  
+   Evidence: `connected_repos.json` PROMOTED ×16; excellence receipts.
 
-3. **Machine JSON APIs incomplete:** `/data/atlas.json`, `/data/machine.json`, `/data/companies.json`, `/data/helix.json` → HTTP 404. Only resume + portfolio machine files load.  
-   Evidence: `site/data_*.log`; `site_scorecard.json.routes_bad`.
+3. **404 machine routes only (not “only resume+portfolio”):** /data/atlas.json, /data/companies.json, /data/helix.json, /data/machine.json.  
+   **HTTP 200 machine data:** /data/company-families.json, /data/current-proof.json, /data/helix-root.json, /data/portfolio.json, /data/psysoc-x-profiles.json, /data/resume.json.  
+   Evidence: `machine_data_endpoints.json`, `site/data_company-families.json.log`, `site/data_psysoc-x-profiles.json.log`.
 
-4. **No `machine/excellence-state.json` on hire-critical colossus flagships** (`xai-colossus-2`, energy, cooling, security, servers, …) — excellence FSM never applied to the repos the site ranks highest.  
-   Evidence: `connected_repos.json` `principal_state_if_any=null` for those names.
+4. **No `job-app/repos/job-app-helix` directory** — control plane is `~/job-app` (remote `job-app-helix`). Inventory must not call a missing repos leaf “present”.  
+   Evidence: `connected_repos.json` job-app-helix.
 
-5. **Unmerged proof work:** `portfolio.proof.source_prs_merged = 0`; receipt-router limit still says draft hardening unmerged.  
-   Evidence: `site/data_portfolio.json.body` `proof` + flagships[0].limit.
+5. **No excellence-state FSM on colossus flagships** ranked by portfolio artifact.  
+   Evidence: `connected_repos.json` principal_state null.
 
-6. **Routes `/portfolio` and `/proofs` 404** (optional, but named mental model for recruiters).  
-   Evidence: `site/portfolio.log`, `site/proofs.log`.
+6. **`source_prs_merged = 0`** in portfolio proof block.  
+   Evidence: portfolio body.
 
 ---
 
 ## 2. Not good enough
 
-1. **V23 vs V15 authority desync (high).** Home copy: “V23 TRUTH SYNC”. Portfolio release still **V15 Final Hiring Release / 2026-08-04** (with `truth_sync_release` string bolted on).  
-   Evidence: `site/home_text.txt`; `site/data_portfolio.json.body` → `release`; `site_scorecard.json.branding_note`.
+1. **P0 — V15 portfolio release name vs live V21–V26 Vercel stack.**  
+   Evidence: `live_version_stack.json`, `vercel_live_headers.json`.
 
-2. **Live portfolio ≠ local site-v15 portfolio (high).** Content hashes differ; helix `state` live=`PARTIALLY_VERIFIED` vs local=`TEST_VERIFIED_WITH_RELEASE_GATES`. Live HTTP is presentation truth; local is not a faithful checkout of what is deployed.  
-   Evidence: audit capture (live sha vs local sha); `site_source_notes.json`.
+2. **Live portfolio ≠ local site-v15 portfolio** (sha mismatch; helix live=`PARTIALLY_VERIFIED` vs local=`TEST_VERIFIED_WITH_RELEASE_GATES`).  
+   Evidence: **`live_vs_local_portfolio.json`** (sha256, bytes, helix states side-by-side).
 
-3. **Flagship claim > cold-start local proof (high).**  
-   - `anthropic-agent-coordinator`: site `TEST_VERIFIED_WITH_PROMOTION_GATES`; local unittest discover → `ModuleNotFoundError`.  
-   - `xai-colossus-2`: site 69 tests / `TEST_VERIFIED`; local `unittest discover -s tests` → **0 tests ran**.  
-   - `xai-colossus-nanosphere`: site bounded-verified; local test path fails/thin.  
-   Evidence: `repo_tests/*.log`; portfolio flagship states.
+3. **`anthropic-agent-coordinator`:** site verified; local unittest import-broken.  
+   Evidence: `repo_tests/anthropic-agent-coordinator.log`.
 
-4. **Microcode as rank-2 “primary pending”** is honest about blocked CI but **still consumes flagship oxygen** without a local tree or green CI.  
-   Evidence: portfolio flagships[microcode]; `connected_repos.json`.
+4. **`xai-colossus-2`:** site 69 tests; unittest discover **Ran 0**; `local_tests_green=false` (pytest suite, not green via cold unittest).  
+   Evidence: `repo_tests/xai-colossus-2.log`, `connected_repos.json`.
 
-5. **Atlas breadth without excellence depth (medium).** 49 company routes compile; Wave A/B PROMOTED mechanism leaves for those companies are not clearly elevated as the proof objects.  
-   Evidence: `site/sitemap_locs.json` (49 atlas routes); `site/atlas_anduril.body` / `site/atlas_xai.body`; PROMOTED inventory.
-
-6. **Dual claim dialects (medium).** Site: `TEST_VERIFIED` / `BOUNDED_*`. Estate: `PROMOTED` / gates. No recruiter-facing map between them.  
-   Evidence: portfolio flagship `state` fields vs `machine/excellence-state.json` on Wave leaves.
-
-7. **Helix partially verified (medium)** as control-plane flagship while job-app is the actual deploy/intelligence plane — easy to over-read.  
-   Evidence: portfolio flagships[helix]; home “Estate Intelligence” branding.
+5. **Microcode** still flagship-ranked while missing/blocked.  
+6. **nanosphere** local test fail (py3.9 `dataclass(slots=…)`).  
+7. **Atlas breadth** without binding Wave A/B PROMOTED mechanisms.  
+8. **Claim dialect split** (portfolio / helix registry / excellence FSM).
 
 ---
 
-## 3. Needs to be done (priority order)
+## 3. Needs to be done
 
-| P | Action | Closes |
-|---|--------|--------|
-| **1** | Single-source truth-sync: home brand + `portfolio.release` + local `site-v15/data/portfolio.json` must match one authority commit (fix helix state drift). | V15/V23 + live≠local |
-| **2** | Make flagship proofs cold-start green: fix `anthropic-agent-coordinator` imports; document/run real `xai-colossus-2` test entry from repo root; fix nanosphere. Capture dual-run logs. | Claim-ahead-of-proof |
-| **3** | Restore or demote `xai-colossus-microcode` (clone + re-prove **or** remove from top flagships until CI green). | Missing + pending flagship |
-| **4** | Surface Wave A/B **PROMOTED** leaves on hire UI (secondary flagship tier and/or atlas company proof cards). | Invisible excellence |
-| **5** | Attach `machine/excellence-state` + operate/proof receipts to remaining colossus flagships **or** explicitly label them REFERENCE. | No FSM on flagships |
-| **6** | Either ship `/data/companies.json` + atlas machine summary or stop implying a richer machine API than resume/portfolio. | 404 data routes |
-| **7** | Merge or drop receipt-router hardening; keep `source_prs_merged` honest. | Unmerged PR tension |
-
-Non-goal reminder: this audit does not redesign the site or mass-promote the estate.
+| P | Action |
+|---|--------|
+| **1** | Kill V15 as version: rewrite `portfolio.release` to live stack or drop; authority = helix + current-proof + headers |
+| **2** | Stop treating `site-v15` as deploy source of truth; sync or generate portfolio from helix projection |
+| **3** | Cold-start green: coordinator imports; document pytest for colossus-2; fix nanosphere |
+| **4** | Restore or demote microcode |
+| **5** | Publish Wave A/B PROMOTED leaves on site/atlas |
+| **6** | Ship or unlink remaining 404 `/data/*` routes |
 
 ---
 
-## Connected-repo inventory (summary)
+## Connected-repo inventory
 
-Full file: `connected_repos.json` (27 entries).
+File: `connected_repos.json` (27 entries).
 
-| Bucket | Count | Notes |
-|--------|------:|-------|
-| PROMOTED | 16 | Wave A/B excellence cohort — **not on site flagships** |
-| present | 6 | Local trees with some tests |
-| thin | 1 | Partial / desynced / blocked |
-| missing | 1 | Named on site, absent locally |
-| not-good-enough | 3 | Site claim stronger than local cold-start |
+| Bucket | Count |
+|--------|------:|
+| PROMOTED | 16 |
+| present | 6 |
+| not-good-enough | 3 |
+| thin | 1 |
+| missing | 1 |
 
-### Site-named flagships (from live portfolio)
+### Site-named flagships (portfolio artifact — partially legacy list)
 
 | Repo | Site state | Local | Grade |
 |------|------------|-------|-------|
-| xai-colossus-2 | TEST_VERIFIED | present, discover=0 tests | not-good-enough |
+| xai-colossus-2 | TEST_VERIFIED | present; unittest 0 / pytest | not-good-enough |
 | xai-colossus-microcode | REVIEWED_EXECUTION_BLOCKED | **MISSING** | missing |
-| job-app-helix | PARTIALLY_VERIFIED | present, desynced | thin |
-| xai-colossus-security | BOUNDED_TEST_VERIFIED | present | present |
-| xai-colossus-servers | BOUNDED_TEST_VERIFIED | present | present |
-| xai-colossus-energy | BOUNDED_TEST_VERIFIED | present | present |
-| xai-colossus-cooling | BOUNDED_TEST_VERIFIED | present (13 tests green) | present |
-| xai-colossus-nanosphere | BOUNDED_TEST_VERIFIED | thin/failing | not-good-enough |
-| anthropic-agent-coordinator | TEST_VERIFIED_WITH_PROMOTION_GATES | import-broken tests | not-good-enough |
-| AKOS (psysoc-x) | TEST_VERIFIED | present | present |
-| job-application | deploy source | present | present |
+| job-app-helix | PARTIALLY_VERIFIED | **MISSING under repos/**; alias `~/job-app` | thin |
+| xai-colossus-security/servers/energy/cooling | BOUNDED_* | present | present / mixed |
+| xai-colossus-nanosphere | BOUNDED_TEST_VERIFIED | test fail | not-good-enough |
+| anthropic-agent-coordinator | TEST_VERIFIED_WITH_PROMOTION_GATES | import-broken | not-good-enough |
+| AKOS | TEST_VERIFIED | present | present |
+| job-application | deploy source | present (site-v15 fossil + newer commits) | present |
+
+Helix **current** flagships (from local `manifests/flagship_registry.json` / live helix-root) include L5 helix+AKOS **PROMOTED** — prefer that list over V15-shaped portfolio flagships when ranking.
 
 ---
 
-## Claim vs proof tensions (high-signal)
+## Evidence index
 
-1. Home **V23** vs portfolio **V15** release name/date — `site/home_text.txt` + portfolio `release`.  
-2. Live portfolio hash ≠ local site-v15 portfolio — deploy/source drift.  
-3. Flagship test counts on site not reproduced by naive local unittest discover for receipt-router + coordinator.  
-4. PROMOTED excellence cohort earns gates the site never shows.  
-5. `source_prs_merged=0` undercuts “executed public flagship” narrative if unmerged work is load-bearing.
-
----
-
-## Evidence index (SCRATCH)
-
-- `site/*.log` / `site/*.body` — HTTP captures  
-- `site_scorecard.json` — route scorecard + tensions  
-- `connected_repos.json` — inventory  
-- `findings.json` — structured Missing / Not good enough / Needs  
-- `repo_tests/*.log` — flagship local proof attempts  
-- `browser_skip.log` — no Playwright; HTTP fallback used  
-- `AUDIT_SITE_AND_REPOS.md` — this report  
-
----
-
-## Method notes
-
-- Live HTTP treated as presentation truth; local repos as proof truth.  
-- Connected set = portfolio/resume-named GitHub repos + deploy source + Wave A/B excellence cohort. Full GlacierEQ org crawl deferred (would be a follow-on if site claims volume without inventory).  
+- `live_version_stack.json`, `vercel_live_headers.json` — **current version**  
+- `live_vs_local_portfolio.json` — sha + helix state comparison  
+- `machine_data_endpoints.json` — full /data/* probe  
+- `site_scorecard.json`, `connected_repos.json`, `findings.json`  
+- `repo_tests/*.log`  
+- `browser_skip.log`  
+- this file: `AUDIT_SITE_AND_REPOS.md`
