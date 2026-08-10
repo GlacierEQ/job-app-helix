@@ -15,11 +15,17 @@ def _seed_leaf(tmp_path: Path, *, scaffold: bool = True) -> Path:
     (leaf / "src").mkdir(parents=True)
     (leaf / "tests").mkdir()
     (leaf / "machine").mkdir()
-    body = '"""SCAFFOLD STUB"""\nVALUE = 1\n' if scaffold else 'VALUE = 1\n'
+    body = '"""SCAFFOLD STUB"""\nVALUE = 1\n' if scaffold else "VALUE = 1\n"
     (leaf / "src" / "mechanism.py").write_text(body, encoding="utf-8")
-    (leaf / "tests" / "test_behavior.py").write_text("def test_value():\n    assert 1 == 1\n", encoding="utf-8")
+    test_body = "def test_value():\n    assert 1 == 1\n"
+    (leaf / "tests" / "test_behavior.py").write_text(test_body, encoding="utf-8")
+    state = {
+        "principal_state": "PROMOTED",
+        "scaffold": False,
+        "wave": {"phase": "PROMOTED"},
+    }
     (leaf / "machine" / "excellence-state.json").write_text(
-        json.dumps({"principal_state": "PROMOTED", "scaffold": False, "wave": {"phase": "PROMOTED"}}),
+        json.dumps(state),
         encoding="utf-8",
     )
     return leaf
@@ -35,10 +41,11 @@ def _write_valid_proof(leaf: Path) -> None:
         "behavioral_cases": 3,
         "adversarial_cases": 1,
     }
-    (leaf / "machine" / "implementation-proof.json").write_text(json.dumps(proof), encoding="utf-8")
+    proof_path = leaf / "machine" / "implementation-proof.json"
+    proof_path.write_text(json.dumps(proof), encoding="utf-8")
 
 
-def test_scaffold_marker_blocks_promotion_even_when_state_claims_promoted(tmp_path: Path) -> None:
+def test_scaffold_marker_blocks_false_promoted_state(tmp_path: Path) -> None:
     leaf = _seed_leaf(tmp_path, scaffold=True)
     assessment = assess_leaf_promotion(leaf)
     assert not assessment.eligible
@@ -66,7 +73,7 @@ def test_stale_implementation_proof_is_rejected(tmp_path: Path) -> None:
     assert "IMPLEMENTATION_PROOF_SOURCE_SHA" in assessment.reasons
 
 
-def test_valid_proof_and_no_scaffold_markers_earns_promotion_eligibility(tmp_path: Path) -> None:
+def test_valid_proof_earns_promotion_eligibility(tmp_path: Path) -> None:
     leaf = _seed_leaf(tmp_path, scaffold=False)
     _write_valid_proof(leaf)
     assessment = assess_leaf_promotion(leaf)
@@ -74,10 +81,11 @@ def test_valid_proof_and_no_scaffold_markers_earns_promotion_eligibility(tmp_pat
     assert assessment.reasons == ()
 
 
-def test_enforcement_downgrades_false_promoted_state_without_losing_wave_identity(tmp_path: Path) -> None:
+def test_enforcement_downgrades_false_promotion(tmp_path: Path) -> None:
     leaf = _seed_leaf(tmp_path, scaffold=True)
     assessment = assess_leaf_promotion(leaf)
-    state = json.loads((leaf / "machine" / "excellence-state.json").read_text(encoding="utf-8"))
+    state_path = leaf / "machine" / "excellence-state.json"
+    state = json.loads(state_path.read_text(encoding="utf-8"))
     corrected = enforce_nonpromoted_state(state, assessment)
     assert corrected["principal_state"] == "OPERABLE"
     assert corrected["scaffold"] is True
