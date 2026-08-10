@@ -1,0 +1,30 @@
+{
+  "ts": "2026-08-09T0415Z",
+  "wave": 1,
+  "batch": "A+B+multi",
+  "repos_initialized": [
+    "lockheed-dual-key-actuator-fence",
+    "lockheed-mission-thread-isolator",
+    "palantir-ontology-writeback-ledger",
+    "anduril-lattice-dissent-freeze",
+    "vercel-deploy-claim-compiler",
+    "scale-label-collusion-bound",
+    "groq-jitter-envelope-contract",
+    "waymo-phantom-freespace-certificate",
+    "nasa-command-authority-half-life",
+    "databricks-notebook-claim-fence",
+    "snowflake-query-intent-ledger",
+    "cloudflare-workers-agent-cap"
+  ],
+  "tests": "12 repos — run unittest discover",
+  "gates": ["G0", "G1", "G2", "G3", "G4", "G5"],
+  "framework": "job-app/excellence/framework/SUSTAINED_INIT_TO_EXCELLENCE.md",
+  "grades": "job-app/excellence/grades/atlas_company_grades.json",
+  "scorecard": "job-app/excellence/grades/ATLAS_COMPANY_SCORECARD.md",
+  "next": [
+    "Second repos: palantir-action-lineage-graph, anduril-track-envelope-compiler, vercel-edge-agent-cap-token",
+    "Deepen thin seeded repos (openai/anthropic/nvidia) toward colossus-cooling depth",
+    "Sync mission-agentic-ai-assurance from GH",
+    "Wire atlas record.json + apex-push-save"
+  ]
+}

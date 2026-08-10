@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import datetime, timezone
+UTC = timezone.utc
 
 from .models import CampaignDecision, CampaignReport, Refinement, StageResult
 from .pistons import (
@@ -17,14 +18,14 @@ from .pistons import (
 )
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class CampaignPolicy:
     """Controls whether one transparent contingency stroke may be applied."""
 
     allow_refinement: bool = True
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class LaunchScenario:
     """All evidence required for a deterministic campaign decision."""
 

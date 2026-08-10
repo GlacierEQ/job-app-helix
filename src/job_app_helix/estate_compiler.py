@@ -72,7 +72,7 @@ class ExperimentStage(StrEnum):
     FLAGSHIP_DONOR = "FLAGSHIP_DONOR"
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class Repo:
     repository: str
     repository_id: int

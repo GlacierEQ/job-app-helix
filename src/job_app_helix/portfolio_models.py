@@ -45,7 +45,7 @@ class ProofMode(StrEnum):
     INTERNAL = "INTERNAL"
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class CommandSpec:
     id: str
     evidence_level: EvidenceLevel
@@ -64,7 +64,7 @@ class CommandSpec:
         return payload
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class Wave:
     id: str
     priority: int
@@ -79,7 +79,7 @@ class Wave:
     require_build_receipt: bool
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class RolloutProgram:
     schema: str
     portfolio_root: str
@@ -95,7 +95,7 @@ class RolloutProgram:
         return tuple(repository for wave in self.waves for repository in wave.repositories)
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class RepositoryPlan:
     repository: str
     wave_id: str
@@ -127,7 +127,7 @@ class RepositoryPlan:
         }
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class CommandReceipt:
     id: str
     evidence_level: EvidenceLevel
@@ -149,7 +149,7 @@ class CommandReceipt:
         return payload
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class RepositoryReceipt:
     repository: str
     wave_id: str
