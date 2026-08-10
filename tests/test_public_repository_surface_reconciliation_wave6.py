@@ -6,7 +6,10 @@ from pathlib import Path
 
 import pytest
 
-from job_app_helix.repository_surface import RepositorySurfaceError, compile_governed_surface_report
+from job_app_helix.repository_surface import (
+    RepositorySurfaceError,
+    compile_governed_surface_report,
+)
 from job_app_helix.surface_reconciliation import apply_surface_reconciliation
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,7 +66,8 @@ def test_wave6_advances_only_proof_complete_repository_to_admit() -> None:
 def test_colossus_training_flux_is_exact_head_admit() -> None:
     report = apply_surface_reconciliation(report_through_wave5(), load(WAVE6))
     record = next(
-        item for item in report["repositories"]
+        item
+        for item in report["repositories"]
         if item["repository"] == "GlacierEQ/colossus-training-flux"
     )
     head = "ad4ae574efad762550b373967a57008848986df4"
@@ -81,18 +85,28 @@ def test_repaired_but_blocked_surfaces_remain_repair_required() -> None:
 
     auto = by_repo["GlacierEQ/ai-auto-driller-unified"]
     assert auto["admission"] == "REPAIR_REQUIRED"
-    assert auto["decision_evidence"]["canonical_head"] == "c0c5d8b3d3e1adb47480a9619e10ed18ed1e3f76"
+    assert (
+        auto["decision_evidence"]["canonical_head"]
+        == "c0c5d8b3d3e1adb47480a9619e10ed18ed1e3f76"
+    )
     assert "v4.0" in auto["decision_evidence"]["blocking_metadata"]["description"]
 
     storage = by_repo["GlacierEQ/computer-user-storage"]
     assert storage["admission"] == "REPAIR_REQUIRED"
-    assert storage["decision_evidence"]["canonical_head"] == "ad307c30ab53df53876c7ecaff6682964c5ae5b1"
-    assert "Distributed Storage Backend" in storage["decision_evidence"]["blocking_metadata"]["description"]
+    assert (
+        storage["decision_evidence"]["canonical_head"]
+        == "ad307c30ab53df53876c7ecaff6682964c5ae5b1"
+    )
+    storage_description = storage["decision_evidence"]["blocking_metadata"][
+        "description"
+    ]
+    assert "Distributed Storage Backend" in storage_description
 
     apex = by_repo["GlacierEQ/apex-cli"]
     assert apex["admission"] == "REPAIR_REQUIRED"
     assert apex["repair_priority"] == "P0"
-    assert "Historical public Git commits" in apex["decision_evidence"]["blocking_security_history"]
+    security_history = apex["decision_evidence"]["blocking_security_history"]
+    assert "Historical public Git commits" in security_history
 
 
 def test_wave6_admit_remains_fail_closed_against_receipt_drift() -> None:
