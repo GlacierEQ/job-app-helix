@@ -8,8 +8,8 @@ from types import ModuleType
 import pytest
 
 from job_app_helix.repo_excellence import (
-    ExcellenceContractError,
     REQUIRED_EXCELLENT_GATES,
+    ExcellenceContractError,
     validate_repo_excellence_record,
 )
 
@@ -69,7 +69,7 @@ def test_promoted_record_rejects_synthetic_proof_placeholders() -> None:
     assert isinstance(receipt, dict)
     receipt["source_sha"] = "HYPER_VALIDATED_SHA256"
 
-    with pytest.raises(ExcellenceContractError, match="placeholder proof_receipt.source_sha"):
+    with pytest.raises(ExcellenceContractError, match=r"placeholder proof_receipt\.source_sha"):
         validate_repo_excellence_record(payload)
 
 
