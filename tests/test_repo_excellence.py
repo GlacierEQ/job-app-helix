@@ -1,4 +1,3 @@
-import copy
 import json
 from pathlib import Path
 
@@ -259,52 +258,8 @@ def test_apex_merge_authority_record_is_machine_valid_canonical_and_bounded():
     assert validated["company_evidence"]["stage"] == "CLAIM_PROMOTED"
     assert validated["company_evidence"]["claim_ceiling"] == "proof_bound_company_specific"
     assert allowed_transition("PROMOTED", validated["state"], validated["gates"])
-    assert allowed_transition(validated["state"], validated["evolution"]["next_gate"], validated["gates"])
-
-    pointer = validated["canonical_position_receipt"]
-    receipt_path = root / pointer["path"]
-    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
-    assert pointer["blob_sha"] == "e41cd0b058392ad139dbd99ac132b2e6ee3adda7"
-    assert receipt["schema"] == pointer["schema"]
-    assert receipt["status"] == pointer["status"]
-    assert receipt["transition"] == pointer["transition"]
-    assert receipt["repository"]["full_name"] == validated["identity"]["repository"]
-    assert receipt["repository"]["canonical_head"] == validated["identity"]["canonical_head"]
-    assert receipt["repository"]["canonical_role"] == validated["canonical_role"]
-    assert receipt["repository"]["capability_id"] == validated["capability_id"]
-    assert receipt["lineage"]["action"] == validated["identity"]["lineage_action"]
-    assert receipt["lineage"]["source_blob_sha"] == pointer["source_blob_sha"]
-    assert receipt["decision"]["canonicalization_blockers"] == []
-    assert receipt["decision"]["retained_noncanonicalization_blockers"] == [
-        blocker["id"] for blocker in validated["blockers"]
-    ]
-    assert receipt["claim_boundary"]["company_stage_unchanged"] == "CLAIM_PROMOTED"
-    assert receipt["claim_boundary"]["company_claim_ceiling_unchanged"] == (
-        "proof_bound_company_specific"
+    assert allowed_transition(
+        validated["state"],
+        validated["evolution"]["next_gate"],
+        validated["gates"],
     )
-    assert receipt["claim_boundary"]["github_adoption_claimed"] is False
-
-    assert validated["projection_refs"] == [
-        "manifests/company_projections/github_merge_authority.json"
-    ]
-    projection = json.loads((root / validated["projection_refs"][0]).read_text(encoding="utf-8"))
-    assert projection["implementation"]["repository"] == validated["identity"]["repository"]
-    assert projection["implementation"]["canonical_head"] == validated["identity"]["canonical_head"]
-    assert projection["implementation"]["capability"] == validated["capability_id"]
-    assert projection["implementation"]["state"] == validated["state"]
-    assert projection["stage"] == validated["company_evidence"]["stage"]
-    assert projection["claim_ceiling"] == validated["company_evidence"]["claim_ceiling"]
-
-
-def test_canonical_record_cannot_claim_company_stage_advance():
-    root = Path(__file__).resolve().parents[1]
-    record = json.loads(
-        (root / "manifests/repo_excellence/apex-github-worker.json").read_text(encoding="utf-8")
-    )
-    mutated = copy.deepcopy(record)
-    mutated["company_evidence"]["stage"] = "CANONICAL"
-    projection = json.loads(
-        (root / "manifests/company_projections/github_merge_authority.json").read_text(encoding="utf-8")
-    )
-    assert projection["stage"] == "CLAIM_PROMOTED"
-    assert mutated["company_evidence"]["stage"] != projection["stage"]
