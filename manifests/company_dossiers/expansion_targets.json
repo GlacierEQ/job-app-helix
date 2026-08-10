@@ -39,7 +39,11 @@
     {"company_id":"glean","display_name":"Glean"},
     {"company_id":"replit","display_name":"Replit"},
     {"company_id":"cognition","display_name":"Cognition"},
-    {"company_id":"github","display_name":"GitHub"},
+    {
+      "company_id":"github",
+      "display_name":"GitHub",
+      "non_affiliation":"Independent GlacierEQ work; no GitHub affiliation, endorsement, employment, proprietary access, adoption, or production deployment is claimed."
+    },
     {
       "company_id":"supabase",
       "display_name":"Supabase",
