@@ -1,0 +1,147 @@
+{
+  "ts": "2026-08-09T22:57Z",
+  "run": "WAVE-B-CLOSED",
+  "schema": "glaciereq.wave-b-receipt.v1",
+  "wave_b": {
+    "leaves": [
+      "anduril-lattice-dissent-freeze",
+      "anduril-track-envelope-compiler",
+      "cloudflare-workers-agent-cap",
+      "groq-batch-admission-gate",
+      "groq-jitter-envelope-contract",
+      "databricks-feature-lineage-passport",
+      "databricks-notebook-claim-fence",
+      "aws-trainium-neuron-sentinel"
+    ],
+    "proof": "8/8",
+    "operable": "8/8",
+    "promoted": "8/8",
+    "principal_state": "PROMOTED",
+    "not_yet": [],
+    "cleared": [
+      "OPERABLE",
+      "PROOF_REPRODUCED",
+      "PROMOTED"
+    ],
+    "law": "gate state changed; continuous history; prose did not",
+    "fixes": [
+      "continuous DISCOVERED\u2192PROMOTED history",
+      "source_sha = deterministic src|scripts|tests content hash",
+      "real grant verify against proof_receipt digest",
+      "aws operate exact tokens_per_core + throughput"
+    ]
+  },
+  "nonclaims": [
+    "does not re-open Wave A residual",
+    "does not claim CANONICAL or estate-wide mass promote",
+    "no employer affiliation or production deployment",
+    "LOCAL_OPERATOR_SECRET is reference-only not production key material"
+  ],
+  "result": "PASS",
+  "results": [
+    {
+      "leaf": "anduril-lattice-dissent-freeze",
+      "ok": true,
+      "errors": [],
+      "source_sha": "5dc841f8aed23ef8f6d59c068072abfd93818f32b34925153fa49ebc0cc0027d",
+      "source_sha_matches_tree": true,
+      "proof_digest": "8ed29642d5a69e57c29d8317aab2cd7e1725d0f8c54c0973a4ae86d4ecfc80ca",
+      "validator_rc": 0,
+      "validator_out": "PASS",
+      "principal_state": "PROMOTED",
+      "history_len": 11,
+      "continuous": true
+    },
+    {
+      "leaf": "anduril-track-envelope-compiler",
+      "ok": true,
+      "errors": [],
+      "source_sha": "37775d0f678b73cd9cac19248f0314452afaf4e095963406c35dc3e362283797",
+      "source_sha_matches_tree": true,
+      "proof_digest": "aad4a324074f903f73b313eea19aaa8bbb9099f64245918bcb6d877cd018cfd5",
+      "validator_rc": 0,
+      "validator_out": "PASS",
+      "principal_state": "PROMOTED",
+      "history_len": 11,
+      "continuous": true
+    },
+    {
+      "leaf": "cloudflare-workers-agent-cap",
+      "ok": true,
+      "errors": [],
+      "source_sha": "3a3b1b9331acef5b6b5b8cb6e5821c87c8f290fc78f4f305baa9a80b50404005",
+      "source_sha_matches_tree": true,
+      "proof_digest": "7dfbb2504b067e44b92345a9af08125d2923ebcb3e994a17496eb3df6dfead26",
+      "validator_rc": 0,
+      "validator_out": "PASS",
+      "principal_state": "PROMOTED",
+      "history_len": 11,
+      "continuous": true
+    },
+    {
+      "leaf": "groq-batch-admission-gate",
+      "ok": true,
+      "errors": [],
+      "source_sha": "3b456931fb30e7ae91cddf2a88b8a9fa878e47bcaa62dc19b0e3623411525ed4",
+      "source_sha_matches_tree": true,
+      "proof_digest": "5503e04513107a5d82cab9b924cb398c87552763b6ca7c94c0d13d6b2a719af6",
+      "validator_rc": 0,
+      "validator_out": "PASS",
+      "principal_state": "PROMOTED",
+      "history_len": 11,
+      "continuous": true
+    },
+    {
+      "leaf": "groq-jitter-envelope-contract",
+      "ok": true,
+      "errors": [],
+      "source_sha": "7a94dce78fbd8ded8049c435afee50dd5c61701dd98ab11d26309a70c48257c5",
+      "source_sha_matches_tree": true,
+      "proof_digest": "f958b0c6c66c8a0af30b5586150e75975068e105722c64336fbfe128e8192b57",
+      "validator_rc": 0,
+      "validator_out": "PASS",
+      "principal_state": "PROMOTED",
+      "history_len": 11,
+      "continuous": true
+    },
+    {
+      "leaf": "databricks-feature-lineage-passport",
+      "ok": true,
+      "errors": [],
+      "source_sha": "35f056c7ba00622e52ee7ef0f5cc499076c6d3422d65d220f2ca73be71d57052",
+      "source_sha_matches_tree": true,
+      "proof_digest": "92e52c3ebad30f3c6901446fdb0b7a2b91d30be682ab623d327ae355e1fea96e",
+      "validator_rc": 0,
+      "validator_out": "PASS",
+      "principal_state": "PROMOTED",
+      "history_len": 11,
+      "continuous": true
+    },
+    {
+      "leaf": "databricks-notebook-claim-fence",
+      "ok": true,
+      "errors": [],
+      "source_sha": "709ada2f16f26b67732c42a1e1625b4053e5082edd9c014518160f34e3778529",
+      "source_sha_matches_tree": true,
+      "proof_digest": "9259742408b8bf7cbce424749e6ab3b070700d2ad52445a9da650b8e8afeef30",
+      "validator_rc": 0,
+      "validator_out": "PASS",
+      "principal_state": "PROMOTED",
+      "history_len": 11,
+      "continuous": true
+    },
+    {
+      "leaf": "aws-trainium-neuron-sentinel",
+      "ok": true,
+      "errors": [],
+      "source_sha": "37c9ba5e3f6a962bcb9da3aab932a02ee1a3e3191e22288cbe6115773b9a1cbe",
+      "source_sha_matches_tree": true,
+      "proof_digest": "609a5a5c7cfcf41d62602105522c20c380bab24367ad9a79298875f270d23a6c",
+      "validator_rc": 0,
+      "validator_out": "PASS",
+      "principal_state": "PROMOTED",
+      "history_len": 11,
+      "continuous": true
+    }
+  ]
+}

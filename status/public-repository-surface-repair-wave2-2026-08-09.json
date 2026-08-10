@@ -1,0 +1,100 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-wave.v2",
+  "generated_at": "2026-08-09T12:30:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "base_head": "fbdf3150c41d15b28b1730874290ac8296e70763",
+  "verified_predecessor_pr": 117,
+  "verified_predecessor_pr_head": "9a47a1acc3e61db287f7b9f762533ad8de542114",
+  "fresh_head_synthesis": true,
+  "preserved_concurrent_receipt": "excellence/receipts/wave_b_closed.json",
+  "predecessor_decisions": "manifests/public_repository_surface_decisions_2026-08-08.json",
+  "reconciliation": "manifests/public_repository_surface_reconciliation_2026-08-09.json",
+  "historical_decision_subset": {
+    "before": {
+      "ADMIT": 2,
+      "REPAIR_REQUIRED": 52,
+      "QUARANTINED": 3,
+      "REFERENCE": 1
+    },
+    "after_this_wave": {
+      "ADMIT": 4,
+      "REPAIR_REQUIRED": 50,
+      "QUARANTINED": 3,
+      "REFERENCE": 1
+    },
+    "unassessed": 0
+  },
+  "closed_repairs": [
+    {
+      "repository": "GlacierEQ/sigma-glue",
+      "canonical_head": "4a1ca8e5c88a62e8a94a43213b2c509af6afcea3",
+      "decision": "ADMIT",
+      "proof": [
+        {
+          "workflow_run": 31279895312,
+          "name": "github-provider-live-proof",
+          "conclusion": "success"
+        },
+        {
+          "workflow_run": 31279895318,
+          "name": "verify",
+          "conclusion": "success"
+        }
+      ],
+      "boundary": "No provider-transactional exactly-once guarantee is inferred."
+    },
+    {
+      "repository": "GlacierEQ/colossus-gateway",
+      "canonical_head": "3b41af0465c55a7128e8d22130d0dd7e52b02a8b",
+      "decision": "ADMIT",
+      "predecessor_capability_proof_head": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+      "source_continuity": "The only intervening files are LICENSE and LICENSE_NOTICE.md; admitted capability source paths are unchanged.",
+      "proof": [
+        {
+          "workflow_run": 31299171638,
+          "name": "TypeScript Gateway CI",
+          "conclusion": "success"
+        },
+        {
+          "workflow_run": 31299171649,
+          "name": "Gauntlet Memory CI",
+          "conclusion": "success"
+        }
+      ],
+      "boundary": "No live Supabase or MotherDuck service deployment is inferred."
+    }
+  ],
+  "still_blocked": [
+    {
+      "repository": "GlacierEQ/apex-control-plane",
+      "canonical_head": "641b55787ea13c6c0b742eb045406803893fbfc5",
+      "decision": "REPAIR_REQUIRED",
+      "repair_priority": "P1",
+      "predecessor_capability_proof_head": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
+      "intervening_change_scope": "audit and action-queue artifacts only",
+      "current_head_workflow_run_count": 0,
+      "next_gate": "Successful repository-native proof on exact current main."
+    },
+    {
+      "repository": "GlacierEQ/aws-trainium-neuron-sentinel",
+      "canonical_head": "f5331709efa52e5930208ee14c10911fadf9740b",
+      "decision": "REPAIR_REQUIRED",
+      "repair_priority": "P1",
+      "wave_b_state": "PROMOTED",
+      "wave_b_result": "PASS",
+      "native_proof_result": "PASS",
+      "native_promotion_authority_verified": true,
+      "current_head_workflow_run_count": 0,
+      "binding_gap": "Native proof is content/source-digest bound, not explicitly bound to the current 40-hex Git commit identity.",
+      "next_gate": "Emit or run a repository-native proof receipt explicitly bound to exact current Git head."
+    }
+  ],
+  "invariants": [
+    "Historical observations remain unchanged.",
+    "The original 58-decision snapshot remains reproducible.",
+    "Current reconciliation is additive and exact-head bound.",
+    "Ancestor or content-digest proof never automatically admits a newer canonical Git head.",
+    "Quarantine, privacy, stale-authority, and hard health blockers remain fail closed.",
+    "Concurrent Wave B evidence is preserved rather than overwritten by fresh-head synthesis."
+  ]
+}

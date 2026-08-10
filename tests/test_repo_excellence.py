@@ -6,6 +6,7 @@ from job_app_helix.repo_excellence import (
     ExcellenceContractError,
     allowed_transition,
     excellent,
+    transition_gate_requirements,
     validate_repo_excellence_record,
 )
 
@@ -16,7 +17,7 @@ def valid_record():
         "identity": {
             "repository": "GlacierEQ/example",
             "repository_id": "123",
-            "canonical_head": "abc",
+            "canonical_head": "a" * 40,
             "default_branch": "main",
             "lineage_action": "EXTEND_CANONICAL",
         },
@@ -42,6 +43,45 @@ def test_side_exit_is_always_available_and_reentry_restarts_at_discovery():
     assert allowed_transition("IMPLEMENTED", "BLOCKED")
     assert allowed_transition("BLOCKED", "DISCOVERED")
     assert not allowed_transition("BLOCKED", "TESTED")
+
+
+def test_proof_reproduced_to_promoted_requires_authority_and_projection_closure():
+    requirements = transition_gate_requirements("PROOF_REPRODUCED", "PROMOTED")
+    assert requirements == (
+        "security_authority_bounded",
+        "projections_truth_consistent",
+    )
+    assert not allowed_transition("PROOF_REPRODUCED", "PROMOTED")
+
+    gates = {name: False for name in REQUIRED_EXCELLENT_GATES}
+    gates["security_authority_bounded"] = True
+    assert not allowed_transition("PROOF_REPRODUCED", "PROMOTED", gates)
+
+    gates["projections_truth_consistent"] = True
+    assert allowed_transition("PROOF_REPRODUCED", "PROMOTED", gates)
+
+
+def test_promoted_record_must_preserve_earned_projection_closure():
+    record = valid_record()
+    record["state"] = "PROMOTED"
+    record["proof_receipt"] = {
+        "source_sha": "b" * 40,
+        "canonical_merge_sha": "a" * 40,
+        "identity": "receipt:abc",
+    }
+    record["gates"] = {name: True for name in REQUIRED_EXCELLENT_GATES}
+    record["gates"]["projections_truth_consistent"] = False
+
+    try:
+        validate_repo_excellence_record(record)
+    except ExcellenceContractError as exc:
+        assert "requires every excellence gate" in str(exc)
+        assert "projections_truth_consistent" in str(exc)
+    else:
+        raise AssertionError("PROMOTED without projection closure should be rejected")
+
+    record["gates"]["projections_truth_consistent"] = True
+    assert validate_repo_excellence_record(record)["state"] == "PROMOTED"
 
 
 def test_excellent_requires_every_gate_true():
@@ -101,8 +141,29 @@ def test_apex_merge_authority_record_is_machine_valid_and_bounded():
     record = json.loads(record_path.read_text(encoding="utf-8"))
     validated = validate_repo_excellence_record(record)
 
-    assert validated["state"] == "ADVERSARIAL_VERIFIED"
-    assert validated["scores"]["current_proof"] == "B"
-    assert validated["gates"]["runtime_behavior_observed"] is False
-    assert validated["evolution"]["next_gate"] == "OPERABLE"
-    assert validated["company_evidence"]["claim_ceiling"] == "IMPLEMENTED"
+    assert validated["state"] == "PROMOTED"
+    assert validated["scores"]["current_proof"] == "A"
+    assert validated["gates"]["runtime_behavior_observed"] is True
+    assert validated["gates"]["security_authority_bounded"] is True
+    assert validated["gates"]["projections_truth_consistent"] is True
+    assert excellent(validated["gates"])
+    assert validated["proof_receipt"]["canonical_merge_sha"] == (
+        validated["identity"]["canonical_head"]
+    )
+    assert validated["projection_receipt"]["source_ref"] == (
+        "commit:577f63c506c6c4df9c1751a0ff5b8fa07822e491"
+    )
+    assert validated["projection_receipt"]["projection_truth_closed"] is True
+    assert validated["evolution"]["next_gate"] == "CANONICAL"
+    assert validated["company_evidence"]["stage"] == "CLAIM_PROMOTED"
+    assert validated["company_evidence"]["claim_ceiling"] == "proof_bound_company_specific"
+    assert allowed_transition(
+        "PROOF_REPRODUCED",
+        validated["state"],
+        validated["gates"],
+    )
+    assert allowed_transition(
+        validated["state"],
+        validated["evolution"]["next_gate"],
+        validated["gates"],
+    )

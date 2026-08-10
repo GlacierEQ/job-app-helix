@@ -20,7 +20,8 @@ import sys
 import time
 from collections import defaultdict
 from collections.abc import Callable
-from datetime import UTC, datetime
+from datetime import datetime, timezone
+UTC = timezone.utc
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any

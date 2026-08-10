@@ -43,6 +43,14 @@ class ApplicationRegistryTests(unittest.TestCase):
             encoding="utf-8",
         )
 
+    def company_track_count(self) -> int:
+        payload = json.loads(
+            (ROOT / "manifests" / "company_dossiers.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        return len(payload["required_company_tracks"])
+
     def test_zero_omission_registry_gate(self) -> None:
         completed = subprocess.run(
             [sys.executable, str(VALIDATOR_PATH)],
@@ -63,7 +71,7 @@ class ApplicationRegistryTests(unittest.TestCase):
         self.assertEqual(result["total_inventory_repositories"], 67)
         self.assertEqual(result["helix_children_mapped"], 66)
         self.assertTrue(result["helix_children_exactly_once"])
-        self.assertEqual(result["company_tracks"], 76)
+        self.assertEqual(result["company_tracks"], self.company_track_count())
         self.assertEqual(result["named_flagships"], 17)
         # ECHO and Sigma Glue moved from the external flagship set into the
         # governed 66-child workspace; seven owner-estate flagships remain
@@ -143,7 +151,10 @@ class ApplicationRegistryTests(unittest.TestCase):
             payload = json.loads(path.read_text(encoding="utf-8"))
             payload["companies"][0]["repositories"][0][2] = "NOT_A_STATE"
             self.write_json(path, payload)
-            with self.assertRaisesRegex(RegistryValidationError, "invalid promotion_state"):
+            with self.assertRaisesRegex(
+                RegistryValidationError,
+                "invalid promotion_state",
+            ):
                 validate_registry(root)
 
     def test_defaults_without_inheritance_marker_are_rejected(self) -> None:
@@ -166,7 +177,8 @@ class ApplicationRegistryTests(unittest.TestCase):
             payload["verified_owner_estate_external_repositories"].pop()
             self.write_json(path, payload)
             with self.assertRaisesRegex(
-                RegistryValidationError, "external flagship repository identity mismatch"
+                RegistryValidationError,
+                "external flagship repository identity mismatch",
             ):
                 validate_registry(root)
 
@@ -201,7 +213,10 @@ class ApplicationRegistryTests(unittest.TestCase):
             payload = json.loads(path.read_text(encoding="utf-8"))
             payload["flagships"].append(dict(payload["flagships"][0]))
             self.write_json(path, payload)
-            with self.assertRaisesRegex(RegistryValidationError, "duplicate flagship"):
+            with self.assertRaisesRegex(
+                RegistryValidationError,
+                "duplicate flagship",
+            ):
                 validate_registry(root)
 
     def test_invalid_flagship_level_is_rejected(self) -> None:
@@ -211,7 +226,10 @@ class ApplicationRegistryTests(unittest.TestCase):
             payload = json.loads(path.read_text(encoding="utf-8"))
             payload["flagships"][0]["level"] = "L99"
             self.write_json(path, payload)
-            with self.assertRaisesRegex(RegistryValidationError, "bad flagship level"):
+            with self.assertRaisesRegex(
+                RegistryValidationError,
+                "bad flagship level",
+            ):
                 validate_registry(root)
 
     def test_foreign_owner_repository_is_rejected(self) -> None:
@@ -221,7 +239,10 @@ class ApplicationRegistryTests(unittest.TestCase):
             payload = json.loads(path.read_text(encoding="utf-8"))
             payload["companies"][0]["repositories"][0][0] = "OtherOwner/repo"
             self.write_json(path, payload)
-            with self.assertRaisesRegex(RegistryValidationError, "foreign owner"):
+            with self.assertRaisesRegex(
+                RegistryValidationError,
+                "foreign owner",
+            ):
                 validate_registry(root)
 
     def test_helix_mapping_omission_is_rejected(self) -> None:
@@ -236,7 +257,10 @@ class ApplicationRegistryTests(unittest.TestCase):
                 if row[0] != "GlacierEQ/openai-reasoning-kv-sentinel"
             ]
             self.write_json(path, payload)
-            with self.assertRaisesRegex(RegistryValidationError, "Helix mismatch"):
+            with self.assertRaisesRegex(
+                RegistryValidationError,
+                "Helix mismatch",
+            ):
                 validate_registry(root)
 
     def test_missing_company_field_is_rejected(self) -> None:

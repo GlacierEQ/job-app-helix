@@ -1,0 +1,38 @@
+{
+  "schema": "glaciereq.company-lineage-audit.v1",
+  "company_id": "motherduck",
+  "company": "MotherDuck",
+  "audited_at": "2026-08-08T15:42:00-10:00",
+  "atlas_base_head": "6cbb35b13c7e06f49c9e5088ab00e005e5042f45",
+  "verdict": "PRIVATE_NONFORK_BACKUP_REFERENCE",
+  "recruiter_ready_direct_repositories": 0,
+  "repositories": [
+    {
+      "repository": "GlacierEQ/Z-BACKUP-apex-motherduck-engine",
+      "repository_id": 1195268613,
+      "fork": false,
+      "source_head": "058460df324a91d8a0a78de7944a7f552bc8b7c7",
+      "classification": "PRIVATE_REFERENCE",
+      "provenance_state": "ORIGINAL_CANDIDATE",
+      "recruiter_admission": false,
+      "mutation_policy": "READ_ONLY",
+      "sensitive_scope": "LEGAL_EVIDENCE",
+      "backup_identity": true,
+      "reason": "The repository is a private non-fork with Casey-authored commit history and a concrete DuckDB/MotherDuck integration surface, but its Z-BACKUP identity and direct family-court evidence scope make it reference evidence rather than recruiter-ready company proof."
+    }
+  ],
+  "truth_boundary": {
+    "nonfork_does_not_equal_canonical": true,
+    "backup_name_requires_lineage_resolution": true,
+    "legal_evidence_source_mutation_is_prohibited": true,
+    "private_reference_is_not_public_company_proof": true,
+    "reusable_capability_extraction_requires_non_sensitive_donor": true
+  },
+  "candidate_reusable_mechanisms": [
+    "DuckDB/MotherDuck analytical federation",
+    "cross-system SQL materialization",
+    "connector normalization across Supabase, Notion, GitHub, and Vercel",
+    "provenance-aware query and ingestion flows"
+  ],
+  "next_cursor": "Preserve the legal/evidence repository read-only and extract reusable non-sensitive analytics mechanisms into a fresh canonical technical donor before any MotherDuck company claim is promoted."
+}

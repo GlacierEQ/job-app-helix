@@ -9,7 +9,8 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import UTC, datetime
+from datetime import timezone, datetime
+UTC = timezone.utc
 from pathlib import Path
 from typing import Any
 

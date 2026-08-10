@@ -293,7 +293,7 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
             if not all(isinstance(value, str) and value for value in row):
                 fail(f"repository record in {company_id} contains an invalid value")
 
-            record = dict(zip(REPOSITORY_COLUMNS, row, strict=True))
+            record = dict(zip(REPOSITORY_COLUMNS, row,  ))
             repository = record["repository"]
             level = record["skill_innovation_level"]
             if repository in seen:

@@ -20,7 +20,7 @@ class CampaignDecision(StrEnum):
     NO_GO = "NO-GO"
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class Finding:
     """Human-readable evidence explaining a stage decision."""
 
@@ -29,7 +29,7 @@ class Finding:
     severity: StageStatus
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class StageResult:
     """One deterministic build-or-verify piston result."""
 
@@ -57,7 +57,7 @@ class StageResult:
         return payload
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class Refinement:
     """A transparent response applied between the first and final campaign stroke."""
 
@@ -66,7 +66,7 @@ class Refinement:
     rationale: str
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class CampaignReport:
     """Complete proof receipt for a campaign run."""
 

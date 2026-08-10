@@ -1,0 +1,12 @@
+{
+  "ts": "2026-08-09T06:28Z",
+  "action": "stamp_glaciereq_proprietary_v1.1",
+  "stamped_count": 112,
+  "skipped": [
+    "the-tower-of-babel"
+  ],
+  "exception_mit": [
+    "the-tower-of-babel"
+  ],
+  "note": "Same binding license as monolith; mastermind integrity team model"
+}

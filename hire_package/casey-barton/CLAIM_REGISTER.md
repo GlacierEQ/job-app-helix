@@ -1,8 +1,16 @@
 # Claim Register and Tactical Hardening
 
+## Canonical public surface
+
+- **Only share:** https://casey-barton-glaciereq.vercel.app/
+- **Deploy source:** `GlacierEQ/job-application` (`site-v15/`)
+- **Control plane:** `GlacierEQ/job-app-helix` (this package + manifests)
+- **Do not share:** `glaciereq.github.io/job-app-helix/` (Pages not enabled), `job-application.vercel.app` (wrong project), `glaciereq.com` (unrelated)
+
 ## Verified / allowed
 
 - Exact 67-repository Job-App Helix boundary: one control-plane root plus 66 child repositories.
+- Live hire site at the canonical Vercel URL responds HTTP 200 with security headers (CSP, frame deny, nosniff); product stack is labeled on `/data/portfolio.json` release (not the legacy “V15” product name).
 - AKOS 94/94 tests across 12 modules on Python 3.11-3.13.
 - Verified 21-node README Mesh rollout.
 - Public Actions Runner Host: one live governed APEX Public Action Face path is verified on `main` by successful issue-triggered run `31280194602` at commit `e012d913c4646816d25de831ff642cedb9290a9d`. The run completed ingress authorization, strict envelope validation, OIDC/Keymaster bridge verification, one-repository private control-token minting, private control-plane checks, immutable job claiming, one-repository workload-token minting, catalog-approved private workload checkout, exact repository+commit binding, isolated adapter execution, post-run integrity verification, private result return, sanitized public status publication, and explicit revocation of both runtime tokens. This proves one operational governed execution path; it does not prove every route, workload, lane, scale level, or reliability target.

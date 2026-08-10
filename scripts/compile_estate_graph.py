@@ -55,6 +55,16 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=ROOT / "manifests" / "company_dossiers.json",
     )
+    parser.add_argument(
+        "--semantic-capabilities",
+        type=Path,
+        default=(
+            ROOT
+            / "manifests"
+            / "application_intelligence"
+            / "supabase_motherduck_capability_donors.json"
+        ),
+    )
     facts = parser.add_mutually_exclusive_group()
     facts.add_argument("--estate-facts", type=Path)
     facts.add_argument("--lineage", dest="estate_facts", type=Path)
@@ -77,6 +87,11 @@ def main() -> int:
         raise ValueError("company_dossiers.dossier_files must be a list")
     shards = [load_json(ROOT / path) for path in shard_paths]
     estate_facts = load_json(args.estate_facts) if args.estate_facts else None
+    semantic_capabilities = (
+        load_json(args.semantic_capabilities)
+        if args.semantic_capabilities and args.semantic_capabilities.exists()
+        else None
+    )
 
     bundle = compile_estate(
         census,
@@ -84,6 +99,7 @@ def main() -> int:
         company_index=index,
         company_shards=shards,
         lineage=estate_facts,
+        semantic_capabilities=semantic_capabilities,
     )
     out = args.output_dir
     atomic_write(out / "canonical-system-registry.json", bundle["canonical_system_registry"])

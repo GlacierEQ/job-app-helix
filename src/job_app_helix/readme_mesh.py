@@ -48,7 +48,7 @@ class ReadmeMeshError(ValueError):
     """Raised when the README mesh violates its public evidence contract."""
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class MeshArtifacts:
     binary: bytes
     protojson: str

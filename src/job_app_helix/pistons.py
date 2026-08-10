@@ -5,7 +5,7 @@ from dataclasses import dataclass, replace
 from .models import Finding, Refinement, StageResult, StageStatus
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class FlightInputs:
     expected_frames: int = 1_000
     received_frames: int = 995
@@ -13,7 +13,7 @@ class FlightInputs:
     backup_frames: int = 0
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class PropulsionInputs:
     chamber_pressure_ratio: float = 0.98
     mixture_ratio_error: float = 0.02
@@ -22,7 +22,7 @@ class PropulsionInputs:
     derated_vibration_g: float | None = None
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class GroundInputs:
     required_mbps: float = 55.0
     available_mbps: float = 72.0
