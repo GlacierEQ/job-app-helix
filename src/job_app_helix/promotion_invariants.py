@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 IMPLEMENTATION_PROOF_SCHEMA = "glaciereq.implementation-proof.v1"
 
@@ -52,7 +53,8 @@ def source_tree_sha(leaf: Path) -> str:
             continue
         for path in sorted(root.rglob("*")):
             if path.is_file() and path.suffix in {".py", ".md", ".json"}:
-                parts.append(f"{path.relative_to(leaf).as_posix()}:{_sha256(path)}")
+                relative = path.relative_to(leaf).as_posix()
+                parts.append(f"{relative}:{_sha256(path)}")
     return hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest()
 
 
@@ -110,15 +112,24 @@ def validate_implementation_proof(
 
     behavioral = proof.get("behavioral_cases")
     adversarial = proof.get("adversarial_cases")
-    if not isinstance(behavioral, int) or isinstance(behavioral, bool) or behavioral < 3:
+    invalid_behavioral = (
+        not isinstance(behavioral, int) or isinstance(behavioral, bool) or behavioral < 3
+    )
+    if invalid_behavioral:
         reasons.append("IMPLEMENTATION_PROOF_BEHAVIORAL_CASES")
-    if not isinstance(adversarial, int) or isinstance(adversarial, bool) or adversarial < 1:
+    invalid_adversarial = (
+        not isinstance(adversarial, int) or isinstance(adversarial, bool) or adversarial < 1
+    )
+    if invalid_adversarial:
         reasons.append("IMPLEMENTATION_PROOF_ADVERSARIAL_CASES")
 
     return not reasons, tuple(reasons)
 
 
-def assess_leaf_promotion(leaf: Path, repository: str | None = None) -> PromotionAssessment:
+def assess_leaf_promotion(
+    leaf: Path,
+    repository: str | None = None,
+) -> PromotionAssessment:
     repository = repository or f"GlacierEQ/{leaf.name}"
     source_sha = source_tree_sha(leaf)
     scaffold = detect_scaffold_evidence(leaf)
@@ -148,7 +159,10 @@ def assess_leaf_promotion(leaf: Path, repository: str | None = None) -> Promotio
             state = json.loads(state_path.read_text(encoding="utf-8"))
             if scaffold and state.get("scaffold") is False:
                 reasons.append("STATE_SCAFFOLD_CONTRADICTION")
-            if state.get("principal_state") == "PROMOTED" and (scaffold or not proof_ok):
+            promoted_without_proof = state.get("principal_state") == "PROMOTED" and (
+                scaffold or not proof_ok
+            )
+            if promoted_without_proof:
                 reasons.append("PROMOTED_WITHOUT_IMPLEMENTATION_PROOF")
         except (OSError, json.JSONDecodeError):
             reasons.append("EXCELLENCE_STATE_INVALID_JSON")
@@ -163,7 +177,10 @@ def assess_leaf_promotion(leaf: Path, repository: str | None = None) -> Promotio
     )
 
 
-def enforce_nonpromoted_state(state: dict[str, Any], assessment: PromotionAssessment) -> dict[str, Any]:
+def enforce_nonpromoted_state(
+    state: dict[str, Any],
+    assessment: PromotionAssessment,
+) -> dict[str, Any]:
     """Return a truth-preserving state when promotion eligibility is not earned.
 
     OPERABLE remains the principal-state ceiling for an executable scaffold in the
@@ -180,7 +197,12 @@ def enforce_nonpromoted_state(state: dict[str, Any], assessment: PromotionAssess
     out["promotion_blockers"] = list(assessment.reasons)
     wave = dict(out.get("wave") or {})
     if wave:
-        wave["phase"] = "SCAFFOLD_PROVEN" if assessment.scaffold_evidence else "IMPLEMENTATION_PROOF_PENDING"
+        phase = (
+            "SCAFFOLD_PROVEN"
+            if assessment.scaffold_evidence
+            else "IMPLEMENTATION_PROOF_PENDING"
+        )
+        wave["phase"] = phase
         wave.pop("promoted_at", None)
         wave.pop("projection_truth_closed_at", None)
         out["wave"] = wave
