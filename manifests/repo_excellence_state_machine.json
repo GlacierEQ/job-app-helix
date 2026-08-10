@@ -25,7 +25,23 @@
     "RETIREMENT_READY",
     "QUARANTINE"
   ],
-  "transition_rule": "Principal-state promotion is one step at a time. Side exits are always allowed. Re-entry from a side exit restarts at DISCOVERED unless a future version defines an evidence-preserving re-entry rule.",
+  "transition_rule": "Principal-state promotion is one step at a time and any declared transition gate requirements must also be true. Side exits are always allowed. Re-entry from a side exit restarts at DISCOVERED unless a future version defines an evidence-preserving re-entry rule.",
+  "transition_gate_requirements": {
+    "PROOF_REPRODUCED->PROMOTED": [
+      "security_authority_bounded",
+      "projections_truth_consistent"
+    ]
+  },
+  "projection_truth_closure": {
+    "purpose": "Prevent a repository from being promoted when implementation proof is stronger than the estate surfaces that represent it.",
+    "minimum_semantics": [
+      "outward projection is compiled from the effective canonical authority rather than a stale or partial registry",
+      "projected repository/company stage and claim ceiling do not exceed the effective authority",
+      "truth-bounding nonclaims survive outward projection",
+      "readback validates artifacts regenerated from that effective authority rather than an unrelated stale aggregate",
+      "readback evidence is bound to an exact source candidate before promotion"
+    ]
+  },
   "excellent_gate_conjunction": [
     "problem_verified",
     "unique_value_known",
