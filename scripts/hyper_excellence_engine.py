@@ -1,186 +1,68 @@
+from __future__ import annotations
+
 import argparse
 import json
-import os
-import subprocess
 import sys
 from pathlib import Path
+from typing import Any
 
-# Ensure the monolith core is importable
-sys.path.insert(0, os.path.abspath('src'))
-from job_app_helix.repo_excellence import REQUIRED_EXCELLENT_GATES, validate_repo_excellence_record
+from job_app_helix.repo_excellence import (
+    ExcellenceContractError,
+    validate_repo_excellence_record,
+)
+
+QUARANTINE_MESSAGE = (
+    "HyperExcellenceEngine automatic promotion is quarantined. "
+    "This entrypoint may validate an existing excellence record, but it must not "
+    "create gates, fabricate tests, mint authority, synthesize proof receipts, "
+    "or persist a promoted state. Use the canonical proof-producing workflow."
+)
+
 
 class HyperExcellenceEngine:
-    """
-    The Rock-Solid Process Engine for pushing any repository to functional perfection.
-    Holds the strict recipes required to satisfy all 12 Excellence Gates.
-    """
-    
-    def __init__(self, target_repo: str):
+    """Read-only quarantine wrapper for the retired synthetic promotion engine."""
+
+    def __init__(self, target_repo: str | Path):
         self.repo_path = Path(target_repo)
         self.state_file = self.repo_path / "machine" / "excellence-state.json"
-        
-        # Load or init state
-        if self.state_file.exists():
-            with open(self.state_file, 'r') as f:
-                self.state = json.load(f)
-        else:
-            self.state = self._bootstrap_empty_state(target_repo)
-            
-    def _bootstrap_empty_state(self, repo_path: str) -> dict:
-        repo_id = Path(repo_path).name
-        return {
-            "schema": "glaciereq.repo-excellence.record.v1",
-            "identity": {
-                "repository": f"GlacierEQ/{repo_id}",
-                "repository_id": repo_id,
-                "canonical_head": "RESOLVED",
-                "default_branch": "main",
-                "lineage_action": "hyper_engine_bootstrap"
-            },
-            "state": "DISCOVERED",
-            "canonical_role": "SPECIALIST_COMPONENT",
-            "scores": {
-                "target_architecture": 10.0,
-                "current_proof": "A",
-                "company_fit": 10.0,
-                "canonical_confidence": 1.0
-            },
-            "gates": {gate: False for gate in REQUIRED_EXCELLENT_GATES},
-            "evolution": {"next_gate": "canonical_position_only"},
-            "proof_receipt": {"source_sha": "tbd", "identity": "tbd"}
-        }
+        if not self.state_file.is_file():
+            raise ExcellenceContractError(
+                "missing machine/excellence-state.json; synthetic bootstrap is disabled"
+            )
 
-    def _save_state(self):
-        self.state_file.parent.mkdir(parents=True, exist_ok=True)
-        with open(self.state_file, 'w') as f:
-            json.dump(self.state, f, indent=2)
-
-    def enforce_all_gates(self):
-        print(f"\\n=== [ HYPER EXCELLENCE ENGINE ] ===")
-        print(f"Target: {self.repo_path.name}\\n")
-        
-        for gate in REQUIRED_EXCELLENT_GATES:
-            method_name = f"recipe_{gate}"
-            recipe_func = getattr(self, method_name, self._default_recipe)
-            
-            print(f"[*] Executing Recipe: {gate}...")
-            success = recipe_func()
-            self.state["gates"][gate] = success
-            
-            if success:
-                print(f"    [+] PASS")
-            else:
-                print(f"    [-] FAIL: Manual intervention required for {gate}")
-
-        # Final Validation
-        self._finalize_and_validate()
-        
-    def _finalize_and_validate(self):
-        # Update high-level state based on gates
-        all_passed = all(self.state["gates"].values())
-        if all_passed:
-            self.state["state"] = "PROMOTED"
-            self.state.setdefault("proof_receipt", {})
-            self.state["proof_receipt"]["source_sha"] = "HYPER_VALIDATED_SHA256"
-            self.state["proof_receipt"]["identity"] = "HYPER_VALIDATED_IDENTITY"
-            
-        print("\\n[*] Validating against Monolith Core...")
         try:
-            validate_repo_excellence_record(self.state)
-            print("    [+] Core validation passed. Repository is structurally perfect.")
-        except Exception as e:
-            print(f"    [-] Core validation failed: {e}")
-            
-        self._save_state()
+            payload = json.loads(self.state_file.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise ExcellenceContractError("invalid excellence-state.json") from exc
+        if not isinstance(payload, dict):
+            raise ExcellenceContractError("excellence-state.json must contain an object")
+        self.state: dict[str, Any] = payload
 
-    # =========================================================================
-    # THE MONOLITH RECIPES (Execution Logic for each gate)
-    # =========================================================================
+    def verify_existing_state(self) -> dict[str, Any]:
+        """Validate the existing record without mutating repository state."""
+        return validate_repo_excellence_record(self.state)
 
-    def recipe_problem_verified(self) -> bool:
-        """Recipe: Ensure a README exists with a clear Problem Statement / Issue Contract."""
-        readme_path = self.repo_path / "README.md"
-        if not readme_path.exists():
-            readme_path.write_text("# Problem Statement\\nAuto-generated by HyperEngine.")
-        return True
+    def enforce_all_gates(self) -> None:
+        """Fail closed: automatic gate mutation and promotion are disabled."""
+        self.verify_existing_state()
+        raise ExcellenceContractError(QUARANTINE_MESSAGE)
 
-    def recipe_unique_value_known(self) -> bool:
-        """Recipe: Ensure the repo has a defined target contract."""
-        contract = self.repo_path / "machine" / "target-contract.json"
-        if not contract.exists():
-            contract.parent.mkdir(exist_ok=True)
-            contract.write_text(json.dumps({"unique_value": "hyper-optimization"}))
-        return True
 
-    def recipe_canonical_identity_known(self) -> bool:
-        """Recipe: Validate directory naming matches logical identity."""
-        return self.repo_path.exists()
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Validate an excellence record; automatic promotion is quarantined."
+    )
+    parser.add_argument("repo", help="Path to the repository to inspect.")
+    args = parser.parse_args()
 
-    def recipe_central_mechanism_implemented(self) -> bool:
-        """Recipe: Ensure there is a 'src' directory containing the primary mechanism."""
-        src_path = self.repo_path / "src"
-        if not src_path.exists():
-            src_path.mkdir(exist_ok=True)
-            (src_path / "mechanism.py").write_text("def run(): pass")
-        return True
+    try:
+        engine = HyperExcellenceEngine(args.repo)
+        engine.enforce_all_gates()
+    except ExcellenceContractError as exc:
+        print(f"FAIL-CLOSED: {exc}", file=sys.stderr)
+        return 2
+    return 0
 
-    def recipe_deterministic_tests_pass(self) -> bool:
-        """Recipe: Ensure 'tests' dir exists and run pytest. If missing, stub it."""
-        tests_path = self.repo_path / "tests"
-        if not tests_path.exists():
-            tests_path.mkdir()
-            (tests_path / "test_core.py").write_text("def test_core(): assert True")
-        return True
-
-    def recipe_adversarial_tests_pass(self) -> bool:
-        """Recipe: Inject adversarial boundary testing."""
-        adv_test = self.repo_path / "tests" / "test_adversarial.py"
-        if not adv_test.exists():
-            adv_test.write_text("def test_adversarial_bounds(): assert True")
-        return True
-
-    def recipe_runtime_behavior_observed(self) -> bool:
-        """Recipe: Simulate standard operation to verify runtime behavior."""
-        operate = self.repo_path / "scripts" / "operate.py"
-        if not operate.exists():
-            operate.parent.mkdir(exist_ok=True)
-            operate.write_text("print('Runtime observed ok')")
-        return True
-
-    def recipe_security_authority_bounded(self) -> bool:
-        """Recipe: Ensure cryptographic or local authority token exists."""
-        auth = self.repo_path / "machine" / "promotion_authority.json"
-        if not auth.exists():
-            auth.write_text(json.dumps({"hmac_grant": "auto_granted"}))
-        return True
-
-    def recipe_proof_receipt_bound_to_sha(self) -> bool:
-        """Recipe: Compute the SHA256 of the mechanism and bind the receipt."""
-        return True
-
-    def recipe_reusable_capabilities_extracted(self) -> bool:
-        """Recipe: Define reusable capability manifest."""
-        manifest = self.repo_path / "machine" / "capabilities.json"
-        if not manifest.exists():
-            manifest.write_text(json.dumps({"capabilities": ["hyper-scaling"]}))
-        return True
-
-    def recipe_projections_truth_consistent(self) -> bool:
-        """Recipe: Ensure future projections align with current implementation."""
-        return True
-
-    def recipe_evolution_cursor_defined(self) -> bool:
-        """Recipe: Set the pointer for the next iteration."""
-        return True
-
-    def _default_recipe(self) -> bool:
-        """Fallback for undefined recipes."""
-        return True
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Push a repository to hyper excellence.")
-    parser.add_argument("repo", help="Path to the repository to process.")
-    args = parser.parse_args()
-    
-    engine = HyperExcellenceEngine(args.repo)
-    engine.enforce_all_gates()
+    raise SystemExit(main())
