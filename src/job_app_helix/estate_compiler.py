@@ -6,7 +6,13 @@ import re
 from collections import defaultdict
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
-from enum import StrEnum
+from enum import Enum
+try:
+    from enum import StrEnum
+except ImportError:
+    from enum import Enum
+    class StrEnum(str, Enum):
+        pass
 from typing import Any
 
 SCHEMA_VERSION = "glaciereq.estate-compiler.v1"

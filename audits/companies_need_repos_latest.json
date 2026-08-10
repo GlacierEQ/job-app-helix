@@ -1,0 +1,478 @@
+{
+  "source": "https://casey-barton-glaciereq.vercel.app/data/helix-root.json",
+  "total": 76,
+  "need_repos_count": 53,
+  "seeded_count": 15,
+  "rich_count": 8,
+  "need_repos": [
+    {
+      "id": "amd",
+      "name": "AMD",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "adobe",
+      "name": "Adobe",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "anduril",
+      "name": "Anduril",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "atlassian",
+      "name": "Atlassian",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "baseten",
+      "name": "Baseten",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "blue_origin",
+      "name": "Blue Origin",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "cerebras",
+      "name": "Cerebras",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "cognition",
+      "name": "Cognition",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "coreweave",
+      "name": "CoreWeave",
+      "track": "PRIVATE_RELIABILITY_LAB_EXPERIMENTS",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "crusoe",
+      "name": "Crusoe",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor / Anysphere",
+      "track": "DIRECT_ESTATE_DISCOVERED_PROVENANCE_AUDIT",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "elastic",
+      "name": "Elastic",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "fireworks_ai",
+      "name": "Fireworks AI",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "gitlab",
+      "name": "GitLab",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "glean",
+      "name": "Glean",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "groq",
+      "name": "Groq",
+      "track": "DIRECT_ESTATE_DISCOVERED_NOT_RECRUITER_READY",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "hugging_face",
+      "name": "Hugging Face",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "ibm",
+      "name": "IBM",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "intel",
+      "name": "Intel",
+      "track": "UPSTREAM_DERIVED_DELTA_AUDIT",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "lambda",
+      "name": "Lambda",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "lockheed_martin",
+      "name": "Lockheed Martin",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "CLAIM_PROMOTED"
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral AI",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "modal",
+      "name": "Modal",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "track": "DIRECT_ESTATE_DISCOVERED_UPSTREAM_ONLY",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "motherduck",
+      "name": "MotherDuck",
+      "track": "SEMANTIC_CAPABILITY_DONORS_ADMITTED_WITH_DEPLOYMENT_BOUNDARY",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "nasa",
+      "name": "NASA",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "nebius",
+      "name": "Nebius",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "palantir",
+      "name": "Palantir",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "pinecone",
+      "name": "Pinecone",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "qdrant",
+      "name": "Qdrant",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "qualcomm",
+      "name": "Qualcomm",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "replit",
+      "name": "Replit",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "rocket_lab",
+      "name": "Rocket Lab",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "runpod",
+      "name": "Runpod",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "scale_ai",
+      "name": "Scale AI",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "sourcegraph",
+      "name": "Sourcegraph",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "track": "SEMANTIC_CAPABILITY_DONORS_ADMITTED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "together_ai",
+      "name": "Together AI",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "waymo",
+      "name": "Waymo",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "weaviate",
+      "name": "Weaviate",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "track": "CANDIDATE_TARGET_REQUIRES_DIRECT_EVIDENCE",
+      "stage": "MAPPED_ONLY"
+    },
+    {
+      "id": "zoox",
+      "name": "Zoox",
+      "track": "NO_DIRECT_EXHIBIT_VERIFIED",
+      "stage": "MAPPED_ONLY"
+    }
+  ],
+  "seeded": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "repo": "GlacierEQ/openai-reasoning-kv-sentinel"
+    },
+    {
+      "id": "google_deepmind",
+      "name": "Google / DeepMind",
+      "repo": "GlacierEQ/deepmind-tpu-mesh-optimizer"
+    },
+    {
+      "id": "aws",
+      "name": "AWS",
+      "repo": "GlacierEQ/aws-trainium-neuron-sentinel"
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "repo": "GlacierEQ/apple-ane-kv-quantizer"
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "repo": "GlacierEQ/meta-llama-collective-sentinel"
+    },
+    {
+      "id": "tesla",
+      "name": "Tesla",
+      "repo": "GlacierEQ/tesla-fsd-occupancy-stream"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "repo": "GlacierEQ/deepseek-mla-moe-sentinel"
+    },
+    {
+      "id": "kimi",
+      "name": "Moonshot AI / Kimi",
+      "repo": "GlacierEQ/kimi-mooncake-kv-stream"
+    },
+    {
+      "id": "qwen",
+      "name": "Alibaba / Qwen",
+      "repo": "GlacierEQ/qwen-vl-flash-router"
+    },
+    {
+      "id": "opera",
+      "name": "Opera",
+      "repo": "GlacierEQ/opera-neon-spatial-workspace"
+    },
+    {
+      "id": "manus",
+      "name": "Manus",
+      "repo": "GlacierEQ/manus-autonomous-web-agent"
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "repo": "GlacierEQ/lovable-design-app-synth"
+    },
+    {
+      "id": "openclaw",
+      "name": "OpenClaw",
+      "repo": "GlacierEQ/openclaw"
+    },
+    {
+      "id": "tasklet",
+      "name": "Tasklet",
+      "repo": "GlacierEQ/tasklet-micro-agent-engine"
+    },
+    {
+      "id": "robotics",
+      "name": "Robotics / Embodied AI",
+      "repo": "GlacierEQ/robotics-vla-torque-sentinel"
+    }
+  ],
+  "priority_need": [
+    {
+      "id": "palantir",
+      "name": "Palantir"
+    },
+    {
+      "id": "anduril",
+      "name": "Anduril"
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral AI"
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere"
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks"
+    },
+    {
+      "id": "ibm",
+      "name": "IBM"
+    },
+    {
+      "id": "intel",
+      "name": "Intel"
+    },
+    {
+      "id": "amd",
+      "name": "AMD"
+    },
+    {
+      "id": "qualcomm",
+      "name": "Qualcomm"
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel"
+    },
+    {
+      "id": "groq",
+      "name": "Groq"
+    },
+    {
+      "id": "cerebras",
+      "name": "Cerebras"
+    },
+    {
+      "id": "lockheed_martin",
+      "name": "Lockheed Martin"
+    },
+    {
+      "id": "nasa",
+      "name": "NASA"
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor / Anysphere"
+    },
+    {
+      "id": "github",
+      "name": "GitHub"
+    }
+  ]
+}

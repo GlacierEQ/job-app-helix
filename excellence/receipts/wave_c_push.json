@@ -1,0 +1,573 @@
+{
+  "schema": "glaciereq.wave-c-push.v1",
+  "wave": "WAVE-C-2026-08-10",
+  "total": 47,
+  "ok": 47,
+  "failed": 0,
+  "results": [
+    {
+      "name": "adobe-creative-provenance-gate",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "f9bb49f",
+      "remote": "https://github.com/GlacierEQ/adobe-creative-provenance-gate"
+    },
+    {
+      "name": "amd-hetero-placement-contract",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "d389fe8",
+      "remote": "https://github.com/GlacierEQ/amd-hetero-placement-contract"
+    },
+    {
+      "name": "atlassian-workgraph-intent-twin",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "5c1b112",
+      "remote": "https://github.com/GlacierEQ/atlassian-workgraph-intent-twin"
+    },
+    {
+      "name": "baseten-serving-slo-circuit",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "3c623d8",
+      "remote": "https://github.com/GlacierEQ/baseten-serving-slo-circuit"
+    },
+    {
+      "name": "blue-origin-cryo-telemetry-half-life",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "a84c3c3",
+      "remote": "https://github.com/GlacierEQ/blue-origin-cryo-telemetry-half-life"
+    },
+    {
+      "name": "cerebras-wafer-batch-admission-gate",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "ee27bbc",
+      "remote": "https://github.com/GlacierEQ/cerebras-wafer-batch-admission-gate"
+    },
+    {
+      "name": "cloudflare-edge-cap-mint",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "a56b0e2",
+      "remote": "https://github.com/GlacierEQ/cloudflare-edge-cap-mint"
+    },
+    {
+      "name": "cognition-execution-checkpoint-lattice",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "bb5e7d8",
+      "remote": "https://github.com/GlacierEQ/cognition-execution-checkpoint-lattice"
+    },
+    {
+      "name": "cohere-retrieval-claim-fence",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "0ab2b1c",
+      "remote": "https://github.com/GlacierEQ/cohere-retrieval-claim-fence"
+    },
+    {
+      "name": "coreweave-rack-power-autopilot",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "02d5c59",
+      "remote": "https://github.com/GlacierEQ/coreweave-rack-power-autopilot"
+    },
+    {
+      "name": "crusoe-rack-to-token-autopilot",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "7426b17",
+      "remote": "https://github.com/GlacierEQ/crusoe-rack-to-token-autopilot"
+    },
+    {
+      "name": "cursor-patch-intent-twin",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "743fd39",
+      "remote": "https://github.com/GlacierEQ/cursor-patch-intent-twin"
+    },
+    {
+      "name": "elastic-trajectory-index-layout",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "971e357",
+      "remote": "https://github.com/GlacierEQ/elastic-trajectory-index-layout"
+    },
+    {
+      "name": "fireworks-ai-optimization-safety-envelope",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "98e8679",
+      "remote": "https://github.com/GlacierEQ/fireworks-ai-optimization-safety-envelope"
+    },
+    {
+      "name": "github-pr-authority-matrix",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "bbcec20",
+      "remote": "https://github.com/GlacierEQ/github-pr-authority-matrix"
+    },
+    {
+      "name": "gitlab-pipeline-intent-contract",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "7ebe929",
+      "remote": "https://github.com/GlacierEQ/gitlab-pipeline-intent-contract"
+    },
+    {
+      "name": "glean-enterprise-search-claim-fence",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "3fc8633",
+      "remote": "https://github.com/GlacierEQ/glean-enterprise-search-claim-fence"
+    },
+    {
+      "name": "hugging-face-model-card-provenance-seal",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "5fae088",
+      "remote": "https://github.com/GlacierEQ/hugging-face-model-card-provenance-seal"
+    },
+    {
+      "name": "ibm-governed-tool-catalog",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "964f408",
+      "remote": "https://github.com/GlacierEQ/ibm-governed-tool-catalog"
+    },
+    {
+      "name": "intel-npu-placement-passport",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "e80173e",
+      "remote": "https://github.com/GlacierEQ/intel-npu-placement-passport"
+    },
+    {
+      "name": "lambda-useful-gpu-minute-contract",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "1cfeffb",
+      "remote": "https://github.com/GlacierEQ/lambda-useful-gpu-minute-contract"
+    },
+    {
+      "name": "linear-issue-intent-twin",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "6ee4b80",
+      "remote": "https://github.com/GlacierEQ/linear-issue-intent-twin"
+    },
+    {
+      "name": "lockheed-martin-mission-assurance-gateway",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "a419eb6",
+      "remote": "https://github.com/GlacierEQ/lockheed-martin-mission-assurance-gateway"
+    },
+    {
+      "name": "mistral-open-weight-eval-fence",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "099d0c1",
+      "remote": "https://github.com/GlacierEQ/mistral-open-weight-eval-fence"
+    },
+    {
+      "name": "modal-ephemeral-sandbox-receipt",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "8571a92",
+      "remote": "https://github.com/GlacierEQ/modal-ephemeral-sandbox-receipt"
+    },
+    {
+      "name": "mongodb-operational-semantic-twin-index",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "76d4f6f",
+      "remote": "https://github.com/GlacierEQ/mongodb-operational-semantic-twin-index"
+    },
+    {
+      "name": "motherduck-local-cloud-query-passport",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "7021cc6",
+      "remote": "https://github.com/GlacierEQ/motherduck-local-cloud-query-passport"
+    },
+    {
+      "name": "nebius-cluster-energy-admission",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "e8bc405",
+      "remote": "https://github.com/GlacierEQ/nebius-cluster-energy-admission"
+    },
+    {
+      "name": "oracle-sovereign-data-boundary-gate",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "28122a2",
+      "remote": "https://github.com/GlacierEQ/oracle-sovereign-data-boundary-gate"
+    },
+    {
+      "name": "pinecone-retrieval-outcome-optimizer",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "7f5e3df",
+      "remote": "https://github.com/GlacierEQ/pinecone-retrieval-outcome-optimizer"
+    },
+    {
+      "name": "qdrant-collection-quorum-guard",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "8837fe8",
+      "remote": "https://github.com/GlacierEQ/qdrant-collection-quorum-guard"
+    },
+    {
+      "name": "qualcomm-on-device-budget-futures",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "18c1f7a",
+      "remote": "https://github.com/GlacierEQ/qualcomm-on-device-budget-futures"
+    },
+    {
+      "name": "redis-stream-claim-cursor-fence",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "2b2137f",
+      "remote": "https://github.com/GlacierEQ/redis-stream-claim-cursor-fence"
+    },
+    {
+      "name": "replicate-model-version-pin-gate",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "e47c82f",
+      "remote": "https://github.com/GlacierEQ/replicate-model-version-pin-gate"
+    },
+    {
+      "name": "replit-workspace-cap-matrix",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "c697930",
+      "remote": "https://github.com/GlacierEQ/replit-workspace-cap-matrix"
+    },
+    {
+      "name": "rocket-lab-launch-hold-receipt",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "2895e6e",
+      "remote": "https://github.com/GlacierEQ/rocket-lab-launch-hold-receipt"
+    },
+    {
+      "name": "runpod-pod-preempt-receipt",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "4465471",
+      "remote": "https://github.com/GlacierEQ/runpod-pod-preempt-receipt"
+    },
+    {
+      "name": "salesforce-crm-action-authority",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "87f9153",
+      "remote": "https://github.com/GlacierEQ/salesforce-crm-action-authority"
+    },
+    {
+      "name": "scale-ai-label-consensus-fence",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "8b2a131",
+      "remote": "https://github.com/GlacierEQ/scale-ai-label-consensus-fence"
+    },
+    {
+      "name": "snowflake-warehouse-spend-circuit",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "41b7265",
+      "remote": "https://github.com/GlacierEQ/snowflake-warehouse-spend-circuit"
+    },
+    {
+      "name": "sourcegraph-code-nav-intent-gate",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "345d6c8",
+      "remote": "https://github.com/GlacierEQ/sourcegraph-code-nav-intent-gate"
+    },
+    {
+      "name": "supabase-policy-carrying-ai-data-plane",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "aed1edf",
+      "remote": "https://github.com/GlacierEQ/supabase-policy-carrying-ai-data-plane"
+    },
+    {
+      "name": "together-ai-open-model-fidelity-passport",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "37520d1",
+      "remote": "https://github.com/GlacierEQ/together-ai-open-model-fidelity-passport"
+    },
+    {
+      "name": "vercel-deploy-preview-authority",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "cecfd6e",
+      "remote": "https://github.com/GlacierEQ/vercel-deploy-preview-authority"
+    },
+    {
+      "name": "weaviate-hybrid-search-claim-fence",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "c3d07db",
+      "remote": "https://github.com/GlacierEQ/weaviate-hybrid-search-claim-fence"
+    },
+    {
+      "name": "windsurf-cascade-intent-twin",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "b7189b4",
+      "remote": "https://github.com/GlacierEQ/windsurf-cascade-intent-twin"
+    },
+    {
+      "name": "zoox-fleet-skill-promotion-gate",
+      "ok": true,
+      "error": null,
+      "actions": [
+        "init rc=0",
+        "commit rc=0",
+        "gh_create_push rc=0"
+      ],
+      "head": "ecd24cd",
+      "remote": "https://github.com/GlacierEQ/zoox-fleet-skill-promotion-gate"
+    }
+  ]
+}

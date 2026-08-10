@@ -52,7 +52,7 @@ class AuditStepError(RuntimeError):
         self.evidence = evidence
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class CommandCheck:
     repository: str
     command: tuple[str, ...]
@@ -62,7 +62,7 @@ class CommandCheck:
     minimum_tests: int = 1
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class CommandResult:
     repository: str
     command: list[str]

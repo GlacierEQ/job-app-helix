@@ -9,7 +9,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Iterable
-from datetime import UTC, datetime
+from datetime import timezone, datetime
+UTC = timezone.utc
 from pathlib import Path
 from typing import Any
 

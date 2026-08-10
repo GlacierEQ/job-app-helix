@@ -4,7 +4,7 @@ import argparse
 import base64
 import json
 import os
-import tomllib
+import tomli as tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
