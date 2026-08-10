@@ -2,8 +2,8 @@
   "schema": "glaciereq.company-capability-projection.v1",
   "company": "GitHub",
   "projection_id": "github_merge_authority_graph",
-  "stage": "PROOF_REPRODUCED",
-  "claim_ceiling": "reproducible_company_specific_proof",
+  "stage": "CLAIM_PROMOTED",
+  "claim_ceiling": "proof_bound_company_specific",
   "public_problem": {
     "summary": "GitHub is expanding agentic repository work while adding security validation, policy-constrained agentic workflows, approval boundaries, and platform-level lifecycle/authorization concerns for coding agents.",
     "official_sources": [
@@ -36,25 +36,27 @@
     "visibility": "private",
     "canonical_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "capability": "merge_authority_graph",
-    "state": "PROOF_REPRODUCED",
+    "state": "PROMOTED",
     "proof_source_sha": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
     "proof_receipt": "proof/merge-authority-canonical-reproduction-2026-08-09.json",
-    "public_safe_proof_package": "GlacierEQ/job-application@7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13:projects/github-merge-authority-proof/"
+    "public_safe_proof_package": "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/"
   },
-  "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, expected repository state, required validation, bounded approval, short-lived repository authority, exact provider bytes, provider mutation identity, bounded eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. This is transferable engineering evidence for the public GitHub operating problem; it is not GitHub adoption evidence.",
+  "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, expected repository state, required validation, bounded approval, short-lived repository authority, exact provider bytes, provider mutation identity, bounded eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. This proof-bound company-specific claim is transferable engineering evidence for the public GitHub operating problem; it is not GitHub adoption evidence.",
   "current_proof": {
     "grade": "A",
-    "observed": "26/26 exact Merge Authority tests and 38/38 proof-host gateway tests passed; canonical Apex source was reproduced through a real GitHub provider mutation on disposable branches; canonical readback matched the provider commit; replay returned DUPLICATE_ALREADY_COMPLETED without a second mutation; the short-lived token was revoked; target main remained unchanged.",
+    "observed": "26/26 exact Merge Authority tests and 38/38 proof-host gateway tests passed; canonical Apex source was reproduced through a real GitHub provider mutation on disposable branches; canonical readback matched the provider commit; replay returned DUPLICATE_ALREADY_COMPLETED without a second mutation; the short-lived token was revoked; target main remained unchanged. The outward portfolio production projection was then compiled from effective Helix authority and read back through the canonical Vercel alias with V25/V26 verification PASS.",
     "public_provider_mutation": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
     "public_completed_receipt_blob": "175d6e236eb460d2913b711f5d72c13c8c5ef4cd",
     "public_replay_receipt_blob": "166f4f86a095392fc38a7a6e657e9e2b172f3cc5",
-    "limitation": "The proof is independent GlacierEQ work on disposable proof branches. No GitHub adoption, employment, endorsement, production deployment, production-scale reliability, latency, throughput, or durability is established. The private implementation source remains private."
+    "public_claim_receipt": "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/proof/claim-receipt.json",
+    "production_projection_receipt": "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/proof/production-projection-closure.json",
+    "limitation": "The proof is independent GlacierEQ work on disposable proof branches. No GitHub adoption, employment, endorsement, GitHub production deployment, production-scale reliability, latency, throughput, or durability is established. The private implementation source remains private."
   },
   "public_projection": {
     "package_repository": "GlacierEQ/job-application",
-    "package_commit": "7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+    "package_commit": "577f63c506c6c4df9c1751a0ff5b8fa07822e491",
     "package_path": "projects/github-merge-authority-proof/",
     "disclosure_class": "PUBLIC_SAFE_WITH_PRIVATE_IMPLEMENTATION_HASH_BOUNDARY"
   },
-  "next_company_gate": "Compile this canonical PROOF_REPRODUCED state into the outward GitHub company surface, validate exact public evidence and non-adoption boundaries, perform public readback, then bind the claim receipt and advance exactly one stage to CLAIM_PROMOTED."
+  "next_company_gate": "Maintain proof and projection freshness at the proof_bound_company_specific ceiling. Any claim of GitHub adoption, GitHub production deployment, or production-scale reliability requires new public evidence and an additional gate; none is claimed here."
 }
