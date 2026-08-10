@@ -64,14 +64,14 @@ def test_proof_reproduced_to_promoted_requires_authority_and_projection_closure(
 def test_promoted_record_must_preserve_earned_projection_closure():
     record = valid_record()
     record["state"] = "PROMOTED"
-    record["proof_receipt"] = {"source_sha": "abc", "identity": "receipt:abc"}
-    record["gates"]["security_authority_bounded"] = True
+    record["proof_receipt"] = {"source_sha": "a" * 40, "identity": "receipt:abc"}
+    record["gates"] = {name: True for name in REQUIRED_EXCELLENT_GATES}
     record["gates"]["projections_truth_consistent"] = False
 
     try:
         validate_repo_excellence_record(record)
     except ExcellenceContractError as exc:
-        assert "PROOF_REPRODUCED->PROMOTED" in str(exc)
+        assert "requires every excellence gate" in str(exc)
         assert "projections_truth_consistent" in str(exc)
     else:
         raise AssertionError("PROMOTED without projection closure should be rejected")
@@ -148,11 +148,8 @@ def test_apex_merge_authority_record_is_machine_valid_and_bounded():
     )
     assert validated["projection_receipt"]["projection_truth_closed"] is True
     assert validated["evolution"]["next_gate"] == "CANONICAL"
-    assert validated["company_evidence"]["stage"] == "PROOF_REPRODUCED"
-    assert (
-        validated["company_evidence"]["claim_ceiling"]
-        == "reproducible_company_specific_proof"
-    )
+    assert validated["company_evidence"]["stage"] == "CLAIM_PROMOTED"
+    assert validated["company_evidence"]["claim_ceiling"] == "proof_bound_company_specific"
     assert allowed_transition(
         "PROOF_REPRODUCED",
         validated["state"],
