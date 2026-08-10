@@ -47,7 +47,8 @@ def promoted_record() -> dict[str, object]:
         "gates": {gate: True for gate in REQUIRED_EXCELLENT_GATES},
         "evolution": {"next_gate": "canonicalize"},
         "proof_receipt": {
-            "source_sha": "a" * 40,
+            "source_sha": "c" * 40,
+            "canonical_merge_sha": "a" * 40,
             "identity": "receipt-example-001",
         },
     }
@@ -83,17 +84,24 @@ def test_promoted_record_rejects_non_digest_proof() -> None:
         validate_repo_excellence_record(payload)
 
 
-def test_promoted_record_rejects_valid_looking_proof_from_another_head() -> None:
+def test_promoted_record_rejects_canonical_merge_from_another_head() -> None:
     payload = promoted_record()
     receipt = payload["proof_receipt"]
     assert isinstance(receipt, dict)
-    receipt["source_sha"] = "b" * 40
+    receipt["canonical_merge_sha"] = "b" * 40
 
     with pytest.raises(
         ExcellenceContractError,
-        match=r"proof_receipt\.source_sha to match identity\.canonical_head",
+        match=r"proof_receipt\.canonical_merge_sha to match identity\.canonical_head",
     ):
         validate_repo_excellence_record(payload)
+
+
+def test_promoted_record_allows_distinct_artifact_source_when_merge_is_bound() -> None:
+    payload = promoted_record()
+    validated = validate_repo_excellence_record(payload)
+    assert validated["proof_receipt"]["source_sha"] == "c" * 40
+    assert validated["proof_receipt"]["canonical_merge_sha"] == "a" * 40
 
 
 def test_promoted_record_rejects_non_git_canonical_head() -> None:
