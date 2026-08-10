@@ -93,6 +93,17 @@ def test_quarantined_engine_cannot_bootstrap_missing_state(tmp_path: Path) -> No
     assert not (tmp_path / "machine").exists()
 
 
+def test_quarantined_engine_rejects_invalid_utf8_without_traceback_path(tmp_path: Path) -> None:
+    module = load_engine_module()
+    engine_type = module.HyperExcellenceEngine
+    state_file = tmp_path / "machine" / "excellence-state.json"
+    state_file.parent.mkdir(parents=True)
+    state_file.write_bytes(b"\xff\xfe")
+
+    with pytest.raises(ExcellenceContractError, match="unreadable machine/excellence-state.json"):
+        engine_type(tmp_path)
+
+
 def test_quarantined_engine_never_mutates_or_promotes(tmp_path: Path) -> None:
     module = load_engine_module()
     engine_type = module.HyperExcellenceEngine
