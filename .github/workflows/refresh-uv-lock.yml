@@ -56,16 +56,22 @@ jobs:
         run: uv sync --extra dev --locked
 
       - name: Execute the complete suite from the lock
-        run: uv run --locked pytest
+        shell: bash
+        run: |
+          set -o pipefail
+          uv run --locked pytest 2>&1 | tee pytest-lock.log
 
       - name: Run strict lint from the lock
         run: >-
           uv run --locked ruff check
           src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
 
-      - name: Upload verified lock receipt
+      - name: Upload lock verification diagnostics
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: verified-uv-lock-${{ github.sha }}
-          path: uv.lock
+          path: |
+            uv.lock
+            pytest-lock.log
           if-no-files-found: error
