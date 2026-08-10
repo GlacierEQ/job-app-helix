@@ -2,15 +2,16 @@ from __future__ import annotations
 
 import argparse
 import base64
+import hashlib
 import json
 import os
+import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
-import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "manifests" / "obsolete_branches.json"
