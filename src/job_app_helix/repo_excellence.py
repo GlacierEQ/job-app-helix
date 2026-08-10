@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 from collections.abc import Mapping
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 PRINCIPAL_STATES = (
@@ -59,11 +62,23 @@ REQUIRED_EXCELLENT_GATES = (
     "evolution_cursor_defined",
 )
 
+CANONICAL_RECEIPT_REQUIRED_FLAGS = (
+    "canonical_position_resolved",
+    "lineage_conflict_absent",
+    "duplicate_repository_rejected",
+    "proof_sha_bound",
+    "projection_truth_closed",
+    "authority_bounded",
+    "evolution_cursor_defined",
+    "company_claim_separate",
+)
+
 TRANSITION_GATE_REQUIREMENTS = {
     ("PROOF_REPRODUCED", "PROMOTED"): (
         "security_authority_bounded",
         "projections_truth_consistent",
     ),
+    ("PROMOTED", "CANONICAL"): REQUIRED_EXCELLENT_GATES,
 }
 
 PROMOTED_STATES = {"PROMOTED", "CANONICAL", "EVOLVING"}
@@ -77,6 +92,7 @@ PLACEHOLDER_PROOF_VALUES = {
     "hyper_validated_sha256",
     "hyper_validated_identity",
 }
+REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 
 
 class ExcellenceContractError(ValueError):
@@ -95,6 +111,33 @@ def _require_text(value: Any, label: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ExcellenceContractError(f"{label} must be non-empty text")
     return value.strip()
+
+
+def _resolve_repository_path(root: Path, relative: str, label: str) -> Path:
+    path = (root / relative).resolve()
+    try:
+        path.relative_to(root.resolve())
+    except ValueError as exc:
+        raise ExcellenceContractError(f"{label} escapes repository root") from exc
+    if not path.is_file():
+        raise ExcellenceContractError(f"{label} does not exist: {relative}")
+    return path
+
+
+def _load_json(path: Path, label: str) -> Mapping[str, Any]:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ExcellenceContractError(f"{label} is not valid JSON") from exc
+    if not isinstance(value, Mapping):
+        raise ExcellenceContractError(f"{label} must contain a JSON object")
+    return value
+
+
+def _git_blob_sha(path: Path) -> str:
+    payload = path.read_bytes()
+    framed = b"blob " + str(len(payload)).encode() + b"\0" + payload
+    return hashlib.sha1(framed, usedforsecurity=False).hexdigest()
 
 
 def _require_bound_proof_receipt(
@@ -134,6 +177,185 @@ def _require_bound_proof_receipt(
         raise ExcellenceContractError(
             f"{state} requires proof_receipt.canonical_merge_sha to match identity.canonical_head"
         )
+
+
+def _require_canonical_position_receipt(
+    pointer: Mapping[str, Any],
+    identity: Mapping[str, Any],
+    role: str,
+    capability_id: str,
+    blockers: Any,
+    company_evidence: Mapping[str, Any],
+    repository_root: Path,
+) -> Mapping[str, Any]:
+    if pointer.get("schema") != "glaciereq.repo-canonical-position-receipt.v1":
+        raise ExcellenceContractError("CANONICAL requires canonical position receipt schema v1")
+    if pointer.get("status") != "PASS":
+        raise ExcellenceContractError("CANONICAL requires canonical position receipt status PASS")
+    if pointer.get("transition") != "PROMOTED -> CANONICAL":
+        raise ExcellenceContractError("CANONICAL transition receipt drift")
+
+    relative = _require_text(pointer.get("path"), "canonical_position_receipt.path")
+    receipt_path = _resolve_repository_path(
+        repository_root,
+        relative,
+        "canonical_position_receipt.path",
+    )
+    blob_sha = _require_text(pointer.get("blob_sha"), "canonical_position_receipt.blob_sha")
+    if not GIT_COMMIT_PATTERN.fullmatch(blob_sha):
+        raise ExcellenceContractError(
+            "canonical position receipt must be content-addressed by Git blob SHA"
+        )
+    actual_blob_sha = _git_blob_sha(receipt_path)
+    if actual_blob_sha != blob_sha:
+        raise ExcellenceContractError(
+            "canonical position receipt Git blob SHA does not match repository bytes"
+        )
+
+    receipt = _load_json(receipt_path, "canonical position receipt")
+    if receipt.get("schema") != pointer.get("schema"):
+        raise ExcellenceContractError("canonical position receipt schema drift")
+    if receipt.get("status") != pointer.get("status"):
+        raise ExcellenceContractError("canonical position receipt status drift")
+    if receipt.get("transition") != pointer.get("transition"):
+        raise ExcellenceContractError("canonical position receipt transition drift")
+
+    repository = receipt.get("repository")
+    if not isinstance(repository, Mapping):
+        raise ExcellenceContractError("canonical position receipt repository must be an object")
+    expected_repository = {
+        "full_name": identity.get("repository"),
+        "repository_id": identity.get("repository_id"),
+        "canonical_head": identity.get("canonical_head"),
+        "default_branch": identity.get("default_branch"),
+        "canonical_role": role,
+        "capability_id": capability_id,
+    }
+    for field, value in expected_repository.items():
+        if repository.get(field) != value:
+            raise ExcellenceContractError(f"canonical position receipt repository.{field} drift")
+
+    lineage = receipt.get("lineage")
+    if not isinstance(lineage, Mapping):
+        raise ExcellenceContractError("canonical position receipt lineage must be an object")
+    if lineage.get("action") != identity.get("lineage_action"):
+        raise ExcellenceContractError("canonical position receipt lineage action drift")
+    if lineage.get("action") != "EXTEND_CANONICAL":
+        raise ExcellenceContractError("CANONICAL requires EXTEND_CANONICAL lineage action")
+    if lineage.get("source_commit") != identity.get("canonical_head"):
+        raise ExcellenceContractError("canonical position receipt lineage source commit drift")
+    source_blob_sha = _require_text(
+        lineage.get("source_blob_sha"),
+        "canonical position receipt lineage.source_blob_sha",
+    )
+    if not GIT_COMMIT_PATTERN.fullmatch(source_blob_sha):
+        raise ExcellenceContractError("canonical lineage source must be content-addressed")
+    if source_blob_sha != pointer.get("source_blob_sha"):
+        raise ExcellenceContractError("canonical lineage source blob pointer drift")
+    excluded = lineage.get("excluded_actions")
+    if not isinstance(excluded, list) or "NEW_REPO" not in excluded:
+        raise ExcellenceContractError("CANONICAL requires explicit duplicate-repository rejection")
+
+    decision = receipt.get("decision")
+    if not isinstance(decision, Mapping):
+        raise ExcellenceContractError("canonical position receipt decision must be an object")
+    for flag in CANONICAL_RECEIPT_REQUIRED_FLAGS:
+        if decision.get(flag) is not True or pointer.get(flag) is not True:
+            raise ExcellenceContractError(f"CANONICAL requires {flag}=true")
+    if decision.get("canonicalization_blockers") != []:
+        raise ExcellenceContractError("CANONICAL rejects unresolved canonicalization blockers")
+    if pointer.get("canonicalization_blockers") != []:
+        raise ExcellenceContractError("CANONICAL pointer carries canonicalization blockers")
+
+    retained = decision.get("retained_noncanonicalization_blockers")
+    pointer_retained = pointer.get("retained_noncanonicalization_blockers")
+    if not isinstance(retained, list) or not all(isinstance(item, str) for item in retained):
+        raise ExcellenceContractError(
+            "canonical receipt retained_noncanonicalization_blockers must be a string list"
+        )
+    if retained != pointer_retained:
+        raise ExcellenceContractError("canonical blocker classification pointer drift")
+
+    if blockers is None:
+        blockers = []
+    if not isinstance(blockers, list):
+        raise ExcellenceContractError("blockers must be a list")
+    blocker_ids = []
+    for index, item in enumerate(blockers):
+        if not isinstance(item, Mapping):
+            raise ExcellenceContractError(f"blockers[{index}] must be an object")
+        blocker_ids.append(_require_text(item.get("id"), f"blockers[{index}].id"))
+    if blocker_ids != retained:
+        raise ExcellenceContractError(
+            "CANONICAL record blockers do not match retained non-canonicalization blockers"
+        )
+
+    claim_boundary = receipt.get("claim_boundary")
+    if not isinstance(claim_boundary, Mapping):
+        raise ExcellenceContractError("canonical position receipt claim_boundary must be an object")
+    stage = _require_text(company_evidence.get("stage"), "company_evidence.stage")
+    ceiling = _require_text(
+        company_evidence.get("claim_ceiling"),
+        "company_evidence.claim_ceiling",
+    )
+    if claim_boundary.get("company_stage_unchanged") != stage:
+        raise ExcellenceContractError("repository canonicalization cannot advance company stage")
+    if pointer.get("company_stage_unchanged") != stage:
+        raise ExcellenceContractError("canonical company-stage pointer drift")
+    if claim_boundary.get("company_claim_ceiling_unchanged") != ceiling:
+        raise ExcellenceContractError(
+            "repository canonicalization cannot advance company claim ceiling"
+        )
+    if pointer.get("company_claim_ceiling_unchanged") != ceiling:
+        raise ExcellenceContractError("canonical company-claim-ceiling pointer drift")
+    if claim_boundary.get("github_adoption_claimed") is not False:
+        raise ExcellenceContractError("repository canonicalization cannot create adoption claim")
+    if claim_boundary.get("github_capability_production_deployment_claimed") is not False:
+        raise ExcellenceContractError("repository canonicalization cannot create deployment claim")
+
+    result = receipt.get("result")
+    if not isinstance(result, Mapping):
+        raise ExcellenceContractError("canonical position receipt result must be an object")
+    if result.get("repository_state") != "CANONICAL":
+        raise ExcellenceContractError("canonical position receipt result state drift")
+    if result.get("next_gate") != "EVOLVING":
+        raise ExcellenceContractError("canonical position receipt next gate drift")
+
+    return receipt
+
+
+def _require_projection_binding(
+    projection_ref: str,
+    payload: Mapping[str, Any],
+    capability_id: str,
+    company_evidence: Mapping[str, Any],
+    repository_root: Path,
+) -> None:
+    projection_path = _resolve_repository_path(
+        repository_root,
+        projection_ref,
+        "projection_ref",
+    )
+    projection = _load_json(projection_path, f"projection {projection_ref}")
+    implementation = projection.get("implementation")
+    if not isinstance(implementation, Mapping):
+        raise ExcellenceContractError(f"{projection_ref}: implementation must be an object")
+
+    identity = payload["identity"]
+    expected_implementation = {
+        "repository": identity.get("repository"),
+        "canonical_head": identity.get("canonical_head"),
+        "capability": capability_id,
+        "state": payload.get("state"),
+    }
+    for field, value in expected_implementation.items():
+        if implementation.get(field) != value:
+            raise ExcellenceContractError(f"{projection_ref}: implementation {field} drift")
+
+    if projection.get("stage") != company_evidence.get("stage"):
+        raise ExcellenceContractError(f"{projection_ref}: company stage drift")
+    if projection.get("claim_ceiling") != company_evidence.get("claim_ceiling"):
+        raise ExcellenceContractError(f"{projection_ref}: company claim ceiling drift")
 
 
 def validate_score_vector(raw: Mapping[str, Any]) -> ScoreVector:
@@ -199,7 +421,10 @@ def excellent(gates: Mapping[str, Any]) -> bool:
     return all(gates.get(name) is True for name in REQUIRED_EXCELLENT_GATES)
 
 
-def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any]:
+def validate_repo_excellence_record(
+    payload: Mapping[str, Any],
+    repository_root: Path | str | None = None,
+) -> dict[str, Any]:
     if payload.get("schema") != "glaciereq.repo-excellence.record.v1":
         raise ExcellenceContractError("unsupported schema")
 
@@ -242,7 +467,7 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
     evolution = payload.get("evolution")
     if not isinstance(evolution, Mapping):
         raise ExcellenceContractError("evolution must be an object")
-    _require_text(evolution.get("next_gate"), "evolution.next_gate")
+    next_gate = _require_text(evolution.get("next_gate"), "evolution.next_gate")
 
     if state in PROMOTED_STATES:
         missing_gates = [name for name in REQUIRED_EXCELLENT_GATES if gates.get(name) is not True]
@@ -267,7 +492,43 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
         if state in PROMOTED_STATES:
             _require_bound_proof_receipt(receipt, identity, state)
 
-    if state in {"CANONICAL", "EVOLVING"} and identity.get("canonical_head") == "UNRESOLVED":
-        raise ExcellenceContractError(f"{state} requires a resolved canonical head")
+    if state in {"CANONICAL", "EVOLVING"}:
+        if identity.get("canonical_head") == "UNRESOLVED":
+            raise ExcellenceContractError(f"{state} requires a resolved canonical head")
+        capability_id = _require_text(payload.get("capability_id"), "capability_id")
+        company_evidence = payload.get("company_evidence")
+        if not isinstance(company_evidence, Mapping):
+            raise ExcellenceContractError(f"{state} requires company_evidence")
+        _require_text(company_evidence.get("stage"), "company_evidence.stage")
+        _require_text(company_evidence.get("claim_ceiling"), "company_evidence.claim_ceiling")
+
+        canonical_pointer = payload.get("canonical_position_receipt")
+        if not isinstance(canonical_pointer, Mapping):
+            raise ExcellenceContractError(f"{state} requires canonical_position_receipt")
+        root = Path(repository_root) if repository_root is not None else REPOSITORY_ROOT
+        _require_canonical_position_receipt(
+            canonical_pointer,
+            identity,
+            role,
+            capability_id,
+            payload.get("blockers"),
+            company_evidence,
+            root,
+        )
+
+        projection_refs = payload.get("projection_refs")
+        if not isinstance(projection_refs, list) or not projection_refs:
+            raise ExcellenceContractError(f"{state} requires projection_refs")
+        for index, projection_ref in enumerate(projection_refs):
+            reference = _require_text(projection_ref, f"projection_refs[{index}]")
+            _require_projection_binding(
+                reference,
+                payload,
+                capability_id,
+                company_evidence,
+                root,
+            )
+        if state == "CANONICAL" and next_gate != "EVOLVING":
+            raise ExcellenceContractError("CANONICAL requires evolution.next_gate EVOLVING")
 
     return dict(payload)
