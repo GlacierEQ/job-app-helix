@@ -86,3 +86,6 @@ ignore_errors = true
 "scripts/run_featured_verification.py" = ["E402", "I001", "UP017"]
 "scripts/cleanup_obsolete_branches.py" = ["I001"]
 "scripts/census_public_portfolio.py" = ["E402", "I001", "UP017"]
+"src/job_app_helix/portfolio_models.py" = ["I001"]
+"src/job_app_helix/library_cli.py" = ["E402", "I001", "UP017"]
+"src/job_app_helix/estate_compiler.py" = ["I001", "UP042"]
