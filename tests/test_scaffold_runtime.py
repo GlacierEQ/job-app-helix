@@ -16,7 +16,8 @@ from job_app_helix.scaffold_runtime import (
 
 def test_canonical_json_is_order_independent() -> None:
     assert digest({"b": 2, "a": 1}) == digest({"a": 1, "b": 2})
-    assert canonical_json({"b": [2, 1], "a": True}) == '{"a":true,"b":[2,1]}'
+    expected = '{"a":true,"b":[2,1]}'
+    assert canonical_json({"b": [2, 1], "a": True}) == expected
 
 
 @pytest.mark.parametrize("value", [math.nan, math.inf, -math.inf])
@@ -47,11 +48,23 @@ def test_authority_enforces_scope_issuer_and_expiry() -> None:
         issued_at=100.0,
         not_after=200.0,
     )
-    claims.validate(now=150.0, required_scope="promote", expected_issuer="external-promotion-authority")
+    claims.validate(
+        now=150.0,
+        required_scope="promote",
+        expected_issuer="external-promotion-authority",
+    )
     with pytest.raises(ContractError, match="expired"):
-        claims.validate(now=201.0, required_scope="promote", expected_issuer="external-promotion-authority")
+        claims.validate(
+            now=201.0,
+            required_scope="promote",
+            expected_issuer="external-promotion-authority",
+        )
     with pytest.raises(ContractError, match="scope"):
-        claims.validate(now=150.0, required_scope="delete", expected_issuer="external-promotion-authority")
+        claims.validate(
+            now=150.0,
+            required_scope="delete",
+            expected_issuer="external-promotion-authority",
+        )
 
 
 def test_environment_receipt_contains_no_local_paths() -> None:
