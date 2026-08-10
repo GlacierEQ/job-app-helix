@@ -154,6 +154,7 @@ def _require_canonical_position_receipt(
     role: str,
     capability_id: str,
     blockers: Any,
+    company_evidence: Any,
 ) -> None:
     if receipt.get("schema") != "glaciereq.repo-canonical-position-receipt.v1":
         raise ExcellenceContractError("CANONICAL requires canonical position receipt schema v1")
@@ -198,15 +199,25 @@ def _require_canonical_position_receipt(
         raise ExcellenceContractError(
             "canonical_position_receipt.retained_noncanonicalization_blockers must be a string list"
         )
-    blocker_ids = {
-        item.get("id")
-        for item in blockers
-        if isinstance(item, Mapping) and isinstance(item.get("id"), str)
-    } if isinstance(blockers, list) else set()
+    blocker_ids = (
+        {
+            item.get("id")
+            for item in blockers
+            if isinstance(item, Mapping) and isinstance(item.get("id"), str)
+        }
+        if isinstance(blockers, list)
+        else set()
+    )
     if not blocker_ids <= set(retained):
         raise ExcellenceContractError(
             "CANONICAL record blocker is not classified as non-canonicalization-blocking"
         )
+
+    if isinstance(company_evidence, Mapping):
+        if receipt.get("company_stage_unchanged") != company_evidence.get("stage"):
+            raise ExcellenceContractError("repository canonicalization cannot advance company stage")
+        if receipt.get("company_claim_ceiling_unchanged") != company_evidence.get("claim_ceiling"):
+            raise ExcellenceContractError("repository canonicalization cannot advance company claim ceiling")
 
 
 def validate_score_vector(raw: Mapping[str, Any]) -> ScoreVector:
@@ -353,6 +364,7 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
             role,
             capability_id,
             payload.get("blockers"),
+            payload.get("company_evidence"),
         )
         projection_refs = payload.get("projection_refs")
         if not isinstance(projection_refs, list) or not projection_refs:
