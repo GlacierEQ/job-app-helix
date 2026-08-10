@@ -16,7 +16,7 @@ SCAFFOLD_MARKERS: tuple[tuple[str, str], ...] = (
     ("README.md", "## Current scaffold state"),
     ("DEV_UP_INSTRUCTIONS.md", "Replace the stub mechanism"),
     ("DEV_UP_INSTRUCTIONS.md", "Implementation is the next agent's job"),
-    ("DEV_UP_INSTRUCTIONS.md", "Implementation is the next agent’s job"),
+    ("DEV_UP_INSTRUCTIONS.md", "Implementation is the next agent\u2019s job"),
 )
 SOURCE_MARKERS = ("SCAFFOLD STUB", "scaffold_allow")
 TEST_MARKERS = ("Behavioral scaffold tests", 'metrics.get("scaffold") is True')
