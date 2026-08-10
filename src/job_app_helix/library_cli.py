@@ -34,6 +34,7 @@ DEFAULT_SURFACE_RECONCILIATIONS = (
     Path("manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json"),
     Path("manifests/public_repository_surface_reconciliation_wave4_2026-08-09.json"),
     Path("manifests/public_repository_surface_reconciliation_wave5_2026-08-09.json"),
+    Path("manifests/public_repository_surface_reconciliation_wave6_2026-08-09.json"),
 )
 
 
