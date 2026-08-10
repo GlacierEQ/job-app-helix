@@ -5,8 +5,9 @@ import json
 import math
 import platform
 import sys
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Any, Mapping
+from typing import Any
 
 
 class ContractError(ValueError):
@@ -67,7 +68,13 @@ class AuthorityClaims:
     issued_at: float
     not_after: float
 
-    def validate(self, *, now: float, required_scope: str, expected_issuer: str) -> None:
+    def validate(
+        self,
+        *,
+        now: float,
+        required_scope: str,
+        expected_issuer: str,
+    ) -> None:
         if not self.grant_id.strip():
             raise ContractError("grant_id missing")
         if self.issuer != expected_issuer:
@@ -76,7 +83,12 @@ class AuthorityClaims:
             raise ContractError("authority subject missing")
         if required_scope not in self.scopes:
             raise ContractError("authority scope missing")
-        for label, value in (("issued_at", self.issued_at), ("not_after", self.not_after), ("now", now)):
+        times = (
+            ("issued_at", self.issued_at),
+            ("not_after", self.not_after),
+            ("now", now),
+        )
+        for label, value in times:
             if not isinstance(value, (int, float)) or not math.isfinite(float(value)):
                 raise ContractError(f"{label} must be finite")
         if self.not_after <= self.issued_at:
