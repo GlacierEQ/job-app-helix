@@ -67,6 +67,7 @@ TRANSITION_GATE_REQUIREMENTS = {
 }
 
 PROMOTED_STATES = {"PROMOTED", "CANONICAL", "EVOLVING"}
+GIT_COMMIT_PATTERN = re.compile(r"[0-9a-fA-F]{40}\Z")
 PROOF_DIGEST_PATTERN = re.compile(r"(?:[0-9a-fA-F]{40}|[0-9a-fA-F]{64})\Z")
 PLACEHOLDER_PROOF_VALUES = {
     "tbd",
@@ -96,17 +97,42 @@ def _require_text(value: Any, label: str) -> str:
     return value.strip()
 
 
-def _require_bound_proof_receipt(receipt: Mapping[str, Any], state: str) -> None:
+def _require_bound_proof_receipt(
+    receipt: Mapping[str, Any],
+    identity: Mapping[str, Any],
+    state: str,
+) -> None:
     source_sha = _require_text(receipt.get("source_sha"), "proof_receipt.source_sha")
-    identity = _require_text(receipt.get("identity"), "proof_receipt.identity")
+    receipt_identity = _require_text(receipt.get("identity"), "proof_receipt.identity")
+    canonical_merge_sha = _require_text(
+        receipt.get("canonical_merge_sha"),
+        "proof_receipt.canonical_merge_sha",
+    )
+    canonical_head = _require_text(identity.get("canonical_head"), "identity.canonical_head")
 
     if source_sha.lower() in PLACEHOLDER_PROOF_VALUES:
         raise ExcellenceContractError(f"{state} rejects placeholder proof_receipt.source_sha")
-    if identity.lower() in PLACEHOLDER_PROOF_VALUES:
+    if receipt_identity.lower() in PLACEHOLDER_PROOF_VALUES:
         raise ExcellenceContractError(f"{state} rejects placeholder proof_receipt.identity")
+    if canonical_merge_sha.lower() in PLACEHOLDER_PROOF_VALUES:
+        raise ExcellenceContractError(
+            f"{state} rejects placeholder proof_receipt.canonical_merge_sha"
+        )
     if not PROOF_DIGEST_PATTERN.fullmatch(source_sha):
         raise ExcellenceContractError(
             f"{state} requires proof_receipt.source_sha to be a 40- or 64-hex digest"
+        )
+    if not GIT_COMMIT_PATTERN.fullmatch(canonical_head):
+        raise ExcellenceContractError(
+            f"{state} requires identity.canonical_head to be an exact 40-hex Git commit"
+        )
+    if not GIT_COMMIT_PATTERN.fullmatch(canonical_merge_sha):
+        raise ExcellenceContractError(
+            f"{state} requires proof_receipt.canonical_merge_sha to be an exact 40-hex Git commit"
+        )
+    if canonical_merge_sha.lower() != canonical_head.lower():
+        raise ExcellenceContractError(
+            f"{state} requires proof_receipt.canonical_merge_sha to match identity.canonical_head"
         )
 
 
@@ -218,15 +244,6 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
         raise ExcellenceContractError("evolution must be an object")
     _require_text(evolution.get("next_gate"), "evolution.next_gate")
 
-    if state in {"PROOF_REPRODUCED", *PROMOTED_STATES}:
-        receipt = payload.get("proof_receipt")
-        if not isinstance(receipt, Mapping):
-            raise ExcellenceContractError(f"{state} requires proof_receipt")
-        _require_text(receipt.get("source_sha"), "proof_receipt.source_sha")
-        _require_text(receipt.get("identity"), "proof_receipt.identity")
-        if state in PROMOTED_STATES:
-            _require_bound_proof_receipt(receipt, state)
-
     if state in PROMOTED_STATES:
         missing_gates = [name for name in REQUIRED_EXCELLENT_GATES if gates.get(name) is not True]
         if missing_gates:
@@ -240,6 +257,15 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
             raise ExcellenceContractError(
                 f"{state} requires earned PROOF_REPRODUCED->PROMOTED gates: {required}"
             )
+
+    if state in {"PROOF_REPRODUCED", *PROMOTED_STATES}:
+        receipt = payload.get("proof_receipt")
+        if not isinstance(receipt, Mapping):
+            raise ExcellenceContractError(f"{state} requires proof_receipt")
+        _require_text(receipt.get("source_sha"), "proof_receipt.source_sha")
+        _require_text(receipt.get("identity"), "proof_receipt.identity")
+        if state in PROMOTED_STATES:
+            _require_bound_proof_receipt(receipt, identity, state)
 
     if state in {"CANONICAL", "EVOLVING"} and identity.get("canonical_head") == "UNRESOLVED":
         raise ExcellenceContractError(f"{state} requires a resolved canonical head")
