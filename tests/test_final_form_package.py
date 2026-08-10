@@ -4,7 +4,7 @@ import importlib.util
 import json
 import re
 import sys
-import tomli as tomllib
+import tomllib
 from pathlib import Path
 from types import ModuleType
 
