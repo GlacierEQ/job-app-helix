@@ -166,7 +166,9 @@ def _require_canonical_position_receipt(
     _require_text(receipt.get("path"), "canonical_position_receipt.path")
     blob_sha = _require_text(receipt.get("blob_sha"), "canonical_position_receipt.blob_sha")
     if not GIT_COMMIT_PATTERN.fullmatch(blob_sha):
-        raise ExcellenceContractError("canonical position receipt must be content-addressed by Git blob SHA")
+        raise ExcellenceContractError(
+            "canonical position receipt must be content-addressed by Git blob SHA"
+        )
 
     expected = {
         "repository": identity.get("repository"),
@@ -215,9 +217,15 @@ def _require_canonical_position_receipt(
 
     if isinstance(company_evidence, Mapping):
         if receipt.get("company_stage_unchanged") != company_evidence.get("stage"):
-            raise ExcellenceContractError("repository canonicalization cannot advance company stage")
-        if receipt.get("company_claim_ceiling_unchanged") != company_evidence.get("claim_ceiling"):
-            raise ExcellenceContractError("repository canonicalization cannot advance company claim ceiling")
+            raise ExcellenceContractError(
+                "repository canonicalization cannot advance company stage"
+            )
+        if receipt.get("company_claim_ceiling_unchanged") != company_evidence.get(
+            "claim_ceiling"
+        ):
+            raise ExcellenceContractError(
+                "repository canonicalization cannot advance company claim ceiling"
+            )
 
 
 def validate_score_vector(raw: Mapping[str, Any]) -> ScoreVector:
