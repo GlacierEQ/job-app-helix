@@ -86,15 +86,19 @@
   ],
   "company_evidence": {
     "company": "GitHub",
-    "stage": "PROOF_REPRODUCED",
-    "claim_ceiling": "reproducible_company_specific_proof",
+    "stage": "CLAIM_PROMOTED",
+    "claim_ceiling": "proof_bound_company_specific",
+    "claim_receipts": [
+      "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/proof/claim-receipt.json",
+      "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/proof/production-projection-closure.json"
+    ],
     "official_sources": [
       "https://github.blog/changelog/2026-06-09-security-validation-for-third-party-coding-agents/",
       "https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/",
       "https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/"
     ],
     "bounded_problem": "As coding agents act directly in repositories, agent-generated changes require security validation, policy-constrained workflow execution, human approval at sensitive boundaries, and trustworthy promotion into canonical repository state.",
-    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence."
+    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. The proof-bound company-specific claim is promoted only within the public evidence ceiling and does not imply GitHub adoption."
   },
   "blockers": [
     {
@@ -105,7 +109,7 @@
   ],
   "evolution": {
     "next_gate": "CANONICAL",
-    "cursor": "Resolve and receipt the repository's canonical specialist position without collapsing the separate GitHub company claim stage; continue proof refresh and capability harvest as the implementation evolves."
+    "cursor": "Resolve and receipt the repository's canonical specialist position while maintaining proof-bound GitHub claim freshness, non-adoption boundaries, and future capability harvest."
   },
   "nonclaims": [
     "The reproduced real-provider proof mutated disposable proof branches only; the target repository main branch was not changed.",
