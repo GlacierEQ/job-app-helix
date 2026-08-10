@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 
+import job_app_helix.library_cli as library_cli
 from job_app_helix.repository_surface import (
     RepositorySurfaceError,
     compile_governed_surface_report,
@@ -115,3 +116,24 @@ def test_wave6_admit_remains_fail_closed_against_receipt_drift() -> None:
     mismatch["items"][0]["evidence"]["proof_receipts"][0]["head_sha"] = "0" * 40
     with pytest.raises(RepositorySurfaceError, match="proof/head drift"):
         apply_surface_reconciliation(predecessor, mismatch)
+
+
+def test_canonical_manifests_are_cwd_independent_and_wheel_packaged(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    canonical_paths = (
+        library_cli.DEFAULT_PROGRAM,
+        library_cli.DEFAULT_SURFACE_OBSERVATIONS,
+        library_cli.DEFAULT_SURFACE_DECISIONS,
+        *library_cli.DEFAULT_SURFACE_RECONCILIATIONS,
+    )
+    assert all(path.is_absolute() and path.is_file() for path in canonical_paths)
+
+    pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    assert '[tool.hatch.build.targets.wheel.force-include]' in pyproject
+    assert '"manifests" = "job_app_helix/_library_manifests"' in pyproject
+
+    monkeypatch.setattr(library_cli, "_SOURCE_ROOT", tmp_path)
+    fallback = library_cli._default_manifest("example.json")
+    assert fallback == library_cli._PACKAGE_DIR / "_library_manifests" / "example.json"
