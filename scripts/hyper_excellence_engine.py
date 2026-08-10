@@ -31,7 +31,12 @@ class HyperExcellenceEngine:
             )
 
         try:
-            payload = json.loads(self.state_file.read_text(encoding="utf-8"))
+            raw = self.state_file.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError) as exc:
+            raise ExcellenceContractError("unreadable machine/excellence-state.json") from exc
+
+        try:
+            payload = json.loads(raw)
         except json.JSONDecodeError as exc:
             raise ExcellenceContractError("invalid excellence-state.json") from exc
         if not isinstance(payload, dict):
