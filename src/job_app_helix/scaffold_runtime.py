@@ -15,13 +15,13 @@ class ContractError(ValueError):
 
 
 def _normalize(value: Any) -> Any:
-    if value is None or isinstance(value, (str, bool, int)):
+    if value is None or isinstance(value, str | bool | int):
         return value
     if isinstance(value, float):
         if not math.isfinite(value):
             raise ContractError("non-finite numbers are not canonical")
         return value
-    if isinstance(value, (list, tuple)):
+    if isinstance(value, list | tuple):
         return [_normalize(item) for item in value]
     if isinstance(value, Mapping):
         if not all(isinstance(key, str) for key in value):
@@ -45,7 +45,7 @@ def digest(value: Any) -> str:
 
 
 def validate_budget(value: float, *, maximum: float) -> float:
-    if not isinstance(value, (int, float)) or isinstance(value, bool):
+    if not isinstance(value, int | float) or isinstance(value, bool):
         raise ContractError("budget must be numeric")
     value = float(value)
     if not math.isfinite(value):
@@ -89,7 +89,7 @@ class AuthorityClaims:
             ("now", now),
         )
         for label, value in times:
-            if not isinstance(value, (int, float)) or not math.isfinite(float(value)):
+            if not isinstance(value, int | float) or not math.isfinite(float(value)):
                 raise ContractError(f"{label} must be finite")
         if self.not_after <= self.issued_at:
             raise ContractError("authority lifetime invalid")
