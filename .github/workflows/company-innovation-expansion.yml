@@ -8,6 +8,9 @@ on:
       - "manifests/application_intelligence/company_innovation_hypotheses.v1.json"
       - "manifests/application_intelligence/company_innovation_execution_queue.v1.json"
       - "scripts/validate_company_innovation_expansion.py"
+      - "tests/test_application_registry.py"
+      - "tests/test_company_second_depth.py"
+      - "tests/test_portfolio_root_truth.py"
       - ".github/workflows/company-innovation-expansion.yml"
   workflow_dispatch:
 
