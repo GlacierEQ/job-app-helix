@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
-from enum import Enum
-class StrEnum(str, Enum):
-    pass
+from enum import StrEnum
 from typing import Any
 
 
