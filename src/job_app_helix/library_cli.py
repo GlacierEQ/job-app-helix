@@ -22,19 +22,32 @@ from .repository_surface import (
 )
 from .surface_reconciliation import apply_surface_reconciliation
 
-DEFAULT_PROGRAM = Path("manifests/library_priority_spine.json")
-DEFAULT_SURFACE_OBSERVATIONS = Path(
-    "manifests/public_repository_surface_observations_2026-08-08.json"
+_PACKAGE_DIR = Path(__file__).resolve().parent
+_SOURCE_ROOT = Path(__file__).resolve().parents[2]
+
+
+def _default_manifest(filename: str) -> Path:
+    """Resolve canonical data from a source checkout or the installed wheel."""
+
+    source_path = _SOURCE_ROOT / "manifests" / filename
+    if source_path.is_file():
+        return source_path
+    return _PACKAGE_DIR / "_library_manifests" / filename
+
+
+DEFAULT_PROGRAM = _default_manifest("library_priority_spine.json")
+DEFAULT_SURFACE_OBSERVATIONS = _default_manifest(
+    "public_repository_surface_observations_2026-08-08.json"
 )
-DEFAULT_SURFACE_DECISIONS = Path(
-    "manifests/public_repository_surface_decisions_2026-08-08.json"
+DEFAULT_SURFACE_DECISIONS = _default_manifest(
+    "public_repository_surface_decisions_2026-08-08.json"
 )
 DEFAULT_SURFACE_RECONCILIATIONS = (
-    Path("manifests/public_repository_surface_reconciliation_2026-08-09.json"),
-    Path("manifests/public_repository_surface_reconciliation_wave3_2026-08-09.json"),
-    Path("manifests/public_repository_surface_reconciliation_wave4_2026-08-09.json"),
-    Path("manifests/public_repository_surface_reconciliation_wave5_2026-08-09.json"),
-    Path("manifests/public_repository_surface_reconciliation_wave6_2026-08-09.json"),
+    _default_manifest("public_repository_surface_reconciliation_2026-08-09.json"),
+    _default_manifest("public_repository_surface_reconciliation_wave3_2026-08-09.json"),
+    _default_manifest("public_repository_surface_reconciliation_wave4_2026-08-09.json"),
+    _default_manifest("public_repository_surface_reconciliation_wave5_2026-08-09.json"),
+    _default_manifest("public_repository_surface_reconciliation_wave6_2026-08-09.json"),
 )
 
 
@@ -128,13 +141,16 @@ def _branch_command(args: argparse.Namespace) -> int:
     return 0
 
 
+def _same_path(left: Path, right: Path) -> bool:
+    return left.expanduser().resolve() == right.expanduser().resolve()
+
+
 def _resolve_reconciliation_paths(args: argparse.Namespace) -> tuple[Path, ...]:
     if args.reconciliation:
         return tuple(args.reconciliation)
-    custom_sources = (
-        args.observations != DEFAULT_SURFACE_OBSERVATIONS
-        or args.decisions != DEFAULT_SURFACE_DECISIONS
-    )
+    custom_sources = not _same_path(
+        args.observations, DEFAULT_SURFACE_OBSERVATIONS
+    ) or not _same_path(args.decisions, DEFAULT_SURFACE_DECISIONS)
     if custom_sources:
         raise RepositorySurfaceError(
             "custom observations or decisions require explicit --reconciliation; "
