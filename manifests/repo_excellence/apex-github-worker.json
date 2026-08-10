@@ -89,6 +89,8 @@
     "authority_bounded": true,
     "evolution_cursor_defined": true,
     "company_claim_separate": true,
+    "company_stage_unchanged": "CLAIM_PROMOTED",
+    "company_claim_ceiling_unchanged": "proof_bound_company_specific",
     "canonicalization_blockers": [],
     "retained_noncanonicalization_blockers": [
       "github_actions_budget"
