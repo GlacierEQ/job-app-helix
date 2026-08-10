@@ -7,7 +7,7 @@
     "default_branch": "main",
     "lineage_action": "EXTEND_CANONICAL"
   },
-  "state": "PROOF_REPRODUCED",
+  "state": "PROMOTED",
   "canonical_role": "SPECIALIST_COMPONENT",
   "scores": {
     "target_architecture": 9.5,
@@ -26,7 +26,7 @@
     "security_authority_bounded": true,
     "proof_receipt_bound_to_sha": true,
     "reusable_capabilities_extracted": true,
-    "projections_truth_consistent": false,
+    "projections_truth_consistent": true,
     "evolution_cursor_defined": true
   },
   "proof_receipt": {
@@ -52,6 +52,21 @@
       "target_main_mutated": false,
       "token_revoked": true
     }
+  },
+  "projection_receipt": {
+    "identity": "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/proof/production-projection-closure.json",
+    "source_ref": "commit:577f63c506c6c4df9c1751a0ff5b8fa07822e491",
+    "deployed_source_sha": "ddc745c7c7358232fc817d95972bbd4acf002a7a",
+    "helix_authority_sha": "86e642b01817adad3d4e89da86a0f9a857c09cc4",
+    "deployment_id": "dpl_5xSnF1gFFq52CCdmo4TLZnQbPcm5",
+    "canonical_alias": "casey-barton-glaciereq.vercel.app",
+    "bundle_verifier": "PASS",
+    "v25_verifier": "PASS",
+    "v26_verifier": "PASS",
+    "github_compiler_stage": "PROOF_REPRODUCED",
+    "github_company_record_stage": "PROOF_REPRODUCED",
+    "claim_boundary_preserved": true,
+    "projection_truth_closed": true
   },
   "capabilities": [
     "expected_head_mutation_guard",
@@ -83,24 +98,19 @@
   },
   "blockers": [
     {
-      "id": "outward_projection_not_yet_synchronized",
-      "stage": "PROMOTED",
-      "meaning": "The canonical-source proof is reproduced, but recruiter/company/public machine surfaces must carry the same bounded truth before claim promotion."
-    },
-    {
       "id": "github_actions_budget",
       "stage": "HOSTED_CI",
       "meaning": "GitHub-hosted private-repository jobs remain blocked before execution by account Actions budget; independently reproduced canonical-source provider proof is current evidence."
     }
   ],
   "evolution": {
-    "next_gate": "PROMOTED",
-    "cursor": "Compile the reproduced Merge Authority capability into the outward GitHub company and portfolio surfaces, preserve independent-work/non-adoption boundaries, validate all projection contracts, then promote exactly one state."
+    "next_gate": "CANONICAL",
+    "cursor": "Resolve and receipt the repository's canonical specialist position without collapsing the separate GitHub company claim stage; continue proof refresh and capability harvest as the implementation evolves."
   },
   "nonclaims": [
     "The reproduced real-provider proof mutated disposable proof branches only; the target repository main branch was not changed.",
-    "No production deployment, production-scale reliability, latency, throughput, or durability is claimed.",
+    "No GitHub capability production deployment, production-scale reliability, latency, throughput, or durability is claimed; the production deployment receipt applies to the GlacierEQ portfolio projection surface.",
     "No GitHub affiliation, endorsement, employment, or adoption is implied.",
-    "The PROOF_REPRODUCED state applies to the Merge Authority Graph capability, not the repository's older Notion/Neon/memory surfaces."
+    "The PROMOTED repository state applies to the Merge Authority Graph capability, not the repository's older Notion/Neon/memory surfaces."
   ]
 }
