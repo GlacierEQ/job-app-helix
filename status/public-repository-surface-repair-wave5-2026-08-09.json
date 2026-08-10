@@ -1,0 +1,53 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-wave.v5",
+  "generated_at": "2026-08-09T15:38:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "base_head": "8345955b67f163c3215b23195a267b6021a5be5e",
+  "predecessor_receipt": "status/public-repository-surface-repair-wave4-2026-08-09.json",
+  "reconciliation": "manifests/public_repository_surface_reconciliation_wave5_2026-08-09.json",
+  "historical_decision_subset": {
+    "before": {"ADMIT": 9, "REPAIR_REQUIRED": 45, "QUARANTINED": 3, "REFERENCE": 1},
+    "after_this_wave": {"ADMIT": 12, "REPAIR_REQUIRED": 42, "QUARANTINED": 3, "REFERENCE": 1},
+    "unassessed": 0
+  },
+  "closed_repairs": [
+    {
+      "repository": "GlacierEQ/apex-control-plane",
+      "canonical_head": "2ada79228f83c31cc21c5194062c64b353d9cc48",
+      "proof_runs": [31346871422, 31346871196],
+      "material_repairs": [
+        "bound registry and audit CI to the exact pull-request or push source head",
+        "made private-record provider and external-action boundaries explicit",
+        "removed inherited sibling-runtime connectivity implications from the public surface"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/aws-trainium-neuron-sentinel",
+      "canonical_head": "b30bc0ae04030a565204c4e0abced082a7b50979",
+      "proof_runs": [31346903588],
+      "material_repairs": [
+        "replaced AWS hardware and production-performance semantics with deterministic local scenario arithmetic",
+        "added fail-closed count and finite-latency validation plus stable fingerprints",
+        "corrected public paths and established Python 3.11/3.13 exact-head proof with C++ reference compilation"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/megamind",
+      "canonical_head": "b70121db3ef1fad23ef6001234707bcabce21856",
+      "proof_runs": [31347374683],
+      "material_repairs": [
+        "removed the workstation-specific Tower integration default and required explicit local configuration",
+        "validated Tower maps against the repository technology-map schema and mapping shape",
+        "reconciled package-version drift and the stale alpha-master regression with current registry data",
+        "established Python 3.11/3.13 exact-head proof across repository tests JSON schemas and recursive YAML registries"
+      ]
+    }
+  ],
+  "invariants": [
+    "Waves 2 through 4 remain immutable predecessor checkpoints.",
+    "Every Wave 5 ADMIT is bound to an exact current Git head and successful current-head repository-native proof.",
+    "Local control-plane registry adapter or taxonomy behavior does not inherit external connectivity or authority claims.",
+    "Named cloud/provider concepts do not inherit hardware deployment measured-performance affiliation or proprietary-access claims.",
+    "The concurrent Anthropic second-depth advancement on the Helix base is preserved."
+  ]
+}
