@@ -1,0 +1,29 @@
+name: Company Innovation Expansion
+
+on:
+  pull_request:
+    paths:
+      - "manifests/company_dossiers.json"
+      - "manifests/company_dossiers/innovation_expansion_2026_08_09.json"
+      - "manifests/application_intelligence/company_innovation_hypotheses.v1.json"
+      - "manifests/application_intelligence/company_innovation_execution_queue.v1.json"
+      - "scripts/validate_company_innovation_expansion.py"
+      - ".github/workflows/company-innovation-expansion.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Validate 112-company expansion contract
+        run: python scripts/validate_company_innovation_expansion.py
