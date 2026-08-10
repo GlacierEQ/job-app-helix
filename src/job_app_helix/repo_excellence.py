@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import Any
@@ -58,6 +59,24 @@ REQUIRED_EXCELLENT_GATES = (
     "evolution_cursor_defined",
 )
 
+TRANSITION_GATE_REQUIREMENTS = {
+    ("PROOF_REPRODUCED", "PROMOTED"): (
+        "security_authority_bounded",
+        "projections_truth_consistent",
+    ),
+}
+
+PROMOTED_STATES = {"PROMOTED", "CANONICAL", "EVOLVING"}
+PROOF_DIGEST_PATTERN = re.compile(r"(?:[0-9a-fA-F]{40}|[0-9a-fA-F]{64})\Z")
+PLACEHOLDER_PROOF_VALUES = {
+    "tbd",
+    "todo",
+    "placeholder",
+    "resolved",
+    "hyper_validated_sha256",
+    "hyper_validated_identity",
+}
+
 
 class ExcellenceContractError(ValueError):
     """Raised when a repository excellence record violates the canonical contract."""
@@ -75,6 +94,20 @@ def _require_text(value: Any, label: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ExcellenceContractError(f"{label} must be non-empty text")
     return value.strip()
+
+
+def _require_bound_proof_receipt(receipt: Mapping[str, Any], state: str) -> None:
+    source_sha = _require_text(receipt.get("source_sha"), "proof_receipt.source_sha")
+    identity = _require_text(receipt.get("identity"), "proof_receipt.identity")
+
+    if source_sha.lower() in PLACEHOLDER_PROOF_VALUES:
+        raise ExcellenceContractError(f"{state} rejects placeholder proof_receipt.source_sha")
+    if identity.lower() in PLACEHOLDER_PROOF_VALUES:
+        raise ExcellenceContractError(f"{state} rejects placeholder proof_receipt.identity")
+    if not PROOF_DIGEST_PATTERN.fullmatch(source_sha):
+        raise ExcellenceContractError(
+            f"{state} requires proof_receipt.source_sha to be a 40- or 64-hex digest"
+        )
 
 
 def validate_score_vector(raw: Mapping[str, Any]) -> ScoreVector:
@@ -102,14 +135,38 @@ def validate_score_vector(raw: Mapping[str, Any]) -> ScoreVector:
     )
 
 
-def allowed_transition(current: str, target: str) -> bool:
+def transition_gate_requirements(current: str, target: str) -> tuple[str, ...]:
+    return TRANSITION_GATE_REQUIREMENTS.get((current, target), ())
+
+
+def transition_gates_satisfied(
+    current: str,
+    target: str,
+    gates: Mapping[str, Any] | None,
+) -> bool:
+    requirements = transition_gate_requirements(current, target)
+    if not requirements:
+        return True
+    if not isinstance(gates, Mapping):
+        return False
+    return all(gates.get(name) is True for name in requirements)
+
+
+def allowed_transition(
+    current: str,
+    target: str,
+    gates: Mapping[str, Any] | None = None,
+) -> bool:
     if target in SIDE_EXIT_STATES:
         return True
     if current in SIDE_EXIT_STATES:
         return target == "DISCOVERED"
     if current not in PRINCIPAL_STATES or target not in PRINCIPAL_STATES:
         return False
-    return PRINCIPAL_STATES.index(target) == PRINCIPAL_STATES.index(current) + 1
+    topology_allowed = PRINCIPAL_STATES.index(target) == PRINCIPAL_STATES.index(current) + 1
+    if not topology_allowed:
+        return False
+    return transition_gates_satisfied(current, target, gates)
 
 
 def excellent(gates: Mapping[str, Any]) -> bool:
@@ -161,12 +218,28 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
         raise ExcellenceContractError("evolution must be an object")
     _require_text(evolution.get("next_gate"), "evolution.next_gate")
 
-    if state in {"PROOF_REPRODUCED", "PROMOTED", "CANONICAL", "EVOLVING"}:
+    if state in {"PROOF_REPRODUCED", *PROMOTED_STATES}:
         receipt = payload.get("proof_receipt")
         if not isinstance(receipt, Mapping):
             raise ExcellenceContractError(f"{state} requires proof_receipt")
         _require_text(receipt.get("source_sha"), "proof_receipt.source_sha")
         _require_text(receipt.get("identity"), "proof_receipt.identity")
+        if state in PROMOTED_STATES:
+            _require_bound_proof_receipt(receipt, state)
+
+    if state in PROMOTED_STATES:
+        missing_gates = [name for name in REQUIRED_EXCELLENT_GATES if gates.get(name) is not True]
+        if missing_gates:
+            raise ExcellenceContractError(
+                f"{state} requires every excellence gate; missing: {', '.join(missing_gates)}"
+            )
+        if not transition_gates_satisfied("PROOF_REPRODUCED", "PROMOTED", gates):
+            required = ", ".join(
+                transition_gate_requirements("PROOF_REPRODUCED", "PROMOTED")
+            )
+            raise ExcellenceContractError(
+                f"{state} requires earned PROOF_REPRODUCED->PROMOTED gates: {required}"
+            )
 
     if state in {"CANONICAL", "EVOLVING"} and identity.get("canonical_head") == "UNRESOLVED":
         raise ExcellenceContractError(f"{state} requires a resolved canonical head")
