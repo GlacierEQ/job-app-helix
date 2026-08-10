@@ -59,11 +59,23 @@ REQUIRED_EXCELLENT_GATES = (
     "evolution_cursor_defined",
 )
 
+CANONICAL_RECEIPT_REQUIRED_FLAGS = (
+    "canonical_position_resolved",
+    "lineage_conflict_absent",
+    "duplicate_repository_rejected",
+    "proof_sha_bound",
+    "projection_truth_closed",
+    "authority_bounded",
+    "evolution_cursor_defined",
+    "company_claim_separate",
+)
+
 TRANSITION_GATE_REQUIREMENTS = {
     ("PROOF_REPRODUCED", "PROMOTED"): (
         "security_authority_bounded",
         "projections_truth_consistent",
     ),
+    ("PROMOTED", "CANONICAL"): REQUIRED_EXCELLENT_GATES,
 }
 
 PROMOTED_STATES = {"PROMOTED", "CANONICAL", "EVOLVING"}
@@ -133,6 +145,67 @@ def _require_bound_proof_receipt(
     if canonical_merge_sha.lower() != canonical_head.lower():
         raise ExcellenceContractError(
             f"{state} requires proof_receipt.canonical_merge_sha to match identity.canonical_head"
+        )
+
+
+def _require_canonical_position_receipt(
+    receipt: Mapping[str, Any],
+    identity: Mapping[str, Any],
+    role: str,
+    capability_id: str,
+    blockers: Any,
+) -> None:
+    if receipt.get("schema") != "glaciereq.repo-canonical-position-receipt.v1":
+        raise ExcellenceContractError("CANONICAL requires canonical position receipt schema v1")
+    if receipt.get("status") != "PASS":
+        raise ExcellenceContractError("CANONICAL requires canonical position receipt status PASS")
+    if receipt.get("transition") != "PROMOTED -> CANONICAL":
+        raise ExcellenceContractError("CANONICAL transition receipt drift")
+
+    _require_text(receipt.get("path"), "canonical_position_receipt.path")
+    blob_sha = _require_text(receipt.get("blob_sha"), "canonical_position_receipt.blob_sha")
+    if not GIT_COMMIT_PATTERN.fullmatch(blob_sha):
+        raise ExcellenceContractError("canonical position receipt must be content-addressed by Git blob SHA")
+
+    expected = {
+        "repository": identity.get("repository"),
+        "canonical_head": identity.get("canonical_head"),
+        "canonical_role": role,
+        "capability_id": capability_id,
+        "lineage_action": identity.get("lineage_action"),
+    }
+    for field, value in expected.items():
+        if receipt.get(field) != value:
+            raise ExcellenceContractError(f"canonical position receipt {field} drift")
+
+    source_blob_sha = _require_text(
+        receipt.get("source_blob_sha"),
+        "canonical_position_receipt.source_blob_sha",
+    )
+    if not GIT_COMMIT_PATTERN.fullmatch(source_blob_sha):
+        raise ExcellenceContractError("canonical lineage source must be content-addressed")
+
+    for flag in CANONICAL_RECEIPT_REQUIRED_FLAGS:
+        if receipt.get(flag) is not True:
+            raise ExcellenceContractError(f"CANONICAL requires {flag}=true")
+
+    canonicalization_blockers = receipt.get("canonicalization_blockers")
+    if canonicalization_blockers != []:
+        raise ExcellenceContractError("CANONICAL rejects unresolved canonicalization blockers")
+
+    retained = receipt.get("retained_noncanonicalization_blockers")
+    if not isinstance(retained, list) or not all(isinstance(item, str) for item in retained):
+        raise ExcellenceContractError(
+            "canonical_position_receipt.retained_noncanonicalization_blockers must be a string list"
+        )
+    blocker_ids = {
+        item.get("id")
+        for item in blockers
+        if isinstance(item, Mapping) and isinstance(item.get("id"), str)
+    } if isinstance(blockers, list) else set()
+    if not blocker_ids <= set(retained):
+        raise ExcellenceContractError(
+            "CANONICAL record blocker is not classified as non-canonicalization-blocking"
         )
 
 
@@ -242,7 +315,7 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
     evolution = payload.get("evolution")
     if not isinstance(evolution, Mapping):
         raise ExcellenceContractError("evolution must be an object")
-    _require_text(evolution.get("next_gate"), "evolution.next_gate")
+    next_gate = _require_text(evolution.get("next_gate"), "evolution.next_gate")
 
     if state in PROMOTED_STATES:
         missing_gates = [name for name in REQUIRED_EXCELLENT_GATES if gates.get(name) is not True]
@@ -267,7 +340,26 @@ def validate_repo_excellence_record(payload: Mapping[str, Any]) -> dict[str, Any
         if state in PROMOTED_STATES:
             _require_bound_proof_receipt(receipt, identity, state)
 
-    if state in {"CANONICAL", "EVOLVING"} and identity.get("canonical_head") == "UNRESOLVED":
-        raise ExcellenceContractError(f"{state} requires a resolved canonical head")
+    if state in {"CANONICAL", "EVOLVING"}:
+        if identity.get("canonical_head") == "UNRESOLVED":
+            raise ExcellenceContractError(f"{state} requires a resolved canonical head")
+        capability_id = _require_text(payload.get("capability_id"), "capability_id")
+        canonical_receipt = payload.get("canonical_position_receipt")
+        if not isinstance(canonical_receipt, Mapping):
+            raise ExcellenceContractError(f"{state} requires canonical_position_receipt")
+        _require_canonical_position_receipt(
+            canonical_receipt,
+            identity,
+            role,
+            capability_id,
+            payload.get("blockers"),
+        )
+        projection_refs = payload.get("projection_refs")
+        if not isinstance(projection_refs, list) or not projection_refs:
+            raise ExcellenceContractError(f"{state} requires projection_refs")
+        for index, projection_ref in enumerate(projection_refs):
+            _require_text(projection_ref, f"projection_refs[{index}]")
+        if state == "CANONICAL" and next_gate != "EVOLVING":
+            raise ExcellenceContractError("CANONICAL requires evolution.next_gate EVOLVING")
 
     return dict(payload)
