@@ -72,15 +72,15 @@ class CompanySecondDepthTests(unittest.TestCase):
         self.assertEqual(result["company_tracks"], track_count)
         self.assertEqual(result["stage_count"], 8)
         self.assertEqual(result["priority_wave"], 8)
-        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], track_count - 2)
+        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], track_count - 3)
         self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
         self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
+        self.assertEqual(result["stage_counts"]["PROOF_REPRODUCED"], 1)
         for stage in (
             "ROLE_VERIFIED",
             "PROBLEM_BOUNDED",
             "REMEDY_BOUNDED",
             "IMPLEMENTED",
-            "PROOF_REPRODUCED",
         ):
             self.assertEqual(result["stage_counts"][stage], 0)
         self.assertEqual(sum(result["stage_counts"].values()), track_count)
@@ -88,6 +88,53 @@ class CompanySecondDepthTests(unittest.TestCase):
         self.assertTrue(result["stage_contract_locked"])
         self.assertTrue(result["claim_promotion_requires_receipt"])
         self.assertTrue(result["zero_implicit_completion"])
+
+    def test_github_merge_authority_projection_matches_canonical_second_depth(self) -> None:
+        second_depth = json.loads(
+            (ROOT / "manifests" / "company_second_depth.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        projection = json.loads(
+            (
+                ROOT
+                / "manifests"
+                / "company_projections"
+                / "github_merge_authority.json"
+            ).read_text(encoding="utf-8")
+        )
+        defaults = second_depth["default_company_state"]
+        override = second_depth["company_overrides"]["github"]
+        resolved = {**defaults, **override}
+
+        self.assertEqual(projection["company"], "GitHub")
+        self.assertEqual(projection["stage"], "PROOF_REPRODUCED")
+        self.assertEqual(resolved["stage"], projection["stage"])
+        self.assertEqual(resolved["claim_ceiling"], projection["claim_ceiling"])
+        self.assertEqual(resolved["claim_receipts"], [])
+
+        required_evidence = (
+            "role_evidence",
+            "problem_evidence",
+            "inspected_repositories",
+            "gap_queue",
+            "implementation_receipts",
+            "proof_artifacts",
+        )
+        for field in required_evidence:
+            self.assertTrue(resolved[field], f"GitHub missing {field}")
+
+        refs = {
+            item["source_ref"]
+            for field in required_evidence
+            for item in resolved[field]
+        }
+        self.assertEqual(
+            refs,
+            {"commit:40b6102a8afec3d50469c86120fd2e879bcf7ff2"},
+        )
+        self.assertIn("public_projection_readback_not_green", resolved["blockers"])
+        self.assertIn("claim_not_promoted", resolved["blockers"])
 
     def test_lockheed_remains_truth_bounded_without_direct_repository_proof(self) -> None:
         dossier_path = ROOT / "manifests" / "company_dossiers" / "additional_targets.json"
@@ -205,9 +252,10 @@ class CompanySecondDepthTests(unittest.TestCase):
             self.assertEqual(result["stage_counts"]["ROLE_VERIFIED"], 1)
             self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
             self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
+            self.assertEqual(result["stage_counts"]["PROOF_REPRODUCED"], 1)
             self.assertEqual(
                 result["stage_counts"]["MAPPED_ONLY"],
-                track_count - 3,
+                track_count - 4,
             )
 
     def test_role_verified_cannot_be_claimed_without_role_evidence(self) -> None:
