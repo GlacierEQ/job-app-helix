@@ -1,3 +1,4 @@
+import copy
 import json
 from pathlib import Path
 
@@ -9,6 +10,9 @@ from job_app_helix.repo_excellence import (
     transition_gate_requirements,
     validate_repo_excellence_record,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
+APEX_RECORD_PATH = ROOT / "manifests/repo_excellence/apex-github-worker.json"
 
 
 def valid_record():
@@ -34,42 +38,8 @@ def valid_record():
     }
 
 
-def canonical_record():
-    record = valid_record()
-    record["state"] = "CANONICAL"
-    record["capability_id"] = "merge_authority_graph"
-    record["proof_receipt"] = {
-        "source_sha": "b" * 40,
-        "canonical_merge_sha": "a" * 40,
-        "identity": "receipt:abc",
-    }
-    record["gates"] = {name: True for name in REQUIRED_EXCELLENT_GATES}
-    record["canonical_position_receipt"] = {
-        "path": "excellence/receipts/example.json",
-        "blob_sha": "c" * 40,
-        "schema": "glaciereq.repo-canonical-position-receipt.v1",
-        "status": "PASS",
-        "transition": "PROMOTED -> CANONICAL",
-        "repository": "GlacierEQ/example",
-        "canonical_head": "a" * 40,
-        "canonical_role": "SPECIALIST_COMPONENT",
-        "capability_id": "merge_authority_graph",
-        "lineage_action": "EXTEND_CANONICAL",
-        "source_blob_sha": "d" * 40,
-        "canonical_position_resolved": True,
-        "lineage_conflict_absent": True,
-        "duplicate_repository_rejected": True,
-        "proof_sha_bound": True,
-        "projection_truth_closed": True,
-        "authority_bounded": True,
-        "evolution_cursor_defined": True,
-        "company_claim_separate": True,
-        "canonicalization_blockers": [],
-        "retained_noncanonicalization_blockers": [],
-    }
-    record["projection_refs"] = ["manifests/company_projections/example.json"]
-    record["evolution"] = {"next_gate": "EVOLVING"}
-    return record
+def apex_record():
+    return json.loads(APEX_RECORD_PATH.read_text(encoding="utf-8"))
 
 
 def test_principal_state_transition_is_exactly_one_step():
@@ -131,20 +101,20 @@ def test_promoted_record_must_preserve_earned_projection_closure():
     assert validate_repo_excellence_record(record)["state"] == "PROMOTED"
 
 
-def test_canonical_requires_content_addressed_position_receipt():
-    record = canonical_record()
+def test_canonical_requires_exact_content_addressed_position_receipt():
+    record = apex_record()
     assert validate_repo_excellence_record(record)["state"] == "CANONICAL"
-    del record["canonical_position_receipt"]["blob_sha"]
+    record["canonical_position_receipt"]["blob_sha"] = "c" * 40
     try:
         validate_repo_excellence_record(record)
     except ExcellenceContractError as exc:
-        assert "blob_sha" in str(exc)
+        assert "Git blob SHA does not match" in str(exc)
     else:
-        raise AssertionError("CANONICAL without content-addressed position receipt should fail")
+        raise AssertionError("CANONICAL with mismatched receipt bytes should fail")
 
 
 def test_canonical_rejects_lineage_conflict_or_duplicate_repo():
-    record = canonical_record()
+    record = apex_record()
     record["canonical_position_receipt"]["lineage_conflict_absent"] = False
     try:
         validate_repo_excellence_record(record)
@@ -153,7 +123,7 @@ def test_canonical_rejects_lineage_conflict_or_duplicate_repo():
     else:
         raise AssertionError("CANONICAL with lineage conflict should fail")
 
-    record = canonical_record()
+    record = apex_record()
     record["canonical_position_receipt"]["duplicate_repository_rejected"] = False
     try:
         validate_repo_excellence_record(record)
@@ -163,8 +133,17 @@ def test_canonical_rejects_lineage_conflict_or_duplicate_repo():
         raise AssertionError("CANONICAL without duplicate-repo rejection should fail")
 
 
-def test_canonical_requires_evolving_as_next_gate():
-    record = canonical_record()
+def test_canonical_requires_company_evidence_and_evolving_as_next_gate():
+    record = apex_record()
+    missing_company = copy.deepcopy(record)
+    del missing_company["company_evidence"]
+    try:
+        validate_repo_excellence_record(missing_company)
+    except ExcellenceContractError as exc:
+        assert "requires company_evidence" in str(exc)
+    else:
+        raise AssertionError("CANONICAL without company evidence should fail")
+
     record["evolution"]["next_gate"] = "CANONICAL"
     try:
         validate_repo_excellence_record(record)
@@ -175,12 +154,12 @@ def test_canonical_requires_evolving_as_next_gate():
 
 
 def test_canonical_requires_all_retained_blockers_classified():
-    record = canonical_record()
-    record["blockers"] = [{"id": "actions_budget"}]
+    record = apex_record()
+    record["blockers"].append({"id": "unclassified_blocker"})
     try:
         validate_repo_excellence_record(record)
     except ExcellenceContractError as exc:
-        assert "not classified" in str(exc)
+        assert "do not match retained" in str(exc)
     else:
         raise AssertionError("unclassified CANONICAL blocker should fail")
 
@@ -237,10 +216,7 @@ def test_unknown_gate_is_rejected():
 
 
 def test_apex_merge_authority_record_is_machine_valid_canonical_and_bounded():
-    root = Path(__file__).resolve().parents[1]
-    record_path = root / "manifests" / "repo_excellence" / "apex-github-worker.json"
-    record = json.loads(record_path.read_text(encoding="utf-8"))
-    validated = validate_repo_excellence_record(record)
+    validated = validate_repo_excellence_record(apex_record())
 
     assert validated["state"] == "CANONICAL"
     assert validated["canonical_role"] == "SPECIALIST_COMPONENT"
