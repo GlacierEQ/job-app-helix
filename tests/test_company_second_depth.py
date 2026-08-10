@@ -57,13 +57,22 @@ class CompanySecondDepthTests(unittest.TestCase):
             encoding="utf-8",
         )
 
+    def company_track_count(self) -> int:
+        payload = json.loads(
+            (ROOT / "manifests" / "company_dossiers.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        return len(payload["required_company_tracks"])
+
     def test_current_registry_is_fail_closed_and_complete(self) -> None:
         result = validate_second_depth(ROOT)
+        track_count = self.company_track_count()
         self.assertEqual(result["status"], "PASS")
-        self.assertEqual(result["company_tracks"], 76)
+        self.assertEqual(result["company_tracks"], track_count)
         self.assertEqual(result["stage_count"], 8)
         self.assertEqual(result["priority_wave"], 8)
-        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 74)
+        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], track_count - 2)
         self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
         self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
         for stage in (
@@ -74,7 +83,7 @@ class CompanySecondDepthTests(unittest.TestCase):
             "PROOF_REPRODUCED",
         ):
             self.assertEqual(result["stage_counts"][stage], 0)
-        self.assertEqual(sum(result["stage_counts"].values()), 76)
+        self.assertEqual(sum(result["stage_counts"].values()), track_count)
         self.assertTrue(result["evidence_reference_schema_enforced"])
         self.assertTrue(result["stage_contract_locked"])
         self.assertTrue(result["claim_promotion_requires_receipt"])
@@ -192,10 +201,14 @@ class CompanySecondDepthTests(unittest.TestCase):
             )
             self.write_json(path, payload)
             result = validate_second_depth(root)
+            track_count = self.company_track_count()
             self.assertEqual(result["stage_counts"]["ROLE_VERIFIED"], 1)
             self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
             self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
-            self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 73)
+            self.assertEqual(
+                result["stage_counts"]["MAPPED_ONLY"],
+                track_count - 3,
+            )
 
     def test_role_verified_cannot_be_claimed_without_role_evidence(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
