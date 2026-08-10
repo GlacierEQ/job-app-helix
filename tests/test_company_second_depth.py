@@ -63,15 +63,15 @@ class CompanySecondDepthTests(unittest.TestCase):
         self.assertEqual(result["company_tracks"], 76)
         self.assertEqual(result["stage_count"], 8)
         self.assertEqual(result["priority_wave"], 8)
-        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 75)
+        self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 74)
         self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
+        self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
         for stage in (
             "ROLE_VERIFIED",
             "PROBLEM_BOUNDED",
             "REMEDY_BOUNDED",
             "IMPLEMENTED",
             "PROOF_REPRODUCED",
-            "CODE_INSPECTED",
         ):
             self.assertEqual(result["stage_counts"][stage], 0)
         self.assertEqual(sum(result["stage_counts"].values()), 76)
@@ -194,7 +194,8 @@ class CompanySecondDepthTests(unittest.TestCase):
             result = validate_second_depth(root)
             self.assertEqual(result["stage_counts"]["ROLE_VERIFIED"], 1)
             self.assertEqual(result["stage_counts"]["CLAIM_PROMOTED"], 1)
-            self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 74)
+            self.assertEqual(result["stage_counts"]["CODE_INSPECTED"], 1)
+            self.assertEqual(result["stage_counts"]["MAPPED_ONLY"], 73)
 
     def test_role_verified_cannot_be_claimed_without_role_evidence(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -314,7 +315,7 @@ class CompanySecondDepthTests(unittest.TestCase):
             self.write_json(path, payload)
             with self.assertRaisesRegex(
                 SecondDepthValidationError,
-                "claim ceiling .* does not match stage MAPPED_ONLY ceiling",
+                "claim ceiling .* does not match stage CODE_INSPECTED ceiling",
             ):
                 validate_second_depth(root)
 
