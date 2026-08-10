@@ -1,0 +1,33 @@
+schema_version: "1.0"
+
+id: job-app-helix
+display_name: Job App Helix Career Automation
+owner: cherry
+lane: career
+visibility: private
+status: foundation
+
+purpose:
+  problem: GlacierEQ Sovereign project Job App Helix Career Automation
+  audience:
+    - Cherry
+    - portfolio reviewers
+
+shared_services:
+  boot: mermicorn-mega-boot
+  memory: mermicorn-memory
+  token_efficiency: mermicorn-token-saver
+  graphics: mermicorn-graphic-ai
+  commerce: mermicorn-commerce-ai
+
+privacy:
+  public:
+    - templates
+    - sanitized_case_studies
+  private:
+    - credentials
+    - unpublished_source
+
+first_proof:
+  artifact: job-helix-v1
+  status: planned
