@@ -51,3 +51,6 @@ GEMINI.md
 
 # Local agent DB / caches
 .memix/
+.vault_env
+.env
+secrets/
