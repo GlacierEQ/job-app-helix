@@ -17,7 +17,7 @@ def valid_record():
         "identity": {
             "repository": "GlacierEQ/example",
             "repository_id": "123",
-            "canonical_head": "abc",
+            "canonical_head": "a" * 40,
             "default_branch": "main",
             "lineage_action": "EXTEND_CANONICAL",
         },
@@ -64,7 +64,11 @@ def test_proof_reproduced_to_promoted_requires_authority_and_projection_closure(
 def test_promoted_record_must_preserve_earned_projection_closure():
     record = valid_record()
     record["state"] = "PROMOTED"
-    record["proof_receipt"] = {"source_sha": "a" * 40, "identity": "receipt:abc"}
+    record["proof_receipt"] = {
+        "source_sha": "b" * 40,
+        "canonical_merge_sha": "a" * 40,
+        "identity": "receipt:abc",
+    }
     record["gates"] = {name: True for name in REQUIRED_EXCELLENT_GATES}
     record["gates"]["projections_truth_consistent"] = False
 
@@ -143,6 +147,9 @@ def test_apex_merge_authority_record_is_machine_valid_and_bounded():
     assert validated["gates"]["security_authority_bounded"] is True
     assert validated["gates"]["projections_truth_consistent"] is True
     assert excellent(validated["gates"])
+    assert validated["proof_receipt"]["canonical_merge_sha"] == (
+        validated["identity"]["canonical_head"]
+    )
     assert validated["projection_receipt"]["source_ref"] == (
         "commit:577f63c506c6c4df9c1751a0ff5b8fa07822e491"
     )
