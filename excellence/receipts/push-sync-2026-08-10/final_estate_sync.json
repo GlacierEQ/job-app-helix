@@ -1,0 +1,1133 @@
+{
+  "summary": {
+    "ts": "2026-08-10T05:52Z",
+    "account": "GlacierEQ",
+    "leaf_count": 111,
+    "with_origin": 110,
+    "no_origin": [
+      "infinity-gauntlet-mcp-stack"
+    ],
+    "remaining_issues": [
+      [
+        "notion-workflow-intelligence",
+        "behind=0 ahead=1"
+      ]
+    ],
+    "principal_counts": {
+      "PROMOTED": 106,
+      "EVOLVING": 5
+    }
+  },
+  "leaves": [
+    {
+      "name": "AEON-777",
+      "branch": "main",
+      "head": "5a3c537",
+      "origin": "https://github.com/GlacierEQ/AEON-777.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "AKOS",
+      "branch": "main",
+      "head": "32fd444",
+      "origin": "https://github.com/GlacierEQ/AKOS.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "AspenGrove-KEKOA-1FDV-23-0001009",
+      "branch": "main",
+      "head": "6deccd9",
+      "origin": "https://github.com/GlacierEQ/AspenGrove-KEKOA-1FDV-23-0001009.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "GlacierEQ_Swarm",
+      "branch": "main",
+      "head": "f6fa51a",
+      "origin": "https://github.com/GlacierEQ/GlacierEQ_Swarm.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "Pro-comet-agent",
+      "branch": "main",
+      "head": "05cf835",
+      "origin": "https://github.com/GlacierEQ/Pro-comet-agent.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "anduril-lattice-dissent-freeze",
+      "branch": "main",
+      "head": "6bfa613",
+      "origin": "https://github.com/GlacierEQ/anduril-lattice-dissent-freeze.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "EVOLVING",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": true
+    },
+    {
+      "name": "anduril-sensor-health-quorum",
+      "branch": "main",
+      "head": "0fe0abc",
+      "origin": "https://github.com/GlacierEQ/anduril-sensor-health-quorum.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "EVOLVING",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": true
+    },
+    {
+      "name": "anduril-track-envelope-compiler",
+      "branch": "main",
+      "head": "529f987",
+      "origin": "https://github.com/GlacierEQ/anduril-track-envelope-compiler.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "anthropic-agent-coordinator",
+      "branch": "master",
+      "head": "2329fd6",
+      "origin": "https://github.com/GlacierEQ/anthropic-agent-coordinator.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "anthropic-constitutional-tool-transcript",
+      "branch": "main",
+      "head": "298f2d6",
+      "origin": "https://github.com/GlacierEQ/anthropic-constitutional-tool-transcript.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "anthropic-refusal-replay-harness",
+      "branch": "main",
+      "head": "072546d",
+      "origin": "https://github.com/GlacierEQ/anthropic-refusal-replay-harness.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "EVOLVING",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": true
+    },
+    {
+      "name": "anthropic-safety-monitor",
+      "branch": "master",
+      "head": "58b9ef6",
+      "origin": "https://github.com/GlacierEQ/anthropic-safety-monitor.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "apex-cli",
+      "branch": "master",
+      "head": "7c92e85",
+      "origin": "https://github.com/GlacierEQ/apex-cli.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "apex-control-plane",
+      "branch": "main",
+      "head": "e93ea46",
+      "origin": "https://github.com/GlacierEQ/apex-control-plane.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "apple-ane-kv-quantizer",
+      "branch": "main",
+      "head": "71c7540",
+      "origin": "https://github.com/GlacierEQ/apple-ane-kv-quantizer.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "aspen-grove-apex-unified-v9",
+      "branch": "main",
+      "head": "71d0bde",
+      "origin": "https://github.com/GlacierEQ/aspen-grove-apex-unified-v9.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "aspen-grove-connectors",
+      "branch": "main",
+      "head": "56d3c8e",
+      "origin": "https://github.com/GlacierEQ/aspen-grove-connectors.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "aspen-grove-core",
+      "branch": "main",
+      "head": "9013fa4",
+      "origin": "https://github.com/GlacierEQ/aspen-grove-core.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "aspen-grove-evidence",
+      "branch": "main",
+      "head": "0973a2e",
+      "origin": "https://github.com/GlacierEQ/aspen-grove-evidence.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "aspen-grove-legal",
+      "branch": "main",
+      "head": "be942e8",
+      "origin": "https://github.com/GlacierEQ/aspen-grove-legal.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "aspen-grove-memory",
+      "branch": "main",
+      "head": "89f900d",
+      "origin": "https://github.com/GlacierEQ/aspen-grove-memory.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "aspen-grove-supabase",
+      "branch": "main",
+      "head": "fb55594",
+      "origin": "https://github.com/GlacierEQ/aspen-grove-supabase.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "aspen-grove-swarm",
+      "branch": "main",
+      "head": "8a61738",
+      "origin": "https://github.com/GlacierEQ/aspen-grove-swarm.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "aws-trainium-neuron-sentinel",
+      "branch": "main",
+      "head": "4e4c23f",
+      "origin": "https://github.com/GlacierEQ/aws-trainium-neuron-sentinel.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "cloudflare-bot-intent-receipt",
+      "branch": "main",
+      "head": "23732d3",
+      "origin": "https://github.com/GlacierEQ/cloudflare-bot-intent-receipt.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "cloudflare-workers-agent-cap",
+      "branch": "main",
+      "head": "e98cf59",
+      "origin": "https://github.com/GlacierEQ/cloudflare-workers-agent-cap.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "colossus-gateway",
+      "branch": "main",
+      "head": "aa7bd61",
+      "origin": "https://github.com/GlacierEQ/colossus-gateway.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "colossus-training-flux",
+      "branch": "main",
+      "head": "7bda759",
+      "origin": "https://github.com/GlacierEQ/colossus-training-flux.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "comet-browser-agent-bridge",
+      "branch": "main",
+      "head": "959515f",
+      "origin": "https://github.com/GlacierEQ/comet-browser-agent-bridge.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "computer-user",
+      "branch": "main",
+      "head": "99dc281",
+      "origin": "https://github.com/GlacierEQ/computer-user.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "databricks-feature-lineage-passport",
+      "branch": "main",
+      "head": "8605957",
+      "origin": "https://github.com/GlacierEQ/databricks-feature-lineage-passport.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "databricks-notebook-claim-fence",
+      "branch": "main",
+      "head": "cf5b677",
+      "origin": "https://github.com/GlacierEQ/databricks-notebook-claim-fence.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "EVOLVING",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "deepmind-tpu-mesh-optimizer",
+      "branch": "main",
+      "head": "73122bb",
+      "origin": "https://github.com/GlacierEQ/deepmind-tpu-mesh-optimizer.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "deepseek-mla-moe-sentinel",
+      "branch": "main",
+      "head": "489f26e",
+      "origin": "https://github.com/GlacierEQ/deepseek-mla-moe-sentinel.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "glaciereq-mcp-stack",
+      "branch": "main",
+      "head": "40ca2b6",
+      "origin": "https://github.com/GlacierEQ/glaciereq-mcp-stack.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "grokodile",
+      "branch": "main",
+      "head": "c405b4c",
+      "origin": "https://github.com/GlacierEQ/grokodile.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "groq-batch-admission-gate",
+      "branch": "main",
+      "head": "2031770",
+      "origin": "https://github.com/GlacierEQ/groq-batch-admission-gate.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "groq-jitter-envelope-contract",
+      "branch": "main",
+      "head": "9f5fbaf",
+      "origin": "https://github.com/GlacierEQ/groq-jitter-envelope-contract.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "infinity-gauntlet-mcp-stack",
+      "branch": "main",
+      "head": "e687555",
+      "origin": null,
+      "sync": "n/a",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "job-application",
+      "branch": "main",
+      "head": "8bd529e",
+      "origin": "https://github.com/GlacierEQ/job-application.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "kimi-mooncake-kv-stream",
+      "branch": "main",
+      "head": "bb90e00",
+      "origin": "https://github.com/GlacierEQ/kimi-mooncake-kv-stream.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "lockheed-dual-key-actuator-fence",
+      "branch": "main",
+      "head": "fb6d423",
+      "origin": "https://github.com/GlacierEQ/lockheed-dual-key-actuator-fence.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "lockheed-evidence-binding-gateway",
+      "branch": "main",
+      "head": "a529c77",
+      "origin": "https://github.com/GlacierEQ/lockheed-evidence-binding-gateway.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "lockheed-mission-thread-isolator",
+      "branch": "main",
+      "head": "d802e3f",
+      "origin": "https://github.com/GlacierEQ/lockheed-mission-thread-isolator.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "lovable-design-app-synth",
+      "branch": "main",
+      "head": "001296e",
+      "origin": "https://github.com/GlacierEQ/lovable-design-app-synth.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "manus-autonomous-web-agent",
+      "branch": "main",
+      "head": "de1a9f9",
+      "origin": "https://github.com/GlacierEQ/manus-autonomous-web-agent.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "mastermind",
+      "branch": "main",
+      "head": "8cda89a",
+      "origin": "https://github.com/GlacierEQ/mastermind.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "meta-llama-collective-sentinel",
+      "branch": "main",
+      "head": "81a451c",
+      "origin": "https://github.com/GlacierEQ/meta-llama-collective-sentinel.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "microsoft-azure-ops",
+      "branch": "main",
+      "head": "4408d8b",
+      "origin": "https://github.com/GlacierEQ/microsoft-azure-ops.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "microsoft-identity-zero-trust",
+      "branch": "main",
+      "head": "6305188",
+      "origin": "https://github.com/GlacierEQ/microsoft-identity-zero-trust.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "nasa-command-authority-half-life",
+      "branch": "main",
+      "head": "d9765e1",
+      "origin": "https://github.com/GlacierEQ/nasa-command-authority-half-life.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "nasa-telemetry-anomaly-receipt",
+      "branch": "main",
+      "head": "66a76ba",
+      "origin": "https://github.com/GlacierEQ/nasa-telemetry-anomaly-receipt.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "notion-mcp-empowerment-engine",
+      "branch": "main",
+      "head": "b7adf68",
+      "origin": "https://github.com/GlacierEQ/notion-mcp-empowerment-engine.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "notion-workflow-intelligence",
+      "branch": "master",
+      "head": "6840e01",
+      "origin": "https://github.com/GlacierEQ/notion-workflow-intelligence.git",
+      "sync": "behind=0 ahead=1",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "notion-workspace-optimizer",
+      "branch": "main",
+      "head": "8de3e0f",
+      "origin": "https://github.com/GlacierEQ/notion-workspace-optimizer.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "nvidia-deep-reasoning",
+      "branch": "master",
+      "head": "4a593e5",
+      "origin": "https://github.com/GlacierEQ/nvidia-deep-reasoning.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "nvidia-gpu-health",
+      "branch": "master",
+      "head": "afa8b45",
+      "origin": "https://github.com/GlacierEQ/nvidia-gpu-health.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "nvidia-gradient-integrity-quorum",
+      "branch": "main",
+      "head": "a3b5f8f",
+      "origin": "https://github.com/GlacierEQ/nvidia-gradient-integrity-quorum.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "nvidia-nan-circuit-breaker",
+      "branch": "main",
+      "head": "2911c8c",
+      "origin": "https://github.com/GlacierEQ/nvidia-nan-circuit-breaker.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "openai-reasoning-budget-futures",
+      "branch": "main",
+      "head": "e39bfcb",
+      "origin": "https://github.com/GlacierEQ/openai-reasoning-budget-futures.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "openai-reasoning-kv-sentinel",
+      "branch": "main",
+      "head": "1aff5f4",
+      "origin": "https://github.com/GlacierEQ/openai-reasoning-kv-sentinel.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "openai-tool-authority-matrix",
+      "branch": "main",
+      "head": "b81bb39",
+      "origin": "https://github.com/GlacierEQ/openai-tool-authority-matrix.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "openclaw",
+      "branch": "main",
+      "head": "bc68a18",
+      "origin": "https://github.com/GlacierEQ/openclaw.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "opera-neon-spatial-workspace",
+      "branch": "main",
+      "head": "b1826dc",
+      "origin": "https://github.com/GlacierEQ/opera-neon-spatial-workspace.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "palantir-action-lineage-graph",
+      "branch": "main",
+      "head": "49a28bf",
+      "origin": "https://github.com/GlacierEQ/palantir-action-lineage-graph.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "palantir-object-authority-matrix",
+      "branch": "main",
+      "head": "45266bf",
+      "origin": "https://github.com/GlacierEQ/palantir-object-authority-matrix.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "palantir-ontology-writeback-ledger",
+      "branch": "main",
+      "head": "c5451f6",
+      "origin": "https://github.com/GlacierEQ/palantir-ontology-writeback-ledger.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "pro-code",
+      "branch": "main",
+      "head": "5051a4f",
+      "origin": "https://github.com/GlacierEQ/pro-code.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "qwen-vl-flash-router",
+      "branch": "main",
+      "head": "655942c",
+      "origin": "https://github.com/GlacierEQ/qwen-vl-flash-router.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "robotics-vla-torque-sentinel",
+      "branch": "main",
+      "head": "2de0781",
+      "origin": "https://github.com/GlacierEQ/robotics-vla-torque-sentinel.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "scale-agreement-budget-allocator",
+      "branch": "main",
+      "head": "4b43370",
+      "origin": "https://github.com/GlacierEQ/scale-agreement-budget-allocator.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "scale-eval-poison-sentinel",
+      "branch": "main",
+      "head": "685b8a4",
+      "origin": "https://github.com/GlacierEQ/scale-eval-poison-sentinel.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "scale-label-collusion-bound",
+      "branch": "main",
+      "head": "1b28342",
+      "origin": "https://github.com/GlacierEQ/scale-label-collusion-bound.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "snowflake-cortex-claim-bound",
+      "branch": "main",
+      "head": "e742d05",
+      "origin": "https://github.com/GlacierEQ/snowflake-cortex-claim-bound.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "snowflake-query-intent-ledger",
+      "branch": "main",
+      "head": "f24588e",
+      "origin": "https://github.com/GlacierEQ/snowflake-query-intent-ledger.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-autonomy",
+      "branch": "main",
+      "head": "c5c4de5",
+      "origin": "https://github.com/GlacierEQ/spacex-autonomy.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-conjunction-sentinel",
+      "branch": "main",
+      "head": "09f5b65",
+      "origin": "https://github.com/GlacierEQ/spacex-conjunction-sentinel.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-cryogenics",
+      "branch": "main",
+      "head": "d0075a4",
+      "origin": "https://github.com/GlacierEQ/spacex-cryogenics.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-ground-network",
+      "branch": "main",
+      "head": "e5928dd",
+      "origin": "https://github.com/GlacierEQ/spacex-ground-network.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-hold-reason-compiler",
+      "branch": "main",
+      "head": "2594035",
+      "origin": "https://github.com/GlacierEQ/spacex-hold-reason-compiler.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-launch-sequencer",
+      "branch": "main",
+      "head": "3a82ab7",
+      "origin": "https://github.com/GlacierEQ/spacex-launch-sequencer.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-mission-control",
+      "branch": "main",
+      "head": "f35a812",
+      "origin": "https://github.com/GlacierEQ/spacex-mission-control.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-mission-thread-quorum",
+      "branch": "main",
+      "head": "2eeb390",
+      "origin": "https://github.com/GlacierEQ/spacex-mission-thread-quorum.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-orbital-mechanics",
+      "branch": "main",
+      "head": "c6e6244",
+      "origin": "https://github.com/GlacierEQ/spacex-orbital-mechanics.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-pad-weather-gate",
+      "branch": "main",
+      "head": "15a0a03",
+      "origin": "https://github.com/GlacierEQ/spacex-pad-weather-gate.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-propulsion-monitor",
+      "branch": "main",
+      "head": "bb4d351",
+      "origin": "https://github.com/GlacierEQ/spacex-propulsion-monitor.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-satellite-mesh",
+      "branch": "main",
+      "head": "53b04c9",
+      "origin": "https://github.com/GlacierEQ/spacex-satellite-mesh.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-telemetry",
+      "branch": "main",
+      "head": "34d3708",
+      "origin": "https://github.com/GlacierEQ/spacex-telemetry.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spacex-thermal-protection",
+      "branch": "main",
+      "head": "d3e07e9",
+      "origin": "https://github.com/GlacierEQ/spacex-thermal-protection.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "spiral-engine",
+      "branch": "main",
+      "head": "47237fd",
+      "origin": "https://github.com/GlacierEQ/spiral-engine.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "tasklet-micro-agent-engine",
+      "branch": "main",
+      "head": "0a07902",
+      "origin": "https://github.com/GlacierEQ/tasklet-micro-agent-engine.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "tesla-fsd-occupancy-stream",
+      "branch": "main",
+      "head": "6b5e12a",
+      "origin": "https://github.com/GlacierEQ/tesla-fsd-occupancy-stream.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "the-tower-of-babel",
+      "branch": "main",
+      "head": "21cd8c5",
+      "origin": "https://github.com/GlacierEQ/the-tower-of-babel.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "token_saver",
+      "branch": "main",
+      "head": "d352b6f",
+      "origin": "https://github.com/GlacierEQ/token_saver.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "vercel-deploy-claim-compiler",
+      "branch": "main",
+      "head": "b8555df",
+      "origin": "https://github.com/GlacierEQ/vercel-deploy-claim-compiler.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "vercel-edge-agent-cap-token",
+      "branch": "main",
+      "head": "6b65d07",
+      "origin": "https://github.com/GlacierEQ/vercel-edge-agent-cap-token.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "vercel-preview-truth-gate",
+      "branch": "main",
+      "head": "de0ae3c",
+      "origin": "https://github.com/GlacierEQ/vercel-preview-truth-gate.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "waymo-phantom-freespace-certificate",
+      "branch": "main",
+      "head": "17ff5ff",
+      "origin": "https://github.com/GlacierEQ/waymo-phantom-freespace-certificate.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "waymo-uncertainty-lane-graph",
+      "branch": "main",
+      "head": "21cd34d",
+      "origin": "https://github.com/GlacierEQ/waymo-uncertainty-lane-graph.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "EVOLVING",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-actuation-receipt-bus",
+      "branch": "main",
+      "head": "8e94581",
+      "origin": "https://github.com/GlacierEQ/xai-actuation-receipt-bus.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-claim-promotion-fence",
+      "branch": "main",
+      "head": "22a93f5",
+      "origin": "https://github.com/GlacierEQ/xai-claim-promotion-fence.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence-state.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-2",
+      "branch": "master",
+      "head": "f7f7673",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-2.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": true
+    },
+    {
+      "name": "xai-colossus-cooling",
+      "branch": "main",
+      "head": "20da2e0",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-cooling.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-cooling-alpha",
+      "branch": "master",
+      "head": "29744f3",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-cooling-alpha.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-cooling-omega",
+      "branch": "master",
+      "head": "079e617",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-cooling-omega.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-energy",
+      "branch": "main",
+      "head": "0506f3c",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-energy.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-energy-alpha",
+      "branch": "master",
+      "head": "1bdc57b",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-energy-alpha.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-energy-omega",
+      "branch": "master",
+      "head": "d826b9e",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-energy-omega.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-nanosphere",
+      "branch": "main",
+      "head": "e6124ca",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-nanosphere.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-security",
+      "branch": "main",
+      "head": "135cbc7",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-security.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    },
+    {
+      "name": "xai-colossus-servers",
+      "branch": "main",
+      "head": "befd6e6",
+      "origin": "https://github.com/GlacierEQ/xai-colossus-servers.git",
+      "sync": "behind=0 ahead=0",
+      "principal": "PROMOTED",
+      "schema": "glaciereq.repo-excellence.record.v1",
+      "gap": false
+    }
+  ]
+}

@@ -581,7 +581,7 @@ def cleanup(
                     )
                     outcome = "DELETE_BLOCKED_ROLLBACK_FAILED"
                     detail = (
-                        f"Deletion failed and restoration was not verified: "
+                        "Deletion failed and restoration was not verified: "
                         f"{exc}; {rollback_exc}"
                     )
 

@@ -1,0 +1,58 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "run_id": "2026-08-09-atlas-monolith-refresh",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "primary_lane": "repo_atlas_refresh",
+  "canonical_head_before": "17672c33921b7c5e91bab6087b3756dd81bd768e",
+  "discovery": {
+    "repository": "GlacierEQ/monolith",
+    "repository_id": 1311910894,
+    "fork": false,
+    "private": true,
+    "archived": false,
+    "default_branch": "main",
+    "created_at": "2026-07-25T11:04:01Z",
+    "latest_verified_head": "7d3fc71b82156d1ddf87666d032be5767aba2661",
+    "latest_head_message": "Project canonical repo excellence lifecycle (#83)"
+  },
+  "direct_repository_evidence": {
+    "declared_role": "cartographic control plane for the GlacierEQ system library",
+    "declared_functions": [
+      "inventory repositories",
+      "classify coherent domains",
+      "distinguish foundations from component parts",
+      "separate active work from archived study material",
+      "publish human-readable maps and a machine-readable catalog"
+    ],
+    "committed_snapshot": {
+      "catalog_entries": 1165,
+      "github_repositories_fetched": 1164,
+      "domain_families": 11,
+      "mapped_wholes_and_foundations": 19,
+      "repositories_marked_worked_on": 62,
+      "repositories_marked_left_behind": 19,
+      "inventory_generated": "2026-07-25"
+    },
+    "count_boundary": "Snapshot is explicitly non-exhaustive; private repositories, pagination, forks, and local-only work can make scans incomplete."
+  },
+  "classification": {
+    "lifecycle": "ACTIVE",
+    "family_role": "CANONICAL_CANDIDATE",
+    "candidate_capability": "ESTATE_CARTOGRAPHY_AND_REPOSITORY_REGISTRY",
+    "confidence": "HIGH_DOCUMENTATION_LEVEL",
+    "decision": "PROMOTE_MONOLITH_AS_PRIMARY_LIVE_ATLAS_REFRESH_CANDIDATE; DO_NOT_REPLACE_GITHUB_CANONICAL_COUNTS_UNTIL_CURRENT_REGEN_RECEIPT_AND_LIVE_INVENTORY_ARE_RECONCILED"
+  },
+  "supersession_effect": {
+    "prior_seed": "GlacierEQ/colossus-gateway:docs/REPO_ATLAS_V1.md",
+    "prior_seed_total": 1180,
+    "prior_native_count": 598,
+    "action": "PRESERVE_PRIOR_COUNTS_AS_HISTORICAL_CONTROLLING_RECEIPTS; USE_MONOLITH_REGENERATION_PIPELINE_AS_NEXT_REFRESH_PATH, NOT_AS_AN_UNVERIFIED_COUNT_REPLACEMENT"
+  },
+  "verification": {
+    "github_repository_metadata_readback": "PASS",
+    "readme_role_declaration_readback": "PASS",
+    "latest_commit_head_readback": "PASS"
+  },
+  "blocker": "Monolith's checked-in inventory was generated 2026-07-25 and is not current enough to replace the existing controlling Atlas counts without a fresh authenticated regeneration and receipt reconciliation.",
+  "next_cursor": "Run Monolith's repository-native regeneration/verification path on a fresh authenticated inventory; compare its resulting counts and repository IDs against the 1180 seed and 598-native controlling receipts; promote only after exact receipt reconciliation."
+}

@@ -3,7 +3,53 @@
   "company_index": "manifests/company_dossiers.json",
   "company_overrides": {
     "anthropic": {
-      "next_gate": "Verify a current public Anthropic role/team, then inspect the exact promoted coordinator and safety-monitor code paths and their native proof before bounding a company-specific remedy."
+      "blockers": [
+        "company_specific_remedy_not_bounded",
+        "implementation_receipt_not_bound_to_anthropic_problem",
+        "proof_not_reproduced",
+        "claim_not_promoted"
+      ],
+      "claim_ceiling": "inspected_implementation_alignment",
+      "inspected_repositories": [
+        {
+          "id": "anthropic_inspection_agent_coordinator",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/anthropic-agent-coordinator/blob/ac977563cfd59deb8e87177f53082184f6468aa8/src/anthropic_agent_coordinator/coordinator.py",
+          "source_ref": "commit:ac977563cfd59deb8e87177f53082184f6468aa8",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "anthropic_inspection_safety_monitor",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/anthropic-safety-monitor/blob/a5c21172e32ce6054994402c38d86f7ef94bc56b/src/anthropic_safety_monitor/policy.py",
+          "source_ref": "commit:a5c21172e32ce6054994402c38d86f7ef94bc56b",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "next_gate": "Bound one company-specific reliability remedy against the verified Staff Software Engineer, AI Reliability problem using the inspected coordinator and safety-monitor mechanisms; preserve the non-deployment and non-semantic-safety boundaries before any IMPLEMENTED or reproduced-proof claim.",
+      "problem_evidence": [
+        {
+          "id": "anthropic_problem_ai_reliability_serving_path",
+          "kind": "problem",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/440e353a6eb6073aaca724a6402ae5329d0e9be6/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
+          "source_ref": "commit:440e353a6eb6073aaca724a6402ae5329d0e9be6",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "role_evidence": [
+        {
+          "id": "anthropic_role_staff_software_engineer_ai_reliability_5113224008",
+          "kind": "role",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/440e353a6eb6073aaca724a6402ae5329d0e9be6/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
+          "source_ref": "commit:440e353a6eb6073aaca724a6402ae5329d0e9be6",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "stage": "CODE_INSPECTED"
     },
     "lockheed_martin": {
       "blockers": [
@@ -198,7 +244,7 @@
     ],
     "visibility": "public"
   },
-  "generated_at": "2026-08-07T15:05:00-10:00",
+  "generated_at": "2026-08-09T15:16:00-10:00",
   "priority_wave": [
     "lockheed_martin",
     "openai",

@@ -26,26 +26,26 @@ class InnovationContractError(ValueError):
     """Raised when an innovation-engine invariant is violated."""
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class PromotionDecision:
     ready: bool
     failures: tuple[str, ...]
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class ReviewDecision:
     survives: bool
     blockers: tuple[str, ...]
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class RankedTarget:
     repository: str
     system_id: str
     score: float
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class RankedHypothesis:
     hypothesis_id: str
     score: float

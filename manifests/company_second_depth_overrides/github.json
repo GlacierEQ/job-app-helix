@@ -1,0 +1,92 @@
+{
+  "schema": "glaciereq.company-second-depth-company.v1",
+  "company_id": "github",
+  "state": {
+    "stage": "CLAIM_PROMOTED",
+    "claim_ceiling": "proof_bound_company_specific",
+    "role_evidence": [
+      {
+        "id": "github_role_mission_control_5611",
+        "kind": "role",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/evidence/github-role-5611.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "problem_evidence": [
+      {
+        "id": "github_problem_agentic_repository_promotion",
+        "kind": "problem",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/evidence/github-problem.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "inspected_repositories": [
+      {
+        "id": "github_inspection_merge_authority_private_hash_boundary",
+        "kind": "repository_inspection",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/machine/implementation-inspection.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "gap_queue": [
+      {
+        "id": "github_remedy_merge_authority_contract",
+        "kind": "bounded_gap",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/machine/remedy-contract.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "implementation_receipts": [
+      {
+        "id": "github_implementation_merge_authority",
+        "kind": "implementation_receipt",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/proof/implementation-receipt.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "proof_artifacts": [
+      {
+        "id": "github_proof_merge_authority_canonical_reproduction",
+        "kind": "proof_artifact",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/proof/canonical-reproduction.json",
+        "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
+        "verification_state": "REPRODUCED",
+        "visibility": "public"
+      }
+    ],
+    "claim_receipts": [
+      {
+        "id": "github_claim_bounded_public_claim",
+        "kind": "claim_receipt",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/577f63c506c6c4df9c1751a0ff5b8fa07822e491/projects/github-merge-authority-proof/proof/claim-receipt.json",
+        "source_ref": "commit:577f63c506c6c4df9c1751a0ff5b8fa07822e491",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      },
+      {
+        "id": "github_claim_production_projection_closure",
+        "kind": "claim_receipt",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/577f63c506c6c4df9c1751a0ff5b8fa07822e491/projects/github-merge-authority-proof/proof/production-projection-closure.json",
+        "source_ref": "commit:577f63c506c6c4df9c1751a0ff5b8fa07822e491",
+        "verification_state": "VERIFIED",
+        "visibility": "public"
+      }
+    ],
+    "blockers": [
+      "github_adoption_not_claimed",
+      "github_capability_production_scale_not_demonstrated",
+      "private_implementation_source_not_public"
+    ],
+    "next_gate": "Maintain the proof-bound public claim and its production projection receipts. Any future claim of GitHub adoption, GitHub production deployment, or production-scale reliability requires new public evidence and a new gate; none is claimed here."
+  }
+}

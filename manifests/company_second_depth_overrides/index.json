@@ -1,0 +1,18 @@
+{
+  "schema": "glaciereq.company-second-depth-overrides.v1",
+  "authority": "GlacierEQ/job-app-helix",
+  "merge_order": "base_company_second_depth_then_company_module",
+  "overrides": [
+    {
+      "company_id": "github",
+      "path": "manifests/company_second_depth_overrides/github.json"
+    }
+  ],
+  "invariants": [
+    "company modules may override only an existing required company track",
+    "the base default state and stage contract remain authoritative",
+    "each effective company state must pass the same evidence and claim-ceiling validator as inline overrides",
+    "duplicate inline and modular overrides for the same company are rejected",
+    "public compilers must consume the same effective merged state"
+  ]
+}

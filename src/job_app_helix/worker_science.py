@@ -25,7 +25,7 @@ class WorkerScienceContractError(ValueError):
     """Raised when longitudinal worker-science evidence violates a Helix invariant."""
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class SeriesDecision:
     mission_family: str
     comparison_key: str

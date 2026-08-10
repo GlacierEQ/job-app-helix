@@ -1,0 +1,29 @@
+dual=True
+===1===
+test_central_mechanism_refuse_or_edge (test_adversarial.AdversarialEliteTests.test_central_mechanism_refuse_or_edge)
+Exercise shipped refuse/edge paths when present; never crash open. ... ok
+test_module_importable (test_adversarial.AdversarialEliteTests.test_module_importable) ... ok
+test_refuse_bad_import_path_does_not_shadow (test_adversarial.AdversarialEliteTests.test_refuse_bad_import_path_does_not_shadow) ... ok
+test_expired (test_promotion_authority.PromotionAuthTests.test_expired) ... ok
+test_issue_verify (test_promotion_authority.PromotionAuthTests.test_issue_verify) ... ok
+test_real_machine_grant_verifies_against_proof_receipt (test_promotion_authority.PromotionAuthTests.test_real_machine_grant_verifies_against_proof_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.046s
+
+OK
+
+===2===
+test_central_mechanism_refuse_or_edge (test_adversarial.AdversarialEliteTests.test_central_mechanism_refuse_or_edge)
+Exercise shipped refuse/edge paths when present; never crash open. ... ok
+test_module_importable (test_adversarial.AdversarialEliteTests.test_module_importable) ... ok
+test_refuse_bad_import_path_does_not_shadow (test_adversarial.AdversarialEliteTests.test_refuse_bad_import_path_does_not_shadow) ... ok
+test_expired (test_promotion_authority.PromotionAuthTests.test_expired) ... ok
+test_issue_verify (test_promotion_authority.PromotionAuthTests.test_issue_verify) ... ok
+test_real_machine_grant_verifies_against_proof_receipt (test_promotion_authority.PromotionAuthTests.test_real_machine_grant_verifies_against_proof_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.051s
+
+OK
+

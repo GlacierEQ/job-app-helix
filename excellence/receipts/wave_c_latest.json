@@ -1,0 +1,503 @@
+{
+  "schema": "glaciereq.wave-c-receipt.v1",
+  "ts": "2026-08-10T1011Z",
+  "run": "WAVE-C-CLOSED",
+  "wave_c": {
+    "id": "WAVE-C-2026-08-10",
+    "label": "Wave C \u2014 Innovation scaffold excellence group",
+    "enrolled": 47,
+    "promoted": 47,
+    "gapped": 0,
+    "phase": "CLOSED",
+    "leaves_promoted": [
+      "adobe-creative-provenance-gate",
+      "amd-hetero-placement-contract",
+      "atlassian-workgraph-intent-twin",
+      "baseten-serving-slo-circuit",
+      "blue-origin-cryo-telemetry-half-life",
+      "cerebras-wafer-batch-admission-gate",
+      "cloudflare-edge-cap-mint",
+      "cognition-execution-checkpoint-lattice",
+      "cohere-retrieval-claim-fence",
+      "coreweave-rack-power-autopilot",
+      "crusoe-rack-to-token-autopilot",
+      "cursor-patch-intent-twin",
+      "elastic-trajectory-index-layout",
+      "fireworks-ai-optimization-safety-envelope",
+      "github-pr-authority-matrix",
+      "gitlab-pipeline-intent-contract",
+      "glean-enterprise-search-claim-fence",
+      "hugging-face-model-card-provenance-seal",
+      "ibm-governed-tool-catalog",
+      "intel-npu-placement-passport",
+      "lambda-useful-gpu-minute-contract",
+      "linear-issue-intent-twin",
+      "lockheed-martin-mission-assurance-gateway",
+      "mistral-open-weight-eval-fence",
+      "modal-ephemeral-sandbox-receipt",
+      "mongodb-operational-semantic-twin-index",
+      "motherduck-local-cloud-query-passport",
+      "nebius-cluster-energy-admission",
+      "oracle-sovereign-data-boundary-gate",
+      "pinecone-retrieval-outcome-optimizer",
+      "qdrant-collection-quorum-guard",
+      "qualcomm-on-device-budget-futures",
+      "redis-stream-claim-cursor-fence",
+      "replicate-model-version-pin-gate",
+      "replit-workspace-cap-matrix",
+      "rocket-lab-launch-hold-receipt",
+      "runpod-pod-preempt-receipt",
+      "salesforce-crm-action-authority",
+      "scale-ai-label-consensus-fence",
+      "snowflake-warehouse-spend-circuit",
+      "sourcegraph-code-nav-intent-gate",
+      "supabase-policy-carrying-ai-data-plane",
+      "together-ai-open-model-fidelity-passport",
+      "vercel-deploy-preview-authority",
+      "weaviate-hybrid-search-claim-fence",
+      "windsurf-cascade-intent-twin",
+      "zoox-fleet-skill-promotion-gate"
+    ],
+    "leaves_gapped": [],
+    "cleared": [
+      "ENROLLMENT",
+      "STEEL_VIA_ELEVATOR",
+      "DUAL_RUN",
+      "AUTHORITY_BOUND",
+      "VALIDATOR"
+    ],
+    "not_yet": [],
+    "law": "Wave B closed; Wave C elevates innovation scaffolds with proof XOR honest gap"
+  },
+  "nonclaims": [
+    "no employer affiliation or production deployment",
+    "reference implementations only",
+    "does not re-open Wave A residual"
+  ],
+  "result": "PASS",
+  "results": [
+    {
+      "leaf": "adobe-creative-provenance-gate",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "6402788371fa56e314de49bd60447f318d15f601e17f3fa849d4d35672093595",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "amd-hetero-placement-contract",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "d1db01d8a66b629a90f2743230aacaae920862960f06f53dacbae8943b0ca019",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "atlassian-workgraph-intent-twin",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "67493ad9a9d453ac606bc6b647187318f496c32bc1fd3c26abc24d61561c24f2",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "baseten-serving-slo-circuit",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "f4f3a20e4e67fb66eb9e7e1e6d0be811d4c261721799b4a2f0b56c386be26821",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "blue-origin-cryo-telemetry-half-life",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "42908a91af00adb8775ca35df3b8be756244ee08c23c2f1c700be657ed21f32b",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "cerebras-wafer-batch-admission-gate",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "30015ae77cb6a53a8f1a0e63bf2a430c01ce94b7b0966b073cea99454eaa4f99",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "cloudflare-edge-cap-mint",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "9bd6fb0ea0996b2bf4d798a1fe27eab55d0ff6ffd64d4ec4f73b3fffb8048309",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "cognition-execution-checkpoint-lattice",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "a21733234428c6966b546c0d06c4f18cbef42844f078794e128229e3ed39e971",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "cohere-retrieval-claim-fence",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "67938068221266b35ff2a6132f9f1a6d41a38feb46ee741560b2d6f2f741c545",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "coreweave-rack-power-autopilot",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "e49984e4a49022da66b099aca162da2af6471359e8b16ad014a732d12d7c6747",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "crusoe-rack-to-token-autopilot",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "603d629438aead66a92024228449742129e62a6457a039fa2c35042f35b85b2f",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "cursor-patch-intent-twin",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "53c17fce60f6517746f9c5c81f6dbdc93f21d9b421790f6ef67d422efad68ddf",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "elastic-trajectory-index-layout",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "5152fc2b560619b37965dda7d061db3591e6c6d2efb4a81eac4cda21972f04ea",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "fireworks-ai-optimization-safety-envelope",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "2b304ab55d240791a3cd0d0aed85cf5eec20be906ac52fecbd4652b29893d154",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "github-pr-authority-matrix",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "cc14ff0ecdfacf27c8e6269c86782a8a5a2f015a216c130ae8832baf674d98a5",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "gitlab-pipeline-intent-contract",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "8323b1bd14af6254ac7ebc7e6e6e25ad0298dc4cf880836486db550849156104",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "glean-enterprise-search-claim-fence",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "31e2071dee013aef436440681d20e32445b1b9b1f1cdc7ea334fdad0acbba2ff",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "hugging-face-model-card-provenance-seal",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "0a703c78c389f84a99f96f4d66d74a30d59dce2bb6d29b8edb329e59ee56dc3a",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "ibm-governed-tool-catalog",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "9a4b40852d93bf78608d37d5ebb904c29fd0f594a8834de404b065a1e168f323",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "intel-npu-placement-passport",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "132dafa2a8b622e72d2fe96035888eeeaf9d1577a39fca510c01096c3bd9524a",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "lambda-useful-gpu-minute-contract",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "77e704e1d5b77f15ad0a17c481f488e0f7097572464f0b3b86a9e5c1cb4e0877",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "linear-issue-intent-twin",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "917dae7216128f1f0283e09385079f5e543dd7613a7e5a3783a8f7344cabe08c",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "lockheed-martin-mission-assurance-gateway",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "cbcd0ea675e0950a466fef527f9ab81f122ec10943976fc96cbb0881921cbf37",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "mistral-open-weight-eval-fence",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "7be25abeeb3bd9c6c61e5169fe4f6996cbf25333fcdc36c8cbd58cb7d4dfb0ee",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "modal-ephemeral-sandbox-receipt",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "19b640c0ccdef9b1421041c5d3bb26a26cbfb9d05e1adbb0605800ac2a83e44e",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "mongodb-operational-semantic-twin-index",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "c1aeacd0c091d768c9cefdcdfa64aa258c6b1360b919451e87f178fe23bfba6a",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "motherduck-local-cloud-query-passport",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "335345e652e6c1ad26933dc95bc73a9cea9335a2fac9ca8635cef3ae92846733",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "nebius-cluster-energy-admission",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "2c02319a1534f2dbbb352027fe6d9d11bf0ff5845a5daad37d89ba26d89cde8d",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "oracle-sovereign-data-boundary-gate",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "4cedf0046649a7931a4a9d63f2d45f017b808764701984fcc6eae3d24c8b992f",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "pinecone-retrieval-outcome-optimizer",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "74bac97fc305fca8eccb00263c0ab364082075533e65e694aaf7475e7ea55298",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "qdrant-collection-quorum-guard",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "6fd2e966d2d5a470fb9681b6a653fc9d23a4448371c3446a364517abc0b8db49",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "qualcomm-on-device-budget-futures",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "f556ccdf3cd88f696905ffc24f0e18622e92cbd346b9c19a086e756a4d7e86b3",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "redis-stream-claim-cursor-fence",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "42890268a2f036397d51d06dbd39bb77f3b1b174c83250f8c86f9819980a6283",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "replicate-model-version-pin-gate",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "1802c7f2cfeabbe96e12d02efdd0e5770eb40a856308448e39cdcb13d1d9b19b",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "replit-workspace-cap-matrix",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "803e02966e7c252eb690578e9d4070d8380a8c9854c3d76dad1be13c60372cb0",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "rocket-lab-launch-hold-receipt",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "37d6009eee03cdadad0103c5a54f582b286d180119403f1e3318d04dfac58123",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "runpod-pod-preempt-receipt",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "2041d1894740e56c055f478f67ddf4c12269ad519107dddbc00a8a2a3f06b67a",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "salesforce-crm-action-authority",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "77635bc3c9c412b4f0a75ac6df50d118cbd3324d77172d12704b071eb376c04c",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "scale-ai-label-consensus-fence",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "0637f3ffe751e09e6c5c36ab34645d65c8422785d4abade532873af5a44f7578",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "snowflake-warehouse-spend-circuit",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "3d4596de408a1985837e5f2764652e5e1334893143b67080e5779132b0e35a04",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "sourcegraph-code-nav-intent-gate",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "e3d0eba36c00e211064613c3964e398ef4dc10076abadbce83711abf73164ce4",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "supabase-policy-carrying-ai-data-plane",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "a767d8c16c36bd4253985cde19dc3737620e27f4e37e177a1184e15e5b7cb986",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "together-ai-open-model-fidelity-passport",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "e751e449b82e35ec2ff35d59ea20d005a625461bf9ccb9126f9b8855bc7d247c",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "vercel-deploy-preview-authority",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "baab39046c48d37281e6bcf1073df6d6a69bfd4b5ec67908888ee9dba5ae631d",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "weaviate-hybrid-search-claim-fence",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "74bdf14a5becf708a7996cf78a0613e2fd88d604956c88478abaf0b0daec2c93",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "windsurf-cascade-intent-twin",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "622ab62fd12676d5b11181d7434c942f664d0d9f0c04ce09d7aec95d9099a16a",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    },
+    {
+      "leaf": "zoox-fleet-skill-promotion-gate",
+      "ok": true,
+      "grade": "PROMOTED",
+      "blocker": null,
+      "source_sha": "bd542550e1bb7adade4f5d8d666de620a0eba9b589838d3f999adab3a4cc96c6",
+      "validator_rc": 0,
+      "dual_run_ok": true
+    }
+  ]
+}

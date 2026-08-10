@@ -1,0 +1,61 @@
+{
+  "schema": "glaciereq.company-lineage-audit.v1",
+  "company_id": "supabase",
+  "company": "Supabase",
+  "audited_at": "2026-08-08T15:42:00-10:00",
+  "atlas_base_head": "6cbb35b13c7e06f49c9e5088ab00e005e5042f45",
+  "verdict": "MIXED_UPSTREAM_FORKS_AND_PRIVATE_NONFORK_REFERENCE",
+  "recruiter_ready_direct_repositories": 0,
+  "repositories": [
+    {
+      "repository": "GlacierEQ/supabase",
+      "repository_id": 1116120597,
+      "fork": true,
+      "upstream": "supabase/supabase",
+      "classification": "EXCLUDED_AUTHORSHIP",
+      "provenance_state": "UPSTREAM",
+      "recruiter_admission": false,
+      "reason": "GitHub repository metadata identifies this repository as a fork of supabase/supabase."
+    },
+    {
+      "repository": "GlacierEQ/supabase-mcp",
+      "repository_id": 1071055687,
+      "fork": true,
+      "upstream": "supabase/mcp",
+      "classification": "EXCLUDED_AUTHORSHIP",
+      "provenance_state": "UPSTREAM",
+      "recruiter_admission": false,
+      "reason": "GitHub repository metadata identifies this repository as a fork of supabase/mcp."
+    },
+    {
+      "repository": "GlacierEQ/supabase-grafana",
+      "repository_id": 1022537990,
+      "fork": true,
+      "upstream": "supabase/supabase-grafana",
+      "classification": "EXCLUDED_AUTHORSHIP",
+      "provenance_state": "UPSTREAM",
+      "recruiter_admission": false,
+      "reason": "GitHub repository metadata identifies this repository as a fork of supabase/supabase-grafana."
+    },
+    {
+      "repository": "GlacierEQ/aspen-grove-supabase",
+      "repository_id": 1250416371,
+      "fork": false,
+      "source_head": "6ffa3b055d91b743d90ba443c792e9277f33ac8d",
+      "classification": "PRIVATE_REFERENCE",
+      "provenance_state": "ORIGINAL_CANDIDATE",
+      "recruiter_admission": false,
+      "mutation_policy": "READ_ONLY",
+      "sensitive_scope": "LEGAL_EVIDENCE",
+      "reason": "The repository is a private non-fork Supabase-native legal-operations architecture. Its direct case/evidence scope requires read-only treatment and separation of reusable technical mechanisms before recruiter admission."
+    }
+  ],
+  "truth_boundary": {
+    "name_match_is_not_authorship": true,
+    "verified_forks_are_excluded_from_authorship": true,
+    "private_legal_reference_is_not_public_company_proof": true,
+    "legal_evidence_source_mutation_is_prohibited": true,
+    "reusable_capability_extraction_requires_non_sensitive_donor": true
+  },
+  "next_cursor": "Inspect GlacierEQ/aspen-grove-supabase read-only for reusable Supabase-native mechanisms, then extract only non-sensitive capability into a fresh canonical technical donor with current tests and runtime receipts."
+}

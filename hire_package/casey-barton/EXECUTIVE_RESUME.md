@@ -2,7 +2,7 @@
 
 **Applied AI Systems Architect | Forward-Deployed AI Engineer | Agent Infrastructure Engineer**  
 Honolulu, Hawaii | Direct recruiter contact in the downloadable application package  
-Portfolio: https://glaciereq.github.io/job-app-helix/ | GitHub: https://github.com/GlacierEQ
+Portfolio: https://casey-barton-glaciereq.vercel.app/ | GitHub: https://github.com/GlacierEQ
 
 ## Executive Profile
 
@@ -73,4 +73,4 @@ Applied AI Architect | Forward-Deployed AI Engineer | Agent Infrastructure Engin
 
 ## Portfolio and Licensing
 
-The public presentation is available at https://glaciereq.github.io/job-app-helix/. Current GlacierEQ materials are proprietary and source-visible for evaluation. Employment, licensing, integration, partnership, research, and joint-development discussions are welcome under a separate written agreement.
+The public presentation is available at https://casey-barton-glaciereq.vercel.app/. Current GlacierEQ materials are proprietary and source-visible for evaluation. Employment, licensing, integration, partnership, research, and joint-development discussions are welcome under a separate written agreement.

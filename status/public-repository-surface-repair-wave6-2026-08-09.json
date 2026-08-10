@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-wave.v6",
+  "generated_at": "2026-08-09T16:10:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "base_head": "ccf6bd331cd6dd5864ba5331b4c9775564f847d4",
+  "predecessor_receipt": "status/public-repository-surface-repair-wave5-2026-08-09.json",
+  "reconciliation": "manifests/public_repository_surface_reconciliation_wave6_2026-08-09.json",
+  "historical_decision_subset": {
+    "before": {"ADMIT": 12, "REPAIR_REQUIRED": 42, "QUARANTINED": 3, "REFERENCE": 1},
+    "after_this_wave": {"ADMIT": 13, "REPAIR_REQUIRED": 41, "QUARANTINED": 3, "REFERENCE": 1},
+    "unassessed": 0
+  },
+  "admitted": [
+    {
+      "repository": "GlacierEQ/colossus-training-flux",
+      "canonical_head": "ad4ae574efad762550b373967a57008848986df4",
+      "proof_runs": [31349338606, 31349338843],
+      "material_repairs": [
+        "replaced cluster-runtime and performance claims with deterministic local capacity modeling",
+        "repaired same-zone gang scheduling, pending-job preservation, priority ordering, caller-ownership isolation, and statistics locking",
+        "established exact-current-head Python and Go proof with explicit xAI/Colossus non-affiliation and nondeployment boundaries"
+      ]
+    }
+  ],
+  "improved_but_blocked": [
+    {
+      "repository": "GlacierEQ/ai-auto-driller-unified",
+      "canonical_head": "c0c5d8b3d3e1adb47480a9619e10ed18ed1e3f76",
+      "proof_runs": [31349872706],
+      "blocker": "GitHub About description still advertises v4.0 while the canonical userscript/source surface is v5.0.1; homepage/topics/license metadata are also incomplete."
+    },
+    {
+      "repository": "GlacierEQ/computer-user-storage",
+      "canonical_head": "ad307c30ab53df53876c7ecaff6682964c5ae5b1",
+      "proof_runs": [31350253021],
+      "blocker": "GitHub About description still advertises a distributed-storage deployment despite the repaired local health-snapshot boundary."
+    },
+    {
+      "repository": "GlacierEQ/apex-cli",
+      "canonical_head": "2b92ca206a3b6d97382969c9f75896bfc71de0d2",
+      "proof_runs": [31348604660, 31348604363],
+      "blocker": "Current-tree secret removal is verified, but revocation/rotation/invalidation or required history remediation for historically public credential material is not established."
+    }
+  ],
+  "invariants": [
+    "Waves 2 through 5 remain immutable predecessor checkpoints.",
+    "Exact-head source proof cannot override stale GitHub metadata when the metadata contradicts the public front door.",
+    "Current-tree credential removal cannot override unresolved historical-credential exposure.",
+    "Only the exact-current-head proof-complete Colossus training surface graduates in this wave."
+  ]
+}
