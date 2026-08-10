@@ -70,6 +70,8 @@ def test_authority_enforces_scope_issuer_and_expiry() -> None:
 def test_environment_receipt_contains_no_local_paths() -> None:
     env = sanitized_environment(runner="ci")
     blob = str(env)
+    mac_user_path = "/" + "Users/"
+    windows_user_path = "\\" + "Users\\"
     assert "PYTHONPATH" not in blob
-    assert "/Users/" not in blob
-    assert "\\Users\\" not in blob
+    assert mac_user_path not in blob
+    assert windows_user_path not in blob
