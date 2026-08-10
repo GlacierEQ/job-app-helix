@@ -4,7 +4,7 @@ import argparse
 import base64
 import json
 import os
-import tomli as tomllib
+import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -581,7 +581,7 @@ def cleanup(
                     )
                     outcome = "DELETE_BLOCKED_ROLLBACK_FAILED"
                     detail = (
-                        f"Deletion failed and restoration was not verified: "
+                        "Deletion failed and restoration was not verified: "
                         f"{exc}; {rollback_exc}"
                     )
 
