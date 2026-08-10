@@ -1,10 +1,21 @@
 {
   "schema": "glaciereq.candidate-final-form-manifest.v1",
-  "release": "2026-07-31-final-form-census",
+  "release": "2026-08-09-canonical-vercel-surface",
   "candidate": "Casey Del Carpio Barton",
-  "canonical_url": "https://glaciereq.github.io/job-app-helix/",
+  "canonical_url": "https://casey-barton-glaciereq.vercel.app/",
   "repository": "GlacierEQ/job-app-helix",
+  "deploy_repository": "GlacierEQ/job-application",
+  "deploy_output_directory": "site-v15",
   "canonical_branch": "main",
+  "public_surface_policy": {
+    "sole_share_url": "https://casey-barton-glaciereq.vercel.app/",
+    "forbidden_share_urls": [
+      "https://glaciereq.github.io/job-app-helix/",
+      "https://job-application.vercel.app/",
+      "https://glaciereq.com"
+    ],
+    "github_pages": "OPTIONAL_MIRROR_DISABLED"
+  },
   "purpose": "Provide one sendable, evidence-bound candidate package for recruiters, technical reviewers, ATS systems, and AI agents.",
   "reading_order": [
     "EXECUTIVE_RESUME.md",
@@ -29,7 +40,7 @@
     "candidate": "FINAL_FORM_README.md",
     "role_power": "ROLE_POWER_MATRIX.md",
     "portfolio_expansion": "PORTFOLIO_EXPANSION_MAP.md",
-    "public_site": "https://glaciereq.github.io/job-app-helix/"
+    "public_site": "https://casey-barton-glaciereq.vercel.app/"
   },
   "machine_entrypoints": [
     "candidate_node.json",

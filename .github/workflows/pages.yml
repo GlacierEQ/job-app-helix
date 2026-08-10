@@ -316,8 +316,14 @@ jobs:
             echo "### Recruiter deployment gate"
             echo
             echo "The recruiter artifact was built and privacy-verified, but GitHub Pages is disabled."
-            echo "No deployment was attempted."
+            echo "No Pages deployment was attempted."
             echo
-            echo "To permit automatic bootstrap, configure GLACIEREQ_PAGES_TOKEN with"
-            echo "repository administration/write and Pages/write authority."
+            echo "**Canonical public hire surface (share this):**"
+            echo "https://casey-barton-glaciereq.vercel.app/"
+            echo
+            echo "Deploy source: GlacierEQ/job-application → site-v15"
+            echo "Do not share glaciereq.github.io/job-app-helix/ (not enabled)."
+            echo
+            echo "Pages remains an optional mirror only. To bootstrap Pages, configure"
+            echo "GLACIEREQ_PAGES_TOKEN with repository administration/write and Pages/write authority."
           } >> "${GITHUB_STEP_SUMMARY}"

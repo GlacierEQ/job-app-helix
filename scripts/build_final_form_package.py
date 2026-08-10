@@ -137,8 +137,12 @@ def _copy_site(site_dir: Path, package_dir: Path) -> None:
         _copy(source, destination_root / relative)
 
 
+# Sole public hire surface. GitHub Pages is not enabled; do not reintroduce github.io.
+CANONICAL_PUBLIC_URL = "https://casey-barton-glaciereq.vercel.app/"
+
+
 def _write_live_entry(package_dir: Path, *, snapshot_included: bool) -> None:
-    live_url = "https://glaciereq.github.io/job-app-helix/"
+    live_url = CANONICAL_PUBLIC_URL
     presentation = package_dir / "07_LIVE_PRESENTATION"
     presentation.mkdir(parents=True, exist_ok=True)
     snapshot_text = (

@@ -20,7 +20,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 
 | Priority | Artifact | Why it matters |
 |---:|---|---|
-| 1 | [Live recruiter presentation](https://glaciereq.github.io/job-app-helix/) | Deployed recruiter, engineering, and AI reading paths generated from canonical Helix evidence records. |
+| 1 | [Live recruiter presentation](https://casey-barton-glaciereq.vercel.app/) | Deployed recruiter, engineering, and AI reading paths generated from canonical Helix evidence records. |
 | 2 | [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) | Lead product flagship: source-grounded résumé tailoring with deterministic truthfulness checks and executable TypeScript tests. |
 | 3 | [Casey Barton candidate source](hire_package/casey-barton/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and immutable evidence links. |
 | 4 | [Root README](README.md) | Portfolio control-plane outcome, expert architecture, and machine contract. |
@@ -28,7 +28,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 | 6 | [Exact live portfolio inventory](manifests/portfolio_repositories.json) | Pins the current boundary to one root and sixty-six child repositories. |
 | 7 | [GitHub curation ledger](manifests/github_repository_curation_2026-07-31.json) | Records admission, deferral, duplicate, private, backup, archive, and external-source decisions. |
 | 8 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
-| 9 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how canonical records become a hash-bound Pages deployment from `main`. |
+| 9 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how canonical records become the live Vercel hire surface (`casey-barton-glaciereq.vercel.app`); Pages is optional/disabled. |
 
 ## Strongest current exhibits
 
@@ -36,7 +36,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 
 **Role:** portfolio control plane, evidence ledger, and deployed candidate presentation source.  
 **Signal:** systems architecture, deterministic decision logic, Protobuf contracts, CI design, documentation engineering, proof-weighted auditing, and truth-preserving deployment semantics.  
-**Status:** partially verified; repository CI and the Pages deployment workflow are authoritative for their named scopes.
+**Status:** partially verified; repository CI is authoritative for named scopes; the live public presentation is the Vercel surface above, not GitHub Pages.
 
 ### Resume Shapeshifter
 
