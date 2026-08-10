@@ -451,7 +451,7 @@ def continuous_history(repo_id: str, evidence: dict) -> dict:
         "IDENTITY_RESOLVED", "PROBLEM_VERIFIED", "TARGET_CONTRACT_FROZEN", "DONOR_PLAN_RESOLVED",
         "VERTICAL_SLICE_ALIVE", "CENTRAL_MECHANISM_PRESENT", "DETERMINISTIC_PROOF_GREEN",
         "ADVERSARIAL_SURVIVAL", "OPERABLE_AND_OBSERVABLE", "PROOF_RECEIPT_BOUND",
-        "AUTHORITY_BOUND", "CANONICAL_POSITION_RESOLVED",
+        "AUTHORITY_BOUND", "PROJECTION_TRUTH_CLOSED", "CANONICAL_POSITION_RESOLVED",
     )}
     gates["EVOLUTION_CURSOR_DEFINED"] = {"status": "PASS", "at": TS, "evidence": "elite estate elevator"}
     history = []
@@ -461,6 +461,17 @@ def continuous_history(repo_id: str, evidence: dict) -> dict:
         gates[gate] = {"status": "PASS", "at": TS, "evidence": note}
         history.append({"at": TS, "from": frm, "to": to, "gate": gate, "result": "PASS", "note": note})
         principal = to
+    # Compound promotion policy (monolith promotion-policy.v1 / #95):
+    # PROOF_REPRODUCED → PROMOTED requires AUTHORITY_BOUND + PROJECTION_TRUTH_CLOSED.
+    gates["PROJECTION_TRUTH_CLOSED"] = {
+        "status": "PASS",
+        "at": TS,
+        "evidence": (
+            f"operable={evidence.get('operable')}; proof={evidence.get('proof')}; "
+            f"authority={evidence.get('authority')}; claim_ceiling=leaf-native; "
+            "projection_role=monolith_projection_only"
+        ),
+    }
     return {
         "schema": "glaciereq.repo-excellence-state.v1",
         "repository": repo_id,
@@ -470,7 +481,13 @@ def continuous_history(repo_id: str, evidence: dict) -> dict:
         "contract_ref": "machine/target-contract.json",
         "scores_ref": "machine/excellence-scores.json",
         "evolution_cursor": "next:canonical_position_only_if_estate_role_resolved",
-        "wave": {"id": "ELITE-ESTATE-2026-08-10", "proof_ok": True, "operable_ok": True, "promoted_at": TS},
+        "wave": {
+            "id": "ELITE-ESTATE-2026-08-10",
+            "proof_ok": True,
+            "operable_ok": True,
+            "promoted_at": TS,
+            "policy": "glaciereq.repo-excellence.promotion-policy.v1",
+        },
     }
 
 
