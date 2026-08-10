@@ -275,15 +275,16 @@ def _require_canonical_position_receipt(
         )
     if retained != pointer_retained:
         raise ExcellenceContractError("canonical blocker classification pointer drift")
-    blocker_ids = (
-        [
-            item.get("id")
-            for item in blockers
-            if isinstance(item, Mapping) and isinstance(item.get("id"), str)
-        ]
-        if isinstance(blockers, list)
-        else []
-    )
+
+    if blockers is None:
+        blockers = []
+    if not isinstance(blockers, list):
+        raise ExcellenceContractError("blockers must be a list")
+    blocker_ids = []
+    for index, item in enumerate(blockers):
+        if not isinstance(item, Mapping):
+            raise ExcellenceContractError(f"blockers[{index}] must be an object")
+        blocker_ids.append(_require_text(item.get("id"), f"blockers[{index}].id"))
     if blocker_ids != retained:
         raise ExcellenceContractError(
             "CANONICAL record blockers do not match retained non-canonicalization blockers"
