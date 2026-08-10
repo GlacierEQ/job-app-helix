@@ -164,6 +164,26 @@ def test_canonical_requires_all_retained_blockers_classified():
         raise AssertionError("unclassified CANONICAL blocker should fail")
 
 
+def test_canonical_rejects_malformed_blockers_container():
+    record = apex_record()
+    record["blockers"] = {"id": "github_actions_budget"}
+    try:
+        validate_repo_excellence_record(record)
+    except ExcellenceContractError as exc:
+        assert "blockers must be a list" in str(exc)
+    else:
+        raise AssertionError("malformed CANONICAL blockers should fail")
+
+    record = apex_record()
+    record["blockers"] = ["github_actions_budget"]
+    try:
+        validate_repo_excellence_record(record)
+    except ExcellenceContractError as exc:
+        assert "blockers[0] must be an object" in str(exc)
+    else:
+        raise AssertionError("malformed CANONICAL blocker row should fail")
+
+
 def test_excellent_requires_every_gate_true():
     gates = {name: True for name in REQUIRED_EXCELLENT_GATES}
     assert excellent(gates)
