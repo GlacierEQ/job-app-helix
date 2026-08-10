@@ -83,6 +83,32 @@ def test_promoted_record_rejects_non_digest_proof() -> None:
         validate_repo_excellence_record(payload)
 
 
+def test_promoted_record_rejects_valid_looking_proof_from_another_head() -> None:
+    payload = promoted_record()
+    receipt = payload["proof_receipt"]
+    assert isinstance(receipt, dict)
+    receipt["source_sha"] = "b" * 40
+
+    with pytest.raises(
+        ExcellenceContractError,
+        match=r"proof_receipt\.source_sha to match identity\.canonical_head",
+    ):
+        validate_repo_excellence_record(payload)
+
+
+def test_promoted_record_rejects_non_git_canonical_head() -> None:
+    payload = promoted_record()
+    identity = payload["identity"]
+    assert isinstance(identity, dict)
+    identity["canonical_head"] = "RESOLVED"
+
+    with pytest.raises(
+        ExcellenceContractError,
+        match=r"identity\.canonical_head to be an exact 40-hex Git commit",
+    ):
+        validate_repo_excellence_record(payload)
+
+
 def test_quarantined_engine_cannot_bootstrap_missing_state(tmp_path: Path) -> None:
     module = load_engine_module()
     engine_type = module.HyperExcellenceEngine
