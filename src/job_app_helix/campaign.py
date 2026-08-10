@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
-UTC = timezone.utc
+from datetime import UTC, datetime
 
 from .models import CampaignDecision, CampaignReport, Refinement, StageResult
 from .pistons import (
