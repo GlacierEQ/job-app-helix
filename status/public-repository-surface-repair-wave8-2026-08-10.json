@@ -5,6 +5,7 @@
   "repository": "GlacierEQ/colossus-gateway",
   "source_canonical_head": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
   "source_state": "SOURCE_TRUTH_COMPLETE_METADATA_BLOCKED",
+  "prior_surface_decision": "ADMIT",
   "proof_receipts": [
     {
       "kind": "workflow_run",
@@ -40,7 +41,8 @@
   "surface_decision": "REPAIR_REQUIRED",
   "repair_priority": "P1",
   "governed_subset_delta": {
-    "ADMIT": 0,
-    "REPAIR_REQUIRED": 0
-  }
+    "ADMIT": -1,
+    "REPAIR_REQUIRED": 1
+  },
+  "decision_reason": "New exact source proof strengthened the repository while a fresh GitHub About readback exposed a remaining public metadata mismatch; admission therefore fails closed until metadata is mutated and read back."
 }
