@@ -1,0 +1,56 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-11T13:21:00-10:00",
+  "wave": 14,
+  "repository": "GlacierEQ/spacex-propulsion-monitor",
+  "source_canonical_head": "1903e562e801a6153b0e78b9d236418c849f1867",
+  "source_state": "LOCAL_MULTI_SENSOR_HEALTH_SIMULATION_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31546261209,
+      "name": "CI",
+      "head_sha": "1903e562e801a6153b0e78b9d236418c849f1867",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31546261244,
+      "name": "Public Health Simulation Truth Gate",
+      "head_sha": "1903e562e801a6153b0e78b9d236418c849f1867",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-local-multi-sensor-health-evaluation",
+  "evidence_token": "LOCAL_PROPULSION_HEALTH_SIMULATION_NOT_FLIGHT_ENGINE_AUTHORITY",
+  "repairs": [
+    "replaced unsupported SpaceX Raptor/Merlin telemetry, engine-control, calibrated failure-prediction, RUL, production, and live integration framing with repository-owned local multi-sensor simulation scope",
+    "isolated health state per simulated unit so one unit anomaly cannot contaminate another unit",
+    "made health state recover from transient anomalies through a bounded recent-health window",
+    "made malformed non-finite, non-monotonic, negative where invalid, boolean/string unit identity, throttle, profile, and threshold inputs fail closed",
+    "removed the artificial health-score floor so severe degradation can be represented honestly",
+    "isolated anomaly and shutdown observer failures from state transitions",
+    "made profile-driven throttle use the same state-transition semantics as direct throttle operations",
+    "made implicit and explicit telemetry timestamps use one wall-clock Unix-seconds domain with monotonic enforcement per unit and sensor",
+    "emitted immediate local diagnostics for thresholds already violated instead of requiring a future crossing",
+    "aligned cross-sensor correlation by timestamp, required both correlated channels to deviate, and restricted per-ingest work to pairs involving the current sensor",
+    "bounded anomaly and prediction histories and stabilized diagnostic result schemas",
+    "bounded expensive vibration-spectrum recomputation cadence while preserving dependency-free local spectral math",
+    "made simulated shutdown and emergency-stop transitions terminal so already stopped units are not double-transitioned or double-notified",
+    "replaced blacklist-only public capability checking with exact admitted capability whitelisting",
+    "added exact-head repository-owned CI, Python 3.11/3.13 public truth gates, adversarial regression tests, and explicit SpaceX non-affiliation/no-flight-engine-authority boundaries"
+  ],
+  "nonclaims": [
+    "no SpaceX affiliation, endorsement, employment, or proprietary access",
+    "no real Raptor or Merlin telemetry, test-fire corpus, or flight data",
+    "no flight-engine, vehicle, actuator, or hardware command authority",
+    "no calibrated failure probability, diagnosis, remaining useful life, or validated predictive-maintenance performance",
+    "no live MCP, provider, APEX, AKOS, Mastermind, or agent-mesh runtime integration",
+    "no production deployment, safety certification, or operational flight suitability"
+  ],
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
