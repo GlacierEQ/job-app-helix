@@ -118,8 +118,8 @@
       "branch_state": "AUTHORITY_SYNC_MERGED_SUPERSEDED_REFS_DELETE_REQUIRED",
       "identity_state": "CONFIRMED",
       "authority_state": "CURRENT",
-      "authority_head": "c9aa2faa0dcede7d6b7e7e6891b7930ee87040ab",
-      "authority_receipt": "status/public-repository-governance-wave-2026-08-08.json",
+      "authority_head": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
+      "authority_receipt": "status/pro-code-authority-reconciliation-2026-08-10.json",
       "aliases": ["pro-code"]
     },
     {

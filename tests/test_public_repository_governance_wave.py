@@ -5,6 +5,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = ROOT / "status" / "public-repository-governance-wave-2026-08-08.json"
+CURRENT_PRO_CODE_RECEIPT = (
+    ROOT / "status" / "pro-code-authority-reconciliation-2026-08-10.json"
+)
 SPINE = ROOT / "manifests" / "library_priority_spine.json"
 
 EXPECTED_ALPHA_OMEGA = {
@@ -13,15 +16,18 @@ EXPECTED_ALPHA_OMEGA = {
     "GlacierEQ/xai-colossus-energy-alpha": "ab76336ee12de0d3c7ee765332c06b0e42381fe6",
     "GlacierEQ/xai-colossus-energy-omega": "24e3cc3e144e7acc64b54559ecabf39f32edb59f",
 }
-PRO_CODE_HEAD = "c9aa2faa0dcede7d6b7e7e6891b7930ee87040ab"
-RECEIPT_PATH = "status/public-repository-governance-wave-2026-08-08.json"
+HISTORICAL_PRO_CODE_HEAD = "c9aa2faa0dcede7d6b7e7e6891b7930ee87040ab"
+CURRENT_PRO_CODE_HEAD = "1f4ada2f2cb6b58578490c28eccbb7ea007b9235"
+CURRENT_PRO_CODE_RECEIPT_PATH = (
+    "status/pro-code-authority-reconciliation-2026-08-10.json"
+)
 
 
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def test_post_wave_receipt_binds_current_promoted_heads() -> None:
+def test_post_wave_receipt_binds_historical_promoted_heads() -> None:
     receipt = load(RECEIPT)
     observed = {
         item["repository"]: item["canonical_head"]
@@ -38,7 +44,7 @@ def test_post_wave_receipt_binds_current_promoted_heads() -> None:
     assert lineage["historical_or_aspirational_documents"] == 3
 
     pro_code = receipt["pro_code_authority"]
-    assert pro_code["canonical_head"] == PRO_CODE_HEAD
+    assert pro_code["canonical_head"] == HISTORICAL_PRO_CODE_HEAD
     assert pro_code["state"] == "LOCAL_OPERABLE"
     assert pro_code["evidence_level"] == "TEST"
     assert pro_code["promotion_gates"] == [
@@ -70,7 +76,21 @@ def test_historical_unknowns_are_resolved_without_visibility_overclaim() -> None
     )
 
 
-def test_priority_spine_points_to_current_pro_code_authority_without_rewriting_july_receipt(
+def test_current_pro_code_authority_receipt_is_exact_head_and_green() -> None:
+    receipt = load(CURRENT_PRO_CODE_RECEIPT)
+    assert receipt["canonical_head"] == CURRENT_PRO_CODE_HEAD
+    assert receipt["state"] == "LOCAL_OPERABLE"
+    assert receipt["evidence_level"] == "TEST"
+    proof = receipt["proof_receipts"]
+    assert {item["id"] for item in proof} == {31452285943, 31452285946}
+    assert all(item["head_sha"] == CURRENT_PRO_CODE_HEAD for item in proof)
+    assert all(item["conclusion"] == "success" for item in proof)
+    transition = receipt["authority_transition"]
+    assert transition["prior_authority_head"] == HISTORICAL_PRO_CODE_HEAD
+    assert transition["current_authority_head"] == CURRENT_PRO_CODE_HEAD
+
+
+def test_priority_spine_points_to_current_pro_code_authority_without_rewriting_history(
 ) -> None:
     spine = load(SPINE)
     assert spine["latest_execution_receipt"] == (
@@ -80,8 +100,8 @@ def test_priority_spine_points_to_current_pro_code_authority_without_rewriting_j
         item for item in spine["repositories"] if item["repository"] == "GlacierEQ/pro-code"
     )
     assert pro_code["authority_state"] == "CURRENT"
-    assert pro_code["authority_head"] == PRO_CODE_HEAD
-    assert pro_code["authority_receipt"] == RECEIPT_PATH
+    assert pro_code["authority_head"] == CURRENT_PRO_CODE_HEAD
+    assert pro_code["authority_receipt"] == CURRENT_PRO_CODE_RECEIPT_PATH
     assert pro_code["readme_state"] == "LOCAL_OPERABLE_TRUTH_BOUNDARY_MERGED"
     assert pro_code["proof_state"] == (
         "LOCAL_NEXUS_AUTOMATION_NATIVE_CI_HELIX_AND_NERVOUS_SYSTEM_VERIFIED"
