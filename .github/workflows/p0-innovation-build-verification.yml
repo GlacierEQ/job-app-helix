@@ -1,0 +1,49 @@
+name: P0 Innovation Build Verification
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/p0_builds.py"
+      - "tests/test_p0_innovation_builds.py"
+      - "scripts/verify_p0_innovation_builds.py"
+      - "manifests/application_intelligence/company_innovation_execution_queue.v1.json"
+      - "manifests/application_intelligence/p0_innovation_build_contract.v1.json"
+      - ".github/workflows/p0-innovation-build-verification.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "src/job_app_helix/p0_builds.py"
+      - "tests/test_p0_innovation_builds.py"
+      - "scripts/verify_p0_innovation_builds.py"
+      - "manifests/application_intelligence/company_innovation_execution_queue.v1.json"
+      - "manifests/application_intelligence/p0_innovation_build_contract.v1.json"
+      - ".github/workflows/p0-innovation-build-verification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-25-builds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install Helix
+        run: python -m pip install -e ".[dev]"
+      - name: Verify all 25 bounded reference builds
+        run: python scripts/verify_p0_innovation_builds.py --output p0-build-verification-receipt.json
+      - name: Exercise reference-build failure paths
+        run: python -m pytest tests/test_p0_innovation_builds.py
+      - name: Upload exact-head build receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: p0-innovation-build-verification
+          path: p0-build-verification-receipt.json
+          if-no-files-found: error
+          retention-days: 90
