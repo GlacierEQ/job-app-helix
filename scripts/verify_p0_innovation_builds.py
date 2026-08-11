@@ -37,9 +37,13 @@ def main() -> int:
     if verification["status"] != "PASS" or verification["verified_count"] != 25:
         raise SystemExit(f"P0 reference build verification failed: {verification}")
 
+    source_commit = os.environ.get(
+        "SOURCE_COMMIT",
+        os.environ.get("GITHUB_SHA", "LOCAL"),
+    )
     receipt = {
         "schema": "glaciereq.p0-innovation-build-verification.v1",
-        "source_commit": os.environ.get("GITHUB_SHA", "LOCAL"),
+        "source_commit": source_commit,
         "queue_path": str(QUEUE.relative_to(ROOT)),
         "queue_sha256": sha256(QUEUE),
         "implementation_path": str(IMPLEMENTATION.relative_to(ROOT)),
