@@ -1,0 +1,53 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-11T11:10:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave12_2026-08-11.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surface_requires_explicit_non_affiliation_boundary": true,
+    "local_environmental_rule_proof_does_not_establish_launch_safety_or_range_authority": true,
+    "illustrative_thresholds_do_not_establish_official_launch_commit_criteria": true,
+    "bounded_margin_score_is_not_probability_or_forecast_confidence": true,
+    "in_memory_synthetic_readings_do_not_establish_real_sensor_integration": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/spacex-pad-weather-gate",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_ENVIRONMENTAL_RULE_GATE_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+        "evidence_token": "LOCAL_ENVIRONMENTAL_RULE_GATE_NOT_LAUNCH_SAFETY_AUTHORITY",
+        "verified_capability": "deterministic-local-environmental-constraint-evaluation",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31536566296,
+            "name": "Public Environmental Rule Truth Gate",
+            "head_sha": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31536566364,
+            "name": "CI",
+            "head_sha": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Exact-current-head proof verifies a validated five-rule Python synthetic environmental evaluator, fail-closed finite and non-negative observation handling, deterministic violation ordering, a bounded margin score that is not a probability or forecast confidence, in-memory Go synthetic electric-field aggregation using maximum absolute magnitude, configurable illustrative threshold checks, deterministic Go constraint evaluation, malformed-input rejection, repository-owned local operability, and Python/Go exact-head verification. This proof does not establish SpaceX affiliation, official Launch Commit Criteria, range-safety authority, real pad or weather sensor integration, ensemble weather-model fusion, probabilistic forecasting, launch-window optimization, live MCP/provider/agent-mesh integration, production launch authority, certification, deployment, or operational safety suitability.",
+        "metadata_readback": {
+          "description": "Pad weather GO/NO-GO gate (portfolio illustrative) · AKOS",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "portfolio metadata is explicitly illustrative and compatible with the admitted local environmental-rule capability; the controlling README preserves SpaceX non-affiliation and no-launch-safety-authority boundaries"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/no-launch-safety-authority boundary, promotion of illustrative thresholds as official Launch Commit Criteria or range rules, real sensor or weather-network claims without evidence, probability/forecast or launch-window optimization claims without proof, live MCP/provider/mesh integration claims, production safety/certification/deployment claims, or contradictory GitHub About metadata."
+    }
+  ]
+}
