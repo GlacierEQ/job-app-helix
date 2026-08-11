@@ -1,0 +1,53 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-11T13:21:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave13_2026-08-11.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surface_requires_explicit_non_affiliation_boundary": true,
+    "local_multi_sensor_health_proof_does_not_establish_flight_engine_authority": true,
+    "heuristic_scores_do_not_establish_failure_probability_diagnosis_or_rul": true,
+    "in_memory_state_transitions_do_not_establish_hardware_command_authority": true,
+    "synthetic_local_samples_do_not_establish_proprietary_or_live_telemetry_access": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/spacex-propulsion-monitor",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_MULTI_SENSOR_HEALTH_SIMULATION_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "1903e562e801a6153b0e78b9d236418c849f1867",
+        "evidence_token": "LOCAL_PROPULSION_HEALTH_SIMULATION_NOT_FLIGHT_ENGINE_AUTHORITY",
+        "verified_capability": "deterministic-local-multi-sensor-health-evaluation",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31546261209,
+            "name": "CI",
+            "head_sha": "1903e562e801a6153b0e78b9d236418c849f1867",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31546261244,
+            "name": "Public Health Simulation Truth Gate",
+            "head_sha": "1903e562e801a6153b0e78b9d236418c849f1867",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Exact-current-head proof verifies repository-local deterministic multi-sensor health evaluation over caller-supplied synthetic/local samples; per-unit health isolation and recovery; finite, non-negative where required, non-boolean identity, and monotonic timestamp validation; bounded anomaly and prediction histories; isolated observer failures; validated local throttle/profile state transitions; terminal simulated shutdown and emergency-stop transitions; active illustrative threshold diagnostics; timestamp-aligned key-scoped cross-sensor correlation requiring both channels to deviate; simple bounded degradation fits; dependency-free vibration-spectrum diagnostics with stable result shape and bounded recomputation cadence; exact admitted machine-capability whitelisting; and repository-owned exact-head verification. This proof does not establish SpaceX affiliation, employment, endorsement, proprietary access, real Raptor or Merlin telemetry, flight-engine command authority, hardware control, calibrated failure probability, diagnosis, remaining useful life, validated predictive maintenance performance, live MCP/provider/APEX/AKOS/Mastermind/agent-mesh integration, production deployment, safety certification, or operational flight suitability.",
+        "metadata_readback": {
+          "description": "Propulsion health index (portfolio) · AKOS P1",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "generic portfolio metadata is compatible with the admitted local simulation capability; the controlling README and machine state preserve SpaceX non-affiliation and no-flight-engine-authority boundaries"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/no-flight-engine-authority boundary, claims of proprietary or real flight telemetry, hardware command/control claims, calibrated probability/diagnosis/RUL or validated predictive-performance claims without evidence, live provider/mesh integration claims, production deployment or certification claims, unbounded diagnostic state, or contradictory GitHub About metadata."
+    }
+  ]
+}
