@@ -27,10 +27,13 @@ jobs:
   verify-25-builds:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      SOURCE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
@@ -40,6 +43,20 @@ jobs:
         run: python scripts/verify_p0_innovation_builds.py --output p0-build-verification-receipt.json
       - name: Exercise reference-build failure paths
         run: python -m pytest tests/test_p0_innovation_builds.py
+      - name: Assert receipt is bound to exact source head
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          receipt = json.loads(Path("p0-build-verification-receipt.json").read_text())
+          assert receipt["source_commit"] == os.environ["SOURCE_COMMIT"]
+          assert receipt["status"] == "PASS"
+          assert receipt["expected_count"] == 25
+          assert receipt["verified_count"] == 25
+          assert all(receipt["checks"].values())
+          PY
       - name: Upload exact-head build receipt
         uses: actions/upload-artifact@v4
         with:
