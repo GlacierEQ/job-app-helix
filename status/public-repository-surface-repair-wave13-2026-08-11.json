@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-11T11:10:00-10:00",
+  "wave": 13,
+  "repository": "GlacierEQ/spacex-pad-weather-gate",
+  "source_canonical_head": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+  "source_state": "LOCAL_ENVIRONMENTAL_RULE_GATE_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31536566296,
+      "name": "Public Environmental Rule Truth Gate",
+      "head_sha": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31536566364,
+      "name": "CI",
+      "head_sha": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-local-environmental-constraint-evaluation",
+  "evidence_token": "LOCAL_ENVIRONMENTAL_RULE_GATE_NOT_LAUNCH_SAFETY_AUTHORITY",
+  "repairs": [
+    "replaced official-looking SpaceX Launch Commit Criteria, range-safety, real-time launch-weather, forecasting, and live integration claims with repository-owned local synthetic environmental-rule scope",
+    "made Python observations reject non-finite and negative values fail-closed",
+    "replaced probability-like confidence output with a bounded margin score explicitly outside forecast-probability claims",
+    "made Python rule violations deterministic across wind, shear, lightning distance, cloud ceiling, and visibility fixtures",
+    "reworked the Go field monitor as an in-memory caller-supplied synthetic reading registry with finite threshold and reading validation",
+    "made Go field aggregation use maximum absolute magnitude and separated malformed state from illustrative constraint violations",
+    "removed official-LCC and triggered-lightning API naming that overstated repository authority",
+    "replaced stale hyper-scaling and HYPER_VALIDATED/PROMOTED machine posture with TESTED exact-scope evidence",
+    "added Python and Go malformed-input, threshold, rule, and public-boundary regression tests plus exact-head mixed-language CI and Python 3.11/3.13 truth gates"
+  ],
+  "nonclaims": [
+    "no SpaceX affiliation, endorsement, employment, or proprietary access",
+    "no official Launch Commit Criteria or range-safety rule implementation",
+    "no real pad sensors, field mills, lightning networks, radar, weather stations, or telemetry",
+    "no real-time external sensor acquisition or safety-critical availability",
+    "no ensemble weather-model fusion, probabilistic forecasting, or launch-window optimization",
+    "no live MCP, provider, APEX, AKOS, Mastermind, or agent-mesh runtime integration",
+    "no production launch GO/NO-GO authority, safety certification, deployment, or operational safety suitability"
+  ],
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
