@@ -26,6 +26,42 @@ def _object(value: Any, label: str) -> dict[str, Any]:
     return deepcopy(dict(value))
 
 
+def _finding_delta(value: Any, label: str) -> list[str]:
+    if value is None:
+        return []
+    if not isinstance(value, list):
+        raise RepositorySurfaceError(f"{label} must be a list")
+    findings: list[str] = []
+    for index, raw in enumerate(value):
+        finding = str(raw).strip().upper()
+        if not finding:
+            raise RepositorySurfaceError(f"{label}[{index}] must not be empty")
+        if finding not in findings:
+            findings.append(finding)
+    return findings
+
+
+def _apply_finding_delta(
+    record: dict[str, Any], item: Mapping[str, Any], repository: str
+) -> tuple[list[str], list[str]]:
+    additions = _finding_delta(item.get("findings_add"), f"{repository}.findings_add")
+    removals = _finding_delta(
+        item.get("findings_remove"), f"{repository}.findings_remove"
+    )
+    findings = [
+        str(value).strip().upper()
+        for value in record.get("findings", [])
+        if str(value).strip()
+    ]
+    removal_set = set(removals)
+    findings = [finding for finding in findings if finding not in removal_set]
+    for finding in additions:
+        if finding not in findings:
+            findings.append(finding)
+    record["findings"] = findings
+    return additions, removals
+
+
 def _proof_receipts(evidence: Mapping[str, Any], repository: str) -> list[dict[str, Any]]:
     raw = evidence.get("proof_receipts")
     if not isinstance(raw, list) or not raw:
@@ -209,6 +245,7 @@ def apply_surface_reconciliation(
                 f"surface reconciliation for {repository} requires next_gate"
             )
         evidence = _object(item.get("evidence"), f"items[{index}].evidence")
+        findings_add, findings_remove = _apply_finding_delta(record, item, repository)
         if decision == "ADMIT":
             _validate_admit(record, evidence, repository)
 
@@ -219,6 +256,8 @@ def apply_surface_reconciliation(
                 "decision": decision,
                 "generated_at": reconciliation.get("generated_at"),
                 "evidence": evidence,
+                "findings_add": findings_add,
+                "findings_remove": findings_remove,
                 "next_gate": next_gate,
             }
         )
