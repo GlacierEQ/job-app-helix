@@ -1,0 +1,257 @@
+{
+  "schema": "glaciereq.p0-innovation-semantic-audit.v1",
+  "generated_at": "2026-08-11T13:22:00-10:00",
+  "authority": "GlacierEQ/job-app-helix",
+  "source_head": "7d2836e67e8799c0c337f6f9ce4ab86665f4b331",
+  "queue": "manifests/application_intelligence/company_innovation_execution_queue.v1.json",
+  "implementation": "src/job_app_helix/p0_builds.py",
+  "prior_build_receipt": "status/p0-innovation-build-verification-2026-08-11.json",
+  "audit_question": "Does each bounded reference implementation enforce the defining invariant stated by its company innovation mechanism, rather than merely execute successfully?",
+  "truth_boundary": {
+    "prior_25_of_25_build_receipt_remains_valid_for_execution": true,
+    "execution_success_does_not_prove_semantic_correctness": true,
+    "semantic_alignment_does_not_claim_company_adoption": true,
+    "semantic_alignment_does_not_claim_production_deployment": true,
+    "partial_or_repair_required_items_must_not_be_promoted_as_semantically_verified": true
+  },
+  "classification": {
+    "ALIGNED_REFERENCE": "The bounded implementation enforces the mechanism's defining invariant closely enough for reference-build status.",
+    "PARTIAL_REFERENCE": "A useful kernel exists, but at least one material invariant named by the mechanism is absent.",
+    "REPAIR_REQUIRED": "A core semantic or proof defect allows a misleading pass or omits the mechanism's central behavior."
+  },
+  "summary": {
+    "count": 25,
+    "ALIGNED_REFERENCE": 7,
+    "PARTIAL_REFERENCE": 10,
+    "REPAIR_REQUIRED": 8,
+    "semantic_gate": "FAIL"
+  },
+  "items": [
+    {
+      "rank": 1,
+      "company_id": "cursor",
+      "innovation": "Patch Intent Twin",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "required paths, forbidden surfaces, and expected-test presence",
+      "missing_invariant": "architectural constraints and out-of-scope changed surfaces are not modeled, so intent drift outside an explicit forbid set can pass",
+      "repair": "add allowed-surface and architecture-constraint comparison to alignment"
+    },
+    {
+      "rank": 2,
+      "company_id": "apptronik",
+      "innovation": "Deployment Interface Standardizer",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "normalizes required workcell interface fields",
+      "missing_invariant": "field presence is treated as compatibility; no canonical interface standard or cross-cell mismatch detection exists",
+      "repair": "compare normalized cells against a reusable canonical contract and fail incompatible fixtures/safety/task interfaces"
+    },
+    {
+      "rank": 3,
+      "company_id": "arm",
+      "innovation": "Cross-ISA AI Placement Contract",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "weighted latency/energy/memory/privacy target scoring",
+      "missing_invariant": "hard feasibility constraints and required execution capabilities are absent, allowing an infeasible target to win by weighted score",
+      "repair": "filter on hard limits/capabilities before scoring feasible targets"
+    },
+    {
+      "rank": 4,
+      "company_id": "astera_labs",
+      "innovation": "Fabric Congestion Autopilot",
+      "verdict": "REPAIR_REQUIRED",
+      "implemented": "detects hot links and assigns them to low-utilization links",
+      "core_defect": "the remapper never decrements spare capacity and can map multiple overloaded links onto the same insufficient destination while reporting reroutable",
+      "repair": "allocate only transferable excess against mutable headroom and expose residual overload/failure"
+    },
+    {
+      "rank": 5,
+      "company_id": "braintrust",
+      "innovation": "Eval Portfolio Optimizer",
+      "verdict": "ALIGNED_REFERENCE",
+      "implemented": "greedy marginal failure-class coverage under a fixed case-count budget with a value tie-break",
+      "bounded_limit": "value is only a proxy for predictive power and case costs are uniform",
+      "next_hardening": "add explicit predictive power, case cost, and redundancy penalty before measured promotion"
+    },
+    {
+      "rank": 6,
+      "company_id": "clickhouse",
+      "innovation": "Trajectory-Native Storage Layout",
+      "verdict": "ALIGNED_REFERENCE",
+      "implemented": "orders spans by trajectory then time and emits trajectory-local offsets",
+      "bounded_limit": "it models the physical clustering key but not an actual ClickHouse engine/DDL benchmark",
+      "next_hardening": "materialize the layout and compare forensic query read amplification"
+    },
+    {
+      "rank": 7,
+      "company_id": "cognition",
+      "innovation": "Execution Checkpoint Lattice",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "chooses the strongest verified checkpoint containing a target subgoal",
+      "missing_invariant": "reversibility, ancestry/branch structure, and recoverable state identity are not represented",
+      "repair": "model reversible checkpoints, parent ancestry, and state hashes"
+    },
+    {
+      "rank": 8,
+      "company_id": "crusoe",
+      "innovation": "Rack-to-Token Autopilot",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "ranks successful-token utility against power, latency, and cost",
+      "missing_invariant": "network, thermal, batching, and hard rack constraints described by the mechanism do not participate",
+      "repair": "add feasibility caps plus network/thermal/batch terms before utility ranking"
+    },
+    {
+      "rank": 9,
+      "company_id": "etched",
+      "innovation": "Architecture Exposure Hedge",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "ranks architecture exposure multiplied by expected shift",
+      "missing_invariant": "compiler compatibility, revenue exposure, and performance sensitivity are collapsed into one scalar",
+      "repair": "model compatibility and separate revenue/performance sensitivity in adaptation priority"
+    },
+    {
+      "rank": 10,
+      "company_id": "figure_ai",
+      "innovation": "Fleet Skill Compounding Engine",
+      "verdict": "ALIGNED_REFERENCE",
+      "implemented": "groups observations by skill and gates promotion on success across multiple robot units and sites",
+      "bounded_limit": "skill discovery/clustering is supplied rather than learned and safety failures are not yet a hard veto",
+      "next_hardening": "add critical-safety veto and failure-cluster diagnostics"
+    },
+    {
+      "rank": 11,
+      "company_id": "fireworks_ai",
+      "innovation": "Optimization Safety Envelope",
+      "verdict": "ALIGNED_REFERENCE",
+      "implemented": "requires latency improvement while keeping quality drift inside an allowed budget",
+      "bounded_limit": "current implementation is scalar rather than workload-class specific and emits no explicit canary/rollback decision",
+      "next_hardening": "apply per-workload budgets with explicit PROMOTE/ROLLBACK output"
+    },
+    {
+      "rank": 12,
+      "company_id": "lambda",
+      "innovation": "Useful-GPU-Minute Contract",
+      "verdict": "ALIGNED_REFERENCE",
+      "implemented": "separates productive GPU minutes from provisioning/retry and other loss states",
+      "bounded_limit": "it measures the contract but does not yet optimize the dominant loss bucket",
+      "next_hardening": "identify and close the largest nonproductive state in a measured loop"
+    },
+    {
+      "rank": 13,
+      "company_id": "langchain",
+      "innovation": "Typed Agent Capability Graph",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "checks missing nodes, authority escalation, and retry-to-non-idempotent risk",
+      "missing_invariant": "input/output types, side effects, and failure-mode contracts named by the mechanism are not validated",
+      "repair": "enforce type compatibility and modeled side-effect/failure semantics on edges/nodes"
+    },
+    {
+      "rank": 14,
+      "company_id": "mongodb",
+      "innovation": "Operational-Semantic Twin Index",
+      "verdict": "REPAIR_REQUIRED",
+      "implemented": "builds state and semantic-index entries with transaction/provenance metadata",
+      "core_defect": "divergence is only set(state_ids) != set(index_ids); because both are built from the same mutations, stale content, transaction drift, and provenance drift can report clean",
+      "repair": "compare independently derived index events against authoritative document hashes, transaction IDs, and provenance"
+    },
+    {
+      "rank": 15,
+      "company_id": "obsidian_security",
+      "innovation": "Agent Relationship Graph Firewall",
+      "verdict": "ALIGNED_REFERENCE",
+      "implemented": "computes graph reachability before/after a proposed relationship and blocks new paths into sensitive nodes",
+      "bounded_limit": "risk is binary sensitive/not-sensitive rather than identity/resource sensitivity plus anomalous expansion scoring",
+      "next_hardening": "add node risk and bounded path-expansion policy"
+    },
+    {
+      "rank": 16,
+      "company_id": "pinecone",
+      "innovation": "Retrieval Outcome Optimizer",
+      "verdict": "REPAIR_REQUIRED",
+      "implemented": "scores retrieval configurations using downstream task success, freshness, latency, and cost",
+      "core_defect": "the verification check accepts either cfg-a or cfg-b, so the build passes regardless of whether the optimizer chose the mathematically correct winner",
+      "repair": "assert the exact deterministic winner and add hard outcome constraints"
+    },
+    {
+      "rank": 17,
+      "company_id": "safe_superintelligence_ssi",
+      "innovation": "Capability–Safety Pareto Observatory",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "computes the nondominated capability/safety Pareto frontier",
+      "missing_invariant": "the mechanism's automatic quarantine of capability gains with disproportionate safety regression is absent",
+      "repair": "bind candidates to a baseline and quarantine gains exceeding a safety-regression budget"
+    },
+    {
+      "rank": 18,
+      "company_id": "shield_ai",
+      "innovation": "Mission Autonomy Evidence Graph",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "checks presence of simulation, software version, sensor assumptions, and degraded-mode limit",
+      "missing_invariant": "flight evidence is not required and no evidence graph/linkage is built",
+      "repair": "require flight evidence and emit behavior-to-evidence graph edges"
+    },
+    {
+      "rank": 19,
+      "company_id": "skild_ai",
+      "innovation": "Embodiment Latent Adapter",
+      "verdict": "PARTIAL_REFERENCE",
+      "implemented": "uses measured transfer loss to choose shared-policy-plus-adapter versus embodiment-specific strategy",
+      "missing_invariant": "no adapter is actually fitted or represented; the central embodiment mapping is assumed upstream",
+      "repair": "fit/emit a bounded per-embodiment adapter and calculate residual transfer loss"
+    },
+    {
+      "rank": 20,
+      "company_id": "supabase",
+      "innovation": "Policy-Carrying AI Data Plane",
+      "verdict": "REPAIR_REQUIRED",
+      "implemented": "filters source rows by intersection of identity roles and allowed roles",
+      "core_defect": "policy is not propagated or revalidated through embedding, retrieval, tool, and artifact stages, which is the mechanism's defining invariant",
+      "repair": "attach a policy envelope to every authorized datum and fail closed on policy drift at any AI stage"
+    },
+    {
+      "rank": 21,
+      "company_id": "tsmc",
+      "innovation": "Yield-to-Workload Feedback Loop",
+      "verdict": "ALIGNED_REFERENCE",
+      "implemented": "weights process/defect signatures by frequency and workload-specific impact to prioritize delivered-throughput risk",
+      "bounded_limit": "field telemetry correlation confidence is assumed rather than measured",
+      "next_hardening": "weight ranking by field-evidence confidence/count before promotion"
+    },
+    {
+      "rank": 22,
+      "company_id": "temporal",
+      "innovation": "Nondeterminism Envelope",
+      "verdict": "REPAIR_REQUIRED",
+      "implemented": "accepts semantically equivalent outcomes using required keys, immutable fields, and numeric ranges",
+      "core_defect": "model/tool provenance is absent, even though the mechanism explicitly requires replay provenance to distinguish acceptable nondeterminism from version drift",
+      "repair": "record and compare model/tool provenance in the equivalence envelope"
+    },
+    {
+      "rank": 23,
+      "company_id": "thinking_machines_lab",
+      "innovation": "Judgment Replication Fabric",
+      "verdict": "REPAIR_REQUIRED",
+      "implemented": "identifies examples where expert and base-model labels disagree",
+      "core_defect": "disagreement mining exists, but no portable evaluator/policy layer is learned or emitted",
+      "repair": "derive a reproducible criterion-to-expert-policy layer and use disagreement to target examples"
+    },
+    {
+      "rank": 24,
+      "company_id": "together_ai",
+      "innovation": "Open-Model Fidelity Passport",
+      "verdict": "REPAIR_REQUIRED",
+      "implemented": "canonicalizes an arbitrary config and SHA-256 fingerprints it",
+      "core_defect": "no required passport schema is enforced; a fingerprint can be valid while weights lineage, compatibility constraints, or eval deltas are missing",
+      "repair": "require weights lineage, quantization, sampler, kernel stack, eval deltas, and compatibility constraints before fingerprinting"
+    },
+    {
+      "rank": 25,
+      "company_id": "world_labs",
+      "innovation": "Persistent World-State Compiler",
+      "verdict": "REPAIR_REQUIRED",
+      "implemented": "merges time-ordered object state and rejects identity changes",
+      "core_defect": "state is not versioned and no geometry/affordance/relationship/counterfactual graph exists, so cross-view and interaction consistency are largely untested",
+      "repair": "compile versioned object state with invariant geometry identity, affordances, relations, viewpoints, and counterfactual records"
+    }
+  ],
+  "next_gate": "Repair all PARTIAL_REFERENCE and REPAIR_REQUIRED items, then require a new exact-head semantic-correctness suite covering each defining invariant before any P0 track can be labeled SEMANTICALLY_VERIFIED."
+}
