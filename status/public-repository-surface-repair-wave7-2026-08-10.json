@@ -1,0 +1,45 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-10T18:56:00-10:00",
+  "wave": 7,
+  "repository": "GlacierEQ/glaciereq-mcp-stack",
+  "source_canonical_head": "2ab81b15283505c407265ef27e3862279f61a94f",
+  "source_state": "POLICY_GATED_LOCAL_TOOL_DISPATCH_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31460004637,
+      "name": "Public Truth Gate",
+      "head_sha": "2ab81b15283505c407265ef27e3862279f61a94f",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31460004959,
+      "name": "CI",
+      "head_sha": "2ab81b15283505c407265ef27e3862279f61a94f",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "policy-gated-local-tool-dispatch",
+  "evidence_token": "LOCAL_ALLOWLIST_ROUTER_NOT_EXTERNAL_MCP_DEPLOYMENT",
+  "repairs": [
+    "replaced external MCP, persistence, provider, and mesh overclaims with repository-local scope",
+    "added separate execution and mutating-tool authorization",
+    "made handler failures fail closed without exception-text leakage",
+    "truth-hardened machine capability, target, excellence, and APEX manifest surfaces",
+    "removed malformed self-submodule gitlink that blocked clean checkout",
+    "bound reusable CI to repository-owned verification and exact-head public truth proof"
+  ],
+  "nonclaims": [
+    "no external MCP deployment",
+    "no live provider or database connectivity",
+    "no persistent backend inferred from reference artifacts",
+    "no inherited AKOS, APEX, or Mastermind runtime authority"
+  ],
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}

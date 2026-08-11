@@ -1,0 +1,38 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-10T18:56:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave6_2026-08-09.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "local_router_proof_does_not_establish_external_mcp_deployment": true,
+    "reference_typescript_sql_and_configuration_surfaces_do_not_inherit_runtime_proof": true,
+    "github_about_metadata_must_not_contradict_the_verified_capability": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/glaciereq-mcp-stack",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "POLICY_GATED_LOCAL_TOOL_DISPATCH_VERIFIED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "2ab81b15283505c407265ef27e3862279f61a94f",
+        "evidence_token": "LOCAL_ALLOWLIST_ROUTER_NOT_EXTERNAL_MCP_DEPLOYMENT",
+        "verified_capability": "policy-gated-local-tool-dispatch",
+        "proof_receipts": [
+          {"kind":"workflow_run","id":31460004637,"name":"Public Truth Gate","head_sha":"2ab81b15283505c407265ef27e3862279f61a94f","conclusion":"success"},
+          {"kind":"workflow_run","id":31460004959,"name":"CI","head_sha":"2ab81b15283505c407265ef27e3862279f61a94f","conclusion":"success"}
+        ],
+        "proof_scope": "Exact-current-head proof verifies repository-local allow-list dispatch, separate mutating-tool authorization, fail-closed registration and handler errors, machine/APEX truth alignment, cold-start operability execution, and explicit nondeployment/provider/persistence/mesh boundaries.",
+        "metadata_readback": {
+          "description": "MCP tool router with allow-list (portfolio) · AKOS P0",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "non-contradictory topology metadata; does not override the repository-local nondeployment boundary"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, proof failure, authorization-policy drift, external MCP/provider/persistence/mesh claims, machine/APEX authority drift, or contradictory GitHub About metadata."
+    }
+  ]
+}
