@@ -1,0 +1,47 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-10T19:40:00-10:00",
+  "wave": 9,
+  "repository": "GlacierEQ/spacex-telemetry",
+  "source_canonical_head": "857ac40bf95d9cf010bee764c8e165dd32117dce",
+  "source_state": "SYNTHETIC_TELEMETRY_CODEC_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31462340770,
+      "name": "Public Telemetry Truth Gate",
+      "head_sha": "857ac40bf95d9cf010bee764c8e165dd32117dce",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31462341111,
+      "name": "CI",
+      "head_sha": "857ac40bf95d9cf010bee764c8e165dd32117dce",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-synthetic-telemetry-codec-and-controller",
+  "evidence_token": "LOCAL_SYNTHETIC_TELEMETRY_CODEC_NOT_SPACEX_DATA",
+  "repairs": [
+    "replaced unsupported throughput, latency, flight-control, live MCP, and mesh claims with repository-native codec scope",
+    "added explicit SpaceX non-affiliation and telemetry-provenance boundary",
+    "converted the Go decoder from hard-coded values to a real bounded binary encoder/decoder with tests",
+    "bounded Python framing and Protobuf surfaces to repository-owned synthetic telemetry",
+    "replaced generic scaling capability metadata with verified telemetry mechanisms",
+    "bound reusable CI and an exact-head Python/Go public truth gate to repository-owned verification"
+  ],
+  "nonclaims": [
+    "no SpaceX affiliation or proprietary telemetry access",
+    "no Falcon or Starship protocol compatibility",
+    "no CCSDS compliance claim",
+    "no production throughput or latency benchmark",
+    "no flight-control authority",
+    "no live MCP, provider, APEX, AKOS, or Mastermind runtime connectivity"
+  ],
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
