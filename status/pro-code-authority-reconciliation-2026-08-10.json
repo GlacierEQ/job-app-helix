@@ -1,0 +1,56 @@
+{
+  "schema": "glaciereq.pro-code-authority-reconciliation.v1",
+  "observed_at": "2026-08-10T19:04:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "repository": "GlacierEQ/pro-code",
+  "canonical_branch": "main",
+  "canonical_head": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
+  "state": "LOCAL_OPERABLE",
+  "evidence_level": "TEST",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31452285943,
+      "name": "Pro-Code native verification",
+      "head_sha": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31452285946,
+      "name": "Helix Verify",
+      "head_sha": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
+      "conclusion": "success"
+    }
+  ],
+  "readme_readback": {
+    "posture": "LOCAL_OPERABLE",
+    "evidence_level": "TEST",
+    "truth_boundary": "Local execution, validation, receipts, workspace analysis, and native policy boundaries are verified; external capabilities remain bounded until separately authenticated and verified.",
+    "embedded_baseline_head": "c1fbf3f3d28f596d28903fa2f8a91c7fbaecb6af",
+    "baseline_interpretation": "historical verified baseline only; this authority receipt supersedes it for current-head governance"
+  },
+  "verified_surfaces": [
+    "React and TypeScript operator/dispatch behavior",
+    "local Node Nexus health and dispatch contract",
+    "idempotent local execution receipts and conflict rejection",
+    "automatic bounded workspace inventory and change analysis",
+    "Python repository checks",
+    "native Rust governor execution",
+    "native Haskell AST invariant execution"
+  ],
+  "nonclaims": [
+    "no production deployment",
+    "no remote worker fleet",
+    "no external provider authorization",
+    "no live remote Mastermind or APEX mesh connectivity",
+    "no external action execution",
+    "no production reliability, latency, throughput, scale, or availability claim"
+  ],
+  "authority_transition": {
+    "prior_authority_head": "c9aa2faa0dcede7d6b7e7e6891b7930ee87040ab",
+    "prior_authority_receipt": "status/public-repository-governance-wave-2026-08-08.json",
+    "current_authority_head": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
+    "reason": "The priority spine marked authority CURRENT while pointing to an older verified head. Current canonical main has fresh native-verification and Helix-Verify success receipts, so authority advances without rewriting the historical August 8 receipt."
+  }
+}
