@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-10T20:00:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave9_2026-08-10.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surface_requires_explicit_non_affiliation_boundary": true,
+    "local_mission_ops_proof_does_not_establish_flight_command_authority": true,
+    "generic_github_about_metadata_does_not_override_repository_non_affiliation_boundary": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/spacex-mission-control",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "SYNTHETIC_MISSION_OPERATIONS_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+        "evidence_token": "LOCAL_MISSION_OPS_SIMULATION_NOT_FLIGHT_COMMAND_AUTHORITY",
+        "verified_capability": "deterministic-local-mission-operations-simulation",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31463234798,
+            "name": "Public Mission Ops Truth Gate",
+            "head_sha": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31463235182,
+            "name": "CI",
+            "head_sha": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Exact-current-head proof verifies severity-filtered local event fan-out, bounded telemetry aggregation and queries, synthetic mission-phase orchestration, callbacks, abort/action behavior, cold-start local operability, explicit simulation evidence state, and SpaceX/flight-authority/performance/integration nonclaims.",
+        "metadata_readback": {
+          "description": "Mission event bus severity filter (portfolio) · AKOS P1",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "generic portfolio metadata aligned with the verified event-bus capability; it does not assert SpaceX affiliation, live flight operations, command authority, or production performance"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/no-flight-authority boundary, live flight/command/voice/WebSocket/MCP/mesh claims without proof, production performance claims without receipts, or contradictory GitHub About metadata."
+    }
+  ]
+}
