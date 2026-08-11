@@ -1,0 +1,47 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-10T20:00:00-10:00",
+  "wave": 10,
+  "repository": "GlacierEQ/spacex-mission-control",
+  "source_canonical_head": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+  "source_state": "SYNTHETIC_MISSION_OPERATIONS_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31463234798,
+      "name": "Public Mission Ops Truth Gate",
+      "head_sha": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31463235182,
+      "name": "CI",
+      "head_sha": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-local-mission-operations-simulation",
+  "evidence_token": "LOCAL_MISSION_OPS_SIMULATION_NOT_FLIGHT_COMMAND_AUTHORITY",
+  "repairs": [
+    "replaced live flight-operations, command-authority, voice-loop, telemetry-scale, WebSocket, MCP, and mesh overclaims with repository-native mission-operations simulation scope",
+    "added explicit SpaceX non-affiliation and no-flight-command-authority boundary",
+    "made create_demo_mission the canonical synthetic profile while preserving create_f9_mission as a bounded historical alias",
+    "fixed mission elapsed tracking so phase transitions no longer reset total mission elapsed",
+    "prevented action exception text from leaking into public event logs",
+    "replaced generic scaling capability metadata with verified event-bus, aggregation, orchestration, callback, abort, and local-ops capabilities",
+    "bound reusable CI and exact-head Python 3.11/3.13 public truth proof to repository-owned verification"
+  ],
+  "nonclaims": [
+    "no SpaceX affiliation or proprietary mission-control access",
+    "no Falcon or Starship procedure compatibility",
+    "no real flight command authority",
+    "no live telemetry, voice, WebSocket, MCP, provider, or mesh integration",
+    "no production performance or deployment claim"
+  ],
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
