@@ -42,17 +42,21 @@ def subset_counts(report: dict) -> dict[str, int]:
     return counts
 
 
-def test_wave8_preserves_counts_while_advancing_source_evidence() -> None:
+def test_wave8_fails_closed_from_admit_to_metadata_repair() -> None:
     before = report_through_wave7()
     after = apply_surface_reconciliation(before, load(WAVE8))
-    expected = {
+    assert subset_counts(before) == {
         "ADMIT": 14,
         "QUARANTINED": 3,
         "REFERENCE": 1,
         "REPAIR_REQUIRED": 40,
     }
-    assert subset_counts(before) == expected
-    assert subset_counts(after) == expected
+    assert subset_counts(after) == {
+        "ADMIT": 13,
+        "QUARANTINED": 3,
+        "REFERENCE": 1,
+        "REPAIR_REQUIRED": 41,
+    }
 
 
 def test_colossus_gateway_is_source_complete_but_metadata_blocked() -> None:
@@ -64,6 +68,7 @@ def test_colossus_gateway_is_source_complete_but_metadata_blocked() -> None:
     )
     head = "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5"
     evidence = record["decision_evidence"]
+    assert record["prior_reconciled_admission"] == "ADMIT"
     assert record["admission"] == "REPAIR_REQUIRED"
     assert record["repair_priority"] == "P1"
     assert record["decision_excellence_state"] == "SOURCE_TRUTH_COMPLETE_METADATA_BLOCKED"
@@ -86,6 +91,7 @@ def test_wave8_does_not_claim_about_metadata_mutated() -> None:
     wave = load(WAVE8)
     item = wave["items"][0]
     blocker = item["evidence"]["blocking_metadata"]
+    assert item["prior_decision"] == "ADMIT"
     assert item["decision"] == "REPAIR_REQUIRED"
     assert blocker["description"] == (
         "Universal MCP bridge for Colossus-class orchestration. AKOS portfolio."
