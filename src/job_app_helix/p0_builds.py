@@ -84,10 +84,10 @@ def fleet_skill_compounding_engine(rows, min_rate=0.8, min_units=2, min_sites=2)
     promoted = []
     diagnostics = {}
     for skill, items in groups.items():
-        rate = sum((bool(x['success']) for x in items)) / len(items)
+        rate = sum(bool(x['success']) for x in items) / len(items)
         units = {x['unit'] for x in items}
         sites = {x['site'] for x in items}
-        ok = rate >= min_rate and len(units) >= min_units and (len(sites) >= min_sites)
+        ok = rate >= min_rate and len(units) >= min_units and len(sites) >= min_sites
         diagnostics[skill] = {'success_rate': rate, 'units': len(units), 'sites': len(sites), 'promoted': ok}
         if ok:
             promoted.append(skill)
@@ -162,14 +162,14 @@ def retrieval_outcome_optimizer(configs):
 def capability_safety_pareto_observatory(points):
     frontier = []
     for c in points:
-        dominated = any((o is not c and float(o['capability']) >= float(c['capability']) and (float(o['safety']) >= float(c['safety'])) and (float(o['capability']) > float(c['capability']) or float(o['safety']) > float(c['safety'])) for o in points))
+        dominated = any(o is not c and float(o['capability']) >= float(c['capability']) and float(o['safety']) >= float(c['safety']) and (float(o['capability']) > float(c['capability']) or float(o['safety']) > float(c['safety'])) for o in points)
         if not dominated:
             frontier.append(c['name'])
     return {'frontier': sorted(frontier)}
 
 def mission_autonomy_evidence_graph(behaviors):
     required = {'simulation', 'software_version', 'sensor_assumptions', 'degraded_mode_limit'}
-    missing = {b['name']: sorted((k for k in required if not b.get(k))) for b in behaviors}
+    missing = {b['name']: sorted(k for k in required if not b.get(k)) for b in behaviors}
     missing = {k: v for k, v in missing.items() if v}
     return {'complete': not missing, 'missing': missing}
 
