@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-10T19:40:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave8_2026-08-10.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surface_requires_explicit_non_affiliation_boundary": true,
+    "synthetic_telemetry_proof_does_not_establish_spacex_data_or_flight_authority": true,
+    "generic_github_about_metadata_does_not_override_repository_non_affiliation_boundary": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/spacex-telemetry",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "SYNTHETIC_TELEMETRY_CODEC_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "857ac40bf95d9cf010bee764c8e165dd32117dce",
+        "evidence_token": "LOCAL_SYNTHETIC_TELEMETRY_CODEC_NOT_SPACEX_DATA",
+        "verified_capability": "deterministic-synthetic-telemetry-codec-and-controller",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31462340770,
+            "name": "Public Telemetry Truth Gate",
+            "head_sha": "857ac40bf95d9cf010bee764c8e165dd32117dce",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31462341111,
+            "name": "CI",
+            "head_sha": "857ac40bf95d9cf010bee764c8e165dd32117dce",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Exact-current-head Python and Go proof verifies synthetic frame encode/decode, CRC rejection, partial-frame buffering, sequence-gap accounting, threshold/ring-buffer behavior, a bounded Go binary round trip, public-surface truth checks, and explicit SpaceX/provenance/flight-control/benchmark/mesh nonclaims.",
+        "metadata_readback": {
+          "description": "Telemetry module. AKOS / Double Helix portfolio.",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "generic portfolio metadata; it does not assert SpaceX affiliation, production telemetry provenance, benchmark scale, or flight authority"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/provenance boundary, production throughput or latency claims without benchmarks, external telemetry or flight-control claims, or contradictory GitHub About metadata."
+    }
+  ]
+}
