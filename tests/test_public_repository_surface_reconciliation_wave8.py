@@ -72,6 +72,8 @@ def test_colossus_gateway_is_source_complete_but_metadata_blocked() -> None:
     assert record["admission"] == "REPAIR_REQUIRED"
     assert record["repair_priority"] == "P1"
     assert record["decision_excellence_state"] == "SOURCE_TRUTH_COMPLETE_METADATA_BLOCKED"
+    assert "METADATA_DESCRIPTION_DRIFT" in record["findings"]
+    assert "SURFACE_ASSESSMENT_UNASSESSED" not in record["findings"]
     assert evidence["canonical_head"] == head
     assert evidence["evidence_token"] == (
         "LOCAL_MCP_STDIO_SERVER_NOT_EXTERNAL_COLOSSUS_RUNTIME"
@@ -86,6 +88,16 @@ def test_colossus_gateway_is_source_complete_but_metadata_blocked() -> None:
     assert all(receipt["head_sha"] == head for receipt in receipts)
     assert all(receipt["conclusion"] == "success" for receipt in receipts)
 
+    queued = {
+        item["repository"]: item for item in report["metadata_cleanup_queue"]
+    }
+    assert "GlacierEQ/colossus-gateway" in queued
+    assert "METADATA_DESCRIPTION_DRIFT" in queued["GlacierEQ/colossus-gateway"]["findings"]
+
+    history = record["reconciliation_history"][-1]
+    assert history["findings_add"] == ["METADATA_DESCRIPTION_DRIFT"]
+    assert history["findings_remove"] == ["SURFACE_ASSESSMENT_UNASSESSED"]
+
 
 def test_wave8_does_not_claim_about_metadata_mutated() -> None:
     wave = load(WAVE8)
@@ -93,6 +105,8 @@ def test_wave8_does_not_claim_about_metadata_mutated() -> None:
     blocker = item["evidence"]["blocking_metadata"]
     assert item["prior_decision"] == "ADMIT"
     assert item["decision"] == "REPAIR_REQUIRED"
+    assert item["findings_add"] == ["METADATA_DESCRIPTION_DRIFT"]
+    assert item["findings_remove"] == ["SURFACE_ASSESSMENT_UNASSESSED"]
     assert blocker["description"] == (
         "Universal MCP bridge for Colossus-class orchestration. AKOS portfolio."
     )
