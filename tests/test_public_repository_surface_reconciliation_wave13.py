@@ -32,6 +32,7 @@ WAVE13 = ROOT / "manifests/public_repository_surface_reconciliation_wave13_2026-
 RECEIPT = ROOT / "status/public-repository-surface-repair-wave13-2026-08-11.json"
 HEAD = "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26"
 RUN_IDS = {31536566296, 31536566364}
+TARGET = "GlacierEQ/spacex-pad-weather-gate"
 
 
 def load(path: Path) -> dict:
@@ -56,7 +57,7 @@ def subset_counts(report: dict) -> dict[str, int]:
     return counts
 
 
-def test_wave13_admits_exact_head_weather_rule_surface() -> None:
+def test_wave13_admits_only_exact_head_weather_rule_surface() -> None:
     before = report_through_wave12()
     after = apply_surface_reconciliation(before, load(WAVE13))
     assert subset_counts(before) == {
@@ -72,13 +73,20 @@ def test_wave13_admits_exact_head_weather_rule_surface() -> None:
         "REPAIR_REQUIRED": 36,
     }
 
+    before_by_repo = {item["repository"]: item for item in before["repositories"]}
+    after_by_repo = {item["repository"]: item for item in after["repositories"]}
+    assert set(before_by_repo) == set(after_by_repo)
+    assert before_by_repo[TARGET]["admission"] == "REPAIR_REQUIRED"
+    assert after_by_repo[TARGET]["admission"] == "ADMIT"
+    for repository in before_by_repo:
+        if repository != TARGET:
+            assert before_by_repo[repository] == after_by_repo[repository]
+
 
 def test_weather_admission_is_scope_and_receipt_bound() -> None:
     report = apply_surface_reconciliation(report_through_wave12(), load(WAVE13))
     record = next(
-        item
-        for item in report["repositories"]
-        if item["repository"] == "GlacierEQ/spacex-pad-weather-gate"
+        item for item in report["repositories"] if item["repository"] == TARGET
     )
     evidence = record["decision_evidence"]
     assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
@@ -121,3 +129,9 @@ def test_wave13_admission_fails_closed_on_receipt_drift() -> None:
     mismatch["items"][0]["evidence"]["proof_receipts"][0]["head_sha"] = "0" * 40
     with pytest.raises(RepositorySurfaceError, match="proof/head drift"):
         apply_surface_reconciliation(predecessor, mismatch)
+
+
+def test_wave13_reapplication_fails_closed_on_prior_decision_drift() -> None:
+    once = apply_surface_reconciliation(report_through_wave12(), load(WAVE13))
+    with pytest.raises(RepositorySurfaceError, match="prior decision drift"):
+        apply_surface_reconciliation(once, load(WAVE13))
