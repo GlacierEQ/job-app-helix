@@ -1,0 +1,34 @@
+{
+  "schema": "glaciereq.canon.unique-value-synthesis.v1",
+  "created_date": "2026-08-10",
+  "source_pull_request": 116,
+  "source_head": "5f0d2dac8a0f700991ab6676c66f286c09761126",
+  "canonical_base": "721fbb2b8a8048de415a36f5ca018edefecbb337",
+  "successor_branch": "canon/pr116-ai-architect-unique-value-20260810",
+  "decision": "FRESH_HEAD_UNIQUE_VALUE_SYNTHESIS",
+  "contamination_boundary": {
+    "source_pr_changed_files": 43,
+    "admitted_unique_additive_files": 4,
+    "unrelated_or_conflicting_files_not_replayed": 39
+  },
+  "admitted_files": [
+    {
+      "path": "hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md",
+      "git_blob_sha": "f4bb312bd9b26c3057e082a2ee723c990e78c632"
+    },
+    {
+      "path": "hire_package/casey-barton/AI_ARCHITECT_PROOF_MATRIX.json",
+      "git_blob_sha": "2dad00c1ffa22b32e7f8e350cc9b4e5a6466da29"
+    },
+    {
+      "path": "hire_package/casey-barton/AI_ARCHITECT_PROOF_MATRIX.md",
+      "git_blob_sha": "17e21f9b4ece2ee3ac2c77ed45553f5e3e4552f7"
+    },
+    {
+      "path": "hire_package/casey-barton/README_AI_ARCHITECT_PACKAGE.md",
+      "git_blob_sha": "a2d414baa820fc59f9622287e0d8409cc4d6bc32"
+    }
+  ],
+  "preserved_claim_boundary": "Artifacts retain their original explicit claim ceilings and promotion gates; no higher capability or recruiter claim is inferred by this synthesis.",
+  "next_gate": "Run repository-native validation on the fresh exact head, then merge only if review and CI remain green; retire PR #116 as superseded after successor creation."
+}
