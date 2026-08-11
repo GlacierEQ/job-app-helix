@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-11T10:24:00-10:00",
+  "wave": 11,
+  "repository": "GlacierEQ/spacex-launch-sequencer",
+  "source_canonical_head": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
+  "source_state": "LOCAL_COUNTDOWN_ORCHESTRATION_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31532650465,
+      "name": "Public Countdown Truth Gate",
+      "head_sha": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31532650434,
+      "name": "CI",
+      "head_sha": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-local-countdown-orchestration",
+  "evidence_token": "LOCAL_COUNTDOWN_SIMULATION_NOT_LAUNCH_COMMAND_AUTHORITY",
+  "repairs": [
+    "replaced official-looking SpaceX launch timeline, live command, MCP/mesh, sub-millisecond, and production timing claims with repository-native local countdown simulation scope",
+    "added explicit SpaceX non-affiliation and no-launch-command-authority boundary",
+    "replaced wall-clock epoch countdown behavior with monotonic duration accounting and correct hold/resume freeze semantics",
+    "isolated callback failures so audit events persist and observer exceptions cannot break state transitions",
+    "recomputed T-minus after milestone checks so slow checks cannot force a stale extra tick before simulated liftoff",
+    "made Go subsystem votes replace stale values and require the current vote set to be all-Go",
+    "moved Go milestone handlers outside the timer mutex to permit safe reentrant timer access",
+    "made critical held milestones retryable after resume and optional handler failures visible to callers",
+    "replaced stale hyper-scaling and HYPER_VALIDATED machine posture with TESTED exact-scope evidence",
+    "added Python and Go regression tests plus pinned repository-owned exact-head CI and public truth gates"
+  ],
+  "nonclaims": [
+    "no SpaceX affiliation or endorsement",
+    "no proprietary SpaceX, Falcon, or Starship launch procedures",
+    "no real launch command authority",
+    "no sub-millisecond or production timing guarantee",
+    "no real telemetry or live MCP, provider, or mesh integration",
+    "no production deployment claim"
+  ],
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
