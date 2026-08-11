@@ -43,7 +43,8 @@ def test_build_success_is_not_semantic_verification() -> None:
     boundary = audit["truth_boundary"]
     assert boundary["prior_25_of_25_build_receipt_remains_valid_for_execution"] is True
     assert boundary["execution_success_does_not_prove_semantic_correctness"] is True
-    assert boundary["partial_or_repair_required_items_must_not_be_promoted_as_semantically_verified"] is True
+    promotion_key = "partial_or_repair_required_items_must_not_be_promoted_as_semantically_verified"
+    assert boundary[promotion_key] is True
     assert sum(item["verdict"] == "ALIGNED_REFERENCE" for item in audit["items"]) < 25
 
 
