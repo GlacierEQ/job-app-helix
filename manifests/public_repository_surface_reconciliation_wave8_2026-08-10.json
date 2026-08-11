@@ -12,7 +12,7 @@
   "items": [
     {
       "repository": "GlacierEQ/colossus-gateway",
-      "prior_decision": "REPAIR_REQUIRED",
+      "prior_decision": "ADMIT",
       "decision": "REPAIR_REQUIRED",
       "repair_priority": "P1",
       "excellence_state": "SOURCE_TRUTH_COMPLETE_METADATA_BLOCKED",
