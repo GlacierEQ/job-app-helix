@@ -10,7 +10,12 @@ from pathlib import Path
 from job_app_helix.p0_builds import P0_IDS, verify_reference_builds
 
 ROOT = Path(__file__).resolve().parents[1]
-QUEUE = ROOT / "manifests" / "application_intelligence" / "company_innovation_execution_queue.v1.json"
+QUEUE = (
+    ROOT
+    / "manifests"
+    / "application_intelligence"
+    / "company_innovation_execution_queue.v1.json"
+)
 IMPLEMENTATION = ROOT / "src" / "job_app_helix" / "p0_builds.py"
 
 
