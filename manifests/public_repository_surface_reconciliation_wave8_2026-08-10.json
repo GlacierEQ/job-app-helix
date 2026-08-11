@@ -1,0 +1,64 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-10T19:17:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave7_2026-08-10.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "current_source_proof_can_complete_before_public_admission": true,
+    "github_about_metadata_cannot_be_claimed_changed_without_mutation_and_readback": true,
+    "company_named_surface_requires_non_affiliation_boundary": true,
+    "local_mcp_stdio_proof_does_not_establish_external_colossus_runtime": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/colossus-gateway",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "REPAIR_REQUIRED",
+      "repair_priority": "P1",
+      "excellence_state": "SOURCE_TRUTH_COMPLETE_METADATA_BLOCKED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
+        "evidence_token": "LOCAL_MCP_STDIO_SERVER_NOT_EXTERNAL_COLOSSUS_RUNTIME",
+        "verified_capability": "evidence-bound-mcp-stdio-gateway",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31461006818,
+            "name": "Public MCP Truth Gate",
+            "head_sha": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31461006820,
+            "name": "TypeScript Gateway CI",
+            "head_sha": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31461006836,
+            "name": "Gauntlet Memory CI",
+            "head_sha": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
+            "conclusion": "success"
+          }
+        ],
+        "source_repairs": [
+          "removed unsupported 100k-plus concurrent connection claim",
+          "removed unsupported sub-millisecond routing latency claim",
+          "removed unsupported fully-wired APEX mesh claim",
+          "added explicit xAI/X/Colossus non-affiliation boundary",
+          "bound public claims to actual TypeScript MCP stdio server source and native gates"
+        ],
+        "blocking_metadata": {
+          "description": "Universal MCP bridge for Colossus-class orchestration. AKOS portfolio.",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "finding": "METADATA_DESCRIPTION_DRIFT",
+          "reason": "The GitHub About description remains broader than the evidence-bound local stdio claim and does not carry the repository's explicit non-affiliation boundary."
+        }
+      },
+      "next_gate": "Update and read back GitHub About description to the evidence-bound non-affiliated MCP stdio scope; then re-evaluate ADMIT from the unchanged or freshly verified canonical head."
+    }
+  ]
+}
