@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-11T10:24:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave10_2026-08-10.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surface_requires_explicit_non_affiliation_boundary": true,
+    "local_countdown_proof_does_not_establish_launch_command_authority": true,
+    "generic_github_about_metadata_does_not_override_repository_non_affiliation_boundary": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/spacex-launch-sequencer",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_COUNTDOWN_ORCHESTRATION_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
+        "evidence_token": "LOCAL_COUNTDOWN_SIMULATION_NOT_LAUNCH_COMMAND_AUTHORITY",
+        "verified_capability": "deterministic-local-countdown-orchestration",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31532650465,
+            "name": "Public Countdown Truth Gate",
+            "head_sha": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31532650434,
+            "name": "CI",
+            "head_sha": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
+            "conclusion": "success"
+          }
+        ],
+        "proof_scope": "Exact-current-head proof verifies deterministic local Python and Go countdown orchestration, monotonic T-minus duration accounting, hold/resume freeze semantics, fail-closed abort and required-step handling, callback audit isolation, post-check timing refresh, subsystem vote replacement with all-Go readiness, reentrant milestone handlers without timer-lock deadlock, critical milestone retry after resume, optional failure visibility, and explicit SpaceX/non-launch-authority/performance/integration nonclaims.",
+        "metadata_readback": {
+          "description": "Launch stage machine with holds (portfolio) · AKOS P1",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "generic portfolio metadata aligned with the verified local countdown/hold capability; it does not assert SpaceX affiliation, proprietary launch procedures, live command authority, or production timing performance"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/no-launch-command-authority boundary, proprietary procedure claims, sub-millisecond or production performance claims without receipts, real telemetry or live MCP/provider/mesh claims without proof, production deployment claims, or contradictory GitHub About metadata."
+    }
+  ]
+}
