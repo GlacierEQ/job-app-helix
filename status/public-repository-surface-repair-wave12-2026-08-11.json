@@ -1,0 +1,49 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-11T10:44:00-10:00",
+  "wave": 12,
+  "repository": "GlacierEQ/spacex-orbital-mechanics",
+  "source_canonical_head": "b99a1f7ea0534d3a268f9bea432399c9862bd1e4",
+  "source_state": "LOCAL_ORBITAL_MATH_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31534343810,
+      "name": "Public Orbital Math Truth Gate",
+      "head_sha": "b99a1f7ea0534d3a268f9bea432399c9862bd1e4",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31534343822,
+      "name": "CI",
+      "head_sha": "b99a1f7ea0534d3a268f9bea432399c9862bd1e4",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-local-orbital-mechanics-calculation",
+  "evidence_token": "LOCAL_ORBITAL_MATH_NOT_FLIGHT_DYNAMICS_AUTHORITY",
+  "repairs": [
+    "replaced unsupported SpaceX, production flight-dynamics, live MCP/mesh, and high-precision claims with repository-owned local orbital-math scope",
+    "identified that the historical C++ Lambert implementation ignored time-of-flight and was not a Lambert boundary-value solver",
+    "reclassified the historical C++ file as a bounded Hohmann transfer departure-speed reference while retaining filename lineage",
+    "reclassified the Julia implementation as a first-order two-body Euler reference sketch rather than N-body or high-precision integration",
+    "separated verified Hohmann, bi-elliptic, and plane-change arithmetic from low-thrust, phase-grid, and intercept heuristics",
+    "added finite positive-radius validation to classical transfer routines and bounded the historical intercept API as a Hohmann arrival estimate",
+    "replaced stale hyper-scaling and HYPER_VALIDATED/PROMOTED machine posture with TESTED exact-scope evidence",
+    "added deterministic public-truth tests, C++ compile/run verification, standalone CI, and Python 3.11/3.13 exact-head truth gates"
+  ],
+  "nonclaims": [
+    "no SpaceX affiliation, endorsement, employment, or proprietary access",
+    "no production Lambert boundary-value solver",
+    "no N-body or high-precision long-duration propagation proof",
+    "no flight-dynamics, guidance, navigation, rendezvous, stationkeeping, or command authority",
+    "no real ephemeris, telemetry, MCP, provider, APEX, AKOS, or Mastermind runtime integration",
+    "no production performance, safety certification, deployment, or flight-readiness claim"
+  ],
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
