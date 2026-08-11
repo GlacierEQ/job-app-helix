@@ -16,6 +16,8 @@
       "decision": "REPAIR_REQUIRED",
       "repair_priority": "P1",
       "excellence_state": "SOURCE_TRUTH_COMPLETE_METADATA_BLOCKED",
+      "findings_add": ["METADATA_DESCRIPTION_DRIFT"],
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
         "canonical_branch": "main",
         "canonical_head": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
