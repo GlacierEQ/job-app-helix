@@ -1,0 +1,148 @@
+{
+  "schema": "glaciereq.ai-architect-proof-matrix.v1",
+  "candidate": "Casey Del Carpio Barton",
+  "primary_role_family": [
+    "Forward-Deployed AI Architect",
+    "Principal Agentic Systems Architect",
+    "Principal AI Platform Architect",
+    "Principal AI Automation Architect",
+    "Staff Applied AI Engineer"
+  ],
+  "system_pattern": [
+    "state",
+    "interfaces",
+    "orchestration",
+    "intelligence",
+    "execution",
+    "verification",
+    "persistence"
+  ],
+  "pillars": {
+    "evaluation": {
+      "state": "VERIFIED_BASELINE_CAUSAL_PENDING",
+      "repository": "GlacierEQ/make-it-heavy",
+      "evidence": [
+        {
+          "type": "merged_pr",
+          "pr": 35,
+          "merge_commit": "1e90366b53e808ea11549096afabedf9d07b53cb",
+          "claim": "matched longitudinal worker experiment substrate with baseline, template-delta, ablation, observation, topology freeze, prompt isolation, and causal-ready telemetry"
+        },
+        {
+          "type": "merged_pr",
+          "pr": 36,
+          "merge_commit": "256b68be3f71117d58dd7ef5eaab3cf5b3ab8d3c",
+          "claim": "8/8-worker Baseline Zero with 77.7375/100 average supervisory quality and explicit failure classifications"
+        },
+        {
+          "type": "experiment_spec",
+          "path": "experiments/anthropic-turn1-template-delta-external-spec.json",
+          "claim": "three one-axis template changes under frozen topology"
+        },
+        {
+          "type": "excluded_attempt",
+          "path": "receipts/anthropic-turn1-attempt-a-infra-failure-2026-08-07.json",
+          "classification": "SHARED_PROVIDER_RUNTIME_FAILURE",
+          "learning_policy": "EXCLUDE_FROM_TEMPLATE_LEARNING_AND_LONGITUDINAL_QUALITY_DELTA"
+        }
+      ],
+      "claim_ceiling": "longitudinal evaluation substrate and reproducible baseline; no causal worker improvement claim yet",
+      "next_gate": "repeat exact Turn 1 template-delta experiment only after provider health is reviewable, then run ablation"
+    },
+    "reliability": {
+      "state": "VERIFIED_RECOVERY_MECHANISMS_SLO_PENDING",
+      "repository": "GlacierEQ/sigma-glue",
+      "evidence": [
+        {
+          "type": "merged_pr",
+          "pr": 13,
+          "merge_commit": "80f6ca8f3fb7dd54cbbe261f867ca1d9bd22a99b",
+          "claim": "109/109 exact-head tests for one-shot dispatch recovery, concurrency fencing, exact recovery identity, and fail-closed uncertainty"
+        },
+        {
+          "type": "merged_pr",
+          "pr": 14,
+          "merge_commit": "4a1ca8e5c88a62e8a94a43213b2c509af6afcea3",
+          "claim": "provider-aware recovery with SHA-bound GitHub Contents writes and read-after-write reconciliation"
+        }
+      ],
+      "claim_ceiling": "at-most-once transport entry plus provider-aware recovery under explicit evidence conditions; not distributed consensus or provider-transactional exactly-once",
+      "next_gate": "persist latency, error, recovery, concurrency, throughput, and cost SLO receipts under bounded production-like load"
+    },
+    "security": {
+      "state": "VERIFIED_MECHANISM_LIVE_CREDENTIAL_PROOF_PENDING",
+      "repository": "GlacierEQ/fileboss-whisperx-processor",
+      "evidence": [
+        {
+          "type": "merged_pr",
+          "pr": 166,
+          "merge_commit": "ee732b304301bbf401f086d95cd6f86e0977358f",
+          "claim": "lease-gated Smithery MCP capability fabric with exact allowlists, short-lived attenuated tokens, master-key separation, hash-bound plans, and fail-closed execution uncertainty"
+        },
+        {
+          "type": "test_receipt",
+          "claim": "22 focused baseline assertions and 16/16 post-review regression assertions"
+        }
+      ],
+      "claim_ceiling": "capability-governed MCP security mechanics verified; no credential-bearing live Smithery execution claim yet",
+      "next_gate": "real doctor -> ready lease -> allowlisted read-only call -> durable receipts -> deny non-allowlisted and expired/released lease -> prove scoped service token used instead of master key"
+    },
+    "scale": {
+      "state": "VERIFIED_PORTFOLIO_BREADTH_OPERATING_SCALE_PENDING",
+      "repository": "GlacierEQ/job-app-helix",
+      "evidence": [
+        {
+          "type": "claim_register",
+          "claim": "exact 67-repository Helix boundary: one control-plane root plus 66 child repositories"
+        },
+        {
+          "type": "claim_register",
+          "claim": "AKOS 94/94 tests across 12 modules on Python 3.11-3.13"
+        },
+        {
+          "type": "claim_register",
+          "claim": "verified 21-node README Mesh rollout"
+        },
+        {
+          "type": "company_registry",
+          "claim": "76 required company tracks including glaciereq_core"
+        }
+      ],
+      "claim_ceiling": "governed systems breadth and deterministic planning topology; not proof of runtime throughput, customer scale, or all-track execution",
+      "next_gate": "persist executed workflow counts, integration counts by proof state, event/document volumes, recovery counts, cost/performance metrics, and user-impact receipts"
+    }
+  },
+  "priority_queue": [
+    {
+      "priority": "P0",
+      "gate": "matched worker template-delta rerun",
+      "promotion": "evaluation result evidence"
+    },
+    {
+      "priority": "P0",
+      "gate": "worker ablation receipt",
+      "promotion": "causal marginal-value evidence"
+    },
+    {
+      "priority": "P0",
+      "gate": "live lease-gated Smithery proof",
+      "promotion": "credential-bearing security/integration evidence"
+    },
+    {
+      "priority": "P1",
+      "gate": "reliability SLO receipt set",
+      "promotion": "principal AI platform operating evidence"
+    },
+    {
+      "priority": "P1",
+      "gate": "scale telemetry ledger",
+      "promotion": "defensible operating-scale evidence"
+    },
+    {
+      "priority": "P2",
+      "gate": "user-impact receipts",
+      "promotion": "forward-deployed outcome evidence"
+    }
+  ],
+  "promotion_rule": "mechanism -> test -> live_or_realistic_execution -> receipt -> bounded_claim -> recruiter_projection"
+}
