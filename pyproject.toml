@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "job-app-helix"
-version = "0.3.0"
-description = "A reproducible build-and-verify campaign engine and evidence-bound README intelligence mesh."
+version = "0.4.0"
+description = "Evidence-bound job application outcome engine and portfolio intelligence system."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }
 authors = [{ name = "Casey Barton" }]
-keywords = ["systems-engineering", "verification", "portfolio", "orchestration", "protobuf", "documentation"]
+keywords = ["job-applications", "portfolio", "systems-engineering", "evidence", "orchestration"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -19,7 +19,6 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
-  "Topic :: Software Development :: Quality Assurance",
 ]
 dependencies = [
   "jsonschema>=4.23,<5",
