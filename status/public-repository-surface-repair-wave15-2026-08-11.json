@@ -1,0 +1,47 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-11T14:14:00-10:00",
+  "wave": 15,
+  "repository": "GlacierEQ/spacex-autonomy",
+  "source_canonical_head": "156629c65bdeff5397c1370b3e098eec26aa9377",
+  "source_state": "LOCAL_AUTONOMY_SIMULATION_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31549408943,
+      "name": "Autonomy Simulation Verification",
+      "head_sha": "156629c65bdeff5397c1370b3e098eec26aa9377",
+      "conclusion": "success"
+    }
+  ],
+  "native_receipts": {
+    "python": {
+      "3.11": {"artifact_id": 9123660732, "executed": 70, "failures": 0, "conclusion": "VERIFIED"},
+      "3.12": {"artifact_id": 9123660382, "executed": 70, "failures": 0, "conclusion": "VERIFIED"},
+      "3.13": {"artifact_id": 9123662482, "executed": 70, "failures": 0, "conclusion": "VERIFIED"}
+    },
+    "go": {"artifact_id": 9123669194, "executed": 7, "passed": 7, "failed": 0, "race_enabled": true, "conclusion": "VERIFIED"}
+  },
+  "verified_capability": "deterministic-local-python-go-autonomy-simulation",
+  "evidence_token": "LOCAL_AUTONOMY_SIMULATION_NOT_FLIGHT_CONTROL_AUTHORITY",
+  "repairs": [
+    "replaced stale generic PROMOTED/hyper-scaling machine posture with TESTED bounded autonomy simulation scope",
+    "whitelisted the exact Python and Go simulation capabilities instead of generic scaling claims",
+    "bound repository source to an external exact-current-head receipt contract rather than self-asserting future CI success",
+    "strengthened README verification to reject contradictory affirmative operational flight/control claims while preserving legitimate simulation terminology",
+    "made machine verified_scope, nonclaims, capabilities, and proof contract exact allowlists",
+    "upgraded the Go receipt schema to attest race_enabled=true and fail closed when race execution is absent",
+    "required exact source identity in both Python and Go jobs and retained full pytest coverage while scoping lint to promoted Python surfaces",
+    "verified 70/70 Python tests on each of Python 3.11, 3.12, and 3.13 plus seven of seven Go tests under race-enabled execution"
+  ],
+  "nonclaims": [
+    "no SpaceX affiliation, endorsement, employment, or proprietary access",
+    "no real vehicle, actuator, telemetry bus, flight computer, or external command output",
+    "no navigation-grade estimator or validated mission thresholds",
+    "no adversarial Byzantine consensus guarantee",
+    "no operational launch, re-entry, landing, or abort authority",
+    "no hardware-in-the-loop, production deployment, reliability, or performance guarantee"
+  ],
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {"ADMIT": 1, "REPAIR_REQUIRED": -1}
+}
