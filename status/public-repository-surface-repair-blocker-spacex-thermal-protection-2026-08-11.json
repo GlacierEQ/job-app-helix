@@ -1,0 +1,30 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-blocker.v1",
+  "generated_at": "2026-08-11T14:14:00-10:00",
+  "repository": "GlacierEQ/spacex-thermal-protection",
+  "source_canonical_head": "f35cef2d9c115218766ac3ef8d023f8316ac02f0",
+  "evidence_token": "LOCAL_THERMAL_SCENARIO_MODEL_NOT_FLIGHT_TPS_AUTHORITY",
+  "source_proof": [
+    {"id": 31548120212, "name": "CI", "head_sha": "f35cef2d9c115218766ac3ef8d023f8316ac02f0", "conclusion": "success"},
+    {"id": 31548120213, "name": "Public Thermal Scenario Truth Gate", "head_sha": "f35cef2d9c115218766ac3ef8d023f8316ac02f0", "conclusion": "success"}
+  ],
+  "source_state": "TESTED_EXACT_HEAD_PROVEN",
+  "verified_source_capabilities": [
+    "deterministic-local-multi-tile-thermal-scenario-modeling",
+    "bounded-local-thermal-gradient-and-spectral-analysis",
+    "source-verified-odin-data-oriented-reference"
+  ],
+  "surface_decision": "REPAIR_REQUIRED",
+  "blocker": "GITHUB_ABOUT_DESCRIPTION_CONTRADICTS_CLAIM_CEILING",
+  "metadata_readback": {
+    "description": "Predictive heat-shield tile failure detection. AKOS / Double Helix portfolio.",
+    "homepage": "https://github.com/GlacierEQ/AKOS",
+    "assessment": "the About description still asserts heat-shield failure detection while the controlling source intentionally limits itself to local thermal scenario modeling and explicitly does not establish calibrated failure prediction"
+  },
+  "connector_capability": {
+    "repository_description_mutation": "UNAVAILABLE_AT_LATEST_DISCOVERY",
+    "no_false_remediation_claim": true
+  },
+  "desired_description": "Local multi-tile thermal scenario modeling + Odin reference (independent portfolio exhibit)",
+  "next_gate": "Update GitHub About description through an authorized repository-metadata mutation capability, read it back exactly, then rerun admission reconciliation without changing the already-proven source claim ceiling."
+}
