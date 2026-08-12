@@ -122,12 +122,28 @@
       "id": "wave-3-technical-exhibits",
       "priority": 3,
       "mode": "VERIFY",
-      "objective": "Promote the highest-innovation unverified exhibits through reference-correctness checks, native builds, positive-count tests, and benchmark receipts where performance is claimed.",
-      "current_state": "UNVERIFIED",
-      "current_evidence": "INVENTORY",
+      "objective": "Promote the highest-innovation technical exhibits through reference-correctness checks, native builds, positive-count tests, and benchmark receipts where performance is claimed.",
+      "current_state": "PARTIALLY_VERIFIED",
+      "current_evidence": "TEST",
       "target_evidence": "TEST",
       "progress": {
-        "completed_count": 0,
+        "completed": [
+          {
+            "repository": "adobe-creative-provenance-gate",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "f4c56d2266d48d19bb9128bc41fb4080968533cb",
+            "proof": "content-addressed provenance engine, installed creative-provenance CLI, behavior tests, concrete lineage demo, and CI execution"
+          },
+          {
+            "repository": "amd-hetero-placement-contract",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "e19dea2fe713d0be9bab1a43f7ec2585dd21546e",
+            "proof": "heterogeneous placement engine, installed hetero-place CLI, behavioral tests, deterministic demo, and CI execution"
+          }
+        ],
+        "completed_count": 2,
         "remaining_count": 17
       },
       "acceptance": {
@@ -137,6 +153,8 @@
       },
       "repositories": [
         "JOB-RESUME-BUILDER-",
+        "adobe-creative-provenance-gate",
+        "amd-hetero-placement-contract",
         "apple-ane-kv-quantizer",
         "colossus-gateway",
         "comet-browser-agent-bridge",
