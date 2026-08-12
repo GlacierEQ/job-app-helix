@@ -1,0 +1,66 @@
+{
+  "schema": "glaciereq.repo-excellence.external-current-proof.v1",
+  "status": "CURRENT_CANONICAL_EXACT_HEAD_TEST_PROOF",
+  "repository": "GlacierEQ/spacex-propulsion-monitor",
+  "source": {
+    "branch": "main",
+    "sha": "1903e562e801a6153b0e78b9d236418c849f1867"
+  },
+  "role": "ACTIVE_SPECIALIST_COMPONENT",
+  "verified_capability": "deterministic-local-multi-sensor-propulsion-health-simulation",
+  "evidence_token": "LOCAL_PROPULSION_HEALTH_SIMULATION_NOT_FLIGHT_ENGINE_AUTHORITY",
+  "repository_native_verification": {
+    "ci": {
+      "workflow": "CI",
+      "run_id": 31546261209,
+      "job_id": 93959316608,
+      "conclusion": "success",
+      "python_version": "3.13",
+      "tests_passed": 52,
+      "repository_smoke": "PASS",
+      "evidence_token_observed": true
+    },
+    "public_truth": {
+      "workflow": "Public Health Simulation Truth Gate",
+      "run_id": 31546261244,
+      "conclusion": "success",
+      "python_versions": ["3.11", "3.13"],
+      "exact_source_identity_checked": true,
+      "public_boundary_checked": true
+    },
+    "authority": {
+      "github_token_contents": "read",
+      "checkout_persist_credentials": false,
+      "checkout_action_sha": "11d5960a326750d5838078e36cf38b85af677262",
+      "setup_python_action_sha": "a26af69be951a213d495a4c3e4e4022e16d87065"
+    }
+  },
+  "implemented_scope": [
+    "validated local multi-sensor propulsion health scoring",
+    "per-unit rolling-window health isolation",
+    "local state-simulation controller semantics",
+    "bounded anomaly and diagnostic history",
+    "predictive health heuristics explicitly limited to local simulation"
+  ],
+  "gates": {
+    "problem_verified": true,
+    "unique_value_known": true,
+    "canonical_identity_known": true,
+    "central_mechanism_implemented": true,
+    "deterministic_tests_pass": true,
+    "adversarial_tests_pass": true,
+    "runtime_behavior_observed": true,
+    "security_authority_bounded": true,
+    "proof_receipt_bound_to_sha": true,
+    "reusable_capabilities_extracted": false,
+    "projections_truth_consistent": true,
+    "evolution_cursor_defined": true
+  },
+  "runtime_scope": "repository-native local propulsion-health simulation only; not engine, test-stand, flight, or production deployment authority",
+  "nonclaims": [
+    "No SpaceX affiliation, employment, adoption, endorsement, proprietary engine data, or production deployment is established.",
+    "No calibrated engine failure probability, remaining-useful-life validation, real throttle/shutdown/abort/thrust-redistribution, flight-computer command authority, flight readiness, or safety certification is established.",
+    "No live MCP/provider/APEX/AKOS/Mastermind runtime integration or production-scale reliability claim is established."
+  ],
+  "next_cursor": "Admit 1903e562e801a6153b0e78b9d236418c849f1867 at Wave-1 TEST tier and advance the rollout cursor to spacex-satellite-mesh."
+}
