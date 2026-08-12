@@ -1,7 +1,7 @@
 {
   "schema": "glaciereq.company-dossiers-shard.v2",
   "group_id": "additional_targets",
-  "generated_at": "2026-08-07T11:43:00-10:00",
+  "generated_at": "2026-08-12T10:14:00-10:00",
   "defaults_apply_to_all_companies": true,
   "defaults": {
     "track_state": "NO_DIRECT_EXHIBIT_VERIFIED",
@@ -41,11 +41,35 @@
         ["GlacierEQ/intel-npu-acceleration-library__public_fork_archive", "L1", "EXCLUDED_AUTHORSHIP", "public", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM"]
       ]
     },
-    {"company_id": "amd", "display_name": "AMD", "repositories": []},
+    {
+      "company_id": "amd",
+      "display_name": "AMD",
+      "track_state": "MAPPED_WITH_RECRUITER_READY_PUBLIC_SUBSET",
+      "recruiter_thesis": "Deterministic heterogeneous workload placement across compute, memory, bandwidth, latency, privacy, power, locality, cost, availability, feature, and authority constraints.",
+      "gap_or_next_gate": "The standalone placement engine, demo, package, and installed CLI are verified. Live hardware telemetry and a hosted placement service are not implemented and must not be implied; add them only if an operational consumer requires those boundaries.",
+      "repositories": [
+        ["GlacierEQ/amd-hetero-placement-contract", "L4", "PROMOTED", "public", "HELIX_ADMITTED", "ORIGINAL_CANDIDATE"]
+      ],
+      "recruiter_admitted_repositories": [
+        "GlacierEQ/amd-hetero-placement-contract"
+      ]
+    },
     {"company_id": "qualcomm", "display_name": "Qualcomm", "repositories": []},
     {"company_id": "oracle", "display_name": "Oracle", "repositories": []},
     {"company_id": "salesforce", "display_name": "Salesforce", "repositories": []},
-    {"company_id": "adobe", "display_name": "Adobe", "repositories": []},
+    {
+      "company_id": "adobe",
+      "display_name": "Adobe",
+      "track_state": "MAPPED_WITH_RECRUITER_READY_PUBLIC_SUBSET",
+      "recruiter_thesis": "Content-addressed creative provenance, rights-aware transformation lineage, editability preservation, budget control, brand constraints, authority expiry, and tamper-evident receipt verification.",
+      "gap_or_next_gate": "The standalone provenance verifier, demo, package, and installed CLI are verified. It does not call proprietary Adobe APIs, render creative assets, or validate external license registries; those integrations remain unimplemented and outside the current claim ceiling.",
+      "repositories": [
+        ["GlacierEQ/adobe-creative-provenance-gate", "L4", "PROMOTED", "public", "HELIX_ADMITTED", "ORIGINAL_CANDIDATE"]
+      ],
+      "recruiter_admitted_repositories": [
+        "GlacierEQ/adobe-creative-provenance-gate"
+      ]
+    },
     {"company_id": "cloudflare", "display_name": "Cloudflare", "repositories": []},
     {"company_id": "vercel", "display_name": "Vercel", "repositories": []},
     {"company_id": "hugging_face", "display_name": "Hugging Face", "repositories": []},
