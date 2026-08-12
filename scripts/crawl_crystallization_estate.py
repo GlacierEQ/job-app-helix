@@ -20,7 +20,11 @@ from job_app_helix.crystallization_crawler import (
 
 def _atomic_write(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fd, name = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
+    fd, name = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+    )
     temporary = Path(name)
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as handle:
@@ -69,12 +73,17 @@ def select_repositories(all_repositories, args, *, epoch_seconds: float | None =
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Build completeness-accounted source evidence for every accessible GitHub repository"
+    description = (
+        "Build completeness-accounted source evidence for every accessible "
+        "GitHub repository"
     )
+    parser = argparse.ArgumentParser(description=description)
     parser.add_argument(
         "--token",
-        default=os.environ.get("GLACIEREQ_ESTATE_TOKEN") or os.environ.get("GITHUB_TOKEN", ""),
+        default=(
+            os.environ.get("GLACIEREQ_ESTATE_TOKEN")
+            or os.environ.get("GITHUB_TOKEN", "")
+        ),
     )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument(
@@ -94,7 +103,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--hourly-shard-size",
         type=int,
-        help="select one deterministic time-rotating shard; intended for scheduled continuity",
+        help="select one deterministic time-rotating shard for scheduled continuity",
     )
     parser.add_argument(
         "--repository",
