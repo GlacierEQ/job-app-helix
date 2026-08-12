@@ -17,8 +17,12 @@ def _record() -> dict:
     return json.loads(RECORD_PATH.read_text(encoding="utf-8"))
 
 
+def _validate(record: dict) -> dict:
+    return validate_evolving_repo_excellence_record(record, ROOT)
+
+
 def test_apex_evolving_record_is_measured_content_addressed_and_claim_bounded() -> None:
-    validated = validate_evolving_repo_excellence_record(_record())
+    validated = _validate(_record())
 
     assert validated["state"] == "EVOLVING"
     assert validated["identity"]["canonical_head"] == (
@@ -37,23 +41,48 @@ def test_apex_evolving_record_is_measured_content_addressed_and_claim_bounded() 
     assert not allowed_transition("EVOLVING", "CANONICAL", validated["gates"])
 
 
+def test_non_evolving_record_is_rejected() -> None:
+    record = _record()
+    record["state"] = "PROMOTED"
+    record["evolution"]["next_gate"] = "CANONICAL"
+    record["identity"].pop("current_evolved_head", None)
+    record.pop("evolution_receipt", None)
+
+    with pytest.raises(ExcellenceContractError, match="requires state EVOLVING"):
+        _validate(record)
+
+
 def test_evolving_rejects_receipt_byte_drift() -> None:
     record = _record()
     record["evolution_receipt"]["blob_sha"] = "0" * 40
     with pytest.raises(ExcellenceContractError, match="Git blob SHA"):
-        validate_evolving_repo_excellence_record(record)
+        _validate(record)
 
 
 def test_evolving_rejects_fake_winner_or_head() -> None:
     record = _record()
     record["evolution_receipt"]["winner"] = "baseline"
     with pytest.raises(ExcellenceContractError, match="candidate winner"):
-        validate_evolving_repo_excellence_record(record)
+        _validate(record)
 
     record = _record()
     record["identity"]["current_evolved_head"] = "a" * 40
     with pytest.raises(ExcellenceContractError, match="evolution current head drift"):
-        validate_evolving_repo_excellence_record(record)
+        _validate(record)
+
+
+def test_evolving_rejects_boolean_test_counts() -> None:
+    record = _record()
+    record["evolution_receipt"]["tests_passed"] = True
+    with pytest.raises(ExcellenceContractError, match="positive integer"):
+        _validate(record)
+
+
+def test_evolving_rejects_non_git_blob_evidence() -> None:
+    record = _record()
+    record["evolution_receipt"]["exact_source_blob"] = "self-consistent-not-a-git-blob"
+    with pytest.raises(ExcellenceContractError, match="40-hex Git SHA"):
+        _validate(record)
 
 
 def test_evolving_rejects_company_claim_inflation() -> None:
@@ -61,9 +90,9 @@ def test_evolving_rejects_company_claim_inflation() -> None:
     mutated = copy.deepcopy(record)
     mutated["company_evidence"]["stage"] = "GITHUB_ADOPTED"
     with pytest.raises(ExcellenceContractError):
-        validate_evolving_repo_excellence_record(mutated)
+        _validate(mutated)
 
     mutated = copy.deepcopy(record)
     mutated["company_evidence"]["claim_ceiling"] = "github_production"
     with pytest.raises(ExcellenceContractError):
-        validate_evolving_repo_excellence_record(mutated)
+        _validate(mutated)
