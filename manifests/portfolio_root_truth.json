@@ -20,7 +20,7 @@
     {
       "id": "inventory",
       "path": "manifests/portfolio_repositories.json",
-      "role": "Canonical admitted 67-repository public-portfolio boundary; not the full authenticated owned estate",
+      "role": "Canonical living admitted public-portfolio boundary; exact membership is derived from this inventory and is not the full authenticated owned estate",
       "required": true
     },
     {
@@ -241,7 +241,7 @@
     "required_sequence": [
       "load root manifest",
       "validate all required control-plane source files",
-      "reconcile the admitted 67-repository public-portfolio boundary",
+      "reconcile the living admitted public-portfolio boundary from manifests/portfolio_repositories.json",
       "resolve company-shard defaults",
       "validate company second-depth stages, prerequisites, blockers, and claim ceilings",
       "verify every HELIX_ADMITTED repository maps to admitted inventory",
@@ -257,7 +257,7 @@
   },
   "invariants": [
     "The admitted inventory root plus workspace repository count equals its total_repositories field.",
-    "The 67-repository inventory is the admitted public-portfolio subset, not the full authenticated owned estate.",
+    "The admitted inventory is a living public-portfolio subset, not the full authenticated owned estate; no fixed cardinality is part of the semantic contract.",
     "Authenticated owned-estate cardinality and private repository identities remain runtime-private and absent from downstream public bundles.",
     "Workspace repository identities in the admitted inventory are unique.",
     "Every HELIX_ADMITTED dossier repository exists in the admitted canonical inventory.",
