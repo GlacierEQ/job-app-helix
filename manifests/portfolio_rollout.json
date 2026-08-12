@@ -68,11 +68,18 @@
             "evidence": "TEST",
             "canonical_commit": "43fc94f2a4932ea04dca607120c764ef3240b1c9",
             "proof": "PR #2 merged after exact reviewed head bbeb5f9be5aba5ba12db8690bae27ffd2cd21690 passed Python 3.11, 3.12, 3.13, Rust cargo check/tests, CLI smoke, and aggregate native verification"
+          },
+          {
+            "repository": "spacex-cryogenics",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
+            "proof": "PR #1 merged after exact reviewed head 39519210a8f6970aca320eb385ec84a3df20e887 passed pinned-action Python 3.11, 3.12, 3.13 install/compile/tests/CLI and strict C++17 compile/self-test/output invariants plus aggregate functional proof"
           }
         ],
-        "completed_count": 5,
-        "remaining_count": 15,
-        "next_repository": "spacex-cryogenics"
+        "completed_count": 6,
+        "remaining_count": 14,
+        "next_repository": "spacex-ground-network"
       },
       "acceptance": {
         "require_readme_contract": true,
