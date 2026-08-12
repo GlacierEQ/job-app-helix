@@ -96,11 +96,25 @@
             "evidence": "TEST",
             "canonical_commit": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
             "proof": "truth-hardened canonical main passed exact-head Python verification, Python 3.11 and 3.13 public-truth checks, repository-native mission/telemetry/event-bus tests, and cold-start operability"
+          },
+          {
+            "repository": "spacex-orbital-mechanics",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "b99a1f7ea0534d3a268f9bea432399c9862bd1e4",
+            "proof": "exact canonical CI run 31534343822 passed 39 Python tests, cold-start orbital-math smoke, C++ Hohmann reference execution and explicit LOCAL_ORBITAL_MATH_NOT_FLIGHT_DYNAMICS_AUTHORITY boundary; Public Orbital Math Truth Gate run 31534343810 passed Python 3.11 and 3.13 with exact source identity checks"
+          },
+          {
+            "repository": "spacex-pad-weather-gate",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+            "proof": "exact canonical CI run 31536566364 passed 20 Python tests, local environmental-rule smoke and Go tests under pinned read-only actions; Public Environmental Rule Truth Gate run 31536566296 passed Python 3.11 and 3.13 with exact source identity and Go boundary checks"
           }
         ],
-        "completed_count": 9,
-        "remaining_count": 11,
-        "next_repository": "spacex-orbital-mechanics"
+        "completed_count": 11,
+        "remaining_count": 9,
+        "next_repository": "spacex-propulsion-monitor"
       },
       "acceptance": {
         "require_readme_contract": true,
