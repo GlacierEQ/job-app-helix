@@ -4,22 +4,26 @@ on:
   pull_request:
     paths:
       - "src/job_app_helix/repo_excellence.py"
+      - "src/job_app_helix/repo_excellence_evolution.py"
       - "manifests/repo_excellence/**"
       - "manifests/company_projections/**"
       - "excellence/receipts/**"
       - "tests/test_repo_excellence.py"
       - "tests/test_repo_excellence_canonicalization.py"
+      - "tests/test_repo_excellence_evolution.py"
       - ".github/workflows/repo-excellence-contract.yml"
   push:
     branches:
       - main
     paths:
       - "src/job_app_helix/repo_excellence.py"
+      - "src/job_app_helix/repo_excellence_evolution.py"
       - "manifests/repo_excellence/**"
       - "manifests/company_projections/**"
       - "excellence/receipts/**"
       - "tests/test_repo_excellence.py"
       - "tests/test_repo_excellence_canonicalization.py"
+      - "tests/test_repo_excellence_evolution.py"
       - ".github/workflows/repo-excellence-contract.yml"
 
 permissions:
@@ -44,10 +48,13 @@ jobs:
         run: >-
           ruff check
           src/job_app_helix/repo_excellence.py
+          src/job_app_helix/repo_excellence_evolution.py
           tests/test_repo_excellence.py
           tests/test_repo_excellence_canonicalization.py
+          tests/test_repo_excellence_evolution.py
       - name: Verify repository-excellence contract
         run: >-
           pytest -q
           tests/test_repo_excellence.py
           tests/test_repo_excellence_canonicalization.py
+          tests/test_repo_excellence_evolution.py
