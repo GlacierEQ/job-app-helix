@@ -1,0 +1,64 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-11T14:14:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave14_2026-08-11.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surface_requires_explicit_non_affiliation_boundary": true,
+    "local_autonomy_simulation_does_not_establish_vehicle_or_flight_control_authority": true,
+    "weighted_estimate_fusion_does_not_establish_byzantine_consensus": true,
+    "local_thresholds_and_state_estimation_do_not_establish_navigation_grade_or_operational_validation": true,
+    "go_race_receipt_must_attest_race_enabled_execution": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/spacex-autonomy",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_AUTONOMY_SIMULATION_NATIVE_PROOF_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "156629c65bdeff5397c1370b3e098eec26aa9377",
+        "evidence_token": "LOCAL_AUTONOMY_SIMULATION_NOT_FLIGHT_CONTROL_AUTHORITY",
+        "verified_capability": "deterministic-local-python-go-autonomy-simulation",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31549408943,
+            "name": "Autonomy Simulation Verification",
+            "head_sha": "156629c65bdeff5397c1370b3e098eec26aa9377",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python": [
+            {"version": "3.11", "artifact_id": 9123660732, "executed": 70, "failures": 0, "conclusion": "VERIFIED", "junit_sha256": "408a763c92b999151359e0b62aaa8e72cd5a08c24722a08682676213542a1bd1"},
+            {"version": "3.12", "artifact_id": 9123660382, "executed": 70, "failures": 0, "conclusion": "VERIFIED", "junit_sha256": "0772e8e1ba808fa93ac5cb663a88034bdcda737627a823ab9e7f134a2ccef3e4"},
+            {"version": "3.13", "artifact_id": 9123662482, "executed": 70, "failures": 0, "conclusion": "VERIFIED", "junit_sha256": "cdb2051d06906fe26c641ab3c351c81687473b21add4d763f9db7c228e168b56"}
+          ],
+          "go": {
+            "artifact_id": 9123669194,
+            "schema": "glaciereq.spacex-autonomy.go-test-receipt.v2",
+            "go_version": "go1.23.4",
+            "executed": 7,
+            "passed": 7,
+            "failed": 0,
+            "race_enabled": true,
+            "conclusion": "VERIFIED",
+            "report_sha256": "cb22c13bdcbb770c2c08e0a4ea4c224476982632004be624f551cab7dd5c6253"
+          }
+        },
+        "proof_scope": "Exact-current-head native proof verifies the repository's deterministic Python mode policy and hysteresis, one-dimensional alpha-beta state estimation, bounded local position-control simulation, weighted local multi-vehicle estimate fusion, concurrency-safe Go phase/threshold simulation, Python 3.11/3.12/3.13 positive-count test receipts with 70 executed and zero failures on each version, and a Go 1.23.4 positive-count receipt with seven executed/seven passed and race_enabled=true. The public README verifier rejects contradictory affirmative operational-authority claims, and machine scope/nonclaims are exact allowlists. This proof does not establish SpaceX affiliation, endorsement, employment, proprietary access, real vehicle/actuator/telemetry/flight-computer control, navigation-grade estimation, validated mission thresholds, Byzantine/adversarial consensus, operational launch/re-entry/landing/abort authority, hardware-in-the-loop operation, production deployment, reliability, or performance guarantees.",
+        "metadata_readback": {
+          "description": "Hybrid autonomy mode under sensor confidence (portfolio) · AKOS",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "portfolio metadata is compatible with the bounded local autonomy simulation; the controlling README and machine state preserve independent non-affiliation and no-flight-control-authority boundaries"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, proof failure, missing or non-race Go receipt, removal of the independent SpaceX non-affiliation/no-flight-control boundary, claims of real vehicle or actuator control, operational flight authority, navigation-grade or validated-threshold claims, Byzantine-consensus claims, production/deployment/performance claims without proof, or contradictory GitHub About metadata."
+    }
+  ]
+}
