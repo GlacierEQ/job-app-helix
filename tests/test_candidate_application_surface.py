@@ -74,7 +74,7 @@ def test_status_semantics_keep_blocked_and_unverified_scope_distinct() -> None:
 
     readme = (PACKAGE / "README.md").read_text(encoding="utf-8")
     assert "APEX GitHub App bridge activation remains `BLOCKED`" in readme
-    assert "coordinator hosted promotion remains `UNVERIFIED`" in readme.casefold()
+    assert "coordinator hosted promotion remains `unverified`" in readme.casefold()
     assert "One governed APEX Public Action Face path is operational" in readme
 
 
