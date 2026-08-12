@@ -19,6 +19,13 @@ def targets():
     return load_targets(ROOT / "manifests")
 
 
+def test_inherited_company_defaults_are_resolved() -> None:
+    target = find_target("palantir", targets())
+    assert target.track_state == "NO_DIRECT_EXHIBIT_VERIFIED"
+    assert target.target_roles
+    assert target.repositories == ()
+
+
 def test_anthropic_application_kit_uses_admitted_public_proof() -> None:
     target = find_target("anthropic", targets())
     kit = build_application_kit(target, "Safety Systems Engineer")
@@ -29,8 +36,25 @@ def test_anthropic_application_kit_uses_admitted_public_proof() -> None:
     repositories = {row["repository"] for row in kit.proof_repositories}
     assert "GlacierEQ/anthropic-agent-coordinator" in repositories
     assert "GlacierEQ/anthropic-safety-monitor" in repositories
-    assert all(row["state"] in {"PROMOTED", "REFERENCE_ONLY"} for row in kit.proof_repositories)
+    assert all(
+        row["state"] in {"PROMOTED", "REFERENCE_ONLY"}
+        for row in kit.proof_repositories
+    )
     assert "no Anthropic affiliation" in kit.non_affiliation
+
+
+def test_newly_crystallized_adobe_and_amd_are_application_proof() -> None:
+    adobe = build_application_kit(find_target("adobe", targets()))
+    amd = build_application_kit(find_target("amd", targets()))
+
+    assert adobe.readiness == "READY_WITH_PUBLIC_PROOF"
+    assert amd.readiness == "READY_WITH_PUBLIC_PROOF"
+    assert {row["repository"] for row in adobe.proof_repositories} == {
+        "GlacierEQ/adobe-creative-provenance-gate"
+    }
+    assert {row["repository"] for row in amd.proof_repositories} == {
+        "GlacierEQ/amd-hetero-placement-contract"
+    }
 
 
 def test_blocked_and_experimental_repos_are_not_recruiter_proof() -> None:
@@ -74,7 +98,14 @@ def test_primary_cli_defaults_to_real_target_index(capsys) -> None:
 
 
 def test_primary_cli_compiles_application_json(capsys) -> None:
-    assert cli.main(["application", "anthropic", "--role", "Safety Systems Engineer", "--json"]) == 0
+    args = [
+        "application",
+        "anthropic",
+        "--role",
+        "Safety Systems Engineer",
+        "--json",
+    ]
+    assert cli.main(args) == 0
     payload = json.loads(capsys.readouterr().out)
     assert payload["company_id"] == "anthropic"
     assert payload["role"] == "Safety Systems Engineer"
