@@ -30,9 +30,10 @@ This is the canonical first-stop presentation for recruiters, hiring leaders, se
 
 ## Current Truth Boundary
 
-**Verified:** exact 67-repository boundary - one Helix root plus 66 child repositories; complete 66-child rollout partition; AKOS 94/94 tests across Python 3.11-3.13; 21-node README Mesh rollout; live canonical hire surface at https://casey-barton-glaciereq.vercel.app/ (HTTP 200).  
-**Candidate proof:** Agent Coordinator 62/62 Python 3.13 tests.  
-**Pending:** hosted multi-version coordinator promotion and portfolio-wide deployment, scale, performance, reliability, and customer-impact proof.  
+**Verified:** the living admitted portfolio is governed by Job-App Helix with unique child identities, exact root-plus-child accounting, explicit company mappings, evidence states, and live repository links; machine-exact membership is authoritative in `manifests/portfolio_repositories.json`. AKOS remains test-verified across Python 3.11-3.13, and the recruiter / expert / AI documentation mesh is verified. The live canonical hire surface is https://casey-barton-glaciereq.vercel.app/.  
+**Direct company proof now admitted:** the Adobe creative-provenance engine and AMD heterogeneous-placement engine have working installed CLIs and behavioral verification, with explicit integration limits preserved.  
+**Candidate proof:** Agent Coordinator has positive local Python 3.13 test evidence; hosted multi-version promotion remains pending.  
+**Pending:** portfolio-wide deployment, scale, performance, reliability, and customer-impact proof remain claim-bounded to repository-specific receipts.  
 **Not share links:** GitHub Pages (`glaciereq.github.io/job-app-helix/`) is not enabled; `job-application.vercel.app` is a different project.  
 **Blocked when infrastructure is absent:** APEX GitHub App bridge activation.
 
