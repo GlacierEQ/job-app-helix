@@ -51,6 +51,26 @@ class ApplicationRegistryTests(unittest.TestCase):
         )
         return len(payload["required_company_tracks"])
 
+    def inventory_counts(self) -> tuple[int, int]:
+        payload = json.loads(
+            (ROOT / "manifests" / "portfolio_repositories.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        return payload["total_repositories"], len(payload["workspace_repositories"])
+
+    def inherited_company_count(self) -> int:
+        index = json.loads(
+            (ROOT / "manifests" / "company_dossiers.json").read_text(encoding="utf-8")
+        )
+        count = 0
+        for relative in index["dossier_files"]:
+            shard = json.loads((ROOT / relative).read_text(encoding="utf-8"))
+            if shard.get("defaults_apply_to_all_companies") is not True:
+                continue
+            count += sum("track_state" not in company for company in shard["companies"])
+        return count
+
     def test_zero_omission_registry_gate(self) -> None:
         completed = subprocess.run(
             [sys.executable, str(VALIDATOR_PATH)],
@@ -67,21 +87,19 @@ class ApplicationRegistryTests(unittest.TestCase):
                 "Validation script output is not valid JSON: "
                 f"{exc}\nstdout={completed.stdout!r}\nstderr={completed.stderr!r}"
             )
+        expected_total, expected_children = self.inventory_counts()
         self.assertEqual(result["status"], "PASS")
-        self.assertEqual(result["total_inventory_repositories"], 67)
-        self.assertEqual(result["helix_children_mapped"], 66)
+        self.assertEqual(result["total_inventory_repositories"], expected_total)
+        self.assertEqual(result["helix_children_mapped"], expected_children)
         self.assertTrue(result["helix_children_exactly_once"])
         self.assertEqual(result["company_tracks"], self.company_track_count())
         self.assertEqual(result["named_flagships"], 17)
-        # ECHO and Sigma Glue moved from the external flagship set into the
-        # governed 66-child workspace; seven owner-estate flagships remain
-        # intentionally external to that active inventory boundary.
         self.assertEqual(result["external_flagship_repositories"], 7)
         self.assertEqual(result["unresolved_flagships"], 1)
-        # Intel, Groq, and CoreWeave carry explicit discovered-candidate
-        # records. Lockheed Martin is intentionally an inherited Scaffold
-        # until role/problem/code evidence clears the second-depth gates.
-        self.assertEqual(result["inherited_company_dossiers"], 23)
+        self.assertEqual(
+            result["inherited_company_dossiers"],
+            self.inherited_company_count(),
+        )
         self.assertGreater(result["l1_private_experiments_documented"], 0)
         self.assertEqual(result["normalized_legacy_promotion_aliases"], 1)
         self.assertTrue(result["zero_direct_omission_gate"])
