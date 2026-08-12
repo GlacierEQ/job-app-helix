@@ -39,6 +39,20 @@ def test_anthropic_application_kit_uses_admitted_public_proof() -> None:
     assert "no Anthropic affiliation" in kit.non_affiliation
 
 
+def test_shard_defaults_materialize_thin_company_targets() -> None:
+    target = find_target("palantir", targets())
+    kit = build_application_kit(target)
+
+    assert target.track_state == "NO_DIRECT_EXHIBIT_VERIFIED"
+    assert target.target_roles == (
+        "Applied AI Systems Engineer",
+        "Forward-Deployed Engineer",
+    )
+    assert kit.readiness == "INCOMPLETE_NO_ADMITTED_PUBLIC_PROOF"
+    assert kit.proof_repositories == ()
+    assert "no affiliation" in kit.non_affiliation.casefold()
+
+
 def test_blocked_and_experimental_repos_are_not_recruiter_proof() -> None:
     target = find_target("xai", targets())
     kit = build_application_kit(target)
