@@ -61,11 +61,18 @@
             "evidence": "TEST",
             "canonical_commit": "156629c65bdeff5397c1370b3e098eec26aa9377",
             "proof": "PR #2 merged; exact reviewed head 0610a7fe262c128eb5ac56c52a2d14df7db25158 passed Python 3.11, 3.12, 3.13, Go native/race, and required-quality-gate checks"
+          },
+          {
+            "repository": "spacex-conjunction-sentinel",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "43fc94f2a4932ea04dca607120c764ef3240b1c9",
+            "proof": "PR #2 merged after exact reviewed head bbeb5f9be5aba5ba12db8690bae27ffd2cd21690 passed Python 3.11, 3.12, 3.13, Rust cargo check/tests, CLI smoke, and aggregate native verification"
           }
         ],
-        "completed_count": 4,
-        "remaining_count": 16,
-        "next_repository": "spacex-conjunction-sentinel"
+        "completed_count": 5,
+        "remaining_count": 15,
+        "next_repository": "spacex-cryogenics"
       },
       "acceptance": {
         "require_readme_contract": true,
