@@ -75,13 +75,20 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
+
           receipt = json.loads(Path('artifacts/portfolio-root-truth-receipt.json').read_text())
+          inventory = json.loads(Path('manifests/portfolio_repositories.json').read_text())
+          children = inventory['workspace_repositories']
+
           assert receipt['schema'] == 'glaciereq.portfolio-root-truth-receipt.v1'
           assert receipt['status'] == 'PASS'
           assert receipt['scope'] == 'CONTROL_PLANE_SOURCES_ONLY'
           assert receipt['projection_freshness']['all_projections_current'] is False
-          assert receipt['counts']['total_repositories'] == 67
-          assert receipt['counts']['workspace_repositories'] == 66
+          assert children
+          assert len(children) == len(set(children))
+          assert inventory['total_repositories'] == len(children) + 1
+          assert receipt['counts']['total_repositories'] == inventory['total_repositories']
+          assert receipt['counts']['workspace_repositories'] == len(children)
           assert all(receipt['invariants'].values())
           print(receipt['receipt_sha256'])
           PY
