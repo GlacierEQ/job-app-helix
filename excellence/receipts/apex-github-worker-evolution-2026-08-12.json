@@ -65,6 +65,17 @@
       "merge-authority.test.mjs": "5db04e65163f183c1e906ac4a505ba9c73345a2e",
       "evolution-benchmark.test.mjs": "16b68535908a0e04850a7afaf5979bfdc5038754"
     },
+    "disclosure": {
+      "canonical_repository_visibility": "private",
+      "bounded_evolution_source_slice_publicly_disclosed": true,
+      "public_slice_files": [
+        "merge-authority.mjs",
+        "merge-authority.test.mjs",
+        "evolution-benchmark.test.mjs"
+      ],
+      "public_location": "GlacierEQ/public-actions-runner-host#269",
+      "meaning": "The Apex repository remains private, but the exact three-file evolution candidate used for public proof is publicly visible on the proof-host pull request."
+    },
     "private_actions_observation": {
       "ci_run_id": 31609094146,
       "proof_run_id": 31609094100,
@@ -83,6 +94,7 @@
     "lineage_conflict_absent": true,
     "duplicate_repository_created": false,
     "company_claim_separate": true,
+    "public_source_boundary_truthful": true,
     "evolution_blockers": []
   },
   "claim_boundary": {
@@ -92,7 +104,9 @@
     "github_adoption_claimed": false,
     "github_affiliation_claimed": false,
     "github_capability_production_deployment_claimed": false,
-    "production_scale_reliability_claimed": false
+    "production_scale_reliability_claimed": false,
+    "canonical_repository_visibility": "private",
+    "bounded_evolution_source_slice_publicly_disclosed": true
   },
   "result": {
     "repository_state": "EVOLVING",
