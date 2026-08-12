@@ -4,14 +4,15 @@
     "repository": "GlacierEQ/apex-github-worker",
     "repository_id": "1260799790",
     "canonical_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "current_evolved_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
     "default_branch": "main",
     "lineage_action": "EXTEND_CANONICAL"
   },
-  "state": "CANONICAL",
+  "state": "EVOLVING",
   "canonical_role": "SPECIALIST_COMPONENT",
   "capability_id": "merge_authority_graph",
   "scores": {
-    "target_architecture": 9.5,
+    "target_architecture": 9.6,
     "current_proof": "A",
     "company_fit": 9.6,
     "canonical_confidence": 0.99
@@ -96,6 +97,25 @@
       "github_actions_budget"
     ]
   },
+  "evolution_receipt": {
+    "path": "excellence/receipts/apex-github-worker-evolution-2026-08-12.json",
+    "blob_sha": "0d3af452e51ee825fea7b2b754a7c5649e876b63",
+    "schema": "glaciereq.repo-evolution-receipt.v1",
+    "status": "PASS",
+    "transition": "CANONICAL -> EVOLVING",
+    "canonical_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "evolved_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
+    "experiment_id": "unique_check_evidence_integrity_v1",
+    "winner": "candidate",
+    "public_proof_run_id": 31609608773,
+    "public_proof_artifact_id": 9146592092,
+    "public_proof_artifact_digest": "sha256:1d64a12ce92131ea7c563ab68f6893e500a320b1e773284b41a6e77d5e15be8d",
+    "exact_source_blob": "b0634ee0f39ff5ef636a806a6d967385c614330d",
+    "tests_passed": 21,
+    "tests_failed": 0,
+    "company_stage_unchanged": "CLAIM_PROMOTED",
+    "company_claim_ceiling_unchanged": "proof_bound_company_specific"
+  },
   "projection_refs": [
     "manifests/company_projections/github_merge_authority.json"
   ],
@@ -105,6 +125,9 @@
     "exact_change_approval_binding",
     "provider_exact_byte_rebinding",
     "required_check_gate",
+    "unique_check_evidence_guard",
+    "malformed_check_evidence_guard",
+    "order_independent_check_admission",
     "idempotent_mutation_replay_guard",
     "replay_before_stale_head_rejection",
     "provider_confirmation_before_completion",
@@ -129,23 +152,27 @@
       "https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/"
     ],
     "bounded_problem": "As coding agents act directly in repositories, agent-generated changes require security validation, policy-constrained workflow execution, human approval at sensitive boundaries, and trustworthy promotion into canonical repository state.",
-    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. The proof-bound company-specific claim remains independently promoted within the public evidence ceiling and does not imply GitHub adoption."
+    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. The canonical specialist now also rejects contradictory or malformed check evidence before provider access. The proof-bound company-specific claim remains independently promoted within the public evidence ceiling and does not imply GitHub adoption."
   },
   "blockers": [
     {
       "id": "github_actions_budget",
       "stage": "HOSTED_CI",
-      "meaning": "GitHub-hosted private-repository jobs remain blocked before execution by account Actions budget; independently reproduced canonical-source provider proof is current evidence. This is retained operational debt, not a canonical-position conflict."
+      "meaning": "Private Apex Actions jobs are still created without observable execution steps; exact candidate bytes were therefore reproduced on the governed public proof host. This remains operational debt and is not an evolution-state blocker."
     }
   ],
   "evolution": {
-    "next_gate": "EVOLVING",
-    "cursor": "Maintain the canonical merge_authority_graph specialist position, preserve exact proof and projection freshness, harvest reusable authority primitives without duplicating the family head, and admit evolution only through measured improvements."
+    "next_gate": "NEXT_MEASURED_EVOLUTION",
+    "canonical_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "current_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
+    "current_cycle": "unique_check_evidence_integrity_v1",
+    "receipt": "excellence/receipts/apex-github-worker-evolution-2026-08-12.json",
+    "cursor": "Run another measured adversarial comparison against the evolved head; preserve only a candidate that beats the current behavior without weakening proof, authority, projection, or company-claim boundaries."
   },
   "nonclaims": [
-    "The reproduced real-provider proof mutated disposable proof branches only; the target repository main branch was not changed.",
-    "No GitHub capability production deployment, production-scale reliability, latency, throughput, or durability is claimed; the production deployment receipt applies to the GlacierEQ portfolio projection surface.",
-    "No GitHub affiliation, endorsement, employment, or adoption is implied.",
-    "The CANONICAL repository state applies to the Merge Authority Graph specialist capability and lineage position, not the repository's older Notion/Neon/memory surfaces."
+    "The reproduced real-provider proof mutated disposable proof branches only; the target repository main branch was not changed by that historical provider proof.",
+    "The EVOLVING cycle is an internal GlacierEQ repository-safety improvement and does not constitute GitHub capability production deployment.",
+    "No production-scale reliability, latency, throughput, durability, GitHub adoption, GitHub affiliation, endorsement, employment, or proprietary access is claimed.",
+    "The EVOLVING repository state applies to the Merge Authority Graph specialist capability and its measured evolution cycle, not the repository's older Notion/Neon/memory surfaces."
   ]
 }
