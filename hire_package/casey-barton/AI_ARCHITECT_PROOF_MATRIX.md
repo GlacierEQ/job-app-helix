@@ -163,32 +163,30 @@ Do not upgrade the claim until those live receipts exist.
 
 ---
 
-## Proof Pillar 4 — Scale and Systems Breadth
+## Proof Pillar 4 — Systems Breadth Without Counting Theater
 
 ### VERIFIED
 
-Current hiring package claims are already bounded by an exact register:
+Current hiring-package breadth is governed as a **living admitted portfolio**, not a frozen repository-count claim.
 
-- **67-repository Job-App Helix boundary**: one control-plane root plus 66 child repositories.
-- **AKOS: 94/94 tests** across 12 modules on Python 3.11–3.13.
-- **21-node README Mesh rollout** verified.
-- One governed public APEX Action Face execution path is verified; this is intentionally not generalized to every route or workload.
+- Job-App Helix maintains unique child identities, exact root-plus-child accounting, company-track mappings, live repository links, evidence states, and an application-kit compiler.
+- Machine-exact current membership is authoritative in `manifests/portfolio_repositories.json`.
+- Adobe creative provenance and AMD heterogeneous placement are now admitted direct company proof with installed CLIs and behavioral tests.
+- AKOS carries positive cross-version test evidence.
+- The recruiter / expert / AI documentation mesh is verified.
+- One governed public APEX Action Face execution path is verified and intentionally not generalized to every route or workload.
 
-Source: `hire_package/casey-barton/CLAIM_REGISTER.md`.
+Source: `hire_package/casey-barton/CLAIM_REGISTER.md` and the current Helix manifests.
 
-Current company-analysis topology also demonstrates orchestration breadth without pretending that planning equals execution:
-
-- `manifests/company_dossiers.json` currently enumerates **76 required company tracks**, including `glaciereq_core`.
-- `manifests/company_analysis_topology.json` defines one mission orchestrator, two domain leads, eight specialists, and one integration coordinator with an eight-task wave size and explicit quality gates.
-- The topology's own truth boundary says deterministic planning is **not** runtime proof, model consensus, or company affiliation.
+Current company-analysis topology demonstrates orchestration breadth without pretending that planning equals execution. The company-track registry is itself living and machine-authoritative; fixed counts in old dated audits remain historical evidence, not present-tense hiring claims. The topology's truth boundary continues to state that deterministic planning is **not** runtime proof, model consensus, or company affiliation.
 
 ### CURRENT CLAIM CEILING
 
 Safe external claim:
 
-> Operates a multi-repository AI systems portfolio with a 67-repository governed Helix boundary, cross-version AKOS verification, a 21-node human/machine documentation mesh, and a deterministic company-analysis control plane spanning 76 target tracks.
+> Operates a multi-repository AI systems portfolio with a living admitted Helix boundary, cross-version kernel verification, human/machine documentation contracts, direct executable company exhibits, and a deterministic company-analysis control plane.
 
-The number is secondary. Lead with what the systems coordinate, verify, and govern.
+The number is secondary. Lead with what the systems coordinate, execute, verify, and govern.
 
 ### NEXT PROMOTION GATE
 
