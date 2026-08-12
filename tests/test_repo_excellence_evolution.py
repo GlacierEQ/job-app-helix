@@ -52,7 +52,7 @@ def test_evolving_rejects_fake_winner_or_head() -> None:
 
     record = _record()
     record["identity"]["current_evolved_head"] = "a" * 40
-    with pytest.raises(ExcellenceContractError, match="evolved-head pointer drift"):
+    with pytest.raises(ExcellenceContractError, match="evolution current head drift"):
         validate_evolving_repo_excellence_record(record)
 
 
