@@ -58,107 +58,85 @@ def _receipt(records: list[dict[str, object]]) -> dict[str, object]:
     }
 
 
-def test_queue_routes_every_repository_exactly_once() -> None:
+def test_queue_routes_every_repository_exactly_once_and_actionable() -> None:
     module = _load_module()
     records = [
         _record(0, "priority", "PRIORITY_SPINE"),
         _record(1, "recruiter", "RECRUITER_PORTFOLIO"),
         _record(2, "candidate", "CANDIDATE_EXPANSION"),
         _record(3, "public", "UNGOVERNED_PUBLIC_INVENTORY"),
-        _record(
-            4,
-            "private",
-            "PRIVATE_REVIEW_REQUIRED",
-            visibility="private",
-        ),
-        _record(
-            5,
-            "fork",
-            "UPSTREAM_OR_FORK_REVIEW",
-            fork=True,
-        ),
-        _record(
-            6,
-            "archive",
-            "ARCHIVE_BACKUP_OR_FORK",
-            visibility="private",
-            archived=True,
-        ),
+        _record(4, "private", "PRIVATE_REVIEW_REQUIRED", visibility="private"),
+        _record(5, "fork", "UPSTREAM_OR_FORK_REVIEW", fork=True),
+        _record(6, "archive", "ARCHIVE_BACKUP_OR_FORK", visibility="private", archived=True),
     ]
 
     result = module.build_queue(_receipt(records))
 
+    assert result["schema"] == "glaciereq.crystallization-work-queue.v1"
     assert result["coverage_count"] == 7
-    assert result["native_work_count"] == 3
-    assert result["fork_reference_work_count"] == 1
-    assert result["preserve_count"] == 3
-    assert [item["lane"] for item in result["native_work_queue"]] == [
-        "NATIVE_CANDIDATE_AUDIT",
-        "NATIVE_PUBLIC_AUDIT",
-        "NATIVE_PRIVATE_AUDIT",
-    ]
-    assert result["fork_reference_queue"][0]["lane"] == "FORK_REFERENCE_REVIEW"
-    assert {item["repository"] for item in result["preserve_queue"]} == {
-        "GlacierEQ/priority",
-        "GlacierEQ/recruiter",
-        "GlacierEQ/archive",
+    assert result["actionable_count"] == 7
+    assert result["exempt_count"] == 0
+    assert result["unrouted_count"] == 0
+    assert all(item["actionable"] is True for item in result["work_queue"])
+    assert {item["repository"] for item in result["work_queue"]} == {
+        record["repository"] for record in records
     }
 
 
-def test_governed_repository_retains_lane_even_when_archived() -> None:
+def test_priority_and_recruiter_repositories_are_not_exempt() -> None:
     module = _load_module()
     records = [
-        _record(0, "priority-archive", "PRIORITY_SPINE", archived=True),
-        _record(
-            1,
-            "recruiter-archive",
-            "RECRUITER_PORTFOLIO",
-            archived=True,
-        ),
+        _record(0, "priority", "PRIORITY_SPINE"),
+        _record(1, "recruiter", "RECRUITER_PORTFOLIO"),
     ]
 
     result = module.build_queue(_receipt(records))
+    by_repo = {item["repository"]: item for item in result["work_queue"]}
 
-    assert {item["lane"] for item in result["preserve_queue"]} == {
-        "PRESERVE_GOVERNED_PRIORITY",
-        "PRESERVE_GOVERNED_RECRUITER",
-    }
+    assert by_repo["GlacierEQ/priority"]["lane"] == "CRYSTALLIZE_PRIORITY"
+    assert by_repo["GlacierEQ/recruiter"]["lane"] == "CRYSTALLIZE_RECRUITER"
+    assert by_repo["GlacierEQ/priority"]["required_exit"] == "CRYSTALLIZED"
+    assert by_repo["GlacierEQ/recruiter"]["required_exit"] == "CRYSTALLIZED"
 
 
-def test_archived_or_backup_classification_is_preserved_before_fork_review() -> None:
+def test_archive_requires_verification_instead_of_disappearing() -> None:
     module = _load_module()
-    records = [
-        _record(
-            0,
-            "archived-fork",
-            "ARCHIVE_BACKUP_OR_FORK",
-            fork=True,
-            archived=True,
-        )
-    ]
+    result = module.build_queue(
+        _receipt([_record(0, "old", "ARCHIVE_BACKUP_OR_FORK", archived=True)])
+    )
+    item = result["work_queue"][0]
 
-    result = module.build_queue(_receipt(records))
-
-    assert result["fork_reference_work_count"] == 0
-    assert result["preserve_queue"][0]["lane"] == "PRESERVE_ARCHIVE_BACKUP"
+    assert item["lane"] == "VERIFY_ARCHIVE_OR_SUCCESSOR"
+    assert item["actionable"] is True
+    assert item["required_exit"] == "CRYSTALLIZED_OR_VERIFIED_ARCHIVE_OR_VERIFIED_SUCCESSOR"
 
 
-def test_unknown_classification_routes_to_manual_triage() -> None:
+def test_fork_requires_delta_or_upstream_verification() -> None:
     module = _load_module()
-    records = [_record(0, "future-class", "FUTURE_CLASSIFICATION")]
+    result = module.build_queue(
+        _receipt([_record(0, "fork", "UPSTREAM_OR_FORK_REVIEW", fork=True)])
+    )
+    item = result["fork_reference_queue"][0]
 
-    result = module.build_queue(_receipt(records))
+    assert item["lane"] == "VERIFY_FORK_DELTA_OR_UPSTREAM"
+    assert item["actionable"] is True
 
+
+def test_unknown_classification_remains_actionable_manual_triage() -> None:
+    module = _load_module()
+    result = module.build_queue(
+        _receipt([_record(0, "future-class", "FUTURE_CLASSIFICATION")])
+    )
     item = result["native_work_queue"][0]
-    assert item["lane"] == "MANUAL_TRIAGE"
+
+    assert item["lane"] == "CRYSTALLIZE_MANUAL_TRIAGE"
     assert item["priority"] == 0
+    assert item["actionable"] is True
 
 
 def test_queue_fails_closed_when_census_cardinality_does_not_reconcile() -> None:
     module = _load_module()
-    receipt = _receipt(
-        [_record(0, "public", "UNGOVERNED_PUBLIC_INVENTORY")]
-    )
+    receipt = _receipt([_record(0, "public", "UNGOVERNED_PUBLIC_INVENTORY")])
     receipt["native_repository_count"] = 2
 
     with pytest.raises(module.QueueError, match="native_repository_count"):
@@ -167,13 +145,25 @@ def test_queue_fails_closed_when_census_cardinality_does_not_reconcile() -> None
 
 def test_queue_does_not_infer_subject_matter_from_repository_name() -> None:
     module = _load_module()
-    records = [
-        _record(0, "legal-mcp-super-system", "UNGOVERNED_PUBLIC_INVENTORY")
-    ]
-
-    result = module.build_queue(_receipt(records))
-
+    result = module.build_queue(
+        _receipt([_record(0, "legal-mcp-super-system", "UNGOVERNED_PUBLIC_INVENTORY")])
+    )
     item = result["native_work_queue"][0]
-    assert item["lane"] == "NATIVE_PUBLIC_AUDIT"
+
+    assert item["lane"] == "CRYSTALLIZE_NATIVE_PUBLIC"
     assert "legal" not in item["lane"].lower()
     assert "mcp" not in item["lane"].lower()
+
+
+def test_acceptance_contract_forbids_partial_estate_exit() -> None:
+    module = _load_module()
+    result = module.build_queue(
+        _receipt([_record(0, "public", "UNGOVERNED_PUBLIC_INVENTORY")])
+    )
+
+    assert result["acceptance"] == {
+        "unknown_allowed": 0,
+        "broken_allowed": 0,
+        "materially_incomplete_allowed": 0,
+        "representative_sampling_allowed": False,
+    }
