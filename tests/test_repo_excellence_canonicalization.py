@@ -50,19 +50,21 @@ def test_apex_canonical_anchor_receipt_remains_exact_and_semantically_bound() ->
     )
 
 
-def test_apex_evolving_projection_preserves_anchor_and_exposes_current_head_without_claim_inflation() -> None:
+def test_apex_evolving_projection_preserves_anchor_and_current_head() -> None:
     record = _load(RECORD_PATH)
     validated = validate_repo_excellence_record(record)
     assert validated["projection_refs"] == [
         "manifests/company_projections/github_merge_authority.json"
     ]
     projection = _load(ROOT / validated["projection_refs"][0])
+    implementation = projection["implementation"]
+    identity = validated["identity"]
 
-    assert projection["implementation"]["repository"] == validated["identity"]["repository"]
-    assert projection["implementation"]["canonical_head"] == validated["identity"]["canonical_head"]
-    assert projection["implementation"]["evolved_head"] == validated["identity"]["current_evolved_head"]
-    assert projection["implementation"]["capability"] == validated["capability_id"]
-    assert projection["implementation"]["state"] == "EVOLVING"
+    assert implementation["repository"] == identity["repository"]
+    assert implementation["canonical_head"] == identity["canonical_head"]
+    assert implementation["evolved_head"] == identity["current_evolved_head"]
+    assert implementation["capability"] == validated["capability_id"]
+    assert implementation["state"] == "EVOLVING"
     assert projection["stage"] == "CLAIM_PROMOTED"
     assert projection["claim_ceiling"] == "proof_bound_company_specific"
     assert projection["stage"] == validated["company_evidence"]["stage"]
