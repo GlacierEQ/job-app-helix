@@ -2,7 +2,7 @@
 
 **Outcome:** One evidence-bound application surface connects recruiter value, senior-engineer proof, and AI/ATS ingestion.
 
-**Current status:** `PARTIALLY VERIFIED` - the living admitted portfolio boundary, repository-native component receipts, and recruiter / expert / AI documentation mesh are recorded. APEX runner activation remains bounded to proved paths; coordinator hosted promotion remains `UNVERIFIED`. Older dated portfolio audits remain historical snapshots rather than current cardinality authorities. Portfolio-wide runtime, deployment, scale, and performance remain unverified unless repository-specific receipts say otherwise.
+**Current status:** `PARTIALLY VERIFIED` - the living admitted portfolio boundary, repository-native component receipts, and recruiter / expert / AI documentation mesh are recorded. One governed APEX Public Action Face path is operational; **APEX GitHub App bridge activation remains `BLOCKED`**. Coordinator hosted promotion remains `UNVERIFIED`. Older dated portfolio audits remain historical snapshots rather than current cardinality authorities. Portfolio-wide runtime, deployment, scale, and performance remain unverified unless repository-specific receipts say otherwise.
 
 ## For recruiters
 
