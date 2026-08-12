@@ -95,9 +95,13 @@ def publish(
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Publish a receipt into a private control repository")
+    description = "Publish a receipt into a private control repository"
+    parser = argparse.ArgumentParser(description=description)
     parser.add_argument("receipt", type=Path)
-    parser.add_argument("--token", default=os.environ.get("GLACIEREQ_ESTATE_TOKEN", ""))
+    parser.add_argument(
+        "--token",
+        default=os.environ.get("GLACIEREQ_ESTATE_TOKEN", ""),
+    )
     parser.add_argument("--repository", default="GlacierEQ/monolith")
     parser.add_argument("--destination", required=True)
     parser.add_argument("--branch", default="main")
