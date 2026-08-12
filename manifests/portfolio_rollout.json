@@ -66,13 +66,20 @@
             "repository": "spacex-conjunction-sentinel",
             "state": "VERIFIED",
             "evidence": "TEST",
-            "canonical_commit": "43fc94f2a4932ea04dca607120c764ef3240b1c9",
-            "proof": "PR #2 merged after exact reviewed head bbeb5f9be5aba5ba12db8690bae27ffd2cd21690 passed Python 3.11, 3.12, 3.13, Rust cargo check/tests, CLI smoke, and aggregate native verification"
+            "canonical_commit": "17537ed7ee2c7b01edf60953f403ebcb3a6c2fd8",
+            "proof": "functional crystallization remained intact after CI-authority hardening; canonical push run 31639117944 passed Python 3.11/3.12/3.13, 18 Python tests on 3.12, Rust cargo check/tests, CLI non-operational smoke, aggregate gate, read-only token authority, immutable action pins, and non-persisted checkout credentials"
+          },
+          {
+            "repository": "spacex-cryogenics",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
+            "proof": "functional Python/C++ cryogenic digital twin merged; canonical push run 31639570712 passed Python 3.11/3.12/3.13, 36 Python tests on 3.12, strict C++17 compile/native self-test, CLI non-operational smoke, aggregate required-functional-proof, read-only token authority, immutable action pins, and non-persisted checkout credentials"
           }
         ],
-        "completed_count": 5,
-        "remaining_count": 15,
-        "next_repository": "spacex-cryogenics"
+        "completed_count": 6,
+        "remaining_count": 14,
+        "next_repository": "spacex-ground-network"
       },
       "acceptance": {
         "require_readme_contract": true,
