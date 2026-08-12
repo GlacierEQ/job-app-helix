@@ -9,15 +9,39 @@ from typing import Any
 
 from .repo_excellence import ExcellenceContractError, validate_repo_excellence_record
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 GIT_SHA = re.compile(r"[0-9a-f]{40}\Z")
 SHA256 = re.compile(r"sha256:[0-9a-f]{64}\Z")
+EXPECTED_PROOF_BLOBS = {
+    "merge-authority.mjs",
+    "merge-authority.test.mjs",
+    "evolution-benchmark.test.mjs",
+}
+PUBLIC_PROOF_HOST = "GlacierEQ/public-actions-runner-host"
 
 
 def _require_text(value: Any, label: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ExcellenceContractError(f"{label} must be non-empty text")
     return value.strip()
+
+
+def _require_git_sha(value: Any, label: str) -> str:
+    text = _require_text(value, label)
+    if not GIT_SHA.fullmatch(text):
+        raise ExcellenceContractError(f"{label} must be an exact 40-hex Git SHA")
+    return text
+
+
+def _require_positive_int(value: Any, label: str) -> int:
+    if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+        raise ExcellenceContractError(f"{label} must be a positive integer")
+    return value
+
+
+def _require_nonnegative_int(value: Any, label: str) -> int:
+    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+        raise ExcellenceContractError(f"{label} must be a non-negative integer")
+    return value
 
 
 def _resolve_file(root: Path, relative: str, label: str) -> Path:
@@ -49,22 +73,20 @@ def _load_json(path: Path, label: str) -> Mapping[str, Any]:
 
 def validate_evolving_repo_excellence_record(
     payload: Mapping[str, Any],
-    repository_root: Path | str | None = None,
+    repository_root: Path | str,
 ) -> dict[str, Any]:
-    """Validate the base excellence record plus the measured EVOLVING admission contract."""
-    root = Path(repository_root) if repository_root is not None else REPOSITORY_ROOT
+    """Validate a measured EVOLVING admission against an explicit checkout root."""
+    root = Path(repository_root)
     validated = validate_repo_excellence_record(payload, root)
     if validated.get("state") != "EVOLVING":
         raise ExcellenceContractError("evolution validator requires state EVOLVING")
 
     identity = validated["identity"]
-    anchor = _require_text(identity.get("canonical_head"), "identity.canonical_head")
-    evolved = _require_text(
+    anchor = _require_git_sha(identity.get("canonical_head"), "identity.canonical_head")
+    evolved = _require_git_sha(
         identity.get("current_evolved_head"),
         "identity.current_evolved_head",
     )
-    if not GIT_SHA.fullmatch(anchor) or not GIT_SHA.fullmatch(evolved):
-        raise ExcellenceContractError("EVOLVING requires exact 40-hex anchor and evolved heads")
     if anchor == evolved:
         raise ExcellenceContractError("EVOLVING requires a head distinct from its canonical anchor")
 
@@ -93,22 +115,41 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("evolution receipt evolved-head pointer drift")
     if pointer.get("winner") != "candidate":
         raise ExcellenceContractError("EVOLVING requires a measured candidate winner")
-    if pointer.get("tests_failed") != 0 or not isinstance(pointer.get("tests_passed"), int):
-        raise ExcellenceContractError("EVOLVING pointer requires passing measured tests")
-    if pointer.get("tests_passed", 0) <= 0:
-        raise ExcellenceContractError("EVOLVING pointer requires at least one passing test")
-    if not SHA256.fullmatch(str(pointer.get("public_proof_artifact_digest", ""))):
+
+    pointer_passed = _require_positive_int(
+        pointer.get("tests_passed"),
+        "evolution_receipt.tests_passed",
+    )
+    pointer_failed = _require_nonnegative_int(
+        pointer.get("tests_failed"),
+        "evolution_receipt.tests_failed",
+    )
+    if pointer_failed != 0:
+        raise ExcellenceContractError("EVOLVING pointer requires zero failed tests")
+    _require_positive_int(
+        pointer.get("public_proof_run_id"),
+        "evolution_receipt.public_proof_run_id",
+    )
+    _require_positive_int(
+        pointer.get("public_proof_artifact_id"),
+        "evolution_receipt.public_proof_artifact_id",
+    )
+    artifact_digest = _require_text(
+        pointer.get("public_proof_artifact_digest"),
+        "evolution_receipt.public_proof_artifact_digest",
+    )
+    if not SHA256.fullmatch(artifact_digest):
         raise ExcellenceContractError("EVOLVING pointer requires SHA-256 proof artifact digest")
+    exact_source_blob = _require_git_sha(
+        pointer.get("exact_source_blob"),
+        "evolution_receipt.exact_source_blob",
+    )
 
     relative = _require_text(pointer.get("path"), "evolution_receipt.path")
     if evolution.get("receipt") != relative:
         raise ExcellenceContractError("evolution receipt path drift")
     receipt_path = _resolve_file(root, relative, "evolution_receipt.path")
-    blob_sha = _require_text(pointer.get("blob_sha"), "evolution_receipt.blob_sha")
-    if not GIT_SHA.fullmatch(blob_sha):
-        raise ExcellenceContractError(
-            "EVOLVING receipt must be content-addressed by Git blob SHA"
-        )
+    blob_sha = _require_git_sha(pointer.get("blob_sha"), "evolution_receipt.blob_sha")
     if _git_blob_sha(receipt_path) != blob_sha:
         raise ExcellenceContractError(
             "EVOLVING receipt Git blob SHA does not match repository bytes"
@@ -150,16 +191,29 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("evolution experiment comparison contract incomplete")
     if baseline.get("head") != anchor or baseline.get("allowed") is not True:
         raise ExcellenceContractError("EVOLVING requires a reproduced weaker baseline")
+    _require_git_sha(candidate.get("candidate_head"), "evolution candidate head")
     if candidate.get("merged_head") != evolved:
         raise ExcellenceContractError("evolution candidate merge head drift")
-    if candidate.get("source_git_blob") != pointer.get("exact_source_blob"):
+    candidate_source_blob = _require_git_sha(
+        candidate.get("source_git_blob"),
+        "evolution candidate source_git_blob",
+    )
+    candidate_test_blob = _require_git_sha(
+        candidate.get("regression_test_git_blob"),
+        "evolution candidate regression_test_git_blob",
+    )
+    candidate_benchmark_blob = _require_git_sha(
+        candidate.get("benchmark_test_git_blob"),
+        "evolution candidate benchmark_test_git_blob",
+    )
+    if candidate_source_blob != exact_source_blob:
         raise ExcellenceContractError("evolution candidate source blob pointer drift")
     if comparison.get("winner") != "candidate":
         raise ExcellenceContractError("evolution receipt did not preserve the measured winner")
-    baseline_allowed = comparison.get("baseline_allowed")
-    candidate_allowed = comparison.get("candidate_allowed")
-    if baseline_allowed is not True or candidate_allowed is not False:
-        raise ExcellenceContractError("evolution comparison does not demonstrate improvement")
+    if comparison.get("baseline_allowed") is not True:
+        raise ExcellenceContractError("evolution comparison did not reproduce weaker baseline")
+    if comparison.get("candidate_allowed") is not False:
+        raise ExcellenceContractError("evolution comparison did not reject ambiguous candidate")
     if comparison.get("candidate_reason") != "duplicate_check:security":
         raise ExcellenceContractError("evolution comparison rejection reason drift")
     if comparison.get("order_independent_rejection") is not True:
@@ -172,31 +226,47 @@ def validate_evolving_repo_excellence_record(
     proof = receipt.get("proof")
     if not isinstance(proof, Mapping):
         raise ExcellenceContractError("evolution receipt proof must be an object")
+    if proof.get("public_host_repository") != PUBLIC_PROOF_HOST:
+        raise ExcellenceContractError("evolution proof host repository drift")
+    _require_positive_int(proof.get("public_host_pull_request"), "proof public-host PR")
+    _require_git_sha(proof.get("workflow_run_head_sha"), "proof workflow run head")
+    _require_git_sha(proof.get("workflow_checkout_merge_sha"), "proof checkout merge head")
     if proof.get("workflow_run_id") != pointer.get("public_proof_run_id"):
         raise ExcellenceContractError("public proof run pointer drift")
     if proof.get("artifact_id") != pointer.get("public_proof_artifact_id"):
         raise ExcellenceContractError("public proof artifact pointer drift")
-    if proof.get("artifact_digest") != pointer.get("public_proof_artifact_digest"):
+    if proof.get("artifact_digest") != artifact_digest:
         raise ExcellenceContractError("public proof artifact digest pointer drift")
+
     tests = proof.get("tests")
     if not isinstance(tests, Mapping):
         raise ExcellenceContractError("evolution proof tests must be an object")
-    if tests.get("passed") != tests.get("total") or tests.get("failed") != 0:
+    proof_passed = _require_positive_int(tests.get("passed"), "proof.tests.passed")
+    proof_failed = _require_nonnegative_int(tests.get("failed"), "proof.tests.failed")
+    proof_total = _require_positive_int(tests.get("total"), "proof.tests.total")
+    if proof_failed != 0 or proof_passed != proof_total:
         raise ExcellenceContractError("evolution public proof tests are not fully green")
-    if tests.get("passed") != pointer.get("tests_passed"):
+    if proof_passed != pointer_passed:
         raise ExcellenceContractError("evolution public proof test count pointer drift")
 
     exact_blobs = proof.get("exact_git_blobs")
     readback = proof.get("post_merge_readback")
     if not isinstance(exact_blobs, Mapping) or not isinstance(readback, Mapping):
         raise ExcellenceContractError("evolution exact-byte proof is incomplete")
-    if exact_blobs.get("merge-authority.mjs") != pointer.get("exact_source_blob"):
-        raise ExcellenceContractError("evolution exact source blob drift")
-    if readback.get("apex_main_head") != evolved:
-        raise ExcellenceContractError("evolution post-merge head readback drift")
+    if set(exact_blobs) != EXPECTED_PROOF_BLOBS:
+        raise ExcellenceContractError("evolution exact-byte proof file set drift")
     for name, blob in exact_blobs.items():
+        _require_git_sha(blob, f"proof.exact_git_blobs.{name}")
         if readback.get(name) != blob:
             raise ExcellenceContractError(f"evolution post-merge blob drift: {name}")
+    if exact_blobs["merge-authority.mjs"] != candidate_source_blob:
+        raise ExcellenceContractError("evolution exact source blob drift")
+    if exact_blobs["merge-authority.test.mjs"] != candidate_test_blob:
+        raise ExcellenceContractError("evolution exact regression-test blob drift")
+    if exact_blobs["evolution-benchmark.test.mjs"] != candidate_benchmark_blob:
+        raise ExcellenceContractError("evolution exact benchmark blob drift")
+    if readback.get("apex_main_head") != evolved:
+        raise ExcellenceContractError("evolution post-merge head readback drift")
 
     decision = receipt.get("decision")
     if not isinstance(decision, Mapping):
