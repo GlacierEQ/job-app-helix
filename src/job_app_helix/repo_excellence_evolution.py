@@ -59,11 +59,24 @@ def validate_evolving_repo_excellence_record(
 
     identity = validated["identity"]
     anchor = _require_text(identity.get("canonical_head"), "identity.canonical_head")
-    evolved = _require_text(identity.get("current_evolved_head"), "identity.current_evolved_head")
+    evolved = _require_text(
+        identity.get("current_evolved_head"),
+        "identity.current_evolved_head",
+    )
     if not GIT_SHA.fullmatch(anchor) or not GIT_SHA.fullmatch(evolved):
         raise ExcellenceContractError("EVOLVING requires exact 40-hex anchor and evolved heads")
     if anchor == evolved:
         raise ExcellenceContractError("EVOLVING requires a head distinct from its canonical anchor")
+
+    evolution = validated.get("evolution")
+    if not isinstance(evolution, Mapping):
+        raise ExcellenceContractError("EVOLVING requires an evolution object")
+    if evolution.get("next_gate") != "NEXT_MEASURED_EVOLUTION":
+        raise ExcellenceContractError("EVOLVING requires NEXT_MEASURED_EVOLUTION as next gate")
+    if evolution.get("canonical_anchor_head") != anchor:
+        raise ExcellenceContractError("evolution canonical anchor drift")
+    if evolution.get("current_head") != evolved:
+        raise ExcellenceContractError("evolution current head drift")
 
     pointer = validated.get("evolution_receipt")
     if not isinstance(pointer, Mapping):
@@ -88,12 +101,18 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("EVOLVING pointer requires SHA-256 proof artifact digest")
 
     relative = _require_text(pointer.get("path"), "evolution_receipt.path")
+    if evolution.get("receipt") != relative:
+        raise ExcellenceContractError("evolution receipt path drift")
     receipt_path = _resolve_file(root, relative, "evolution_receipt.path")
     blob_sha = _require_text(pointer.get("blob_sha"), "evolution_receipt.blob_sha")
     if not GIT_SHA.fullmatch(blob_sha):
-        raise ExcellenceContractError("EVOLVING receipt must be content-addressed by Git blob SHA")
+        raise ExcellenceContractError(
+            "EVOLVING receipt must be content-addressed by Git blob SHA"
+        )
     if _git_blob_sha(receipt_path) != blob_sha:
-        raise ExcellenceContractError("EVOLVING receipt Git blob SHA does not match repository bytes")
+        raise ExcellenceContractError(
+            "EVOLVING receipt Git blob SHA does not match repository bytes"
+        )
 
     receipt = _load_json(receipt_path, "evolution receipt")
     for field in ("schema", "status", "transition"):
@@ -122,6 +141,8 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("evolution receipt experiment must be an object")
     if experiment.get("id") != pointer.get("experiment_id"):
         raise ExcellenceContractError("evolution experiment identity drift")
+    if evolution.get("current_cycle") != experiment.get("id"):
+        raise ExcellenceContractError("evolution current-cycle drift")
     baseline = experiment.get("baseline")
     candidate = experiment.get("candidate")
     comparison = experiment.get("comparison")
@@ -135,14 +156,18 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("evolution candidate source blob pointer drift")
     if comparison.get("winner") != "candidate":
         raise ExcellenceContractError("evolution receipt did not preserve the measured winner")
-    if comparison.get("baseline_allowed") is not True or comparison.get("candidate_allowed") is not False:
+    baseline_allowed = comparison.get("baseline_allowed")
+    candidate_allowed = comparison.get("candidate_allowed")
+    if baseline_allowed is not True or candidate_allowed is not False:
         raise ExcellenceContractError("evolution comparison does not demonstrate improvement")
     if comparison.get("candidate_reason") != "duplicate_check:security":
         raise ExcellenceContractError("evolution comparison rejection reason drift")
     if comparison.get("order_independent_rejection") is not True:
         raise ExcellenceContractError("EVOLVING requires order-independent duplicate rejection")
     if comparison.get("malformed_evidence_rejected_before_provider_access") is not True:
-        raise ExcellenceContractError("EVOLVING requires malformed evidence to fail before provider access")
+        raise ExcellenceContractError(
+            "EVOLVING requires malformed evidence to fail before provider access"
+        )
 
     proof = receipt.get("proof")
     if not isinstance(proof, Mapping):
@@ -201,7 +226,9 @@ def validate_evolving_repo_excellence_record(
     if claim.get("company_stage_unchanged") != company.get("stage"):
         raise ExcellenceContractError("repository evolution cannot advance company stage")
     if claim.get("company_claim_ceiling_unchanged") != company.get("claim_ceiling"):
-        raise ExcellenceContractError("repository evolution cannot advance company claim ceiling")
+        raise ExcellenceContractError(
+            "repository evolution cannot advance company claim ceiling"
+        )
     if pointer.get("company_stage_unchanged") != company.get("stage"):
         raise ExcellenceContractError("evolution company-stage pointer drift")
     if pointer.get("company_claim_ceiling_unchanged") != company.get("claim_ceiling"):
@@ -224,6 +251,8 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("evolution result canonical anchor drift")
     if result.get("current_evolved_head") != evolved:
         raise ExcellenceContractError("evolution result current head drift")
+    if result.get("next_gate") != evolution.get("next_gate"):
+        raise ExcellenceContractError("evolution result next-gate drift")
 
     for projection_ref in validated.get("projection_refs", []):
         projection_path = _resolve_file(root, projection_ref, "projection_ref")
