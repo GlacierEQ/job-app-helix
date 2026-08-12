@@ -1,0 +1,71 @@
+{
+  "schema": "glaciereq.repo-excellence.external-current-proof.v1",
+  "status": "CURRENT_EXACT_HEAD_TEST_PROOF",
+  "repository": "GlacierEQ/spacex-ground-network",
+  "source": {
+    "branch": "main",
+    "sha": "d5b65ecfb8d0fdd24ba033b2e4737346179c4a7e"
+  },
+  "role": "ACTIVE_SPECIALIST_COMPONENT_PENDING_CANONICAL_POSITION",
+  "observed_problem": "ground-station contact planning and network scheduling reference mechanics",
+  "repository_native_verification": {
+    "workflow": "CI",
+    "run_id": 31472449875,
+    "job_id": 93718547590,
+    "conclusion": "success",
+    "reusable_workflow": "GlacierEQ/public-actions-runner-host/.github/workflows/reusable-quick-ci.yml@a6085dae73bb80e91b845fd4a0d2f73a9c6b985a",
+    "verification_script": "scripts/ci/verify.sh",
+    "critical_lint": "PASS",
+    "compileall": "PASS",
+    "pytest": {
+      "status": "PASS",
+      "passed": 22,
+      "failed": 0,
+      "suite_includes": [
+        "tests/test_adversarial.py",
+        "tests/test_core.py",
+        "tests/test_ground.py",
+        "tests/test_ground_net.py",
+        "tests/test_promotion_authority.py"
+      ]
+    },
+    "authority": {
+      "github_token_contents": "read",
+      "checkout_persist_credentials": false,
+      "trusted_owner_boundary": "GlacierEQ"
+    },
+    "artifact": {
+      "id": 9093856530,
+      "name": "spacex-ground-network-verification",
+      "sha256": "3c4ead4a9bec56e5235a145fbe3bdeb0ac2544c1919789e48173b08e52146f21",
+      "retention_days": 14
+    }
+  },
+  "stale_in_repo_metadata": {
+    "path": "machine/excellence-state.json",
+    "problem": "the current file still carries placeholder proof identifiers HYPER_VALIDATED_SHA256 / HYPER_VALIDATED_IDENTITY and therefore is not accepted as the current SHA-bound authority",
+    "external_receipt_supersedes_placeholder_for_current_test_claim": true,
+    "repository_file_should_be_reconciled_on_next_source-changing evolution": true
+  },
+  "gates": {
+    "problem_verified": true,
+    "unique_value_known": true,
+    "canonical_identity_known": false,
+    "central_mechanism_implemented": true,
+    "deterministic_tests_pass": true,
+    "adversarial_tests_pass": true,
+    "runtime_behavior_observed": false,
+    "security_authority_bounded": true,
+    "proof_receipt_bound_to_sha": true,
+    "reusable_capabilities_extracted": false,
+    "projections_truth_consistent": false,
+    "evolution_cursor_defined": true
+  },
+  "nonclaims": [
+    "No SpaceX affiliation, employment, adoption, endorsement, proprietary access, or operational deployment is established.",
+    "The successful current-head CI does not inherit historical operate/runtime claims that were not executed in run 31472449875.",
+    "This receipt does not resolve the repository's final canonical SpaceX-family position.",
+    "The stale in-repository placeholder proof identifiers are not treated as evidence."
+  ],
+  "next_cursor": "After spacex-cryogenics closes its current Wave-1 gate, reconcile ground-network canonical-family position and projection truth, then decide whether current exact-head TEST proof is sufficient for rollout admission or whether an exact-SHA operate/runtime gate is required."
+}
