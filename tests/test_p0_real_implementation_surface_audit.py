@@ -4,7 +4,10 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDIT = ROOT / "manifests/application_intelligence/p0_real_implementation_surface_audit_2026-08-12.json"
+AUDIT = (
+    ROOT
+    / "manifests/application_intelligence/p0_real_implementation_surface_audit_2026-08-12.json"
+)
 QUEUE = ROOT / "manifests/application_intelligence/company_innovation_execution_queue.v1.json"
 
 
@@ -97,8 +100,12 @@ def test_scaffolds_and_reference_only_surfaces_fail_closed() -> None:
 def test_legacy_receipts_cannot_be_treated_as_current_build_truth() -> None:
     audit = load(AUDIT)
     boundary = audit["truth_boundary"]
-    assert boundary["legacy_wave_c_v1_promoted_claim_is_superseded_by_promotion_policy_v2"]
-    assert boundary["legacy_25_of_25_reference_execution_receipt_is_not_real_surface_verification"]
+    assert boundary[
+        "legacy_wave_c_v1_promoted_claim_is_superseded_by_promotion_policy_v2"
+    ]
+    assert boundary[
+        "legacy_25_of_25_reference_execution_receipt_is_not_real_surface_verification"
+    ]
     assert boundary["legacy_p0_semantic_audit_only_grades_helix_reference_functions"]
     stale_paths = {item["path"] for item in audit["conflicting_or_stale_artifacts"]}
     assert "excellence/framework/WAVE_C_INNOVATION_SCAFFOLD_MAP.md" in stale_paths
