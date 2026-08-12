@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import tempfile
+import time
 from pathlib import Path
 
 from job_app_helix.crystallization_crawler import (
@@ -32,6 +34,40 @@ def _atomic_write(path: Path, payload: dict) -> None:
         raise
 
 
+def select_repositories(all_repositories, args, *, epoch_seconds: float | None = None):
+    if args.repository and args.hourly_shard_size:
+        raise CrawlError("--repository and --hourly-shard-size are mutually exclusive")
+    if args.hourly_shard_size and (args.start != 0 or args.limit is not None):
+        raise CrawlError("--hourly-shard-size cannot be combined with --start/--limit")
+
+    if args.repository:
+        requested = set(args.repository)
+        selected = [repo for repo in all_repositories if repo.repository in requested]
+        missing = sorted(requested - {repo.repository for repo in selected})
+        if missing:
+            raise CrawlError(f"requested repositories are not accessible: {missing}")
+        return selected, None, None, None
+
+    if args.hourly_shard_size:
+        if args.hourly_shard_size <= 0:
+            raise CrawlError("--hourly-shard-size must be positive")
+        if not all_repositories:
+            return [], 0, args.hourly_shard_size, 0
+        shard_count = math.ceil(len(all_repositories) / args.hourly_shard_size)
+        current = time.time() if epoch_seconds is None else epoch_seconds
+        shard_index = int(current // 3600) % shard_count
+        start = shard_index * args.hourly_shard_size
+        return (
+            all_repositories[start : start + args.hourly_shard_size],
+            start,
+            args.hourly_shard_size,
+            shard_index,
+        )
+
+    stop = None if args.limit is None else args.start + args.limit
+    return all_repositories[args.start:stop], args.start, args.limit, None
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Build completeness-accounted source evidence for every accessible GitHub repository"
@@ -41,12 +77,31 @@ def parse_args() -> argparse.Namespace:
         default=os.environ.get("GLACIEREQ_ESTATE_TOKEN") or os.environ.get("GITHUB_TOKEN", ""),
     )
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--content-mode", choices=("tree-only", "priority", "all-text"), default="tree-only")
+    parser.add_argument(
+        "--content-mode",
+        choices=("tree-only", "priority", "all-text"),
+        default="tree-only",
+    )
     parser.add_argument("--max-text-bytes", type=int, default=1_000_000)
     parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--start", type=int, default=0, help="zero-based repository position after sorted accessible census")
+    parser.add_argument(
+        "--start",
+        type=int,
+        default=0,
+        help="zero-based repository position after sorted accessible census",
+    )
     parser.add_argument("--limit", type=int, help="maximum repositories in this shard")
-    parser.add_argument("--repository", action="append", default=[], help="exact owner/name; repeatable")
+    parser.add_argument(
+        "--hourly-shard-size",
+        type=int,
+        help="select one deterministic time-rotating shard; intended for scheduled continuity",
+    )
+    parser.add_argument(
+        "--repository",
+        action="append",
+        default=[],
+        help="exact owner/name; repeatable",
+    )
     parser.add_argument("--require-semantic-complete", action="store_true")
     return parser.parse_args()
 
@@ -61,16 +116,10 @@ def main() -> int:
 
         api = GitHubApi(args.token)
         all_repositories = list_accessible_repositories(api)
-        selected = all_repositories
-        if args.repository:
-            requested = set(args.repository)
-            selected = [repo for repo in all_repositories if repo.repository in requested]
-            missing = sorted(requested - {repo.repository for repo in selected})
-            if missing:
-                raise CrawlError(f"requested repositories are not accessible: {missing}")
-        else:
-            stop = None if args.limit is None else args.start + args.limit
-            selected = all_repositories[args.start:stop]
+        selected, selection_start, selection_limit, shard_index = select_repositories(
+            all_repositories,
+            args,
+        )
 
         receipt = crawl_estate(
             api,
@@ -81,11 +130,15 @@ def main() -> int:
         )
         receipt["accessible_repository_count"] = len(all_repositories)
         receipt["selected_repository_count"] = len(selected)
-        receipt["selection_start"] = args.start if not args.repository else None
-        receipt["selection_limit"] = args.limit if not args.repository else None
+        receipt["selection_start"] = selection_start
+        receipt["selection_limit"] = selection_limit
+        receipt["hourly_shard_index"] = shard_index
         receipt["explicit_repositories"] = sorted(args.repository)
         receipt["full_estate_selection"] = (
-            not args.repository and args.start == 0 and args.limit is None
+            not args.repository
+            and not args.hourly_shard_size
+            and args.start == 0
+            and args.limit is None
         )
         receipt["estate_exit_eligible"] = bool(
             receipt["full_estate_selection"]
