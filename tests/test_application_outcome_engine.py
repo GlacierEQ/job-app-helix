@@ -26,17 +26,26 @@ def test_anthropic_application_kit_uses_admitted_public_proof() -> None:
     assert kit.company == "Anthropic"
     assert kit.role == "Safety Systems Engineer"
     assert kit.readiness == "READY_WITH_PUBLIC_PROOF"
-    repositories = {row["repository"] for row in kit.proof_repositories}
+    repositories = {
+        row["repository"]
+        for row in kit.proof_repositories
+    }
     assert "GlacierEQ/anthropic-agent-coordinator" in repositories
     assert "GlacierEQ/anthropic-safety-monitor" in repositories
-    assert all(row["state"] in {"PROMOTED", "REFERENCE_ONLY"} for row in kit.proof_repositories)
+    assert all(
+        row["state"] in {"PROMOTED", "REFERENCE_ONLY"}
+        for row in kit.proof_repositories
+    )
     assert "no Anthropic affiliation" in kit.non_affiliation
 
 
 def test_blocked_and_experimental_repos_are_not_recruiter_proof() -> None:
     target = find_target("xai", targets())
     kit = build_application_kit(target)
-    repositories = {row["repository"] for row in kit.proof_repositories}
+    repositories = {
+        row["repository"]
+        for row in kit.proof_repositories
+    }
 
     assert "GlacierEQ/xai-colossus-cooling" not in repositories
     assert "GlacierEQ/xai-colossus-cooling-alpha" not in repositories
@@ -74,7 +83,16 @@ def test_primary_cli_defaults_to_real_target_index(capsys) -> None:
 
 
 def test_primary_cli_compiles_application_json(capsys) -> None:
-    assert cli.main(["application", "anthropic", "--role", "Safety Systems Engineer", "--json"]) == 0
+    result = cli.main(
+        [
+            "application",
+            "anthropic",
+            "--role",
+            "Safety Systems Engineer",
+            "--json",
+        ]
+    )
+    assert result == 0
     payload = json.loads(capsys.readouterr().out)
     assert payload["company_id"] == "anthropic"
     assert payload["role"] == "Safety Systems Engineer"

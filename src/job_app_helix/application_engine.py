@@ -3,10 +3,11 @@ from __future__ import annotations
 import json
 import os
 import re
+from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass
 from importlib.resources import files
 from pathlib import Path
-from typing import Any, Iterable, Mapping
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -40,8 +41,22 @@ class CompanyTarget:
 
     @property
     def recruiter_proofs(self) -> tuple[RepositoryProof, ...]:
-        usable = [proof for proof in self.repositories if proof.recruiter_usable]
-        return tuple(sorted(usable, key=lambda item: (_level_rank(item.level), item.repository), reverse=True))
+        usable = [
+            proof
+            for proof in self.repositories
+            if proof.recruiter_usable
+        ]
+
+        def sort_key(item: RepositoryProof) -> tuple[int, str]:
+            return _level_rank(item.level), item.repository
+
+        return tuple(
+            sorted(
+                usable,
+                key=sort_key,
+                reverse=True,
+            )
+        )
 
 
 @dataclass(frozen=True)
@@ -62,12 +77,20 @@ class ApplicationKit:
 
 
 def _level_rank(level: str) -> int:
-    match = re.fullmatch(r"L(\d+)", str(level).strip().upper())
+    match = re.fullmatch(
+        r"L(\d+)",
+        str(level).strip().upper(),
+    )
     return int(match.group(1)) if match else -1
 
 
 def _slug(value: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", value.casefold()).strip("-") or "target"
+    slug = re.sub(
+        r"[^a-z0-9]+",
+        "-",
+        value.casefold(),
+    ).strip("-")
+    return slug or "target"
 
 
 def _source_manifest_root() -> Path | None:
@@ -80,7 +103,10 @@ def default_manifest_root() -> Path:
     if configured:
         root = Path(configured).expanduser().resolve()
         if not root.is_dir():
-            raise FileNotFoundError(f"configured manifest root does not exist: {root}")
+            raise FileNotFoundError(
+                "configured manifest root does not exist: "
+                f"{root}"
+            )
         return root
 
     source = _source_manifest_root()
@@ -94,13 +120,30 @@ def default_manifest_root() -> Path:
     raise FileNotFoundError("job-app-helix manifests are unavailable")
 
 
-def _repository_proof(value: Any, *, company_id: str, index: int) -> RepositoryProof:
+def _repository_proof(
+    value: Any,
+    *,
+    company_id: str,
+    index: int,
+) -> RepositoryProof:
     if not isinstance(value, list) or len(value) < 6:
-        raise ValueError(f"{company_id}.repositories[{index}] must contain six fields")
-    repository, level, state, visibility, admission, origin = (str(item) for item in value[:6])
+        raise ValueError(
+            f"{company_id}.repositories[{index}] must contain six fields"
+        )
+    fields = tuple(str(item) for item in value[:6])
+    repository, level, state, visibility, admission, origin = fields
     if "/" not in repository:
-        raise ValueError(f"{company_id}.repositories[{index}] has invalid repository")
-    return RepositoryProof(repository, level, state, visibility, admission, origin)
+        raise ValueError(
+            f"{company_id}.repositories[{index}] has invalid repository"
+        )
+    return RepositoryProof(
+        repository,
+        level,
+        state,
+        visibility,
+        admission,
+        origin,
+    )
 
 
 def _company(value: Mapping[str, Any]) -> CompanyTarget:
@@ -114,16 +157,36 @@ def _company(value: Mapping[str, Any]) -> CompanyTarget:
         "non_affiliation",
         "repositories",
     )
-    missing = [key for key in required if key not in value]
+    missing = [
+        key
+        for key in required
+        if key not in value
+    ]
     if missing:
-        raise ValueError(f"company dossier missing fields: {', '.join(missing)}")
+        raise ValueError(
+            "company dossier missing fields: " + ", ".join(missing)
+        )
+
     company_id = str(value["company_id"])
     raw_roles = value["target_roles"]
     raw_repositories = value["repositories"]
     if not isinstance(raw_roles, list) or not raw_roles:
-        raise ValueError(f"{company_id}.target_roles must be a non-empty list")
+        raise ValueError(
+            f"{company_id}.target_roles must be a non-empty list"
+        )
     if not isinstance(raw_repositories, list):
-        raise ValueError(f"{company_id}.repositories must be a list")
+        raise ValueError(
+            f"{company_id}.repositories must be a list"
+        )
+
+    repositories = tuple(
+        _repository_proof(
+            row,
+            company_id=company_id,
+            index=index,
+        )
+        for index, row in enumerate(raw_repositories)
+    )
     return CompanyTarget(
         company_id=company_id,
         display_name=str(value["display_name"]),
@@ -132,18 +195,20 @@ def _company(value: Mapping[str, Any]) -> CompanyTarget:
         recruiter_thesis=str(value["recruiter_thesis"]),
         gap_or_next_gate=str(value["gap_or_next_gate"]),
         non_affiliation=str(value["non_affiliation"]),
-        repositories=tuple(
-            _repository_proof(row, company_id=company_id, index=index)
-            for index, row in enumerate(raw_repositories)
-        ),
+        repositories=repositories,
     )
 
 
-def load_targets(manifest_root: Path | None = None) -> tuple[CompanyTarget, ...]:
+def load_targets(
+    manifest_root: Path | None = None,
+) -> tuple[CompanyTarget, ...]:
     root = manifest_root or default_manifest_root()
     dossier_dir = root / "company_dossiers"
     if not dossier_dir.is_dir():
-        raise FileNotFoundError(f"company dossier directory is unavailable: {dossier_dir}")
+        raise FileNotFoundError(
+            "company dossier directory is unavailable: "
+            f"{dossier_dir}"
+        )
 
     targets: list[CompanyTarget] = []
     seen: set[str] = set()
@@ -151,65 +216,112 @@ def load_targets(manifest_root: Path | None = None) -> tuple[CompanyTarget, ...]
         payload = json.loads(path.read_text(encoding="utf-8"))
         companies = payload.get("companies", [])
         if not isinstance(companies, list):
-            raise ValueError(f"{path.name}: companies must be a list")
+            raise ValueError(
+                f"{path.name}: companies must be a list"
+            )
         for raw in companies:
             if not isinstance(raw, Mapping):
-                raise ValueError(f"{path.name}: company record must be an object")
+                raise ValueError(
+                    f"{path.name}: company record must be an object"
+                )
             target = _company(raw)
             if target.company_id in seen:
-                raise ValueError(f"duplicate company_id: {target.company_id}")
+                raise ValueError(
+                    "duplicate company_id: "
+                    f"{target.company_id}"
+                )
             seen.add(target.company_id)
             targets.append(target)
+
     if not targets:
         raise ValueError("no company targets were loaded")
-    return tuple(sorted(targets, key=lambda item: item.company_id))
+    return tuple(
+        sorted(
+            targets,
+            key=lambda item: item.company_id,
+        )
+    )
 
 
-def find_target(query: str, targets: Iterable[CompanyTarget]) -> CompanyTarget:
+def find_target(
+    query: str,
+    targets: Iterable[CompanyTarget],
+) -> CompanyTarget:
     needle = query.strip().casefold()
     if not needle:
         raise ValueError("company is required")
+    targets = tuple(targets)
     exact = [
         target
         for target in targets
-        if needle in {target.company_id.casefold(), target.display_name.casefold()}
+        if needle
+        in {
+            target.company_id.casefold(),
+            target.display_name.casefold(),
+        }
     ]
     if len(exact) == 1:
         return exact[0]
+
     partial = [
         target
         for target in targets
-        if needle in target.company_id.casefold() or needle in target.display_name.casefold()
+        if (
+            needle in target.company_id.casefold()
+            or needle in target.display_name.casefold()
+        )
     ]
     if len(partial) == 1:
         return partial[0]
     if not partial:
         raise ValueError(f"unknown company target: {query}")
     raise ValueError(
-        "ambiguous company target: " + ", ".join(target.company_id for target in partial)
+        "ambiguous company target: "
+        + ", ".join(target.company_id for target in partial)
     )
 
 
-def resolve_role(target: CompanyTarget, requested: str | None = None) -> str:
+def resolve_role(
+    target: CompanyTarget,
+    requested: str | None = None,
+) -> str:
     if not requested:
         return target.target_roles[0]
+
     needle = requested.strip().casefold()
-    exact = [role for role in target.target_roles if role.casefold() == needle]
+    exact = [
+        role
+        for role in target.target_roles
+        if role.casefold() == needle
+    ]
     if exact:
         return exact[0]
-    partial = [role for role in target.target_roles if needle in role.casefold()]
+
+    partial = [
+        role
+        for role in target.target_roles
+        if needle in role.casefold()
+    ]
     if len(partial) == 1:
         return partial[0]
+    available = ", ".join(target.target_roles)
     raise ValueError(
-        f"role {requested!r} is not a mapped target role for {target.display_name}; "
-        f"available: {', '.join(target.target_roles)}"
+        f"role {requested!r} is not a mapped target role for "
+        f"{target.display_name}; available: {available}"
     )
 
 
-def build_application_kit(target: CompanyTarget, role: str | None = None) -> ApplicationKit:
+def build_application_kit(
+    target: CompanyTarget,
+    role: str | None = None,
+) -> ApplicationKit:
     selected_role = resolve_role(target, role)
     proofs = target.recruiter_proofs
-    readiness = "READY_WITH_PUBLIC_PROOF" if proofs else "INCOMPLETE_NO_ADMITTED_PUBLIC_PROOF"
+    readiness = (
+        "READY_WITH_PUBLIC_PROOF"
+        if proofs
+        else "INCOMPLETE_NO_ADMITTED_PUBLIC_PROOF"
+    )
     proof_rows = tuple(
         {
             "repository": proof.repository,
@@ -234,49 +346,64 @@ def build_application_kit(target: CompanyTarget, role: str | None = None) -> App
 
 
 def render_markdown(kit: ApplicationKit) -> str:
-    proof_lines = (
-        "\n".join(
-            f"- `{row['repository']}` ({row['level']}, {row['state']})"
+    if kit.proof_repositories:
+        proof_lines = "\n".join(
+            (
+                f"- `{row['repository']}` "
+                f"({row['level']}, {row['state']})"
+            )
             for row in kit.proof_repositories
         )
-        if kit.proof_repositories
-        else "- No admitted public proof repository is currently available."
+    else:
+        proof_lines = (
+            "- No admitted public proof repository is currently available."
+        )
+
+    sections = [
+        f"# {kit.company} — {kit.role}",
+        (
+            f"**Readiness:** `{kit.readiness}`  \n"
+            f"**Track state:** `{kit.track_state}`"
+        ),
+        "## Application thesis",
+        kit.recruiter_thesis,
+        "## Public technical proof",
+        proof_lines,
+        "## Known gap before claiming more",
+        kit.known_gap,
+        "## Truth boundary",
+        kit.non_affiliation,
+        "## Use",
+        (
+            "This kit is an evidence-bound application brief. It is ready "
+            "for role-specific resume, outreach, and cover-letter projection "
+            "only to the extent supported by the proof repositories above."
+        ),
+    ]
+    return "\n\n".join(sections).rstrip() + "\n"
+
+
+def write_application_kit(
+    kit: ApplicationKit,
+    output_dir: Path,
+) -> tuple[Path, Path]:
+    target_dir = output_dir / (
+        f"{_slug(kit.company_id)}--{_slug(kit.role)}"
     )
-    return f"""# {kit.company} — {kit.role}
-
-**Readiness:** `{kit.readiness}`  
-**Track state:** `{kit.track_state}`
-
-## Application thesis
-
-{kit.recruiter_thesis}
-
-## Public technical proof
-
-{proof_lines}
-
-## Known gap before claiming more
-
-{kit.known_gap}
-
-## Truth boundary
-
-{kit.non_affiliation}
-
-## Use
-
-This kit is an evidence-bound application brief. It is ready for role-specific resume,
-outreach, and cover-letter projection only to the extent supported by the proof repositories above.
-"""
-
-
-def write_application_kit(kit: ApplicationKit, output_dir: Path) -> tuple[Path, Path]:
-    target_dir = output_dir / f"{_slug(kit.company_id)}--{_slug(kit.role)}"
     target_dir.mkdir(parents=True, exist_ok=True)
     json_path = target_dir / "application-kit.json"
     markdown_path = target_dir / "APPLICATION_BRIEF.md"
     json_path.write_text(
-        json.dumps(kit.as_dict(), indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(
+            kit.as_dict(),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
     )
-    markdown_path.write_text(render_markdown(kit), encoding="utf-8")
+    markdown_path.write_text(
+        render_markdown(kit),
+        encoding="utf-8",
+    )
     return json_path, markdown_path
