@@ -8,6 +8,7 @@ on:
       - "manifests/repo_excellence/**"
       - "manifests/company_projections/**"
       - "excellence/receipts/**"
+      - "scripts/validate_apex_evolution_external_proof.py"
       - "tests/test_repo_excellence.py"
       - "tests/test_repo_excellence_canonicalization.py"
       - "tests/test_repo_excellence_evolution.py"
@@ -21,6 +22,7 @@ on:
       - "manifests/repo_excellence/**"
       - "manifests/company_projections/**"
       - "excellence/receipts/**"
+      - "scripts/validate_apex_evolution_external_proof.py"
       - "tests/test_repo_excellence.py"
       - "tests/test_repo_excellence_canonicalization.py"
       - "tests/test_repo_excellence_evolution.py"
@@ -28,11 +30,14 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   contract:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout exact candidate
         uses: actions/checkout@v4
@@ -49,6 +54,7 @@ jobs:
           ruff check
           src/job_app_helix/repo_excellence.py
           src/job_app_helix/repo_excellence_evolution.py
+          scripts/validate_apex_evolution_external_proof.py
           tests/test_repo_excellence.py
           tests/test_repo_excellence_canonicalization.py
           tests/test_repo_excellence_evolution.py
@@ -58,3 +64,5 @@ jobs:
           tests/test_repo_excellence.py
           tests/test_repo_excellence_canonicalization.py
           tests/test_repo_excellence_evolution.py
+      - name: Verify public evolution proof provenance
+        run: python scripts/validate_apex_evolution_external_proof.py
