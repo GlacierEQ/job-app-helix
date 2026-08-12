@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections.abc import Sequence
 from pathlib import Path
 
@@ -102,7 +103,12 @@ def _run_targets(as_json: bool) -> int:
     return 0
 
 
-def _run_application(company: str, role: str | None, output_dir: Path | None, as_json: bool) -> int:
+def _run_application(
+    company: str,
+    role: str | None,
+    output_dir: Path | None,
+    as_json: bool,
+) -> int:
     target = find_target(company, load_targets())
     kit = build_application_kit(target, role)
     if output_dir:
@@ -130,11 +136,13 @@ def _run_demo(args: argparse.Namespace) -> int:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    values = list(argv) if argv is not None else None
-    # Preserve historical `job-app-helix nominal` calls, but never make a synthetic
-    # launch scenario the default product behavior again.
+    # Normalize both explicit calls and the real installed/module command line through the
+    # same dispatch path. The previous version translated legacy scenarios only when tests
+    # passed argv directly, so `python -m job_app_helix nominal` still failed in production CI.
+    values = list(argv) if argv is not None else sys.argv[1:]
     if values and values[0] in SCENARIOS:
         values = ["demo", *values]
+
     parser = build_parser()
     args = parser.parse_args(values)
     try:
