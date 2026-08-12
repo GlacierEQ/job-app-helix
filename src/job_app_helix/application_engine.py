@@ -3,10 +3,11 @@ from __future__ import annotations
 import json
 import os
 import re
+from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass
 from importlib.resources import files
 from pathlib import Path
-from typing import Any, Iterable, Mapping
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -41,7 +42,13 @@ class CompanyTarget:
     @property
     def recruiter_proofs(self) -> tuple[RepositoryProof, ...]:
         usable = [proof for proof in self.repositories if proof.recruiter_usable]
-        return tuple(sorted(usable, key=lambda item: (_level_rank(item.level), item.repository), reverse=True))
+        return tuple(
+            sorted(
+                usable,
+                key=lambda item: (_level_rank(item.level), item.repository),
+                reverse=True,
+            )
+        )
 
 
 @dataclass(frozen=True)
@@ -139,6 +146,24 @@ def _company(value: Mapping[str, Any]) -> CompanyTarget:
     )
 
 
+def _effective_company(
+    payload: Mapping[str, Any],
+    raw: Mapping[str, Any],
+    *,
+    source_name: str,
+) -> dict[str, Any]:
+    defaults = payload.get("defaults", {})
+    if not isinstance(defaults, Mapping):
+        raise ValueError(f"{source_name}: defaults must be an object")
+    if defaults and payload.get("defaults_apply_to_all_companies") is not True:
+        raise ValueError(
+            f"{source_name}: defaults require defaults_apply_to_all_companies=true"
+        )
+    effective = dict(defaults)
+    effective.update(raw)
+    return effective
+
+
 def load_targets(manifest_root: Path | None = None) -> tuple[CompanyTarget, ...]:
     root = manifest_root or default_manifest_root()
     dossier_dir = root / "company_dossiers"
@@ -149,13 +174,15 @@ def load_targets(manifest_root: Path | None = None) -> tuple[CompanyTarget, ...]
     seen: set[str] = set()
     for path in sorted(dossier_dir.glob("*.json")):
         payload = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(payload, Mapping):
+            raise ValueError(f"{path.name}: dossier shard must be an object")
         companies = payload.get("companies", [])
         if not isinstance(companies, list):
             raise ValueError(f"{path.name}: companies must be a list")
         for raw in companies:
             if not isinstance(raw, Mapping):
                 raise ValueError(f"{path.name}: company record must be an object")
-            target = _company(raw)
+            target = _company(_effective_company(payload, raw, source_name=path.name))
             if target.company_id in seen:
                 raise ValueError(f"duplicate company_id: {target.company_id}")
             seen.add(target.company_id)
