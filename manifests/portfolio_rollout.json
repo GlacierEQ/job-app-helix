@@ -89,11 +89,18 @@
             "evidence": "TEST",
             "canonical_commit": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
             "proof": "PR #1 merged after exact reviewed head f407bab1942d9e0bd50f98595795af9164275021 passed Public Countdown Truth Gate on Python 3.11 and 3.13 with Go verification and exact source identity, plus repository CI"
+          },
+          {
+            "repository": "spacex-mission-control",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+            "proof": "PR #1 merged after exact reviewed head 520a7de11ca91d84c0b974094d5e7cd2642fc334 passed Public Mission Ops Truth Gate on Python 3.11 and 3.13 plus repository CI with evidence token LOCAL_MISSION_OPS_SIMULATION_NOT_FLIGHT_COMMAND_AUTHORITY"
           }
         ],
-        "completed_count": 8,
-        "remaining_count": 12,
-        "next_repository": "spacex-mission-control"
+        "completed_count": 9,
+        "remaining_count": 11,
+        "next_repository": "spacex-orbital-mechanics"
       },
       "acceptance": {
         "require_readme_contract": true,
