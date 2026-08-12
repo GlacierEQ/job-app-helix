@@ -57,13 +57,22 @@
     "evolution_source_blob": "b0634ee0f39ff5ef636a806a6d967385c614330d",
     "public_claim_receipt": "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/proof/claim-receipt.json",
     "production_projection_receipt": "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/proof/production-projection-closure.json",
-    "limitation": "The evolution proof reproduces exact private candidate bytes on the governed public proof host and does not perform a new GitHub provider mutation. The prior real-provider proof remains the provider evidence. No GitHub adoption, employment, endorsement, GitHub production deployment, production-scale reliability, latency, throughput, or durability is established. The private implementation source remains private."
+    "limitation": "The evolution proof does not perform a new GitHub provider mutation; the prior real-provider proof remains the provider evidence. The Apex repository remains private, but the exact three-file evolution candidate used by public proof PR #269 is publicly visible on the proof host. No GitHub adoption, employment, endorsement, GitHub production deployment, production-scale reliability, latency, throughput, or durability is established."
   },
   "public_projection": {
     "package_repository": "GlacierEQ/job-application",
     "package_commit": "577f63c506c6c4df9c1751a0ff5b8fa07822e491",
     "package_path": "projects/github-merge-authority-proof/",
-    "disclosure_class": "PUBLIC_SAFE_WITH_PRIVATE_IMPLEMENTATION_HASH_BOUNDARY"
+    "disclosure_class": "PUBLIC_SAFE_WITH_BOUNDED_EVOLUTION_SOURCE_SLICE",
+    "bounded_evolution_source_slice": {
+      "repository": "GlacierEQ/public-actions-runner-host",
+      "pull_request": 269,
+      "files": [
+        "merge-authority.mjs",
+        "merge-authority.test.mjs",
+        "evolution-benchmark.test.mjs"
+      ]
+    }
   },
   "next_company_gate": "Maintain proof and projection freshness at the proof_bound_company_specific ceiling. Any claim of GitHub adoption, GitHub production deployment, or production-scale reliability requires new public evidence and an additional gate; none is claimed here."
 }
