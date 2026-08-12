@@ -17,7 +17,7 @@ company / role
 
 Portfolio inventory, verification, lineage, README intelligence, and evidence receipts remain important, but they support this outcome. They are not the outcome themselves.
 
-**Release:** `0.4.0`
+**Release:** `0.3.0`
 
 ## Primary workflow
 
