@@ -157,11 +157,7 @@ def _company(value: Mapping[str, Any]) -> CompanyTarget:
         "non_affiliation",
         "repositories",
     )
-    missing = [
-        key
-        for key in required
-        if key not in value
-    ]
+    missing = [key for key in required if key not in value]
     if missing:
         raise ValueError(
             "company dossier missing fields: " + ", ".join(missing)
@@ -199,6 +195,20 @@ def _company(value: Mapping[str, Any]) -> CompanyTarget:
     )
 
 
+def _normalized_company_record(
+    payload: Mapping[str, Any],
+    raw: Mapping[str, Any],
+    *,
+    path: Path,
+) -> dict[str, Any]:
+    if not payload.get("defaults_apply_to_all_companies"):
+        return dict(raw)
+    defaults = payload.get("defaults", {})
+    if not isinstance(defaults, Mapping):
+        raise ValueError(f"{path.name}: defaults must be an object")
+    return {**dict(defaults), **dict(raw)}
+
+
 def load_targets(
     manifest_root: Path | None = None,
 ) -> tuple[CompanyTarget, ...]:
@@ -214,17 +224,22 @@ def load_targets(
     seen: set[str] = set()
     for path in sorted(dossier_dir.glob("*.json")):
         payload = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(payload, Mapping):
+            raise ValueError(f"{path.name}: dossier shard must be an object")
         companies = payload.get("companies", [])
         if not isinstance(companies, list):
-            raise ValueError(
-                f"{path.name}: companies must be a list"
-            )
+            raise ValueError(f"{path.name}: companies must be a list")
         for raw in companies:
             if not isinstance(raw, Mapping):
                 raise ValueError(
                     f"{path.name}: company record must be an object"
                 )
-            target = _company(raw)
+            normalized = _normalized_company_record(
+                payload,
+                raw,
+                path=path,
+            )
+            target = _company(normalized)
             if target.company_id in seen:
                 raise ValueError(
                     "duplicate company_id: "
