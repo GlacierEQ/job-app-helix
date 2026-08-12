@@ -82,11 +82,18 @@
             "evidence": "TEST",
             "canonical_commit": "1e94eb150bc7211d7798faab0411c5b000bd453d",
             "proof": "PR #4 merged after exact reviewed head b2bfeeaf87c846434f625aa05ed90739fcada3da passed Python 3.11, 3.12, 3.13 install/compile/full tests/CLI smoke, Go vet/race tests/native build/JSON smoke, and aggregate required-functional-proof"
+          },
+          {
+            "repository": "spacex-launch-sequencer",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
+            "proof": "PR #1 merged after exact reviewed head f407bab1942d9e0bd50f98595795af9164275021 passed Public Countdown Truth Gate on Python 3.11 and 3.13 with Go verification and exact source identity, plus repository CI"
           }
         ],
-        "completed_count": 7,
-        "remaining_count": 13,
-        "next_repository": "spacex-launch-sequencer"
+        "completed_count": 8,
+        "remaining_count": 12,
+        "next_repository": "spacex-mission-control"
       },
       "acceptance": {
         "require_readme_contract": true,
