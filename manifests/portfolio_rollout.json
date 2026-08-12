@@ -96,11 +96,32 @@
             "evidence": "TEST",
             "canonical_commit": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
             "proof": "truth-hardened canonical main passed exact-head Python verification, Python 3.11 and 3.13 public-truth checks, repository-native mission/telemetry/event-bus tests, and cold-start operability"
+          },
+          {
+            "repository": "spacex-orbital-mechanics",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "b99a1f7ea0534d3a268f9bea432399c9862bd1e4",
+            "proof": "truth-hardened canonical main passed exact-head repository CI plus Python 3.11 and 3.13 verification checks"
+          },
+          {
+            "repository": "spacex-pad-weather-gate",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+            "proof": "truth-hardened canonical main passed exact-head repository CI and Python verification checks; dependency graph update also completed successfully"
+          },
+          {
+            "repository": "spacex-propulsion-monitor",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "1903e562e801a6153b0e78b9d236418c849f1867",
+            "proof": "truth-hardened canonical main passed exact-head repository CI plus Python 3.11 and 3.13 verification checks after health-floor, bounded-history and terminal-stop repairs"
           }
         ],
-        "completed_count": 9,
-        "remaining_count": 11,
-        "next_repository": "spacex-orbital-mechanics"
+        "completed_count": 12,
+        "remaining_count": 8,
+        "next_repository": "spacex-satellite-mesh"
       },
       "acceptance": {
         "require_readme_contract": true,
