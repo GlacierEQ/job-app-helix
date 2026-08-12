@@ -42,7 +42,7 @@ Current state: exact recovery identity, concurrency fencing, unsafe-retry preven
 
 **Canonical source:** `GlacierEQ/job-app-helix`
 
-Current state: exact 67-repository governed boundary, AKOS 94/94 multi-version tests, 21-node README Mesh, and 76 required company tracks.
+Current state: the living admitted portfolio boundary is machine-authoritative in `manifests/portfolio_repositories.json`; AKOS carries multi-version test proof; the recruiter / expert / AI documentation mesh is verified; and direct Adobe/AMD functional exhibits are admitted with explicit claim ceilings. Public hiring material deliberately does not freeze repository, mesh-node, or company-track counts because those are living inventory facts rather than capabilities.
 
 **Next durable ledger:** executed workflow count, integrations by proof state, event/document volumes, successful operations, recovery operations, and verified performance/cost measurements.
 
