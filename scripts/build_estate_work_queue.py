@@ -1,4 +1,9 @@
-"""Build a coverage-complete work queue from an owned-library census receipt."""
+"""Build the Crystallization Mandate work queue from a verified estate census.
+
+Every repository is routed exactly once. Nothing is exempt merely because it is
+important, governed, archived, or inconvenient. Archived/forked repositories
+receive verification lanes rather than disappearing from the work estate.
+"""
 
 from __future__ import annotations
 
@@ -25,7 +30,7 @@ class QueueError(RuntimeError):
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Route every owned repository into one deterministic estate lane"
+        description="Route every owned repository into one Crystallization Mandate lane"
     )
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -76,17 +81,14 @@ def validate_receipt(payload: dict[str, Any]) -> list[dict[str, Any]]:
     total = len(records)
     native = sum(not record["fork"] for record in records)
     forks = sum(record["fork"] for record in records)
-    expected = {
+    for key, observed in {
         "repository_count": total,
         "native_repository_count": native,
         "fork_repository_count": forks,
-    }
-    for key, observed in expected.items():
+    }.items():
         recorded = _require(payload, key, int)
         if recorded != observed:
-            raise QueueError(
-                f"Census cardinality mismatch for {key}: {recorded} != {observed}"
-            )
+            raise QueueError(f"Census cardinality mismatch for {key}: {recorded} != {observed}")
     return records
 
 
@@ -97,51 +99,48 @@ def route_record(record: dict[str, Any]) -> dict[str, Any]:
     fork = record["fork"]
     archived = record["archived"]
 
-    if classification == "PRIORITY_SPINE":
-        lane = "PRESERVE_GOVERNED_PRIORITY"
-        priority = 100
-        actionable = False
-        reason = "Priority-spine repositories retain their explicit governance lane."
-    elif classification == "RECRUITER_PORTFOLIO":
-        lane = "PRESERVE_GOVERNED_RECRUITER"
-        priority = 100
-        actionable = False
-        reason = "Recruiter-portfolio repositories retain their existing governance lane."
-    elif classification not in KNOWN_CLASSIFICATIONS:
-        lane = "MANUAL_TRIAGE"
+    if classification not in KNOWN_CLASSIFICATIONS:
+        lane = "CRYSTALLIZE_MANUAL_TRIAGE"
         priority = 0
-        actionable = True
-        reason = "Unknown census classification requires explicit routing review."
+        reason = "Unknown classification cannot escape semantic reconstruction."
     elif archived or classification == "ARCHIVE_BACKUP_OR_FORK":
-        lane = "PRESERVE_ARCHIVE_BACKUP"
-        priority = 90
-        actionable = False
-        reason = "Archived or backup-classified holdings stay preserved by default."
+        lane = "VERIFY_ARCHIVE_OR_SUCCESSOR"
+        priority = 8
+        reason = (
+            "Archive/backup status is not an exemption; verify intentional archive reason "
+            "or canonical successor before resolving it from the active estate."
+        )
     elif fork:
-        lane = "FORK_REFERENCE_REVIEW"
-        priority = 60
-        actionable = True
-        reason = "Forks are reviewed separately for upstream value or verified local delta."
+        lane = "VERIFY_FORK_DELTA_OR_UPSTREAM"
+        priority = 12
+        reason = (
+            "Fork must be inspected for unique local capability, intentional reference value, "
+            "or safe canonicalization to upstream."
+        )
+    elif classification == "PRIORITY_SPINE":
+        lane = "CRYSTALLIZE_PRIORITY"
+        priority = 1
+        reason = "Priority systems are first in line for full purpose realization, not exempt."
+    elif classification == "RECRUITER_PORTFOLIO":
+        lane = "CRYSTALLIZE_RECRUITER"
+        priority = 2
+        reason = "Recruiter-facing systems must prove real capability before presentation."
     elif classification == "CANDIDATE_EXPANSION":
-        lane = "NATIVE_CANDIDATE_AUDIT"
+        lane = "CRYSTALLIZE_CANDIDATE"
         priority = 10
-        actionable = True
-        reason = "Explicit candidate expansion should receive repository-native audit first."
+        reason = "Candidate repository requires full intention and capability reconstruction."
     elif visibility == "public":
-        lane = "NATIVE_PUBLIC_AUDIT"
+        lane = "CRYSTALLIZE_NATIVE_PUBLIC"
         priority = 20
-        actionable = True
-        reason = "Ungoverned public native repository requires provenance and value review."
+        reason = "Public native repository requires source-level purpose and capability completion."
     elif visibility in {"private", "internal"}:
-        lane = "NATIVE_PRIVATE_AUDIT"
+        lane = "CRYSTALLIZE_NATIVE_PRIVATE"
         priority = 30
-        actionable = True
-        reason = "Ungoverned private native repository requires internal-only review."
+        reason = "Private native repository requires internal source-level metamorphosis."
     else:
-        lane = "MANUAL_TRIAGE"
+        lane = "CRYSTALLIZE_MANUAL_TRIAGE"
         priority = 0
-        actionable = True
-        reason = "Repository metadata did not match a known deterministic routing rule."
+        reason = "Repository metadata did not match a deterministic lane."
 
     return {
         "position": record["position"],
@@ -152,8 +151,13 @@ def route_record(record: dict[str, Any]) -> dict[str, Any]:
         "fork": fork,
         "lane": lane,
         "priority": priority,
-        "actionable": actionable,
+        "actionable": True,
         "reason": reason,
+        "required_exit": (
+            "CRYSTALLIZED_OR_VERIFIED_ARCHIVE_OR_VERIFIED_SUCCESSOR"
+            if archived or fork
+            else "CRYSTALLIZED"
+        ),
     }
 
 
@@ -168,38 +172,41 @@ def build_queue(payload: dict[str, Any]) -> dict[str, Any]:
         )
     )
 
-    native_work = [
-        item for item in routed if item["actionable"] and not item["fork"]
-    ]
-    fork_work = [item for item in routed if item["actionable"] and item["fork"]]
-    preserve = [item for item in routed if not item["actionable"]]
+    native_work = [item for item in routed if not item["fork"]]
+    fork_work = [item for item in routed if item["fork"]]
     lane_counts = Counter(item["lane"] for item in routed)
 
     covered = {item["repository"] for item in routed}
     if len(covered) != len(records):
         raise QueueError("Estate routing failed to cover each repository exactly once")
+    if any(not item["actionable"] for item in routed):
+        raise QueueError("Crystallization queue contains a non-actionable repository exemption")
 
     return {
-        "schema": "glaciereq.estate-work-queue.v1",
+        "schema": "glaciereq.crystallization-work-queue.v1",
+        "mandate": "CRYSTALLIZATION-MANDATE",
         "owner": payload.get("owner"),
-        "state": "ROUTED_FROM_VERIFIED_INVENTORY",
+        "state": "EVERY_REPOSITORY_ACTIONABLE",
         "source_schema": payload["schema"],
         "source_repository_count": payload["repository_count"],
         "source_native_repository_count": payload["native_repository_count"],
         "source_fork_repository_count": payload["fork_repository_count"],
         "coverage_count": len(routed),
+        "actionable_count": len(routed),
+        "unrouted_count": len(records) - len(routed),
+        "exempt_count": 0,
         "lane_counts": dict(sorted(lane_counts.items())),
         "native_work_count": len(native_work),
         "fork_reference_work_count": len(fork_work),
-        "preserve_count": len(preserve),
+        "work_queue": routed,
         "native_work_queue": native_work,
         "fork_reference_queue": fork_work,
-        "preserve_queue": preserve,
-        "routing_nonclaims": [
-            "Routing is not a claim of authorship, originality, quality, or maturity.",
-            "Repository names are not used to infer technical provenance or subject matter.",
-            "A work-queue lane does not promote a repository into recruiter evidence.",
-        ],
+        "acceptance": {
+            "unknown_allowed": 0,
+            "broken_allowed": 0,
+            "materially_incomplete_allowed": 0,
+            "representative_sampling_allowed": False,
+        },
     }
 
 
@@ -208,18 +215,15 @@ def main() -> int:
     try:
         result = build_queue(load_receipt(args.input.resolve()))
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(
-            json.dumps(result, indent=2, sort_keys=True) + "\n",
-            encoding="utf-8",
-        )
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        args.output.write_text(rendered, encoding="utf-8")
     except QueueError as exc:
-        print(f"Estate work queue failed closed: {exc}")
+        print(f"Crystallization work queue failed closed: {exc}")
         return 1
     print(
-        "Estate work queue VERIFIED: "
-        f"coverage={result['coverage_count']} "
-        f"native_work={result['native_work_count']} "
-        f"fork_work={result['fork_reference_work_count']}"
+        "Crystallization work queue VERIFIED: "
+        f"coverage={result['coverage_count']} actionable={result['actionable_count']} "
+        f"exempt={result['exempt_count']}"
     )
     return 0
 
