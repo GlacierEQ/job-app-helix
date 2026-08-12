@@ -137,7 +137,7 @@ def route_record(record: dict[str, Any]) -> dict[str, Any]:
         lane = "CRYSTALLIZE_NATIVE_PRIVATE"
         priority = 30
         reason = "Private native repository requires internal source-level metamorphosis."
-    else:  # guarded by validation; kept fail-closed for future schema drift
+    else:
         lane = "CRYSTALLIZE_MANUAL_TRIAGE"
         priority = 0
         reason = "Repository metadata did not match a deterministic lane."
@@ -215,7 +215,8 @@ def main() -> int:
     try:
         result = build_queue(load_receipt(args.input.resolve()))
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        args.output.write_text(rendered, encoding="utf-8")
     except QueueError as exc:
         print(f"Crystallization work queue failed closed: {exc}")
         return 1
