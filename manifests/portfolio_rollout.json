@@ -75,11 +75,18 @@
             "evidence": "TEST",
             "canonical_commit": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
             "proof": "PR #1 merged after exact reviewed head 39519210a8f6970aca320eb385ec84a3df20e887 passed pinned-action Python 3.11, 3.12, 3.13 install/compile/tests/CLI and strict C++17 compile/self-test/output invariants plus aggregate functional proof"
+          },
+          {
+            "repository": "spacex-ground-network",
+            "state": "VERIFIED",
+            "evidence": "TEST",
+            "canonical_commit": "1e94eb150bc7211d7798faab0411c5b000bd453d",
+            "proof": "PR #4 merged after exact reviewed head b2bfeeaf87c846434f625aa05ed90739fcada3da passed Python 3.11, 3.12, 3.13 install/compile/full tests/CLI smoke, Go vet/race tests/native build/JSON smoke, and aggregate required-functional-proof"
           }
         ],
-        "completed_count": 6,
-        "remaining_count": 14,
-        "next_repository": "spacex-ground-network"
+        "completed_count": 7,
+        "remaining_count": 13,
+        "next_repository": "spacex-launch-sequencer"
       },
       "acceptance": {
         "require_readme_contract": true,
