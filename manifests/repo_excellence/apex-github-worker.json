@@ -99,7 +99,7 @@
   },
   "evolution_receipt": {
     "path": "excellence/receipts/apex-github-worker-evolution-2026-08-12.json",
-    "blob_sha": "0d3af452e51ee825fea7b2b754a7c5649e876b63",
+    "blob_sha": "e5711d0afd61e521f0fd487287545240efaa355d",
     "schema": "glaciereq.repo-evolution-receipt.v1",
     "status": "PASS",
     "transition": "CANONICAL -> EVOLVING",
@@ -152,7 +152,12 @@
       "https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/"
     ],
     "bounded_problem": "As coding agents act directly in repositories, agent-generated changes require security validation, policy-constrained workflow execution, human approval at sensitive boundaries, and trustworthy promotion into canonical repository state.",
-    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. The canonical specialist now also rejects contradictory or malformed check evidence before provider access. The proof-bound company-specific claim remains independently promoted within the public evidence ceiling and does not imply GitHub adoption."
+    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. The canonical specialist now also rejects contradictory or malformed check evidence before provider access. The proof-bound company-specific claim remains independently promoted within the public evidence ceiling and does not imply GitHub adoption.",
+    "source_disclosure": {
+      "canonical_repository_visibility": "private",
+      "bounded_evolution_source_slice_publicly_disclosed": true,
+      "public_location": "GlacierEQ/public-actions-runner-host#269"
+    }
   },
   "blockers": [
     {
@@ -172,6 +177,7 @@
   "nonclaims": [
     "The reproduced real-provider proof mutated disposable proof branches only; the target repository main branch was not changed by that historical provider proof.",
     "The EVOLVING cycle is an internal GlacierEQ repository-safety improvement and does not constitute GitHub capability production deployment.",
+    "The Apex repository remains private, while the exact three-file evolution candidate used for public proof is publicly visible on public-actions-runner-host PR #269.",
     "No production-scale reliability, latency, throughput, durability, GitHub adoption, GitHub affiliation, endorsement, employment, or proprietary access is claimed.",
     "The EVOLVING repository state applies to the Merge Authority Graph specialist capability and its measured evolution cycle, not the repository's older Notion/Neon/memory surfaces."
   ]
