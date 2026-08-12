@@ -101,19 +101,19 @@ def test_promoted_record_must_preserve_earned_projection_closure():
     assert validate_repo_excellence_record(record)["state"] == "PROMOTED"
 
 
-def test_canonical_requires_exact_content_addressed_position_receipt():
+def test_canonical_anchor_requires_exact_content_addressed_position_receipt():
     record = apex_record()
-    assert validate_repo_excellence_record(record)["state"] == "CANONICAL"
+    assert validate_repo_excellence_record(record)["state"] == "EVOLVING"
     record["canonical_position_receipt"]["blob_sha"] = "c" * 40
     try:
         validate_repo_excellence_record(record)
     except ExcellenceContractError as exc:
         assert "Git blob SHA does not match" in str(exc)
     else:
-        raise AssertionError("CANONICAL with mismatched receipt bytes should fail")
+        raise AssertionError("EVOLVING with mismatched canonical anchor receipt should fail")
 
 
-def test_canonical_rejects_lineage_conflict_or_duplicate_repo():
+def test_canonical_anchor_rejects_lineage_conflict_or_duplicate_repo():
     record = apex_record()
     record["canonical_position_receipt"]["lineage_conflict_absent"] = False
     try:
@@ -121,7 +121,7 @@ def test_canonical_rejects_lineage_conflict_or_duplicate_repo():
     except ExcellenceContractError as exc:
         assert "lineage_conflict_absent" in str(exc)
     else:
-        raise AssertionError("CANONICAL with lineage conflict should fail")
+        raise AssertionError("EVOLVING with canonical lineage conflict should fail")
 
     record = apex_record()
     record["canonical_position_receipt"]["duplicate_repository_rejected"] = False
@@ -130,10 +130,10 @@ def test_canonical_rejects_lineage_conflict_or_duplicate_repo():
     except ExcellenceContractError as exc:
         assert "duplicate_repository_rejected" in str(exc)
     else:
-        raise AssertionError("CANONICAL without duplicate-repo rejection should fail")
+        raise AssertionError("EVOLVING without canonical duplicate-repo rejection should fail")
 
 
-def test_canonical_requires_company_evidence_and_evolving_as_next_gate():
+def test_evolving_requires_company_evidence():
     record = apex_record()
     missing_company = copy.deepcopy(record)
     del missing_company["company_evidence"]
@@ -142,18 +142,10 @@ def test_canonical_requires_company_evidence_and_evolving_as_next_gate():
     except ExcellenceContractError as exc:
         assert "requires company_evidence" in str(exc)
     else:
-        raise AssertionError("CANONICAL without company evidence should fail")
-
-    record["evolution"]["next_gate"] = "CANONICAL"
-    try:
-        validate_repo_excellence_record(record)
-    except ExcellenceContractError as exc:
-        assert "EVOLVING" in str(exc)
-    else:
-        raise AssertionError("CANONICAL next-gate regression should fail")
+        raise AssertionError("EVOLVING without company evidence should fail")
 
 
-def test_canonical_requires_all_retained_blockers_classified():
+def test_canonical_anchor_requires_all_retained_blockers_classified():
     record = apex_record()
     record["blockers"].append({"id": "unclassified_blocker"})
     try:
@@ -161,10 +153,10 @@ def test_canonical_requires_all_retained_blockers_classified():
     except ExcellenceContractError as exc:
         assert "do not match retained" in str(exc)
     else:
-        raise AssertionError("unclassified CANONICAL blocker should fail")
+        raise AssertionError("unclassified EVOLVING blocker should fail")
 
 
-def test_canonical_rejects_malformed_blockers_container():
+def test_canonical_anchor_rejects_malformed_blockers_container():
     record = apex_record()
     record["blockers"] = {"id": "github_actions_budget"}
     try:
@@ -172,7 +164,7 @@ def test_canonical_rejects_malformed_blockers_container():
     except ExcellenceContractError as exc:
         assert "blockers must be a list" in str(exc)
     else:
-        raise AssertionError("malformed CANONICAL blockers should fail")
+        raise AssertionError("malformed EVOLVING blockers should fail")
 
     record = apex_record()
     record["blockers"] = ["github_actions_budget"]
@@ -181,7 +173,7 @@ def test_canonical_rejects_malformed_blockers_container():
     except ExcellenceContractError as exc:
         assert "blockers[0] must be an object" in str(exc)
     else:
-        raise AssertionError("malformed CANONICAL blocker row should fail")
+        raise AssertionError("malformed EVOLVING blocker row should fail")
 
 
 def test_excellent_requires_every_gate_true():
@@ -235,10 +227,10 @@ def test_unknown_gate_is_rejected():
         raise AssertionError("unknown prose gate should be rejected")
 
 
-def test_apex_merge_authority_record_is_machine_valid_canonical_and_bounded():
+def test_apex_merge_authority_record_is_machine_valid_evolving_and_bounded():
     validated = validate_repo_excellence_record(apex_record())
 
-    assert validated["state"] == "CANONICAL"
+    assert validated["state"] == "EVOLVING"
     assert validated["canonical_role"] == "SPECIALIST_COMPONENT"
     assert validated["capability_id"] == "merge_authority_graph"
     assert validated["scores"]["current_proof"] == "A"
@@ -249,13 +241,12 @@ def test_apex_merge_authority_record_is_machine_valid_canonical_and_bounded():
     assert validated["proof_receipt"]["canonical_merge_sha"] == (
         validated["identity"]["canonical_head"]
     )
+    assert validated["identity"]["current_evolved_head"] == (
+        "346b330bbfd705579b3a4d10d298a89493a98ee6"
+    )
     assert validated["projection_receipt"]["projection_truth_closed"] is True
-    assert validated["evolution"]["next_gate"] == "EVOLVING"
+    assert validated["evolution"]["next_gate"] == "NEXT_MEASURED_EVOLUTION"
     assert validated["company_evidence"]["stage"] == "CLAIM_PROMOTED"
     assert validated["company_evidence"]["claim_ceiling"] == "proof_bound_company_specific"
-    assert allowed_transition("PROMOTED", validated["state"], validated["gates"])
-    assert allowed_transition(
-        validated["state"],
-        validated["evolution"]["next_gate"],
-        validated["gates"],
-    )
+    assert allowed_transition("CANONICAL", validated["state"], validated["gates"])
+    assert not allowed_transition("EVOLVING", "CANONICAL", validated["gates"])
