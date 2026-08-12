@@ -23,14 +23,14 @@ def _git_blob_sha(path: Path) -> str:
     return hashlib.sha1(framed, usedforsecurity=False).hexdigest()
 
 
-def test_apex_canonical_receipt_is_exact_git_blob_and_semantically_bound() -> None:
+def test_apex_canonical_anchor_receipt_remains_exact_and_semantically_bound() -> None:
     record = _load(RECORD_PATH)
     validated = validate_repo_excellence_record(record)
     pointer = validated["canonical_position_receipt"]
     receipt_path = ROOT / pointer["path"]
     receipt = _load(receipt_path)
 
-    assert validated["state"] == "CANONICAL"
+    assert validated["state"] == "EVOLVING"
     assert _git_blob_sha(receipt_path) == pointer["blob_sha"]
     assert receipt["repository"]["full_name"] == validated["identity"]["repository"]
     assert receipt["repository"]["canonical_head"] == validated["identity"]["canonical_head"]
@@ -50,28 +50,31 @@ def test_apex_canonical_receipt_is_exact_git_blob_and_semantically_bound() -> No
     )
 
 
-def test_apex_canonical_projection_matches_repo_state_without_company_claim_inflation() -> None:
+def test_apex_evolving_projection_preserves_anchor_and_current_head() -> None:
     record = _load(RECORD_PATH)
     validated = validate_repo_excellence_record(record)
     assert validated["projection_refs"] == [
         "manifests/company_projections/github_merge_authority.json"
     ]
     projection = _load(ROOT / validated["projection_refs"][0])
+    implementation = projection["implementation"]
+    identity = validated["identity"]
 
-    assert projection["implementation"]["repository"] == validated["identity"]["repository"]
-    assert projection["implementation"]["canonical_head"] == validated["identity"]["canonical_head"]
-    assert projection["implementation"]["capability"] == validated["capability_id"]
-    assert projection["implementation"]["state"] == "CANONICAL"
+    assert implementation["repository"] == identity["repository"]
+    assert implementation["canonical_head"] == identity["canonical_head"]
+    assert implementation["evolved_head"] == identity["current_evolved_head"]
+    assert implementation["capability"] == validated["capability_id"]
+    assert implementation["state"] == "EVOLVING"
     assert projection["stage"] == "CLAIM_PROMOTED"
     assert projection["claim_ceiling"] == "proof_bound_company_specific"
     assert projection["stage"] == validated["company_evidence"]["stage"]
     assert projection["claim_ceiling"] == validated["company_evidence"]["claim_ceiling"]
 
 
-def test_repo_canonicalization_cannot_silently_advance_company_claim() -> None:
+def test_repository_evolution_cannot_silently_advance_company_claim() -> None:
     record = _load(RECORD_PATH)
     mutated = copy.deepcopy(record)
-    mutated["company_evidence"]["stage"] = "CANONICAL"
+    mutated["company_evidence"]["stage"] = "GITHUB_ADOPTED"
     with pytest.raises(ExcellenceContractError, match="cannot advance company stage"):
         validate_repo_excellence_record(mutated)
 
