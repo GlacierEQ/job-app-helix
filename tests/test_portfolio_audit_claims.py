@@ -108,18 +108,20 @@ def test_failed_rerun_overwrites_running_receipt_with_failure(
     assert payload["evidence"]["mesh"]["mesh_status"] == "FAILED"
 
 
-def test_inventory_manifest_declares_exact_67_repositories() -> None:
+def test_inventory_manifest_preserves_living_root_plus_unique_children_contract() -> None:
     payload = json.loads(
         (ROOT / "manifests" / "portfolio_repositories.json").read_text(encoding="utf-8")
     )
     workspace = payload["workspace_repositories"]
 
     assert payload["portfolio_root"] == "job-app-helix"
-    assert payload["total_repositories"] == 67
-    assert len(workspace) == 66
-    assert len(set(workspace)) == 66
+    assert workspace
+    assert payload["total_repositories"] == len(workspace) + 1
+    assert len(set(workspace)) == len(workspace)
     assert "job-app-helix" not in workspace
     assert "JOB-RESUME-BUILDER-" in workspace
+    assert "adobe-creative-provenance-gate" in workspace
+    assert "amd-hetero-placement-contract" in workspace
 
 
 def test_inventory_scope_rejects_missing_repository(tmp_path: Path) -> None:
