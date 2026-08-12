@@ -30,11 +30,13 @@ Most portfolios ask the reader to trust polished prose. This one provides a cont
 
 Current evidence includes:
 
-- an exact 67-repository Job-App Helix boundary - one root plus 66 child repositories;
-- a complete four-wave program covering all 66 child repositories;
-- AKOS at 94/94 tests across Python 3.11, 3.12, and 3.13;
-- a verified 21-node recruiter / expert / AI README Mesh;
-- an Agent Coordinator candidate receipt at 62/62 Python 3.13 tests, with hosted multi-version promotion still clearly pending.
+- a living admitted portfolio governed by Job-App Helix with exact machine-readable identity, root-plus-child accounting, company mappings, live links, and evidence states;
+- direct verified company proof from the Adobe creative-provenance engine and AMD heterogeneous-placement engine, each with installed CLIs and behavioral tests;
+- positive cross-version AKOS kernel evidence;
+- a verified recruiter / expert / AI README Mesh;
+- positive Agent Coordinator candidate-local test evidence, with hosted multi-version promotion still clearly pending.
+
+Exact current portfolio membership is intentionally machine-authoritative in `manifests/portfolio_repositories.json` rather than frozen into recruiter prose.
 
 ### What Casey brings to a team
 
@@ -103,11 +105,12 @@ Recruiter copy, engineering detail, and machine contracts derive from the same c
 
 | System | Engineering value | Evidence boundary |
 |---|---|---|
-| Job-App Helix | Exact portfolio inventory, rollout policy, stack-native discovery, bounded execution, receipts, recruiter/expert/AI rendering | Control plane verified; child repositories keep independent states |
-| AKOS | Authority, completion semantics, operational cognition, repository-native verification | 94/94 tests across Python 3.11-3.13 |
-| Agent Coordinator | Dependency-aware scheduling, role capacities, token budget conservation, cycle detection, structured deferral | 62/62 candidate-local Python 3.13 tests; hosted matrix pending |
-| README Mesh | Typed identities, directional relationships, deterministic Protobuf and JSON projections | 21-node rollout verified |
-| Public Actions Runner Host | Public execution / private governance separation, allowlists, replay containment, scoped credentials | Architecture implemented; activation may remain blocked without required infrastructure |
+| Job-App Helix | Living admitted portfolio, company/role application compiler, lineage, bounded proof execution, receipts, recruiter/expert/AI rendering | Application compiler functional; full job-opening-to-response loop remains incomplete |
+| Adobe creative provenance | Content-addressed lineage, rights/editability constraints, authority expiry, receipt verification | Installed CLI + behavioral proof; no proprietary Adobe API or external license-registry claim |
+| AMD heterogeneous placement | Multi-constraint deterministic workload placement | Installed CLI + behavioral proof; no live telemetry or hosted-service claim |
+| AKOS | Authority, completion semantics, operational cognition, repository-native verification | Positive cross-version test evidence |
+| Agent Coordinator | Dependency-aware scheduling, role capacities, token budget conservation, cycle detection, structured deferral | Positive candidate-local tests; hosted matrix pending |
+| Public Actions Runner Host | Public execution / private governance separation, allowlists, replay containment, scoped credentials | One governed path operational; no estate-wide runtime claim |
 
 ### Technical diligence commands
 
@@ -117,6 +120,7 @@ python -m ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min
 python -m pytest -q
 python scripts/check_proto_contract.py
 python scripts/check_public_surface.py
+job-app-helix targets --json
 job-app-helix-portfolio validate
 job-app-helix-library validate
 ```
@@ -189,21 +193,29 @@ languages_and_platforms:
   - Protocol Buffers
 
 proof:
-  portfolio_boundary:
-    claim: exact 67-repository boundary - one root plus 66 child repositories
+  admitted_portfolio:
+    claim: living root-plus-child portfolio with unique identities and exact machine-readable membership
+    authority: manifests/portfolio_repositories.json
     state: VERIFIED_BOUNDARY
+  adobe_creative_provenance:
+    claim: installed provenance CLI and behavior-tested content-addressed lineage engine
+    state: VERIFIED_TEST
+  amd_heterogeneous_placement:
+    claim: installed placement CLI and behavior-tested multi-constraint placement engine
+    state: VERIFIED_TEST
   akos:
-    claim: 94/94 tests across 12 modules on Python 3.11-3.13
+    claim: positive cross-version kernel test evidence
     state: VERIFIED_TEST
   readme_mesh:
-    claim: 21-node recruiter / expert / AI rollout
+    claim: recruiter / expert / AI rollout
     state: VERIFIED_DOCUMENTATION
   coordinator:
-    claim: 62/62 candidate-local Python 3.13 tests
+    claim: positive candidate-local Python tests
     state: CANDIDATE_TEST_PROOF
     limitation: hosted multi-version promotion pending
 
 machine_entrypoints:
+  - manifests/portfolio_repositories.json
   - candidate_node.json
   - evidence_ledger.json
   - application_spiral.json
