@@ -2,7 +2,7 @@
 
 **Outcome:** One evidence-bound application surface connects recruiter value, senior-engineer proof, and AI/ATS ingestion.
 
-**Current status:** `PARTIALLY VERIFIED` - exact 67-repository live boundary, repository-native component receipts, and a 21-node README Mesh rollout are recorded. APEX runner activation remains `BLOCKED`; coordinator hosted promotion remains `UNVERIFIED`. The July 29 portfolio audit remains a historical 66-repository snapshot. Portfolio-wide runtime, deployment, scale, and performance remain unverified.
+**Current status:** `PARTIALLY VERIFIED` - the living admitted portfolio boundary, repository-native component receipts, and recruiter / expert / AI documentation mesh are recorded. APEX runner activation remains bounded to proved paths; coordinator hosted promotion remains `UNVERIFIED`. Older dated portfolio audits remain historical snapshots rather than current cardinality authorities. Portfolio-wide runtime, deployment, scale, and performance remain unverified unless repository-specific receipts say otherwise.
 
 ## For recruiters
 
@@ -10,11 +10,13 @@ Casey builds the execution and trust layer around intelligent systems: context, 
 
 ## Proof in 60 seconds
 
-- [Job-App Helix](../../README.md) - exact live portfolio boundary and evidence control plane.
+- [Job-App Helix](../../README.md) - living admitted portfolio boundary, application outcome compiler, and evidence control plane. Exact current membership is machine-authoritative in `../../manifests/portfolio_repositories.json`.
+- [Adobe creative provenance](https://github.com/GlacierEQ/adobe-creative-provenance-gate) - installed provenance CLI and behavior-tested content-addressed lineage engine with explicit integration limits.
+- [AMD heterogeneous placement](https://github.com/GlacierEQ/amd-hetero-placement-contract) - installed placement CLI and behavior-tested multi-constraint placement engine with explicit telemetry/service limits.
 - [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) - public product flagship with deterministic truthfulness checks and executable TypeScript tests.
 - [AKOS immutable verification run](https://github.com/GlacierEQ/AKOS/actions/runs/30532339028) - named repository-native test evidence.
-- [Coordinator candidate receipt](coordinator_candidate_receipt.json) - 62 independent Python 3.13 tests with explicit hosted limitations.
-- [Historical portfolio evidence audit](../../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) - individual grades and proof states for the original 66-repository boundary.
+- [Coordinator candidate receipt](coordinator_candidate_receipt.json) - positive independent Python test evidence with explicit hosted limitations.
+- [Historical portfolio evidence audit](../../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) - dated proof states preserved as history, not current inventory authority.
 - [GitHub curation ledger](../../manifests/github_repository_curation_2026-07-31.json) - admission, deferral, duplicate, private, backup, archive, and external-source decisions.
 - [README impact frame](../../docs/README_OPTIMAL_IMPACT_FRAME.md) - recruiter -> expert -> AI presentation contract.
 - [Executive resume](EXECUTIVE_RESUME.md) - ATS-safe one-page source.
@@ -44,7 +46,7 @@ Resume Shapeshifter enters the public system through `job-application`, but its 
 
 Machine metadata lives in `candidate_node.json`, `application_spiral.json`, `evidence_ledger.json`, `coordinator_candidate_receipt.json`, `package_mesh.json`, and `PUBLIC_PACKAGE_SYNC_RECEIPT.json`. Typed relationships use only the compiled `glaciereq.readme.v1` enum.
 
-The live repository inventory is `../../manifests/portfolio_repositories.json`; the dated GitHub admission and exclusion decisions are `../../manifests/github_repository_curation_2026-07-31.json`.
+The live admitted repository inventory is `../../manifests/portfolio_repositories.json`; the dated GitHub admission and exclusion decisions are `../../manifests/github_repository_curation_2026-07-31.json`.
 
 ## Claim boundary
 
