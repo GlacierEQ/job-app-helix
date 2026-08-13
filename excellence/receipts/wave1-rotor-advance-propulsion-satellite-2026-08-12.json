@@ -1,0 +1,34 @@
+{
+  "schema": "glaciereq.wave1.rotor-advance.v1",
+  "status": "FRESH_MAIN_SYNTHESIS_READY_FOR_CANONICAL_ADMISSION",
+  "helix_base": "b12d0f0a742078310e7df9fb0c082c5ea13e6a0d",
+  "supersedes_stale_integration": {
+    "pull_request": 170,
+    "head": "1e3308c355e5c8bd428ba705197b8bdfb7677700",
+    "state": "CLOSED_UNMERGED"
+  },
+  "admissions": [
+    {
+      "repository": "spacex-propulsion-monitor",
+      "canonical_sha": "1903e562e801a6153b0e78b9d236418c849f1867",
+      "evidence": "TEST",
+      "receipt": "excellence/receipts/spacex-propulsion-monitor-current-proof-2026-08-12.json"
+    },
+    {
+      "repository": "spacex-satellite-mesh",
+      "canonical_sha": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
+      "evidence": "TEST",
+      "receipt": "excellence/receipts/spacex-satellite-mesh-current-proof-2026-08-12.json",
+      "native_workflow_run": 31641804512
+    }
+  ],
+  "wave1_progress": {
+    "prior_completed": 11,
+    "completed_after_admission": 13,
+    "prior_remaining": 9,
+    "remaining_after_admission": 7,
+    "next_repository": "spacex-telemetry"
+  },
+  "invariant": "This receipt advances only exact-SHA TEST evidence. It creates no affiliation, deployment, operational authority, safety certification, production-scale reliability, or provider-integration claim.",
+  "next_cursor": "spacex-telemetry: verify current canonical mechanism, native deterministic/adversarial proof, runtime behavior if applicable, bounded authority, exact-SHA receipt, then advance Wave 1."
+}
