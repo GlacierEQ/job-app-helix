@@ -1,0 +1,60 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-13T16:28:00-10:00",
+  "wave": 16,
+  "repository": "GlacierEQ/spacex-satellite-mesh",
+  "source_canonical_head": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
+  "source_state": "LOCAL_STATIC_TEMPORAL_MESH_ROUTING_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31641804512,
+      "name": "Native functional verification",
+      "head_sha": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
+      "conclusion": "success"
+    }
+  ],
+  "native_receipts": {
+    "python": {
+      "versions": ["3.11", "3.12", "3.13"],
+      "compileall": "PASS",
+      "pytest": "PASS",
+      "static_cli_smoke": "PASS",
+      "temporal_cli_smoke": "PASS",
+      "truth_boundary_assertion": "PASS"
+    },
+    "rust": {
+      "cargo_check_all_targets": "PASS",
+      "cargo_test": "PASS"
+    },
+    "aggregate_required_functional_proof": "PASS"
+  },
+  "verified_capability": "deterministic-local-static-and-temporal-satellite-mesh-routing",
+  "evidence_token": "LOCAL_MESH_SIMULATION_NOT_SPACECRAFT_OR_LASER_TERMINAL_AUTHORITY",
+  "repairs": [
+    "replaced nonexistent or decorative mesh claims with executable validated Python static and temporal routing behavior",
+    "implemented capacity-aware local route selection and non-mutating alternate simple-path enumeration",
+    "implemented trajectory-bounded temporal link windows and earliest-arrival routing that can wait for future modeled links",
+    "added executable static and temporal JSON CLI surfaces with explicit operational_authority=false receipts",
+    "implemented and verified a native Rust shortest-path routing kernel",
+    "bound Python 3.11/3.12/3.13 and Rust proof to the exact canonical source revision under pinned read-only workflow authority"
+  ],
+  "nonclaims": [
+    "no SpaceX affiliation, employment, adoption, endorsement, proprietary topology, telemetry, or production deployment",
+    "no spacecraft or laser-terminal command authority",
+    "no operational ephemeris or commercial-constellation digital twin",
+    "no production constellation scale, guaranteed delivery, production reliability, or performance guarantee",
+    "no live MCP, APEX, provider, or production telemetry integration",
+    "no GNN traffic predictor established by current proof"
+  ],
+  "metadata_readback": {
+    "description": "Multi-hop mesh routing (portfolio) · AKOS P1",
+    "homepage": "https://github.com/GlacierEQ/AKOS",
+    "assessment": "compatible with the bounded local routing proof"
+  },
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
