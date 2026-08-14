@@ -25,9 +25,9 @@ def test_current_maturity_accounts_for_all_p0_tracks() -> None:
         "count": 25,
         "dedicated_implementation_count": 9,
         "terminal_crystallized_count": 4,
-        "implemented_evidence_adapter_count": 3,
+        "implemented_evidence_adapter_count": 4,
         "implemented_live_integration_count": 1,
-        "implemented_normalized_input_count": 1,
+        "implemented_normalized_input_count": 0,
         "helix_reference_only_count": 16,
         "dedicated_scaffold_count": 0,
         "build_surface_coverage_pct": 36.0,
@@ -69,7 +69,7 @@ def test_nonterminal_implementations_keep_exact_next_gate() -> None:
         "lambda": "IMPLEMENTED_EVIDENCE_ADAPTER",
         "mongodb": "IMPLEMENTED_EVIDENCE_ADAPTER",
         "supabase": "IMPLEMENTED_LIVE_INTEGRATION",
-        "together_ai": "IMPLEMENTED_NORMALIZED_INPUT",
+        "together_ai": "IMPLEMENTED_EVIDENCE_ADAPTER",
     }
     assert all(item["next_gate"] for item in audit["implemented_nonterminal"])
 
