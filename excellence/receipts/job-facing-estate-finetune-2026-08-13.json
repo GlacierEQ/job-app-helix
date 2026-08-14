@@ -1,0 +1,113 @@
+{
+  "schema": "glaciereq.job-facing-estate-finetune.v1",
+  "as_of": "2026-08-13T16:36:00-10:00",
+  "authority": "GlacierEQ/job-app-helix",
+  "objective": "Make the hiring estate legible as one system: one recruiter front door, one evidence/application authority, bounded specialist proofs, and explicit historical/support roles.",
+  "canonical_roles": [
+    {
+      "repository": "GlacierEQ/job-application",
+      "role": "PUBLIC_RECRUITER_FRONT_DOOR",
+      "status": "ACTIVE",
+      "reason": "Canonical public site with recruiter-surface compression, canonical route authority, production-bound proof surfaces, resume and technical deep routes.",
+      "must_not_be_used_as": ["estate evidence authority", "source resume authority"]
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "role": "CANONICAL_EVIDENCE_AND_APPLICATION_AUTHORITY",
+      "status": "ACTIVE",
+      "reason": "Owns admitted proofs, company mappings, application lifecycle, evidence-bounded projections, receipts, and current rollout state.",
+      "must_not_be_used_as": ["primary recruiter landing page"]
+    },
+    {
+      "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "role": "APPLICATION_COMPILER_SPECIALIST",
+      "status": "ACTIVE_SUPPORT",
+      "reason": "Working review-gated application compiler with truth boundaries, artifact generation, local run persistence, and machine-readable capability manifest.",
+      "must_not_be_used_as": ["portfolio authority", "automatic submission engine", "source resume authority"]
+    },
+    {
+      "repository": "GlacierEQ/AKOS",
+      "role": "ESTATE_GOVERNANCE_AND_SCHEMA_AUTHORITY",
+      "status": "ACTIVE_SUPPORT",
+      "reason": "Canonical estate schemas, provenance/governance contracts, nervous-system registry, receipt verification, and repository-excellence controls.",
+      "must_not_be_used_as": ["primary recruiter landing page", "proof that registered integrations are live"]
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-cooling",
+      "role": "FLAGSHIP_AI_INFRASTRUCTURE_SPECIALIST",
+      "status": "ACTIVE_BOUNDED_PROOF",
+      "reason": "Strongest Colossus-inspired thermal/control and responder-selection implementation surface; public truth hardening and bounded CI exist.",
+      "must_not_be_used_as": ["proof of xAI affiliation", "proof of Colossus deployment", "proof of 100000-plus GPU operation", "proof of physical facility control"]
+    },
+    {
+      "repository": "GlacierEQ/spacex-telemetry",
+      "role": "VERIFIED_TELEMETRY_SPECIALIST",
+      "status": "ACTIVE_BOUNDED_PROOF",
+      "reason": "Installable deterministic synthetic telemetry lab with exact-head CI/public truth receipts and bounded Python/Go codec behavior.",
+      "must_not_be_used_as": ["proof of SpaceX affiliation", "flight authority", "production telemetry authority"]
+    },
+    {
+      "repository": "GlacierEQ/anthropic-agent-coordinator",
+      "role": "SCHEDULER_SPECIALIST",
+      "status": "REPAIRED_PENDING_FRESH_PROOF",
+      "reason": "README conflict and evidence-integrity repair merged; historical 62/62 proof remains useful but current-head promotion requires fresh exact-SHA repository verification.",
+      "must_not_be_used_as": ["current-head green CI proof until refreshed", "Anthropic affiliation", "provider or agent execution proof"]
+    },
+    {
+      "repository": "GlacierEQ/portfolio-organization-master",
+      "role": "HISTORICAL_PORTFOLIO_SNAPSHOT",
+      "status": "HISTORICAL_ONLY",
+      "reason": "Explicitly reframed as a time capsule with Job-App Helix named as successor authority.",
+      "must_not_be_used_as": ["current repo count authority", "current readiness authority", "recruiter front door"]
+    },
+    {
+      "repository": "GlacierEQ/job-app",
+      "role": "LEGACY_PRIVATE_JOB_APP",
+      "status": "NON_CANONICAL",
+      "reason": "Private legacy surface; superseded by job-application and job-app-helix for public presentation and evidence authority.",
+      "must_not_be_used_as": ["public recruiter front door", "canonical application authority"]
+    },
+    {
+      "repository": "GlacierEQ/apex-stack",
+      "role": "PRIVATE_PORTFOLIO_PROOF_AND_COMPANY_INTELLIGENCE_CONTROL_PLANE",
+      "status": "ACTIVE_INTERNAL",
+      "reason": "Houses proof compiler surfaces, claim audits, company-fit projections, and adaptive target-company intelligence; current APEX CI/deployment claims remain evidence-bounded.",
+      "must_not_be_used_as": ["proof of current green CI without receipt", "proof of current production deployment without receipt", "primary public recruiter front door"]
+    }
+  ],
+  "presentation_invariant": {
+    "first_click_order": ["GlacierEQ/job-application", "GlacierEQ/job-app-helix", "bounded specialist repository"],
+    "rule": "A recruiter should encounter outcomes and verified systems before estate governance internals.",
+    "max_primary_front_doors": 1
+  },
+  "claim_invariant": {
+    "rule": "Company-specific styling or positioning may reorder verified proof but may not raise its evidence tier.",
+    "forbid": [
+      "repository count as accomplishment count",
+      "forks/backups as independent builds",
+      "configured workflow as passing workflow",
+      "simulation as production operation",
+      "company-named repository as affiliation or adoption"
+    ]
+  },
+  "cleanup_actions_completed_this_cycle": [
+    {
+      "repository": "GlacierEQ/xai-colossus-cooling",
+      "pull_request": 32,
+      "action": "CLOSED_WRONG_REPOSITORY",
+      "reason": "Private legal research does not belong in the public cooling flagship."
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-cooling",
+      "pull_request": 36,
+      "action": "CLOSED_SUPERSEDED",
+      "reason": "Older README hardening was superseded by merged PR 37 and later exact proof work."
+    }
+  ],
+  "highest_value_next_gates": [
+    "Generate fresh exact-head verification for GlacierEQ/anthropic-agent-coordinator after the merged README/integrity repair.",
+    "Resolve or supersede GlacierEQ/job-application PR 168 so open governance work does not remain indefinitely ambiguous.",
+    "Keep GlacierEQ/job-application as the single public recruiter root and prevent specialist repos from competing as alternative portfolio homepages.",
+    "Promote only specialist repositories with exact current proof into recruiter-facing top-system selections."
+  ]
+}
