@@ -1,0 +1,66 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-13T16:45:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave17_2026-08-13.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surface_requires_explicit_non_affiliation_boundary": true,
+    "local_synthetic_gpu_health_scoring_does_not_establish_nvidia_telemetry_or_hardware_authority": true,
+    "modeled_policy_scores_do_not_establish_physical_failure_prediction_or_production_reliability": true,
+    "local_sidecar_files_do_not_establish_live_mcp_apex_mastermind_or_provider_integration": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/nvidia-gpu-health",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_SYNTHETIC_GPU_HEALTH_NATIVE_PROOF_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "master",
+        "canonical_head": "3c2d2b98f700e0224685152b73d55276ef767286",
+        "evidence_token": "LOCAL_SYNTHETIC_GPU_HEALTH_MODEL_NOT_NVIDIA_TELEMETRY_AUTHORITY",
+        "verified_capability": "deterministic-local-synthetic-gpu-health-policy-evaluation",
+        "verified_capabilities": [
+          "deterministic-synthetic-gpu-health-scoring",
+          "validated-thermal-power-ecc-policy-evaluation",
+          "modeled-link-bandwidth-threshold-evaluation",
+          "native-c11-gpu-health-policy-self-test"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31766630699,
+            "name": "CI",
+            "head_sha": "3c2d2b98f700e0224685152b73d55276ef767286",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "repository_owned_verification_script": "PASS",
+          "python_compileall_and_unittest": "PASS",
+          "python_public_truth_assertions": "PASS",
+          "c11_strict_compile": "PASS",
+          "c11_native_self_test": "PASS",
+          "operational_authority_false": "PASS",
+          "trusted_caller_boundary": "PASS",
+          "checkout_persist_credentials": false
+        },
+        "source_contract": {
+          "principal_state": "FUNCTIONAL_CANDIDATE",
+          "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_REQUIRED",
+          "remaining_exact_head_native_proof_gate_satisfied": true
+        },
+        "proof_scope": "Exact-current-head native proof verifies deterministic local GPU-health policy evaluation from synthetic or caller-supplied temperature, power, utilization, ECC-count, and modeled link-bandwidth inputs; finite and bounded input validation; explicit NOMINAL, WARNING, CRITICAL, and malformed-input handling; an operational_authority=false Python evidence envelope; a strict C11 ECC and modeled-bandwidth policy evaluator with native nominal/warning/critical/invalid self-tests; exact public-boundary checks; and repository-owned verification under a read-only trusted-caller workflow. This proof does not establish NVIDIA affiliation, employment, endorsement, proprietary access, NVML/DCGM/NVLink telemetry acquisition, real-time cluster monitoring, background-daemon deployment, physical GPU diagnosis or failure prediction, remediation, hardware or scheduler authority, measured runtime overhead, production scale or reliability, live MCP/APEX/Mastermind/provider integration, or production operational authority.",
+        "metadata_readback": {
+          "description": "GPU health index (portfolio) — thermal/power/occupancy · AKOS portfolio",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "portfolio metadata is compatible with the bounded independent local GPU-health policy exhibit; the controlling README explicitly preserves NVIDIA non-affiliation and no-telemetry/no-hardware-authority boundaries"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the NVIDIA non-affiliation/no-telemetry/no-operational-authority boundary, physical diagnosis or failure-prediction claims without evidence, real telemetry/daemon/hardware/scheduler claims, live MCP/APEX/Mastermind/provider integration claims, production scale/performance/reliability claims, or contradictory GitHub About metadata."
+    }
+  ]
+}
