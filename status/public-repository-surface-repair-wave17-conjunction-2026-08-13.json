@@ -1,0 +1,15 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-13T16:36:00-10:00",
+  "wave": 17,
+  "repository": "GlacierEQ/spacex-conjunction-sentinel",
+  "source_canonical_head": "17537ed7ee2c7b01edf60953f403ebcb3a6c2fd8",
+  "source_state": "LOCAL_CONJUNCTION_ASSESSMENT_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [{"kind":"workflow_run","id":31639117944,"name":"Native functional verification","head_sha":"17537ed7ee2c7b01edf60953f403ebcb3a6c2fd8","conclusion":"success"}],
+  "verified_capabilities": ["analytic-relative-motion-cpa","deterministic-encounter-plane-monte-carlo-pc","bounded-linearized-maneuver-review","small-catalog-pairwise-screening","tle-mean-element-parsing","python-two-body-orbit-propagation","rust-two-body-orbit-propagation","deterministic-json-assessment-cli"],
+  "repairs": ["replaced advertised-only conjunction surfaces with executable deterministic assessment behavior","implemented bounded maneuver-review and small-catalog screening","added Python and Rust two-body propagation boundaries","bound Python 3.11-3.13, Rust, CLI truth, and aggregate quality proof to exact canonical main"],
+  "nonclaims": ["no SpaceX affiliation or proprietary access","no operational maneuver execution or spacecraft authority","no flight certification or mission-certified orbit determination","no SGP4/SDP4 or production catalog-scale throughput claim","no live MCP or APEX integration"],
+  "metadata_readback": {"description":"Close-approach risk sentinel (portfolio) SpaceX problem space · AKOS","homepage":"https://github.com/GlacierEQ/AKOS","assessment":"compatible with bounded independent local conjunction-review capability"},
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {"ADMIT":1,"REPAIR_REQUIRED":-1}
+}

@@ -59,6 +59,7 @@ DEFAULT_SURFACE_RECONCILIATIONS = (
     _default_manifest("public_repository_surface_reconciliation_wave14_2026-08-11.json"),
     _default_manifest("public_repository_surface_reconciliation_wave15_2026-08-11.json"),
     _default_manifest("public_repository_surface_reconciliation_wave16_2026-08-13.json"),
+    _default_manifest("public_repository_surface_reconciliation_wave17_2026-08-13.json"),
 )
 
 
