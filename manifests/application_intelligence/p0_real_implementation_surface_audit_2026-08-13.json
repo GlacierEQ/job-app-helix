@@ -15,9 +15,9 @@
     "count": 25,
     "dedicated_implementation_count": 9,
     "terminal_crystallized_count": 4,
-    "implemented_evidence_adapter_count": 3,
+    "implemented_evidence_adapter_count": 4,
     "implemented_live_integration_count": 1,
-    "implemented_normalized_input_count": 1,
+    "implemented_normalized_input_count": 0,
     "helix_reference_only_count": 16,
     "dedicated_scaffold_count": 0,
     "build_surface_coverage_pct": 36.0,
@@ -111,11 +111,10 @@
       "company_id": "together_ai",
       "innovation": "Open-Model Fidelity Passport",
       "repository": "GlacierEQ/together-ai-open-model-fidelity-passport",
-      "repo_head": "38cb4fec92ba85aa5dda90bd05cab26c07eb1f82",
-      "state": "IMPLEMENTED_NORMALIZED_INPUT",
-      "fine_tune_added": null,
-      "next_gate": "ARTIFACT_AND_SERVING_RUNTIME_EVIDENCE_HARVEST_ADAPTER",
-      "note": "A runtime evidence adapter write was attempted during the fine-tune wave but was blocked by the execution platform before repository mutation; no implementation claim is made for that attempt."
+      "repo_head": "3fdd4e5acb3bbfbc940c01287f2c3a326fc4f728",
+      "state": "IMPLEMENTED_EVIDENCE_ADAPTER",
+      "fine_tune_added": "cross-bound runtime, evaluation, and economics receipts requiring matching variant identity and exact weights digest",
+      "next_gate": "PERMITTED_SERVING_RUNTIME_RECEIPT_COLLECTOR"
     }
   ],
   "reference_only": [
@@ -141,9 +140,10 @@
       {"repository": "GlacierEQ/supabase-policy-carrying-ai-data-plane", "merge_sha": "f40b33a0024a787a5cf8a7c3ffe2771819c7a31e"},
       {"repository": "GlacierEQ/fireworks-ai-optimization-safety-envelope", "merge_sha": "22d45cdebd821d01a707d56fa2b9bdde42bbf652"},
       {"repository": "GlacierEQ/lambda-useful-gpu-minute-contract", "merge_sha": "0ed2b3c38fe266fd3e5ac97e0bed642fc956cdc8"},
-      {"repository": "GlacierEQ/mongodb-operational-semantic-twin-index", "merge_sha": "f1a59dee71e31aeec1bd2ac4dfb81dc9666287f7"}
+      {"repository": "GlacierEQ/mongodb-operational-semantic-twin-index", "merge_sha": "f1a59dee71e31aeec1bd2ac4dfb81dc9666287f7"},
+      {"repository": "GlacierEQ/together-ai-open-model-fidelity-passport", "merge_sha": "3fdd4e5acb3bbfbc940c01287f2c3a326fc4f728"}
     ],
-    "result": "4_REAL_GATES_ADVANCED"
+    "result": "5_REAL_GATES_ADVANCED"
   },
   "next_gate": "Execute the 16 dedicated builds from p0_fine_tune_execution_queue.v1.json while terminalizing the five implemented nonterminal systems only when their remaining evidence/integration gates are actually closed."
 }
