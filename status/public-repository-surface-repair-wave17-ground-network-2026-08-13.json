@@ -1,0 +1,15 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-13T16:36:00-10:00",
+  "wave": 17,
+  "repository": "GlacierEQ/spacex-ground-network",
+  "source_canonical_head": "f8992a0ac0ab4608d10e7bb2e20444c9cbad54fd",
+  "source_state": "LOCAL_GROUND_NETWORK_PLANNING_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [{"kind":"workflow_run","id":31641017144,"name":"Native functional verification","head_sha":"f8992a0ac0ab4608d10e7bb2e20444c9cbad54fd","conclusion":"success"}],
+  "verified_capabilities": ["wgs84-lla-ecef-conversion","look-angle-and-doppler-analysis","validated-rf-link-budget","health-load-and-margin-aware-station-selection","handoff-hysteresis","deterministic-contact-series-screening","j2-kepler-earth-fixed-predictive-positioning","review-only-preposition-and-handoff-simulation","python-json-ground-network-cli","go-native-station-selection-kernel"],
+  "repairs": ["implemented executable WGS-84 geometry, Doppler, RF-margin, station-selection, and handoff planning behavior","made station selection health/load/RF-margin aware with hysteresis","implemented review-grade J2/Kepler predictive positioning and simulated pre-positioning","added a native Go station-selection kernel with vet, race tests, build, and executable smoke","bound Python 3.11-3.13, Go, CLI truth, and required-functional proof to exact canonical main"],
+  "nonclaims": ["no SpaceX affiliation","no RF transmission, command uplink, antenna actuation, spacecraft control, or operational network authority","no SGP4 fidelity or guaranteed acquisition-time claim","no live MCP or APEX integration","no production network deployment"],
+  "metadata_readback": {"description":"Ground station contact planner (portfolio) · AKOS P1","homepage":"https://github.com/GlacierEQ/AKOS","assessment":"compatible with bounded local ground-network planning capability"},
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {"ADMIT":1,"REPAIR_REQUIRED":-1}
+}
