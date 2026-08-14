@@ -1,0 +1,170 @@
+{
+  "schema": "glaciereq.p0-fine-tune-execution-queue.v1",
+  "generated_date": "2026-08-13",
+  "authority": "GlacierEQ/job-app-helix",
+  "count": 16,
+  "execution_invariant": "No scaffold promotion. Each target must gain a dedicated mechanism, behavioral proof, adversarial proof, operable surface, truthful boundary, and source-bound completion evidence before terminal status.",
+  "donor_rule": "Reuse verified mechanism patterns, not company branding. Donor references establish architectural leverage only; they do not imply company affiliation or production equivalence.",
+  "queue": [
+    {
+      "priority": 1,
+      "company_id": "braintrust",
+      "innovation": "Eval Portfolio Optimizer",
+      "target_repository": "GlacierEQ/braintrust-eval-portfolio-optimizer",
+      "donors": ["GlacierEQ/pinecone-retrieval-outcome-optimizer", "GlacierEQ/fireworks-ai-optimization-safety-envelope"],
+      "smallest_real_slice": "rank evaluation suites by downstream decision value while enforcing coverage, cost, and regression constraints",
+      "proof_gate": "synthetic labeled eval portfolio with counterexample where cheap/high-volume suite loses to higher-value coverage",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 2,
+      "company_id": "temporal",
+      "innovation": "Nondeterminism Envelope",
+      "target_repository": "GlacierEQ/temporal-nondeterminism-envelope",
+      "donors": ["GlacierEQ/cognition-execution-checkpoint-lattice", "GlacierEQ/cursor-patch-intent-twin"],
+      "smallest_real_slice": "capture replay-sensitive decisions and refuse recovery when observed execution diverges outside declared nondeterminism bounds",
+      "proof_gate": "deterministic replay fixtures covering allowed time/id variance and forbidden side-effect/order drift",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 3,
+      "company_id": "langchain",
+      "innovation": "Typed Agent Capability Graph",
+      "target_repository": "GlacierEQ/langchain-typed-agent-capability-graph",
+      "donors": ["GlacierEQ/supabase-policy-carrying-ai-data-plane", "GlacierEQ/cursor-patch-intent-twin"],
+      "smallest_real_slice": "compile agent/tool capabilities into typed nodes and refuse plans whose required authority, input, output, or provenance edge is unsatisfied",
+      "proof_gate": "multi-tool plan fixtures including type-compatible success, missing capability, authority mismatch, and provenance break",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 4,
+      "company_id": "obsidian_security",
+      "innovation": "Agent Relationship Graph Firewall",
+      "target_repository": "GlacierEQ/obsidian-security-agent-relationship-graph-firewall",
+      "donors": ["GlacierEQ/supabase-policy-carrying-ai-data-plane", "GlacierEQ/mongodb-operational-semantic-twin-index"],
+      "smallest_real_slice": "track agent-to-identity-to-application relationships and refuse new edges that violate tenant, privilege, or relationship policy",
+      "proof_gate": "relationship graph fixtures proving allowed delegation and lateral-movement/privilege-escalation refusal",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 5,
+      "company_id": "clickhouse",
+      "innovation": "Trajectory-Native Storage Layout",
+      "target_repository": "GlacierEQ/clickhouse-trajectory-native-storage-layout",
+      "donors": ["GlacierEQ/cognition-execution-checkpoint-lattice", "GlacierEQ/mongodb-operational-semantic-twin-index"],
+      "smallest_real_slice": "store execution trajectories as causally linked events/checkpoints and answer path, divergence, and recovery queries without reconstructing causality from flat logs",
+      "proof_gate": "trajectory corpus with branch/divergence queries compared against a flat-event baseline",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 6,
+      "company_id": "apptronik",
+      "innovation": "Deployment Interface Standardizer",
+      "target_repository": "GlacierEQ/apptronik-deployment-interface-standardizer",
+      "donors": ["GlacierEQ/cursor-patch-intent-twin", "GlacierEQ/cognition-execution-checkpoint-lattice"],
+      "smallest_real_slice": "compile heterogeneous robot deployment requirements into one typed interface contract and reject incompatible capability/safety surfaces",
+      "proof_gate": "two simulated robot profiles plus one incompatible profile with deterministic compatibility receipts",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 7,
+      "company_id": "arm",
+      "innovation": "Cross-ISA AI Placement Contract",
+      "target_repository": "GlacierEQ/arm-cross-isa-ai-placement-contract",
+      "donors": ["GlacierEQ/crusoe-rack-to-token-autopilot", "GlacierEQ/lambda-useful-gpu-minute-contract"],
+      "smallest_real_slice": "place AI workloads across ISA/device profiles under memory, latency, energy, compatibility, and useful-compute constraints",
+      "proof_gate": "heterogeneous CPU/GPU/NPU fixture set with infeasible-placement refusal and Pareto comparison",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 8,
+      "company_id": "astera_labs",
+      "innovation": "Fabric Congestion Autopilot",
+      "target_repository": "GlacierEQ/astera-labs-fabric-congestion-autopilot",
+      "donors": ["GlacierEQ/crusoe-rack-to-token-autopilot", "GlacierEQ/lambda-useful-gpu-minute-contract"],
+      "smallest_real_slice": "ingest link/queue pressure and reallocate synthetic fabric flows with hysteresis, headroom, and emergency constraints",
+      "proof_gate": "time-series congestion scenario proving stable recovery without oscillation or capacity violation",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 9,
+      "company_id": "safe_superintelligence_ssi",
+      "innovation": "Capability–Safety Pareto Observatory",
+      "target_repository": "GlacierEQ/safe-superintelligence-capability-safety-pareto-observatory",
+      "donors": ["GlacierEQ/fireworks-ai-optimization-safety-envelope", "GlacierEQ/pinecone-retrieval-outcome-optimizer"],
+      "smallest_real_slice": "maintain capability/safety measurements as a Pareto frontier and refuse apparent gains that cross declared safety budgets or depend on incomplete evidence",
+      "proof_gate": "multi-eval synthetic frontier with dominated, unsafe, and under-evidenced candidates",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 10,
+      "company_id": "shield_ai",
+      "innovation": "Mission Autonomy Evidence Graph",
+      "target_repository": "GlacierEQ/shield-ai-mission-autonomy-evidence-graph",
+      "donors": ["GlacierEQ/cognition-execution-checkpoint-lattice", "GlacierEQ/mongodb-operational-semantic-twin-index", "GlacierEQ/supabase-policy-carrying-ai-data-plane"],
+      "smallest_real_slice": "bind autonomy decisions to mission state, evidence, authority, and recovery checkpoints in a queryable graph",
+      "proof_gate": "simulated mission trajectory proving provenance-complete decision replay and refusal of unauthorized/missing-evidence transitions",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 11,
+      "company_id": "thinking_machines_lab",
+      "innovation": "Judgment Replication Fabric",
+      "target_repository": "GlacierEQ/thinking-machines-judgment-replication-fabric",
+      "donors": ["GlacierEQ/pinecone-retrieval-outcome-optimizer", "GlacierEQ/fireworks-ai-optimization-safety-envelope", "GlacierEQ/cognition-execution-checkpoint-lattice"],
+      "smallest_real_slice": "capture expert preference decisions with context/evidence and evaluate whether a learned decision policy reproduces judgments across held-out cases",
+      "proof_gate": "synthetic expert-label corpus with held-out agreement, disagreement clusters, and abstention threshold",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 12,
+      "company_id": "world_labs",
+      "innovation": "Persistent World-State Compiler",
+      "target_repository": "GlacierEQ/world-labs-persistent-world-state-compiler",
+      "donors": ["GlacierEQ/cognition-execution-checkpoint-lattice", "GlacierEQ/mongodb-operational-semantic-twin-index"],
+      "smallest_real_slice": "compile observation/update streams into versioned persistent world entities with provenance, tombstones, conflict detection, and historical materialization",
+      "proof_gate": "simulated scene updates proving identity persistence, conflict refusal, deletion, and historical reconstruction",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 13,
+      "company_id": "figure_ai",
+      "innovation": "Fleet Skill Compounding Engine",
+      "target_repository": "GlacierEQ/figure-ai-fleet-skill-compounding-engine",
+      "donors": ["GlacierEQ/cognition-execution-checkpoint-lattice", "GlacierEQ/pinecone-retrieval-outcome-optimizer"],
+      "smallest_real_slice": "admit fleet skill updates only when cross-robot evidence improves success without unacceptable regression and preserve rollback checkpoints",
+      "proof_gate": "simulated fleet episodes with positive transfer, negative transfer, and rollback cases",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 14,
+      "company_id": "skild_ai",
+      "innovation": "Embodiment Latent Adapter",
+      "target_repository": "GlacierEQ/skild-ai-embodiment-latent-adapter",
+      "donors": ["GlacierEQ/pinecone-retrieval-outcome-optimizer", "GlacierEQ/together-ai-open-model-fidelity-passport"],
+      "smallest_real_slice": "map a shared skill representation onto embodiment capability vectors and refuse transfers outside kinematic/sensor/action compatibility",
+      "proof_gate": "multiple synthetic embodiments with successful transfer and incompatible embodiment refusal",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 15,
+      "company_id": "tsmc",
+      "innovation": "Yield-to-Workload Feedback Loop",
+      "target_repository": "GlacierEQ/tsmc-yield-to-workload-feedback-loop",
+      "donors": ["GlacierEQ/lambda-useful-gpu-minute-contract", "GlacierEQ/mongodb-operational-semantic-twin-index", "GlacierEQ/fireworks-ai-optimization-safety-envelope"],
+      "smallest_real_slice": "translate synthetic bin/yield characteristics into workload-qualified effective capacity while preserving process-lot provenance and uncertainty bounds",
+      "proof_gate": "synthetic wafer/bin corpus with workload qualification, uncertainty, and misleading aggregate-yield counterexample",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    },
+    {
+      "priority": 16,
+      "company_id": "etched",
+      "innovation": "Architecture Exposure Hedge",
+      "target_repository": "GlacierEQ/etched-architecture-exposure-hedge",
+      "donors": ["GlacierEQ/together-ai-open-model-fidelity-passport", "GlacierEQ/lambda-useful-gpu-minute-contract"],
+      "smallest_real_slice": "measure deployment exposure to model architecture/operator assumptions and score fallback portability across serving targets",
+      "proof_gate": "model/operator compatibility matrix with concentration risk, fallback path, and no-compatible-target refusal",
+      "next_action": "BUILD_DEDICATED_MECHANISM"
+    }
+  ]
+}
