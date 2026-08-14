@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.job-facing-estate-finetune.v1",
-  "as_of": "2026-08-13T16:36:00-10:00",
+  "as_of": "2026-08-13T16:57:36-10:00",
   "authority": "GlacierEQ/job-app-helix",
   "objective": "Make the hiring estate legible as one system: one recruiter front door, one evidence/application authority, bounded specialist proofs, and explicit historical/support roles.",
   "canonical_roles": [
@@ -49,9 +49,17 @@
     {
       "repository": "GlacierEQ/anthropic-agent-coordinator",
       "role": "SCHEDULER_SPECIALIST",
-      "status": "REPAIRED_PENDING_FRESH_PROOF",
-      "reason": "README conflict and evidence-integrity repair merged; historical 62/62 proof remains useful but current-head promotion requires fresh exact-SHA repository verification.",
-      "must_not_be_used_as": ["current-head green CI proof until refreshed", "Anthropic affiliation", "provider or agent execution proof"]
+      "status": "ACTIVE_BOUNDED_PROOF",
+      "reason": "Canonical master head 6f30cb84e03b8e6448538ef734089e4b8cf171ee passed governed exact-head verification in public-actions-runner-host APEX run 416: credential-free workload checkout, exact commit bind, repository-owned adapter execution, post-run integrity guard, immutable result publication, and successful completion.",
+      "proof": {
+        "source_sha": "6f30cb84e03b8e6448538ef734089e4b8cf171ee",
+        "runner_repository": "GlacierEQ/public-actions-runner-host",
+        "runner_dispatch_sha": "3951ba4e2590d6c427c64425cd489c2d4a4a76c7",
+        "runner_ci_run": 526,
+        "apex_run": 416,
+        "result_sha256": "d08ce897092af06b2bc236a945c8e1f9aed605199837565c39b14e68d3c95638"
+      },
+      "must_not_be_used_as": ["Anthropic affiliation", "provider or agent execution proof", "production deployment proof"]
     },
     {
       "repository": "GlacierEQ/portfolio-organization-master",
@@ -105,7 +113,6 @@
     }
   ],
   "highest_value_next_gates": [
-    "Generate fresh exact-head verification for GlacierEQ/anthropic-agent-coordinator after the merged README/integrity repair.",
     "Resolve or supersede GlacierEQ/job-application PR 168 so open governance work does not remain indefinitely ambiguous.",
     "Keep GlacierEQ/job-application as the single public recruiter root and prevent specialist repos from competing as alternative portfolio homepages.",
     "Promote only specialist repositories with exact current proof into recruiter-facing top-system selections."
