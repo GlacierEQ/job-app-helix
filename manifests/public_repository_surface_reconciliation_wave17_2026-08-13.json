@@ -1,0 +1,176 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-13T16:36:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave16_2026-08-13.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surfaces_require_explicit_non_affiliation_boundaries": true,
+    "local_simulation_and_review_outputs_do_not_establish_operational_authority": true,
+    "source_functional_candidate_history_is_preserved": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/spacex-conjunction-sentinel",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_CONJUNCTION_ASSESSMENT_NATIVE_PROOF_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "17537ed7ee2c7b01edf60953f403ebcb3a6c2fd8",
+        "verified_capabilities": [
+          "analytic-relative-motion-cpa",
+          "deterministic-encounter-plane-monte-carlo-pc",
+          "bounded-linearized-maneuver-review",
+          "small-catalog-pairwise-screening",
+          "tle-mean-element-parsing",
+          "python-two-body-orbit-propagation",
+          "rust-two-body-orbit-propagation",
+          "deterministic-json-assessment-cli"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31639117944,
+            "name": "Native functional verification",
+            "head_sha": "17537ed7ee2c7b01edf60953f403ebcb3a6c2fd8",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python_versions": ["3.11", "3.12", "3.13"],
+          "compileall": "PASS",
+          "pytest": "PASS",
+          "json_cli_smoke": "PASS",
+          "operational_authority_false": "PASS",
+          "rust_cargo_check_all_targets": "PASS",
+          "rust_cargo_test": "PASS",
+          "required_quality_gate": "PASS"
+        },
+        "source_contract": {
+          "principal_state": "FUNCTIONAL_CANDIDATE",
+          "evidence_state": "LOCAL_FUNCTION_PROVEN_EXTERNAL_NATIVE_CI_REQUIRED",
+          "remaining_exact_head_native_proof_gate_satisfied": true
+        },
+        "proof_scope": "Exact-current-head native proof verifies deterministic local conjunction assessment and maneuver-review simulation: analytic constant-relative-velocity CPA, seeded encounter-plane Monte Carlo collision probability, bounded linearized maneuver review, small-catalog pairwise screening, TLE mean-element parsing, Python and Rust two-body propagation, and a deterministic JSON CLI whose receipt states operational_authority=false. It does not establish SpaceX affiliation, operational spacecraft authority, maneuver execution, flight certification, SGP4/SDP4 fidelity, production catalog-scale throughput, mission-certified orbit determination, live MCP/APEX integration, or production collision-avoidance service.",
+        "metadata_readback": {
+          "description": "Close-approach risk sentinel (portfolio) SpaceX problem space · AKOS",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "portfolio/problem-space metadata is compatible with the bounded independent local conjunction-review capability"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the SpaceX non-affiliation or no-operational-authority boundary, operational maneuver or flight-certification claims, SGP4/SDP4 or production catalog-scale claims without proof, live integration claims, or contradictory GitHub About metadata."
+    },
+    {
+      "repository": "GlacierEQ/spacex-cryogenics",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_CRYOGENIC_DIGITAL_TWIN_NATIVE_PROOF_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
+        "verified_capabilities": [
+          "si-consistent-cryogenic-thermodynamics",
+          "normal-boiling-point-saturation-model",
+          "ideal-gas-ullage-estimation",
+          "heat-leak-and-boiloff-simulation",
+          "bounded-tank-controller-digital-twin",
+          "sensor-residual-validation",
+          "predictive-multi-tank-boiloff",
+          "same-propellant-balance-review-planning",
+          "python-json-digital-twin-cli",
+          "cpp17-thermodynamic-reference-model"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31639570712,
+            "name": "Native functional verification",
+            "head_sha": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python_versions": ["3.11", "3.12", "3.13"],
+          "compileall": "PASS",
+          "pytest": "PASS",
+          "json_cli_smoke": "PASS",
+          "operational_authority_false": "PASS",
+          "cpp17_strict_compile": "PASS",
+          "cpp17_native_self_test": "PASS",
+          "required_functional_proof": "PASS"
+        },
+        "source_contract": {
+          "principal_state": "FUNCTIONAL_CANDIDATE",
+          "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_REQUIRED",
+          "remaining_exact_head_native_proof_gate_satisfied": true
+        },
+        "proof_scope": "Exact-current-head native proof verifies a deterministic local cryogenic propellant digital twin: SI-consistent thermodynamics, anchored saturation pressure, ideal-gas ullage, heat leak and boil-off simulation, bounded tank-controller state transitions, sensor residual validation, forward boil-off prediction, same-propellant balance review, a Python JSON CLI with operational_authority=false, and a strictly compiled C++17 thermodynamic reference self-test. It does not establish SpaceX affiliation, flight certification, hardware or valve control, loading authority, mission-certified thermodynamics, live MCP/APEX integration, autonomous physical loading, or trained LSTM/autoencoder/Bayesian optimization models.",
+        "metadata_readback": {
+          "description": "Cryogenic boil-off energy balance (portfolio) · AKOS",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "portfolio metadata is compatible with the bounded local cryogenic digital-twin capability"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the independent/non-flight-authority boundary, hardware/loading/control claims without evidence, mission-certified property-model claims, live integration claims, or contradictory GitHub About metadata."
+    },
+    {
+      "repository": "GlacierEQ/spacex-ground-network",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_GROUND_NETWORK_PLANNING_NATIVE_PROOF_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "f8992a0ac0ab4608d10e7bb2e20444c9cbad54fd",
+        "verified_capabilities": [
+          "wgs84-lla-ecef-conversion",
+          "look-angle-and-doppler-analysis",
+          "validated-rf-link-budget",
+          "health-load-and-margin-aware-station-selection",
+          "handoff-hysteresis",
+          "deterministic-contact-series-screening",
+          "j2-kepler-earth-fixed-predictive-positioning",
+          "review-only-preposition-and-handoff-simulation",
+          "python-json-ground-network-cli",
+          "go-native-station-selection-kernel"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31641017144,
+            "name": "Native functional verification",
+            "head_sha": "f8992a0ac0ab4608d10e7bb2e20444c9cbad54fd",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python_versions": ["3.11", "3.12", "3.13"],
+          "compileall": "PASS",
+          "pytest": "PASS",
+          "json_cli_smoke": "PASS",
+          "operational_authority_false": "PASS",
+          "go_vet": "PASS",
+          "go_race_tests": "PASS",
+          "go_executable_smoke": "PASS",
+          "required_functional_proof": "PASS"
+        },
+        "source_contract": {
+          "principal_state": "FUNCTIONAL_CANDIDATE",
+          "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_REQUIRED",
+          "remaining_exact_head_native_proof_gate_satisfied": true
+        },
+        "proof_scope": "Exact-current-head native proof verifies local WGS-84 tracking geometry, look-angle and Doppler analysis, validated RF link budgeting, health/load/margin-aware station selection, handoff hysteresis, deterministic contact-series screening, review-grade J2/Kepler Earth-fixed predictive positioning, simulated pre-position and handoff behavior, a Python JSON planning CLI with operational_authority=false, and a Go native station-selection kernel proven by vet, race tests, build, and executable smoke. It does not establish SpaceX affiliation, RF transmission, command uplink, antenna actuation, spacecraft control, operational network authority, SGP4 fidelity, guaranteed acquisition time, live MCP/APEX integration, or production network deployment.",
+        "metadata_readback": {
+          "description": "Ground station contact planner (portfolio) · AKOS P1",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "portfolio metadata is compatible with the bounded local ground-network planning capability"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the independent/no-network-authority boundary, RF transmit/uplink/antenna-actuation claims, operational ephemeris or acquisition-time claims without proof, live integration claims, or contradictory GitHub About metadata."
+    }
+  ]
+}
