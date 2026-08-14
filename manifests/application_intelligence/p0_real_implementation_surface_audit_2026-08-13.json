@@ -1,0 +1,149 @@
+{
+  "schema": "glaciereq.p0-real-implementation-surface-audit.v2",
+  "generated_date": "2026-08-13",
+  "authority": "GlacierEQ/job-app-helix",
+  "helix_base_head": "57b8fe7a852f15ecdd1fa8b5d2f46fb5515395ec",
+  "supersedes": "manifests/application_intelligence/p0_real_implementation_surface_audit_2026-08-12.json",
+  "truth_boundary": {
+    "historical_audits_are_not_live_state": true,
+    "helix_reference_function_is_not_dedicated_implementation": true,
+    "crystallization_completion_receipt_can_establish_terminal_local_reference_state": true,
+    "production_company_affiliation_or_deployment_is_not_claimed": true,
+    "dedicated_implementation_and_terminal_crystallization_are_distinct": true
+  },
+  "summary": {
+    "count": 25,
+    "dedicated_implementation_count": 9,
+    "terminal_crystallized_count": 4,
+    "implemented_evidence_adapter_count": 3,
+    "implemented_live_integration_count": 1,
+    "implemented_normalized_input_count": 1,
+    "helix_reference_only_count": 16,
+    "dedicated_scaffold_count": 0,
+    "build_surface_coverage_pct": 36.0,
+    "terminal_coverage_pct": 16.0
+  },
+  "terminal_crystallized": [
+    {
+      "rank": 1,
+      "company_id": "cursor",
+      "innovation": "Patch Intent Twin",
+      "repository": "GlacierEQ/cursor-patch-intent-twin",
+      "repo_head": "1820ee6fb1108a89c207423fa8b10c3a2779bb6f",
+      "completion_receipt": "machine/crystallization/completion-receipt.json",
+      "state": "TERMINAL_CRYSTALLIZED",
+      "next_depth": "OPTIONAL_EXTERNAL_INTEGRATION_ONLY"
+    },
+    {
+      "rank": 7,
+      "company_id": "cognition",
+      "innovation": "Execution Checkpoint Lattice",
+      "repository": "GlacierEQ/cognition-execution-checkpoint-lattice",
+      "repo_head": "e715788a036be087ec8adf02ae2aa5062141459b",
+      "completion_receipt": "machine/crystallization/completion-receipt.json",
+      "state": "TERMINAL_CRYSTALLIZED",
+      "next_depth": "OPTIONAL_EXTERNAL_INTEGRATION_ONLY"
+    },
+    {
+      "rank": 8,
+      "company_id": "crusoe",
+      "innovation": "Rack-to-Token Autopilot",
+      "repository": "GlacierEQ/crusoe-rack-to-token-autopilot",
+      "repo_head": "a94a026d46d2dfdfbeaeb9b380365ea2b08aaf49",
+      "completion_receipt": "machine/crystallization/completion-receipt.json",
+      "state": "TERMINAL_CRYSTALLIZED",
+      "next_depth": "OPTIONAL_PRODUCTION_ENVIRONMENT_ATTACHMENT_ONLY"
+    },
+    {
+      "rank": 16,
+      "company_id": "pinecone",
+      "innovation": "Retrieval Outcome Optimizer",
+      "repository": "GlacierEQ/pinecone-retrieval-outcome-optimizer",
+      "repo_head": "b31aa5dc906da79f67da66826e162909b0a50a6b",
+      "completion_receipt": "machine/crystallization/completion-receipt.json",
+      "state": "TERMINAL_CRYSTALLIZED",
+      "next_depth": "OPTIONAL_EXTERNAL_VECTOR_SERVICE_ATTACHMENT_ONLY"
+    }
+  ],
+  "implemented_nonterminal": [
+    {
+      "rank": 11,
+      "company_id": "fireworks_ai",
+      "innovation": "Optimization Safety Envelope",
+      "repository": "GlacierEQ/fireworks-ai-optimization-safety-envelope",
+      "repo_head": "22d45cdebd821d01a707d56fa2b9bdde42bbf652",
+      "state": "IMPLEMENTED_EVIDENCE_ADAPTER",
+      "fine_tune_added": "raw per-workload benchmark evidence adapter",
+      "next_gate": "PERMITTED_RUNTIME_BENCHMARK_OR_CANARY_COLLECTOR"
+    },
+    {
+      "rank": 12,
+      "company_id": "lambda",
+      "innovation": "Useful-GPU-Minute Contract",
+      "repository": "GlacierEQ/lambda-useful-gpu-minute-contract",
+      "repo_head": "0ed2b3c38fe266fd3e5ac97e0bed642fc956cdc8",
+      "state": "IMPLEMENTED_EVIDENCE_ADAPTER",
+      "fine_tune_added": "non-overlapping scheduler interval telemetry adapter",
+      "next_gate": "PERMITTED_GPU_SCHEDULER_OR_EXPORT_COLLECTOR"
+    },
+    {
+      "rank": 14,
+      "company_id": "mongodb",
+      "innovation": "Operational-Semantic Twin Index",
+      "repository": "GlacierEQ/mongodb-operational-semantic-twin-index",
+      "repo_head": "f1a59dee71e31aeec1bd2ac4dfb81dc9666287f7",
+      "state": "IMPLEMENTED_EVIDENCE_ADAPTER",
+      "fine_tune_added": "change-stream-style event adapter with explicit document version and full post-image authority",
+      "next_gate": "PERMITTED_LIVE_OR_DISPOSABLE_SOURCE_PLUS_SEMANTIC_INDEX"
+    },
+    {
+      "rank": 20,
+      "company_id": "supabase",
+      "innovation": "Policy-Carrying AI Data Plane",
+      "repository": "GlacierEQ/supabase-policy-carrying-ai-data-plane",
+      "repo_head": "f40b33a0024a787a5cf8a7c3ffe2771819c7a31e",
+      "state": "IMPLEMENTED_LIVE_INTEGRATION",
+      "fine_tune_added": "ACTIVE JWT-verified Supabase Edge Function preserving caller authorization into security-invoker RLS RPC",
+      "next_gate": "REAL_SUPABASE_AUTH_TOKEN_WITH_REQUIRED_CUSTOM_CLAIMS_NETWORK_INVOCATION"
+    },
+    {
+      "rank": 24,
+      "company_id": "together_ai",
+      "innovation": "Open-Model Fidelity Passport",
+      "repository": "GlacierEQ/together-ai-open-model-fidelity-passport",
+      "repo_head": "38cb4fec92ba85aa5dda90bd05cab26c07eb1f82",
+      "state": "IMPLEMENTED_NORMALIZED_INPUT",
+      "fine_tune_added": null,
+      "next_gate": "ARTIFACT_AND_SERVING_RUNTIME_EVIDENCE_HARVEST_ADAPTER",
+      "note": "A runtime evidence adapter write was attempted during the fine-tune wave but was blocked by the execution platform before repository mutation; no implementation claim is made for that attempt."
+    }
+  ],
+  "reference_only": [
+    {"rank": 2, "company_id": "apptronik", "innovation": "Deployment Interface Standardizer"},
+    {"rank": 3, "company_id": "arm", "innovation": "Cross-ISA AI Placement Contract"},
+    {"rank": 4, "company_id": "astera_labs", "innovation": "Fabric Congestion Autopilot"},
+    {"rank": 5, "company_id": "braintrust", "innovation": "Eval Portfolio Optimizer"},
+    {"rank": 6, "company_id": "clickhouse", "innovation": "Trajectory-Native Storage Layout"},
+    {"rank": 9, "company_id": "etched", "innovation": "Architecture Exposure Hedge"},
+    {"rank": 10, "company_id": "figure_ai", "innovation": "Fleet Skill Compounding Engine"},
+    {"rank": 13, "company_id": "langchain", "innovation": "Typed Agent Capability Graph"},
+    {"rank": 15, "company_id": "obsidian_security", "innovation": "Agent Relationship Graph Firewall"},
+    {"rank": 17, "company_id": "safe_superintelligence_ssi", "innovation": "Capability–Safety Pareto Observatory"},
+    {"rank": 18, "company_id": "shield_ai", "innovation": "Mission Autonomy Evidence Graph"},
+    {"rank": 19, "company_id": "skild_ai", "innovation": "Embodiment Latent Adapter"},
+    {"rank": 21, "company_id": "tsmc", "innovation": "Yield-to-Workload Feedback Loop"},
+    {"rank": 22, "company_id": "temporal", "innovation": "Nondeterminism Envelope"},
+    {"rank": 23, "company_id": "thinking_machines_lab", "innovation": "Judgment Replication Fabric"},
+    {"rank": 25, "company_id": "world_labs", "innovation": "Persistent World-State Compiler"}
+  ],
+  "fine_tune_wave": {
+    "merged_repositories": [
+      {"repository": "GlacierEQ/supabase-policy-carrying-ai-data-plane", "merge_sha": "f40b33a0024a787a5cf8a7c3ffe2771819c7a31e"},
+      {"repository": "GlacierEQ/fireworks-ai-optimization-safety-envelope", "merge_sha": "22d45cdebd821d01a707d56fa2b9bdde42bbf652"},
+      {"repository": "GlacierEQ/lambda-useful-gpu-minute-contract", "merge_sha": "0ed2b3c38fe266fd3e5ac97e0bed642fc956cdc8"},
+      {"repository": "GlacierEQ/mongodb-operational-semantic-twin-index", "merge_sha": "f1a59dee71e31aeec1bd2ac4dfb81dc9666287f7"}
+    ],
+    "result": "4_REAL_GATES_ADVANCED"
+  },
+  "next_gate": "Execute the 16 dedicated builds from p0_fine_tune_execution_queue.v1.json while terminalizing the five implemented nonterminal systems only when their remaining evidence/integration gates are actually closed."
+}
