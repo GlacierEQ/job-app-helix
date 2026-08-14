@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.estate-evolution.receipt.v1",
+  "run_id": "2026-08-14-atlas-live-delta",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "primary_lane": "repo_atlas_refresh",
+  "control_plane_base_sha": "d018bfb0f91140c8076a8fed407f2f9f6f98e99b",
+  "prior_controlling_receipt": "status/estate_evolution/2026-08-09-atlas-monolith-refresh.json",
+  "prior_monolith_head": "7d3fc71b82156d1ddf87666d032be5767aba2661",
+  "current_monolith_main": "6e881b6a5f2f62efb12db7ab68068ef98da54fe1",
+  "atlas_candidate_drift": "CONFIRMED",
+  "discovery": {
+    "snapshot_boundary": "2026-07-25",
+    "github_search_query": "user:GlacierEQ created:>=2026-07-25",
+    "search_visible_created_since_snapshot": 158,
+    "search_incomplete_results": false,
+    "count_classification": "PUBLIC_SEARCH_SURFACE_ONLY_NOT_FULL_ESTATE",
+    "full_estate_count_promoted": false,
+    "rename_or_transfer_promoted": false,
+    "rename_transfer_reason": "No repository-ID continuity proof was established in this bounded pass; names alone are insufficient."
+  },
+  "monolith_excellence": {
+    "repository": "GlacierEQ/monolith",
+    "role": "CANONICAL_CANDIDATE_EST首ATE_CARTOGRAPHY_AND_REPOSITORY_REGISTRY",
+    "problem_verified": "PASS",
+    "unique_value_known": "PASS",
+    "canonical_identity_known": "PASS",
+    "central_mechanism_implemented": "PASS_WITH_CURRENT_HEAD_DRIFT",
+    "deterministic_tests_pass": "UNPROVEN_CURRENT_HEAD",
+    "adversarial_tests_pass": "UNPROVEN_CURRENT_HEAD",
+    "runtime_behavior_observed": "NOT_REQUIRED_FOR_STATIC_ATLAS_PROJECTION; REGENERATION_RUNTIME_UNPROVEN",
+    "security_authority_bounded": "PASS_CANDIDATE_WORKFLOW_CONTENTS_READ",
+    "proof_receipt_bound_to_sha": "PENDING_EXECUTION",
+    "reusable_capabilities_extracted": "PASS_ATLAS_CATALOG_CLASSIFICATION_DISTRIBUTION_CHECKS",
+    "projections_truth_consistent": "ADVANCED_STALE_COUNT_NOT_PROMOTED",
+    "evolution_cursor_defined": "PASS"
+  },
+  "repair": {
+    "repository": "GlacierEQ/monolith",
+    "branch": "rotor/ci-real-verification-20260814",
+    "base_sha": "6e881b6a5f2f62efb12db7ab68068ef98da54fe1",
+    "candidate_sha": "1b1f326be61f1c1651315eec179e290ec72c0af7",
+    "pull_request": 106,
+    "change": "Replace echo-only CI with compile, Atlas/catalog deterministic tests, completion-ownership validation, integrity-control-plane check, and contents:read authority ceiling.",
+    "verification_run": 31818810740,
+    "verification_job": 94826869482,
+    "verification_result": "BLOCKED_BEFORE_STEPS",
+    "blocker": "GitHub Actions budget is preventing further use.",
+    "source_failure_observed": false
+  },
+  "next_cursor": "Restore GitHub Actions execution capacity, then execute PR #106 unchanged if its head remains 1b1f326be61f1c1651315eec179e290ec72c0af7. Promote deterministic/adversarial proof only from successful exact-head execution. Separately run Monolith authenticated full-owner regeneration before replacing historical 1180/598/1164 count receipts."
+}
