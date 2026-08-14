@@ -1,0 +1,47 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-13T16:45:00-10:00",
+  "wave": 18,
+  "repository": "GlacierEQ/nvidia-gpu-health",
+  "source_canonical_head": "3c2d2b98f700e0224685152b73d55276ef767286",
+  "source_state": "LOCAL_SYNTHETIC_GPU_HEALTH_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31766630699,
+      "name": "CI",
+      "head_sha": "3c2d2b98f700e0224685152b73d55276ef767286",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-local-synthetic-gpu-health-policy-evaluation",
+  "evidence_token": "LOCAL_SYNTHETIC_GPU_HEALTH_MODEL_NOT_NVIDIA_TELEMETRY_AUTHORITY",
+  "repairs": [
+    "replaced real-time NVIDIA monitoring, zero-overhead daemon, live MCP/APEX, and production isolation claims with an independent local synthetic health-policy exhibit",
+    "added fail-closed finite and range validation for temperature, power, utilization, TDP, and ECC inputs",
+    "replaced probability-like confidence and OPTIMAL semantics with explicit modeled NOMINAL/WARNING/CRITICAL policy output and operational_authority=false",
+    "made modeled link bandwidth participate in the C11 policy and added explicit invalid-input handling",
+    "compiled and executed the C11 kernel under strict warnings-as-errors as part of repository-owned verification",
+    "replaced hyper-scaling capability theater and stale PROMOTED state with an exact bounded capability whitelist and FUNCTIONAL_CANDIDATE state pending native proof",
+    "bound canonical post-merge CI to exact master and reproduced the Python, public-boundary, and native C truth gates"
+  ],
+  "nonclaims": [
+    "no NVIDIA affiliation, employment, endorsement, or proprietary access",
+    "no NVML, DCGM, or live NVLink hardware telemetry acquisition",
+    "no real-time daemon or production cluster monitoring",
+    "no physical GPU diagnosis, failure prediction, isolation, remediation, or scheduler/hardware authority",
+    "no measured zero-overhead, production-scale, reliability, or performance guarantee",
+    "no live MCP, APEX, Mastermind, or provider integration",
+    "no production operational authority"
+  ],
+  "metadata_readback": {
+    "description": "GPU health index (portfolio) — thermal/power/occupancy · AKOS portfolio",
+    "homepage": "https://github.com/GlacierEQ/AKOS",
+    "assessment": "compatible with the bounded independent local GPU-health policy proof"
+  },
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
