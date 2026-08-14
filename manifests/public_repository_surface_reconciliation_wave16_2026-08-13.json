@@ -1,0 +1,67 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-13T16:28:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave15_2026-08-11.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "company_named_surface_requires_explicit_non_affiliation_boundary": true,
+    "local_mesh_routing_does_not_establish_spacecraft_or_network_operational_authority": true,
+    "simplified_trajectory_geometry_does_not_establish_operational_ephemeris_or_constellation_digital_twin": true,
+    "local_routing_receipts_do_not_establish_production_scale_reliability_or_guaranteed_delivery": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/spacex-satellite-mesh",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "LOCAL_STATIC_TEMPORAL_MESH_ROUTING_NATIVE_PROOF_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
+        "evidence_token": "LOCAL_MESH_SIMULATION_NOT_SPACECRAFT_OR_LASER_TERMINAL_AUTHORITY",
+        "verified_capability": "deterministic-local-static-and-temporal-satellite-mesh-routing",
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31641804512,
+            "name": "Native functional verification",
+            "head_sha": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python": {
+            "versions": ["3.11", "3.12", "3.13"],
+            "compileall": "PASS",
+            "pytest": "PASS",
+            "static_cli_smoke": "PASS",
+            "temporal_cli_smoke": "PASS",
+            "truth_boundary_assertion": "PASS"
+          },
+          "rust": {
+            "cargo_check_all_targets": "PASS",
+            "cargo_test": "PASS"
+          },
+          "aggregate_required_functional_proof": "PASS",
+          "authority": {
+            "github_token_contents": "read",
+            "checkout_persist_credentials": false,
+            "checkout_action_sha": "11d5960a326750d5838078e36cf38b85af677262",
+            "setup_python_action_sha": "a26af69be951a213d495a4c3e4e4022e16d87065",
+            "rust_toolchain_action_sha": "4360b52568e2003a75bf9bc1d59f33a8e3fc893c"
+          }
+        },
+        "proof_scope": "Exact-current-head native proof verifies validated capacity-aware static mesh routing, non-mutating alternate simple-path enumeration, simplified constellation coverage with deterministic handoff accounting, trajectory-bounded temporal link windows with physical propagation latency, earliest-arrival delay-tolerant routing that may wait for future modeled links, Python static and temporal JSON CLI behavior, and a native Rust shortest-path routing kernel. Python 3.11, 3.12, and 3.13 compile, pytest, static CLI smoke, temporal CLI smoke, and operational_authority=false assertions passed; Rust cargo check --all-targets and cargo test passed; aggregate required-functional-proof passed. This proof does not establish SpaceX affiliation, employment, adoption, endorsement, proprietary topology or telemetry, spacecraft or laser-terminal command authority, operational ephemeris, a digital twin of a commercial constellation, production constellation scale, guaranteed delivery, live MCP/APEX/provider integration, GNN traffic prediction, production deployment, or production reliability/performance guarantees.",
+        "metadata_readback": {
+          "description": "Multi-hop mesh routing (portfolio) · AKOS P1",
+          "homepage": "https://github.com/GlacierEQ/AKOS",
+          "assessment": "portfolio metadata is compatible with the bounded local static and temporal routing capability; the controlling source proof preserves SpaceX non-affiliation and no-spacecraft-or-laser-terminal-authority boundaries"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the independent SpaceX non-affiliation/no-operational-authority boundary, claims of real spacecraft or laser-terminal control, operational ephemeris or constellation digital-twin claims, production-scale or guaranteed-delivery claims, live provider/telemetry integration claims, or contradictory GitHub About metadata."
+    }
+  ]
+}
