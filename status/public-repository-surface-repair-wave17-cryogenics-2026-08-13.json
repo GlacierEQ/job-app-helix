@@ -1,0 +1,15 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-13T16:36:00-10:00",
+  "wave": 17,
+  "repository": "GlacierEQ/spacex-cryogenics",
+  "source_canonical_head": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
+  "source_state": "LOCAL_CRYOGENIC_DIGITAL_TWIN_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [{"kind":"workflow_run","id":31639570712,"name":"Native functional verification","head_sha":"7b036b72c4a004fb0c21a18e08c7311aac8201e1","conclusion":"success"}],
+  "verified_capabilities": ["si-consistent-cryogenic-thermodynamics","normal-boiling-point-saturation-model","ideal-gas-ullage-estimation","heat-leak-and-boiloff-simulation","bounded-tank-controller-digital-twin","sensor-residual-validation","predictive-multi-tank-boiloff","same-propellant-balance-review-planning","python-json-digital-twin-cli","cpp17-thermodynamic-reference-model"],
+  "repairs": ["restored SI-consistent cryogenic thermodynamics and normal-boiling-point pressure anchoring","repaired predictive boil-off units and same-propellant transfer direction","implemented bounded tank-state and sensor-residual simulation","made the C++17 reference compile and self-verify","bound Python 3.11-3.13, C++17, CLI truth, and required-functional proof to exact canonical main"],
+  "nonclaims": ["no SpaceX affiliation","no flight certification, hardware control, valve actuation, or loading authority","no mission-certified property-model claim","no live MCP or APEX integration","no trained LSTM, autoencoder, or Bayesian loading optimizer"],
+  "metadata_readback": {"description":"Cryogenic boil-off energy balance (portfolio) · AKOS","homepage":"https://github.com/GlacierEQ/AKOS","assessment":"compatible with bounded local cryogenic digital-twin capability"},
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {"ADMIT":1,"REPAIR_REQUIRED":-1}
+}
