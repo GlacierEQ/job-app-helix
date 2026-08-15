@@ -1,0 +1,72 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-14T14:42:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave21_2026-08-14.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "admission_requires_exact_current_git_head": true,
+    "admission_requires_successful_current_head_native_proof": true,
+    "repository_local_dispatch_does_not_establish_external_system_availability": true,
+    "fresh_install_bootstrap_proof_does_not_establish_external_provider_authentication_or_reachability": true,
+    "explicit_integration_harness_does_not_establish_bundled_casebuilder_or_red_helix": true,
+    "preserved_legacy_whole_tree_lint_debt_is_not_part_of_admitted_bounded_surface": true,
+    "local_apex_named_files_do_not_establish_live_external_apex_mesh_or_control_plane_authority": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/apex-cli",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "BOUNDED_LOCAL_CLI_AND_FRESH_INSTALL_RUNTIME_NATIVE_PROOF_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "master",
+        "canonical_head": "612c059b8e6a0103a1f7163af0461be7a7495fe9",
+        "evidence_token": "LOCAL_APEX_CLI_RUNTIME_NOT_EXTERNAL_SYSTEM_AUTHORITY",
+        "verified_capability": "deterministic-repository-local-cli-dispatch-and-fresh-install-runtime-bootstrap",
+        "verified_capabilities": [
+          "repository-local-bash-command-dispatch",
+          "fail-closed-external-job-app-dependency-resolution",
+          "environment-controlled-local-path-resolution",
+          "fresh-install-bundled-runtime-bootstrap-and-status",
+          "explicit-external-casebuild-harness-boundary",
+          "public-and-machine-truth-boundary-enforcement"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31854284196,
+            "name": "Public Truth Gate",
+            "head_sha": "612c059b8e6a0103a1f7163af0461be7a7495fe9",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python_3_11_exact_source_compile_tests_runtime_and_truth": "PASS",
+          "python_3_12_exact_source_compile_tests_runtime_and_truth": "PASS",
+          "python_3_13_exact_source_compile_tests_runtime_and_truth": "PASS",
+          "repository_local_shell_dispatch": "PASS",
+          "missing_external_job_app_dependency_exit_78": "PASS",
+          "environment_controlled_paths": "PASS",
+          "fresh_install_runtime_bootstrap_and_status": "PASS",
+          "external_casebuild_harness_boundary": "PASS",
+          "public_and_machine_truth_boundary": "PASS",
+          "operational_authority_false": "PASS",
+          "checkout_persist_credentials": false,
+          "legacy_whole_tree_lint_debt_excluded_from_scope": true
+        },
+        "source_contract": {
+          "principal_state": "FUNCTIONAL_CANDIDATE",
+          "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_VERIFIED",
+          "remaining_exact_head_native_proof_gate_satisfied": true
+        },
+        "proof_scope": "Exact-current-head canonical Public Truth Gate verifies exact source identity and the bounded APEX CLI surface on Python 3.11, 3.12, and 3.13. The proof covers repository-local Bash command dispatch, shell syntax and help behavior, fail-closed exit 78 when an explicitly external job-application dependency is absent, environment-controlled local path resolution, repository-local Python compilation/tests, a fresh-install bootstrap into an isolated temporary HOME, presence of the bundled runtime skill/configuration files, a READY runtime-status receipt, explicit Casebuilder/Red Helix harness roots rather than hard-coded device paths, secret-pattern checks, and public/machine truth boundaries. This proof does not establish that Casebuilder4000, Red Helix, any external job-application checkout, Dropbox, Android/Termux, provider credentials, external services, or a live MCP/APEX mesh are installed, authenticated, reachable, or operational. Preserved whole-tree lint debt reported by the broader CI remains outside the admitted bounded surface and is not represented as resolved.",
+        "metadata_readback": {
+          "description": "APEX CLI. AKOS portfolio.",
+          "assessment": "compatible with the bounded repository-local command dispatcher and fresh-install runtime proof"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, Public Truth Gate failure, restoration of hyper-scaling or external-system availability claims, bundled Casebuilder/Red Helix/job-app claims without proof, device-specific path assumptions, production external authority claims, concealment of preserved legacy lint debt, or contradictory public metadata."
+    }
+  ]
+}
