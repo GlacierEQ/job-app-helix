@@ -1,0 +1,69 @@
+{
+  "schema": "glaciereq.trajectory-lattice.v1",
+  "version": "1.0.0",
+  "year": 2026,
+  "timezone": "Pacific/Honolulu",
+  "authority": {
+    "repository": "GlacierEQ/job-app-helix",
+    "branch": "main",
+    "path": "machine/trajectory/2026_schedule.json"
+  },
+  "phase_model": [
+    "expansion",
+    "acceleration",
+    "composition",
+    "rupture",
+    "diagnosis",
+    "counter-engineering",
+    "recovery",
+    "stronger expansion"
+  ],
+  "capture_contract": {
+    "state_and_delta_required": true,
+    "canonical_heads_required": true,
+    "source_hash_algorithm": "sha256",
+    "fail_closed_on_missing_private_estate_authority": true,
+    "historical_reconstruction_must_identify_reconstruction": true,
+    "contemporary_capture_must_record_capture_time_hst": true
+  },
+  "dimensions": [
+    "repository_inventory",
+    "canonical_heads",
+    "genealogy",
+    "capability_ontology",
+    "original_intent",
+    "development_target",
+    "implementation",
+    "verification",
+    "deployment_public_projection",
+    "job_application_evolution",
+    "company_coverage",
+    "company_specific_inventions",
+    "control_plane_topology",
+    "receipts",
+    "blockers",
+    "experiments",
+    "source_hashes"
+  ],
+  "checkpoints": [
+    {"date":"2026-01-01","phase":"expansion","resolution":"monthly","capture_kind":"historical_reconstruction"},
+    {"date":"2026-02-01","phase":"expansion","resolution":"monthly","capture_kind":"historical_reconstruction"},
+    {"date":"2026-03-01","phase":"expansion","resolution":"monthly","capture_kind":"historical_reconstruction"},
+    {"date":"2026-04-01","phase":"expansion","resolution":"monthly","capture_kind":"historical_reconstruction"},
+    {"date":"2026-05-01","phase":"expansion","resolution":"monthly","capture_kind":"historical_reconstruction"},
+    {"date":"2026-06-01","phase":"acceleration","resolution":"semi-monthly","capture_kind":"historical_reconstruction"},
+    {"date":"2026-06-15","phase":"acceleration","resolution":"semi-monthly","capture_kind":"historical_reconstruction"},
+    {"date":"2026-07-01","phase":"composition","resolution":"biweekly","capture_kind":"historical_reconstruction"},
+    {"date":"2026-07-15","phase":"composition","resolution":"five-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-07-20","phase":"composition","resolution":"five-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-07-25","phase":"composition","resolution":"five-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-07-30","phase":"rupture","resolution":"two-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-08-01","phase":"rupture","resolution":"two-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-08-03","phase":"diagnosis","resolution":"two-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-08-05","phase":"counter-engineering","resolution":"two-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-08-07","phase":"recovery","resolution":"three-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-08-10","phase":"recovery","resolution":"five-day","capture_kind":"historical_reconstruction"},
+    {"date":"2026-08-15","phase":"recovery","resolution":"five-day","capture_kind":"contemporary"},
+    {"date":"2026-08-20","phase":"stronger expansion","resolution":"five-day","capture_kind":"contemporary"}
+  ]
+}
