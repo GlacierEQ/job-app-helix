@@ -1,0 +1,33 @@
+{
+  "schema": "glaciereq.trajectory-blocker.v1",
+  "checkpoint_target": "2026-08-15",
+  "status": "OPEN_FAIL_CLOSED",
+  "authority_main_sha": "7f18f4e2df0a5b03891f94f5406bba873c6cb8be",
+  "authenticated_owned_repository_count": 1181,
+  "authenticated_private_repository_count": 510,
+  "blocked_requirements": [
+    "complete 1,181-row exact default-branch head vector",
+    "content-derived SHA-256 trees for all trajectory dimension scopes",
+    "schema-conforming machine/trajectory/checkpoints/2026-08-15.json",
+    "checkpoint canonical-body SHA-256 receipt",
+    "computed checkpoint delta from 2026-08-10"
+  ],
+  "causes": [
+    "The authenticated GitHub connector exposes private-estate repository reads but not the canonical capture script's batch GraphQL owner-repository connection or an exportable connector credential.",
+    "The execution container has no direct GitHub network path, so canonical Helix source files cannot be cloned at the exact authority SHA for local content-hash reproduction.",
+    "The earlier GitHub Actions run 31903247417 had no GLACIEREQ_ESTATE_TOKEN and therefore failed before capture.",
+    "No verified materialized 2026-08-10 checkpoint exists on main or trajectory-captures-2026; a predecessor delta cannot be fabricated."
+  ],
+  "preserved_evidence": [
+    "machine/trajectory/artifacts/2026-08-15-capture-blocker.json",
+    "machine/trajectory/artifacts/2026-08-15-authenticated-connector-evidence.json",
+    "machine/trajectory/artifacts/2026-08-15-estate-snapshot.md",
+    "machine/trajectory/receipts/2026-08-15-authenticated-connector-evidence.sha256.json"
+  ],
+  "truth_boundary": {
+    "public_only_substitution": false,
+    "head_fabrication": false,
+    "delta_fabrication": false,
+    "historical_overwrite": false
+  }
+}
