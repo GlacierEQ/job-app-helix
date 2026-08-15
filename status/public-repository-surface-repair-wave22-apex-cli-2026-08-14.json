@@ -1,0 +1,46 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-14T14:42:00-10:00",
+  "wave": 22,
+  "repository": "GlacierEQ/apex-cli",
+  "source_canonical_head": "612c059b8e6a0103a1f7163af0461be7a7495fe9",
+  "source_state": "BOUNDED_LOCAL_CLI_AND_FRESH_INSTALL_RUNTIME_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31854284196,
+      "name": "Public Truth Gate",
+      "head_sha": "612c059b8e6a0103a1f7163af0461be7a7495fe9",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-repository-local-cli-dispatch-and-fresh-install-runtime-bootstrap",
+  "evidence_token": "LOCAL_APEX_CLI_RUNTIME_NOT_EXTERNAL_SYSTEM_AUTHORITY",
+  "repairs": [
+    "replaced hyper-scaling machine metadata with an exact repository-local CLI/runtime capability allowlist",
+    "reconciled stale DISCOVERED/OPERATE_THEATER machine posture to FUNCTIONAL_CANDIDATE while keeping legacy whole-tree lint debt explicitly visible",
+    "added fail-closed public and machine truth enforcement",
+    "expanded exact-source Public Truth Gate proof from Python 3.11/3.13 to Python 3.11/3.12/3.13",
+    "pinned checkout and setup-python and disabled persisted checkout credentials",
+    "preserved fail-closed external job-app dependency handling and explicit Casebuilder/Red Helix harness roots",
+    "proved fresh-install runtime bootstrap and READY runtime-status receipts inside an isolated temporary HOME",
+    "bound repaired canonical master to successful exact-head Public Truth Gate run 31854284196"
+  ],
+  "nonclaims": [
+    "no bundled or proven Casebuilder4000 Red Helix or external job-application checkout",
+    "no Dropbox Android Termux or other device runtime proof",
+    "no authenticated or reachable external provider implied by repository-local command names",
+    "no live MCP APEX mesh or external control-plane authority",
+    "no claim that preserved legacy whole-tree lint debt is resolved",
+    "no production external-system operational authority"
+  ],
+  "metadata_readback": {
+    "description": "APEX CLI. AKOS portfolio.",
+    "assessment": "compatible with the bounded repository-local command dispatcher and fresh-install runtime proof"
+  },
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
