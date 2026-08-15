@@ -24,6 +24,31 @@ def load_module():
     return module
 
 
+def signed_previous(module, date: str, head_sha: str = "1" * 40) -> dict:
+    checkpoint = {
+        "schema": module.CHECKPOINT_SCHEMA,
+        "date": date,
+        "state": {
+            "canonical_heads": [
+                {"repository": "GlacierEQ/a", "head_sha": head_sha}
+            ],
+            "dimensions": {
+                "implementation": {
+                    "tree_sha256": "a" * 64,
+                    "evidence_class": "exact_authority_git_tree_at_cutoff",
+                }
+            },
+        },
+    }
+    checkpoint["receipt"] = {
+        "hash_algorithm": "sha256",
+        "checkpoint_sha256": module.sha256_bytes(
+            module.canonical_json(checkpoint)
+        ),
+    }
+    return checkpoint
+
+
 def test_historical_gate_rejects_contemporary_dates() -> None:
     module = load_module()
     schedule = json.loads(SCHEDULE.read_text(encoding="utf-8"))
@@ -38,6 +63,16 @@ def test_cutoff_is_explicit_hst_end_of_day_by_default() -> None:
     module = load_module()
     cutoff = module.cutoff_iso("2026-07-25", "23:59:59")
     assert cutoff == "2026-07-25T23:59:59-10:00"
+
+
+@pytest.mark.parametrize(
+    "bad_clock",
+    ["23:59:59.5", "23:59:59-10:00", "23:59", "24:00:00"],
+)
+def test_cutoff_rejects_ambiguous_or_lossy_time_inputs(bad_clock: str) -> None:
+    module = load_module()
+    with pytest.raises(SystemExit, match="exact HST wall time"):
+        module.cutoff_iso("2026-07-25", bad_clock)
 
 
 def test_survivor_head_reconstruction_never_relabels_current_metadata() -> None:
@@ -182,22 +217,24 @@ def test_dimension_delta_reports_changes_only_between_exact_states() -> None:
     assert transitions == []
 
 
+def test_previous_checkpoint_requires_adjacent_date_and_valid_receipt() -> None:
+    module = load_module()
+    previous = signed_previous(module, "2026-07-20")
+    module.validate_previous_checkpoint(previous, "2026-07-20")
+
+    wrong_date = signed_previous(module, "2026-07-15")
+    with pytest.raises(SystemExit, match="date mismatch"):
+        module.validate_previous_checkpoint(wrong_date, "2026-07-20")
+
+    tampered = signed_previous(module, "2026-07-20")
+    tampered["state"]["canonical_heads"][0]["head_sha"] = "9" * 40
+    with pytest.raises(SystemExit, match="receipt mismatch"):
+        module.validate_previous_checkpoint(tampered, "2026-07-20")
+
+
 def test_bounded_delta_marks_evidence_scope() -> None:
     module = load_module()
-    previous = {
-        "date": "2026-07-20",
-        "state": {
-            "canonical_heads": [
-                {"repository": "GlacierEQ/a", "head_sha": "1" * 40}
-            ],
-            "dimensions": {
-                "implementation": {
-                    "tree_sha256": "a" * 64,
-                    "evidence_class": "exact_authority_git_tree_at_cutoff",
-                }
-            },
-        },
-    }
+    previous = signed_previous(module, "2026-07-20")
     current = {
         "state": {
             "canonical_heads": [
