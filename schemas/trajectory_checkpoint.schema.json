@@ -21,6 +21,7 @@
         "repository": {"const": "GlacierEQ/job-app-helix"},
         "schedule_path": {"const": "machine/trajectory/2026_schedule.json"},
         "schedule_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "schedule_semantics": {"const": "current_reconstruction_contract_not_historical_state"},
         "github_owner": {"const": "GlacierEQ"}
       }
     },
