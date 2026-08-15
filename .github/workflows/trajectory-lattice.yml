@@ -33,6 +33,9 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Install test dependency
+        run: python -m pip install pytest
+
       - name: Verify trajectory lattice contract
         run: python -m pytest -q tests/test_trajectory_lattice.py
 
@@ -85,7 +88,7 @@ jobs:
             exit 1
           fi
 
-      - name: Prepare immutable capture branch
+      - name: Prepare capture preservation branch
         if: steps.checkpoint.outputs.should_run == 'true'
         shell: bash
         run: |
@@ -107,17 +110,20 @@ jobs:
         run: |
           set -euo pipefail
           output="machine/trajectory/checkpoints/${CHECKPOINT_DATE}.json"
-          previous="$({ python - <<'PY'
+          previous="$(python - <<'PY'
           import json
           import os
           from pathlib import Path
-          schedule = json.loads(Path("machine/trajectory/2026_schedule.json").read_text())
+
+          schedule = json.loads(
+              Path("machine/trajectory/2026_schedule.json").read_text(encoding="utf-8")
+          )
           dates = [row["date"] for row in schedule["checkpoints"]]
           current = os.environ["CHECKPOINT_DATE"]
           index = dates.index(current)
           print(dates[index - 1] if index else "")
           PY
-          } )"
+          )"
           args=(--date "${CHECKPOINT_DATE}" --output "${output}")
           if [ -n "${previous}" ] && [ -f "machine/trajectory/checkpoints/${previous}.json" ]; then
             args+=(--previous "machine/trajectory/checkpoints/${previous}.json")
