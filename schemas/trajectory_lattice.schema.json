@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/schemas/trajectory_lattice.schema.json",
+  "title": "GlacierEQ Trajectory Lattice",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "year", "timezone", "authority", "phase_model", "capture_contract", "dimensions", "checkpoints"],
+  "properties": {
+    "schema": {"const": "glaciereq.trajectory-lattice.v1"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "year": {"const": 2026},
+    "timezone": {"const": "Pacific/Honolulu"},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "branch", "path"],
+      "properties": {
+        "repository": {"const": "GlacierEQ/job-app-helix"},
+        "branch": {"const": "main"},
+        "path": {"const": "machine/trajectory/2026_schedule.json"}
+      }
+    },
+    "phase_model": {
+      "type": "array",
+      "const": ["expansion", "acceleration", "composition", "rupture", "diagnosis", "counter-engineering", "recovery", "stronger expansion"]
+    },
+    "capture_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_and_delta_required", "canonical_heads_required", "source_hash_algorithm", "fail_closed_on_missing_private_estate_authority", "historical_reconstruction_must_identify_reconstruction", "contemporary_capture_must_record_capture_time_hst"],
+      "properties": {
+        "state_and_delta_required": {"const": true},
+        "canonical_heads_required": {"const": true},
+        "source_hash_algorithm": {"const": "sha256"},
+        "fail_closed_on_missing_private_estate_authority": {"const": true},
+        "historical_reconstruction_must_identify_reconstruction": {"const": true},
+        "contemporary_capture_must_record_capture_time_hst": {"const": true}
+      }
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 17,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "checkpoints": {
+      "type": "array",
+      "minItems": 19,
+      "maxItems": 19,
+      "items": {"$ref": "#/$defs/checkpointScheduleEntry"}
+    }
+  },
+  "$defs": {
+    "checkpointScheduleEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "phase", "resolution", "capture_kind"],
+      "properties": {
+        "date": {"type": "string", "format": "date", "pattern": "^2026-"},
+        "phase": {"enum": ["expansion", "acceleration", "composition", "rupture", "diagnosis", "counter-engineering", "recovery", "stronger expansion"]},
+        "resolution": {"enum": ["monthly", "semi-monthly", "biweekly", "five-day", "two-day", "three-day"]},
+        "capture_kind": {"enum": ["historical_reconstruction", "contemporary"]}
+      }
+    }
+  }
+}
