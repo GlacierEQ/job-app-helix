@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - trajectory-captures-2026
+    paths:
+      - .github/workflows/trajectory-capture-2026-08-15-once.yml
 
 permissions:
   contents: write
@@ -14,12 +16,11 @@ concurrency:
 
 jobs:
   capture:
-    if: ${{ !contains(github.event.head_commit.message, 'chore(trajectory): preserve 2026-08-15 exact snapshot') }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
       - name: Check out preservation branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: trajectory-captures-2026
@@ -52,9 +53,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p machine/trajectory/checkpoints
-          python scripts/capture_trajectory_checkpoint.py \
-            --date 2026-08-15 \
-            --output machine/trajectory/checkpoints/2026-08-15.json
+          python scripts/capture_trajectory_checkpoint.py --date 2026-08-15 --output machine/trajectory/checkpoints/2026-08-15.json
 
       - name: Validate schema and truth boundaries
         shell: bash
@@ -70,16 +69,13 @@ jobs:
           checkpoint = json.loads(checkpoint_path.read_text(encoding='utf-8'))
           schema = json.loads(schema_path.read_text(encoding='utf-8'))
           Draft202012Validator(schema).validate(checkpoint)
-
           inventory = checkpoint['state']['repository_inventory']
           heads = checkpoint['state']['canonical_heads']
           owned = inventory['owned_repository_count']
           if owned != len(heads):
               raise SystemExit(f'canonical head rows {len(heads)} != owned repository count {owned}')
-          if checkpoint['capture_kind'] != 'contemporary':
-              raise SystemExit('capture kind drifted from contemporary')
-          if checkpoint['date'] != '2026-08-15':
-              raise SystemExit('checkpoint date drifted')
+          if checkpoint['capture_kind'] != 'contemporary' or checkpoint['date'] != '2026-08-15':
+              raise SystemExit('contemporary checkpoint identity drift')
           if checkpoint['delta']['status'] != 'previous_checkpoint_not_materialized':
               raise SystemExit('unexpected predecessor delta promotion; Aug 10 was not verified/materialized at capture start')
           print(f'validated owned_repository_count={owned} canonical_head_rows={len(heads)}')
@@ -107,14 +103,9 @@ jobs:
           non_null_heads = sum(1 for row in heads if row.get('head_sha'))
           null_heads = len(heads) - non_null_heads
 
-          dossiers_path = Path('manifests/company_dossiers.json')
-          company_count = None
-          if dossiers_path.exists():
-              dossiers = json.loads(dossiers_path.read_text(encoding='utf-8'))
-              company_count = len(dossiers.get('required_company_tracks', []))
-
-          topology_path = Path('manifests/company_analysis_topology.json')
-          topology = json.loads(topology_path.read_text(encoding='utf-8')) if topology_path.exists() else {}
+          dossiers = json.loads(Path('manifests/company_dossiers.json').read_text(encoding='utf-8'))
+          company_count = len(dossiers.get('required_company_tracks', []))
+          topology = json.loads(Path('manifests/company_analysis_topology.json').read_text(encoding='utf-8'))
 
           atlas_delta_path = Path('status/estate_evolution/2026-08-15-atlas-live-delta.json')
           atlas_delta = json.loads(atlas_delta_path.read_text(encoding='utf-8')) if atlas_delta_path.exists() else {}
@@ -143,8 +134,8 @@ jobs:
               '',
               f"- Delta status: `{checkpoint['delta']['status']}`",
               f"- Previous checkpoint expected: `{checkpoint['delta']['previous_checkpoint_expected']}`",
-              '- No August 10 delta is fabricated. The verified August 10 reconstruction was not materialized when this capture began.',
-              f"- Required company tracks in the current Helix dossier authority: **{company_count if company_count is not None else 'unresolved'}**",
+              '- No August 10 delta is fabricated. A verified August 10 reconstruction was not materialized when this capture began.',
+              f"- Required company tracks in the current Helix dossier authority: **{company_count}**",
               f"- Authenticated bounded repositories created since the Aug 14 Atlas receipt: **{created_delta if created_delta is not None else 'unresolved'}**. This is not promoted as a full-estate delta.",
               '',
               '## Company-analysis topology',
@@ -177,16 +168,13 @@ jobs:
           print(f'exact_checkpoint_sha256={exact_sha}')
           PY
 
-      - name: Preserve exact snapshot and remove one-time trigger
+      - name: Preserve exact snapshot
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git rm .github/workflows/trajectory-capture-2026-08-15-once.yml
-          git add machine/trajectory/checkpoints/2026-08-15.json \
-                  machine/trajectory/receipts/2026-08-15.sha256 \
-                  docs/trajectory/snapshots/2026-08-15.md
+          git add machine/trajectory/checkpoints/2026-08-15.json machine/trajectory/receipts/2026-08-15.sha256 docs/trajectory/snapshots/2026-08-15.md
           git commit -m 'chore(trajectory): preserve 2026-08-15 exact snapshot'
           git push origin HEAD:trajectory-captures-2026
 
