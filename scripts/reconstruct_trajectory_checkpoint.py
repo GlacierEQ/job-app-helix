@@ -2,11 +2,11 @@
 """Reconstruct a bounded historical GlacierEQ trajectory checkpoint.
 
 This executor deliberately separates proof from inference. GitHub can prove the latest
-commit on the *current* default-branch lineage at a historical cutoff for repositories
+commit on the current default-branch lineage at a historical cutoff for repositories
 that still exist and remain visible to the authenticated owner token. It cannot prove
-that the current repository name, visibility, archive state, or default-branch name were
-the same at that cutoff, and it cannot discover repositories deleted before capture.
-Those gaps are emitted as unresolved evidence, never silently converted into history.
+that current repository metadata was identical at that cutoff, and it cannot discover
+repositories deleted before reconstruction. Those gaps are emitted as unresolved
+rather than silently converted into history.
 """
 
 from __future__ import annotations
@@ -271,16 +271,11 @@ def bounded_inventory(heads: list[dict]) -> dict:
     }
 
 
-def authority_head(heads: list[dict]) -> str:
+def authority_head(heads: list[dict]) -> str | None:
     for row in heads:
         if row["repository"] == AUTHORITY_REPO:
-            sha = row["head_sha"]
-            if not sha:
-                raise SystemExit(
-                    f"no {AUTHORITY_REPO} commit existed at the requested cutoff"
-                )
-            return sha
-    raise SystemExit(f"{AUTHORITY_REPO} missing from authenticated survivor inventory")
+            return row["head_sha"]
+    return None
 
 
 def get_commit_tree_sha(token: str, commit_sha: str) -> str:
@@ -363,6 +358,52 @@ def reconstruct_dimensions(
     return dimensions, dict(sorted(source_hashes.items()))
 
 
+def unresolved_dimensions() -> tuple[dict, dict[str, str]]:
+    dimensions: dict[str, dict] = {}
+    for name, scope in DIMENSION_SCOPES.items():
+        unresolved = {
+            "dimension": name,
+            "status": "authority_not_yet_created_at_cutoff",
+        }
+        dimensions[name] = {
+            "sources": list(scope),
+            "file_count": 0,
+            "tree_sha256": sha256_bytes(canonical_json(unresolved)),
+            "evidence_class": "unresolved_authority_not_yet_created",
+            "authority_commit": None,
+            "authority_tree": None,
+        }
+    return dimensions, {}
+
+
+def dimension_delta(
+    current_dimensions: dict,
+    previous_dimensions: dict,
+) -> tuple[list[str], list[dict]]:
+    changes: list[str] = []
+    transitions: list[dict] = []
+    names = sorted(set(current_dimensions) | set(previous_dimensions))
+    for name in names:
+        current = current_dimensions.get(name, {})
+        previous = previous_dimensions.get(name, {})
+        current_class = current.get("evidence_class")
+        previous_class = previous.get("evidence_class")
+        if current_class != previous_class:
+            transitions.append(
+                {
+                    "dimension": name,
+                    "before": previous_class,
+                    "after": current_class,
+                }
+            )
+            continue
+        if current_class != "exact_authority_git_tree_at_cutoff":
+            continue
+        if current.get("tree_sha256") != previous.get("tree_sha256"):
+            changes.append(name)
+    return changes, transitions
+
+
 def bounded_delta(
     current: dict,
     previous: dict | None,
@@ -378,6 +419,7 @@ def bounded_delta(
             "repositories_removed": [],
             "canonical_head_changes": [],
             "dimension_changes": [],
+            "dimension_evidence_transitions": [],
             "delta_semantics": "not_computed_without_previous_materialization",
         }
 
@@ -399,14 +441,10 @@ def bounded_delta(
         for name in sorted(common)
         if current_heads[name] != previous_heads[name]
     ]
-    current_dimensions = current["state"]["dimensions"]
-    previous_dimensions = previous["state"]["dimensions"]
-    dimension_changes = [
-        name
-        for name in sorted(set(current_dimensions) | set(previous_dimensions))
-        if current_dimensions.get(name, {}).get("tree_sha256")
-        != previous_dimensions.get(name, {}).get("tree_sha256")
-    ]
+    dimension_changes, evidence_transitions = dimension_delta(
+        current["state"]["dimensions"],
+        previous["state"]["dimensions"],
+    )
     return {
         "status": "bounded_historical_reconstruction",
         "previous_checkpoint_expected": previous_expected,
@@ -416,9 +454,11 @@ def bounded_delta(
         "repositories_removed": sorted(set(previous_heads) - set(current_heads)),
         "canonical_head_changes": changes,
         "dimension_changes": dimension_changes,
+        "dimension_evidence_transitions": evidence_transitions,
         "delta_semantics": (
             "repository set/head delta is bounded to repositories still visible to "
-            "the authenticated owner at reconstruction time"
+            "the authenticated owner; dimension changes require exact authority-tree "
+            "evidence on both checkpoints, while evidence-class changes are separate"
         ),
     }
 
@@ -437,8 +477,36 @@ def build_checkpoint(
     heads, not_yet_created = reconstruct_survivor_heads(repositories, cutoff)
     inventory = bounded_inventory(heads)
     authority_commit = authority_head(heads)
-    dimensions, source_hashes = reconstruct_dimensions(token, authority_commit)
+
+    if authority_commit:
+        authority_commit_status = "resolved"
+        authority_tree_evidence_class = "exact_git_tree_at_cutoff"
+        dimensions, source_hashes = reconstruct_dimensions(token, authority_commit)
+    elif AUTHORITY_REPO in not_yet_created:
+        authority_commit_status = "not_yet_created_at_cutoff"
+        authority_tree_evidence_class = "unresolved_authority_not_yet_created"
+        dimensions, source_hashes = unresolved_dimensions()
+    else:
+        raise SystemExit(
+            f"{AUTHORITY_REPO} is neither a cutoff survivor nor a known post-cutoff "
+            "repository; refusing to guess authority provenance"
+        )
+
     previous_expected = schedule["checkpoints"][index - 1]["date"] if index else None
+    limitations = [
+        "repositories deleted or transferred away before reconstruction may be "
+        "absent from authenticated current-owner enumeration",
+        "repository names and default-branch names are current survivor metadata "
+        "and are not asserted to be historical names",
+        "visibility, archive, and fork flags are current survivor metadata",
+        "historical commit SHA is exact only on the surviving current "
+        "default-branch lineage",
+    ]
+    if authority_commit_status == "not_yet_created_at_cutoff":
+        limitations.append(
+            "Helix did not yet exist at this cutoff; Helix-scoped dimensions remain "
+            "explicitly unresolved pending corroboration from predecessor sources"
+        )
 
     checkpoint = {
         "schema": "glaciereq.trajectory-checkpoint.v1",
@@ -467,19 +535,12 @@ def build_checkpoint(
             "cutoff_hst": cutoff_text,
             "cutoff_semantics": "end_of_checkpoint_date_hst_by_default",
             "estate_evidence_class": "bounded_current_survivors",
-            "authority_tree_evidence_class": "exact_git_tree_at_cutoff",
+            "authority_tree_evidence_class": authority_tree_evidence_class,
+            "authority_commit_status": authority_commit_status,
             "current_repository_count_observed": len(repositories),
             "survivors_created_by_cutoff": len(heads),
             "current_survivors_created_after_cutoff": not_yet_created,
-            "limitations": [
-                "repositories deleted or transferred away before reconstruction may "
-                "be absent from authenticated current-owner enumeration",
-                "repository names and default-branch names are current survivor "
-                "metadata and are not asserted to be historical names",
-                "visibility, archive, and fork flags are current survivor metadata",
-                "historical commit SHA is exact only on the surviving current "
-                "default-branch lineage",
-            ],
+            "limitations": limitations,
         },
     }
     checkpoint["delta"] = bounded_delta(
