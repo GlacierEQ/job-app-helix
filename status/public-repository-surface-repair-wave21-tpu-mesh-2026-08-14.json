@@ -1,0 +1,46 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-14T14:36:00-10:00",
+  "wave": 21,
+  "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
+  "source_canonical_head": "2a23cd011367f23891c014c92e75f0b592c29db1",
+  "source_state": "MODELED_TPU_STYLE_MESH_PLANNING_NATIVE_PROOF_REFRESHED",
+  "prior_surface_decision": "ADMIT",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31853699272,
+      "name": "Public Truth Gate",
+      "head_sha": "2a23cd011367f23891c014c92e75f0b592c29db1",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-modeled-mesh-sharding-transfer-compute-overlap-and-token-balancing",
+  "evidence_token": "MODELED_MESH_SCENARIO_NOT_TPU_MEASUREMENT",
+  "repairs": [
+    "replaced hyper-scaling machine metadata with exact modeled mesh planning capabilities",
+    "demoted stale PROMOTED/HYPER_VALIDATED machine posture until the refreshed exact-current-head proof succeeded",
+    "made historical promotion receipt verification time-stable and explicitly non-authoritative for current state",
+    "added fail-closed public and machine truth enforcement",
+    "expanded the exact-source Public Truth Gate from Python 3.11/3.13 to Python 3.11/3.12/3.13",
+    "pinned checkout and setup-python while preserving exact PR-head identity checks and disabling persisted credentials",
+    "bound repaired canonical main to successful exact-head Public Truth Gate run 31853699272",
+    "refreshed the existing Wave 4 admission evidence without incrementing governed admission count"
+  ],
+  "nonclaims": [
+    "no Google or Google DeepMind affiliation endorsement employment or proprietary access",
+    "no Google Cloud TPU deployment or hardware measurement",
+    "no measured ICI latency bandwidth or TPU generation performance",
+    "no compiled custom TPU kernel execution",
+    "no Verilog synthesis timing closure or silicon behavior proof",
+    "no Mojo performance proof",
+    "no live MCP APEX Mastermind or provider mesh integration",
+    "no production accelerator authority reliability or performance guarantee"
+  ],
+  "surface_decision": "ADMIT",
+  "refreshes_existing_admission": true,
+  "governed_subset_delta": {
+    "ADMIT": 0,
+    "REPAIR_REQUIRED": 0
+  }
+}

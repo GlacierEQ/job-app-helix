@@ -1,0 +1,44 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-14T14:36:00-10:00",
+  "wave": 21,
+  "repository": "GlacierEQ/apple-ane-kv-quantizer",
+  "source_canonical_head": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
+  "source_state": "MODELED_APPLE_SILICON_KV_QUANTIZATION_NATIVE_PROOF_REFRESHED",
+  "prior_surface_decision": "ADMIT",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31853557343,
+      "name": "Public Truth Gate",
+      "head_sha": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-modeled-kv-storage-reduction-and-transfer-time-estimation",
+  "evidence_token": "MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT",
+  "repairs": [
+    "replaced hyper-scaling machine metadata with exact modeled KV storage and transfer-time capabilities",
+    "demoted stale PROMOTED/HYPER_VALIDATED machine posture until the refreshed exact-current-head proof succeeded",
+    "made historical promotion receipt verification time-stable and explicitly non-authoritative for current state",
+    "added fail-closed public and machine truth enforcement",
+    "expanded the Public Truth Gate from Python 3.11/3.13 to Python 3.11/3.12/3.13",
+    "pinned checkout and setup-python and disabled persisted checkout credentials",
+    "bound repaired canonical main to successful exact-head Public Truth Gate run 31853557343",
+    "refreshed the existing Wave 3 admission evidence without incrementing governed admission count"
+  ],
+  "nonclaims": [
+    "no Apple affiliation endorsement employment or proprietary access",
+    "no Apple Neural Engine kernel execution or hardware measurement",
+    "no live Metal runtime execution established by hosted Linux CI",
+    "no measured end-to-end performance energy accuracy or perplexity result",
+    "no live MCP APEX Mastermind or provider mesh integration",
+    "no production inference authority reliability or performance guarantee"
+  ],
+  "surface_decision": "ADMIT",
+  "refreshes_existing_admission": true,
+  "governed_subset_delta": {
+    "ADMIT": 0,
+    "REPAIR_REQUIRED": 0
+  }
+}

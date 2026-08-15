@@ -1,0 +1,124 @@
+{
+  "schema": "glaciereq.public-repository-surface-reconciliation.v1",
+  "generated_at": "2026-08-14T14:36:00-10:00",
+  "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave20_2026-08-14.json",
+  "truth_boundary": {
+    "predecessor_reconciliations_are_not_rewritten": true,
+    "already_admitted_surfaces_may_refresh_exact_head_proof_without_tally_change": true,
+    "admit_refresh_requires_exact_current_git_head": true,
+    "admit_refresh_requires_successful_current_head_native_proof": true,
+    "modeled_accelerator_arithmetic_does_not_establish_hardware_measurement": true,
+    "apple_named_surface_does_not_establish_apple_affiliation_or_ane_execution": true,
+    "tpu_named_surface_does_not_establish_google_or_deepmind_affiliation_or_tpu_execution": true,
+    "storage_or_overlap_reduction_arithmetic_does_not_establish_end_to_end_performance": true,
+    "reference_metal_mojo_or_verilog_artifacts_do_not_establish_runtime_or_silicon_proof": true,
+    "local_repository_files_do_not_establish_live_mcp_apex_mastermind_or_provider_mesh_integration": true
+  },
+  "items": [
+    {
+      "repository": "GlacierEQ/apple-ane-kv-quantizer",
+      "prior_decision": "ADMIT",
+      "decision": "ADMIT",
+      "excellence_state": "MODELED_APPLE_SILICON_KV_QUANTIZATION_NATIVE_PROOF_REFRESHED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
+        "evidence_token": "MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT",
+        "verified_capability": "deterministic-modeled-kv-storage-reduction-and-transfer-time-estimation",
+        "verified_capabilities": [
+          "deterministic-kv-storage-size-modeling",
+          "modeled-4bit-and-8bit-storage-reduction",
+          "explicit-bandwidth-transfer-time-estimation",
+          "validated-modeled-quantization-inputs",
+          "public-and-machine-truth-boundary-enforcement"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31853557343,
+            "name": "Public Truth Gate",
+            "head_sha": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python_3_11_compile_tests_and_truth": "PASS",
+          "python_3_12_compile_tests_and_truth": "PASS",
+          "python_3_13_compile_tests_and_truth": "PASS",
+          "modeled_evidence_token": "PASS",
+          "apple_non_affiliation_boundary": "PASS",
+          "hardware_measurement_false": "PASS",
+          "ane_kernel_execution_false": "PASS",
+          "metal_runtime_execution_proven_false": "PASS",
+          "model_accuracy_preservation_proven_false": "PASS",
+          "operational_authority_false": "PASS",
+          "checkout_persist_credentials": false
+        },
+        "source_contract": {
+          "principal_state": "FUNCTIONAL_CANDIDATE",
+          "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_VERIFIED",
+          "remaining_exact_head_native_proof_gate_satisfied": true,
+          "refreshes_existing_admission": true
+        },
+        "proof_scope": "Exact-current-head canonical proof refresh verifies the local Python quantization-study surface on Python 3.11, 3.12, and 3.13, including finite/positive modeled inputs, FP16 KV storage arithmetic, modeled 4-bit and 8-bit storage representation, arithmetic storage-reduction ratios, transfer-time estimation under an explicit configured bandwidth, the MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT evidence token, and public/machine truth boundaries. This refresh supersedes the older admitted proof head without changing admission count. It does not establish Apple affiliation, endorsement, employment, proprietary access, Apple Neural Engine kernel execution, Metal runtime execution, measured device bandwidth/latency/throughput/energy, end-to-end model speedup, preserved accuracy or perplexity, live MCP/APEX/Mastermind/provider integration, or production inference authority.",
+        "metadata_readback": {
+          "assessment": "compatible with the already-admitted bounded independent modeled Apple-Silicon-oriented KV quantization study"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, native proof failure, Apple affiliation or ANE/Metal execution claims without exact hardware proof, measured-performance or accuracy claims without evidence, live provider-mesh claims, or contradictory public metadata."
+    },
+    {
+      "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
+      "prior_decision": "ADMIT",
+      "decision": "ADMIT",
+      "excellence_state": "MODELED_TPU_STYLE_MESH_PLANNING_NATIVE_PROOF_REFRESHED",
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "2a23cd011367f23891c014c92e75f0b592c29db1",
+        "evidence_token": "MODELED_MESH_SCENARIO_NOT_TPU_MEASUREMENT",
+        "verified_capability": "deterministic-modeled-mesh-sharding-transfer-compute-overlap-and-token-balancing",
+        "verified_capabilities": [
+          "deterministic-mesh-activation-sharding-model",
+          "explicit-link-bandwidth-transfer-time-estimation",
+          "explicit-flop-rate-compute-time-estimation",
+          "modeled-communication-compute-overlap",
+          "deterministic-multimodal-token-balance-suggestion",
+          "public-and-machine-truth-boundary-enforcement"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31853699272,
+            "name": "Public Truth Gate",
+            "head_sha": "2a23cd011367f23891c014c92e75f0b592c29db1",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python_3_11_exact_source_compile_tests_and_truth": "PASS",
+          "python_3_12_exact_source_compile_tests_and_truth": "PASS",
+          "python_3_13_exact_source_compile_tests_and_truth": "PASS",
+          "modeled_mesh_evidence_token": "PASS",
+          "google_deepmind_non_affiliation_boundary": "PASS",
+          "tpu_hardware_measurement_false": "PASS",
+          "tpu_kernel_execution_false": "PASS",
+          "verilog_synthesis_or_silicon_proven_false": "PASS",
+          "mojo_performance_proven_false": "PASS",
+          "operational_authority_false": "PASS",
+          "checkout_persist_credentials": false
+        },
+        "source_contract": {
+          "principal_state": "FUNCTIONAL_CANDIDATE",
+          "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_VERIFIED",
+          "remaining_exact_head_native_proof_gate_satisfied": true,
+          "refreshes_existing_admission": true
+        },
+        "proof_scope": "Exact-current-head canonical proof refresh verifies exact source identity plus the local Python TPU-style mesh scenario model on Python 3.11, 3.12, and 3.13. The proof covers validated mesh configuration, average activation sharding, transfer-time estimation under explicit link bandwidth, compute-time estimation under explicit FLOP-rate assumptions, modeled communication/compute overlap, ring-attention scenario arithmetic, deterministic multimodal token-balance suggestions, and public/machine truth boundaries. This refresh supersedes the older admitted proof head without changing admission count. It does not establish Google or Google DeepMind affiliation, endorsement, employment, proprietary access, Google Cloud TPU deployment, TPU v4/v5p/v6e performance, measured ICI latency/bandwidth, compiled custom TPU kernels, Verilog synthesis/timing/silicon behavior, Mojo performance, live MCP/APEX/Mastermind/provider integration, or production accelerator control/reliability/performance.",
+        "metadata_readback": {
+          "assessment": "compatible with the already-admitted bounded independent TPU-style mesh planning and communication-arithmetic study"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, native proof failure, Google/DeepMind affiliation or TPU execution claims without proof, measured ICI or hardware-performance claims without evidence, RTL/Mojo runtime claims without native receipts, live provider-mesh claims, or contradictory public metadata."
+    }
+  ]
+}
