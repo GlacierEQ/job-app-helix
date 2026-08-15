@@ -6,7 +6,10 @@ from pathlib import Path
 
 import pytest
 
-from job_app_helix.repository_surface import RepositorySurfaceError, compile_governed_surface_report
+from job_app_helix.repository_surface import (
+    RepositorySurfaceError,
+    compile_governed_surface_report,
+)
 from job_app_helix.surface_reconciliation import apply_surface_reconciliation
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,13 +35,18 @@ LAYER_NAMES = (
     "public_repository_surface_reconciliation_wave18_2026-08-13.json",
 )
 LAYERS = tuple(ROOT / "manifests" / name for name in LAYER_NAMES)
-WAVE19 = ROOT / "manifests/public_repository_surface_reconciliation_wave19_2026-08-14.json"
+WAVE19 = ROOT / (
+    "manifests/public_repository_surface_reconciliation_wave19_2026-08-14.json"
+)
 RECEIPT = ROOT / "status/public-repository-surface-repair-wave19-2026-08-14.json"
 TARGET = "GlacierEQ/Pro-comet-agent"
 HEAD = "27879babe8dfd3242f7579b3604c809686e84940"
 RUN_ID = 31851939532
 TOKEN = "BOUNDED_CONNECTOR_RUNTIME_NOT_LIVE_SAAS_OR_BROWSER_AUTHORITY"
-CAPABILITY = "deterministic-explicit-connector-adapter-runtime-with-typescript-browser-service-build-proof"
+CAPABILITY = (
+    "deterministic-explicit-connector-adapter-runtime-with-"
+    "typescript-browser-service-build-proof"
+)
 
 
 def load(path: Path) -> dict:
@@ -46,7 +54,9 @@ def load(path: Path) -> dict:
 
 
 def report_through_wave18() -> dict:
-    report = compile_governed_surface_report(load(OBSERVATIONS), load(DECISIONS), expected_public_count=75)
+    report = compile_governed_surface_report(
+        load(OBSERVATIONS), load(DECISIONS), expected_public_count=75
+    )
     for layer in LAYERS:
         report = apply_surface_reconciliation(report, load(layer))
     return report
@@ -89,26 +99,32 @@ def test_wave19_admits_only_exact_head_pro_comet_surface() -> None:
 
 def test_wave19_admission_is_exact_head_scope_and_receipt_bound() -> None:
     report = apply_surface_reconciliation(report_through_wave18(), load(WAVE19))
-    record = next(item for item in report["repositories"] if item["repository"] == TARGET)
+    record = next(
+        item for item in report["repositories"] if item["repository"] == TARGET
+    )
     evidence = record["decision_evidence"]
     assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
     assert evidence["canonical_head"] == HEAD
     assert evidence["evidence_token"] == TOKEN
     assert evidence["verified_capability"] == CAPABILITY
-    assert evidence["proof_receipts"] == [{
-        "kind": "workflow_run",
-        "id": RUN_ID,
-        "name": "CI",
-        "head_sha": HEAD,
-        "conclusion": "success",
-    }]
-    assert evidence["source_contract"]["remaining_exact_head_native_proof_gate_satisfied"] is True
-    assert evidence["native_receipts"]["python_3_11_compile_behavior_and_truth"] == "PASS"
-    assert evidence["native_receipts"]["python_3_12_compile_behavior_and_truth"] == "PASS"
-    assert evidence["native_receipts"]["python_3_13_compile_behavior_and_truth"] == "PASS"
-    assert evidence["native_receipts"]["typescript_server_build"] == "PASS"
-    assert evidence["native_receipts"]["public_truth_boundary"] == "PASS"
-    assert evidence["native_receipts"]["operational_authority_false"] == "PASS"
+    assert evidence["proof_receipts"] == [
+        {
+            "kind": "workflow_run",
+            "id": RUN_ID,
+            "name": "CI",
+            "head_sha": HEAD,
+            "conclusion": "success",
+        }
+    ]
+    source_contract = evidence["source_contract"]
+    assert source_contract["remaining_exact_head_native_proof_gate_satisfied"] is True
+    native = evidence["native_receipts"]
+    assert native["python_3_11_compile_behavior_and_truth"] == "PASS"
+    assert native["python_3_12_compile_behavior_and_truth"] == "PASS"
+    assert native["python_3_13_compile_behavior_and_truth"] == "PASS"
+    assert native["typescript_server_build"] == "PASS"
+    assert native["public_truth_boundary"] == "PASS"
+    assert native["operational_authority_false"] == "PASS"
 
 
 def test_wave19_receipt_matches_reconciliation_authority() -> None:
@@ -117,10 +133,17 @@ def test_wave19_receipt_matches_reconciliation_authority() -> None:
     assert receipt["repository"] == wave["repository"] == TARGET
     assert receipt["source_canonical_head"] == wave["evidence"]["canonical_head"] == HEAD
     assert receipt["evidence_token"] == wave["evidence"]["evidence_token"] == TOKEN
-    assert receipt["verified_capability"] == wave["evidence"]["verified_capability"] == CAPABILITY
+    assert (
+        receipt["verified_capability"]
+        == wave["evidence"]["verified_capability"]
+        == CAPABILITY
+    )
     assert receipt["proof_receipts"][0]["id"] == RUN_ID
     assert receipt["surface_decision"] == "ADMIT"
-    assert receipt["governed_subset_delta"] == {"ADMIT": 1, "REPAIR_REQUIRED": -1}
+    assert receipt["governed_subset_delta"] == {
+        "ADMIT": 1,
+        "REPAIR_REQUIRED": -1,
+    }
 
 
 def test_wave19_fails_closed_on_proof_head_drift() -> None:
