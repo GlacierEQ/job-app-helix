@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEDULE_PATH = ROOT / "machine" / "trajectory" / "2026_schedule.json"
 HST = ZoneInfo("Pacific/Honolulu")
 GRAPHQL_URL = "https://api.github.com/graphql"
+CANONICAL_OWNER = "GlacierEQ"
 
 DIMENSION_SCOPES: dict[str, tuple[str, ...]] = {
     "genealogy": ("manifests", "schemas/estate"),
@@ -273,7 +274,6 @@ def compute_delta(
 def build_checkpoint(
     date_text: str,
     token: str,
-    owner: str,
     previous: dict | None,
 ) -> dict:
     schedule = read_json(SCHEDULE_PATH)
@@ -291,7 +291,7 @@ def build_checkpoint(
             "current-state capture cannot be backdated"
         )
 
-    repositories = fetch_owned_repositories(token, owner)
+    repositories = fetch_owned_repositories(token, CANONICAL_OWNER)
     inventory, heads = repository_state(repositories)
     source_hashes: dict[str, str] = {}
     dimensions = {
@@ -314,7 +314,7 @@ def build_checkpoint(
             "repository": schedule["authority"]["repository"],
             "schedule_path": schedule["authority"]["path"],
             "schedule_sha256": schedule_sha,
-            "github_owner": owner,
+            "github_owner": CANONICAL_OWNER,
         },
         "state": {
             "repository_inventory": inventory,
@@ -342,7 +342,6 @@ def main() -> int:
     )
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--previous", type=Path)
-    parser.add_argument("--owner", default="GlacierEQ")
     parser.add_argument("--token-env", default="GLACIEREQ_ESTATE_TOKEN")
     args = parser.parse_args()
 
@@ -356,7 +355,7 @@ def main() -> int:
         if args.previous and args.previous.exists()
         else None
     )
-    checkpoint = build_checkpoint(args.date, token, args.owner, previous)
+    checkpoint = build_checkpoint(args.date, token, previous)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(checkpoint, indent=2, sort_keys=True) + "\n"
     args.output.write_text(payload, encoding="utf-8")
