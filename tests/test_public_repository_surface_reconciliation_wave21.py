@@ -42,6 +42,7 @@ WAVE21 = ROOT / (
 )
 TARGETS = {
     "GlacierEQ/apple-ane-kv-quantizer": {
+        "prior_head": "32f69cfa064cbb833b663bc43ace04507f8570c5",
         "head": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
         "run": 31853557343,
         "token": "MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT",
@@ -54,6 +55,7 @@ TARGETS = {
         ),
     },
     "GlacierEQ/deepmind-tpu-mesh-optimizer": {
+        "prior_head": "66864aed96061dc681555973452c0abdaeadc405",
         "head": "2a23cd011367f23891c014c92e75f0b592c29db1",
         "run": 31853699272,
         "token": "MODELED_MESH_SCENARIO_NOT_TPU_MEASUREMENT",
@@ -65,6 +67,12 @@ TARGETS = {
             "status/public-repository-surface-repair-wave21-tpu-mesh-2026-08-14.json"
         ),
     },
+}
+EXPECTED_COUNTS = {
+    "ADMIT": 29,
+    "QUARANTINED": 3,
+    "REFERENCE": 1,
+    "REPAIR_REQUIRED": 25,
 }
 
 
@@ -91,40 +99,40 @@ def subset_counts(report: dict) -> dict[str, int]:
     return counts
 
 
-def test_wave21_admits_only_two_exact_head_modeled_surfaces() -> None:
+def test_wave21_refreshes_only_two_existing_admissions_without_count_delta() -> None:
     before = report_through_wave20()
     after = apply_surface_reconciliation(before, load(WAVE21))
-    assert subset_counts(before) == {
-        "ADMIT": 29,
-        "QUARANTINED": 3,
-        "REFERENCE": 1,
-        "REPAIR_REQUIRED": 25,
-    }
-    assert subset_counts(after) == {
-        "ADMIT": 31,
-        "QUARANTINED": 3,
-        "REFERENCE": 1,
-        "REPAIR_REQUIRED": 23,
-    }
+    assert subset_counts(before) == EXPECTED_COUNTS
+    assert subset_counts(after) == EXPECTED_COUNTS
+
     before_by_repo = {item["repository"]: item for item in before["repositories"]}
     after_by_repo = {item["repository"]: item for item in after["repositories"]}
     assert set(before_by_repo) == set(after_by_repo)
-    for repository in TARGETS:
-        assert before_by_repo[repository]["admission"] == "REPAIR_REQUIRED"
+
+    for repository, expected in TARGETS.items():
+        assert before_by_repo[repository]["admission"] == "ADMIT"
+        assert before_by_repo[repository]["decision_evidence"]["canonical_head"] == expected[
+            "prior_head"
+        ]
         assert after_by_repo[repository]["admission"] == "ADMIT"
         assert after_by_repo[repository]["repair_priority"] is None
+        assert after_by_repo[repository]["decision_evidence"]["canonical_head"] == expected[
+            "head"
+        ]
+
     for repository in before_by_repo:
         if repository not in TARGETS:
             assert before_by_repo[repository] == after_by_repo[repository]
 
 
-def test_wave21_admissions_are_exact_head_scope_and_receipt_bound() -> None:
+def test_wave21_refreshes_are_exact_head_scope_and_receipt_bound() -> None:
     report = apply_surface_reconciliation(report_through_wave20(), load(WAVE21))
     by_repo = {item["repository"]: item for item in report["repositories"]}
     for repository, expected in TARGETS.items():
         record = by_repo[repository]
         evidence = record["decision_evidence"]
-        assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
+        assert record["prior_reconciled_admission"] == "ADMIT"
+        assert record["admission"] == "ADMIT"
         assert evidence["canonical_head"] == expected["head"]
         assert evidence["evidence_token"] == expected["token"]
         assert evidence["verified_capability"] == expected["capability"]
@@ -139,9 +147,10 @@ def test_wave21_admissions_are_exact_head_scope_and_receipt_bound() -> None:
         ]
         source_contract = evidence["source_contract"]
         assert source_contract["remaining_exact_head_native_proof_gate_satisfied"]
+        assert source_contract["refreshes_existing_admission"] is True
 
 
-def test_wave21_receipts_match_reconciliation_authority() -> None:
+def test_wave21_receipts_record_zero_delta_refresh() -> None:
     wave_by_repo = {
         item["repository"]: item for item in load(WAVE21)["items"]
     }
@@ -149,7 +158,10 @@ def test_wave21_receipts_match_reconciliation_authority() -> None:
     for repository, expected in TARGETS.items():
         wave = wave_by_repo[repository]
         receipt = load(ROOT / expected["receipt"])
+        assert wave["prior_decision"] == "ADMIT"
+        assert wave["decision"] == "ADMIT"
         assert receipt["repository"] == repository
+        assert receipt["prior_surface_decision"] == "ADMIT"
         assert receipt["source_canonical_head"] == expected["head"]
         assert wave["evidence"]["canonical_head"] == expected["head"]
         assert receipt["evidence_token"] == expected["token"]
@@ -158,9 +170,10 @@ def test_wave21_receipts_match_reconciliation_authority() -> None:
         assert wave["evidence"]["verified_capability"] == expected["capability"]
         assert receipt["proof_receipts"] == wave["evidence"]["proof_receipts"]
         assert receipt["surface_decision"] == "ADMIT"
+        assert receipt["refreshes_existing_admission"] is True
         assert receipt["governed_subset_delta"] == {
-            "ADMIT": 1,
-            "REPAIR_REQUIRED": -1,
+            "ADMIT": 0,
+            "REPAIR_REQUIRED": 0,
         }
 
 
@@ -175,7 +188,8 @@ def test_wave21_fails_closed_on_each_proof_head_drift() -> None:
             apply_surface_reconciliation(report_through_wave20(), mismatch)
 
 
-def test_wave21_reapplication_fails_closed_on_prior_decision_drift() -> None:
-    once = apply_surface_reconciliation(report_through_wave20(), load(WAVE21))
+def test_wave21_rejects_false_repair_predecessor() -> None:
+    mismatch = deepcopy(load(WAVE21))
+    mismatch["items"][0]["prior_decision"] = "REPAIR_REQUIRED"
     with pytest.raises(RepositorySurfaceError, match="prior decision drift"):
-        apply_surface_reconciliation(once, load(WAVE21))
+        apply_surface_reconciliation(report_through_wave20(), mismatch)
