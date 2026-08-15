@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.public-repository-surface-reconciliation.v1",
-  "generated_at": "2026-08-14T13:56:00-10:00",
+  "generated_at": "2026-08-14T14:02:00-10:00",
   "predecessor_decisions": "manifests/public_repository_surface_reconciliation_wave18_2026-08-13.json",
   "truth_boundary": {
     "predecessor_reconciliations_are_not_rewritten": true,
@@ -9,7 +9,10 @@
     "generic_connector_orchestration_does_not_establish_live_saas_connectivity": true,
     "typescript_browser_service_build_does_not_establish_live_browser_execution": true,
     "prisma_schema_does_not_establish_migrated_or_production_database": true,
-    "local_repository_files_do_not_establish_live_mcp_apex_mastermind_or_provider_mesh_integration": true
+    "local_repository_files_do_not_establish_live_mcp_apex_mastermind_or_provider_mesh_integration": true,
+    "swarm_execution_does_not_establish_unbounded_external_repository_authority": true,
+    "crystallization_runtime_does_not_establish_automatic_estate_completion": true,
+    "container_smoke_does_not_establish_universal_production_deployment": true
   },
   "items": [
     {
@@ -63,6 +66,73 @@
         }
       },
       "next_gate": "Reopen repair on canonical-head drift, native proof failure, restoration of universal-live-connector or live MCP/APEX/Mastermind claims, browser/provider execution claims without exact proof, production database or deployment claims without evidence, repository identity/license drift, or production performance/reliability/security claims without proof."
+    },
+    {
+      "repository": "GlacierEQ/GlacierEQ_Swarm",
+      "prior_decision": "REPAIR_REQUIRED",
+      "decision": "ADMIT",
+      "excellence_state": "DURABLE_SWARM_AND_CRYSTALLIZATION_NATIVE_PROOF_VERIFIED",
+      "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
+      "evidence": {
+        "canonical_branch": "main",
+        "canonical_head": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+        "evidence_token": "DURABLE_LOCAL_SWARM_RUNTIME_NOT_AUTOMATIC_ESTATE_AUTHORITY",
+        "verified_capability": "deterministic-durable-capability-aware-swarm-and-crystallization-control-plane",
+        "verified_capabilities": [
+          "deterministic-capability-aware-task-orchestration",
+          "bounded-retry-and-worker-failure-recovery",
+          "integrity-chained-telemetry-and-content-addressed-snapshot-recovery",
+          "purpose-first-crystallization-execution-and-terminal-status-enforcement",
+          "durable-restart-failover-persistence-and-authenticated-api",
+          "containerized-service-execution-with-restart-persistence"
+        ],
+        "proof_receipts": [
+          {
+            "kind": "workflow_run",
+            "id": 31852306040,
+            "name": "CI",
+            "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31852305754,
+            "name": "Swarm Runtime",
+            "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+            "conclusion": "success"
+          },
+          {
+            "kind": "workflow_run",
+            "id": 31852305765,
+            "name": "Swarm Container",
+            "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+            "conclusion": "success"
+          }
+        ],
+        "native_receipts": {
+          "python_3_11_crystallization_contract_and_truth": "PASS",
+          "python_3_12_crystallization_contract_and_truth": "PASS",
+          "python_3_13_crystallization_contract_and_truth": "PASS",
+          "repository_owned_verification": "PASS",
+          "trusted_caller_boundary": "PASS",
+          "runtime_restart_failover_persistence_authenticated_api": "PASS",
+          "container_image_build_real_task_restart_persistence": "PASS",
+          "automatic_estate_completion_authority": false,
+          "production_operational_authority": false,
+          "checkout_persist_credentials": false
+        },
+        "source_contract": {
+          "principal_state": "FUNCTIONAL_CANDIDATE",
+          "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_REQUIRED",
+          "remaining_exact_head_native_proof_gate_satisfied": true
+        },
+        "proof_scope": "Exact-current-head canonical proof verifies deterministic capability-aware task orchestration, bounded retry and worker-failure recovery, repository-owned verification under a trusted-caller boundary, the crystallization terminal-status law on Python 3.11, 3.12, and 3.13, and the public-truth boundary. A separate exact-head runtime workflow proves restart, failover, persistence, and an authenticated API. A separate exact-head container workflow builds the service image, starts the service, executes a real task, restarts against the same durable state, and validates smoke receipts. This proof does not grant automatic authority to declare the estate complete, unbounded authority over external repositories, credentials or permissions not supplied at runtime, a guarantee that every repository can be completed by worker prompts, or a universal production-deployment, scale, reliability, latency, throughput, or security guarantee.",
+        "metadata_readback": {
+          "description": "Local Swarm OS: MICROWAVE flippers, token-saver, voice Stage A/C queue, make-heavy, toolbelt. Code only — no legal/voice audio.",
+          "assessment": "metadata remains broader than the admitted proof but is compatible with the local orchestration/control-plane role and explicitly excludes legal or voice-audio content"
+        }
+      },
+      "next_gate": "Reopen repair on canonical-head drift, any CI/runtime/container proof failure, restoration of hyper-scaling or automatic-estate-completion claims, external repository authority claims without supplied runtime credentials and evidence, deployment claims broader than the proven container smoke, or contradictory public metadata."
     }
   ]
 }
