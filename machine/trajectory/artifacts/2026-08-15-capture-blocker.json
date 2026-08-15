@@ -1,0 +1,66 @@
+{
+  "schema": "glaciereq.trajectory-capture-blocker.v1",
+  "checkpoint_target": "2026-08-15",
+  "timezone": "Pacific/Honolulu",
+  "phase": "recovery",
+  "capture_kind": "contemporary",
+  "status": "fail_closed_private_estate_authority_unavailable_to_actions",
+  "authority": {
+    "repository": "GlacierEQ/job-app-helix",
+    "branch": "main",
+    "main_head_sha": "7f18f4e2df0a5b03891f94f5406bba873c6cb8be",
+    "preservation_branch": "trajectory-captures-2026",
+    "attempt_commit_sha": "0f53f8c365757a596f471fc9105596c529c99234",
+    "workflow_run_id": 31903247417
+  },
+  "authenticated_rest_evidence": {
+    "owned_repository_count": 1181,
+    "count_proof": {
+      "page_1181_per_page_1": "nonempty",
+      "page_1182_per_page_1": "empty"
+    },
+    "public_repository_count": 671,
+    "private_repository_count_inferred": 510,
+    "archived_count": 28,
+    "active_count": 1153,
+    "fork_count": 511,
+    "native_count": 670,
+    "private_repository_visibility_confirmed": true
+  },
+  "canonical_capture_requirements_not_satisfied": {
+    "full_default_branch_head_vector": "not_captured",
+    "dimension_tree_hashes": "not_captured",
+    "checkpoint_json": "not_written",
+    "checkpoint_sha256_receipt": "not_generated",
+    "reason": "Repository Actions secret GLACIEREQ_ESTATE_TOKEN is not configured. Canonical workflow and capture script intentionally refuse partial public-only capture."
+  },
+  "previous_checkpoint": {
+    "expected": "2026-08-10",
+    "verified_materialized_checkpoint_found": false,
+    "delta_status_if_capture_succeeds": "previous_checkpoint_not_materialized",
+    "fabricated_delta": false
+  },
+  "evidence_endpoints": [
+    "https://api.github.com/user",
+    "https://api.github.com/user/repos?affiliation=owner&per_page=1&page=1181&sort=full_name&direction=asc",
+    "https://api.github.com/user/repos?affiliation=owner&per_page=1&page=1182&sort=full_name&direction=asc",
+    "https://api.github.com/search/repositories?q=user%3AGlacierEQ+archived%3Atrue&per_page=1",
+    "https://api.github.com/search/repositories?q=user%3AGlacierEQ+fork%3Aonly&per_page=1",
+    "https://api.github.com/repos/GlacierEQ/job-app-helix/branches/main",
+    "https://api.github.com/repos/GlacierEQ/job-app-helix/actions/runs/31903247417",
+    "https://api.github.com/repos/GlacierEQ/job-app-helix/actions/runs/31903247417/jobs"
+  ],
+  "remediation": {
+    "required": "Configure repository Actions secret GLACIEREQ_ESTATE_TOKEN with private-estate read authority, then run the canonical trajectory-lattice workflow for checkpoint_date=2026-08-15 while still on the HST checkpoint date.",
+    "do_not": [
+      "substitute public-only inventory",
+      "invent default-branch heads",
+      "materialize a schema-conforming checkpoint from incomplete evidence",
+      "fabricate an August 10 delta"
+    ]
+  },
+  "receipt": {
+    "hash_algorithm": "sha256",
+    "canonical_body_sha256": "294a56887e135016775a38b2a85c0478a585a610014add3358c90da30ee6796d"
+  }
+}
