@@ -16,6 +16,7 @@ import base64
 import hashlib
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.parse
@@ -31,6 +32,8 @@ GRAPHQL_URL = "https://api.github.com/graphql"
 API_ROOT = "https://api.github.com"
 CANONICAL_OWNER = "GlacierEQ"
 AUTHORITY_REPO = "GlacierEQ/job-app-helix"
+CHECKPOINT_SCHEMA = "glaciereq.trajectory-checkpoint.v1"
+HST_CLOCK_RE = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$")
 
 DIMENSION_SCOPES: dict[str, tuple[str, ...]] = {
     "genealogy": ("manifests", "schemas/estate"),
@@ -135,6 +138,11 @@ def scheduled_historical_entry(schedule: dict, date_text: str) -> tuple[int, dic
 
 
 def cutoff_iso(date_text: str, clock_text: str) -> str:
+    if not HST_CLOCK_RE.fullmatch(clock_text):
+        raise SystemExit(
+            "cutoff time must be exact HST wall time HH:MM:SS with no offset "
+            "or fractional seconds"
+        )
     clock = time.fromisoformat(clock_text)
     local = datetime.combine(
         datetime.fromisoformat(date_text).date(),
@@ -404,11 +412,49 @@ def dimension_delta(
     return changes, transitions
 
 
+def checkpoint_receipt_payload(checkpoint: dict) -> dict:
+    payload = dict(checkpoint)
+    payload.pop("receipt", None)
+    return payload
+
+
+def validate_previous_checkpoint(
+    previous: dict | None,
+    previous_expected: str | None,
+) -> None:
+    if previous is None:
+        return
+    if previous_expected is None:
+        raise SystemExit("first checkpoint cannot accept a previous checkpoint")
+    if previous.get("schema") != CHECKPOINT_SCHEMA:
+        raise SystemExit("previous checkpoint schema mismatch")
+    if previous.get("date") != previous_expected:
+        raise SystemExit(
+            "previous checkpoint date mismatch: "
+            f"expected={previous_expected} actual={previous.get('date')}"
+        )
+    receipt = previous.get("receipt")
+    if not isinstance(receipt, dict) or receipt.get("hash_algorithm") != "sha256":
+        raise SystemExit("previous checkpoint receipt missing or unsupported")
+    claimed = receipt.get("checkpoint_sha256")
+    calculated = sha256_bytes(canonical_json(checkpoint_receipt_payload(previous)))
+    if claimed != calculated:
+        raise SystemExit("previous checkpoint receipt mismatch")
+    state = previous.get("state")
+    if not isinstance(state, dict):
+        raise SystemExit("previous checkpoint state missing")
+    if not isinstance(state.get("canonical_heads"), list):
+        raise SystemExit("previous checkpoint canonical_heads missing")
+    if not isinstance(state.get("dimensions"), dict):
+        raise SystemExit("previous checkpoint dimensions missing")
+
+
 def bounded_delta(
     current: dict,
     previous: dict | None,
     previous_expected: str | None,
 ) -> dict:
+    validate_previous_checkpoint(previous, previous_expected)
     if previous is None:
         return {
             "status": "previous_checkpoint_not_materialized",
@@ -493,6 +539,7 @@ def build_checkpoint(
         )
 
     previous_expected = schedule["checkpoints"][index - 1]["date"] if index else None
+    validate_previous_checkpoint(previous, previous_expected)
     limitations = [
         "repositories deleted or transferred away before reconstruction may be "
         "absent from authenticated current-owner enumeration",
@@ -509,7 +556,7 @@ def build_checkpoint(
         )
 
     checkpoint = {
-        "schema": "glaciereq.trajectory-checkpoint.v1",
+        "schema": CHECKPOINT_SCHEMA,
         "date": date_text,
         "timezone": schedule["timezone"],
         "captured_at_hst": datetime.now(HST).isoformat(timespec="seconds"),
@@ -522,6 +569,7 @@ def build_checkpoint(
             "schedule_sha256": hashlib.sha256(
                 SCHEDULE_PATH.read_bytes()
             ).hexdigest(),
+            "schedule_semantics": "current_reconstruction_contract_not_historical_state",
             "github_owner": CANONICAL_OWNER,
         },
         "state": {
@@ -569,11 +617,9 @@ def main() -> int:
         raise SystemExit(
             f"required private-estate authority token missing: {args.token_env}"
         )
-    previous = (
-        read_json(args.previous)
-        if args.previous and args.previous.exists()
-        else None
-    )
+    if args.previous and not args.previous.exists():
+        raise SystemExit(f"previous checkpoint does not exist: {args.previous}")
+    previous = read_json(args.previous) if args.previous else None
     checkpoint = build_checkpoint(
         args.date,
         token,
