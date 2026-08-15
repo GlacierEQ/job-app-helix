@@ -1,0 +1,49 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-14T14:17:00-10:00",
+  "wave": 20,
+  "repository": "GlacierEQ/notion-workflow-intelligence",
+  "source_canonical_head": "78d69a564c1f50cdcdc04668dc1ed41adbe5cec7",
+  "source_state": "LOCAL_WORKFLOW_HEURISTICS_AND_GUARDED_EXECUTION_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31852720612,
+      "name": "CI",
+      "head_sha": "78d69a564c1f50cdcdc04668dc1ed41adbe5cec7",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-local-intent-heuristics-workflow-planning-and-guarded-stage-execution",
+  "evidence_token": "LOCAL_WORKFLOW_HEURISTICS_NOT_NOTION_API_OR_MODEL_AUTHORITY",
+  "repairs": [
+    "removed unresolved merge-conflict markers from the public README",
+    "replaced live Notion API, MCP/APEX/Mastermind, and LLM claims with the implemented deterministic local workflow boundary",
+    "reclassified confidence and alignment values as rule-derived bookkeeping rather than calibrated probability or model confidence",
+    "replaced hyper-scaling machine metadata with an exact capability allowlist",
+    "demoted stale PROMOTED/HYPER_VALIDATED machine posture pending fresh canonical proof",
+    "corrected CI from the wrong main branch target to canonical master and added explicit workflow dispatch",
+    "pinned checkout and setup-python, disabled persisted credentials, and proved Python 3.11, 3.12, and 3.13",
+    "added deterministic mechanism contract tests and a fail-closed public-truth verifier",
+    "made historical promotion-receipt verification time-stable and non-authoritative for current state",
+    "bound repaired canonical master to successful exact-head CI run 31852720612"
+  ],
+  "nonclaims": [
+    "no Notion affiliation endorsement employment or proprietary access",
+    "no live Notion API or workspace access",
+    "no calibrated probability language-model or embedding-model inference",
+    "no persistent learning across workflows",
+    "no live MCP APEX Mastermind provider integration",
+    "no real external multi-agent execution or autonomous external side effects",
+    "no production scale reliability latency throughput or security guarantee"
+  ],
+  "metadata_readback": {
+    "description": "Workflow engine for ops craft (engineering only) · AKOS",
+    "assessment": "compatible with the bounded local workflow-engine and planning proof"
+  },
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
