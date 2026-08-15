@@ -78,8 +78,8 @@
               "file_count": {"type": "integer", "minimum": 0},
               "tree_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
               "evidence_class": {"type": "string"},
-              "authority_commit": {"type": "string"},
-              "authority_tree": {"type": "string"}
+              "authority_commit": {"type": ["string", "null"]},
+              "authority_tree": {"type": ["string", "null"]}
             }
           }
         },
@@ -101,18 +101,20 @@
         "repositories_removed": {"type": "array", "items": {"type": "string"}},
         "canonical_head_changes": {"type": "array"},
         "dimension_changes": {"type": "array", "items": {"type": "string"}},
+        "dimension_evidence_transitions": {"type": "array"},
         "delta_semantics": {"type": "string"}
       }
     },
     "reconstruction": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["cutoff_hst", "cutoff_semantics", "estate_evidence_class", "authority_tree_evidence_class", "current_repository_count_observed", "survivors_created_by_cutoff", "current_survivors_created_after_cutoff", "limitations"],
+      "required": ["cutoff_hst", "cutoff_semantics", "estate_evidence_class", "authority_tree_evidence_class", "authority_commit_status", "current_repository_count_observed", "survivors_created_by_cutoff", "current_survivors_created_after_cutoff", "limitations"],
       "properties": {
         "cutoff_hst": {"type": "string"},
         "cutoff_semantics": {"type": "string"},
         "estate_evidence_class": {"const": "bounded_current_survivors"},
-        "authority_tree_evidence_class": {"const": "exact_git_tree_at_cutoff"},
+        "authority_tree_evidence_class": {"enum": ["exact_git_tree_at_cutoff", "unresolved_authority_not_yet_created"]},
+        "authority_commit_status": {"enum": ["resolved", "not_yet_created_at_cutoff"]},
         "current_repository_count_observed": {"type": "integer", "minimum": 0},
         "survivors_created_by_cutoff": {"type": "integer", "minimum": 0},
         "current_survivors_created_after_cutoff": {"type": "array", "items": {"type": "string"}},
