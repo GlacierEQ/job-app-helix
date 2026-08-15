@@ -31,13 +31,40 @@
       "properties": {
         "repository_inventory": {
           "type": "object",
-          "required": ["owned_repository_count", "visibility_counts", "archived_count", "active_count", "fork_count", "native_count"]
+          "required": ["owned_repository_count", "visibility_counts", "archived_count", "active_count", "fork_count", "native_count"],
+          "properties": {
+            "owned_repository_count": {"type": ["integer", "null"], "minimum": 0},
+            "visibility_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+            "archived_count": {"type": ["integer", "null"], "minimum": 0},
+            "active_count": {"type": ["integer", "null"], "minimum": 0},
+            "fork_count": {"type": ["integer", "null"], "minimum": 0},
+            "native_count": {"type": ["integer", "null"], "minimum": 0},
+            "bounded_survivor_repository_count": {"type": "integer", "minimum": 0},
+            "inventory_semantics": {"type": "string"},
+            "visibility_semantics": {"type": "string"},
+            "exact_historical_repository_count_known": {"type": "boolean"},
+            "deleted_or_transferred_repository_gap_resolved": {"type": "boolean"}
+          }
         },
         "canonical_heads": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["repository", "default_branch", "head_sha", "visibility", "archived", "fork", "created_at", "updated_at"]
+            "required": ["repository", "default_branch", "head_sha", "visibility", "archived", "fork", "created_at", "updated_at"],
+            "properties": {
+              "repository": {"type": "string"},
+              "default_branch": {"type": ["string", "null"]},
+              "head_sha": {"type": ["string", "null"]},
+              "head_committed_at": {"type": ["string", "null"]},
+              "visibility": {"type": "string"},
+              "archived": {"type": "boolean"},
+              "fork": {"type": "boolean"},
+              "created_at": {"type": "string"},
+              "updated_at": {"type": "string"},
+              "evidence_class": {"type": "string"},
+              "branch_semantics": {"type": "string"},
+              "metadata_semantics": {"type": "string"}
+            }
           }
         },
         "dimensions": {
@@ -49,7 +76,10 @@
             "properties": {
               "sources": {"type": "array", "items": {"type": "string"}},
               "file_count": {"type": "integer", "minimum": 0},
-              "tree_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+              "tree_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "evidence_class": {"type": "string"},
+              "authority_commit": {"type": "string"},
+              "authority_tree": {"type": "string"}
             }
           }
         },
@@ -63,14 +93,30 @@
       "type": "object",
       "required": ["status", "previous_checkpoint_expected", "previous_checkpoint", "repository_count_delta", "repositories_added", "repositories_removed", "canonical_head_changes", "dimension_changes"],
       "properties": {
-        "status": {"enum": ["computed", "previous_checkpoint_not_materialized"]},
+        "status": {"enum": ["computed", "previous_checkpoint_not_materialized", "bounded_historical_reconstruction"]},
         "previous_checkpoint_expected": {"type": ["string", "null"]},
         "previous_checkpoint": {"type": ["string", "null"]},
         "repository_count_delta": {"type": ["integer", "null"]},
         "repositories_added": {"type": "array", "items": {"type": "string"}},
         "repositories_removed": {"type": "array", "items": {"type": "string"}},
         "canonical_head_changes": {"type": "array"},
-        "dimension_changes": {"type": "array", "items": {"type": "string"}}
+        "dimension_changes": {"type": "array", "items": {"type": "string"}},
+        "delta_semantics": {"type": "string"}
+      }
+    },
+    "reconstruction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cutoff_hst", "cutoff_semantics", "estate_evidence_class", "authority_tree_evidence_class", "current_repository_count_observed", "survivors_created_by_cutoff", "current_survivors_created_after_cutoff", "limitations"],
+      "properties": {
+        "cutoff_hst": {"type": "string"},
+        "cutoff_semantics": {"type": "string"},
+        "estate_evidence_class": {"const": "bounded_current_survivors"},
+        "authority_tree_evidence_class": {"const": "exact_git_tree_at_cutoff"},
+        "current_repository_count_observed": {"type": "integer", "minimum": 0},
+        "survivors_created_by_cutoff": {"type": "integer", "minimum": 0},
+        "current_survivors_created_after_cutoff": {"type": "array", "items": {"type": "string"}},
+        "limitations": {"type": "array", "minItems": 1, "items": {"type": "string"}}
       }
     },
     "receipt": {
@@ -82,5 +128,12 @@
         "checkpoint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"capture_kind": {"const": "historical_reconstruction"}}},
+      "then": {"required": ["reconstruction"]},
+      "else": {"not": {"required": ["reconstruction"]}}
+    }
+  ]
 }
