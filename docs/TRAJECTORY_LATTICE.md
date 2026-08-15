@@ -42,12 +42,15 @@ The contemporary checkpoint executor captures authenticated owned-repository met
 
 `scripts/capture_trajectory_checkpoint.py` refuses to use current GitHub state to manufacture a historical checkpoint. Historical nodes use `scripts/reconstruct_trajectory_checkpoint.py`, which queries authenticated Git history at an explicit HST cutoff and records the limits of what GitHub can actually prove.
 
-Historical reconstruction has two distinct evidence strengths:
+Historical reconstruction has distinct evidence strengths:
 
-1. **Exact authority-tree evidence.** The executor resolves the Helix commit at the historical cutoff, retrieves its exact Git tree and blobs, and computes SHA-256 source and dimension hashes from those historical bytes.
-2. **Bounded estate-survivor evidence.** For repositories that still exist and remain visible to the authenticated owner, the executor resolves the latest commit at or before the cutoff on the repository's surviving current default-branch lineage.
+1. **Bounded estate-survivor evidence.** For repositories that still exist and remain visible to the authenticated owner, the executor resolves the latest commit at or before the cutoff on the repository's surviving current default-branch lineage.
+2. **Exact Helix authority-tree evidence.** Once Helix exists at the cutoff, the executor resolves the historical Helix commit, retrieves its exact Git tree and blobs, and computes SHA-256 source and dimension hashes from those historical bytes.
+3. **Explicit pre-authority unresolved evidence.** `GlacierEQ/job-app-helix` was created at `2026-07-25T08:53:24Z`, which is July 24 at 22:53:24 HST. Therefore checkpoints through July 20 cannot truthfully contain a historical Helix tree. Their Helix-scoped dimensions are materialized as `unresolved_authority_not_yet_created`, with null authority commit/tree fields, until predecessor sources corroborate those dimensions.
 
-The second class is intentionally not called an exact historical estate census. GitHub's current repository enumeration cannot prove that repositories deleted or transferred away before reconstruction are absent, and current repository names, visibility, archive state, fork state, and default-branch names are not relabeled as historical metadata. Exact historical repository counts therefore remain `null` until corroborating evidence closes those gaps.
+The bounded survivor class is intentionally not called an exact historical estate census. GitHub's current repository enumeration cannot prove that repositories deleted or transferred away before reconstruction are absent, and current repository names, visibility, archive state, fork state, and default-branch names are not relabeled as historical metadata. Exact historical repository counts therefore remain `null` until corroborating evidence closes those gaps.
+
+Evidence acquisition is also separated from engineering change. When a dimension moves from `unresolved_authority_not_yet_created` to `exact_authority_git_tree_at_cutoff`, the delta records a `dimension_evidence_transition`; it does not claim a dimension change merely because stronger evidence became available. A dimension enters `dimension_changes` only when both adjacent checkpoints have exact Helix-tree evidence and their historical tree hashes differ.
 
 The default reconstruction cutoff is `23:59:59` HST on the checkpoint date. The exact cutoff is embedded in every reconstructed checkpoint. A different cutoff can be supplied explicitly when stronger dated evidence requires it.
 
