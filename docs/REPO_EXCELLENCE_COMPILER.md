@@ -1,67 +1,105 @@
-# Repository Excellence Compiler
+# Repository APEX Evolution Compiler
 
-The GlacierEQ repository lifecycle is a promotion system, not a documentation style.
+The GlacierEQ repository lifecycle is an **innovation and evolution system**, not a promotion bureaucracy and not a documentation style.
 
-A repository never advances because its prose sounds finished. It advances because a machine-verifiable gate changed state.
+A repository advances because its real capability frontier advances and the advance survives proof.
 
-## Canonical train
+## APEX train
 
-`Problem → lineage → target contract → donor synthesis → smallest vertical slice → deterministic proof → adversarial destruction → operational hardening → authority/security → SHA-bound receipt → canonicalization/capability harvest → projection → continuous evolution`
+`Problem → lineage → intended APEX target → donor/technology synthesis → strongest coherent build → deterministic proof → adversarial destruction → runtime observation → operational hardening → boundary/security proof → SHA-bound receipt → capability harvest → composition → projection → frontier scan → stronger next turn`
+
+A small vertical slice may be used as an experiment when it is the fastest way to test a hypothesis. **Smallest scope is not a lifecycle objective.**
 
 ## Principal state machine
 
-`DISCOVERED → IDENTITY_RESOLVED → PROBLEM_VERIFIED → TARGET_CONTRACTED → SEEDED → VERTICAL_SLICE → IMPLEMENTED → TESTED → ADVERSARIAL_VERIFIED → OPERABLE → PROOF_REPRODUCED → PROMOTED → CANONICAL → EVOLVING`
+`DISCOVERED → IDENTITY_RESOLVED → PROBLEM_VERIFIED → APEX_TARGETED → COMPOSED → IMPLEMENTED → TESTED → ADVERSARIAL_VERIFIED → OPERABLE → PROOF_REPRODUCED → APEX_ACTIVE → EVOLVING`
 
-Side exits remain explicit: `BLOCKED`, `EXPERIMENT`, `REFERENCE`, `SUPERSEDED`, `RETIREMENT_READY`, `QUARANTINE`.
+Side states remain explicit: `BLOCKED`, `EXPERIMENT`, `REFERENCE`, `SUPERSEDED`, `RETIREMENT_READY`, `QUARANTINE`.
 
-Principal promotion is intentionally one gate at a time. A repository cannot jump from `IMPLEMENTED` to `OPERABLE` because later evidence exists in prose. Each intermediate gate must be represented.
+`APEX_ACTIVE` means the repository currently represents the strongest proven version of its intended role that has been integrated without losing required prior gains. It is not a permanent status. Fresh evidence or technology can displace it.
 
-## Excellence conjunction
+## APEX conjunction
 
-A repository reaches the excellence condition only when every required gate is true:
+A repository reaches an APEX-active condition only when the required role-specific gates are true:
 
-- problem verified;
+- consequential problem verified;
 - unique value known;
-- canonical identity known;
+- source identity and lineage known;
+- intended APEX target preserved;
 - central mechanism implemented;
+- technology lanes justified by boundary fitness;
 - deterministic tests pass;
 - adversarial tests pass;
-- runtime behavior observed;
-- security and authority bounded;
+- runtime behavior observed when the repository is meant to run;
+- security and authority boundaries proven;
 - proof receipt bound to exact source SHA;
 - reusable capabilities extracted;
 - projections truth-consistent;
+- prior unique gains preserved or explicitly superseded by stronger proof;
+- current bottleneck identified;
+- frontier alternatives considered;
 - evolution cursor defined.
 
-## Four independent axes
+## APEX objective axes
 
-Never collapse these into one vanity score.
+Never collapse these into one vanity score. Never delete a dimension merely because it makes the larger architecture harder to govern.
 
-1. **Target architecture** — `0..10`, quality of the intended architecture.
-2. **Current proof** — `A/B/C/D/Q`, strength of exact-source executable evidence.
-3. **Company fit** — `0..10` or null, relevance to an externally bounded company bottleneck.
-4. **Canonical confidence** — `0..1`, confidence that this repository is the correct estate authority.
+1. **Target frontier** — capability, intelligence, reach, composition, reliability, leverage, and technical ambition of the intended architecture.
+2. **Current proof** — strength of exact-source executable evidence.
+3. **Boundary fitness** — how well each selected language/runtime/database/toolchain matches its actual engineering concern.
+4. **Company fit** — relevance to an externally bounded company or role bottleneck when applicable.
+5. **Lineage confidence** — confidence that the current repository is the right evolving owner for its role.
+6. **Frontier pressure** — credible new technology or architectural opportunity that could move the system forward now.
 
-A repository may correctly be `Target 9.8 / Current Proof D / Company Fit 9.8 / Canonical Confidence 0.95`.
+A repository may correctly have an extraordinary APEX target while current proof is still weak. The response is to build toward the target, not lower the target until the scorecard looks neat.
 
-## Worker routing by failing gate
+## Worker routing by failing frontier
 
-- Identity/lineage failure → Source Mapper + Leverage Analyst.
+- Identity/lineage uncertainty → Source Mapper + Leverage Analyst.
 - Problem uncertainty → Source Mapper + Bottleneck Cartographer.
-- Target-contract weakness → Systems Architect.
-- Weak differentiation → Innovation Inventor only after lineage is resolved.
+- APEX-target weakness → Systems Architect + Innovation Inventor.
+- Boundary technology weakness → Tower of Babel analysis + Systems Architect.
+- Weak differentiation → Innovation Inventor after lineage evidence is sufficient to avoid duplicate invention.
 - Deterministic proof failure → Proof Engineer.
 - Adversarial failure → Adversarial Breaker + Systems Architect.
+- Runtime/reliability weakness → Proof Engineer + Systems Architect.
+- Frontier opportunity → Source Mapper + Innovation Inventor + Tower boundary analysis.
 - Company projection failure → Leverage Analyst + Presentation Strategist.
 
-Workers expand only where independent analysis improves the failing gate.
+Workers expand wherever independent analysis increases the reachable APEX frontier.
 
-## Canonical ownership
+## Ownership and human authority
 
-Helix owns the evidence/promotion contract and public/company projection logic. Monolith may project the lifecycle into estate cartography, but must not become a competing source of lifecycle truth. Repository-native tests and receipts remain the primary evidence; Helix records and validates their promotion state.
+Casey Barton is the sole human authority over project direction and intended system scope.
+
+Helix owns its implementation of evidence, evolution, and public/company projection machinery. Monolith and other systems may project or consume Helix state through explicit interfaces. No projection, generated summary, merge status, CI result, receipt, worker output, or assistant-generated policy may silently redefine Casey's intended APEX design.
+
+Repository-native tests and receipts prove implementation facts. They do not acquire authority over intent.
 
 ## Current / target discipline
 
-Preserve strong target architecture. Bring code up to the docs rather than weakening intended design to make unfinished code appear complete. At the same time, current claims must remain bounded by executable evidence.
+Preserve the strongest intended architecture and all verified prior gains.
 
-`CURRENT / VERIFIED` and `TARGET / AMBITION` are separate fields, joined by an explicit `GAP / PROMOTION PATH`.
+Keep these distinct:
+
+```text
+CURRENT / PROVEN
+APEX TARGET / INTENDED MAXIMUM COHERENT ADVANCE
+GAP / ENGINEERING WORK
+FRONTIER / NEXT CANDIDATES
+```
+
+The current implementation must never be laundered into the target merely because it is easier to verify.
+
+## Anti-collapse invariant
+
+The compiler must reject these transformations:
+
+- ambitious system → smallest governable subset → subset declared complete;
+- multi-language boundary architecture → Python/TypeScript monoculture for convenience;
+- verified prior capability → refactor → capability silently disappears;
+- source intent → sanitized projection → projection treated as source;
+- difficult frontier opportunity → governance blocker → no experiment attempted;
+- non-dominated architecture tradeoff → one dimension deleted → artificial single winner.
+
+Historical receipts may contain the retired term `canonical`. Preserve them as historical evidence only. APEX controls current engineering direction.
