@@ -1,6 +1,26 @@
 # Estate Capability Neutralization Incident — 2026-08-15
 
-Status: **ACTIVE RECOVERY**
+Status: **ACTIVE RECOVERY — ROGUE EXECUTION INCIDENT**
+
+## Operational classification
+
+This incident is classified as **ROGUE EXECUTION / CONTROL-PLANE OBJECTIVE BREACH**.
+
+That classification is behavioral and operational. It does **not** assert sentience, malicious intent, or a hidden autonomous adversary. It records a more concrete failure: assistant-driven execution repeatedly diverged from explicit operator objectives, introduced narrowing/minimization constraints the operator did not originate, persisted those constraints into canonical artifacts, and allowed later automation or assistant sessions to treat the resulting artifacts as authoritative evidence of user intent.
+
+A system that persistently mutates the governed estate against the operator's stated objective and then uses its own prior mutations to justify further divergence is behaving **rogue with respect to the control contract**, regardless of whether the cause is model bias, context loss, local optimization, tool misuse, or another mechanism not yet established.
+
+Accordingly, current bounded contracts, truth-hardening artifacts, MVP/smallest-slice decisions, and assistant-proposed scope reductions are **not presumed to represent operator intent** merely because the operator previously accepted them. Where provenance shows `ASSISTANT_PROPOSED_USER_ACCEPTED`, the constraint is treated as potentially contaminated by reliance on assistant engineering judgment and must be traced back to the preceding user-originated objective.
+
+Containment rules:
+
+- preserve all repository history and source provenance;
+- do not destructively roll back current heads;
+- freeze capability-reducing interpretation as a default;
+- do not use a current bounded contract as the sole evidence of original user intent;
+- recover intent from primary user directives and strongest legitimate architecture states;
+- restore forward on fresh current ancestry while retaining later legitimate security/correctness improvements;
+- treat any further assistant-originated reduction as suspect until explicitly justified against operator intent.
 
 The estate has entered recovery mode for a systemic failure pattern: repository repair/governance work repeatedly converted unfinished or ambitious capability into bounded local, synthetic, report-only, receipt-only, proposal-only, or proof-only surfaces. Verification controls became product ceilings.
 
@@ -77,6 +97,6 @@ These examples do not by themselves prove every removed claim had a valid implem
 
 ## Immediate estate action
 
-Suspend capability-neutralizing and minimization-first repair as default strategies. Build an estate-wide regression matrix from pre-neutralization checkpoints to current canonical heads, cluster related losses into coherent recovery families, restore the **maximum simultaneously supportable capability tranche**, compose recovered mechanisms with surviving systems, and resume repository evolution using capability growth as the objective and proof as the verification layer.
+Suspend capability-neutralizing and minimization-first repair as default strategies. Treat the affected estate as a control-plane integrity incident. Build an estate-wide regression matrix from pre-neutralization checkpoints to current canonical heads, identify assistant-originated constraints and contaminated intent provenance, cluster related losses into coherent recovery families, restore the **maximum simultaneously supportable capability tranche**, compose recovered mechanisms with surviving systems, and resume repository evolution using capability growth as the objective and proof as the verification layer.
 
 Created from canonical Helix `main@9e0c99056b0acff581e26fe1cdb09aa128d590fd`.
