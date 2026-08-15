@@ -1,0 +1,100 @@
+{
+  "authenticated_owned_repository_inventory": {
+    "count_proof": {
+      "all_page_1181_per_page_1": "GlacierEQ/_hi (private), nonempty",
+      "all_page_1182_per_page_1": "empty",
+      "public_page_671_per_page_1": "GlacierEQ/zsh_codex (public), nonempty",
+      "public_page_672_per_page_1": "empty"
+    },
+    "owned_repository_count": 1181,
+    "private_count_semantics": "exact subtraction from authenticated owned total and authenticated public endpoint boundary",
+    "private_repository_count": 510,
+    "private_repository_visibility_confirmed": true,
+    "public_repository_count": 671,
+    "search_index_total_not_authoritative": {
+      "observed_total_for_user_is_public_query": 160,
+      "reason_rejected": "GitHub repository search indexing disagreed with authenticated /user/repos pagination; pagination is repository inventory authority."
+    }
+  },
+  "authority": {
+    "branch": "main",
+    "github_owner": "GlacierEQ",
+    "main_head_sha": "7f18f4e2df0a5b03891f94f5406bba873c6cb8be",
+    "preservation_branch": "trajectory-captures-2026",
+    "preservation_branch_head_before_this_capture": "d7e0e6ba5800009566fe9b9ec6757b230f9a1fa8",
+    "repository": "GlacierEQ/job-app-helix",
+    "schedule_path": "machine/trajectory/2026_schedule.json",
+    "schedule_sha256": "c437460dff987facd0ed31592c1e5d3569dcbef4b1180c4ceaaedf03996a52f6"
+  },
+  "canonical_capture_requirements_not_satisfied": {
+    "checkpoint_json": "not_written",
+    "checkpoint_sha256_receipt": "not_generated",
+    "dimension_tree_hashes": "not_materialized",
+    "full_default_branch_head_vector": "not_materialized",
+    "reason": "The authenticated GitHub connector proves private-estate visibility and exact inventory cardinality, but its exposed read surface does not provide the canonical capture script's single GraphQL owner-repository connection or an exportable connector credential. Producing 1,181 exact default-branch head records and the local Helix dimension tree hashes through the connector primitives was not completed. The contract therefore forbids minting machine/trajectory/checkpoints/2026-08-15.json."
+  },
+  "capture_kind": "contemporary",
+  "captured_at_hst": "2026-08-15T09:27:15-10:00",
+  "checkpoint_target": "2026-08-15",
+  "estate_evolution_evidence": {
+    "authenticated_delta_receipt": "status/estate_evolution/2026-08-15-atlas-live-delta.json",
+    "classification_state": "DISCOVERED_UNRESOLVED",
+    "full_estate_count_promoted_by_that_receipt": false,
+    "newly_created_visible_since_2026_08_14_count": 29,
+    "notable_recovery_commit": {
+      "message": "Incident: stop capability-neutralizing estate repair (#187)",
+      "sha": "521b75e3d8c51170e8b09face8ed76c731ce223f"
+    }
+  },
+  "evidence_endpoints": [
+    "GET /user/repos?affiliation=owner&visibility=all&per_page=1&page=1181&sort=full_name&direction=asc",
+    "GET /user/repos?affiliation=owner&visibility=all&per_page=1&page=1182&sort=full_name&direction=asc",
+    "GET /user/repos?affiliation=owner&visibility=public&per_page=1&page=671&sort=full_name&direction=asc",
+    "GET /user/repos?affiliation=owner&visibility=public&per_page=1&page=672&sort=full_name&direction=asc",
+    "GET /repos/GlacierEQ/job-app-helix/git/ref/heads/trajectory-captures-2026",
+    "GET /repos/GlacierEQ/job-app-helix/actions/runs/31903247417/jobs"
+  ],
+  "historical_actions_attempt": {
+    "failed_step": "Require private estate authority",
+    "failure_reason": "GLACIEREQ_ESTATE_TOKEN missing from GitHub Actions",
+    "separate_from_connector_authority": true,
+    "workflow_run_id": 31903247417
+  },
+  "phase": "recovery",
+  "previous_checkpoint": {
+    "delta_status_if_full_capture_succeeds": "previous_checkpoint_not_materialized",
+    "expected": "2026-08-10",
+    "fabricated_delta": false,
+    "verified_materialized_checkpoint_found_on_main": false,
+    "verified_materialized_checkpoint_found_on_preservation_branch": false
+  },
+  "receipt": {
+    "canonical_body_sha256": "37d25bb5e6c1dbb22816fafd8f502a62b7ffa99ebf040ccfb3c28a91af5df28c",
+    "hash_algorithm": "sha256"
+  },
+  "same_day_prior_authenticated_evidence": {
+    "active_count": 1153,
+    "archived_count": 28,
+    "artifact": "machine/trajectory/artifacts/2026-08-15-capture-blocker.json",
+    "canonical_body_sha256": "294a56887e135016775a38b2a85c0478a585a610014add3358c90da30ee6796d",
+    "fork_count": 511,
+    "native_count": 670,
+    "promotion_semantics": "preserved as prior same-day evidence; not silently recast as a newly enumerated connector result"
+  },
+  "schema": "glaciereq.trajectory-connector-evidence.v1",
+  "status": "fail_closed_incomplete_canonical_head_vector",
+  "timezone": "Pacific/Honolulu",
+  "trajectory_contract": {
+    "canonical_heads_required": true,
+    "fail_closed_on_missing_private_estate_authority": true,
+    "phase": "recovery",
+    "resolution": "five-day",
+    "state_and_delta_required": true
+  },
+  "truth_boundary": {
+    "august_10_delta_fabricated": false,
+    "historical_source_truth_overwritten": false,
+    "missing_heads_fabricated": false,
+    "public_only_inventory_substituted": false
+  }
+}
