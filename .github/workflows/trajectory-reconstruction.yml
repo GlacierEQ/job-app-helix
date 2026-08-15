@@ -1,0 +1,168 @@
+name: Trajectory historical reconstruction
+
+on:
+  workflow_dispatch:
+    inputs:
+      checkpoint_date:
+        description: Canonical historical checkpoint date (YYYY-MM-DD)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trajectory-reconstruction-${{ inputs.checkpoint_date }}
+  cancel-in-progress: false
+
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out canonical Helix main
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install test dependency
+        run: python -m pip install pytest
+
+      - name: Verify trajectory reconstruction contract
+        run: |
+          python -m pytest -q \
+            tests/test_trajectory_lattice.py \
+            tests/test_trajectory_historical_reconstruction.py
+
+      - name: Validate requested historical checkpoint
+        id: checkpoint
+        env:
+          CHECKPOINT_DATE: ${{ inputs.checkpoint_date }}
+        run: |
+          set -euo pipefail
+          python - <<'PY' >> "${GITHUB_OUTPUT}"
+          import json
+          import os
+          from pathlib import Path
+
+          schedule = json.loads(
+              Path("machine/trajectory/2026_schedule.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          date_text = os.environ["CHECKPOINT_DATE"].strip()
+          historical = {
+              row["date"]
+              for row in schedule["checkpoints"]
+              if row["capture_kind"] == "historical_reconstruction"
+          }
+          if date_text not in historical:
+              raise SystemExit(
+                  f"{date_text!r} is not a canonical historical checkpoint"
+              )
+          print(f"date={date_text}")
+          PY
+
+      - name: Require authenticated full-estate authority
+        env:
+          ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${ESTATE_TOKEN:-}" ]; then
+            echo "GLACIEREQ_ESTATE_TOKEN is required." >&2
+            echo "Historical reconstruction will not degrade to public-only data." >&2
+            exit 1
+          fi
+
+      - name: Prepare reconstruction evidence branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          if git fetch origin \
+            trajectory-reconstruction-2026:refs/remotes/origin/trajectory-reconstruction-2026 \
+            2>/dev/null; then
+            git switch -C \
+              trajectory-reconstruction-2026 \
+              origin/trajectory-reconstruction-2026
+            git merge --no-edit origin/main
+          else
+            git switch -c trajectory-reconstruction-2026 origin/main
+          fi
+
+      - name: Reconstruct bounded historical state
+        env:
+          GLACIEREQ_ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
+          CHECKPOINT_DATE: ${{ steps.checkpoint.outputs.date }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          output="machine/trajectory/checkpoints/${CHECKPOINT_DATE}.json"
+          previous="$(python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          schedule = json.loads(
+              Path("machine/trajectory/2026_schedule.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          dates = [row["date"] for row in schedule["checkpoints"]]
+          current = os.environ["CHECKPOINT_DATE"]
+          index = dates.index(current)
+          print(dates[index - 1] if index else "")
+          PY
+          )"
+          args=(--date "${CHECKPOINT_DATE}" --output "${output}")
+          if [ -n "${previous}" ] && \
+             [ -f "machine/trajectory/checkpoints/${previous}.json" ]; then
+            args+=(--previous "machine/trajectory/checkpoints/${previous}.json")
+          fi
+          python scripts/reconstruct_trajectory_checkpoint.py "${args[@]}"
+          python -m json.tool "${output}" >/dev/null
+
+      - name: Preserve reconstruction evidence
+        env:
+          CHECKPOINT_DATE: ${{ steps.checkpoint.outputs.date }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "machine/trajectory/checkpoints/${CHECKPOINT_DATE}.json"
+          if git diff --cached --quiet; then
+            echo "No reconstruction delta to preserve."
+            exit 0
+          fi
+          git commit -m \
+            "chore(trajectory): reconstruct ${CHECKPOINT_DATE} bounded estate state"
+          git push origin HEAD:trajectory-reconstruction-2026
+
+      - name: Upload reconstruction artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trajectory-reconstruction-${{ steps.checkpoint.outputs.date }}-${{ github.run_id }}
+          path: machine/trajectory/checkpoints/${{ steps.checkpoint.outputs.date }}.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Record reconstruction boundary
+        env:
+          CHECKPOINT_DATE: ${{ steps.checkpoint.outputs.date }}
+        run: |
+          {
+            echo "### GlacierEQ trajectory historical reconstruction"
+            echo
+            echo "Checkpoint: ${CHECKPOINT_DATE}"
+            echo "Evidence branch: trajectory-reconstruction-2026"
+            echo "Estate scope: bounded current survivors"
+            echo "Authority tree: exact Git tree at historical cutoff"
+            echo "Deleted/transferred historical repositories: unresolved unless corroborated"
+            echo "Public-only fallback: prohibited"
+          } >> "${GITHUB_STEP_SUMMARY}"
