@@ -6,7 +6,10 @@ from pathlib import Path
 
 import pytest
 
-from job_app_helix.repository_surface import RepositorySurfaceError, compile_governed_surface_report
+from job_app_helix.repository_surface import (
+    RepositorySurfaceError,
+    compile_governed_surface_report,
+)
 from job_app_helix.surface_reconciliation import apply_surface_reconciliation
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -46,7 +49,11 @@ def load(path: Path) -> dict:
 
 
 def report_through_wave22() -> dict:
-    report = compile_governed_surface_report(load(OBSERVATIONS), load(DECISIONS), expected_public_count=75)
+    report = compile_governed_surface_report(
+        load(OBSERVATIONS),
+        load(DECISIONS),
+        expected_public_count=75,
+    )
     for layer in LAYERS:
         report = apply_surface_reconciliation(report, load(layer))
     return report
@@ -64,8 +71,18 @@ def subset_counts(report: dict) -> dict[str, int]:
 def test_wave23_has_one_new_admission_and_one_zero_delta_refresh() -> None:
     before = report_through_wave22()
     after = apply_surface_reconciliation(before, load(WAVE23))
-    assert subset_counts(before) == {"ADMIT": 30, "QUARANTINED": 3, "REFERENCE": 1, "REPAIR_REQUIRED": 24}
-    assert subset_counts(after) == {"ADMIT": 31, "QUARANTINED": 3, "REFERENCE": 1, "REPAIR_REQUIRED": 23}
+    assert subset_counts(before) == {
+        "ADMIT": 30,
+        "QUARANTINED": 3,
+        "REFERENCE": 1,
+        "REPAIR_REQUIRED": 24,
+    }
+    assert subset_counts(after) == {
+        "ADMIT": 31,
+        "QUARANTINED": 3,
+        "REFERENCE": 1,
+        "REPAIR_REQUIRED": 23,
+    }
     b = {x["repository"]: x for x in before["repositories"]}
     a = {x["repository"]: x for x in after["repositories"]}
     assert b[GROK]["admission"] == "REPAIR_REQUIRED"
@@ -83,30 +100,60 @@ def test_wave23_exact_heads_and_receipts_are_bound() -> None:
     grok = by_repo[GROK]
     trainium = by_repo[TRAINIUM]
     assert grok["prior_reconciled_admission"] == "REPAIR_REQUIRED"
-    assert grok["decision_evidence"]["canonical_head"] == "fb51c671e66005e93385d3828053b051083f4c5d"
+    assert (
+        grok["decision_evidence"]["canonical_head"]
+        == "fb51c671e66005e93385d3828053b051083f4c5d"
+    )
     assert grok["decision_evidence"]["proof_receipts"][0]["id"] == 31854959743
     assert trainium["prior_reconciled_admission"] == "ADMIT"
-    assert trainium["decision_evidence"]["canonical_head"] == "bfffd8dc67ecbd86e06dc375b9550f72788a398f"
+    assert (
+        trainium["decision_evidence"]["canonical_head"]
+        == "bfffd8dc67ecbd86e06dc375b9550f72788a398f"
+    )
     assert trainium["decision_evidence"]["proof_receipts"][0]["id"] == 31854768152
-    assert trainium["decision_evidence"]["source_contract"]["refreshes_existing_admission"] is True
+    assert (
+        trainium["decision_evidence"]["source_contract"][
+            "refreshes_existing_admission"
+        ]
+        is True
+    )
 
 
 def test_wave23_receipts_match_mixed_delta_contract() -> None:
     wave = {x["repository"]: x for x in load(WAVE23)["items"]}
-    grok_receipt = load(ROOT / "status/public-repository-surface-repair-wave23-grokodile-2026-08-14.json")
-    trainium_receipt = load(ROOT / "status/public-repository-surface-repair-wave23-trainium-refresh-2026-08-14.json")
-    assert grok_receipt["source_canonical_head"] == wave[GROK]["evidence"]["canonical_head"]
-    assert grok_receipt["governed_subset_delta"] == {"ADMIT": 1, "REPAIR_REQUIRED": -1}
-    assert trainium_receipt["source_canonical_head"] == wave[TRAINIUM]["evidence"]["canonical_head"]
+    grok_receipt = load(
+        ROOT / "status/public-repository-surface-repair-wave23-grokodile-2026-08-14.json"
+    )
+    trainium_receipt = load(
+        ROOT
+        / "status/public-repository-surface-repair-wave23-trainium-refresh-2026-08-14.json"
+    )
+    assert (
+        grok_receipt["source_canonical_head"]
+        == wave[GROK]["evidence"]["canonical_head"]
+    )
+    assert grok_receipt["governed_subset_delta"] == {
+        "ADMIT": 1,
+        "REPAIR_REQUIRED": -1,
+    }
+    assert (
+        trainium_receipt["source_canonical_head"]
+        == wave[TRAINIUM]["evidence"]["canonical_head"]
+    )
     assert trainium_receipt["prior_surface_decision"] == "ADMIT"
     assert trainium_receipt["refreshes_existing_admission"] is True
-    assert trainium_receipt["governed_subset_delta"] == {"ADMIT": 0, "REPAIR_REQUIRED": 0}
+    assert trainium_receipt["governed_subset_delta"] == {
+        "ADMIT": 0,
+        "REPAIR_REQUIRED": 0,
+    }
 
 
 def test_wave23_fails_closed_on_each_proof_head_drift() -> None:
     for index in range(2):
         mismatch = deepcopy(load(WAVE23))
-        mismatch["items"][index]["evidence"]["proof_receipts"][0]["head_sha"] = "0" * 40
+        mismatch["items"][index]["evidence"]["proof_receipts"][0]["head_sha"] = (
+            "0" * 40
+        )
         with pytest.raises(RepositorySurfaceError, match="proof/head drift"):
             apply_surface_reconciliation(report_through_wave22(), mismatch)
 
