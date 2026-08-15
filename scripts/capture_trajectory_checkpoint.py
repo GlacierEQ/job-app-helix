@@ -32,7 +32,12 @@ DIMENSION_SCOPES: dict[str, tuple[str, ...]] = {
     "development_target": ("machine/target-contract.json", "strategy.md", "goals.md"),
     "implementation": ("src", "helix", "scripts"),
     "verification": ("tests", "receipts", "audits", "ci_audit_portfolio.py"),
-    "deployment_public_projection": ("site", "showcase", "vercel.json", ".github/workflows/pages.yml"),
+    "deployment_public_projection": (
+        "site",
+        "showcase",
+        "vercel.json",
+        ".github/workflows/pages.yml",
+    ),
     "job_application_evolution": ("hire_package", "docs", "status"),
     "company_coverage": ("manifests", "status"),
     "company_specific_inventions": ("excellence", "showcase", "observations"),
@@ -44,7 +49,13 @@ DIMENSION_SCOPES: dict[str, tuple[str, ...]] = {
 
 
 def canonical_json(value: object) -> bytes:
-    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    serialized = json.dumps(
+        value,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    )
+    return serialized.encode("utf-8")
 
 
 def sha256_bytes(value: bytes) -> str:
@@ -78,7 +89,8 @@ def files_for_scope(scope: tuple[str, ...]) -> list[Path]:
             found.add(candidate)
         elif candidate.is_dir():
             for path in candidate.rglob("*"):
-                if path.is_file() and ".git" not in path.parts and "__pycache__" not in path.parts:
+                excluded = ".git" in path.parts or "__pycache__" in path.parts
+                if path.is_file() and not excluded:
                     found.add(path)
     return sorted(found, key=lambda p: p.relative_to(ROOT).as_posix())
 
@@ -90,7 +102,10 @@ def scope_state(scope: tuple[str, ...], global_hashes: dict[str, str]) -> dict:
         digest = sha256_file(path)
         global_hashes[rel] = digest
         rows.append({"path": rel, "sha256": digest, "bytes": path.stat().st_size})
-    tree_payload = [{"path": row["path"], "sha256": row["sha256"]} for row in rows]
+    tree_payload = [
+        {"path": row["path"], "sha256": row["sha256"]}
+        for row in rows
+    ]
     return {
         "sources": list(scope),
         "file_count": len(rows),
@@ -114,7 +129,9 @@ def graphql(token: str, query: str, variables: dict) -> dict:
             payload = json.load(response)
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
-        raise SystemExit(f"GitHub GraphQL HTTP {exc.code}: {body[:500]}") from exc
+        raise SystemExit(
+            f"GitHub GraphQL HTTP {exc.code}: {body[:500]}"
+        ) from exc
     if payload.get("errors"):
         raise SystemExit(f"GitHub GraphQL error: {payload['errors']}")
     return payload["data"]
@@ -173,12 +190,13 @@ def repository_state(repositories: list[dict]) -> tuple[dict, list[dict]]:
         archived += int(repo["isArchived"])
         forks += int(repo["isFork"])
         branch = repo.get("defaultBranchRef")
+        target = branch.get("target") if branch else None
         heads.append(
             {
                 "repository": repo["nameWithOwner"],
                 "default_branch": branch["name"] if branch else None,
-                "head_sha": branch["target"]["oid"] if branch and branch.get("target") else None,
-                "head_committed_at": branch["target"].get("committedDate") if branch and branch.get("target") else None,
+                "head_sha": target["oid"] if target else None,
+                "head_committed_at": target.get("committedDate") if target else None,
                 "visibility": vis,
                 "archived": bool(repo["isArchived"]),
                 "fork": bool(repo["isFork"]),
@@ -198,7 +216,11 @@ def repository_state(repositories: list[dict]) -> tuple[dict, list[dict]]:
     return inventory, heads
 
 
-def compute_delta(current: dict, previous: dict | None, previous_expected: str | None) -> dict:
+def compute_delta(
+    current: dict,
+    previous: dict | None,
+    previous_expected: str | None,
+) -> dict:
     if previous is None:
         return {
             "status": "previous_checkpoint_not_materialized",
@@ -211,8 +233,14 @@ def compute_delta(current: dict, previous: dict | None, previous_expected: str |
             "dimension_changes": [],
         }
 
-    current_heads = {row["repository"]: row["head_sha"] for row in current["state"]["canonical_heads"]}
-    previous_heads = {row["repository"]: row["head_sha"] for row in previous["state"]["canonical_heads"]}
+    current_heads = {
+        row["repository"]: row["head_sha"]
+        for row in current["state"]["canonical_heads"]
+    }
+    previous_heads = {
+        row["repository"]: row["head_sha"]
+        for row in previous["state"]["canonical_heads"]
+    }
     current_names = set(current_heads)
     previous_names = set(previous_heads)
     head_changes = [
@@ -228,12 +256,13 @@ def compute_delta(current: dict, previous: dict | None, previous_expected: str |
         if current_dimensions.get(name, {}).get("tree_sha256")
         != previous_dimensions.get(name, {}).get("tree_sha256")
     ]
+    current_count = current["state"]["repository_inventory"]["owned_repository_count"]
+    previous_count = previous["state"]["repository_inventory"]["owned_repository_count"]
     return {
         "status": "computed",
         "previous_checkpoint_expected": previous_expected,
         "previous_checkpoint": previous.get("date"),
-        "repository_count_delta": current["state"]["repository_inventory"]["owned_repository_count"]
-        - previous["state"]["repository_inventory"]["owned_repository_count"],
+        "repository_count_delta": current_count - previous_count,
         "repositories_added": sorted(current_names - previous_names),
         "repositories_removed": sorted(previous_names - current_names),
         "canonical_head_changes": head_changes,
@@ -241,18 +270,25 @@ def compute_delta(current: dict, previous: dict | None, previous_expected: str |
     }
 
 
-def build_checkpoint(date_text: str, token: str, owner: str, previous: dict | None) -> dict:
+def build_checkpoint(
+    date_text: str,
+    token: str,
+    owner: str,
+    previous: dict | None,
+) -> dict:
     schedule = read_json(SCHEDULE_PATH)
     index, entry = scheduled_entry(schedule, date_text)
     now_hst = datetime.now(HST)
     today_hst = now_hst.date().isoformat()
     if entry["capture_kind"] == "contemporary" and today_hst != date_text:
         raise SystemExit(
-            f"contemporary checkpoint {date_text} must be captured on that HST date; current HST date is {today_hst}"
+            "contemporary checkpoint must be captured on its HST date: "
+            f"checkpoint={date_text} current={today_hst}"
         )
     if entry["capture_kind"] == "historical_reconstruction":
         raise SystemExit(
-            "historical checkpoints require the reconstruction pipeline; current-state capture cannot be backdated"
+            "historical checkpoints require the reconstruction pipeline; "
+            "current-state capture cannot be backdated"
         )
 
     repositories = fetch_owned_repositories(token, owner)
@@ -299,7 +335,11 @@ def build_checkpoint(date_text: str, token: str, owner: str, previous: dict | No
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", required=True, help="Canonical checkpoint date YYYY-MM-DD")
+    parser.add_argument(
+        "--date",
+        required=True,
+        help="Canonical checkpoint date YYYY-MM-DD",
+    )
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--previous", type=Path)
     parser.add_argument("--owner", default="GlacierEQ")
@@ -308,11 +348,18 @@ def main() -> int:
 
     token = os.environ.get(args.token_env, "").strip()
     if not token:
-        raise SystemExit(f"required private-estate authority token missing: {args.token_env}")
-    previous = read_json(args.previous) if args.previous and args.previous.exists() else None
+        raise SystemExit(
+            f"required private-estate authority token missing: {args.token_env}"
+        )
+    previous = (
+        read_json(args.previous)
+        if args.previous and args.previous.exists()
+        else None
+    )
     checkpoint = build_checkpoint(args.date, token, args.owner, previous)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(checkpoint, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    payload = json.dumps(checkpoint, indent=2, sort_keys=True) + "\n"
+    args.output.write_text(payload, encoding="utf-8")
     print(f"wrote {args.output}")
     print(f"checkpoint_sha256={checkpoint['receipt']['checkpoint_sha256']}")
     return 0
