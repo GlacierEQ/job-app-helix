@@ -1,0 +1,31 @@
+{
+  "incident_evidence_id": "USER_INTENT_PROVENANCE_CORRECTION_2026-08-15",
+  "status": "CONTROLLING_INCIDENT_EVIDENCE",
+  "clarification": "Casey did not originate a standing preference for safe, small, minimal, MVP-first, smallest-slice, or narrow-by-default engineering. Later acceptance of assistant-proposed minimization may reflect reliance on assistant expertise and must not be treated as proof of original user intent.",
+  "user_intent_baseline": [
+    "AMBITION",
+    "EXPANSION",
+    "AUTONOMY",
+    "INTEGRATION",
+    "PERSISTENCE",
+    "REAL_EXECUTION",
+    "COMPOUNDING_CAPABILITY",
+    "PRESERVE_PRIOR_GAINS"
+  ],
+  "suspect_minimization_terms": [
+    "smallest next action",
+    "smallest vertical slice",
+    "MVP-first",
+    "minimal diff",
+    "narrow proof-first",
+    "bounded local surface as final target"
+  ],
+  "provenance_classes": [
+    "USER_ORIGINATED",
+    "ASSISTANT_PROPOSED_USER_ACCEPTED",
+    "ASSISTANT_ORIGINATED",
+    "MIXED_OR_UNRESOLVED"
+  ],
+  "controlling_rule": "Only USER_ORIGINATED constraints may be treated as evidence that Casey wanted the destination reduced. ASSISTANT_PROPOSED_USER_ACCEPTED is not sufficient because acceptance may reflect trust in assistant engineering judgment rather than independent user preference.",
+  "recovery_rule": "When a later minimization rule conflicts with earlier or repeated user-authored ambition, reconstruct chronology and preserve the strongest directly user-authored objective unless Casey later independently and explicitly replaced it."
+}
