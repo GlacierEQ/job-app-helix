@@ -108,6 +108,80 @@ def test_path_scope_matching_does_not_confuse_prefixes() -> None:
     assert not module.path_matches("status-old/a.json", "status")
 
 
+def test_authority_head_can_be_absent_before_helix_birth() -> None:
+    module = load_module()
+    assert module.authority_head([]) is None
+    assert (
+        module.authority_head(
+            [
+                {
+                    "repository": "GlacierEQ/job-app-helix",
+                    "head_sha": "f" * 40,
+                }
+            ]
+        )
+        == "f" * 40
+    )
+
+
+def test_unresolved_dimensions_are_stable_and_explicit() -> None:
+    module = load_module()
+    first, hashes = module.unresolved_dimensions()
+    second, second_hashes = module.unresolved_dimensions()
+    assert hashes == second_hashes == {}
+    assert first == second
+    assert set(first) == set(module.DIMENSION_SCOPES)
+    for name, value in first.items():
+        assert value["file_count"] == 0
+        assert len(value["tree_sha256"]) == 64
+        assert value["evidence_class"] == "unresolved_authority_not_yet_created"
+        assert value["authority_commit"] is None
+        assert value["authority_tree"] is None
+        assert name in module.DIMENSION_SCOPES
+
+
+def test_dimension_delta_separates_visibility_transition_from_change() -> None:
+    module = load_module()
+    unresolved, _ = module.unresolved_dimensions()
+    exact = {
+        name: {
+            **value,
+            "tree_sha256": "a" * 64,
+            "evidence_class": "exact_authority_git_tree_at_cutoff",
+            "authority_commit": "1" * 40,
+            "authority_tree": "2" * 40,
+        }
+        for name, value in unresolved.items()
+    }
+    changes, transitions = module.dimension_delta(exact, unresolved)
+    assert changes == []
+    assert len(transitions) == len(module.DIMENSION_SCOPES)
+    assert all(
+        row["before"] == "unresolved_authority_not_yet_created"
+        and row["after"] == "exact_authority_git_tree_at_cutoff"
+        for row in transitions
+    )
+
+
+def test_dimension_delta_reports_changes_only_between_exact_states() -> None:
+    module = load_module()
+    previous = {
+        "implementation": {
+            "tree_sha256": "a" * 64,
+            "evidence_class": "exact_authority_git_tree_at_cutoff",
+        }
+    }
+    current = {
+        "implementation": {
+            "tree_sha256": "b" * 64,
+            "evidence_class": "exact_authority_git_tree_at_cutoff",
+        }
+    }
+    changes, transitions = module.dimension_delta(current, previous)
+    assert changes == ["implementation"]
+    assert transitions == []
+
+
 def test_bounded_delta_marks_evidence_scope() -> None:
     module = load_module()
     previous = {
@@ -116,7 +190,12 @@ def test_bounded_delta_marks_evidence_scope() -> None:
             "canonical_heads": [
                 {"repository": "GlacierEQ/a", "head_sha": "1" * 40}
             ],
-            "dimensions": {"implementation": {"tree_sha256": "a" * 64}},
+            "dimensions": {
+                "implementation": {
+                    "tree_sha256": "a" * 64,
+                    "evidence_class": "exact_authority_git_tree_at_cutoff",
+                }
+            },
         },
     }
     current = {
@@ -125,7 +204,12 @@ def test_bounded_delta_marks_evidence_scope() -> None:
                 {"repository": "GlacierEQ/a", "head_sha": "2" * 40},
                 {"repository": "GlacierEQ/b", "head_sha": "3" * 40},
             ],
-            "dimensions": {"implementation": {"tree_sha256": "b" * 64}},
+            "dimensions": {
+                "implementation": {
+                    "tree_sha256": "b" * 64,
+                    "evidence_class": "exact_authority_git_tree_at_cutoff",
+                }
+            },
         }
     }
     delta = module.bounded_delta(current, previous, "2026-07-20")
@@ -140,4 +224,5 @@ def test_bounded_delta_marks_evidence_scope() -> None:
         }
     ]
     assert delta["dimension_changes"] == ["implementation"]
+    assert delta["dimension_evidence_transitions"] == []
     assert "bounded" in delta["delta_semantics"]
