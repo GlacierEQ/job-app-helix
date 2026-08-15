@@ -1,0 +1,45 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-14T13:56:00-10:00",
+  "wave": 19,
+  "repository": "GlacierEQ/Pro-comet-agent",
+  "source_canonical_head": "27879babe8dfd3242f7579b3604c809686e84940",
+  "source_state": "BOUNDED_CONNECTOR_AND_BROWSER_SERVICE_BUILD_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31851939532,
+      "name": "CI",
+      "head_sha": "27879babe8dfd3242f7579b3604c809686e84940",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-explicit-connector-adapter-runtime-with-typescript-browser-service-build-proof",
+  "evidence_token": "BOUNDED_CONNECTOR_RUNTIME_NOT_LIVE_SAAS_OR_BROWSER_AUTHORITY",
+  "repairs": [
+    "replaced stale live MCP/APEX/Mastermind and universal connector claims with the explicit registered-adapter runtime boundary",
+    "corrected package repository URLs and removed the MIT declaration that conflicted with the repository proprietary license",
+    "replaced the stale hire exclusion with a bounded recruiter-visible capability contract",
+    "replaced hyper-scaling machine metadata with an exact implemented capability allowlist",
+    "demoted stale PROMOTED machine posture until fresh exact-current-head proof existed",
+    "expanded Python proof to 3.11, 3.12, and 3.13 and retained Node locked-install, Jest, and TypeScript build proof",
+    "added a fail-closed public-truth verifier covering claims, identity, license, capability allowlist, and operational-authority boundaries",
+    "bound the repaired canonical main to successful exact-head CI run 31851939532"
+  ],
+  "nonclaims": [
+    "no bundled or live Google Drive, Dropbox, Gmail, GitHub, OneDrive, or other SaaS connector connectivity",
+    "no live MCP, APEX, Mastermind, Browserbase, Comet/CDP, Stagehand, or provider-mesh integration",
+    "no production browser execution or autonomous external operational authority",
+    "no migrated or production Prisma database established by schema presence",
+    "no production scale, reliability, latency, throughput, or security certification"
+  ],
+  "metadata_readback": {
+    "description": "Pro-* plan/act/reflect agent loop · AKOS P0",
+    "assessment": "compatible with the bounded agent runtime and build proof"
+  },
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-14T14:02:00-10:00",
+  "wave": 19,
+  "repository": "GlacierEQ/GlacierEQ_Swarm",
+  "source_canonical_head": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+  "source_state": "DURABLE_SWARM_AND_CRYSTALLIZATION_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31852306040,
+      "name": "CI",
+      "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31852305754,
+      "name": "Swarm Runtime",
+      "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+      "conclusion": "success"
+    },
+    {
+      "kind": "workflow_run",
+      "id": 31852305765,
+      "name": "Swarm Container",
+      "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-durable-capability-aware-swarm-and-crystallization-control-plane",
+  "evidence_token": "DURABLE_LOCAL_SWARM_RUNTIME_NOT_AUTOMATIC_ESTATE_AUTHORITY",
+  "repairs": [
+    "replaced hyper-scaling machine metadata with an exact capability allowlist tied to the executable scheduler and crystallization executor",
+    "advanced stale DISCOVERED machine posture to FUNCTIONAL_CANDIDATE while requiring fresh exact-head proof before admission",
+    "added a fail-closed public-truth gate that forbids automatic estate-completion and production-authority inflation",
+    "pinned the reusable verification workflow and local Actions dependencies used by the repaired CI surface",
+    "expanded crystallization contract proof across Python 3.11, 3.12, and 3.13",
+    "bound the repaired canonical main to successful exact-head CI, runtime, and container workflows",
+    "proved restart, failover, durable persistence, authenticated API behavior, container image execution, a real task, and restart against preserved state"
+  ],
+  "nonclaims": [
+    "no automatic authority to declare the estate complete",
+    "no unbounded authority over external repositories or credentials not supplied at runtime",
+    "no guarantee that worker prompts can complete every repository",
+    "no universal production deployment, scale, reliability, latency, throughput, or security guarantee"
+  ],
+  "metadata_readback": {
+    "description": "Local Swarm OS: MICROWAVE flippers, token-saver, voice Stage A/C queue, make-heavy, toolbelt. Code only — no legal/voice audio.",
+    "assessment": "compatible with the bounded local orchestration and crystallization control-plane proof"
+  },
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
