@@ -1,0 +1,169 @@
+name: Trajectory lattice capture
+
+on:
+  workflow_dispatch:
+    inputs:
+      checkpoint_date:
+        description: Canonical contemporary checkpoint date (YYYY-MM-DD)
+        required: true
+        type: string
+  schedule:
+    # 10:17 HST on Aug 15 and Aug 20. The year gate below makes this 2026-only.
+    - cron: "17 20 15,20 8 *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trajectory-lattice-capture
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out canonical Helix main
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install test dependency
+        run: python -m pip install pytest
+
+      - name: Verify trajectory lattice contract
+        run: python -m pytest -q tests/test_trajectory_lattice.py
+
+      - name: Resolve HST checkpoint
+        id: checkpoint
+        shell: bash
+        env:
+          DISPATCH_DATE: ${{ inputs.checkpoint_date }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          python - <<'PY' >> "${GITHUB_OUTPUT}"
+          import json
+          import os
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          schedule = json.loads(
+              Path("machine/trajectory/2026_schedule.json").read_text(encoding="utf-8")
+          )
+          allowed = {
+              row["date"] for row in schedule["checkpoints"]
+              if row["capture_kind"] == "contemporary"
+          }
+          event = os.environ["EVENT_NAME"]
+          if event == "workflow_dispatch":
+              date_text = os.environ.get("DISPATCH_DATE", "").strip()
+          else:
+              date_text = datetime.now(ZoneInfo("Pacific/Honolulu")).date().isoformat()
+
+          should_run = date_text in allowed and date_text.startswith("2026-")
+          print(f"date={date_text}")
+          print(f"should_run={'true' if should_run else 'false'}")
+          if event == "workflow_dispatch" and not should_run:
+              raise SystemExit(
+                  f"dispatch date {date_text!r} is not a canonical contemporary checkpoint"
+              )
+          PY
+
+      - name: Require private estate authority
+        if: steps.checkpoint.outputs.should_run == 'true'
+        env:
+          ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${ESTATE_TOKEN:-}" ]; then
+            echo "GLACIEREQ_ESTATE_TOKEN is required; refusing a partial public-only checkpoint." >&2
+            exit 1
+          fi
+
+      - name: Prepare capture preservation branch
+        if: steps.checkpoint.outputs.should_run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          if git fetch origin trajectory-captures-2026:refs/remotes/origin/trajectory-captures-2026 2>/dev/null; then
+            git switch -C trajectory-captures-2026 origin/trajectory-captures-2026
+            git merge --no-edit origin/main
+          else
+            git switch -c trajectory-captures-2026 origin/main
+          fi
+
+      - name: Capture authenticated estate state
+        if: steps.checkpoint.outputs.should_run == 'true'
+        env:
+          GLACIEREQ_ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
+          CHECKPOINT_DATE: ${{ steps.checkpoint.outputs.date }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          output="machine/trajectory/checkpoints/${CHECKPOINT_DATE}.json"
+          previous="$(python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          schedule = json.loads(
+              Path("machine/trajectory/2026_schedule.json").read_text(encoding="utf-8")
+          )
+          dates = [row["date"] for row in schedule["checkpoints"]]
+          current = os.environ["CHECKPOINT_DATE"]
+          index = dates.index(current)
+          print(dates[index - 1] if index else "")
+          PY
+          )"
+          args=(--date "${CHECKPOINT_DATE}" --output "${output}")
+          if [ -n "${previous}" ] && [ -f "machine/trajectory/checkpoints/${previous}.json" ]; then
+            args+=(--previous "machine/trajectory/checkpoints/${previous}.json")
+          fi
+          python scripts/capture_trajectory_checkpoint.py "${args[@]}"
+          python -m json.tool "${output}" >/dev/null
+
+      - name: Preserve contemporary checkpoint in Git
+        if: steps.checkpoint.outputs.should_run == 'true'
+        env:
+          CHECKPOINT_DATE: ${{ steps.checkpoint.outputs.date }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "machine/trajectory/checkpoints/${CHECKPOINT_DATE}.json"
+          git commit -m "chore(trajectory): capture ${CHECKPOINT_DATE} HST estate state"
+          git push origin HEAD:trajectory-captures-2026
+
+      - name: Upload checkpoint artifact
+        if: steps.checkpoint.outputs.should_run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: trajectory-checkpoint-${{ steps.checkpoint.outputs.date }}-${{ github.run_id }}
+          path: machine/trajectory/checkpoints/${{ steps.checkpoint.outputs.date }}.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Record capture receipt
+        if: steps.checkpoint.outputs.should_run == 'true'
+        env:
+          CHECKPOINT_DATE: ${{ steps.checkpoint.outputs.date }}
+        shell: bash
+        run: |
+          {
+            echo "### GlacierEQ trajectory checkpoint"
+            echo
+            echo "HST checkpoint: ${CHECKPOINT_DATE}"
+            echo "Authority branch: trajectory-captures-2026"
+            echo "Capture mode: authenticated private estate"
+            echo "Partial public-only capture: prohibited"
+          } >> "${GITHUB_STEP_SUMMARY}"

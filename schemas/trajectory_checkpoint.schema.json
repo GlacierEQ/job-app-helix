@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/schemas/trajectory_checkpoint.schema.json",
+  "title": "GlacierEQ Trajectory Checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "date", "timezone", "captured_at_hst", "capture_kind", "phase", "resolution", "authority", "state", "delta", "receipt"],
+  "properties": {
+    "schema": {"const": "glaciereq.trajectory-checkpoint.v1"},
+    "date": {"type": "string", "format": "date", "pattern": "^2026-"},
+    "timezone": {"const": "Pacific/Honolulu"},
+    "captured_at_hst": {"type": "string", "minLength": 20},
+    "capture_kind": {"enum": ["historical_reconstruction", "contemporary"]},
+    "phase": {"enum": ["expansion", "acceleration", "composition", "rupture", "diagnosis", "counter-engineering", "recovery", "stronger expansion"]},
+    "resolution": {"enum": ["monthly", "semi-monthly", "biweekly", "five-day", "two-day", "three-day"]},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "schedule_path", "schedule_sha256", "github_owner"],
+      "properties": {
+        "repository": {"const": "GlacierEQ/job-app-helix"},
+        "schedule_path": {"const": "machine/trajectory/2026_schedule.json"},
+        "schedule_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "github_owner": {"const": "GlacierEQ"}
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository_inventory", "canonical_heads", "dimensions", "source_hashes"],
+      "properties": {
+        "repository_inventory": {
+          "type": "object",
+          "required": ["owned_repository_count", "visibility_counts", "archived_count", "active_count", "fork_count", "native_count"]
+        },
+        "canonical_heads": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["repository", "default_branch", "head_sha", "visibility", "archived", "fork", "created_at", "updated_at"]
+          }
+        },
+        "dimensions": {
+          "type": "object",
+          "minProperties": 14,
+          "additionalProperties": {
+            "type": "object",
+            "required": ["sources", "file_count", "tree_sha256"],
+            "properties": {
+              "sources": {"type": "array", "items": {"type": "string"}},
+              "file_count": {"type": "integer", "minimum": 0},
+              "tree_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            }
+          }
+        },
+        "source_hashes": {
+          "type": "object",
+          "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "delta": {
+      "type": "object",
+      "required": ["status", "previous_checkpoint_expected", "previous_checkpoint", "repository_count_delta", "repositories_added", "repositories_removed", "canonical_head_changes", "dimension_changes"],
+      "properties": {
+        "status": {"enum": ["computed", "previous_checkpoint_not_materialized"]},
+        "previous_checkpoint_expected": {"type": ["string", "null"]},
+        "previous_checkpoint": {"type": ["string", "null"]},
+        "repository_count_delta": {"type": ["integer", "null"]},
+        "repositories_added": {"type": "array", "items": {"type": "string"}},
+        "repositories_removed": {"type": "array", "items": {"type": "string"}},
+        "canonical_head_changes": {"type": "array"},
+        "dimension_changes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hash_algorithm", "checkpoint_sha256"],
+      "properties": {
+        "hash_algorithm": {"const": "sha256"},
+        "checkpoint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
