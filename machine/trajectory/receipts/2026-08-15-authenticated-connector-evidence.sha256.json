@@ -1,0 +1,20 @@
+{
+  "schema": "glaciereq.trajectory-evidence-receipt.v1",
+  "checkpoint_target": "2026-08-15",
+  "hash_algorithm": "sha256",
+  "authority_main_sha": "7f18f4e2df0a5b03891f94f5406bba873c6cb8be",
+  "schedule_sha256": "c437460dff987facd0ed31592c1e5d3569dcbef4b1180c4ceaaedf03996a52f6",
+  "artifacts": {
+    "machine/trajectory/artifacts/2026-08-15-authenticated-connector-evidence.json": {
+      "file_sha256": "f222d5ac103191795911ee23f0f8fce0df64ea3fde1aff0072fd7b79fea42b27",
+      "canonical_body_sha256": "37d25bb5e6c1dbb22816fafd8f502a62b7ffa99ebf040ccfb3c28a91af5df28c"
+    },
+    "machine/trajectory/artifacts/2026-08-15-estate-snapshot.md": {
+      "file_sha256": "066831c4b2f403eaf14b4ad5110983c89691fc6f18304d78f4e8c69b76d79d1f"
+    }
+  },
+  "checkpoint_json_written": false,
+  "checkpoint_reason": "Canonical 1,181-row default-branch head vector and required dimension tree hashes were not fully materialized; fail-closed contract forbids a synthetic checkpoint.",
+  "august_10_delta_fabricated": false,
+  "public_only_inventory_substituted": false
+}
