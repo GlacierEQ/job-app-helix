@@ -1,0 +1,60 @@
+{
+  "authenticated_repository_evidence": {
+    "count_proof": {
+      "page_1181_per_page_1": "nonempty",
+      "page_1182_per_page_1": "empty"
+    },
+    "exact_default_branch_heads_materialized": false,
+    "owned_repository_count": 1181,
+    "public_only_substitution": false,
+    "surface": "GitHub authenticated /user/repos with affiliation=owner and visibility=all"
+  },
+  "authority": {
+    "branch_seed_sha": "f269b5a4542f89e1cd418c85cd9251d565713216",
+    "canonical_main_sha": "f269b5a4542f89e1cd418c85cd9251d565713216",
+    "preservation_branch": "trajectory-captures-2026",
+    "repository": "GlacierEQ/job-app-helix",
+    "schedule_path": "machine/trajectory/2026_schedule.json",
+    "schema_path": "schemas/trajectory_checkpoint.schema.json"
+  },
+  "blocker": {
+    "code": "MISSING_GLACIEREQ_ESTATE_TOKEN",
+    "detail": "Repository secret GLACIEREQ_ESTATE_TOKEN was absent in GitHub Actions. The canonical capture script requires it and refuses public-only fallback.",
+    "truth_boundary": "No machine/trajectory/checkpoints/2026-08-15.json is emitted because the exact full-estate default-branch head set was not captured."
+  },
+  "capture_attempt": {
+    "capture_step": "skipped",
+    "checkpoint_receipt_step": "skipped",
+    "contract_test_step": "success",
+    "job_id": 95054695939,
+    "preservation_step": "skipped",
+    "private_estate_authority_step": "failure",
+    "schema_validation_step": "skipped",
+    "workflow_path": ".github/workflows/trajectory-capture-2026-08-15-once.yml",
+    "workflow_run_id": 31902252043
+  },
+  "capture_kind": "contemporary",
+  "checkpoint_date": "2026-08-15",
+  "phase": "recovery",
+  "preserved_evidence": {
+    "authenticated_owned_repository_count": 1181,
+    "bounded_aug15_atlas_delta_commit": "9e0c99056b0acff581e26fe1cdb09aa128d590fd",
+    "bounded_aug15_newly_created_visible_count": 29,
+    "bounded_delta_promoted_as_full_estate": false,
+    "canonical_main_sha": "f269b5a4542f89e1cd418c85cd9251d565713216",
+    "canonical_main_verified_signed": true,
+    "company_analysis_topology_blob_sha": "0da4f3d5e88c77e579b60f5aa5d78a1c8ae291b6",
+    "company_dossier_authority_blob_sha": "ba9f88adeabd753880c03ad26897dcedf2c24535",
+    "trajectory_document_blob_sha": "7c1aabc826e1738117d80ae0771d2ccccef6bd7b"
+  },
+  "previous_checkpoint": {
+    "delta_computed": false,
+    "expected": "2026-08-10",
+    "reason": "No verified August 10 reconstruction branch/checkpoint was available; no previous delta was fabricated.",
+    "verified_checkpoint_materialized": false,
+    "verified_reconstruction_branch_found": false
+  },
+  "schema": "glaciereq.trajectory-capture-blocker.v1",
+  "status": "blocked_fail_closed",
+  "timezone": "Pacific/Honolulu"
+}
