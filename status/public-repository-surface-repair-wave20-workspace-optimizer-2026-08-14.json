@@ -1,0 +1,48 @@
+{
+  "schema": "glaciereq.public-repository-surface-repair-receipt.v1",
+  "generated_at": "2026-08-14T14:17:00-10:00",
+  "wave": 20,
+  "repository": "GlacierEQ/notion-workspace-optimizer",
+  "source_canonical_head": "c52ee06ee1199e320cafd5b493689cf048632a13",
+  "source_state": "LOCAL_WORKSPACE_POLICY_AND_PREFIX_GROUPING_NATIVE_PROOF_VERIFIED",
+  "proof_receipts": [
+    {
+      "kind": "workflow_run",
+      "id": 31853090260,
+      "name": "CI",
+      "head_sha": "c52ee06ee1199e320cafd5b493689cf048632a13",
+      "conclusion": "success"
+    }
+  ],
+  "verified_capability": "deterministic-validated-local-workspace-policy-scoring-and-title-prefix-grouping",
+  "evidence_token": "LOCAL_WORKSPACE_POLICY_NOT_NOTION_MUTATION_OR_SEMANTIC_AUTHORITY",
+  "repairs": [
+    "replaced a nonexistent source path and semantic-hashing/live-MCP claims with the actual local policy scorer and title-prefix grouping mechanisms",
+    "renamed confidence-like score semantics into an explicit bounded policy score rather than a probability",
+    "added fail-closed validation for negative metrics, control parameters, page ids, and naive observation timestamps",
+    "made ranking ties deterministic and allowed caller-supplied timezone-aware observation time for a reproducible full output envelope",
+    "made recommendation and clustering outputs explicitly operational_authority=false",
+    "replaced hyper-scaling machine metadata with an exact bounded capability allowlist",
+    "demoted stale PROMOTED/HYPER_VALIDATED machine posture pending fresh canonical proof",
+    "extended the pinned repository-owned verifier with a public-truth gate and added Python 3.11, 3.12, and 3.13 contract proof",
+    "made historical promotion grant verification time-stable and non-authoritative for current state",
+    "bound repaired canonical main to successful exact-head CI run 31853090260"
+  ],
+  "nonclaims": [
+    "no Notion affiliation endorsement employment or proprietary access",
+    "no live Notion API or workspace access",
+    "no automatic archive collapse split or database mutation",
+    "no semantic hashing embeddings duplicate detection or learned clustering",
+    "no live MCP APEX Mastermind provider integration",
+    "no calibrated probability production scale reliability latency throughput or security guarantee"
+  ],
+  "metadata_readback": {
+    "description": "Workspace page optimizer (portfolio) archive/collapse/split · AKOS P0",
+    "assessment": "compatible when archive/collapse/split is read as bounded recommendation-label output rather than live workspace mutation"
+  },
+  "surface_decision": "ADMIT",
+  "governed_subset_delta": {
+    "ADMIT": 1,
+    "REPAIR_REQUIRED": -1
+  }
+}
