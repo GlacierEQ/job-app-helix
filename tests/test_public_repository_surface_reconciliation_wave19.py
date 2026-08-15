@@ -38,15 +38,79 @@ LAYERS = tuple(ROOT / "manifests" / name for name in LAYER_NAMES)
 WAVE19 = ROOT / (
     "manifests/public_repository_surface_reconciliation_wave19_2026-08-14.json"
 )
-RECEIPT = ROOT / "status/public-repository-surface-repair-wave19-2026-08-14.json"
-TARGET = "GlacierEQ/Pro-comet-agent"
-HEAD = "27879babe8dfd3242f7579b3604c809686e84940"
-RUN_ID = 31851939532
-TOKEN = "BOUNDED_CONNECTOR_RUNTIME_NOT_LIVE_SAAS_OR_BROWSER_AUTHORITY"
-CAPABILITY = (
-    "deterministic-explicit-connector-adapter-runtime-with-"
-    "typescript-browser-service-build-proof"
-)
+TARGETS = {
+    "GlacierEQ/Pro-comet-agent": {
+        "head": "27879babe8dfd3242f7579b3604c809686e84940",
+        "token": "BOUNDED_CONNECTOR_RUNTIME_NOT_LIVE_SAAS_OR_BROWSER_AUTHORITY",
+        "capability": (
+            "deterministic-explicit-connector-adapter-runtime-with-"
+            "typescript-browser-service-build-proof"
+        ),
+        "receipt": "status/public-repository-surface-repair-wave19-2026-08-14.json",
+        "proof_receipts": [
+            {
+                "kind": "workflow_run",
+                "id": 31851939532,
+                "name": "CI",
+                "head_sha": "27879babe8dfd3242f7579b3604c809686e84940",
+                "conclusion": "success",
+            }
+        ],
+        "native": {
+            "python_3_11_compile_behavior_and_truth": "PASS",
+            "python_3_12_compile_behavior_and_truth": "PASS",
+            "python_3_13_compile_behavior_and_truth": "PASS",
+            "typescript_server_build": "PASS",
+            "public_truth_boundary": "PASS",
+            "operational_authority_false": "PASS",
+        },
+    },
+    "GlacierEQ/GlacierEQ_Swarm": {
+        "head": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+        "token": "DURABLE_LOCAL_SWARM_RUNTIME_NOT_AUTOMATIC_ESTATE_AUTHORITY",
+        "capability": (
+            "deterministic-durable-capability-aware-swarm-and-"
+            "crystallization-control-plane"
+        ),
+        "receipt": (
+            "status/public-repository-surface-repair-wave19-swarm-2026-08-14.json"
+        ),
+        "proof_receipts": [
+            {
+                "kind": "workflow_run",
+                "id": 31852306040,
+                "name": "CI",
+                "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+                "conclusion": "success",
+            },
+            {
+                "kind": "workflow_run",
+                "id": 31852305754,
+                "name": "Swarm Runtime",
+                "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+                "conclusion": "success",
+            },
+            {
+                "kind": "workflow_run",
+                "id": 31852305765,
+                "name": "Swarm Container",
+                "head_sha": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+                "conclusion": "success",
+            },
+        ],
+        "native": {
+            "python_3_11_crystallization_contract_and_truth": "PASS",
+            "python_3_12_crystallization_contract_and_truth": "PASS",
+            "python_3_13_crystallization_contract_and_truth": "PASS",
+            "repository_owned_verification": "PASS",
+            "trusted_caller_boundary": "PASS",
+            "runtime_restart_failover_persistence_authenticated_api": "PASS",
+            "container_image_build_real_task_restart_persistence": "PASS",
+            "automatic_estate_completion_authority": False,
+            "production_operational_authority": False,
+        },
+    },
+}
 
 
 def load(path: Path) -> dict:
@@ -72,7 +136,7 @@ def subset_counts(report: dict) -> dict[str, int]:
     return counts
 
 
-def test_wave19_admits_only_exact_head_pro_comet_surface() -> None:
+def test_wave19_admits_only_two_exact_head_native_proof_surfaces() -> None:
     before = report_through_wave18()
     after = apply_surface_reconciliation(before, load(WAVE19))
     assert subset_counts(before) == {
@@ -82,75 +146,72 @@ def test_wave19_admits_only_exact_head_pro_comet_surface() -> None:
         "REPAIR_REQUIRED": 29,
     }
     assert subset_counts(after) == {
-        "ADMIT": 26,
+        "ADMIT": 27,
         "QUARANTINED": 3,
         "REFERENCE": 1,
-        "REPAIR_REQUIRED": 28,
+        "REPAIR_REQUIRED": 27,
     }
     before_by_repo = {item["repository"]: item for item in before["repositories"]}
     after_by_repo = {item["repository"]: item for item in after["repositories"]}
-    assert before_by_repo[TARGET]["admission"] == "REPAIR_REQUIRED"
-    assert after_by_repo[TARGET]["admission"] == "ADMIT"
-    assert after_by_repo[TARGET]["repair_priority"] is None
+    assert set(before_by_repo) == set(after_by_repo)
+    for repository in TARGETS:
+        assert before_by_repo[repository]["admission"] == "REPAIR_REQUIRED"
+        assert after_by_repo[repository]["admission"] == "ADMIT"
+        assert after_by_repo[repository]["repair_priority"] is None
     for repository in before_by_repo:
-        if repository != TARGET:
+        if repository not in TARGETS:
             assert before_by_repo[repository] == after_by_repo[repository]
 
 
-def test_wave19_admission_is_exact_head_scope_and_receipt_bound() -> None:
+def test_wave19_admissions_are_exact_head_scope_and_receipt_bound() -> None:
     report = apply_surface_reconciliation(report_through_wave18(), load(WAVE19))
-    record = next(
-        item for item in report["repositories"] if item["repository"] == TARGET
-    )
-    evidence = record["decision_evidence"]
-    assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
-    assert evidence["canonical_head"] == HEAD
-    assert evidence["evidence_token"] == TOKEN
-    assert evidence["verified_capability"] == CAPABILITY
-    assert evidence["proof_receipts"] == [
-        {
-            "kind": "workflow_run",
-            "id": RUN_ID,
-            "name": "CI",
-            "head_sha": HEAD,
-            "conclusion": "success",
-        }
-    ]
-    source_contract = evidence["source_contract"]
-    assert source_contract["remaining_exact_head_native_proof_gate_satisfied"] is True
-    native = evidence["native_receipts"]
-    assert native["python_3_11_compile_behavior_and_truth"] == "PASS"
-    assert native["python_3_12_compile_behavior_and_truth"] == "PASS"
-    assert native["python_3_13_compile_behavior_and_truth"] == "PASS"
-    assert native["typescript_server_build"] == "PASS"
-    assert native["public_truth_boundary"] == "PASS"
-    assert native["operational_authority_false"] == "PASS"
+    by_repo = {item["repository"]: item for item in report["repositories"]}
+    for repository, expected in TARGETS.items():
+        record = by_repo[repository]
+        evidence = record["decision_evidence"]
+        assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
+        assert evidence["canonical_head"] == expected["head"]
+        assert evidence["evidence_token"] == expected["token"]
+        assert evidence["verified_capability"] == expected["capability"]
+        assert evidence["proof_receipts"] == expected["proof_receipts"]
+        source_contract = evidence["source_contract"]
+        assert source_contract["remaining_exact_head_native_proof_gate_satisfied"]
+        for key, value in expected["native"].items():
+            assert evidence["native_receipts"][key] == value
 
 
-def test_wave19_receipt_matches_reconciliation_authority() -> None:
-    wave = load(WAVE19)["items"][0]
-    receipt = load(RECEIPT)
-    assert receipt["repository"] == wave["repository"] == TARGET
-    assert receipt["source_canonical_head"] == wave["evidence"]["canonical_head"] == HEAD
-    assert receipt["evidence_token"] == wave["evidence"]["evidence_token"] == TOKEN
-    assert (
-        receipt["verified_capability"]
-        == wave["evidence"]["verified_capability"]
-        == CAPABILITY
-    )
-    assert receipt["proof_receipts"][0]["id"] == RUN_ID
-    assert receipt["surface_decision"] == "ADMIT"
-    assert receipt["governed_subset_delta"] == {
-        "ADMIT": 1,
-        "REPAIR_REQUIRED": -1,
+def test_wave19_receipts_match_reconciliation_authority() -> None:
+    wave_by_repo = {
+        item["repository"]: item for item in load(WAVE19)["items"]
     }
+    assert set(wave_by_repo) == set(TARGETS)
+    for repository, expected in TARGETS.items():
+        wave = wave_by_repo[repository]
+        receipt = load(ROOT / expected["receipt"])
+        assert receipt["repository"] == repository
+        assert receipt["source_canonical_head"] == expected["head"]
+        assert wave["evidence"]["canonical_head"] == expected["head"]
+        assert receipt["evidence_token"] == expected["token"]
+        assert wave["evidence"]["evidence_token"] == expected["token"]
+        assert receipt["verified_capability"] == expected["capability"]
+        assert wave["evidence"]["verified_capability"] == expected["capability"]
+        assert receipt["proof_receipts"] == expected["proof_receipts"]
+        assert receipt["surface_decision"] == "ADMIT"
+        assert receipt["governed_subset_delta"] == {
+            "ADMIT": 1,
+            "REPAIR_REQUIRED": -1,
+        }
 
 
-def test_wave19_fails_closed_on_proof_head_drift() -> None:
-    mismatch = deepcopy(load(WAVE19))
-    mismatch["items"][0]["evidence"]["proof_receipts"][0]["head_sha"] = "0" * 40
-    with pytest.raises(RepositorySurfaceError, match="proof/head drift"):
-        apply_surface_reconciliation(report_through_wave18(), mismatch)
+def test_wave19_fails_closed_on_each_proof_head_drift() -> None:
+    for repository in TARGETS:
+        mismatch = deepcopy(load(WAVE19))
+        item = next(
+            row for row in mismatch["items"] if row["repository"] == repository
+        )
+        item["evidence"]["proof_receipts"][0]["head_sha"] = "0" * 40
+        with pytest.raises(RepositorySurfaceError, match="proof/head drift"):
+            apply_surface_reconciliation(report_through_wave18(), mismatch)
 
 
 def test_wave19_reapplication_fails_closed_on_prior_decision_drift() -> None:
