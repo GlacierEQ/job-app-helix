@@ -1,0 +1,50 @@
+{
+  "schema": "glaciereq.canonical-family.classification.v1",
+  "date_hst": "2026-08-15",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "control_plane_base_sha": "f269b5a4542f89e1cd418c85cd9251d565713216",
+  "repository": "GlacierEQ/google-cli",
+  "repository_id": 1334054654,
+  "repository_role": "fork/reference",
+  "canonical_owner": "googleworkspace/cli",
+  "canonical_owner_relationship": "GitHub parent and source repository",
+  "fork_default_branch": "main",
+  "fork_head_sha": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd",
+  "upstream_head_sha_at_verification": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd",
+  "lineage_verification": {
+    "github_fork_flag": true,
+    "parent": "googleworkspace/cli",
+    "source": "googleworkspace/cli",
+    "compare_status": "identical",
+    "ahead_by": 0,
+    "behind_by": 0,
+    "unique_commits": 0,
+    "changed_files": 0
+  },
+  "unique_value": {
+    "present": false,
+    "reason": "Direct fork-to-upstream comparison is identical at the verified heads; no GlacierEQ-specific patch exists to promote or extract."
+  },
+  "architecture": {
+    "upstream_primary_lane": "Rust CLI/runtime",
+    "placement_decision": "retain upstream technology placement unchanged",
+    "reason": "This repository is a pure reference fork; Tower language law does not justify introducing a GlacierEQ-specific runtime or language lane without a distinct boundary or measurable advantage."
+  },
+  "excellence_gates": {
+    "problem_verified": "INHERITED_REFERENCE",
+    "unique_value_known": "PASS_ABSENT",
+    "canonical_identity_known": "PASS",
+    "central_mechanism_implemented": "INHERITED_REFERENCE",
+    "deterministic_tests_pass": "NOT_REQUIRED_FOR_PURE_REFERENCE_CLASSIFICATION",
+    "adversarial_tests_pass": "NOT_REQUIRED_FOR_PURE_REFERENCE_CLASSIFICATION",
+    "runtime_behavior_observed": "NOT_CLAIMED",
+    "security_authority_bounded": "INHERITED_REFERENCE",
+    "proof_receipt_bound_to_sha": "PASS",
+    "reusable_capabilities_extracted": "NOT_APPLICABLE_NO_UNIQUE_PATCH",
+    "projections_truth_consistent": "PASS_REFERENCE_ONLY",
+    "evolution_cursor_defined": "PASS"
+  },
+  "classification_decision": "Do not ignite, rebrand, or claim as a GlacierEQ innovation. Preserve as an upstream-pure fork/reference unless a future bounded experiment creates and proves a distinct patch.",
+  "rollback": "Delete only the classification branch/PR if the evidence is later shown incorrect; do not rewrite or mutate the fork solely to satisfy estate novelty metrics.",
+  "next_cursor": "Continue direct-evidence classification of the remaining repositories in the 2026-08-15 Atlas delta; prefer repositories with possible unique GlacierEQ patches before pure backups or data stores."
+}
