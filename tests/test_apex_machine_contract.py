@@ -9,6 +9,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = json.loads((ROOT / "schemas" / "readme_apex.schema.json").read_text(encoding="utf-8"))
+VALIDATOR = jsonschema.Draft202012Validator(SCHEMA)
 
 
 def valid_contract() -> dict:
@@ -84,21 +85,37 @@ def valid_contract() -> dict:
 
 
 def test_apex_machine_contract_validates_complete_state():
-    jsonschema.Draft202012Validator(SCHEMA).validate(valid_contract())
+    VALIDATOR.validate(valid_contract())
 
 
 def test_machine_contract_requires_human_project_authority():
     payload = valid_contract()
     payload["human_project_authority"] = "automation"
     with pytest.raises(jsonschema.ValidationError):
-        jsonschema.Draft202012Validator(SCHEMA).validate(payload)
+        VALIDATOR.validate(payload)
 
 
 def test_project_direction_governor_relation_is_not_allowed():
     payload = valid_contract()
     payload["relationships"][0]["relation"] = "GOVERNED_BY"
     with pytest.raises(jsonschema.ValidationError):
-        jsonschema.Draft202012Validator(SCHEMA).validate(payload)
+        VALIDATOR.validate(payload)
+
+
+@pytest.mark.parametrize("field", ["verified_at", "exact_head"])
+def test_verified_state_requires_concrete_verification_identifiers(field: str):
+    payload = valid_contract()
+    payload["current"][field] = None
+    with pytest.raises(jsonschema.ValidationError):
+        VALIDATOR.validate(payload)
+
+
+def test_unverified_state_may_keep_verification_identifiers_null():
+    payload = valid_contract()
+    payload["current"]["proof_state"] = "UNVERIFIED"
+    payload["current"]["verified_at"] = None
+    payload["current"]["exact_head"] = None
+    VALIDATOR.validate(payload)
 
 
 def test_machine_contract_requires_receipt_lineage_lane_owner_and_preservation_status():
@@ -109,7 +126,6 @@ def test_machine_contract_requires_receipt_lineage_lane_owner_and_preservation_s
         ("preserved_gains", 0, "status"),
         ("frontier_candidates", 0, "decision"),
     ]
-    validator = jsonschema.Draft202012Validator(SCHEMA)
     for path in required_paths:
         payload = copy.deepcopy(valid_contract())
         cursor = payload
@@ -117,7 +133,22 @@ def test_machine_contract_requires_receipt_lineage_lane_owner_and_preservation_s
             cursor = cursor[segment]
         del cursor[path[-1]]
         with pytest.raises(jsonschema.ValidationError):
-            validator.validate(payload)
+            VALIDATOR.validate(payload)
+
+
+@pytest.mark.parametrize("collection", ["lanes", "preserved_gains", "frontier_candidates"])
+def test_required_apex_evidence_collections_cannot_be_empty(collection: str):
+    payload = valid_contract()
+    payload[collection] = []
+    with pytest.raises(jsonschema.ValidationError):
+        VALIDATOR.validate(payload)
+
+
+def test_frontier_candidate_requires_evidence():
+    payload = valid_contract()
+    payload["frontier_candidates"][0]["evidence"] = []
+    with pytest.raises(jsonschema.ValidationError):
+        VALIDATOR.validate(payload)
 
 
 def test_apex_template_points_to_executable_schema_and_machine_json_has_no_governor():
