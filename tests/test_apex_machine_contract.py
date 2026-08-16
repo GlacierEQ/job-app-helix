@@ -120,9 +120,10 @@ def test_machine_contract_requires_receipt_lineage_lane_owner_and_preservation_s
             validator.validate(payload)
 
 
-def test_apex_template_points_to_executable_schema_and_has_no_governor_relation():
+def test_apex_template_points_to_executable_schema_and_machine_json_has_no_governor():
     template = (ROOT / "docs" / "README_APEX_TEMPLATE.md").read_text(encoding="utf-8")
     assert "schemas/readme_apex.schema.json" in template
     machine_section = template.split("## Machine contract", maxsplit=1)[1]
-    assert '"human_project_authority": "Casey Barton"' in machine_section
-    assert "GOVERNED_BY`" not in machine_section
+    machine_json = machine_section.split("```json", maxsplit=1)[1].split("```", maxsplit=1)[0]
+    assert '"human_project_authority": "Casey Barton"' in machine_json
+    assert "GOVERNED_BY" not in machine_json
