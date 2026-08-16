@@ -1,0 +1,24 @@
+{
+  "schema": "glaciereq.full-estate-recovery.v1",
+  "status": "ACTIVE",
+  "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+  "execution_law": "MAXIMUM_COHERENT_ADVANCE",
+  "estate_boundary": "ALL_NATIVE_ACTIVE_OWNED_REPOS",
+  "constraint_rejected": [
+    "66_live_portfolio_ceiling",
+    "flagship_only_recovery",
+    "priority_spine_as_estate_boundary",
+    "3_flagship_bullshit"
+  ],
+  "hire_projection_note": "manifests/live_repository_links.json is a recruiter projection only — never the estate boundary",
+  "counts_authenticated": {
+    "total_owned": 1182,
+    "native": 670,
+    "forks": 512,
+    "native_active": 642,
+    "native_public": 160,
+    "native_private": 510
+  },
+  "recovery_census": "receipts/mass_recovery/FULL_ESTATE_RECOVERY_CENSUS.json",
+  "enroll_queue": "receipts/mass_recovery/FULL_ESTATE_ENROLL_QUEUE.json"
+}
