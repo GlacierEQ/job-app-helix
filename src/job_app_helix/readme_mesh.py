@@ -29,9 +29,9 @@ RELATION_LABELS = {
     readme_mesh_pb2.PROVIDES_CAPABILITY: "provides capability to",
     readme_mesh_pb2.CONSUMES: "consumes",
     readme_mesh_pb2.EXTENDS: "extends",
-    # v1 wire compatibility only. APEX contracts do not expose project-direction
-    # governance as a repository relationship.
-    readme_mesh_pb2.GOVERNED_BY: "legacy evidence relationship (non-authoritative)",
+    # Retained in the enum only for v1 protobuf wire compatibility. Active mesh
+    # validation rejects it before any binary/ProtoJSON projection can be emitted.
+    readme_mesh_pb2.GOVERNED_BY: "legacy relation forbidden in active projection",
     readme_mesh_pb2.PERSISTS_RECEIPTS_TO: "persists receipts to",
     readme_mesh_pb2.EXECUTES_THROUGH: "executes through",
 }
@@ -97,6 +97,11 @@ def validate_mesh(mesh: readme_mesh_pb2.ReadmeMesh) -> None:
         if edge.relation not in RELATION_LABELS:
             raise ReadmeMeshError(
                 f"edge {edge.source} -> {edge.target} has unspecified relation"
+            )
+        if edge.relation in LEGACY_NON_AUTHORITATIVE_RELATIONS:
+            raise ReadmeMeshError(
+                f"edge {edge.source} -> {edge.target} uses retired GOVERNED_BY; "
+                "migrate it to a functional verification/composition relation"
             )
         identity = (edge.source, edge.target, edge.relation)
         if identity in seen_edges:
