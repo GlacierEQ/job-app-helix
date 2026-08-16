@@ -11,7 +11,7 @@ from .readme_mesh import ReadmeMeshError, validate_mesh
 
 
 def load_mesh(path: Path) -> readme_mesh_pb2.ReadmeMesh:
-    """Load an indexed seed manifest and expand it into the Protobuf graph."""
+    """Load an indexed legacy seed manifest into a non-governing Protobuf graph."""
     payload = json.loads(path.read_text(encoding="utf-8"))
     if payload.get("manifest_kind") == "readme_mesh_index":
         payload = _load_index(path, payload)
@@ -76,7 +76,7 @@ def _expand_seed(seed: Mapping[str, object]) -> dict[str, object]:
                     evolution=evolution,
                     capabilities=capabilities,
                     evidence=evidence,
-                    canonical_repo=str(seed["canonical_repo"]),
+                    mesh_root=str(seed["canonical_repo"]),
                 ),
                 "run_commands": list(
                     raw_node.get("run_commands", ["python -m pytest -q"])
@@ -96,9 +96,36 @@ def _expand_seed(seed: Mapping[str, object]) -> dict[str, object]:
         "schema_version": seed["schema_version"],
         "generated_at": seed["generated_at"],
         "repositories": repositories,
-        "edges": seed.get("edges", []),
+        "edges": _migrate_legacy_edges(seed.get("edges", [])),
         "canonical_repo": seed["canonical_repo"],
     }
+
+
+def _migrate_legacy_edges(raw_edges: object) -> list[object]:
+    """Remove project-governor semantics before legacy mesh serialization.
+
+    The v1 source fragments retain historical relation names for provenance. The
+    active machine projection converts every historical GOVERNED_BY edge into a
+    verification relationship before Protobuf/ProtoJSON generation, so structured
+    consumers cannot receive the retired authority semantic.
+    """
+    if not isinstance(raw_edges, list):
+        raise ReadmeMeshError("mesh edges must be a list")
+    migrated: list[object] = []
+    for raw_edge in raw_edges:
+        if not isinstance(raw_edge, dict):
+            migrated.append(raw_edge)
+            continue
+        edge = dict(raw_edge)
+        if edge.get("relation") == "GOVERNED_BY":
+            edge["relation"] = "VERIFIES"
+            original = str(edge.get("value", "")).strip()
+            edge["value"] = (
+                "Legacy governance edge migrated to evidence/execution verification; "
+                "this grants no project-direction authority. " + original
+            ).strip()
+        migrated.append(edge)
+    return migrated
 
 
 def _sections(
@@ -110,7 +137,7 @@ def _sections(
     evolution: str,
     capabilities: list[str],
     evidence: list[object],
-    canonical_repo: str,
+    mesh_root: str,
 ) -> list[dict[str, object]]:
     return [
         {
@@ -123,8 +150,8 @@ def _sections(
                     "reviewable software capability."
                 ),
                 (
-                    "The project is small enough to understand quickly and "
-                    "structured enough to connect into a larger system."
+                    "The project is structured for rapid inspection while remaining "
+                    "free to expand into the strongest coherent architecture."
                 ),
                 "Claims link to source or tests instead of resume language alone.",
             ],
@@ -137,8 +164,8 @@ def _sections(
             "highlights": [
                 f"Primary engineering capabilities: {', '.join(capabilities)}.",
                 (
-                    "The repository owns an explicit mesh responsibility rather "
-                    "than pretending to be an entire platform."
+                    "The repository owns an explicit mesh responsibility while "
+                    "remaining composable with the wider APEX system."
                 ),
                 (
                     "Constraints and handoffs are visible through source structure "
@@ -151,15 +178,16 @@ def _sections(
             "audience": "AI_AGENT",
             "title": "Machine contract and mesh role",
             "summary": (
-                f"This repository is a typed node in the {canonical_repo} README "
-                "Mesh and uses the glaciereq.readme.v1 Protobuf contract."
+                f"This repository is a typed node in the legacy {mesh_root} README "
+                "Mesh public projection and uses the glaciereq.readme.v1 Protobuf "
+                "wire contract. Project direction remains operator-owned."
             ),
             "highlights": [
-                f"Canonical repository identity: {repository}.",
+                f"Repository identity: {repository}.",
                 f"Default branch: {branch}.",
                 (
-                    "Typed edges describe composition; evidence URLs remain "
-                    "stable machine inputs."
+                    "Typed edges describe composition or verification; evidence URLs "
+                    "remain stable machine inputs."
                 ),
             ],
             "evidence": evidence[-2:],
