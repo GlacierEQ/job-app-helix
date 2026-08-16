@@ -24,11 +24,14 @@ def load_mesh(path: Path) -> readme_mesh_pb2.ReadmeMesh:
 
 
 def _load_index(path: Path, index: Mapping[str, object]) -> dict[str, object]:
+    mesh_root = index.get("mesh_root") or index.get("canonical_repo")
+    if not isinstance(mesh_root, str) or not mesh_root.strip():
+        raise ReadmeMeshError("legacy README mesh index requires mesh_root")
     seed: dict[str, object] = {
         "manifest_kind": "readme_mesh_seed",
         "schema_version": index["schema_version"],
         "generated_at": index["generated_at"],
-        "canonical_repo": index["canonical_repo"],
+        "mesh_root": mesh_root,
         "repositories": [],
         "edges": [],
     }
@@ -45,6 +48,9 @@ def _load_index(path: Path, index: Mapping[str, object]) -> dict[str, object]:
 
 
 def _expand_seed(seed: Mapping[str, object]) -> dict[str, object]:
+    mesh_root = seed.get("mesh_root") or seed.get("canonical_repo")
+    if not isinstance(mesh_root, str) or not mesh_root.strip():
+        raise ReadmeMeshError("legacy README mesh seed requires mesh_root")
     repositories = []
     for raw_node in seed.get("repositories", []):
         if not isinstance(raw_node, dict):
@@ -76,7 +82,7 @@ def _expand_seed(seed: Mapping[str, object]) -> dict[str, object]:
                     evolution=evolution,
                     capabilities=capabilities,
                     evidence=evidence,
-                    mesh_root=str(seed["canonical_repo"]),
+                    mesh_root=mesh_root,
                 ),
                 "run_commands": list(
                     raw_node.get("run_commands", ["python -m pytest -q"])
@@ -97,7 +103,8 @@ def _expand_seed(seed: Mapping[str, object]) -> dict[str, object]:
         "generated_at": seed["generated_at"],
         "repositories": repositories,
         "edges": _migrate_legacy_edges(seed.get("edges", [])),
-        "canonical_repo": seed["canonical_repo"],
+        # v1 protobuf field name retained only at the final wire adapter.
+        "canonical_repo": mesh_root,
     }
 
 
