@@ -20,6 +20,8 @@ enum RelationType {
   PROVIDES_CAPABILITY = 3;
   CONSUMES = 4;
   EXTENDS = 5;
+  // Legacy v1 wire value retained for protobuf compatibility only. It MUST NOT
+  // be interpreted as project-direction authority. New APEX contracts forbid it.
   GOVERNED_BY = 6;
   PERSISTS_RECEIPTS_TO = 7;
   EXECUTES_THROUGH = 8;
@@ -67,5 +69,7 @@ message ReadmeMesh {
   string generated_at = 2;
   repeated RepositoryNode repositories = 3;
   repeated RepositoryEdge edges = 4;
+  // Legacy v1 wire name retained for compatibility. This identifies the root
+  // repository of the old public projection and grants no authority over APEX intent.
   string canonical_repo = 5;
 }
