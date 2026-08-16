@@ -32,8 +32,11 @@
     "https://github.com/GlacierEQ/grokodile/pull/3",
     "https://github.com/GlacierEQ/monolith/pull/113",
     "https://github.com/GlacierEQ/notion-workspace-optimizer/pull/4",
-    "https://github.com/GlacierEQ/openai-reasoning-kv-sentinel/pull/2"
+    "https://github.com/GlacierEQ/openai-reasoning-kv-sentinel/pull/2",
+    "https://github.com/GlacierEQ/notion-workflow-intelligence/pull/3",
+    "https://github.com/GlacierEQ/nvidia-deep-reasoning/pull/5",
+    "https://github.com/GlacierEQ/nvidia-gpu-health/pull/2"
   ],
-  "enrollment_pr_count": 26,
+  "enrollment_pr_count": 29,
   "note": "Mass recovery enrollment PRs. No portfolio leaves were deleted. Next: Genius Engine invent + implement power on each enrolled leaf."
 }
