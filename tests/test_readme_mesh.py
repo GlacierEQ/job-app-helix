@@ -35,6 +35,22 @@ def test_manifest_is_valid_and_has_three_audiences_per_repository() -> None:
         }
 
 
+def test_legacy_governor_edges_are_removed_before_machine_projection() -> None:
+    mesh = load_mesh(MANIFEST)
+    assert mesh.edges
+    assert all(edge.relation != readme_mesh_pb2.GOVERNED_BY for edge in mesh.edges)
+    artifacts = build_artifacts(mesh)
+    assert '"GOVERNED_BY"' not in artifacts.protojson
+    assert "GOVERNED_BY" not in artifacts.textproto
+
+
+def test_direct_governor_edge_is_rejected_by_active_mesh_validation() -> None:
+    mesh = load_mesh(MANIFEST)
+    mesh.edges[0].relation = readme_mesh_pb2.GOVERNED_BY
+    with pytest.raises(ReadmeMeshError, match="retired GOVERNED_BY"):
+        validate_mesh(mesh)
+
+
 def test_protobuf_round_trip_is_deterministic() -> None:
     mesh = load_mesh(MANIFEST)
     artifacts = build_artifacts(mesh)
@@ -57,6 +73,7 @@ def test_rendered_block_is_three_audience_and_machine_readable() -> None:
     assert "For AI systems and toolchains" in block
     assert "```protobuf" in block
     assert "Repository mesh" in block
+    assert "governed by" not in block.lower()
 
 
 def test_apply_block_is_idempotent() -> None:
