@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.dev/schemas/readme_apex.schema.json",
+  "title": "GlacierEQ README APEX Machine Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "repository",
+    "human_project_authority",
+    "apex_source_branch",
+    "role",
+    "visibility",
+    "lineage",
+    "apex_target",
+    "current",
+    "gap",
+    "frontier_candidates",
+    "lanes",
+    "preserved_gains",
+    "relationships",
+    "next_apex_turn"
+  ],
+  "properties": {
+    "schema": {"const": "glaciereq.readme.apex.v1"},
+    "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "human_project_authority": {"const": "Casey Barton"},
+    "apex_source_branch": {"type": "string", "minLength": 1},
+    "role": {"type": "string", "minLength": 1},
+    "visibility": {"enum": ["PUBLIC", "PRIVATE", "INTERNAL"]},
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["confidence", "source", "predecessors", "successors"],
+      "properties": {
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "source": {"type": "string", "minLength": 1},
+        "predecessors": {"type": "array", "items": {"type": "string"}},
+        "successors": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "apex_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "capability",
+        "intelligence",
+        "reliability",
+        "efficiency",
+        "leverage",
+        "composability",
+        "reach",
+        "frontier_fitness"
+      ],
+      "properties": {
+        "purpose": {"type": "string", "minLength": 1},
+        "capability": {"type": "number", "minimum": 0},
+        "intelligence": {"type": "number", "minimum": 0},
+        "reliability": {"type": "number", "minimum": 0},
+        "efficiency": {"type": "number", "minimum": 0},
+        "leverage": {"type": "number", "minimum": 0},
+        "composability": {"type": "number", "minimum": 0},
+        "reach": {"type": "number", "minimum": 0},
+        "frontier_fitness": {"type": "number", "minimum": 0}
+      }
+    },
+    "current": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["proof_state", "verified_at", "exact_head", "receipt"],
+      "properties": {
+        "proof_state": {
+          "enum": ["VERIFIED", "PARTIALLY_VERIFIED", "BLOCKED", "UNVERIFIED", "FAILED"]
+        },
+        "verified_at": {"type": ["string", "null"]},
+        "exact_head": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "receipt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "sha256"],
+          "properties": {
+            "path": {"type": "string", "minLength": 1},
+            "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          }
+        }
+      }
+    },
+    "gap": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "frontier_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["candidate", "boundary", "decision", "advantages", "costs", "evidence"],
+        "properties": {
+          "candidate": {"type": "string", "minLength": 1},
+          "boundary": {"type": "string", "minLength": 1},
+          "decision": {
+            "enum": ["IGNORE_WITH_REASON", "WATCH", "EXPERIMENT", "ADMIT", "MIGRATE", "RETIRE"]
+          },
+          "advantages": {"type": "array", "items": {"type": "string"}},
+          "costs": {"type": "array", "items": {"type": "string"}},
+          "evidence": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "lanes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "concern",
+          "technology",
+          "owner",
+          "interface",
+          "proof",
+          "replacement_trigger"
+        ],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "concern": {"type": "string", "minLength": 1},
+          "technology": {"type": "string", "minLength": 1},
+          "owner": {"type": "string", "minLength": 1},
+          "interface": {"type": "string", "minLength": 1},
+          "proof": {"type": "string", "minLength": 1},
+          "replacement_trigger": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "preserved_gains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["capability", "owner", "status", "evidence"],
+        "properties": {
+          "capability": {"type": "string", "minLength": 1},
+          "owner": {"type": "string", "minLength": 1},
+          "status": {"enum": ["PRESERVED", "SUPERSEDED_BY_STRONGER", "PARTIAL", "AT_RISK"]},
+          "evidence": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "relation", "value"],
+        "properties": {
+          "target": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+          "relation": {
+            "enum": [
+              "ORCHESTRATES",
+              "VERIFIES",
+              "PROVIDES_CAPABILITY",
+              "CONSUMES",
+              "EXTENDS",
+              "PERSISTS_RECEIPTS_TO",
+              "EXECUTES_THROUGH",
+              "COMPOSES_WITH",
+              "EVIDENCE_TRACKED_BY",
+              "PROJECTED_BY"
+            ]
+          },
+          "value": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "next_apex_turn": {"type": "string", "minLength": 1}
+  }
+}
