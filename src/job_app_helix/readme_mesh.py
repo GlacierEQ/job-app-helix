@@ -29,10 +29,13 @@ RELATION_LABELS = {
     readme_mesh_pb2.PROVIDES_CAPABILITY: "provides capability to",
     readme_mesh_pb2.CONSUMES: "consumes",
     readme_mesh_pb2.EXTENDS: "extends",
-    readme_mesh_pb2.GOVERNED_BY: "is governed by",
+    # Retained in the enum only for v1 protobuf wire compatibility. Active mesh
+    # validation rejects it before any binary/ProtoJSON projection can be emitted.
+    readme_mesh_pb2.GOVERNED_BY: "legacy relation forbidden in active projection",
     readme_mesh_pb2.PERSISTS_RECEIPTS_TO: "persists receipts to",
     readme_mesh_pb2.EXECUTES_THROUGH: "executes through",
 }
+LEGACY_NON_AUTHORITATIVE_RELATIONS = {readme_mesh_pb2.GOVERNED_BY}
 FORBIDDEN_PORTFOLIO_TERMS = (
     "1fdv-",
     "1fda-",
@@ -68,7 +71,7 @@ def validate_mesh(mesh: readme_mesh_pb2.ReadmeMesh) -> None:
     if not mesh.schema_version.strip():
         raise ReadmeMeshError("schema_version is required")
     if not mesh.canonical_repo.strip():
-        raise ReadmeMeshError("canonical_repo is required")
+        raise ReadmeMeshError("legacy v1 mesh root is required for wire compatibility")
 
     repositories: dict[str, readme_mesh_pb2.RepositoryNode] = {}
     for node in mesh.repositories:
@@ -82,7 +85,7 @@ def validate_mesh(mesh: readme_mesh_pb2.ReadmeMesh) -> None:
 
     if mesh.canonical_repo not in repositories:
         raise ReadmeMeshError(
-            f"canonical_repo {mesh.canonical_repo!r} is not declared as a repository"
+            f"legacy v1 mesh root {mesh.canonical_repo!r} is not declared as a repository"
         )
 
     seen_edges: set[tuple[str, str, int]] = set()
@@ -94,6 +97,11 @@ def validate_mesh(mesh: readme_mesh_pb2.ReadmeMesh) -> None:
         if edge.relation not in RELATION_LABELS:
             raise ReadmeMeshError(
                 f"edge {edge.source} -> {edge.target} has unspecified relation"
+            )
+        if edge.relation in LEGACY_NON_AUTHORITATIVE_RELATIONS:
+            raise ReadmeMeshError(
+                f"edge {edge.source} -> {edge.target} uses retired GOVERNED_BY; "
+                "migrate it to a functional verification/composition relation"
             )
         identity = (edge.source, edge.target, edge.relation)
         if identity in seen_edges:
@@ -228,11 +236,10 @@ def render_repository_block(
         "## Three-audience project map",
         "",
         (
-            "This section is generated from the versioned "
+            "This section is generated from the versioned legacy "
             "[README Mesh Protobuf contract]"
             "(https://github.com/GlacierEQ/job-app-helix/blob/main/proto/readme_mesh.proto). "
-            "Human explanation and machine-readable topology describe the same "
-            "evidence-bound system."
+            "It is a public evidence projection, not a project-direction authority."
         ),
         "",
     ]
@@ -287,13 +294,16 @@ def render_repository_block(
             "",
             "### Machine-readable contract",
             "",
-            "- Protobuf package: `glaciereq.readme.v1`",
+            "- Legacy Protobuf package: `glaciereq.readme.v1`",
             f"- Mesh schema version: `{mesh.schema_version}`",
             (
-                "- Canonical mesh: [`manifests/readme_mesh.json`]"
+                "- Legacy public mesh projection: [`manifests/readme_mesh.json`]"
                 "(https://github.com/GlacierEQ/job-app-helix/blob/main/"
                 "manifests/readme_mesh.json)"
             ),
+            "- APEX project contract: [`schemas/readme_apex.schema.json`]"
+            "(https://github.com/GlacierEQ/job-app-helix/blob/main/"
+            "schemas/readme_apex.schema.json)",
             "- Binary/ProtoJSON build: "
             "`python -m job_app_helix.readme_mesh_cli build`",
             f"- Repository identity: `{node.repository}`",
