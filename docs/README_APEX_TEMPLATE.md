@@ -61,7 +61,7 @@ Lineage is evidence about implementation history. It cannot override the human p
 
 | Prior gain | Current owner | Status | Evidence |
 |---|---|---|---|
-| `<capability>` | `<lane/component>` | `<PRESERVED | SUPERSEDED_BY_STRONGER | PARTIAL | AT_RISK>` | `<path/receipt>` |
+| `<capability>` | `<lane/component>` | `<PRESERVED, SUPERSEDED_BY_STRONGER, PARTIAL, AT_RISK>` | `<path/receipt>` |
 
 A refactor, migration, or technology replacement is incomplete while a required prior gain disappears without an explicit stronger replacement.
 
@@ -165,7 +165,7 @@ The executable contract is [`schemas/readme_apex.schema.json`](../schemas/readme
       "decision": "WATCH",
       "advantages": ["<measurable upside>"],
       "costs": ["<measurable cost>"],
-      "evidence": ["<benchmark/source/experiment>" ]
+      "evidence": ["<benchmark/source/experiment>"]
     }
   ],
   "lanes": [
