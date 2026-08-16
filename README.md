@@ -1,5 +1,10 @@
 # Job-App Helix — Evidence-Bound Portfolio Control Plane
 
+> **APEX job-ecosystem restoration is ACTIVE.**
+> Program: [`docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md`](docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md) · Status: [`STATUS.md`](STATUS.md)
+> Identity: APEX is the counter to canonical destruction.
+
+
 > Turns a large engineering portfolio into a system that can be inspected, planned, tested, and trusted without flattening sixty-seven repositories into one oversized claim.
 
 Job-App Helix is the governance and verification center of the GlacierEQ hiring portfolio. It maintains the exact repository boundary, decides what is ready for promotion, discovers each project's native proof path, executes bounded checks, and emits evidence records that humans and AI systems can read from the same source.
