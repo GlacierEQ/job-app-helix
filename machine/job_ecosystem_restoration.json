@@ -90,5 +90,13 @@
       "repository": "GlacierEQ/apex-control-plane",
       "action": "counter neutralization stamps; restore dispatch power"
     }
-  ]
+  ],
+  "genius_engine": {
+    "module": "job_app_helix.genius_engine",
+    "cli": "scripts/genius_engine.py",
+    "docs": "docs/apex/GENIUS_ENGINE.md",
+    "console_script": "job-app-helix-genius",
+    "seed_receipt": "receipts/GENIUS_ESTATE_WAVE2_SEED_2026-08-16.json",
+    "role": "invent \u2192 attack \u2192 rank mechanisms for restore-and-complete waves"
+  }
 }

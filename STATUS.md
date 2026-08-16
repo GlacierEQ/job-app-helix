@@ -41,3 +41,9 @@ child repos → **job-app-helix** (control) → **job-application** (projection)
 - **0 missing** live links
 - Heavy recent neutralization: apex-control-plane, spacex-orbital/launch/pad/propulsion/telemetry
 - Receipt: `receipts/JOB_ECOSYSTEM_AUDIT_2026-08-16.json`
+
+## Genius Engine
+
+Executable invent runtime: `src/job_app_helix/genius_engine.py`  
+Docs: `docs/apex/GENIUS_ENGINE.md`  
+CLI: `PYTHONPATH=src python scripts/genius_engine.py invent --repository GlacierEQ/<leaf> --markdown`

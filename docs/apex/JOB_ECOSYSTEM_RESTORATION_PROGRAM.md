@@ -108,3 +108,14 @@ wave 2           → colossus + spacex family restore
 refresh site     → re-sync job-application projection from helix
 full matrix      → re-run portfolio 66 audit
 ```
+
+## Genius Engine
+
+Use the Genius Engine to invent restoration mechanisms per leaf before coding:
+
+```bash
+PYTHONPATH=src python scripts/genius_engine.py restore --repository GlacierEQ/<leaf> --markdown
+PYTHONPATH=src python scripts/genius_engine.py estate receipts/genius_wave2_subjects.json
+```
+
+Docs: `docs/apex/GENIUS_ENGINE.md`

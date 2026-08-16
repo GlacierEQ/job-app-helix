@@ -1,0 +1,348 @@
+{
+  "count": 5,
+  "engine_id": "glaciereq.genius-engine.v1",
+  "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+  "law": "MAXIMUM_COHERENT_ADVANCE",
+  "runs": [
+    {
+      "engine_id": "glaciereq.genius-engine.v1",
+      "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+      "law": "MAXIMUM_COHERENT_ADVANCE",
+      "primary": {
+        "apex_aligned": true,
+        "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+        "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+        "coherence_score": 0.9000000000000001,
+        "company_track": null,
+        "domain": "general",
+        "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+        "genius_score": 0.7425000000000002,
+        "implementation": "Implement `anti_neutralization_gate` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+        "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+        "mechanism": "Anti-Neutralization Merge Gate: CI fails capability shrink or package amputation without OPERATOR_AUTHORIZED_REDUCTION.",
+        "novelty_score": 0.55,
+        "plane": "IMPLEMENTED",
+        "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+        "repository": "GlacierEQ/apex-control-plane",
+        "solution_id": "genius-c974af749e9a",
+        "tags": [
+          "anti_neutralization_gate",
+          "general",
+          "MAXIMUM_COHERENT_ADVANCE"
+        ],
+        "title": "Anti-Neutralization Merge Gate for GlacierEQ/apex-control-plane",
+        "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+      },
+      "receipt_sha256": "82274b384f698840766ea8f24e960def01a00c948e04d6c45092271422f7af54",
+      "rejected": [],
+      "solutions": [
+        {
+          "apex_aligned": true,
+          "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+          "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+          "coherence_score": 0.9000000000000001,
+          "company_track": null,
+          "domain": "general",
+          "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+          "genius_score": 0.7425000000000002,
+          "implementation": "Implement `anti_neutralization_gate` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+          "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+          "mechanism": "Anti-Neutralization Merge Gate: CI fails capability shrink or package amputation without OPERATOR_AUTHORIZED_REDUCTION.",
+          "novelty_score": 0.55,
+          "plane": "IMPLEMENTED",
+          "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+          "repository": "GlacierEQ/apex-control-plane",
+          "solution_id": "genius-c974af749e9a",
+          "tags": [
+            "anti_neutralization_gate",
+            "general",
+            "MAXIMUM_COHERENT_ADVANCE"
+          ],
+          "title": "Anti-Neutralization Merge Gate for GlacierEQ/apex-control-plane",
+          "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+        }
+      ],
+      "subject": {
+        "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+        "company": null,
+        "domain": "general",
+        "neutralization_stamps": 3,
+        "paper_recovery_only": null,
+        "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+        "repository": "GlacierEQ/apex-control-plane"
+      }
+    },
+    {
+      "engine_id": "glaciereq.genius-engine.v1",
+      "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+      "law": "MAXIMUM_COHERENT_ADVANCE",
+      "primary": {
+        "apex_aligned": true,
+        "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+        "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+        "coherence_score": 0.9000000000000001,
+        "company_track": null,
+        "domain": "spacex",
+        "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+        "genius_score": 0.7425000000000002,
+        "implementation": "Implement `split_brain_actuation` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+        "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+        "mechanism": "Mission Assurance Split Brain: Separate policy-decider from actuator; dual-key receipts; neither alone completes side effects.",
+        "novelty_score": 0.55,
+        "plane": "IMPLEMENTED",
+        "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+        "repository": "GlacierEQ/spacex-telemetry",
+        "solution_id": "genius-ae981c0305bd",
+        "tags": [
+          "split_brain_actuation",
+          "spacex",
+          "MAXIMUM_COHERENT_ADVANCE"
+        ],
+        "title": "Mission Assurance Split Brain for GlacierEQ/spacex-telemetry",
+        "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+      },
+      "receipt_sha256": "aab70a25abfd40b999b30c0681e8edb5ac0bb9da4e603c1e73602a301379d909",
+      "rejected": [],
+      "solutions": [
+        {
+          "apex_aligned": true,
+          "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+          "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+          "coherence_score": 0.9000000000000001,
+          "company_track": null,
+          "domain": "spacex",
+          "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+          "genius_score": 0.7425000000000002,
+          "implementation": "Implement `split_brain_actuation` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+          "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+          "mechanism": "Mission Assurance Split Brain: Separate policy-decider from actuator; dual-key receipts; neither alone completes side effects.",
+          "novelty_score": 0.55,
+          "plane": "IMPLEMENTED",
+          "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+          "repository": "GlacierEQ/spacex-telemetry",
+          "solution_id": "genius-ae981c0305bd",
+          "tags": [
+            "split_brain_actuation",
+            "spacex",
+            "MAXIMUM_COHERENT_ADVANCE"
+          ],
+          "title": "Mission Assurance Split Brain for GlacierEQ/spacex-telemetry",
+          "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+        }
+      ],
+      "subject": {
+        "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+        "company": null,
+        "domain": "spacex",
+        "neutralization_stamps": 2,
+        "paper_recovery_only": true,
+        "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+        "repository": "GlacierEQ/spacex-telemetry"
+      }
+    },
+    {
+      "engine_id": "glaciereq.genius-engine.v1",
+      "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+      "law": "MAXIMUM_COHERENT_ADVANCE",
+      "primary": {
+        "apex_aligned": true,
+        "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+        "cause": "Projection surfaces are not fail-closed against missing or stale proof receipts.",
+        "coherence_score": 0.75,
+        "company_track": null,
+        "domain": "hire",
+        "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+        "genius_score": 0.66,
+        "implementation": "Implement `anti_neutralization_gate` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+        "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+        "mechanism": "Anti-Neutralization Merge Gate: CI fails capability shrink or package amputation without OPERATOR_AUTHORIZED_REDUCTION.",
+        "novelty_score": 0.55,
+        "plane": "IMPLEMENTED",
+        "problem": "Recruiter claims can drift from repository-native evidence.",
+        "repository": "GlacierEQ/job-application",
+        "solution_id": "genius-565a59024245",
+        "tags": [
+          "anti_neutralization_gate",
+          "hire",
+          "MAXIMUM_COHERENT_ADVANCE"
+        ],
+        "title": "Anti-Neutralization Merge Gate for GlacierEQ/job-application",
+        "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+      },
+      "receipt_sha256": "6df4e9dac7d2e6072b88fc7bd4319bb09fa6fd48b9c72d44a1dbdc041c2bcdbe",
+      "rejected": [],
+      "solutions": [
+        {
+          "apex_aligned": true,
+          "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+          "cause": "Projection surfaces are not fail-closed against missing or stale proof receipts.",
+          "coherence_score": 0.75,
+          "company_track": null,
+          "domain": "hire",
+          "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+          "genius_score": 0.66,
+          "implementation": "Implement `anti_neutralization_gate` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+          "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+          "mechanism": "Anti-Neutralization Merge Gate: CI fails capability shrink or package amputation without OPERATOR_AUTHORIZED_REDUCTION.",
+          "novelty_score": 0.55,
+          "plane": "IMPLEMENTED",
+          "problem": "Recruiter claims can drift from repository-native evidence.",
+          "repository": "GlacierEQ/job-application",
+          "solution_id": "genius-565a59024245",
+          "tags": [
+            "anti_neutralization_gate",
+            "hire",
+            "MAXIMUM_COHERENT_ADVANCE"
+          ],
+          "title": "Anti-Neutralization Merge Gate for GlacierEQ/job-application",
+          "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+        }
+      ],
+      "subject": {
+        "cause": "Projection surfaces are not fail-closed against missing or stale proof receipts.",
+        "company": null,
+        "domain": "hire",
+        "neutralization_stamps": null,
+        "paper_recovery_only": null,
+        "problem": "Recruiter claims can drift from repository-native evidence.",
+        "repository": "GlacierEQ/job-application"
+      }
+    },
+    {
+      "engine_id": "glaciereq.genius-engine.v1",
+      "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+      "law": "MAXIMUM_COHERENT_ADVANCE",
+      "primary": {
+        "apex_aligned": true,
+        "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+        "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+        "coherence_score": 0.75,
+        "company_track": null,
+        "domain": "spacex",
+        "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+        "genius_score": 0.66,
+        "implementation": "Implement `authority_half_life` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+        "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+        "mechanism": "Command Authority Half-life: Cryptographically expiring command tokens; stale authority cannot fire.",
+        "novelty_score": 0.55,
+        "plane": "IMPLEMENTED",
+        "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+        "repository": "GlacierEQ/spacex-mission-control",
+        "solution_id": "genius-e5487c9d89f6",
+        "tags": [
+          "authority_half_life",
+          "spacex",
+          "MAXIMUM_COHERENT_ADVANCE"
+        ],
+        "title": "Command Authority Half-life for GlacierEQ/spacex-mission-control",
+        "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+      },
+      "receipt_sha256": "91a052a3931ef488c190e25e4a143e00712b6c94f37db5d3e474fd94075dd472",
+      "rejected": [],
+      "solutions": [
+        {
+          "apex_aligned": true,
+          "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+          "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+          "coherence_score": 0.75,
+          "company_track": null,
+          "domain": "spacex",
+          "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+          "genius_score": 0.66,
+          "implementation": "Implement `authority_half_life` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+          "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+          "mechanism": "Command Authority Half-life: Cryptographically expiring command tokens; stale authority cannot fire.",
+          "novelty_score": 0.55,
+          "plane": "IMPLEMENTED",
+          "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+          "repository": "GlacierEQ/spacex-mission-control",
+          "solution_id": "genius-e5487c9d89f6",
+          "tags": [
+            "authority_half_life",
+            "spacex",
+            "MAXIMUM_COHERENT_ADVANCE"
+          ],
+          "title": "Command Authority Half-life for GlacierEQ/spacex-mission-control",
+          "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+        }
+      ],
+      "subject": {
+        "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+        "company": null,
+        "domain": "spacex",
+        "neutralization_stamps": null,
+        "paper_recovery_only": true,
+        "problem": "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
+        "repository": "GlacierEQ/spacex-mission-control"
+      }
+    },
+    {
+      "engine_id": "glaciereq.genius-engine.v1",
+      "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+      "law": "MAXIMUM_COHERENT_ADVANCE",
+      "primary": {
+        "apex_aligned": true,
+        "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+        "cause": "Command path is not receipt-bound end-to-end under thermal/power constraints.",
+        "coherence_score": 0.75,
+        "company_track": null,
+        "domain": "colossus",
+        "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+        "genius_score": 0.66,
+        "implementation": "Implement `receipt_bus` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+        "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+        "mechanism": "Actuation Receipt Bus: Every command is signed intent with preconditions, abort predicates, and post-condition evidence.",
+        "novelty_score": 0.55,
+        "plane": "IMPLEMENTED",
+        "problem": "Actuation paths can fire without complete precondition and post-condition evidence.",
+        "repository": "GlacierEQ/xai-colossus-cooling",
+        "solution_id": "genius-99523eff4701",
+        "tags": [
+          "receipt_bus",
+          "colossus",
+          "MAXIMUM_COHERENT_ADVANCE"
+        ],
+        "title": "Actuation Receipt Bus for GlacierEQ/xai-colossus-cooling",
+        "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+      },
+      "receipt_sha256": "bc634a12fe47e4f52c57bef7e3108eff7c53d495b7992ecf9121e6e92c275d91",
+      "rejected": [],
+      "solutions": [
+        {
+          "apex_aligned": true,
+          "boundary": "No false company affiliation; no flight/production authority claims without proof; no legal/private data on public hire surface; no capability deletion to green CI.",
+          "cause": "Command path is not receipt-bound end-to-end under thermal/power constraints.",
+          "coherence_score": 0.75,
+          "company_track": null,
+          "domain": "colossus",
+          "failure_mode": "Mechanism silent-fail, authority forgery, receipt graph incomplete, or claim/promotion without evidence must fail closed.",
+          "genius_score": 0.66,
+          "implementation": "Implement `receipt_bus` in repository-native modules with dual-plane truth: keep honest VERIFIED labels; land the mechanism on the IMPLEMENTED plane; preserve TARGET north-star. Prefer MAXIMUM_COHERENT_ADVANCE over MVP amputation.",
+          "measurement": "Exact-head tests for mechanism invariants; refuse-path unit tests; before/after proof receipts; optional benchmark only when measured.",
+          "mechanism": "Actuation Receipt Bus: Every command is signed intent with preconditions, abort predicates, and post-condition evidence.",
+          "novelty_score": 0.55,
+          "plane": "IMPLEMENTED",
+          "problem": "Actuation paths can fire without complete precondition and post-condition evidence.",
+          "repository": "GlacierEQ/xai-colossus-cooling",
+          "solution_id": "genius-99523eff4701",
+          "tags": [
+            "receipt_bus",
+            "colossus",
+            "MAXIMUM_COHERENT_ADVANCE"
+          ],
+          "title": "Actuation Receipt Bus for GlacierEQ/xai-colossus-cooling",
+          "value": "Removes the named bottleneck while increasing evidence-coupled executable power \u2014 the unit of APEX completion."
+        }
+      ],
+      "subject": {
+        "cause": "Command path is not receipt-bound end-to-end under thermal/power constraints.",
+        "company": null,
+        "domain": "colossus",
+        "neutralization_stamps": null,
+        "paper_recovery_only": null,
+        "problem": "Actuation paths can fire without complete precondition and post-condition evidence.",
+        "repository": "GlacierEQ/xai-colossus-cooling"
+      }
+    }
+  ]
+}
