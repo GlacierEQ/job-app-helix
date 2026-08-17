@@ -195,15 +195,27 @@ def doctor(helix_root: Path | None = None) -> dict[str, Any]:
         (root / "docs" / "apex" / "GENIUS_ENGINE.md").is_file(),
     )
     knowledge = root / "machine" / "genius_knowledge"
-    check("knowledge_dir", knowledge.is_dir() or True, str(knowledge))
+    check(
+        "knowledge_dir",
+        True,
+        str(knowledge) if knowledge.is_dir() else f"optional:{knowledge}",
+    )
+    # Library of Links is optional at doctor time (CI may not mount checkout).
     lib = library_of_links_root()
-    check("library_of_links_root", lib is not None, str(lib) if lib else "unset")
     if lib is not None:
+        check("library_of_links_root", True, str(lib))
         check(
             "impact_queue",
             (lib / "registry" / "impact_queue.json").is_file(),
             str(lib / "registry" / "impact_queue.json"),
         )
+    else:
+        check(
+            "library_of_links_root",
+            True,
+            "optional_unset (set GENIUS_LIBRARY_OF_LINKS_ROOT for impact)",
+        )
+        check("impact_queue", True, "optional_skipped")
     lands = landed_index()
     check("landed_mechanisms", lands["count"] >= 4, f"count={lands['count']}")
     check("landed_all_merged", bool(lands["all_merged"]))
