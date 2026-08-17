@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from job_app_helix.genius_engine import (
     APEX_IDENTITY,
     EXECUTION_LAW,
@@ -55,8 +57,5 @@ def test_estate_ranks_multiple() -> None:
 
 
 def test_empty_subject_refuses() -> None:
-    try:
+    with pytest.raises(GeniusEngineError):
         invent({})
-        assert False, "expected error"
-    except GeniusEngineError:
-        pass
