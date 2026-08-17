@@ -338,7 +338,7 @@ def build_plan(
                 stacks, stack_commands = commands_for_stack(
                     path, program.default_timeout_seconds
                 )
-                if wave.mode is ExecutionMode.VERIFY and not stacks:
+                if wave.mode.is_active and not stacks:
                     blockers.append("no supported executable stack was detected")
 
                 has_positive_test = any(
@@ -370,7 +370,7 @@ def build_plan(
                 elif command.evidence_level >= EvidenceLevel.BUILD:
                     required = wave.require_build_receipt
                 else:
-                    required = wave.mode is ExecutionMode.VERIFY
+                    required = wave.mode.is_active
                 normalized_commands.append(replace(command, required=required))
 
             commands = (
