@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
 
 from .restoration_strategy_router import compile_restoration_decision
 
@@ -13,7 +13,9 @@ from .restoration_strategy_router import compile_restoration_decision
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-route-restoration",
-        description="Rank executable JOB_RESTORE candidates using the Megamind tournament contract.",
+        description=(
+            "Rank executable JOB_RESTORE candidates using the Megamind tournament contract."
+        ),
     )
     parser.add_argument("input", type=Path, help="JSON payload with a candidates array")
     parser.add_argument("--output", type=Path, help="Optional decision receipt path")
