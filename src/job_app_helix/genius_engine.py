@@ -1104,6 +1104,7 @@ def invent_estate(
     live_research: bool = True,
     accumulate: bool = True,
     publish_links: bool = True,
+    root: Path | None = None,
 ) -> dict[str, Any]:
     """Run genius invent across many subjects; return ranked estate plan."""
     runs: list[dict[str, Any]] = []
@@ -1114,6 +1115,7 @@ def invent_estate(
             live_research=live_research,
             accumulate=accumulate,
             publish_links=publish_links,
+            root=root,
         )
         runs.append(run.to_dict())
     runs.sort(
