@@ -240,7 +240,11 @@ def build_symbol_packet(
             candidate = by_name[queue.pop()]
             for dependency in candidate.dependencies:
                 dependency_candidate = by_name.get(dependency)
-                if dependency_candidate and dependency_candidate.status == "missing" and dependency not in selected:
+                if (
+                    dependency_candidate
+                    and dependency_candidate.status == "missing"
+                    and dependency not in selected
+                ):
                     selected.add(dependency)
                     queue.append(dependency)
     actions: list[SymbolRestorationAction] = []
@@ -248,7 +252,8 @@ def build_symbol_packet(
         candidate = by_name[name]
         if candidate.status == "changed" and not allow_replace:
             raise RestorationError(
-                f"refusing to replace later symbol capability at {name}; pass allow_replace=True after composition review"
+                f"refusing to replace later symbol capability at {name}; "
+                "pass allow_replace=True after composition review"
             )
         actions.append(
             SymbolRestorationAction(
@@ -292,7 +297,10 @@ def _insert_top_level(text: str, source: str) -> str:
 
 def _insert_method(text: str, class_name: str, source: str) -> str:
     tree = ast.parse(text)
-    cls = next((node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == class_name), None)
+    cls = next(
+        (node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == class_name),
+        None,
+    )
     if cls is None:
         raise RestorationError(f"target class missing for method restoration: {class_name}")
     lines = text.splitlines(keepends=True)
@@ -323,10 +331,13 @@ def apply_symbol_packet(repo: Path, packet: SymbolRestorationPacket) -> SymbolAp
         donor_blob = read_donor_blob(repo, donor_sha=packet.donor_sha, path=path)
         donor_symbols = _snapshots(donor_blob, path=path)
 
-        # Replacements run bottom-up so line offsets remain stable. Insertions follow.
+        # Replacements run bottom-up so their original AST line offsets remain valid.
         current_symbols = _snapshots(text.encode(), path=path)
         replacements = [action for action in actions if action.mode == "replace"]
-        replacements.sort(key=lambda item: current_symbols[item.qualified_name].start_line, reverse=True)
+        replacements.sort(
+            key=lambda item: current_symbols[item.qualified_name].start_line,
+            reverse=True,
+        )
         for action in replacements:
             current = current_symbols.get(action.qualified_name)
             donor = donor_symbols.get(action.qualified_name)
@@ -338,8 +349,7 @@ def apply_symbol_packet(repo: Path, packet: SymbolRestorationPacket) -> SymbolAp
                 raise ArchaeologyError(f"donor symbol drift at {action.qualified_name}")
             replacement = donor.source
             if "." in action.qualified_name:
-                replacement = textwrap.indent(textwrap.dedent(replacement), " " * current.start_line * 0)
-                prefix = " " * (len(current.source) - len(current.source.lstrip()))
+                prefix = current.source[: len(current.source) - len(current.source.lstrip())]
                 replacement = textwrap.indent(textwrap.dedent(replacement), prefix)
             text = _replace_lines(text, current.start_line, current.end_line, replacement)
             restored.append(action.qualified_name)
