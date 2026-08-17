@@ -148,7 +148,9 @@ def estate_visibility_payload(candidates: tuple[EstateCandidate, ...]) -> dict[s
     return {
         "schema": "glaciereq.estate-visibility-queue.v1",
         "distribution": "INTERNAL_PRIVATE_STATE",
-        "mission": "Expose the complete owned estate to relevance analysis before rollout admission.",
+        "mission": (
+            "Expose the complete owned estate to relevance analysis before rollout admission."
+        ),
         "repository_count": len(candidates),
         "hidden_repository_count": 0,
         "route_counts": dict(sorted(route_counts.items())),
