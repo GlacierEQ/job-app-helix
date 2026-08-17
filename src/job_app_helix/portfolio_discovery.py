@@ -11,7 +11,6 @@ from .portfolio_contract import validate_program
 from .portfolio_models import (
     CommandSpec,
     EvidenceLevel,
-    ExecutionMode,
     PortfolioProgramError,
     ProofMode,
     RepositoryPlan,
