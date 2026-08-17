@@ -2,6 +2,10 @@
   "schema": "glaciereq.portfolio.inventory.v1",
   "owner": "GlacierEQ",
   "portfolio_root": "job-app-helix",
+  "scope": "ADMITTED_JOB_ENGINEERING_ROLLOUT_PROJECTION",
+  "is_full_estate_inventory": false,
+  "admission_policy": "FULL_ESTATE_DISCOVERY_THEN_RELEVANCE_ROUTING",
+  "estate_scope_receipt": "manifests/estate_scope_receipt_2026-08-17.json",
   "total_repositories": 67,
   "workspace_repositories": [
     "AEON-777",
