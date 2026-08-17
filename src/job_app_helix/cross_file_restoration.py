@@ -166,7 +166,9 @@ def build_cross_file_packet(
     donor_sha = resolve_commit(repo, donor_ref)
     target_sha = resolve_commit(repo, target_ref)
 
-    queue: list[tuple[str, str, int]] = [(root_path, symbol, 0) for symbol in selected_symbols]
+    queue: list[tuple[str, str, int]] = [
+        (root_path, symbol, 0) for symbol in selected_symbols
+    ]
     requested: dict[str, set[str]] = {}
     dependencies: dict[tuple[str, str, str, str], SemanticDependency] = {}
     visited: set[tuple[str, str]] = set()
@@ -186,7 +188,9 @@ def build_cross_file_packet(
         donor_symbols = _snapshots(donor_blob, path=path)
         snapshot = donor_symbols.get(symbol)
         if snapshot is None:
-            raise RestorationError(f"donor symbol not found during semantic closure: {path}:{symbol}")
+            raise RestorationError(
+                f"donor symbol not found during semantic closure: {path}:{symbol}"
+            )
         imports = _imports(donor_blob, path=path)
         for loaded_name in sorted(_loaded_names(snapshot.source, path=path)):
             imported = imports.get(loaded_name)
@@ -221,7 +225,12 @@ def build_cross_file_packet(
 
     packets: list[SymbolRestorationPacket] = []
     for path in sorted(requested):
-        report = excavate_python_symbols(repo, donor_ref=donor_sha, target_ref=target_sha, path=path)
+        report = excavate_python_symbols(
+            repo,
+            donor_ref=donor_sha,
+            target_ref=target_sha,
+            path=path,
+        )
         restorables = {candidate.qualified_name for candidate in report.candidates}
         selected = tuple(sorted(requested[path] & restorables))
         if not selected:
@@ -237,10 +246,7 @@ def build_cross_file_packet(
 
     if not packets:
         raise RestorationError("semantic closure produced no restorable symbols")
-    dependency_tuple = tuple(
-        dependencies[key]
-        for key in sorted(dependencies)
-    )
+    dependency_tuple = tuple(dependencies[key] for key in sorted(dependencies))
     payload = {
         "donor_sha": donor_sha,
         "target_sha": target_sha,
@@ -266,12 +272,17 @@ def _preflight(repo: Path, packet: CrossFileRestorationPacket) -> None:
         for action in symbol_packet.actions:
             target = repo / action.path
             if not target.is_file():
-                raise RestorationError(f"target provider disappeared before apply: {action.path}")
+                raise RestorationError(
+                    f"target provider disappeared before apply: {action.path}"
+                )
             current_sha = hashlib.sha256(target.read_bytes()).hexdigest()
             if current_sha != action.expected_target_file_sha256:
-                raise RestorationError(f"target drift at {action.path}; semantic packet is stale")
-        donor_blob = read_donor_blob(repo, donor_sha=packet.donor_sha, path=symbol_packet.actions[0].path)
-        donor_symbols = _snapshots(donor_blob, path=symbol_packet.actions[0].path)
+                raise RestorationError(
+                    f"target drift at {action.path}; semantic packet is stale"
+                )
+        action_path = symbol_packet.actions[0].path
+        donor_blob = read_donor_blob(repo, donor_sha=packet.donor_sha, path=action_path)
+        donor_symbols = _snapshots(donor_blob, path=action_path)
         for action in symbol_packet.actions:
             donor = donor_symbols.get(action.qualified_name)
             if donor is None or donor.source_sha256 != action.donor_symbol_sha256:
@@ -280,7 +291,10 @@ def _preflight(repo: Path, packet: CrossFileRestorationPacket) -> None:
                 )
 
 
-def apply_cross_file_packet(repo: Path, packet: CrossFileRestorationPacket) -> CrossFileApplyReceipt:
+def apply_cross_file_packet(
+    repo: Path,
+    packet: CrossFileRestorationPacket,
+) -> CrossFileApplyReceipt:
     """Apply a multi-file semantic packet transactionally with rollback on failure."""
     repo = repo.resolve()
     _preflight(repo, packet)
