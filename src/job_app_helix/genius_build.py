@@ -8,10 +8,9 @@ Law: MAXIMUM_COHERENT_ADVANCE · ENGINEERED · MAXIMIZE_IMPACT
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 from job_app_helix.genius_engine import (
     APEX_IDENTITY,
@@ -21,7 +20,6 @@ from job_app_helix.genius_engine import (
     MECHANISM_LIBRARY,
     invent,
     invent_estate,
-    invent_restoration,
 )
 from job_app_helix.genius_research import library_of_links_root
 
@@ -225,9 +223,14 @@ def doctor(helix_root: Path | None = None) -> dict[str, Any]:
             accumulate=False,
             publish_links=False,
         )
-        check("smoke_invent", run.primary is not None, run.primary.title if run.primary else "")
-        check("smoke_advance", bool(run.advance_brief and run.advance_brief.get("status") == "READY"))
-    except Exception as exc:  # noqa: BLE001
+        check(
+            "smoke_invent",
+            run.primary is not None,
+            run.primary.title if run.primary else "",
+        )
+        ready = bool(run.advance_brief and run.advance_brief.get("status") == "READY")
+        check("smoke_advance", ready)
+    except Exception as exc:
         check("smoke_invent", False, str(exc))
         check("smoke_advance", False, "skipped")
 
@@ -323,7 +326,10 @@ def build_receipt(helix_root: Path | None = None, *, write: bool = True) -> dict
                 "PYTHONPATH=src python scripts/genius_engine.py status",
                 "PYTHONPATH=src python scripts/genius_engine.py doctor",
                 "PYTHONPATH=src python scripts/genius_engine.py impact-estate --offline",
-                "PYTHONPATH=src python scripts/genius_engine.py invent --repository GlacierEQ/megamind",
+                (
+                    "PYTHONPATH=src python scripts/genius_engine.py invent "
+                    "--repository GlacierEQ/megamind"
+                ),
                 "```",
                 "",
             ]
