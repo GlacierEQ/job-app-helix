@@ -142,22 +142,49 @@ def _checkpoint(plan: RepositoryPlan, form: DeliveryForm, signals: tuple[str, ..
     if plan.blockers:
         return f"repair execution blocker: {plan.blockers[0]}"
     if plan.target_evidence < EvidenceLevel.TEST:
-        return "finish central mechanism and reach positive-count deterministic test proof"
+        return (
+            "finish central mechanism and reach positive-count deterministic "
+            "test proof"
+        )
     if form is DeliveryForm.STATIC_SITE:
-        return "build, deploy, smoke-test, and bind the live site receipt to the exact source head"
+        return (
+            "build, deploy, smoke-test, and bind the live site receipt to the "
+            "exact source head"
+        )
     if form is DeliveryForm.CONTAINER_SERVICE:
-        return "build the container, run an isolated smoke test, deploy it, and capture health receipts"
+        return (
+            "build the container, run an isolated smoke test, deploy it, and "
+            "capture health receipts"
+        )
     if form is DeliveryForm.SERVICE:
-        return "make the service cold-start cleanly, add health checks, deploy it, and observe runtime behavior"
+        return (
+            "make the service cold-start cleanly, add health checks, deploy it, "
+            "and observe runtime behavior"
+        )
     if form is DeliveryForm.CLI_PACKAGE:
-        return "install from a clean environment, run an end-to-end command, package/release it, and bind receipts"
+        return (
+            "install from a clean environment, run an end-to-end command, "
+            "package/release it, and bind receipts"
+        )
     if form is DeliveryForm.PACKAGE:
-        return "make clean installation and public API smoke tests pass, then publish or integrate the package"
+        return (
+            "make clean installation and public API smoke tests pass, then "
+            "publish or integrate the package"
+        )
     if form is DeliveryForm.MULTI_RUNTIME_TOOL:
-        return "prove each runtime boundary, expose one coherent entrypoint, package it, and run an end-to-end flow"
+        return (
+            "prove each runtime boundary, expose one coherent entrypoint, "
+            "package it, and run an end-to-end flow"
+        )
     if signals:
-        return "execute the strongest existing delivery path and bind runtime proof to the exact source head"
-    return "create a real runnable entrypoint, package the product, then advance to an appropriate deployment surface"
+        return (
+            "execute the strongest existing delivery path and bind runtime "
+            "proof to the exact source head"
+        )
+    return (
+        "create a real runnable entrypoint, package the product, then advance "
+        "to an appropriate deployment surface"
+    )
 
 
 def compile_productization_targets(
