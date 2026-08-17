@@ -94,9 +94,11 @@ def test_federated_restoration_recovers_cross_repo_dependency_graph(tmp_path: Pa
     assert packet.donor.donor_sha == donor_sha
     assert packet.target_sha == target_sha
     assert packet.donor.imported_ref.startswith("refs/apex/donors/")
-    assert {(item.provider_path, item.provider_symbol) for item in packet.semantic_packet.dependencies} == {
-        ("pkg/helpers.py", "amplify")
+    dependencies = {
+        (item.provider_path, item.provider_symbol)
+        for item in packet.semantic_packet.dependencies
     }
+    assert dependencies == {("pkg/helpers.py", "amplify")}
 
     receipt = apply_federated_packet(target_repo, packet)
     engine_text = (target_repo / "pkg/engine.py").read_text()
