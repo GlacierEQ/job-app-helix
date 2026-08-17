@@ -11,7 +11,7 @@
   ],
   "doctor": {
     "build_status": "COMPLETE",
-    "checked_at": "2026-08-17T10:04:10+00:00",
+    "checked_at": "2026-08-17T10:07:35+00:00",
     "checks": [
       {
         "detail": "glaciereq.genius-engine.v4",
@@ -59,12 +59,12 @@
         "ok": true
       },
       {
-        "detail": "local_path_redacted",
+        "detail": "optional_unset (set GENIUS_LIBRARY_OF_LINKS_ROOT for impact)",
         "name": "library_of_links_root",
         "ok": true
       },
       {
-        "detail": "local_path_redacted",
+        "detail": "optional_skipped",
         "name": "impact_queue",
         "ok": true
       },
@@ -189,7 +189,7 @@
     "schema": "glaciereq.genius-doctor.v1"
   },
   "engine_id": "glaciereq.genius-engine.v4",
-  "generated_at": "2026-08-17T10:04:10+00:00",
+  "generated_at": "2026-08-17T10:07:35+00:00",
   "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
   "landed": {
     "all_merged": true,

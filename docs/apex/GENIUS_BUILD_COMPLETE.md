@@ -2,7 +2,7 @@
 
 **Status:** `COMPLETE`  
 **Engine:** `glaciereq.genius-engine.v4`  
-**Generated:** `2026-08-17T10:04:10+00:00`  
+**Generated:** `2026-08-17T10:07:35+00:00`  
 **Mechanisms:** 15  
 **Lands merged:** 4  
 
@@ -30,8 +30,8 @@ RESEARCH → invent → attack → rank → advance → LAND → knowledge → i
 - [PASS] `tests` 
 - [PASS] `docs` 
 - [PASS] `knowledge_dir` ./machine/genius_knowledge
-- [PASS] `library_of_links_root` local_path_redacted
-- [PASS] `impact_queue` local_path_redacted
+- [PASS] `library_of_links_root` optional_unset (set GENIUS_LIBRARY_OF_LINKS_ROOT for impact)
+- [PASS] `impact_queue` optional_skipped
 - [PASS] `landed_mechanisms` count=4
 - [PASS] `landed_all_merged` 
 - [PASS] `smoke_invent` Claim Fence for GlacierEQ/job-app-helix
