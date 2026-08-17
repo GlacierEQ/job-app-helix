@@ -10,9 +10,9 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+from collections.abc import Iterable
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Iterable
 
 
 class ArchaeologyError(RuntimeError):
@@ -112,9 +112,11 @@ def _score(status: str, donor: bytes, target: bytes | None) -> tuple[float, str]
     target_size = len(target)
     shrink = max(0.0, (donor_size - target_size) / donor_size)
     if status.startswith("R"):
-        return min(0.98, 0.72 + 0.20 * shrink), "renamed lineage with recoverable donor implementation"
+        reason = "renamed lineage with recoverable donor implementation"
+        return min(0.98, 0.72 + 0.20 * shrink), reason
     if status == "M":
-        return min(0.95, 0.58 + 0.32 * shrink), "materially changed lineage; inspect donor mechanism against later gains"
+        reason = "materially changed lineage; inspect donor mechanism against later gains"
+        return min(0.95, 0.58 + 0.32 * shrink), reason
     return 0.45, "historical difference may contain reusable mechanism"
 
 
@@ -136,7 +138,10 @@ def excavate(
     candidates: list[CapabilityCandidate] = []
 
     for status, path in _name_status(repo, donor_sha, target_sha):
-        if include_paths and not any(path == prefix or path.startswith(f"{prefix}/") for prefix in include_paths):
+        included = not include_paths or any(
+            path == prefix or path.startswith(f"{prefix}/") for prefix in include_paths
+        )
+        if not included:
             continue
         donor = _blob(repo, donor_sha, path)
         if donor is None:
