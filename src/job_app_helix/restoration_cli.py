@@ -8,6 +8,7 @@ from pathlib import Path
 
 from .capability_archaeology import excavate
 from .cross_file_restoration import apply_cross_file_packet, build_cross_file_packet
+from .federated_restoration import apply_federated_packet, build_federated_packet
 from .restoration_executor import apply_packet, build_packet
 from .symbol_restoration import (
     apply_symbol_packet,
@@ -89,6 +90,25 @@ def _parser() -> argparse.ArgumentParser:
     semantic_apply.add_argument("--select-symbol", action="append", required=True)
     semantic_apply.add_argument("--allow-replace", action="store_true")
     semantic_apply.add_argument("--max-depth", type=int, default=8)
+
+    for name, help_text in (
+        (
+            "federated-packet",
+            "build semantic restoration closure from an exact revision in another repository",
+        ),
+        (
+            "federated-apply",
+            "import, verify, and transactionally compose capability from another repository",
+        ),
+    ):
+        federated = sub.add_parser(name, help=help_text)
+        federated.add_argument("--donor-repo", required=True)
+        federated.add_argument("--donor", required=True)
+        federated.add_argument("--target", default="HEAD")
+        federated.add_argument("--path", required=True)
+        federated.add_argument("--select-symbol", action="append", required=True)
+        federated.add_argument("--allow-replace", action="store_true")
+        federated.add_argument("--max-depth", type=int, default=8)
     return parser
 
 
@@ -103,6 +123,24 @@ def _symbol_report(args: argparse.Namespace):
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    if args.command.startswith("federated-"):
+        packet = build_federated_packet(
+            args.repo,
+            donor_source=args.donor_repo,
+            donor_ref=args.donor,
+            target_ref=args.target,
+            root_path=args.path,
+            selected_symbols=tuple(args.select_symbol),
+            allow_replace=args.allow_replace,
+            max_depth=args.max_depth,
+        )
+        if args.command == "federated-packet":
+            print(json.dumps(packet.to_dict(), indent=2, sort_keys=True))
+            return 0
+        receipt = apply_federated_packet(args.repo, packet)
+        print(json.dumps(receipt.to_dict(), indent=2, sort_keys=True))
+        return 0
+
     if args.command.startswith("semantic-"):
         packet = build_cross_file_packet(
             args.repo,
