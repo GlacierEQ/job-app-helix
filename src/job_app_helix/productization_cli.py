@@ -6,6 +6,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from .portfolio_execution import atomic_write_json
 from .portfolio_models import PortfolioProgramError
 from .portfolio_productization import compile_productization_targets, productization_payload
 
@@ -58,17 +59,6 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _write_json(path: Path, payload: object) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_name(f".{path.name}.tmp")
-    try:
-        temp.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        temp.replace(path)
-    finally:
-        if temp.exists():
-            temp.unlink()
-
-
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
@@ -79,12 +69,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             wave_ids=set(args.waves) if args.waves else None,
         )
         payload = productization_payload(targets)
+        if args.output:
+            atomic_write_json(args.output, payload)
     except (OSError, json.JSONDecodeError, PortfolioProgramError) as exc:
         print(f"productization program error: {exc}", file=sys.stderr)
         return 2
 
     if args.output:
-        _write_json(args.output, payload)
         print(args.output)
     else:
         print(json.dumps(payload, indent=2, sort_keys=True))
