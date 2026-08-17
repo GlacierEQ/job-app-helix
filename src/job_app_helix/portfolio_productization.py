@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import json
+import tomllib
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
 from typing import Any
 
 from .portfolio_discovery import build_plan
-from .portfolio_models import EvidenceLevel, RepositoryPlan
+from .portfolio_models import EvidenceLevel, PortfolioProgramError, RepositoryPlan
 
 
 class DeliveryForm(StrEnum):
@@ -57,11 +58,50 @@ class ProductizationTarget:
 
 
 def _read_json(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        return {}
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+    except (OSError, json.JSONDecodeError) as exc:
+        raise PortfolioProgramError(f"cannot parse {path}: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise PortfolioProgramError(f"{path} must contain a JSON object")
+    return payload
+
+
+def _read_toml(path: Path) -> dict[str, Any]:
+    if not path.is_file():
         return {}
-    return payload if isinstance(payload, dict) else {}
+    try:
+        with path.open("rb") as handle:
+            payload = tomllib.load(handle)
+    except (OSError, tomllib.TOMLDecodeError) as exc:
+        raise PortfolioProgramError(f"cannot parse {path}: {exc}") from exc
+    return payload
+
+
+def _project_has_scripts(pyproject: dict[str, Any]) -> bool:
+    project = pyproject.get("project")
+    if not isinstance(project, dict):
+        return False
+    scripts = project.get("scripts")
+    return isinstance(scripts, dict) and any(
+        isinstance(name, str)
+        and bool(name.strip())
+        and isinstance(target, str)
+        and bool(target.strip())
+        for name, target in scripts.items()
+    )
+
+
+def _project_has_entry_points(pyproject: dict[str, Any]) -> bool:
+    project = pyproject.get("project")
+    if not isinstance(project, dict):
+        return False
+    groups = project.get("entry-points")
+    if not isinstance(groups, dict):
+        return False
+    return any(isinstance(entries, dict) and bool(entries) for entries in groups.values())
 
 
 def _text(path: Path) -> str:
@@ -95,10 +135,10 @@ def deployment_signals(path: Path) -> tuple[str, ...]:
     if isinstance(package.get("bin"), (str, dict)):
         signals.append("node:bin")
 
-    pyproject = _text(path / "pyproject.toml")
-    if "[project.scripts]" in pyproject:
+    pyproject = _read_toml(path / "pyproject.toml")
+    if _project_has_scripts(pyproject):
         signals.append("python:project-scripts")
-    if "[project.entry-points" in pyproject:
+    if _project_has_entry_points(pyproject):
         signals.append("python:entry-points")
 
     workflows = path / ".github" / "workflows"
@@ -107,7 +147,9 @@ def deployment_signals(path: Path) -> tuple[str, ...]:
             if not workflow.is_file() or workflow.suffix not in {".yml", ".yaml"}:
                 continue
             text = _text(workflow).lower()
-            if any(term in text for term in ("deploy", "pages", "vercel", "netlify")):
+            if "pages" in text:
+                signals.append("github-pages")
+            if any(term in text for term in ("deploy", "vercel", "netlify")):
                 signals.append(f"workflow:{workflow.name}")
 
     if (path / "site").is_dir() or (path / "public" / "index.html").is_file():
@@ -121,15 +163,16 @@ def infer_delivery_form(plan: RepositoryPlan) -> DeliveryForm:
     signals = set(deployment_signals(path))
     package = _read_json(path / "package.json")
     scripts = package.get("scripts") if isinstance(package.get("scripts"), dict) else {}
-    pyproject = _text(path / "pyproject.toml")
+    pyproject = _read_toml(path / "pyproject.toml")
 
-    if {"vercel", "netlify"} & signals or "static-site-source" in signals:
+    static_signals = {"vercel", "netlify", "github-pages", "static-site-source"}
+    if static_signals & signals:
         return DeliveryForm.STATIC_SITE
     if "docker" in signals or "docker-compose" in signals:
         return DeliveryForm.CONTAINER_SERVICE
     if any(isinstance(scripts.get(name), str) for name in ("start", "serve")):
         return DeliveryForm.SERVICE
-    if isinstance(package.get("bin"), (str, dict)) or "[project.scripts]" in pyproject:
+    if isinstance(package.get("bin"), (str, dict)) or _project_has_scripts(pyproject):
         return DeliveryForm.CLI_PACKAGE
     if len(plan.stacks) > 1:
         return DeliveryForm.MULTI_RUNTIME_TOOL
