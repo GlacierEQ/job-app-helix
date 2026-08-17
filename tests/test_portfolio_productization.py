@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from job_app_helix.portfolio_contract import load_rollout
+from job_app_helix.portfolio_discovery import build_plan
 from job_app_helix.portfolio_models import EvidenceLevel, ExecutionMode, PortfolioProgramError
 from job_app_helix.portfolio_productization import (
     DeliveryForm,
@@ -113,6 +114,33 @@ def test_legacy_archive_mode_cannot_drive_active_execution(tmp_path: Path) -> No
     assert wave.historical_mode == ExecutionMode.CONSOLIDATE_OR_ARCHIVE.value
     assert wave.target_evidence is EvidenceLevel.TEST
     assert wave.require_positive_test_count is True
+
+
+def test_productize_requires_native_static_and_test_checks(tmp_path: Path) -> None:
+    inventory, rollout = _write_contracts(tmp_path, "alpha")
+    workspace = tmp_path / "repos"
+    repo = workspace / "alpha"
+    _write_readme(repo)
+    (repo / "pyproject.toml").write_text(
+        '[project]\nname = "alpha"\n[project.optional-dependencies]\ndev = ["pytest"]\n',
+        encoding="utf-8",
+    )
+    (repo / "tests").mkdir()
+    (repo / "tests" / "test_alpha.py").write_text(
+        "def test_alpha():\n    assert True\n",
+        encoding="utf-8",
+    )
+
+    plan = build_plan(
+        workspace=workspace,
+        inventory_path=inventory,
+        rollout_path=rollout,
+    )[0]
+    commands = {command.id: command for command in plan.commands}
+
+    assert plan.mode is ExecutionMode.PRODUCTIZE
+    assert commands["python-compile"].required is True
+    assert commands["python-tests"].required is True
 
 
 def test_active_deploy_mode_requires_deployment_evidence(tmp_path: Path) -> None:
