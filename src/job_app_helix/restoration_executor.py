@@ -143,9 +143,11 @@ def apply_packet(repo: Path, packet: RestorationPacket) -> ApplyReceipt:
         donor = read_donor_blob(repo, donor_sha=action.donor_sha, path=action.path)
         donor_sha = hashlib.sha256(donor).hexdigest()
         if donor_sha != action.donor_blob_sha256:
-            raise ArchaeologyError(
-                f"donor drift at {action.path}: expected {action.donor_blob_sha256}, observed {donor_sha}"
+            message = (
+                f"donor drift at {action.path}: expected {action.donor_blob_sha256}, "
+                f"observed {donor_sha}"
             )
+            raise ArchaeologyError(message)
 
         backups[action.path] = target.read_bytes().hex() if target.exists() else None
         target.parent.mkdir(parents=True, exist_ok=True)
