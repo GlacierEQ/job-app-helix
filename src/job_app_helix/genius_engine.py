@@ -571,9 +571,14 @@ def select_mechanisms(
             if mech.id in SIGNAL_MECHANISM_BONUS.get(sig, ()):
                 score += 5
         # Prefer restore/anti-neut only when signals justify it
-        if mech.id in {"anti_neutralization_gate", "capability_restore_queue", "dual_plane_truth"}:
-            if not signals.intersection({"neutralization", "paper_recovery", "governance", "missing_impl"}):
-                score -= 3
+        if mech.id in {
+            "anti_neutralization_gate",
+            "capability_restore_queue",
+            "dual_plane_truth",
+        } and not signals.intersection(
+            {"neutralization", "paper_recovery", "governance", "missing_impl"}
+        ):
+            score -= 3
         # Prefer engineered_first_class for unknown/thin leaves
         if mech.id == "engineered_first_class" and signals.intersection(
             {"unknown_or_offline", "tiny_repo", "hollow", "scaffold_language"}
@@ -776,7 +781,7 @@ def novelty_score(
     # Path specificity in implementation (leaf-native)
     if sol.repository and sol.repository.split("/")[-1].replace("-", "_") in sol.implementation:
         score += 0.08
-    if f"test_" in sol.measurement or ".test." in sol.measurement or "_test." in sol.measurement:
+    if "test_" in sol.measurement or ".test." in sol.measurement or "_test." in sol.measurement:
         score += 0.05
     return _clamp01(score)
 
@@ -804,11 +809,13 @@ def coherence_score(
     # MCA only if dual-plane wiring named with receipt path
     if "dual-plane" in sol.implementation.lower() and "receipts/" in sol.implementation:
         score += COHERENCE_MCA_BONUS
-    if subject.get("neutralization_stamps", 0) or (
-        research and research.signals and "neutralization" in research.signals
+    neut = bool(subject.get("neutralization_stamps", 0)) or (
+        bool(research and research.signals and "neutralization" in research.signals)
+    )
+    if neut and any(
+        k in sol.mechanism.lower() for k in ("restore", "dual-plane", "anti-neutral", "receipt")
     ):
-        if any(k in sol.mechanism.lower() for k in ("restore", "dual-plane", "anti-neutral", "receipt")):
-            score += COHERENCE_RESTORE_BONUS
+        score += COHERENCE_RESTORE_BONUS
     blob = " ".join([sol.mechanism, sol.implementation, sol.measurement, sol.boundary]).lower()
     if any(p in blob for p in PARALYSIS_PATTERNS):
         score -= COHERENCE_PARALYSIS_PENALTY
@@ -821,9 +828,11 @@ def coherence_score(
     ):
         score -= COHERENCE_MVP_PENALTY
     # Penalize generic anti-neut on unknown leaves
-    if research and "unknown_or_offline" in research.signals:
-        if "anti-neutralization" in sol.mechanism.lower() or sol.tags and sol.tags[0] == "anti_neutralization_gate":
-            score -= 0.2
+    if research and "unknown_or_offline" in research.signals and (
+        "anti-neutralization" in sol.mechanism.lower()
+        or (sol.tags and sol.tags[0] == "anti_neutralization_gate")
+    ):
+        score -= 0.2
     return _clamp01(score)
 
 
@@ -837,10 +846,7 @@ def attack_solution(sol: GeniusSolution) -> tuple[bool, tuple[str, ...]]:
 
 def compose_advance_brief(run_like: Mapping[str, Any] | GeniusRun) -> dict[str, Any]:
     """Turn primary into an executable advance brief (files, tests, refuse paths)."""
-    if isinstance(run_like, GeniusRun):
-        data = run_like.to_dict()
-    else:
-        data = dict(run_like)
+    data = run_like.to_dict() if isinstance(run_like, GeniusRun) else dict(run_like)
     primary = data.get("primary")
     subject = data.get("subject") or {}
     research = data.get("research") or {}

@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
-
 from job_app_helix.genius_engine import (
     APEX_IDENTITY,
     CRAFT_STANDARD,
@@ -14,7 +12,6 @@ from job_app_helix.genius_engine import (
     GeniusEngineError,
     GeniusSolution,
     attack_solution,
-    build_solution,
     compose_advance_brief,
     invent,
     invent_estate,
@@ -66,9 +63,11 @@ def test_invent_produces_scored_primary(tmp_path: Path) -> None:
     assert not run.primary.missing_fields()
     assert run.primary.is_engineered()
     assert run.receipt_sha256
-    assert "spacex-telemetry" in run.primary.problem.lower() or "telemetry" in run.primary.problem.lower()
+    problem_l = run.primary.problem.lower()
+    assert "spacex-telemetry" in problem_l or "telemetry" in problem_l
     assert "Module:" in run.primary.implementation
-    assert "tests/" in run.primary.measurement or "test" in run.primary.measurement.lower()
+    meas = run.primary.measurement.lower()
+    assert "tests/" in run.primary.measurement or "test" in meas
     assert run.advance_brief and run.advance_brief.get("status") == "READY"
     assert run.knowledge_path
     ok, blockers = attack_solution(run.primary)
@@ -189,8 +188,10 @@ def test_leaf_native_paths_differ(tmp_path: Path) -> None:
     )
     assert a.primary and b.primary
     assert a.primary.implementation != b.primary.implementation
-    assert "spacex_telemetry" in a.primary.implementation or "spacex-telemetry" in a.primary.implementation
-    assert "colossus" in b.primary.implementation.lower() or "cooling" in b.primary.implementation.lower()
+    impl_a = a.primary.implementation
+    impl_b = b.primary.implementation.lower()
+    assert "spacex_telemetry" in impl_a or "spacex-telemetry" in impl_a
+    assert "colossus" in impl_b or "cooling" in impl_b
 
 
 def test_score_does_not_self_bonus_template_adjectives() -> None:
@@ -200,7 +201,10 @@ def test_score_does_not_self_bonus_template_adjectives() -> None:
         problem="generic issue",
         cause="generic cause",
         mechanism="Something vague without domain pattern words here at all",
-        implementation="ENGINEERED complete born-to-run first-pass pro elite humanized dual-plane MAXIMUM_COHERENT_ADVANCE",
+        implementation=(
+            "ENGINEERED complete born-to-run first-pass pro elite "
+            "humanized dual-plane MAXIMUM_COHERENT_ADVANCE"
+        ),
         measurement="tests",
         failure_mode="fail closed",
         boundary="no false affiliation",

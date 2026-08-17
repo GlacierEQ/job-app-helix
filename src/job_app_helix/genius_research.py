@@ -12,10 +12,11 @@ import json
 import os
 import re
 import subprocess
+from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 RESEARCH_SCHEMA = "glaciereq.genius-research.v1"
 KNOWLEDGE_SCHEMA = "glaciereq.genius-lite-knowledge.v1"
@@ -58,7 +59,7 @@ class ResearchDossier:
 
 
 def _utc_now() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    return datetime.now(UTC).replace(microsecond=0).isoformat()
 
 
 def _repo_slug(repository: str) -> str:
@@ -210,9 +211,9 @@ def derive_signals(
     if surface.get("size") is not None and int(surface.get("size") or 0) < 40:
         signals.append("tiny_repo")
     # Avoid false positives from repo name fragments; require word-ish markers.
-    if re.search(r"\b(pytest|unittest|ci/cd|github actions|test suite|tests/)\b", text):
-        signals.append("mentions_tests")
-    elif " test" in f" {text}" or text.startswith("test"):
+    if re.search(r"\b(pytest|unittest|ci/cd|github actions|test suite|tests/)\b", text) or (
+        " test" in f" {text}" or text.startswith("test")
+    ):
         signals.append("mentions_tests")
     else:
         signals.append("no_test_mention")
@@ -381,7 +382,9 @@ def accumulate_knowledge(
         "run_count": int(prior.get("run_count") or 0) + 1,
         "last_primary_mechanism_id": entry.get("primary_mechanism_id"),
         "last_receipt_sha256": receipt_sha256,
-        "signals_union": sorted(set(list(prior.get("signals_union") or []) + list(dossier.signals))),
+        "signals_union": sorted(
+            set(list(prior.get("signals_union") or []) + list(dossier.signals))
+        ),
         "lite_facts": list(dossier.lite_facts),
         "description": dossier.description,
         "primary_language": dossier.primary_language,
