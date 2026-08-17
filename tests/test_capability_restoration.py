@@ -6,7 +6,12 @@ from pathlib import Path
 import pytest
 
 from job_app_helix.capability_archaeology import excavate
-from job_app_helix.restoration_executor import RestorationError, apply_packet, build_packet, rollback
+from job_app_helix.restoration_executor import (
+    RestorationError,
+    apply_packet,
+    build_packet,
+    rollback,
+)
 
 
 def _git(repo: Path, *args: str) -> str:
