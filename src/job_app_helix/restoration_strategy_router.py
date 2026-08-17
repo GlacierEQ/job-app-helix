@@ -6,9 +6,10 @@ restoration queues while keeping the donor lineage explicit and stable.
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass
 from math import isfinite
-from typing import Any, Iterable, Mapping
+from typing import Any
 
 MEGAMIND_DONOR = {
     "repository": "GlacierEQ/megamind",
@@ -75,7 +76,7 @@ class RestorationCandidate:
     blocker: str = ""
 
     @classmethod
-    def from_mapping(cls, value: Mapping[str, Any]) -> "RestorationCandidate":
+    def from_mapping(cls, value: Mapping[str, Any]) -> RestorationCandidate:
         required = ("candidate_id", "title", "repository", "tier", *ALL_FIELDS)
         missing = [name for name in required if name not in value]
         if missing:
@@ -128,11 +129,15 @@ class RankedRestorationCandidate:
 
 
 def _dominates(left: RestorationCandidate, right: RestorationCandidate) -> bool:
-    benefits_not_worse = all(getattr(left, field) >= getattr(right, field) for field in BENEFIT_FIELDS)
-    costs_not_worse = all(getattr(left, field) <= getattr(right, field) for field in COST_FIELDS)
-    strictly_better = any(getattr(left, field) > getattr(right, field) for field in BENEFIT_FIELDS) or any(
-        getattr(left, field) < getattr(right, field) for field in COST_FIELDS
+    benefits_not_worse = all(
+        getattr(left, field) >= getattr(right, field) for field in BENEFIT_FIELDS
     )
+    costs_not_worse = all(
+        getattr(left, field) <= getattr(right, field) for field in COST_FIELDS
+    )
+    strictly_better = any(
+        getattr(left, field) > getattr(right, field) for field in BENEFIT_FIELDS
+    ) or any(getattr(left, field) < getattr(right, field) for field in COST_FIELDS)
     return benefits_not_worse and costs_not_worse and strictly_better
 
 
@@ -169,7 +174,9 @@ def rank_restoration_queue(
         for field, raw in weights.items():
             value = float(raw)
             if not isfinite(value) or value < 0:
-                raise RestorationRoutingError(f"weight {field} must be finite and non-negative")
+                raise RestorationRoutingError(
+                    f"weight {field} must be finite and non-negative"
+                )
             active_weights[field] = value
 
     unblocked = [candidate for candidate in candidates if not candidate.blocked]
@@ -250,6 +257,10 @@ def compile_restoration_decision(payload: Mapping[str, Any]) -> dict[str, Any]:
         "schema": "glaciereq.job-restore.megamind-routing.v1",
         "winner": asdict(winner),
         "ranking": [asdict(row) for row in ranking],
-        "mechanisms": ["priority_tier", "pareto_dominance", "confidence_adjusted_utility"],
+        "mechanisms": [
+            "priority_tier",
+            "pareto_dominance",
+            "confidence_adjusted_utility",
+        ],
         "donor": dict(MEGAMIND_DONOR),
     }
