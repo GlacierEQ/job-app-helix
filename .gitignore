@@ -54,3 +54,8 @@ GEMINI.md
 .vault_env
 .env
 secrets/
+
+# Genius lite knowledge leaves (index committed empty)
+machine/genius_knowledge/*
+!machine/genius_knowledge/index.json
+!machine/genius_knowledge/.gitkeep

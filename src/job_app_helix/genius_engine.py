@@ -4,6 +4,9 @@ APEX identity: counter to canonical destruction.
 Execution law: MAXIMUM_COHERENT_ADVANCE.
 Core craft verb: ENGINEERED.
 
+Loop: RESEARCH/STUDY (mandatory) → invent → attack → rank → advance brief
+       → accumulate lite knowledge → publish library-of-links.
+
 Not theater. Not freeze. Not generated sludge.
 Pro elite, humanized, ENGINEERED code — complete, born to run,
 first pass is last pass — continuously impressive to masters.
@@ -22,7 +25,14 @@ from math import isfinite
 from pathlib import Path
 from typing import Any
 
-ENGINE_ID = "glaciereq.genius-engine.v2"
+from job_app_helix.genius_research import (
+    ResearchDossier,
+    accumulate_knowledge,
+    publish_library_link,
+    research_subject,
+)
+
+ENGINE_ID = "glaciereq.genius-engine.v3"
 APEX_IDENTITY = "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION"
 EXECUTION_LAW = "MAXIMUM_COHERENT_ADVANCE"
 CRAFT_VERB = "ENGINEERED"
@@ -285,16 +295,20 @@ class GeniusSolution:
 
 @dataclass(frozen=True)
 class GeniusRun:
-    """One invent → attack → rank → advance cycle."""
+    """One research → invent → attack → rank → advance cycle."""
 
     engine_id: str
     identity: str
     law: str
     craft: tuple[str, ...]
     subject: dict[str, Any]
+    research: dict[str, Any]
     solutions: tuple[GeniusSolution, ...]
     rejected: tuple[dict[str, Any], ...]
     primary: GeniusSolution | None
+    advance_brief: dict[str, Any] | None
+    knowledge_path: str | None
+    library_link_path: str | None
     receipt_sha256: str
 
     def to_dict(self) -> dict[str, Any]:
@@ -304,9 +318,13 @@ class GeniusRun:
             "law": self.law,
             "craft": list(self.craft),
             "subject": self.subject,
+            "research": self.research,
             "solutions": [s.to_dict() for s in self.solutions],
             "rejected": list(self.rejected),
             "primary": self.primary.to_dict() if self.primary else None,
+            "advance_brief": self.advance_brief,
+            "knowledge_path": self.knowledge_path,
+            "library_link_path": self.library_link_path,
             "receipt_sha256": self.receipt_sha256,
         }
 
@@ -371,30 +389,51 @@ def load_atlas_genius_seeds(root: Path | None = None) -> list[dict[str, Any]]:
     return seeds
 
 
-def infer_domain(subject: Mapping[str, Any]) -> str:
+def infer_domain(
+    subject: Mapping[str, Any],
+    research: ResearchDossier | None = None,
+) -> str:
+    if subject.get("domain"):
+        return str(subject["domain"])
     name = str(subject.get("repository") or subject.get("name") or "").lower()
-    text = " ".join(
-        str(subject.get(k) or "")
-        for k in ("repository", "name", "description", "bottleneck", "domain", "tags")
-    ).lower()
+    text_parts = [
+        name,
+        str(subject.get("description") or ""),
+        str(subject.get("bottleneck") or ""),
+    ]
+    if research is not None:
+        text_parts.extend(
+            [
+                research.description,
+                research.readme_excerpt[:600],
+                " ".join(research.topics),
+                " ".join(research.signals),
+                research.primary_language,
+            ]
+        )
+    text = " ".join(text_parts).lower()
     rules = (
-        ("spacex", ("spacex", "launch", "orbital", "propulsion", "telemetry", "pad")),
-        ("colossus", ("colossus", "cooling", "thermal", "megapack", "energy")),
-        ("mcp", ("mcp", "tool-router", "stdio")),
+        ("spacex", ("spacex", "launch", "propulsion", "telemetry", "pad", "mission")),
+        ("colossus", ("colossus", "cooling", "thermal", "megapack", "energy", "thermal_energy")),
+        ("mcp", ("mcp", "tool-router", "stdio", "mcp_tools")),
         ("orbital", ("orbital", "kepler", "lambert", "astrodynamic")),
-        ("agent", ("agent", "llm", "reasoning", "orchestr")),
-        ("hire", ("job-app", "hire", "resume", "portfolio", "recruiter")),
+        ("agent", ("agent", "llm", "reasoning", "orchestr", "agent_mesh", "megamind")),
+        ("hire", ("job-app", "hire", "resume", "portfolio", "recruiter", "hire_surface")),
         ("governance", ("akos", "helix", "governance", "estate", "excellence")),
         ("security", ("security", "auth", "zero-trust", "oidc")),
+        ("polyglot", ("babel", "polyglot", "tower-of-babel", "language")),
     )
     for domain, keys in rules:
         if any(k in name or k in text for k in keys):
             return domain
-    return str(subject.get("domain") or "general")
+    return "general"
 
 
-def infer_bottleneck(subject: Mapping[str, Any]) -> tuple[str, str]:
-    """Return (problem, cause) from subject signals."""
+def infer_bottleneck(
+    subject: Mapping[str, Any],
+    research: ResearchDossier | None = None,
+) -> tuple[str, str]:
+    """Return (problem, cause) from research + subject — leaf-sensitive."""
     if subject.get("problem") and subject.get("cause"):
         return str(subject["problem"]), str(subject["cause"])
 
@@ -402,64 +441,189 @@ def infer_bottleneck(subject: Mapping[str, Any]) -> tuple[str, str]:
     missing_impl = bool(subject.get("missing_implementation"))
     paper_only = bool(subject.get("paper_recovery_only"))
     hollow = bool(subject.get("hollow_or_thin"))
-    domain = infer_domain(subject)
+    domain = infer_domain(subject, research)
+    signals = set(research.signals) if research else set()
+    repo = str(subject.get("repository") or (research.full_name if research else "leaf"))
+    short = repo.split("/")[-1]
+    desc = ""
+    if research and research.description:
+        desc = research.description.strip()
+    elif subject.get("description"):
+        desc = str(subject["description"]).strip()
 
-    if neut >= 2 or paper_only:
+    if neut >= 2 or paper_only or "neutralization" in signals or "paper_recovery" in signals:
         return (
-            "Intended product capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass.",
-            "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+            f"{short}: intended capability was reduced to a local/synthetic/proof-only surface "
+            f"so a smaller harness could pass"
+            + (f" (surface: {desc[:120]})" if desc else "")
+            + ".",
+            "Governance-as-denial / truth-harden treated unfinished ambition as defect and "
+            "canonicalized the demoted HEAD.",
         )
-    if missing_impl:
+    if missing_impl or "missing_impl" in signals:
         return (
-            "Public or architectural claims outrun the repository-native implementation.",
+            f"{short}: public or architectural claims outrun repository-native implementation"
+            + (f" — {desc[:120]}" if desc else "")
+            + ".",
             "Proof ceiling was used as product ceiling instead of expanding implementation and measurement.",
         )
-    if hollow:
+    if hollow or "hollow" in signals or "tiny_repo" in signals or "scaffold_language" in signals:
         return (
-            "Repository surface is too thin to demonstrate a defensible mechanism under adversarial review.",
+            f"{short}: surface is too thin to demonstrate a defensible mechanism under adversarial review.",
             "Scaffold or stamp work substituted for a minimum-deepest mechanism with tests.",
         )
-    defaults = {
+    if "unknown_or_offline" in signals and domain == "general" and not desc:
+        return (
+            f"{short}: no reliable leaf signals yet — research found no description, domain, or live surface; "
+            "cannot honestly claim a specialized bottleneck.",
+            "Subject lacks study density; invent must stay general and refuse overfitted governance stamps.",
+        )
+
+    defaults: dict[str, tuple[str, str]] = {
         "spacex": (
-            "Operational planes lack a fail-closed coordination mechanism under dissent and stale authority.",
+            f"{short}: operational planes lack fail-closed coordination under dissent and stale authority.",
             "Independent subsystems can disagree without a deterministic freeze/hold contract.",
         ),
         "colossus": (
-            "Actuation paths can fire without complete precondition and post-condition evidence.",
+            f"{short}: actuation paths can fire without complete precondition and post-condition evidence.",
             "Command path is not receipt-bound end-to-end under thermal/power constraints.",
         ),
         "mcp": (
-            "Tool execution authority is either absent or unbounded relative to host policy.",
+            f"{short}: tool execution authority is either absent or unbounded relative to host policy.",
             "Local demos were preserved while credentialed provider surfaces were amputated or ungoverned.",
         ),
         "hire": (
-            "Recruiter claims can drift from repository-native evidence.",
+            f"{short}: recruiter claims can drift from repository-native evidence.",
             "Projection surfaces are not fail-closed against missing or stale proof receipts.",
         ),
         "governance": (
-            "Estate repair repeatedly converts power into reports.",
+            f"{short}: estate repair repeatedly converts power into reports.",
             "Minimization was treated as default engineering law.",
         ),
-    }
-    return defaults.get(
-        domain,
-        (
-            "The repository has not yet concentrated on one profound bottleneck-removing mechanism.",
-            "Feature scatter or cosmetic excellence outpaced leverage on the real operational constraint.",
+        "orbital": (
+            f"{short}: numerical claims outrun a complete, tested solver path for the named mission geometry.",
+            "Solver power was left as aspiration while wrappers and prose advanced.",
         ),
+        "agent": (
+            f"{short}: agent authority and orchestration lack expiring, receipt-bound decision tokens.",
+            "Mesh roles were registered without fail-closed actuation provenance.",
+        ),
+        "polyglot": (
+            f"{short}: language placement is not bound to measurable ownership boundaries with native proof.",
+            "Polyglot theater risk — languages present without W4H lane contracts.",
+        ),
+        "security": (
+            f"{short}: authority paths lack dual-key or half-life constraints under hostile inputs.",
+            "Security policy is documentary rather than executable refuse paths.",
+        ),
+    }
+    if domain in defaults:
+        return defaults[domain]
+    if desc:
+        return (
+            f"{short}: has not yet concentrated on one profound bottleneck-removing mechanism "
+            f"for its stated surface ({desc[:140]}).",
+            "Feature scatter or cosmetic excellence outpaced leverage on the real operational constraint.",
+        )
+    return (
+        f"{short}: has not yet concentrated on one profound bottleneck-removing mechanism.",
+        "Feature scatter or cosmetic excellence outpaced leverage on the real operational constraint.",
     )
 
 
-def select_mechanisms(domain: str, limit: int = 4) -> list[MechanismPrimitive]:
+# Signal → preferred mechanism ids (leaf-native selection, not flagship defaults)
+SIGNAL_MECHANISM_BONUS: dict[str, tuple[str, ...]] = {
+    "neutralization": ("capability_restore_queue", "dual_plane_truth", "anti_neutralization_gate", "mcp_package_restore"),
+    "paper_recovery": ("capability_restore_queue", "dual_plane_truth", "mcp_package_restore", "anti_neutralization_gate"),
+    "telemetry": ("thread_quorum", "receipt_bus", "split_brain_actuation", "authority_half_life"),
+    "thermal_energy": ("receipt_bus", "split_brain_actuation", "authority_half_life"),
+    "mcp_tools": ("mcp_package_restore", "provenance_compulsory", "claim_fence"),
+    "orbital": ("lambert_power", "receipt_bus", "provenance_compulsory"),
+    "agent_mesh": ("authority_half_life", "provenance_compulsory", "entropy_budget_futures", "thread_quorum"),
+    "hire_surface": ("claim_fence", "dual_plane_truth", "first_pass_last_pass"),
+    "governance": ("bravery_with_governance", "anti_neutralization_gate", "dual_plane_truth"),
+    "polyglot": ("first_pass_last_pass", "engineered_first_class", "claim_fence"),
+    "hollow": ("engineered_first_class", "first_pass_last_pass", "dual_plane_truth"),
+    "scaffold_language": ("engineered_first_class", "first_pass_last_pass"),
+    "missing_impl": ("lambert_power", "engineered_first_class", "capability_restore_queue"),
+    "tiny_repo": ("engineered_first_class", "first_pass_last_pass"),
+    "unknown_or_offline": ("engineered_first_class", "first_pass_last_pass"),
+}
+
+
+def select_mechanisms(
+    domain: str,
+    limit: int = 4,
+    research: ResearchDossier | None = None,
+) -> list[MechanismPrimitive]:
+    """Rank mechanisms by domain + research signals — avoid universal anti-neutralization."""
+    signals = set(research.signals) if research else set()
     scored: list[tuple[int, MechanismPrimitive]] = []
     for mech in MECHANISM_LIBRARY:
-        score = 2 if domain in mech.domains else 1 if "all" in mech.domains else 0
+        score = 0
+        if domain in mech.domains:
+            score += 4
+        elif "all" in mech.domains:
+            score += 1
         if domain == "general":
             score = max(score, 1)
-        if score:
+        for sig in signals:
+            if mech.id in SIGNAL_MECHANISM_BONUS.get(sig, ()):
+                score += 5
+        # Prefer restore/anti-neut only when signals justify it
+        if mech.id in {"anti_neutralization_gate", "capability_restore_queue", "dual_plane_truth"}:
+            if not signals.intersection({"neutralization", "paper_recovery", "governance", "missing_impl"}):
+                score -= 3
+        # Prefer engineered_first_class for unknown/thin leaves
+        if mech.id == "engineered_first_class" and signals.intersection(
+            {"unknown_or_offline", "tiny_repo", "hollow", "scaffold_language"}
+        ):
+            score += 6
+        # Prior mechanism diversity: soft penalty for exact repeat
+        if research and research.prior_primary_mechanism == mech.id:
+            score -= 1
+        if score > 0:
             scored.append((score, mech))
     scored.sort(key=lambda item: (-item[0], item[1].id))
-    return [m for _, m in scored[:limit]]
+    picked = [m for _, m in scored[:limit]]
+    if not picked:
+        # hard fallback — engineered first class, not anti-neutralization
+        by_id = {m.id: m for m in MECHANISM_LIBRARY}
+        return [by_id["engineered_first_class"], by_id["first_pass_last_pass"]][:limit]
+    return picked
+
+
+def _leaf_paths(repo: str, mech_id: str, language: str) -> dict[str, str]:
+    leaf = repo.split("/")[-1]
+    snake = re.sub(r"[^a-z0-9]+", "_", leaf.lower()).strip("_") or "leaf"
+    lang = (language or "python").lower()
+    if lang in {"typescript", "ts", "javascript", "js"}:
+        return {
+            "module": f"src/{snake}/{mech_id}.ts",
+            "tests": f"src/{snake}/{mech_id}.test.ts",
+            "receipt": f"receipts/{mech_id}_proof.json",
+            "config": f"src/{snake}/{mech_id}.config.ts",
+        }
+    if lang in {"go"}:
+        return {
+            "module": f"internal/{snake}/{mech_id}.go",
+            "tests": f"internal/{snake}/{mech_id}_test.go",
+            "receipt": f"receipts/{mech_id}_proof.json",
+            "config": f"internal/{snake}/{mech_id}_config.go",
+        }
+    if lang in {"rust"}:
+        return {
+            "module": f"src/{mech_id}.rs",
+            "tests": f"tests/{mech_id}_test.rs",
+            "receipt": f"receipts/{mech_id}_proof.json",
+            "config": f"src/{mech_id}_config.rs",
+        }
+    return {
+        "module": f"src/{snake}/{mech_id}.py",
+        "tests": f"tests/test_{snake}_{mech_id}.py",
+        "receipt": f"receipts/{mech_id}_proof.json",
+        "config": f"src/{snake}/{mech_id}_config.py",
+    }
 
 
 def build_solution(
@@ -468,42 +632,61 @@ def build_solution(
     mech: MechanismPrimitive,
     problem: str,
     cause: str,
+    research: ResearchDossier | None = None,
     plane: str = "IMPLEMENTED",
 ) -> GeniusSolution:
     if plane not in VALID_PLANES:
         raise GeniusEngineError(f"invalid plane: {plane}")
-    repo = subject.get("repository") or subject.get("name")
-    domain = infer_domain(subject)
-    title = mech.name
-    if repo:
-        title = f"{mech.name} for {repo}"
+    repo = str(subject.get("repository") or subject.get("name") or (research.full_name if research else "estate"))
+    domain = infer_domain(subject, research)
+    language = (
+        (research.primary_language if research else None)
+        or str(subject.get("language") or "Python")
+    )
+    paths = _leaf_paths(repo, mech.id, language)
+    short = repo.split("/")[-1]
+    signals = list(research.signals) if research else []
+    title = f"{mech.name} for {repo}"
+
     implementation = (
-        f"ENGINEER `{mech.id}` as complete, born-to-run, first-pass-is-last-pass code in "
-        f"repository-native modules: pro elite humanized engineered craft that impresses masters. "
-        f"Typed boundaries, named invariants, measured failure modes — no magic, no theater. "
-        f"Honest dual-plane labels (VERIFIED only with proof; IMPLEMENTED when it runs; TARGET kept). "
-        f"MAXIMUM_COHERENT_ADVANCE — land the full coherent tranche now. "
-        f"Governance balances bravery: refuse false claims and capability deletion, never freeze ambition."
+        f"ENGINEER `{mech.id}` into `{short}` as first-pass-is-last-pass code.\n"
+        f"- Module: `{paths['module']}` — typed API for {mech.name}; named invariants; no magic.\n"
+        f"- Config: `{paths['config']}` — leaf boundaries from research signals "
+        f"[{', '.join(signals[:8]) or 'general'}]; language={language}.\n"
+        f"- Wire: call sites that currently embody the bottleneck must route through the mechanism "
+        f"(refuse path if preconditions fail).\n"
+        f"- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt "
+        f"`{paths['receipt']}`; keep TARGET north-star.\n"
+        f"- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub."
     )
     measurement = (
-        "Master-grade exact-head tests for mechanism invariants; refuse-path unit tests; "
-        "born-to-run smoke under intended load; before/after proof receipts when measured."
+        f"1) `{paths['tests']}` — unit tests for happy path + refuse path for {mech.id}.\n"
+        f"2) Exact-head proof receipt at `{paths['receipt']}` binding mechanism id + commit.\n"
+        f"3) Born-to-run smoke: import/load `{paths['module']}` and exercise one real bottleneck case "
+        f"from `{short}`"
+        + (
+            f" (desc: {research.description[:80]})"
+            if research and research.description
+            else ""
+        )
+        + "."
     )
     failure_mode = (
-        "Mechanism silent-fail, authority forgery, incomplete first pass, receipt graph missing, "
-        "or claim without evidence must fail closed — without using failure as permission to amputate."
+        f"If `{paths['module']}` silent-fails, forges authority, or ships without `{paths['tests']}` "
+        f"refuse-path coverage, fail closed. Do not amputate sibling capability to green CI."
     )
     boundary = (
-        "No false company affiliation; no flight/production authority claims without proof; "
+        f"Leaf={repo}; domain={domain}; language={language}. "
+        "No false company affiliation; no flight/production authority without proof; "
         "no legal/private data on public hire surface; no capability deletion to green CI; "
-        "no governance paralysis that blocks a complete born-to-run land."
+        "no governance paralysis blocking a complete born-to-run land."
     )
     value = (
-        "Removes the bottleneck with continuously impressive ENGINEERED executable power — "
-        "complete mechanisms masters respect, not reports or stamps."
+        f"Removes the named bottleneck on `{short}` with ENGINEERED executable power: "
+        f"{mech.pattern} — complete mechanism masters can review in `{paths['module']}`."
     )
     sol = GeniusSolution(
-        solution_id=_stable_id(str(repo or "estate"), mech.id, problem[:80]),
+        solution_id=_stable_id(repo, mech.id, problem[:80]),
         title=title,
         problem=problem,
         cause=cause,
@@ -514,13 +697,13 @@ def build_solution(
         boundary=boundary,
         value=value,
         domain=domain,
-        repository=str(repo) if repo else None,
+        repository=repo,
         company_track=str(subject["company"]) if subject.get("company") else None,
         plane=plane,
         tags=(mech.id, domain, EXECUTION_LAW, CRAFT_LAW, CRAFT_VERB),
     )
-    novelty = novelty_score(sol, subject)
-    coherence = coherence_score(sol, subject)
+    novelty = novelty_score(sol, subject, research)
+    coherence = coherence_score(sol, subject, research)
     genius = genius_composite(novelty, coherence)
     return GeniusSolution(
         **{
@@ -533,64 +716,100 @@ def build_solution(
     )
 
 
-def novelty_score(sol: GeniusSolution, subject: Mapping[str, Any]) -> float:
-    """ENGINEERED novelty: mechanism specificity + non-wrapper language + domain fit."""
-    text = " ".join(
-        [
-            sol.mechanism,
-            sol.implementation,
-            sol.problem,
-            sol.value,
-        ]
-    ).lower()
+def novelty_score(
+    sol: GeniusSolution,
+    subject: Mapping[str, Any],
+    research: ResearchDossier | None = None,
+) -> float:
+    """Score honesty: judge problem/cause/mechanism only — not template boilerplate."""
+    # Intentionally exclude implementation text (was self-scoring on craft adjectives).
+    core = " ".join([sol.problem, sol.cause, sol.mechanism, sol.value]).lower()
     score = NOVELTY_BASE
-    if any(
-        k in text
-        for k in ("receipt", "quorum", "half-life", "dual-plane", "fail closed", "provenance", "engineered")
-    ):
+    mechanism_signals = (
+        "receipt",
+        "quorum",
+        "half-life",
+        "dual-plane",
+        "fail closed",
+        "provenance",
+        "restore",
+        "solver",
+        "budget",
+    )
+    if any(k in sol.mechanism.lower() for k in mechanism_signals):
         score += NOVELTY_SIGNAL_BONUS
-    if any(k in text for k in ("wrapper", "rename only", "thin scaffold", "todo", "placeholder")):
+    if any(k in core for k in ("wrapper", "rename only", "thin scaffold", "todo", "placeholder")):
         score -= NOVELTY_WRAPPER_PENALTY
-    if sol.domain != "general" and sol.domain in text:
+    # Leaf name in problem = subject-sensitive
+    short = (sol.repository or "").split("/")[-1].lower()
+    if short and short in sol.problem.lower():
         score += NOVELTY_DOMAIN_BONUS
+    if sol.domain != "general" and sol.domain in core:
+        score += NOVELTY_DOMAIN_BONUS * 0.5
     if sol.missing_fields():
         score -= NOVELTY_MISSING_PENALTY
-    if subject.get("paper_recovery_only") and "restore" in text:
+    if (subject.get("paper_recovery_only") or (research and "paper_recovery" in research.signals)) and (
+        "restore" in sol.mechanism.lower() or "dual-plane" in sol.mechanism.lower()
+    ):
         score += NOVELTY_RESTORE_BONUS
+    # Research density bonus
+    if research and len(research.lite_facts) >= 4:
+        score += 0.05
+    if research and "unknown_or_offline" in research.signals and sol.domain != "general":
+        # overfitted domain without evidence
+        score -= 0.1
+    # Prefer mechanisms the research signal map selected
+    if research and sol.tags:
+        preferred: set[str] = set()
+        for sig in research.signals:
+            preferred.update(SIGNAL_MECHANISM_BONUS.get(sig, ()))
+        if sol.tags[0] in preferred:
+            score += 0.22
+        elif sol.tags[0] in {
+            "anti_neutralization_gate",
+            "capability_restore_queue",
+            "dual_plane_truth",
+        } and not set(research.signals).intersection(
+            {"neutralization", "paper_recovery", "governance", "missing_impl"}
+        ):
+            score -= 0.15
+    # Path specificity in implementation (leaf-native)
+    if sol.repository and sol.repository.split("/")[-1].replace("-", "_") in sol.implementation:
+        score += 0.08
+    if f"test_" in sol.measurement or ".test." in sol.measurement or "_test." in sol.measurement:
+        score += 0.05
     return _clamp01(score)
 
 
-def coherence_score(sol: GeniusSolution, subject: Mapping[str, Any]) -> float:
-    """ENGINEERED coherence: complete born-to-run power without false claims or freeze."""
+def coherence_score(
+    sol: GeniusSolution,
+    subject: Mapping[str, Any],
+    research: ResearchDossier | None = None,
+) -> float:
+    """Coherence without rewarding universal craft-adjective spam."""
     score = COHERENCE_BASE
-    blob = " ".join(
-        [
-            sol.mechanism,
-            sol.implementation,
-            sol.measurement,
-            sol.boundary,
-            sol.value,
-        ]
-    ).lower()
     if not sol.missing_fields():
         score += COHERENCE_COMPLETE_BONUS
     if sol.plane in {"IMPLEMENTED", "VERIFIED"}:
         score += COHERENCE_PLANE_BONUS
-    if "MAXIMUM_COHERENT_ADVANCE" in sol.implementation or "dual-plane" in sol.implementation.lower():
-        score += COHERENCE_MCA_BONUS
-    if any(
-        k in blob
-        for k in ("born to run", "born-to-run", "first pass", "first-pass", "complete", "engineered")
-    ):
+    # Leaf-native paths present
+    if "Module:" in sol.implementation and "tests" in sol.measurement.lower():
         score += COHERENCE_CRAFT_BONUS
-    if any(k in blob for k in ("master", "pro elite", "humanized", "bravery")):
+    if "refuse" in sol.measurement.lower() or "refuse" in sol.failure_mode.lower():
         score += COHERENCE_MASTER_BONUS
+    if sol.repository and sol.repository.split("/")[-1] in sol.problem:
+        score += COHERENCE_BOUNDARY_BONUS
     if "no false" in sol.boundary.lower() or "affiliation" in sol.boundary.lower():
         score += COHERENCE_BOUNDARY_BONUS
-    if subject.get("neutralization_stamps", 0) and any(
-        k in sol.mechanism.lower() for k in ("restore", "dual-plane", "anti-neutral", "receipt", "bravery")
+    # MCA only if dual-plane wiring named with receipt path
+    if "dual-plane" in sol.implementation.lower() and "receipts/" in sol.implementation:
+        score += COHERENCE_MCA_BONUS
+    if subject.get("neutralization_stamps", 0) or (
+        research and research.signals and "neutralization" in research.signals
     ):
-        score += COHERENCE_RESTORE_BONUS
+        if any(k in sol.mechanism.lower() for k in ("restore", "dual-plane", "anti-neutral", "receipt")):
+            score += COHERENCE_RESTORE_BONUS
+    blob = " ".join([sol.mechanism, sol.implementation, sol.measurement, sol.boundary]).lower()
     if any(p in blob for p in PARALYSIS_PATTERNS):
         score -= COHERENCE_PARALYSIS_PENALTY
     impl = sol.implementation.lower()
@@ -601,6 +820,10 @@ def coherence_score(sol: GeniusSolution, subject: Mapping[str, Any]) -> float:
         and "not" not in impl
     ):
         score -= COHERENCE_MVP_PENALTY
+    # Penalize generic anti-neut on unknown leaves
+    if research and "unknown_or_offline" in research.signals:
+        if "anti-neutralization" in sol.mechanism.lower() or sol.tags and sol.tags[0] == "anti_neutralization_gate":
+            score -= 0.2
     return _clamp01(score)
 
 
@@ -612,38 +835,101 @@ def attack_solution(sol: GeniusSolution) -> tuple[bool, tuple[str, ...]]:
     return (not blockers, tuple(blockers))
 
 
+def compose_advance_brief(run_like: Mapping[str, Any] | GeniusRun) -> dict[str, Any]:
+    """Turn primary into an executable advance brief (files, tests, refuse paths)."""
+    if isinstance(run_like, GeniusRun):
+        data = run_like.to_dict()
+    else:
+        data = dict(run_like)
+    primary = data.get("primary")
+    subject = data.get("subject") or {}
+    research = data.get("research") or {}
+    if not primary:
+        return {
+            "schema": "glaciereq.genius-advance-brief.v1",
+            "status": "NO_PRIMARY",
+            "steps": [],
+        }
+    impl = str(primary.get("implementation") or "")
+    modules = re.findall(r"`([^`]+)`", impl)
+    return {
+        "schema": "glaciereq.genius-advance-brief.v1",
+        "status": "READY",
+        "repository": primary.get("repository") or subject.get("repository"),
+        "mechanism_title": primary.get("title"),
+        "mechanism_id": (primary.get("tags") or [None])[0],
+        "plane": primary.get("plane"),
+        "problem": primary.get("problem"),
+        "paths": [p for p in modules if "/" in p or p.endswith((".py", ".ts", ".go", ".rs", ".json"))],
+        "measurement": primary.get("measurement"),
+        "failure_mode": primary.get("failure_mode"),
+        "research_signals": list(research.get("signals") or []),
+        "steps": [
+            "Create module path from brief with typed public API.",
+            "Add refuse-path unit tests before happy path.",
+            "Wire bottleneck call sites through the mechanism.",
+            "Emit proof receipt JSON bound to commit SHA.",
+            "Keep dual-plane labels honest (no false VERIFIED).",
+        ],
+        "receipt_sha256": data.get("receipt_sha256"),
+    }
+
+
 def invent(
     subject: Mapping[str, Any],
     *,
     limit: int = 3,
     include_atlas_seeds: bool = True,
     root: Path | None = None,
+    live_research: bool = True,
+    accumulate: bool = True,
+    publish_links: bool = True,
 ) -> GeniusRun:
-    """Invent ranked genius solutions for a repository/company subject."""
+    """Research → invent → attack → rank → advance brief → accumulate knowledge."""
     if not isinstance(subject, Mapping) or not subject:
         raise GeniusEngineError("subject must be a non-empty mapping")
+    if not (subject.get("repository") or subject.get("name")):
+        raise GeniusEngineError("subject.repository is required")
 
-    problem, cause = infer_bottleneck(subject)
-    domain = infer_domain(subject)
-    mechs = select_mechanisms(domain, limit=max(limit, 3))
+    helix_root = root or repository_root()
+    # Mandatory research / study
+    dossier = research_subject(subject, helix_root=helix_root, live=live_research)
+    problem, cause = infer_bottleneck(subject, dossier)
+    domain = infer_domain(subject, dossier)
+    mechs = select_mechanisms(domain, limit=max(limit, 3), research=dossier)
     candidates: list[GeniusSolution] = []
     rejected: list[dict[str, Any]] = []
 
-    for mech in mechs:
-        sol = build_solution(subject=subject, mech=mech, problem=problem, cause=cause)
+    for rank, mech in enumerate(mechs):
+        sol = build_solution(
+            subject=subject,
+            mech=mech,
+            problem=problem,
+            cause=cause,
+            research=dossier,
+        )
+        # Research-fit rank must beat alphabetical ties on equal genius scores.
+        fit_boost = max(0.0, 0.12 - (0.03 * rank))
+        if fit_boost:
+            boosted = _clamp01(sol.genius_score + fit_boost)
+            sol = GeniusSolution(**{**sol.to_dict(), "genius_score": boosted, "tags": sol.tags})
         ok, blockers = attack_solution(sol)
         if ok:
             candidates.append(sol)
         else:
-            rejected.append({"solution_id": sol.solution_id, "title": sol.title, "blockers": list(blockers)})
+            rejected.append(
+                {"solution_id": sol.solution_id, "title": sol.title, "blockers": list(blockers)}
+            )
 
     if include_atlas_seeds and subject.get("company"):
         company = str(subject["company"]).lower()
-        for seed in load_atlas_genius_seeds(root):
+        for seed in load_atlas_genius_seeds(helix_root):
             seed_company = str(seed.get("company") or "").lower()
             if company not in seed_company and seed_company not in company:
                 continue
             genius_text = str(seed["genius_solution"])
+            leaf = str(subject.get("repository") or dossier.full_name)
+            paths = _leaf_paths(leaf, "atlas_seed", dossier.primary_language)
             sol = GeniusSolution(
                 solution_id=_stable_id("atlas", company, genius_text[:80]),
                 title=genius_text.split(":")[0][:80],
@@ -651,21 +937,27 @@ def invent(
                 cause=cause,
                 mechanism=genius_text,
                 implementation=(
-                    "Translate the atlas genius solution into repository-native modules with tests, "
-                    "receipts, and dual-plane promotion. Independent reference only — no company affiliation."
+                    f"ENGINEER atlas seed into `{leaf}`:\n"
+                    f"- Module: `{paths['module']}`\n"
+                    f"- Tests: `{paths['tests']}`\n"
+                    f"- Receipt: `{paths['receipt']}`\n"
+                    "Independent reference only — no company affiliation."
                 ),
-                measurement="Repository-native tests + exact-head proof receipt bound to the mechanism.",
+                measurement=(
+                    f"`{paths['tests']}` must prove the atlas mechanism executable; "
+                    f"receipt at `{paths['receipt']}`."
+                ),
                 failure_mode="Refuse promotion if mechanism is only documented, not executable.",
                 boundary="No company affiliation, endorsement, or proprietary access claims.",
                 value="Company-track leverage with evidence-coupled originality.",
                 domain=domain,
-                repository=str(subject.get("repository") or "") or None,
+                repository=leaf,
                 company_track=str(subject.get("company")),
                 plane="TARGET",
                 tags=("atlas-seed", domain),
             )
-            novelty = novelty_score(sol, subject)
-            coherence = coherence_score(sol, subject)
+            novelty = novelty_score(sol, subject, dossier)
+            coherence = coherence_score(sol, subject, dossier)
             sol = GeniusSolution(
                 **{
                     **sol.to_dict(),
@@ -679,7 +971,13 @@ def invent(
             if ok:
                 candidates.append(sol)
             else:
-                rejected.append({"solution_id": sol.solution_id, "title": sol.title, "blockers": list(blockers)})
+                rejected.append(
+                    {
+                        "solution_id": sol.solution_id,
+                        "title": sol.title,
+                        "blockers": list(blockers),
+                    }
+                )
 
     candidates.sort(key=lambda s: (-s.genius_score, s.title))
     top = tuple(candidates[:limit])
@@ -692,29 +990,82 @@ def invent(
         "cause": cause,
         "neutralization_stamps": subject.get("neutralization_stamps"),
         "paper_recovery_only": subject.get("paper_recovery_only"),
+        "research_signals": list(dossier.signals),
     }
+    research_out = dossier.to_dict()
+    # Drop bulky raw_subject from receipt if present
+    research_out.pop("raw_subject", None)
+
     receipt_body = {
         "engine_id": ENGINE_ID,
         "identity": APEX_IDENTITY,
         "law": EXECUTION_LAW,
         "craft": list(CRAFT_STANDARD),
         "subject": subject_out,
+        "research": {
+            "repository": research_out.get("repository"),
+            "signals": research_out.get("signals"),
+            "lite_facts": research_out.get("lite_facts"),
+            "sources": research_out.get("sources"),
+            "exists": research_out.get("exists"),
+        },
         "solutions": [s.to_dict() for s in top],
         "rejected": rejected,
     }
     receipt_sha = hashlib.sha256(
         json.dumps(receipt_body, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
-    return GeniusRun(
+
+    knowledge_path: str | None = None
+    library_path: str | None = None
+    primary_dict = primary.to_dict() if primary else None
+    if accumulate and primary_dict is not None:
+        kpath = accumulate_knowledge(
+            dossier,
+            helix_root=helix_root,
+            primary=primary_dict,
+            receipt_sha256=receipt_sha,
+        )
+        knowledge_path = str(kpath)
+    if publish_links and primary_dict is not None:
+        lpath = publish_library_link(
+            dossier,
+            primary=primary_dict,
+            receipt_sha256=receipt_sha,
+        )
+        if lpath is not None:
+            library_path = str(lpath)
+
+    run = GeniusRun(
         engine_id=ENGINE_ID,
         identity=APEX_IDENTITY,
         law=EXECUTION_LAW,
         craft=CRAFT_STANDARD,
         subject=subject_out,
+        research=research_out,
         solutions=top,
         rejected=tuple(rejected),
         primary=primary,
+        advance_brief=None,
+        knowledge_path=knowledge_path,
+        library_link_path=library_path,
         receipt_sha256=receipt_sha,
+    )
+    brief = compose_advance_brief(run)
+    return GeniusRun(
+        engine_id=run.engine_id,
+        identity=run.identity,
+        law=run.law,
+        craft=run.craft,
+        subject=run.subject,
+        research=run.research,
+        solutions=run.solutions,
+        rejected=run.rejected,
+        primary=run.primary,
+        advance_brief=brief,
+        knowledge_path=run.knowledge_path,
+        library_link_path=run.library_link_path,
+        receipt_sha256=run.receipt_sha256,
     )
 
 
@@ -730,11 +1081,20 @@ def invent_estate(
     subjects: Sequence[Mapping[str, Any]],
     *,
     limit_per: int = 1,
+    live_research: bool = True,
+    accumulate: bool = True,
+    publish_links: bool = True,
 ) -> dict[str, Any]:
     """Run genius invent across many subjects; return ranked estate plan."""
     runs: list[dict[str, Any]] = []
     for subject in subjects:
-        run = invent(subject, limit=limit_per)
+        run = invent(
+            subject,
+            limit=limit_per,
+            live_research=live_research,
+            accumulate=accumulate,
+            publish_links=publish_links,
+        )
         runs.append(run.to_dict())
     runs.sort(
         key=lambda r: (
@@ -754,6 +1114,7 @@ def invent_estate(
 
 def render_markdown(run: GeniusRun) -> str:
     craft = ", ".join(run.craft)
+    signals = ", ".join(run.research.get("signals") or [])
     lines = [
         "# Genius Engine Run",
         "",
@@ -762,9 +1123,23 @@ def render_markdown(run: GeniusRun) -> str:
         f"- **Law:** {run.law}",
         f"- **Craft:** {craft}",
         f"- **Subject:** `{run.subject.get('repository') or run.subject.get('domain')}`",
+        f"- **Research signals:** {signals or '_none_'}",
+        f"- **Knowledge:** `{run.knowledge_path or 'n/a'}`",
+        f"- **Library link:** `{run.library_link_path or 'n/a'}`",
         f"- **Receipt:** `{run.receipt_sha256}`",
         "",
     ]
+    if run.advance_brief and run.advance_brief.get("status") == "READY":
+        paths = ", ".join(f"`{p}`" for p in (run.advance_brief.get("paths") or [])[:8])
+        lines.extend(
+            [
+                "## Advance brief",
+                "",
+                f"- **Mechanism:** {run.advance_brief.get('mechanism_title')}",
+                f"- **Paths:** {paths or '_see implementation_'}",
+                "",
+            ]
+        )
     if not run.solutions:
         lines.append("_No solutions survived adversarial gate._")
         return "\n".join(lines) + "\n"
@@ -773,7 +1148,8 @@ def render_markdown(run: GeniusRun) -> str:
             [
                 f"## {i}. {sol.title}",
                 "",
-                f"**Scores:** genius={sol.genius_score:.2f} novelty={sol.novelty_score:.2f} coherence={sol.coherence_score:.2f} plane={sol.plane}",
+                f"**Scores:** genius={sol.genius_score:.2f} novelty={sol.novelty_score:.2f} "
+                f"coherence={sol.coherence_score:.2f} plane={sol.plane}",
                 "",
                 f"- **Problem:** {sol.problem}",
                 f"- **Cause:** {sol.cause}",
@@ -790,37 +1166,70 @@ def render_markdown(run: GeniusRun) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Console entry: delegates to scripts/genius_engine semantics via invent defaults."""
+    """Console entry: invent / restore / advance."""
     import argparse
     import json
     import sys
 
     parser = argparse.ArgumentParser(prog="job-app-helix-genius")
     sub = parser.add_subparsers(dest="cmd", required=True)
-    inv = sub.add_parser("invent")
+    inv = sub.add_parser("invent", help="Research + invent for one subject")
     inv.add_argument("--repository", required=True)
     inv.add_argument("--company")
     inv.add_argument("--limit", type=int, default=3)
     inv.add_argument("--paper-recovery", action="store_true")
     inv.add_argument("--neutralization-stamps", type=int, default=0)
+    inv.add_argument("--offline", action="store_true", help="Skip live GitHub research")
+    inv.add_argument("--no-accumulate", action="store_true")
+    inv.add_argument("--no-publish-links", action="store_true")
     inv.add_argument("--markdown", action="store_true")
-    rest = sub.add_parser("restore")
+    rest = sub.add_parser("restore", help="Restoration invent (neutralization-aware)")
     rest.add_argument("--repository", required=True)
     rest.add_argument("--limit", type=int, default=3)
+    rest.add_argument("--offline", action="store_true")
     rest.add_argument("--markdown", action="store_true")
+    adv = sub.add_parser("advance", help="Print advance brief for a subject invent")
+    adv.add_argument("--repository", required=True)
+    adv.add_argument("--offline", action="store_true")
     args = parser.parse_args(argv)
-    if args.cmd == "invent":
-        run = invent(
+
+    def _run_invent(repo: str, **extra: Any) -> GeniusRun:
+        return invent(
             {
-                "repository": args.repository,
-                "company": args.company,
-                "paper_recovery_only": args.paper_recovery,
-                "neutralization_stamps": args.neutralization_stamps,
+                "repository": repo,
+                "company": extra.get("company"),
+                "paper_recovery_only": extra.get("paper_recovery", False),
+                "neutralization_stamps": extra.get("neutralization_stamps", 0),
             },
+            limit=int(extra.get("limit") or 3),
+            live_research=not extra.get("offline", False),
+            accumulate=not extra.get("no_accumulate", False),
+            publish_links=not extra.get("no_publish_links", False),
+        )
+
+    if args.cmd == "invent":
+        run = _run_invent(
+            args.repository,
+            company=args.company,
+            paper_recovery=args.paper_recovery,
+            neutralization_stamps=args.neutralization_stamps,
             limit=args.limit,
+            offline=args.offline,
+            no_accumulate=args.no_accumulate,
+            no_publish_links=args.no_publish_links,
+        )
+    elif args.cmd == "restore":
+        run = invent_restoration(
+            {"repository": args.repository},
+            limit=args.limit,
+            live_research=not args.offline,
         )
     else:
-        run = invent_restoration({"repository": args.repository}, limit=args.limit)
+        run = _run_invent(args.repository, offline=args.offline, limit=1)
+        json.dump(run.advance_brief or {}, sys.stdout, indent=2, sort_keys=True)
+        sys.stdout.write("\n")
+        return 0
+
     if args.markdown:
         sys.stdout.write(render_markdown(run))
     else:
