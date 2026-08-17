@@ -143,8 +143,7 @@ def test_changed_symbol_requires_explicit_replace_and_preserves_neighbors(tmp_pa
     repo = _repo(tmp_path)
     path = repo / "engine.py"
     path.write_text(
-        "def score() -> int:\n    return 100\n\n"
-        "def neighbor() -> str:\n    return 'same'\n",
+        "def score() -> int:\n    return 100\n\ndef neighbor() -> str:\n    return 'same'\n",
         encoding="utf-8",
     )
     donor = _commit(repo, "strong score")
@@ -191,6 +190,6 @@ def test_symbol_receipts_are_deterministic(tmp_path: Path) -> None:
     first = excavate_python_symbols(repo, donor_ref=donor, target_ref=target, path="engine.py")
     second = excavate_python_symbols(repo, donor_ref=donor, target_ref=target, path="engine.py")
     assert first.receipt_sha256 == second.receipt_sha256
-    assert build_symbol_packet(first, selected_symbols=("lost",)).packet_sha256 == build_symbol_packet(
-        second, selected_symbols=("lost",)
-    ).packet_sha256
+    first_packet = build_symbol_packet(first, selected_symbols=("lost",))
+    second_packet = build_symbol_packet(second, selected_symbols=("lost",))
+    assert first_packet.packet_sha256 == second_packet.packet_sha256

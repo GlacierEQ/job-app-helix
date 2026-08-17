@@ -5,6 +5,7 @@ lost historical mechanism. This module binds restoration to exact donor/target
 commits, hashes individual function/class/method source spans, computes same-file
 symbol dependencies, and edits only selected AST spans.
 """
+
 from __future__ import annotations
 
 import ast
@@ -16,7 +17,6 @@ from pathlib import Path
 
 from .capability_archaeology import ArchaeologyError, read_donor_blob, resolve_commit
 from .restoration_executor import RestorationError
-
 
 _SUPPORTED = (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)
 
@@ -325,7 +325,9 @@ def apply_symbol_packet(repo: Path, packet: SymbolRestorationPacket) -> SymbolAp
         current_bytes = target.read_bytes()
         expected_file_sha = {action.expected_target_file_sha256 for action in actions}
         if len(expected_file_sha) != 1 or _sha(current_bytes) != next(iter(expected_file_sha)):
-            raise RestorationError(f"target drift at {path}; symbol packet requires exact target file")
+            raise RestorationError(
+                f"target drift at {path}; symbol packet requires exact target file"
+            )
         backups[path] = current_bytes.hex()
         text = current_bytes.decode("utf-8")
         donor_blob = read_donor_blob(repo, donor_sha=packet.donor_sha, path=path)
@@ -342,7 +344,9 @@ def apply_symbol_packet(repo: Path, packet: SymbolRestorationPacket) -> SymbolAp
             current = current_symbols.get(action.qualified_name)
             donor = donor_symbols.get(action.qualified_name)
             if current is None or donor is None:
-                raise RestorationError(f"symbol missing during replacement: {action.qualified_name}")
+                raise RestorationError(
+                    f"symbol missing during replacement: {action.qualified_name}"
+                )
             if current.source_sha256 != action.expected_target_symbol_sha256:
                 raise RestorationError(f"symbol drift at {action.qualified_name}")
             if donor.source_sha256 != action.donor_symbol_sha256:

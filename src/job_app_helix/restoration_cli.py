@@ -1,4 +1,5 @@
 """Command-line surface for exact-source capability archaeology and restoration."""
+
 from __future__ import annotations
 
 import argparse
@@ -68,7 +69,7 @@ def _parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _symbol_report(args: argparse.Namespace):  # noqa: ANN202
+def _symbol_report(args: argparse.Namespace):
     return excavate_python_symbols(
         args.repo,
         donor_ref=args.donor,
