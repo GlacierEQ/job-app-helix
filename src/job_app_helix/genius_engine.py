@@ -16,10 +16,11 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass, field
 from math import isfinite
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 ENGINE_ID = "glaciereq.genius-engine.v2"
 APEX_IDENTITY = "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION"
@@ -592,9 +593,14 @@ def coherence_score(sol: GeniusSolution, subject: Mapping[str, Any]) -> float:
         score += COHERENCE_RESTORE_BONUS
     if any(p in blob for p in PARALYSIS_PATTERNS):
         score -= COHERENCE_PARALYSIS_PENALTY
-    if "mvp" in sol.implementation.lower() and "amputation" not in sol.implementation.lower():
-        if "avoid" not in sol.implementation.lower() and "not" not in sol.implementation.lower():
-            score -= COHERENCE_MVP_PENALTY
+    impl = sol.implementation.lower()
+    if (
+        "mvp" in impl
+        and "amputation" not in impl
+        and "avoid" not in impl
+        and "not" not in impl
+    ):
+        score -= COHERENCE_MVP_PENALTY
     return _clamp01(score)
 
 
@@ -749,7 +755,7 @@ def invent_estate(
 def render_markdown(run: GeniusRun) -> str:
     craft = ", ".join(run.craft)
     lines = [
-        f"# Genius Engine Run",
+        "# Genius Engine Run",
         "",
         f"- **Engine:** `{run.engine_id}`",
         f"- **Identity:** {run.identity}",

@@ -67,6 +67,6 @@ def test_estate_ranks_multiple() -> None:
 def test_empty_subject_refuses() -> None:
     try:
         invent({})
-        assert False, "expected error"
     except GeniusEngineError:
-        pass
+        return
+    raise AssertionError("expected GeniusEngineError")
