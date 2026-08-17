@@ -1,0 +1,102 @@
+{
+  "schema": "glaciereq.job-ecosystem-restoration.v1",
+  "status": "ACTIVE",
+  "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+  "execution_law": "MAXIMUM_COHERENT_ADVANCE",
+  "incident": "ESTATE_CAPABILITY_NEUTRALIZATION_2026-08-15",
+  "authority_split": {
+    "control_plane": "GlacierEQ/job-app-helix",
+    "public_distribution": "GlacierEQ/job-application",
+    "public_site": "https://casey-barton-glaciereq.vercel.app",
+    "identity_os": "GlacierEQ/AKOS",
+    "placement_authority": "GlacierEQ/the-tower-of-babel"
+  },
+  "portfolio_surface": {
+    "live_links_manifest": "manifests/live_repository_links.json",
+    "expected_linked_repositories": 66,
+    "priority_spine_manifest": "manifests/library_priority_spine.json",
+    "flagship_registry": "manifests/flagship_registry.json"
+  },
+  "waves": {
+    "0_control_identity": "PR_OPEN",
+    "1_critical_hire_path": "LEAF_RESTORES_MERGED",
+    "2_physics_space_colossus": "PENDING",
+    "3_company_excellence_exhibits": "PENDING",
+    "4_operator_runtime_mesh": "PENDING",
+    "5_atlas_closure": "PENDING"
+  },
+  "wave1_leaf_restores": [
+    {
+      "repository": "GlacierEQ/glaciereq-mcp-stack",
+      "action": "restore credentialed MCP packages dual-plane",
+      "pr": "https://github.com/GlacierEQ/glaciereq-mcp-stack/pull/5",
+      "state": "MERGED"
+    },
+    {
+      "repository": "GlacierEQ/spacex-orbital-mechanics",
+      "action": "restore repository-native Lambert solver",
+      "pr": "https://github.com/GlacierEQ/spacex-orbital-mechanics/pull/3",
+      "state": "MERGED"
+    }
+  ],
+  "completion_definition": [
+    "exists_on_github",
+    "native_proof_green",
+    "dual_plane_truth",
+    "apex_positive_lineage",
+    "helix_projectable",
+    "company_track_aligned_when_mapped"
+  ],
+  "portfolio_audit": {
+    "receipt": "receipts/JOB_ECOSYSTEM_AUDIT_2026-08-16.json",
+    "total_checked": 68,
+    "missing": 0,
+    "heavy_neutralization_recent": [
+      "apex-control-plane",
+      "spacex-orbital-mechanics",
+      "spacex-launch-sequencer",
+      "spacex-pad-weather-gate",
+      "spacex-propulsion-monitor",
+      "spacex-telemetry"
+    ],
+    "note": "All 66 live links resolve. Heavy recent neutralization stamps are Wave-2 priority (power restore, not more paper)."
+  },
+  "wave2_priority_queue": [
+    {
+      "repository": "GlacierEQ/spacex-telemetry",
+      "action": "restore mesh/provider planes behind gates; keep codec verified plane"
+    },
+    {
+      "repository": "GlacierEQ/spacex-mission-control",
+      "action": "restore ops execution planes; dual-plane truth"
+    },
+    {
+      "repository": "GlacierEQ/spacex-launch-sequencer",
+      "action": "expand countdown power beyond paper capability-planes"
+    },
+    {
+      "repository": "GlacierEQ/spacex-propulsion-monitor",
+      "action": "keep health lab; restore predictive/controller ambition as implemented"
+    },
+    {
+      "repository": "GlacierEQ/xai-colossus-cooling",
+      "action": "flagship physics power; dual-plane public claims"
+    },
+    {
+      "repository": "GlacierEQ/colossus-gateway",
+      "action": "restore broader gateway architecture under auth gates"
+    },
+    {
+      "repository": "GlacierEQ/apex-control-plane",
+      "action": "counter neutralization stamps; restore dispatch power"
+    }
+  ],
+  "genius_engine": {
+    "module": "job_app_helix.genius_engine",
+    "cli": "scripts/genius_engine.py",
+    "docs": "docs/apex/GENIUS_ENGINE.md",
+    "console_script": "job-app-helix-genius",
+    "seed_receipt": "receipts/GENIUS_ESTATE_WAVE2_SEED_2026-08-16.json",
+    "role": "invent \u2192 attack \u2192 rank mechanisms for restore-and-complete waves"
+  }
+}

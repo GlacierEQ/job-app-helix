@@ -38,6 +38,7 @@ job-app-helix = "job_app_helix.cli:main"
 job-app-helix-readme = "job_app_helix.readme_mesh_cli:main"
 job-app-helix-portfolio = "job_app_helix.portfolio_cli:main"
 job-app-helix-library = "job_app_helix.library_cli:main"
+job-app-helix-genius = "job_app_helix.genius_engine:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/job_app_helix"]
@@ -76,6 +77,7 @@ ignore_errors = true
 "test_apex_distributed_compute.py" = ["E501"]
 "showcase/demo_15min_run.py" = ["E501"]
 "helix/**/*.py" = ["E501"]
+"src/job_app_helix/genius_engine.py" = ["E501", "F401"]
 # Pre-existing style debt discovered on 2026-08-10. These files are explicitly
 # quarantined from unrelated style-only failures while the authority repair is verified.
 "scripts/audit_live_portfolio_freshness.py" = ["E402", "I001", "UP017"]
