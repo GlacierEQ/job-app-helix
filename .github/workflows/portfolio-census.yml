@@ -1,4 +1,4 @@
-name: Historical portfolio census
+name: Admitted job rollout projection census
 
 on:
   pull_request:
@@ -8,7 +8,9 @@ on:
       - "scripts/proof_weighted_repo_census.py"
       - "scripts/aggregate_portfolio_census.py"
       - "manifests/portfolio_repositories.json"
+      - "manifests/estate_scope_receipt_2026-08-17.json"
       - "tests/test_portfolio_census_aggregate.py"
+      - "tests/test_estate_visibility.py"
   workflow_dispatch:
   schedule:
     - cron: "17 18 * * 1"
@@ -27,10 +29,12 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Build exact matrix from canonical inventory
+      - name: Build exact matrix from admitted rollout projection
         id: matrix
         shell: bash
         run: |
+          test "$(jq -r '.is_full_estate_inventory' manifests/portfolio_repositories.json)" = "false"
+          test "$(jq -r '.scope' manifests/portfolio_repositories.json)" = "ADMITTED_JOB_ENGINEERING_ROLLOUT_PROJECTION"
           repositories="$(
             jq -c \
               '["GlacierEQ/job-app-helix"] +
@@ -41,7 +45,7 @@ jobs:
 
   census:
     needs: prepare
-    name: "Census · ${{ matrix.repository }}"
+    name: "Projection census · ${{ matrix.repository }}"
     runs-on: ubuntu-latest
     continue-on-error: true
     strategy:
@@ -145,8 +149,9 @@ jobs:
                   }
               },
               "nonclaims": [
-                  "Repository checkout was unavailable to this census run.",
+                  "Repository checkout was unavailable to this public projection census run.",
                   "No authorship, originality, verification, or recruiter claim is inferred.",
+                  "This projection census is not the full owner estate census.",
               ],
           }
           Path(sys.argv[2]).write_text(
@@ -187,14 +192,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Reconcile canonical census
+      - name: Reconcile admitted rollout projection census
         run: |
           python scripts/aggregate_portfolio_census.py \
             --receipts-dir census-artifacts \
             --inventory manifests/portfolio_repositories.json \
             --output portfolio-census-summary.json
 
-      - name: Upload reconciled census summary
+      - name: Upload reconciled projection census summary
         uses: actions/upload-artifact@v4
         with:
           name: portfolio-census-summary
