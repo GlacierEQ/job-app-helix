@@ -147,6 +147,7 @@ def invent_impact_estate(
     accumulate: bool = True,
     publish_links: bool = True,
     limit_subjects: int = 24,
+    root: Path | None = None,
 ) -> dict[str, Any]:
     """Invent across impact + landed subjects (estate max-impact tranche)."""
     subjects = subjects_from_impact(limit=limit_subjects)
@@ -156,6 +157,7 @@ def invent_impact_estate(
         live_research=live_research,
         accumulate=accumulate,
         publish_links=publish_links,
+        root=root,
     )
     out["impact_subjects"] = subjects
     out["landed"] = landed_index()

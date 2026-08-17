@@ -107,10 +107,10 @@ def test_estate_ranks_multiple(tmp_path: Path) -> None:
         ],
         limit_per=1,
         live_research=False,
-        accumulate=True,
+        accumulate=False,
         publish_links=False,
     )
-    # invent_estate doesn't take root — uses repository_root; accumulate still ok
+    # accumulate=False keeps source tree immutable for CI/Buildkite
     assert out["count"] == 2
     assert out["runs"][0]["primary"] is not None
     assert out["engine_id"].endswith("v4")
@@ -356,6 +356,7 @@ def test_impact_estate_offline(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) 
         live_research=False,
         accumulate=False,
         publish_links=False,
+        root=tmp_path,
     )
     assert out["count"] == 4
     assert out["build_status"] == "COMPLETE"
