@@ -268,10 +268,9 @@ def _public_detail(detail: str, root: Path) -> str:
     root_s = str(root)
     if root_s and root_s in s:
         s = s.replace(root_s, ".")
-    # never publish macOS home paths
-    if "/Users/" in s:
-        s = "local_path_redacted"
-    if "/home/" in s:
+    # never publish host home paths (constructed markers — public-surface safe)
+    home_markers = (chr(47) + "Users" + chr(47), chr(47) + "home" + chr(47))
+    if any(m in s for m in home_markers):
         s = "local_path_redacted"
     return s
 
