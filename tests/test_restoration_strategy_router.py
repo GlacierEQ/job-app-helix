@@ -64,7 +64,9 @@ def test_blocked_candidate_never_wins_and_remains_visible():
     executable = candidate("executable-p1", "P1")
     result = compile_restoration_decision({"candidates": [blocked, executable]})
     assert result["winner"]["candidate_id"] == "executable-p1"
-    blocked_row = next(row for row in result["ranking"] if row["candidate_id"] == "blocked-giant")
+    blocked_row = next(
+        row for row in result["ranking"] if row["candidate_id"] == "blocked-giant"
+    )
     assert blocked_row["blocked"] is True
     assert "connector unavailable" in blocked_row["reasons"][0]
 
@@ -89,7 +91,9 @@ def test_p4_cannot_displace_executable_product_work():
     )
     result = compile_restoration_decision({"candidates": [governance, product]})
     assert result["winner"]["candidate_id"] == "recruiter-feature"
-    governance_row = next(row for row in result["ranking"] if row["candidate_id"] == "perfect-governance")
+    governance_row = next(
+        row for row in result["ranking"] if row["candidate_id"] == "perfect-governance"
+    )
     assert governance_row["reasons"] == ["deferred behind executable P2 work"]
 
 
