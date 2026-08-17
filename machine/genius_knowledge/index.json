@@ -1,0 +1,67 @@
+{
+  "count": 10,
+  "entries": {
+    "GlacierEQ/AKOS": {
+      "last_primary_mechanism_id": "claim_fence",
+      "path": "GlacierEQ__AKOS.json",
+      "run_count": 1,
+      "updated_at": "2026-08-17T08:24:11+00:00"
+    },
+    "GlacierEQ/glaciereq-mcp-stack": {
+      "last_primary_mechanism_id": "dual_plane_truth",
+      "path": "GlacierEQ__glaciereq-mcp-stack.json",
+      "run_count": 1,
+      "updated_at": "2026-08-17T08:24:00+00:00"
+    },
+    "GlacierEQ/job-app-helix": {
+      "last_primary_mechanism_id": "authority_half_life",
+      "path": "GlacierEQ__job-app-helix.json",
+      "run_count": 1,
+      "updated_at": "2026-08-17T08:24:14+00:00"
+    },
+    "GlacierEQ/megamind": {
+      "last_primary_mechanism_id": "authority_half_life",
+      "path": "GlacierEQ__megamind.json",
+      "run_count": 1,
+      "updated_at": "2026-08-17T08:24:08+00:00"
+    },
+    "GlacierEQ/orbital-mechanics": {
+      "last_primary_mechanism_id": "lambert_power",
+      "path": "GlacierEQ__orbital-mechanics.json",
+      "run_count": 1,
+      "updated_at": "2026-08-17T08:24:11+00:00"
+    },
+    "GlacierEQ/spacex-mission-control": {
+      "last_primary_mechanism_id": "dual_plane_truth",
+      "path": "GlacierEQ__spacex-mission-control.json",
+      "run_count": 4,
+      "updated_at": "2026-08-17T08:25:58+00:00"
+    },
+    "GlacierEQ/spacex-telemetry": {
+      "last_primary_mechanism_id": "capability_restore_queue",
+      "path": "GlacierEQ__spacex-telemetry.json",
+      "run_count": 2,
+      "updated_at": "2026-08-17T08:23:58+00:00"
+    },
+    "GlacierEQ/the-tower-of-babel": {
+      "last_primary_mechanism_id": "claim_fence",
+      "path": "GlacierEQ__the-tower-of-babel.json",
+      "run_count": 1,
+      "updated_at": "2026-08-17T08:24:06+00:00"
+    },
+    "GlacierEQ/unknown-random-leaf-xyz": {
+      "last_primary_mechanism_id": "bravery_with_governance",
+      "path": "GlacierEQ__unknown-random-leaf-xyz.json",
+      "run_count": 2,
+      "updated_at": "2026-08-17T08:24:15+00:00"
+    },
+    "GlacierEQ/xai-colossus-cooling": {
+      "last_primary_mechanism_id": "receipt_bus",
+      "path": "GlacierEQ__xai-colossus-cooling.json",
+      "run_count": 5,
+      "updated_at": "2026-08-17T08:25:58+00:00"
+    }
+  },
+  "schema": "glaciereq.genius-lite-knowledge.v1",
+  "updated_at": "2026-08-17T08:25:58+00:00"
+}
