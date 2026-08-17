@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CLI for the Genius Engine v3 — research → invent → attack → rank → advance."""
+"""CLI for the Genius Engine v4 — full build: research → invent → advance → land → status."""
 from __future__ import annotations
 
 import argparse
@@ -10,6 +10,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from job_app_helix.genius_build import (  # noqa: E402
+    build_receipt,
+    doctor,
+    invent_impact_estate,
+    landed_index,
+    status_summary,
+)
 from job_app_helix.genius_engine import (  # noqa: E402
     compose_advance_brief,
     invent,
@@ -32,7 +39,7 @@ def emit(data: object, output: Path | None, as_markdown: bool = False, run=None)
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="GlacierEQ Genius Engine v3 (APEX)")
+    p = argparse.ArgumentParser(description="GlacierEQ Genius Engine v4 (APEX) — COMPLETE build")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     inv = sub.add_parser("invent", help="Research + invent for one subject")
@@ -62,10 +69,26 @@ def main() -> int:
     est.add_argument("--offline", action="store_true")
     est.add_argument("--output", type=Path)
 
+    imp = sub.add_parser(
+        "impact-estate",
+        help="Invent across IMPACT queue + landed leaves (max-impact tranche)",
+    )
+    imp.add_argument("--limit-per", type=int, default=1)
+    imp.add_argument("--limit-subjects", type=int, default=24)
+    imp.add_argument("--offline", action="store_true")
+    imp.add_argument("--live", action="store_true", help="Force live GH research")
+    imp.add_argument("--output", type=Path)
+
     adv = sub.add_parser("advance", help="Emit advance brief for a subject")
     adv.add_argument("--repository", required=True)
     adv.add_argument("--offline", action="store_true")
     adv.add_argument("--output", type=Path)
+
+    sub.add_parser("status", help="Engine build status summary")
+    sub.add_parser("doctor", help="Fail-closed build doctor")
+    sub.add_parser("landed", help="List landed IMPACT mechanisms")
+    br = sub.add_parser("build-receipt", help="Write COMPLETE build receipt")
+    br.add_argument("--output", type=Path)
 
     args = p.parse_args()
     if args.cmd == "invent":
@@ -105,6 +128,16 @@ def main() -> int:
         )
         emit(out, args.output)
         return 0
+    if args.cmd == "impact-estate":
+        out = invent_impact_estate(
+            limit_per=args.limit_per,
+            limit_subjects=args.limit_subjects,
+            live_research=bool(args.live) and not args.offline,
+            accumulate=True,
+            publish_links=True,
+        )
+        emit(out, args.output)
+        return 0
     if args.cmd == "advance":
         run = invent(
             {"repository": args.repository},
@@ -114,6 +147,23 @@ def main() -> int:
         brief = run.advance_brief or compose_advance_brief(run)
         emit(brief, args.output)
         return 0
+    if args.cmd == "status":
+        emit(status_summary(), None)
+        return 0
+    if args.cmd == "doctor":
+        doc = doctor()
+        emit(doc, None)
+        return 0 if doc.get("ok") else 1
+    if args.cmd == "landed":
+        emit(landed_index(), None)
+        return 0
+    if args.cmd == "build-receipt":
+        receipt = build_receipt(write=True)
+        if args.output:
+            emit(receipt, args.output)
+        else:
+            emit(receipt, None)
+        return 0 if receipt.get("build_status") == "COMPLETE" else 1
     return 2
 
 

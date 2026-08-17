@@ -1,0 +1,323 @@
+{
+  "build_status": "COMPLETE",
+  "craft": [
+    "ENGINEERED",
+    "PRO_ELITE_HUMANIZED_ENGINEERED_CODE",
+    "CONTINUOUSLY_IMPRESSIVE_TO_MASTERS",
+    "COMPLETE",
+    "BORN_TO_RUN",
+    "FIRST_PASS_IS_LAST_PASS",
+    "GOVERNANCE_BALANCED_WITH_BRAVERY"
+  ],
+  "doctor": {
+    "build_status": "COMPLETE",
+    "checked_at": "2026-08-17T09:59:51+00:00",
+    "checks": [
+      {
+        "detail": "glaciereq.genius-engine.v4",
+        "name": "engine_id",
+        "ok": true
+      },
+      {
+        "detail": "",
+        "name": "craft_standard",
+        "ok": true
+      },
+      {
+        "detail": "count=15",
+        "name": "mechanism_library",
+        "ok": true
+      },
+      {
+        "detail": "",
+        "name": "research_module",
+        "ok": true
+      },
+      {
+        "detail": "",
+        "name": "engine_module",
+        "ok": true
+      },
+      {
+        "detail": "",
+        "name": "cli_script",
+        "ok": true
+      },
+      {
+        "detail": "",
+        "name": "tests",
+        "ok": true
+      },
+      {
+        "detail": "",
+        "name": "docs",
+        "ok": true
+      },
+      {
+        "detail": "/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge",
+        "name": "knowledge_dir",
+        "ok": true
+      },
+      {
+        "detail": "/Users/kcbflux/.grok/work/library-of-links",
+        "name": "library_of_links_root",
+        "ok": true
+      },
+      {
+        "detail": "/Users/kcbflux/.grok/work/library-of-links/registry/impact_queue.json",
+        "name": "impact_queue",
+        "ok": true
+      },
+      {
+        "detail": "count=4",
+        "name": "landed_mechanisms",
+        "ok": true
+      },
+      {
+        "detail": "",
+        "name": "landed_all_merged",
+        "ok": true
+      },
+      {
+        "detail": "Claim Fence for GlacierEQ/job-app-helix",
+        "name": "smoke_invent",
+        "ok": true
+      },
+      {
+        "detail": "",
+        "name": "smoke_advance",
+        "ok": true
+      }
+    ],
+    "craft": [
+      "ENGINEERED",
+      "PRO_ELITE_HUMANIZED_ENGINEERED_CODE",
+      "CONTINUOUSLY_IMPRESSIVE_TO_MASTERS",
+      "COMPLETE",
+      "BORN_TO_RUN",
+      "FIRST_PASS_IS_LAST_PASS",
+      "GOVERNANCE_BALANCED_WITH_BRAVERY"
+    ],
+    "engine_id": "glaciereq.genius-engine.v4",
+    "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+    "landed": {
+      "all_merged": true,
+      "count": 4,
+      "lands": [
+        {
+          "mechanism_ids": [
+            "mcp_package_restore",
+            "anti_neutralization_gate"
+          ],
+          "modules": [
+            "src/mcp_package_surface.py",
+            "src/anti_neutralization_gate.py"
+          ],
+          "plane": "IMPLEMENTED",
+          "pr": "https://github.com/GlacierEQ/glaciereq-mcp-stack/pull/6",
+          "repository": "GlacierEQ/glaciereq-mcp-stack",
+          "status": "MERGED",
+          "tests": [
+            "tests/test_anti_neutralization_gate.py"
+          ]
+        },
+        {
+          "mechanism_ids": [
+            "authority_half_life"
+          ],
+          "modules": [
+            "src/megamind/authority_half_life.py"
+          ],
+          "plane": "IMPLEMENTED",
+          "pr": "https://github.com/GlacierEQ/megamind/pull/2",
+          "repository": "GlacierEQ/megamind",
+          "status": "MERGED",
+          "tests": [
+            "tests/test_authority_half_life.py"
+          ]
+        },
+        {
+          "mechanism_ids": [
+            "engineered_first_class",
+            "first_pass_last_pass"
+          ],
+          "modules": [
+            "src/tower/formal_wasm_floor.py"
+          ],
+          "plane": "IMPLEMENTED",
+          "pr": "https://github.com/GlacierEQ/the-tower-of-babel/pull/48",
+          "repository": "GlacierEQ/the-tower-of-babel",
+          "status": "MERGED",
+          "tests": [
+            "tests/test_formal_wasm_floor.py"
+          ]
+        },
+        {
+          "mechanism_ids": [
+            "receipt_bus"
+          ],
+          "modules": [
+            "connectors/cooling-plant/receipt_bus.py"
+          ],
+          "plane": "IMPLEMENTED",
+          "pr": "https://github.com/GlacierEQ/xai-colossus-cooling/pull/40",
+          "repository": "GlacierEQ/xai-colossus-cooling",
+          "status": "MERGED",
+          "tests": [
+            "tests/test_receipt_bus.py"
+          ]
+        }
+      ],
+      "mechanism_ids": [
+        "anti_neutralization_gate",
+        "authority_half_life",
+        "engineered_first_class",
+        "first_pass_last_pass",
+        "mcp_package_restore",
+        "receipt_bus"
+      ],
+      "repositories": [
+        "GlacierEQ/glaciereq-mcp-stack",
+        "GlacierEQ/megamind",
+        "GlacierEQ/the-tower-of-babel",
+        "GlacierEQ/xai-colossus-cooling"
+      ],
+      "schema": "glaciereq.genius-landed.v1"
+    },
+    "law": "MAXIMUM_COHERENT_ADVANCE",
+    "ok": true,
+    "schema": "glaciereq.genius-doctor.v1"
+  },
+  "engine_id": "glaciereq.genius-engine.v4",
+  "generated_at": "2026-08-17T09:59:51+00:00",
+  "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+  "landed": {
+    "all_merged": true,
+    "count": 4,
+    "lands": [
+      {
+        "mechanism_ids": [
+          "mcp_package_restore",
+          "anti_neutralization_gate"
+        ],
+        "modules": [
+          "src/mcp_package_surface.py",
+          "src/anti_neutralization_gate.py"
+        ],
+        "plane": "IMPLEMENTED",
+        "pr": "https://github.com/GlacierEQ/glaciereq-mcp-stack/pull/6",
+        "repository": "GlacierEQ/glaciereq-mcp-stack",
+        "status": "MERGED",
+        "tests": [
+          "tests/test_anti_neutralization_gate.py"
+        ]
+      },
+      {
+        "mechanism_ids": [
+          "authority_half_life"
+        ],
+        "modules": [
+          "src/megamind/authority_half_life.py"
+        ],
+        "plane": "IMPLEMENTED",
+        "pr": "https://github.com/GlacierEQ/megamind/pull/2",
+        "repository": "GlacierEQ/megamind",
+        "status": "MERGED",
+        "tests": [
+          "tests/test_authority_half_life.py"
+        ]
+      },
+      {
+        "mechanism_ids": [
+          "engineered_first_class",
+          "first_pass_last_pass"
+        ],
+        "modules": [
+          "src/tower/formal_wasm_floor.py"
+        ],
+        "plane": "IMPLEMENTED",
+        "pr": "https://github.com/GlacierEQ/the-tower-of-babel/pull/48",
+        "repository": "GlacierEQ/the-tower-of-babel",
+        "status": "MERGED",
+        "tests": [
+          "tests/test_formal_wasm_floor.py"
+        ]
+      },
+      {
+        "mechanism_ids": [
+          "receipt_bus"
+        ],
+        "modules": [
+          "connectors/cooling-plant/receipt_bus.py"
+        ],
+        "plane": "IMPLEMENTED",
+        "pr": "https://github.com/GlacierEQ/xai-colossus-cooling/pull/40",
+        "repository": "GlacierEQ/xai-colossus-cooling",
+        "status": "MERGED",
+        "tests": [
+          "tests/test_receipt_bus.py"
+        ]
+      }
+    ],
+    "mechanism_ids": [
+      "anti_neutralization_gate",
+      "authority_half_life",
+      "engineered_first_class",
+      "first_pass_last_pass",
+      "mcp_package_restore",
+      "receipt_bus"
+    ],
+    "repositories": [
+      "GlacierEQ/glaciereq-mcp-stack",
+      "GlacierEQ/megamind",
+      "GlacierEQ/the-tower-of-babel",
+      "GlacierEQ/xai-colossus-cooling"
+    ],
+    "schema": "glaciereq.genius-landed.v1"
+  },
+  "law": "MAXIMUM_COHERENT_ADVANCE",
+  "loop": [
+    "research_study",
+    "invent",
+    "attack",
+    "rank",
+    "advance_brief",
+    "accumulate_knowledge",
+    "publish_library_of_links",
+    "impact_context",
+    "land_mechanisms"
+  ],
+  "mechanism_ids": [
+    "split_brain_actuation",
+    "authority_half_life",
+    "thread_quorum",
+    "claim_fence",
+    "dual_plane_truth",
+    "capability_restore_queue",
+    "provenance_compulsory",
+    "entropy_budget_futures",
+    "receipt_bus",
+    "lambert_power",
+    "mcp_package_restore",
+    "anti_neutralization_gate",
+    "bravery_with_governance",
+    "first_pass_last_pass",
+    "engineered_first_class"
+  ],
+  "mechanism_library_count": 15,
+  "schema": "glaciereq.genius-build.v1",
+  "surfaces": [
+    "engine_id",
+    "craft_standard",
+    "mechanism_library",
+    "research_phase",
+    "invent_attack_rank",
+    "advance_brief",
+    "lite_knowledge",
+    "library_of_links_publish",
+    "impact_context_load",
+    "landed_mechanisms",
+    "cli",
+    "tests"
+  ]
+}
