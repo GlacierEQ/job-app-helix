@@ -14,7 +14,9 @@ from typing import Any, Protocol
 
 ROOT = Path(__file__).resolve().parents[1]
 API_ROOT = "https://api.github.com"
-DEFAULT_OUTPUT = ROOT / "artifacts" / "owned-library-census.json"
+# Full authenticated estate receipts can contain private repository identities.
+# Keep them in ignored machine-local state, never in a commit-visible artifact path.
+DEFAULT_OUTPUT = ROOT / "state" / "owned-library-census.json"
 DEFAULT_PORTFOLIO = ROOT / "manifests" / "portfolio_repositories.json"
 DEFAULT_SPINE = ROOT / "manifests" / "library_priority_spine.json"
 
@@ -143,6 +145,8 @@ def _governed_sets(
     spine_path: Path,
     owner: str,
 ) -> tuple[set[str], set[str]]:
+    """Load routing projections without treating them as estate authority."""
+
     portfolio = _load_json(portfolio_path)
     workspace = portfolio.get("workspace_repositories")
     if not isinstance(workspace, list):
@@ -173,23 +177,25 @@ def classify_repository(
     recruiter_portfolio: set[str],
     priority_spine: set[str],
 ) -> str:
+    """Assign a routing hint after discovery, never an existence/admissibility gate."""
+
     name = repository.split("/", 1)[-1]
     lowered = name.lower()
     if repository in priority_spine:
-        return "PRIORITY_SPINE"
+        return "PRIORITY_JOB_ROUTE"
     if repository in recruiter_portfolio:
-        return "RECRUITER_PORTFOLIO"
+        return "ADMITTED_JOB_ROLLOUT"
     if archived or lowered.startswith("z-backup-") or lowered.endswith(
         "__public_fork_archive"
     ):
-        return "ARCHIVE_BACKUP_OR_FORK"
+        return "VISIBLE_ARCHIVE_BACKUP"
     if fork:
-        return "UPSTREAM_OR_FORK_REVIEW"
-    if visibility == "private":
-        return "PRIVATE_REVIEW_REQUIRED"
+        return "VISIBLE_UPSTREAM_FORK"
     if repository in PUBLIC_CANDIDATE_EXPANSION:
         return "CANDIDATE_EXPANSION"
-    return "UNGOVERNED_PUBLIC_INVENTORY"
+    if visibility == "private":
+        return "VISIBLE_PRIVATE_INVENTORY"
+    return "VISIBLE_PUBLIC_INVENTORY"
 
 
 def discover(
@@ -200,6 +206,8 @@ def discover(
     priority_spine: set[str],
     per_page: int = 100,
 ) -> list[RepositoryRecord]:
+    """Discover the complete owner estate before applying any routing policy."""
+
     if per_page < 1 or per_page > 100:
         raise CensusError("per_page must be between 1 and 100")
     owner_prefix = f"{owner}/"
@@ -269,11 +277,14 @@ def build_payload(records: list[RepositoryRecord], owner: str) -> dict[str, obje
     active_native_count = sum(not record.archived for record in native_records)
     archived_native_count = sum(record.archived for record in native_records)
     return {
-        "schema": "glaciereq.owned-library-census-receipt.v1",
+        "schema": "glaciereq.owned-library-census-receipt.v2",
         "owner": owner,
         "state": "VERIFIED_INVENTORY",
         "distribution": "INTERNAL_FULL_CENSUS",
+        "visibility_policy": "DISCOVER_ALL_ROUTE_AFTER",
         "repository_count": len(records),
+        "hidden_repository_count": 0,
+        "relevance_analysis_eligible_count": len(records),
         "native_repository_count": len(native_records),
         "fork_repository_count": len(fork_records),
         "active_native_repository_count": active_native_count,
@@ -285,6 +296,17 @@ def build_payload(records: list[RepositoryRecord], owner: str) -> dict[str, obje
         "archived_count": sum(record.archived for record in records),
         "fork_count": len(fork_records),
         "repositories": [asdict(record) for record in records],
+        "routing_invariants": {
+            "full_estate_discovery_precedes_rollout_admission": True,
+            "private_visibility_is_not_an_exclusion": True,
+            "archived_state_is_not_an_exclusion": True,
+            "fork_state_is_not_an_exclusion": True,
+            "rollout_membership_is_not_an_evidence_gate": True,
+        },
+        "claim_policy": (
+            "Portfolio membership is not a prerequisite for capability or evidence analysis; "
+            "outward claims require source and proof appropriate to the claim."
+        ),
         "nonclaims": [
             "Inventory does not establish authorship or originality.",
             "Inventory does not establish test, build, security, or deployment status.",
@@ -292,7 +314,10 @@ def build_payload(records: list[RepositoryRecord], owner: str) -> dict[str, obje
                 "Native repository count excludes forks but does not itself "
                 "establish original authorship."
             ),
-            "Only governed recruiter-portfolio entries may support resume claims.",
+            (
+                "Rollout and recruiter membership are routing projections, not authority "
+                "over whether a repository or its evidence may be analyzed."
+            ),
             "The full receipt can contain private names and is not a public artifact.",
         ],
     }
@@ -317,7 +342,10 @@ def _write_atomic(path: Path, payload: dict[str, object]) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Create an authenticated, non-mutating repository census"
+        description=(
+            "Create an authenticated, non-mutating full-estate repository census before "
+            "any rollout or recruiter routing is applied"
+        )
     )
     parser.add_argument("--owner", default="GlacierEQ")
     parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN", ""))
