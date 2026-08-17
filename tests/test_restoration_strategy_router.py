@@ -94,7 +94,7 @@ def test_p4_cannot_displace_executable_product_work():
     governance_row = next(
         row for row in result["ranking"] if row["candidate_id"] == "perfect-governance"
     )
-    assert governance_row["reasons"] == ["deferred behind executable P2 work"]
+    assert governance_row["reasons"] == ("deferred behind executable P2 work",)
 
 
 def test_pareto_dominance_breaks_same_tier_candidates():
@@ -103,7 +103,7 @@ def test_pareto_dominance_breaks_same_tier_candidates():
     result = compile_restoration_decision({"candidates": [weak, strong]})
     assert result["winner"]["candidate_id"] == "strong"
     weak_row = next(row for row in result["ranking"] if row["candidate_id"] == "weak")
-    assert weak_row["dominated_by"] == ["strong"]
+    assert weak_row["dominated_by"] == ("strong",)
     assert weak_row["pareto_front"] is False
 
 
