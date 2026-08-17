@@ -53,7 +53,7 @@ def test_invent_produces_scored_primary(tmp_path: Path) -> None:
         language="Go",
     )
     assert run.engine_id == ENGINE_ID
-    assert ENGINE_ID.endswith("v3")
+    assert ENGINE_ID.endswith("v4")
     assert run.identity == APEX_IDENTITY
     assert run.law == EXECUTION_LAW
     assert run.craft == CRAFT_STANDARD
@@ -113,7 +113,7 @@ def test_estate_ranks_multiple(tmp_path: Path) -> None:
     # invent_estate doesn't take root — uses repository_root; accumulate still ok
     assert out["count"] == 2
     assert out["runs"][0]["primary"] is not None
-    assert out["engine_id"].endswith("v3")
+    assert out["engine_id"].endswith("v4")
 
 
 def test_empty_subject_refuses() -> None:
@@ -320,6 +320,46 @@ def test_advance_brief_paths(tmp_path: Path) -> None:
     brief = compose_advance_brief(run)
     assert brief["status"] == "READY"
     assert brief["paths"]
+
+
+def test_engine_id_is_v4() -> None:
+    assert ENGINE_ID.endswith("v4")
+
+
+def test_build_doctor_and_landed() -> None:
+    from job_app_helix.genius_build import build_receipt, doctor, landed_index, status_summary
+
+    lands = landed_index()
+    assert lands["count"] >= 4
+    assert lands["all_merged"] is True
+    assert "authority_half_life" in lands["mechanism_ids"]
+    st = status_summary()
+    assert st["engine_id"] == ENGINE_ID
+    assert st["landed"] >= 4
+    doc = doctor()
+    assert doc["ok"] is True, doc["checks"]
+    rec = build_receipt(write=False)
+    assert rec["build_status"] == "COMPLETE"
+    assert rec["mechanism_library_count"] >= 12
+
+
+def test_impact_estate_offline(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    from job_app_helix.genius_build import invent_impact_estate, subjects_from_impact
+
+    subjects = subjects_from_impact(limit=8)
+    assert any("glaciereq-mcp-stack" in s["repository"] for s in subjects)
+    assert any("megamind" in s["repository"] for s in subjects)
+    # force no library publish side effects in estate
+    out = invent_impact_estate(
+        limit_per=1,
+        limit_subjects=4,
+        live_research=False,
+        accumulate=False,
+        publish_links=False,
+    )
+    assert out["count"] == 4
+    assert out["build_status"] == "COMPLETE"
+    assert out["runs"][0].get("primary") is not None
 
 
 def test_research_loads_impact_when_library_present(

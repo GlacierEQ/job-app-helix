@@ -5,7 +5,8 @@ Execution law: MAXIMUM_COHERENT_ADVANCE.
 Core craft verb: ENGINEERED.
 
 Loop: RESEARCH/STUDY (mandatory) → invent → attack → rank → advance brief
-       → accumulate lite knowledge → publish library-of-links.
+       → accumulate lite knowledge → publish library-of-links → LAND (tracked)
+       → impact context → doctor/build receipt (COMPLETE).
 
 Not theater. Not freeze. Not generated sludge.
 Pro elite, humanized, ENGINEERED code — complete, born to run,
@@ -32,7 +33,7 @@ from job_app_helix.genius_research import (
     research_subject,
 )
 
-ENGINE_ID = "glaciereq.genius-engine.v3"
+ENGINE_ID = "glaciereq.genius-engine.v4"
 APEX_IDENTITY = "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION"
 EXECUTION_LAW = "MAXIMUM_COHERENT_ADVANCE"
 CRAFT_VERB = "ENGINEERED"
@@ -1193,57 +1194,65 @@ def render_markdown(run: GeniusRun) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Console entry: invent / restore / advance."""
+    """Console entry: invent / restore / advance / status / doctor / build-receipt."""
     import argparse
     import json
     import sys
 
+    from job_app_helix.genius_build import build_receipt, doctor, status_summary
+
     parser = argparse.ArgumentParser(prog="job-app-helix-genius")
     sub = parser.add_subparsers(dest="cmd", required=True)
-    inv = sub.add_parser("invent", help="Research + invent for one subject")
+    inv = sub.add_parser("invent")
     inv.add_argument("--repository", required=True)
     inv.add_argument("--company")
     inv.add_argument("--limit", type=int, default=3)
     inv.add_argument("--paper-recovery", action="store_true")
     inv.add_argument("--neutralization-stamps", type=int, default=0)
-    inv.add_argument("--offline", action="store_true", help="Skip live GitHub research")
+    inv.add_argument("--offline", action="store_true")
     inv.add_argument("--no-accumulate", action="store_true")
     inv.add_argument("--no-publish-links", action="store_true")
     inv.add_argument("--markdown", action="store_true")
-    rest = sub.add_parser("restore", help="Restoration invent (neutralization-aware)")
+    rest = sub.add_parser("restore")
     rest.add_argument("--repository", required=True)
     rest.add_argument("--limit", type=int, default=3)
     rest.add_argument("--offline", action="store_true")
     rest.add_argument("--markdown", action="store_true")
-    adv = sub.add_parser("advance", help="Print advance brief for a subject invent")
+    adv = sub.add_parser("advance")
     adv.add_argument("--repository", required=True)
     adv.add_argument("--offline", action="store_true")
+    sub.add_parser("status")
+    sub.add_parser("doctor")
+    sub.add_parser("build-receipt")
     args = parser.parse_args(argv)
 
-    def _run_invent(repo: str, **extra: Any) -> GeniusRun:
-        return invent(
-            {
-                "repository": repo,
-                "company": extra.get("company"),
-                "paper_recovery_only": extra.get("paper_recovery", False),
-                "neutralization_stamps": extra.get("neutralization_stamps", 0),
-            },
-            limit=int(extra.get("limit") or 3),
-            live_research=not extra.get("offline", False),
-            accumulate=not extra.get("no_accumulate", False),
-            publish_links=not extra.get("no_publish_links", False),
-        )
+    if args.cmd == "status":
+        json.dump(status_summary(), sys.stdout, indent=2, sort_keys=True)
+        sys.stdout.write("\n")
+        return 0
+    if args.cmd == "doctor":
+        doc = doctor()
+        json.dump(doc, sys.stdout, indent=2, sort_keys=True)
+        sys.stdout.write("\n")
+        return 0 if doc.get("ok") else 1
+    if args.cmd == "build-receipt":
+        rec = build_receipt(write=True)
+        json.dump(rec, sys.stdout, indent=2, sort_keys=True)
+        sys.stdout.write("\n")
+        return 0 if rec.get("build_status") == "COMPLETE" else 1
 
     if args.cmd == "invent":
-        run = _run_invent(
-            args.repository,
-            company=args.company,
-            paper_recovery=args.paper_recovery,
-            neutralization_stamps=args.neutralization_stamps,
+        run = invent(
+            {
+                "repository": args.repository,
+                "company": args.company,
+                "paper_recovery_only": args.paper_recovery,
+                "neutralization_stamps": args.neutralization_stamps,
+            },
             limit=args.limit,
-            offline=args.offline,
-            no_accumulate=args.no_accumulate,
-            no_publish_links=args.no_publish_links,
+            live_research=not args.offline,
+            accumulate=not args.no_accumulate,
+            publish_links=not args.no_publish_links,
         )
     elif args.cmd == "restore":
         run = invent_restoration(
@@ -1252,7 +1261,11 @@ def main(argv: list[str] | None = None) -> int:
             live_research=not args.offline,
         )
     else:
-        run = _run_invent(args.repository, offline=args.offline, limit=1)
+        run = invent(
+            {"repository": args.repository},
+            limit=1,
+            live_research=not args.offline,
+        )
         json.dump(run.advance_brief or {}, sys.stdout, indent=2, sort_keys=True)
         sys.stdout.write("\n")
         return 0
