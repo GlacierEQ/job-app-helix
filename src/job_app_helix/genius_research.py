@@ -20,7 +20,7 @@ from typing import Any
 
 RESEARCH_SCHEMA = "glaciereq.genius-research.v1"
 KNOWLEDGE_SCHEMA = "glaciereq.genius-lite-knowledge.v1"
-LINK_SCHEMA = "glaciereq.library-of-links.entry.v1"
+LINK_SCHEMA = "glaciereq.library-of-links.entry.v2"
 
 
 class ResearchError(ValueError):
@@ -47,6 +47,8 @@ class ResearchDossier:
     prior_primary_mechanism: str
     sources: tuple[str, ...]
     researched_at: str
+    advanced_context: tuple[str, ...] = ()
+    impact_actions: tuple[str, ...] = ()
     raw_subject: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -55,6 +57,8 @@ class ResearchDossier:
         payload["signals"] = list(self.signals)
         payload["lite_facts"] = list(self.lite_facts)
         payload["sources"] = list(self.sources)
+        payload["advanced_context"] = list(self.advanced_context)
+        payload["impact_actions"] = list(self.impact_actions)
         return payload
 
 
@@ -277,6 +281,87 @@ def derive_lite_facts(
     return tuple(facts)
 
 
+def load_impact_context(
+    repository: str,
+    signals: Sequence[str],
+    *,
+    limit: int = 5,
+) -> tuple[tuple[str, ...], tuple[str, ...], tuple[str, ...]]:
+    """Pull max-impact advanced knowledge for this leaf from library-of-links.
+
+    Returns (advanced_context lines, impact_actions, sources_extra).
+    """
+    root = library_of_links_root()
+    if root is None:
+        return (), (), ()
+    queue_path = root / "registry" / "impact_queue.json"
+    shelf_path = root / "registry" / "top_shelf.json"
+    items: list[dict[str, Any]] = []
+    sources: list[str] = []
+    if queue_path.is_file():
+        try:
+            payload = json.loads(queue_path.read_text(encoding="utf-8"))
+            items = list(payload.get("queue") or [])
+            sources.append("library_impact_queue")
+        except (OSError, json.JSONDecodeError):
+            items = []
+    if not items and shelf_path.is_file():
+        try:
+            payload = json.loads(shelf_path.read_text(encoding="utf-8"))
+            items = list(payload.get("entries") or [])
+            sources.append("library_top_shelf")
+        except (OSError, json.JSONDecodeError):
+            items = []
+    if not items:
+        return (), (), tuple(sources)
+
+    repo_l = repository.lower()
+    short = repo_l.split("/")[-1]
+    sig_set = set(signals)
+    scored: list[tuple[float, dict[str, Any]]] = []
+    for item in items:
+        score = float(item.get("impact_score") or item.get("quality_score") or 0.5)
+        leaves = " ".join(item.get("suggested_leaves") or []).lower()
+        tags = " ".join(str(t) for t in (item.get("tags") or [])).lower()
+        domain = str(item.get("domain") or "").lower()
+        blob = f"{leaves} {tags} {domain} {item.get('title') or ''}".lower()
+        if short in leaves or repo_l in leaves:
+            score += 0.35
+        if short.replace("-", "") in blob.replace("-", ""):
+            score += 0.1
+        # signal affinity
+        for sig in sig_set:
+            token = sig.replace("_", " ")
+            if token in blob or sig in blob:
+                score += 0.08
+        if domain in {
+            "agents",
+            "ai-systems",
+            "formal-methods",
+            "distributed",
+            "systems",
+            "security",
+            "compilers",
+            "infrastructure",
+        }:
+            score += 0.02
+        scored.append((score, item))
+    scored.sort(key=lambda x: -x[0])
+    context: list[str] = []
+    actions: list[str] = []
+    for _, item in scored[:limit]:
+        title = str(item.get("title") or "knowledge")
+        url = str(item.get("url") or "")
+        why = str(item.get("why_advanced") or item.get("description") or "")[:180]
+        mechs = item.get("suggested_mechanisms") or []
+        context.append(f"{title} | {url} | {why}")
+        if item.get("action"):
+            actions.append(str(item["action"]))
+        elif mechs:
+            actions.append(f"Apply `{mechs[0]}` informed by {title}")
+    return tuple(context), tuple(actions), tuple(sources)
+
+
 def research_subject(
     subject: Mapping[str, Any],
     *,
@@ -323,6 +408,14 @@ def research_subject(
     sources.append("prior_knowledge" if prior else "no_prior_knowledge")
     signals = derive_signals(subject, surface, prior)
     facts = derive_lite_facts(subject, surface, signals)
+    advanced_ctx, impact_actions, impact_sources = load_impact_context(
+        str(surface.get("full_name") or repo),
+        signals,
+        limit=5,
+    )
+    sources.extend(impact_sources)
+    if advanced_ctx:
+        facts = facts + tuple(f"advanced:{c[:160]}" for c in advanced_ctx[:3])
 
     return ResearchDossier(
         schema=RESEARCH_SCHEMA,
@@ -341,6 +434,8 @@ def research_subject(
         prior_primary_mechanism=str(prior.get("last_primary_mechanism_id") or ""),
         sources=tuple(sources),
         researched_at=_utc_now(),
+        advanced_context=advanced_ctx,
+        impact_actions=impact_actions,
         raw_subject=dict(subject),
     )
 
@@ -436,6 +531,11 @@ def publish_library_link(
     full = dossier.full_name or dossier.repository
     url = f"https://github.com/{full}" if "/" in full else full
     link_id = _safe_key(full)
+    why = (
+        f"Genius Engine research leaf for {full}: accumulates lite signals, mechanism "
+        f"primaries, dual-plane restore context, and impact-routed advanced knowledge "
+        f"for estate advance. Not a substitute for primary tech sources."
+    )
     entry = {
         "schema": LINK_SCHEMA,
         "id": link_id,
@@ -443,7 +543,11 @@ def publish_library_link(
         "title": full,
         "description": dossier.description,
         "domain": "genius",
-        "tags": list(dossier.signals) + list(dossier.topics),
+        "tier": "B",
+        "quality_score": 0.72,
+        "why_advanced": why,
+        "tags": list(dossier.signals) + list(dossier.topics) + ["genius"],
+        "source_kind": "genius_research",
         "primary_language": dossier.primary_language,
         "lite_knowledge": list(dossier.lite_facts),
         "last_genius_primary": (primary or {}).get("title"),
@@ -452,7 +556,9 @@ def publish_library_link(
         ),
         "last_receipt_sha256": receipt_sha256,
         "updated_at": _utc_now(),
+        "last_verified_at": _utc_now(),
         "sources": list(dossier.sources),
+        "advanced_context": list(dossier.advanced_context)[:5],
     }
     if primary and isinstance(primary.get("tags"), list) and primary["tags"]:
         entry["last_mechanism_id"] = primary["tags"][0]

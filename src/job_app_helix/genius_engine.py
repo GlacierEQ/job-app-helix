@@ -690,6 +690,19 @@ def build_solution(
         f"Removes the named bottleneck on `{short}` with ENGINEERED executable power: "
         f"{mech.pattern} — complete mechanism masters can review in `{paths['module']}`."
     )
+    if research and research.advanced_context:
+        top_k = research.advanced_context[0]
+        value += f" Grounded in advanced library knowledge: {top_k[:160]}"
+        implementation = (
+            implementation
+            + f"\n- Knowledge: apply insights from `{top_k.split('|')[0].strip()}` "
+            + "(Library of Links impact shelf) without false affiliation claims."
+        )
+        if research.impact_actions:
+            measurement = (
+                measurement
+                + f"\n4) Impact check: {research.impact_actions[0][:160]}"
+            )
     sol = GeniusSolution(
         solution_id=_stable_id(repo, mech.id, problem[:80]),
         title=title,
@@ -1135,6 +1148,14 @@ def render_markdown(run: GeniusRun) -> str:
         f"- **Receipt:** `{run.receipt_sha256}`",
         "",
     ]
+    adv = run.research.get("advanced_context") or []
+    if adv:
+        lines.append("## Advanced knowledge (Library of Links impact)")
+        lines.append("")
+        for line in adv[:5]:
+            lines.append(f"- {line}")
+        lines.append("")
+
     if run.advance_brief and run.advance_brief.get("status") == "READY":
         paths = ", ".join(f"`{p}`" for p in (run.advance_brief.get("paths") or [])[:8])
         lines.extend(

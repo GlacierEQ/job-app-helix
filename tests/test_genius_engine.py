@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from job_app_helix.genius_engine import (
     APEX_IDENTITY,
     CRAFT_STANDARD,
@@ -318,3 +320,44 @@ def test_advance_brief_paths(tmp_path: Path) -> None:
     brief = compose_advance_brief(run)
     assert brief["status"] == "READY"
     assert brief["paths"]
+
+
+def test_research_loads_impact_when_library_present(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    lib = tmp_path / "library-of-links"
+    (lib / "registry").mkdir(parents=True)
+    queue = {
+        "schema": "glaciereq.library-of-links.impact-queue.v1",
+        "queue": [
+            {
+                "impact_score": 0.95,
+                "title": "Model Context Protocol",
+                "url": "https://modelcontextprotocol.io/",
+                "why_advanced": "Primary protocol for credentialed tool surfaces and host policy.",
+                "domain": "agents",
+                "suggested_leaves": ["GlacierEQ/glaciereq-mcp-stack"],
+                "suggested_mechanisms": ["mcp_package_restore"],
+                "action": "Invent/advance mcp_package_restore on glaciereq-mcp-stack",
+                "tags": ["mcp", "tools"],
+            }
+        ],
+    }
+    (lib / "registry" / "impact_queue.json").write_text(
+        __import__("json").dumps(queue), encoding="utf-8"
+    )
+    monkeypatch.setenv("GENIUS_LIBRARY_OF_LINKS_ROOT", str(lib))
+    from job_app_helix.genius_research import research_subject
+
+    d = research_subject(
+        {
+            "repository": "GlacierEQ/glaciereq-mcp-stack",
+            "description": "MCP stack",
+            "offline": True,
+        },
+        helix_root=tmp_path,
+        live=False,
+    )
+    assert d.advanced_context
+    assert "Model Context Protocol" in d.advanced_context[0]
+    assert d.impact_actions
