@@ -2,10 +2,12 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from enum import IntEnum
+
 try:
     from enum import StrEnum
 except ImportError:
     from enum import Enum
+
     class StrEnum(str, Enum):
         pass
 from pathlib import Path
@@ -24,8 +26,24 @@ class VerificationState(StrEnum):
 
 
 class ExecutionMode(StrEnum):
+    """What the portfolio runner is trying to make true for a repository.
+
+    ``CONSOLIDATE_OR_ARCHIVE`` remains parseable only so historical rollout
+    manifests can be read without losing provenance. Current execution code
+    compiles that retired mode to ``PRODUCTIZE`` before a plan is emitted.
+    """
+
     VERIFY = "VERIFY"
+    PRODUCTIZE = "PRODUCTIZE"
+    INTEGRATE = "INTEGRATE"
+    DEPLOY = "DEPLOY"
+    OPERATE = "OPERATE"
+    EVOLVE = "EVOLVE"
     CONSOLIDATE_OR_ARCHIVE = "CONSOLIDATE_OR_ARCHIVE"
+
+    @property
+    def is_active(self) -> bool:
+        return self is not ExecutionMode.CONSOLIDATE_OR_ARCHIVE
 
 
 class EvidenceLevel(IntEnum):
@@ -83,6 +101,7 @@ class Wave:
     require_readme_contract: bool
     require_positive_test_count: bool
     require_build_receipt: bool
+    historical_mode: str | None = None
 
 
 @dataclass(frozen=True)

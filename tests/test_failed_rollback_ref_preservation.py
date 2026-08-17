@@ -26,7 +26,10 @@ def test_failed_rollback_refs_are_preserved_at_exact_heads() -> None:
     for name, sha in EXPECTED.items():
         assert restored[name]["expected_head_sha"] == sha
         assert restored[name]["state"] == "RESTORED_AFTER_FAILED_TRANSACTION"
-        assert restored[name]["preservation_policy"] == "DO_NOT_RETIRE_WITHOUT_OPERATOR_AUTHORIZATION"
+        assert (
+            restored[name]["preservation_policy"]
+            == "DO_NOT_RETIRE_WITHOUT_OPERATOR_AUTHORIZATION"
+        )
 
 
 def test_restored_refs_cannot_reenter_retirement_or_delete_queue() -> None:
