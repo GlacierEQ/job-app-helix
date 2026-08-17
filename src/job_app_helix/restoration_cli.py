@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from .capability_archaeology import excavate
+from .cross_file_restoration import apply_cross_file_packet, build_cross_file_packet
 from .restoration_executor import apply_packet, build_packet
 from .symbol_restoration import (
     apply_symbol_packet,
@@ -66,6 +67,28 @@ def _parser() -> argparse.ArgumentParser:
     symbol_apply.add_argument("--select-symbol", action="append", required=True)
     symbol_apply.add_argument("--allow-replace", action="store_true")
     symbol_apply.add_argument("--no-dependencies", action="store_true")
+
+    semantic_packet = sub.add_parser(
+        "semantic-packet",
+        help="build recursive cross-file imported-symbol restoration closure",
+    )
+    semantic_packet.add_argument("--donor", required=True)
+    semantic_packet.add_argument("--target", default="HEAD")
+    semantic_packet.add_argument("--path", required=True)
+    semantic_packet.add_argument("--select-symbol", action="append", required=True)
+    semantic_packet.add_argument("--allow-replace", action="store_true")
+    semantic_packet.add_argument("--max-depth", type=int, default=8)
+
+    semantic_apply = sub.add_parser(
+        "semantic-apply",
+        help="transactionally apply a recursive cross-file restoration closure",
+    )
+    semantic_apply.add_argument("--donor", required=True)
+    semantic_apply.add_argument("--target", default="HEAD")
+    semantic_apply.add_argument("--path", required=True)
+    semantic_apply.add_argument("--select-symbol", action="append", required=True)
+    semantic_apply.add_argument("--allow-replace", action="store_true")
+    semantic_apply.add_argument("--max-depth", type=int, default=8)
     return parser
 
 
@@ -80,6 +103,23 @@ def _symbol_report(args: argparse.Namespace):
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    if args.command.startswith("semantic-"):
+        packet = build_cross_file_packet(
+            args.repo,
+            donor_ref=args.donor,
+            target_ref=args.target,
+            root_path=args.path,
+            selected_symbols=tuple(args.select_symbol),
+            allow_replace=args.allow_replace,
+            max_depth=args.max_depth,
+        )
+        if args.command == "semantic-packet":
+            print(json.dumps(packet.to_dict(), indent=2, sort_keys=True))
+            return 0
+        receipt = apply_cross_file_packet(args.repo, packet)
+        print(json.dumps(receipt.to_dict(), indent=2, sort_keys=True))
+        return 0
+
     if args.command.startswith("symbol-"):
         report = _symbol_report(args)
         if args.command == "symbol-archaeology":
