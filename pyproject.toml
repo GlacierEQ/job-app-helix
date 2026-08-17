@@ -37,6 +37,7 @@ dev = [
 job-app-helix = "job_app_helix.cli:main"
 job-app-helix-readme = "job_app_helix.readme_mesh_cli:main"
 job-app-helix-portfolio = "job_app_helix.portfolio_cli:main"
+job-app-helix-productize = "job_app_helix.productization_cli:main"
 job-app-helix-library = "job_app_helix.library_cli:main"
 job-app-helix-genius = "job_app_helix.genius_engine:main"
 job-app-helix-restore = "job_app_helix.restoration_cli:main"
