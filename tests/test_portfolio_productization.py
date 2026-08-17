@@ -36,6 +36,15 @@ def _write_readme(repo: Path) -> None:
     )
 
 
+def _write_python_test_surface(repo: Path, pyproject: str) -> None:
+    (repo / "pyproject.toml").write_text(pyproject, encoding="utf-8")
+    (repo / "tests").mkdir()
+    (repo / "tests" / "test_alpha.py").write_text(
+        "def test_alpha():\n    assert True\n",
+        encoding="utf-8",
+    )
+
+
 def _write_contracts(
     root: Path,
     repository: str,
@@ -121,14 +130,9 @@ def test_productize_requires_native_static_and_test_checks(tmp_path: Path) -> No
     workspace = tmp_path / "repos"
     repo = workspace / "alpha"
     _write_readme(repo)
-    (repo / "pyproject.toml").write_text(
+    _write_python_test_surface(
+        repo,
         '[project]\nname = "alpha"\n[project.optional-dependencies]\ndev = ["pytest"]\n',
-        encoding="utf-8",
-    )
-    (repo / "tests").mkdir()
-    (repo / "tests" / "test_alpha.py").write_text(
-        "def test_alpha():\n    assert True\n",
-        encoding="utf-8",
     )
 
     plan = build_plan(
@@ -160,7 +164,8 @@ def test_productization_compiler_detects_cli_package_and_forbids_archive(tmp_pat
     workspace = tmp_path / "repos"
     repo = workspace / "alpha"
     _write_readme(repo)
-    (repo / "pyproject.toml").write_text(
+    _write_python_test_surface(
+        repo,
         "\n".join(
             (
                 "[project]",
@@ -172,12 +177,6 @@ def test_productization_compiler_detects_cli_package_and_forbids_archive(tmp_pat
             )
         )
         + "\n",
-        encoding="utf-8",
-    )
-    (repo / "tests").mkdir()
-    (repo / "tests" / "test_alpha.py").write_text(
-        "def test_alpha():\n    assert True\n",
-        encoding="utf-8",
     )
 
     targets = compile_productization_targets(
@@ -193,6 +192,41 @@ def test_productization_compiler_detects_cli_package_and_forbids_archive(tmp_pat
     assert "clean environment" in targets[0].next_checkpoint
     assert payload["targets"][0]["archive_allowed"] is False
     assert payload["retirement_policy"] == "OPERATOR_AUTHORIZATION_REQUIRED"
+
+
+def test_commented_project_scripts_do_not_create_false_cli_signal(tmp_path: Path) -> None:
+    inventory, rollout = _write_contracts(tmp_path, "alpha")
+    workspace = tmp_path / "repos"
+    repo = workspace / "alpha"
+    _write_readme(repo)
+    _write_python_test_surface(
+        repo,
+        '[project]\nname = "alpha"\n# [project.scripts]\n# alpha = "alpha.cli:main"\n',
+    )
+
+    target = compile_productization_targets(
+        workspace=workspace,
+        inventory_path=inventory,
+        rollout_path=rollout,
+    )[0]
+
+    assert target.delivery_form is DeliveryForm.PACKAGE
+    assert "python:project-scripts" not in target.deployment_signals
+
+
+def test_malformed_package_manifest_fails_productization_compilation(tmp_path: Path) -> None:
+    inventory, rollout = _write_contracts(tmp_path, "portal")
+    workspace = tmp_path / "repos"
+    repo = workspace / "portal"
+    _write_readme(repo)
+    (repo / "package.json").write_text('{"scripts": ', encoding="utf-8")
+
+    with pytest.raises(PortfolioProgramError, match="cannot parse"):
+        compile_productization_targets(
+            workspace=workspace,
+            inventory_path=inventory,
+            rollout_path=rollout,
+        )
 
 
 def test_productization_compiler_prefers_real_static_deployment(tmp_path: Path) -> None:
@@ -226,4 +260,31 @@ def test_productization_compiler_prefers_real_static_deployment(tmp_path: Path) 
     assert "vercel" in target.deployment_signals
     assert "npm:deploy" in target.deployment_signals
     assert "deploy" in target.next_checkpoint
+    assert "live site receipt" in target.next_checkpoint
+
+
+def test_github_pages_workflow_compiles_to_static_site(tmp_path: Path) -> None:
+    inventory, rollout = _write_contracts(tmp_path, "portal")
+    workspace = tmp_path / "repos"
+    repo = workspace / "portal"
+    _write_readme(repo)
+    _write_python_test_surface(
+        repo,
+        '[project]\nname = "portal"\n[project.optional-dependencies]\ndev = ["pytest"]\n',
+    )
+    workflows = repo / ".github" / "workflows"
+    workflows.mkdir(parents=True)
+    (workflows / "pages.yml").write_text(
+        "name: Pages\nsteps:\n  - uses: actions/upload-pages-artifact@v3\n",
+        encoding="utf-8",
+    )
+
+    target = compile_productization_targets(
+        workspace=workspace,
+        inventory_path=inventory,
+        rollout_path=rollout,
+    )[0]
+
+    assert target.delivery_form is DeliveryForm.STATIC_SITE
+    assert "github-pages" in target.deployment_signals
     assert "live site receipt" in target.next_checkpoint
