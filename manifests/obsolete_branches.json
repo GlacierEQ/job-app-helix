@@ -2,7 +2,7 @@
   "schema": "glaciereq.obsolete-branches.v1",
   "repository": "GlacierEQ/job-app-helix",
   "default_branch": "main",
-  "status": "VERIFIED_WITH_BLOCKED_REFS",
+  "status": "RECOVERY_ACTIVE_WITH_BLOCKED_REFS",
   "blocked_refs": [
     {
       "name": "cleanup/apply-verified-obsolete-refs-2026-07-30",
@@ -31,6 +31,26 @@
       "expected_head_sha": "3912f44f9bded80d5a73cfe708c75dd63dc47f6a",
       "state": "DELETE_BLOCKED",
       "blocker": "The repository accepted the immutable proof but denied or failed deletion for this program-pattern ref."
+    }
+  ],
+  "restored_refs_after_failed_transaction": [
+    {
+      "name": "feat/readme-intelligence-mesh",
+      "pull_request": 3,
+      "expected_head_sha": "bfa9547ff2fcb95b8bc8e88856174b2fe9156958",
+      "state": "RESTORED_AFTER_FAILED_TRANSACTION",
+      "restored_at": "2026-08-17",
+      "preservation_policy": "DO_NOT_RETIRE_WITHOUT_OPERATOR_AUTHORIZATION",
+      "reason": "Wave-two cleanup left this ref absent after rollback failure. The exact historical head remained recoverable and the ref was recreated during APEX takeover recovery."
+    },
+    {
+      "name": "fix/public-product-standard",
+      "pull_request": 2,
+      "expected_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
+      "state": "RESTORED_AFTER_FAILED_TRANSACTION",
+      "restored_at": "2026-08-17",
+      "preservation_policy": "DO_NOT_RETIRE_WITHOUT_OPERATOR_AUTHORIZATION",
+      "reason": "Wave-two cleanup left this ref absent after rollback failure. The exact historical head remained recoverable and the ref was recreated during APEX takeover recovery."
     }
   ],
   "retired_refs": [
@@ -70,12 +90,6 @@
       "state": "REF_ABSENT_VERIFIED"
     },
     {
-      "name": "feat/readme-intelligence-mesh",
-      "pull_request": 3,
-      "expected_head_sha": "bfa9547ff2fcb95b8bc8e88856174b2fe9156958",
-      "state": "ABSENT_AFTER_FAILED_TRANSACTION"
-    },
-    {
       "name": "fix/cleanup-rollback-transaction-2026-07-30",
       "pull_request": 16,
       "expected_head_sha": "6cb3a24f118744883332faa8df0f303bd2227a14",
@@ -86,12 +100,6 @@
       "pull_request": 20,
       "expected_head_sha": "d7d1ad42318c972b5a853beaf71f7d5989170c43",
       "state": "REF_ABSENT_VERIFIED"
-    },
-    {
-      "name": "fix/public-product-standard",
-      "pull_request": 2,
-      "expected_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
-      "state": "ABSENT_AFTER_FAILED_TRANSACTION"
     },
     {
       "name": "ops/trigger-final-review-hardening-2026-07-30",
@@ -130,6 +138,20 @@
       "pull_request": 17,
       "state": "ACTIVE_UNMERGED_UNIQUE_VALUE",
       "reason": "The branch contains the final-form recruiter package and remains under independent review."
+    },
+    {
+      "name": "feat/readme-intelligence-mesh",
+      "pull_request": 3,
+      "expected_head_sha": "bfa9547ff2fcb95b8bc8e88856174b2fe9156958",
+      "state": "PRESERVED_RECOVERY_REF",
+      "reason": "Restored from exact SHA after failed rollback; retained as takeover-recovery evidence and capability donor."
+    },
+    {
+      "name": "fix/public-product-standard",
+      "pull_request": 2,
+      "expected_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
+      "state": "PRESERVED_RECOVERY_REF",
+      "reason": "Restored from exact SHA after failed rollback; retained as takeover-recovery evidence and capability donor."
     }
   ],
   "branches": [
@@ -138,7 +160,7 @@
       "policy": "merged_pr",
       "pull_request": 5,
       "expected_head_sha": "3c48fa1a6c4d90315cf2415cb75206dfd06a7736",
-      "reason": "Already absent sentinel retained so the cleanup verifier can validate a completed queue without mutating blocked or active refs."
+      "reason": "Already absent sentinel retained so the cleanup verifier can validate a completed queue without mutating blocked, restored, or active refs."
     }
   ]
 }
