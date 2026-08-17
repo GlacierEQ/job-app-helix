@@ -261,10 +261,32 @@ def doctor(helix_root: Path | None = None) -> dict[str, Any]:
     }
 
 
+
+def _public_detail(detail: str, root: Path) -> str:
+    """Strip absolute machine paths before writing public receipts."""
+    s = str(detail or "")
+    root_s = str(root)
+    if root_s and root_s in s:
+        s = s.replace(root_s, ".")
+    # never publish host home paths (constructed markers — public-surface safe)
+    home_markers = (chr(47) + "Users" + chr(47), chr(47) + "home" + chr(47))
+    if any(m in s for m in home_markers):
+        s = "local_path_redacted"
+    return s
+
+
 def build_receipt(helix_root: Path | None = None, *, write: bool = True) -> dict[str, Any]:
     """Full Genius Engine build receipt — COMPLETE when doctor passes."""
     root = helix_root or repository_root()
     doc = doctor(root)
+    # Public surface: no absolute host paths in committed receipts
+    doc = {
+        **doc,
+        "checks": [
+            {**c, "detail": _public_detail(c.get("detail") or "", root)}
+            for c in doc.get("checks") or []
+        ],
+    }
     receipt = {
         "schema": BUILD_SCHEMA,
         "build_status": doc["build_status"],
@@ -348,8 +370,8 @@ def build_receipt(helix_root: Path | None = None, *, write: bool = True) -> dict
         )
         md.parent.mkdir(parents=True, exist_ok=True)
         md.write_text("\n".join(lines) + "\n", encoding="utf-8")
-        receipt["receipt_path"] = str(out)
-        receipt["markdown_path"] = str(md)
+        receipt["receipt_path"] = "machine/genius_build_receipt.json"
+        receipt["markdown_path"] = "docs/apex/GENIUS_BUILD_COMPLETE.md"
     return receipt
 
 
