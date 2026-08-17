@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-import pytest
-
 from job_app_helix.genius_engine import (
     APEX_IDENTITY,
+    CRAFT_STANDARD,
+    CRAFT_VERB,
     EXECUTION_LAW,
+    MASTER_GRADE_FLOOR,
     GeniusEngineError,
     attack_solution,
     invent,
@@ -27,10 +28,17 @@ def test_invent_produces_scored_primary() -> None:
     assert run.engine_id.startswith("glaciereq.genius-engine")
     assert run.identity == APEX_IDENTITY
     assert run.law == EXECUTION_LAW
+    assert run.craft == CRAFT_STANDARD
+    assert CRAFT_VERB == "ENGINEERED"
+    assert "ENGINEERED" in run.craft
+    assert "FIRST_PASS_IS_LAST_PASS" in run.craft
+    assert "GOVERNANCE_BALANCED_WITH_BRAVERY" in run.craft
     assert run.primary is not None
-    assert run.primary.genius_score >= 0.35
+    assert run.primary.genius_score >= MASTER_GRADE_FLOOR
     assert not run.primary.missing_fields()
+    assert run.primary.is_engineered()
     assert run.receipt_sha256
+    assert "engineer" in run.primary.implementation.lower()
     ok, blockers = attack_solution(run.primary)
     assert ok, blockers
 
@@ -57,5 +65,8 @@ def test_estate_ranks_multiple() -> None:
 
 
 def test_empty_subject_refuses() -> None:
-    with pytest.raises(GeniusEngineError):
+    try:
         invent({})
+        assert False, "expected error"
+    except GeniusEngineError:
+        pass
