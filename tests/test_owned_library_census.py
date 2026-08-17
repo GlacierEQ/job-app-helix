@@ -59,7 +59,7 @@ def _repository(
     }
 
 
-def test_checked_in_snapshot_preserves_exact_scope_boundaries() -> None:
+def test_checked_in_snapshot_preserves_historical_scope_boundaries() -> None:
     snapshot = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
 
     assert snapshot["schema"] == "glaciereq.owned-library-census-summary.v1"
@@ -104,7 +104,7 @@ def test_public_census_surfaces_withhold_private_candidate_name() -> None:
     assert "repository" not in status["new_entries"][2]
 
 
-def test_discovery_classifies_governed_candidate_and_excluded_repositories() -> None:
+def test_discovery_routes_every_repository_without_hiding_private_or_archive() -> None:
     module = _load_module()
     source = FakeSource(
         {
@@ -114,7 +114,7 @@ def test_discovery_classifies_governed_candidate_and_excluded_repositories() -> 
             ],
             2: [
                 _repository("private-dashboard", 3, visibility="private"),
-                _repository("Z-BACKUP-example", 4, visibility="private"),
+                _repository("Z-BACKUP-example", 4, visibility="private", archived=True),
             ],
         }
     )
@@ -128,16 +128,17 @@ def test_discovery_classifies_governed_candidate_and_excluded_repositories() -> 
     )
 
     by_repository = {record.repository: record for record in records}
-    assert by_repository["GlacierEQ/AKOS"].classification == "RECRUITER_PORTFOLIO"
+    assert by_repository["GlacierEQ/AKOS"].classification == "ADMITTED_JOB_ROLLOUT"
     assert by_repository["GlacierEQ/Kimi-K3"].classification == "CANDIDATE_EXPANSION"
     assert (
         by_repository["GlacierEQ/private-dashboard"].classification
-        == "PRIVATE_REVIEW_REQUIRED"
+        == "VISIBLE_PRIVATE_INVENTORY"
     )
     assert (
         by_repository["GlacierEQ/Z-BACKUP-example"].classification
-        == "ARCHIVE_BACKUP_OR_FORK"
+        == "VISIBLE_ARCHIVE_BACKUP"
     )
+    assert len(records) == 4
     assert source.calls == [(1, 2), (2, 2), (3, 2)]
 
 
@@ -212,7 +213,7 @@ def test_github_api_error_does_not_echo_token(
     )
 
 
-def test_payload_separates_inventory_from_proof() -> None:
+def test_payload_separates_inventory_from_proof_and_rollout_admission() -> None:
     module = _load_module()
     record = module.RepositoryRecord(
         position=0,
@@ -222,15 +223,27 @@ def test_payload_separates_inventory_from_proof() -> None:
         default_branch="main",
         archived=False,
         fork=False,
-        classification="UNGOVERNED_PUBLIC_INVENTORY",
+        classification="VISIBLE_PUBLIC_INVENTORY",
     )
 
     payload = module.build_payload([record], "GlacierEQ")
 
+    assert payload["schema"] == "glaciereq.owned-library-census-receipt.v2"
     assert payload["state"] == "VERIFIED_INVENTORY"
     assert payload["distribution"] == "INTERNAL_FULL_CENSUS"
+    assert payload["visibility_policy"] == "DISCOVER_ALL_ROUTE_AFTER"
     assert payload["repository_count"] == 1
+    assert payload["hidden_repository_count"] == 0
+    assert payload["relevance_analysis_eligible_count"] == 1
     assert payload["classification_counts"] == {
-        "UNGOVERNED_PUBLIC_INVENTORY": 1
+        "VISIBLE_PUBLIC_INVENTORY": 1
     }
+    assert payload["routing_invariants"]["rollout_membership_is_not_an_evidence_gate"] is True
+    assert "Portfolio membership is not a prerequisite" in payload["claim_policy"]
     assert any("does not establish authorship" in item for item in payload["nonclaims"])
+
+
+def test_full_private_census_defaults_to_ignored_state_surface() -> None:
+    module = _load_module()
+
+    assert module.DEFAULT_OUTPUT == ROOT / "state" / "owned-library-census.json"
