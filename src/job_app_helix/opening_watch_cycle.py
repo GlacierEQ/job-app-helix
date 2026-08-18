@@ -15,7 +15,12 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from .application_operations import ApplicationStore, CandidateProfile, JobOpening, load_candidate_profile
+from .application_operations import (
+    ApplicationStore,
+    CandidateProfile,
+    JobOpening,
+    load_candidate_profile,
+)
 from .batch_application_execution import DEFAULT_ACTIONABLE_LANES
 from .company_intelligence_acquisition import Transport, fetch_http_source
 from .intelligence_cycle import (
@@ -113,8 +118,12 @@ def execute_opening_watch_cycle(
             fetched[url] = opening
         return opening
 
+    watch_targets = tuple(
+        OpeningWatchTarget(url=url, label=candidate.company)
+        for url, candidate in by_url.items()
+    )
     watch = execute_opening_watch(
-        tuple(OpeningWatchTarget(url=url, label=candidate.company) for url, candidate in by_url.items()),
+        watch_targets,
         state_dir=state_dir / "opening-watch",
         fetcher=cached_fetcher,
         continue_on_error=continue_on_error,
