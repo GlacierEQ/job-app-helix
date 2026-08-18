@@ -5,7 +5,10 @@ on:
     paths:
       - "src/job_app_helix/intelligent_recovery.py"
       - "src/job_app_helix/intelligent_recovery_cli.py"
+      - "src/job_app_helix/recovery_reconnaissance.py"
       - "tests/test_intelligent_recovery.py"
+      - "tests/test_recovery_reconnaissance.py"
+      - "manifests/obsolete_branches.json"
       - "pyproject.toml"
       - ".github/workflows/intelligent-recovery-proof.yml"
   push:
@@ -13,7 +16,10 @@ on:
     paths:
       - "src/job_app_helix/intelligent_recovery.py"
       - "src/job_app_helix/intelligent_recovery_cli.py"
+      - "src/job_app_helix/recovery_reconnaissance.py"
       - "tests/test_intelligent_recovery.py"
+      - "tests/test_recovery_reconnaissance.py"
+      - "manifests/obsolete_branches.json"
       - "pyproject.toml"
       - ".github/workflows/intelligent-recovery-proof.yml"
 
@@ -49,10 +55,15 @@ jobs:
           --select F,B,UP,RUF
           src/job_app_helix/intelligent_recovery.py
           src/job_app_helix/intelligent_recovery_cli.py
+          src/job_app_helix/recovery_reconnaissance.py
           tests/test_intelligent_recovery.py
+          tests/test_recovery_reconnaissance.py
 
       - name: Run adversarial recovery tests
-        run: python -m pytest -q tests/test_intelligent_recovery.py
+        run: >-
+          python -m pytest -q
+          tests/test_intelligent_recovery.py
+          tests/test_recovery_reconnaissance.py
 
       - name: Execute fresh-repository recovery smoke test
         shell: bash
@@ -95,3 +106,52 @@ jobs:
               "receipt_sha256": receipt["receipt_sha256"],
           }, sort_keys=True))
           PY
+
+      - name: Scan real Helix historical donor manifest
+        if: matrix.python-version == '3.13'
+        run: >-
+          job-app-helix-recover --repo . discover
+          --manifest manifests/obsolete_branches.json
+          --fetch-missing
+          --output artifacts/recovery-reconnaissance.json
+
+      - name: Verify real reconnaissance receipt
+        if: matrix.python-version == '3.13'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+
+          report = json.load(open("artifacts/recovery-reconnaissance.json", encoding="utf-8"))
+          head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          assert report["target_sha"] == head
+          assert len(report["donors"]) >= 10
+          assert len(report["receipt_sha256"]) == 64
+          available = [row for row in report["donors"] if row["availability"] != "UNAVAILABLE"]
+          assert available
+          print(json.dumps({
+              "target_sha": report["target_sha"],
+              "donor_count": len(report["donors"]),
+              "available_count": len(available),
+              "top_donors": [
+                  {
+                      "name": row["name"],
+                      "disposition": row["disposition"],
+                      "priority_score": row["priority_score"],
+                      "deleted_source_test_count": row["deleted_source_test_count"],
+                  }
+                  for row in report["donors"][:5]
+              ],
+              "receipt_sha256": report["receipt_sha256"],
+          }, sort_keys=True))
+          PY
+
+      - name: Upload real recovery reconnaissance
+        if: matrix.python-version == '3.13'
+        uses: actions/upload-artifact@v4
+        with:
+          name: helix-recovery-reconnaissance-${{ github.sha }}
+          path: artifacts/recovery-reconnaissance.json
+          if-no-files-found: error
+          retention-days: 30
