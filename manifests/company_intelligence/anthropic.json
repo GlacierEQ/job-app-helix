@@ -1,0 +1,44 @@
+{
+  "schema": "glaciereq.company-intelligence.v1",
+  "company_id": "anthropic",
+  "company": "Anthropic",
+  "collected_at": "2026-08-18T05:20:00Z",
+  "max_age_days": 120,
+  "signals": [
+    {
+      "kind": "product",
+      "statement": "Claude Sonnet 5 is available across plans and in Claude Code and the Claude Platform, with emphasis on agentic search and computer use performance.",
+      "source_url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "Introducing Claude Sonnet 5"
+    },
+    {
+      "kind": "investment",
+      "statement": "Anthropic committed more than $100 billion over ten years to AWS technologies and up to 5GW of new capacity for training and serving Claude.",
+      "source_url": "https://www.anthropic.com/news/anthropic-amazon-compute",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute"
+    },
+    {
+      "kind": "engineering",
+      "statement": "Anthropic engineering is building containment for increasingly capable agents across claude.ai, Claude Code, and Cowork to cap blast radius while preserving useful access.",
+      "source_url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "How we contain Claude across products"
+    },
+    {
+      "kind": "value",
+      "statement": "Anthropic states that its values include acting for the global good, holding light and shade about AI risks and benefits, and being good to users.",
+      "source_url": "https://www.anthropic.com/careers",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "Careers at Anthropic"
+    },
+    {
+      "kind": "hiring",
+      "statement": "Anthropic is actively hiring across AI research and engineering, including model evaluations, safeguards, research infrastructure, performance engineering, and computer use.",
+      "source_url": "https://www.anthropic.com/careers/jobs",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "Anthropic jobs"
+    }
+  ]
+}
