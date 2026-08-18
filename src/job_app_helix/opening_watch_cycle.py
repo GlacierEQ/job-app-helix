@@ -1,9 +1,10 @@
 """Drive application intelligence only for live openings that materially changed.
 
-The opening watch owns cheap change detection across the full URL set. Only NEW or CHANGED
-openings enter the expensive company-intelligence, calibration, ranking, and recruiter-packet
-cycle. UNCHANGED openings stay on the zero-mutation fast path. The fetch cache guarantees
-that a selected opening is not fetched twice in one watch/cycle execution.
+The opening watch owns cheap change detection across the full URL set. NEW postings and
+recruiter-material changes enter the expensive company-intelligence, calibration, ranking,
+and recruiter-packet cycle. Metadata-only or digest-only drift stays on the zero-full-cycle
+path while remaining visible in longitudinal telemetry. The fetch cache guarantees that a
+selected opening is not fetched twice in one watch/cycle execution.
 """
 
 from __future__ import annotations
@@ -33,8 +34,6 @@ from .opening_acquisition import OpeningFetcher
 from .opening_watch import OpeningWatchResult, OpeningWatchTarget, execute_opening_watch
 from .outcome_calibration import OutcomeCalibration
 
-MATERIAL_OPENING_STATES = frozenset({"NEW", "CHANGED"})
-
 
 @dataclass(frozen=True)
 class OpeningWatchCycleResult:
@@ -42,6 +41,7 @@ class OpeningWatchCycleResult:
     watch: OpeningWatchResult
     selected_urls: tuple[str, ...]
     unchanged_urls: tuple[str, ...]
+    deferred_non_material_urls: tuple[str, ...]
     failed_urls: tuple[str, ...]
     cycle: IntelligenceCycleResult | None
     receipt_sha256: str
@@ -60,6 +60,7 @@ class OpeningWatchCycleResult:
             "watch": self.watch.as_dict(),
             "selected_urls": list(self.selected_urls),
             "unchanged_urls": list(self.unchanged_urls),
+            "deferred_non_material_urls": list(self.deferred_non_material_urls),
             "failed_urls": list(self.failed_urls),
             "cycle": self.cycle.as_dict() if self.cycle is not None else None,
             "receipt_sha256": self.receipt_sha256,
@@ -107,7 +108,7 @@ def execute_opening_watch_cycle(
     calibration: OutcomeCalibration | None = None,
     continue_on_error: bool = True,
 ) -> OpeningWatchCycleResult:
-    """Refresh every opening, then execute full intelligence only for material changes."""
+    """Refresh every opening and execute full intelligence only for recruiter-material change."""
     by_url = _validate_live_candidates(candidates)
     fetched: dict[str, JobOpening] = {}
 
@@ -129,10 +130,13 @@ def execute_opening_watch_cycle(
         continue_on_error=continue_on_error,
     )
 
-    selected_urls = tuple(
-        item.url for item in watch.items if item.status in MATERIAL_OPENING_STATES
+    selected_urls = tuple(item.url for item in watch.items if item.recruiter_material)
+    unchanged_urls = tuple(item.url for item in watch.items if item.change_class == "UNCHANGED")
+    deferred_non_material_urls = tuple(
+        item.url
+        for item in watch.items
+        if item.change_class in {"METADATA_ONLY", "DIGEST_ONLY"}
     )
-    unchanged_urls = tuple(item.url for item in watch.items if item.status == "UNCHANGED")
     failed_urls = tuple(item.url for item in watch.items if item.error is not None)
     selected = tuple(by_url[url] for url in selected_urls)
 
@@ -153,10 +157,11 @@ def execute_opening_watch_cycle(
         )
 
     base: dict[str, object] = {
-        "schema": "glaciereq.opening-watch-cycle.v1",
+        "schema": "glaciereq.opening-watch-cycle.v2",
         "watch_receipt_sha256": watch.receipt_sha256,
         "selected_urls": list(selected_urls),
         "unchanged_urls": list(unchanged_urls),
+        "deferred_non_material_urls": list(deferred_non_material_urls),
         "failed_urls": list(failed_urls),
         "cycle_receipt_sha256": cycle.receipt_sha256 if cycle is not None else None,
     }
@@ -166,6 +171,7 @@ def execute_opening_watch_cycle(
         watch=watch,
         selected_urls=selected_urls,
         unchanged_urls=unchanged_urls,
+        deferred_non_material_urls=deferred_non_material_urls,
         failed_urls=failed_urls,
         cycle=cycle,
         receipt_sha256=receipt_sha,
@@ -179,7 +185,7 @@ def _parser() -> argparse.ArgumentParser:
         prog="job-app-helix-watch-cycle",
         description=(
             "Refresh live openings and run company/ranking/packet intelligence only for "
-            "NEW or CHANGED postings."
+            "new postings or recruiter-material field changes."
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
@@ -213,7 +219,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             continue_on_error=not args.fail_fast,
         )
     print(json.dumps(result.as_dict(), indent=2, sort_keys=True))
-    if result.failed_urls and not result.selected_urls and not result.unchanged_urls:
+    if (
+        result.failed_urls
+        and not result.selected_urls
+        and not result.unchanged_urls
+        and not result.deferred_non_material_urls
+    ):
         return 2
     return 0
 
