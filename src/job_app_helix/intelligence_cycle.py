@@ -317,7 +317,9 @@ def execute_intelligence_cycle(
             if not continue_on_company_error:
                 raise
             fallback_opening_id = (
-                candidate.opening_path.stem if candidate.opening_path is not None else "live-opening"
+                candidate.opening_path.stem
+                if candidate.opening_path is not None
+                else "live-opening"
             )
             company_results.append(
                 CompanyCycleResult(
