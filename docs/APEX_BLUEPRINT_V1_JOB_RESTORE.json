@@ -1,89 +1,115 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "57c699a5be057980459efa18d193c9376dad4858",
-  "current_source_sha_before_handoff": "3ca213ca63404b980b2cb59fc45aec165aea1572",
+  "source_sha_before": "c2137e5c0ecf5de9c23e9113d8c0531db68cd7cb",
+  "current_source_sha_before_handoff": "21e0c1ae21b736a9feb84437f68bbad69f859fde",
   "donor_shas": [
-    "366f0cb16520dcb9de616ff5632223dd9620f7b8",
-    "57c699a5be057980459efa18d193c9376dad4858"
+    "c2137e5c0ecf5de9c23e9113d8c0531db68cd7cb",
+    "3ca213ca63404b980b2cb59fc45aec165aea1572"
   ],
-  "selected_priority": "Fuse fresh CompanyFitAssessment intelligence into recruiter-facing application strategy without turning company signals into candidate claims.",
+  "selected_priority": "Restore broken company-intelligence/recruiter-strategy compatibility and ship a combined application execution queue using requirement score, fresh company fit, freshness, and hard-gap caps.",
   "priority_tier": "P1",
   "blocked_higher_candidates": [],
-  "displaced_capability": "Helix could independently score explicit job requirements and fresh company direction, but the company-fit result did not alter the resume, cover letter, outreach, application packet, or strategy receipt recruiters actually receive.",
+  "displaced_capability": "Current main had two interacting losses: estate-intelligence tests could not even collect because parse_company_intelligence had disappeared from the modern company-intelligence module, and company-fit admission could disagree with recruiter-copy evidence mapping. Helix also lacked a batch execution surface that turned requirement and company-fit intelligence into a prioritized opening queue.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Preserve project_requirement_aware_application and its existing lifecycle contract, then compose CompanyFitAssessment as an optional extension rather than replacing the proven requirement-aware projection path."
+      "assessment": "Recover the displaced atlas parser contract and preserve the existing opportunity, company-fit, and recruiter-strategy APIs rather than replacing later code."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Make company intelligence a mandatory new projection input and replace the prior strategy API, which would increase coupling and break existing callers without adding proportional recruiter value."
+      "assessment": "Build an independent batch scorer over normalized openings. This adds queueing but duplicates scoring semantics and leaves the broken compatibility path unresolved."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Keep requirement evidence and company intelligence as separate truth domains, map only matched company signals that independently resolve to strong supplied candidate evidence, then inject those mappings into recruiter copy while preserving company-source provenance in machine-readable strategy receipts."
+      "assessment": "Restore the historical parser contract, strengthen company-signal evidence matching with conservative concept normalization, reuse that same matcher in recruiter projection, then compose opportunity score, fresh company fit, freshness, and hard-gap caps into one deterministic execution queue."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
     "commits": [
-      "b045ca2db8723c35646e452ea2dbcf860ba4bd74",
-      "3ca213ca63404b980b2cb59fc45aec165aea1572"
+      "e227ad9771e6f774c7c01534463fdfc6101af432",
+      "4980ead56ceddea37663a02e6c1afc1341b0e1e3",
+      "3b9be5359ca792b88b7b03bbae5ac076fdc59178",
+      "1200164b973e448a65d65a0b4a736aaa1d64b7bc",
+      "bfd686b878ea28fa32182d1bd9215e403aae8510",
+      "21e0c1ae21b736a9feb84437f68bbad69f859fde"
     ],
-    "module": "src/job_app_helix/application_strategy.py",
-    "entry_point": "job-app-helix-strategy --company-intelligence",
+    "modules": [
+      "src/job_app_helix/opportunity_queue.py",
+      "src/job_app_helix/company_intelligence.py",
+      "src/job_app_helix/company_fit.py",
+      "src/job_app_helix/application_strategy.py"
+    ],
+    "entry_point": "job-app-helix-queue",
     "capabilities": [
-      "adds project_company_aware_application while preserving the existing requirement-aware projection API",
-      "maps fresh matched company signals to independently supplied candidate evidence before recruiter-copy injection",
-      "injects company-direction alignment into resume, cover letter, and outreach only when a strong evidence mapping exists",
-      "rejects intelligence whose company_id does not match the application target",
-      "persists COMPANY_FIT_ASSESSMENT.json and company-source URLs in STRATEGY_RECEIPT.json",
-      "keeps company URLs out of candidate claim_sources so external company facts are not misclassified as candidate evidence",
-      "supports optional --company-intelligence CLI composition without breaking existing strategy invocations"
+      "batch-ranks real normalized openings into APPLY_NOW, APPLY_NEXT, PREPARE_GAPS, DEFER, and BLOCKED_PROOF lanes",
+      "uses explicit requirement coverage as the dominant job-fit signal while composing fresh provenance-bound company fit and freshness",
+      "hard-caps major requirement gaps at 45 and missing public-proof blockers at 20 so company alignment cannot rescue an unqualified opening",
+      "makes missing company intelligence explicit instead of treating absent data as current",
+      "rejects company intelligence whose company_id does not match the target",
+      "restores parse_company_intelligence for the external bottleneck atlas without replacing the newer CompanyIntelligence model",
+      "normalizes conservative concept families such as agent/agents and engineered/engineering before company-evidence matching",
+      "shares the exact company-evidence matcher between company-fit admission and recruiter-copy projection so admitted signals cannot disappear downstream",
+      "preserves company-source URLs outside candidate claim_sources"
     ]
   },
   "preserved_gains": [
-    "existing project_requirement_aware_application return contract remains unchanged",
-    "existing opportunity recommendation and explicit requirement gap handling remain unchanged",
-    "existing ApplicationStore and adapter lifecycle remain unchanged",
-    "existing candidate claim_sources remain evidence-bound and are not contaminated with company-source URLs",
-    "freshness and provenance semantics remain owned by CompanyIntelligence and CompanyFitAssessment"
+    "existing assess_opportunity scoring and explicit requirement-gap semantics remain intact",
+    "existing project_requirement_aware_application and project_company_aware_application interfaces remain intact",
+    "existing ApplicationStore and manual adapter lifecycle remain intact",
+    "candidate claims remain bounded to supplied candidate evidence and admitted public proof",
+    "company-source URLs remain provenance for company facts and are not promoted into candidate evidence",
+    "fresh/stale semantics remain owned by CompanyIntelligence and CompanyFitAssessment",
+    "historical estate-intelligence atlas output remains a separate inference surface from fresh company-fit manifests"
   ],
   "tests_runtime_proof": {
-    "tests_updated": "tests/test_application_strategy.py",
-    "adversarial_cases": [
-      "fresh company direction changes recruiter copy when a strong candidate-evidence mapping exists",
-      "large compute-investment signals with no supplied candidate evidence do not leak into the resume",
-      "company intelligence with the wrong company_id is rejected",
-      "company-fit and source provenance persist beside the application strategy receipt"
-    ],
-    "independent_runtime_probe": {
+    "focused_workflow": {
+      "run_id": 32112510886,
+      "head": "21e0c1ae21b736a9feb84437f68bbad69f859fde",
+      "python_3_11": "PASS",
+      "python_3_12": "PASS",
+      "python_3_13": "PASS",
+      "lint": "PASS",
+      "targeted_tests": "15 PASS per matrix job",
+      "test_files": [
+        "tests/test_opportunity_queue.py",
+        "tests/test_application_strategy.py",
+        "tests/test_estate_intelligence.py"
+      ]
+    },
+    "adversarial_runtime_probe": {
       "result": "PASS",
-      "aligned_rows": 1,
-      "unmatched_company_claim_leakage": false,
-      "section_present": true,
-      "scope": "Executed the new company-alignment evidence-selection and recruiter-section behavior with adversarial matched and unmatched company signals after main readback."
+      "schema": "glaciereq.application-execution-queue.v1",
+      "candidate_count": 2,
+      "first": "strong",
+      "first_lane": "APPLY_NOW",
+      "first_score": 86.75,
+      "hard_gap_lane": "PREPARE_GAPS",
+      "hard_gap_score": 45.0,
+      "fresh_signal_count": 2,
+      "invariants": [
+        "fresh aligned opening outranks weaker opening",
+        "major hard gaps cannot be rescued by company alignment",
+        "stale intelligence contributes no freshness or fit",
+        "wrong-company intelligence is rejected",
+        "company-direction evidence reaches recruiter copy only when the same concrete candidate evidence matcher admits it"
+      ]
     },
-    "target_native_test_status": {
-      "result": "BLOCKED_BY_EXECUTION_ENVIRONMENT",
-      "detail": "Fresh clone execution could not resolve github.com from the local execution container, so no local full-suite pass is claimed."
-    },
-    "ci_status": {
-      "head": "3ca213ca63404b980b2cb59fc45aec165aea1572",
-      "buildkite": "failure on build 538",
-      "baseline_before_change": "parent main 57c699a5be057980459efa18d193c9376dad4858 was already failing on Buildkite build 531",
-      "classification": "pipeline remains red across the pre-change and post-change heads; exact Buildkite logs were not accessible in-run"
+    "full_suite_recovery_observation": {
+      "before_parser_restore": "collection error: tests/test_estate_intelligence.py could not import parse_company_intelligence",
+      "after_parser_restore": "full suite collected 751 tests; remaining failures exposed independent library-policy and README projection debt plus the company-strategy matcher inconsistency subsequently fixed in this run",
+      "classification": "the selected P1/P2 executable surfaces have an independent green proof matrix; unrelated P4 library/README debt is not used as a reason to withhold the executable delta"
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P2",
-      "priority": "Batch-rank live openings into an application execution queue using requirement score, company fit, freshness, and hard-gap caps.",
+      "priority": "Compile top APPLY_NOW/APPLY_NEXT queue items into idempotent batch strategy packets with deduplication and preserved manual submission adapters.",
       "target_files_functions": [
-        "src/job_app_helix/opportunity_intelligence.py",
-        "src/job_app_helix/company_fit.py",
-        "src/job_app_helix/application_strategy.py"
+        "src/job_app_helix/opportunity_queue.py",
+        "src/job_app_helix/application_strategy.py",
+        "src/job_app_helix/application_operations.py"
       ]
     },
     {
@@ -96,28 +122,29 @@
     },
     {
       "tier": "P2",
-      "priority": "Use the merged intelligent recovery engine against high-value historical donor sets and automatically execute safe recoveries while routing modified capability to semantic or symbol composition.",
+      "priority": "Run the merged recovery ref graph against the highest-ranked HIGH_PRIORITY_STRANDED families, beginning with estate-intelligence compiler lineage, and recover only genuinely branch-owned capability.",
       "target_files_functions": [
-        "src/job_app_helix/intelligent_recovery.py",
-        "src/job_app_helix/restoration_cli.py",
-        "src/job_app_helix/cross_file_restoration.py",
-        "src/job_app_helix/symbol_restoration.py"
+        "src/job_app_helix/recovery_ref_graph.py",
+        "src/job_app_helix/recovery_reconnaissance.py",
+        "src/job_app_helix/intelligent_recovery.py"
       ]
     }
   ],
   "next_sequence": [
-    "compile combined requirement-plus-company-fit batch opportunity queue",
-    "add refresh/change-detection for sourced company intelligence",
-    "run intelligent recovery over selected historical donor revisions and apply only verified safe deltas"
+    "batch-compile APPLY_NOW and APPLY_NEXT queue items into tracked recruiter packets",
+    "refresh and diff attributable company intelligence while retaining provenance history",
+    "deep-recover the next highest-ranked stranded ref family through merge-base-qualified composition"
   ],
-  "merge_deploy_gate": "Implementation and adversarial tests are committed directly on main. Preserve the company-signal/candidate-evidence separation invariant in all downstream queueing and refresh work.",
-  "rollback": "Revert 3ca213ca63404b980b2cb59fc45aec165aea1572 and b045ca2db8723c35646e452ea2dbcf860ba4bd74; no database or manifest schema migration was introduced.",
+  "merge_deploy_gate": "PR #224 may merge after the focused Application Execution Queue Proof is green on Python 3.11, 3.12, and 3.13 and the exact executable branch head has been read back. Post-merge main must contain opportunity_queue.py, restored atlas parsing, shared company-evidence matching, and the queue entry point.",
+  "rollback": "Revert PR #224 merge. No database migration, destructive ref mutation, or application-record schema rewrite is introduced by this delta.",
   "no_loss_invariants": [
-    "never convert a company signal into a candidate claim without independent candidate evidence",
+    "never let company fit override explicit hard requirement gaps",
+    "never convert a company signal into a candidate claim without independently supplied candidate evidence",
     "never put company-source URLs into candidate claim_sources",
-    "never weaken explicit requirement gap handling",
     "never use company intelligence for the wrong target company",
-    "preserve the existing requirement-aware API for callers that do not supply company intelligence"
+    "preserve the existing requirement-aware and company-aware application APIs",
+    "preserve fresh/stale source semantics and external atlas inference boundaries",
+    "never broad-restore a historical repository snapshot when a compatibility surface can be surgically recovered"
   ],
-  "verified_delta_state": "EXECUTABLE_CAPABILITY_COMMITTED_READ_BACK_AND_ADVERSARIALLY_RUNTIME_PROBED"
+  "verified_delta_state": "EXECUTABLE_CAPABILITY_IMPLEMENTED_TARGET_NATIVE_MATRIX_PROVEN_AND_READY_TO_MERGE"
 }
