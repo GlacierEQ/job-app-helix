@@ -3,12 +3,8 @@ import pathlib
 import tempfile
 import unittest
 
-from job_app_helix.application_operations import load_candidate_profile
-from job_app_helix.candidate_profile_compiler import (
-    CandidateProfileCompileError,
-    compile_candidate_profile,
-    write_candidate_profile,
-)
+import job_app_helix.application_operations as application_operations
+import job_app_helix.candidate_profile_compiler as candidate_profile_compiler
 
 
 RESUME = """# Casey Barton \u2014 Senior Infrastructure Engineer
@@ -88,8 +84,10 @@ class CandidateProfileCompilerTests(unittest.TestCase):
         resume = _write(self.root / "resume.md", RESUME)
         output = self.root / "profile.json"
 
-        payload = write_candidate_profile([resume], output, profile_id="casey-production")
-        loaded = load_candidate_profile(output)
+        payload = candidate_profile_compiler.write_candidate_profile(
+            [resume], output, profile_id="casey-production"
+        )
+        loaded = application_operations.load_candidate_profile(output)
 
         self.assertEqual(payload["name"], "Casey Barton")
         self.assertEqual(payload["headline"], "Senior Infrastructure Engineer")
@@ -111,7 +109,7 @@ class CandidateProfileCompilerTests(unittest.TestCase):
         primary = _write(self.root / "general.md", RESUME)
         secondary = _write(self.root / "specialized.md", SECONDARY)
 
-        payload = compile_candidate_profile([primary, secondary])
+        payload = candidate_profile_compiler.compile_candidate_profile([primary, secondary])
 
         self.assertEqual(payload["headline"], "Senior Infrastructure Engineer")
         self.assertEqual(
@@ -130,8 +128,11 @@ class CandidateProfileCompilerTests(unittest.TestCase):
             SECONDARY.replace("casey@example.com", "different@example.com"),
         )
 
-        with self.assertRaisesRegex(CandidateProfileCompileError, "conflicting contact evidence"):
-            compile_candidate_profile([primary, conflicting])
+        with self.assertRaisesRegex(
+            candidate_profile_compiler.CandidateProfileCompileError,
+            "conflicting contact evidence",
+        ):
+            candidate_profile_compiler.compile_candidate_profile([primary, conflicting])
 
     def test_identity_conflict_fails_closed(self) -> None:
         primary = _write(self.root / "general.md", RESUME)
@@ -140,8 +141,11 @@ class CandidateProfileCompilerTests(unittest.TestCase):
             SECONDARY.replace("Casey Barton", "Another Person", 1),
         )
 
-        with self.assertRaisesRegex(CandidateProfileCompileError, "disagree on candidate identity"):
-            compile_candidate_profile([primary, conflicting])
+        with self.assertRaisesRegex(
+            candidate_profile_compiler.CandidateProfileCompileError,
+            "disagree on candidate identity",
+        ):
+            candidate_profile_compiler.compile_candidate_profile([primary, conflicting])
 
     def test_missing_required_evidence_is_rejected(self) -> None:
         resume = _write(
@@ -149,12 +153,15 @@ class CandidateProfileCompilerTests(unittest.TestCase):
             "# Casey Barton \u2014 Engineer\n\n## Summary\n\nA real summary.\n",
         )
 
-        with self.assertRaisesRegex(CandidateProfileCompileError, "no structured skills"):
-            compile_candidate_profile([resume])
+        with self.assertRaisesRegex(
+            candidate_profile_compiler.CandidateProfileCompileError,
+            "no structured skills",
+        ):
+            candidate_profile_compiler.compile_candidate_profile([resume])
 
     def test_output_contains_no_generated_claim_fields(self) -> None:
         resume = _write(self.root / "resume.md", RESUME)
-        rendered = json.dumps(compile_candidate_profile([resume]))
+        rendered = json.dumps(candidate_profile_compiler.compile_candidate_profile([resume]))
 
         self.assertNotIn("world-class", rendered)
         self.assertNotIn("expert in", rendered)
