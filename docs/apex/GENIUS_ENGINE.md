@@ -2,10 +2,10 @@
 
 **Module:** `job_app_helix.genius_engine` + `genius_research` + `genius_build`  
 **CLI:** `python scripts/genius_engine.py`  
-**Identity:** APEX is the counter to canonical destruction  
+**Identity:** APEX governs the strongest verified project state and upward capability growth  
 **Execution law:** MAXIMUM_COHERENT_ADVANCE  
 **Engine:** `glaciereq.genius-engine.v4`  
-**Build:** **COMPLETE** — see [GENIUS_BUILD_COMPLETE.md](GENIUS_BUILD_COMPLETE.md)
+**Build:** **COMPLETE** - see [GENIUS_BUILD_COMPLETE.md](GENIUS_BUILD_COMPLETE.md)
 
 ## Core verb: **ENGINEERED**
 
