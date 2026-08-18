@@ -47,6 +47,7 @@ job-app-helix-strategy = "job_app_helix.application_strategy:main"
 job-app-helix-queue = "job_app_helix.opportunity_queue:main"
 job-app-helix-batch = "job_app_helix.batch_application_execution:main"
 job-app-helix-company-refresh = "job_app_helix.company_intelligence_refresh:main"
+job-app-helix-company-acquire = "job_app_helix.company_intelligence_acquisition:main"
 job-app-helix-outcomes = "job_app_helix.outcome_calibration:main"
 job-app-helix-recover = "job_app_helix.intelligent_recovery_cli:main"
 
