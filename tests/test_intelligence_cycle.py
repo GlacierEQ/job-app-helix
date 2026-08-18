@@ -103,6 +103,7 @@ def _live_opening(url: str, *, title: str = "AI Systems Engineer") -> JobOpening
         source="url",
         source_url=url,
         metadata={"source_kind": "job-posting"},
+        digest=f"fixture:{title}",
     )
 
 
