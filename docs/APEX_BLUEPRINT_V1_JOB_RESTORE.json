@@ -1,111 +1,115 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "bdb2a1b7b9122eb35e0276812caa71090a89bbb7",
-  "current_source_sha_before_handoff": "2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65",
+  "source_sha_before": "0c15558d3196dbe472237ca6045a66e1685c009d",
+  "current_source_sha_before_handoff": "7c5d36046c201685a02638e2dbe4d06b4bf4b5c5",
   "donor_shas": [
-    "6c66ba77b4904a04dd0a18a17b981c458ef3c2d4",
+    "2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65",
     "63ff71364513a824353811468856140edc9a30e6",
     "a917a2c14fbf51e15526b93f2884d051680e6977"
   ],
-  "selected_priority": "Eliminate the remaining manual bridge between maintained target-company ATS inventories and application-ready recruiter output by composing discovery directly into the changed-only company-intelligence, ranking, freshness, and recruiter-packet runtime.",
+  "selected_priority": "Close the final internal P1 gap after live target discovery and vertical intelligence by promoting the strongest complete actionable recruiter packet into one deterministic integrity-checked application-ready release.",
   "priority_tier": "P1",
-  "blocked_higher_candidates": [],
-  "displaced_capability": "Target opening discovery could maintain attributable Greenhouse/Lever inventories and drive Opening Watch, while the intelligence cycle could build company-aware recruiter packets from supplied candidates. A human or external caller still had to translate discovered openings into IntelligenceCycleCandidate configuration and invoke the full cycle separately.",
+  "blocked_higher_candidates": [
+    {
+      "priority": "Execute the production target cycle against a live attributable employer inventory using the production candidate profile and preserve the resulting real application packet.",
+      "state": "BLOCKED_THIS_RUN",
+      "evidence": "Current-repository searches did not expose a production candidate-profile artifact or a ready-to-run target-intelligence manifest suitable for committing or executing without inventing personal data. The container checkout path also failed at external Git transport, so the run pivoted to the strongest unblocked P1 code delta instead of fabricating production inputs.",
+      "retry_condition": "A production profile/target manifest is available through an authorized secret-safe runtime or an existing persisted application workspace can be executed directly."
+    }
+  ],
+  "displaced_capability": "The merged target intelligence cycle could discover attributable ATS openings and compile ranked recruiter packets, but a caller still had to inspect packet directories and decide which artifact set was actually complete, actionable, internally consistent, and safe to hand off. There was no deterministic application-ready release contract, no whole-packet integrity manifest, and no durable pointer to the strongest complete application outcome.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Keep target discovery and the intelligence cycle as separate executables and generate an intermediate manifest. Preserves both systems but leaves the manual handoff and duplicate-fetch risk intact."
+      "assessment": "Leave target-cycle output unchanged and recover a prior manual packet-selection script or shell handoff. This preserves history but leaves readiness implicit and cannot prove artifact completeness or identity integrity."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Refactor discovery, watch, and intelligence into one new monolithic runtime. Could reduce surface count but would duplicate or destabilize already-proven state, materiality, freshness, and application contracts."
+      "assessment": "Add readiness fields directly to batch_application_execution and make every packet self-promoting. This could work, but it would couple a final release concern into a proven lower-level batch compiler and increase regression surface across non-target batch use."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: add a thin vertical orchestration layer that reuses target discovery with run_watch=false, converts attributable discovered openings into existing IntelligenceCycleCandidate objects, injects the already-normalized JobOpening objects through an in-cycle fetch cache, and delegates materiality plus full intelligence execution to the proven Opening Watch and Intelligence Cycle runtimes."
+      "assessment": "Selected: add a vertical target-application runtime above the proven target-intelligence cycle. Re-open generated packet artifacts, verify the existing readiness contract, cross-check opening/application identity, hash every required artifact, preserve higher-ranked rejected packets as explicit diagnostics, and publish one deterministic application-ready release without performing external submission."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 244,
-    "proof_head": "c1ca8e99a2d9dd86653fabd8a4a4a8016eda1411",
-    "runtime_merge_sha": "2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65",
+    "pull_request": 245,
+    "proof_head": "10bfa01b0f83bf4885337d696bce7381386bf406",
+    "runtime_merge_sha": "7c5d36046c201685a02638e2dbe4d06b4bf4b5c5",
     "modules": [
-      "src/job_app_helix/target_intelligence_cycle.py",
-      "tests/test_target_intelligence_cycle.py",
-      ".github/workflows/target-intelligence-cycle-proof.yml",
+      "src/job_app_helix/target_application_cycle.py",
+      "tests/test_target_application_cycle.py",
+      ".github/workflows/target-application-cycle-proof.yml",
       "pyproject.toml"
     ],
-    "executable": "job-app-helix-target-cycle",
+    "executable": "job-app-helix-target-application",
     "capabilities": [
-      "configure a target company once with ATS discovery settings, company-intelligence acquisition plan, mapped application role, and optional current intelligence snapshot",
-      "discover attributable live target-company openings and preserve the existing longitudinal inventory state",
-      "convert discovered JobOpening objects directly into existing IntelligenceCycleCandidate inputs without inventing a competing application model",
-      "validate provider/board uniqueness, target-company attribution, source URLs, acquisition-plan presence, and cross-target duplicate opening URLs before ambiguous execution",
-      "reuse the discovered in-memory JobOpening object through Opening Watch and Intelligence Cycle so a selected posting is not fetched a second time",
-      "advance NEW or recruiter-material openings automatically through company intelligence acquisition, fit assessment, guarded calibration, ranking, freshness-aware packet lineage, and recruiter-packet compilation",
-      "keep unchanged openings on the zero-full-cycle path while preserving inventory/watch history",
-      "quarantine superseded recruiter-packet lineage and regenerate only the affected application when a discovered posting changes materially",
-      "persist TARGET_INTELLIGENCE_CYCLE_RECEIPT.json with chained discovery/watch receipt hashes and selected-candidate counts",
-      "expose the complete vertical workflow as the installed job-app-helix-target-cycle CLI"
+      "compose the existing live target-company discovery and changed-only intelligence cycle into an application-ready release runtime",
+      "scan active recruiter packet directories while excluding stale/quarantine directories",
+      "require RESUME.md, COVER_LETTER.md, OUTREACH.md, projection/opportunity/strategy/priority/opening receipts, and submission/SUBMISSION_PACKET.json before readiness promotion",
+      "reject packets outside APPLY_NOW/APPLY_NEXT rather than presenting deferred work as application-ready",
+      "cross-check packet-directory application identity and priority-receipt/opening-receipt opening identity before promotion",
+      "bind every required recruiter-facing artifact to SHA-256 and byte-size evidence",
+      "compute a deterministic bundle hash over application identity, opening identity, company identity, and artifact digests",
+      "select the strongest complete packet by queue rank then priority score",
+      "record higher-ranked incomplete or invalid packets when a lower-ranked complete packet is promoted so fallback cannot hide a damaged top candidate",
+      "persist state/APPLICATION_READY_TARGET.json plus packet-local APPLICATION_READY.json and TARGET_APPLICATION_CYCLE_RECEIPT.json",
+      "preserve existing complete packets across unchanged target inventories so readiness can be republished without forcing unnecessary recruiter-material regeneration",
+      "remain explicitly non-submitting and perform no recruiter communication"
     ]
   },
   "preserved_gains": [
-    "target_opening_discovery remains the authoritative ATS discovery and normalization layer",
-    "JobOpening remains the opening contract",
-    "Opening Watch remains the field-sensitive NEW/UNCHANGED/recruiter-material gate",
-    "existing metadata-only and digest-only deferral remains intact",
-    "company intelligence acquisition and refresh behavior remain intact",
-    "outcome calibration guard, ranking safety lanes, requirement-gap caps, and application store behavior remain intact",
+    "target_opening_discovery remains the attributable ATS discovery and normalization layer",
+    "target_intelligence_cycle remains the vertical discovery-to-intelligence orchestration layer",
+    "Opening Watch remains the recruiter-material change gate",
+    "company intelligence acquisition, fit, calibration guard, queue safety lanes, requirement-gap caps, and application store behavior remain intact",
     "freshness-aware packet reuse and stale-lineage quarantine remain intact",
-    "provider/company failure isolation remains available through continue_on_error",
-    "no application submission, credentialed ATS action, or recruiter communication was introduced"
+    "existing BatchExecutionResult and packet directory contracts are consumed rather than replaced",
+    "no application submission, credentialed ATS write, or recruiter communication was introduced"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32179512681,
+      "run_id": 32182024107,
       "result": "PASS",
-      "exact_head": "c1ca8e99a2d9dd86653fabd8a4a4a8016eda1411",
+      "exact_head": "10bfa01b0f83bf4885337d696bce7381386bf406",
       "matrix": [
         "3.11",
         "3.12",
         "3.13"
       ],
       "checks": [
-        "strict Ruff over the vertical target-intelligence runtime and adversarial tests",
-        "new discovered opening enters the full intelligence cycle and produces a selected application packet directory plus OPENING_INPUT_RECEIPT.json",
-        "unchanged discovered opening stays on the zero-full-cycle path",
-        "recruiter-material discovered content change re-enters the intelligence cycle",
-        "material change produces freshness refresh of superseded packet lineage with rollback quarantine",
-        "existing target-opening discovery adversarial suite",
-        "existing Opening Watch adversarial suite",
-        "installed job-app-helix-target-cycle executable"
+        "strict Ruff over target_application_cycle and adversarial tests",
+        "highest-ranked complete actionable packet is deterministically promoted",
+        "all nine required application artifacts receive SHA-256 integrity bindings",
+        "incomplete higher-ranked packet is surfaced in rejected_higher_priority_packets while the next complete packet is promoted",
+        "non-actionable DEFER packet fails readiness closed",
+        "priority/opening receipt identity drift fails readiness closed",
+        "state-level and packet-local application-ready receipts are persisted",
+        "installed job-app-helix-target-application executable resolves on every supported Python version"
       ]
     },
     "proof_pivots": [
-      "initial proof stopped at strict Ruff for import formatting and line length; source and tests were corrected without weakening lint",
-      "the first runtime proof exposed a fixture role that violated the existing mapped-target-role contract; the fixture was aligned to the real Anthropic role map rather than bypassing role validation",
-      "the next proof exposed a future-dated company-intelligence fixture relative to the CI runner clock and an incorrect assumption that first-time packet generation increments refreshed_count; the fixture clock and assertion were aligned to actual runtime semantics",
-      "the final remaining assertion assumed a legacy recruiter packet filename; it was replaced with proof against the actual BatchExecutionResult.packet_dir and OPENING_INPUT_RECEIPT artifact contract",
-      "final exact head passed every focused step across all supported Python versions"
+      "initial focused run 32181756471 stopped at one E501 line-length finding before tests",
+      "the formatting defect was corrected without weakening strict Ruff or changing readiness semantics",
+      "final exact head passed lint, adversarial tests, and installed executable proof across Python 3.11, 3.12, and 3.13"
     ],
     "post_merge_readback": {
       "result": "PASS",
-      "main_sha": "2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65",
-      "runtime_blob_sha": "5455ff590ad8589978cee52f56c9160878d31ca2",
-      "pyproject_blob_sha": "e100a82feea6cb14131dd910534343659949fbae",
-      "observed": "main contains execute_target_intelligence_cycle, target manifest loading, discovered-opening cache composition into execute_opening_watch_cycle, TARGET_INTELLIGENCE_CYCLE_RECEIPT persistence, and the installed job-app-helix-target-cycle entry point"
+      "main_sha": "7c5d36046c201685a02638e2dbe4d06b4bf4b5c5",
+      "runtime_blob_sha": "74aeb7bce5dc803f1ede154ea07830d5969b6f22",
+      "observed": "main contains execute_target_application_cycle, promote_strongest_application_ready_packet, nine-artifact completeness verification, identity cross-checks, per-artifact SHA-256/size evidence, deterministic APPLICATION_READY release persistence, fallback diagnostics, and the non-submitting installed target-application CLI"
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P1",
-      "priority": "Run job-app-helix-target-cycle against a live attributable target-company inventory using real current acquisition plans and the production candidate profile, then preserve the strongest application-ready packet as a concrete job-winning outcome.",
+      "priority": "Execute job-app-helix-target-application against a real current target-company ATS inventory with the production candidate profile through a secret-safe authorized runtime, inspect the selected packet, and preserve that concrete application-ready release as an outcome artifact.",
       "target_files_functions": [
+        "src/job_app_helix/target_application_cycle.py::execute_target_application_cycle",
         "src/job_app_helix/target_intelligence_cycle.py::execute_target_intelligence_cycle",
-        "manifests/application_intelligence",
-        "src/job_app_helix/batch_application_execution.py"
+        "manifests/application_intelligence"
       ]
     },
     {
@@ -119,7 +123,7 @@
     },
     {
       "tier": "P2",
-      "priority": "Expand target-company inventory reach through an attributable provider-adapter registry for additional stable ATS interfaces such as Ashby, SmartRecruiters, and proven Workday surfaces.",
+      "priority": "Expand target-company inventory reach through attributable provider adapters for additional stable ATS interfaces such as Ashby, SmartRecruiters, and proven Workday surfaces.",
       "target_files_functions": [
         "src/job_app_helix/target_opening_discovery.py::discover_source",
         "src/job_app_helix/target_opening_discovery.py::TargetOpeningSource"
@@ -127,23 +131,25 @@
     }
   ],
   "next_sequence": [
-    "select a real current target company with an attributable ATS inventory and existing company-intelligence acquisition plan",
-    "execute job-app-helix-target-cycle end-to-end against that live inventory",
-    "inspect the highest-ranked generated application packet and refine any weak candidate/company evidence projection without weakening source boundaries",
-    "preserve the application-ready packet and execution receipt as the next P1 checkpoint",
+    "resolve production profile and target manifest through a secret-safe authorized execution surface",
+    "run job-app-helix-target-application against a real attributable target inventory",
+    "read back APPLICATION_READY_TARGET.json and the selected packet-local APPLICATION_READY.json",
+    "inspect the selected resume, cover letter, outreach, submission packet, and provenance receipts for target-specific weakness",
+    "refine only evidence-grounded weak projection surfaces and rerun the target application cycle",
     "then resume exact-donor stranded-family restoration and broaden ATS reach"
   ],
-  "merge_deploy_gate": "PR 244 merged at exact proven head c1ca8e99a2d9dd86653fabd8a4a4a8016eda1411 as main merge 2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65 after Target Intelligence Cycle Proof 32179512681 passed strict lint, adversarial vertical discovery/materiality/intelligence/packet tests, and installed executable checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed the runtime module and CLI registration directly on main.",
-  "rollback": "Revert merge 2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65. Existing target discovery, Opening Watch, Intelligence Cycle, and freshness-aware packet executables remain independently intact; inventory/watch state and quarantined packet lineage do not require destructive cleanup.",
+  "merge_deploy_gate": "PR 245 merged at exact proven head 10bfa01b0f83bf4885337d696bce7381386bf406 as main merge 7c5d36046c201685a02638e2dbe4d06b4bf4b5c5 after Target Application Cycle Proof 32182024107 passed strict lint, adversarial readiness/integrity tests, and installed executable checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed the runtime directly on main at blob 74aeb7bce5dc803f1ede154ea07830d5969b6f22.",
+  "rollback": "Revert merge 7c5d36046c201685a02638e2dbe4d06b4bf4b5c5. Existing target discovery, target intelligence, Opening Watch, batch compilation, freshness, and application packet generation remain independently intact. APPLICATION_READY_TARGET.json and packet-local APPLICATION_READY.json are derived release artifacts and can be regenerated from preserved recruiter packets.",
   "no_loss_invariants": [
     "never treat employer job-posting text as candidate evidence",
-    "never bypass the existing mapped target-role contract when projecting an application",
-    "never refetch a discovered opening inside the same target cycle when the normalized JobOpening is already available",
-    "never send unchanged or metadata/digest-only opening drift through the expensive full intelligence cycle",
-    "never discard superseded recruiter packet lineage when material opening changes require regeneration",
-    "never let one failed provider or target erase unrelated maintained inventory state",
-    "preserve existing JobOpening, materiality, company-intelligence, calibration, ranking, freshness, application-store, and recruiter-proof interfaces",
+    "never mark a packet application-ready unless every required recruiter/application artifact exists",
+    "never promote PREPARE_GAPS, DEFER, or BLOCKED_PROOF lanes as application-ready",
+    "never ignore application-id or opening-id drift between packet directories and persisted receipts",
+    "never replace or rewrite existing recruiter artifacts merely to create a release receipt",
+    "never discard a higher-ranked invalid packet silently when a lower-ranked fallback is promoted",
+    "never include .stale packet lineage in active readiness selection",
+    "preserve current materiality, ranking, freshness, application-store, rollback, and recruiter-proof interfaces",
     "never fabricate application submission or recruiter communication"
   ],
-  "verified_delta_state": "TARGET_COMPANY_DISCOVERY_TO_CHANGED_ONLY_FULL_INTELLIGENCE_AND_RECRUITER_PACKET_CYCLE_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
+  "verified_delta_state": "STRONGEST_COMPLETE_TARGET_PACKET_PROMOTED_TO_DETERMINISTIC_INTEGRITY_CHECKED_APPLICATION_READY_RELEASE_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
 }
