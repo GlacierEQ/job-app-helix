@@ -11,6 +11,7 @@ on:
       - "tests/test_intelligence_cycle.py"
       - "tests/test_intelligence_cycle_freshness_integration.py"
       - "tests/test_opening_acquisition.py"
+      - "tests/test_opening_watch.py"
       - "tests/test_opening_watch_cycle.py"
       - "tests/test_freshness_aware_batch.py"
       - "pyproject.toml"
@@ -26,6 +27,7 @@ on:
       - "tests/test_intelligence_cycle.py"
       - "tests/test_intelligence_cycle_freshness_integration.py"
       - "tests/test_opening_acquisition.py"
+      - "tests/test_opening_watch.py"
       - "tests/test_opening_watch_cycle.py"
       - "tests/test_freshness_aware_batch.py"
       - "pyproject.toml"
@@ -68,6 +70,7 @@ jobs:
           tests/test_intelligence_cycle.py
           tests/test_intelligence_cycle_freshness_integration.py
           tests/test_opening_acquisition.py
+          tests/test_opening_watch.py
           tests/test_opening_watch_cycle.py
           tests/test_freshness_aware_batch.py
 
@@ -77,6 +80,7 @@ jobs:
           tests/test_intelligence_cycle.py
           tests/test_intelligence_cycle_freshness_integration.py
           tests/test_opening_acquisition.py
+          tests/test_opening_watch.py
           tests/test_opening_watch_cycle.py
           tests/test_freshness_aware_batch.py
 
