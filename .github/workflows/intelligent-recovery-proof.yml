@@ -6,8 +6,10 @@ on:
       - "src/job_app_helix/intelligent_recovery.py"
       - "src/job_app_helix/intelligent_recovery_cli.py"
       - "src/job_app_helix/recovery_reconnaissance.py"
+      - "src/job_app_helix/recovery_ref_graph.py"
       - "tests/test_intelligent_recovery.py"
       - "tests/test_recovery_reconnaissance.py"
+      - "tests/test_recovery_ref_graph.py"
       - "manifests/obsolete_branches.json"
       - "pyproject.toml"
       - ".github/workflows/intelligent-recovery-proof.yml"
@@ -17,8 +19,10 @@ on:
       - "src/job_app_helix/intelligent_recovery.py"
       - "src/job_app_helix/intelligent_recovery_cli.py"
       - "src/job_app_helix/recovery_reconnaissance.py"
+      - "src/job_app_helix/recovery_ref_graph.py"
       - "tests/test_intelligent_recovery.py"
       - "tests/test_recovery_reconnaissance.py"
+      - "tests/test_recovery_ref_graph.py"
       - "manifests/obsolete_branches.json"
       - "pyproject.toml"
       - ".github/workflows/intelligent-recovery-proof.yml"
@@ -56,14 +60,17 @@ jobs:
           src/job_app_helix/intelligent_recovery.py
           src/job_app_helix/intelligent_recovery_cli.py
           src/job_app_helix/recovery_reconnaissance.py
+          src/job_app_helix/recovery_ref_graph.py
           tests/test_intelligent_recovery.py
           tests/test_recovery_reconnaissance.py
+          tests/test_recovery_ref_graph.py
 
       - name: Run adversarial recovery tests
         run: >-
           python -m pytest -q
           tests/test_intelligent_recovery.py
           tests/test_recovery_reconnaissance.py
+          tests/test_recovery_ref_graph.py
 
       - name: Execute fresh-repository recovery smoke test
         shell: bash
@@ -141,7 +148,6 @@ jobs:
           assert public_runtime["excluded_baseline_count"] > 0
           assert public_runtime["candidate_count"] < public_runtime["observed_candidate_count"]
           assert public_runtime["deleted_source_test_count"] <= 10
-
           print(json.dumps({
               "target_sha": report["target_sha"],
               "donor_count": len(report["donors"]),
@@ -152,26 +158,76 @@ jobs:
                   "excluded_baseline_count": public_runtime["excluded_baseline_count"],
                   "deleted_source_test_count": public_runtime["deleted_source_test_count"],
               },
-              "top_donors": [
-                  {
-                      "name": row["name"],
-                      "lineage_mode": row["lineage_mode"],
-                      "disposition": row["disposition"],
-                      "priority_score": row["priority_score"],
-                      "deleted_source_test_count": row["deleted_source_test_count"],
-                      "excluded_baseline_count": row["excluded_baseline_count"],
-                  }
-                  for row in report["donors"][:5]
-              ],
               "receipt_sha256": report["receipt_sha256"],
           }, sort_keys=True))
           PY
 
-      - name: Upload real recovery reconnaissance
+      - name: Scan complete local and remote recovery ref graph
+        if: matrix.python-version == '3.13'
+        run: >-
+          job-app-helix-recover --repo . scan-refs
+          --max-deep-families 24
+          --output artifacts/recovery-ref-graph.json
+
+      - name: Verify real ref graph intelligence
+        if: matrix.python-version == '3.13'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+
+          graph = json.load(open("artifacts/recovery-ref-graph.json", encoding="utf-8"))
+          head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          assert graph["schema"] == "glaciereq.recovery-ref-graph.v1"
+          assert graph["target_sha"] == head
+          assert graph["refs_scanned"] >= 100
+          assert graph["divergent_refs"] > 0
+          assert graph["ancestor_refs"] > 0
+          assert graph["families"]
+          assert graph["deep_reconnaissance"] is not None
+          assert len(graph["receipt_sha256"]) == 64
+          deeply_ranked = [
+              family for family in graph["families"]
+              if family["reconnaissance"] is not None
+          ]
+          assert deeply_ranked
+          print(json.dumps({
+              "target_sha": graph["target_sha"],
+              "refs_scanned": graph["refs_scanned"],
+              "divergent_refs": graph["divergent_refs"],
+              "equivalent_refs": graph["equivalent_refs"],
+              "ancestor_refs": graph["ancestor_refs"],
+              "family_count": len(graph["families"]),
+              "top_families": [
+                  {
+                      "family_id": family["family_id"],
+                      "representative_ref": family["representative_ref"],
+                      "alias_count": len(family["aliases"]),
+                      "executable_path_count": family["executable_path_count"],
+                      "preliminary_score": family["preliminary_score"],
+                      "disposition": (
+                          family["reconnaissance"]["disposition"]
+                          if family["reconnaissance"] is not None else None
+                      ),
+                      "recovery_priority": (
+                          family["reconnaissance"]["priority_score"]
+                          if family["reconnaissance"] is not None else None
+                      ),
+                  }
+                  for family in graph["families"][:8]
+              ],
+              "receipt_sha256": graph["receipt_sha256"],
+          }, sort_keys=True))
+          PY
+
+      - name: Upload real recovery intelligence
         if: matrix.python-version == '3.13'
         uses: actions/upload-artifact@v4
         with:
-          name: helix-recovery-reconnaissance-${{ github.sha }}
-          path: artifacts/recovery-reconnaissance.json
+          name: helix-recovery-intelligence-${{ github.sha }}
+          path: |
+            artifacts/recovery-reconnaissance.json
+            artifacts/recovery-ref-graph.json
           if-no-files-found: error
           retention-days: 30

@@ -1,4 +1,4 @@
-"""CLI for intelligent recovery discovery, planning, and bounded execution."""
+"""CLI for intelligent recovery graph discovery, planning, and bounded execution."""
 
 from __future__ import annotations
 
@@ -13,19 +13,35 @@ from .intelligent_recovery import (
     summarize_recovery_plan,
 )
 from .recovery_reconnaissance import discover_from_manifest
+from .recovery_ref_graph import build_ref_graph
 
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-recover",
         description=(
-            "Discover historical donors, rank displaced capability, route risky changes "
-            "to surgical recovery engines, and optionally restore only high-confidence "
-            "target-absent source/test artifacts."
+            "Discover recovery donors across manifests or the complete ref graph, rank "
+            "displaced capability, route risky changes to surgical recovery engines, "
+            "and optionally restore only high-confidence target-absent source/test artifacts."
         ),
     )
     parser.add_argument("--repo", type=Path, default=Path.cwd())
     sub = parser.add_subparsers(dest="command", required=True)
+
+    graph = sub.add_parser(
+        "scan-refs",
+        help="discover and collapse unresolved recovery families across local/remote refs",
+    )
+    graph.add_argument("--target", default="HEAD")
+    graph.add_argument(
+        "--namespace",
+        action="append",
+        default=[],
+        help="git ref namespace to scan; defaults to refs/remotes/origin and refs/heads",
+    )
+    graph.add_argument("--max-deep-families", type=int, default=64)
+    graph.add_argument("--max-auto-actions", type=int, default=8)
+    graph.add_argument("--output", type=Path)
 
     discover = sub.add_parser(
         "discover",
@@ -68,6 +84,21 @@ def _write(payload: dict[str, object], output: Path | None) -> None:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    if args.command == "scan-refs":
+        namespaces = tuple(args.namespace) if args.namespace else (
+            "refs/remotes/origin",
+            "refs/heads",
+        )
+        report = build_ref_graph(
+            args.repo,
+            target_ref=args.target,
+            namespaces=namespaces,
+            max_deep_families=args.max_deep_families,
+            max_auto_actions=args.max_auto_actions,
+        )
+        _write(report.to_dict(), args.output)
+        return 0
+
     if args.command == "discover":
         report = discover_from_manifest(
             args.repo,
