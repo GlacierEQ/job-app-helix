@@ -100,6 +100,7 @@ def _live_opening(url: str, *, title: str = "AI Systems Engineer") -> JobOpening
         location="Remote",
         requirements=("Python", "agent systems", "observability"),
         preferred=("distributed systems",),
+        source="url",
         source_url=url,
         metadata={"source_kind": "job-posting"},
     )
