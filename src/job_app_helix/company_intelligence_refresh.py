@@ -43,6 +43,28 @@ def _signal_fingerprint(signal: CompanySignal) -> str:
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
+def _index_signals(
+    signals: tuple[CompanySignal, ...],
+    *,
+    label: str,
+) -> dict[tuple[str, str], CompanySignal]:
+    indexed: dict[tuple[str, str], CompanySignal] = {}
+    for signal in signals:
+        key = _signal_key(signal)
+        if key in indexed:
+            raise ValueError(
+                f"{label} company intelligence contains duplicate signal channel: "
+                f"{signal.kind} {signal.source_url}"
+            )
+        indexed[key] = signal
+    return indexed
+
+
+def _age_seconds(signal: CompanySignal, clock: datetime) -> float:
+    observed = datetime.fromisoformat(signal.observed_at.replace("Z", "+00:00"))
+    return (clock - observed.astimezone(UTC)).total_seconds()
+
+
 @dataclass(frozen=True)
 class RetiredSignal:
     signal: CompanySignal
@@ -92,13 +114,9 @@ def refresh_company_intelligence(
 ) -> RefreshResult:
     """Compose a new active intelligence set while retaining historical evidence.
 
-    Rules:
-    - company identity cannot change during refresh;
-    - incoming collection time cannot move backwards;
-    - a new observation on the same kind/source supersedes older wording;
-    - unchanged observations keep the newer observed_at timestamp;
-    - current observations absent from the incoming set remain active until stale;
-    - stale observations are retired instead of silently disappearing.
+    Current observations omitted by a partial refresh remain active until stale.
+    Incoming stale observations are retired immediately instead of being reactivated.
+    A kind/source channel is unique inside each snapshot so ambiguous overwrites fail.
     """
     if current.company_id != incoming.company_id or current.company != incoming.company:
         raise ValueError("company intelligence refresh cannot change company identity")
@@ -109,8 +127,9 @@ def refresh_company_intelligence(
         raise ValueError("incoming company intelligence collected_at is older than current state")
 
     clock = _now_utc(now)
-    current_by_key = {_signal_key(signal): signal for signal in current.signals}
-    incoming_by_key = {_signal_key(signal): signal for signal in incoming.signals}
+    freshness_limit = incoming.max_age_days * 86400
+    current_by_key = _index_signals(current.signals, label="current")
+    incoming_by_key = _index_signals(incoming.signals, label="incoming")
 
     active: list[CompanySignal] = []
     retired: list[RetiredSignal] = []
@@ -121,6 +140,18 @@ def refresh_company_intelligence(
 
     for key, signal in incoming_by_key.items():
         prior = current_by_key.get(key)
+        age_seconds = _age_seconds(signal, clock)
+        if age_seconds > freshness_limit:
+            stale_retired += 1
+            retired.append(
+                RetiredSignal(signal=signal, retired_at=_iso(clock), reason="STALE_INCOMING")
+            )
+            if prior is not None and 0 <= _age_seconds(prior, clock) <= freshness_limit:
+                active.append(prior)
+            continue
+        if age_seconds < 0:
+            raise ValueError("incoming company signal observed_at cannot be in the future")
+
         if prior is None:
             added += 1
         elif _signal_fingerprint(prior) == _signal_fingerprint(signal):
@@ -137,21 +168,13 @@ def refresh_company_intelligence(
             )
         active.append(signal)
 
-    freshness_limit = incoming.max_age_days * 86400
     for key, signal in current_by_key.items():
         if key in incoming_by_key:
             continue
-        observed = datetime.fromisoformat(signal.observed_at.replace("Z", "+00:00"))
-        age_seconds = (clock - observed.astimezone(UTC)).total_seconds()
+        age_seconds = _age_seconds(signal, clock)
         if age_seconds > freshness_limit:
             stale_retired += 1
-            retired.append(
-                RetiredSignal(
-                    signal=signal,
-                    retired_at=_iso(clock),
-                    reason="STALE",
-                )
-            )
+            retired.append(RetiredSignal(signal=signal, retired_at=_iso(clock), reason="STALE"))
         elif age_seconds >= 0:
             active.append(signal)
 
