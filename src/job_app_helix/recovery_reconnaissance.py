@@ -1,12 +1,15 @@
 """History-wide donor discovery for intelligent capability recovery.
 
-This engine discovers exact historical heads, isolates unavailable donors, runs
-source archaeology against one current target, and ranks displaced executable
-capability before handing useful donors to :mod:`intelligent_recovery`.
+The recovery stack needs to distinguish *a branch's unique capability* from
+ordinary files that merely happened to exist in an old snapshot. This engine
+therefore qualifies divergent donors at their exact merge-base before ranking
+or forwarding them to the intelligent planner.
 
-Branch names and retirement labels are provenance only. A single exact source
-or test artifact that exists in a donor and is absent from the target is a
-first-class recovery signal regardless of branch size or ancestry.
+For a divergent historical branch only paths added/modified/renamed between the
+fork point and donor head are recovery candidates. Files inherited unchanged
+from the branch base are excluded, even if they disappeared from modern main.
+Ancestor snapshots remain visible as historical-contraction candidates because
+there is no divergent branch delta to isolate.
 """
 
 from __future__ import annotations
@@ -14,13 +17,17 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+from collections import Counter
 from collections.abc import Iterable, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Literal
 
-from .capability_archaeology import ArchaeologyError, excavate, resolve_commit
-from .intelligent_recovery import build_intelligent_recovery_plan, summarize_recovery_plan
+from .capability_archaeology import ArchaeologyError, CapabilityCandidate, excavate, resolve_commit
+from .intelligent_recovery import (
+    IntelligentRecoveryCandidate,
+    build_intelligent_recovery_plan,
+)
 
 DonorAvailability = Literal["AVAILABLE", "FETCHED", "UNAVAILABLE"]
 DonorDisposition = Literal[
@@ -30,6 +37,7 @@ DonorDisposition = Literal[
     "NO_CURRENT_DELTA",
     "UNAVAILABLE",
 ]
+LineageMode = Literal["DIVERGED_BRANCH", "ANCESTOR_SNAPSHOT", "UNAVAILABLE"]
 
 
 class RecoveryReconnaissanceError(RuntimeError):
@@ -59,7 +67,11 @@ class DonorReconnaissance:
     pull_request: int | None
     availability: DonorAvailability
     reachable_from_target: bool | None
+    lineage_mode: LineageMode
+    lineage_base_sha: str | None
+    observed_candidate_count: int
     candidate_count: int
+    excluded_baseline_count: int
     deleted_source_test_count: int
     modified_source_test_count: int
     control_surface_count: int
@@ -68,6 +80,7 @@ class DonorReconnaissance:
     recovery_signal: float
     priority_score: float
     disposition: DonorDisposition
+    qualified_paths: tuple[str, ...]
     top_paths: tuple[str, ...]
     blocker: str | None
 
@@ -86,7 +99,7 @@ class RecoveryReconnaissanceReport:
 
     def to_dict(self) -> dict[str, object]:
         return {
-            "schema": "glaciereq.recovery-reconnaissance.v1",
+            "schema": "glaciereq.recovery-reconnaissance.v2",
             "repository": self.repository,
             "target_sha": self.target_sha,
             "donors": [donor.to_dict() for donor in self.donors],
@@ -140,6 +153,31 @@ def _reachable(repo: Path, donor_sha: str, target_sha: str) -> bool:
     ).returncode == 0
 
 
+def _merge_base(repo: Path, donor_sha: str, target_sha: str) -> str:
+    proc = _git(repo, "merge-base", donor_sha, target_sha)
+    base = proc.stdout.strip()
+    if not base:
+        raise RecoveryReconnaissanceError(
+            f"no merge-base for donor {donor_sha} and target {target_sha}"
+        )
+    return base
+
+
+def _donor_delta_paths(repo: Path, base_sha: str, donor_sha: str) -> frozenset[str]:
+    """Return donor-present paths changed on the branch after its fork point."""
+    if base_sha == donor_sha:
+        return frozenset()
+    proc = _git(
+        repo,
+        "diff",
+        "--name-only",
+        "--diff-filter=AMRT",
+        base_sha,
+        donor_sha,
+    )
+    return frozenset(line.strip() for line in proc.stdout.splitlines() if line.strip())
+
+
 def _path_role(path: str) -> str:
     normalized = path.lower()
     parts = set(Path(normalized).parts)
@@ -149,43 +187,16 @@ def _path_role(path: str) -> str:
         return "CONTROL"
     if "tests" in parts or "test" in parts or name.startswith("test_"):
         return "TEST"
-    source_suffixes = {
-        ".py",
-        ".pyi",
-        ".js",
-        ".jsx",
-        ".ts",
-        ".tsx",
-        ".rs",
-        ".go",
-        ".java",
-        ".kt",
-        ".swift",
-        ".c",
-        ".cc",
-        ".cpp",
-        ".h",
-        ".hpp",
-        ".cs",
-        ".rb",
-        ".php",
-        ".sh",
-    }
-    if suffix in source_suffixes or "src" in parts:
+    if suffix in {
+        ".py", ".pyi", ".js", ".jsx", ".ts", ".tsx", ".rs", ".go", ".java",
+        ".kt", ".swift", ".c", ".cc", ".cpp", ".h", ".hpp", ".cs", ".rb",
+        ".php", ".sh",
+    } or "src" in parts:
         return "SOURCE"
-    control_names = {
-        "pyproject.toml",
-        "package.json",
-        "package-lock.json",
-        "pnpm-lock.yaml",
-        "yarn.lock",
-        "cargo.toml",
-        "cargo.lock",
-        "go.mod",
-        "go.sum",
-        "dockerfile",
-    }
-    if name in control_names:
+    if name in {
+        "pyproject.toml", "package.json", "package-lock.json", "pnpm-lock.yaml",
+        "yarn.lock", "cargo.toml", "cargo.lock", "go.mod", "go.sum", "dockerfile",
+    }:
         return "CONTROL"
     if suffix in {".md", ".rst", ".adoc", ".txt"} or "docs" in parts:
         return "DOC"
@@ -223,12 +234,11 @@ def _manifest_rows(payload: dict[str, object]) -> Iterable[HistoricalDonor]:
 
 
 def load_historical_donors(manifest_path: Path) -> tuple[HistoricalDonor, ...]:
-    """Load and deduplicate exact historical heads from a recovery manifest."""
+    """Load exact heads, preferring preservation provenance over retirement labels."""
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise RecoveryReconnaissanceError("recovery manifest root must be an object")
-
-    provenance_rank = {
+    rank = {
         "preserved_active_refs": 4,
         "restored_refs_after_failed_transaction": 3,
         "blocked_refs": 2,
@@ -237,11 +247,30 @@ def load_historical_donors(manifest_path: Path) -> tuple[HistoricalDonor, ...]:
     by_sha: dict[str, HistoricalDonor] = {}
     for donor in _manifest_rows(payload):
         existing = by_sha.get(donor.expected_head_sha)
-        if existing is None or provenance_rank.get(
-            donor.source_bucket, 0
-        ) > provenance_rank.get(existing.source_bucket, 0):
+        if existing is None or rank.get(donor.source_bucket, 0) > rank.get(
+            existing.source_bucket, 0
+        ):
             by_sha[donor.expected_head_sha] = donor
     return tuple(sorted(by_sha.values(), key=lambda row: (row.name, row.expected_head_sha)))
+
+
+def _qualify_candidates(
+    repo: Path,
+    donor_sha: str,
+    target_sha: str,
+    candidates: Sequence[CapabilityCandidate],
+) -> tuple[LineageMode, str, tuple[CapabilityCandidate, ...], int]:
+    reachable = _reachable(repo, donor_sha, target_sha)
+    base_sha = _merge_base(repo, donor_sha, target_sha)
+    if reachable:
+        # An ancestor has no branch-only delta. Its target differences are still
+        # useful as historical contraction evidence, but they are identified as
+        # an ancestor snapshot rather than a stranded branch invention.
+        return "ANCESTOR_SNAPSHOT", base_sha, tuple(candidates), 0
+
+    branch_paths = _donor_delta_paths(repo, base_sha, donor_sha)
+    qualified = tuple(candidate for candidate in candidates if candidate.path in branch_paths)
+    return "DIVERGED_BRANCH", base_sha, qualified, len(candidates) - len(qualified)
 
 
 def _priority(
@@ -251,15 +280,14 @@ def _priority(
     control_surface: int,
     candidate_count: int,
     recovery_signal: float,
-    reachable: bool,
+    lineage_mode: LineageMode,
 ) -> float:
-    """Rank donor urgency without allowing branch breadth to hide direct loss."""
-    direct_loss = min(0.52, 0.14 * deleted_source_test)
+    direct_loss = min(0.56, 0.16 * deleted_source_test)
     composition = min(0.20, 0.04 * modified_source_test)
     control = min(0.08, 0.02 * control_surface)
-    breadth = min(0.08, candidate_count / 250.0)
-    nonancestor = 0.08 if not reachable else 0.0
-    score = 0.08 + direct_loss + composition + control + breadth + nonancestor
+    breadth = min(0.07, candidate_count / 250.0)
+    branch_uniqueness = 0.08 if lineage_mode == "DIVERGED_BRANCH" else 0.0
+    score = 0.07 + direct_loss + composition + control + breadth + branch_uniqueness
     score += min(0.08, recovery_signal / 100.0)
     return round(min(1.0, score), 6)
 
@@ -269,7 +297,6 @@ def _disposition(
     modified_source_test: int,
     candidate_count: int,
 ) -> DonorDisposition:
-    # Exact executable absence is stronger evidence than a composite score.
     if deleted_source_test > 0:
         return "HIGH_PRIORITY_STRANDED"
     if modified_source_test > 0:
@@ -289,7 +316,11 @@ def _unavailable(donor: HistoricalDonor, blocker: str) -> DonorReconnaissance:
         pull_request=donor.pull_request,
         availability="UNAVAILABLE",
         reachable_from_target=None,
+        lineage_mode="UNAVAILABLE",
+        lineage_base_sha=None,
+        observed_candidate_count=0,
         candidate_count=0,
+        excluded_baseline_count=0,
         deleted_source_test_count=0,
         modified_source_test_count=0,
         control_surface_count=0,
@@ -298,6 +329,7 @@ def _unavailable(donor: HistoricalDonor, blocker: str) -> DonorReconnaissance:
         recovery_signal=0.0,
         priority_score=0.0,
         disposition="UNAVAILABLE",
+        qualified_paths=(),
         top_paths=(),
         blocker=blocker,
     )
@@ -311,7 +343,7 @@ def inspect_historical_donor(
     fetch_missing: bool = False,
     remote: str = "origin",
 ) -> DonorReconnaissance:
-    """Inspect one donor while containing any donor-specific failure."""
+    """Inspect one exact historical head while containing donor-specific failure."""
     repo = repo.resolve()
     availability: DonorAvailability = "AVAILABLE"
     if not _commit_available(repo, donor.expected_head_sha):
@@ -325,6 +357,12 @@ def inspect_historical_donor(
     try:
         resolved_sha = resolve_commit(repo, donor.expected_head_sha)
         archaeology = excavate(repo, donor_ref=resolved_sha, target_ref=target_sha)
+        lineage_mode, lineage_base, qualified, excluded = _qualify_candidates(
+            repo,
+            resolved_sha,
+            target_sha,
+            archaeology.candidates,
+        )
     except (ArchaeologyError, RecoveryReconnaissanceError) as exc:
         return _unavailable(donor, str(exc))
 
@@ -336,7 +374,7 @@ def inspect_historical_donor(
     recovery_signal = 0.0
     ranked_paths: list[tuple[float, str]] = []
 
-    for candidate in archaeology.candidates:
+    for candidate in qualified:
         role = _path_role(candidate.path)
         target_absent = candidate.target_blob_sha256 is None or candidate.status == "D"
         if role in {"SOURCE", "TEST"}:
@@ -348,26 +386,19 @@ def inspect_historical_donor(
             control_surface += 1
         elif role == "DOC":
             documentation += 1
-
         total_donor_bytes += candidate.donor_size
         recovery_signal += candidate.recovery_score
         role_weight = 1.0 if role in {"SOURCE", "TEST"} else 0.7 if role == "CONTROL" else 0.4
         absence_weight = 1.25 if target_absent else 1.0
         ranked_paths.append((candidate.recovery_score * role_weight * absence_weight, candidate.path))
 
-    reachable = _reachable(repo, resolved_sha, target_sha)
-    priority_score = _priority(
+    priority = _priority(
         deleted_source_test=deleted_source_test,
         modified_source_test=modified_source_test,
         control_surface=control_surface,
-        candidate_count=len(archaeology.candidates),
+        candidate_count=len(qualified),
         recovery_signal=recovery_signal,
-        reachable=reachable,
-    )
-    disposition = _disposition(
-        deleted_source_test,
-        modified_source_test,
-        len(archaeology.candidates),
+        lineage_mode=lineage_mode,
     )
     ranked_paths.sort(key=lambda item: (-item[0], item[1]))
     return DonorReconnaissance(
@@ -378,19 +409,103 @@ def inspect_historical_donor(
         state=donor.state,
         pull_request=donor.pull_request,
         availability=availability,
-        reachable_from_target=reachable,
-        candidate_count=len(archaeology.candidates),
+        reachable_from_target=_reachable(repo, resolved_sha, target_sha),
+        lineage_mode=lineage_mode,
+        lineage_base_sha=lineage_base,
+        observed_candidate_count=len(archaeology.candidates),
+        candidate_count=len(qualified),
+        excluded_baseline_count=excluded,
         deleted_source_test_count=deleted_source_test,
         modified_source_test_count=modified_source_test,
         control_surface_count=control_surface,
         documentation_count=documentation,
         total_donor_bytes=total_donor_bytes,
         recovery_signal=round(recovery_signal, 6),
-        priority_score=priority_score,
-        disposition=disposition,
+        priority_score=priority,
+        disposition=_disposition(deleted_source_test, modified_source_test, len(qualified)),
+        qualified_paths=tuple(sorted(candidate.path for candidate in qualified)),
         top_paths=tuple(path for _, path in ranked_paths[:8]),
         blocker=None,
     )
+
+
+def _compose_intelligent_summary(
+    repo: Path,
+    rows: Sequence[DonorReconnaissance],
+    *,
+    target_sha: str,
+    max_auto_actions: int,
+) -> dict[str, object] | None:
+    """Compose per-donor lineage-scoped plans without cross-donor path leakage."""
+    candidates: dict[tuple[str, str], IntelligentRecoveryCandidate] = {}
+    contributing_donors = 0
+    for row in rows:
+        if row.resolved_sha is None or not row.qualified_paths:
+            continue
+        plan = build_intelligent_recovery_plan(
+            repo,
+            donor_refs=(row.resolved_sha,),
+            target_ref=target_sha,
+            include_paths=row.qualified_paths,
+            max_auto_actions=max_auto_actions,
+        )
+        contributing_donors += 1
+        for candidate in plan.candidates:
+            key = (candidate.path, candidate.donor_blob_sha256)
+            incumbent = candidates.get(key)
+            if incumbent is None or (
+                candidate.capability_value,
+                -candidate.preservation_risk,
+                candidate.confidence,
+            ) > (
+                incumbent.capability_value,
+                -incumbent.preservation_risk,
+                incumbent.confidence,
+            ):
+                candidates[key] = candidate
+
+    if not candidates:
+        return None
+    ranked = sorted(
+        candidates.values(),
+        key=lambda item: (
+            not item.auto_recoverable,
+            -item.capability_value,
+            item.preservation_risk,
+            -item.confidence,
+            item.path,
+        ),
+    )
+    auto = [item for item in ranked if item.auto_recoverable][:max_auto_actions]
+    mode_counts = Counter(item.mode for item in ranked)
+    role_counts = Counter(item.role for item in ranked)
+    payload: dict[str, object] = {
+        "schema": "glaciereq.lineage-scoped-intelligent-recovery-summary.v1",
+        "target_sha": target_sha,
+        "donor_count": contributing_donors,
+        "candidate_count": len(ranked),
+        "auto_recoverable_count": len(auto),
+        "review_count": len(ranked) - len(auto),
+        "mode_counts": dict(sorted(mode_counts.items())),
+        "role_counts": dict(sorted(role_counts.items())),
+        "top_candidates": [
+            {
+                "candidate_id": item.candidate_id,
+                "path": item.path,
+                "donor_sha": item.donor_sha,
+                "mode": item.mode,
+                "capability_value": item.capability_value,
+                "preservation_risk": item.preservation_risk,
+                "confidence": item.confidence,
+                "auto_recoverable": item.auto_recoverable,
+            }
+            for item in ranked[:10]
+        ],
+    }
+    payload["receipt_sha256"] = hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    return payload
 
 
 def build_recovery_reconnaissance(
@@ -402,7 +517,7 @@ def build_recovery_reconnaissance(
     remote: str = "origin",
     max_auto_actions: int = 8,
 ) -> RecoveryReconnaissanceReport:
-    """Rank historical donors and feed useful heads to the recovery planner."""
+    """Rank exact historical donors and compose lineage-scoped recovery intelligence."""
     if not donors:
         raise RecoveryReconnaissanceError("at least one historical donor is required")
     repo = repo.resolve()
@@ -426,7 +541,6 @@ def build_recovery_reconnaissance(
             row.name,
         )
     )
-
     available_shas = tuple(
         dict.fromkeys(
             row.resolved_sha
@@ -434,20 +548,16 @@ def build_recovery_reconnaissance(
             if row.resolved_sha is not None and row.candidate_count > 0
         )
     )
-    plan_summary: dict[str, object] | None = None
-    if available_shas:
-        plan = build_intelligent_recovery_plan(
-            repo,
-            donor_refs=available_shas,
-            target_ref=target_sha,
-            max_auto_actions=max_auto_actions,
-        )
-        plan_summary = summarize_recovery_plan(plan)
-
+    plan_summary = _compose_intelligent_summary(
+        repo,
+        rows,
+        target_sha=target_sha,
+        max_auto_actions=max_auto_actions,
+    )
     repository = _git(repo, "config", "--get", "remote.origin.url", check=False).stdout.strip()
     repository = repository or str(repo)
     payload = {
-        "schema": "glaciereq.recovery-reconnaissance.v1",
+        "schema": "glaciereq.recovery-reconnaissance.v2",
         "repository": repository,
         "target_sha": target_sha,
         "donors": [row.to_dict() for row in rows],
@@ -476,7 +586,7 @@ def discover_from_manifest(
     remote: str = "origin",
     max_auto_actions: int = 8,
 ) -> RecoveryReconnaissanceReport:
-    """Discover, rank, and plan from one exact historical-ref manifest."""
+    """Discover, lineage-qualify, rank, and plan from a historical-ref manifest."""
     return build_recovery_reconnaissance(
         repo,
         donors=load_historical_donors(manifest_path),
