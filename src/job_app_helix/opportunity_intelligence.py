@@ -15,13 +15,51 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from .application_engine import CompanyTarget, find_target, load_targets
-from .application_operations import CandidateProfile, JobOpening, load_candidate_profile, load_job_opening
+from .application_operations import (
+    CandidateProfile,
+    JobOpening,
+    load_candidate_profile,
+    load_job_opening,
+)
 
 _STOPWORDS = {
-    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "in", "is",
-    "it", "of", "on", "or", "our", "that", "the", "their", "this", "to", "we",
-    "with", "you", "your", "will", "role", "team", "work", "using", "years",
-    "experience", "preferred", "required", "requirements", "qualification",
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "by",
+    "for",
+    "from",
+    "in",
+    "is",
+    "it",
+    "of",
+    "on",
+    "or",
+    "our",
+    "that",
+    "the",
+    "their",
+    "this",
+    "to",
+    "we",
+    "with",
+    "you",
+    "your",
+    "will",
+    "role",
+    "team",
+    "work",
+    "using",
+    "years",
+    "experience",
+    "preferred",
+    "required",
+    "requirements",
+    "qualification",
     "qualifications",
 }
 
@@ -31,8 +69,11 @@ def _tokens(value: str) -> set[str]:
     return {token for token in tokens if token not in _STOPWORDS and len(token) > 1}
 
 
-def _coverage(signals: Sequence[str], evidence_tokens: set[str]) -> tuple[float, tuple[str, ...], tuple[str, ...]]:
-    """Score each declared signal independently so long prose cannot dilute requirements."""
+def _coverage(
+    signals: Sequence[str],
+    evidence_tokens: set[str],
+) -> tuple[float, tuple[str, ...], tuple[str, ...]]:
+    """Score declared signals independently so long prose cannot dilute requirements."""
     matched: list[str] = []
     missing: list[str] = []
     if not signals:
@@ -97,7 +138,10 @@ def assess_opportunity(
 
     role_tokens = _tokens(role)
     title_tokens = _tokens(opening.title)
-    role_alignment = len(role_tokens & title_tokens) / max(1, len(role_tokens | title_tokens))
+    role_alignment = len(role_tokens & title_tokens) / max(
+        1,
+        len(role_tokens | title_tokens),
+    )
 
     required_coverage, matched_required, missing_required = _coverage(
         opening.requirements,
@@ -109,10 +153,16 @@ def assess_opportunity(
     )
 
     description_tokens = _tokens(opening.description)
-    description_signal = len(description_tokens & evidence_tokens) / max(1, len(description_tokens))
+    description_signal = len(description_tokens & evidence_tokens) / max(
+        1,
+        len(description_tokens),
+    )
 
     strategy_tokens = _tokens(" ".join((target.recruiter_thesis, role)))
-    strategic_alignment = len(strategy_tokens & evidence_tokens) / max(1, len(strategy_tokens))
+    strategic_alignment = len(strategy_tokens & evidence_tokens) / max(
+        1,
+        len(strategy_tokens),
+    )
 
     proof_strength = min(1.0, len(target.recruiter_proofs) / 3.0)
 
@@ -146,14 +196,19 @@ def assess_opportunity(
         recommendation = "DEFER"
 
     reasons = [
-        f"explicit requirements matched: {len(matched_required)}/{max(1, explicit_requirements)}",
+        (
+            "explicit requirements matched: "
+            f"{len(matched_required)}/{max(1, explicit_requirements)}"
+        ),
         f"public recruiter proofs available: {len(target.recruiter_proofs)}",
         f"role alignment: {role_alignment:.0%}",
     ]
     if missing_required:
         reasons.append("missing explicit requirements: " + "; ".join(missing_required))
     elif opening.requirements:
-        reasons.append("no explicit requirement gaps detected from supplied candidate evidence")
+        reasons.append(
+            "no explicit requirement gaps detected from supplied candidate evidence"
+        )
     if matched_preferred:
         reasons.append("preferred leverage: " + "; ".join(matched_preferred))
 
@@ -182,11 +237,24 @@ def assess_opportunity(
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-opportunity",
-        description="Rank a real job opening using explicit requirements, candidate evidence, and recruiter proof.",
+        description=(
+            "Rank a real job opening using explicit requirements, candidate evidence, "
+            "and recruiter proof."
+        ),
     )
     parser.add_argument("company", help="mapped company id or display name")
-    parser.add_argument("--opening", type=Path, required=True, help="normalized job opening JSON")
-    parser.add_argument("--profile", type=Path, required=True, help="evidence-only candidate profile JSON")
+    parser.add_argument(
+        "--opening",
+        type=Path,
+        required=True,
+        help="normalized job opening JSON",
+    )
+    parser.add_argument(
+        "--profile",
+        type=Path,
+        required=True,
+        help="evidence-only candidate profile JSON",
+    )
     parser.add_argument("--role", help="mapped target role")
     parser.add_argument("--output", type=Path, help="optional JSON receipt path")
     args = parser.parse_args(argv)
