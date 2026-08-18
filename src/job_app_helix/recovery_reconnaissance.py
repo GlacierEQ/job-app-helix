@@ -203,8 +203,6 @@ def load_historical_donors(manifest_path: Path) -> tuple[HistoricalDonor, ...]:
         if existing is None:
             by_sha[donor.expected_head_sha] = donor
             continue
-        # Prefer preservation/recovery records over retirement labels when the exact
-        # same historical head appears in multiple bookkeeping buckets.
         rank = {
             "preserved_active_refs": 4,
             "restored_refs_after_failed_transaction": 3,
@@ -241,7 +239,10 @@ def _disposition(
     candidate_count: int,
     priority_score: float,
 ) -> DonorDisposition:
-    if deleted_source_test > 0 and priority_score >= 0.40:
+    # One exact, target-absent executable artifact is already a direct recovery
+    # signal. Do not bury it below a breadth-oriented score threshold merely
+    # because the donor branch is small.
+    if deleted_source_test > 0 and priority_score >= 0.20:
         return "HIGH_PRIORITY_STRANDED"
     if modified_source_test > 0:
         return "COMPOSITION_CANDIDATE"
