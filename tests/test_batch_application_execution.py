@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from job_app_helix.application_engine import CompanyTarget, RepositoryProof
 from job_app_helix.application_operations import ApplicationStore, CandidateProfile, JobOpening
 from job_app_helix.batch_application_execution import compile_ranked_application_batch
+from job_app_helix.outcome_calibration import OutcomeCalibration
 
 
 def _proof(name: str) -> RepositoryProof:
@@ -63,6 +65,24 @@ def _opening(opening_id: str, requirements: tuple[str, ...]) -> JobOpening:
     )
 
 
+def _calibration() -> OutcomeCalibration:
+    return OutcomeCalibration(
+        schema="glaciereq.outcome-calibration.v1",
+        sample_count=12,
+        effective_sample_count=12,
+        status="CALIBRATED",
+        baseline_weights={"opportunity": 0.75, "company_fit": 0.20, "freshness": 0.05},
+        learned_weights={"opportunity": 0.70, "company_fit": 0.25, "freshness": 0.05},
+        feature_signal={"opportunity": 0.4, "company_fit": 0.8, "freshness": 0.1},
+        shrinkage=0.28,
+        max_weight_shift=0.10,
+    )
+
+
+def _priority_receipt(packet_dir: str) -> dict[str, object]:
+    return json.loads((Path(packet_dir) / "PRIORITY_RECEIPT.json").read_text(encoding="utf-8"))
+
+
 def test_batch_compiles_only_actionable_lanes_and_deduplicates_complete_packets(
     tmp_path: Path,
 ) -> None:
@@ -87,6 +107,7 @@ def test_batch_compiles_only_actionable_lanes_and_deduplicates_complete_packets(
             output_dir=output_dir,
             store=store,
         )
+        assert first.schema == "glaciereq.batch-application-execution.v2"
         assert first.selected_count == 1
         assert first.compiled_count == 1
         assert first.deduplicated_count == 0
@@ -99,6 +120,7 @@ def test_batch_compiles_only_actionable_lanes_and_deduplicates_complete_packets(
         packet_dir = Path(packet.packet_dir)
         assert (packet_dir / "RESUME.md").is_file()
         assert (packet_dir / "STRATEGY_RECEIPT.json").is_file()
+        assert (packet_dir / "PRIORITY_RECEIPT.json").is_file()
         assert (packet_dir / "submission" / "SUBMISSION_PACKET.json").is_file()
         assert len(store.list_applications()) == 1
 
@@ -116,6 +138,76 @@ def test_batch_compiles_only_actionable_lanes_and_deduplicates_complete_packets(
         assert len(store.list_applications()) == 1
         assert store.events(packet.application_id)[0]["event_type"] == "CREATED"
         assert len(store.events(packet.application_id)) == 1
+
+
+def test_calibrated_batch_persists_model_identity_and_score_decomposition(
+    tmp_path: Path,
+) -> None:
+    profile = _profile()
+    target = _target()
+    opening = _opening("calibrated", ("Python", "agent systems", "observability"))
+    calibration = _calibration()
+
+    with ApplicationStore(tmp_path / "apps.sqlite3") as store:
+        result = compile_ranked_application_batch(
+            ((opening, target, None, None),),
+            profile,
+            output_dir=tmp_path / "packets",
+            store=store,
+            calibration=calibration,
+        )
+
+        packet = result.packets[0]
+        receipt = _priority_receipt(packet.packet_dir)
+        assert result.calibration_sha256 is not None
+        assert len(result.calibration_sha256) == 64
+        assert packet.calibration_sha256 == result.calibration_sha256
+        assert receipt["calibration_sha256"] == result.calibration_sha256
+        assert receipt["queue_rank"] == 1
+        assert receipt["lane"] == "APPLY_NOW"
+        decomposition = receipt["score_decomposition"]
+        assert decomposition["mode"] == "OUTCOME_CALIBRATED"
+        assert decomposition["calibration_status"] == "CALIBRATED"
+        assert decomposition["weights"] == calibration.learned_weights
+        assert set(decomposition["weighted_contributions"]) == {
+            "opportunity",
+            "company_fit",
+            "freshness",
+        }
+        assert len(receipt["receipt_sha256"]) == 64
+
+
+def test_deduplicated_packet_refreshes_priority_receipt_without_new_lifecycle_event(
+    tmp_path: Path,
+) -> None:
+    profile = _profile()
+    target = _target()
+    opening = _opening("refresh-priority", ("Python", "agent systems", "observability"))
+    output_dir = tmp_path / "packets"
+
+    with ApplicationStore(tmp_path / "apps.sqlite3") as store:
+        first = compile_ranked_application_batch(
+            ((opening, target, None, None),),
+            profile,
+            output_dir=output_dir,
+            store=store,
+        )
+        application_id = first.packets[0].application_id
+        first_receipt = _priority_receipt(first.packets[0].packet_dir)
+        assert first_receipt["calibration_sha256"] is None
+
+        second = compile_ranked_application_batch(
+            ((opening, target, None, None),),
+            profile,
+            output_dir=output_dir,
+            store=store,
+            calibration=_calibration(),
+        )
+        second_receipt = _priority_receipt(second.packets[0].packet_dir)
+        assert second.packets[0].deduplicated is True
+        assert second_receipt["calibration_sha256"] == second.calibration_sha256
+        assert first_receipt["receipt_sha256"] != second_receipt["receipt_sha256"]
+        assert len(store.events(application_id)) == 1
 
 
 def test_batch_limit_preserves_queue_order_and_never_marks_submission(tmp_path: Path) -> None:
