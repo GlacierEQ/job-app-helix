@@ -31,6 +31,43 @@ class CompanyFitAssessment:
         return asdict(self)
 
 
+def _evidence_units(profile: CandidateProfile) -> tuple[str, ...]:
+    return (
+        profile.headline,
+        profile.summary,
+        *profile.skills,
+        *profile.experience,
+        *profile.achievements,
+    )
+
+
+def _signal_alignment(signal: str, profile: CandidateProfile) -> float:
+    """Measure whether a company signal has a concrete candidate-evidence anchor.
+
+    Long company statements contain names, dates, products, and context that should not
+    dilute a strong evidence match. Compare each signal against individual evidence units
+    and normalize by the smaller semantic surface. This rewards a specific shared mechanism
+    such as agent containment while rejecting incidental one-token overlap with long prose.
+    """
+    signal_tokens = _tokens(signal)
+    if not signal_tokens:
+        return 0.0
+    best = 0.0
+    for evidence in _evidence_units(profile):
+        evidence_tokens = _tokens(evidence)
+        if not evidence_tokens:
+            continue
+        overlap_count = len(signal_tokens & evidence_tokens)
+        if overlap_count == 0:
+            continue
+        denominator = min(len(signal_tokens), len(evidence_tokens))
+        score = overlap_count / max(1, denominator)
+        if overlap_count == 1 and denominator > 2:
+            score *= 0.35
+        best = max(best, score)
+    return best
+
+
 def assess_company_fit(
     profile: CandidateProfile,
     intelligence: CompanyIntelligence,
@@ -40,15 +77,13 @@ def assess_company_fit(
     clock = now or datetime.now(UTC)
     fresh = intelligence.fresh_signals(now=clock)
     stale = intelligence.stale_signals(now=clock)
-    evidence_tokens = _tokens(profile.evidence_text())
 
     matched: list[str] = []
     unmatched: list[str] = []
     hooks: list[str] = []
     for signal in fresh:
-        signal_tokens = _tokens(signal.statement)
-        overlap = len(signal_tokens & evidence_tokens) / max(1, len(signal_tokens))
-        if overlap >= 0.20:
+        alignment = _signal_alignment(signal.statement, profile)
+        if alignment >= 0.45:
             matched.append(signal.statement)
             hooks.append(f"{signal.kind}: {signal.statement}")
         else:
