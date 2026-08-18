@@ -118,8 +118,11 @@ def test_discovered_new_opening_runs_full_intelligence_and_packet_cycle(tmp_path
     assert result.watch_cycle.cycle.successful_company_count == 1
     assert result.watch_cycle.cycle.batch.selected_count == 1
     assert result.watch_cycle.cycle.freshness.reused_count == 0
+    packet = result.watch_cycle.cycle.batch.packets[0]
+    packet_dir = Path(packet.packet_dir)
+    assert packet_dir.is_dir()
+    assert (packet_dir / "OPENING_INPUT_RECEIPT.json").is_file()
     assert (tmp_path / "state" / "TARGET_INTELLIGENCE_CYCLE_RECEIPT.json").is_file()
-    assert list((tmp_path / "packets").glob("*/RECRUITER_PACKET.md"))
 
 
 def test_unchanged_discovered_opening_stays_on_zero_full_cycle_path(tmp_path: Path) -> None:
