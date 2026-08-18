@@ -21,9 +21,9 @@ Portfolio leaf repositories contain one generated block between:
 
 The generator replaces only this block. Human-authored material outside the markers is preserved.
 
-### Canonical orchestrator superset
+### APEX orchestrator superset
 
-The canonical portfolio orchestrator may use a richer human-authored README instead of embedding a second, duplicative generated block when all of the following are enforced in CI:
+The APEX portfolio orchestrator may use a richer human-authored README instead of embedding a second, duplicative generated block when all of the following are enforced in CI:
 
 - recruiter, expert, and AI layers exist in that order;
 - the human README exposes the current schema, evidence, verification state, language declarations, relationships, and limits;
@@ -55,7 +55,7 @@ Must identify:
 
 Must expose:
 
-- canonical `owner/repository` identity;
+- APEX `owner/repository` identity;
 - stable branch and README URL;
 - versioned `glaciereq.readme.v1` Protobuf record;
 - typed repository edges;
