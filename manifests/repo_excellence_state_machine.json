@@ -1,13 +1,13 @@
 {
-  "schema": "glaciereq.repo-excellence.state-machine.v1",
-  "authority": "GlacierEQ/job-app-helix",
+  "schema": "glaciereq.repo-excellence.state-machine.v2",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "direction": "MAXIMUM_COHERENT_ADVANCE",
   "principal_states": [
     "DISCOVERED",
     "IDENTITY_RESOLVED",
-    "PROBLEM_VERIFIED",
-    "TARGET_CONTRACTED",
-    "SEEDED",
-    "VERTICAL_SLICE",
+    "PURPOSE_RECONSTRUCTED",
+    "CAPABILITY_MAPPED",
+    "RESTORATION_COMPOSED",
     "IMPLEMENTED",
     "TESTED",
     "ADVERSARIAL_VERIFIED",
@@ -17,29 +17,64 @@
     "CANONICAL",
     "EVOLVING"
   ],
-  "side_exits": [
+  "active_facets": [
     "BLOCKED",
     "EXPERIMENT",
     "REFERENCE",
+    "DONOR",
+    "RECOVERY_REQUIRED",
+    "COMPOSITION_REQUIRED"
+  ],
+  "historical_non_authoritative_states": [
+    "TARGET_CONTRACTED",
+    "SEEDED",
+    "VERTICAL_SLICE",
     "SUPERSEDED",
     "RETIREMENT_READY",
     "QUARANTINE"
   ],
-  "transition_rule": "Principal-state promotion is one step at a time and any declared transition gate requirements must also be true. Side exits are always allowed. Re-entry from a side exit restarts at DISCOVERED unless a future version defines an evidence-preserving re-entry rule.",
+  "transition_rule": "Principal-state promotion moves upward through purpose reconstruction, capability mapping, recovery/composition, implementation, proof, operation, and evolution. Active facets describe work without demoting repository worth. Historical contraction states are parse-only evidence and cannot authorize archive, deletion, merge-away, close-as-duplicate, branch deletion, or successor substitution.",
   "transition_gate_requirements": {
     "PROOF_REPRODUCED->PROMOTED": [
       "security_authority_bounded",
       "projections_truth_consistent"
+    ],
+    "PROMOTED->CANONICAL": [
+      "problem_verified",
+      "unique_value_known",
+      "canonical_identity_known",
+      "central_mechanism_implemented",
+      "deterministic_tests_pass",
+      "adversarial_tests_pass",
+      "runtime_behavior_observed",
+      "security_authority_bounded",
+      "proof_receipt_bound_to_sha",
+      "reusable_capabilities_extracted",
+      "projections_truth_consistent",
+      "evolution_cursor_defined"
     ]
   },
+  "canonical_semantics": {
+    "meaning": "exact source identity / integration anchor for a capability record",
+    "not_authority_for": [
+      "repository deletion",
+      "archive",
+      "merge-away",
+      "close-as-duplicate",
+      "branch deletion",
+      "sibling demotion",
+      "successor substitution"
+    ],
+    "sibling_rule": "A canonical anchor for one capability does not make neighboring repositories redundant; sibling systems remain independent capability donors until full functional and lineage comparison proves otherwise and OPERATOR separately authorizes lifecycle change."
+  },
   "projection_truth_closure": {
-    "purpose": "Prevent a repository from being promoted when implementation proof is stronger than the estate surfaces that represent it.",
+    "purpose": "Prevent outward projections from outrunning implementation evidence without allowing evidence gates to reduce underlying engineering ambition.",
     "minimum_semantics": [
-      "outward projection is compiled from the effective canonical authority rather than a stale or partial registry",
-      "projected repository/company stage and claim ceiling do not exceed the effective authority",
+      "outward projection is bound to an exact implementation source",
+      "projected company stage and claim ceiling do not exceed evidence",
       "truth-bounding nonclaims survive outward projection",
-      "readback validates artifacts regenerated from that effective authority rather than an unrelated stale aggregate",
-      "readback evidence is bound to an exact source candidate before promotion"
+      "readback validates regenerated artifacts",
+      "projection limits do not establish repository worth or retirement status"
     ]
   },
   "excellent_gate_conjunction": [
@@ -57,19 +92,22 @@
     "evolution_cursor_defined"
   ],
   "score_axes": {
-    "target_architecture": {"range": [0, 10], "meaning": "quality of intended architecture independent of implementation maturity"},
-    "current_proof": {"values": ["A", "B", "C", "D", "Q"], "meaning": "strength of exact-source executable evidence"},
+    "target_architecture": {"range": [0, 10], "meaning": "quality and ambition of intended architecture independent of implementation maturity"},
+    "current_proof": {"values": ["A", "B", "C", "D", "Q"], "meaning": "strength of exact-source executable evidence; never a worth score"},
     "company_fit": {"range": [0, 10], "nullable": true, "meaning": "relevance to a bounded current company bottleneck"},
-    "canonical_confidence": {"range": [0, 1], "meaning": "confidence this repository is the correct estate authority for the capability"}
+    "canonical_confidence": {"range": [0, 1], "meaning": "confidence in exact source identity for the named capability, not authority over sibling repositories"}
   },
-  "canonical_roles": [
+  "active_roles": [
+    "INDEPENDENT_SYSTEM",
     "CANONICAL_SYSTEM",
     "SPECIALIST_COMPONENT",
     "EXPERIMENT",
     "DONOR",
     "REFERENCE",
+    "BACKUP"
+  ],
+  "historical_non_authoritative_roles": [
     "SUPERSEDED",
-    "BACKUP",
     "RETIREMENT_READY"
   ],
   "company_claim_ceiling": [
@@ -81,5 +119,13 @@
     "PROOF_REPRODUCED",
     "CLAIM_PROMOTED"
   ],
-  "governing_rule": "A repository never advances because prose sounds finished. It advances only when the next gate's required evidence changes state."
+  "anti_contraction": {
+    "inventory_cannot_authorize_retirement": true,
+    "similarity_cannot_establish_redundancy": true,
+    "failed_proof_cannot_establish_irrelevance": true,
+    "historical_state_cannot_authorize_retirement": true,
+    "operator_authorization_required_for_retirement": true,
+    "retirement_requires_verified_capability_preservation": true
+  },
+  "governing_rule": "A repository advances by recovering and building capability. Evidence controls what may be claimed, not whether the repository deserves to exist. The default next state is upward evolution, not contraction."
 }
