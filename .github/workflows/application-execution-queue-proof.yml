@@ -1,0 +1,171 @@
+name: Application Execution Queue Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/opportunity_queue.py"
+      - "src/job_app_helix/company_fit.py"
+      - "src/job_app_helix/company_intelligence.py"
+      - "src/job_app_helix/application_strategy.py"
+      - "tests/test_opportunity_queue.py"
+      - "tests/test_application_strategy.py"
+      - "tests/test_estate_intelligence.py"
+      - "pyproject.toml"
+      - ".github/workflows/application-execution-queue-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/opportunity_queue.py"
+      - "src/job_app_helix/company_fit.py"
+      - "src/job_app_helix/company_intelligence.py"
+      - "src/job_app_helix/application_strategy.py"
+      - "tests/test_opportunity_queue.py"
+      - "tests/test_application_strategy.py"
+      - "tests/test_estate_intelligence.py"
+      - "pyproject.toml"
+      - ".github/workflows/application-execution-queue-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    name: Queue + company intelligence / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and proof tools
+        run: python -m pip install -e ".[dev]"
+
+      - name: Lint executable surfaces
+        run: >-
+          ruff check
+          src/job_app_helix/opportunity_queue.py
+          src/job_app_helix/company_fit.py
+          src/job_app_helix/company_intelligence.py
+          tests/test_opportunity_queue.py
+
+      - name: Run recruiter intelligence and queue tests
+        run: >-
+          python -m pytest -q
+          tests/test_opportunity_queue.py
+          tests/test_application_strategy.py
+          tests/test_estate_intelligence.py
+
+      - name: Execute adversarial queue runtime probe
+        shell: bash
+        run: |
+          python - <<'PY'
+          from datetime import UTC, datetime
+
+          from job_app_helix.application_engine import CompanyTarget, RepositoryProof
+          from job_app_helix.application_operations import CandidateProfile, JobOpening
+          from job_app_helix.company_intelligence import CompanyIntelligence, CompanySignal
+          from job_app_helix.opportunity_queue import build_application_execution_queue
+
+          now = datetime(2026, 8, 18, tzinfo=UTC)
+          proof = RepositoryProof(
+              repository="GlacierEQ/pro-code",
+              level="L4",
+              state="PROMOTED",
+              visibility="public",
+              admission="HELIX_ADMITTED",
+              origin="runtime-probe",
+          )
+          target = CompanyTarget(
+              company_id="acme",
+              display_name="Acme",
+              track_state="ACTIVE",
+              target_roles=("AI Systems Engineer",),
+              recruiter_thesis="agent systems reliability observability",
+              gap_or_next_gate="none",
+              non_affiliation="independent",
+              repositories=(proof, proof, proof),
+          )
+          profile = CandidateProfile(
+              profile_id="casey",
+              name="Casey",
+              headline="AI systems engineer",
+              summary="Builds reliable agent systems with observability and Python automation.",
+              skills=("Python", "agent systems", "observability", "distributed systems"),
+              experience=("Built production agent orchestration and recovery systems",),
+              achievements=("Designed evidence-bound automation with runtime verification",),
+              source_digest="probe-profile",
+          )
+          strong = JobOpening(
+              opening_id="strong",
+              company="Acme",
+              title="AI Systems Engineer",
+              description="Build reliable agent systems and platform automation.",
+              location="Remote",
+              source="probe",
+              source_url="https://example.invalid/jobs/strong",
+              requirements=("Python", "agent systems", "observability"),
+              preferred=("distributed systems",),
+              digest="strong-digest",
+          )
+          gap = JobOpening(
+              opening_id="hard-gap",
+              company="Acme",
+              title="AI Systems Engineer",
+              description="CUDA ASIC compiler systems.",
+              location="Remote",
+              source="probe",
+              source_url="https://example.invalid/jobs/gap",
+              requirements=("Python", "CUDA", "ASIC design", "compiler kernels"),
+              digest="gap-digest",
+          )
+          intel = CompanyIntelligence(
+              schema="glaciereq.company-intelligence.v1",
+              company_id="acme",
+              company="Acme",
+              collected_at=now.isoformat(),
+              max_age_days=30,
+              signals=(
+                  CompanySignal(
+                      kind="engineering",
+                      statement="Reliable agent systems and observability are a current engineering priority",
+                      source_url="https://example.invalid/company/engineering",
+                      observed_at=now.isoformat(),
+                  ),
+                  CompanySignal(
+                      kind="investment",
+                      statement="Investing in custom silicon and compiler kernels",
+                      source_url="https://example.invalid/company/investment",
+                      observed_at=now.isoformat(),
+                  ),
+              ),
+          )
+          queue = build_application_execution_queue(
+              ((gap, target, intel, None), (strong, target, intel, None)),
+              profile,
+              now=now,
+          )
+          first, second = queue.items
+          assert first.opening_id == "strong"
+          assert first.lane == "APPLY_NOW"
+          assert first.priority_score > second.priority_score
+          assert second.lane == "PREPARE_GAPS"
+          assert second.priority_score <= 45.0
+          assert first.fresh_signal_count == 2
+          print({
+              "schema": queue.schema,
+              "first": first.opening_id,
+              "first_lane": first.lane,
+              "first_score": first.priority_score,
+              "gap_lane": second.lane,
+              "gap_score": second.priority_score,
+              "candidate_count": queue.candidate_count,
+          })
+          PY
