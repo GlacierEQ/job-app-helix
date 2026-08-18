@@ -65,7 +65,9 @@ def _intelligence_transport(spec: SourceSpec) -> FetchedSource:
     )
 
 
-def _ashby_payload(description: str = "Build reliable distributed agent systems") -> dict[str, object]:
+def _ashby_payload(
+    description: str = "Build reliable distributed agent systems",
+) -> dict[str, object]:
     return {
         "apiVersion": "1",
         "jobs": [
