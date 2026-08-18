@@ -2,17 +2,17 @@
 
 ## Purpose
 
-Job App Helix is the canonical compiler and control plane for the GlacierEQ job-application portfolio. It does not own or duplicate child-repository source code. It resolves live canonical repositories, verifies evidence, builds projections, and publishes recruiter, expert, and machine-readable surfaces.
+Job App Helix is the APEX compiler and control plane for the GlacierEQ job-application portfolio. It does not own or duplicate child-repository source code. It resolves live APEX repositories, verifies evidence, builds projections, and publishes recruiter, expert, and machine-readable surfaces.
 
 ## Source-of-truth rule
 
-Each child project has exactly one canonical source repository:
+Each child project has exactly one APEX source repository:
 
 `https://github.com/GlacierEQ/<repository>`
 
 Helix may retain only:
 
-- repository identity and canonical URL;
+- repository identity and APEX URL;
 - current branch and head SHA;
 - README, release, workflow, test, demo, and deployment references;
 - capability, dependency, role-fit, and evidence metadata;
@@ -24,7 +24,7 @@ Helix must not retain copied child source trees, copied repository archives, man
 ## Compiler pipeline
 
 ```text
-Canonical repositories
+APEX repositories
         │
         ▼
 Live repository resolver
@@ -36,7 +36,7 @@ Provenance census + duplicate detector
 Evidence and quality verifier
         │
         ▼
-Canonical repository graph
+APEX repository graph
         │
         ▼
 Projection compiler
@@ -54,7 +54,7 @@ Projection compiler
 Every tracked Helix file must resolve to one of these classes:
 
 - `HELIX_NATIVE`: authored specifically for the Helix control plane.
-- `GENERATED_PROJECTION`: reproducibly generated from canonical repository metadata or Helix-native contracts.
+- `GENERATED_PROJECTION`: reproducibly generated from APEX repository metadata or Helix-native contracts.
 - `SHA_BOUND_EVIDENCE`: excerpt or receipt bound to an immutable repository URL and commit SHA.
 - `TEST_FIXTURE`: synthetic or reduced fixture clearly marked as non-production.
 - `HARD_COPY_CANDIDATE`: content that may duplicate a child repository and requires review.
@@ -65,11 +65,11 @@ Every tracked Helix file must resolve to one of these classes:
 Each selected repository projection must contain:
 
 - repository full name;
-- canonical repository URL;
+- APEX repository URL;
 - default branch;
 - observed head SHA;
 - visibility and archived state;
-- canonical README URL;
+- APEX README URL;
 - language and capability summary;
 - test and CI evidence state;
 - demo or deployment evidence state;
@@ -82,7 +82,7 @@ Each selected repository projection must contain:
 
 A repository cannot be promoted as `ELITE_VERIFIED` unless all required gates pass:
 
-1. Canonical repository resolves.
+1. APEX repository resolves.
 2. Source code is substantive rather than placeholder-only.
 3. README accurately describes current code.
 4. Build or validation command is documented.
@@ -108,7 +108,7 @@ State promotion is monotonic and receipt-backed. A stale head SHA marks dependen
 
 ## Regeneration policy
 
-Generated outputs are disposable. They must be rebuilt from canonical repository observations and Helix-native contracts. A child repository update changes its head SHA; the next compiler run must detect the change, invalidate stale evidence, and regenerate affected projections.
+Generated outputs are disposable. They must be rebuilt from APEX repository observations and Helix-native contracts. A child repository update changes its head SHA; the next compiler run must detect the change, invalidate stale evidence, and regenerate affected projections.
 
 ## Failure handling
 
@@ -118,7 +118,7 @@ Generated outputs are disposable. They must be rebuilt from canonical repository
 - A copied artifact must be quarantined before deletion when provenance is uncertain.
 - Generated surfaces must fail closed when required evidence is missing.
 
-## Canonical artifacts
+## APEX artifacts
 
 - `manifests/portfolio_repositories.json`
 - `manifests/live_repository_links.json`
