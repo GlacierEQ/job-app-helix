@@ -1,120 +1,112 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "7092637780889ae8e5c97c32e17a5ffabf340e37",
-  "current_source_sha_before_handoff": "3eeb362aa10024abc9d3a8fac35d632a19b8138f",
+  "source_sha_before": "93b0e155c0aa6f2f5a3c238b2bb873e924b37cf7",
+  "current_source_sha_before_handoff": "fc679c3e39aca44a0ca483ceb6b79def11a1bc1e",
   "donor_shas": [
-    "2490727f4a0bab8fae012e02339a5dc211b22390",
-    "112fbe2707a7e96b1b038bdf99fec08292a76070"
+    "42e4708ff077b6b78e7d2c71f4480b8ebf03110b",
+    "93b0e155c0aa6f2f5a3c238b2bb873e924b37cf7"
   ],
-  "selected_priority": "Feed opportunity intelligence into recruiter-facing application projection so explicit requirements control resume, cover-letter, and outreach emphasis.",
+  "selected_priority": "Add sourced live target-company intelligence for products, investments, engineering direction, values, and hiring signals with timestamps and provenance.",
   "priority_tier": "P1",
   "blocked_higher_candidates": [],
-  "displaced_capability": "OpportunityAssessment could rank openings but did not alter the application packet recruiters actually receive; the legacy projection still used broad description overlap and generic copy.",
+  "displaced_capability": "Helix had target theses and requirement-aware job scoring, but no freshness-aware sourced company signal layer capable of separating current company direction from stale or unsupported assumptions.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Reuse the existing application lifecycle and the newly restored requirement-aware OpportunityAssessment rather than reverting later lifecycle code."
+      "assessment": "Reuse CompanyTarget, CandidateProfile, and opportunity tokenization instead of replacing the existing application and evidence lifecycle."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Replace projection internals with requirement-native rendering, which would create unnecessary regression risk across the established lifecycle."
+      "assessment": "Add provenance-bearing company signal envelopes with URL validation, timestamps, freshness expiry, and independent fit scoring."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Layer a requirement-aware strategy compiler over the proven lifecycle: map explicit matched requirements to candidate-supplied evidence, inject only supported evidence into recruiter copy, persist the opportunity assessment and strategy receipt, and keep the existing adapter/store path intact."
+      "assessment": "Compose fresh company signals with candidate evidence to emit strategic hooks while refusing to convert unmatched company priorities into candidate claims."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "commits": [
-      "c635687296072bb7edc1ef68cb99bda011b8f808",
-      "34a5b86f2fcae673d954e1f6722e5d2d4dc84d33",
-      "dfa29dc28ad51ef31e164477bbce97978911b03e",
-      "3eeb362aa10024abc9d3a8fac35d632a19b8138f"
+    "commit": "fc679c3e39aca44a0ca483ceb6b79def11a1bc1e",
+    "modules": [
+      "src/job_app_helix/company_intelligence.py",
+      "src/job_app_helix/company_fit.py"
     ],
-    "module": "src/job_app_helix/application_strategy.py",
-    "entry_point": "job-app-helix-strategy",
+    "live_manifest": "manifests/company_intelligence/anthropic.json",
     "capabilities": [
-      "maps matched required and preferred hiring signals to the strongest supplied candidate evidence",
-      "injects requirement-aligned evidence into resume, cover letter, and outreach copy",
-      "does not inject missing explicit requirements as candidate claims",
-      "adds job-opening provenance to projection claim sources",
-      "persists OPPORTUNITY_ASSESSMENT.json and STRATEGY_RECEIPT.json beside application artifacts",
-      "composes with the existing ApplicationStore and adapter lifecycle rather than replacing it"
+      "validates attributable HTTP(S) sources and timestamped company signals",
+      "expires stale intelligence before fit scoring",
+      "scores supplied candidate evidence against fresh company direction",
+      "emits matched and unmatched signals plus recruiter/application strategic hooks",
+      "preserves source URLs in machine-readable output",
+      "keeps unmatched company priorities out of candidate claims"
     ]
   },
   "preserved_gains": [
-    "existing application_operations lifecycle and database schema remain unchanged",
-    "existing recruiter public-proof admission boundary remains enforced by project_application",
-    "existing OpportunityAssessment scoring and hard gap recommendation semantics are reused",
-    "existing manual and JSON API adapter interfaces remain compatible",
-    "restored public proof runtime at 7092637 remains untouched"
+    "existing requirement-aware opportunity assessment remains unchanged",
+    "existing application strategy compiler remains unchanged",
+    "existing public-proof admission boundary remains unchanged",
+    "existing company target manifests and lifecycle schemas remain compatible"
   ],
   "tests_runtime_proof": {
-    "tests_added": "tests/test_application_strategy.py",
+    "tests_added": "tests/test_company_intelligence.py",
     "adversarial_cases": [
-      "matched explicit requirements appear as evidence-bound recruiter copy",
-      "CUDA/ASIC/compiler gaps are not fabricated into the resume",
-      "strategy compilation persists opportunity and strategy receipts in the tracked lifecycle"
+      "fresh matched signal becomes a strategic hook while unrelated compiler/kernel hiring remains unmatched",
+      "stale signals are excluded from fit and source output",
+      "non-absolute source URLs are rejected"
     ],
     "independent_runtime_probe": {
       "result": "PASS",
-      "recommendation": "APPLY_PRIORITY",
-      "score": 90.0,
-      "aligned_resume": true,
-      "gap_nonfabrication": true,
-      "strategy_receipt": true,
-      "application_id": "app-d6499c9d596585df",
-      "scope": "Executed the committed application_strategy module locally against interface-compatible stubs because the execution container could not resolve github.com for a fresh clone."
+      "score": 50.0,
+      "fresh_signal_count": 2,
+      "matched_signal_count": 1,
+      "unmatched_signal_count": 1,
+      "source_count": 2
     },
-    "syntax_probe": "python -m py_compile application_strategy.py passed",
     "ci_status": {
-      "new_head": "Buildkite failure on build 519",
-      "baseline_before_change": "Buildkite was already failing on prior head 7092637 (build 515)",
-      "classification": "pre-existing pipeline red remains material but is not evidence that this delta failed; exact Buildkite logs were not accessible in-run"
+      "head": "fc679c3e39aca44a0ca483ceb6b79def11a1bc1e",
+      "buildkite": "failure on build 522",
+      "classification": "pipeline remains red; prior run documented Buildkite already failing before this feature, and no Buildkite logs were available through the current connector"
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P1",
-      "priority": "Add sourced live target-company intelligence for products, investments, engineering direction, values, and hiring signals with timestamps and provenance.",
+      "priority": "Fuse CompanyFitAssessment into application_strategy so fresh target-company signals directly alter resume, cover-letter, and outreach emphasis without fabricating evidence.",
       "target_files_functions": [
-        "src/job_app_helix/opportunity_intelligence.py",
-        "manifests/company_targets.json"
+        "src/job_app_helix/application_strategy.py",
+        "src/job_app_helix/company_fit.py"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Batch-rank multiple live openings and produce an application work queue using requirement-aware scores and hard-gap caps.",
+      "priority": "Batch-rank live openings and produce an application work queue using requirement score, company fit, freshness, and hard-gap caps.",
       "target_files_functions": [
         "src/job_app_helix/opportunity_intelligence.py",
-        "src/job_app_helix/application_strategy.py"
+        "src/job_app_helix/company_fit.py"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Calibrate ranking weights from persisted interview/offer outcomes without contaminating candidate evidence or treating sparse feedback as truth.",
+      "priority": "Automate refresh of company intelligence envelopes from attributable sources with change detection and provenance retention.",
       "target_files_functions": [
-        "src/job_app_helix/application_operations.py::ApplicationStore.feedback_summary",
-        "src/job_app_helix/opportunity_intelligence.py"
+        "src/job_app_helix/company_intelligence.py",
+        "manifests/company_intelligence"
       ]
     }
   ],
   "next_sequence": [
-    "isolate the pre-existing Buildkite failure from build 515/519 when logs become accessible",
-    "add live target-company intelligence envelopes and freshness checks",
-    "compose batch opportunity ranking with the requirement-aware strategy compiler",
-    "add outcome calibration only after sufficient persisted feedback exists"
+    "integrate company fit into recruiter-facing strategy compilation",
+    "add batch opportunity queue with combined requirement and company-fit ranking",
+    "add source refresh/change detection while preserving historical provenance"
   ],
-  "merge_deploy_gate": "Changes are already on main. Preserve the evidence-only candidate claim boundary and require exact-head CI when the Buildkite pipeline debt is repaired; do not roll back this capability merely to make a historically red pipeline appear green.",
-  "rollback": "Revert commits c6356872, 34a5b86f, dfa29dc2, and 3eeb362a or remove application_strategy.py plus the job-app-helix-strategy entry point. No lifecycle schema migration was introduced.",
+  "merge_deploy_gate": "Changes are already on main. Require source freshness and candidate-evidence non-fabrication invariants in any downstream projection integration.",
+  "rollback": "Revert fc679c3e39aca44a0ca483ceb6b79def11a1bc1e and this handoff commit; no schema migration was introduced.",
   "no_loss_invariants": [
-    "never invent candidate evidence to satisfy a requirement",
-    "never inject missing requirements into recruiter-facing copy as if possessed",
-    "never let free-form description overlap outrank explicit hiring requirements",
-    "never weaken recruiter public-proof admission checks",
-    "never replace the existing lifecycle when composition preserves stronger current behavior"
+    "never treat a company signal as candidate evidence",
+    "never use stale intelligence as fresh strategic direction",
+    "never discard source provenance from recruiter strategy inputs",
+    "never weaken explicit requirement gap handling or public-proof admission"
   ],
   "verified_delta_state": "EXECUTABLE_CAPABILITY_COMMITTED_READ_BACK_AND_RUNTIME_PROBED"
 }
