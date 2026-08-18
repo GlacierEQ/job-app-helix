@@ -5,7 +5,6 @@ import unittest
 
 from job_app_helix import application_operations, candidate_profile_compiler
 
-
 RESUME = """# Casey Barton \u2014 Senior Infrastructure Engineer
 
 **Email**: casey@example.com | **GitHub**: github.com/GlacierEQ | **Location**: Honolulu, HI
