@@ -110,6 +110,37 @@ def test_refresh_retires_absent_stale_signal() -> None:
     assert result.retired[0].reason == "STALE"
 
 
+def test_stale_incoming_does_not_displace_fresh_current_signal() -> None:
+    current = _signal(observed_at="2026-08-10T00:00:00Z")
+    stale_incoming = _signal(
+        statement="Ancient copy of the same source.",
+        observed_at="2026-01-01T00:00:00Z",
+    )
+
+    result = refresh_company_intelligence(
+        _intel((current,), collected_at="2026-08-10T00:00:00Z"),
+        _intel((stale_incoming,), collected_at="2026-08-18T06:00:00Z"),
+        now=datetime(2026, 8, 18, 7, tzinfo=UTC),
+    )
+
+    assert result.intelligence.signals == (current,)
+    assert result.retired[0].reason == "STALE_INCOMING"
+    assert result.receipt.stale_retired_count == 1
+    assert result.receipt.superseded_count == 0
+
+
+def test_duplicate_signal_channel_is_rejected() -> None:
+    first = _signal(statement="First statement")
+    duplicate = _signal(statement="Conflicting second statement")
+
+    with pytest.raises(ValueError, match="duplicate signal channel"):
+        refresh_company_intelligence(
+            _intel((first,)),
+            _intel((first, duplicate), collected_at="2026-08-18T06:00:00Z"),
+            now=datetime(2026, 8, 18, 7, tzinfo=UTC),
+        )
+
+
 def test_refresh_rejects_identity_change_and_time_regression() -> None:
     current = _intel((_signal(),), collected_at="2026-08-18T06:00:00Z")
 
