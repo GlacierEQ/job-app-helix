@@ -102,7 +102,6 @@ def _live_opening(url: str, *, title: str = "AI Systems Engineer") -> JobOpening
         preferred=("distributed systems",),
         source_url=url,
         metadata={"source_kind": "job-posting"},
-        source_digest="live-cycle-opening",
     )
 
 
