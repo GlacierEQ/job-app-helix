@@ -62,7 +62,10 @@ def test_selects_highest_priority_executable_census_target():
         observation("healthy", "HEALTHY_MONITOR", 10),
     )
 
-    selected = select_restoration_target(state, (target("thin"), target("stranded"), target("healthy")))
+    selected = select_restoration_target(
+        state,
+        (target("thin"), target("stranded"), target("healthy")),
+    )
 
     assert selected.repository == "stranded"
     assert selected.priority_score == 90
