@@ -151,14 +151,17 @@ def inspect_repository(
             "api",
             f"repos/{owner}/{repository}/commits?per_page={recent_commit_limit}",
             "--jq",
-            ".[ ].commit.message",
+            ".[].commit.message",
         )
     )
-    messages = tuple(
-        line.split("\n", maxsplit=1)[0][:120]
-        for line in commits.stdout.splitlines()
-        if line.strip()
-    ) if commits.returncode == 0 else ()
+    if commits.returncode == 0:
+        messages = tuple(
+            line.split("\n", maxsplit=1)[0][:120]
+            for line in commits.stdout.splitlines()
+            if line.strip()
+        )
+    else:
+        messages = ()
     recovery_count = sum(bool(RECOVERY_SIGNAL.search(message)) for message in messages)
     power_count = sum(bool(POWER_SIGNAL.search(message)) for message in messages)
     size_kb = int(metadata.get("size") or 0)
@@ -172,6 +175,8 @@ def inspect_repository(
         recovery_signal_count=recovery_count,
         power_signal_count=power_count,
     )
+    default_branch = metadata.get("default_branch")
+    pushed_at = metadata.get("pushed_at")
     return RepositoryRecoveryObservation(
         repository=repository,
         exists=True,
@@ -179,8 +184,8 @@ def inspect_repository(
         disabled=disabled,
         fork=bool(metadata.get("fork")),
         size_kb=size_kb,
-        default_branch=str(metadata.get("default_branch")) if metadata.get("default_branch") else None,
-        pushed_at=str(metadata.get("pushed_at")) if metadata.get("pushed_at") else None,
+        default_branch=str(default_branch) if default_branch else None,
+        pushed_at=str(pushed_at) if pushed_at else None,
         recent_messages=messages,
         recovery_signal_count=recovery_count,
         power_signal_count=power_count,
