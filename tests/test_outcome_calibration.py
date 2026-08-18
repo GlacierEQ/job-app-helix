@@ -80,7 +80,13 @@ def test_repeated_outcomes_shift_weights_but_remain_bounded() -> None:
 
 def test_calibration_never_lets_gap_lane_jump_apply_lane() -> None:
     examples = [
-        OutcomeExample(f"app-{index}", index / 9, 50 + index * 5, 40 + index * 6, 0.2 + index / 12)
+        OutcomeExample(
+            f"app-{index}",
+            index / 9,
+            50 + index * 5,
+            40 + index * 6,
+            0.2 + index / 12,
+        )
         for index in range(10)
     ]
     model = fit_outcome_calibration(examples)
@@ -91,8 +97,21 @@ def test_calibration_never_lets_gap_lane_jump_apply_lane() -> None:
         apply_now_count=1,
         gap_work_count=1,
         items=(
-            _item("gap", lane="PREPARE_GAPS", opportunity=99.0, fit=100.0, freshness=1.0, required=0.5),
-            _item("apply", lane="APPLY_NOW", opportunity=60.0, fit=55.0, freshness=0.5),
+            _item(
+                "gap",
+                lane="PREPARE_GAPS",
+                opportunity=99.0,
+                fit=100.0,
+                freshness=1.0,
+                required=0.5,
+            ),
+            _item(
+                "apply",
+                lane="APPLY_NOW",
+                opportunity=60.0,
+                fit=55.0,
+                freshness=0.5,
+            ),
         ),
     )
 
@@ -106,7 +125,13 @@ def test_calibration_never_lets_gap_lane_jump_apply_lane() -> None:
 
 def test_calibration_reranks_inside_same_lane() -> None:
     rows = [
-        OutcomeExample(f"app-{index}", 0.95 if index >= 6 else 0.1, 70.0, 95.0 if index >= 6 else 30.0, 1.0)
+        OutcomeExample(
+            f"app-{index}",
+            0.95 if index >= 6 else 0.1,
+            70.0,
+            95.0 if index >= 6 else 30.0,
+            1.0,
+        )
         for index in range(12)
     ]
     model = fit_outcome_calibration(rows)
@@ -117,8 +142,20 @@ def test_calibration_reranks_inside_same_lane() -> None:
         apply_now_count=2,
         gap_work_count=0,
         items=(
-            _item("higher-fit", lane="APPLY_NOW", opportunity=80.0, fit=95.0, freshness=1.0),
-            _item("lower-fit", lane="APPLY_NOW", opportunity=82.0, fit=30.0, freshness=1.0),
+            _item(
+                "higher-fit",
+                lane="APPLY_NOW",
+                opportunity=80.0,
+                fit=95.0,
+                freshness=1.0,
+            ),
+            _item(
+                "lower-fit",
+                lane="APPLY_NOW",
+                opportunity=82.0,
+                fit=30.0,
+                freshness=1.0,
+            ),
         ),
     )
 
