@@ -1,0 +1,141 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "current_source_sha": "63ff71364513a824353811468856140edc9a30e6",
+  "donor_shas": [
+    "59838debb4022daf8bbd6c362c43505b4e55202e",
+    "a917a2c14fbf51e15526b93f2884d051680e6977"
+  ],
+  "selected_priority": "Persist longitudinal opening-change telemetry and classify recruiter-material field changes before expensive company intelligence and recruiter-packet invalidation.",
+  "priority_tier": "P2",
+  "blocked_higher_candidates": [
+    {
+      "tier": "P2",
+      "candidate": "Execute the first real stranded repository-family restoration through the manifestless estate-to-ref-graph-to-federated bridge.",
+      "blocker": "The available GitHub connector could read the restored bridge and branch names but could not execute the repository runtime, and direct branch comparison/fetch for the candidate family returned connector-path failures. The lane was isolated rather than guessed or treated as completed.",
+      "pivot": "Advance the next unblocked P2 executable target: field-sensitive opening materiality and selective rebuild gating."
+    }
+  ],
+  "displaced_capability": "Opening Watch already persisted append-only change events, but every CHANGED digest entered the expensive intelligence and recruiter-packet cycle. Metadata normalization churn and digest-only drift could therefore invalidate or rebuild recruiter materials even when no recruiter-facing job content changed.",
+  "mechanisms_compared": [
+    {
+      "mechanism": "historical_recovery_or_composition",
+      "assessment": "Keep digest-only invalidation and rely on existing stale-packet rollback. Rejected because it preserves unnecessary rebuilds."
+    },
+    {
+      "mechanism": "modern_upgrade",
+      "assessment": "Replace opening snapshots with a new semantic-diff service. Rejected because the existing acquisition/watch pipeline already exposes deterministic changed_fields and append-only telemetry."
+    },
+    {
+      "mechanism": "nonlinear_combination",
+      "assessment": "Selected: compose deterministic changed_fields with an explicit recruiter-material field boundary, persist both raw and material classifications, and gate the existing expensive watch-cycle runtime only on NEW or recruiter-material changes while preserving metadata/digest drift telemetry."
+    }
+  ],
+  "implemented_delta": {
+    "pull_request": 242,
+    "proof_head": "e18edaf99ec8960e0395c17c81aadbf98ff6122a",
+    "merge_sha": "63ff71364513a824353811468856140edc9a30e6",
+    "files": [
+      "src/job_app_helix/opening_watch.py",
+      "src/job_app_helix/opening_watch_cycle.py",
+      "tests/test_opening_watch.py",
+      "tests/test_opening_watch_cycle.py",
+      ".github/workflows/intelligence-cycle-proof.yml"
+    ],
+    "capabilities": [
+      "classify CHANGED openings as RECRUITER_MATERIAL, METADATA_ONLY, or DIGEST_ONLY",
+      "expose exact material_changed_fields per opening",
+      "persist material_changed_count and non_material_changed_count in watch receipts",
+      "preserve metadata-only and digest-only changes in the append-only opening event stream",
+      "run full company intelligence, ranking, and recruiter-packet work only for NEW or recruiter-material changes",
+      "record deferred_non_material_urls in watch-cycle receipts",
+      "retain failure isolation, unchanged fast path, fetch deduplication, and stale packet rollback"
+    ]
+  },
+  "preserved_gains": [
+    "live opening provenance and deterministic snapshots remain unchanged",
+    "raw changed_fields remain visible for diagnostics and future policy evolution",
+    "NEW postings still run the full intelligence cycle",
+    "recruiter-material title/description/location/requirements/preferred/company/opening-id changes still trigger rebuilds",
+    "UNCHANGED postings remain on the zero-full-cycle fast path",
+    "failed openings remain isolated",
+    "stale recruiter packet lineage remains preserved for rollback",
+    "manual intelligence-cycle execution remains available"
+  ],
+  "tests_runtime_proof": {
+    "opening_watch_workflow": {
+      "run_id": 32170708604,
+      "result": "PASS",
+      "matrix": ["3.11", "3.12", "3.13"],
+      "checks": [
+        "focused Ruff runtime",
+        "batch opening-watch adversarial proof",
+        "executable module resolution"
+      ]
+    },
+    "intelligence_cycle_workflow": {
+      "run_id": 32170708538,
+      "result": "PASS",
+      "matrix": ["3.11", "3.12", "3.13"],
+      "checks": [
+        "strict Ruff across integrated cycle surfaces",
+        "material title change triggers full rebuild",
+        "metadata-only change is telemetried and deferred without full rebuild",
+        "digest-only drift is classified non-material",
+        "existing acquisition, freshness, watch-cycle, and recruiter-packet tests",
+        "installed executable checks"
+      ]
+    },
+    "post_merge_readback": {
+      "result": "PASS",
+      "merge_sha": "63ff71364513a824353811468856140edc9a30e6",
+      "module_blob_sha": "4cc471167a5fac9d2382b09abe7462ae0ccd7c18",
+      "observed": "opening_watch_cycle v2 selects item.recruiter_material, records deferred_non_material_urls, and leaves metadata/digest-only drift outside the expensive intelligence cycle"
+    }
+  },
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P2",
+      "priority": "Execute and prove the first real stranded repository-family restoration through the manifestless estate-to-ref-graph-to-federated bridge using a tool surface that can execute or directly inspect the exact donor family.",
+      "target_files_functions": [
+        "src/job_app_helix/estate_federated_restoration.py::execute_auto_estate_federated_restoration",
+        "src/job_app_helix/recovery_ref_graph.py::build_ref_graph",
+        "src/job_app_helix/federated_restoration.py::apply_federated_packet"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Propagate recruiter-material classification into direct job-app-helix-cycle live-URL execution so non-watch callers receive the same selective invalidation semantics.",
+      "target_files_functions": [
+        "src/job_app_helix/intelligence_cycle.py::execute_intelligence_cycle",
+        "src/job_app_helix/opening_acquisition.py::OpeningChange",
+        "src/job_app_helix/freshness_aware_batch.py::compile_freshness_aware_batch"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Add maintained target-company opening discovery so Opening Watch refreshes discovered company opening inventories rather than only supplied URLs.",
+      "target_files_functions": [
+        "src/job_app_helix/opening_watch_cycle.py",
+        "src/job_app_helix/opening_acquisition.py",
+        "src/job_app_helix/company_intelligence_acquisition.py"
+      ]
+    }
+  ],
+  "next_sequence": [
+    "retry exact stranded-family execution only through a tool path capable of exact donor inspection/apply",
+    "otherwise extend materiality semantics into direct intelligence-cycle execution",
+    "then add live target-company opening inventory discovery"
+  ],
+  "merge_deploy_gate": "PR 242 merged at exact head e18edaf99ec8960e0395c17c81aadbf98ff6122a after Opening Watch Proof 32170708604 and Job Intelligence Cycle Proof 32170708538 both passed Python 3.11, 3.12, and 3.13. Post-merge readback observed opening_watch_cycle v2 at merge 63ff71364513a824353811468856140edc9a30e6.",
+  "rollback": "Revert merge 63ff71364513a824353811468856140edc9a30e6. The prior changed-anything watch behavior remains recoverable from main parent 234028ef65a3778efc11001b6d23f1bf2b141aec.",
+  "no_loss_invariants": [
+    "never suppress recruiter-material title, description, company, location, requirements, preferred, or opening-id changes",
+    "never discard raw changed_fields or append-only opening change telemetry",
+    "never let metadata churn force recruiter packet invalidation unless policy explicitly promotes that field to recruiter-material",
+    "never treat job-posting content as candidate evidence",
+    "never delete stale recruiter packet lineage before a fresh packet is complete",
+    "never let monitoring or receipts displace executable application capability"
+  ],
+  "verified_delta_state": "RECRUITER_MATERIAL_OPENING_CLASSIFICATION_AND_SELECTIVE_WATCH_CYCLE_REBUILD_MERGED_PROVEN_AND_READ_BACK_ON_MAIN"
+}
