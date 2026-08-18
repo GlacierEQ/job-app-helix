@@ -286,7 +286,7 @@ def fetch_http_source(
         },
     )
     try:
-        with urlopen(request, timeout=timeout_seconds) as response:  # noqa: S310
+        with urlopen(request, timeout=timeout_seconds) as response:
             final_url = response.geturl()
             final = urlparse(final_url)
             if final.scheme not in {"http", "https"} or not final.hostname:
@@ -336,7 +336,9 @@ def acquire_company_intelligence(
         source = transport(spec)
         final = urlparse(source.final_url)
         if not final.hostname or not _domain_allowed(final.hostname, spec.allowed_domains):
-            raise ValueError(f"transport returned a source outside allowed_domains: {source.final_url}")
+            raise ValueError(
+                "transport returned a source outside allowed_domains: " f"{source.final_url}"
+            )
         statements = _extract_statements(spec, source)
         statement_digest = hashlib.sha256("\n".join(statements).encode("utf-8")).hexdigest()
         source_receipts.append(
