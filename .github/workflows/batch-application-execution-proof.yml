@@ -4,14 +4,18 @@ on:
   pull_request:
     paths:
       - "src/job_app_helix/batch_application_execution.py"
+      - "src/job_app_helix/company_intelligence_refresh.py"
       - "tests/test_batch_application_execution.py"
+      - "tests/test_company_intelligence_refresh.py"
       - "pyproject.toml"
       - ".github/workflows/batch-application-execution-proof.yml"
   push:
     branches: [main]
     paths:
       - "src/job_app_helix/batch_application_execution.py"
+      - "src/job_app_helix/company_intelligence_refresh.py"
       - "tests/test_batch_application_execution.py"
+      - "tests/test_company_intelligence_refresh.py"
       - "pyproject.toml"
       - ".github/workflows/batch-application-execution-proof.yml"
 
@@ -20,7 +24,7 @@ permissions:
 
 jobs:
   prove:
-    name: Batch packets / Python ${{ matrix.python-version }}
+    name: Job execution surfaces / Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -38,14 +42,21 @@ jobs:
       - name: Install package and proof tools
         run: python -m pip install -e ".[dev]"
 
-      - name: Lint new executable surfaces
+      - name: Lint executable surfaces
         run: >-
           ruff check
           src/job_app_helix/batch_application_execution.py
+          src/job_app_helix/company_intelligence_refresh.py
           tests/test_batch_application_execution.py
+          tests/test_company_intelligence_refresh.py
 
-      - name: Run batch execution adversarial tests
-        run: python -m pytest -q tests/test_batch_application_execution.py
+      - name: Run adversarial executable tests
+        run: >-
+          python -m pytest -q
+          tests/test_batch_application_execution.py
+          tests/test_company_intelligence_refresh.py
 
-      - name: Prove installed executable exists
-        run: job-app-helix-batch --help >/dev/null
+      - name: Prove installed executables exist
+        run: |
+          job-app-helix-batch --help >/dev/null
+          job-app-helix-company-refresh --help >/dev/null
