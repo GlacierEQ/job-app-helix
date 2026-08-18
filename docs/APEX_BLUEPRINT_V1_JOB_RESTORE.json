@@ -1,97 +1,114 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "843467a57c12931349abe16d7f371e6fdc909cc9",
-  "current_source_sha_before_handoff": "857ddb211cbb58909c9e5b0581df877ddca89db2",
+  "source_sha_before": "857ddb211cbb58909c9e5b0581df877ddca89db2",
+  "current_source_sha_before_handoff": "c5b7cab8242f42b35d57928ac2eac4deea5d3203",
   "donor_shas": [
-    "c65097ae7fa408e3c9dc69412966ca6c0bb9c313"
+    "857ddb211cbb58909c9e5b0581df877ddca89db2",
+    "43b11eb8055909ea54edb6c78574d79cedf567b9"
   ],
-  "selected_priority": "Add attributable live job-opening acquisition with deterministic opening-change detection so real postings can be refreshed before ranking and recruiter-packet work.",
+  "selected_priority": "Compose attributable live opening acquisition directly into the executable intelligence cycle so URL-native candidates refresh before company intelligence, ranking, and recruiter-packet compilation.",
   "priority_tier": "P2",
   "blocked_higher_candidates": [],
-  "displaced_capability": "The estate could normalize a supplied URL into a JobOpening, but it lacked a durable acquisition surface that persisted provenance-bound snapshots and distinguished NEW, UNCHANGED, and materially CHANGED openings across runs.",
+  "displaced_capability": "Live opening acquisition existed as a proven standalone executable, but intelligence_cycle still required a prewritten opening file. Real posting refresh and change state were therefore disconnected from the job-ranking and packet pipeline.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Reuse the proven ingest_job_opening_url normalizer and JobOpening model already on main instead of duplicating parsing logic."
+      "assessment": "Reuse the already-proven acquire_live_opening and preserve the static opening-file path for compatibility."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Add a standalone acquisition service with atomic snapshots, receipt hashing, source URL binding, and exact field-level change detection."
+      "assessment": "Replace cycle manifests with URL-only ingestion, which would simplify the surface but unnecessarily break existing static manifests."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: compose the existing normalizer with persistent provenance and deterministic change-state intelligence, exposing both Python and CLI execution surfaces."
+      "assessment": "Selected: dual-source candidates accept exactly one static opening file or live opening URL, refresh live openings before ranking, persist opening receipts beside company intelligence, and expose change state through the cycle receipt."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 234,
-    "proof_head": "b72a83538024d38b6a24261c935607851b455092",
-    "merge_sha": "857ddb211cbb58909c9e5b0581df877ddca89db2",
+    "pull_request": 235,
+    "runtime_main_commit": "77acc2cda99bed535faf37cf8a3e22edc38909ea",
+    "proof_head": "22cdf0032da60e3cfd38a71ec84dceec4aba7ea2",
+    "merge_sha": "c5b7cab8242f42b35d57928ac2eac4deea5d3203",
     "modules": [
+      "src/job_app_helix/intelligence_cycle.py",
       "src/job_app_helix/opening_acquisition.py",
+      "tests/test_intelligence_cycle.py",
       "tests/test_opening_acquisition.py",
-      ".github/workflows/opening-acquisition-proof.yml"
+      ".github/workflows/intelligence-cycle-proof.yml"
     ],
     "capabilities": [
-      "acquire a live attributable JobPosting URL through the existing normalized JobOpening parser",
-      "persist atomic normalized opening snapshots and independent receipt copies",
-      "classify each acquisition deterministically as NEW, UNCHANGED, or CHANGED",
-      "report the exact material fields changed between snapshots",
-      "reject source URL mismatch before snapshot mutation",
-      "fail closed on malformed existing snapshots",
-      "execute through python -m job_app_helix.opening_acquisition"
+      "accept URL-native job candidates directly in intelligence-cycle manifests",
+      "require exactly one opening source per candidate to prevent ambiguous state",
+      "refresh attributable live openings before company intelligence, queue ranking, and recruiter-packet compilation",
+      "persist OPENING_SNAPSHOT.json and OPENING_ACQUISITION_RECEIPT.json beside company-cycle state",
+      "propagate NEW, UNCHANGED, and CHANGED opening status into CompanyCycleResult and the cycle receipt",
+      "propagate exact changed opening fields into the cycle receipt",
+      "preserve static opening-file candidates without migration",
+      "isolate live-opening failures through the existing per-company failure boundary",
+      "prove both job-app-helix-cycle and opening-acquisition executable entry points"
     ]
   },
   "preserved_gains": [
-    "existing JobOpening schema and ingest_job_opening_url parser remain the normalization authority",
-    "existing intelligence-cycle ranking, calibration guard, queue safety lanes, hard caps, and recruiter packet flow are untouched",
-    "no application submission, recruiter communication, schema migration, or destructive history mutation was introduced"
+    "existing JobOpening normalizer and live-opening provenance checks remain unchanged",
+    "existing company intelligence acquisition and refresh behavior remains intact",
+    "outcome calibration diagnostics and BLOCK_LEARNED_RANKING baseline fallback remain intact",
+    "queue safety lanes, hard-gap caps, recruiter packet compilation, and application store behavior remain intact",
+    "static opening manifests continue to execute",
+    "no application submission or external recruiter communication was introduced"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32147934715,
+      "run_id": 32155528075,
       "result": "PASS",
-      "exact_head": "b72a83538024d38b6a24261c935607851b455092",
+      "exact_head": "22cdf0032da60e3cfd38a71ec84dceec4aba7ea2",
       "matrix": ["3.11", "3.12", "3.13"],
       "checks": [
-        "ruff on opening acquisition and focused tests",
-        "NEW first acquisition persistence",
-        "UNCHANGED identical reacquisition",
-        "CHANGED exact-field detection",
-        "source URL mismatch rejection without mutation",
-        "malformed snapshot fail-closed behavior",
-        "executable CLI help resolution"
+        "semantic Ruff checks over intelligence-cycle and opening-acquisition executable surfaces",
+        "static opening compatibility through full intelligence cycle",
+        "live URL opening refresh before ranking and packet compilation",
+        "persisted opening snapshot and receipt hash propagation",
+        "second-cycle material opening change detection with exact changed field",
+        "manifest rejection when both or neither opening sources are supplied",
+        "company failure isolation and fail-fast behavior",
+        "opening acquisition NEW, UNCHANGED, CHANGED, provenance mismatch, and malformed-snapshot tests",
+        "installed job-app-helix-cycle CLI resolution",
+        "installed opening-acquisition module CLI resolution"
       ]
     },
     "application_registry_validation": {
-      "run_id": 32147934726,
+      "run_id": 32155528049,
       "result": "PASS"
     },
     "post_merge_readback": {
       "result": "PASS",
-      "main_sha": "857ddb211cbb58909c9e5b0581df877ddca89db2",
-      "observed": "opening_acquisition.py is present on main with live URL acquisition, atomic persistence, provenance validation, deterministic change detection, and CLI execution"
+      "main_sha": "c5b7cab8242f42b35d57928ac2eac4deea5d3203",
+      "observed": "main contains URL-native IntelligenceCycleCandidate support, acquire_live_opening execution before company intelligence, persisted opening state paths, opening status and changed-field receipts, and v2 cycle receipts"
     },
     "estate_non_regression": {
-      "run_id": 32147935346,
-      "result": "FAILURE_OUTSIDE_FOCUSED_PROOF_GATE"
-    }
+      "result": "FAILURE_OUTSIDE_FOCUSED_PROOF_GATE",
+      "buildkite_target": "builds/684"
+    },
+    "proof_pivots": [
+      "initial focused proof stopped at three E501 line-length findings before runtime tests",
+      "runtime-focused rerun exposed invalid direct JobOpening test fixture fields and then the fixture source contract",
+      "fixture was aligned with the actual JobOpening source/digest contract; final focused proof passed across all supported Python versions"
+    ]
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P2",
-      "priority": "Wire opening acquisition directly into intelligence_cycle manifests so URL-based candidates refresh their opening snapshot before company intelligence, ranking, and packet compilation.",
+      "priority": "Use material opening-change events to invalidate stale ranking and packet state and selectively rebuild only affected applications.",
       "target_files_functions": [
         "src/job_app_helix/intelligence_cycle.py",
-        "src/job_app_helix/opening_acquisition.py",
-        "tests/test_intelligence_cycle.py"
+        "src/job_app_helix/batch_application_execution.py",
+        "src/job_app_helix/application_operations.py"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Resume recovery ref-graph execution through GitHub branch search and recover only non-superseded executable capability that exceeds main.",
+      "priority": "Resume recovery ref-graph execution through GitHub branch search and recover only non-superseded executable capability that exceeds current main.",
       "target_files_functions": [
         "src/job_app_helix/recovery_ref_graph.py",
         "src/job_app_helix/recovery_reconnaissance.py",
@@ -100,28 +117,29 @@
     },
     {
       "tier": "P2",
-      "priority": "Use opening-change events to invalidate stale ranking/packet state and selectively rebuild only affected applications.",
+      "priority": "Add multi-opening live refresh batching and longitudinal change telemetry so one cycle can continuously maintain the highest-value company opening set rather than one supplied URL at a time.",
       "target_files_functions": [
-        "src/job_app_helix/opening_acquisition.py",
         "src/job_app_helix/intelligence_cycle.py",
-        "src/job_app_helix/batch_application_execution.py"
+        "src/job_app_helix/opening_acquisition.py",
+        "src/job_app_helix/opportunity_queue.py"
       ]
     }
   ],
   "next_sequence": [
-    "integrate URL-based opening acquisition into intelligence_cycle candidate loading",
-    "persist opening acquisition/change receipts alongside company-cycle state",
-    "invalidate and rebuild ranking packets when material opening fields change",
-    "resume stranded branch capability recovery after the direct job-opening path is fully composed"
+    "turn CHANGED opening fields into targeted stale-state invalidation",
+    "recompute only ranking and recruiter artifacts whose material opening inputs changed",
+    "resume stranded branch capability recovery after change-driven rebuild is executable",
+    "expand live opening acquisition from supplied URL candidates to maintained multi-opening company sets"
   ],
-  "merge_deploy_gate": "PR 234 merged at exact proven head b72a83538024d38b6a24261c935607851b455092 after focused workflow 32147934715 passed lint, adversarial acquisition/change tests, and CLI execution on Python 3.11, 3.12, and 3.13. Post-merge readback observed the executable module on main at 857ddb211cbb58909c9e5b0581df877ddca89db2.",
-  "rollback": "Revert merge commit 857ddb211cbb58909c9e5b0581df877ddca89db2. The delta adds one isolated acquisition module, focused tests, and a workflow with no database or external submission side effects.",
+  "merge_deploy_gate": "PR 235 merged at exact proven head 22cdf0032da60e3cfd38a71ec84dceec4aba7ea2 after focused workflow 32155528075 passed semantic lint, integrated adversarial tests, and both executable CLI checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed the runtime integration on main at c5b7cab8242f42b35d57928ac2eac4deea5d3203.",
+  "rollback": "Revert merge c5b7cab8242f42b35d57928ac2eac4deea5d3203 and, if rollback must include the runtime composition itself, revert main commits 77acc2cda99bed535faf37cf8a3e22edc38909ea and 3856994d3a20a68dc4a0aa8eb4e442851df22a1e. Existing standalone opening acquisition remains independently recoverable from merge 857ddb211cbb58909c9e5b0581df877ddca89db2.",
   "no_loss_invariants": [
     "never overwrite a valid opening snapshot when source provenance or prior snapshot structure is invalid",
     "never treat opening text as candidate evidence",
-    "preserve the existing JobOpening normalization contract",
+    "preserve static opening-file execution while live URL execution expands",
     "preserve calibration guard, queue safety lanes, hard-gap caps, and recruiter proof boundaries",
-    "do not let opening monitoring displace direct application execution"
+    "isolate one opening or company acquisition failure without stalling unrelated candidates",
+    "do not let monitoring, receipts, or CI displace direct application execution"
   ],
-  "verified_delta_state": "EXECUTABLE_LIVE_OPENING_ACQUISITION_AND_CHANGE_DETECTION_MERGED_AND_READ_BACK_ON_MAIN"
+  "verified_delta_state": "LIVE_OPENING_REFRESH_COMPOSED_INTO_INTELLIGENCE_CYCLE_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
 }
