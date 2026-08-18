@@ -4,7 +4,11 @@ import json
 from pathlib import Path
 
 from job_app_helix.application_engine import find_target, load_targets
-from job_app_helix.application_operations import ApplicationStore, ingest_job_opening, load_candidate_profile
+from job_app_helix.application_operations import (
+    ApplicationStore,
+    ingest_job_opening,
+    load_candidate_profile,
+)
 from job_app_helix.application_strategy import (
     compile_requirement_aware_lifecycle,
     project_requirement_aware_application,
@@ -20,8 +24,16 @@ def _profile(tmp_path: Path) -> Path:
             {
                 "name": "Casey Barton",
                 "headline": "Systems architect and full-stack AI engineer",
-                "summary": "Builds reliable agent systems, AI evaluation, observability, and automation.",
-                "skills": ["Python", "systems architecture", "AI safety evaluation", "observability"],
+                "summary": (
+                    "Builds reliable agent systems, AI evaluation, observability, "
+                    "and automation."
+                ),
+                "skills": [
+                    "Python",
+                    "systems architecture",
+                    "AI safety evaluation",
+                    "observability",
+                ],
                 "experience": [
                     "Designed evidence-grounded automation and failure recovery systems.",
                     "Built distributed agent coordination and production software tooling.",
@@ -52,7 +64,9 @@ def _opening():
     )
 
 
-def test_projection_places_explicit_requirement_evidence_in_recruiter_copy(tmp_path: Path) -> None:
+def test_projection_places_explicit_requirement_evidence_in_recruiter_copy(
+    tmp_path: Path,
+) -> None:
     profile = load_candidate_profile(_profile(tmp_path))
     _, _, assessment, projection = project_requirement_aware_application(
         _opening(),
@@ -121,5 +135,9 @@ def test_compile_lifecycle_persists_strategy_receipts(tmp_path: Path) -> None:
     assert receipt_path.exists()
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     assert receipt["opportunity_recommendation"] == "APPLY_PRIORITY"
-    assert receipt["matched_requirements"] == ["Python", "observability", "AI safety evaluation"]
+    assert receipt["matched_requirements"] == [
+        "Python",
+        "observability",
+        "AI safety evaluation",
+    ]
     assert application["status"] == "READY"
