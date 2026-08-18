@@ -83,7 +83,9 @@ def assess_company_fit(
     hooks: list[str] = []
     for signal in fresh:
         alignment = _signal_alignment(signal.statement, profile)
-        if alignment >= 0.45:
+        # Two concrete shared concepts in a five-token evidence unit, e.g. capable +
+        # containment, are meaningful. Single generic overlap remains heavily penalized.
+        if alignment >= 0.40:
             matched.append(signal.statement)
             hooks.append(f"{signal.kind}: {signal.statement}")
         else:
