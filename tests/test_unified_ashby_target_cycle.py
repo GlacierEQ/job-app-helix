@@ -33,17 +33,17 @@ def _write_plan(path: Path) -> None:
         json.dumps(
             {
                 "schema": "glaciereq.company-intelligence-acquisition-plan.v1",
-                "company_id": "example-ai",
-                "company": "Example AI",
+                "company_id": "anthropic",
+                "company": "Anthropic",
                 "max_age_days": 3650,
                 "sources": [
                     {
                         "kind": "engineering",
-                        "source_url": "https://example.ai/engineering/platform",
-                        "allowed_domains": ["example.ai"],
+                        "source_url": "https://www.anthropic.com/engineering/unified-ashby",
+                        "allowed_domains": ["anthropic.com"],
                         "include_patterns": ["agent systems|observability"],
                         "extractor": "text",
-                        "source_title": "Example AI engineering",
+                        "source_title": "Anthropic engineering",
                         "max_statements": 3,
                     }
                 ],
@@ -59,7 +59,7 @@ def _intelligence_transport(spec: SourceSpec) -> FetchedSource:
         final_url=spec.source_url,
         status=200,
         content_type="text/plain; charset=utf-8",
-        body=b"Example AI builds reliable agent systems with observability and containment.",
+        body=b"Anthropic builds reliable agent systems with observability and containment.",
         fetched_at="2026-08-19T00:00:00Z",
         etag='"unified-ashby"',
     )
@@ -74,8 +74,8 @@ def _ashby_payload(
             {
                 "title": "Staff AI Platform Engineer",
                 "location": "Remote - US",
-                "jobUrl": "https://jobs.ashbyhq.com/example/abc123",
-                "applyUrl": "https://jobs.ashbyhq.com/example/abc123/application",
+                "jobUrl": "https://jobs.ashbyhq.com/anthropic/abc123",
+                "applyUrl": "https://jobs.ashbyhq.com/anthropic/abc123/application",
                 "descriptionPlain": description,
                 "publishedAt": "2026-08-18T20:00:00Z",
                 "employmentType": "FullTime",
@@ -92,7 +92,7 @@ def _ashby_payload(
             {
                 "title": "Hidden Engineer",
                 "location": "Remote",
-                "jobUrl": "https://jobs.ashbyhq.com/example/hidden",
+                "jobUrl": "https://jobs.ashbyhq.com/anthropic/hidden",
                 "descriptionPlain": "Must never enter the maintained live inventory",
                 "isListed": False,
             },
@@ -103,9 +103,9 @@ def _ashby_payload(
 def _ashby_target(plan: Path) -> TargetIntelligenceSource:
     return TargetIntelligenceSource(
         discovery=TargetOpeningSource(
-            company="Example AI",
+            company="Anthropic",
             provider="ashby",
-            board_key="example",
+            board_key="anthropic-test",
             include_title_terms=("platform",),
             include_locations=("remote",),
         ),
@@ -133,7 +133,7 @@ def test_unified_discovery_preserves_ashby_recruiter_metadata_and_watch(tmp_path
 
 
 def test_ashby_runs_through_unified_target_intelligence_packet_cycle(tmp_path: Path) -> None:
-    plan = tmp_path / "example-plan.json"
+    plan = tmp_path / "anthropic-plan.json"
     _write_plan(plan)
 
     with ApplicationStore(tmp_path / "applications.sqlite3") as store:
@@ -166,7 +166,7 @@ def test_ashby_runs_through_unified_target_intelligence_packet_cycle(tmp_path: P
 def test_mixed_provider_failure_isolation_keeps_ashby_live(tmp_path: Path) -> None:
     sources = (
         TargetOpeningSource(company="Broken", provider="greenhouse", board_key="broken"),
-        TargetOpeningSource(company="Example AI", provider="ashby", board_key="example"),
+        TargetOpeningSource(company="Anthropic", provider="ashby", board_key="anthropic-test"),
     )
 
     def transport(url: str):
