@@ -1,0 +1,43 @@
+name: Outcome Calibration Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/outcome_calibration.py"
+      - "tests/test_outcome_calibration.py"
+      - "pyproject.toml"
+      - ".github/workflows/outcome-calibration-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/outcome_calibration.py"
+      - "tests/test_outcome_calibration.py"
+      - "pyproject.toml"
+      - ".github/workflows/outcome-calibration-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package and proof tools
+        run: python -m pip install -e ".[dev]"
+      - name: Lint outcome surfaces
+        run: >-
+          ruff check
+          src/job_app_helix/outcome_calibration.py
+          tests/test_outcome_calibration.py
+      - name: Run adversarial calibration tests
+        run: python -m pytest -q tests/test_outcome_calibration.py
+      - name: Prove installed executable
+        run: job-app-helix-outcomes --help
