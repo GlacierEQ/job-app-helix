@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime, timedelta
+import datetime as dt
 
 import pytest
 
@@ -13,7 +13,7 @@ from job_app_helix.opportunity_queue import (
 )
 
 
-NOW = datetime(2026, 8, 18, tzinfo=UTC)
+NOW = dt.datetime(2026, 8, 18, tzinfo=dt.UTC)
 
 
 def _proof() -> RepositoryProof:
@@ -79,7 +79,7 @@ def _intelligence(
     matched: bool = True,
     stale: bool = False,
 ) -> CompanyIntelligence:
-    observed = NOW - (timedelta(days=90) if stale else timedelta(days=2))
+    observed = NOW - (dt.timedelta(days=90) if stale else dt.timedelta(days=2))
     statement = (
         "Investing in reliable agent systems and observability"
         if matched
