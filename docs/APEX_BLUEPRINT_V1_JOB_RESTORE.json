@@ -1,115 +1,111 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "b03d72f27dabc8d0b8747ecb3992f25c1641124b",
-  "current_source_sha_before_handoff": "54c45e66836960259ff3224c0c61589a9698a7b1",
+  "source_sha_before": "54d26936af3a1a314fd8761ee714ef9fb1dd9e05",
+  "current_source_sha_before_handoff": "ed760bded46859849e3c6186da211865c3d8aa32",
   "donor_shas": [
-    "b03d72f27dabc8d0b8747ecb3992f25c1641124b",
-    "f10951f059a4405334bf3340f9a47af1c003888c",
-    "5c7795cd81b6d667c2f1172bbcb4b07665aa79c2"
+    "13d3d3aa0a3f403d8e0ef244459cbafe45e6a0d4",
+    "716d3ff4c022a4b0e0cc5cc10d626f112314a149",
+    "d5e52971f78a8fd900d6613b8f08bd823a26c0b0"
   ],
-  "selected_priority": "Automate attributable company-intelligence refresh with semantic change detection, historical provenance retention, partial-refresh preservation, and stale-signal retirement.",
+  "selected_priority": "Recover stranded live experience-graph intelligence from the estate-intelligence compiler lineage and compose it onto current main without reverting stronger later code.",
   "priority_tier": "P2",
   "blocked_higher_candidates": [],
-  "displaced_capability": "Company intelligence could be loaded and freshness-filtered, but there was no executable refresh lifecycle. Updating a manifest risked silently overwriting changed observations, dropping still-fresh signals during partial refreshes, or losing stale provenance instead of retaining it for later reasoning.",
+  "displaced_capability": "Current main retained a strong estate compiler but lacked the stranded live experience-graph runtime that dynamically connects owned repositories to company challenge mappings and personal paradigms, discovers previously unseen repository families, and emits privacy-separated public/internal graph projections with deterministic snapshot identity.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Reuse CompanyIntelligence and CompanySignal validation, preserving the existing company-fit and application-strategy contracts while adding lifecycle behavior around them."
+      "assessment": "Whole-branch restoration was rejected because feature/estate-intelligence-compiler-v2 was only 5 commits ahead but 275 commits behind current main. Restoring that snapshot would displace extensive later application, company-intelligence, recovery, and estate work."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Replace the manifest model with an external database or network crawler. This would expand infrastructure before solving the immediate lifecycle gap and would duplicate already-useful validation semantics."
+      "assessment": "Reimplementing the graph inside the modern estate_compiler module was credible but would duplicate a substantial historically proven runtime and increase regression risk without first recovering its distinct branch-owned semantics."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Keep the validated manifest as active state, identify stable kind/source channels, compare semantic fingerprints, preserve omitted fresh observations, retire stale or superseded observations into append-only history, and expose the composition as an installed CLI with deterministic receipts."
+      "assessment": "Selected: preserve current main intact while composing only the branch-owned experience graph runtime, policy, schema, adversarial tests, and focused proof surface forward from the exact historical lineage."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 226,
-    "merge_commit": "54c45e66836960259ff3224c0c61589a9698a7b1",
-    "branch_head": "1f91665f23daecfa862213ad0e87b393a606ff0b",
-    "implementation_commits": [
-      "1832a2c13141a88c72abde5474b924a28e2731a2",
-      "c3384419f0efc28da1279591f187e43f5dbbc4e5",
-      "3b428966330f79b6dd49ed9ed136ffaa04843142",
-      "0f9e5cdf2fff7230507b835cb5590d91a9c124bc",
-      "df853803280eb6f9a8118173241abb77a6ca8c16",
-      "7762bccca75dc933ac734a73312fa8f6befa1679",
-      "1f91665f23daecfa862213ad0e87b393a606ff0b"
-    ],
+    "pull_request": 227,
+    "merge_commit": "ed760bded46859849e3c6186da211865c3d8aa32",
+    "branch_head": "9f9a61294c9448266e8ae0a67e95f856cf94f8a8",
+    "merge_base": "13d3d3aa0a3f403d8e0ef244459cbafe45e6a0d4",
     "modules": [
-      "src/job_app_helix/company_intelligence_refresh.py",
-      "src/job_app_helix/company_intelligence.py"
+      "scripts/discover_experience_graph.py",
+      "policies/experience_graph_policy.json",
+      "schemas/live-experience-graph.schema.json",
+      "tests/test_experience_graph_discovery.py",
+      ".github/workflows/experience-graph-proof.yml"
     ],
-    "entry_point": "job-app-helix-company-refresh",
     "capabilities": [
-      "validates company identity and prevents collected_at time regression before refresh",
-      "detects semantic changes within stable company-signal kind/source channels",
-      "retires superseded observations with a replacement fingerprint instead of destroying prior provenance",
-      "retains still-fresh current observations omitted from partial incoming refreshes",
-      "retires absent stale observations into append-only history",
-      "rejects duplicate signal channels rather than silently last-write-wins collapsing them",
-      "rejects future-dated incoming observations",
-      "prevents stale incoming observations from displacing fresher current evidence",
-      "writes active state and refresh receipt through atomic file replacement",
-      "appends retired observations to JSONL history",
-      "emits a SHA-256-bound machine-readable refresh receipt",
-      "preserves existing company-fit and company-aware application strategy interfaces"
+      "compiles current owned-repository census, company dossiers, flagship registry, and paradigm policy into one deterministic live experience graph",
+      "maps repositories independently to company challenges and personal engineering paradigms instead of collapsing those concepts",
+      "discovers previously unseen repository families from live inventory without requiring code changes",
+      "emits distinct internal and public graph projections",
+      "omits private repository identities from the public graph while retaining sanitized flagship presence",
+      "preserves explicit truth boundaries that inventory is not authorship or runtime proof and company mapping does not imply affiliation",
+      "binds source digests and the complete graph state into a deterministic snapshot_id",
+      "writes graph artifacts atomically and fails closed on malformed source records",
+      "restores a machine-readable schema and an explicit policy surface for aliases, paradigms, family discovery, and privacy"
     ]
   },
   "preserved_gains": [
-    "existing CompanyIntelligence and CompanySignal validation remain the active data model",
-    "existing company-fit freshness filtering and recruiter strategy behavior remain unchanged",
-    "existing application lifecycle, queue, batch packet, and manual submission boundaries remain unchanged",
-    "candidate evidence remains separate from company-source provenance",
-    "no database migration or external submission side effect was introduced"
+    "current src/job_app_helix/estate_compiler.py was not replaced or reverted",
+    "current company-intelligence refresh, company-fit, application strategy, opportunity queue, batch execution, and recovery engines remain intact",
+    "no current database schema, application record, recruiter packet, or external submission path was mutated",
+    "the historical donor branch was not merged wholesale",
+    "all later mainline commits remain ancestral to the restored subsystem"
   ],
   "tests_runtime_proof": {
-    "independent_runtime_probe": {
-      "result": "PASS",
-      "scope": "Executed the merged refresh algorithm against supersession, partial-refresh retention, stale incoming fallback, and duplicate-channel rejection cases.",
-      "superseded_count": 1,
-      "partial_refresh_active_count": 2,
-      "stale_incoming_reason": "STALE_INCOMING",
-      "receipt_sha256": "043eb60707a193696e615231486140881963763db1faa80d46c7b993c9a5bf5b"
-    },
     "focused_workflow": {
-      "run_id": 32116762285,
-      "head": "1f91665f23daecfa862213ad0e87b393a606ff0b",
-      "status_at_handoff": "QUEUED",
+      "run_id": 32122744146,
+      "result": "PASS",
       "matrix": ["3.11", "3.12", "3.13"],
-      "test_file": "tests/test_company_intelligence_refresh.py",
-      "note": "Hosted GitHub runners remained queued during the execution window; this did not block the independently executed behavior probe or exact-head merge."
+      "checks": [
+        "python compile of scripts/discover_experience_graph.py",
+        "four adversarial experience-graph tests",
+        "live experience-graph schema contract validation"
+      ]
+    },
+    "adversarial_behaviors": [
+      "unseen repository families are discovered from inventory without code changes",
+      "private repository identities do not appear in the public projection",
+      "company challenge mapping and personal paradigm mapping remain independent edges",
+      "identical source state yields identical snapshot identity"
+    ],
+    "global_ci": {
+      "state": "FAILURE_AT_GLOBAL_LINT",
+      "classification": "NOT_USED_AS_SUCCESS_PROOF",
+      "detail": "The repository-wide lint job contains pre-existing debt and also flags style issues in the restored historical script; tests are therefore proven by the dedicated three-version executable workflow rather than misrepresenting the global pipeline as green."
+    },
+    "local_clone": {
+      "state": "BLOCKED_TRANSIENT_DNS",
+      "detail": "Local execution could not resolve github.com; the hosted exact-head workflow provided target-native execution instead."
     },
     "post_merge_readback": {
-      "main_commit": "54c45e66836960259ff3224c0c61589a9698a7b1",
-      "module": "src/job_app_helix/company_intelligence_refresh.py",
-      "observed_on_main": true
-    },
-    "external_ci": {
-      "buildkite_head": "df853803280eb6f9a8118173241abb77a6ca8c16",
-      "state": "failure",
-      "build": 580,
-      "classification": "NOT_USED_AS_SUCCESS_PROOF"
+      "main_commit": "ed760bded46859849e3c6186da211865c3d8aa32",
+      "module": "scripts/discover_experience_graph.py",
+      "observed_on_main": true,
+      "blob_sha": "9b30bad2645bcb9a754ee5f779fede542021d116"
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P2",
-      "priority": "Execute the merged recovery ref graph against the highest-ranked HIGH_PRIORITY_STRANDED estate-intelligence compiler family and compose genuinely branch-owned capability into current main.",
+      "priority": "Recover or compose the strongest remaining recruiter-facing projection capability from the same estate-intelligence lineage only where it exceeds current main, especially compiled recruiter-site and projection mechanisms.",
       "target_files_functions": [
-        "src/job_app_helix/recovery_ref_graph.py",
-        "src/job_app_helix/recovery_reconnaissance.py",
-        "src/job_app_helix/intelligent_recovery.py",
-        "src/job_app_helix/estate_compiler.py"
+        "scripts/build_compiled_recruiter_site.py",
+        "scripts/estate_compiler/projections.py",
+        "scripts/compile_estate_projection.py",
+        "src/job_app_helix/application_strategy.py",
+        "src/job_app_helix/batch_application_execution.py"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Calibrate opportunity queue and strategy weights from persisted interview and offer outcomes while keeping outcome learning separate from factual candidate evidence.",
+      "priority": "Calibrate opportunity queue and application-strategy weighting from persisted interview and offer outcomes while keeping learned weights separate from factual candidate evidence.",
       "target_files_functions": [
         "src/job_app_helix/opportunity_queue.py",
         "src/job_app_helix/application_operations.py",
@@ -118,7 +114,7 @@
     },
     {
       "tier": "P2",
-      "priority": "Add attributable source acquisition adapters that produce incoming CompanyIntelligence snapshots and feed the new refresh engine without weakening provenance validation.",
+      "priority": "Add attributable source-acquisition adapters that produce incoming CompanyIntelligence snapshots and feed the merged refresh engine with provenance and freshness intact.",
       "target_files_functions": [
         "src/job_app_helix/company_intelligence.py",
         "src/job_app_helix/company_intelligence_refresh.py",
@@ -127,20 +123,21 @@
     }
   ],
   "next_sequence": [
-    "deep-analyze the top stranded estate-intelligence compiler recovery family at its exact merge base",
-    "compose only branch-owned executable capability that exceeds current main",
-    "then add outcome-calibrated ranking and attributable source acquisition"
+    "compare the historical compiled recruiter-site/projection subsystem against current application and batch surfaces at the exact merge base",
+    "compose only net-new recruiter-facing capability that survives current-main comparison",
+    "wire the restored live experience graph into recruiter projection only when doing so creates an executable information advantage",
+    "then execute outcome calibration or source acquisition if recruiter projection is already superseded"
   ],
-  "merge_deploy_gate": "PR #226 merged at exact head 1f91665f23daecfa862213ad0e87b393a606ff0b after independent adversarial runtime proof. Main readback must retain company_intelligence_refresh.py and job-app-helix-company-refresh. The queued focused GitHub matrix may strengthen proof later but is not represented as completed in this handoff.",
-  "rollback": "Revert merge commit 54c45e66836960259ff3224c0c61589a9698a7b1. No database migration or external application side effect is introduced.",
+  "merge_deploy_gate": "PR #227 merged at exact head 9f9a61294c9448266e8ae0a67e95f856cf94f8a8 after focused Python 3.11/3.12/3.13 compile, adversarial behavior, and schema proof. Main readback must retain the graph runtime and its privacy/determinism boundaries.",
+  "rollback": "Revert merge commit ed760bded46859849e3c6186da211865c3d8aa32. No database migration or external application/submission side effect was introduced.",
   "no_loss_invariants": [
-    "never overwrite superseded company observations without retaining historical provenance",
-    "never drop still-fresh current observations merely because an incoming refresh is partial",
-    "never let stale incoming observations replace fresher current evidence",
-    "never silently collapse duplicate kind/source channels",
-    "never allow company identity or collection time to move backwards during refresh",
-    "never convert company-source provenance into candidate claim evidence",
-    "never let refresh lifecycle changes bypass existing company-fit freshness rules"
+    "never expose private repository identities through the public experience graph",
+    "never interpret repository inventory as proof of authorship or runtime behavior",
+    "never imply company affiliation from a company-challenge mapping",
+    "never overwrite current estate, application, company-intelligence, or recovery code with stale donor snapshots",
+    "preserve deterministic source digests, snapshot identity, and atomic graph writes",
+    "keep unknown repository families review-required rather than silently promoting them",
+    "preserve company and personal-paradigm mappings as independent relationship domains"
   ],
-  "verified_delta_state": "EXECUTABLE_CAPABILITY_MERGED_INDEPENDENT_RUNTIME_PROVEN_AND_POST_MERGE_READ_BACK"
+  "verified_delta_state": "EXECUTABLE_CAPABILITY_MERGED_FOCUSED_THREE_VERSION_PROOF_AND_POST_MERGE_READBACK"
 }
