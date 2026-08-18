@@ -1,0 +1,97 @@
+name: Intelligent Recovery Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/intelligent_recovery.py"
+      - "src/job_app_helix/intelligent_recovery_cli.py"
+      - "tests/test_intelligent_recovery.py"
+      - "pyproject.toml"
+      - ".github/workflows/intelligent-recovery-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/intelligent_recovery.py"
+      - "src/job_app_helix/intelligent_recovery_cli.py"
+      - "tests/test_intelligent_recovery.py"
+      - "pyproject.toml"
+      - ".github/workflows/intelligent-recovery-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    name: Recovery engine / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and proof tools
+        run: python -m pip install -e ".[dev]"
+
+      - name: Check executable recovery surfaces
+        run: >-
+          ruff check
+          --select F,B,UP,RUF
+          src/job_app_helix/intelligent_recovery.py
+          src/job_app_helix/intelligent_recovery_cli.py
+          tests/test_intelligent_recovery.py
+
+      - name: Run adversarial recovery tests
+        run: python -m pytest -q tests/test_intelligent_recovery.py
+
+      - name: Execute fresh-repository recovery smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="${RUNNER_TEMP}/recovery-smoke"
+          mkdir -p "${work}/src"
+          git -C "${work}" init -b main
+          git -C "${work}" config user.name "Recovery Proof"
+          git -C "${work}" config user.email "recovery-proof@example.invalid"
+          printf "def restored():\n    return 'capability'\n" > "${work}/src/lost.py"
+          git -C "${work}" add .
+          git -C "${work}" commit -m "donor capability"
+          donor="$(git -C "${work}" rev-parse HEAD)"
+          rm "${work}/src/lost.py"
+          printf "later gain\n" > "${work}/README.md"
+          git -C "${work}" add -A
+          git -C "${work}" commit -m "later target"
+
+          job-app-helix-recover --repo "${work}" plan \
+            --donor "${donor}" --summary --output "${work}/plan.json"
+          job-app-helix-recover --repo "${work}" apply \
+            --donor "${donor}" --output "${work}/receipt.json"
+
+          test -f "${work}/src/lost.py"
+          grep -F "return 'capability'" "${work}/src/lost.py"
+          grep -Fx "later gain" "${work}/README.md"
+          python - <<'PY' "${work}/plan.json" "${work}/receipt.json"
+          import json
+          import sys
+
+          plan = json.load(open(sys.argv[1], encoding="utf-8"))
+          receipt = json.load(open(sys.argv[2], encoding="utf-8"))
+          assert plan["auto_recoverable_count"] >= 1
+          assert receipt["restored_paths"] == ["src/lost.py"]
+          assert len(receipt["receipt_sha256"]) == 64
+          print(json.dumps({
+              "auto_recoverable_count": plan["auto_recoverable_count"],
+              "restored_paths": receipt["restored_paths"],
+              "receipt_sha256": receipt["receipt_sha256"],
+          }, sort_keys=True))
+          PY
