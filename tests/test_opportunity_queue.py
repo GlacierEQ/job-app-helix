@@ -3,21 +3,17 @@ from __future__ import annotations
 import datetime as dt
 
 import pytest
-
-from job_app_helix.application_engine import CompanyTarget, RepositoryProof
-from job_app_helix.application_operations import CandidateProfile, JobOpening
-from job_app_helix.company_intelligence import CompanyIntelligence, CompanySignal
-from job_app_helix.opportunity_queue import (
-    build_application_execution_queue,
-    score_queue_candidate,
-)
+from job_app_helix import application_engine as app_engine
+from job_app_helix import application_operations as app_ops
+from job_app_helix import company_intelligence as company_intel
+from job_app_helix import opportunity_queue
 
 
 NOW = dt.datetime(2026, 8, 18, tzinfo=dt.UTC)
 
 
-def _proof() -> RepositoryProof:
-    return RepositoryProof(
+def _proof() -> app_engine.RepositoryProof:
+    return app_engine.RepositoryProof(
         repository="GlacierEQ/pro-code",
         level="L4",
         state="PROMOTED",
@@ -27,8 +23,8 @@ def _proof() -> RepositoryProof:
     )
 
 
-def _target(company_id: str = "acme") -> CompanyTarget:
-    return CompanyTarget(
+def _target(company_id: str = "acme") -> app_engine.CompanyTarget:
+    return app_engine.CompanyTarget(
         company_id=company_id,
         display_name="Acme",
         track_state="ACTIVE",
@@ -40,8 +36,8 @@ def _target(company_id: str = "acme") -> CompanyTarget:
     )
 
 
-def _profile() -> CandidateProfile:
-    return CandidateProfile(
+def _profile() -> app_ops.CandidateProfile:
+    return app_ops.CandidateProfile(
         profile_id="casey",
         name="Casey",
         headline="AI systems engineer",
@@ -58,8 +54,8 @@ def _opening(
     *,
     requirements: tuple[str, ...],
     preferred: tuple[str, ...] = (),
-) -> JobOpening:
-    return JobOpening(
+) -> app_ops.JobOpening:
+    return app_ops.JobOpening(
         opening_id=opening_id,
         company="Acme",
         title="AI Systems Engineer",
@@ -78,21 +74,21 @@ def _intelligence(
     company_id: str = "acme",
     matched: bool = True,
     stale: bool = False,
-) -> CompanyIntelligence:
+) -> company_intel.CompanyIntelligence:
     observed = NOW - (dt.timedelta(days=90) if stale else dt.timedelta(days=2))
     statement = (
         "Investing in reliable agent systems and observability"
         if matched
         else "Expanding compiler kernels and custom silicon design"
     )
-    return CompanyIntelligence(
+    return company_intel.CompanyIntelligence(
         schema="glaciereq.company-intelligence.v1",
         company_id=company_id,
         company="Acme",
         collected_at=NOW.isoformat(),
         max_age_days=30,
         signals=(
-            CompanySignal(
+            company_intel.CompanySignal(
                 kind="engineering",
                 statement=statement,
                 source_url="https://example.com/company/update",
@@ -115,7 +111,7 @@ def test_queue_puts_strong_fresh_company_aligned_opening_first() -> None:
         requirements=("Python", "agent systems", "Kubernetes"),
     )
 
-    queue = build_application_execution_queue(
+    queue = opportunity_queue.build_application_execution_queue(
         (
             (viable, target, None, None),
             (strong, target, _intelligence(), None),
@@ -140,7 +136,7 @@ def test_major_hard_gaps_cap_score_even_with_company_alignment() -> None:
         requirements=("Python", "CUDA", "ASIC design", "compiler kernels"),
     )
 
-    score, opportunity, company_fit, reasons = score_queue_candidate(
+    score, opportunity, company_fit, reasons = opportunity_queue.score_queue_candidate(
         opening,
         target,
         profile,
@@ -159,7 +155,7 @@ def test_stale_company_signal_contributes_no_freshness_or_fit() -> None:
     profile = _profile()
     opening = _opening("stale", requirements=("Python", "agent systems"))
 
-    score, opportunity, company_fit, reasons = score_queue_candidate(
+    score, opportunity, company_fit, reasons = opportunity_queue.score_queue_candidate(
         opening,
         target,
         profile,
@@ -178,7 +174,7 @@ def test_stale_company_signal_contributes_no_freshness_or_fit() -> None:
 
 def test_wrong_company_intelligence_is_rejected() -> None:
     with pytest.raises(ValueError, match="does not match queue target"):
-        score_queue_candidate(
+        opportunity_queue.score_queue_candidate(
             _opening("wrong-company", requirements=("Python",)),
             _target("acme"),
             _profile(),
