@@ -1,4 +1,4 @@
-# Canonical Recruiter Surface Deployment
+# APEX Recruiter Surface Deployment
 
 ## Outcome
 
@@ -8,10 +8,10 @@ Job-App Helix publishes **one** public, evidence-bound recruiter presentation at
 
 | Surface | Role | Status |
 |---------|------|--------|
-| `casey-barton-glaciereq.vercel.app` | **Canonical public hire surface** | Live (HTTP 200) |
+| `casey-barton-glaciereq.vercel.app` | **APEX public hire surface** | Live (HTTP 200) |
 | Source deploy repo | `GlacierEQ/job-application` → `site-v15/` | Production build root |
 | Control-plane authority | `GlacierEQ/job-app-helix` manifests + hire package | Evidence + package SoT |
-| `glaciereq.github.io/job-app-helix/` | Historical Pages URL | **Not enabled** — do not share |
+| `glaciereq.github.io/job-app-helix/` | Historical Pages URL | **Not enabled** - do not share |
 
 Do **not** share `job-application.vercel.app` (unrelated project) or the dead GitHub Pages path.
 
@@ -54,7 +54,7 @@ GitHub Pages may be re-enabled as a **mirror**, never as the primary share link.
 - Project name / alias: `casey-barton-glaciereq`
 - Output directory: `site-v15` in `GlacierEQ/job-application`
 - Headers: CSP, HSTS, frame deny, nosniff, referrer policy (see live response headers)
-- Only production branch deploys update the canonical alias
+- Only production branch deploys update the APEX alias
 
 ### GitHub Pages (optional mirror)
 
@@ -66,7 +66,7 @@ Only a qualifying `main` event may attempt Pages deploy:
 - `id-token: write`
 - access to the `github-pages` environment
 
-If Pages is not enabled and `GLACIEREQ_PAGES_TOKEN` is absent, the workflow builds and privacy-checks the artifact, then records a gate — it does **not** claim a public URL.
+If Pages is not enabled and `GLACIEREQ_PAGES_TOKEN` is absent, the workflow builds and privacy-checks the artifact, then records a gate. It does **not** claim a public URL.
 
 ## Evidence contract
 
@@ -99,7 +99,7 @@ Every public surface must preserve:
 
 | Link | Share? |
 |------|--------|
-| `https://casey-barton-glaciereq.vercel.app/` | **Yes — only public share link** |
+| `https://casey-barton-glaciereq.vercel.app/` | **Yes - only public share link** |
 | `https://casey-barton-glaciereq.vercel.app/resume/` | Yes |
 | `https://casey-barton-glaciereq.vercel.app/master/` | Yes (technical diligence) |
 | `https://glaciereq.github.io/job-app-helix/` | **No** (404 / not enabled) |
