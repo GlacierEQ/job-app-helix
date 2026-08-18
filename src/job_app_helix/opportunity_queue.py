@@ -14,13 +14,33 @@ from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
 
 from .application_engine import CompanyTarget, find_target, load_targets
-from .application_operations import CandidateProfile, JobOpening, load_candidate_profile, load_job_opening
+from .application_operations import (
+    CandidateProfile,
+    JobOpening,
+    load_candidate_profile,
+    load_job_opening,
+)
 from .company_fit import CompanyFitAssessment, assess_company_fit
 from .company_intelligence import CompanyIntelligence, load_company_intelligence
 from .opportunity_intelligence import OpportunityAssessment, assess_opportunity
+
+QueueCandidate = tuple[
+    JobOpening,
+    CompanyTarget,
+    CompanyIntelligence | None,
+    str | None,
+]
+RankedCandidate = tuple[
+    float,
+    str,
+    OpportunityAssessment,
+    CompanyFitAssessment | None,
+    JobOpening,
+    CompanyTarget,
+    tuple[str, ...],
+]
 
 
 @dataclass(frozen=True)
@@ -117,9 +137,8 @@ def score_queue_candidate(
         company_fit = assess_company_fit(profile, intelligence, now=now)
         freshness = _freshness(company_fit)
 
-    # Explicit role fit is the dominant signal. Company fit can multiply leverage but
-    # cannot rescue a candidate with major hard gaps. Missing company intelligence incurs
-    # only a small uncertainty penalty so an otherwise strong opening is not discarded.
+    # Explicit role fit is dominant. Company fit multiplies leverage but cannot rescue
+    # major hard gaps. Missing company intelligence incurs a small uncertainty penalty.
     if company_fit is None:
         raw_score = 0.95 * opportunity.score
     else:
@@ -153,13 +172,13 @@ def score_queue_candidate(
 
 
 def build_application_execution_queue(
-    candidates: Sequence[tuple[JobOpening, CompanyTarget, CompanyIntelligence | None, str | None]],
+    candidates: Sequence[QueueCandidate],
     profile: CandidateProfile,
     *,
     now: datetime | None = None,
 ) -> ApplicationExecutionQueue:
     """Rank a batch while preserving deterministic lane and score ordering."""
-    rows: list[tuple[float, str, OpportunityAssessment, CompanyFitAssessment | None, JobOpening, CompanyTarget, tuple[str, ...]]] = []
+    rows: list[RankedCandidate] = []
     for opening, target, intelligence, role in candidates:
         score, opportunity, company_fit, reasons = score_queue_candidate(
             opening,
@@ -169,7 +188,17 @@ def build_application_execution_queue(
             role=role,
             now=now,
         )
-        rows.append((score, _lane(opportunity), opportunity, company_fit, opening, target, reasons))
+        rows.append(
+            (
+                score,
+                _lane(opportunity),
+                opportunity,
+                company_fit,
+                opening,
+                target,
+                reasons,
+            )
+        )
 
     lane_order = {
         "APPLY_NOW": 0,
@@ -188,7 +217,8 @@ def build_application_execution_queue(
     )
 
     items: list[ApplicationQueueItem] = []
-    for rank, (score, lane, opportunity, company_fit, opening, target, reasons) in enumerate(rows, start=1):
+    for rank, row in enumerate(rows, start=1):
+        score, lane, opportunity, company_fit, opening, target, reasons = row
         freshness = _freshness(company_fit) if company_fit is not None else None
         items.append(
             ApplicationQueueItem(
@@ -203,10 +233,18 @@ def build_application_execution_queue(
                 opportunity_recommendation=opportunity.recommendation,
                 required_coverage=opportunity.required_coverage,
                 hard_gap_count=len(opportunity.missing_requirements),
-                company_fit_score=(company_fit.score if company_fit is not None else None),
-                company_freshness=(round(freshness, 6) if freshness is not None else None),
-                fresh_signal_count=(company_fit.fresh_signal_count if company_fit is not None else 0),
-                stale_signal_count=(company_fit.stale_signal_count if company_fit is not None else 0),
+                company_fit_score=(
+                    company_fit.score if company_fit is not None else None
+                ),
+                company_freshness=(
+                    round(freshness, 6) if freshness is not None else None
+                ),
+                fresh_signal_count=(
+                    company_fit.fresh_signal_count if company_fit is not None else 0
+                ),
+                stale_signal_count=(
+                    company_fit.stale_signal_count if company_fit is not None else 0
+                ),
                 reasons=reasons,
             )
         )
@@ -236,11 +274,14 @@ def _manifest_inputs(path: Path) -> tuple[QueueInput, ...]:
             raise ValueError(f"queue candidates[{index}] must be an object")
         opening = root / str(item["opening"])
         intelligence_value = item.get("company_intelligence")
+        intelligence_path = (
+            root / str(intelligence_value) if intelligence_value else None
+        )
         inputs.append(
             QueueInput(
                 company=str(item["company"]),
                 opening_path=opening,
-                intelligence_path=(root / str(intelligence_value) if intelligence_value else None),
+                intelligence_path=intelligence_path,
                 role=(str(item["role"]) if item.get("role") else None),
             )
         )
@@ -262,7 +303,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     profile = load_candidate_profile(args.profile)
     targets = load_targets()
-    candidates = []
+    candidates: list[QueueCandidate] = []
     for item in _manifest_inputs(args.manifest):
         target = find_target(item.company, targets)
         opening = load_job_opening(item.opening_path)
