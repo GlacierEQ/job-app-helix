@@ -1,5 +1,5 @@
 {
-  "schema": "glaciereq.portfolio.rollout.v1",
+  "schema": "glaciereq.portfolio.rollout.v2",
   "portfolio_root": "GlacierEQ/job-app-helix",
   "inventory_manifest": "manifests/portfolio_repositories.json",
   "root_status": {
@@ -21,243 +21,80 @@
     ],
     "fail_closed": true,
     "require_atomic_receipts": true,
-    "require_positive_test_count_for_test_evidence": true
+    "require_positive_test_count_for_test_evidence": true,
+    "direction": "MAXIMUM_COHERENT_ADVANCE",
+    "presume_capability_value_until_inspected": true,
+    "inventory_cannot_authorize_retirement": true,
+    "similarity_cannot_establish_redundancy": true,
+    "retirement_requires_operator_authorization": true,
+    "retirement_requires_verified_capability_preservation": true,
+    "local_constraints_may_not_become_global_doctrine": true
   },
   "waves": [
     {
       "id": "wave-1-native-ci",
       "priority": 1,
-      "mode": "VERIFY",
-      "objective": "Convert the 20 README Mesh child nodes from documentation evidence into repository-native build and positive-count test evidence, while preserving the recruiter → expert → AI contract.",
+      "mode": "EVOLVE",
+      "objective": "Raise all 20 README Mesh child nodes from documentation evidence into stronger repository-native execution, positive-count tests, integration where useful, and product-quality presentation while preserving and expanding their distinct capability.",
       "current_state": "PARTIALLY_VERIFIED",
       "current_evidence": "DOCUMENTATION",
       "target_evidence": "TEST",
       "progress": {
         "completed": [
-          {
-            "repository": "AKOS",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "5ef48a8068a8079f3cbca3f83c5800909b1d5239",
-            "proof": "repository-native positive-count verification and branch-family classification"
-          },
-          {
-            "repository": "anthropic-agent-coordinator",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "ac977563cfd59deb8e87177f53082184f6468aa8",
-            "proof": "62 executed tests passed on the exact Python 3.13.5 candidate; hosted cross-version Actions remained explicitly blocked"
-          },
-          {
-            "repository": "anthropic-safety-monitor",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "a5c21172e32ce6054994402c38d86f7ef94bc56b",
-            "proof": "51 tests passed on Python 3.11, 3.12, and 3.13; 153 matrix executions; all security review threads resolved"
-          },
-          {
-            "repository": "spacex-autonomy",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "156629c65bdeff5397c1370b3e098eec26aa9377",
-            "proof": "PR #2 merged; exact reviewed head 0610a7fe262c128eb5ac56c52a2d14df7db25158 passed Python 3.11, 3.12, 3.13, Go native/race, and required-quality-gate checks"
-          },
-          {
-            "repository": "spacex-conjunction-sentinel",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "43fc94f2a4932ea04dca607120c764ef3240b1c9",
-            "proof": "PR #2 merged after exact reviewed head bbeb5f9be5aba5ba12db8690bae27ffd2cd21690 passed Python 3.11, 3.12, 3.13, Rust cargo check/tests, CLI smoke, and aggregate native verification"
-          },
-          {
-            "repository": "spacex-cryogenics",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
-            "proof": "PR #1 merged after exact reviewed head 39519210a8f6970aca320eb385ec84a3df20e887 passed pinned-action Python 3.11, 3.12, 3.13 install/compile/tests/CLI and strict C++17 compile/self-test/output invariants plus aggregate functional proof"
-          },
-          {
-            "repository": "spacex-ground-network",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "1e94eb150bc7211d7798faab0411c5b000bd453d",
-            "proof": "PR #4 merged after exact reviewed head b2bfeeaf87c846434f625aa05ed90739fcada3da passed Python 3.11, 3.12, 3.13 install/compile/full tests/CLI plus Go vet, race tests, native build, JSON smoke, and aggregate functional proof"
-          },
-          {
-            "repository": "spacex-launch-sequencer",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
-            "proof": "truth-hardened canonical main passed pinned repository-owned CI: Python compile/pytest/cold-start operation, Go format-diff/vet/tests, public-surface verification, and exact-head truth checks"
-          },
-          {
-            "repository": "spacex-mission-control",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
-            "proof": "truth-hardened canonical main passed exact-head Python verification, Python 3.11 and 3.13 public-truth checks, repository-native mission/telemetry/event-bus tests, and cold-start operability"
-          },
-          {
-            "repository": "spacex-orbital-mechanics",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "b99a1f7ea0534d3a268f9bea432399c9862bd1e4",
-            "proof": "exact canonical CI run 31534343822 passed 39 Python tests, cold-start orbital-math smoke, C++ Hohmann reference execution and explicit LOCAL_ORBITAL_MATH_NOT_FLIGHT_DYNAMICS_AUTHORITY boundary; Public Orbital Math Truth Gate run 31534343810 passed Python 3.11 and 3.13 with exact source identity checks"
-          },
-          {
-            "repository": "spacex-pad-weather-gate",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
-            "proof": "exact canonical CI run 31536566364 passed 20 Python tests, local environmental-rule smoke and Go tests under pinned read-only actions; Public Environmental Rule Truth Gate run 31536566296 passed Python 3.11 and 3.13 with exact source identity and Go boundary checks"
-          }
+          {"repository":"AKOS","state":"VERIFIED","evidence":"TEST","canonical_commit":"5ef48a8068a8079f3cbca3f83c5800909b1d5239","proof":"repository-native positive-count verification and branch-family classification"},
+          {"repository":"anthropic-agent-coordinator","state":"VERIFIED","evidence":"TEST","canonical_commit":"ac977563cfd59deb8e87177f53082184f6468aa8","proof":"62 executed tests passed on the exact Python 3.13.5 candidate; hosted cross-version Actions remained explicitly blocked"},
+          {"repository":"anthropic-safety-monitor","state":"VERIFIED","evidence":"TEST","canonical_commit":"a5c21172e32ce6054994402c38d86f7ef94bc56b","proof":"51 tests passed on Python 3.11, 3.12, and 3.13; 153 matrix executions; all security review threads resolved"},
+          {"repository":"spacex-autonomy","state":"VERIFIED","evidence":"TEST","canonical_commit":"156629c65bdeff5397c1370b3e098eec26aa9377","proof":"PR #2 merged; exact reviewed head 0610a7fe262c128eb5ac56c52a2d14df7db25158 passed Python 3.11, 3.12, 3.13, Go native/race, and required-quality-gate checks"},
+          {"repository":"spacex-conjunction-sentinel","state":"VERIFIED","evidence":"TEST","canonical_commit":"43fc94f2a4932ea04dca607120c764ef3240b1c9","proof":"PR #2 merged after exact reviewed head bbeb5f9be5aba5ba12db8690bae27ffd2cd21690 passed Python 3.11, 3.12, 3.13, Rust cargo check/tests, CLI smoke, and aggregate native verification"},
+          {"repository":"spacex-cryogenics","state":"VERIFIED","evidence":"TEST","canonical_commit":"7b036b72c4a004fb0c21a18e08c7311aac8201e1","proof":"PR #1 merged after exact reviewed head 39519210a8f6970aca320eb385ec84a3df20e887 passed pinned-action Python 3.11, 3.12, 3.13 install/compile/tests/CLI and strict C++17 compile/self-test/output invariants plus aggregate functional proof"},
+          {"repository":"spacex-ground-network","state":"VERIFIED","evidence":"TEST","canonical_commit":"1e94eb150bc7211d7798faab0411c5b000bd453d","proof":"PR #4 merged after exact reviewed head b2bfeeaf87c846434f625aa05ed90739fcada3da passed Python 3.11, 3.12, 3.13 install/compile/full tests/CLI plus Go vet, race tests, native build, JSON smoke, and aggregate functional proof"},
+          {"repository":"spacex-launch-sequencer","state":"VERIFIED","evidence":"TEST","canonical_commit":"f931665de0d91b3a5a52748a30a76716d65bbe0a","proof":"truth-hardened canonical main passed pinned repository-owned CI: Python compile/pytest/cold-start operation, Go format-diff/vet/tests, public-surface verification, and exact-head truth checks"},
+          {"repository":"spacex-mission-control","state":"VERIFIED","evidence":"TEST","canonical_commit":"18f46561b6ff1eb00fb3b5c228f88996c9b13590","proof":"truth-hardened canonical main passed exact-head Python verification, Python 3.11 and 3.13 public-truth checks, repository-native mission/telemetry/event-bus tests, and cold-start operability"},
+          {"repository":"spacex-orbital-mechanics","state":"VERIFIED","evidence":"TEST","canonical_commit":"b99a1f7ea0534d3a268f9bea432399c9862bd1e4","proof":"exact canonical CI run 31534343822 passed 39 Python tests, cold-start orbital-math smoke, C++ Hohmann reference execution and explicit LOCAL_ORBITAL_MATH_NOT_FLIGHT_DYNAMICS_AUTHORITY boundary; Public Orbital Math Truth Gate run 31534343810 passed Python 3.11 and 3.13 with exact source identity checks"},
+          {"repository":"spacex-pad-weather-gate","state":"VERIFIED","evidence":"TEST","canonical_commit":"7f8ca0a9d4e346b7350b30e2a9263a10b3baae26","proof":"exact canonical CI run 31536566364 passed 20 Python tests, local environmental-rule smoke and Go tests under pinned read-only actions; Public Environmental Rule Truth Gate run 31536566296 passed Python 3.11 and 3.13 with exact source identity and Go boundary checks"}
         ],
         "completed_count": 11,
         "remaining_count": 9,
         "next_repository": "spacex-propulsion-monitor"
       },
-      "acceptance": {
-        "require_readme_contract": true,
-        "require_positive_test_count": true,
-        "require_build_receipt": false
-      },
-      "repositories": [
-        "AKOS",
-        "anthropic-agent-coordinator",
-        "anthropic-safety-monitor",
-        "spacex-autonomy",
-        "spacex-conjunction-sentinel",
-        "spacex-cryogenics",
-        "spacex-ground-network",
-        "spacex-launch-sequencer",
-        "spacex-mission-control",
-        "spacex-orbital-mechanics",
-        "spacex-pad-weather-gate",
-        "spacex-propulsion-monitor",
-        "spacex-satellite-mesh",
-        "spacex-telemetry",
-        "spacex-thermal-protection",
-        "xai-colossus-cooling-alpha",
-        "xai-colossus-cooling-omega",
-        "xai-colossus-energy-alpha",
-        "xai-colossus-energy-omega",
-        "xai-colossus-servers"
-      ]
+      "acceptance": {"require_readme_contract":true,"require_positive_test_count":true,"require_build_receipt":false},
+      "repositories": ["AKOS","anthropic-agent-coordinator","anthropic-safety-monitor","spacex-autonomy","spacex-conjunction-sentinel","spacex-cryogenics","spacex-ground-network","spacex-launch-sequencer","spacex-mission-control","spacex-orbital-mechanics","spacex-pad-weather-gate","spacex-propulsion-monitor","spacex-satellite-mesh","spacex-telemetry","spacex-thermal-protection","xai-colossus-cooling-alpha","xai-colossus-cooling-omega","xai-colossus-energy-alpha","xai-colossus-energy-omega","xai-colossus-servers"]
     },
     {
       "id": "wave-2-tower-repair",
       "priority": 2,
-      "mode": "VERIFY",
-      "objective": "Repair Tower of Babel until every advertised language boundary has a real compiler, proof, simulation, or test receipt and the public README matches the proven release state.",
+      "mode": "EVOLVE",
+      "objective": "Advance Tower of Babel beyond its verified native proof into stronger cross-language composition, integration, demonstrable execution, and recruiter/expert/AI value without shrinking its architectural ambition.",
       "current_state": "VERIFIED",
       "current_evidence": "TEST",
-      "target_evidence": "TEST",
-      "progress": {
-        "completed": [
-          {
-            "repository": "the-tower-of-babel",
-            "state": "VERIFIED",
-            "evidence": "TEST",
-            "canonical_commit": "dea2661270c343b6e17c617eee29c36123939414",
-            "proof": "native governance, all-floor evidence, integrity, and recruiter-package integration"
-          }
-        ],
-        "completed_count": 1,
-        "remaining_count": 0
-      },
-      "acceptance": {
-        "require_readme_contract": true,
-        "require_positive_test_count": true,
-        "require_build_receipt": true
-      },
-      "repositories": [
-        "the-tower-of-babel"
-      ]
+      "target_evidence": "INTEGRATION",
+      "progress": {"completed":[{"repository":"the-tower-of-babel","state":"VERIFIED","evidence":"TEST","canonical_commit":"dea2661270c343b6e17c617eee29c36123939414","proof":"native governance, all-floor evidence, integrity, and recruiter-package integration"}],"completed_count":1,"remaining_count":1},
+      "acceptance": {"require_readme_contract":true,"require_positive_test_count":true,"require_build_receipt":true},
+      "repositories": ["the-tower-of-babel"]
     },
     {
       "id": "wave-3-technical-exhibits",
       "priority": 3,
-      "mode": "VERIFY",
-      "objective": "Promote the highest-innovation unverified exhibits through reference-correctness checks, native builds, positive-count tests, and benchmark receipts where performance is claimed.",
+      "mode": "EVOLVE",
+      "objective": "Raise the highest-innovation technical exhibits into stronger executable systems: preserve their differentiating mechanism, complete missing functionality, add native proof, integrate complementary estate capabilities, and deploy where their natural purpose supports it.",
       "current_state": "UNVERIFIED",
       "current_evidence": "INVENTORY",
       "target_evidence": "TEST",
-      "progress": {
-        "completed_count": 0,
-        "remaining_count": 17
-      },
-      "acceptance": {
-        "require_readme_contract": true,
-        "require_positive_test_count": true,
-        "require_build_receipt": false
-      },
-      "repositories": [
-        "JOB-RESUME-BUILDER-",
-        "apple-ane-kv-quantizer",
-        "colossus-gateway",
-        "comet-browser-agent-bridge",
-        "deepmind-tpu-mesh-optimizer",
-        "deepseek-mla-moe-sentinel",
-        "ECHO",
-        "glaciereq-mcp-stack",
-        "grokodile",
-        "kimi-mooncake-kv-stream",
-        "nvidia-deep-reasoning",
-        "nvidia-gpu-health",
-        "openai-reasoning-kv-sentinel",
-        "pro-code",
-        "spiral-engine",
-        "xai-colossus-cooling",
-        "xai-colossus-energy"
-      ]
+      "progress": {"completed_count":0,"remaining_count":17},
+      "acceptance": {"require_readme_contract":true,"require_positive_test_count":true,"require_build_receipt":false},
+      "repositories": ["JOB-RESUME-BUILDER-","apple-ane-kv-quantizer","colossus-gateway","comet-browser-agent-bridge","deepmind-tpu-mesh-optimizer","deepseek-mla-moe-sentinel","ECHO","glaciereq-mcp-stack","grokodile","kimi-mooncake-kv-stream","nvidia-deep-reasoning","nvidia-gpu-health","openai-reasoning-kv-sentinel","pro-code","spiral-engine","xai-colossus-cooling","xai-colossus-energy"]
     },
     {
-      "id": "wave-4-consolidation",
+      "id": "wave-4-capability-elevation",
       "priority": 4,
-      "mode": "CONSOLIDATE_OR_ARCHIVE",
-      "objective": "Determine whether each thin or overlapping repository should be completed, merged into a stronger system, retained as a package, or archived with an explicit successor and evidence-preserving migration record.",
+      "mode": "PRODUCTIZE",
+      "objective": "Elevate every previously labeled thin, overlapping, consolidation, or archive candidate into its strongest justified form. Reconstruct full purpose and lineage first; identify unique and complementary mechanisms; restore buried capability; complete the central mechanism; compose with sibling systems without flattening specialization; prove behavior; package, integrate, operate, and deploy where useful. No retirement, archival, merge-away, branch deletion, or successor substitution may be inferred from inventory, naming similarity, documentation state, failed proof, or assistant-generated classification. Any retirement requires explicit operator authorization after verified capability preservation and a demonstrated stronger resulting system.",
       "current_state": "UNVERIFIED",
       "current_evidence": "INVENTORY",
-      "target_evidence": "DOCUMENTATION",
-      "progress": {
-        "completed_count": 0,
-        "remaining_count": 28
-      },
-      "acceptance": {
-        "require_readme_contract": true,
-        "require_positive_test_count": false,
-        "require_build_receipt": false
-      },
-      "repositories": [
-        "AEON-777",
-        "GlacierEQ_Swarm",
-        "Pro-comet-agent",
-        "apex-cli",
-        "apex-control-plane",
-        "aws-trainium-neuron-sentinel",
-        "colossus-training-flux",
-        "job-application",
-        "lovable-design-app-synth",
-        "manus-autonomous-web-agent",
-        "mastermind",
-        "meta-llama-collective-sentinel",
-        "microsoft-azure-ops",
-        "microsoft-identity-zero-trust",
-        "notion-mcp-empowerment-engine",
-        "notion-workflow-intelligence",
-        "notion-workspace-optimizer",
-        "openclaw",
-        "opera-neon-spatial-workspace",
-        "qwen-vl-flash-router",
-        "robotics-vla-torque-sentinel",
-        "sigma-glue",
-        "tasklet-micro-agent-engine",
-        "tesla-fsd-occupancy-stream",
-        "token_saver",
-        "xai-colossus-2",
-        "xai-colossus-nanosphere",
-        "xai-colossus-security"
-      ]
+      "target_evidence": "TEST",
+      "progress": {"completed_count":0,"remaining_count":28},
+      "acceptance": {"require_readme_contract":true,"require_positive_test_count":true,"require_build_receipt":false},
+      "repositories": ["AEON-777","GlacierEQ_Swarm","Pro-comet-agent","apex-cli","apex-control-plane","aws-trainium-neuron-sentinel","colossus-training-flux","job-application","lovable-design-app-synth","manus-autonomous-web-agent","mastermind","meta-llama-collective-sentinel","microsoft-azure-ops","microsoft-identity-zero-trust","notion-mcp-empowerment-engine","notion-workflow-intelligence","notion-workspace-optimizer","openclaw","opera-neon-spatial-workspace","qwen-vl-flash-router","robotics-vla-torque-sentinel","sigma-glue","tasklet-micro-agent-engine","tesla-fsd-occupancy-stream","token_saver","xai-colossus-2","xai-colossus-nanosphere","xai-colossus-security"]
     }
   ]
 }
