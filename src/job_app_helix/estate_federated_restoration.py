@@ -89,16 +89,6 @@ def _observation_map(census: EstateRecoveryCensus) -> dict[str, RepositoryRecove
     return {row.repository: row for row in census.observations}
 
 
-def _git_text(repo: Path, *args: str) -> str:
-    proc = subprocess.run(
-        ["git", "-C", str(repo), *args], capture_output=True, text=True, check=False
-    )
-    if proc.returncode:
-        detail = proc.stderr.strip() or proc.stdout.strip() or "unknown git failure"
-        raise ValueError(f"git {' '.join(args)} failed: {detail}")
-    return proc.stdout
-
-
 def _repository_name(repo: Path) -> str:
     """Resolve the repository identity from origin when possible, then directory name."""
     proc = subprocess.run(
@@ -123,9 +113,10 @@ def _top_level_python_symbols(source: str) -> tuple[str, ...]:
         raise ValueError(f"donor Python source is not parseable: {exc}") from exc
     names: list[str] = []
     for node in tree.body:
-        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-            if not node.name.startswith("_"):
-                names.append(node.name)
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)) and not (
+            node.name.startswith("_")
+        ):
+            names.append(node.name)
     return tuple(names)
 
 
