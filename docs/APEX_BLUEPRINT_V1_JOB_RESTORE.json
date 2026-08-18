@@ -1,115 +1,116 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "e81993cb7fa2c793e3d39f1bd25a690a3a34d946",
-  "current_source_sha_before_handoff": "6c66ba77b4904a04dd0a18a17b981c458ef3c2d4",
+  "source_sha_before": "bdb2a1b7b9122eb35e0276812caa71090a89bbb7",
+  "current_source_sha_before_handoff": "2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65",
   "donor_shas": [
+    "6c66ba77b4904a04dd0a18a17b981c458ef3c2d4",
     "63ff71364513a824353811468856140edc9a30e6",
     "a917a2c14fbf51e15526b93f2884d051680e6977"
   ],
-  "selected_priority": "Remove the manual job-URL supply bottleneck by discovering and maintaining target-company ATS inventories and composing normalized openings directly into the existing field-sensitive Opening Watch runtime.",
+  "selected_priority": "Eliminate the remaining manual bridge between maintained target-company ATS inventories and application-ready recruiter output by composing discovery directly into the changed-only company-intelligence, ranking, freshness, and recruiter-packet runtime.",
   "priority_tier": "P1",
   "blocked_higher_candidates": [],
-  "displaced_capability": "Helix could acquire, diff, and watch attributable JobPosting URLs once supplied, but it could not discover and maintain target-company opening inventories itself. Human URL collection remained upstream of every live-opening intelligence cycle.",
+  "displaced_capability": "Target opening discovery could maintain attributable Greenhouse/Lever inventories and drive Opening Watch, while the intelligence cycle could build company-aware recruiter packets from supplied candidates. A human or external caller still had to translate discovered openings into IntelligenceCycleCandidate configuration and invoke the full cycle separately.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Preserve the existing JobOpening normalization, single-opening acquisition, and Opening Watch materiality engines, but continue requiring manually supplied URLs. Strong reuse but insufficient bottleneck relief."
+      "assessment": "Keep target discovery and the intelligence cycle as separate executables and generate an intermediate manifest. Preserves both systems but leaves the manual handoff and duplicate-fetch risk intact."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Add a generic career-page HTML crawler. Broader theoretical coverage but materially more brittle, harder to attribute, and less structured than public ATS APIs."
+      "assessment": "Refactor discovery, watch, and intelligence into one new monolithic runtime. Could reduce surface count but would duplicate or destabilize already-proven state, materiality, freshness, and application contracts."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: add ATS-native Greenhouse and Lever inventory discovery, normalize provider records into the existing JobOpening contract, persist longitudinal inventory deltas, isolate provider failures, and feed the discovered in-memory openings directly into Opening Watch without a second HTTP fetch."
+      "assessment": "Selected: add a thin vertical orchestration layer that reuses target discovery with run_watch=false, converts attributable discovered openings into existing IntelligenceCycleCandidate objects, injects the already-normalized JobOpening objects through an in-cycle fetch cache, and delegates materiality plus full intelligence execution to the proven Opening Watch and Intelligence Cycle runtimes."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 243,
-    "proof_head": "b6eeae90c342283c3efa0f753af5540037ebe4b5",
-    "runtime_merge_sha": "6c66ba77b4904a04dd0a18a17b981c458ef3c2d4",
+    "pull_request": 244,
+    "proof_head": "c1ca8e99a2d9dd86653fabd8a4a4a8016eda1411",
+    "runtime_merge_sha": "2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65",
     "modules": [
-      "src/job_app_helix/target_opening_discovery.py",
-      "tests/test_target_opening_discovery.py",
-      ".github/workflows/target-opening-discovery-proof.yml",
+      "src/job_app_helix/target_intelligence_cycle.py",
+      "tests/test_target_intelligence_cycle.py",
+      ".github/workflows/target-intelligence-cycle-proof.yml",
       "pyproject.toml"
     ],
-    "executable": "job-app-helix-discover-openings",
+    "executable": "job-app-helix-target-cycle",
     "capabilities": [
-      "discover current target-company openings from public Greenhouse Boards and Lever postings APIs",
-      "filter maintained inventories by target title terms, excluded title terms, location terms, and optional source limits",
-      "normalize provider records into the existing JobOpening contract rather than creating a competing opening model",
-      "persist deterministic added, removed, and retained opening URL deltas in TARGET_OPENING_INVENTORY.json",
-      "preserve prior Opening Watch state when a posting disappears from the current inventory",
-      "isolate one provider or company-source failure while advancing remaining target companies",
-      "reject duplicate provider/board identities and duplicate discovered opening URLs before ambiguous state is admitted",
-      "compose discovered JobOpening objects directly into field-sensitive Opening Watch through an in-cycle cache, avoiding a second network fetch",
-      "propagate retained posting content changes into existing recruiter-material change classification",
-      "emit TARGET_OPENING_DISCOVERY_RECEIPT.json with deterministic receipt hashing",
-      "support inventory-only and fail-fast CLI execution modes"
+      "configure a target company once with ATS discovery settings, company-intelligence acquisition plan, mapped application role, and optional current intelligence snapshot",
+      "discover attributable live target-company openings and preserve the existing longitudinal inventory state",
+      "convert discovered JobOpening objects directly into existing IntelligenceCycleCandidate inputs without inventing a competing application model",
+      "validate provider/board uniqueness, target-company attribution, source URLs, acquisition-plan presence, and cross-target duplicate opening URLs before ambiguous execution",
+      "reuse the discovered in-memory JobOpening object through Opening Watch and Intelligence Cycle so a selected posting is not fetched a second time",
+      "advance NEW or recruiter-material openings automatically through company intelligence acquisition, fit assessment, guarded calibration, ranking, freshness-aware packet lineage, and recruiter-packet compilation",
+      "keep unchanged openings on the zero-full-cycle path while preserving inventory/watch history",
+      "quarantine superseded recruiter-packet lineage and regenerate only the affected application when a discovered posting changes materially",
+      "persist TARGET_INTELLIGENCE_CYCLE_RECEIPT.json with chained discovery/watch receipt hashes and selected-candidate counts",
+      "expose the complete vertical workflow as the installed job-app-helix-target-cycle CLI"
     ]
   },
   "preserved_gains": [
-    "existing JobOpening normalization and source attribution remain the opening contract",
-    "existing NEW, UNCHANGED, CHANGED acquisition state remains intact",
-    "existing recruiter-material versus metadata/digest-only change classification remains intact",
-    "existing Opening Watch failure isolation and append-only event telemetry remain intact",
-    "freshness-aware recruiter packet reuse and stale-lineage quarantine remain intact",
-    "company intelligence acquisition, outcome calibration guard, ranking safety lanes, and recruiter proof boundaries remain intact",
-    "removed openings do not cause historical watch-state deletion",
-    "no application submission or recruiter communication was introduced"
+    "target_opening_discovery remains the authoritative ATS discovery and normalization layer",
+    "JobOpening remains the opening contract",
+    "Opening Watch remains the field-sensitive NEW/UNCHANGED/recruiter-material gate",
+    "existing metadata-only and digest-only deferral remains intact",
+    "company intelligence acquisition and refresh behavior remain intact",
+    "outcome calibration guard, ranking safety lanes, requirement-gap caps, and application store behavior remain intact",
+    "freshness-aware packet reuse and stale-lineage quarantine remain intact",
+    "provider/company failure isolation remains available through continue_on_error",
+    "no application submission, credentialed ATS action, or recruiter communication was introduced"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32177350239,
+      "run_id": 32179512681,
       "result": "PASS",
-      "exact_head": "b6eeae90c342283c3efa0f753af5540037ebe4b5",
+      "exact_head": "c1ca8e99a2d9dd86653fabd8a4a4a8016eda1411",
       "matrix": [
         "3.11",
         "3.12",
         "3.13"
       ],
       "checks": [
-        "strict Ruff over target opening discovery runtime and tests",
-        "Greenhouse normalization, title filtering, and Opening Watch NEW behavior",
-        "retained URL with changed description classified as recruiter-material",
-        "removed opening reported while prior watch state remains preserved",
-        "Lever normalization and watch composition",
-        "provider failure isolation with independent company advancement",
-        "duplicate provider/board rejection before state mutation",
-        "invalid provider manifest rejection",
-        "existing Opening Watch adversarial regression suite",
-        "installed job-app-helix-discover-openings executable"
+        "strict Ruff over the vertical target-intelligence runtime and adversarial tests",
+        "new discovered opening enters the full intelligence cycle and produces a selected application packet directory plus OPENING_INPUT_RECEIPT.json",
+        "unchanged discovered opening stays on the zero-full-cycle path",
+        "recruiter-material discovered content change re-enters the intelligence cycle",
+        "material change produces freshness refresh of superseded packet lineage with rollback quarantine",
+        "existing target-opening discovery adversarial suite",
+        "existing Opening Watch adversarial suite",
+        "installed job-app-helix-target-cycle executable"
       ]
     },
     "proof_pivots": [
-      "initial workflow 32177028990 stopped at strict Ruff before runtime tests with one SIM103 and six E501 findings",
-      "source and test formatting were corrected and manifest list parsing was strengthened without weakening the lint gate",
-      "the replacement exact head then passed every focused step on Python 3.11, 3.12, and 3.13"
+      "initial proof stopped at strict Ruff for import formatting and line length; source and tests were corrected without weakening lint",
+      "the first runtime proof exposed a fixture role that violated the existing mapped-target-role contract; the fixture was aligned to the real Anthropic role map rather than bypassing role validation",
+      "the next proof exposed a future-dated company-intelligence fixture relative to the CI runner clock and an incorrect assumption that first-time packet generation increments refreshed_count; the fixture clock and assertion were aligned to actual runtime semantics",
+      "the final remaining assertion assumed a legacy recruiter packet filename; it was replaced with proof against the actual BatchExecutionResult.packet_dir and OPENING_INPUT_RECEIPT artifact contract",
+      "final exact head passed every focused step across all supported Python versions"
     ],
     "post_merge_readback": {
       "result": "PASS",
-      "main_sha": "6c66ba77b4904a04dd0a18a17b981c458ef3c2d4",
-      "runtime_blob_sha": "f82dfb2c0ef175eeaaad0383c5965ab63830961f",
-      "pyproject_blob_sha": "598a907b2aa9791ede9b9ad759eefbdca4bc9560",
-      "observed": "main contains the Greenhouse/Lever target opening discovery runtime and installed job-app-helix-discover-openings entry point"
+      "main_sha": "2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65",
+      "runtime_blob_sha": "5455ff590ad8589978cee52f56c9160878d31ca2",
+      "pyproject_blob_sha": "e100a82feea6cb14131dd910534343659949fbae",
+      "observed": "main contains execute_target_intelligence_cycle, target manifest loading, discovered-opening cache composition into execute_opening_watch_cycle, TARGET_INTELLIGENCE_CYCLE_RECEIPT persistence, and the installed job-app-helix-target-cycle entry point"
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P1",
-      "priority": "Compose discovered target-company inventories directly into the full changed-only intelligence cycle so NEW or recruiter-material discovered openings automatically enter company intelligence, ranking, freshness-aware packet generation, and application-ready output.",
+      "priority": "Run job-app-helix-target-cycle against a live attributable target-company inventory using real current acquisition plans and the production candidate profile, then preserve the strongest application-ready packet as a concrete job-winning outcome.",
       "target_files_functions": [
-        "src/job_app_helix/target_opening_discovery.py::execute_target_opening_discovery",
-        "src/job_app_helix/opening_watch_cycle.py::execute_opening_watch_cycle",
-        "src/job_app_helix/intelligence_cycle.py::execute_intelligence_cycle"
+        "src/job_app_helix/target_intelligence_cycle.py::execute_target_intelligence_cycle",
+        "manifests/application_intelligence",
+        "src/job_app_helix/batch_application_execution.py"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Execute the first real stranded repository-family restoration through manifestless estate federated restoration using an exact donor SHA and prove recovered capability with the target repository's native tests/runtime.",
+      "priority": "Execute the first real stranded repository-family restoration through manifestless estate federated restoration using an exact donor SHA and prove recovered capability with the target repository's native runtime/tests.",
       "target_files_functions": [
         "src/job_app_helix/estate_federated_restoration.py::execute_auto_estate_federated_restoration",
         "src/job_app_helix/recovery_ref_graph.py::build_ref_graph",
@@ -118,7 +119,7 @@
     },
     {
       "tier": "P2",
-      "priority": "Expand target-company discovery reach beyond Greenhouse and Lever through a provider adapter registry and attributed Ashby, SmartRecruiters, and Workday discovery where stable public interfaces can be proven.",
+      "priority": "Expand target-company inventory reach through an attributable provider-adapter registry for additional stable ATS interfaces such as Ashby, SmartRecruiters, and proven Workday surfaces.",
       "target_files_functions": [
         "src/job_app_helix/target_opening_discovery.py::discover_source",
         "src/job_app_helix/target_opening_discovery.py::TargetOpeningSource"
@@ -126,22 +127,23 @@
     }
   ],
   "next_sequence": [
-    "bind discovered source entries to full IntelligenceCycleCandidate configuration",
-    "execute discovery -> materiality -> company intelligence -> ranking -> recruiter packet as one target-company runtime",
-    "run the resulting path against a live attributable target-company inventory",
-    "resume exact-donor stranded-family recovery using the manifestless restoration bridge",
-    "broaden ATS provider reach only after each provider has an attributable executable adapter and adversarial proof"
+    "select a real current target company with an attributable ATS inventory and existing company-intelligence acquisition plan",
+    "execute job-app-helix-target-cycle end-to-end against that live inventory",
+    "inspect the highest-ranked generated application packet and refine any weak candidate/company evidence projection without weakening source boundaries",
+    "preserve the application-ready packet and execution receipt as the next P1 checkpoint",
+    "then resume exact-donor stranded-family restoration and broaden ATS reach"
   ],
-  "merge_deploy_gate": "PR 243 merged at exact proven head b6eeae90c342283c3efa0f753af5540037ebe4b5 after Target Opening Discovery Proof 32177350239 passed strict lint, adversarial discovery/watch tests, and installed executable checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed the runtime and CLI registration on main at 6c66ba77b4904a04dd0a18a17b981c458ef3c2d4.",
-  "rollback": "Revert merge 6c66ba77b4904a04dd0a18a17b981c458ef3c2d4. Discovery inventory writes are atomic and Opening Watch history is preserved separately, so rollback does not require deleting prior opening state.",
+  "merge_deploy_gate": "PR 244 merged at exact proven head c1ca8e99a2d9dd86653fabd8a4a4a8016eda1411 as main merge 2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65 after Target Intelligence Cycle Proof 32179512681 passed strict lint, adversarial vertical discovery/materiality/intelligence/packet tests, and installed executable checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed the runtime module and CLI registration directly on main.",
+  "rollback": "Revert merge 2de9c2ebd4fb73bcb7876b479b32baa0c6f77f65. Existing target discovery, Opening Watch, Intelligence Cycle, and freshness-aware packet executables remain independently intact; inventory/watch state and quarantined packet lineage do not require destructive cleanup.",
   "no_loss_invariants": [
     "never treat employer job-posting text as candidate evidence",
-    "never delete historical Opening Watch state merely because a posting disappears from the current provider inventory",
-    "never let one failed provider stall unrelated target-company discovery when isolation mode is enabled",
-    "never admit duplicate provider/board identities or duplicate opening URLs into one discovery cycle",
-    "preserve the existing JobOpening, acquisition, materiality, freshness, calibration, ranking, and recruiter-proof contracts",
-    "never fabricate application submission or recruiter communication",
-    "do not replace structured ATS attribution with a weaker generic scraper when a proven provider interface is available"
+    "never bypass the existing mapped target-role contract when projecting an application",
+    "never refetch a discovered opening inside the same target cycle when the normalized JobOpening is already available",
+    "never send unchanged or metadata/digest-only opening drift through the expensive full intelligence cycle",
+    "never discard superseded recruiter packet lineage when material opening changes require regeneration",
+    "never let one failed provider or target erase unrelated maintained inventory state",
+    "preserve existing JobOpening, materiality, company-intelligence, calibration, ranking, freshness, application-store, and recruiter-proof interfaces",
+    "never fabricate application submission or recruiter communication"
   ],
-  "verified_delta_state": "TARGET_COMPANY_ATS_DISCOVERY_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
+  "verified_delta_state": "TARGET_COMPANY_DISCOVERY_TO_CHANGED_ONLY_FULL_INTELLIGENCE_AND_RECRUITER_PACKET_CYCLE_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
 }
