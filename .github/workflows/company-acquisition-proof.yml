@@ -1,0 +1,47 @@
+name: Company Intelligence Acquisition Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/company_intelligence_acquisition.py"
+      - "src/job_app_helix/company_intelligence.py"
+      - "src/job_app_helix/company_intelligence_refresh.py"
+      - "tests/test_company_intelligence_acquisition.py"
+      - "pyproject.toml"
+      - ".github/workflows/company-acquisition-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/company_intelligence_acquisition.py"
+      - "src/job_app_helix/company_intelligence.py"
+      - "src/job_app_helix/company_intelligence_refresh.py"
+      - "tests/test_company_intelligence_acquisition.py"
+      - "pyproject.toml"
+      - ".github/workflows/company-acquisition-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package and proof tools
+        run: python -m pip install -e ".[dev]"
+      - name: Lint acquisition surfaces
+        run: >-
+          ruff check
+          src/job_app_helix/company_intelligence_acquisition.py
+          tests/test_company_intelligence_acquisition.py
+      - name: Run adversarial acquisition tests
+        run: python -m pytest -q tests/test_company_intelligence_acquisition.py
+      - name: Prove installed executable
+        run: job-app-helix-company-acquire --help
