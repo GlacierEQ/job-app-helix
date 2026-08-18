@@ -60,18 +60,20 @@ def _concept_tokens(value: str) -> set[str]:
     return {_concept_token(token) for token in _tokens(value)}
 
 
-def _signal_alignment(signal: str, profile: CandidateProfile) -> float:
-    """Measure whether a company signal has a concrete candidate-evidence anchor.
+def best_company_evidence(
+    signal: str,
+    profile: CandidateProfile,
+) -> tuple[float, str | None]:
+    """Return the strongest supplied evidence unit for one company signal.
 
-    Long company statements contain names, dates, products, and context that should not
-    dilute a strong evidence match. Compare each signal against individual evidence units,
-    normalize conservative word families, and divide by the smaller semantic surface.
-    This rewards specific shared mechanisms while rejecting incidental generic overlap.
+    Company-fit scoring and recruiter-copy projection deliberately share this matcher so a
+    signal can never be admitted by one layer and silently discarded by the next.
     """
     signal_tokens = _concept_tokens(signal)
     if not signal_tokens:
-        return 0.0
-    best = 0.0
+        return 0.0, None
+
+    ranked: list[tuple[float, int, int, str]] = []
     for evidence in _evidence_units(profile):
         evidence_tokens = _concept_tokens(evidence)
         if not evidence_tokens:
@@ -83,8 +85,13 @@ def _signal_alignment(signal: str, profile: CandidateProfile) -> float:
         score = overlap_count / max(1, denominator)
         if overlap_count == 1 and denominator > 2:
             score *= 0.35
-        best = max(best, score)
-    return best
+        ranked.append((score, overlap_count, -len(evidence), evidence))
+
+    if not ranked:
+        return 0.0, None
+    ranked.sort(reverse=True)
+    score, _, _, evidence = ranked[0]
+    return score, evidence
 
 
 def assess_company_fit(
@@ -101,8 +108,8 @@ def assess_company_fit(
     unmatched: list[str] = []
     hooks: list[str] = []
     for signal in fresh:
-        alignment = _signal_alignment(signal.statement, profile)
-        if alignment >= 0.45:
+        alignment, evidence = best_company_evidence(signal.statement, profile)
+        if alignment >= 0.45 and evidence is not None:
             matched.append(signal.statement)
             hooks.append(f"{signal.kind}: {signal.statement}")
         else:
