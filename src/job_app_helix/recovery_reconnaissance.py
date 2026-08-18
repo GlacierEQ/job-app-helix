@@ -1,14 +1,12 @@
 """History-wide donor discovery for intelligent capability recovery.
 
-The lower-level recovery stack can restore exact bytes, symbols, semantic
-closures, and federated donors. This module answers the question that matters
-before those engines can act: *which historical heads deserve attention?*
+This engine discovers exact historical heads, isolates unavailable donors, runs
+source archaeology against one current target, and ranks displaced executable
+capability before handing useful donors to :mod:`intelligent_recovery`.
 
-It consumes exact historical ref records, resolves or boundedly acquires their
-commit objects, compares every donor to one target revision, and emits a
-ranked reconnaissance report. A missing donor never aborts the whole scan.
-Directly deleted source/test capability dominates the ranking; branch names and
-retirement labels are provenance, not proof that a donor is useful or obsolete.
+Branch names and retirement labels are provenance only. A single exact source
+or test artifact that exists in a donor and is absent from the target is a
+first-class recovery signal regardless of branch size or ancestry.
 """
 
 from __future__ import annotations
@@ -132,8 +130,14 @@ def _fetch_exact_commit(repo: Path, sha: str, remote: str) -> tuple[bool, str | 
 
 
 def _reachable(repo: Path, donor_sha: str, target_sha: str) -> bool:
-    proc = _git(repo, "merge-base", "--is-ancestor", donor_sha, target_sha, check=False)
-    return proc.returncode == 0
+    return _git(
+        repo,
+        "merge-base",
+        "--is-ancestor",
+        donor_sha,
+        target_sha,
+        check=False,
+    ).returncode == 0
 
 
 def _path_role(path: str) -> str:
@@ -145,16 +149,43 @@ def _path_role(path: str) -> str:
         return "CONTROL"
     if "tests" in parts or "test" in parts or name.startswith("test_"):
         return "TEST"
-    if suffix in {
-        ".py", ".pyi", ".js", ".jsx", ".ts", ".tsx", ".rs", ".go", ".java",
-        ".kt", ".swift", ".c", ".cc", ".cpp", ".h", ".hpp", ".cs", ".rb",
-        ".php", ".sh",
-    } or "src" in parts:
+    source_suffixes = {
+        ".py",
+        ".pyi",
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx",
+        ".rs",
+        ".go",
+        ".java",
+        ".kt",
+        ".swift",
+        ".c",
+        ".cc",
+        ".cpp",
+        ".h",
+        ".hpp",
+        ".cs",
+        ".rb",
+        ".php",
+        ".sh",
+    }
+    if suffix in source_suffixes or "src" in parts:
         return "SOURCE"
-    if name in {
-        "pyproject.toml", "package.json", "package-lock.json", "pnpm-lock.yaml",
-        "yarn.lock", "cargo.toml", "cargo.lock", "go.mod", "go.sum", "dockerfile",
-    }:
+    control_names = {
+        "pyproject.toml",
+        "package.json",
+        "package-lock.json",
+        "pnpm-lock.yaml",
+        "yarn.lock",
+        "cargo.toml",
+        "cargo.lock",
+        "go.mod",
+        "go.sum",
+        "dockerfile",
+    }
+    if name in control_names:
         return "CONTROL"
     if suffix in {".md", ".rst", ".adoc", ".txt"} or "docs" in parts:
         return "DOC"
@@ -162,17 +193,16 @@ def _path_role(path: str) -> str:
 
 
 def _manifest_rows(payload: dict[str, object]) -> Iterable[HistoricalDonor]:
-    buckets = (
+    for bucket in (
         "retired_refs",
         "restored_refs_after_failed_transaction",
         "preserved_active_refs",
         "blocked_refs",
-    )
-    for bucket in buckets:
-        raw_rows = payload.get(bucket, [])
-        if not isinstance(raw_rows, list):
+    ):
+        rows = payload.get(bucket, [])
+        if not isinstance(rows, list):
             raise RecoveryReconnaissanceError(f"manifest field {bucket!r} must be a list")
-        for raw in raw_rows:
+        for raw in rows:
             if not isinstance(raw, dict):
                 raise RecoveryReconnaissanceError(f"manifest {bucket!r} contains a non-object row")
             name = raw.get("name")
@@ -193,25 +223,25 @@ def _manifest_rows(payload: dict[str, object]) -> Iterable[HistoricalDonor]:
 
 
 def load_historical_donors(manifest_path: Path) -> tuple[HistoricalDonor, ...]:
-    """Load exact donor identities from a branch-retirement/recovery manifest."""
+    """Load and deduplicate exact historical heads from a recovery manifest."""
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise RecoveryReconnaissanceError("recovery manifest root must be an object")
+
+    provenance_rank = {
+        "preserved_active_refs": 4,
+        "restored_refs_after_failed_transaction": 3,
+        "blocked_refs": 2,
+        "retired_refs": 1,
+    }
     by_sha: dict[str, HistoricalDonor] = {}
     for donor in _manifest_rows(payload):
         existing = by_sha.get(donor.expected_head_sha)
-        if existing is None:
+        if existing is None or provenance_rank.get(
+            donor.source_bucket, 0
+        ) > provenance_rank.get(existing.source_bucket, 0):
             by_sha[donor.expected_head_sha] = donor
-            continue
-        rank = {
-            "preserved_active_refs": 4,
-            "restored_refs_after_failed_transaction": 3,
-            "blocked_refs": 2,
-            "retired_refs": 1,
-        }
-        if rank.get(donor.source_bucket, 0) > rank.get(existing.source_bucket, 0):
-            by_sha[donor.expected_head_sha] = donor
-    return tuple(sorted(by_sha.values(), key=lambda item: (item.name, item.expected_head_sha)))
+    return tuple(sorted(by_sha.values(), key=lambda row: (row.name, row.expected_head_sha)))
 
 
 def _priority(
@@ -223,7 +253,8 @@ def _priority(
     recovery_signal: float,
     reachable: bool,
 ) -> float:
-    direct_loss = min(0.48, 0.10 * deleted_source_test)
+    """Rank donor urgency without allowing branch breadth to hide direct loss."""
+    direct_loss = min(0.52, 0.14 * deleted_source_test)
     composition = min(0.20, 0.04 * modified_source_test)
     control = min(0.08, 0.02 * control_surface)
     breadth = min(0.08, candidate_count / 250.0)
@@ -237,12 +268,9 @@ def _disposition(
     deleted_source_test: int,
     modified_source_test: int,
     candidate_count: int,
-    priority_score: float,
 ) -> DonorDisposition:
-    # One exact, target-absent executable artifact is already a direct recovery
-    # signal. Do not bury it below a breadth-oriented score threshold merely
-    # because the donor branch is small.
-    if deleted_source_test > 0 and priority_score >= 0.20:
+    # Exact executable absence is stronger evidence than a composite score.
+    if deleted_source_test > 0:
         return "HIGH_PRIORITY_STRANDED"
     if modified_source_test > 0:
         return "COMPOSITION_CANDIDATE"
@@ -283,7 +311,7 @@ def inspect_historical_donor(
     fetch_missing: bool = False,
     remote: str = "origin",
 ) -> DonorReconnaissance:
-    """Inspect one exact historical head without allowing it to abort the wider scan."""
+    """Inspect one donor while containing any donor-specific failure."""
     repo = repo.resolve()
     availability: DonorAvailability = "AVAILABLE"
     if not _commit_available(repo, donor.expected_head_sha):
@@ -296,7 +324,7 @@ def inspect_historical_donor(
 
     try:
         resolved_sha = resolve_commit(repo, donor.expected_head_sha)
-        report = excavate(repo, donor_ref=resolved_sha, target_ref=target_sha)
+        archaeology = excavate(repo, donor_ref=resolved_sha, target_ref=target_sha)
     except (ArchaeologyError, RecoveryReconnaissanceError) as exc:
         return _unavailable(donor, str(exc))
 
@@ -307,7 +335,8 @@ def inspect_historical_donor(
     total_donor_bytes = 0
     recovery_signal = 0.0
     ranked_paths: list[tuple[float, str]] = []
-    for candidate in report.candidates:
+
+    for candidate in archaeology.candidates:
         role = _path_role(candidate.path)
         target_absent = candidate.target_blob_sha256 is None or candidate.status == "D"
         if role in {"SOURCE", "TEST"}:
@@ -319,6 +348,7 @@ def inspect_historical_donor(
             control_surface += 1
         elif role == "DOC":
             documentation += 1
+
         total_donor_bytes += candidate.donor_size
         recovery_signal += candidate.recovery_score
         role_weight = 1.0 if role in {"SOURCE", "TEST"} else 0.7 if role == "CONTROL" else 0.4
@@ -330,15 +360,14 @@ def inspect_historical_donor(
         deleted_source_test=deleted_source_test,
         modified_source_test=modified_source_test,
         control_surface=control_surface,
-        candidate_count=len(report.candidates),
+        candidate_count=len(archaeology.candidates),
         recovery_signal=recovery_signal,
         reachable=reachable,
     )
     disposition = _disposition(
         deleted_source_test,
         modified_source_test,
-        len(report.candidates),
-        priority_score,
+        len(archaeology.candidates),
     )
     ranked_paths.sort(key=lambda item: (-item[0], item[1]))
     return DonorReconnaissance(
@@ -350,7 +379,7 @@ def inspect_historical_donor(
         pull_request=donor.pull_request,
         availability=availability,
         reachable_from_target=reachable,
-        candidate_count=len(report.candidates),
+        candidate_count=len(archaeology.candidates),
         deleted_source_test_count=deleted_source_test,
         modified_source_test_count=modified_source_test,
         control_surface_count=control_surface,
@@ -373,7 +402,7 @@ def build_recovery_reconnaissance(
     remote: str = "origin",
     max_auto_actions: int = 8,
 ) -> RecoveryReconnaissanceReport:
-    """Rank historical donors and compose them into the intelligent recovery planner."""
+    """Rank historical donors and feed useful heads to the recovery planner."""
     if not donors:
         raise RecoveryReconnaissanceError("at least one historical donor is required")
     repo = repo.resolve()
@@ -389,14 +418,15 @@ def build_recovery_reconnaissance(
         for donor in donors
     ]
     rows.sort(
-        key=lambda item: (
-            item.disposition == "UNAVAILABLE",
-            -item.priority_score,
-            -item.deleted_source_test_count,
-            -item.modified_source_test_count,
-            item.name,
+        key=lambda row: (
+            row.disposition == "UNAVAILABLE",
+            -row.priority_score,
+            -row.deleted_source_test_count,
+            -row.modified_source_test_count,
+            row.name,
         )
     )
+
     available_shas = tuple(
         dict.fromkeys(
             row.resolved_sha
@@ -446,10 +476,10 @@ def discover_from_manifest(
     remote: str = "origin",
     max_auto_actions: int = 8,
 ) -> RecoveryReconnaissanceReport:
-    donors = load_historical_donors(manifest_path)
+    """Discover, rank, and plan from one exact historical-ref manifest."""
     return build_recovery_reconnaissance(
         repo,
-        donors=donors,
+        donors=load_historical_donors(manifest_path),
         target_ref=target_ref,
         fetch_missing=fetch_missing,
         remote=remote,
