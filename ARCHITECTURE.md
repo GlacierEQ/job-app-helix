@@ -29,6 +29,6 @@ No generated projection, merge state, CI rule, registry, assistant output, or go
 
 Use Tower of Babel technology-placement law. Language and runtime choices are boundary-specific. Polyglot architecture is preferred whenever specialized technologies produce a stronger whole system than forced uniformity.
 
-## Historical terminology
+## Historical authority rule
 
-Older Helix files and receipts may contain the retired term `canonical`. Preserve them as historical evidence. The term has no current governing authority under APEX.
+Older Helix files and receipts may contain retired authority vocabulary. Preserve their substantive evidence and provenance, but migrate active control language to APEX. Retired authority labels have no current governing force.
