@@ -100,7 +100,9 @@ def test_same_opening_digest_reuses_complete_packet(tmp_path: Path) -> None:
     assert len(str(receipt["receipt_sha256"])) == 64
 
 
-def test_changed_opening_digest_quarantines_and_rebuilds_stale_packet(tmp_path: Path) -> None:
+def test_changed_opening_digest_quarantines_superseded_packet_lineage(
+    tmp_path: Path,
+) -> None:
     original = _opening()
     changed = replace(original, digest="opening-digest-v2")
     output_dir = tmp_path / "packets"
@@ -113,9 +115,9 @@ def test_changed_opening_digest_quarantines_and_rebuilds_stale_packet(tmp_path: 
             output_dir=output_dir,
             store=store,
         )
-        application_id = first.batch.packets[0].application_id
-        packet_dir = Path(first.batch.packets[0].packet_dir)
-        marker = packet_dir / "STALE_MARKER.txt"
+        original_application_id = first.batch.packets[0].application_id
+        original_packet_dir = Path(first.batch.packets[0].packet_dir)
+        marker = original_packet_dir / "STALE_MARKER.txt"
         marker.write_text("old packet", encoding="utf-8")
 
         second = compile_freshness_aware_batch(
@@ -126,8 +128,8 @@ def test_changed_opening_digest_quarantines_and_rebuilds_stale_packet(tmp_path: 
         )
 
     decision = second.decisions[0]
-    assert decision.application_id == application_id
-    assert decision.action == "REFRESH_STALE"
+    assert decision.application_id != original_application_id
+    assert decision.action == "REFRESH_SUPERSEDED"
     assert decision.previous_digest == "opening-digest-v1"
     assert second.refreshed_count == 1
     assert second.batch.compiled_count == 1
@@ -135,12 +137,15 @@ def test_changed_opening_digest_quarantines_and_rebuilds_stale_packet(tmp_path: 
     assert decision.quarantine_path is not None
     quarantine = Path(decision.quarantine_path)
     assert quarantine.is_dir()
+    assert original_application_id in quarantine.name
     assert (quarantine / "STALE_MARKER.txt").read_text(encoding="utf-8") == "old packet"
+    assert not original_packet_dir.exists()
     fresh_packet = Path(second.batch.packets[0].packet_dir)
     assert fresh_packet.is_dir()
     assert not (fresh_packet / "STALE_MARKER.txt").exists()
     receipt = _input_receipt(str(fresh_packet))
     assert receipt["opening_digest"] == "opening-digest-v2"
+    assert receipt["opening_id"] == "live-role"
 
 
 def test_unbound_legacy_packet_is_refreshed_once_and_preserved(tmp_path: Path) -> None:
