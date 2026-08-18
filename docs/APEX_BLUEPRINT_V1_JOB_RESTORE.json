@@ -1,112 +1,105 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "ba078e6ce0d3d92c4efb74a83aae4256c61e91fe",
-  "current_source_sha_before_handoff": "4fdd2c65866808f1c12244e841266578258b176f",
+  "source_sha_before": "6f71045f088881032518e25cc6e2d78da3fa8ad0",
+  "current_source_sha_before_handoff": "431eb7299b9022be3aa184ca39cef9d3d98efa79",
   "donor_shas": [
-    "b6eeae90c342283c3efa0f753af5540037ebe4b5",
-    "e18edaf99ec8960e0395c17c81aadbf98ff6122a",
-    "10bfa01b0f83bf4885337d696bce7381386bf406"
+    "77af5c533f071884ead825d9e6c2f42eb7bf26cb",
+    "4fdd2c65866808f1c12244e841266578258b176f",
+    "eb9abec8750a44c73e133f3a7ad3e38f69bd66b7"
   ],
-  "selected_priority": "Expand attributable live target-company ATS reach with a production Ashby public-job-posting discovery runtime that normalizes recruiter-relevant metadata and composes the live set directly into field-sensitive Opening Watch.",
+  "selected_priority": "Integrate Ashby as a first-class provider inside target_opening_discovery so maintained Ashby boards automatically flow through target_intelligence_cycle and downstream target_application_cycle without a separate provider command.",
   "priority_tier": "P2",
   "blocked_higher_candidates": [
     {
-      "priority": "Execute job-app-helix-target-application against a real current target-company ATS inventory with the production candidate profile.",
+      "priority": "Execute job-app-helix-target-application against a real current attributable employer inventory with the production candidate profile.",
       "state": "BLOCKED_THIS_RUN",
-      "evidence": "Repository search still did not expose a production candidate-profile artifact or ready target manifest suitable for execution without inventing personal data; direct container Git transport also remained unavailable.",
-      "retry_condition": "Production profile and target manifest are available through an authorized secret-safe runtime or persisted application workspace."
+      "evidence": "The prior verified handoff reported no production candidate-profile artifact or ready target manifest available through the authorized execution surface, and this run found no new evidence that blocker had cleared. The run therefore did not spend execution time re-probing the unchanged blocker.",
+      "retry_condition": "A production profile and target manifest become available through an authorized secret-safe runtime or persisted application workspace."
     }
   ],
-  "displaced_capability": "Target discovery supported Greenhouse and Lever, leaving Ashby-hosted employers outside the maintained attributable opening path and requiring manual URL handling for those boards.",
+  "displaced_capability": "Ashby discovery existed as a proven sidecar command, but the maintained target dispatcher and vertical target intelligence/application path still admitted only Greenhouse and Lever. Ashby-hosted employers therefore required a separate provider command instead of flowing through the normal target-company lifecycle.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Reuse the existing Greenhouse/Lever discovery architecture and Opening Watch contracts as the stable donor pattern."
+      "assessment": "Keep the proven standalone Ashby runtime and manually bridge its openings into the target cycle. Low implementation risk but preserves the human/provider bridge and duplicates operating paths."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Add a generic pluggable provider abstraction immediately; higher regression surface and unnecessary restructuring for one provider expansion."
+      "assessment": "Rewrite the ATS layer around a new generalized plugin framework. More abstraction, larger regression surface, and unnecessary displacement of the already-strong Greenhouse/Lever contracts."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: build a provider-native Ashby runtime using the official public posting API, preserve rich application metadata, isolate failing boards, and compose directly into the proven field-sensitive Opening Watch engine without disturbing stronger existing target-cycle interfaces."
+      "assessment": "Selected: adapt the already-proven Ashby parser into the existing TargetOpeningSource dispatcher through a small explicit provider registry, then let the unchanged target intelligence/application composition consume Ashby through the same contract as Greenhouse and Lever."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 247,
-    "proof_head": "77af5c533f071884ead825d9e6c2f42eb7bf26cb",
-    "runtime_merge_sha": "4fdd2c65866808f1c12244e841266578258b176f",
+    "pull_request": 248,
+    "proof_head": "eb9abec8750a44c73e133f3a7ad3e38f69bd66b7",
+    "runtime_merge_sha": "431eb7299b9022be3aa184ca39cef9d3d98efa79",
     "modules": [
-      "src/job_app_helix/ashby_opening_discovery.py",
-      "tests/test_ashby_opening_discovery.py",
-      ".github/workflows/ashby-opening-discovery-proof.yml"
+      "src/job_app_helix/target_opening_discovery.py",
+      "tests/test_unified_ashby_target_cycle.py",
+      ".github/workflows/unified-ashby-target-cycle-proof.yml"
     ],
-    "executable": "python -m job_app_helix.ashby_opening_discovery",
+    "executable": "job-app-helix-discover-openings",
     "capabilities": [
-      "discover currently listed Ashby postings from the official public Job Postings API",
-      "normalize Ashby postings into Helix JobOpening objects",
-      "preserve apply URL, published time, employment type, workplace type, remote state, department, team, secondary locations, and compensation summary",
-      "apply title/location filters and deterministic maximum-opening limits",
-      "reject unsupported API versions and malformed response contracts",
-      "isolate one broken Ashby board without stalling healthy boards",
-      "reject duplicate board identities and duplicate opening URLs",
-      "feed the attributable live Ashby set directly into field-sensitive Opening Watch through an in-cycle cached fetcher",
-      "persist a deterministic ASHBY_OPENING_DISCOVERY_RECEIPT.json"
+      "admit ashby through TargetOpeningSource alongside greenhouse and lever",
+      "reuse the proven discover_ashby_openings runtime instead of duplicating provider parsing",
+      "preserve Ashby apply URL, compensation, publication, workplace, remote, department, team, and secondary-location metadata inside the unified JobOpening path",
+      "run Ashby openings through the existing field-sensitive Opening Watch contract",
+      "flow Ashby openings directly through execute_target_intelligence_cycle into company intelligence, ranking, freshness-aware packet generation, and recruiter packet output",
+      "isolate a failing provider source while healthy Ashby inventory continues through the unified live set",
+      "preserve deterministic source filtering, ordering, maximum-opening limits, and duplicate URL protection",
+      "emit target discovery and inventory schema v2 with provider-set provenance"
     ]
   },
   "preserved_gains": [
-    "Greenhouse and Lever target discovery remain unchanged",
-    "target_intelligence_cycle and target_application_cycle interfaces remain unchanged",
+    "Greenhouse and Lever provider behavior and public target-discovery interfaces remain supported",
+    "the standalone Ashby discovery executable remains available as a focused provider-native surface",
+    "target_intelligence_cycle and target_application_cycle composition interfaces remain unchanged",
     "Opening Watch recruiter-material change semantics remain unchanged",
     "freshness-aware recruiter packet reuse and stale-lineage quarantine remain unchanged",
+    "company target registry and mapped-role gates were preserved and explicitly exercised during proof refinement",
     "no external application submission or recruiter communication was introduced"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32188253438,
+      "run_id": 32190606711,
       "result": "PASS",
-      "exact_head": "77af5c533f071884ead825d9e6c2f42eb7bf26cb",
+      "exact_head": "eb9abec8750a44c73e133f3a7ad3e38f69bd66b7",
       "matrix": ["3.11", "3.12", "3.13"],
       "checks": [
-        "strict Ruff over Ashby runtime and adversarial tests",
-        "listed-only filtering and recruiter metadata normalization",
-        "field-sensitive material description-change detection through Opening Watch",
-        "board failure isolation",
-        "duplicate-board rejection before state mutation",
-        "unsupported public API version rejection",
-        "executable module resolution"
+        "strict Ruff over unified target discovery, proven Ashby runtime, and vertical adversarial tests",
+        "existing Greenhouse/Lever target-opening regression tests",
+        "Ashby recruiter metadata preservation through the unified JobOpening contract",
+        "listed-only Ashby filtering inherited from the proven donor runtime",
+        "mixed-provider failure isolation",
+        "Ashby target progression through target_intelligence_cycle, company intelligence, ranking, freshness-aware packet generation, and recruiter packet output",
+        "installed job-app-helix-discover-openings executable resolution"
       ]
     },
     "proof_pivots": [
-      "initial proof run 32188086744 failed strict lint on two ambiguous en-dash fixture strings and one E501 line",
-      "test fixtures were corrected without suppressing or weakening Ruff",
-      "rerun 32188253438 passed the complete matrix on Python 3.11, 3.12, and 3.13"
+      "run 32190223720 exposed one E501 defect in the new proof fixture; corrected without weakening Ruff",
+      "run 32190329689 reached the existing company-target gate and rejected an unregistered synthetic company; fixture moved to the real registered Anthropic target rather than weakening the registry",
+      "run 32190513111 reached the mapped-role gate and rejected an unmapped synthetic role; fixture moved to the existing mapped Applied AI Engineer role rather than weakening role validation",
+      "run 32190606711 passed the complete Python 3.11, 3.12, and 3.13 matrix"
     ],
     "post_merge_readback": {
       "result": "PASS",
-      "main_sha": "4fdd2c65866808f1c12244e841266578258b176f",
-      "runtime_blob_sha": "113073d3d7c58db00319cb26001c1c3fb0576e2c",
-      "observed": "main contains AshbyOpeningSource, discover_ashby_openings, execute_ashby_opening_discovery, official public posting URL construction, listed-only filtering, rich recruiter metadata normalization, failure isolation, cached Opening Watch composition, receipt persistence, and executable CLI module."
+      "main_sha": "431eb7299b9022be3aa184ca39cef9d3d98efa79",
+      "runtime_blob_sha": "151cd5378cee1b6768b5f73ac00891aaf7d7fd07",
+      "observed": "main contains ashby in SUPPORTED_PROVIDERS, AshbyOpeningSource/discover_ashby_openings composition, the explicit provider dispatcher, include_compensation propagation, and the unified target-opening runtime consumed by the unchanged vertical target intelligence/application architecture."
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P1",
-      "priority": "Execute job-app-helix-target-application against a real attributable employer inventory using the production candidate profile and preserve the selected application-ready release.",
+      "priority": "Execute job-app-helix-target-application against a real current attributable employer inventory using the production candidate profile and preserve the selected application-ready release.",
       "target_files_functions": [
         "src/job_app_helix/target_application_cycle.py::execute_target_application_cycle",
         "src/job_app_helix/target_intelligence_cycle.py::execute_target_intelligence_cycle"
-      ]
-    },
-    {
-      "tier": "P2",
-      "priority": "Integrate Ashby as a first-class provider inside target_opening_discovery so maintained Ashby boards automatically flow through target_intelligence_cycle and target_application_cycle without a separate provider command.",
-      "target_files_functions": [
-        "src/job_app_helix/target_opening_discovery.py::discover_source",
-        "src/job_app_helix/target_opening_discovery.py::TargetOpeningSource",
-        "src/job_app_helix/target_intelligence_cycle.py"
       ]
     },
     {
@@ -117,23 +110,33 @@
         "src/job_app_helix/recovery_ref_graph.py::build_ref_graph",
         "src/job_app_helix/federated_restoration.py"
       ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Expand attributable target-company opening reach with the next source-backed ATS adapter, prioritizing SmartRecruiters or a proven Workday public interface only after its live contract is verified.",
+      "target_files_functions": [
+        "src/job_app_helix/target_opening_discovery.py::TargetOpeningSource",
+        "src/job_app_helix/target_opening_discovery.py::discover_source",
+        "src/job_app_helix/target_intelligence_cycle.py::execute_target_intelligence_cycle"
+      ]
     }
   ],
   "next_sequence": [
-    "resolve production profile and target manifest through a secret-safe authorized execution surface",
-    "execute the full target-application cycle against live attributable inventory",
-    "if still blocked, fold Ashby into the unified target discovery dispatcher and vertical target cycle",
-    "then execute the first exact-donor stranded-family restoration"
+    "retry the P1 target-application lane only when production profile/manifest evidence becomes available",
+    "otherwise execute the first exact-donor real repository-family restoration and prove native recovered behavior",
+    "then verify and admit the next attributable ATS provider through the same unified provider contract"
   ],
-  "merge_deploy_gate": "PR 247 merged at exact proven head 77af5c533f071884ead825d9e6c2f42eb7bf26cb as main merge 4fdd2c65866808f1c12244e841266578258b176f after Ashby Opening Discovery Proof 32188253438 passed strict lint, adversarial discovery/Opening Watch tests, and executable-module proof on Python 3.11, 3.12, and 3.13. Post-merge readback observed runtime blob 113073d3d7c58db00319cb26001c1c3fb0576e2c on main.",
-  "rollback": "Revert merge 4fdd2c65866808f1c12244e841266578258b176f. Existing Greenhouse/Lever discovery, target intelligence, target application, Opening Watch, and recruiter-packet systems remain intact.",
+  "merge_deploy_gate": "PR 248 merged at exact proven head eb9abec8750a44c73e133f3a7ad3e38f69bd66b7 as main merge 431eb7299b9022be3aa184ca39cef9d3d98efa79 after Unified Ashby Target Cycle Proof 32190606711 passed strict lint, provider regression, vertical Ashby intelligence/packet tests, and executable proof on Python 3.11, 3.12, and 3.13. Post-merge readback observed runtime blob 151cd5378cee1b6768b5f73ac00891aaf7d7fd07 on main.",
+  "rollback": "Revert merge 431eb7299b9022be3aa184ca39cef9d3d98efa79. The pre-existing standalone Ashby runtime, Greenhouse/Lever unified target discovery, target intelligence/application cycles, Opening Watch, and recruiter-packet systems remain available at parent 6f71045f088881032518e25cc6e2d78da3fa8ad0.",
   "no_loss_invariants": [
     "never expose unlisted Ashby postings as live target opportunities",
+    "never duplicate or weaken the proven provider parser when composition can reuse it",
     "never treat employer posting text as candidate evidence",
-    "never allow one failed provider board to stall unrelated healthy boards when isolation is enabled",
+    "never allow one failed provider source to stall unrelated healthy sources when isolation is enabled",
     "never silently accept an unknown Ashby public posting API version",
+    "preserve company-target and mapped-role validation gates",
     "preserve current Opening Watch materiality and recruiter packet freshness contracts",
     "never fabricate application submission or recruiter communication"
   ],
-  "verified_delta_state": "ASHBY_ATTRIBUTABLE_LIVE_OPENING_DISCOVERY_WITH_RICH_RECRUITER_METADATA_AND_FIELD_SENSITIVE_WATCH_COMPOSITION_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
+  "verified_delta_state": "ASHBY_FIRST_CLASS_UNIFIED_TARGET_DISCOVERY_TO_FULL_INTELLIGENCE_AND_RECRUITER_PACKET_PATH_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
 }
