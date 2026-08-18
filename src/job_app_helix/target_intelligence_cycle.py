@@ -16,7 +16,12 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from .application_operations import ApplicationStore, CandidateProfile, JobOpening, load_candidate_profile
+from .application_operations import (
+    ApplicationStore,
+    CandidateProfile,
+    JobOpening,
+    load_candidate_profile,
+)
 from .batch_application_execution import DEFAULT_ACTIONABLE_LANES
 from .company_intelligence_acquisition import Transport, fetch_http_source
 from .intelligence_cycle import IntelligenceCycleCandidate
@@ -261,7 +266,7 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-target-cycle",
         description=(
-            "Discover target-company ATS inventories and automatically run new or recruiter-material "
+            "Discover target-company ATS inventories and run new or recruiter-material "
             "openings through company intelligence, ranking, and recruiter packet generation."
         ),
     )
