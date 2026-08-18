@@ -24,6 +24,8 @@ class BranchAssessment:
     classification: str
     safe_direct_merge: bool
     retirement_ready: bool
+    operator_review_required: bool
+    capability_review_required: bool
     reason: str
 
     def to_dict(self) -> dict[str, object]:
@@ -60,8 +62,9 @@ def _count_pair(repo: Path, left: str, right: str) -> tuple[int, int]:
 
 
 def _unique_patch_commits(repo: Path, canonical: str, branch: str) -> tuple[str, ...]:
-    # git cherry compares patch identity, so cherry-picked commits already represented
-    # on canonical do not masquerade as unique branch value merely because SHA differs.
+    # Patch identity is useful evidence but is not a complete capability comparison.
+    # A patch-equivalent branch may still contain purpose, structure, history, tests,
+    # generated assets, integration context, or donor value that deserves inspection.
     rows = _line_output(repo, "cherry", canonical, branch)
     return tuple(row[2:].strip() for row in rows if row.startswith("+ "))
 
@@ -71,6 +74,13 @@ def _changed_files(repo: Path, canonical: str, branch: str) -> tuple[str, ...]:
 
 
 def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
+    """Assess branch ancestry without converting ancestry into deletion authority.
+
+    This function intentionally cannot declare a branch retirement-ready. Git ancestry
+    and patch equivalence are only inputs to a later capability/lineage review. Any
+    actual retirement remains an explicit OPERATOR decision outside this module.
+    """
+
     repo = repo.resolve()
     if not (repo / ".git").exists():
         raise BranchStewardError(f"not a git checkout: {repo}")
@@ -84,28 +94,33 @@ def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
     files = _changed_files(repo, canonical, branch)
 
     if ahead == 0:
-        classification = "ANCESTRY_EXHAUSTED"
+        classification = "ANCESTRY_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED"
         safe_direct_merge = False
-        retirement_ready = True
-        reason = "branch has no commits absent from canonical ancestry"
+        reason = (
+            "branch has no commits absent from canonical ancestry, but ancestry alone "
+            "cannot establish capability exhaustion; inspect purpose, lineage, artifacts, "
+            "consumers, and historical donor value before any lifecycle decision"
+        )
     elif not unique:
-        classification = "PATCH_EQUIVALENT_EXHAUSTED"
+        classification = "PATCH_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED"
         safe_direct_merge = False
-        retirement_ready = True
-        reason = "branch SHAs differ, but git-cherry found no unique patch value"
+        reason = (
+            "git-cherry found no unique patch commits, but patch equivalence is not proof "
+            "of functional or historical redundancy; perform capability review"
+        )
     elif behind == 0:
         classification = "CURRENT_UNIQUE_VALUE"
         safe_direct_merge = True
-        retirement_ready = False
-        reason = "branch is based on canonical ancestry and contains unique patches"
+        reason = (
+            "branch is based on current ancestry and contains unique patches; verify and "
+            "compose its useful capability into the strongest current system"
+        )
     else:
         classification = "DIVERGED_UNIQUE_VALUE"
         safe_direct_merge = False
-        retirement_ready = False
         reason = (
-            "branch is behind canonical and still contains unique patches; "
-            "synthesize its useful delta "
-            "onto fresh canonical ancestry instead of merging the stale tip directly"
+            "branch is behind current ancestry and contains unique patches; synthesize its "
+            "useful delta with later gains on fresh ancestry rather than discarding either side"
         )
 
     return BranchAssessment(
@@ -119,7 +134,9 @@ def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
         changed_files=files,
         classification=classification,
         safe_direct_merge=safe_direct_merge,
-        retirement_ready=retirement_ready,
+        retirement_ready=False,
+        operator_review_required=True,
+        capability_review_required=True,
         reason=reason,
     )
 
@@ -162,8 +179,8 @@ def assess_repository(
     priority_order = {
         "DIVERGED_UNIQUE_VALUE": 0,
         "CURRENT_UNIQUE_VALUE": 1,
-        "PATCH_EQUIVALENT_EXHAUSTED": 2,
-        "ANCESTRY_EXHAUSTED": 3,
+        "PATCH_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED": 2,
+        "ANCESTRY_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED": 3,
     }
     assessments.sort(
         key=lambda item: (
@@ -176,8 +193,10 @@ def assess_repository(
         "repository": repo.name,
         "canonical": canonical_ref,
         "branch_count": len(assessments),
-        "actionable_unique": sum(not item.retirement_ready for item in assessments),
-        "retirement_ready": sum(item.retirement_ready for item in assessments),
+        "actionable_unique": sum(bool(item.unique_patch_commits) for item in assessments),
+        "capability_review_required": len(assessments),
+        "retirement_ready": 0,
+        "retirement_policy": "OPERATOR_AUTHORIZATION_REQUIRED_AFTER_CAPABILITY_REVIEW",
         "branches": [item.to_dict() for item in assessments],
     }
 
