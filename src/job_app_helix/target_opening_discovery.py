@@ -1,9 +1,10 @@
 """Discover and maintain target-company opening inventories from public ATS APIs.
 
-This module closes the upstream gap before Opening Watch: callers describe target companies
-once, Helix discovers their current Greenhouse or Lever inventories, normalizes provider
-records into JobOpening objects, persists deterministic inventory deltas, then hands the live
-set directly to the existing field-sensitive Opening Watch runtime.
+Callers describe target companies once. Helix discovers current Greenhouse, Lever, or Ashby
+inventories, normalizes provider records into JobOpening objects, persists deterministic
+inventory deltas, then hands the live set directly to the existing field-sensitive Opening
+Watch runtime. Provider-specific parsing stays isolated behind one dispatcher so the vertical
+target intelligence/application cycles can consume every supported ATS through one contract.
 """
 
 from __future__ import annotations
@@ -18,10 +19,11 @@ from pathlib import Path
 from typing import Any
 
 from .application_operations import JobOpening, ingest_job_opening
+from .ashby_opening_discovery import AshbyOpeningSource, discover_ashby_openings
 from .opening_watch import OpeningWatchResult, OpeningWatchTarget, execute_opening_watch
 
 JsonTransport = Callable[[str], Any]
-SUPPORTED_PROVIDERS = frozenset({"greenhouse", "lever"})
+SUPPORTED_PROVIDERS = frozenset({"ashby", "greenhouse", "lever"})
 
 
 @dataclass(frozen=True)
@@ -33,6 +35,7 @@ class TargetOpeningSource:
     exclude_title_terms: tuple[str, ...] = ()
     include_locations: tuple[str, ...] = ()
     max_openings: int | None = None
+    include_compensation: bool = True
 
     def __post_init__(self) -> None:
         if not self.company.strip():
@@ -248,15 +251,45 @@ def _lever_openings(
     return tuple(openings)
 
 
+def _ashby_openings(
+    source: TargetOpeningSource,
+    transport: JsonTransport,
+) -> tuple[JobOpening, ...]:
+    """Adapt the proven Ashby runtime into the unified target-source contract."""
+    return discover_ashby_openings(
+        AshbyOpeningSource(
+            company=source.company,
+            board_key=source.board_key,
+            include_title_terms=source.include_title_terms,
+            exclude_title_terms=source.exclude_title_terms,
+            include_locations=source.include_locations,
+            max_openings=source.max_openings,
+            include_compensation=source.include_compensation,
+        ),
+        transport=transport,
+    )
+
+
+_PROVIDER_DISCOVERERS: Mapping[
+    str,
+    Callable[[TargetOpeningSource, JsonTransport], tuple[JobOpening, ...]],
+] = {
+    "ashby": _ashby_openings,
+    "greenhouse": _greenhouse_openings,
+    "lever": _lever_openings,
+}
+
+
 def discover_source(
     source: TargetOpeningSource,
     *,
     transport: JsonTransport = _fetch_json,
 ) -> tuple[JobOpening, ...]:
-    if source.provider == "greenhouse":
-        openings = _greenhouse_openings(source, transport)
-    else:
-        openings = _lever_openings(source, transport)
+    try:
+        discoverer = _PROVIDER_DISCOVERERS[source.provider]
+    except KeyError as exc:
+        raise ValueError(f"unsupported target opening provider: {source.provider}") from exc
+    openings = discoverer(source, transport)
     ordered = tuple(
         sorted(openings, key=lambda row: (row.title.casefold(), row.source_url or ""))
     )
@@ -353,7 +386,8 @@ def execute_target_opening_discovery(
     _write_json(
         inventory_path,
         {
-            "schema": "glaciereq.target-opening-inventory.v1",
+            "schema": "glaciereq.target-opening-inventory.v2",
+            "providers": sorted({source.provider for source in sources}),
             "openings": [opening.as_dict() for opening in ordered_openings],
             "delta": delta.as_dict(),
         },
@@ -388,11 +422,12 @@ def execute_target_opening_discovery(
 
     successful_sources = sum(result.error is None for result in source_results)
     base: dict[str, object] = {
-        "schema": "glaciereq.target-opening-discovery.v1",
+        "schema": "glaciereq.target-opening-discovery.v2",
         "source_count": len(sources),
         "successful_source_count": successful_sources,
         "failed_source_count": len(sources) - successful_sources,
         "opening_count": len(ordered_openings),
+        "providers": sorted({source.provider for source in sources}),
         "sources": [result.as_dict() for result in source_results],
         "delta": delta.as_dict(),
         "watch": watch.as_dict() if watch is not None else None,
@@ -451,6 +486,7 @@ def load_sources(path: Path) -> tuple[TargetOpeningSource, ...]:
                     if row.get("max_openings") is not None
                     else None
                 ),
+                include_compensation=bool(row.get("include_compensation", True)),
             )
         )
     return tuple(sources)
@@ -460,8 +496,8 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-discover-openings",
         description=(
-            "Discover maintained Greenhouse/Lever target-company inventories and feed the "
-            "normalized live set directly into Opening Watch."
+            "Discover maintained Greenhouse, Lever, and Ashby target-company inventories "
+            "and feed the normalized live set directly into Opening Watch."
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
