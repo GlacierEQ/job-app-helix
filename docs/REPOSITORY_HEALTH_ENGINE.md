@@ -2,11 +2,11 @@
 
 ## Purpose
 
-The Repository Health Engine measures the current, provable condition of a canonical child repository. It does not grade repository names, README polish, language count, source-file count, or account ownership as substitutes for working software.
+The Repository Health Engine measures the current, provable condition of an APEX child repository. It does not grade repository names, README polish, language count, source-file count, or account ownership as substitutes for working software.
 
 Every assessment is bound to:
 
-- one canonical `owner/name` repository identity;
+- one APEX `owner/name` repository identity;
 - one observed Git head SHA;
 - one versioned scoring policy;
 - dimension-specific evidence receipts;
@@ -96,8 +96,8 @@ Missing dimensions normalize to `UNVERIFIED` with zero points. Unknown dimension
 
 The engine emits:
 
-- canonical input SHA-256;
-- canonical policy SHA-256;
+- APEX input SHA-256;
+- APEX policy SHA-256;
 - deterministic assessment ID;
 - normalized state for every dimension;
 - exact weighted points;
@@ -132,7 +132,7 @@ Exit codes:
 Repository health is one projection in the wider Helix compiler:
 
 ```text
-canonical repository SHA
+APEX repository SHA
         │
         ▼
 repository-native evidence receipts
