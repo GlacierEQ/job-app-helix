@@ -110,7 +110,7 @@ def _ashby_target(plan: Path) -> TargetIntelligenceSource:
             include_locations=("remote",),
         ),
         acquisition_plan_path=plan,
-        role="Staff AI Platform Engineer",
+        role="Applied AI Engineer",
     )
 
 
