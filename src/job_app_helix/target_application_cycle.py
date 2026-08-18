@@ -77,7 +77,9 @@ class ApplicationReadyRelease:
             "schema": self.schema,
             "target_cycle_receipt_sha256": self.target_cycle_receipt_sha256,
             "selected": self.selected.as_dict(),
-            "rejected_higher_priority_packets": [dict(row) for row in self.rejected_higher_priority_packets],
+            "rejected_higher_priority_packets": [
+                dict(row) for row in self.rejected_higher_priority_packets
+            ],
             "receipt_sha256": self.receipt_sha256,
         }
 
