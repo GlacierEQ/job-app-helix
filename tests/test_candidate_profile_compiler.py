@@ -1,7 +1,7 @@
 import json
+import pathlib
 import tempfile
 import unittest
-from pathlib import Path
 
 from job_app_helix.application_operations import load_candidate_profile
 from job_app_helix.candidate_profile_compiler import (
@@ -71,7 +71,7 @@ Systems engineer building evidence-backed automation.
 """
 
 
-def _write(path: Path, content: str) -> Path:
+def _write(path: pathlib.Path, content: str) -> pathlib.Path:
     path.write_text(content, encoding="utf-8")
     return path
 
@@ -79,7 +79,7 @@ def _write(path: Path, content: str) -> Path:
 class CandidateProfileCompilerTests(unittest.TestCase):
     def setUp(self) -> None:
         self._temporary = tempfile.TemporaryDirectory()
-        self.root = Path(self._temporary.name)
+        self.root = pathlib.Path(self._temporary.name)
 
     def tearDown(self) -> None:
         self._temporary.cleanup()
