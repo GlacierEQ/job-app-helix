@@ -69,7 +69,5 @@ message ReadmeMesh {
   string generated_at = 2;
   repeated RepositoryNode repositories = 3;
   repeated RepositoryEdge edges = 4;
-  // Legacy v1 wire name retained for compatibility. This identifies the root
-  // repository of the old public projection and grants no authority over APEX intent.
-  string canonical_repo = 5;
+  string apex_repo = 5;
 }
