@@ -1,117 +1,101 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "c2137e5c0ecf5de9c23e9113d8c0531db68cd7cb",
-  "current_source_sha_before_handoff": "21e0c1ae21b736a9feb84437f68bbad69f859fde",
+  "source_sha_before": "06e5fc44f10824ff82d2efb8cdf1a50729a18a3d",
+  "current_source_sha_before_handoff": "248ea478e6b815ce7c1e20abbc294b6db5d23112",
   "donor_shas": [
-    "c2137e5c0ecf5de9c23e9113d8c0531db68cd7cb",
+    "06e5fc44f10824ff82d2efb8cdf1a50729a18a3d",
+    "21e0c1ae21b736a9feb84437f68bbad69f859fde",
     "3ca213ca63404b980b2cb59fc45aec165aea1572"
   ],
-  "selected_priority": "Restore broken company-intelligence/recruiter-strategy compatibility and ship a combined application execution queue using requirement score, fresh company fit, freshness, and hard-gap caps.",
-  "priority_tier": "P1",
+  "selected_priority": "Compile top APPLY_NOW/APPLY_NEXT queue items into idempotent tracked recruiter packets with deduplication while preserving the manual submission boundary.",
+  "priority_tier": "P2",
   "blocked_higher_candidates": [],
-  "displaced_capability": "Current main had two interacting losses: estate-intelligence tests could not even collect because parse_company_intelligence had disappeared from the modern company-intelligence module, and company-fit admission could disagree with recruiter-copy evidence mapping. Helix also lacked a batch execution surface that turned requirement and company-fit intelligence into a prioritized opening queue.",
+  "displaced_capability": "The merged application execution queue could rank openings but stopped before converting winners into tracked recruiter-ready strategy packets. Re-running strategy compilation also lacked a batch-level deduplication contract, risking repeated lifecycle work and duplicate orchestration noise.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Recover the displaced atlas parser contract and preserve the existing opportunity, company-fit, and recruiter-strategy APIs rather than replacing later code."
+      "assessment": "Reuse the existing ApplicationStore, deterministic strategy application ids, queue ranking, and ManualApplicationAdapter rather than inventing a parallel batch lifecycle."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Build an independent batch scorer over normalized openings. This adds queueing but duplicates scoring semantics and leaves the broken compatibility path unresolved."
+      "assessment": "Create a new bulk packet generator independent of the current lifecycle. This would be simpler internally but would duplicate projection semantics and weaken application-state continuity."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Restore the historical parser contract, strengthen company-signal evidence matching with conservative concept normalization, reuse that same matcher in recruiter projection, then compose opportunity score, fresh company fit, freshness, and hard-gap caps into one deterministic execution queue."
+      "assessment": "Use the existing queue as the prioritization plane, pre-project deterministic application ids for idempotency, compile actionable lanes through the existing company/requirement-aware lifecycle, reuse complete packets, and repair incomplete packet state without performing submission."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "commits": [
-      "e227ad9771e6f774c7c01534463fdfc6101af432",
-      "4980ead56ceddea37663a02e6c1afc1341b0e1e3",
-      "3b9be5359ca792b88b7b03bbae5ac076fdc59178",
-      "1200164b973e448a65d65a0b4a736aaa1d64b7bc",
-      "bfd686b878ea28fa32182d1bd9215e403aae8510",
-      "21e0c1ae21b736a9feb84437f68bbad69f859fde"
+    "pull_request": 225,
+    "merge_commit": "248ea478e6b815ce7c1e20abbc294b6db5d23112",
+    "branch_head": "7d294df8191f17b04dd84a3472c606dc7b48c51f",
+    "implementation_commits": [
+      "032d965aacc9cb64a869c73f246b307d0b44511d",
+      "41438ef2c2edaffe9fc1a4893637a546edf1e8a3",
+      "7019092253a707948f44e26e9a27b63cad452a3d",
+      "7d294df8191f17b04dd84a3472c606dc7b48c51f"
     ],
     "modules": [
+      "src/job_app_helix/batch_application_execution.py",
       "src/job_app_helix/opportunity_queue.py",
-      "src/job_app_helix/company_intelligence.py",
-      "src/job_app_helix/company_fit.py",
-      "src/job_app_helix/application_strategy.py"
+      "src/job_app_helix/application_strategy.py",
+      "src/job_app_helix/application_operations.py"
     ],
-    "entry_point": "job-app-helix-queue",
+    "entry_point": "job-app-helix-batch",
     "capabilities": [
-      "batch-ranks real normalized openings into APPLY_NOW, APPLY_NEXT, PREPARE_GAPS, DEFER, and BLOCKED_PROOF lanes",
-      "uses explicit requirement coverage as the dominant job-fit signal while composing fresh provenance-bound company fit and freshness",
-      "hard-caps major requirement gaps at 45 and missing public-proof blockers at 20 so company alignment cannot rescue an unqualified opening",
-      "makes missing company intelligence explicit instead of treating absent data as current",
-      "rejects company intelligence whose company_id does not match the target",
-      "restores parse_company_intelligence for the external bottleneck atlas without replacing the newer CompanyIntelligence model",
-      "normalizes conservative concept families such as agent/agents and engineered/engineering before company-evidence matching",
-      "shares the exact company-evidence matcher between company-fit admission and recruiter-copy projection so admitted signals cannot disappear downstream",
-      "preserves company-source URLs outside candidate claim_sources"
+      "turns ranked APPLY_NOW/APPLY_NEXT queue items into tracked recruiter-ready application packets",
+      "preserves queue ordering and supports an explicit batch limit for bounded high-priority execution",
+      "uses deterministic strategy application ids as the idempotency key",
+      "reuses complete existing packets without creating duplicate application rows or CREATED events",
+      "repairs incomplete packet state by recompiling through the existing strategy lifecycle",
+      "keeps PREPARE_GAPS/DEFER/BLOCKED_PROOF out of the default compilation path",
+      "retains READY state and ManualApplicationAdapter so packet generation never becomes a false submission claim",
+      "emits a machine-readable batch receipt containing queue and packet outcomes"
     ]
   },
   "preserved_gains": [
-    "existing assess_opportunity scoring and explicit requirement-gap semantics remain intact",
-    "existing project_requirement_aware_application and project_company_aware_application interfaces remain intact",
-    "existing ApplicationStore and manual adapter lifecycle remain intact",
-    "candidate claims remain bounded to supplied candidate evidence and admitted public proof",
-    "company-source URLs remain provenance for company facts and are not promoted into candidate evidence",
-    "fresh/stale semantics remain owned by CompanyIntelligence and CompanyFitAssessment",
-    "historical estate-intelligence atlas output remains a separate inference surface from fresh company-fit manifests"
+    "existing application execution queue scoring and hard-gap caps remain unchanged",
+    "existing requirement-aware and company-aware strategy projection remain the only recruiter-content generators",
+    "existing ApplicationStore schema and state transition semantics remain unchanged",
+    "existing deterministic projection/application ids remain authoritative for packet identity",
+    "existing manual submission adapter remains the default external-action boundary",
+    "company-source URLs remain separate from candidate claim_sources",
+    "no automatic external application submission was introduced"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32112510886,
-      "head": "21e0c1ae21b736a9feb84437f68bbad69f859fde",
+      "run_id": 32113584508,
+      "head": "7d294df8191f17b04dd84a3472c606dc7b48c51f",
       "python_3_11": "PASS",
       "python_3_12": "PASS",
       "python_3_13": "PASS",
-      "lint": "PASS",
-      "targeted_tests": "15 PASS per matrix job",
-      "test_files": [
-        "tests/test_opportunity_queue.py",
-        "tests/test_application_strategy.py",
-        "tests/test_estate_intelligence.py"
-      ]
+      "lint_new_surfaces": "PASS",
+      "adversarial_tests": "PASS",
+      "installed_cli_probe": "PASS",
+      "test_file": "tests/test_batch_application_execution.py"
     },
-    "adversarial_runtime_probe": {
-      "result": "PASS",
-      "schema": "glaciereq.application-execution-queue.v1",
-      "candidate_count": 2,
-      "first": "strong",
-      "first_lane": "APPLY_NOW",
-      "first_score": 86.75,
-      "hard_gap_lane": "PREPARE_GAPS",
-      "hard_gap_score": 45.0,
-      "fresh_signal_count": 2,
-      "invariants": [
-        "fresh aligned opening outranks weaker opening",
-        "major hard gaps cannot be rescued by company alignment",
-        "stale intelligence contributes no freshness or fit",
-        "wrong-company intelligence is rejected",
-        "company-direction evidence reaches recruiter copy only when the same concrete candidate evidence matcher admits it"
-      ]
+    "adversarial_invariants": [
+      "only actionable queue lanes compile by default",
+      "hard-gap candidates remain skipped rather than becoming recruiter packets",
+      "a second identical batch run reuses the same complete application packet",
+      "deduplication does not create a second application row or CREATED event",
+      "batch limit preserves queue rank ordering",
+      "compiled applications remain READY with no external_reference and no submission claim"
+    ],
+    "post_merge_readback": {
+      "main_commit": "248ea478e6b815ce7c1e20abbc294b6db5d23112",
+      "module": "src/job_app_helix/batch_application_execution.py",
+      "observed_on_main": true
     },
-    "full_suite_recovery_observation": {
-      "before_parser_restore": "collection error: tests/test_estate_intelligence.py could not import parse_company_intelligence",
-      "after_parser_restore": "full suite collected 751 tests; remaining failures exposed independent library-policy and README projection debt plus the company-strategy matcher inconsistency subsequently fixed in this run",
-      "classification": "the selected P1/P2 executable surfaces have an independent green proof matrix; unrelated P4 library/README debt is not used as a reason to withhold the executable delta"
+    "global_ci": {
+      "run_id": 32113431658,
+      "classification": "PRE_EXISTING_UNRELATED_LINT_DEBT",
+      "detail": "Global CI stopped at lint on previously existing intelligent_recovery, library_program, public_proof_runtime, recovery_reconnaissance, repo_excellence, migration and older test surfaces. The focused batch proof independently passed all supported Python versions."
     }
   },
   "top_3_remaining_priorities": [
-    {
-      "tier": "P2",
-      "priority": "Compile top APPLY_NOW/APPLY_NEXT queue items into idempotent batch strategy packets with deduplication and preserved manual submission adapters.",
-      "target_files_functions": [
-        "src/job_app_helix/opportunity_queue.py",
-        "src/job_app_helix/application_strategy.py",
-        "src/job_app_helix/application_operations.py"
-      ]
-    },
     {
       "tier": "P2",
       "priority": "Automate attributable company-intelligence refresh with change detection, historical provenance retention, and stale-signal retirement.",
@@ -122,29 +106,38 @@
     },
     {
       "tier": "P2",
-      "priority": "Run the merged recovery ref graph against the highest-ranked HIGH_PRIORITY_STRANDED families, beginning with estate-intelligence compiler lineage, and recover only genuinely branch-owned capability.",
+      "priority": "Run the merged recovery ref graph against the highest-ranked HIGH_PRIORITY_STRANDED families and recover only genuinely branch-owned capability, beginning with estate-intelligence compiler lineage.",
       "target_files_functions": [
         "src/job_app_helix/recovery_ref_graph.py",
         "src/job_app_helix/recovery_reconnaissance.py",
         "src/job_app_helix/intelligent_recovery.py"
       ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Calibrate queue and strategy weights from persisted interview/offer outcomes while keeping outcome learning separate from factual candidate evidence.",
+      "target_files_functions": [
+        "src/job_app_helix/opportunity_queue.py",
+        "src/job_app_helix/application_operations.py",
+        "src/job_app_helix/opportunity_intelligence.py"
+      ]
     }
   ],
   "next_sequence": [
-    "batch-compile APPLY_NOW and APPLY_NEXT queue items into tracked recruiter packets",
     "refresh and diff attributable company intelligence while retaining provenance history",
-    "deep-recover the next highest-ranked stranded ref family through merge-base-qualified composition"
+    "deep-recover the highest-ranked stranded ref family through merge-base-qualified composition",
+    "feed persisted application outcomes into bounded ranking calibration"
   ],
-  "merge_deploy_gate": "PR #224 may merge after the focused Application Execution Queue Proof is green on Python 3.11, 3.12, and 3.13 and the exact executable branch head has been read back. Post-merge main must contain opportunity_queue.py, restored atlas parsing, shared company-evidence matching, and the queue entry point.",
-  "rollback": "Revert PR #224 merge. No database migration, destructive ref mutation, or application-record schema rewrite is introduced by this delta.",
+  "merge_deploy_gate": "PR #225 merged after Batch Application Execution Proof passed lint, adversarial tests, and installed CLI checks on Python 3.11, 3.12, and 3.13. Main readback must retain batch_application_execution.py and job-app-helix-batch.",
+  "rollback": "Revert merge commit 248ea478e6b815ce7c1e20abbc294b6db5d23112. No database migration or external submission side effect is introduced.",
   "no_loss_invariants": [
+    "never compile PREPARE_GAPS/DEFER/BLOCKED_PROOF by default",
+    "never treat packet preparation as external submission",
+    "never create duplicate lifecycle events for an already complete deterministic application packet",
+    "never replace the existing requirement/company-aware projection engines with a weaker bulk generator",
     "never let company fit override explicit hard requirement gaps",
-    "never convert a company signal into a candidate claim without independently supplied candidate evidence",
-    "never put company-source URLs into candidate claim_sources",
-    "never use company intelligence for the wrong target company",
-    "preserve the existing requirement-aware and company-aware application APIs",
-    "preserve fresh/stale source semantics and external atlas inference boundaries",
-    "never broad-restore a historical repository snapshot when a compatibility surface can be surgically recovered"
+    "never convert company-source provenance into candidate claim evidence",
+    "repair incomplete packet state through the existing lifecycle rather than inventing parallel application records"
   ],
-  "verified_delta_state": "EXECUTABLE_CAPABILITY_IMPLEMENTED_TARGET_NATIVE_MATRIX_PROVEN_AND_READY_TO_MERGE"
+  "verified_delta_state": "EXECUTABLE_CAPABILITY_MERGED_FOCUSED_MATRIX_PROVEN_AND_POST_MERGE_READ_BACK"
 }
