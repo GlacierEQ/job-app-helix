@@ -5,10 +5,13 @@ on:
     paths:
       - "src/job_app_helix/intelligence_cycle.py"
       - "src/job_app_helix/opening_acquisition.py"
+      - "src/job_app_helix/opening_watch.py"
+      - "src/job_app_helix/opening_watch_cycle.py"
       - "src/job_app_helix/freshness_aware_batch.py"
       - "tests/test_intelligence_cycle.py"
       - "tests/test_intelligence_cycle_freshness_integration.py"
       - "tests/test_opening_acquisition.py"
+      - "tests/test_opening_watch_cycle.py"
       - "tests/test_freshness_aware_batch.py"
       - "pyproject.toml"
       - ".github/workflows/intelligence-cycle-proof.yml"
@@ -17,10 +20,13 @@ on:
     paths:
       - "src/job_app_helix/intelligence_cycle.py"
       - "src/job_app_helix/opening_acquisition.py"
+      - "src/job_app_helix/opening_watch.py"
+      - "src/job_app_helix/opening_watch_cycle.py"
       - "src/job_app_helix/freshness_aware_batch.py"
       - "tests/test_intelligence_cycle.py"
       - "tests/test_intelligence_cycle_freshness_integration.py"
       - "tests/test_opening_acquisition.py"
+      - "tests/test_opening_watch_cycle.py"
       - "tests/test_freshness_aware_batch.py"
       - "pyproject.toml"
       - ".github/workflows/intelligence-cycle-proof.yml"
@@ -56,10 +62,13 @@ jobs:
           ruff check
           src/job_app_helix/intelligence_cycle.py
           src/job_app_helix/opening_acquisition.py
+          src/job_app_helix/opening_watch.py
+          src/job_app_helix/opening_watch_cycle.py
           src/job_app_helix/freshness_aware_batch.py
           tests/test_intelligence_cycle.py
           tests/test_intelligence_cycle_freshness_integration.py
           tests/test_opening_acquisition.py
+          tests/test_opening_watch_cycle.py
           tests/test_freshness_aware_batch.py
 
       - name: Run adversarial integrated cycle tests
@@ -68,10 +77,12 @@ jobs:
           tests/test_intelligence_cycle.py
           tests/test_intelligence_cycle_freshness_integration.py
           tests/test_opening_acquisition.py
+          tests/test_opening_watch_cycle.py
           tests/test_freshness_aware_batch.py
 
       - name: Prove installed executables
         run: |
           job-app-helix-cycle --help
+          job-app-helix-watch-cycle --help
           job-app-helix-freshness-batch --help
           python -m job_app_helix.opening_acquisition --help
