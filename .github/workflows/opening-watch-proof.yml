@@ -1,0 +1,30 @@
+name: Opening Watch Proof
+
+on:
+  pull_request:
+    paths:
+      - 'src/job_app_helix/opening_watch.py'
+      - 'tests/test_opening_watch.py'
+      - '.github/workflows/opening-watch-proof.yml'
+  workflow_dispatch:
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package and test tools
+        run: python -m pip install -e '.[dev]'
+      - name: Ruff focused runtime
+        run: python -m ruff check src/job_app_helix/opening_watch.py tests/test_opening_watch.py
+      - name: Batch opening watch adversarial proof
+        run: python -m pytest -q tests/test_opening_watch.py tests/test_opening_acquisition.py
+      - name: Executable module resolution
+        run: python -m job_app_helix.opening_watch --help
