@@ -1,6 +1,6 @@
 """Run the complete attributable job-intelligence-to-application cycle.
 
-This module composes Helix's existing acquisition, provenance refresh, company-fit,
+This module composes Helix's live opening acquisition, provenance refresh, company-fit,
 outcome-calibration, queue ranking, and recruiter-packet engines into one executable
 runtime. Company failures are isolated so one bad source cannot stall unrelated targets.
 """
@@ -40,6 +40,7 @@ from .company_intelligence_acquisition import (
     load_acquisition_plan,
 )
 from .company_intelligence_refresh import persist_refresh, refresh_company_intelligence
+from .opening_acquisition import OpeningFetcher, acquire_live_opening
 from .opportunity_queue import QueueCandidate
 from .outcome_calibration import (
     OutcomeCalibration,
@@ -51,8 +52,9 @@ from .outcome_calibration import (
 @dataclass(frozen=True)
 class IntelligenceCycleCandidate:
     company: str
-    opening_path: Path
     acquisition_plan_path: Path
+    opening_path: Path | None = None
+    opening_url: str | None = None
     current_intelligence_path: Path | None = None
     role: str | None = None
 
@@ -63,6 +65,9 @@ class CompanyCycleResult:
     company: str
     opening_id: str
     status: str
+    opening_status: str
+    opening_receipt_sha256: str | None
+    opening_changed_fields: tuple[str, ...]
     acquisition_receipt_sha256: str | None
     refresh_receipt_sha256: str | None
     active_intelligence_sha256: str | None
@@ -176,6 +181,8 @@ def _company_paths(root: Path, company_id: str) -> dict[str, Path]:
     company_root = root / "companies" / company_id
     return {
         "root": company_root,
+        "opening": company_root / "OPENING_SNAPSHOT.json",
+        "opening_receipt": company_root / "OPENING_ACQUISITION_RECEIPT.json",
         "incoming": company_root / "INCOMING_INTELLIGENCE.json",
         "active": company_root / "ACTIVE_INTELLIGENCE.json",
         "history": company_root / "INTELLIGENCE_HISTORY.jsonl",
@@ -185,6 +192,30 @@ def _company_paths(root: Path, company_id: str) -> dict[str, Path]:
     }
 
 
+def _resolve_opening(
+    candidate: IntelligenceCycleCandidate,
+    paths: Mapping[str, Path],
+    opening_fetcher: OpeningFetcher | None,
+) -> tuple[JobOpening, str, str | None, tuple[str, ...]]:
+    if candidate.opening_url is not None:
+        kwargs: dict[str, object] = {
+            "snapshot_path": paths["opening"],
+            "receipt_path": paths["opening_receipt"],
+        }
+        if opening_fetcher is not None:
+            kwargs["fetcher"] = opening_fetcher
+        acquisition = acquire_live_opening(candidate.opening_url, **kwargs)
+        return (
+            acquisition.opening,
+            acquisition.change.status,
+            acquisition.receipt_sha256,
+            acquisition.change.changed_fields,
+        )
+    if candidate.opening_path is None:
+        raise ValueError("candidate requires opening_path or opening_url")
+    return load_job_opening(candidate.opening_path), "STATIC", None, ()
+
+
 def _run_company_cycle(
     candidate: IntelligenceCycleCandidate,
     profile: CandidateProfile,
@@ -192,12 +223,17 @@ def _run_company_cycle(
     state_dir: Path,
     targets: Sequence[CompanyTarget],
     transport: Transport,
+    opening_fetcher: OpeningFetcher | None,
 ) -> tuple[QueueCandidate, CompanyCycleResult]:
     target = find_target(candidate.company, targets)
-    opening = load_job_opening(candidate.opening_path)
     plan = load_acquisition_plan(candidate.acquisition_plan_path)
-    _validate_identity(plan, target, opening)
     paths = _company_paths(state_dir, plan.company_id)
+    opening, opening_status, opening_receipt_sha, opening_changed_fields = _resolve_opening(
+        candidate,
+        paths,
+        opening_fetcher,
+    )
+    _validate_identity(plan, target, opening)
 
     acquisition = acquire_company_intelligence(plan, transport=transport)
     _write_json(paths["incoming"], acquisition.intelligence.as_dict())
@@ -233,6 +269,9 @@ def _run_company_cycle(
         company=plan.company,
         opening_id=opening.opening_id,
         status=status,
+        opening_status=opening_status,
+        opening_receipt_sha256=opening_receipt_sha,
+        opening_changed_fields=opening_changed_fields,
         acquisition_receipt_sha256=acquisition.receipt_sha256,
         refresh_receipt_sha256=refresh_sha,
         active_intelligence_sha256=active_sha,
@@ -251,12 +290,13 @@ def execute_intelligence_cycle(
     state_dir: Path,
     store: ApplicationStore,
     transport: Transport = fetch_http_source,
+    opening_fetcher: OpeningFetcher | None = None,
     actionable_lanes: Sequence[str] = DEFAULT_ACTIONABLE_LANES,
     limit: int | None = None,
     calibration: OutcomeCalibration | None = None,
     continue_on_company_error: bool = True,
 ) -> IntelligenceCycleResult:
-    """Execute acquisition through recruiter-packet compilation in one coherent cycle."""
+    """Execute live opening refresh through recruiter-packet compilation in one cycle."""
     if not candidates:
         raise ValueError("intelligence cycle requires at least one candidate")
 
@@ -271,16 +311,23 @@ def execute_intelligence_cycle(
                 state_dir=state_dir,
                 targets=targets,
                 transport=transport,
+                opening_fetcher=opening_fetcher,
             )
         except Exception as exc:
             if not continue_on_company_error:
                 raise
+            fallback_opening_id = (
+                candidate.opening_path.stem if candidate.opening_path is not None else "live-opening"
+            )
             company_results.append(
                 CompanyCycleResult(
                     company_id=candidate.company.casefold().replace(" ", "-"),
                     company=candidate.company,
-                    opening_id=candidate.opening_path.stem,
+                    opening_id=fallback_opening_id,
                     status="FAILED_ISOLATED",
+                    opening_status="FAILED",
+                    opening_receipt_sha256=None,
+                    opening_changed_fields=(),
                     acquisition_receipt_sha256=None,
                     refresh_receipt_sha256=None,
                     active_intelligence_sha256=None,
@@ -321,7 +368,7 @@ def execute_intelligence_cycle(
         calibration=effective_calibration,
     )
     base_receipt: dict[str, object] = {
-        "schema": "glaciereq.job-intelligence-cycle.v1",
+        "schema": "glaciereq.job-intelligence-cycle.v2",
         "candidate_count": len(candidates),
         "successful_company_count": len(queue_candidates),
         "failed_company_count": len(candidates) - len(queue_candidates),
@@ -333,7 +380,7 @@ def execute_intelligence_cycle(
     }
     receipt_sha = _canonical_sha256(base_receipt)
     result = IntelligenceCycleResult(
-        schema="glaciereq.job-intelligence-cycle.v1",
+        schema="glaciereq.job-intelligence-cycle.v2",
         candidate_count=len(candidates),
         successful_company_count=len(queue_candidates),
         failed_company_count=len(candidates) - len(queue_candidates),
@@ -361,15 +408,22 @@ def load_cycle_manifest(path: Path) -> tuple[IntelligenceCycleCandidate, ...]:
     for index, item in enumerate(raw):
         if not isinstance(item, Mapping):
             raise ValueError(f"cycle candidates[{index}] must be an object")
-        for field in ("company", "opening", "acquisition_plan"):
+        for field in ("company", "acquisition_plan"):
             if not item.get(field):
                 raise ValueError(f"cycle candidates[{index}] requires {field}")
+        opening = item.get("opening")
+        opening_url = item.get("opening_url")
+        if bool(opening) == bool(opening_url):
+            raise ValueError(
+                f"cycle candidates[{index}] requires exactly one of opening or opening_url"
+            )
         current = item.get("current_intelligence")
         rows.append(
             IntelligenceCycleCandidate(
                 company=str(item["company"]),
-                opening_path=root / str(item["opening"]),
                 acquisition_plan_path=root / str(item["acquisition_plan"]),
+                opening_path=root / str(opening) if opening else None,
+                opening_url=str(opening_url) if opening_url else None,
                 current_intelligence_path=root / str(current) if current else None,
                 role=str(item["role"]) if item.get("role") else None,
             )
@@ -381,8 +435,8 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-cycle",
         description=(
-            "Acquire and refresh attributable company intelligence, calculate fit, learn "
-            "bounded outcome calibration, health-gate it, rank openings, and compile packets."
+            "Refresh attributable live openings and company intelligence, calculate fit, "
+            "health-gate learned calibration, rank openings, and compile recruiter packets."
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
