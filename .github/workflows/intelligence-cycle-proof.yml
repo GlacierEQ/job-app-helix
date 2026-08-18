@@ -5,8 +5,11 @@ on:
     paths:
       - "src/job_app_helix/intelligence_cycle.py"
       - "src/job_app_helix/opening_acquisition.py"
+      - "src/job_app_helix/freshness_aware_batch.py"
       - "tests/test_intelligence_cycle.py"
+      - "tests/test_intelligence_cycle_freshness_integration.py"
       - "tests/test_opening_acquisition.py"
+      - "tests/test_freshness_aware_batch.py"
       - "pyproject.toml"
       - ".github/workflows/intelligence-cycle-proof.yml"
   push:
@@ -14,8 +17,11 @@ on:
     paths:
       - "src/job_app_helix/intelligence_cycle.py"
       - "src/job_app_helix/opening_acquisition.py"
+      - "src/job_app_helix/freshness_aware_batch.py"
       - "tests/test_intelligence_cycle.py"
+      - "tests/test_intelligence_cycle_freshness_integration.py"
       - "tests/test_opening_acquisition.py"
+      - "tests/test_freshness_aware_batch.py"
       - "pyproject.toml"
       - ".github/workflows/intelligence-cycle-proof.yml"
 
@@ -47,19 +53,25 @@ jobs:
 
       - name: Lint executable semantics
         run: >-
-          ruff check --ignore E501
+          ruff check
           src/job_app_helix/intelligence_cycle.py
           src/job_app_helix/opening_acquisition.py
+          src/job_app_helix/freshness_aware_batch.py
           tests/test_intelligence_cycle.py
+          tests/test_intelligence_cycle_freshness_integration.py
           tests/test_opening_acquisition.py
+          tests/test_freshness_aware_batch.py
 
       - name: Run adversarial integrated cycle tests
         run: >-
           python -m pytest -q
           tests/test_intelligence_cycle.py
+          tests/test_intelligence_cycle_freshness_integration.py
           tests/test_opening_acquisition.py
+          tests/test_freshness_aware_batch.py
 
       - name: Prove installed executables
         run: |
           job-app-helix-cycle --help
+          job-app-helix-freshness-batch --help
           python -m job_app_helix.opening_acquisition --help
