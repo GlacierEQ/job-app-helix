@@ -1,9 +1,7 @@
-from __future__ import annotations
-
 import json
+import tempfile
+import unittest
 from pathlib import Path
-
-import pytest
 
 from job_app_helix.application_operations import load_candidate_profile
 from job_app_helix.candidate_profile_compiler import (
@@ -13,7 +11,7 @@ from job_app_helix.candidate_profile_compiler import (
 )
 
 
-RESUME = """# Casey Barton — Senior Infrastructure Engineer
+RESUME = """# Casey Barton \u2014 Senior Infrastructure Engineer
 
 **Email**: casey@example.com | **GitHub**: github.com/GlacierEQ | **Location**: Honolulu, HI
 
@@ -46,7 +44,7 @@ Infrastructure engineer focused on reliable AI and physical systems.
 """
 
 
-SECONDARY = """# Casey Barton — AI Systems Engineer
+SECONDARY = """# Casey Barton \u2014 AI Systems Engineer
 
 **Email**: casey@example.com | **GitHub**: github.com/GlacierEQ | **Location**: Honolulu, HI
 
@@ -78,81 +76,86 @@ def _write(path: Path, content: str) -> Path:
     return path
 
 
-def test_compile_single_resume_is_helix_loadable_and_source_bound(tmp_path: Path) -> None:
-    resume = _write(tmp_path / "resume.md", RESUME)
-    output = tmp_path / "profile.json"
+class CandidateProfileCompilerTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self._temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self._temporary.name)
 
-    payload = write_candidate_profile([resume], output, profile_id="casey-production")
-    loaded = load_candidate_profile(output)
+    def tearDown(self) -> None:
+        self._temporary.cleanup()
 
-    assert payload["name"] == "Casey Barton"
-    assert payload["headline"] == "Senior Infrastructure Engineer"
-    assert loaded.profile_id == "casey-production"
-    assert "multi-agent orchestration" in loaded.skills
-    assert "Python" in loaded.skills
-    assert loaded.contact["email"] == "casey@example.com"
-    assert loaded.contact["location"] == "Honolulu, HI"
-    assert any(item.startswith("Mastermind AI Orchestration:") for item in loaded.experience)
-    assert any("9 specialized agents" in item for item in loaded.achievements)
-    provenance = payload["provenance"]
-    assert isinstance(provenance, dict)
-    assert provenance["policy"] == "source_text_only_no_claim_invention"
-    assert provenance["sources"][0]["sha256"]
+    def test_single_resume_is_helix_loadable_and_source_bound(self) -> None:
+        resume = _write(self.root / "resume.md", RESUME)
+        output = self.root / "profile.json"
 
+        payload = write_candidate_profile([resume], output, profile_id="casey-production")
+        loaded = load_candidate_profile(output)
 
-def test_multi_resume_composition_deduplicates_and_preserves_primary_voice(tmp_path: Path) -> None:
-    primary = _write(tmp_path / "general.md", RESUME)
-    secondary = _write(tmp_path / "specialized.md", SECONDARY)
+        self.assertEqual(payload["name"], "Casey Barton")
+        self.assertEqual(payload["headline"], "Senior Infrastructure Engineer")
+        self.assertEqual(loaded.profile_id, "casey-production")
+        self.assertIn("multi-agent orchestration", loaded.skills)
+        self.assertIn("Python", loaded.skills)
+        self.assertEqual(loaded.contact["email"], "casey@example.com")
+        self.assertEqual(loaded.contact["location"], "Honolulu, HI")
+        self.assertTrue(
+            any(item.startswith("Mastermind AI Orchestration:") for item in loaded.experience)
+        )
+        self.assertTrue(any("9 specialized agents" in item for item in loaded.achievements))
+        provenance = payload["provenance"]
+        self.assertIsInstance(provenance, dict)
+        self.assertEqual(provenance["policy"], "source_text_only_no_claim_invention")
+        self.assertTrue(provenance["sources"][0]["sha256"])
 
-    payload = compile_candidate_profile([primary, secondary])
+    def test_multi_resume_composition_deduplicates_and_preserves_primary_voice(self) -> None:
+        primary = _write(self.root / "general.md", RESUME)
+        secondary = _write(self.root / "specialized.md", SECONDARY)
 
-    assert payload["headline"] == "Senior Infrastructure Engineer"
-    assert payload["summary"] == (
-        "Infrastructure engineer focused on reliable AI and physical systems."
-    )
-    assert payload["skills"].count("Python") == 1
-    assert "Rust" in payload["skills"]
-    assert any("37 connector routes" in item for item in payload["experience"])
-    assert len(payload["provenance"]["sources"]) == 2
+        payload = compile_candidate_profile([primary, secondary])
 
+        self.assertEqual(payload["headline"], "Senior Infrastructure Engineer")
+        self.assertEqual(
+            payload["summary"],
+            "Infrastructure engineer focused on reliable AI and physical systems.",
+        )
+        self.assertEqual(payload["skills"].count("Python"), 1)
+        self.assertIn("Rust", payload["skills"])
+        self.assertTrue(any("37 connector routes" in item for item in payload["experience"]))
+        self.assertEqual(len(payload["provenance"]["sources"]), 2)
 
-def test_conflicting_contact_evidence_fails_closed(tmp_path: Path) -> None:
-    primary = _write(tmp_path / "general.md", RESUME)
-    conflicting = _write(
-        tmp_path / "conflicting.md",
-        SECONDARY.replace("casey@example.com", "different@example.com"),
-    )
+    def test_conflicting_contact_evidence_fails_closed(self) -> None:
+        primary = _write(self.root / "general.md", RESUME)
+        conflicting = _write(
+            self.root / "conflicting.md",
+            SECONDARY.replace("casey@example.com", "different@example.com"),
+        )
 
-    with pytest.raises(CandidateProfileCompileError, match="conflicting contact evidence"):
-        compile_candidate_profile([primary, conflicting])
+        with self.assertRaisesRegex(CandidateProfileCompileError, "conflicting contact evidence"):
+            compile_candidate_profile([primary, conflicting])
 
+    def test_identity_conflict_fails_closed(self) -> None:
+        primary = _write(self.root / "general.md", RESUME)
+        conflicting = _write(
+            self.root / "conflicting.md",
+            SECONDARY.replace("Casey Barton", "Another Person", 1),
+        )
 
-def test_identity_conflict_fails_closed(tmp_path: Path) -> None:
-    primary = _write(tmp_path / "general.md", RESUME)
-    conflicting = _write(
-        tmp_path / "conflicting.md",
-        SECONDARY.replace("Casey Barton", "Another Person", 1),
-    )
+        with self.assertRaisesRegex(CandidateProfileCompileError, "disagree on candidate identity"):
+            compile_candidate_profile([primary, conflicting])
 
-    with pytest.raises(CandidateProfileCompileError, match="disagree on candidate identity"):
-        compile_candidate_profile([primary, conflicting])
+    def test_missing_required_evidence_is_rejected(self) -> None:
+        resume = _write(
+            self.root / "thin.md",
+            "# Casey Barton \u2014 Engineer\n\n## Summary\n\nA real summary.\n",
+        )
 
+        with self.assertRaisesRegex(CandidateProfileCompileError, "no structured skills"):
+            compile_candidate_profile([resume])
 
-def test_missing_required_evidence_is_rejected(tmp_path: Path) -> None:
-    resume = _write(
-        tmp_path / "thin.md",
-        "# Casey Barton — Engineer\n\n## Summary\n\nA real summary.\n",
-    )
+    def test_output_contains_no_generated_claim_fields(self) -> None:
+        resume = _write(self.root / "resume.md", RESUME)
+        rendered = json.dumps(compile_candidate_profile([resume]))
 
-    with pytest.raises(CandidateProfileCompileError, match="no structured skills"):
-        compile_candidate_profile([resume])
-
-
-def test_output_contains_no_generated_claim_fields(tmp_path: Path) -> None:
-    resume = _write(tmp_path / "resume.md", RESUME)
-    payload = compile_candidate_profile([resume])
-    rendered = json.dumps(payload)
-
-    assert "world-class" not in rendered
-    assert "expert in" not in rendered
-    assert "source_text_only_no_claim_invention" in rendered
+        self.assertNotIn("world-class", rendered)
+        self.assertNotIn("expert in", rendered)
+        self.assertIn("source_text_only_no_claim_invention", rendered)
