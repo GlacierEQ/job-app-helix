@@ -1,8 +1,8 @@
 """Compile evidence-bound Helix CandidateProfile JSON from Markdown resumes.
 
-The compiler is intentionally conservative: it only promotes text already present in the
-resume sources, preserves source hashes, rejects conflicting identity/contact evidence,
-and emits a profile consumable by ``load_candidate_profile`` without inventing claims.
+The compiler only promotes text already present in resume sources, preserves source hashes,
+rejects conflicting identity/contact evidence, and emits a profile consumable by the existing
+``load_candidate_profile`` contract without inventing claims.
 """
 
 from __future__ import annotations
@@ -76,7 +76,7 @@ def _parse_identity(lines: Sequence[str], path: Path) -> tuple[str, str]:
     title = next((line[2:].strip() for line in lines if line.startswith("# ")), "")
     if not title:
         raise CandidateProfileCompileError(f"{path} requires a level-1 resume title")
-    parts = re.split(r"\s+[—–-]\s+", title, maxsplit=1)
+    parts = re.split("\\s+[\\u2014\\u2013-]\\s+", title, maxsplit=1)
     name = parts[0].strip()
     headline = parts[1].strip() if len(parts) == 2 else ""
     if not name:
@@ -129,9 +129,10 @@ def _parse_projects(lines: Sequence[str]) -> tuple[tuple[str, ...], tuple[str, .
             continue
         if stripped.startswith("- "):
             claim = stripped[2:].strip()
-            experience.append(f"{project}: {claim}" if project else claim)
+            evidence = f"{project}: {claim}" if project else claim
+            experience.append(evidence)
             if re.search(r"\d", claim):
-                achievements.append(f"{project}: {claim}" if project else claim)
+                achievements.append(evidence)
     return _dedupe(experience), _dedupe(achievements)
 
 
@@ -143,8 +144,10 @@ def parse_resume(path: Path) -> ResumeEvidence:
     name, headline = _parse_identity(lines, path)
     experience, achievements = _parse_projects(lines)
     skills = _dedupe(
-        (*_parse_table_values(_section(lines, "Core Competencies")),
-         *_parse_table_values(_section(lines, "Technical Skills")))
+        (
+            *_parse_table_values(_section(lines, "Core Competencies")),
+            *_parse_table_values(_section(lines, "Technical Skills")),
+        )
     )
     summary = _parse_summary(lines)
     if not summary:
@@ -193,16 +196,14 @@ def compile_candidate_profile(
             "resume sources disagree on candidate identity: " + ", ".join(names.values())
         )
     primary = sources[0]
-    payload: dict[str, object] = {
+    return {
         "schema": "glaciereq.candidate-profile-source.v1",
         "profile_id": profile_id or f"candidate-{primary.name.casefold().replace(' ', '-')}",
         "name": primary.name,
         "headline": primary.headline,
         "summary": primary.summary,
         "skills": list(_dedupe(skill for source in sources for skill in source.skills)),
-        "experience": list(
-            _dedupe(item for source in sources for item in source.experience)
-        ),
+        "experience": list(_dedupe(item for source in sources for item in source.experience)),
         "achievements": list(
             _dedupe(item for source in sources for item in source.achievements)
         ),
@@ -214,7 +215,6 @@ def compile_candidate_profile(
             ],
         },
     }
-    return payload
 
 
 def write_candidate_profile(
