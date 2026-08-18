@@ -63,7 +63,14 @@ def _transport(spec: SourceSpec) -> FetchedSource:
     )
 
 
-def _opening(url: str, title: str) -> JobOpening:
+def _opening(
+    url: str,
+    title: str,
+    *,
+    metadata_revision: str = "v1",
+    digest_suffix: str | None = None,
+) -> JobOpening:
+    suffix = digest_suffix if digest_suffix is not None else f"{title}:{metadata_revision}"
     return JobOpening(
         opening_id="anthropic-watch-live",
         company="Anthropic",
@@ -74,8 +81,8 @@ def _opening(url: str, title: str) -> JobOpening:
         preferred=("distributed systems",),
         source="url",
         source_url=url,
-        metadata={"source_kind": "job-posting"},
-        digest=f"watch:{title}",
+        metadata={"source_kind": "job-posting", "revision": metadata_revision},
+        digest=f"watch:{suffix}",
     )
 
 
@@ -165,6 +172,7 @@ def test_changed_opening_runs_only_affected_cycle_and_quarantines_old_packet(
 
     assert first.cycle is not None
     assert changed.watch.changed_count == 1
+    assert changed.watch.material_changed_count == 1
     assert changed.selected_urls == (url,)
     assert changed.cycle is not None
     assert changed.cycle.companies[0].opening_status == "CHANGED"
@@ -173,3 +181,61 @@ def test_changed_opening_runs_only_affected_cycle_and_quarantines_old_packet(
     assert decision.action == "REFRESH_SUPERSEDED"
     assert decision.quarantine_path is not None
     assert Path(decision.quarantine_path).is_dir()
+
+
+def test_metadata_only_change_is_telemetried_without_expensive_rebuild(tmp_path: Path) -> None:
+    plan = tmp_path / "plan.json"
+    _write_plan(plan)
+    url = "https://www.anthropic.com/careers/jobs/watch-cycle"
+    candidate = IntelligenceCycleCandidate(
+        company="Anthropic",
+        acquisition_plan_path=plan,
+        opening_url=url,
+    )
+    metadata_revision = {"value": "v1"}
+    calls: list[str] = []
+
+    def fetch(source: str) -> JobOpening:
+        calls.append(source)
+        return _opening(
+            source,
+            "AI Systems Engineer",
+            metadata_revision=metadata_revision["value"],
+        )
+
+    with ApplicationStore(tmp_path / "applications.sqlite3") as store:
+        first = execute_opening_watch_cycle(
+            (candidate,),
+            _profile(),
+            state_dir=tmp_path / "state",
+            output_dir=tmp_path / "packets",
+            store=store,
+            opening_fetcher=fetch,
+            transport=_transport,
+        )
+        metadata_revision["value"] = "v2"
+        metadata_only = execute_opening_watch_cycle(
+            (candidate,),
+            _profile(),
+            state_dir=tmp_path / "state",
+            output_dir=tmp_path / "packets",
+            store=store,
+            opening_fetcher=fetch,
+            transport=_transport,
+        )
+
+    assert first.cycle is not None
+    assert metadata_only.watch.changed_count == 1
+    assert metadata_only.watch.material_changed_count == 0
+    assert metadata_only.watch.non_material_changed_count == 1
+    assert metadata_only.watch.items[0].change_class == "METADATA_ONLY"
+    assert metadata_only.selected_count == 0
+    assert metadata_only.deferred_non_material_urls == (url,)
+    assert metadata_only.cycle is None
+    assert calls == [url, url]
+
+    receipt = json.loads(
+        (tmp_path / "state" / "OPENING_WATCH_CYCLE_RECEIPT.json").read_text(encoding="utf-8")
+    )
+    assert receipt["deferred_non_material_urls"] == [url]
+    assert receipt["cycle"] is None
