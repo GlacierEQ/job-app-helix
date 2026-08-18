@@ -1,8 +1,9 @@
 """Run the complete attributable job-intelligence-to-application cycle.
 
 This module composes Helix's live opening acquisition, provenance refresh, company-fit,
-outcome-calibration, queue ranking, and recruiter-packet engines into one executable
-runtime. Company failures are isolated so one bad source cannot stall unrelated targets.
+outcome-calibration, queue ranking, freshness-aware packet lineage, and recruiter-packet
+engines into one executable runtime. Company failures are isolated so one bad source
+cannot stall unrelated targets.
 """
 
 from __future__ import annotations
@@ -22,11 +23,7 @@ from .application_operations import (
     load_candidate_profile,
     load_job_opening,
 )
-from .batch_application_execution import (
-    DEFAULT_ACTIONABLE_LANES,
-    BatchExecutionResult,
-    compile_ranked_application_batch,
-)
+from .batch_application_execution import DEFAULT_ACTIONABLE_LANES, BatchExecutionResult
 from .calibration_diagnostics import CalibrationDiagnostics, diagnose_outcome_calibration
 from .calibration_guard import CalibrationGuardDecision, apply_calibration_guard
 from .company_fit import CompanyFitAssessment, assess_company_fit
@@ -40,6 +37,7 @@ from .company_intelligence_acquisition import (
     load_acquisition_plan,
 )
 from .company_intelligence_refresh import persist_refresh, refresh_company_intelligence
+from .freshness_aware_batch import FreshnessAwareBatchResult, compile_freshness_aware_batch
 from .opening_acquisition import OpeningFetcher, acquire_live_opening
 from .opportunity_queue import QueueCandidate
 from .outcome_calibration import (
@@ -91,6 +89,7 @@ class IntelligenceCycleResult:
     calibration_diagnostics: CalibrationDiagnostics
     calibration_guard: CalibrationGuardDecision
     companies: tuple[CompanyCycleResult, ...]
+    freshness: FreshnessAwareBatchResult
     batch: BatchExecutionResult
     receipt_sha256: str
 
@@ -105,6 +104,7 @@ class IntelligenceCycleResult:
             "calibration_diagnostics": self.calibration_diagnostics.as_dict(),
             "calibration_guard": self.calibration_guard.as_dict(),
             "companies": [row.as_dict() for row in self.companies],
+            "freshness": self.freshness.as_dict(),
             "batch": self.batch.as_dict(),
             "receipt_sha256": self.receipt_sha256,
         }
@@ -296,7 +296,7 @@ def execute_intelligence_cycle(
     calibration: OutcomeCalibration | None = None,
     continue_on_company_error: bool = True,
 ) -> IntelligenceCycleResult:
-    """Execute live opening refresh through recruiter-packet compilation in one cycle."""
+    """Execute live opening refresh through freshness-aware packet compilation."""
     if not candidates:
         raise ValueError("intelligence cycle requires at least one candidate")
 
@@ -358,7 +358,7 @@ def execute_intelligence_cycle(
     _write_json(state_dir / "OUTCOME_CALIBRATION_GUARD.json", guard.as_dict())
     _write_json(state_dir / "OUTCOME_CALIBRATION.json", calibration_payload)
 
-    batch = compile_ranked_application_batch(
+    freshness = compile_freshness_aware_batch(
         tuple(queue_candidates),
         profile,
         output_dir=output_dir,
@@ -367,8 +367,9 @@ def execute_intelligence_cycle(
         limit=limit,
         calibration=effective_calibration,
     )
+    batch = freshness.batch
     base_receipt: dict[str, object] = {
-        "schema": "glaciereq.job-intelligence-cycle.v2",
+        "schema": "glaciereq.job-intelligence-cycle.v3",
         "candidate_count": len(candidates),
         "successful_company_count": len(queue_candidates),
         "failed_company_count": len(candidates) - len(queue_candidates),
@@ -376,11 +377,12 @@ def execute_intelligence_cycle(
         "calibration_diagnostics": diagnostics.as_dict(),
         "calibration_guard": guard.as_dict(),
         "companies": [row.as_dict() for row in company_results],
+        "freshness": freshness.as_dict(),
         "batch": batch.as_dict(),
     }
     receipt_sha = _canonical_sha256(base_receipt)
     result = IntelligenceCycleResult(
-        schema="glaciereq.job-intelligence-cycle.v2",
+        schema="glaciereq.job-intelligence-cycle.v3",
         candidate_count=len(candidates),
         successful_company_count=len(queue_candidates),
         failed_company_count=len(candidates) - len(queue_candidates),
@@ -389,6 +391,7 @@ def execute_intelligence_cycle(
         calibration_diagnostics=diagnostics,
         calibration_guard=guard,
         companies=tuple(company_results),
+        freshness=freshness,
         batch=batch,
         receipt_sha256=receipt_sha,
     )
@@ -436,7 +439,8 @@ def _parser() -> argparse.ArgumentParser:
         prog="job-app-helix-cycle",
         description=(
             "Refresh attributable live openings and company intelligence, calculate fit, "
-            "health-gate learned calibration, rank openings, and compile recruiter packets."
+            "health-gate learned calibration, rank openings, quarantine stale packet lineage, "
+            "and compile recruiter packets."
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
