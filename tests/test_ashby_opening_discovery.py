@@ -30,7 +30,7 @@ def _ashby_payload(description: str = "Build production AI infrastructure") -> d
                 "jobUrl": "https://jobs.ashbyhq.com/example/ai-infra",
                 "applyUrl": "https://jobs.ashbyhq.com/example/ai-infra/application",
                 "compensation": {
-                    "compensationTierSummary": "$180K – $240K",
+                    "compensationTierSummary": "$180K - $240K",
                     "scrapeableCompensationSalarySummary": "$180K - $240K",
                 },
             },
@@ -74,7 +74,7 @@ def test_discovers_listed_filtered_ashby_opening_with_provider_metadata() -> Non
     assert opening.metadata["provider"] == "ashby"
     assert opening.metadata["apply_url"].endswith("/application")
     assert opening.metadata["secondary_locations"] == ["Honolulu, HI"]
-    assert opening.metadata["compensation_summary"] == "$180K – $240K"
+    assert opening.metadata["compensation_summary"] == "$180K - $240K"
 
 
 def test_ashby_discovery_composes_into_field_sensitive_opening_watch(tmp_path: Path) -> None:
@@ -107,7 +107,11 @@ def test_ashby_discovery_composes_into_field_sensitive_opening_watch(tmp_path: P
 def test_ashby_board_failure_is_isolated_and_healthy_board_advances(tmp_path: Path) -> None:
     sources = (
         AshbyOpeningSource(company="Broken", board_key="broken"),
-        AshbyOpeningSource(company="Working", board_key="working", include_title_terms=("engineer",)),
+        AshbyOpeningSource(
+            company="Working",
+            board_key="working",
+            include_title_terms=("engineer",),
+        ),
     )
 
     def transport(url: str):
