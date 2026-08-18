@@ -54,7 +54,6 @@ jobs:
           src/job_app_helix/opportunity_queue.py
           src/job_app_helix/company_fit.py
           src/job_app_helix/company_intelligence.py
-          tests/test_opportunity_queue.py
 
       - name: Run recruiter intelligence and queue tests
         run: >-
