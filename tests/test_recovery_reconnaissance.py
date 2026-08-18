@@ -102,11 +102,55 @@ def test_stranded_unmerged_source_becomes_high_priority_and_feeds_intelligent_pl
 
     assert row.availability == "AVAILABLE"
     assert row.reachable_from_target is False
+    assert row.lineage_mode == "DIVERGED_BRANCH"
+    assert row.lineage_base_sha == base
     assert row.deleted_source_test_count == 1
     assert row.disposition == "HIGH_PRIORITY_STRANDED"
+    assert row.qualified_paths == ("src/lost_engine.py",)
     assert "src/lost_engine.py" in row.top_paths
     assert report.intelligent_plan_summary is not None
     assert report.intelligent_plan_summary["auto_recoverable_count"] == 1
+
+
+def test_divergent_branch_excludes_inherited_snapshot_files_from_recovery(tmp_path: Path) -> None:
+    repo = _repo(tmp_path)
+    old = repo / "src" / "old_baseline.py"
+    old.parent.mkdir(parents=True)
+    old.write_text("def old_baseline():\n    return 'historical'\n", encoding="utf-8")
+    base = _commit(repo, "shared base with old code")
+
+    _git(repo, "switch", "-c", "feature", base)
+    unique = repo / "src" / "unique_branch_engine.py"
+    unique.write_text("def unique_engine():\n    return 'recover me'\n", encoding="utf-8")
+    donor = _commit(repo, "add unique branch capability")
+
+    _git(repo, "switch", "main")
+    old.unlink()
+    (repo / "README.md").write_text("modern main\n", encoding="utf-8")
+    target = _commit(repo, "modern main removes unrelated old baseline")
+
+    report = build_recovery_reconnaissance(
+        repo,
+        donors=(
+            HistoricalDonor(
+                name="feature",
+                expected_head_sha=donor,
+                source_bucket="retired_refs",
+                state="REF_ABSENT_VERIFIED",
+            ),
+        ),
+        target_ref=target,
+    )
+    row = report.donors[0]
+
+    assert row.observed_candidate_count == 2
+    assert row.candidate_count == 1
+    assert row.excluded_baseline_count == 1
+    assert row.qualified_paths == ("src/unique_branch_engine.py",)
+    assert "src/old_baseline.py" not in row.qualified_paths
+    assert report.intelligent_plan_summary is not None
+    top = report.intelligent_plan_summary["top_candidates"]
+    assert [candidate["path"] for candidate in top] == ["src/unique_branch_engine.py"]
 
 
 def test_ancestor_with_no_current_delta_is_not_mistaken_for_lost_capability(tmp_path: Path) -> None:
@@ -133,6 +177,7 @@ def test_ancestor_with_no_current_delta_is_not_mistaken_for_lost_capability(tmp_
     row = report.donors[0]
 
     assert row.reachable_from_target is True
+    assert row.lineage_mode == "ANCESTOR_SNAPSHOT"
     assert row.candidate_count == 0
     assert row.disposition == "NO_CURRENT_DELTA"
     assert report.intelligent_plan_summary is None
@@ -168,6 +213,7 @@ def test_missing_donor_isolated_while_other_donor_still_advances(tmp_path: Path)
 
     by_name = {row.name: row for row in report.donors}
     assert by_name["missing"].disposition == "UNAVAILABLE"
+    assert by_name["missing"].lineage_mode == "UNAVAILABLE"
     assert by_name["missing"].blocker == "historical commit object is not present locally"
     assert by_name["available"].disposition == "HIGH_PRIORITY_STRANDED"
     assert report.intelligent_plan_summary is not None
