@@ -72,7 +72,9 @@ def test_discovers_filters_and_watches_greenhouse_inventory(tmp_path: Path) -> N
     assert (tmp_path / "TARGET_OPENING_DISCOVERY_RECEIPT.json").is_file()
 
 
-def test_retained_url_with_material_content_change_reuses_inventory_identity(tmp_path: Path) -> None:
+def test_retained_url_with_material_content_change_reuses_inventory_identity(
+    tmp_path: Path,
+) -> None:
     source = TargetOpeningSource(
         company="Example AI",
         provider="greenhouse",
