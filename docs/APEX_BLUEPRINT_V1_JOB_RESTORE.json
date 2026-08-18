@@ -1,99 +1,97 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "6fd0b5d12fd8b0b2ba9f5df347ecf726df8c5f04",
-  "current_source_sha_before_handoff": "73316e6ff67f8fd41d76e92d606488cbccb9ad8d",
+  "source_sha_before": "843467a57c12931349abe16d7f371e6fdc909cc9",
+  "current_source_sha_before_handoff": "857ddb211cbb58909c9e5b0581df877ddca89db2",
   "donor_shas": [
-    "a286f3379b1de7c7ff8c5521df5f2f819bc5efb1"
+    "c65097ae7fa408e3c9dc69412966ca6c0bb9c313"
   ],
-  "selected_priority": "Wire BLOCK_LEARNED_RANKING into the live intelligence cycle so unhealthy learned calibration automatically falls back to proven baseline weights while preserving diagnostic and decision receipts.",
+  "selected_priority": "Add attributable live job-opening acquisition with deterministic opening-change detection so real postings can be refreshed before ranking and recruiter-packet work.",
   "priority_tier": "P2",
   "blocked_higher_candidates": [],
-  "displaced_capability": "Calibration diagnostics were executable but advisory-only. A BLOCK_LEARNED_RANKING verdict did not alter the ranking runtime, so unstable learned weights could still flow into high-volume application ranking despite a blocking health diagnosis.",
+  "displaced_capability": "The estate could normalize a supplied URL into a JobOpening, but it lacked a durable acquisition surface that persisted provenance-bound snapshots and distinguished NEW, UNCHANGED, and materially CHANGED openings across runs.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Compose the diagnostics capability already merged from PR 232 directly into the existing intelligence-cycle runtime without reverting or replacing the proven bounded learner."
+      "assessment": "Reuse the proven ingest_job_opening_url normalizer and JobOpening model already on main instead of duplicating parsing logic."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Introduce a deterministic calibration policy object that persists the source model, diagnostics, decision, and applied model separately for observability and rollback."
+      "assessment": "Add a standalone acquisition service with atomic snapshots, receipt hashing, source URL binding, and exact field-level change detection."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: diagnostics plus an explicit guard decision plus automatic exact-baseline fallback inside intelligence_cycle, preserving the source learned model for audit while ensuring blocked weights cannot reach queue ranking."
+      "assessment": "Selected: compose the existing normalizer with persistent provenance and deterministic change-state intelligence, exposing both Python and CLI execution surfaces."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 233,
-    "proof_head": "aced886b230ff0466946547fdb88fdb5f359a862",
-    "merge_sha": "73316e6ff67f8fd41d76e92d606488cbccb9ad8d",
+    "pull_request": 234,
+    "proof_head": "b72a83538024d38b6a24261c935607851b455092",
+    "merge_sha": "857ddb211cbb58909c9e5b0581df877ddca89db2",
     "modules": [
-      "src/job_app_helix/calibration_guard.py",
-      "src/job_app_helix/intelligence_cycle.py",
-      "tests/test_calibration_guard.py",
-      ".github/workflows/calibration-guard-proof.yml"
+      "src/job_app_helix/opening_acquisition.py",
+      "tests/test_opening_acquisition.py",
+      ".github/workflows/opening-acquisition-proof.yml"
     ],
     "capabilities": [
-      "BLOCK_LEARNED_RANKING now replaces learned weights with the exact baseline weights before compile_ranked_application_batch executes",
-      "PASS and WARN preserve the fitted calibration unchanged",
-      "unsupported diagnostics statuses fail closed",
-      "source calibration, diagnostics, guard decision, and applied calibration are persisted separately",
-      "cycle receipts expose both the diagnostics verdict and applied guard decision",
-      "existing company-failure isolation, safety lanes, hard caps, recruiter-packet compilation, and candidate evidence boundaries remain intact"
+      "acquire a live attributable JobPosting URL through the existing normalized JobOpening parser",
+      "persist atomic normalized opening snapshots and independent receipt copies",
+      "classify each acquisition deterministically as NEW, UNCHANGED, or CHANGED",
+      "report the exact material fields changed between snapshots",
+      "reject source URL mismatch before snapshot mutation",
+      "fail closed on malformed existing snapshots",
+      "execute through python -m job_app_helix.opening_acquisition"
     ]
   },
   "preserved_gains": [
-    "bounded outcome fitting remains unchanged",
-    "the prior calibration diagnostics implementation remains unchanged and reusable",
-    "hard requirement caps, public-proof blocks, and queue safety lanes remain authoritative",
-    "company intelligence and learned outcome signals remain isolated from candidate factual evidence",
-    "existing intelligence-cycle acquisition, refresh, fit, ranking, and recruiter-packet flow remains intact",
-    "no database migration, external application submission, recruiter communication, or destructive history operation was introduced"
+    "existing JobOpening schema and ingest_job_opening_url parser remain the normalization authority",
+    "existing intelligence-cycle ranking, calibration guard, queue safety lanes, hard caps, and recruiter packet flow are untouched",
+    "no application submission, recruiter communication, schema migration, or destructive history mutation was introduced"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32144819931,
+      "run_id": 32147934715,
       "result": "PASS",
-      "exact_head": "aced886b230ff0466946547fdb88fdb5f359a862",
+      "exact_head": "b72a83538024d38b6a24261c935607851b455092",
       "matrix": ["3.11", "3.12", "3.13"],
       "checks": [
-        "ruff on calibration guard, intelligence-cycle integration, and focused tests",
-        "blocking diagnostics force exact baseline weights",
-        "PASS and WARN preserve learned weights",
-        "unknown diagnostics status fails closed",
-        "existing intelligence-cycle integration suite passes",
-        "intelligence-cycle executable resolves and exposes CLI help"
+        "ruff on opening acquisition and focused tests",
+        "NEW first acquisition persistence",
+        "UNCHANGED identical reacquisition",
+        "CHANGED exact-field detection",
+        "source URL mismatch rejection without mutation",
+        "malformed snapshot fail-closed behavior",
+        "executable CLI help resolution"
       ]
     },
     "application_registry_validation": {
-      "run_id": 32144820112,
+      "run_id": 32147934726,
       "result": "PASS"
     },
     "post_merge_readback": {
       "result": "PASS",
-      "main_sha": "73316e6ff67f8fd41d76e92d606488cbccb9ad8d",
-      "observed": "intelligence_cycle.py on main loads outcomes, diagnoses calibration, applies the guard, persists source/diagnostics/guard/applied artifacts, and passes effective_calibration to compile_ranked_application_batch"
+      "main_sha": "857ddb211cbb58909c9e5b0581df877ddca89db2",
+      "observed": "opening_acquisition.py is present on main with live URL acquisition, atomic persistence, provenance validation, deterministic change detection, and CLI execution"
     },
     "estate_non_regression": {
-      "run_id": 32144820992,
+      "run_id": 32147935346,
       "result": "FAILURE_OUTSIDE_FOCUSED_PROOF_GATE"
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P2",
-      "priority": "Add attributable live job-opening acquisition and opening-change detection before ranking and recruiter-packet compilation.",
+      "priority": "Wire opening acquisition directly into intelligence_cycle manifests so URL-based candidates refresh their opening snapshot before company intelligence, ranking, and packet compilation.",
       "target_files_functions": [
-        "src/job_app_helix/application_operations.py",
-        "src/job_app_helix/opportunity_intelligence.py",
-        "src/job_app_helix/intelligence_cycle.py"
+        "src/job_app_helix/intelligence_cycle.py",
+        "src/job_app_helix/opening_acquisition.py",
+        "tests/test_intelligence_cycle.py"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Resume recovery ref-graph execution through the now-available branch search surface and recover only non-superseded executable capability that exceeds main.",
+      "priority": "Resume recovery ref-graph execution through GitHub branch search and recover only non-superseded executable capability that exceeds main.",
       "target_files_functions": [
         "src/job_app_helix/recovery_ref_graph.py",
         "src/job_app_helix/recovery_reconnaissance.py",
@@ -102,29 +100,28 @@
     },
     {
       "tier": "P2",
-      "priority": "Turn calibration guard outcomes into longitudinal application-strategy telemetry so repeated fallback events trigger targeted feature-data recovery instead of silent baseline dependence.",
+      "priority": "Use opening-change events to invalidate stale ranking/packet state and selectively rebuild only affected applications.",
       "target_files_functions": [
-        "src/job_app_helix/calibration_guard.py",
-        "src/job_app_helix/calibration_diagnostics.py",
-        "src/job_app_helix/intelligence_cycle.py"
+        "src/job_app_helix/opening_acquisition.py",
+        "src/job_app_helix/intelligence_cycle.py",
+        "src/job_app_helix/batch_application_execution.py"
       ]
     }
   ],
   "next_sequence": [
-    "acquire attributable live openings and detect opening changes before ranking",
-    "feed opening-change events into the existing intelligence cycle without weakening evidence boundaries",
-    "resume branch/ref recovery using GitHub branch search rather than the previously blocked collection endpoint",
-    "add longitudinal calibration-guard telemetry only after direct application acquisition advances"
+    "integrate URL-based opening acquisition into intelligence_cycle candidate loading",
+    "persist opening acquisition/change receipts alongside company-cycle state",
+    "invalidate and rebuild ranking packets when material opening fields change",
+    "resume stranded branch capability recovery after the direct job-opening path is fully composed"
   ],
-  "merge_deploy_gate": "PR 233 merged at exact proven head aced886b230ff0466946547fdb88fdb5f359a862 after focused workflow 32144819931 passed lint, adversarial fallback tests, existing intelligence-cycle tests, and executable checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed the guarded runtime on main at 73316e6ff67f8fd41d76e92d606488cbccb9ad8d.",
-  "rollback": "Revert merge commit 73316e6ff67f8fd41d76e92d606488cbccb9ad8d. The delta adds a policy layer and extra state receipts but no schema migration or external side effect requiring compensating action.",
+  "merge_deploy_gate": "PR 234 merged at exact proven head b72a83538024d38b6a24261c935607851b455092 after focused workflow 32147934715 passed lint, adversarial acquisition/change tests, and CLI execution on Python 3.11, 3.12, and 3.13. Post-merge readback observed the executable module on main at 857ddb211cbb58909c9e5b0581df877ddca89db2.",
+  "rollback": "Revert merge commit 857ddb211cbb58909c9e5b0581df877ddca89db2. The delta adds one isolated acquisition module, focused tests, and a workflow with no database or external submission side effects.",
   "no_loss_invariants": [
-    "never allow diagnostics or fallback logic to bypass queue safety lanes, hard-gap caps, or public-proof blocks",
-    "never convert learned signals or company intelligence into unsupported candidate factual claims",
-    "never apply learned weights after BLOCK_LEARNED_RANKING",
-    "preserve the source calibration separately from the applied fallback calibration",
-    "preserve deterministic baseline weights as the recovery path",
-    "do not let telemetry or governance displace direct job-winning capability work"
+    "never overwrite a valid opening snapshot when source provenance or prior snapshot structure is invalid",
+    "never treat opening text as candidate evidence",
+    "preserve the existing JobOpening normalization contract",
+    "preserve calibration guard, queue safety lanes, hard-gap caps, and recruiter proof boundaries",
+    "do not let opening monitoring displace direct application execution"
   ],
-  "verified_delta_state": "EXECUTABLE_CALIBRATION_GUARD_MERGED_AND_READ_BACK_ON_MAIN"
+  "verified_delta_state": "EXECUTABLE_LIVE_OPENING_ACQUISITION_AND_CHANGE_DETECTION_MERGED_AND_READ_BACK_ON_MAIN"
 }
