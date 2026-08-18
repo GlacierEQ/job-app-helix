@@ -6,26 +6,17 @@ from pathlib import Path
 
 import pytest
 
-from job_app_helix.company_intelligence import (
-    CompanyIntelligence,
-    CompanySignal,
-)
-from job_app_helix.company_intelligence_acquisition import (
-    AcquisitionPlan,
-    FetchedSource,
-    SourceSpec,
-    acquire_company_intelligence,
-    load_acquisition_plan,
-)
+import job_app_helix.company_intelligence as ci
+import job_app_helix.company_intelligence_acquisition as acquisition
 from job_app_helix.company_intelligence_refresh import refresh_company_intelligence
 
 
 NOW = datetime(2026, 8, 18, 10, 0, tzinfo=UTC)
 
 
-def _html_source(spec: SourceSpec) -> FetchedSource:
+def _html_source(spec: acquisition.SourceSpec) -> acquisition.FetchedSource:
     del spec
-    return FetchedSource(
+    return acquisition.FetchedSource(
         requested_url="https://www.example.com/company/news",
         final_url="https://www.example.com/company/news",
         status=200,
@@ -43,13 +34,13 @@ def _html_source(spec: SourceSpec) -> FetchedSource:
 
 
 def test_html_acquisition_is_attributable_filtered_and_content_addressed() -> None:
-    plan = AcquisitionPlan(
+    plan = acquisition.AcquisitionPlan(
         schema="glaciereq.company-intelligence-acquisition-plan.v1",
         company_id="example",
         company="Example",
         max_age_days=45,
         sources=(
-            SourceSpec(
+            acquisition.SourceSpec(
                 kind="engineering",
                 source_url="https://www.example.com/company/news",
                 allowed_domains=("example.com",),
@@ -61,7 +52,11 @@ def test_html_acquisition_is_attributable_filtered_and_content_addressed() -> No
         ),
     )
 
-    result = acquire_company_intelligence(plan, transport=_html_source, now=lambda: NOW)
+    result = acquisition.acquire_company_intelligence(
+        plan,
+        transport=_html_source,
+        now=lambda: NOW,
+    )
 
     statements = [signal.statement for signal in result.intelligence.signals]
     assert len(statements) == 2
@@ -74,7 +69,7 @@ def test_html_acquisition_is_attributable_filtered_and_content_addressed() -> No
 
 
 def test_json_paths_limit_acquisition_to_explicit_source_fields() -> None:
-    spec = SourceSpec(
+    spec = acquisition.SourceSpec(
         kind="investment",
         source_url="https://api.example.com/updates/latest",
         allowed_domains=("example.com",),
@@ -83,7 +78,7 @@ def test_json_paths_limit_acquisition_to_explicit_source_fields() -> None:
         json_paths=("/official/summary",),
         source_title="Official update API",
     )
-    plan = AcquisitionPlan(
+    plan = acquisition.AcquisitionPlan(
         schema="glaciereq.company-intelligence-acquisition-plan.v1",
         company_id="example",
         company="Example",
@@ -91,12 +86,12 @@ def test_json_paths_limit_acquisition_to_explicit_source_fields() -> None:
         sources=(spec,),
     )
 
-    def transport(_: SourceSpec) -> FetchedSource:
+    def transport(_: acquisition.SourceSpec) -> acquisition.FetchedSource:
         payload = {
             "official": {"summary": "We expanded compute capacity for model training."},
             "untrusted": {"summary": "We secretly acquired a competitor for compute."},
         }
-        return FetchedSource(
+        return acquisition.FetchedSource(
             requested_url=spec.source_url,
             final_url=spec.source_url,
             status=200,
@@ -105,7 +100,11 @@ def test_json_paths_limit_acquisition_to_explicit_source_fields() -> None:
             fetched_at="2026-08-18T09:57:00Z",
         )
 
-    result = acquire_company_intelligence(plan, transport=transport, now=lambda: NOW)
+    result = acquisition.acquire_company_intelligence(
+        plan,
+        transport=transport,
+        now=lambda: NOW,
+    )
 
     assert len(result.intelligence.signals) == 1
     assert "expanded compute capacity" in result.intelligence.signals[0].statement
@@ -113,14 +112,14 @@ def test_json_paths_limit_acquisition_to_explicit_source_fields() -> None:
 
 
 def test_transport_cannot_smuggle_redirected_unapproved_domain() -> None:
-    spec = SourceSpec(
+    spec = acquisition.SourceSpec(
         kind="hiring",
         source_url="https://jobs.example.com/engineering",
         allowed_domains=("example.com",),
         include_patterns=(r"hiring",),
         extractor="text",
     )
-    plan = AcquisitionPlan(
+    plan = acquisition.AcquisitionPlan(
         schema="glaciereq.company-intelligence-acquisition-plan.v1",
         company_id="example",
         company="Example",
@@ -128,8 +127,8 @@ def test_transport_cannot_smuggle_redirected_unapproved_domain() -> None:
         sources=(spec,),
     )
 
-    def hostile_transport(_: SourceSpec) -> FetchedSource:
-        return FetchedSource(
+    def hostile_transport(_: acquisition.SourceSpec) -> acquisition.FetchedSource:
+        return acquisition.FetchedSource(
             requested_url=spec.source_url,
             final_url="https://attacker.invalid/copied-page",
             status=200,
@@ -139,18 +138,22 @@ def test_transport_cannot_smuggle_redirected_unapproved_domain() -> None:
         )
 
     with pytest.raises(ValueError, match="outside allowed_domains"):
-        acquire_company_intelligence(plan, transport=hostile_transport, now=lambda: NOW)
+        acquisition.acquire_company_intelligence(
+            plan,
+            transport=hostile_transport,
+            now=lambda: NOW,
+        )
 
 
 def test_acquired_snapshot_composes_directly_with_refresh_without_losing_fresh_state() -> None:
-    current = CompanyIntelligence(
+    current = ci.CompanyIntelligence(
         schema="glaciereq.company-intelligence.v1",
         company_id="example",
         company="Example",
         collected_at="2026-08-17T10:00:00Z",
         max_age_days=45,
         signals=(
-            CompanySignal(
+            ci.CompanySignal(
                 kind="value",
                 statement="We prioritize reliable systems and careful deployment.",
                 source_url="https://www.example.com/values",
@@ -159,14 +162,14 @@ def test_acquired_snapshot_composes_directly_with_refresh_without_losing_fresh_s
             ),
         ),
     )
-    spec = SourceSpec(
+    spec = acquisition.SourceSpec(
         kind="engineering",
         source_url="https://www.example.com/company/news",
         allowed_domains=("example.com",),
         include_patterns=(r"agent infrastructure",),
         extractor="html",
     )
-    plan = AcquisitionPlan(
+    plan = acquisition.AcquisitionPlan(
         schema="glaciereq.company-intelligence-acquisition-plan.v1",
         company_id="example",
         company="Example",
@@ -174,7 +177,11 @@ def test_acquired_snapshot_composes_directly_with_refresh_without_losing_fresh_s
         sources=(spec,),
     )
 
-    acquired = acquire_company_intelligence(plan, transport=_html_source, now=lambda: NOW)
+    acquired = acquisition.acquire_company_intelligence(
+        plan,
+        transport=_html_source,
+        now=lambda: NOW,
+    )
     refreshed = refresh_company_intelligence(current, acquired.intelligence, now=NOW)
 
     assert len(refreshed.intelligence.signals) == 2
@@ -204,4 +211,4 @@ def test_plan_loader_rejects_source_outside_declared_domain(tmp_path: Path) -> N
     )
 
     with pytest.raises(ValueError, match="outside allowed_domains"):
-        load_acquisition_plan(path)
+        acquisition.load_acquisition_plan(path)
