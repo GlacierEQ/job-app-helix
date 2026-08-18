@@ -2,7 +2,7 @@
 """Validate the Helix live-link repository fabric.
 
 This validator intentionally performs no network writes. It enforces that the
-portfolio inventory and live-link manifest describe the same canonical child
+portfolio inventory and live-link manifest describe the same APEX child
 repository set and that Helix remains a projection layer rather than a copied
 source-code warehouse.
 """
@@ -27,7 +27,7 @@ FORBIDDEN_DIRECTORY_NAMES = {
 
 REQUIRED_LINK_FIELDS = {
     "repository",
-    "canonical_url",
+    "apex_url",
     "default_branch",
     "head_sha",
     "visibility",
@@ -82,20 +82,20 @@ def validate() -> list[str]:
             "total_repositories must equal child repositories plus the Helix root"
         )
 
-    if links.get("link_mode") != "live_canonical_repository":
-        errors.append("link_mode must be live_canonical_repository")
+    if links.get("link_mode") != "live_apex_repository":
+        errors.append("link_mode must be live_apex_repository")
     if links.get("source_code_copying_into_helix_forbidden") is not True:
         errors.append("source-code copying must be explicitly forbidden")
-    if links.get("repository_updates_must_be_observed_from_canonical_origin") is not True:
-        errors.append("canonical-origin update observation must be required")
+    if links.get("repository_updates_must_be_observed_from_apex_origin") is not True:
+        errors.append("APEX-origin update observation must be required")
 
     template = links.get("url_template")
     if template != "https://github.com/GlacierEQ/{repository}":
-        errors.append("canonical GitHub URL template is invalid")
+        errors.append("APEX GitHub URL template is invalid")
 
     required_projection_fields = links.get("required_projection_fields")
     if set(required_projection_fields or []) != REQUIRED_LINK_FIELDS:
-        errors.append("required projection fields do not match the canonical contract")
+        errors.append("required projection fields do not match the APEX contract")
 
     for path in ROOT.rglob("*"):
         if path.is_dir() and path.name.lower() in FORBIDDEN_DIRECTORY_NAMES:
@@ -110,7 +110,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print("PASS: Helix portfolio is link-bound to canonical repositories")
+    print("PASS: Helix portfolio is link-bound to APEX repositories")
     return 0
 
 
