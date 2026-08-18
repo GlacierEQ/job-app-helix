@@ -20,7 +20,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 
 | Priority | Artifact | Why it matters |
 |---:|---|---|
-| 1 | [Live recruiter presentation](https://casey-barton-glaciereq.vercel.app/) | Deployed recruiter, engineering, and AI reading paths generated from canonical Helix evidence records. |
+| 1 | [Live recruiter presentation](https://casey-barton-glaciereq.vercel.app/) | Deployed recruiter, engineering, and AI reading paths generated from APEX Helix evidence records. |
 | 2 | [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) | Lead product flagship: source-grounded résumé tailoring with deterministic truthfulness checks and executable TypeScript tests. |
 | 3 | [Casey Barton candidate source](hire_package/casey-barton/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and immutable evidence links. |
 | 4 | [Root README](README.md) | Portfolio control-plane outcome, expert architecture, and machine contract. |
@@ -28,7 +28,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 | 6 | [Exact live portfolio inventory](manifests/portfolio_repositories.json) | Pins the current boundary to one root and sixty-six child repositories. |
 | 7 | [GitHub curation ledger](manifests/github_repository_curation_2026-07-31.json) | Records admission, deferral, duplicate, private, backup, archive, and external-source decisions. |
 | 8 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
-| 9 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how canonical records become the live Vercel hire surface (`casey-barton-glaciereq.vercel.app`); Pages is optional/disabled. |
+| 9 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how APEX records become the live Vercel hire surface (`casey-barton-glaciereq.vercel.app`); Pages is optional/disabled. |
 
 ## Strongest current exhibits
 
@@ -48,7 +48,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 
 **Role:** authority, provenance, maturity, and completion semantics for agentic systems.  
 **Signal:** governance architecture, operational cognition, read-only action boundaries, and evidence-bound verification.  
-**Status:** repository-native TEST evidence exists at its named promotion commit; later receipts should be consulted for exact counts and canonical SHAs.
+**Status:** repository-native TEST evidence exists at its named promotion commit; later receipts should be consulted for exact counts and APEX SHAs.
 
 ### Agent Coordinator
 
@@ -68,7 +68,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 - **Evidence discipline:** inventory hashes, README validation, runtime execution, benchmarks, hardware execution, and deployment receipts are treated as different proof classes.
 - **Polyglot judgment:** languages are accepted only when they materially improve a boundary.
 - **Failure semantics:** timeouts, zero-test runs, missing repositories, missing receipts, and blocked toolchains cannot silently become passes.
-- **Deployment integrity:** the recruiter site is generated from canonical source records and every public payload is SHA-256 listed.
+- **Deployment integrity:** the recruiter site is generated from APEX source records and every public payload is SHA-256 listed.
 - **Human communication:** the first screen explains value; deeper sections reward technical scrutiny; machine blocks support ingestion and orchestration.
 
 ## Application spiral
@@ -102,7 +102,7 @@ python -m job_app_helix.readme_mesh_cli validate
 job-app-helix-portfolio validate
 ```
 
-Build the recruiter surface from canonical records:
+Build the recruiter surface from APEX records:
 
 ```bash
 python scripts/build_recruiter_site.py \
@@ -112,7 +112,7 @@ python scripts/build_recruiter_site.py \
 python -m pytest -q tests/test_recruiter_site_deployment.py
 ```
 
-The multi-repository audit additionally requires the canonical local `repos/` workspace:
+The multi-repository audit additionally requires the APEX local `repos/` workspace:
 
 ```bash
 python ci_audit_portfolio.py
