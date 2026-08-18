@@ -1,12 +1,16 @@
 from __future__ import annotations
 
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
 from job_app_helix.estate_federated_restoration import (
     RestorationTarget,
+    derive_restoration_targets,
+    execute_auto_estate_federated_restoration,
     execute_estate_federated_restoration,
     select_restoration_target,
 )
@@ -146,3 +150,101 @@ def test_duplicate_target_configuration_fails_closed():
     state = census(observation("winner", "THIN_EXECUTABLE_SURFACE", 75))
     with pytest.raises(ValueError, match="duplicate restoration target"):
         select_restoration_target(state, (target("winner"), target("winner")))
+
+
+def _git(repo: Path, *args: str) -> str:
+    proc = subprocess.run(
+        ["git", "-C", str(repo), *args], capture_output=True, text=True, check=True
+    )
+    return proc.stdout.strip()
+
+
+def _donor_repo(tmp_path: Path) -> tuple[Path, str]:
+    repo = tmp_path / "job-app-helix"
+    repo.mkdir()
+    _git(repo, "init")
+    _git(repo, "config", "user.email", "test@example.com")
+    _git(repo, "config", "user.name", "APEX Test")
+    source = repo / "src" / "engine.py"
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        "def recovered_ranker(value):\n    return value * 2\n\n"
+        "class RecoveryEngine:\n    pass\n\n"
+        "def _internal_helper():\n    return None\n",
+        encoding="utf-8",
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "donor capability")
+    return repo, _git(repo, "rev-parse", "HEAD")
+
+
+def _graph(donor_sha: str, disposition: str = "HIGH_PRIORITY_STRANDED"):
+    reconnaissance = SimpleNamespace(
+        disposition=disposition,
+        top_paths=("src/engine.py",),
+        qualified_paths=("src/engine.py",),
+    )
+    family = SimpleNamespace(
+        representative_sha=donor_sha,
+        reconnaissance=reconnaissance,
+    )
+    return SimpleNamespace(families=(family,))
+
+
+def test_derives_exact_sha_symbol_bound_target_from_ranked_ref_graph(tmp_path: Path):
+    repo, donor_sha = _donor_repo(tmp_path)
+
+    targets = derive_restoration_targets(
+        repo,
+        _graph(donor_sha),
+        repository="job-app-helix",
+    )
+
+    assert len(targets) == 1
+    assert targets[0].donor_ref == donor_sha
+    assert targets[0].donor_source == str(repo.resolve())
+    assert targets[0].root_path == "src/engine.py"
+    assert targets[0].selected_symbols == ("recovered_ranker", "RecoveryEngine")
+
+
+def test_derivation_rejects_evidence_only_family_even_when_python_exists(tmp_path: Path):
+    repo, donor_sha = _donor_repo(tmp_path)
+
+    targets = derive_restoration_targets(
+        repo,
+        _graph(donor_sha, disposition="EVIDENCE_CANDIDATE"),
+        repository="job-app-helix",
+    )
+
+    assert targets == ()
+
+
+def test_auto_execution_discovers_target_then_builds_packet_without_manifest(tmp_path: Path):
+    repo, donor_sha = _donor_repo(tmp_path)
+    calls: list[dict[str, object]] = []
+
+    def graph_builder(repo_path, *, target_ref):
+        assert target_ref == "HEAD"
+        return _graph(donor_sha)
+
+    def builder(repo_path, **kwargs):
+        calls.append(kwargs)
+        return FakePacket(
+            donor_source=kwargs["donor_source"],
+            donor_ref=kwargs["donor_ref"],
+            target_ref=kwargs["target_ref"],
+            symbols=kwargs["selected_symbols"],
+        )
+
+    result = execute_auto_estate_federated_restoration(
+        repo,
+        census(observation("job-app-helix", "RECOVERY_IN_PROGRESS", 60)),
+        repository="job-app-helix",
+        graph_builder=graph_builder,
+        packet_builder=builder,
+    )
+
+    assert result.selected.target.donor_ref == donor_sha
+    assert result.selected.target.root_path == "src/engine.py"
+    assert result.packet.symbols == ("recovered_ranker", "RecoveryEngine")
+    assert len(calls) == 1
