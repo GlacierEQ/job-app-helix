@@ -1,0 +1,51 @@
+name: Batch Application Execution Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/batch_application_execution.py"
+      - "tests/test_batch_application_execution.py"
+      - "pyproject.toml"
+      - ".github/workflows/batch-application-execution-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/batch_application_execution.py"
+      - "tests/test_batch_application_execution.py"
+      - "pyproject.toml"
+      - ".github/workflows/batch-application-execution-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    name: Batch packets / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and proof tools
+        run: python -m pip install -e ".[dev]"
+
+      - name: Lint new executable surfaces
+        run: >-
+          ruff check
+          src/job_app_helix/batch_application_execution.py
+          tests/test_batch_application_execution.py
+
+      - name: Run batch execution adversarial tests
+        run: python -m pytest -q tests/test_batch_application_execution.py
+
+      - name: Prove installed executable exists
+        run: job-app-helix-batch --help >/dev/null
