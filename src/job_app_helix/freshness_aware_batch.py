@@ -100,7 +100,13 @@ def _quarantine(packet_dir: Path, *, output_dir: Path, application_id: str, dige
     return target
 
 
-def _write_input_receipt(packet_dir: Path, *, application_id: str, opening_id: str, digest: str) -> None:
+def _write_input_receipt(
+    packet_dir: Path,
+    *,
+    application_id: str,
+    opening_id: str,
+    digest: str,
+) -> None:
     payload: dict[str, object] = {
         "schema": "glaciereq.opening-input-receipt.v1",
         "application_id": application_id,
