@@ -8,9 +8,10 @@ explicit marginal-system-value or outcome-leverage observation exists.
 from __future__ import annotations
 
 import math
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from statistics import mean
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 from .restoration_decision_intelligence import compile_intelligent_restoration_decision
 from .restoration_strategy_router import RestorationRoutingError
@@ -139,11 +140,16 @@ def _worker_signal(
 
 
 def _required_capabilities(candidate: Mapping[str, Any]) -> tuple[str, ...]:
-    required = list(dict.fromkeys(str(item) for item in candidate.get("required_capabilities", ())))
+    required = list(
+        dict.fromkeys(str(item) for item in candidate.get("required_capabilities", ()))
+    )
     for field, threshold, capability in CAPABILITY_POLICY:
         if _finite(candidate.get(field)) >= threshold and capability not in required:
             required.append(capability)
-    if _finite(candidate.get("evidence_strength"), 5.0) < 8.0 and "proof_engineering" not in required:
+    if (
+        _finite(candidate.get("evidence_strength"), 5.0) < 8.0
+        and "proof_engineering" not in required
+    ):
         required.append("proof_engineering")
     return tuple(required)
 
@@ -215,7 +221,10 @@ def select_restoration_workforce(
             if not remaining:
                 break
             best_extra = max(remaining, key=lambda role: signals[role].portfolio_score)
-            if signals[best_extra].portfolio_score < 0.82 and signals[best_extra].causal_bonus <= 0:
+            if (
+                signals[best_extra].portfolio_score < 0.82
+                and signals[best_extra].causal_bonus <= 0
+            ):
                 break
 
     uncovered = sorted(set(required) - covered)
