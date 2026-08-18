@@ -1,0 +1,138 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "current_source_sha": "e72dd4d3fc220dee918bbf787ae41de80d7afd66",
+  "donor_shas": [
+    "43b11eb8055909ea54edb6c78574d79cedf567b9",
+    "c5b7cab8242f42b35d57928ac2eac4deea5d3203"
+  ],
+  "selected_priority": "Add multi-opening live refresh batching and longitudinal change telemetry so one execution can continuously maintain a high-value opening set instead of one supplied URL at a time.",
+  "priority_tier": "P2",
+  "blocked_higher_candidates": [],
+  "displaced_capability": "The proven opening acquisition engine and intelligence cycle refreshed one supplied opening URL per candidate, but there was no executable set-maintenance runtime for many openings with isolated failures and longitudinal aggregate change telemetry.",
+  "mechanisms_compared": [
+    {
+      "mechanism": "historical_recovery_or_composition",
+      "assessment": "Compose the existing acquire_live_opening primitive in a sequential wrapper while preserving its provenance and snapshot contract."
+    },
+    {
+      "mechanism": "modern_upgrade",
+      "assessment": "Build a separate asynchronous crawler, which would add concurrency but duplicate parsing, provenance, and change-detection behavior already proven elsewhere."
+    },
+    {
+      "mechanism": "nonlinear_combination",
+      "assessment": "Selected: reuse acquire_live_opening unchanged, assign each URL an isolated content-addressed state partition, isolate per-opening failure, and aggregate NEW/CHANGED/UNCHANGED state into a deterministic receipt plus append-only event history."
+    }
+  ],
+  "selected_mechanism": "nonlinear_combination",
+  "implemented_delta": {
+    "pull_request": 236,
+    "proof_head": "5dc41762888425b000b3dc0b1230c343e4bb37f2",
+    "merge_sha": "e72dd4d3fc220dee918bbf787ae41de80d7afd66",
+    "modules": [
+      "src/job_app_helix/opening_watch.py",
+      "tests/test_opening_watch.py",
+      ".github/workflows/opening-watch-proof.yml"
+    ],
+    "capabilities": [
+      "refresh an arbitrary manifest-defined set of attributable job-opening URLs in one executable run",
+      "persist each opening under a deterministic URL-addressed state partition",
+      "isolate one failed opening without stalling successful targets",
+      "aggregate NEW, CHANGED, UNCHANGED, and failed counts per run",
+      "persist exact changed fields and acquisition receipt hashes per opening",
+      "append every opening event to OPENING_CHANGE_EVENTS.jsonl for longitudinal telemetry",
+      "persist a deterministic OPENING_WATCH_RECEIPT.json summary",
+      "reject duplicate URLs before state mutation",
+      "support fail-fast execution when explicitly requested",
+      "execute through python -m job_app_helix.opening_watch"
+    ]
+  },
+  "preserved_gains": [
+    "single-opening provenance and deterministic change detection remain delegated to acquire_live_opening",
+    "existing opening snapshots are never rewritten through a second parsing implementation",
+    "live URL intelligence-cycle behavior remains unchanged",
+    "static opening manifests remain unchanged",
+    "calibration guard, queue safety lanes, recruiter packet compilation, and application lifecycle remain unchanged"
+  ],
+  "tests_runtime_proof": {
+    "focused_workflow": {
+      "run_id": 32157224005,
+      "result": "PASS",
+      "exact_head": "5dc41762888425b000b3dc0b1230c343e4bb37f2",
+      "matrix": ["3.11", "3.12", "3.13"],
+      "checks": [
+        "focused Ruff over opening-watch runtime and tests",
+        "two-opening NEW batch",
+        "second-run mixed UNCHANGED and CHANGED batch with exact title change",
+        "append-only four-event longitudinal telemetry across two passes",
+        "isolated failed opening while another target remains NEW",
+        "duplicate URL rejection before state mutation",
+        "manifest label and URL loading",
+        "existing opening-acquisition adversarial tests",
+        "executable module CLI resolution"
+      ]
+    },
+    "application_registry_validation": {
+      "run_id": 32157224036,
+      "result": "PASS"
+    },
+    "post_merge_readback": {
+      "result": "PASS",
+      "main_sha": "e72dd4d3fc220dee918bbf787ae41de80d7afd66",
+      "observed": "main contains execute_opening_watch, isolated URL-addressed state, aggregate counts, append-only event telemetry, manifest loading, and executable CLI entry through module main"
+    },
+    "general_ci": {
+      "run_id": 32157223921,
+      "result": "FAILURE_OUTSIDE_FOCUSED_DELTA",
+      "reason": "repository-wide Ruff fails on pre-existing files including discover_experience_graph.py, intelligent_recovery.py, library_program.py, public_proof_runtime.py, and others; the focused opening-watch Ruff and runtime proof passed on all supported Python versions"
+    },
+    "estate_non_regression": {
+      "run_id": 32157224654,
+      "result": "FAILURE_OUTSIDE_FOCUSED_DELTA"
+    }
+  },
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P2",
+      "priority": "Compose OPENING_CHANGE_EVENTS into intelligence-cycle candidate selection so maintained opening sets automatically feed ranking and recruiter-packet refresh without hand-authored candidate URLs.",
+      "target_files_functions": [
+        "src/job_app_helix/opening_watch.py",
+        "src/job_app_helix/intelligence_cycle.py",
+        "src/job_app_helix/opportunity_queue.py"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Resume recovery ref-graph execution through GitHub branch search and recover only non-superseded executable capability that exceeds current main.",
+      "target_files_functions": [
+        "src/job_app_helix/recovery_ref_graph.py",
+        "src/job_app_helix/recovery_reconnaissance.py",
+        "src/job_app_helix/intelligent_recovery.py"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Add bounded concurrent opening refresh with per-host limits and deterministic receipt ordering for large company opening sets.",
+      "target_files_functions": [
+        "src/job_app_helix/opening_watch.py",
+        "tests/test_opening_watch.py"
+      ]
+    }
+  ],
+  "next_sequence": [
+    "feed maintained opening-set state into intelligence-cycle candidate construction",
+    "use CHANGED events to refresh only affected ranking and recruiter projections",
+    "resume stranded branch capability recovery",
+    "add bounded concurrency only after set-to-cycle composition is executable"
+  ],
+  "merge_deploy_gate": "PR 236 merged at exact proven head 5dc41762888425b000b3dc0b1230c343e4bb37f2 after Opening Watch Proof run 32157224005 passed focused lint, adversarial tests, existing acquisition tests, and module CLI resolution on Python 3.11, 3.12, and 3.13. Main readback observed the runtime at merge e72dd4d3fc220dee918bbf787ae41de80d7afd66.",
+  "rollback": "Revert merge e72dd4d3fc220dee918bbf787ae41de80d7afd66. The prior single-opening acquisition and intelligence-cycle runtime remain independently intact.",
+  "no_loss_invariants": [
+    "never duplicate or weaken acquire_live_opening provenance validation",
+    "never let one failed URL stall unrelated opening refreshes unless fail-fast is explicitly selected",
+    "never accept duplicate watch URLs that would alias the same state source",
+    "preserve deterministic per-URL state identity and append-only event history",
+    "do not let telemetry replace ranking, recruiter packet, or application execution work"
+  ],
+  "verified_delta_state": "MULTI_OPENING_WATCH_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
+}
