@@ -115,7 +115,7 @@ jobs:
           --fetch-missing
           --output artifacts/recovery-reconnaissance.json
 
-      - name: Verify real reconnaissance receipt
+      - name: Verify real lineage-aware reconnaissance receipt
         if: matrix.python-version == '3.13'
         shell: bash
         run: |
@@ -125,21 +125,41 @@ jobs:
 
           report = json.load(open("artifacts/recovery-reconnaissance.json", encoding="utf-8"))
           head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          assert report["schema"] == "glaciereq.recovery-reconnaissance.v2"
           assert report["target_sha"] == head
           assert len(report["donors"]) >= 10
           assert len(report["receipt_sha256"]) == 64
           available = [row for row in report["donors"] if row["availability"] != "UNAVAILABLE"]
           assert available
+
+          public_runtime = next(
+              row for row in report["donors"]
+              if row["name"] == "cleanup/public-reproducible-runtime"
+          )
+          assert public_runtime["lineage_mode"] == "DIVERGED_BRANCH"
+          assert "helix/public_runtime.py" in public_runtime["qualified_paths"]
+          assert public_runtime["excluded_baseline_count"] > 0
+          assert public_runtime["candidate_count"] < public_runtime["observed_candidate_count"]
+          assert public_runtime["deleted_source_test_count"] <= 10
+
           print(json.dumps({
               "target_sha": report["target_sha"],
               "donor_count": len(report["donors"]),
               "available_count": len(available),
+              "public_runtime_lineage": {
+                  "observed_candidate_count": public_runtime["observed_candidate_count"],
+                  "qualified_candidate_count": public_runtime["candidate_count"],
+                  "excluded_baseline_count": public_runtime["excluded_baseline_count"],
+                  "deleted_source_test_count": public_runtime["deleted_source_test_count"],
+              },
               "top_donors": [
                   {
                       "name": row["name"],
+                      "lineage_mode": row["lineage_mode"],
                       "disposition": row["disposition"],
                       "priority_score": row["priority_score"],
                       "deleted_source_test_count": row["deleted_source_test_count"],
+                      "excluded_baseline_count": row["excluded_baseline_count"],
                   }
                   for row in report["donors"][:5]
               ],
