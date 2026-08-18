@@ -83,7 +83,7 @@ def _write_contracts(
                         "id": "wave-legacy",
                         "priority": 1,
                         "mode": mode,
-                        "objective": "Old archive-first objective.",
+                        "objective": "Historical archive-first objective.",
                         "current_state": "UNVERIFIED",
                         "current_evidence": "INVENTORY",
                         "target_evidence": target,
@@ -102,19 +102,21 @@ def _write_contracts(
     return inventory, rollout
 
 
-def test_current_archive_wave_compiles_to_productize() -> None:
+def test_current_wave_four_is_upward_productization() -> None:
     program = load_rollout(ROOT / "manifests" / "portfolio_rollout.json")
-    wave = next(wave for wave in program.waves if wave.id == "wave-4-consolidation")
+    wave = next(wave for wave in program.waves if wave.id == "wave-4-capability-elevation")
 
     assert wave.mode is ExecutionMode.PRODUCTIZE
-    assert wave.historical_mode == "CONSOLIDATE_OR_ARCHIVE"
+    assert wave.historical_mode is None
     assert wave.target_evidence >= EvidenceLevel.TEST
     assert wave.require_positive_test_count is True
-    assert "real deployment" in wave.objective
+    assert "strongest justified form" in wave.objective
     assert "explicit operator authorization" in wave.objective
+    assert "inventory" in wave.objective.casefold()
+    assert "similarity" in wave.objective.casefold()
 
 
-def test_legacy_archive_mode_cannot_drive_active_execution(tmp_path: Path) -> None:
+def test_legacy_archive_mode_is_readable_but_cannot_drive_active_execution(tmp_path: Path) -> None:
     _, rollout = _write_contracts(tmp_path, "alpha")
     program = load_rollout(rollout)
     wave = program.waves[0]
@@ -123,6 +125,7 @@ def test_legacy_archive_mode_cannot_drive_active_execution(tmp_path: Path) -> No
     assert wave.historical_mode == ExecutionMode.CONSOLIDATE_OR_ARCHIVE.value
     assert wave.target_evidence is EvidenceLevel.TEST
     assert wave.require_positive_test_count is True
+    assert "Retirement or archival requires explicit operator authorization" in wave.objective
 
 
 def test_productize_requires_native_static_and_test_checks(tmp_path: Path) -> None:
