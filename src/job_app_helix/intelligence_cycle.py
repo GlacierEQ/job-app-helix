@@ -13,7 +13,6 @@ import json
 from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any
 
 from .application_engine import CompanyTarget, find_target, load_targets
 from .application_operations import (
