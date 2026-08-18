@@ -1,0 +1,103 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "source_sha_before": "f887964dfedf2cebba58786e708bf88829995a73",
+  "current_source_sha": "6c7df8dead7c78c820bd3bd1cd73715fb4c85041",
+  "donor_shas": [],
+  "selected_priority": "Requirement-aware opportunity ranking for real job openings",
+  "priority_tier": "P1",
+  "blocked_higher_candidates": [],
+  "displaced_capability": "The existing match path mixes the entire free-form job description into one token denominator, so long boilerplate can dilute explicit hiring requirements and provides no hard gap cap for application sequencing.",
+  "mechanisms_compared": [
+    {
+      "mechanism": "historical_recovery_or_composition",
+      "assessment": "No prior JOB_RESTORE blueprint or existing target-company opportunity scorer was found in the live repository search. Existing application_operations matching was preserved rather than reverted."
+    },
+    {
+      "mechanism": "modern_upgrade",
+      "assessment": "Add independent requirement-level coverage, capped description influence, recruiter-proof strength, strategic thesis alignment, and explicit gap-aware recommendation semantics."
+    },
+    {
+      "mechanism": "nonlinear_combination",
+      "assessment": "Compose existing JobOpening, CandidateProfile, CompanyTarget, recruiter proofs, and manifest target intelligence into a separate executable ranking surface without weakening the existing application lifecycle."
+    }
+  ],
+  "selected_mechanism": "nonlinear_combination",
+  "implemented_delta": {
+    "module": "src/job_app_helix/opportunity_intelligence.py",
+    "entry_point": "job-app-helix-opportunity",
+    "capabilities": [
+      "scores explicit requirements independently so job-posting prose cannot dilute them",
+      "separates required and preferred qualification coverage",
+      "adds role, description, strategic-thesis, and recruiter-proof signals with bounded weights",
+      "caps recommendations when a majority of explicit requirements are missing",
+      "emits explainable matched and missing requirement evidence",
+      "returns machine-readable JSON and optional persisted receipt"
+    ]
+  },
+  "preserved_gains": [
+    "existing application_operations lifecycle remains unchanged",
+    "existing CompanyTarget and recruiter proof admission semantics are reused",
+    "existing candidate evidence boundary is reused",
+    "existing main-branch packaging and CLI conventions are preserved"
+  ],
+  "tests_runtime_proof": {
+    "tests_added": "tests/test_opportunity_intelligence.py",
+    "adversarial_cases": [
+      "long noisy job description with complete explicit requirements must remain APPLY_PRIORITY",
+      "three of four explicit requirements missing must cap result at GAPS_TO_CLOSE",
+      "assessment exposes recruiter-proof strength and explainable matched requirements"
+    ],
+    "algorithm_probe": {
+      "complete_requirements_coverage": 1.0,
+      "preferred_coverage": 1.0,
+      "long_description_example_score": 89.5,
+      "major_gap_requirements_coverage": 0.25,
+      "major_gap_missing_count": 3
+    },
+    "ci_contract": ".github/workflows/ci.yml runs ruff and pytest on main pushes for Python 3.11, 3.12, and 3.13",
+    "ci_status_visibility": "The connector exposes PR-triggered commit workflow lookup only; no push-run receipt was available through that endpoint during this run."
+  },
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P1",
+      "priority": "Feed opportunity intelligence into application projection so resume/cover-letter emphasis follows matched and missing requirement evidence.",
+      "target_files_functions": [
+        "src/job_app_helix/application_operations.py::project_application",
+        "src/job_app_helix/application_operations.py::compile_application_lifecycle"
+      ]
+    },
+    {
+      "tier": "P1",
+      "priority": "Add target-company live intelligence ingestion for current investments, product direction, values, and hiring signals with source timestamps and evidence provenance.",
+      "target_files_functions": [
+        "src/job_app_helix/opportunity_intelligence.py",
+        "manifests/company_targets.json"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Batch-rank multiple live openings and learn weighting adjustments from persisted interview/offer feedback without contaminating evidence claims.",
+      "target_files_functions": [
+        "src/job_app_helix/opportunity_intelligence.py",
+        "src/job_app_helix/application_operations.py::ApplicationStore.feedback_summary"
+      ]
+    }
+  ],
+  "next_sequence": [
+    "run repository CI and inspect exact failing step if any",
+    "integrate OpportunityAssessment into projection emphasis and packet receipts",
+    "add sourced target-company intelligence envelope",
+    "add batch ranking plus outcome-calibrated weighting"
+  ],
+  "merge_deploy_gate": "Changes are already on main. Gate further projection integration on ruff + pytest passing against the exact main head and preserve the existing evidence-only candidate claim boundary.",
+  "rollback": "Revert the opportunity intelligence commits or remove the console entry point; no existing lifecycle schema or database migration was modified.",
+  "no_loss_invariants": [
+    "never invent candidate evidence",
+    "never treat free-form description overlap as stronger than explicit requirements",
+    "never promote an opening with majority explicit requirement gaps to APPLY_PRIORITY",
+    "never weaken recruiter public-proof admission checks",
+    "never replace the existing application lifecycle when composition is sufficient"
+  ],
+  "verified_delta_state": "EXECUTABLE_CAPABILITY_COMMITTED_AND_READBACK_PENDING_FINAL_HEAD"
+}
