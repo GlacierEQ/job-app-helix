@@ -8,6 +8,7 @@ surface without converting company claims into candidate claims.
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -74,6 +75,115 @@ class CompanyIntelligence:
 
     def as_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+
+def parse_company_intelligence(
+    manifest: Mapping[str, Any],
+    shards: Mapping[str, Mapping[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    """Reconstruct the external bottleneck atlas without collapsing fact/inference.
+
+    The historical estate-intelligence compiler consumes a dictionary keyed by company
+    id. Newer company-fit manifests use ``CompanyIntelligence`` objects instead. This
+    parser restores the displaced atlas contract while keeping the two models separate:
+    official observations remain observations and GlacierEQ bottleneck/leverage fields
+    remain explicit inferences.
+    """
+    refs = manifest.get("shards")
+    if not isinstance(refs, list) or not refs:
+        raise ValueError("company intelligence atlas requires a non-empty shards list")
+
+    excluded_raw = manifest.get("excluded_company_ids", [])
+    if not isinstance(excluded_raw, list):
+        raise ValueError("excluded_company_ids must be a list")
+    excluded = {str(company_id) for company_id in excluded_raw}
+
+    records: dict[str, dict[str, Any]] = {}
+    observed_total = 0
+    for index, ref in enumerate(refs):
+        if not isinstance(ref, Mapping):
+            raise ValueError(f"atlas shards[{index}] must be an object")
+        path = str(ref.get("path", "")).strip()
+        if not path:
+            raise ValueError(f"atlas shards[{index}] is missing path")
+        shard = shards.get(path)
+        if not isinstance(shard, Mapping):
+            raise ValueError(f"atlas shard was not supplied: {path}")
+
+        raw_records = shard.get("records")
+        if not isinstance(raw_records, list):
+            raise ValueError(f"atlas shard records must be a list: {path}")
+        expected_count = int(ref.get("record_count", len(raw_records)))
+        if len(raw_records) != expected_count:
+            raise ValueError(
+                f"atlas shard record count mismatch for {path}: "
+                f"{len(raw_records)} != {expected_count}"
+            )
+        declared_sha = str(ref.get("shard_sha256", ""))
+        embedded_sha = str(shard.get("shard_sha256", ""))
+        if declared_sha and embedded_sha and declared_sha != embedded_sha:
+            raise ValueError(f"atlas shard digest mismatch for {path}")
+
+        observed_total += len(raw_records)
+        for row_index, raw in enumerate(raw_records):
+            if not isinstance(raw, Mapping):
+                raise ValueError(f"atlas {path} records[{row_index}] must be an object")
+            company_id = str(raw.get("company_id", "")).strip()
+            if not company_id:
+                raise ValueError(f"atlas {path} records[{row_index}] lacks company_id")
+            if company_id in excluded:
+                continue
+            if company_id in records:
+                raise ValueError(f"duplicate company intelligence record: {company_id}")
+
+            sources = raw.get("official_sources", [])
+            if not isinstance(sources, list):
+                raise ValueError(f"official_sources must be a list for {company_id}")
+            for source_index, source in enumerate(sources):
+                if not isinstance(source, Mapping):
+                    raise ValueError(
+                        f"official_sources[{source_index}] must be an object for {company_id}"
+                    )
+                source_sha = str(source.get("source_sha256", ""))
+                if source_sha and len(source_sha) != 64:
+                    raise ValueError(
+                        f"invalid source_sha256 for {company_id}: {source_sha!r}"
+                    )
+
+            leverage = raw.get("leverage", {})
+            if leverage is None:
+                leverage = {}
+            if not isinstance(leverage, Mapping):
+                raise ValueError(f"leverage must be an object for {company_id}")
+
+            record = dict(raw)
+            record["leverage_mechanism"] = leverage.get("mechanism")
+            record["expected_impact"] = leverage.get("expected_impact")
+            record["research_as_of"] = manifest.get("research_as_of")
+            record["freshness_state"] = manifest.get("freshness_state")
+            record["inference_boundary"] = manifest.get("inference_boundary")
+            records[company_id] = record
+
+    expected_total = int(manifest.get("record_count", observed_total))
+    if observed_total != expected_total:
+        raise ValueError(
+            f"atlas total record count mismatch: {observed_total} != {expected_total}"
+        )
+    expected_external = expected_total - sum(
+        1
+        for company_id in excluded
+        if any(
+            company_id == str(raw.get("company_id", ""))
+            for shard in shards.values()
+            for raw in shard.get("records", [])
+            if isinstance(raw, Mapping)
+        )
+    )
+    if len(records) != expected_external:
+        raise ValueError(
+            f"atlas external record count mismatch: {len(records)} != {expected_external}"
+        )
+    return records
 
 
 def load_company_intelligence(path: Path) -> CompanyIntelligence:

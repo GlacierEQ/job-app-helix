@@ -31,6 +31,69 @@ class CompanyFitAssessment:
         return asdict(self)
 
 
+def _evidence_units(profile: CandidateProfile) -> tuple[str, ...]:
+    return (
+        profile.headline,
+        profile.summary,
+        *profile.skills,
+        *profile.experience,
+        *profile.achievements,
+    )
+
+
+def _concept_token(token: str) -> str:
+    """Collapse conservative English inflections without pretending to be an NLP model."""
+    if token.endswith("ies") and len(token) > 5:
+        return f"{token[:-3]}y"
+    if token.endswith("ing") and len(token) > 6:
+        stem = token[:-3]
+        return stem[:-1] if stem.endswith(stem[-1:] * 2) else stem
+    if token.endswith("ed") and len(token) > 5:
+        stem = token[:-2]
+        return stem[:-1] if stem.endswith(stem[-1:] * 2) else stem
+    if token.endswith("s") and not token.endswith("ss") and len(token) > 4:
+        return token[:-1]
+    return token
+
+
+def _concept_tokens(value: str) -> set[str]:
+    return {_concept_token(token) for token in _tokens(value)}
+
+
+def best_company_evidence(
+    signal: str,
+    profile: CandidateProfile,
+) -> tuple[float, str | None]:
+    """Return the strongest supplied evidence unit for one company signal.
+
+    Company-fit scoring and recruiter-copy projection deliberately share this matcher so a
+    signal can never be admitted by one layer and silently discarded by the next.
+    """
+    signal_tokens = _concept_tokens(signal)
+    if not signal_tokens:
+        return 0.0, None
+
+    ranked: list[tuple[float, int, int, str]] = []
+    for evidence in _evidence_units(profile):
+        evidence_tokens = _concept_tokens(evidence)
+        if not evidence_tokens:
+            continue
+        overlap_count = len(signal_tokens & evidence_tokens)
+        if overlap_count == 0:
+            continue
+        denominator = min(len(signal_tokens), len(evidence_tokens))
+        score = overlap_count / max(1, denominator)
+        if overlap_count == 1 and denominator > 2:
+            score *= 0.35
+        ranked.append((score, overlap_count, -len(evidence), evidence))
+
+    if not ranked:
+        return 0.0, None
+    ranked.sort(reverse=True)
+    score, _, _, evidence = ranked[0]
+    return score, evidence
+
+
 def assess_company_fit(
     profile: CandidateProfile,
     intelligence: CompanyIntelligence,
@@ -40,15 +103,13 @@ def assess_company_fit(
     clock = now or datetime.now(UTC)
     fresh = intelligence.fresh_signals(now=clock)
     stale = intelligence.stale_signals(now=clock)
-    evidence_tokens = _tokens(profile.evidence_text())
 
     matched: list[str] = []
     unmatched: list[str] = []
     hooks: list[str] = []
     for signal in fresh:
-        signal_tokens = _tokens(signal.statement)
-        overlap = len(signal_tokens & evidence_tokens) / max(1, len(signal_tokens))
-        if overlap >= 0.20:
+        alignment, evidence = best_company_evidence(signal.statement, profile)
+        if alignment >= 0.45 and evidence is not None:
             matched.append(signal.statement)
             hooks.append(f"{signal.kind}: {signal.statement}")
         else:
