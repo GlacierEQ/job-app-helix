@@ -20,14 +20,18 @@ from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-from .estate_recovery_census import EstateRecoveryCensus, build_estate_recovery_census, load_repository_names
+from .estate_recovery_census import (
+    EstateRecoveryCensus,
+    build_estate_recovery_census,
+    load_repository_names,
+)
 from .federated_restoration import (
     FederatedApplyReceipt,
     FederatedRestorationPacket,
     apply_federated_packet,
     build_federated_packet,
 )
-from .recovery_ref_graph import RefFamily, RecoveryRefGraphReport, build_ref_graph
+from .recovery_ref_graph import RecoveryRefGraphReport, RefFamily, build_ref_graph
 
 ELIGIBLE_CLASSES = {
     "RECOVERY_SIGNAL_WITHOUT_EXECUTABLE_POWER",
@@ -89,7 +93,15 @@ def _sha(payload: Mapping[str, object]) -> str:
 
 
 def _clone_repository(owner: str, repository: str, destination: Path) -> None:
-    proc = _run(("git", "clone", "--quiet", f"https://github.com/{owner}/{repository}.git", str(destination)))
+    proc = _run(
+        (
+            "git",
+            "clone",
+            "--quiet",
+            f"https://github.com/{owner}/{repository}.git",
+            str(destination),
+        )
+    )
     if proc.returncode:
         detail = (proc.stderr or proc.stdout or "clone failed").strip()[:300]
         raise EstateFederatedRecoveryError(f"unable to clone {owner}/{repository}: {detail}")
@@ -140,7 +152,10 @@ def _python_symbols(source: str) -> tuple[str, ...]:
     return tuple(symbols)
 
 
-def _select_python_mechanism(repo: Path, family: RefFamily) -> tuple[str, tuple[str, ...]] | None:
+def _select_python_mechanism(
+    repo: Path,
+    family: RefFamily,
+) -> tuple[str, tuple[str, ...]] | None:
     proc = _run(
         (
             "git",
@@ -152,12 +167,28 @@ def _select_python_mechanism(repo: Path, family: RefFamily) -> tuple[str, tuple[
         ),
         cwd=repo,
     )
-    recent_paths = [line.strip() for line in proc.stdout.splitlines() if line.strip().endswith(".py")]
+    recent_paths = [
+        line.strip()
+        for line in proc.stdout.splitlines()
+        if line.strip().endswith(".py")
+    ]
     if not recent_paths:
-        proc = _run(("git", "ls-tree", "-r", "--name-only", family.representative_sha), cwd=repo)
-        recent_paths = [line.strip() for line in proc.stdout.splitlines() if line.strip().endswith(".py")]
+        proc = _run(
+            ("git", "ls-tree", "-r", "--name-only", family.representative_sha),
+            cwd=repo,
+        )
+        recent_paths = [
+            line.strip()
+            for line in proc.stdout.splitlines()
+            if line.strip().endswith(".py")
+        ]
     ranked = sorted(
-        (path for path in recent_paths if "/tests/" not in f"/{path}" and not Path(path).name.startswith("test_")),
+        (
+            path
+            for path in recent_paths
+            if "/tests/" not in f"/{path}"
+            and not Path(path).name.startswith("test_")
+        ),
         key=lambda path: ("/src/" not in f"/{path}", len(Path(path).parts), path),
     )
     for path in ranked:
