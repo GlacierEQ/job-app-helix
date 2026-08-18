@@ -3,11 +3,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from job_app_helix.application_operations import ApplicationStore, CandidateProfile
+from job_app_helix.application_operations import ApplicationStore, CandidateProfile, JobOpening
 from job_app_helix.company_intelligence_acquisition import FetchedSource, SourceSpec
 from job_app_helix.intelligence_cycle import (
     IntelligenceCycleCandidate,
     execute_intelligence_cycle,
+    load_cycle_manifest,
 )
 
 
@@ -87,6 +88,24 @@ def _transport(statement: str):
     return fetch
 
 
+def _live_opening(url: str, *, title: str = "AI Systems Engineer") -> JobOpening:
+    return JobOpening(
+        opening_id="anthropic-live",
+        company="Anthropic",
+        title=title,
+        description=(
+            "Build reliable agent systems with observability, containment, recovery, "
+            "and platform automation."
+        ),
+        location="Remote",
+        requirements=("Python", "agent systems", "observability"),
+        preferred=("distributed systems",),
+        source_url=url,
+        metadata={"source_kind": "job-posting"},
+        source_digest="live-cycle-opening",
+    )
+
+
 def _candidate(
     tmp_path: Path,
     *,
@@ -121,10 +140,11 @@ def test_cycle_acquires_bootstraps_calibrates_and_compiles_packet(tmp_path: Path
             ),
         )
 
-        assert result.schema == "glaciereq.job-intelligence-cycle.v1"
+        assert result.schema == "glaciereq.job-intelligence-cycle.v2"
         assert result.successful_company_count == 1
         assert result.failed_company_count == 0
         assert result.companies[0].status == "INITIALIZED"
+        assert result.companies[0].opening_status == "STATIC"
         assert result.companies[0].company_fit_score == 100.0
         assert result.calibration.status == "INSUFFICIENT_OUTCOMES"
         assert len(result.calibration_sha256) == 64
@@ -145,6 +165,131 @@ def test_cycle_acquires_bootstraps_calibrates_and_compiles_packet(tmp_path: Path
     assert (company_state / "COMPANY_FIT.json").is_file()
     assert (state / "OUTCOME_CALIBRATION.json").is_file()
     assert (state / "INTELLIGENCE_CYCLE_RECEIPT.json").is_file()
+
+
+def test_live_url_candidate_refreshes_opening_before_ranking(tmp_path: Path) -> None:
+    plan = tmp_path / "plan.json"
+    _write_plan(plan)
+    opening_url = "https://www.anthropic.com/careers/jobs/anthropic-live"
+    candidate = IntelligenceCycleCandidate(
+        company="Anthropic",
+        acquisition_plan_path=plan,
+        opening_url=opening_url,
+    )
+    state = tmp_path / "state"
+
+    with ApplicationStore(tmp_path / "applications.sqlite3") as store:
+        result = execute_intelligence_cycle(
+            (candidate,),
+            _profile(),
+            output_dir=tmp_path / "packets",
+            state_dir=state,
+            store=store,
+            opening_fetcher=lambda url: _live_opening(url),
+            transport=_transport(
+                "Anthropic engineering builds reliable agent systems with observability "
+                "and containment for production deployments."
+            ),
+        )
+
+    company = result.companies[0]
+    assert company.opening_id == "anthropic-live"
+    assert company.opening_status == "NEW"
+    assert company.opening_receipt_sha256 is not None
+    assert len(company.opening_receipt_sha256) == 64
+    company_state = state / "companies" / "anthropic"
+    snapshot = json.loads((company_state / "OPENING_SNAPSHOT.json").read_text(encoding="utf-8"))
+    receipt = json.loads(
+        (company_state / "OPENING_ACQUISITION_RECEIPT.json").read_text(encoding="utf-8")
+    )
+    assert snapshot["source_url"] == opening_url
+    assert receipt["receipt_sha256"] == company.opening_receipt_sha256
+    assert result.batch.compiled_count == 1
+
+
+def test_live_opening_change_is_observed_by_next_intelligence_cycle(tmp_path: Path) -> None:
+    plan = tmp_path / "plan.json"
+    _write_plan(plan)
+    opening_url = "https://www.anthropic.com/careers/jobs/anthropic-live"
+    candidate = IntelligenceCycleCandidate(
+        company="Anthropic",
+        acquisition_plan_path=plan,
+        opening_url=opening_url,
+    )
+    state = tmp_path / "state"
+    database = tmp_path / "applications.sqlite3"
+
+    with ApplicationStore(database) as store:
+        first = execute_intelligence_cycle(
+            (candidate,),
+            _profile(),
+            output_dir=tmp_path / "packets",
+            state_dir=state,
+            store=store,
+            opening_fetcher=lambda url: _live_opening(url),
+            transport=_transport(
+                "Anthropic engineering builds reliable agent systems with observability and containment."
+            ),
+        )
+        second = execute_intelligence_cycle(
+            (candidate,),
+            _profile(),
+            output_dir=tmp_path / "packets",
+            state_dir=state,
+            store=store,
+            opening_fetcher=lambda url: _live_opening(url, title="Senior AI Systems Engineer"),
+            transport=_transport(
+                "Anthropic engineering builds reliable agent systems with observability and containment."
+            ),
+        )
+
+    assert first.companies[0].opening_status == "NEW"
+    assert second.companies[0].opening_status == "CHANGED"
+    assert "title" in second.companies[0].opening_changed_fields
+    assert first.companies[0].opening_receipt_sha256 != second.companies[0].opening_receipt_sha256
+
+
+def test_manifest_accepts_exactly_one_opening_source(tmp_path: Path) -> None:
+    manifest = tmp_path / "cycle.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "candidates": [
+                    {
+                        "company": "Anthropic",
+                        "opening_url": "https://www.anthropic.com/careers/jobs/123",
+                        "acquisition_plan": "plan.json",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    rows = load_cycle_manifest(manifest)
+    assert rows[0].opening_path is None
+    assert rows[0].opening_url == "https://www.anthropic.com/careers/jobs/123"
+
+    manifest.write_text(
+        json.dumps(
+            {
+                "candidates": [
+                    {
+                        "company": "Anthropic",
+                        "opening": "opening.json",
+                        "opening_url": "https://www.anthropic.com/careers/jobs/123",
+                        "acquisition_plan": "plan.json",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    try:
+        load_cycle_manifest(manifest)
+    except ValueError as exc:
+        assert "exactly one of opening or opening_url" in str(exc)
+    else:
+        raise AssertionError("manifest must reject ambiguous opening sources")
 
 
 def test_second_cycle_refreshes_and_retires_superseded_signal(tmp_path: Path) -> None:
