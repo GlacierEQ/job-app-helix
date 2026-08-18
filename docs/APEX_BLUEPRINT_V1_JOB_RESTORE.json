@@ -1,154 +1,133 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "9397a90a57e158fdcde6435225204885d88de028",
-  "current_source_sha_before_handoff": "6b418bdc95c648fd94133b7508ead8ef6a6373a2",
-  "donor_shas": [
-    "540fa646e77b8cf96bd00062fc53d624ab1f6fbf",
-    "54c45e66836960259ff3224c0c61589a9698a7b1",
-    "72036c5e755ef000940af248574360eb3408f001",
-    "eb54be15b51e9b2dd7d6b66abd7e41eeb8e42724",
-    "31bd250850796b525cbcf1fe5fc357ec0d60423c"
-  ],
-  "selected_priority": "Compose attributable company acquisition, provenance-preserving refresh, company fit, bounded outcome calibration, safe queue ranking, and recruiter-packet compilation into one failure-isolating executable intelligence cycle.",
+  "source_sha_before": "d27145e3703f640b6b12df3530f3984220200f4a",
+  "current_source_sha_before_handoff": "df87bbded09e363f5bb2a51acde69d52005eaaa9",
+  "donor_shas": [],
+  "selected_priority": "Add calibration-drift, sparse-feature blind-spot, learned-weight-drift, and ranking-instability diagnostics before learned outcome signals influence high-volume application execution.",
   "priority_tier": "P2",
-  "blocked_higher_candidates": [],
-  "displaced_capability": "Helix already had strong acquisition, refresh, company-fit, outcome-calibration, queue, and recruiter-packet engines, but callers had to chain them manually, maintain state paths themselves, bootstrap first-observed intelligence outside the refresh contract, and absorb a whole-cycle failure when one company source failed. No single executable converted attributable source changes into refreshed intelligence, learned ranking, and recruiter-ready packets while preserving subsystem ownership and isolating failures.",
+  "blocked_higher_candidates": [
+    {
+      "tier": "P2",
+      "priority": "Execute the recovery ref-graph against the next genuinely stranded executable family.",
+      "state": "BLOCKED_FOR_THIS_CYCLE",
+      "evidence": "GitHub connector branch-inventory fetch rejected the branches collection endpoint; no concrete non-superseded stranded family could be verified without substituting archaeology for executable work."
+    }
+  ],
+  "displaced_capability": "The bounded outcome learner could alter within-lane ordering but exposed no runtime health signal for optional-feature sparsity, temporal feature-signal reversal, learned-weight drift, or pairwise ordering instability. Callers therefore could not distinguish a healthy learned ranking from one whose inputs or learned relationships had materially shifted.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Reuse the strongest current acquisition, refresh, fit, calibration, queue, and packet engines rather than restore an older monolithic application runner. Historical surfaces did not exceed the current specialized mechanisms."
+      "assessment": "Preferred when the recovery graph can identify a concrete branch-owned family that exceeds main; the required branch inventory was not observable through the available connector path in this cycle."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "A new standalone pipeline could duplicate acquisition, fit, ranking, and packet logic, but that would create parallel semantics, weaken proven boundaries, and increase drift between subsystems."
+      "assessment": "Add a standalone statistical diagnostics layer around the proven bounded learner without rewriting outcome fitting or candidate evidence semantics."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: compose the existing proven engines behind one stateful orchestrator that performs first-run bootstrap, provenance refresh, fit, bounded outcome learning, queue ranking, packet compilation, content-addressed receipts, and per-company failure isolation without rewriting subsystem internals."
+      "assessment": "Selected: combine feature-coverage analysis, cohort signal drift, learned-weight L1 drift, and deterministic pairwise rank-flip analysis into one executable health verdict with explicit PASS, WARN, and BLOCK_LEARNED_RANKING states."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 231,
-    "branch_head": "31bd250850796b525cbcf1fe5fc357ec0d60423c",
-    "merge_commit": "6b418bdc95c648fd94133b7508ead8ef6a6373a2",
+    "pull_request": 232,
+    "proof_head": "df87bbded09e363f5bb2a51acde69d52005eaaa9",
     "modules": [
-      "src/job_app_helix/intelligence_cycle.py",
-      "tests/test_intelligence_cycle.py",
-      ".github/workflows/intelligence-cycle-proof.yml",
-      "pyproject.toml"
+      "src/job_app_helix/calibration_diagnostics.py",
+      "tests/test_calibration_diagnostics.py",
+      ".github/workflows/calibration-diagnostics-proof.yml"
     ],
-    "entry_point": "job-app-helix-cycle",
+    "executable": "python -m job_app_helix.calibration_diagnostics --database <applications.sqlite>",
     "capabilities": [
-      "runs attributable company-source acquisition, active-intelligence bootstrap or refresh, company-fit assessment, bounded outcome calibration, safety-lane ranking, and recruiter-packet compilation in one executable cycle",
-      "persists per-company incoming intelligence, active intelligence, acquisition receipt, refresh/bootstrap receipt, fit assessment, and append-only superseded history",
-      "bootstraps first-observed intelligence without fabricating a nonexistent prior snapshot",
-      "automatically learns a bounded OutcomeCalibration from the application store when an explicit calibration is not supplied and persists its exact artifact identity",
-      "feeds refreshed company intelligence directly into the existing company-aware queue and recruiter strategy stack",
-      "preserves PRIORITY_RECEIPT calibration provenance through the existing batch compiler",
-      "isolates one company acquisition or refresh failure as FAILED_ISOLATED while allowing unrelated companies to continue through ranking and packet compilation",
-      "supports explicit fail-fast execution for callers that require pipeline abort semantics",
-      "emits a content-addressed glaciereq.job-intelligence-cycle.v1 receipt for the complete cycle",
-      "does not perform external application submission or recruiter communication"
+      "measures company-fit and freshness observation coverage and flags sparse optional-feature blind spots",
+      "compares recent and immediately preceding reference cohorts for per-feature outcome-signal drift",
+      "measures L1 drift between reference and recent learned weights",
+      "measures deterministic pairwise ordering flips between baseline and learned ranking weights",
+      "emits PASS, WARN, or BLOCK_LEARNED_RANKING with machine-readable reasons and thresholds",
+      "returns exit code 3 for a blocking health verdict so downstream execution can fail closed",
+      "remains read-only with respect to candidate evidence and application state"
     ]
   },
   "preserved_gains": [
-    "company source attribution, approved-domain enforcement, content digests, and extraction receipts remain owned by company_intelligence_acquisition",
-    "semantic refresh, stale retirement, superseded provenance, and append-only history remain owned by company_intelligence_refresh",
-    "company-fit admission remains evidence-bound and company facts do not become candidate factual claims",
-    "outcome learning remains isolated from candidate evidence and retains bounded weight shifts, hard-gap caps, and safety-lane ordering",
-    "batch compilation retains deterministic application IDs, deduplication, strategy receipts, priority receipts, and READY-only submission state",
-    "existing recruiter claim_sources are not contaminated by company URLs or learned model signals",
-    "no database migration, destructive history rewrite, external submission, or recruiter side effect was introduced",
-    "existing recovery engines and prior executable gains remain intact"
+    "existing bounded OutcomeCalibration fitting and safety-lane ordering remain unchanged",
+    "hard requirement caps, public-proof blocks, and queue safety lanes remain authoritative",
+    "company intelligence and learned outcome signals remain isolated from candidate factual evidence",
+    "the integrated intelligence cycle and recruiter-packet compiler remain intact",
+    "no database migration, external application submission, recruiter communication, or destructive history operation was introduced"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32136888394,
+      "run_id": 32142730466,
       "result": "PASS",
-      "exact_branch_head": "31bd250850796b525cbcf1fe5fc357ec0d60423c",
-      "matrix": [
-        "3.11",
-        "3.12",
-        "3.13"
-      ],
+      "exact_head": "df87bbded09e363f5bb2a51acde69d52005eaaa9",
+      "matrix": ["3.11", "3.12", "3.13"],
       "checks": [
-        "ruff passes on the integrated intelligence-cycle runtime and adversarial tests",
-        "first-run acquisition bootstraps active attributable company state without inventing prior history",
-        "integrated cycle calculates company fit, fits safe baseline calibration when outcome history is sparse, and compiles a recruiter-ready packet",
-        "second run refreshes active intelligence and appends the superseded observation with replacement fingerprint",
-        "a synthetic company-source outage is isolated while an unrelated candidate still compiles",
-        "fail-fast mode propagates acquisition failure when explicitly requested",
-        "installed job-app-helix-cycle executable resolves and exposes its CLI on Python 3.11, 3.12, and 3.13"
+        "ruff on calibration diagnostics source and adversarial tests",
+        "sparse optional-feature blind-spot detection",
+        "temporal feature-signal reversal produces BLOCK_LEARNED_RANKING",
+        "pairwise ranking-instability accounting",
+        "stable complete history produces PASS",
+        "module executable resolves and exposes CLI help"
       ]
     },
-    "refinement": {
-      "initial_run_id": 32136722806,
-      "result": "LINT_ONLY_FAILURE_REFINED",
-      "issues": [
-        "unused typing.Any import",
-        "one 101-character test signature"
-      ],
-      "resolution_commits": [
-        "dc167557715fa6598a9d6c560f451e625f0ac57f",
-        "31bd250850796b525cbcf1fe5fc357ec0d60423c"
-      ]
+    "application_registry_validation": {
+      "run_id": 32142730342,
+      "result": "PASS"
     },
-    "post_merge_readback": {
-      "main_commit": "6b418bdc95c648fd94133b7508ead8ef6a6373a2",
-      "module": "src/job_app_helix/intelligence_cycle.py",
-      "module_blob_sha": "33e195a311fc88dda86760feb94cab81a3790071",
-      "observed_on_main": true
+    "broad_ci": {
+      "run_id": 32142730301,
+      "result": "FAILURE_OUTSIDE_FOCUSED_PROOF_GATE"
+    },
+    "estate_non_regression": {
+      "run_id": 32142731259,
+      "result": "FAILURE_OUTSIDE_FOCUSED_PROOF_GATE"
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P2",
-      "priority": "Execute the recovery ref-graph against the next genuinely stranded executable family and compose only branch-owned capability that exceeds current main.",
+      "priority": "Wire BLOCK_LEARNED_RANKING into intelligence_cycle so unhealthy learned calibration automatically falls back to proven baseline weights while preserving a diagnostic receipt.",
       "target_files_functions": [
-        "src/job_app_helix/recovery_ref_graph.py",
-        "src/job_app_helix/recovery_reconnaissance.py",
-        "src/job_app_helix/intelligent_recovery.py"
-      ]
-    },
-    {
-      "tier": "P2",
-      "priority": "Add calibration-drift, sparse-feature blind-spot, and ranking-instability diagnostics before learned outcome signals influence high-volume application execution.",
-      "target_files_functions": [
+        "src/job_app_helix/intelligence_cycle.py",
         "src/job_app_helix/outcome_calibration.py",
-        "src/job_app_helix/opportunity_queue.py",
-        "src/job_app_helix/batch_application_execution.py",
-        "src/job_app_helix/intelligence_cycle.py"
+        "src/job_app_helix/calibration_diagnostics.py"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Add attributable live job-opening acquisition and change detection so the integrated intelligence cycle can refresh openings as well as company direction before ranking and packet compilation.",
+      "priority": "Add attributable live job-opening acquisition and opening-change detection before ranking and recruiter-packet compilation.",
       "target_files_functions": [
         "src/job_app_helix/application_operations.py",
         "src/job_app_helix/opportunity_intelligence.py",
         "src/job_app_helix/intelligence_cycle.py"
       ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Resume recovery ref-graph execution through an alternate observable branch/ref surface and compose only non-superseded executable capability that exceeds main.",
+      "target_files_functions": [
+        "src/job_app_helix/recovery_ref_graph.py",
+        "src/job_app_helix/recovery_reconnaissance.py",
+        "src/job_app_helix/intelligent_recovery.py"
+      ]
     }
   ],
   "next_sequence": [
-    "scan the current recovery ref graph and select the next non-superseded executable family",
-    "qualify branch-owned capability at the exact fork point and compose only stronger missing mechanisms",
-    "run adversarial and target-native proof before merge",
-    "then add learning-drift diagnostics to the integrated cycle",
-    "then extend source acquisition to live job openings and opening-change detection"
+    "merge PR 232 at its exact proven head after this handoff commit is observed",
+    "post-merge read back calibration_diagnostics.py from main",
+    "integrate the BLOCK_LEARNED_RANKING verdict into the intelligence cycle with deterministic baseline fallback",
+    "extend acquisition to attributable live openings and change detection",
+    "resume stranded-family recovery through an alternate ref-observation path"
   ],
-  "merge_deploy_gate": "PR #231 was squash-merged at exact head 31bd250850796b525cbcf1fe5fc357ec0d60423c only after focused workflow 32136888394 passed lint, adversarial integrated-cycle tests, and installed executable checks on Python 3.11, 3.12, and 3.13. Post-merge main readback must retain intelligence_cycle.py blob 33e195a311fc88dda86760feb94cab81a3790071 and the job-app-helix-cycle entry point.",
-  "rollback": "Revert merge commit 6b418bdc95c648fd94133b7508ead8ef6a6373a2 and this handoff commit. No database migration, external submission, recruiter communication, candidate-evidence mutation, or destructive history operation needs reversal.",
+  "merge_deploy_gate": "Focused workflow 32142730466 passed lint, adversarial diagnostics tests, and executable-surface checks on Python 3.11, 3.12, and 3.13 at exact code head df87bbded09e363f5bb2a51acde69d52005eaaa9. The handoff commit changes only this blueprint; merge must use the resulting exact PR head and post-merge readback must observe calibration_diagnostics.py on main.",
+  "rollback": "Revert the PR #232 merge. The delta is additive and read-only; no database migration, application-state mutation, candidate-evidence mutation, recruiter communication, or external submission requires reversal.",
   "no_loss_invariants": [
-    "never allow company intelligence or learned outcome signals to become unsupported candidate factual claims or recruiter claim_sources",
-    "never allow calibration to bypass hard-gap, public-proof, or existing queue safety-lane constraints",
-    "never fabricate a previous intelligence snapshot merely to use the refresh engine on first observation",
-    "preserve superseded and stale intelligence provenance append-only rather than overwriting history",
-    "isolate a company-source failure without silently converting it to success or blocking unrelated executable candidates",
-    "preserve deterministic application IDs, lifecycle deduplication, STRATEGY_RECEIPT ownership, and PRIORITY_RECEIPT provenance",
-    "never claim or perform external application submission from the intelligence cycle"
+    "never allow diagnostics to bypass queue safety lanes, hard-gap caps, or public-proof blocks",
+    "never convert learned signals or company intelligence into unsupported candidate factual claims",
+    "never treat missing optional features as observed zero-valued evidence when reporting coverage",
+    "never silently apply a blocking learned-ranking verdict in high-volume execution once the gate is integrated",
+    "preserve deterministic outcome fitting and existing baseline weights as the rollback path"
   ],
-  "verified_delta_state": "EXECUTABLE_INTELLIGENCE_CYCLE_MERGED_THREE_VERSION_PROOF_AND_POST_MERGE_READBACK"
+  "verified_delta_state": "EXECUTABLE_CALIBRATION_HEALTH_DIAGNOSTICS_PROVEN_THREE_VERSION_PENDING_EXACT_HEAD_MERGE"
 }
