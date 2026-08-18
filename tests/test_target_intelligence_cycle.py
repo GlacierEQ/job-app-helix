@@ -89,7 +89,7 @@ def _target(plan: Path) -> TargetIntelligenceSource:
             include_title_terms=("engineer",),
         ),
         acquisition_plan_path=plan,
-        role="AI Systems Engineer",
+        role="Applied AI Engineer",
     )
 
 
