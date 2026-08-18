@@ -30,7 +30,11 @@ from .application_operations import (
     project_application,
     write_projection,
 )
-from .company_fit import CompanyFitAssessment, assess_company_fit
+from .company_fit import (
+    CompanyFitAssessment,
+    assess_company_fit,
+    best_company_evidence,
+)
 from .company_intelligence import CompanyIntelligence, load_company_intelligence
 from .opportunity_intelligence import OpportunityAssessment, assess_opportunity
 
@@ -71,11 +75,11 @@ def _company_alignment_rows(
     assessment: CompanyFitAssessment,
     profile: CandidateProfile,
 ) -> tuple[tuple[str, str], ...]:
-    """Map only company signals that also have strong candidate evidence."""
+    """Map only admitted company signals to the exact evidence matcher that admitted them."""
     rows: list[tuple[str, str]] = []
     for signal in assessment.matched_signals:
-        evidence = _best_candidate_evidence(signal, profile)
-        if evidence is not None:
+        alignment, evidence = best_company_evidence(signal, profile)
+        if alignment >= 0.45 and evidence is not None:
             rows.append((signal, evidence))
     return tuple(rows)
 
