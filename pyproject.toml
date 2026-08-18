@@ -41,6 +41,7 @@ job-app-helix-productize = "job_app_helix.productization_cli:main"
 job-app-helix-library = "job_app_helix.library_cli:main"
 job-app-helix-genius = "job_app_helix.genius_engine:main"
 job-app-helix-restore = "job_app_helix.restoration_cli:main"
+job-app-helix-prioritize = "job_app_helix.restoration_workforce_cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/job_app_helix"]
