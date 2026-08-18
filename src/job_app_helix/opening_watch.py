@@ -3,6 +3,9 @@
 The watch composes the proven single-opening acquisition contract into a batch runtime:
 each URL owns an isolated content-addressed state directory, failures stay local to that
 opening, and every run emits aggregate change telemetry plus an append-only event log.
+Recruiter-material changes are separated from metadata/digest churn so downstream packet
+rebuilds happen only when the posting changed in a way that can affect candidate fit,
+positioning, or application content.
 """
 
 from __future__ import annotations
@@ -15,6 +18,18 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from .opening_acquisition import OpeningFetcher, acquire_live_opening
+
+RECRUITER_MATERIAL_FIELDS = frozenset(
+    {
+        "opening_id",
+        "company",
+        "title",
+        "description",
+        "location",
+        "requirements",
+        "preferred",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -31,8 +46,14 @@ class OpeningWatchItemResult:
     status: str
     opening_id: str | None
     changed_fields: tuple[str, ...]
+    material_changed_fields: tuple[str, ...]
+    change_class: str
     receipt_sha256: str | None
     error: str | None = None
+
+    @property
+    def recruiter_material(self) -> bool:
+        return self.change_class in {"NEW", "RECRUITER_MATERIAL"}
 
     def as_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -46,6 +67,8 @@ class OpeningWatchResult:
     failed_count: int
     new_count: int
     changed_count: int
+    material_changed_count: int
+    non_material_changed_count: int
     unchanged_count: int
     items: tuple[OpeningWatchItemResult, ...]
     receipt_sha256: str
@@ -58,6 +81,8 @@ class OpeningWatchResult:
             "failed_count": self.failed_count,
             "new_count": self.new_count,
             "changed_count": self.changed_count,
+            "material_changed_count": self.material_changed_count,
+            "non_material_changed_count": self.non_material_changed_count,
             "unchanged_count": self.unchanged_count,
             "items": [item.as_dict() for item in self.items],
             "receipt_sha256": self.receipt_sha256,
@@ -86,6 +111,26 @@ def _append_event(path: Path, payload: Mapping[str, object]) -> None:
         handle.write(json.dumps(payload, sort_keys=True, separators=(",", ":")) + "\n")
 
 
+def classify_opening_change(
+    status: str,
+    changed_fields: Sequence[str],
+) -> tuple[str, tuple[str, ...]]:
+    """Classify raw posting drift by whether it can change recruiter-facing output."""
+    if status == "NEW":
+        return "NEW", ()
+    if status == "UNCHANGED":
+        return "UNCHANGED", ()
+    if status != "CHANGED":
+        raise ValueError(f"unsupported opening change status: {status}")
+
+    material = tuple(sorted(RECRUITER_MATERIAL_FIELDS.intersection(changed_fields)))
+    if material:
+        return "RECRUITER_MATERIAL", material
+    if changed_fields:
+        return "METADATA_ONLY", ()
+    return "DIGEST_ONLY", ()
+
+
 def execute_opening_watch(
     targets: Sequence[OpeningWatchTarget],
     *,
@@ -93,7 +138,7 @@ def execute_opening_watch(
     fetcher: OpeningFetcher,
     continue_on_error: bool = True,
 ) -> OpeningWatchResult:
-    """Refresh a live opening set and persist deterministic aggregate change telemetry."""
+    """Refresh a live opening set and persist field-sensitive change telemetry."""
     if not targets:
         raise ValueError("opening watch requires at least one target")
     urls = [target.url for target in targets]
@@ -123,10 +168,16 @@ def execute_opening_watch(
                 status="FAILED_ISOLATED",
                 opening_id=None,
                 changed_fields=(),
+                material_changed_fields=(),
+                change_class="FAILED_ISOLATED",
                 receipt_sha256=None,
                 error=f"{type(exc).__name__}: {exc}",
             )
         else:
+            change_class, material_fields = classify_opening_change(
+                acquisition.change.status,
+                acquisition.change.changed_fields,
+            )
             item = OpeningWatchItemResult(
                 url=target.url,
                 label=target.label,
@@ -134,6 +185,8 @@ def execute_opening_watch(
                 status=acquisition.change.status,
                 opening_id=acquisition.opening.opening_id,
                 changed_fields=acquisition.change.changed_fields,
+                material_changed_fields=material_fields,
+                change_class=change_class,
                 receipt_sha256=acquisition.receipt_sha256,
             )
         items.append(item)
@@ -143,15 +196,21 @@ def execute_opening_watch(
         "NEW": sum(item.status == "NEW" for item in items),
         "CHANGED": sum(item.status == "CHANGED" for item in items),
         "UNCHANGED": sum(item.status == "UNCHANGED" for item in items),
+        "RECRUITER_MATERIAL": sum(item.change_class == "RECRUITER_MATERIAL" for item in items),
+        "NON_MATERIAL": sum(
+            item.change_class in {"METADATA_ONLY", "DIGEST_ONLY"} for item in items
+        ),
     }
     successful = sum(item.error is None for item in items)
     base: dict[str, object] = {
-        "schema": "glaciereq.opening-watch.v1",
+        "schema": "glaciereq.opening-watch.v2",
         "target_count": len(targets),
         "successful_count": successful,
         "failed_count": len(targets) - successful,
         "new_count": counts["NEW"],
         "changed_count": counts["CHANGED"],
+        "material_changed_count": counts["RECRUITER_MATERIAL"],
+        "non_material_changed_count": counts["NON_MATERIAL"],
         "unchanged_count": counts["UNCHANGED"],
         "items": [item.as_dict() for item in items],
     }
@@ -163,6 +222,8 @@ def execute_opening_watch(
         failed_count=len(targets) - successful,
         new_count=counts["NEW"],
         changed_count=counts["CHANGED"],
+        material_changed_count=counts["RECRUITER_MATERIAL"],
+        non_material_changed_count=counts["NON_MATERIAL"],
         unchanged_count=counts["UNCHANGED"],
         items=tuple(items),
         receipt_sha256=receipt_sha,
@@ -195,8 +256,8 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-opening-watch",
         description=(
-            "Refresh an attributable set of live job openings with isolated failures, "
-            "persistent snapshots, and aggregate NEW/CHANGED/UNCHANGED telemetry."
+            "Refresh attributable live job openings with isolated failures and classify "
+            "recruiter-material change separately from metadata/digest churn."
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
