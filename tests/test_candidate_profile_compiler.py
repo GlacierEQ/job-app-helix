@@ -3,8 +3,7 @@ import pathlib
 import tempfile
 import unittest
 
-import job_app_helix.application_operations as application_operations
-import job_app_helix.candidate_profile_compiler as candidate_profile_compiler
+from job_app_helix import application_operations, candidate_profile_compiler
 
 
 RESUME = """# Casey Barton \u2014 Senior Infrastructure Engineer
