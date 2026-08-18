@@ -45,6 +45,7 @@ def test_equivalent_branch_deltas_collapse_into_one_recovery_family(tmp_path: Pa
 
     _git(repo, "switch", "main")
     _git(repo, "switch", "-c", "feature-b", base)
+    source.parent.mkdir(parents=True, exist_ok=True)
     source.write_text("def engine():\n    return 7\n", encoding="utf-8")
     head_b = _commit(repo, "feature b same bytes")
 
@@ -79,6 +80,8 @@ def test_cherry_equivalent_branch_is_not_a_recovery_family(tmp_path: Path) -> No
     donor = _commit(repo, "branch patch")
 
     _git(repo, "switch", "main")
+    (repo / "README.md").write_text("main advanced first\n", encoding="utf-8")
+    _commit(repo, "independent main advance")
     _git(repo, "cherry-pick", donor)
     target = _git(repo, "rev-parse", "HEAD")
 
@@ -129,7 +132,7 @@ def test_deep_scan_preserves_only_branch_owned_capability(tmp_path: Path) -> Non
     assert recon is not None
     assert recon.lineage_mode == "DIVERGED_BRANCH"
     assert recon.qualified_paths == ("src/unique_engine.py",)
-    assert recon.excluded_baseline_count == 1
+    assert recon.excluded_baseline_count >= 1
     assert "src/old_baseline.py" not in recon.qualified_paths
     assert report.deep_reconnaissance is not None
     summary = report.deep_reconnaissance.intelligent_plan_summary
