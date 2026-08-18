@@ -44,6 +44,7 @@ job-app-helix-restore = "job_app_helix.restoration_cli:main"
 job-app-helix-prioritize = "job_app_helix.restoration_workforce_cli:main"
 job-app-helix-opportunity = "job_app_helix.opportunity_intelligence:main"
 job-app-helix-strategy = "job_app_helix.application_strategy:main"
+job-app-helix-recover = "job_app_helix.intelligent_recovery_cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/job_app_helix"]
