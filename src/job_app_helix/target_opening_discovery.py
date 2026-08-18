@@ -1,10 +1,11 @@
 """Discover and maintain target-company opening inventories from public ATS APIs.
 
-Callers describe target companies once. Helix discovers current Greenhouse, Lever, or Ashby
-inventories, normalizes provider records into JobOpening objects, persists deterministic
-inventory deltas, then hands the live set directly to the existing field-sensitive Opening
-Watch runtime. Provider-specific parsing stays isolated behind one dispatcher so the vertical
-target intelligence/application cycles can consume every supported ATS through one contract.
+Callers describe target companies once. Helix discovers current Greenhouse, Lever, Ashby,
+or SmartRecruiters inventories, normalizes provider records into JobOpening objects,
+persists deterministic inventory deltas, then hands the live set directly to the existing
+field-sensitive Opening Watch runtime. Provider-specific parsing stays isolated behind one
+dispatcher so the vertical target intelligence/application cycles can consume every
+supported ATS through one contract.
 """
 
 from __future__ import annotations
@@ -21,9 +22,13 @@ from typing import Any
 from .application_operations import JobOpening, ingest_job_opening
 from .ashby_opening_discovery import AshbyOpeningSource, discover_ashby_openings
 from .opening_watch import OpeningWatchResult, OpeningWatchTarget, execute_opening_watch
+from .smartrecruiters_opening_discovery import (
+    SmartRecruitersOpeningSource,
+    discover_smartrecruiters_openings,
+)
 
 JsonTransport = Callable[[str], Any]
-SUPPORTED_PROVIDERS = frozenset({"ashby", "greenhouse", "lever"})
+SUPPORTED_PROVIDERS = frozenset({"ashby", "greenhouse", "lever", "smartrecruiters"})
 
 
 @dataclass(frozen=True)
@@ -270,6 +275,24 @@ def _ashby_openings(
     )
 
 
+def _smartrecruiters_openings(
+    source: TargetOpeningSource,
+    transport: JsonTransport,
+) -> tuple[JobOpening, ...]:
+    """Adapt SmartRecruiters public posting inventory into the unified target contract."""
+    return discover_smartrecruiters_openings(
+        SmartRecruitersOpeningSource(
+            company=source.company,
+            company_identifier=source.board_key,
+            include_title_terms=source.include_title_terms,
+            exclude_title_terms=source.exclude_title_terms,
+            include_locations=source.include_locations,
+            max_openings=source.max_openings,
+        ),
+        transport=transport,
+    )
+
+
 _PROVIDER_DISCOVERERS: Mapping[
     str,
     Callable[[TargetOpeningSource, JsonTransport], tuple[JobOpening, ...]],
@@ -277,6 +300,7 @@ _PROVIDER_DISCOVERERS: Mapping[
     "ashby": _ashby_openings,
     "greenhouse": _greenhouse_openings,
     "lever": _lever_openings,
+    "smartrecruiters": _smartrecruiters_openings,
 }
 
 
@@ -496,8 +520,8 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-discover-openings",
         description=(
-            "Discover maintained Greenhouse, Lever, and Ashby target-company inventories "
-            "and feed the normalized live set directly into Opening Watch."
+            "Discover maintained Greenhouse, Lever, Ashby, and SmartRecruiters target-company "
+            "inventories and feed the normalized live set directly into Opening Watch."
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
