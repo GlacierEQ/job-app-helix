@@ -41,20 +41,39 @@ def _evidence_units(profile: CandidateProfile) -> tuple[str, ...]:
     )
 
 
+def _concept_token(token: str) -> str:
+    """Collapse conservative English inflections without pretending to be an NLP model."""
+    if token.endswith("ies") and len(token) > 5:
+        return f"{token[:-3]}y"
+    if token.endswith("ing") and len(token) > 6:
+        stem = token[:-3]
+        return stem[:-1] if stem.endswith(stem[-1:] * 2) else stem
+    if token.endswith("ed") and len(token) > 5:
+        stem = token[:-2]
+        return stem[:-1] if stem.endswith(stem[-1:] * 2) else stem
+    if token.endswith("s") and not token.endswith("ss") and len(token) > 4:
+        return token[:-1]
+    return token
+
+
+def _concept_tokens(value: str) -> set[str]:
+    return {_concept_token(token) for token in _tokens(value)}
+
+
 def _signal_alignment(signal: str, profile: CandidateProfile) -> float:
     """Measure whether a company signal has a concrete candidate-evidence anchor.
 
     Long company statements contain names, dates, products, and context that should not
-    dilute a strong evidence match. Compare each signal against individual evidence units
-    and normalize by the smaller semantic surface. This rewards a specific shared mechanism
-    such as agent containment while rejecting incidental one-token overlap with long prose.
+    dilute a strong evidence match. Compare each signal against individual evidence units,
+    normalize conservative word families, and divide by the smaller semantic surface.
+    This rewards specific shared mechanisms while rejecting incidental generic overlap.
     """
-    signal_tokens = _tokens(signal)
+    signal_tokens = _concept_tokens(signal)
     if not signal_tokens:
         return 0.0
     best = 0.0
     for evidence in _evidence_units(profile):
-        evidence_tokens = _tokens(evidence)
+        evidence_tokens = _concept_tokens(evidence)
         if not evidence_tokens:
             continue
         overlap_count = len(signal_tokens & evidence_tokens)
@@ -83,9 +102,7 @@ def assess_company_fit(
     hooks: list[str] = []
     for signal in fresh:
         alignment = _signal_alignment(signal.statement, profile)
-        # Two concrete shared concepts in a five-token evidence unit, e.g. capable +
-        # containment, are meaningful. Single generic overlap remains heavily penalized.
-        if alignment >= 0.40:
+        if alignment >= 0.45:
             matched.append(signal.statement)
             hooks.append(f"{signal.kind}: {signal.statement}")
         else:
