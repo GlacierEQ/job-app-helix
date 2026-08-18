@@ -6,7 +6,10 @@ from pathlib import Path
 
 import pytest
 
-from job_app_helix.company_intelligence import CompanyIntelligence, CompanySignal
+from job_app_helix.company_intelligence import (
+    CompanyIntelligence,
+    CompanySignal,
+)
 from job_app_helix.company_intelligence_acquisition import (
     AcquisitionPlan,
     FetchedSource,
