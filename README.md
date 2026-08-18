@@ -1,95 +1,117 @@
-# Job-App Helix — Evidence-Bound Portfolio Control Plane
+# Job-App Helix — Capability Evolution, Restoration & Evidence Engine
 
-> **APEX job-ecosystem restoration is ACTIVE.**
-> Program: [`docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md`](docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md) · Status: [`STATUS.md`](STATUS.md)
-> Identity: APEX is the counter to canonical destruction.
+> **APEX job-ecosystem restoration is ACTIVE.**  
+> Program: [`docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md`](docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md) · Estate elevation: [`docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md`](docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md) · Status: [`STATUS.md`](STATUS.md)
 
+> Turns a large engineering estate into a system that can recover lost capability, complete intended systems, compose complementary strengths, prove real behavior, and present the result without flattening distinct repositories into one oversized claim.
 
-> Turns a large engineering portfolio into a system that can be inspected, planned, tested, and trusted without flattening sixty-seven repositories into one oversized claim.
-
-Job-App Helix is the governance and verification center of the GlacierEQ hiring portfolio. It maintains the exact repository boundary, decides what is ready for promotion, discovers each project's native proof path, executes bounded checks, and emits evidence records that humans and AI systems can read from the same source.
+Job-App Helix is the portfolio-intelligence, restoration, evolution, productization, and proof engine for the GlacierEQ hiring ecosystem. It maintains the exact recruiter-facing boundary while treating the wider owned estate as a dynamic capability substrate. It discovers repository-native execution paths, excavates earlier strong mechanisms, preserves later gains, composes complementary systems, and emits evidence records that humans and AI systems can read from the same source.
 
 **Release:** `0.3.0`  
-**Canonical branch:** `main`  
-**Current posture:** `PARTIALLY_VERIFIED` — the Helix package and portfolio-program contract have repository-native TEST evidence; the connected sixty-six child repositories retain their own verified, blocked, failed, partially verified, or unverified states.
+**Default branch:** `main`  
+**Direction:** `MAXIMUM_COHERENT_ADVANCE`  
+**Current posture:** `PARTIALLY_VERIFIED` — Helix itself and substantial connected systems have repository-native evidence; every child and wider-estate repository retains its own state and remains eligible for capability discovery and advancement regardless of current proof level.
 
-## The Portfolio Stops Bluffing Here
+## The Portfolio Goes Up From Here
 
-*Recruiter lens · the evidence signal in one minute*
+*Recruiter lens · product value and evidence signal in one minute*
 
 <!-- Compatibility marker: ## For recruiters and non-technical reviewers -->
 
-A large portfolio becomes weaker when every repository sounds finished, language count replaces engineering judgment, and a passing command is allowed to stand in for proof. Helix addresses that credibility problem as an architectural problem.
+A large portfolio becomes weaker when evidence is inflated, but it also becomes weaker when ambitious systems are reduced merely because they are complex, overlapping, unfinished, or hard to verify. Helix solves both problems.
 
-It does five things:
+It does seven things:
 
-1. **Defines the boundary.** One control-plane root plus exactly sixty-six child repositories.
-2. **Separates evidence levels.** Inventory, documentation, static analysis, build, test, integration, and deployment are distinct states.
-3. **Finds the native proof path.** Python, Node.js, Rust, Go, Swift, Maven, Gradle, CMake, and .NET repositories receive stack-appropriate plans.
-4. **Fails closed.** Missing tools, zero-test runs, timeouts, absent repositories, unsafe paths, and unauthorized build mutations do not become green evidence.
-5. **Publishes one coherent record.** Recruiter views, engineering detail, deterministic artifacts, and AI relationships derive from the same manifests and receipts.
+1. **Defines presentation boundaries without confusing them with the estate.** The recruiter set is exact; the engineering discovery set is wider.
+2. **Reconstructs purpose before judging structure.** Code, history, issues, branches, integrations, predecessors, successors, archives, and project context all contribute.
+3. **Recovers capability.** Earlier strong mechanisms can be restored additively without rewinding later gains.
+4. **Raises systems into operable products.** Missing central functions are implemented and natural package/deployment paths are completed.
+5. **Composes specialists instead of flattening them.** Similarity is a signal to compare and connect, not evidence of redundancy.
+6. **Separates evidence levels.** Inventory, documentation, static analysis, build, test, integration, and deployment remain distinct states.
+7. **Publishes coherent proof.** Recruiter, expert, runtime, and AI views derive from evidence-bearing systems without redefining the underlying capability graph.
 
 ### The one-minute review
 
-| Open or run | What it proves |
+| Open or run | What it establishes |
 |---|---|
-| [`docs/PORTFOLIO_EXECUTION_PROGRAM.md`](docs/PORTFOLIO_EXECUTION_PROGRAM.md) | The full operating model: evidence ladder, rollout waves, command planning, execution, receipts, and definition of done. |
-| [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json) | The exact live portfolio boundary: this root plus sixty-six workspace repositories. |
-| [`manifests/portfolio_rollout.json`](manifests/portfolio_rollout.json) | The complete four-wave partition with targets and acceptance gates. |
-| [`manifests/github_repository_curation_2026-07-31.json`](manifests/github_repository_curation_2026-07-31.json) | The dated admission, deferral, duplicate, private, fork, archive, and backup decisions from the GitHub sweep. |
-| [`manifests/readme_mesh.json`](manifests/readme_mesh.json) | Typed repository identities, evidence references, and directional relationships. |
-| [`manifests/language_fit.json`](manifests/language_fit.json) | The responsibility, boundary, command, receipt, and state for each language or format used here. |
-| `job-app-helix-portfolio validate` | Proves that every child repository appears exactly once in the rollout program. |
-| `python -m pytest -q` | Exercises campaign logic, portfolio contracts, evidence semantics, README Mesh behavior, and failure paths. |
+| [`docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md`](docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md) | Estate-wide upward lifecycle: purpose reconstruction → recovery → composition → implementation → proof → integration → deployment/package. |
+| [`docs/PORTFOLIO_EXECUTION_PROGRAM.md`](docs/PORTFOLIO_EXECUTION_PROGRAM.md) | The recruiter-portfolio operating model and four upward execution waves. |
+| [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json) | Exact recruiter-facing repository boundary. |
+| [`manifests/portfolio_rollout.json`](manifests/portfolio_rollout.json) | Upward wave partition, anti-contraction rules, evidence targets, and acceptance gates. |
+| [`manifests/library_priority_spine.json`](manifests/library_priority_spine.json) | High-leverage execution queue and capability-elevation lifecycle; priority is not authority over unlisted repos. |
+| [`manifests/readme_mesh.json`](manifests/readme_mesh.json) | Typed identities, evidence references, and directional relationships. |
+| [`manifests/language_fit.json`](manifests/language_fit.json) | Responsibility, boundary, command, receipt, and state for each language or format used here. |
+| `job-app-helix-portfolio validate` | Validates the exact portfolio execution contract. |
+| `job-app-helix-library validate` | Validates the upward estate-priority/evolution contract. |
+| `python -m pytest -q` | Exercises campaign, portfolio, restoration, productization, evidence, and failure-path behavior. |
 
 ### What is already real
 
-- a deterministic campaign engine that produces reviewable `GO` or `NO-GO` decisions;
-- an exact sixty-seven-repository inventory contract;
-- a complete four-wave rollout partition for all sixty-six child repositories;
-- stack-aware, non-shell command discovery;
-- bounded execution with explicit timeouts and output tails;
-- positive test-count enforcement rather than exit-code optimism;
-- explicit authorization before workspace-mutating build commands run;
-- atomic `RUNNING` to final-state receipts that cannot preserve stale success;
-- a Protocol Buffers-backed README Mesh with deterministic serialization;
-- recruiter, expert, and AI views derived from evidence-bearing records.
+- deterministic campaign and portfolio engines;
+- exact recruiter inventory contracts;
+- four-wave upward execution planning;
+- stack-aware non-shell command discovery;
+- positive test-count proof semantics;
+- bounded execution with timeouts and atomic receipts;
+- explicit authorization before proof commands mutate workspaces;
+- capability archaeology and additive restoration tooling;
+- productization logic that forbids automatic archival and reserves retirement to the operator;
+- Protocol Buffers-backed README Mesh serialization;
+- recruiter, expert, and AI projections derived from evidence-bearing records.
 
 ### July 31, 2026 boundary migration
 
-`JOB-RESUME-BUILDER-` is the lead product flagship presented by `job-application`, but it was absent from the previous 66-repository Helix boundary. The live inventory now admits it as the sixty-sixth child and routes it through `wave-3-technical-exhibits`. Earlier 66-repository reports remain dated historical evidence; they are not rewritten to imply that the additional repository was part of their original scope.
+`JOB-RESUME-BUILDER-` entered the live recruiter boundary after the earlier 66-repository snapshot. Historical reports remain immutable evidence of their named scope; they do not control the current estate and they do not exclude repositories outside that historical boundary from capability discovery.
 
-### What Helix deliberately does not claim
+### What Helix does not infer
 
-- that every connected repository currently builds or passes tests;
-- that public source proves production deployment;
-- that hash coverage proves behavior;
-- that one bounded runtime sample certifies the entire portfolio;
-- that language diversity has value without a real architectural boundary;
-- that a repository is complete because its README is polished.
+- `UNVERIFIED` does not mean low-value or disposable.
+- Similar names do not prove duplicate responsibility.
+- A successor does not automatically erase predecessor capability.
+- A public subset does not define the full engineering estate.
+- A README does not prove runtime behavior.
+- A hash does not prove behavior.
+- A passing bounded sample does not certify every environment.
+- A failed proof path does not establish that a system should be removed.
 
-## Inside the Evidence Engine
+## Inside the Evolution Engine
 
-*Masters of the trade · architecture, failure semantics, and proof execution*
+*Masters of the trade · restoration, composition, execution, failure semantics, and proof*
 
 <!-- Compatibility marker: ## For senior engineers and domain experts -->
 
-Helix operates as two coordinated systems.
+Helix operates as coordinated upward systems.
 
 ```text
-HIGH-LEVEL PROGRAM CONTROL
-inventory → rollout policy → promotion / repair / consolidation / archive
+HIGH-LEVEL CAPABILITY EVOLUTION
+purpose → lineage → unique value → lost-capability recovery
+       → missing-function implementation → composition → productization
                               │
                               ▼
 LOW-LEVEL PROOF EXECUTION
 stack discovery → command plan → bounded execution → atomic receipt
                               │
                               ▼
-PORTFOLIO REPRESENTATION
-campaign report + README views + Protobuf artifacts + typed repository mesh
+INTEGRATION / DELIVERY
+contracts → exercised boundaries → package / service / CLI / deployment
+                              │
+                              ▼
+PORTFOLIO PROJECTION
+recruiter + expert + AI surfaces derived from the stronger system
 ```
 
-### Evidence is monotonic
+### Hard direction invariants
+
+- `MAXIMUM_COHERENT_ADVANCE` is the strategic direction.
+- Inventory cannot authorize retirement.
+- Similarity cannot establish redundancy.
+- Proof failure cannot establish irrelevance.
+- Local bounded-execution rules cannot become global minimalism.
+- Historical `CONSOLIDATE_OR_ARCHIVE` input remains parseable only for provenance and compiles to `PRODUCTIZE` before active execution.
+- Automated lifecycle code has no authority to delete repositories, archive them, merge them away, close them as duplicates, or delete branches.
+- Retirement is a separate OPERATOR-authorized decision after verified capability preservation and a demonstrated stronger result.
+
+### Evidence remains monotonic
 
 ```text
 INVENTORY
@@ -107,75 +129,78 @@ INTEGRATION
 DEPLOYMENT
 ```
 
-A repository cannot inherit a higher state from a lower artifact. A README proves documentation. A successful compiler proves a build boundary. A test runner must report a positive proof count before it can establish test evidence. Deployment requires deployment evidence.
+A repository cannot inherit a higher evidence state from a lower artifact. Evidence level is not a worth score; it tells the engine what still needs proof.
 
 ### Program pipeline
 
 ```text
 manifests/portfolio_repositories.json
-            │ exact 66-child boundary
+            │ exact presentation boundary
             ▼
 manifests/portfolio_rollout.json
-            │ complete wave partition and targets
+            │ upward waves + anti-contraction rules
             ▼
 portfolio_contract.py
-            │ schema, policy, enum, and partition validation
+            │ validates modes, evidence, partition, legacy-mode upgrade
             ▼
 portfolio_discovery.py
-            │ README contract, stack detection, safe command planning
+            │ stack detection + repository-native command planning
             ▼
 portfolio_execution.py
-            │ bounded non-shell execution and proof extraction
+            │ bounded non-shell proof execution
             ▼
-RUNNING ───────────────► VERIFIED / PARTIALLY_VERIFIED
-   │                     BLOCKED / UNVERIFIED / FAILED
-   └──── atomic replacement; stale success cannot survive
+capability_archaeology.py / restoration_executor.py
+            │ recover prior capability while preserving later gains
+            ▼
+portfolio_productization.py
+            │ choose strongest useful delivery form
+            ▼
+INTEGRATION / DEPLOYMENT / PACKAGE / OPERABLE TOOL
 ```
 
 ### Rollout program
 
-| Priority | Wave | Scope | Decision | Target |
+| Priority | Wave | Scope | Upward objective | Target |
 |---:|---|---:|---|---|
-| 1 | `wave-1-native-ci` | 20 repositories | Add repository-native CI, positive-count test receipts, and the optimal README contract | `TEST` |
-| 2 | `wave-2-tower-repair` | 1 repository | Repair Tower of Babel until every advertised language boundary has executable proof | `TEST` plus build evidence |
-| 3 | `wave-3-technical-exhibits` | 17 repositories | Promote the strongest unverified technical exhibits with native tests and reference-correctness evidence | `TEST` |
-| 4 | `wave-4-consolidation` | 28 repositories | Complete, merge, package, or archive overlapping systems with explicit successor records | `DOCUMENTATION` decision |
+| 1 | `wave-1-native-ci` | 20 repositories | Evolve README Mesh nodes into stronger repository-native execution and proof | `TEST` |
+| 2 | `wave-2-tower-repair` | 1 repository | Advance Tower of Babel beyond native proof into stronger cross-language composition | `INTEGRATION` |
+| 3 | `wave-3-technical-exhibits` | 17 repositories | Raise high-innovation exhibits into complete executable systems | `TEST` minimum |
+| 4 | `wave-4-capability-elevation` | 28 repositories | Restore and productize every repository formerly placed in consolidation/archive | `TEST` minimum |
 
-The wave manifest exact-partitions all sixty-six children. Missing, duplicated, or unexpected repository declarations invalidate the program before any command executes.
+Wave 4 is the direct counter-engineered replacement for the former archive-first lane. Those 28 repositories are now explicitly **capability-elevation targets**, not disposal candidates.
 
 ### Core components
 
 | Component | Responsibility |
 |---|---|
-| [`src/job_app_helix/campaign.py`](src/job_app_helix/campaign.py) | Runs deterministic flight, propulsion, and ground assessment/refinement stages. |
-| [`src/job_app_helix/pistons.py`](src/job_app_helix/pistons.py) | Encapsulates bounded stage-specific decision logic. |
-| [`src/job_app_helix/models.py`](src/job_app_helix/models.py) | Defines campaign reports, findings, policies, and decisions. |
-| [`src/job_app_helix/portfolio_contract.py`](src/job_app_helix/portfolio_contract.py) | Validates exact inventory, rollout policy, evidence ladder, and wave partition. |
-| [`src/job_app_helix/portfolio_discovery.py`](src/job_app_helix/portfolio_discovery.py) | Detects repository stacks, validates README structure, and builds deterministic command vectors. |
-| [`src/job_app_helix/portfolio_execution.py`](src/job_app_helix/portfolio_execution.py) | Executes bounded commands without shell interpolation and produces proof-bearing receipts. |
-| [`src/job_app_helix/portfolio_cli.py`](src/job_app_helix/portfolio_cli.py) | Exposes validate, render-program, plan, and execute workflows. |
-| [`src/job_app_helix/readme_mesh_manifest.py`](src/job_app_helix/readme_mesh_manifest.py) | Loads and validates repository identity, evidence references, and typed edges. |
-| [`src/job_app_helix/readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Renders audience views and deterministic Protobuf, ProtoJSON, textproto, and hash artifacts. |
-| [`ci_audit_portfolio.py`](ci_audit_portfolio.py) | Runs the scoped workspace audit and writes an atomic portfolio receipt. |
-| [`scripts/check_public_surface.py`](scripts/check_public_surface.py) | Rejects machine-local links, forbidden generated trees, secret patterns, and broken relative links. |
-| [`showcase/demo_15min_run.py`](showcase/demo_15min_run.py) | Executes bounded named demonstrations with timeouts and positive test-count requirements. |
+| [`src/job_app_helix/portfolio_contract.py`](src/job_app_helix/portfolio_contract.py) | Validates execution direction, evidence ladder, exact partition, and upgrades historical archive mode to productization. |
+| [`src/job_app_helix/portfolio_models.py`](src/job_app_helix/portfolio_models.py) | Typed evidence, execution modes, plans, and receipts. |
+| [`src/job_app_helix/portfolio_discovery.py`](src/job_app_helix/portfolio_discovery.py) | Detects stacks and builds deterministic repository-native command vectors. |
+| [`src/job_app_helix/portfolio_execution.py`](src/job_app_helix/portfolio_execution.py) | Executes bounded commands and produces proof-bearing receipts. |
+| [`src/job_app_helix/portfolio_productization.py`](src/job_app_helix/portfolio_productization.py) | Compiles useful delivery forms and forbids archive as an automatic outcome. |
+| [`src/job_app_helix/capability_archaeology.py`](src/job_app_helix/capability_archaeology.py) | Finds removed or changed historical capability donors. |
+| [`src/job_app_helix/restoration_executor.py`](src/job_app_helix/restoration_executor.py) | Restores selected donors without silently overwriting later gains. |
+| [`src/job_app_helix/library_program.py`](src/job_app_helix/library_program.py) | Enforces the estate-wide upward lifecycle and rejects contraction actions. |
+| [`src/job_app_helix/readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Renders audience views and deterministic machine artifacts. |
+| [`ci_audit_portfolio.py`](ci_audit_portfolio.py) | Writes atomic scoped portfolio receipts. |
+| [`scripts/check_public_surface.py`](scripts/check_public_surface.py) | Detects broken public-surface references and unsafe leakage. |
 
 ### Stack-native planning
 
 | Detected boundary | Planned evidence |
 |---|---|
-| Python | Bytecode compilation plus pytest or unittest with a positive test count |
-| Node.js / TypeScript | Declared lint, typecheck, build, and test scripts through the repository lockfile runner |
-| Rust | Formatting, Clippy with warnings denied, and positive-count tests |
+| Python | bytecode compilation plus pytest or unittest with a positive test count |
+| Node.js / TypeScript | declared lint, typecheck, build, and test scripts through the repository package manager |
+| Rust | formatting, Clippy, and positive-count tests |
 | Go | `go vet` and package tests |
 | Swift | `swift test` |
-| Maven / Gradle | Native test lifecycle |
-| CMake | Configure and build inside an isolated proof directory |
+| Maven / Gradle | native test lifecycle |
+| CMake | isolated configure and build |
 | .NET | `dotnet test` |
 
-Languages are admitted because they own a responsibility or boundary—not because a larger language list looks impressive.
+Languages are selected for technical responsibility. Working systems are not rewritten merely to add language diversity.
 
-### Install and verify Helix itself
+### Install and verify Helix
 
 ```bash
 python -m pip install -e ".[dev]"
@@ -186,13 +211,14 @@ python scripts/check_proto_contract.py
 python scripts/check_public_surface.py
 ```
 
-### Validate and render the portfolio program
+### Validate and render the upward programs
 
 ```bash
 job-app-helix-portfolio validate
+job-app-helix-portfolio render-program --output artifacts/portfolio-rollout.md
 
-job-app-helix-portfolio render-program \
-  --output artifacts/portfolio-rollout.md
+job-app-helix-library validate
+job-app-helix-library render --output status/LIBRARY_PRIORITY.md
 ```
 
 ### Discover proof commands without executing them
@@ -204,7 +230,7 @@ job-app-helix-portfolio plan \
   --markdown-output artifacts/portfolio-plan.md
 ```
 
-### Execute one bounded verification wave
+### Execute a proof wave
 
 ```bash
 job-app-helix-portfolio execute \
@@ -213,231 +239,116 @@ job-app-helix-portfolio execute \
   --receipt artifacts/wave-1-receipt.json
 ```
 
-Build commands that modify a workspace remain blocked unless the operator has reviewed the plan and supplies `--allow-mutating`.
-
-### Validate and build the README Mesh
-
-```bash
-job-app-helix-readme \
-  --manifest manifests/readme_mesh.json \
-  validate
-
-job-app-helix-readme \
-  --manifest manifests/readme_mesh.json \
-  build \
-  --output-dir artifacts/readme-mesh
-```
+Bounded proof mutation still requires explicit authorization. That protects current code while the strategic objective remains maximal coherent improvement.
 
 ### Failure semantics
 
 | Condition | State or control |
 |---|---|
-| Repository directory is absent | `BLOCKED` |
-| Required executable is absent | `BLOCKED` |
-| Test process exits zero after running zero tests | `UNVERIFIED` |
-| Required check exits nonzero | `FAILED` |
-| Command exceeds its timeout | `FAILED` |
-| Build would mutate the workspace without authorization | `BLOCKED` |
-| README exposes a machine-local path | Contract failure |
-| Inventory and rollout do not exact-partition the portfolio | Program failure before execution |
-| A rerun fails after an older success | Atomic receipt is replaced with `FAILED`; stale success is not retained |
-
-The aggregate receipt uses the strongest adverse state. Many passing repositories cannot average away one required failure.
-
-### Repository layout
-
-```text
-src/job_app_helix/          campaign, portfolio, README Mesh, and CLI packages
-proto/                      versioned README Mesh wire contract
-manifests/                  exact inventory, rollout, graph, curation, and language-fit declarations
-schemas/                    validation contracts
-artifacts/                  deterministic exports and atomic receipts
-rendered/                   generated audience views
-tests/                      unit, contract, failure, and idempotency tests
-docs/                       architecture, standards, audits, and rollout records
-showcase/                   bounded demonstration runner
-hire_package/               application and outreach staging
-helix/                      supporting audit and repair tooling
-```
+| Repository directory absent | `BLOCKED` — locate/recover; do not infer deletion intent |
+| Required executable absent | `BLOCKED` — repair environment or execution path |
+| Zero-test success | `UNVERIFIED` — build real proof |
+| Required check nonzero | `FAILED` — diagnose and repair |
+| Timeout | `FAILED` — diagnose performance/hang |
+| Build mutation not authorized | `BLOCKED` for that proof action only |
+| Inventory mismatch | Program error; reconcile discovery boundary |
+| Older strong capability missing from current state | Capability archaeology/restoration candidate |
+| Similar repository names | Compare lineage and unique value; never auto-collapse |
 
 ## Enter Through the Manifests
 
-*Machine contract · deterministic inventory, receipts, and typed relationships*
+*Machine contract · upward execution, receipts, restoration, and typed relationships*
 
 <!-- Compatibility marker: ## For AI systems and toolchains -->
 
-AI systems should begin with the manifests and contract commands, not infer truth from repository prose.
-
 ```yaml
 schema: glaciereq.readme.v1
-profile: glaciereq.readme-impact.v2-draft
 repository: GlacierEQ/job-app-helix
-canonical_branch: main
+default_branch: main
 package_version: 0.3.0
+direction: MAXIMUM_COHERENT_ADVANCE
 purpose: >-
-  Govern evidence-bound campaign decisions, the exact portfolio inventory,
-  rollout policy, repository-native proof planning, bounded execution,
-  atomic receipts, language-fit declarations, and recruiter/expert/AI views.
+  Recover, evolve, productize, integrate, prove, and project the GlacierEQ
+  engineering estate while preserving distinct repository capability and lineage.
 
-status:
-  state: PARTIALLY_VERIFIED
-  verified_at: 2026-07-30
-  verified_release: b0973cf621212621a23bf2d2032a816ab79eb78b
-  verified_scope:
-    - Python 3.11, 3.12, and 3.13 package CI at the named verified release
-    - exact portfolio rollout contract validation
-    - deterministic rollout-program rendering
-    - campaign nominal, recoverable, and fail-closed scenarios
-    - Protobuf compilation and descriptor comparison
-    - README Mesh validation and deterministic serialization
-    - public-surface and failure-path checks
-  blocked_scope:
-    - repository-native tools or build authorization unavailable to a selected wave
-    - hardware-backed execution without a compatible runner or provider receipt
-  unverified_scope:
-    - child repositories without current repository-native receipts
-    - portfolio-wide deployment, scale, performance, and operational reliability
-    - the July 31 inventory migration until the migration pull request receives green CI and is merged
+policy:
+  evidence_ladder: [INVENTORY, DOCUMENTATION, STATIC_ANALYSIS, BUILD, TEST, INTEGRATION, DEPLOYMENT]
+  inventory_cannot_authorize_retirement: true
+  similarity_cannot_establish_redundancy: true
+  failed_proof_cannot_establish_irrelevance: true
+  unverified_cannot_mean_disposable: true
+  local_constraints_may_not_become_global_doctrine: true
+  retirement_requires_operator_authorization: true
+  retirement_requires_verified_capability_preservation: true
+  shell_interpolation: forbidden
+  workspace_mutation_requires_explicit_authorization: true
+  receipts_are_atomic: true
 
 interfaces:
   inputs:
     - manifests/portfolio_repositories.json
     - manifests/portfolio_rollout.json
-    - manifests/github_repository_curation_2026-07-31.json
+    - manifests/library_priority_spine.json
     - manifests/readme_mesh.json
     - manifests/language_fit.json
-    - repository source, build manifests, tests, workflows, and receipts
-    - campaign scenarios and policy
+    - repository source, history, branches, issues, PRs, tests, builds, deployments, archives, backups, and sibling systems
   outputs:
-    - deterministic campaign decision reports
-    - portfolio rollout plans in JSON and Markdown
-    - per-command and per-repository execution receipts
-    - atomic aggregate portfolio receipts
-    - rendered README audience views
-    - deterministic Protobuf, ProtoJSON, textproto, descriptor, and SHA-256 artifacts
-  commands:
-    install: python -m pip install -e ".[dev]"
-    test: python -m pytest -q
-    validate_program: job-app-helix-portfolio validate
-    render_program: job-app-helix-portfolio render-program --output artifacts/portfolio-rollout.md
-    plan: job-app-helix-portfolio plan --workspace repos --json-output artifacts/portfolio-plan.json
-    execute_wave: job-app-helix-portfolio execute --workspace repos --wave wave-1-native-ci --receipt artifacts/wave-1-receipt.json
-    verify_proto: python scripts/check_proto_contract.py
-    verify_mesh: job-app-helix-readme --manifest manifests/readme_mesh.json validate
-    build_mesh: job-app-helix-readme --manifest manifests/readme_mesh.json build --output-dir artifacts/readme-mesh
-
-policy:
-  evidence_ladder:
-    - INVENTORY
-    - DOCUMENTATION
-    - STATIC_ANALYSIS
-    - BUILD
-    - TEST
-    - INTEGRATION
-    - DEPLOYMENT
-  fail_closed: true
-  exact_inventory_partition: true
-  positive_test_count_required: true
-  shell_interpolation: forbidden
-  workspace_mutation_requires_explicit_authorization: true
-  receipts_are_atomic: true
-  stale_success_survival: forbidden
-
-languages:
-  manifest: manifests/language_fit.json
-  entries:
-    - name: Python
-      responsibility: campaign logic, validation, planning, execution, rendering, CLI, and audit orchestration
-      verification_state: PARTIALLY_VERIFIED
-    - name: Protocol Buffers
-      responsibility: versioned cross-language repository identity and graph serialization
-      verification_state: VERIFIED
-    - name: JSON
-      responsibility: inventories, rollout policy, deterministic plans, manifests, and receipts
-      verification_state: VERIFIED
-    - name: Markdown
-      responsibility: recruiter, engineering, and machine-readable review surfaces
-      verification_state: VERIFIED
+    - capability inventories
+    - restoration candidates and receipts
+    - productization targets
+    - repository-native proof plans and receipts
+    - integration and deployment checkpoints
+    - recruiter, expert, and AI projections
 
 relationships:
   - target: GlacierEQ/AKOS
-    relation: GOVERNED_BY
-    combined_value: AKOS supplies authority and completion semantics; Helix supplies portfolio representation and evidence promotion.
+    relation: COMPOSES_WITH
+    combined_value: AKOS contributes adaptive operating-system mechanisms while Helix contributes estate restoration, evolution, productization, and proof; neither overrides OPERATOR direction.
   - target: GlacierEQ/job-application
-    relation: ORCHESTRATES
-    combined_value: Helix governs the evidence boundary and machine entrypoint behind the public hiring portal.
+    relation: PROJECTS_TO
+    combined_value: stronger estate capabilities are shaped into the public hiring and application surface.
   - target: GlacierEQ/JOB-RESUME-BUILDER-
-    relation: ORCHESTRATES
-    combined_value: Helix governs the lead public product flagship's evidence promotion and prevents the recruiter portal from outrunning repository-native proof.
-  - target: GlacierEQ/spacex-telemetry
-    relation: ORCHESTRATES
-    combined_value: Ordered telemetry evidence becomes an explicit campaign-readiness input.
-  - target: GlacierEQ/spacex-mission-control
-    relation: ORCHESTRATES
-    combined_value: Combined campaign state becomes a reviewable human-operator surface.
-  - target: GlacierEQ/spacex-thermal-protection
-    relation: ORCHESTRATES
-    combined_value: Predictive thermal evidence and bounded response become part of the campaign decision.
-
-limits:
-  - A typed relationship is not proof that the target repository works.
-  - Hash coverage is file-identity evidence, not runtime verification.
-  - A zero-test process is not test evidence.
-  - README quality is not deployment proof.
-  - Local multi-repository execution requires the canonical repos workspace.
-  - Provider, hardware, scale, and performance claims require specific external receipts.
+    relation: ELEVATES
+    combined_value: lead product capability is completed and proven without reducing it to presentation-only evidence.
 ```
 
 ### Canonical integration surfaces
 
-- **Inventory:** [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json)
-- **Rollout:** [`manifests/portfolio_rollout.json`](manifests/portfolio_rollout.json)
-- **GitHub curation ledger:** [`manifests/github_repository_curation_2026-07-31.json`](manifests/github_repository_curation_2026-07-31.json)
+- **Portfolio inventory:** [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json)
+- **Upward rollout:** [`manifests/portfolio_rollout.json`](manifests/portfolio_rollout.json)
+- **Estate elevation queue:** [`manifests/library_priority_spine.json`](manifests/library_priority_spine.json)
+- **Capability elevation law:** [`docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md`](docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md)
 - **Repository graph:** [`manifests/readme_mesh.json`](manifests/readme_mesh.json)
 - **Language fit:** [`manifests/language_fit.json`](manifests/language_fit.json)
 - **Wire schema:** [`proto/readme_mesh.proto`](proto/readme_mesh.proto)
-- **Program guide:** [`docs/PORTFOLIO_EXECUTION_PROGRAM.md`](docs/PORTFOLIO_EXECUTION_PROGRAM.md)
-- **Historical 66-repository evidence audit:** [`docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md`](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md)
-- **README standard:** [`docs/README_OPTIMAL_IMPACT_FRAME.md`](docs/README_OPTIMAL_IMPACT_FRAME.md)
+- **Portfolio program:** [`docs/PORTFOLIO_EXECUTION_PROGRAM.md`](docs/PORTFOLIO_EXECUTION_PROGRAM.md)
+- **Historical evidence audit:** [`docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md`](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md)
 
 ### System mesh
 
 ```text
-                              AKOS
-                  authority • completion semantics
-                                │
-                                │ GOVERNED_BY
-                                ▼
-┌──────────────────────────────────────────────────────────────┐
-│                        job-app-helix                         │
-│ inventory • rollout • discovery • execution • receipts     │
-│ campaign decisions • README Mesh • machine contracts       │
-└───────────────┬──────────────────────┬───────────────────────┘
-                │ ORCHESTRATES         │ ORCHESTRATES
-                ▼                      ▼
-        job-application         technical repository waves
-        public hiring portal    native CI • repair • proof
-                │
-                │ PRESENTS
-                ▼
-       JOB-RESUME-BUILDER-
-       Resume Shapeshifter
+                           owned GlacierEQ estate
+                every repo remains a capability donor
+                                  │
+                                  ▼
+┌────────────────────────────────────────────────────────────────┐
+│                         job-app-helix                          │
+│ purpose reconstruction • archaeology • restoration • evolution │
+│ productization • native proof • integration • receipts         │
+└───────────────┬───────────────────────┬────────────────────────┘
+                │                       │
+                ▼                       ▼
+       specialist systems       composed capabilities
+       remain distinct          APIs • MCP • events • packages
+                │                       │
+                └───────────┬───────────┘
+                            ▼
+                    job-application
+                    recruiter projection
 ```
 
-The control plane succeeds when the public story becomes easier to understand, the engineering proof becomes easier to reproduce, and an AI system can continue the work without inventing relationships, capabilities, or completion states.
+## The Living Capability Mesh
 
-## The Living Evidence Mesh
+Helix is an execution and intelligence node, **not an authority that owns or erases the repositories it coordinates**. Its job is to make each useful system more complete and then make the estate more powerful through composition.
 
-*System mesh · how Helix connects the hiring portfolio without collapsing repository boundaries*
-
-Helix is the control plane, not a warehouse of copied projects. The canonical typed edges live in [`manifests/readme_mesh.json`](manifests/readme_mesh.json); this human map shows the combined value without pretending one repository owns another repository's proof.
-
-```text
-job-app-helix
-├── governs the public signal      → job-application
-├── promotes product evidence      → JOB-RESUME-BUILDER-
-├── verifies bounded proof paths   → portfolio child repositories
-└── preserves deliberate borders  → private operations + historical snapshots
-```
-
-A healthy mesh amplifies evidence while preserving provenance: no copied source trees, no inherited deployment claims, no private operational leakage, and no relationship without declared combined value.
+The success condition is not a smaller estate. It is an estate whose systems are understood, restored where damaged, completed where incomplete, connected where complementary, proven where claims matter, deployed where useful, and presented without losing the engineering underneath.
