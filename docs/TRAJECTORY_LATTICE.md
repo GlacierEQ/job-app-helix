@@ -1,10 +1,10 @@
 # GlacierEQ 2026 Trajectory Lattice
 
-The 2026 trajectory lattice is the canonical temporal model for measuring how the GlacierEQ engineering estate changed across expansion, acceleration, composition, rupture, diagnosis, counter-engineering, recovery, and stronger expansion.
+The 2026 trajectory lattice is the APEX temporal model for measuring how the GlacierEQ engineering estate changed across expansion, acceleration, composition, rupture, diagnosis, counter-engineering, recovery, and stronger expansion.
 
 ## Authority
 
-The machine-readable authority is `machine/trajectory/2026_schedule.json` in `GlacierEQ/job-app-helix` on canonical `main`. The schema is `schemas/trajectory_lattice.schema.json`. Captured checkpoint envelopes conform to `schemas/trajectory_checkpoint.schema.json`.
+The machine-readable APEX source is `machine/trajectory/2026_schedule.json` in `GlacierEQ/job-app-helix` on APEX `main`. The schema is `schemas/trajectory_lattice.schema.json`. Captured checkpoint envelopes conform to `schemas/trajectory_checkpoint.schema.json`.
 
 The schedule contains exactly 19 checkpoints:
 
@@ -17,7 +17,7 @@ All time semantics use `Pacific/Honolulu`.
 Every materialized checkpoint records absolute state plus delta from the previous materialized checkpoint. Required dimensions are:
 
 - repository inventory
-- exact canonical default-branch heads
+- exact APEX default-branch heads
 - genealogy
 - capability ontology
 - original intent
@@ -34,7 +34,7 @@ Every materialized checkpoint records absolute state plus delta from the previou
 - experiments
 - source hashes
 
-The contemporary checkpoint executor captures authenticated owned-repository metadata from GitHub and hashes the corresponding Helix authority surfaces. Source files are represented by SHA-256 so later reconstruction can prove which evidence surface was observed.
+The contemporary checkpoint executor captures authenticated owned-repository metadata from GitHub and hashes the corresponding Helix APEX surfaces. Source files are represented by SHA-256 so later reconstruction can prove which evidence surface was observed.
 
 ## No false backdating
 
@@ -45,8 +45,8 @@ The contemporary checkpoint executor captures authenticated owned-repository met
 Historical reconstruction has distinct evidence strengths:
 
 1. **Bounded estate-survivor evidence.** For repositories that still exist and remain visible to the authenticated owner, the executor resolves the latest commit at or before the cutoff on the repository's surviving current default-branch lineage.
-2. **Exact Helix authority-tree evidence.** Once Helix exists at the cutoff, the executor resolves the historical Helix commit, retrieves its exact Git tree and blobs, and computes SHA-256 source and dimension hashes from those historical bytes.
-3. **Explicit pre-authority unresolved evidence.** `GlacierEQ/job-app-helix` was created at `2026-07-25T08:53:24Z`, which is July 24 at 22:53:24 HST. Therefore checkpoints through July 20 cannot truthfully contain a historical Helix tree. Their Helix-scoped dimensions are materialized as `unresolved_authority_not_yet_created`, with null authority commit/tree fields, until predecessor sources corroborate those dimensions.
+2. **Exact Helix APEX-tree evidence.** Once Helix exists at the cutoff, the executor resolves the historical Helix commit, retrieves its exact Git tree and blobs, and computes SHA-256 source and dimension hashes from those historical bytes.
+3. **Explicit pre-APEX unresolved evidence.** `GlacierEQ/job-app-helix` was created at `2026-07-25T08:53:24Z`, which is July 24 at 22:53:24 HST. Therefore checkpoints through July 20 cannot truthfully contain a historical Helix tree. Their Helix-scoped dimensions are materialized as `unresolved_authority_not_yet_created`, with null authority commit/tree fields, until predecessor sources corroborate those dimensions.
 
 The bounded survivor class is intentionally not called an exact historical estate census. GitHub's current repository enumeration cannot prove that repositories deleted or transferred away before reconstruction are absent, and current repository names, visibility, archive state, fork state, and default-branch names are not relabeled as historical metadata. Exact historical repository counts therefore remain `null` until corroborating evidence closes those gaps.
 
@@ -54,7 +54,7 @@ Evidence acquisition is also separated from engineering change. When a dimension
 
 The default reconstruction cutoff is `23:59:59` HST on the checkpoint date. The exact cutoff is embedded in every reconstructed checkpoint. A different cutoff can be supplied explicitly when stronger dated evidence requires it.
 
-`.github/workflows/trajectory-reconstruction.yml` provides a governed manual reconstruction path. It requires full-estate authority, refuses public-only fallback, preserves reconstructed evidence on `trajectory-reconstruction-2026`, and uploads the exact checkpoint artifact. Reconstructed evidence remains separate from canonical `main` until normal review and proof gates promote it.
+`.github/workflows/trajectory-reconstruction.yml` provides a governed manual reconstruction path. It requires full-estate authority, refuses public-only fallback, preserves reconstructed evidence on `trajectory-reconstruction-2026`, and uploads the exact checkpoint artifact. Reconstructed evidence remains separate from APEX `main` until normal review and proof gates promote it.
 
 ## Contemporary preservation
 
@@ -71,7 +71,7 @@ The workflow:
 7. preserves the contemporary bytes on the `trajectory-captures-2026` branch;
 8. uploads the exact checkpoint as a workflow artifact.
 
-This preservation branch is evidence storage. Canonical promotion into `main` remains governed by normal Helix review and proof gates.
+This preservation branch is evidence storage. APEX promotion into `main` remains governed by normal Helix review and proof gates.
 
 ## Phase portrait
 
