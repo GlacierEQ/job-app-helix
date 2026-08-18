@@ -174,7 +174,8 @@ def test_material_discovered_change_refreshes_only_affected_packet_lineage(tmp_p
             intelligence_transport=_intelligence_transport,
         )
         description["value"] = (
-            "Build reliable agent systems with observability, recovery, and inference control planes."
+            "Build reliable agent systems with observability, recovery, "
+            "and inference control planes."
         )
         changed = execute_target_intelligence_cycle(
             (_target(plan),),
