@@ -60,7 +60,7 @@ def _intelligence_transport(spec: SourceSpec) -> FetchedSource:
         status=200,
         content_type="text/plain; charset=utf-8",
         body=b"Anthropic builds reliable agent systems with observability and containment.",
-        fetched_at="2026-08-19T06:00:00Z",
+        fetched_at="2026-08-18T18:00:00Z",
         etag='"target-cycle"',
     )
 
@@ -74,7 +74,7 @@ def _greenhouse_payload(description: str) -> dict[str, object]:
                 "absolute_url": "https://boards.example/anthropic/4242",
                 "content": description,
                 "location": {"name": "Remote - US"},
-                "updated_at": "2026-08-19T06:00:00Z",
+                "updated_at": "2026-08-18T18:00:00Z",
             }
         ]
     }
@@ -117,7 +117,7 @@ def test_discovered_new_opening_runs_full_intelligence_and_packet_cycle(tmp_path
     assert result.watch_cycle.cycle is not None
     assert result.watch_cycle.cycle.successful_company_count == 1
     assert result.watch_cycle.cycle.batch.selected_count == 1
-    assert result.watch_cycle.cycle.freshness.refreshed_count == 1
+    assert result.watch_cycle.cycle.freshness.reused_count == 0
     assert (tmp_path / "state" / "TARGET_INTELLIGENCE_CYCLE_RECEIPT.json").is_file()
     assert list((tmp_path / "packets").glob("*/RECRUITER_PACKET.md"))
 
