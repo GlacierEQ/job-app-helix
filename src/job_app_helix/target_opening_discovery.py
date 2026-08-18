@@ -133,11 +133,9 @@ def _matches(source: TargetOpeningSource, title: str, location: str) -> bool:
         return False
     if any(term.casefold() in normalized_title for term in source.exclude_title_terms):
         return False
-    if source.include_locations and not any(
+    return not source.include_locations or any(
         term.casefold() in normalized_location for term in source.include_locations
-    ):
-        return False
-    return True
+    )
 
 
 def _greenhouse_openings(
@@ -259,7 +257,9 @@ def discover_source(
         openings = _greenhouse_openings(source, transport)
     else:
         openings = _lever_openings(source, transport)
-    ordered = tuple(sorted(openings, key=lambda row: (row.title.casefold(), row.source_url or "")))
+    ordered = tuple(
+        sorted(openings, key=lambda row: (row.title.casefold(), row.source_url or ""))
+    )
     if source.max_openings is not None:
         return ordered[: source.max_openings]
     return ordered
@@ -341,7 +341,14 @@ def execute_target_opening_discovery(
         retained_urls=tuple(sorted(current_urls & previous_urls)),
     )
     ordered_openings = tuple(
-        sorted(by_url.values(), key=lambda row: (row.company.casefold(), row.title.casefold(), row.source_url or ""))
+        sorted(
+            by_url.values(),
+            key=lambda row: (
+                row.company.casefold(),
+                row.title.casefold(),
+                row.source_url or "",
+            ),
+        )
     )
     _write_json(
         inventory_path,
@@ -354,7 +361,11 @@ def execute_target_opening_discovery(
 
     watch: OpeningWatchResult | None = None
     if run_watch and ordered_openings:
-        cached = {opening.source_url: opening for opening in ordered_openings if opening.source_url}
+        cached = {
+            opening.source_url: opening
+            for opening in ordered_openings
+            if opening.source_url
+        }
 
         def cached_fetcher(url: str) -> JobOpening:
             try:
@@ -364,7 +375,10 @@ def execute_target_opening_discovery(
 
         watch = execute_opening_watch(
             tuple(
-                OpeningWatchTarget(url=opening.source_url or "", label=f"{opening.company}: {opening.title}")
+                OpeningWatchTarget(
+                    url=opening.source_url or "",
+                    label=f"{opening.company}: {opening.title}",
+                )
                 for opening in ordered_openings
             ),
             state_dir=state_dir / "opening-watch",
@@ -399,6 +413,14 @@ def execute_target_opening_discovery(
     return result
 
 
+def _string_tuple(value: object, *, field: str) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    if not isinstance(value, list):
+        raise ValueError(f"{field} must be a list")
+    return tuple(str(item).strip() for item in value if str(item).strip())
+
+
 def load_sources(path: Path) -> tuple[TargetOpeningSource, ...]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, Mapping) or not isinstance(payload.get("sources"), list):
@@ -412,10 +434,23 @@ def load_sources(path: Path) -> tuple[TargetOpeningSource, ...]:
                 company=str(row.get("company") or ""),
                 provider=str(row.get("provider") or ""),
                 board_key=str(row.get("board_key") or ""),
-                include_title_terms=tuple(str(value) for value in row.get("include_title_terms", [])),
-                exclude_title_terms=tuple(str(value) for value in row.get("exclude_title_terms", [])),
-                include_locations=tuple(str(value) for value in row.get("include_locations", [])),
-                max_openings=int(row["max_openings"]) if row.get("max_openings") is not None else None,
+                include_title_terms=_string_tuple(
+                    row.get("include_title_terms"),
+                    field=f"sources[{index}].include_title_terms",
+                ),
+                exclude_title_terms=_string_tuple(
+                    row.get("exclude_title_terms"),
+                    field=f"sources[{index}].exclude_title_terms",
+                ),
+                include_locations=_string_tuple(
+                    row.get("include_locations"),
+                    field=f"sources[{index}].include_locations",
+                ),
+                max_openings=(
+                    int(row["max_openings"])
+                    if row.get("max_openings") is not None
+                    else None
+                ),
             )
         )
     return tuple(sources)
