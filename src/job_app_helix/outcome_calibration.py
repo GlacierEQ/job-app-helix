@@ -81,7 +81,10 @@ def _weighted_signal(values: Sequence[float], outcomes: Sequence[float]) -> floa
         return 0.0
     mean_x = sum(values) / len(values)
     mean_y = sum(outcomes) / len(outcomes)
-    covariance = sum((x - mean_x) * (y - mean_y) for x, y in zip(values, outcomes, strict=True))
+    covariance = sum(
+        (x - mean_x) * (y - mean_y)
+        for x, y in zip(values, outcomes, strict=True)
+    )
     var_x = sum((x - mean_x) ** 2 for x in values)
     var_y = sum((y - mean_y) ** 2 for y in outcomes)
     if var_x <= 1e-12 or var_y <= 1e-12:
@@ -109,18 +112,20 @@ def fit_outcome_calibration(
 
     eligible = [row for row in examples if 0.0 <= row.outcome_value <= 1.0]
     effective = len(eligible)
+    company_fit_rows = [row for row in eligible if row.company_fit_score is not None]
+    freshness_rows = [row for row in eligible if row.freshness is not None]
     signals = {
         "opportunity": _weighted_signal(
             [row.opportunity_score / 100.0 for row in eligible],
             [row.outcome_value for row in eligible],
         ),
         "company_fit": _weighted_signal(
-            [float(row.company_fit_score) / 100.0 for row in eligible if row.company_fit_score is not None],
-            [row.outcome_value for row in eligible if row.company_fit_score is not None],
+            [float(row.company_fit_score) / 100.0 for row in company_fit_rows],
+            [row.outcome_value for row in company_fit_rows],
         ),
         "freshness": _weighted_signal(
-            [float(row.freshness) for row in eligible if row.freshness is not None],
-            [row.outcome_value for row in eligible if row.freshness is not None],
+            [float(row.freshness) for row in freshness_rows],
+            [row.outcome_value for row in freshness_rows],
         ),
     }
 
@@ -130,7 +135,8 @@ def fit_outcome_calibration(
         status = "INSUFFICIENT_OUTCOMES"
     else:
         shrinkage = _bounded(
-            (effective - minimum_samples + 1) / max(1, full_strength_samples - minimum_samples + 1),
+            (effective - minimum_samples + 1)
+            / max(1, full_strength_samples - minimum_samples + 1),
             0.0,
             1.0,
         )
@@ -200,7 +206,8 @@ def load_outcome_examples(database: Path) -> tuple[OutcomeExample, ...]:
             if not packet_dir:
                 continue
             event_rows = connection.execute(
-                "SELECT event_type,payload_json FROM events WHERE application_id=? ORDER BY id",
+                "SELECT event_type,payload_json FROM events "
+                "WHERE application_id=? ORDER BY id",
                 (application["application_id"],),
             ).fetchall()
             events = [
@@ -229,7 +236,11 @@ def load_outcome_examples(database: Path) -> tuple[OutcomeExample, ...]:
                 stale = company_fit.get("stale_signal_count")
                 if isinstance(raw_fit, (int, float)):
                     fit_score = float(raw_fit)
-                if isinstance(fresh, int) and isinstance(stale, int) and fresh + stale > 0:
+                if (
+                    isinstance(fresh, int)
+                    and isinstance(stale, int)
+                    and fresh + stale > 0
+                ):
                     freshness = fresh / (fresh + stale)
             rows.append(
                 OutcomeExample(
@@ -253,8 +264,14 @@ def calibrate_queue(
     weights = calibration.learned_weights
     adjusted: list[ApplicationQueueItem] = []
     for item in queue.items:
-        fit = item.company_fit_score if item.company_fit_score is not None else item.opportunity_score
-        freshness = 100.0 * (item.company_freshness if item.company_freshness is not None else 0.0)
+        fit = (
+            item.company_fit_score
+            if item.company_fit_score is not None
+            else item.opportunity_score
+        )
+        freshness = 100.0 * (
+            item.company_freshness if item.company_freshness is not None else 0.0
+        )
         raw = (
             float(weights["opportunity"]) * item.opportunity_score
             + float(weights["company_fit"]) * fit
@@ -272,13 +289,23 @@ def calibrate_queue(
             item.opening_id,
         )
     )
-    ranked = tuple(replace(item, rank=index) for index, item in enumerate(adjusted, start=1))
-    return replace(queue, schema="glaciereq.application-execution-queue.v1+outcome-calibration", items=ranked)
+    ranked = tuple(
+        replace(item, rank=index)
+        for index, item in enumerate(adjusted, start=1)
+    )
+    return replace(
+        queue,
+        schema="glaciereq.application-execution-queue.v1+outcome-calibration",
+        items=ranked,
+    )
 
 
 def _load_calibration(path: Path) -> OutcomeCalibration:
     value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, Mapping) or value.get("schema") != "glaciereq.outcome-calibration.v1":
+    if (
+        not isinstance(value, Mapping)
+        or value.get("schema") != "glaciereq.outcome-calibration.v1"
+    ):
         raise ValueError("invalid outcome calibration artifact")
     return OutcomeCalibration(
         schema=str(value["schema"]),
@@ -314,18 +341,27 @@ def _queue_from_manifest(manifest: Path, profile_path: Path) -> ApplicationExecu
         )
         role = str(row["role"]) if row.get("role") else None
         candidates.append((opening, target, intelligence, role))
-    return build_application_execution_queue(candidates, load_candidate_profile(profile_path))
+    return build_application_execution_queue(
+        candidates,
+        load_candidate_profile(profile_path),
+    )
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="job-app-helix-outcomes")
     sub = parser.add_subparsers(dest="command", required=True)
 
-    fit = sub.add_parser("fit", help="learn bounded queue weights from application outcomes")
+    fit = sub.add_parser(
+        "fit",
+        help="learn bounded queue weights from application outcomes",
+    )
     fit.add_argument("--database", type=Path, required=True)
     fit.add_argument("--output", type=Path, required=True)
 
-    rank = sub.add_parser("rank", help="apply a calibration artifact to a live queue")
+    rank = sub.add_parser(
+        "rank",
+        help="apply a calibration artifact to a live queue",
+    )
     rank.add_argument("--manifest", type=Path, required=True)
     rank.add_argument("--profile", type=Path, required=True)
     rank.add_argument("--calibration", type=Path, required=True)
@@ -335,8 +371,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "fit":
         model = fit_outcome_calibration(load_outcome_examples(args.database))
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(model.as_dict(), indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        print(json.dumps(model.as_dict(), indent=2, sort_keys=True))
+        rendered = json.dumps(model.as_dict(), indent=2, sort_keys=True) + "\n"
+        args.output.write_text(rendered, encoding="utf-8")
+        print(rendered, end="")
         return 0
 
     queue = _queue_from_manifest(args.manifest, args.profile)
