@@ -8,8 +8,8 @@ for any fallback.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import asdict, dataclass, replace
-from typing import Mapping
 
 from .calibration_diagnostics import CalibrationDiagnostics
 from .outcome_calibration import OutcomeCalibration
