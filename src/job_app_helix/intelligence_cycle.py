@@ -27,6 +27,8 @@ from .batch_application_execution import (
     BatchExecutionResult,
     compile_ranked_application_batch,
 )
+from .calibration_diagnostics import CalibrationDiagnostics, diagnose_outcome_calibration
+from .calibration_guard import CalibrationGuardDecision, apply_calibration_guard
 from .company_fit import CompanyFitAssessment, assess_company_fit
 from .company_intelligence import CompanyIntelligence, load_company_intelligence
 from .company_intelligence_acquisition import (
@@ -81,6 +83,8 @@ class IntelligenceCycleResult:
     failed_company_count: int
     calibration: OutcomeCalibration
     calibration_sha256: str
+    calibration_diagnostics: CalibrationDiagnostics
+    calibration_guard: CalibrationGuardDecision
     companies: tuple[CompanyCycleResult, ...]
     batch: BatchExecutionResult
     receipt_sha256: str
@@ -93,6 +97,8 @@ class IntelligenceCycleResult:
             "failed_company_count": self.failed_company_count,
             "calibration": self.calibration.as_dict(),
             "calibration_sha256": self.calibration_sha256,
+            "calibration_diagnostics": self.calibration_diagnostics.as_dict(),
+            "calibration_guard": self.calibration_guard.as_dict(),
             "companies": [row.as_dict() for row in self.companies],
             "batch": self.batch.as_dict(),
             "receipt_sha256": self.receipt_sha256,
@@ -292,12 +298,17 @@ def execute_intelligence_cycle(
         failures = "; ".join(row.error or row.company for row in company_results)
         raise RuntimeError(f"all company intelligence candidates failed: {failures}")
 
-    effective_calibration = calibration
-    if effective_calibration is None:
-        examples = load_outcome_examples(store.path)
-        effective_calibration = fit_outcome_calibration(examples)
+    examples = load_outcome_examples(store.path)
+    source_calibration = calibration or fit_outcome_calibration(examples)
+    diagnostics = diagnose_outcome_calibration(examples, source_calibration)
+    effective_calibration, guard = apply_calibration_guard(source_calibration, diagnostics)
+
+    source_payload = source_calibration.as_dict()
     calibration_payload = effective_calibration.as_dict()
     calibration_sha = _canonical_sha256(calibration_payload)
+    _write_json(state_dir / "OUTCOME_CALIBRATION_SOURCE.json", source_payload)
+    _write_json(state_dir / "OUTCOME_CALIBRATION_DIAGNOSTICS.json", diagnostics.as_dict())
+    _write_json(state_dir / "OUTCOME_CALIBRATION_GUARD.json", guard.as_dict())
     _write_json(state_dir / "OUTCOME_CALIBRATION.json", calibration_payload)
 
     batch = compile_ranked_application_batch(
@@ -315,6 +326,8 @@ def execute_intelligence_cycle(
         "successful_company_count": len(queue_candidates),
         "failed_company_count": len(candidates) - len(queue_candidates),
         "calibration_sha256": calibration_sha,
+        "calibration_diagnostics": diagnostics.as_dict(),
+        "calibration_guard": guard.as_dict(),
         "companies": [row.as_dict() for row in company_results],
         "batch": batch.as_dict(),
     }
@@ -326,6 +339,8 @@ def execute_intelligence_cycle(
         failed_company_count=len(candidates) - len(queue_candidates),
         calibration=effective_calibration,
         calibration_sha256=calibration_sha,
+        calibration_diagnostics=diagnostics,
+        calibration_guard=guard,
         companies=tuple(company_results),
         batch=batch,
         receipt_sha256=receipt_sha,
@@ -367,7 +382,7 @@ def _parser() -> argparse.ArgumentParser:
         prog="job-app-helix-cycle",
         description=(
             "Acquire and refresh attributable company intelligence, calculate fit, learn "
-            "bounded outcome calibration, rank openings, and compile recruiter packets."
+            "bounded outcome calibration, health-gate it, rank openings, and compile packets."
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
