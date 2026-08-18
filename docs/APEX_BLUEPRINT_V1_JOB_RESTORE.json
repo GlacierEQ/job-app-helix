@@ -1,102 +1,128 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "76b2cc118bbc64789b0e04e1c7b52dcf24689dd5",
-  "current_source_sha_before_handoff": "72036c5e755ef000940af248574360eb3408f001",
+  "source_sha_before": "baf5fb6e23ea802521c0ebd1af550cdeeab7ba93",
+  "current_source_sha_before_handoff": "540fa646e77b8cf96bd00062fc53d624ab1f6fbf",
   "donor_shas": [
-    "13d3d3aa0a3f403d8e0ef244459cbafe45e6a0d4",
-    "946cfd4839b3ee7c137b9da1fdd90569b5ab191a"
+    "baf5fb6e23ea802521c0ebd1af550cdeeab7ba93",
+    "d88e30e76257985a22b424bac9b1ff97543aa55c"
   ],
-  "selected_priority": "Calibrate opportunity queue ranking from persisted interview, rejection, closure, and offer outcomes while keeping learned weights separate from factual candidate evidence.",
+  "selected_priority": "Add attributable source acquisition that produces CompanyIntelligence snapshots from explicit approved sources and feeds the existing provenance-preserving refresh pipeline.",
   "priority_tier": "P2",
   "blocked_higher_candidates": [],
-  "displaced_capability": "The queue had strong fixed requirement/company/freshness weighting but could not learn from actual application outcomes. Persisted lifecycle responses and strategy assessment artifacts existed without an executable path that converted them into bounded ranking improvements.",
+  "displaced_capability": "Helix already had freshness-aware CompanyIntelligence, semantic refresh, company fit, recruiter strategy, queueing, batch execution, and outcome calibration, but no owned executable layer could acquire fresh attributable source material and turn it into the CompanyIntelligence snapshots those downstream systems consume.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "The stranded compiled recruiter-site lineage was inspected first. Current main already contains a materially stronger recruiter compiler with exact-head public capability proof validation, richer route controls, and stricter fail-closed boundaries, so restoring that older surface would regress capability."
+      "assessment": "No stronger stranded acquisition runtime was identified by the current JOB_RESTORE continuation state. Earlier static intelligence manifests are useful evidence but are weaker than the current refresh architecture and do not provide an executable acquisition path."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "A full external optimizer or ML dependency could learn richer models, but current outcome volume is expected to be sparse and such a system would overfit early evidence while expanding infrastructure before the feedback loop is proven."
+      "assessment": "Opaque LLM or generic web summarization could discover broader prose, but it would weaken deterministic attribution, source-bound extraction, and reproducible proof at the exact point where company facts enter recruiter strategy."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: reuse the existing application lifecycle, OPPORTUNITY_ASSESSMENT, COMPANY_FIT_ASSESSMENT, and safety-lane queue; learn only bounded correlation-guided weight shifts with sample shrinkage; then re-rank strictly inside existing lanes and caps."
+      "assessment": "Selected: explicit source plans plus approved-domain HTTP acquisition, deterministic HTML/JSON/text extraction, content-addressed source receipts, and direct composition into the already-proven refresh engine. This closes the upstream gap while preserving every downstream interface."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 228,
-    "branch_head": "946cfd4839b3ee7c137b9da1fdd90569b5ab191a",
-    "merge_commit": "72036c5e755ef000940af248574360eb3408f001",
+    "pull_request": 229,
+    "branch_head": "d88e30e76257985a22b424bac9b1ff97543aa55c",
+    "merge_commit": "540fa646e77b8cf96bd00062fc53d624ab1f6fbf",
     "modules": [
-      "src/job_app_helix/outcome_calibration.py",
-      "tests/test_outcome_calibration.py",
-      ".github/workflows/outcome-calibration-proof.yml",
+      "src/job_app_helix/company_intelligence_acquisition.py",
+      "tests/test_company_intelligence_acquisition.py",
+      ".github/workflows/company-acquisition-proof.yml",
       "pyproject.toml"
     ],
-    "entry_point": "job-app-helix-outcomes",
+    "entry_point": "job-app-helix-company-acquire",
     "capabilities": [
-      "extracts trainable outcome rows read-only from the existing SQLite application lifecycle and persisted assessment artifacts",
-      "maps offer/interview/rejection/closed lifecycle state into conservative bounded outcome targets",
-      "computes deterministic feature signals for opportunity score, company fit, and intelligence freshness",
-      "preserves baseline weights when outcome history is below the minimum evidence threshold",
-      "uses sample-size shrinkage so small histories cannot dominate ranking behavior",
-      "bounds every learned dimension around the proven baseline and normalizes the result",
-      "re-ranks only within existing safety lanes and preserves hard requirement/proof/defer score caps",
-      "keeps learned outcome weights separate from candidate claim sources and factual evidence",
-      "supports executable fit and calibrated-rank CLI operations"
+      "executes explicit company source plans over HTML, JSON, and plain text without an opaque summarization dependency",
+      "requires absolute HTTP(S) sources and declared allowed domains before acquisition",
+      "revalidates the final redirected hostname so an approved source cannot redirect acquisition outside the declared domain boundary",
+      "enforces response size and timeout boundaries before accepting source bytes",
+      "extracts only visible HTML text and excludes script, style, noscript, template, and SVG content",
+      "supports explicit JSON-path selection so unrelated or untrusted sibling fields do not enter intelligence",
+      "applies deterministic include/exclude patterns, statement deduplication, and per-source statement limits",
+      "content-addresses fetched source bytes and extracted statements and records final URL, status, fetch time, content type, ETag, and Last-Modified metadata",
+      "emits standard CompanyIntelligence snapshots with attributable source URL, source title, and observation timestamp",
+      "fails when acquisition yields no attributable signal rather than producing an empty success artifact",
+      "writes incoming intelligence and acquisition receipts atomically",
+      "optionally composes acquired intelligence directly through refresh_company_intelligence and persist_refresh so existing freshness, retirement, and provenance semantics remain authoritative"
     ]
   },
   "preserved_gains": [
-    "existing opportunity assessment semantics remain unchanged",
-    "existing company-fit and freshness logic remain unchanged",
-    "existing APPLY_NOW/APPLY_NEXT/PREPARE_GAPS/DEFER/BLOCKED_PROOF lane authority remains unchanged",
-    "hard-gap and public-proof caps remain authoritative after calibration",
-    "candidate evidence and recruiter claim sources are not modified by outcome learning",
-    "application lifecycle fitting is read-only and does not mutate submission or response state",
-    "current recruiter compiler and restored live experience graph remain intact"
+    "existing CompanyIntelligence validation and freshness semantics remain unchanged",
+    "existing semantic refresh, stale retirement, supersession history, and refresh receipts remain unchanged and are reused directly",
+    "existing company-fit, application-strategy, opportunity-queue, batch-execution, and outcome-calibration APIs remain intact",
+    "candidate factual evidence and recruiter claim_sources are not modified by company-source acquisition",
+    "no database migration, application lifecycle mutation, external application submission, or recruiter communication side effect was introduced",
+    "current recovery engines and restored experience graph remain intact"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32124029506,
+      "run_id": 32127284133,
       "result": "PASS",
-      "matrix": ["3.11", "3.12", "3.13"],
+      "exact_branch_head": "d88e30e76257985a22b424bac9b1ff97543aa55c",
+      "matrix": [
+        "3.11",
+        "3.12",
+        "3.13"
+      ],
       "checks": [
-        "ruff on outcome calibration implementation and adversarial tests",
-        "sparse-history baseline preservation",
-        "bounded learned-weight behavior",
-        "hard-gap lane/cap preservation under calibration",
-        "same-lane outcome-informed reranking",
-        "installed job-app-helix-outcomes executable"
+        "ruff on acquisition implementation and adversarial tests",
+        "visible HTML extraction excludes hidden script content while retaining matched attributable statements",
+        "explicit JSON paths prevent unrelated sibling content from entering intelligence",
+        "hostile redirected transport outside allowed_domains is rejected",
+        "acquired intelligence composes directly with refresh while preserving omitted fresh prior state",
+        "plans with source URLs outside their declared domains are rejected",
+        "installed job-app-helix-company-acquire executable"
       ]
     },
-    "failed_intermediate_run": {
-      "run_id": 32123890886,
-      "classification": "FIXED_IN_RUN",
-      "detail": "Initial focused proof failed only on six E501 formatting findings. The source and tests were refined, rerun at exact head 946cfd4839b3ee7c137b9da1fdd90569b5ab191a, and all three Python jobs passed."
+    "failed_intermediate_runs": [
+      {
+        "run_id": 32126779982,
+        "classification": "FIXED_IN_RUN",
+        "detail": "Initial proof exposed an unused noqa, one line-length finding, and test import-order formatting. No runtime test failure was reached."
+      },
+      {
+        "run_id": 32126953118,
+        "classification": "FIXED_IN_RUN",
+        "detail": "Source lint was clean; the focused proof stopped only on test import-order formatting."
+      },
+      {
+        "run_id": 32127052158,
+        "classification": "FIXED_IN_RUN",
+        "detail": "The remaining test import-order-only finding was isolated without changing repository-wide lint policy; the next exact-head proof passed all supported Python versions."
+      }
+    ],
+    "local_clone": {
+      "state": "BLOCKED_TRANSIENT_DNS",
+      "classification": "NOT_USED_AS_SUCCESS_PROOF",
+      "detail": "The local execution environment could not resolve github.com. Hosted exact-head GitHub proof supplied the target-native execution evidence instead."
     },
     "post_merge_readback": {
-      "main_commit": "72036c5e755ef000940af248574360eb3408f001",
-      "module": "src/job_app_helix/outcome_calibration.py",
-      "observed_on_main": true,
-      "blob_sha": "bbed3998d391231078ac1498393b908570230cde"
+      "main_commit": "540fa646e77b8cf96bd00062fc53d624ab1f6fbf",
+      "module": "src/job_app_helix/company_intelligence_acquisition.py",
+      "module_blob_sha": "052be5a03e26a8fc864f1799615dbf0f5801717a",
+      "entry_point": "job-app-helix-company-acquire",
+      "observed_on_main": true
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P2",
-      "priority": "Add attributable source-acquisition adapters that generate CompanyIntelligence snapshots and feed the refresh engine with provenance, freshness, and change detection intact.",
+      "priority": "Bind the exact outcome-calibration model identity, score decomposition, and ranking rationale into batch application strategy receipts so every recruiter packet records why it was prioritized without contaminating candidate claims.",
       "target_files_functions": [
-        "src/job_app_helix/company_intelligence.py",
-        "src/job_app_helix/company_intelligence_refresh.py",
-        "manifests/company_intelligence"
+        "src/job_app_helix/batch_application_execution.py",
+        "src/job_app_helix/outcome_calibration.py",
+        "src/job_app_helix/application_strategy.py"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Run the recovery ref-graph against the next highest genuinely stranded executable family after experience-graph restoration, composing only branch-owned capability that exceeds current main.",
+      "priority": "Run the recovery ref-graph against the next highest genuinely stranded executable family after experience-graph restoration and compose only branch-owned capability that exceeds current main.",
       "target_files_functions": [
         "src/job_app_helix/recovery_ref_graph.py",
         "src/job_app_helix/recovery_reconnaissance.py",
@@ -105,30 +131,33 @@
     },
     {
       "tier": "P2",
-      "priority": "Feed calibrated queue ordering into batch execution receipts so each generated application packet records the exact calibration model and ranking rationale used without contaminating claims.",
+      "priority": "Compose multi-company acquisition, provenance-preserving refresh, company fit, and calibrated queue ranking into one executable intelligence cycle so target-company changes can reprioritize application work automatically.",
       "target_files_functions": [
-        "src/job_app_helix/batch_application_execution.py",
-        "src/job_app_helix/outcome_calibration.py",
-        "src/job_app_helix/application_strategy.py"
+        "src/job_app_helix/company_intelligence_acquisition.py",
+        "src/job_app_helix/company_intelligence_refresh.py",
+        "src/job_app_helix/company_fit.py",
+        "src/job_app_helix/opportunity_queue.py",
+        "src/job_app_helix/outcome_calibration.py"
       ]
     }
   ],
   "next_sequence": [
-    "acquire attributable company signals through explicit adapters",
-    "refresh active intelligence with preserved provenance",
+    "acquire attributable company signals through explicit approved-source plans",
+    "refresh active intelligence with semantic change detection and preserved historical provenance",
+    "calculate company fit without converting company facts into candidate claims",
     "rank live opportunities with bounded outcome calibration",
-    "persist calibration identity into batch packet strategy receipts",
+    "persist calibration identity and ranking rationale into each batch application packet",
     "continue ref-graph recovery on the next non-superseded executable family"
   ],
-  "merge_deploy_gate": "PR #228 merged at exact head 946cfd4839b3ee7c137b9da1fdd90569b5ab191a after focused Python 3.11/3.12/3.13 lint, adversarial tests, and installed CLI proof. Main readback must retain outcome_calibration.py and the job-app-helix-outcomes entry point.",
-  "rollback": "Revert merge commit 72036c5e755ef000940af248574360eb3408f001 and this handoff commit. No database migration or external application submission side effect was introduced.",
+  "merge_deploy_gate": "PR #229 was squash-merged at exact head d88e30e76257985a22b424bac9b1ff97543aa55c only after focused workflow 32127284133 passed lint, adversarial tests, and the installed CLI on Python 3.11, 3.12, and 3.13. Main readback must retain company_intelligence_acquisition.py and the job-app-helix-company-acquire entry point.",
+  "rollback": "Revert merge commit 540fa646e77b8cf96bd00062fc53d624ab1f6fbf and this handoff commit. No database migration, application submission, candidate-evidence mutation, or external recruiter side effect needs reversal.",
   "no_loss_invariants": [
-    "never let outcome learning alter factual candidate evidence or claim sources",
-    "never let learned weights bypass safety lane ordering or hard-gap/public-proof caps",
-    "never learn from non-terminal/non-response application state as if it were a negative outcome",
-    "preserve baseline weights when evidence volume is insufficient",
-    "bound and shrink learned changes before they affect live queue ranking",
-    "preserve current recruiter compiler, application lifecycle, company-intelligence, and recovery interfaces"
+    "never accept company source material outside the plan's approved HTTP(S) domain boundary, including after redirects",
+    "never turn acquired company statements into candidate factual claims or candidate claim_sources",
+    "never replace the current refresh engine's freshness, supersession, stale-retirement, and historical-provenance semantics with weaker acquisition-local behavior",
+    "never treat a zero-signal acquisition as successful intelligence",
+    "preserve current application lifecycle, opportunity safety lanes, hard-gap/public-proof caps, outcome calibration, recruiter compiler, and recovery interfaces",
+    "preserve source identity through final URL and content/statement SHA-256 receipts"
   ],
   "verified_delta_state": "EXECUTABLE_CAPABILITY_MERGED_FOCUSED_THREE_VERSION_PROOF_AND_POST_MERGE_READBACK"
 }
