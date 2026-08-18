@@ -87,7 +87,11 @@ def _transport(statement: str):
     return fetch
 
 
-def _candidate(tmp_path: Path, *, opening_id: str = "anthropic-cycle") -> IntelligenceCycleCandidate:
+def _candidate(
+    tmp_path: Path,
+    *,
+    opening_id: str = "anthropic-cycle",
+) -> IntelligenceCycleCandidate:
     opening = tmp_path / f"{opening_id}.json"
     plan = tmp_path / f"{opening_id}-plan.json"
     _write_opening(opening, opening_id)
@@ -173,7 +177,7 @@ def test_second_cycle_refreshes_and_retires_superseded_signal(tmp_path: Path) ->
             ),
         )
         assert second.companies[0].status == "REFRESHED"
-        assert second.batch.deduplicated_count == 0 or second.batch.deduplicated_count == 1
+        assert second.batch.selected_count == 1
 
     history = state / "companies" / "anthropic" / "INTELLIGENCE_HISTORY.jsonl"
     rows = [json.loads(line) for line in history.read_text(encoding="utf-8").splitlines()]
