@@ -229,7 +229,8 @@ def test_live_opening_change_is_observed_by_next_intelligence_cycle(tmp_path: Pa
             store=store,
             opening_fetcher=lambda url: _live_opening(url),
             transport=_transport(
-                "Anthropic engineering builds reliable agent systems with observability and containment."
+                "Anthropic engineering builds reliable agent systems with observability "
+                "and containment."
             ),
         )
         second = execute_intelligence_cycle(
@@ -240,7 +241,8 @@ def test_live_opening_change_is_observed_by_next_intelligence_cycle(tmp_path: Pa
             store=store,
             opening_fetcher=lambda url: _live_opening(url, title="Senior AI Systems Engineer"),
             transport=_transport(
-                "Anthropic engineering builds reliable agent systems with observability and containment."
+                "Anthropic engineering builds reliable agent systems with observability "
+                "and containment."
             ),
         )
 
