@@ -2,9 +2,9 @@
 
 The existing batch compiler intentionally deduplicates complete application packets. This
 adapter makes that optimization content-aware: each compiled packet is bound to the
-``JobOpening.digest`` that produced it. A changed digest quarantines the stale packet
-before compilation, preserving rollback evidence while forcing the proven batch runtime
-to regenerate the recruiter materials from fresh opening content.
+``JobOpening.digest`` that produced it. A changed digest quarantines superseded packet
+lineage before compilation, preserving rollback evidence while keeping only the fresh
+recruiter materials active.
 """
 
 from __future__ import annotations
@@ -75,7 +75,7 @@ def _canonical_sha256(payload: Mapping[str, object]) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
-def _load_previous_digest(packet_dir: Path) -> str | None:
+def _load_input_receipt(packet_dir: Path) -> Mapping[str, object] | None:
     receipt = packet_dir / INPUT_RECEIPT
     if not receipt.is_file():
         return None
@@ -83,8 +83,34 @@ def _load_previous_digest(packet_dir: Path) -> str | None:
         payload = json.loads(receipt.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return None
-    value = payload.get("opening_digest") if isinstance(payload, Mapping) else None
+    return payload if isinstance(payload, Mapping) else None
+
+
+def _load_previous_digest(packet_dir: Path) -> str | None:
+    payload = _load_input_receipt(packet_dir)
+    value = payload.get("opening_digest") if payload is not None else None
     return str(value) if value else None
+
+
+def _find_superseded_packet(
+    output_dir: Path,
+    *,
+    opening_id: str,
+    current_application_id: str,
+    current_digest: str,
+) -> tuple[Path, str] | None:
+    if not output_dir.is_dir():
+        return None
+    for candidate in sorted(output_dir.iterdir()):
+        if not candidate.is_dir() or candidate.name in {".stale", current_application_id}:
+            continue
+        payload = _load_input_receipt(candidate)
+        if payload is None or str(payload.get("opening_id", "")) != opening_id:
+            continue
+        previous_digest = str(payload.get("opening_digest", ""))
+        if previous_digest and previous_digest != current_digest:
+            return candidate, previous_digest
+    return None
 
 
 def _quarantine(packet_dir: Path, *, output_dir: Path, application_id: str, digest: str) -> Path:
@@ -130,7 +156,7 @@ def compile_freshness_aware_batch(
     limit: int | None = None,
     calibration: OutcomeCalibration | None = None,
 ) -> FreshnessAwareBatchResult:
-    """Compile ranked packets while invalidating packets built from stale opening content."""
+    """Compile ranked packets while quarantining stale packet lineage."""
     if not candidates:
         raise ValueError("freshness-aware batch requires at least one candidate")
 
@@ -143,6 +169,7 @@ def compile_freshness_aware_batch(
         previous_digest = _load_previous_digest(packet_dir)
         quarantine_path: str | None = None
         action = "NO_PACKET"
+
         if packet_dir.is_dir():
             if previous_digest == opening.digest:
                 action = "REUSE_CURRENT"
@@ -156,6 +183,25 @@ def compile_freshness_aware_batch(
                 )
                 quarantine_path = str(quarantined)
                 action = "REFRESH_STALE"
+        else:
+            superseded = _find_superseded_packet(
+                output_dir,
+                opening_id=opening.opening_id,
+                current_application_id=application_id,
+                current_digest=opening.digest,
+            )
+            if superseded is not None:
+                stale_dir, stale_digest = superseded
+                quarantined = _quarantine(
+                    stale_dir,
+                    output_dir=output_dir,
+                    application_id=stale_dir.name,
+                    digest=stale_digest,
+                )
+                previous_digest = stale_digest
+                quarantine_path = str(quarantined)
+                action = "REFRESH_SUPERSEDED"
+
         decisions.append(
             FreshnessDecision(
                 application_id=application_id,
@@ -196,7 +242,10 @@ def compile_freshness_aware_batch(
 
     return FreshnessAwareBatchResult(
         schema="glaciereq.freshness-aware-batch.v1",
-        refreshed_count=sum(decision.action == "REFRESH_STALE" for decision in decisions),
+        refreshed_count=sum(
+            decision.action in {"REFRESH_STALE", "REFRESH_SUPERSEDED"}
+            for decision in decisions
+        ),
         reused_count=sum(decision.action == "REUSE_CURRENT" for decision in decisions),
         decisions=tuple(decisions),
         batch=batch,
@@ -207,8 +256,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-freshness-batch",
         description=(
-            "Rank openings and rebuild recruiter packets only when their bound opening "
-            "content has changed, quarantining stale packet state for rollback."
+            "Rank openings, quarantine superseded recruiter packets, and compile only "
+            "fresh packet lineage while preserving stale state for rollback."
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
