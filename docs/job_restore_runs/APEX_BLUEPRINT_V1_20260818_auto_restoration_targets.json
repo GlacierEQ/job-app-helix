@@ -1,0 +1,122 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "current_source_sha": "59838debb4022daf8bbd6c362c43505b4e55202e",
+  "donor_shas": [
+    "eca0f9d980a1009c1d4d928ee84877265230fd9d",
+    "060eb250eea32ed654c0a33286d9dc940e17d303"
+  ],
+  "selected_priority": "Generate executable restoration targets automatically from recovery_ref_graph so exact donor SHA, root path, and selected symbols no longer require a hand-authored target manifest.",
+  "priority_tier": "P2",
+  "blocked_higher_candidates": [],
+  "displaced_capability": "The estate-to-federated bridge could build and apply exact-source restoration packets, but every executable candidate still required a manually authored donor source/ref, root path, and symbol list. That manual seam prevented live ref-graph reconnaissance from becoming autonomous restoration execution.",
+  "mechanisms_compared": [
+    {
+      "mechanism": "historical_recovery_or_composition",
+      "assessment": "Keep manually authored target manifests and improve documentation. Rejected because it preserves the operational bottleneck."
+    },
+    {
+      "mechanism": "modern_upgrade",
+      "assessment": "Replace recovery_ref_graph and federated_restoration with a new unified recovery service. Rejected because both existing engines are stronger, proven, and independently useful."
+    },
+    {
+      "mechanism": "nonlinear_combination",
+      "assessment": "Selected: consume deeply qualified ref-graph families, bind the exact representative SHA, inspect donor Python source at that SHA, extract public top-level executable symbols in source order, and feed generated targets into the existing drift-guarded federated packet path while retaining manual manifests as an override."
+    }
+  ],
+  "implemented_delta": {
+    "pull_request": 241,
+    "proof_head": "b9b26d0b0a7a97d89c9542efb866fc7cdc30c0a6",
+    "merge_sha": "59838debb4022daf8bbd6c362c43505b4e55202e",
+    "files": [
+      "src/job_app_helix/estate_federated_restoration.py",
+      "tests/test_estate_federated_restoration.py"
+    ],
+    "executable": "job-app-helix-estate-restore",
+    "capabilities": [
+      "build live recovery_ref_graph reconnaissance when --targets is omitted",
+      "admit only HIGH_PRIORITY_STRANDED and COMPOSITION_CANDIDATE ref families",
+      "derive exact donor refs from representative historical SHAs rather than moving branch names",
+      "derive Python restoration root paths from deeply qualified reconnaissance paths",
+      "extract public top-level function, async-function, and class symbols directly from exact donor source",
+      "reject test-only, private-only, evidence-only, unavailable, and non-executable candidates",
+      "execute manifestless estate restoration target selection into the existing federated packet builder",
+      "preserve manual target manifests as an explicit override"
+    ]
+  },
+  "preserved_gains": [
+    "estate census remains the repository-level priority authority",
+    "recovery_ref_graph remains read-only and continues collapsing equivalent branch families",
+    "federated donor import remains exact-source and drift guarded",
+    "manual restoration target manifests remain supported",
+    "missing, archived, disabled, and healthy repositories remain excluded from automatic restoration",
+    "historical code is still composed selectively rather than blindly reverted"
+  ],
+  "tests_runtime_proof": {
+    "workflow_run_id": 32167786207,
+    "result": "PASS",
+    "matrix": ["3.11", "3.12", "3.13"],
+    "checks": [
+      "strict Ruff over the executable restoration surface",
+      "existing estate-priority selection and optional apply behavior",
+      "exact-SHA donor binding from ranked ref-graph families",
+      "public symbol extraction with private helper exclusion",
+      "evidence-only family rejection",
+      "manifestless discovery-to-packet execution",
+      "installed job-app-helix-estate-restore CLI"
+    ],
+    "initial_failure_and_refinement": "Workflow 32167646468 failed only on Ruff SIM102 in symbol extraction. The implementation was refined without weakening lint or tests; exact-head workflow 32167786207 then passed on Python 3.11, 3.12, and 3.13.",
+    "post_merge_readback": {
+      "result": "PASS",
+      "main_module_blob_sha": "d9b49b292da79928d05dced47bbb25142197cda2",
+      "observed": "main contains manifestless ref-graph target discovery, exact donor SHA binding, donor-source symbol extraction, evidence-only rejection, and preserved manual-target override behavior"
+    }
+  },
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P2",
+      "priority": "Execute the first real stranded repository-family restoration through the manifestless estate-to-ref-graph-to-federated bridge and verify the applied capability against current main.",
+      "target_files_functions": [
+        "src/job_app_helix/estate_federated_restoration.py::execute_auto_estate_federated_restoration",
+        "src/job_app_helix/recovery_ref_graph.py::build_ref_graph",
+        "src/job_app_helix/federated_restoration.py::apply_federated_packet"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Persist longitudinal opening-change telemetry and classify recruiter-material field changes before recruiter packet invalidation.",
+      "target_files_functions": [
+        "src/job_app_helix/opening_watch.py",
+        "src/job_app_helix/freshness_aware_batch.py",
+        "src/job_app_helix/intelligence_cycle.py"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Add maintained target-company opening discovery so Opening Watch refreshes discovered company opening inventories rather than only supplied URLs.",
+      "target_files_functions": [
+        "src/job_app_helix/opening_watch_cycle.py",
+        "src/job_app_helix/opening_acquisition.py",
+        "src/job_app_helix/company_intelligence_acquisition.py"
+      ]
+    }
+  ],
+  "next_sequence": [
+    "run the manifestless bridge against a real deeply qualified stranded ref family",
+    "inspect the generated semantic packet before apply",
+    "apply only if target drift guards and no-loss invariants survive",
+    "prove the recovered capability with target-native tests and merge",
+    "then advance field-sensitive opening invalidation telemetry"
+  ],
+  "merge_deploy_gate": "PR 241 merged at exact head b9b26d0b0a7a97d89c9542efb866fc7cdc30c0a6 only after Estate Federated Restoration Proof run 32167786207 passed strict lint, adversarial tests, and installed CLI checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed the new runtime on main at merge 59838debb4022daf8bbd6c362c43505b4e55202e.",
+  "rollback": "Revert merge 59838debb4022daf8bbd6c362c43505b4e55202e. The prior estate-to-federated bridge at eca0f9d980a1009c1d4d928ee84877265230fd9d remains independently usable with explicit target manifests.",
+  "no_loss_invariants": [
+    "never auto-select evidence-only or non-executable ref families",
+    "never use a moving donor branch name when an exact representative SHA is available",
+    "never treat private helpers or tests as the primary restoration symbol surface",
+    "never apply an auto-derived packet without existing federated drift guards",
+    "never remove the manual target path while auto discovery is still evolving",
+    "never let recovery discovery or reporting substitute for applied executable capability"
+  ],
+  "verified_delta_state": "MANIFESTLESS_REF_GRAPH_TO_EXACT_FEDERATED_RESTORATION_TARGET_DISCOVERY_MERGED_PROVEN_AND_READ_BACK_ON_MAIN"
+}
