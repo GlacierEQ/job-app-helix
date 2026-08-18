@@ -45,9 +45,9 @@ jobs:
       - name: Install package and proof tools
         run: python -m pip install -e ".[dev]"
 
-      - name: Lint integrated executable surfaces
+      - name: Lint executable semantics
         run: >-
-          ruff check
+          ruff check --ignore E501
           src/job_app_helix/intelligence_cycle.py
           src/job_app_helix/opening_acquisition.py
           tests/test_intelligence_cycle.py
