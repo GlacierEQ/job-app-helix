@@ -1,4 +1,4 @@
-"""CLI for the intelligent multi-engine restoration planner and executor."""
+"""CLI for intelligent recovery discovery, planning, and bounded execution."""
 
 from __future__ import annotations
 
@@ -12,19 +12,31 @@ from .intelligent_recovery import (
     execute_automatic_recovery,
     summarize_recovery_plan,
 )
+from .recovery_reconnaissance import discover_from_manifest
 
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-recover",
         description=(
-            "Analyze multiple exact donor revisions, rank displaced capability, "
-            "route risky changes to surgical review, and optionally restore only "
-            "high-confidence target-absent source/test artifacts."
+            "Discover historical donors, rank displaced capability, route risky changes "
+            "to surgical recovery engines, and optionally restore only high-confidence "
+            "target-absent source/test artifacts."
         ),
     )
     parser.add_argument("--repo", type=Path, default=Path.cwd())
     sub = parser.add_subparsers(dest="command", required=True)
+
+    discover = sub.add_parser(
+        "discover",
+        help="scan a historical-ref manifest and rank exact donor heads by recoverable capability",
+    )
+    discover.add_argument("--manifest", type=Path, required=True)
+    discover.add_argument("--target", default="HEAD")
+    discover.add_argument("--fetch-missing", action="store_true")
+    discover.add_argument("--remote", default="origin")
+    discover.add_argument("--max-auto-actions", type=int, default=8)
+    discover.add_argument("--output", type=Path)
 
     for name in ("plan", "apply"):
         command = sub.add_parser(name)
@@ -56,6 +68,18 @@ def _write(payload: dict[str, object], output: Path | None) -> None:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    if args.command == "discover":
+        report = discover_from_manifest(
+            args.repo,
+            args.manifest,
+            target_ref=args.target,
+            fetch_missing=args.fetch_missing,
+            remote=args.remote,
+            max_auto_actions=args.max_auto_actions,
+        )
+        _write(report.to_dict(), args.output)
+        return 0
+
     plan = build_intelligent_recovery_plan(
         args.repo,
         donor_refs=tuple(args.donor),
