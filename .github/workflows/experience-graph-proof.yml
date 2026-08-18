@@ -38,11 +38,5 @@ jobs:
       - name: Run adversarial experience-graph tests
         run: python -m pytest -q tests/test_experience_graph_discovery.py
       - name: Validate output schema fixture
-        run: python - <<'PY'
-          import json
-          import pathlib
-          import jsonschema
-          schema = json.loads(pathlib.Path('schemas/live-experience-graph.schema.json').read_text())
-          assert schema['properties']['schema']['const'] == 'glaciereq.live-experience-graph.v1'
-          print('experience-graph-schema=PASS')
-          PY
+        run: >-
+          python -c "import json,pathlib; s=json.loads(pathlib.Path('schemas/live-experience-graph.schema.json').read_text()); assert s['properties']['schema']['const']=='glaciereq.live-experience-graph.v1'; print('experience-graph-schema=PASS')"
