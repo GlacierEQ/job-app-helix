@@ -141,7 +141,7 @@ def test_cycle_acquires_bootstraps_calibrates_and_compiles_packet(tmp_path: Path
             ),
         )
 
-        assert result.schema == "glaciereq.job-intelligence-cycle.v2"
+        assert result.schema == "glaciereq.job-intelligence-cycle.v3"
         assert result.successful_company_count == 1
         assert result.failed_company_count == 0
         assert result.companies[0].status == "INITIALIZED"
@@ -149,10 +149,12 @@ def test_cycle_acquires_bootstraps_calibrates_and_compiles_packet(tmp_path: Path
         assert result.companies[0].company_fit_score == 100.0
         assert result.calibration.status == "INSUFFICIENT_OUTCOMES"
         assert len(result.calibration_sha256) == 64
+        assert result.freshness.batch == result.batch
         assert result.batch.selected_count == 1
         assert result.batch.compiled_count == 1
         packet = Path(result.batch.packets[0].packet_dir)
         assert (packet / "RESUME.md").is_file()
+        assert (packet / "OPENING_INPUT_RECEIPT.json").is_file()
         assert (packet / "COMPANY_FIT_ASSESSMENT.json").is_file()
         assert (packet / "PRIORITY_RECEIPT.json").is_file()
         priority = json.loads((packet / "PRIORITY_RECEIPT.json").read_text(encoding="utf-8"))
@@ -229,7 +231,8 @@ def test_live_opening_change_is_observed_by_next_intelligence_cycle(tmp_path: Pa
             store=store,
             opening_fetcher=lambda url: _live_opening(url),
             transport=_transport(
-                "Anthropic engineering builds reliable agent systems with observability and containment."
+                "Anthropic engineering builds reliable agent systems with observability "
+                "and containment."
             ),
         )
         second = execute_intelligence_cycle(
@@ -240,7 +243,8 @@ def test_live_opening_change_is_observed_by_next_intelligence_cycle(tmp_path: Pa
             store=store,
             opening_fetcher=lambda url: _live_opening(url, title="Senior AI Systems Engineer"),
             transport=_transport(
-                "Anthropic engineering builds reliable agent systems with observability and containment."
+                "Anthropic engineering builds reliable agent systems with observability "
+                "and containment."
             ),
         )
 
