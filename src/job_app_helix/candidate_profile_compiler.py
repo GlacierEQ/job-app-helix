@@ -72,13 +72,31 @@ def _section(lines: Sequence[str], heading: str) -> list[str]:
     return result
 
 
+def _first_section(lines: Sequence[str], headings: Sequence[str]) -> list[str]:
+    for heading in headings:
+        body = _section(lines, heading)
+        if body:
+            return body
+    return []
+
+
 def _parse_identity(lines: Sequence[str], path: Path) -> tuple[str, str]:
-    title = next((line[2:].strip() for line in lines if line.startswith("# ")), "")
-    if not title:
+    title_index = next((i for i, line in enumerate(lines) if line.startswith("# ")), None)
+    if title_index is None:
         raise CandidateProfileCompileError(f"{path} requires a level-1 resume title")
+    title = lines[title_index][2:].strip()
     parts = re.split("\\s+[\\u2014\\u2013-]\\s+", title, maxsplit=1)
     name = parts[0].strip()
     headline = parts[1].strip() if len(parts) == 2 else ""
+    if not headline:
+        for line in lines[title_index + 1 : title_index + 5]:
+            candidate = line.strip().strip("*")
+            if not candidate or candidate.startswith("#"):
+                continue
+            if "@" in candidate or re.search(r"\b\d{3}[-.) ]\d{3}[- ]\d{4}\b", candidate):
+                continue
+            headline = candidate
+            break
     if not name:
         raise CandidateProfileCompileError(f"{path} has an empty candidate name")
     return name, headline
@@ -93,11 +111,21 @@ def _parse_contact(lines: Sequence[str]) -> dict[str, str]:
             value = match.group("value").strip()
             if key and value:
                 contact[key] = value
+
+    header = " ".join(line.strip() for line in lines[:12] if line.strip())
+    if "email" not in contact:
+        email = re.search(r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}", header, re.IGNORECASE)
+        if email:
+            contact["email"] = email.group(0)
+    if "github" not in contact:
+        github = re.search(r"https?://github\.com/[A-Za-z0-9_.-]+", header)
+        if github:
+            contact["github"] = github.group(0)
     return contact
 
 
 def _parse_summary(lines: Sequence[str]) -> str:
-    body = _section(lines, "Summary")
+    body = _first_section(lines, ("Summary", "Professional Summary", "Profile"))
     paragraphs = [line.strip() for line in body if line.strip() and not line.startswith("---")]
     return " ".join(paragraphs)
 
@@ -117,23 +145,68 @@ def _parse_table_values(lines: Sequence[str]) -> tuple[str, ...]:
     return _dedupe(values)
 
 
+def _parse_flat_values(lines: Sequence[str]) -> tuple[str, ...]:
+    values: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith(("|", "### ")):
+            continue
+        stripped = stripped.removeprefix("- ").strip()
+        values.extend(part.strip().strip("*") for part in re.split(r"[;,]", stripped) if part.strip())
+    return _dedupe(values)
+
+
 def _parse_projects(lines: Sequence[str]) -> tuple[tuple[str, ...], tuple[str, ...]]:
     body = _section(lines, "Key Projects")
-    experience: list[str] = []
-    achievements: list[str] = []
+    if body:
+        experience: list[str] = []
+        achievements: list[str] = []
+        project = ""
+        for line in body:
+            stripped = line.strip()
+            if stripped.startswith("### "):
+                project = stripped[4:].strip()
+                continue
+            if stripped.startswith("- "):
+                claim = stripped[2:].strip()
+                evidence = f"{project}: {claim}" if project else claim
+                experience.append(evidence)
+                if re.search(r"\d", claim):
+                    achievements.append(evidence)
+        return _dedupe(experience), _dedupe(achievements)
+
+    body = _section(lines, "Selected Systems")
+    experience = []
+    achievements = []
     project = ""
     for line in body:
         stripped = line.strip()
+        if not stripped:
+            continue
         if stripped.startswith("### "):
             project = stripped[4:].strip()
             continue
         if stripped.startswith("- "):
             claim = stripped[2:].strip()
             evidence = f"{project}: {claim}" if project else claim
-            experience.append(evidence)
-            if re.search(r"\d", claim):
-                achievements.append(evidence)
+        elif len(stripped) <= 120 and (" - " in stripped or stripped.isupper()):
+            project = stripped
+            continue
+        else:
+            evidence = f"{project}: {stripped}" if project else stripped
+        experience.append(evidence)
+        if re.search(r"\d", evidence):
+            achievements.append(evidence)
     return _dedupe(experience), _dedupe(achievements)
+
+
+def _parse_skills(lines: Sequence[str]) -> tuple[str, ...]:
+    values: list[str] = []
+    for heading in ("Core Competencies", "Technical Skills", "Technical Profile", "Technologies"):
+        body = _section(lines, heading)
+        values.extend(_parse_table_values(body))
+        values.extend(_parse_flat_values(body))
+    return _dedupe(values)
 
 
 def parse_resume(path: Path) -> ResumeEvidence:
@@ -143,19 +216,18 @@ def parse_resume(path: Path) -> ResumeEvidence:
     lines = path.read_text(encoding="utf-8").splitlines()
     name, headline = _parse_identity(lines, path)
     experience, achievements = _parse_projects(lines)
-    skills = _dedupe(
-        (
-            *_parse_table_values(_section(lines, "Core Competencies")),
-            *_parse_table_values(_section(lines, "Technical Skills")),
-        )
-    )
+    skills = _parse_skills(lines)
     summary = _parse_summary(lines)
     if not summary:
-        raise CandidateProfileCompileError(f"{path} requires a Summary section")
+        raise CandidateProfileCompileError(
+            f"{path} requires a Summary, Professional Summary, or Profile section"
+        )
     if not skills:
         raise CandidateProfileCompileError(f"{path} contains no structured skills")
     if not experience:
-        raise CandidateProfileCompileError(f"{path} contains no Key Projects evidence")
+        raise CandidateProfileCompileError(
+            f"{path} contains no Key Projects or Selected Systems evidence"
+        )
     return ResumeEvidence(
         path=path,
         sha256=_sha256(path),
