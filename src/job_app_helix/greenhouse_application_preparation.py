@@ -267,9 +267,8 @@ def _bind_applicant_answers(
     for answer in answers:
         field = by_field.get(answer.field_name)
         if field is None:
-            raise GreenhouseApplicationPreparationError(
-                f"applicant answer field is not present in live provider schema: {answer.field_name}"
-            )
+            message = "applicant answer field is not present in live provider schema: "
+            raise GreenhouseApplicationPreparationError(message + answer.field_name)
         if field.field_type in {"input_hidden", "input_file"}:
             raise GreenhouseApplicationPreparationError(
                 f"applicant answer cannot override provider-managed field {answer.field_name}"
@@ -324,7 +323,10 @@ def _prepare_prompt(
             status="APPLICANT_CONFIRMED",
             draft=applicant_answer.value,
             provenance=(applicant_answer.provenance, f"sha256:{applicant_answer.source_sha256}"),
-            reason="Exact applicant-supplied answer bound to the current live provider field schema.",
+            reason=(
+                "Exact applicant-supplied answer bound to the current live provider field "
+                "schema."
+            ),
         )
     combined = f"{field.label} {field.name}".casefold()
     if field_answer.status == "AUTO_FILL":
