@@ -5,6 +5,7 @@ on:
     paths:
       - "src/job_app_helix/application_evidence_graph.py"
       - "scripts/discover_experience_graph.py"
+      - "scripts/census_public_portfolio.py"
       - "tests/test_application_evidence_graph.py"
       - "pyproject.toml"
       - ".github/workflows/application-evidence-graph-proof.yml"
@@ -13,6 +14,7 @@ on:
     paths:
       - "src/job_app_helix/application_evidence_graph.py"
       - "scripts/discover_experience_graph.py"
+      - "scripts/census_public_portfolio.py"
       - "tests/test_application_evidence_graph.py"
       - "pyproject.toml"
       - ".github/workflows/application-evidence-graph-proof.yml"
@@ -42,8 +44,17 @@ jobs:
         run: pytest tests/test_application_evidence_graph.py
       - name: Installed executable
         run: job-app-helix-application-evidence --help
-      - name: Compile current live experience graph
-        run: python scripts/discover_experience_graph.py --output /tmp/live-experience-graph.json
+      - name: Build current public recruiter census
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/census_public_portfolio.py
+          --output /tmp/public-portfolio-census.json
+      - name: Compile current live public experience graph
+        run: >-
+          python scripts/discover_experience_graph.py
+          --census /tmp/public-portfolio-census.json
+          --output /tmp/live-experience-graph.json
       - name: Prove xAI application evidence projection
         run: |
           job-app-helix-application-evidence \
