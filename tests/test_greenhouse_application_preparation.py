@@ -67,10 +67,30 @@ def _transport(url: str) -> dict[str, object]:
                 "required": True,
                 "fields": [{"name": "question_sponsorship", "type": "input_text"}],
             },
+            {
+                "label": "Preferred coding language",
+                "required": True,
+                "fields": [
+                    {
+                        "name": "question_language",
+                        "type": "input_select",
+                        "values": [
+                            {"value": "python", "label": "Python"},
+                            {"value": "rust", "label": "Rust"},
+                        ],
+                    }
+                ],
+            },
         ],
         "compliance": [],
         "location_questions": [],
     }
+
+
+def _answer_source(tmp_path: Path, answers: list[dict[str, str]]) -> Path:
+    path = tmp_path / "applicant_answers.json"
+    path.write_text(json.dumps({"answers": answers}), encoding="utf-8")
+    return path
 
 
 def test_prepares_application_ready_packet_with_source_bound_custom_draft(tmp_path: Path) -> None:
@@ -102,6 +122,7 @@ def test_prepares_application_ready_packet_with_source_bound_custom_draft(tmp_pa
     assert result.application_id == "app-xai-1"
     assert result.opening_id == "4956028007"
     assert result.drafted_count == 1
+    assert result.applicant_confirmed_count == 0
 
     by_name = {item.field_name: item for item in result.prompts}
     assert by_name["first_name"].status == "AUTO_FILL_VERIFIED"
@@ -126,6 +147,69 @@ def test_prepares_application_ready_packet_with_source_bound_custom_draft(tmp_pa
     assert source_claims[0].source_sha256 == hashlib.sha256(evidence.read_bytes()).hexdigest()
 
 
+def test_applicant_confirmed_answers_bind_exact_live_fields_and_options(tmp_path: Path) -> None:
+    release = _release(tmp_path)
+    source = _answer_source(
+        tmp_path,
+        [
+            {
+                "field_name": "question_sponsorship",
+                "value": "No",
+                "provenance": "applicant-confirmed:work-authorization",
+            },
+            {
+                "field_name": "question_language",
+                "value": "Python",
+                "provenance": "applicant-confirmed:preferred-language",
+            },
+        ],
+    )
+
+    result = prepare_greenhouse_application_release(
+        release,
+        _profile(),
+        board_key="xai",
+        job_id="4956028007",
+        applicant_answer_sources=(source,),
+        transport=_transport,
+    )
+
+    assert result.schema == "glaciereq.greenhouse-application-preparation.v2"
+    assert result.applicant_confirmed_count == 2
+    by_name = {item.field_name: item for item in result.prompts}
+    sponsorship = by_name["question_sponsorship"]
+    assert sponsorship.status == "APPLICANT_CONFIRMED"
+    assert sponsorship.draft == "No"
+    assert sponsorship.provenance[0] == "applicant-confirmed:work-authorization"
+    assert sponsorship.provenance[1].startswith("sha256:")
+    language = by_name["question_language"]
+    assert language.status == "APPLICANT_CONFIRMED"
+    assert language.draft == "python"
+    assert result.review_required_count == 1
+
+
+def test_unknown_or_invalid_option_answer_fails_before_packet_mutation(tmp_path: Path) -> None:
+    release = _release(tmp_path)
+    source = _answer_source(
+        tmp_path,
+        [{"field_name": "question_language", "value": "Cobol"}],
+    )
+
+    with pytest.raises(GreenhouseApplicationPreparationError, match="live provider option"):
+        prepare_greenhouse_application_release(
+            release,
+            _profile(),
+            board_key="xai",
+            job_id="4956028007",
+            applicant_answer_sources=(source,),
+            transport=_transport,
+        )
+
+    packet = tmp_path / "packet"
+    assert not (packet / "GREENHOUSE_APPLICATION_FIELDS.json").exists()
+    assert not (packet / "GREENHOUSE_APPLICATION_PREPARATION.json").exists()
+
+
 def test_release_identity_drift_fails_before_packet_mutation(tmp_path: Path) -> None:
     release = _release(tmp_path, opening_id="different-job")
 
@@ -143,7 +227,9 @@ def test_release_identity_drift_fails_before_packet_mutation(tmp_path: Path) -> 
     assert not (packet / "GREENHOUSE_APPLICATION_PREPARATION.json").exists()
 
 
-def test_sensitive_provider_field_remains_applicant_decision(tmp_path: Path) -> None:
+def test_sensitive_provider_field_remains_applicant_decision_without_explicit_answer(
+    tmp_path: Path,
+) -> None:
     release = _release(tmp_path)
 
     def sensitive_transport(url: str) -> dict[str, object]:
