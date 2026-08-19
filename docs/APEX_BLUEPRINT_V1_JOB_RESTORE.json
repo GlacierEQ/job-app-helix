@@ -1,97 +1,111 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "ee479769b5e14c96c801d81066073b2195b14ec9",
-  "current_source_sha_before_handoff": "7a9b1cc7588bda28323db9c99c1c4ccfd9c7d862",
+  "source_sha_before": "f9de0a1762e229fb4086eaf6e73cae566da5a2c2",
+  "current_source_sha_before_handoff": "52bac7ee224356aab690d6a415145d9a48f05a35",
   "donor_shas": [
-    "ee479769b5e14c96c801d81066073b2195b14ec9",
-    "c8fcdea9115a51218569f5e6ba3443585ff7a366",
-    "74384bc33084cca55c3af5cc0d0a284c5c069267"
+    "7a9b1cc7588bda28323db9c99c1c4ccfd9c7d862",
+    "f9de0a1762e229fb4086eaf6e73cae566da5a2c2",
+    "108470f62a85dac71313cdc92a8d805d87c4511e",
+    "3c919e96772f15fe6ab286d4c68284e4586c9813",
+    "932d5dc0f04f68425f531760018496e87b19295a"
   ],
-  "selected_priority": "Extend the verified xAI application-ready path into source-bound ATS field intelligence using the exact live Greenhouse application schema while preserving human review and no automatic submission.",
+  "selected_priority": "Compose the live xAI APPLICATION_READY release, exact Greenhouse field schema, CandidateProfile evidence, and source-reviewed xAI portfolio claims into one source-bound application-preparation runtime that drafts the live exceptional-work prompt without inventing claims and retains human review.",
   "priority_tier": "P1",
   "blocked_higher_candidates": [],
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Reuse hand-staged application-question JSON. Rejected because it drifts from the live ATS form and preserves a manual bridge."
+      "assessment": "Reuse hand-staged question JSON or prior answer drafts. Rejected because the provider form can drift and the manual bridge would remain."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Use a generic application answer generator. Rejected because it cannot prove exact provider field identity and risks unsupported answers."
+      "assessment": "Generate custom answers from CandidateProfile prose alone. Rejected because it cannot independently bind portfolio claims to reviewed source evidence and risks unsupported synthesis."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: live Greenhouse question discovery plus CandidateProfile evidence binding plus deterministic per-field handling and receipt hashing."
+      "assessment": "Selected: APPLICATION_READY identity + exact live Greenhouse questions + CandidateProfile evidence + explicitly supplied source-reviewed xAI constellation claims with source hashing, field-level provenance, review states, and packet-local preparation sidecars."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 253,
-    "proof_head": "74384bc33084cca55c3af5cc0d0a284c5c069267",
-    "runtime_merge_sha": "7a9b1cc7588bda28323db9c99c1c4ccfd9c7d862",
-    "runtime_blob_sha": "5ad510abab300e8ba49b05163f0bc4707f0b4a9f",
-    "module": "src/job_app_helix/greenhouse_application_fields.py",
-    "executable": "job-app-helix-greenhouse-fields",
+    "pull_request": 254,
+    "proof_head": "932d5dc0f04f68425f531760018496e87b19295a",
+    "runtime_merge_sha": "52bac7ee224356aab690d6a415145d9a48f05a35",
+    "runtime_blob_sha": "9d6b8f149aed6ccd99a430b14d57f42469c905aa",
+    "module": "src/job_app_helix/greenhouse_application_preparation.py",
+    "executable": "job-app-helix-greenhouse-prepare",
     "capabilities": [
-      "fetch exact live Greenhouse job application questions using board and job identity",
-      "normalize question, location, compliance, demographic, hidden, attachment, text, textarea, and select fields",
-      "auto-fill only exact CandidateProfile name/contact evidence with provenance",
-      "route attachments explicitly without inventing paths",
-      "route sensitive/compliance/demographic fields to applicant decision",
-      "route unsupported custom questions to human review rather than guessing",
-      "fail closed on provider job identity drift or empty application schema",
-      "persist deterministic field bundle receipt SHA-256",
-      "perform no application submission or recruiter contact"
+      "bind an existing APPLICATION_READY release to the exact current Greenhouse job identity before any packet mutation",
+      "compose the live provider field bundle with candidate and explicitly supplied source-reviewed portfolio evidence",
+      "hash evidence-source files and retain path plus line-level provenance for admitted portfolio claims",
+      "admit only Directly supported or Strongly supported precise claims from the evidence constellation",
+      "generate a human-review-required draft for the live exceptional-work prompt only from exact admitted evidence",
+      "preserve verified auto-fill provenance for exact CandidateProfile fields",
+      "preserve REVIEW_REQUIRED, USER_DECISION_REQUIRED, and ATTACHMENT_REQUIRED states instead of guessing",
+      "write GREENHOUSE_APPLICATION_FIELDS.json and GREENHOUSE_APPLICATION_PREPARATION.json into the selected recruiter packet",
+      "leave the existing APPLICATION_READY receipt unchanged and perform no external submission or recruiter contact"
     ]
   },
   "preserved_gains": [
-    "existing APPLICATION_READY_TARGET release remains intact",
-    "existing live xAI opening identity 4956028007 remains the target proof anchor",
-    "candidate claim invention remains prohibited",
-    "existing target application, opening freshness, ranking, packet, and rollback paths remain unchanged",
+    "existing APPLICATION_READY_TARGET and recruiter packet integrity remain unchanged",
+    "live xAI opening identity 4956028007 remains the exact provider proof anchor",
+    "existing Greenhouse field discovery and sensitive/compliance handling remain intact",
+    "candidate and employer claim invention remains prohibited",
+    "the xAI evidence constellation independent-work and no-affiliation boundaries remain preserved",
     "no external application submission or recruiter contact was added"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32204864723,
+      "run_id": 32208793196,
       "result": "PASS",
       "python": ["3.11", "3.12", "3.13"],
-      "checks": ["strict Ruff", "3 adversarial tests", "installed CLI"]
+      "checks": [
+        "strict Ruff",
+        "3 adversarial application-preparation tests",
+        "installed job-app-helix-greenhouse-prepare executable"
+      ]
     },
-    "live_xai_schema": {
-      "job_id": "4956028007",
+    "live_xai_preparation": {
       "board_key": "xai",
-      "job_id_github_actions": 95926000687,
+      "job_id": "4956028007",
+      "github_actions_job_id": 95937157358,
       "result": "PASS",
-      "field_count": 17,
-      "auto_fill_count_with_proof_profile": 3,
-      "attachment_count": 1,
+      "drafted_count": 1,
       "review_required_count": 13,
-      "receipt_sha256": "a8f48538d2758198979f4a8bab4efd2024cef114808d630fa9df29169bce425d"
+      "exceptional_work_field": "question_12196821007",
+      "exceptional_work_label": "What exceptional work have you done?",
+      "field_bundle_receipt_sha256": "418876e96b90efce788deb90d0d53daf92ce90e4f8052bbc6e1da0747d12a0fa",
+      "preparation_receipt_sha256": "f2c686a608d67bce24db8c317ef1c9b5a6d10277e5aa035d34fe699eaa586569",
+      "evidence_source_sha256": "f4bf3d1ef9d07b95269c3666c929fb90096c7033cf3934b742eb646ac1145a7d",
+      "exceptional_work_provenance": [
+        "CandidateProfile.achievements[0]",
+        "docs/evidence-constellations/xai-spacex-2026-08-18/constellations/xai.md:L23",
+        "docs/evidence-constellations/xai-spacex-2026-08-18/constellations/xai.md:L24"
+      ]
     },
     "post_merge_readback": {
-      "main_merge_sha": "7a9b1cc7588bda28323db9c99c1c4ccfd9c7d862",
-      "runtime_blob_sha": "5ad510abab300e8ba49b05163f0bc4707f0b4a9f",
+      "main_merge_sha": "52bac7ee224356aab690d6a415145d9a48f05a35",
+      "runtime_blob_sha": "9d6b8f149aed6ccd99a430b14d57f42469c905aa",
       "result": "PASS"
     }
   },
   "blockers_pivots": [
-    "Initial focused proof run 32204720620 found eight E501 strict-lint defects; implementation and tests were reformatted without weakening behavior, then the complete 3.11/3.12/3.13 proof passed."
+    "Initial focused proof run 32208677300 exposed two E501 strict-lint defects. Both were corrected without weakening behavior; replacement workflow 32208793196 then passed the complete Python 3.11/3.12/3.13 matrix and live xAI target-native observation."
   ],
   "top_3_remaining_priorities": [
     {
       "tier": "P1",
-      "priority": "Compose Greenhouse field intelligence directly into the live xAI APPLICATION_READY packet and generate source-bound drafts for custom prompts such as exceptional work using only production resume, packet, opening, and company evidence, retaining human review.",
+      "priority": "Execute job-app-helix-greenhouse-prepare against the preserved production xAI CandidateProfile and actual APPLICATION_READY packet, using the current source-reviewed xAI evidence constellation, then preserve the real applicant-review preparation artifact without submitting externally.",
       "target_files_functions": [
-        "src/job_app_helix/greenhouse_application_fields.py",
+        "src/job_app_helix/greenhouse_application_preparation.py::prepare_greenhouse_application_release",
         "src/job_app_helix/target_application_cycle.py::execute_target_application_cycle",
-        "GlacierEQ/job-application/.github/workflows/helix-live-spacexai-application.yml"
+        "docs/evidence-constellations/xai-spacex-2026-08-18/constellations/xai.md"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Execute the first real stranded repository-family restoration through manifestless exact-SHA federated restoration and prove recovered behavior in the repository native runtime.",
+      "priority": "Execute the first real stranded repository-family restoration through manifestless exact-SHA federated restoration and prove the recovered capability in that repository's native runtime.",
       "target_files_functions": [
         "src/job_app_helix/estate_federated_restoration.py::execute_auto_estate_federated_restoration",
         "src/job_app_helix/recovery_ref_graph.py::build_ref_graph",
@@ -100,35 +114,39 @@
     },
     {
       "tier": "P2",
-      "priority": "Generalize the live ATS application-field contract to additional supported providers only where exact field identity and source-bound review semantics are available.",
+      "priority": "Generalize the exact ATS application-field and evidence-bound preparation contract to the next attributable provider only where exact field identity and source-bound review semantics can be preserved.",
       "target_files_functions": [
         "src/job_app_helix/target_opening_discovery.py",
-        "src/job_app_helix/greenhouse_application_fields.py"
+        "src/job_app_helix/greenhouse_application_fields.py",
+        "src/job_app_helix/greenhouse_application_preparation.py"
       ]
     }
   ],
   "exact_target_files_functions": [
-    "src/job_app_helix/greenhouse_application_fields.py::build_greenhouse_application_bundle",
-    "src/job_app_helix/greenhouse_application_fields.py::write_greenhouse_application_bundle",
-    "tests/test_greenhouse_application_fields.py",
-    ".github/workflows/greenhouse-application-fields-proof.yml"
+    "src/job_app_helix/greenhouse_application_preparation.py::prepare_greenhouse_application_release",
+    "src/job_app_helix/greenhouse_application_preparation.py::collect_evidence",
+    "src/job_app_helix/greenhouse_application_preparation.py::_prepare_prompt",
+    "tests/test_greenhouse_application_preparation.py",
+    ".github/workflows/greenhouse-application-preparation-proof.yml"
   ],
   "next_sequence": [
-    "load the preserved production xAI CandidateProfile and APPLICATION_READY packet",
-    "discover the current live field schema at execution time",
-    "bind exact supported fields and draft only evidence-backed custom answers",
-    "retain explicit applicant-review states and never submit without a separate explicit instruction"
+    "load the preserved production xAI CandidateProfile and actual APPLICATION_READY_TARGET release",
+    "fetch and bind the current live xAI Greenhouse field schema for opening 4956028007",
+    "admit the current source-reviewed xAI constellation as a hashed evidence source",
+    "generate and preserve the real source-bound application preparation sidecars",
+    "perform applicant review of unresolved fields and do not submit without a separate explicit instruction"
   ],
-  "merge_deploy_gate": "PR 253 merged at exact proven head 74384bc33084cca55c3af5cc0d0a284c5c069267 as 7a9b1cc7588bda28323db9c99c1c4ccfd9c7d862. Focused workflow 32204864723 passed Python 3.11/3.12/3.13. Python 3.12 live proof observed 17 application fields for xAI Greenhouse opening 4956028007 and emitted receipt a8f48538d2758198979f4a8bab4efd2024cef114808d630fa9df29169bce425d. Main readback returned runtime blob 5ad510abab300e8ba49b05163f0bc4707f0b4a9f.",
-  "rollback": "Revert merge 7a9b1cc7588bda28323db9c99c1c4ccfd9c7d862. Existing xAI live application-ready capability at prior main ee479769b5e14c96c801d81066073b2195b14ec9 remains the rollback baseline.",
+  "merge_deploy_gate": "PR 254 merged at exact proven head 932d5dc0f04f68425f531760018496e87b19295a as 52bac7ee224356aab690d6a415145d9a48f05a35. Focused workflow 32208793196 passed Python 3.11/3.12/3.13. Python 3.12 live proof job 95937157358 bound xAI opening 4956028007, created one evidence-bound exceptional-work draft, retained 13 review-required fields, emitted field receipt 418876e96b90efce788deb90d0d53daf92ce90e4f8052bbc6e1da0747d12a0fa and preparation receipt f2c686a608d67bce24db8c317ef1c9b5a6d10277e5aa035d34fe699eaa586569. Main readback returned runtime blob 9d6b8f149aed6ccd99a430b14d57f42469c905aa.",
+  "rollback": "Revert merge 52bac7ee224356aab690d6a415145d9a48f05a35. Prior main f9de0a1762e229fb4086eaf6e73cae566da5a2c2 preserves the xAI/SpaceX evidence constellation and all pre-existing PR 253 Greenhouse field-intelligence capability.",
   "no_loss_invariants": [
-    "never invent candidate or employer facts",
-    "never silently answer sensitive, compliance, demographic, or unsupported custom questions",
-    "preserve exact board, job, profile, and field provenance",
-    "do not mutate production resume evidence during field preparation",
+    "never invent candidate, employer, affiliation, deployment, or production-performance claims",
+    "never silently answer sensitive, compliance, demographic, sponsorship, employment-history, or unsupported custom questions",
+    "preserve exact release, board, job, profile, field, and evidence provenance",
+    "source-reviewed portfolio claims must retain their independent-work and explicit-limit boundaries",
+    "do not mutate the existing APPLICATION_READY receipt during preparation",
     "do not submit externally or contact a recruiter without explicit operator instruction",
-    "field discovery failure must not corrupt the existing application-ready packet"
+    "provider or release identity drift must fail before packet sidecar mutation"
   ],
-  "verified_delta_state": "LIVE_XAI_GREENHOUSE_APPLICATION_FIELDS_DISCOVERED_AND_SOURCE_BOUND_PRE_SUBMISSION_CAPABILITY_MERGED",
+  "verified_delta_state": "LIVE_XAI_APPLICATION_READY_PATH_NOW_SUPPORTS_SOURCE_BOUND_EXCEPTIONAL_WORK_PREPARATION_WITH_EXACT_PROVENANCE",
   "verified_executable_capability_delta": true
 }
