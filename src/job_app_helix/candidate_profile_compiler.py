@@ -152,7 +152,11 @@ def _parse_flat_values(lines: Sequence[str]) -> tuple[str, ...]:
         if not stripped or stripped.startswith(("|", "### ")):
             continue
         stripped = stripped.removeprefix("- ").strip()
-        values.extend(part.strip().strip("*") for part in re.split(r"[;,]", stripped) if part.strip())
+        values.extend(
+            part.strip().strip("*")
+            for part in re.split(r"[;,]", stripped)
+            if part.strip()
+        )
     return _dedupe(values)
 
 
@@ -202,7 +206,13 @@ def _parse_projects(lines: Sequence[str]) -> tuple[tuple[str, ...], tuple[str, .
 
 def _parse_skills(lines: Sequence[str]) -> tuple[str, ...]:
     values: list[str] = []
-    for heading in ("Core Competencies", "Technical Skills", "Technical Profile", "Technologies"):
+    headings = (
+        "Core Competencies",
+        "Technical Skills",
+        "Technical Profile",
+        "Technologies",
+    )
+    for heading in headings:
         body = _section(lines, heading)
         values.extend(_parse_table_values(body))
         values.extend(_parse_flat_values(body))
