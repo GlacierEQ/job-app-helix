@@ -174,7 +174,9 @@ def _normalize_questions(payload: Mapping[str, Any]) -> tuple[ApplicationField, 
             for row in rows:
                 if not isinstance(row, Mapping):
                     continue
-                label = str(row.get("label") or row.get("name") or "Demographic question").strip()
+                label = str(
+                    row.get("label") or row.get("name") or "Demographic question"
+                ).strip()
                 normalized.append(
                     ApplicationField(
                         label=label,
@@ -210,7 +212,13 @@ def _answer_field(field: ApplicationField, profile: CandidateProfile) -> FieldAn
     combined = f"{label} {name}"
 
     if field.field_type == "input_hidden":
-        return FieldAnswer(field, "PROVIDER_MANAGED", None, None, "Hidden provider field is not user-authored.")
+        return FieldAnswer(
+            field,
+            "PROVIDER_MANAGED",
+            None,
+            None,
+            "Hidden provider field is not user-authored.",
+        )
     if field.category in {"compliance", "demographic_questions"} or any(
         term in combined for term in SENSITIVE_LABEL_TERMS
     ):
@@ -232,25 +240,55 @@ def _answer_field(field: ApplicationField, profile: CandidateProfile) -> FieldAn
 
     first_name, last_name = _name_parts(profile.name)
     if name == "first_name" and first_name:
-        return FieldAnswer(field, "AUTO_FILL", first_name, "CandidateProfile.name", "Exact profile name evidence.")
+        return FieldAnswer(
+            field,
+            "AUTO_FILL",
+            first_name,
+            "CandidateProfile.name",
+            "Exact profile name evidence.",
+        )
     if name == "last_name" and last_name:
-        return FieldAnswer(field, "AUTO_FILL", last_name, "CandidateProfile.name", "Exact profile name evidence.")
+        return FieldAnswer(
+            field,
+            "AUTO_FILL",
+            last_name,
+            "CandidateProfile.name",
+            "Exact profile name evidence.",
+        )
 
     for contact_kind, aliases in CONTACT_ALIASES.items():
         if contact_kind in combined or any(alias in combined for alias in aliases):
             hit = _contact_lookup(profile, aliases)
             if hit is not None:
                 value, provenance = hit
-                return FieldAnswer(field, "AUTO_FILL", value, provenance, "Exact profile contact evidence.")
+                return FieldAnswer(
+                    field,
+                    "AUTO_FILL",
+                    value,
+                    provenance,
+                    "Exact profile contact evidence.",
+                )
 
     if name == "email":
         hit = _contact_lookup(profile, CONTACT_ALIASES["email"])
         if hit is not None:
-            return FieldAnswer(field, "AUTO_FILL", hit[0], hit[1], "Exact profile contact evidence.")
+            return FieldAnswer(
+                field,
+                "AUTO_FILL",
+                hit[0],
+                hit[1],
+                "Exact profile contact evidence.",
+            )
     if name == "phone":
         hit = _contact_lookup(profile, CONTACT_ALIASES["phone"])
         if hit is not None:
-            return FieldAnswer(field, "AUTO_FILL", hit[0], hit[1], "Exact profile contact evidence.")
+            return FieldAnswer(
+                field,
+                "AUTO_FILL",
+                hit[0],
+                hit[1],
+                "Exact profile contact evidence.",
+            )
 
     return FieldAnswer(
         field,
@@ -273,7 +311,8 @@ def build_greenhouse_application_bundle(
     if not board_key or not job_id_text:
         raise GreenhouseApplicationFieldError("board_key and job_id are required")
     source_url = (
-        f"https://boards-api.greenhouse.io/v1/boards/{board_key}/jobs/{job_id_text}?questions=true"
+        f"https://boards-api.greenhouse.io/v1/boards/{board_key}/jobs/"
+        f"{job_id_text}?questions=true"
     )
     payload = transport(source_url)
     if not isinstance(payload, Mapping):
@@ -325,7 +364,8 @@ def write_greenhouse_application_bundle(
     bundle = build_greenhouse_application_bundle(board_key, job_id, profile, transport=transport)
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = output.with_suffix(output.suffix + ".tmp")
-    temporary.write_text(json.dumps(bundle.as_dict(), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    rendered = json.dumps(bundle.as_dict(), indent=2, sort_keys=True) + "\n"
+    temporary.write_text(rendered, encoding="utf-8")
     temporary.replace(output)
     return bundle
 
