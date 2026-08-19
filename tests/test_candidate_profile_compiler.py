@@ -5,7 +5,7 @@ import unittest
 
 from job_app_helix import application_operations, candidate_profile_compiler
 
-RESUME = """# Casey Barton \u2014 Senior Infrastructure Engineer
+RESUME = """# Casey Barton — Senior Infrastructure Engineer
 
 **Email**: casey@example.com | **GitHub**: github.com/GlacierEQ | **Location**: Honolulu, HI
 
@@ -38,7 +38,7 @@ Infrastructure engineer focused on reliable AI and physical systems.
 """
 
 
-SECONDARY = """# Casey Barton \u2014 AI Systems Engineer
+SECONDARY = """# Casey Barton — AI Systems Engineer
 
 **Email**: casey@example.com | **GitHub**: github.com/GlacierEQ | **Location**: Honolulu, HI
 
@@ -62,6 +62,32 @@ Systems engineer building evidence-backed automation.
 | Category | Technologies |
 |----------|--------------|
 | Languages | Python, Rust |
+"""
+
+
+PRODUCTION_STYLE_RESUME = """# CASEY DEL CARPIO BARTON
+Applied AI Systems Architect - Agent Infrastructure Engineer - Forward-Deployed AI Engineer
+Honolulu, Hawaii - 808-936-5654 - glacier.equilibrium@gmail.com
+GitHub: https://github.com/GlacierEQ
+
+## Professional Summary
+Applied AI systems architect who builds the operating layer between model capability and dependable outcomes.
+
+## Core Competencies
+Agent infrastructure; multi-agent orchestration; Model Context Protocol (MCP); application intelligence; provenance; deterministic testing; bounded retries; failure and recovery design.
+
+## Technologies
+Python; TypeScript; JavaScript; SQL; Bash; GitHub Actions; Docker; Vercel.
+
+## Selected Systems
+AKOS - CURRENT-HEAD EXECUTED MULTI-VERSION CI
+Execution authority and delegated-identity verification at exact canonical head `eac3cab001306225b99da41c37370528331966dd`. GitHub Actions succeeds across Python 3.11, 3.12, and 3.13.
+
+ECHO - TESTED REPOSITORY + PUBLIC/PRIVACY BOUNDARY
+Receipt-backed continuity and orchestration with deterministic identity, integrity checks, idempotent execution, bounded retries, execution receipts, and provenance-bearing exports.
+
+Job Application Helix - PARTIALLY_VERIFIED
+Evidence-governed hiring and portfolio orchestration with an exact 67-repository admitted public proof boundary.
 """
 
 
@@ -102,6 +128,31 @@ class CandidateProfileCompilerTests(unittest.TestCase):
         self.assertIsInstance(provenance, dict)
         self.assertEqual(provenance["policy"], "source_text_only_no_claim_invention")
         self.assertTrue(provenance["sources"][0]["sha256"])
+
+    def test_production_resume_layout_is_first_class_input(self) -> None:
+        resume = _write(self.root / "resume-ats.md", PRODUCTION_STYLE_RESUME)
+        output = self.root / "profile.json"
+
+        payload = candidate_profile_compiler.write_candidate_profile(
+            [resume], output, profile_id="casey-production-style"
+        )
+        loaded = application_operations.load_candidate_profile(output)
+
+        self.assertEqual(payload["name"], "CASEY DEL CARPIO BARTON")
+        self.assertEqual(
+            payload["headline"],
+            "Applied AI Systems Architect - Agent Infrastructure Engineer - Forward-Deployed AI Engineer",
+        )
+        self.assertIn("multi-agent orchestration", loaded.skills)
+        self.assertIn("Python", loaded.skills)
+        self.assertEqual(loaded.contact["email"], "glacier.equilibrium@gmail.com")
+        self.assertEqual(loaded.contact["github"], "https://github.com/GlacierEQ")
+        self.assertTrue(any("AKOS" in item for item in loaded.experience))
+        self.assertTrue(any("3.11" in item for item in loaded.achievements))
+        self.assertEqual(
+            payload["summary"],
+            "Applied AI systems architect who builds the operating layer between model capability and dependable outcomes.",
+        )
 
     def test_multi_resume_composition_deduplicates_and_preserves_primary_voice(self) -> None:
         primary = _write(self.root / "general.md", RESUME)
@@ -148,7 +199,7 @@ class CandidateProfileCompilerTests(unittest.TestCase):
     def test_missing_required_evidence_is_rejected(self) -> None:
         resume = _write(
             self.root / "thin.md",
-            "# Casey Barton \u2014 Engineer\n\n## Summary\n\nA real summary.\n",
+            "# Casey Barton — Engineer\n\n## Summary\n\nA real summary.\n",
         )
 
         with self.assertRaisesRegex(
