@@ -68,7 +68,10 @@ def _payload() -> dict[str, object]:
                     {
                         "name": "question_102",
                         "type": "multi_value_single_select",
-                        "values": [{"value": 1, "label": "Yes"}, {"value": 0, "label": "No"}],
+                        "values": [
+                            {"value": 1, "label": "Yes"},
+                            {"value": 0, "label": "No"},
+                        ],
                     }
                 ],
             },
@@ -90,7 +93,12 @@ def test_build_bundle_autofills_only_exact_profile_evidence() -> None:
         seen.append(url)
         return _payload()
 
-    bundle = build_greenhouse_application_bundle("xai", "4956028007", _profile(), transport=transport)
+    bundle = build_greenhouse_application_bundle(
+        "xai",
+        "4956028007",
+        _profile(),
+        transport=transport,
+    )
     answers = {item.field.name: item for item in bundle.fields}
 
     assert seen == [
@@ -117,7 +125,12 @@ def test_bundle_fails_closed_on_provider_identity_drift() -> None:
         return payload
 
     try:
-        build_greenhouse_application_bundle("xai", "4956028007", _profile(), transport=transport)
+        build_greenhouse_application_bundle(
+            "xai",
+            "4956028007",
+            _profile(),
+            transport=transport,
+        )
     except GreenhouseApplicationFieldError as exc:
         assert "identity drift" in str(exc)
     else:
@@ -129,7 +142,12 @@ def test_bundle_fails_when_provider_returns_no_fields() -> None:
         return {"id": 4956028007, "questions": []}
 
     try:
-        build_greenhouse_application_bundle("xai", "4956028007", _profile(), transport=transport)
+        build_greenhouse_application_bundle(
+            "xai",
+            "4956028007",
+            _profile(),
+            transport=transport,
+        )
     except GreenhouseApplicationFieldError as exc:
         assert "no application fields" in str(exc)
     else:
