@@ -1,9 +1,9 @@
-"""Prepare a live Greenhouse application packet with evidence-bound custom-answer drafts.
+"""Prepare a live Greenhouse application packet with evidence-bound answer drafts.
 
-This composes three already-proven Helix surfaces: an APPLICATION_READY release, the live
-Greenhouse field schema, and candidate/portfolio evidence. It writes preparation sidecars
-into the selected recruiter packet but never submits an application or changes the existing
-APPLICATION_READY receipt.
+This composes an APPLICATION_READY release, the live Greenhouse field schema, candidate
+and portfolio evidence, and optional applicant-confirmed answers. Confirmed answers are
+bound to exact live field identities and provider options before packet mutation. Nothing
+in this module submits an application or changes the existing APPLICATION_READY receipt.
 """
 from __future__ import annotations
 
@@ -17,6 +17,7 @@ from pathlib import Path
 
 from .application_operations import CandidateProfile, load_candidate_profile
 from .greenhouse_application_fields import (
+    ApplicationField,
     FieldAnswer,
     GreenhouseApplicationBundle,
     JsonTransport,
@@ -35,6 +36,17 @@ class EvidenceFragment:
     provenance: str
     evidence_class: str
     source_sha256: str | None = None
+
+    def as_dict(self) -> dict[str, object]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class ApplicantConfirmedAnswer:
+    field_name: str
+    value: str
+    provenance: str
+    source_sha256: str
 
     def as_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -62,8 +74,10 @@ class GreenhouseApplicationPreparation:
     release_receipt_sha256: str
     field_bundle_receipt_sha256: str
     evidence: tuple[EvidenceFragment, ...]
+    applicant_answers: tuple[ApplicantConfirmedAnswer, ...]
     prompts: tuple[PromptPreparation, ...]
     drafted_count: int
+    applicant_confirmed_count: int
     review_required_count: int
     receipt_sha256: str
 
@@ -76,8 +90,10 @@ class GreenhouseApplicationPreparation:
             "release_receipt_sha256": self.release_receipt_sha256,
             "field_bundle_receipt_sha256": self.field_bundle_receipt_sha256,
             "evidence": [item.as_dict() for item in self.evidence],
+            "applicant_answers": [item.as_dict() for item in self.applicant_answers],
             "prompts": [item.as_dict() for item in self.prompts],
             "drafted_count": self.drafted_count,
+            "applicant_confirmed_count": self.applicant_confirmed_count,
             "review_required_count": self.review_required_count,
             "receipt_sha256": self.receipt_sha256,
         }
@@ -188,6 +204,86 @@ def collect_evidence(
     return tuple(deduped)
 
 
+def load_applicant_answers(paths: Sequence[Path]) -> tuple[ApplicantConfirmedAnswer, ...]:
+    """Load explicit applicant answers from hashed JSON sources without inferring values."""
+    answers: list[ApplicantConfirmedAnswer] = []
+    seen: dict[str, ApplicantConfirmedAnswer] = {}
+    for path in paths:
+        payload = _read_object(path, label="applicant answer source")
+        raw_answers = payload.get("answers")
+        if not isinstance(raw_answers, list) or not raw_answers:
+            raise GreenhouseApplicationPreparationError(
+                f"applicant answer source requires non-empty answers: {path}"
+            )
+        digest = _file_sha256(path)
+        for index, row in enumerate(raw_answers):
+            if not isinstance(row, Mapping):
+                raise GreenhouseApplicationPreparationError(
+                    f"applicant answer #{index} must be an object: {path}"
+                )
+            field_name = _required_string(row, "field_name", label=f"applicant answer #{index}")
+            value = _required_string(row, "value", label=f"applicant answer #{index}")
+            provenance_value = row.get("provenance")
+            provenance = (
+                str(provenance_value).strip()
+                if isinstance(provenance_value, str) and provenance_value.strip()
+                else f"{path}#answers[{index}]"
+            )
+            answer = ApplicantConfirmedAnswer(field_name, value, provenance, digest)
+            existing = seen.get(field_name)
+            if existing is not None and existing.value != value:
+                raise GreenhouseApplicationPreparationError(
+                    f"conflicting applicant answers for live field {field_name}"
+                )
+            if existing is None:
+                seen[field_name] = answer
+                answers.append(answer)
+    return tuple(answers)
+
+
+def _normalize_option_value(field: ApplicationField, value: str) -> str:
+    if not field.options:
+        return value
+    folded = value.casefold().strip()
+    matches = [
+        option_value
+        for option_value, label in field.options
+        if folded in {option_value.casefold().strip(), label.casefold().strip()}
+    ]
+    if len(matches) != 1:
+        labels = ", ".join(label for _, label in field.options)
+        raise GreenhouseApplicationPreparationError(
+            f"applicant answer for {field.name} must match one live provider option: {labels}"
+        )
+    return matches[0]
+
+
+def _bind_applicant_answers(
+    field_bundle: GreenhouseApplicationBundle,
+    answers: Sequence[ApplicantConfirmedAnswer],
+) -> dict[str, ApplicantConfirmedAnswer]:
+    by_field = {item.field.name: item.field for item in field_bundle.fields}
+    bound: dict[str, ApplicantConfirmedAnswer] = {}
+    for answer in answers:
+        field = by_field.get(answer.field_name)
+        if field is None:
+            raise GreenhouseApplicationPreparationError(
+                f"applicant answer field is not present in live provider schema: {answer.field_name}"
+            )
+        if field.field_type in {"input_hidden", "input_file"}:
+            raise GreenhouseApplicationPreparationError(
+                f"applicant answer cannot override provider-managed field {answer.field_name}"
+            )
+        value = _normalize_option_value(field, answer.value)
+        bound[answer.field_name] = ApplicantConfirmedAnswer(
+            field_name=answer.field_name,
+            value=value,
+            provenance=answer.provenance,
+            source_sha256=answer.source_sha256,
+        )
+    return bound
+
+
 def _exceptional_work_draft(evidence: Sequence[EvidenceFragment]) -> PromptPreparation | None:
     if not evidence:
         return None
@@ -218,8 +314,18 @@ def _exceptional_work_draft(evidence: Sequence[EvidenceFragment]) -> PromptPrepa
 def _prepare_prompt(
     field_answer: FieldAnswer,
     evidence: Sequence[EvidenceFragment],
+    applicant_answer: ApplicantConfirmedAnswer | None = None,
 ) -> PromptPreparation:
     field = field_answer.field
+    if applicant_answer is not None:
+        return PromptPreparation(
+            field_name=field.name,
+            label=field.label,
+            status="APPLICANT_CONFIRMED",
+            draft=applicant_answer.value,
+            provenance=(applicant_answer.provenance, f"sha256:{applicant_answer.source_sha256}"),
+            reason="Exact applicant-supplied answer bound to the current live provider field schema.",
+        )
     combined = f"{field.label} {field.name}".casefold()
     if field_answer.status == "AUTO_FILL":
         return PromptPreparation(
@@ -274,10 +380,11 @@ def prepare_greenhouse_application_release(
     board_key: str,
     job_id: str | int,
     evidence_sources: Sequence[Path] = (),
+    applicant_answer_sources: Sequence[Path] = (),
     output_path: Path | None = None,
     transport: JsonTransport = _fetch_json,
 ) -> GreenhouseApplicationPreparation:
-    """Bind a live Greenhouse form and bounded evidence to one APPLICATION_READY packet."""
+    """Bind a live Greenhouse form and bounded applicant evidence to one release packet."""
     application_id, opening_id, packet_dir, release_receipt = _resolve_release(release_path)
     job_id_text = str(job_id).strip()
     if opening_id != job_id_text:
@@ -291,15 +398,21 @@ def prepare_greenhouse_application_release(
         transport=transport,
     )
     evidence = collect_evidence(profile, evidence_sources)
-    prompts = tuple(_prepare_prompt(item, evidence) for item in field_bundle.fields)
+    applicant_answers = load_applicant_answers(applicant_answer_sources)
+    bound_answers = _bind_applicant_answers(field_bundle, applicant_answers)
+    prompts = tuple(
+        _prepare_prompt(item, evidence, bound_answers.get(item.field.name))
+        for item in field_bundle.fields
+    )
     base: dict[str, object] = {
-        "schema": "glaciereq.greenhouse-application-preparation.v1",
+        "schema": "glaciereq.greenhouse-application-preparation.v2",
         "application_id": application_id,
         "opening_id": opening_id,
         "packet_dir": str(packet_dir),
         "release_receipt_sha256": release_receipt,
         "field_bundle_receipt_sha256": field_bundle.receipt_sha256,
         "evidence": [item.as_dict() for item in evidence],
+        "applicant_answers": [item.as_dict() for item in applicant_answers],
         "prompts": [item.as_dict() for item in prompts],
     }
     result = GreenhouseApplicationPreparation(
@@ -310,8 +423,10 @@ def prepare_greenhouse_application_release(
         release_receipt_sha256=release_receipt,
         field_bundle_receipt_sha256=field_bundle.receipt_sha256,
         evidence=evidence,
+        applicant_answers=applicant_answers,
         prompts=prompts,
         drafted_count=sum(item.status == "DRAFT_REVIEW_REQUIRED" for item in prompts),
+        applicant_confirmed_count=sum(item.status == "APPLICANT_CONFIRMED" for item in prompts),
         review_required_count=sum(
             item.status in {"DRAFT_REVIEW_REQUIRED", "REVIEW_REQUIRED", "USER_DECISION_REQUIRED"}
             for item in prompts
@@ -332,6 +447,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--board-key", required=True)
     parser.add_argument("--job-id", required=True)
     parser.add_argument("--evidence-source", action="append", type=Path, default=[])
+    parser.add_argument("--applicant-answer-source", action="append", type=Path, default=[])
     parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
     result = prepare_greenhouse_application_release(
@@ -340,6 +456,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         board_key=args.board_key,
         job_id=args.job_id,
         evidence_sources=tuple(args.evidence_source),
+        applicant_answer_sources=tuple(args.applicant_answer_source),
         output_path=args.output,
     )
     print(json.dumps(result.as_dict(), indent=2, sort_keys=True))
