@@ -110,11 +110,15 @@ def _resolve_company(payload: Mapping[str, object], company: str) -> tuple[str, 
     return matches[0]
 
 
-def _public_graph(payload: Mapping[str, object]) -> tuple[list[Mapping[str, object]], list[Mapping[str, object]]]:
-    graph = payload["graph"]
-    assert isinstance(graph, Mapping)
-    public = graph["public"]
-    assert isinstance(public, Mapping)
+def _public_graph(
+    payload: Mapping[str, object],
+) -> tuple[list[Mapping[str, object]], list[Mapping[str, object]]]:
+    graph = payload.get("graph")
+    if not isinstance(graph, Mapping):
+        raise ValueError("experience graph requires graph")
+    public = graph.get("public")
+    if not isinstance(public, Mapping):
+        raise ValueError("experience graph requires public graph")
     nodes = public.get("nodes")
     edges = public.get("edges")
     if not isinstance(nodes, list) or not isinstance(edges, list):
@@ -127,9 +131,19 @@ def _public_graph(payload: Mapping[str, object]) -> tuple[list[Mapping[str, obje
 def _state_score(value: object, *, provenance: bool = False) -> tuple[float, str | None]:
     text = str(value or "UNCLASSIFIED").upper()
     if provenance:
-        weights = {"VERIFIED": 18.0, "PROVEN": 18.0, "ATTRIBUTABLE": 14.0, "SOURCE_BOUND": 14.0}
+        weights = {
+            "VERIFIED": 18.0,
+            "PROVEN": 18.0,
+            "ATTRIBUTABLE": 14.0,
+            "SOURCE_BOUND": 14.0,
+        }
     else:
-        weights = {"VERIFIED": 20.0, "PROMOTED": 16.0, "PROVEN": 20.0, "READY": 12.0}
+        weights = {
+            "VERIFIED": 20.0,
+            "PROMOTED": 16.0,
+            "PROVEN": 20.0,
+            "READY": 12.0,
+        }
     for token, score in weights.items():
         if token in text:
             return score, token.lower().replace("_", "-")
@@ -203,7 +217,8 @@ def build_application_evidence_bundle(
         provenance_score, provenance_reason = _state_score(
             node.get("provenance_state"), provenance=True
         )
-        score += promotion_score + provenance_score + _evidence_level_score(node.get("evidence_level"))
+        evidence_score = _evidence_level_score(node.get("evidence_level"))
+        score += promotion_score + provenance_score + evidence_score
         if promotion_reason:
             reasons.append(f"promotion:{promotion_reason}")
         if provenance_reason:
@@ -222,10 +237,16 @@ def build_application_evidence_bundle(
             rank=index,
             repository=repository,
             company_id=company_id,
-            evidence_level=(str(node["evidence_level"]) if node.get("evidence_level") is not None else None),
+            evidence_level=(
+                str(node["evidence_level"])
+                if node.get("evidence_level") is not None
+                else None
+            ),
             promotion_state=str(node.get("promotion_state", "UNCLASSIFIED")),
             provenance_state=str(node.get("provenance_state", "UNCLASSIFIED")),
-            flagship_systems=tuple(sorted(set(flagship_by_repo.get(f"repo:{repository}", [])))),
+            flagship_systems=tuple(
+                sorted(set(flagship_by_repo.get(f"repo:{repository}", [])))
+            ),
             paradigms=tuple(sorted(set(paradigms_by_repo.get(f"repo:{repository}", [])))),
             score=score,
             reasons=reasons,
@@ -269,11 +290,16 @@ def execute_application_evidence_projection(
     output: Path | None = None,
     limit: int | None = None,
 ) -> ApplicationEvidenceBundle:
-    bundle = build_application_evidence_bundle(_load_graph(graph_path), company=company, limit=limit)
+    bundle = build_application_evidence_bundle(
+        _load_graph(graph_path),
+        company=company,
+        limit=limit,
+    )
     if output is not None:
         output.parent.mkdir(parents=True, exist_ok=True)
         temporary = output.with_suffix(output.suffix + ".tmp")
-        temporary.write_text(json.dumps(bundle.as_dict(), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        rendered = json.dumps(bundle.as_dict(), indent=2, sort_keys=True) + "\n"
+        temporary.write_text(rendered, encoding="utf-8")
         temporary.replace(output)
     return bundle
 
