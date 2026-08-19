@@ -176,7 +176,9 @@ def test_hash_binds_required_attachment_and_marks_packet_ready(tmp_path: Path) -
     assert attachment.size_bytes == len(resume.read_bytes())
 
 
-def test_missing_required_attachment_blocks_readiness_without_fabricating_path(tmp_path: Path) -> None:
+def test_missing_required_attachment_blocks_readiness_without_fabrication(
+    tmp_path: Path,
+) -> None:
     packet, preparation = _packet(tmp_path)
 
     result = finalize_greenhouse_application(preparation)
