@@ -1,0 +1,103 @@
+name: Greenhouse Application Preparation Proof
+
+on:
+  pull_request:
+    paths:
+      - 'src/job_app_helix/greenhouse_application_preparation.py'
+      - 'src/job_app_helix/greenhouse_application_fields.py'
+      - 'tests/test_greenhouse_application_preparation.py'
+      - 'pyproject.toml'
+      - '.github/workflows/greenhouse-application-preparation-proof.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  application-preparation:
+    name: Application preparation / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package and proof tools
+        run: python -m pip install -e '.[dev]'
+      - name: Lint application-preparation surface
+        run: >-
+          ruff check
+          src/job_app_helix/greenhouse_application_preparation.py
+          tests/test_greenhouse_application_preparation.py
+      - name: Run adversarial application-preparation tests
+        run: pytest tests/test_greenhouse_application_preparation.py
+      - name: Prove installed executable
+        run: job-app-helix-greenhouse-prepare --help
+      - name: Observe live xAI source-bound custom prompt preparation
+        if: matrix.python-version == '3.12'
+        shell: bash
+        run: |
+          mkdir -p /tmp/xai-packet
+          cat > /tmp/proof-profile.json <<'JSON'
+          {
+            "profile_id": "live-xai-preparation-proof",
+            "name": "Proof Candidate",
+            "headline": "Systems engineer",
+            "summary": "Non-submission provider preparation proof.",
+            "skills": ["Python", "Rust"],
+            "experience": ["Built evidence-bound engineering software."],
+            "achievements": ["Built deterministic source-bound application preparation."],
+            "contact": {"email": "proof@example.com"}
+          }
+          JSON
+          cat > /tmp/APPLICATION_READY_TARGET.json <<'JSON'
+          {
+            "schema": "glaciereq.application-ready-release.v1",
+            "receipt_sha256": "proof-release-receipt",
+            "selected": {
+              "application_id": "proof-xai-4956028007",
+              "opening_id": "4956028007",
+              "packet_dir": "/tmp/xai-packet"
+            }
+          }
+          JSON
+          job-app-helix-greenhouse-prepare \
+            --release /tmp/APPLICATION_READY_TARGET.json \
+            --profile /tmp/proof-profile.json \
+            --board-key xai \
+            --job-id 4956028007 \
+            --evidence-source docs/evidence-constellations/xai-spacex-2026-08-18/constellations/xai.md \
+            --output /tmp/xai-preparation.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = json.loads(Path('/tmp/xai-preparation.json').read_text())
+          assert payload['opening_id'] == '4956028007'
+          assert payload['drafted_count'] >= 1
+          prompts = payload['prompts']
+          exceptional = [row for row in prompts if 'exceptional work' in row['label'].lower()]
+          assert exceptional, 'live xAI form no longer exposes the exceptional-work prompt'
+          assert exceptional[0]['status'] == 'DRAFT_REVIEW_REQUIRED'
+          assert exceptional[0]['draft']
+          assert exceptional[0]['provenance']
+          assert Path('/tmp/xai-packet/GREENHOUSE_APPLICATION_FIELDS.json').is_file()
+          assert Path('/tmp/xai-packet/GREENHOUSE_APPLICATION_PREPARATION.json').is_file()
+          source_claims = [
+              row for row in payload['evidence']
+              if row['evidence_class'] == 'source_reviewed_portfolio_claim'
+          ]
+          assert source_claims and source_claims[0]['source_sha256']
+          print(json.dumps({
+              'application_id': payload['application_id'],
+              'opening_id': payload['opening_id'],
+              'drafted_count': payload['drafted_count'],
+              'review_required_count': payload['review_required_count'],
+              'field_bundle_receipt_sha256': payload['field_bundle_receipt_sha256'],
+              'preparation_receipt_sha256': payload['receipt_sha256'],
+              'exceptional_work_provenance': exceptional[0]['provenance'],
+          }, sort_keys=True))
+          PY
