@@ -9,7 +9,13 @@ import pytest
 from job_app_helix.flight_deck_opening_bridge import compile_flight_deck_opening_bridge
 
 
-def _write_snapshot(root: Path, key: str, *, metadata: dict | None = None, title: str = "Engineer") -> dict:
+def _write_snapshot(
+    root: Path,
+    key: str,
+    *,
+    metadata: dict | None = None,
+    title: str = "Engineer",
+) -> dict:
     opening = {
         "opening_id": "opening-123",
         "company": "Example Co",
@@ -26,7 +32,12 @@ def _write_snapshot(root: Path, key: str, *, metadata: dict | None = None, title
         "schema": "glaciereq.live-opening-acquisition.v1",
         "source_url": opening["source_url"],
         "opening": opening,
-        "change": {"status": "NEW", "previous_digest": None, "current_digest": "provider-digest", "changed_fields": []},
+        "change": {
+            "status": "NEW",
+            "previous_digest": None,
+            "current_digest": "provider-digest",
+            "changed_fields": [],
+        },
         "receipt_sha256": "acquisition-receipt-1",
     }
     path = root / "openings" / key / "OPENING_SNAPSHOT.json"
