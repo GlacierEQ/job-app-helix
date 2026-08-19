@@ -117,7 +117,11 @@ def test_prepares_application_ready_packet_with_source_bound_custom_draft(tmp_pa
     assert by_name["question_sponsorship"].status == "REVIEW_REQUIRED"
     assert by_name["question_sponsorship"].draft is None
 
-    source_claims = [item for item in result.evidence if item.evidence_class == "source_reviewed_portfolio_claim"]
+    source_claims = [
+        item
+        for item in result.evidence
+        if item.evidence_class == "source_reviewed_portfolio_claim"
+    ]
     assert len(source_claims) == 1
     assert source_claims[0].source_sha256 == hashlib.sha256(evidence.read_bytes()).hexdigest()
 
