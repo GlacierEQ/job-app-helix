@@ -209,7 +209,9 @@ def _index_live_fields(field_bundle: Mapping[str, object]) -> dict[str, Mapping[
             raise GreenhouseApplicationFinalizationError(f"duplicate live field identity: {name}")
         indexed[name] = field
     if not indexed:
-        raise GreenhouseApplicationFinalizationError("field bundle contains no usable field identities")
+        raise GreenhouseApplicationFinalizationError(
+            "field bundle contains no usable field identities"
+        )
     return indexed
 
 
@@ -225,7 +227,9 @@ def _index_prompts(preparation: Mapping[str, object]) -> dict[str, Mapping[str, 
         if not isinstance(name, str) or not name.strip():
             continue
         if name in indexed:
-            raise GreenhouseApplicationFinalizationError(f"duplicate prepared field identity: {name}")
+            raise GreenhouseApplicationFinalizationError(
+                f"duplicate prepared field identity: {name}"
+            )
         indexed[name] = row
     return indexed
 
@@ -293,11 +297,11 @@ def _resolve_field(
     draft = prompt.get("draft")
     value = draft.strip() if isinstance(draft, str) and draft.strip() else None
     raw_provenance = prompt.get("provenance")
-    provenance = tuple(
-        str(item).strip()
-        for item in raw_provenance
-        if str(item).strip()
-    ) if isinstance(raw_provenance, list) else ()
+    provenance = (
+        tuple(str(item).strip() for item in raw_provenance if str(item).strip())
+        if isinstance(raw_provenance, list)
+        else ()
+    )
 
     accepted_statuses = {"AUTO_FILL_VERIFIED", "APPLICANT_CONFIRMED"}
     if status in accepted_statuses and value is not None:
@@ -321,7 +325,10 @@ def _resolve_field(
         value,
         None,
         provenance,
-        "Drafts and undecided values are not promoted to final answers without applicant confirmation.",
+        (
+            "Drafts and undecided values are not promoted to final answers without "
+            "applicant confirmation."
+        ),
     )
 
 
