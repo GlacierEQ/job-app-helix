@@ -10,7 +10,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
+import tempfile
 from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -18,6 +20,13 @@ from pathlib import Path
 GRAPH_SCHEMA = "glaciereq.live-experience-graph.v1"
 BUNDLE_SCHEMA = "glaciereq.application-evidence-graph.v1"
 _SHA256 = re.compile(r"^[a-f0-9]{64}$")
+_REQUIRED_BOUNDARIES = (
+    "inventory_is_not_authorship",
+    "inventory_is_not_runtime_proof",
+    "company_mapping_does_not_imply_affiliation",
+    "private_repository_names_omitted_from_public_graph",
+)
+_NEGATORS = {"NO", "NON", "NOT", "UN"}
 
 
 @dataclass(frozen=True)
@@ -66,9 +75,8 @@ def _canonical_sha256(payload: Mapping[str, object]) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
-def _load_graph(path: Path) -> Mapping[str, object]:
-    payload = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(payload, Mapping) or payload.get("schema") != GRAPH_SCHEMA:
+def _validate_graph_payload(payload: Mapping[str, object]) -> None:
+    if payload.get("schema") != GRAPH_SCHEMA:
         raise ValueError(f"experience graph must use schema {GRAPH_SCHEMA}")
     snapshot_id = payload.get("snapshot_id")
     if not isinstance(snapshot_id, str) or _SHA256.fullmatch(snapshot_id) is None:
@@ -76,17 +84,18 @@ def _load_graph(path: Path) -> Mapping[str, object]:
     boundary = payload.get("truth_boundary")
     if not isinstance(boundary, Mapping):
         raise ValueError("experience graph requires truth_boundary")
-    required_boundaries = (
-        "inventory_is_not_authorship",
-        "inventory_is_not_runtime_proof",
-        "company_mapping_does_not_imply_affiliation",
-        "private_repository_names_omitted_from_public_graph",
-    )
-    if any(boundary.get(key) is not True for key in required_boundaries):
+    if any(boundary.get(key) is not True for key in _REQUIRED_BOUNDARIES):
         raise ValueError("experience graph truth boundary is not safe for application projection")
     graph = payload.get("graph")
     if not isinstance(graph, Mapping) or not isinstance(graph.get("public"), Mapping):
         raise ValueError("experience graph requires a public projection")
+
+
+def _load_graph(path: Path) -> Mapping[str, object]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, Mapping):
+        raise ValueError("experience graph must be a JSON object")
+    _validate_graph_payload(payload)
     return payload
 
 
@@ -98,11 +107,11 @@ def _resolve_company(payload: Mapping[str, object], company: str) -> tuple[str, 
         raise ValueError("experience graph requires companies")
     for row in rows:
         if not isinstance(row, Mapping):
-            continue
+            raise ValueError("experience graph contains malformed company entry")
         company_id = row.get("company_id")
         display_name = row.get("display_name")
         if not isinstance(company_id, str) or not isinstance(display_name, str):
-            continue
+            raise ValueError("experience graph contains malformed company identity")
         if normalized in {company_id.casefold(), display_name.casefold()}:
             matches.append((company_id, display_name))
     if len(matches) != 1:
@@ -123,31 +132,37 @@ def _public_graph(
     edges = public.get("edges")
     if not isinstance(nodes, list) or not isinstance(edges, list):
         raise ValueError("public experience graph requires nodes and edges")
-    clean_nodes = [row for row in nodes if isinstance(row, Mapping)]
-    clean_edges = [row for row in edges if isinstance(row, Mapping)]
-    return clean_nodes, clean_edges
+    if any(not isinstance(row, Mapping) for row in nodes):
+        raise ValueError("public experience graph contains malformed node")
+    if any(not isinstance(row, Mapping) for row in edges):
+        raise ValueError("public experience graph contains malformed edge")
+    return list(nodes), list(edges)
+
+
+def _positive_state_tokens(value: object) -> set[str]:
+    tokens = [token for token in re.split(r"[^A-Z0-9]+", str(value or "").upper()) if token]
+    positive: set[str] = set()
+    for index, token in enumerate(tokens):
+        if token.startswith("UN") and token[2:] in {"VERIFIED", "PROVEN", "ATTRIBUTABLE"}:
+            continue
+        if index > 0 and tokens[index - 1] in _NEGATORS:
+            continue
+        positive.add(token)
+    return positive
 
 
 def _state_score(value: object, *, provenance: bool = False) -> tuple[float, str | None]:
-    text = str(value or "UNCLASSIFIED").upper()
-    if provenance:
-        weights = {
-            "VERIFIED": 18.0,
-            "PROVEN": 18.0,
-            "ATTRIBUTABLE": 14.0,
-            "SOURCE_BOUND": 14.0,
-        }
-    else:
-        weights = {
-            "VERIFIED": 20.0,
-            "PROMOTED": 16.0,
-            "PROVEN": 20.0,
-            "READY": 12.0,
-        }
-    for token, score in weights.items():
-        if token in text:
-            return score, token.lower().replace("_", "-")
-    return 0.0, None
+    weights = (
+        {"VERIFIED": 18.0, "PROVEN": 18.0, "ATTRIBUTABLE": 14.0, "BOUND": 14.0}
+        if provenance
+        else {"VERIFIED": 20.0, "PROMOTED": 16.0, "PROVEN": 20.0, "READY": 12.0}
+    )
+    tokens = _positive_state_tokens(value)
+    matched = [(score, token) for token, score in weights.items() if token in tokens]
+    if not matched:
+        return 0.0, None
+    score, token = max(matched)
+    return score, token.lower()
 
 
 def _evidence_level_score(value: object) -> float:
@@ -157,11 +172,33 @@ def _evidence_level_score(value: object) -> float:
     numeric = re.search(r"(?:LEVEL|L)[-_ ]?(\d+)", text)
     if numeric:
         return min(20.0, float(numeric.group(1)) * 4.0)
-    if any(token in text for token in ("EXECUTABLE", "RUNTIME", "PROVEN")):
+    tokens = _positive_state_tokens(value)
+    if tokens.intersection({"EXECUTABLE", "RUNTIME", "PROVEN"}):
         return 16.0
-    if any(token in text for token in ("IMPLEMENTED", "WORKING")):
+    if tokens.intersection({"IMPLEMENTED", "WORKING"}):
         return 12.0
     return 4.0
+
+
+def _score_repository(
+    node: Mapping[str, object],
+    flagships: tuple[str, ...],
+) -> tuple[float, tuple[str, ...]]:
+    score = 50.0
+    reasons = ["direct-company-challenge-link", "public-repository"]
+    promotion_score, promotion_reason = _state_score(node.get("promotion_state"))
+    provenance_score, provenance_reason = _state_score(
+        node.get("provenance_state"), provenance=True
+    )
+    score += promotion_score + provenance_score + _evidence_level_score(node.get("evidence_level"))
+    if promotion_reason:
+        reasons.append(f"promotion:{promotion_reason}")
+    if provenance_reason:
+        reasons.append(f"provenance:{provenance_reason}")
+    if flagships:
+        score += min(12.0, 6.0 * len(flagships))
+        reasons.append("public-flagship-implementation")
+    return round(min(score, 100.0), 4), tuple(reasons)
 
 
 def build_application_evidence_bundle(
@@ -171,13 +208,13 @@ def build_application_evidence_bundle(
     limit: int | None = None,
 ) -> ApplicationEvidenceBundle:
     """Rank public company-linked repositories without inventing stronger claims."""
+    _validate_graph_payload(payload)
     if limit is not None and limit <= 0:
         raise ValueError("limit must be positive when provided")
     company_id, display_name = _resolve_company(payload, company)
     nodes, edges = _public_graph(payload)
     by_id = {str(node.get("id")): node for node in nodes if node.get("id")}
     company_node = f"company:{company_id}"
-
     linked_repo_ids = {
         str(edge.get("source"))
         for edge in edges
@@ -201,35 +238,32 @@ def build_application_evidence_bundle(
             if isinstance(paradigm_id, str):
                 paradigms_by_repo.setdefault(source, []).append(paradigm_id)
 
-    scored: list[tuple[float, str, Mapping[str, object], tuple[str, ...]]] = []
+    scored: list[
+        tuple[
+            float,
+            str,
+            str,
+            Mapping[str, object],
+            tuple[str, ...],
+            tuple[str, ...],
+            tuple[str, ...],
+        ]
+    ] = []
     for repo_id in sorted(linked_repo_ids):
         node = by_id.get(repo_id)
         if node is None or node.get("kind") != "repository":
-            continue
+            raise ValueError(f"company link targets invalid repository node: {repo_id}")
         if node.get("visibility") != "public":
             raise ValueError("private repository escaped public experience graph")
         repository = node.get("repository")
         if not isinstance(repository, str):
             raise ValueError(f"public repository node missing identity: {repo_id}")
-        score = 50.0
-        reasons = ["direct-company-challenge-link", "public-repository"]
-        promotion_score, promotion_reason = _state_score(node.get("promotion_state"))
-        provenance_score, provenance_reason = _state_score(
-            node.get("provenance_state"), provenance=True
-        )
-        evidence_score = _evidence_level_score(node.get("evidence_level"))
-        score += promotion_score + provenance_score + evidence_score
-        if promotion_reason:
-            reasons.append(f"promotion:{promotion_reason}")
-        if provenance_reason:
-            reasons.append(f"provenance:{provenance_reason}")
         flagships = tuple(sorted(set(flagship_by_repo.get(repo_id, []))))
-        if flagships:
-            score += min(12.0, 6.0 * len(flagships))
-            reasons.append("public-flagship-implementation")
-        scored.append((round(min(score, 100.0), 4), repository, node, tuple(reasons)))
+        paradigms = tuple(sorted(set(paradigms_by_repo.get(repo_id, []))))
+        score, reasons = _score_repository(node, flagships)
+        scored.append((score, repo_id, repository, node, reasons, flagships, paradigms))
 
-    scored.sort(key=lambda row: (-row[0], row[1].casefold()))
+    scored.sort(key=lambda row: (-row[0], row[2].casefold()))
     if limit is not None:
         scored = scored[:limit]
     evidence = tuple(
@@ -242,14 +276,15 @@ def build_application_evidence_bundle(
             ),
             promotion_state=str(node.get("promotion_state", "UNCLASSIFIED")),
             provenance_state=str(node.get("provenance_state", "UNCLASSIFIED")),
-            flagship_systems=tuple(sorted(set(flagship_by_repo.get(f"repo:{repository}", [])))),
-            paradigms=tuple(sorted(set(paradigms_by_repo.get(f"repo:{repository}", [])))),
+            flagship_systems=flagships,
+            paradigms=paradigms,
             score=score,
             reasons=reasons,
         )
-        for index, (score, repository, node, reasons) in enumerate(scored, start=1)
+        for index, (score, _repo_id, repository, node, reasons, flagships, paradigms) in enumerate(
+            scored, start=1
+        )
     )
-
     truth_boundary = {
         "inventory_is_not_authorship": True,
         "inventory_is_not_runtime_proof": True,
@@ -266,7 +301,6 @@ def build_application_evidence_bundle(
         "evidence": [row.as_dict() for row in evidence],
         "truth_boundary": truth_boundary,
     }
-    receipt = _canonical_sha256(base)
     return ApplicationEvidenceBundle(
         schema=BUNDLE_SCHEMA,
         target_company_id=company_id,
@@ -275,8 +309,31 @@ def build_application_evidence_bundle(
         evidence_count=len(evidence),
         evidence=evidence,
         truth_boundary=truth_boundary,
-        receipt_sha256=receipt,
+        receipt_sha256=_canonical_sha256(base),
     )
+
+
+def _write_atomic(output: Path, payload: Mapping[str, object]) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=output.parent,
+            prefix=f".{output.name}.",
+            delete=False,
+        ) as handle:
+            temporary = Path(handle.name)
+            json.dump(payload, handle, indent=2, sort_keys=True)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, output)
+        temporary = None
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def execute_application_evidence_projection(
@@ -292,11 +349,7 @@ def execute_application_evidence_projection(
         limit=limit,
     )
     if output is not None:
-        output.parent.mkdir(parents=True, exist_ok=True)
-        temporary = output.with_suffix(output.suffix + ".tmp")
-        rendered = json.dumps(bundle.as_dict(), indent=2, sort_keys=True) + "\n"
-        temporary.write_text(rendered, encoding="utf-8")
-        temporary.replace(output)
+        _write_atomic(output, bundle.as_dict())
     return bundle
 
 
