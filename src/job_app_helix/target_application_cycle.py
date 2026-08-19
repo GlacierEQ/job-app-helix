@@ -19,6 +19,7 @@ from pathlib import Path
 
 from .application_operations import ApplicationStore, CandidateProfile, load_candidate_profile
 from .batch_application_execution import DEFAULT_ACTIONABLE_LANES
+from .candidate_profile_compiler import CandidateProfileCompileError, write_candidate_profile
 from .company_intelligence_acquisition import Transport, fetch_http_source
 from .outcome_calibration import OutcomeCalibration
 from .target_intelligence_cycle import (
@@ -40,6 +41,7 @@ REQUIRED_APPLICATION_ARTIFACTS = (
     "OPENING_INPUT_RECEIPT.json",
     "submission/SUBMISSION_PACKET.json",
 )
+COMPILED_PROFILE_FILENAME = "COMPILED_CANDIDATE_PROFILE.json"
 
 
 class ApplicationReadinessError(RuntimeError):
@@ -137,6 +139,33 @@ def _required_string(value: Mapping[str, object], field: str, *, path: Path) -> 
     if not isinstance(result, str) or not result.strip():
         raise ApplicationReadinessError(f"{path} requires non-empty {field}")
     return result.strip()
+
+
+def resolve_candidate_profile(
+    *,
+    profile_path: Path | None,
+    resume_paths: Sequence[Path],
+    state_dir: Path,
+    profile_id: str | None = None,
+) -> CandidateProfile:
+    """Resolve one candidate evidence source into the existing Helix profile contract.
+
+    Static profiles remain supported, while resume-native execution persists the compiled
+    profile inside run state so downstream packet lineage retains exact source hashes.
+    """
+    if profile_path is not None and resume_paths:
+        raise ApplicationReadinessError("use either --profile or --resume, not both")
+    if profile_path is None and not resume_paths:
+        raise ApplicationReadinessError("candidate evidence requires --profile or --resume")
+    if profile_path is not None:
+        return load_candidate_profile(profile_path)
+
+    compiled_path = state_dir / COMPILED_PROFILE_FILENAME
+    try:
+        write_candidate_profile(resume_paths, compiled_path, profile_id=profile_id)
+    except CandidateProfileCompileError as exc:
+        raise ApplicationReadinessError(f"candidate resume compilation failed: {exc}") from exc
+    return load_candidate_profile(compiled_path)
 
 
 def _inspect_packet(packet_dir: Path) -> ApplicationReadyCandidate:
@@ -368,7 +397,10 @@ def _parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument("--manifest", type=Path, required=True)
-    parser.add_argument("--profile", type=Path, required=True)
+    candidate = parser.add_mutually_exclusive_group(required=True)
+    candidate.add_argument("--profile", type=Path)
+    candidate.add_argument("--resume", action="append", type=Path)
+    parser.add_argument("--profile-id")
     parser.add_argument("--state-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--database", type=Path, required=True)
@@ -381,7 +413,12 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     targets = load_target_intelligence_manifest(args.manifest)
-    profile = load_candidate_profile(args.profile)
+    profile = resolve_candidate_profile(
+        profile_path=args.profile,
+        resume_paths=tuple(args.resume or ()),
+        state_dir=args.state_dir,
+        profile_id=args.profile_id,
+    )
     lanes = tuple(args.lane) if args.lane else DEFAULT_ACTIONABLE_LANES
     with ApplicationStore(args.database) as store:
         result = execute_target_application_cycle(
