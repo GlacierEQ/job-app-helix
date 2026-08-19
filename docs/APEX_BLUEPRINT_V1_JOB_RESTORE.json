@@ -1,102 +1,106 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "64a3ed250301fa4087a8ca54c270e7c0393918ec",
-  "current_source_sha_before_handoff": "9aecebc41ca17fbfd83ed40f69d41cef32c5c368",
+  "source_sha_before": "21c0b66481dd32b25cfa0b0778a04168995a9f65",
+  "current_source_sha_before_handoff": "ec44496d9d3fea93b0311cd3c126a8f44fa55d2d",
   "donor_shas": [
-    "f55607bebf265f801e2cc48a3de78bd9e4bd033f",
-    "c7ffbd54fa5e1478de30111c32c5092b1b9cb641",
-    "937c556d992a56aebb80bb3a2953f45427e58313",
-    "97ee30f46139569fabd9a829fbff4a76b882e821"
+    "97ee30f46139569fabd9a829fbff4a76b882e821",
+    "9aecebc41ca17fbfd83ed40f69d41cef32c5c368",
+    "a81a88325647104fdb7b665fc2e751b7cd3839a6"
   ],
-  "selected_priority": "Remove the production CandidateProfile bottleneck by compiling Helix-loadable, provenance-bound candidate profiles directly from real private resume evidence instead of relying on hand-authored static JSON.",
+  "selected_priority": "Remove the final manual profile-file handoff from the P1 application path by composing provenance-bound resume compilation directly into job-app-helix-target-application.",
   "priority_tier": "P1",
-  "blocked_higher_candidates": [],
-  "displaced_capability": "The target-application runtime already required an exact CandidateProfile, while the private application workspace held strong resume evidence but no maintained executable bridge from those resumes into the Helix profile contract. That manual gap prevented the strongest P1 application path from being reproducibly initialized.",
+  "blocked_higher_candidates": [
+    {
+      "priority": "Execute the full target-application cycle against a real current employer inventory and private production resume set.",
+      "state": "BLOCKED_THIS_RUN",
+      "evidence": "The GitHub mutation/runtime surface could prove repository code and Actions behavior but did not provide a cross-repository filesystem execution context containing both private resume files and the live target manifest/runtime state needed for a real application-ready artifact run.",
+      "retry_condition": "A single authorized execution surface can access the private resume set plus the Helix runtime and target manifest."
+    }
+  ],
+  "displaced_capability": "Before this delta, the production application executable required a separately generated CandidateProfile JSON even though the provenance-bound resume compiler was already merged. That forced an unnecessary operator handoff between real resume evidence and the live application pipeline.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Continue hand-authoring CandidateProfile JSON from resume text. Rejected because it preserves a drift-prone manual bridge with weak provenance."
+      "assessment": "Keep the two-command workflow: compile profile first, then invoke target application with --profile. Rejected because the manual bridge remained on the highest-value P1 path."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Use permissive resume parsing or generative extraction to infer profile claims. Rejected because ambiguous or invented claims could silently enter recruiter-facing application state."
+      "assessment": "Duplicate resume parsing inside target_application_cycle. Rejected because it would fork the newly proven compiler contract and create claim/provenance drift."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: conservative source-text parsing plus multi-resume evidence composition, exact SHA-256 provenance, conflict rejection, atomic output, and validation through the existing Helix load_candidate_profile contract."
+      "assessment": "Selected: reuse the existing provenance-bound compiler as a first-class candidate source inside target application, persist the compiled profile in run state, and preserve static profile compatibility."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "pull_request": 250,
-    "proof_head": "97ee30f46139569fabd9a829fbff4a76b882e821",
-    "runtime_merge_sha": "9aecebc41ca17fbfd83ed40f69d41cef32c5c368",
+    "pull_request": 251,
+    "proof_head": "a81a88325647104fdb7b665fc2e751b7cd3839a6",
+    "runtime_merge_sha": "ec44496d9d3fea93b0311cd3c126a8f44fa55d2d",
     "modules": [
-      "src/job_app_helix/candidate_profile_compiler.py",
-      "tests/test_candidate_profile_compiler.py",
-      ".github/workflows/candidate-profile-compiler-proof.yml",
-      "pyproject.toml"
+      "src/job_app_helix/target_application_cycle.py",
+      "tests/test_target_application_resume_source.py",
+      ".github/workflows/target-application-cycle-proof.yml"
     ],
-    "executable": "job-app-helix-profile",
+    "executable": "job-app-helix-target-application",
     "capabilities": [
-      "compile one or more Markdown resumes into the existing Helix CandidateProfile JSON contract",
-      "preserve the first resume as the primary identity, headline, and summary voice while composing deduplicated specialized evidence",
-      "extract structured skills from Core Competencies and Technical Skills tables",
-      "extract Key Projects evidence into experience and measurable project bullets into achievements",
-      "reject conflicting candidate identities and conflicting contact evidence instead of silently merging them",
-      "reject resumes missing Summary, structured skill evidence, or Key Projects evidence",
-      "hash every resume source with SHA-256 and attach source provenance plus a source_text_only_no_claim_invention policy",
-      "write output atomically and validate the completed artifact through load_candidate_profile before success",
-      "preserve existing manual CandidateProfile loading and all downstream target-application interfaces"
+      "accept one or more --resume inputs directly on the production target-application executable",
+      "retain --profile as a backward-compatible candidate source",
+      "require exactly one candidate source family through CLI mutual exclusion and runtime validation",
+      "compile resume evidence through the existing source_text_only_no_claim_invention compiler",
+      "persist COMPILED_CANDIDATE_PROFILE.json inside application state with exact source SHA-256 provenance",
+      "compose specialized resume evidence before live target discovery and recruiter-packet generation",
+      "translate resume compilation failures into application-path errors with actionable context",
+      "preserve all downstream discovery, intelligence, ranking, freshness, packet and application-ready interfaces"
     ]
   },
   "preserved_gains": [
-    "existing CandidateProfile schema and load_candidate_profile behavior remain unchanged",
-    "target_application_cycle and application_operations interfaces remain unchanged",
-    "Greenhouse, Lever, Ashby, and SmartRecruiters discovery paths remain unchanged",
-    "Opening Watch materiality, packet freshness, and stale-lineage rollback behavior remain unchanged",
-    "private resume sources are read-only inputs and are never rewritten by the compiler",
+    "existing static CandidateProfile loading remains supported",
+    "candidate_profile_compiler remains the single resume parsing/provenance implementation",
+    "Greenhouse, Lever, Ashby, and SmartRecruiters provider paths remain unchanged",
+    "Opening Watch materiality and freshness-aware packet rollback remain unchanged",
+    "application-ready integrity checks remain unchanged",
     "no external application submission or recruiter communication was introduced"
   ],
   "tests_runtime_proof": {
     "focused_workflow": {
-      "run_id": 32198306471,
+      "run_id": 32199690243,
       "result": "PASS",
-      "exact_head": "97ee30f46139569fabd9a829fbff4a76b882e821",
+      "exact_head": "a81a88325647104fdb7b665fc2e751b7cd3839a6",
       "matrix": ["3.11", "3.12", "3.13"],
       "checks": [
-        "strict Ruff over production compiler and adversarial tests",
-        "single-resume compilation into a load_candidate_profile-compatible artifact",
-        "multi-resume evidence union with deduplication and primary-voice preservation",
-        "identity-conflict rejection",
-        "contact-conflict rejection",
-        "missing required evidence rejection",
-        "no generated-claim sentinel assertions",
-        "installed job-app-helix-profile executable resolution"
+        "strict Ruff over target application, candidate compiler, and adversarial tests",
+        "resume-native profile resolution and persisted source provenance",
+        "multi-resume specialized evidence composition",
+        "static profile compatibility",
+        "exclusive/required candidate source validation",
+        "resume compile failure translation",
+        "existing application-ready packet integrity tests",
+        "candidate profile compiler regression suite",
+        "installed job-app-helix-target-application and job-app-helix-profile executable resolution"
       ]
     },
     "post_merge_readback": {
       "result": "PASS",
-      "main_sha": "9aecebc41ca17fbfd83ed40f69d41cef32c5c368",
-      "runtime_blob_sha": "ac5769dd65f80eaa0c0c6c0755a276b663ed13c3",
-      "observed": "main contains the provenance-bound CandidateProfile compiler and pyproject installs job-app-helix-profile."
+      "main_sha": "ec44496d9d3fea93b0311cd3c126a8f44fa55d2d",
+      "runtime_blob_sha": "f14b2c813054fcd89ab3a32dbc3ac614c8011596",
+      "observed": "main contains resolve_candidate_profile, direct --resume CLI support, COMPILED_CANDIDATE_PROFILE.json persistence, and the unchanged downstream target application runtime."
     }
   },
   "top_3_remaining_priorities": [
     {
       "tier": "P1",
-      "priority": "Execute job-app-helix-profile against the strongest verified private GlacierEQ/job-app resume source set, bind the generated profile to a current target manifest, run job-app-helix-target-application against a real attributable ATS inventory, and preserve the selected application-ready release.",
+      "priority": "Execute job-app-helix-target-application --resume against the strongest verified private resume set and a current attributable target manifest, then preserve the actual APPLICATION_READY_TARGET release.",
       "target_files_functions": [
-        "src/job_app_helix/candidate_profile_compiler.py::compile_candidate_profile",
-        "src/job_app_helix/candidate_profile_compiler.py::write_candidate_profile",
+        "src/job_app_helix/target_application_cycle.py::resolve_candidate_profile",
         "src/job_app_helix/target_application_cycle.py::execute_target_application_cycle",
-        "GlacierEQ/job-app/resumes/RESUME_GENERAL.md"
+        "src/job_app_helix/candidate_profile_compiler.py::write_candidate_profile"
       ]
     },
     {
       "tier": "P2",
-      "priority": "Execute the first real stranded repository-family restoration through manifestless exact-SHA federated restoration and prove recovered behavior in that repository native runtime.",
+      "priority": "Execute the first real stranded repository-family restoration through manifestless exact-SHA federated restoration and prove recovered behavior in the target repository native runtime.",
       "target_files_functions": [
         "src/job_app_helix/estate_federated_restoration.py::execute_auto_estate_federated_restoration",
         "src/job_app_helix/recovery_ref_graph.py::build_ref_graph",
@@ -105,36 +109,34 @@
     },
     {
       "tier": "P2",
-      "priority": "Verify and admit a stable attributable Workday or equivalent ATS provider only when exact posting identity and recruiter-material change semantics can be preserved.",
+      "priority": "Admit the next stable attributable ATS provider only if exact posting identity and recruiter-material semantics can be preserved through the existing unified dispatcher.",
       "target_files_functions": [
         "src/job_app_helix/target_opening_discovery.py::TargetOpeningSource",
-        "src/job_app_helix/target_opening_discovery.py::discover_source",
-        "src/job_app_helix/target_intelligence_cycle.py::execute_target_intelligence_cycle"
+        "src/job_app_helix/target_opening_discovery.py::discover_source"
       ]
     }
   ],
   "exact_target_files_functions": [
-    "src/job_app_helix/candidate_profile_compiler.py::parse_resume",
-    "src/job_app_helix/candidate_profile_compiler.py::compile_candidate_profile",
-    "src/job_app_helix/candidate_profile_compiler.py::write_candidate_profile",
-    "src/job_app_helix/candidate_profile_compiler.py::main",
-    "tests/test_candidate_profile_compiler.py",
-    "pyproject.toml::project.scripts.job-app-helix-profile"
+    "src/job_app_helix/target_application_cycle.py::resolve_candidate_profile",
+    "src/job_app_helix/target_application_cycle.py::_parser",
+    "src/job_app_helix/target_application_cycle.py::main",
+    "tests/test_target_application_resume_source.py",
+    ".github/workflows/target-application-cycle-proof.yml"
   ],
   "next_sequence": [
-    "run the merged profile compiler against verified private resume evidence on an execution surface that can access both the private source and Helix runtime",
-    "bind the resulting CandidateProfile to a live target manifest and execute the target-application cycle",
-    "if that cross-repository runtime surface is unavailable, pivot to the first exact-donor repository restoration with native Actions proof"
+    "run the merged target application executable directly from verified private resume evidence",
+    "bind that run to a live attributable target manifest and retain the selected application-ready artifact",
+    "if the cross-repository runtime surface remains unavailable, pivot immediately to exact-donor repository restoration with repository-native Actions proof"
   ],
-  "merge_deploy_gate": "PR 250 merged at exact proven head 97ee30f46139569fabd9a829fbff4a76b882e821 as main merge 9aecebc41ca17fbfd83ed40f69d41cef32c5c368 after Candidate Profile Compiler Proof 32198306471 passed strict lint, adversarial behavior, and installed executable checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed runtime blob ac5769dd65f80eaa0c0c6c0755a276b663ed13c3 on main.",
-  "rollback": "Revert merge 9aecebc41ca17fbfd83ed40f69d41cef32c5c368. Existing manual CandidateProfile JSON loading, target discovery, target intelligence, and target application runtimes remain available at parent 64a3ed250301fa4087a8ca54c270e7c0393918ec.",
+  "merge_deploy_gate": "PR 251 merged at exact proven head a81a88325647104fdb7b665fc2e751b7cd3839a6 as main merge ec44496d9d3fea93b0311cd3c126a8f44fa55d2d after Target Application Cycle Proof 32199690243 passed strict lint, adversarial resume-native/profile compatibility behavior, compiler regressions, and installed executable checks on Python 3.11, 3.12, and 3.13. Post-merge readback observed runtime blob f14b2c813054fcd89ab3a32dbc3ac614c8011596 on main.",
+  "rollback": "Revert merge ec44496d9d3fea93b0311cd3c126a8f44fa55d2d. The prior two-step production path remains available at parent 21c0b66481dd32b25cfa0b0778a04168995a9f65: job-app-helix-profile followed by job-app-helix-target-application --profile.",
   "no_loss_invariants": [
-    "never invent candidate claims during profile compilation",
+    "never invent candidate claims during resume compilation",
     "never silently merge conflicting candidate identities or contact evidence",
-    "never rewrite or mutate source resumes",
-    "preserve existing load_candidate_profile and downstream target-application contracts",
-    "preserve existing ATS provider, Opening Watch, freshness, and application readiness behavior",
+    "never mutate source resumes",
+    "preserve --profile behavior and the existing CandidateProfile contract",
+    "preserve ATS discovery, Opening Watch, freshness, ranking, packet, and application-ready behavior",
     "never fabricate application submission or recruiter communication"
   ],
-  "verified_delta_state": "PROVENANCE_BOUND_CANDIDATE_PROFILE_COMPILER_PROVEN_MERGED_INSTALLED_AND_READ_BACK_ON_MAIN"
+  "verified_delta_state": "RESUME_NATIVE_TARGET_APPLICATION_PATH_PROVEN_MERGED_AND_READ_BACK_ON_MAIN"
 }
