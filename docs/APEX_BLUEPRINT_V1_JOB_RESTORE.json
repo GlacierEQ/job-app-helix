@@ -1,149 +1,134 @@
 {
   "schema": "APEX_BLUEPRINT_V1",
   "lane": "JOB_RESTORE",
-  "source_sha_before": "1aa06e868f2622a21eb49806553dd31018174710",
-  "current_source_sha_before_handoff": "4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7",
+  "source_sha_before": "1b4e86a759a8d1be8deea67b847c8d848174e2ab",
+  "current_source_sha_before_handoff": "1b4e86a759a8d1be8deea67b847c8d848174e2ab",
   "cross_repo_source": {
     "repository": "GlacierEQ/job-application",
-    "source_sha_before": "b5219db8b009682db8a1d7d8dd6c929290f73639",
-    "runtime_merge_sha": "4fb96a6cee30b76577f0b93a05de610667d4a2ae",
+    "source_sha_before": "4fb96a6cee30b76577f0b93a05de610667d4a2ae",
+    "proof_head": "07ab30e5ad673cb05eb3c4e898572e472de35f99",
+    "runtime_merge_sha": "c8fcdea9115a51218569f5e6ba3443585ff7a366",
     "resume_path": "RESUME_ATS.md",
-    "resume_blob_sha": "cef96c283b43f87222f61df51a0a07ece69c375a",
-    "resume_sha256": "db1873f832174ceed126ac12b15c7671aa124b8125296bb7773993ce1498380b"
+    "target_manifest": "targets/spacexai/target_manifest.json",
+    "company_intelligence_plan": "targets/spacexai/company_intelligence_plan.json",
+    "live_workflow": ".github/workflows/helix-live-spacexai-application.yml"
   },
   "donor_shas": [
-    "ac5769dd65f80eaa0c0c6c0755a276b663ed13c3",
-    "cef96c283b43f87222f61df51a0a07ece69c375a",
-    "efeadca62902db6ad068eb05a66939dcd9fdc159",
-    "2677b473680e711381fc7b9fe0b855dc98e51828"
+    "4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7",
+    "4fb96a6cee30b76577f0b93a05de610667d4a2ae",
+    "f5bbbd2e267e392c8d0aafea9ef28738949aac8f",
+    "07ab30e5ad673cb05eb3c4e898572e472de35f99"
   ],
-  "selected_priority": "Make the real production recruiter resume directly executable through the merged Helix resume-native application path, eliminating manual resume reshaping and proving the actual cross-repository source artifact.",
+  "selected_priority": "Produce and preserve a real APPLICATION_READY_TARGET from the production recruiter resume against a current attributable employer inventory, removing the remaining staged-manifest last mile from proof to real job-winning output.",
   "priority_tier": "P1",
-  "blocked_higher_candidates": [
-    {
-      "priority": "Produce a real APPLICATION_READY_TARGET from the production resume against a current attributable employer inventory.",
-      "state": "BLOCKED_AFTER_REAL_PROFILE_PROOF",
-      "evidence": "Repository search found the production resume and the live target-application runtime, but no maintained current target-intelligence manifest plus acquisition-plan bundle ready for direct execution in the job-application repository. The cycle did not invent an employer board key or stale target configuration.",
-      "retry_condition": "A current attributable target manifest/acquisition plan is selected or generated from verified live ATS identity."
-    }
-  ],
-  "displaced_capability": "Helix had a proven --resume application path, but its CandidateProfile compiler still recognized only the earlier fixture-oriented Markdown shape: Summary, table-based skills, and Key Projects. The real recruiter resume used Professional Summary, flat semicolon-delimited competencies/technologies, a name-only H1 with a separate headline, plain contact text, and Selected Systems. That mismatch left a manual transformation step on the P1 path.",
+  "blocked_higher_candidates": [],
+  "displaced_capability": "The production resume and target-application executable were independently proven, but no maintained live target manifest/acquisition-plan bundle connected them to an attributable current employer inventory. The last P1 step still required manually assembling target identity, company intelligence, role projection, and execution context.",
   "mechanisms_compared": [
     {
       "mechanism": "historical_recovery_or_composition",
-      "assessment": "Manually rewrite or copy the production resume into the old Summary/table/Key Projects shape before each Helix run. Rejected because it preserves operator friction and creates a divergent recruiter artifact."
+      "assessment": "Reuse manually staged target JSON outside the hiring repository. Rejected because it keeps a fragile operator-only bridge and cannot be rerun from repository state."
     },
     {
       "mechanism": "modern_upgrade",
-      "assessment": "Replace deterministic parsing with a generic Markdown or model-driven extractor. Rejected because it weakens source-only claim promotion, deterministic behavior, and exact provenance."
+      "assessment": "Bypass Helix with a generic job-search or application generator. Rejected because it loses exact candidate provenance, target taxonomy, opening freshness, packet lineage, and application-ready integrity gates."
     },
     {
       "mechanism": "nonlinear_combination",
-      "assessment": "Selected: broaden the existing deterministic parser with explicit production aliases and flat evidence forms, preserve all strict legacy inputs, then execute the actual job-application resume through the exact merged Helix runtime in repository-native Actions."
+      "assessment": "Selected: bind the real recruiter resume, a maintained xAI Greenhouse target, attributable x.ai company intelligence, exact merged Helix runtime, live opening discovery, recruiter ranking, integrity verification, and artifact preservation in one repository-native execution surface."
     }
   ],
   "selected_mechanism": "nonlinear_combination",
   "implemented_delta": {
-    "helix_pull_request": 252,
-    "helix_proof_head": "efeadca62902db6ad068eb05a66939dcd9fdc159",
-    "helix_runtime_merge_sha": "4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7",
-    "helix_runtime_blob_sha": "6baea595a15c1bc78be150102c6dfd09aa573b9e",
-    "job_application_pull_request": 197,
-    "job_application_proof_head": "2677b473680e711381fc7b9fe0b855dc98e51828",
-    "job_application_runtime_merge_sha": "4fb96a6cee30b76577f0b93a05de610667d4a2ae",
+    "job_application_pull_request": 198,
+    "proof_head": "07ab30e5ad673cb05eb3c4e898572e472de35f99",
+    "runtime_merge_sha": "c8fcdea9115a51218569f5e6ba3443585ff7a366",
+    "helix_runtime_sha": "4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7",
     "modules": [
-      "src/job_app_helix/candidate_profile_compiler.py",
-      "tests/test_candidate_profile_compiler.py",
-      "GlacierEQ/job-application/.github/workflows/helix-production-resume-proof.yml"
+      "GlacierEQ/job-application/targets/spacexai/target_manifest.json",
+      "GlacierEQ/job-application/targets/spacexai/company_intelligence_plan.json",
+      "GlacierEQ/job-application/.github/workflows/helix-live-spacexai-application.yml"
     ],
     "capabilities": [
-      "accept Summary, Professional Summary, or Profile as deterministic summary evidence",
-      "accept table or flat semicolon/comma skills from Core Competencies, Technical Skills, Technical Profile, or Technologies",
-      "accept Key Projects or Selected Systems as source-only executable/project evidence",
-      "recover a plain production headline below a name-only H1",
-      "recover plain-header email and GitHub contact evidence without claim invention",
-      "preserve legacy strict resume layouts and multi-resume composition",
-      "execute the actual GlacierEQ/job-application RESUME_ATS.md through exact Helix merge 4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7",
-      "bind the compiled profile to the exact production resume SHA-256",
-      "persist the compiled production CandidateProfile as a workflow artifact for downstream application execution"
+      "discover the current xAI Greenhouse board by attributable board identity xai",
+      "filter to the live Exceptional Software Engineer opening while projecting onto the maintained Applied AI Systems Engineer target role",
+      "acquire fresh xAI career intelligence from the allowed x.ai domain using the supported value signal contract",
+      "compile the real RESUME_ATS.md as profile casey-production without claim invention",
+      "run live discovery, company intelligence, ranking, freshness, recruiter packet generation, and application-ready promotion in one executable cycle",
+      "emit a real application-ready release for xAI opening 4956028007",
+      "preserve exact application, bundle, release, and runtime hashes as workflow evidence",
+      "upload the complete live application-ready state and packet as an immutable workflow artifact"
     ]
   },
   "preserved_gains": [
     "source_text_only_no_claim_invention remains mandatory",
-    "conflicting candidate identities and contact evidence still fail closed",
-    "legacy Summary/table/Key Projects resume fixtures remain supported",
-    "multi-resume evidence composition remains supported",
-    "static CandidateProfile and resume-native target-application interfaces remain unchanged",
-    "Greenhouse, Lever, Ashby, and SmartRecruiters discovery behavior remains unchanged",
-    "Opening Watch, freshness rollback, ranking, recruiter packet, and application-ready integrity gates remain unchanged",
-    "no external application submission or recruiter communication was introduced"
+    "the production resume remains the source candidate artifact and is not mutated",
+    "the exact merged Helix runtime is pinned by SHA",
+    "Greenhouse provider attribution and opening identity remain explicit",
+    "Opening Watch, freshness rollback, ranking, recruiter-packet, and application-ready integrity gates remain active",
+    "target role projection uses the maintained xAI role taxonomy rather than inventing a new role",
+    "no external application submission, recruiter contact, or credential write was introduced",
+    "the prior static CandidateProfile and resume-native application interfaces remain intact"
   ],
   "tests_runtime_proof": {
-    "helix_candidate_profile_workflow": {
-      "run_id": 32201272072,
+    "live_target_application": {
+      "run_id": 32203192553,
+      "job_id": 95921085604,
       "result": "PASS",
-      "exact_head": "efeadca62902db6ad068eb05a66939dcd9fdc159",
-      "matrix": ["3.11", "3.12", "3.13"],
-      "checks": [
-        "strict Ruff",
-        "production-style resume compatibility",
-        "legacy resume compatibility",
-        "multi-resume composition",
-        "identity/contact conflict rejection",
-        "installed job-app-helix-profile executable"
-      ]
-    },
-    "helix_target_application_regression": {
-      "run_id": 32201272112,
-      "result": "PASS",
-      "matrix": ["3.11", "3.12", "3.13"],
-      "checks": [
-        "application-ready runtime lint",
-        "adversarial application-ready tests",
-        "installed target-application executable"
-      ]
-    },
-    "real_cross_repo_production_resume": {
-      "run_id": 32201539555,
-      "job_id": 95916228967,
-      "result": "PASS",
-      "job_application_head": "2677b473680e711381fc7b9fe0b855dc98e51828",
-      "helix_runtime_sha": "4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7",
-      "observed_profile": {
-        "profile_id": "casey-production",
-        "skills": 56,
-        "experience": 6,
-        "achievements": 5,
-        "resume_sha256": "db1873f832174ceed126ac12b15c7671aa124b8125296bb7773993ce1498380b"
+      "proof_head": "f5bbbd2e267e392c8d0aafea9ef28738949aac8f",
+      "observed_release": {
+        "application_id": "app-7d9dbe09b0d7e0bb",
+        "company_id": "xai",
+        "opening_id": "4956028007",
+        "lane": "APPLY_NEXT",
+        "queue_rank": 1,
+        "priority_score": 67.88,
+        "opening_count": 1,
+        "bundle_sha256": "8db92861b1da153736bbe6bb73857bda45aee41e67758b4127e2a27dc2535899",
+        "release_sha256": "50bcaed80525103b4bcfa1adaf2855c42f62358e9390ae843557af657a5d6eb9"
       },
       "artifact": {
-        "artifact_id": 9347681650,
-        "name": "helix-production-candidate-profile",
-        "bytes": 5952,
-        "sha256": "8c0b084fcfec841e89c2a2318ddb476f4fa8e906d70e0f512c04c610209c52e0"
+        "artifact_id": 9348221312,
+        "name": "helix-live-spacexai-application",
+        "bytes": 52080,
+        "zip_sha256": "05abe7b5057409717d0f280d68a4341a75df0b3b67b1e11d18dd823ebaa0bd7e"
       }
     },
+    "final_head_live_regression": {
+      "run_id": 32203378803,
+      "result": "PASS",
+      "exact_head": "07ab30e5ad673cb05eb3c4e898572e472de35f99"
+    },
+    "repository_ci": {
+      "run_id": 32203379300,
+      "result": "PASS",
+      "exact_head": "07ab30e5ad673cb05eb3c4e898572e472de35f99"
+    },
+    "external_estate_gate": {
+      "run_id": 32203379282,
+      "result": "BLOCKED_EXTERNAL_SELF_TEST",
+      "detail": "GlacierEQ/apex-control-plane apex-non-regression action failed its own test_allows_forbidden_signature_vocabulary self-test before evaluating this PR. The repository-owned CI and live P1 target execution both passed."
+    },
     "post_merge_readback": {
-      "helix": {
-        "result": "PASS",
-        "main_sha": "4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7",
-        "runtime_blob_sha": "6baea595a15c1bc78be150102c6dfd09aa573b9e"
-      },
-      "job_application": {
-        "result": "PASS",
-        "main_sha": "4fb96a6cee30b76577f0b93a05de610667d4a2ae",
-        "workflow_blob_sha": "604b75202fdd58c61425b3aef7b8fb38ce1c04e0"
-      }
+      "job_application_main_sha": "c8fcdea9115a51218569f5e6ba3443585ff7a366",
+      "target_manifest_blob_sha": "18d4b218ba8d285f6bd65f04107baf382c749b2a",
+      "result": "PASS"
     }
   },
+  "blockers_pivots": [
+    "Initial live execution rejected SpaceXAI because the maintained Helix target identity is xAI; corrected identity rather than weakening validation.",
+    "Second execution rejected signal kind values because CompanySignal permits value; corrected the acquisition contract rather than bypassing intelligence validation.",
+    "Third execution rejected the raw live job title as an unmapped target role; preserved the exact opening title for discovery and projected it onto maintained xAI role Applied AI Systems Engineer.",
+    "Strict repository CI exposed a pre-existing formatting defect in portfolio_recovery.py; repaired it and obtained a passing repository CI run.",
+    "The shared APEX estate gate remains externally blocked by its own action self-test, isolated from this verified repository delta."
+  ],
   "top_3_remaining_priorities": [
     {
       "tier": "P1",
-      "priority": "Bind the now-proven production resume directly to a verified live target-intelligence manifest and execute job-app-helix-target-application until APPLICATION_READY_TARGET is produced and preserved.",
+      "priority": "Extend the application-ready packet into source-bound ATS field-answer generation for xAI-specific application prompts, preserving human review and no automatic submission.",
       "target_files_functions": [
         "src/job_app_helix/target_application_cycle.py::execute_target_application_cycle",
-        "src/job_app_helix/target_intelligence_cycle.py::load_target_intelligence_manifest",
-        "src/job_app_helix/target_opening_discovery.py::discover_source"
+        "src/job_app_helix/recruiter_packet.py",
+        "GlacierEQ/job-application/.github/workflows/helix-live-spacexai-application.yml"
       ]
     },
     {
@@ -157,38 +142,39 @@
     },
     {
       "tier": "P2",
-      "priority": "Turn current attributable target discovery into a maintained production target-manifest surface so real application runs no longer require a manually staged manifest/acquisition-plan bundle.",
+      "priority": "Generalize the maintained live target bundle from xAI into a multi-company production target inventory whose live manifests can drive hourly application-ready cycles without hand staging.",
       "target_files_functions": [
         "src/job_app_helix/target_intelligence_cycle.py::load_target_intelligence_manifest",
-        "src/job_app_helix/company_intelligence_acquisition.py",
-        "src/job_app_helix/target_opening_discovery.py"
+        "src/job_app_helix/target_opening_discovery.py::discover_source",
+        "GlacierEQ/job-application/targets/"
       ]
     }
   ],
   "exact_target_files_functions": [
-    "src/job_app_helix/candidate_profile_compiler.py::_parse_identity",
-    "src/job_app_helix/candidate_profile_compiler.py::_parse_summary",
-    "src/job_app_helix/candidate_profile_compiler.py::_parse_skills",
-    "src/job_app_helix/candidate_profile_compiler.py::_parse_projects",
-    "src/job_app_helix/candidate_profile_compiler.py::write_candidate_profile",
-    "GlacierEQ/job-application/.github/workflows/helix-production-resume-proof.yml"
+    "GlacierEQ/job-application/targets/spacexai/target_manifest.json",
+    "GlacierEQ/job-application/targets/spacexai/company_intelligence_plan.json",
+    "GlacierEQ/job-application/.github/workflows/helix-live-spacexai-application.yml",
+    "src/job_app_helix/target_application_cycle.py::execute_target_application_cycle",
+    "src/job_app_helix/target_intelligence_cycle.py::execute_target_intelligence_cycle",
+    "src/job_app_helix/target_opening_discovery.py::discover_source"
   ],
   "next_sequence": [
-    "select or generate one current attributable target manifest from verified live ATS identity",
-    "execute target application from GlacierEQ/job-application/RESUME_ATS.md through the exact Helix runtime",
-    "preserve APPLICATION_READY_TARGET and packet integrity receipts if a qualifying live opening is found",
-    "if no live actionable opening is available, pivot immediately to exact-donor stranded repository restoration"
+    "read the preserved live xAI application-ready artifact and packet before changing application content",
+    "derive only source-supported answers for xAI ATS-specific prompts and bind them to exact opening/profile/packet hashes",
+    "preserve human-review gates and do not submit externally without an explicit submission instruction",
+    "in parallel priority order, execute the first exact-donor stranded-family restoration if no stronger P1 application delta is executable"
   ],
-  "merge_deploy_gate": "Helix PR 252 merged at exact proven head efeadca62902db6ad068eb05a66939dcd9fdc159 as 4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7 after Candidate Profile Compiler Proof 32201272072 and Target Application Cycle Proof 32201272112 passed. Job-application PR 197 merged at exact proven head 2677b473680e711381fc7b9fe0b855dc98e51828 as 4fb96a6cee30b76577f0b93a05de610667d4a2ae after real production RESUME_ATS.md compiled and passed invariant verification in workflow 32201539555; artifact 9347681650 was uploaded with SHA-256 8c0b084fcfec841e89c2a2318ddb476f4fa8e906d70e0f512c04c610209c52e0. Both runtime surfaces were read back from main.",
-  "rollback": "Revert Helix merge 4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7 to restore the prior strict compiler, and/or revert job-application merge 4fb96a6cee30b76577f0b93a05de610667d4a2ae to remove the cross-repository production proof workflow. The prior resume-native target application path remains available, but the real RESUME_ATS.md would again require manual reshaping if the Helix merge is reverted.",
+  "merge_deploy_gate": "GlacierEQ/job-application PR 198 merged at exact proven head 07ab30e5ad673cb05eb3c4e898572e472de35f99 as c8fcdea9115a51218569f5e6ba3443585ff7a366. Live workflow 32203192553 produced application app-7d9dbe09b0d7e0bb for xAI opening 4956028007, lane APPLY_NEXT, rank 1, score 67.88, bundle SHA-256 8db92861b1da153736bbe6bb73857bda45aee41e67758b4127e2a27dc2535899, release SHA-256 50bcaed80525103b4bcfa1adaf2855c42f62358e9390ae843557af657a5d6eb9, and artifact 9348221312. Final-head live regression 32203378803 and repository CI 32203379300 passed. Main readback returned merge c8fcdea9115a51218569f5e6ba3443585ff7a366 and target manifest blob 18d4b218ba8d285f6bd65f04107baf382c749b2a.",
+  "rollback": "Revert job-application merge c8fcdea9115a51218569f5e6ba3443585ff7a366 to remove the maintained xAI live target, proof workflow, and formatting repair. The prior production-resume compiler/runtime at 4fb96a6cee30b76577f0b93a05de610667d4a2ae and Helix runtime 4fa39c0d3cfbf413b1cda69fe2dbbd63761d18d7 remain intact.",
   "no_loss_invariants": [
-    "never invent candidate claims during resume compilation",
-    "never silently merge conflicting candidate identities or contact evidence",
-    "never mutate source resumes during profile compilation",
-    "preserve the static CandidateProfile path and resume-native target application path",
-    "preserve exact source SHA-256 provenance",
-    "preserve ATS discovery, Opening Watch, freshness, ranking, packet, and application-ready behavior",
-    "never fabricate application submission or recruiter communication"
+    "never invent candidate claims or company claims",
+    "never mutate the source recruiter resume during application generation",
+    "preserve exact employer/opening/runtime/profile provenance",
+    "preserve freshness, rollback, ranking, packet, and integrity gates",
+    "do not downgrade an unmapped live job title into a fabricated target role; use maintained role projection explicitly",
+    "do not automatically submit an application or contact a recruiter without an explicit operator instruction",
+    "a failure in shared governance infrastructure must not erase independently verified executable repository behavior"
   ],
-  "verified_delta_state": "REAL_PRODUCTION_RESUME_COMPILES_THROUGH_MERGED_HELIX_CROSS_REPO_AND_IS_PRESERVED_AS_VERIFIED_ARTIFACT"
+  "verified_delta_state": "REAL_PRODUCTION_RESUME_EXECUTED_AGAINST_LIVE_XAI_INVENTORY_AND_APPLICATION_READY_TARGET_PRESERVED",
+  "verified_executable_capability_delta": true
 }
