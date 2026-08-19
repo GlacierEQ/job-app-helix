@@ -1,0 +1,56 @@
+repository: GlacierEQ/xai-colossus-nanosphere
+commit: 57e98af25e3172510c61c64d3b037949c68299f5
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Deterministic comparative scenario models for coolant conductivity, degradation,
+  stability, viscosity, and blend selection, with explicit assumptions and a
+  modeled-manifest boundary.
+artifact:
+  repository_url: https://github.com/GlacierEQ/xai-colossus-nanosphere
+  inspected_paths:
+    - README.md
+    - nanosphere_model.py
+    - test_nanosphere.py
+    - tests/test_portfolio_truth_surface.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit; this
+    review does not assert that repository tests were executed during recovery.
+claim: >-
+  At the reviewed commit, the repository implements validated local comparative
+  nanofluid scenarios with Maxwell and Hamilton-Crosser conductivity estimates,
+  an assumed exponential degradation model, deterministic lowest-concentration
+  blend selection, and atomic sorted modeled-manifest export. Repository-owned
+  tests encode input rejection, comparative model behavior, deterministic blend
+  selection, scenario trends, and the manifest’s modeled-not-telemetry state.
+known_limit: >-
+  The artifact does not establish material certification, laboratory
+  measurements, safe formulation, complete-system thermal benefit, live circuit
+  telemetry, chemical dosing, pump or hardware control, another repository’s
+  manifest consumption, facility operation, or any relationship with xAI.
+  The private Alpha/Omega experiments remain separate and are not part of this
+  public-model claim.
+evidence_boundary: MODELED_SCENARIO_NOT_TELEMETRY
+thread_relationships:
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-cooling
+    note: >-
+      Curator-defined thermal-scenario connection. This does not assert a live
+      cooling circuit, a mounted manifest, or shared execution.
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-energy
+    note: >-
+      Curator-defined model-adjacency connection. This does not assert a
+      facility data path, deployment, or integrated decision loop.
+  - type: experimental_variation
+    repository: GlacierEQ/xai-colossus-nanosphere-alpha
+    note: >-
+      Preserved private Alpha research lineage; it is explicitly excluded from
+      the source-reviewed public-model claim.
+  - type: experimental_variation
+    repository: GlacierEQ/xai-colossus-nanosphere-omega
+    note: >-
+      Preserved private Omega research lineage; it is explicitly excluded from
+      the source-reviewed public-model claim.

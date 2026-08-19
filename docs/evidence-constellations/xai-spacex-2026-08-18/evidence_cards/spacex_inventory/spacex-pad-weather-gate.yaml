@@ -1,0 +1,49 @@
+repository: GlacierEQ/spacex-pad-weather-gate
+commit: 74e6e69d1e3c61b284b0b6917ba2b7a14a148f41
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Deterministic local constraint evaluation over supplied environmental values,
+  with input validation and an explicit distinction between a scenario metric
+  and forecast or safety confidence.
+artifact:
+  repository_url: https://github.com/GlacierEQ/spacex-pad-weather-gate
+  inspected_paths:
+    - README.md
+    - src/weather_gate.py
+    - tests/test_public_truth.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit; this
+    review does not assert that repository tests were executed during recovery.
+claim: >-
+  At the reviewed commit, the repository implements a local evaluator for
+  caller-supplied synthetic wind, shear, lightning distance, cloud ceiling, and
+  visibility values. It rejects non-finite and negative inputs, evaluates five
+  illustrative constraints in fixed order, returns PASS or BLOCK, and emits a
+  bounded minimum-margin fixture metric with a named evidence state.
+  Repository-owned tests encode these local mechanics and the non-authority
+  public boundary.
+known_limit: >-
+  The thresholds are illustrative fixtures, not official launch criteria. The
+  artifact does not establish sensor access, real-time acquisition, forecasting,
+  optimization, real safety analysis, launch authority, certification, or any
+  relationship with SpaceX.
+evidence_boundary: LOCAL_ENVIRONMENTAL_RULE_GATE_NOT_LAUNCH_SAFETY_AUTHORITY
+thread_relationships:
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-mission-thread-quorum
+    note: >-
+      Curator-defined input/decision connection: a local gate outcome could be
+      represented as a supplied vote by separate code. No live data flow exists.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-hold-reason-compiler
+    note: >-
+      Curator-defined input/explanation connection: a local block can be
+      represented in an explanatory residual. No exercised integration is claimed.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-launch-sequencer
+    note: >-
+      Curator-defined mission-systems connection. This does not assert launch
+      procedure knowledge, live inputs, or a shared runtime.

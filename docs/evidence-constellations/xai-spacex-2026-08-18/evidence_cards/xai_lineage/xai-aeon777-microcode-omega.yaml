@@ -1,0 +1,41 @@
+repository: GlacierEQ/xai-aeon777-microcode-omega
+commit: 6e7b71f58d4182a578ecf762fe25ba5d97fb60e2
+reviewed_at: 2026-08-18
+visibility: private
+review_status: inventory_only
+claim_support: exploratory
+problem_lens: >-
+  Preserved omega lineage around the microcode concern within the xAI-targeted
+  infrastructure constellation.
+artifact:
+  repository_url: https://github.com/GlacierEQ/xai-aeon777-microcode-omega
+  recorded_surface: >-
+    Repository identity, current recorded revision, visibility, and lineage
+    classification from the rescue-wave inventory.
+  review_method: >-
+    Static inventory review only. The source-surface digest records no source
+    root for this thread at the reviewed revision.
+claim: >-
+  This card preserves the repository's distinct omega identity and recorded
+  revision as part of the xAI constellation. It does not elevate a technical
+  implementation or performance claim.
+known_limit: >-
+  The first rescue-wave review found no recorded source root for this thread,
+  so this artifact does not establish implemented behavior, test results,
+  affiliation, deployment, hardware or facility access, or any relationship
+  beyond the documented lineage classification.
+evidence_boundary: >-
+  Lineage and metadata only; no source-level capability claim is promoted.
+thread_relationships:
+  - type: paired_experimental_variation
+    repository: GlacierEQ/xai-aeon777-microcode-alpha
+    note: >-
+      Curator-defined alpha/omega pairing based on repository identifiers.
+      Neither thread is treated as a replacement for the other, and the pairing
+      does not assert shared source code, execution, or deployment.
+  - type: historical_design_family
+    repository: GlacierEQ/xai-colossus-cooling
+    note: >-
+      Curator-defined constellation connection: this thread is retained as one
+      historical or experimental facet of the wider xAI infrastructure family.
+      It does not assert a code dependency or facility integration.

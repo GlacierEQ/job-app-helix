@@ -1,0 +1,53 @@
+repository: GlacierEQ/xai-actuation-receipt-bus
+commit: bba0df2f3b75377fe98be47556214276681cbb9c
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Evidence-aware handling of a supplied action lifecycle, where preconditions,
+  postconditions, idempotent intent identity, and uncertainty must be recorded
+  without pretending to authorize or prove an external side effect.
+artifact:
+  repository_url: https://github.com/GlacierEQ/xai-actuation-receipt-bus
+  inspected_paths:
+    - README.md
+    - src/receipt_bus.py
+    - tests/test_receipt_bus.py
+    - tests/test_canonical_position_contract.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit; this
+    review does not assert that repository tests were executed during recovery.
+claim: >-
+  At the reviewed commit, the repository implements a local monotonic lifecycle
+  around a caller-supplied effector. It binds an intent identifier to one action,
+  validates non-empty boolean preconditions, records hash-linked events, refuses
+  failed preconditions, treats unavailable effect results or required
+  postconditions as UNVERIFIED rather than falsely refused, and rejects illegal
+  transitions. Repository-owned tests encode lifecycle, idempotence, uncertainty,
+  receipt-chain, and caller-mutation-isolation expectations.
+known_limit: >-
+  The artifact does not authorize external actuation, authenticate actors or
+  effectors, prove physical side effects beyond supplied evidence, prevent
+  replay at an external actuator, establish hardware or facility control, or
+  establish any relationship with xAI. The claim-promotion-fence relationship
+  is not an exercised integration.
+evidence_boundary: >-
+  Local lifecycle receipts around a supplied effector only; no external control
+  authority or physical-effect proof.
+thread_relationships:
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-cooling
+    note: >-
+      Curator-defined local-control/evidence connection. This does not assert
+      cooling-system integration, hardware access, or shared execution.
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-energy
+    note: >-
+      Curator-defined scenario/control-evidence connection. This does not
+      assert load-shed authority, an actuator, or a live data path.
+  - type: unexercised_relationship
+    repository: GlacierEQ/xai-claim-promotion-fence
+    note: >-
+      The repository’s boundary contract records this sibling connection as not
+      integrated or exercised; that status is preserved here.

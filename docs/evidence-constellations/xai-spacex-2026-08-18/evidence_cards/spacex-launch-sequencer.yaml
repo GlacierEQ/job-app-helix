@@ -1,0 +1,56 @@
+repository: GlacierEQ/spacex-launch-sequencer
+commit: 4f216d67ed14e0d39c90d0da915be8cea17c0e15
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Deterministic local orchestration when ordered checks, time holds, and
+  abort conditions must remain intelligible under failure.
+artifact:
+  repository_url: https://github.com/GlacierEQ/spacex-launch-sequencer
+  inspected_paths:
+    - README.md
+    - src/alpha/countdown.py
+    - src/sequencer.py
+    - tests/test_countdown_truth.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit;
+    this review does not assert that the test suite was executed during recovery.
+claim: >-
+  At the reviewed commit, the repository implements a local Python countdown
+  state machine with monotonic duration accounting, hold/resume time freezing,
+  fail-closed handling of abort-check and required-step exceptions, and
+  containment of callback failures. Repository-owned tests encode those local
+  behavior expectations.
+known_limit: >-
+  This artifact establishes neither SpaceX affiliation, proprietary launch
+  knowledge, real launch-command authority, vehicle control, safety
+  certification, live telemetry or weather integration, nor production
+  real-time performance. The root-level simple Sequencer is a separate,
+  smaller stage-and-hold experiment and does not establish the richer
+  alpha/countdown behavior by itself.
+evidence_boundary: LOCAL_COUNTDOWN_SIMULATION_NOT_LAUNCH_COMMAND_AUTHORITY
+thread_relationships:
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-hold-reason-compiler
+    note: >-
+      Curator-defined connection: both threads concern explicit hold handling
+      in a mission-systems context. This is not a source-code dependency claim.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-mission-thread-quorum
+    note: >-
+      Curator-defined connection: both threads concern bounded decision states
+      under operational constraints. This is not a source-code dependency claim.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-mission-control
+    note: >-
+      Curator-defined connection: countdown orchestration is one local
+      decision surface within the wider mission-systems constellation.
+      This is not a claim of shared implementation or deployment.
+  - type: internal_experiment
+    repository: GlacierEQ/spacex-launch-sequencer
+    artifact: src/sequencer.py
+    note: >-
+      The root-level stage-and-hold sequencer remains a distinct, preserved
+      in-repository experiment alongside src/alpha/countdown.py.

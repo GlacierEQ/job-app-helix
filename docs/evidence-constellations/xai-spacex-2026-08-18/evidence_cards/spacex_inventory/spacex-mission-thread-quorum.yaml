@@ -1,0 +1,48 @@
+repository: GlacierEQ/spacex-mission-thread-quorum
+commit: 705d19b886be694d4a2b362abe246b932d88d9f7
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Deterministic local aggregation of configured subsystem votes with explicit
+  freshness, incompleteness, hold, and receipt semantics.
+artifact:
+  repository_url: https://github.com/GlacierEQ/spacex-mission-thread-quorum
+  inspected_paths:
+    - README.md
+    - src/quorum.py
+    - tests/test_quorum.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit; this
+    review does not assert that repository tests were executed during recovery.
+claim: >-
+  At the reviewed commit, the repository implements a local configured-subsystem
+  quorum that rejects unknown or non-causal vote replacement, treats missing,
+  stale, future, and abstaining votes as incomplete, escalates qualifying
+  high-severity NO_GO votes to a local hold, and generates SHA-256-bound
+  receipts over vote views, policy, time, and state. Repository-owned tests
+  encode these freshness, aggregation, replacement, and receipt expectations.
+known_limit: >-
+  The artifact does not authenticate voters, determine real flight safety,
+  clear or issue an operational hold, command hardware, establish an external
+  launch procedure, or establish any relationship with SpaceX.
+evidence_boundary: >-
+  Local aggregation of supplied vote objects only; no authenticated or
+  operational decision authority.
+thread_relationships:
+  - type: conceptual_neighbor
+    repository: GlacierEQ/spacex-hold-reason-compiler
+    note: >-
+      The hold-reason compiler describes supplied residuals while this thread
+      aggregates local vote objects. No exercised integration is claimed.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-launch-sequencer
+    note: >-
+      Curator-defined decision-state connection. It does not assert a shared
+      runtime, live mission procedure, or code dependency.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-pad-weather-gate
+    note: >-
+      Curator-defined local-input connection: a weather outcome can be modeled
+      as a supplied vote by separate code. This does not assert data flow.
