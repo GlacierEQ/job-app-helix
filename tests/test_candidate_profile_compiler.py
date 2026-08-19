@@ -65,30 +65,34 @@ Systems engineer building evidence-backed automation.
 """
 
 
-PRODUCTION_STYLE_RESUME = """# CASEY DEL CARPIO BARTON
-Applied AI Systems Architect - Agent Infrastructure Engineer - Forward-Deployed AI Engineer
-Honolulu, Hawaii - 808-936-5654 - glacier.equilibrium@gmail.com
-GitHub: https://github.com/GlacierEQ
-
-## Professional Summary
-Applied AI systems architect who builds the operating layer between model capability and dependable outcomes.
-
-## Core Competencies
-Agent infrastructure; multi-agent orchestration; Model Context Protocol (MCP); application intelligence; provenance; deterministic testing; bounded retries; failure and recovery design.
-
-## Technologies
-Python; TypeScript; JavaScript; SQL; Bash; GitHub Actions; Docker; Vercel.
-
-## Selected Systems
-AKOS - CURRENT-HEAD EXECUTED MULTI-VERSION CI
-Execution authority and delegated-identity verification at exact canonical head `eac3cab001306225b99da41c37370528331966dd`. GitHub Actions succeeds across Python 3.11, 3.12, and 3.13.
-
-ECHO - TESTED REPOSITORY + PUBLIC/PRIVACY BOUNDARY
-Receipt-backed continuity and orchestration with deterministic identity, integrity checks, idempotent execution, bounded retries, execution receipts, and provenance-bearing exports.
-
-Job Application Helix - PARTIALLY_VERIFIED
-Evidence-governed hiring and portfolio orchestration with an exact 67-repository admitted public proof boundary.
-"""
+PRODUCTION_STYLE_RESUME = (
+    "# CASEY DEL CARPIO BARTON\n"
+    "Applied AI Systems Architect - Agent Infrastructure Engineer - "
+    "Forward-Deployed AI Engineer\n"
+    "Honolulu, Hawaii - 808-936-5654 - glacier.equilibrium@gmail.com\n"
+    "GitHub: https://github.com/GlacierEQ\n\n"
+    "## Professional Summary\n"
+    "Applied AI systems architect who builds the operating layer between model capability "
+    "and dependable outcomes.\n\n"
+    "## Core Competencies\n"
+    "Agent infrastructure; multi-agent orchestration; Model Context Protocol (MCP); "
+    "application intelligence; provenance; deterministic testing; bounded retries; "
+    "failure and recovery design.\n\n"
+    "## Technologies\n"
+    "Python; TypeScript; JavaScript; SQL; Bash; GitHub Actions; Docker; Vercel.\n\n"
+    "## Selected Systems\n"
+    "AKOS - CURRENT-HEAD EXECUTED MULTI-VERSION CI\n"
+    "Execution authority and delegated-identity verification at exact canonical head "
+    "`eac3cab001306225b99da41c37370528331966dd`. GitHub Actions succeeds across "
+    "Python 3.11, 3.12, and 3.13.\n\n"
+    "ECHO - TESTED REPOSITORY + PUBLIC/PRIVACY BOUNDARY\n"
+    "Receipt-backed continuity and orchestration with deterministic identity, integrity "
+    "checks, idempotent execution, bounded retries, execution receipts, and "
+    "provenance-bearing exports.\n\n"
+    "Job Application Helix - PARTIALLY_VERIFIED\n"
+    "Evidence-governed hiring and portfolio orchestration with an exact 67-repository "
+    "admitted public proof boundary.\n"
+)
 
 
 def _write(path: pathlib.Path, content: str) -> pathlib.Path:
@@ -141,7 +145,10 @@ class CandidateProfileCompilerTests(unittest.TestCase):
         self.assertEqual(payload["name"], "CASEY DEL CARPIO BARTON")
         self.assertEqual(
             payload["headline"],
-            "Applied AI Systems Architect - Agent Infrastructure Engineer - Forward-Deployed AI Engineer",
+            (
+                "Applied AI Systems Architect - Agent Infrastructure Engineer - "
+                "Forward-Deployed AI Engineer"
+            ),
         )
         self.assertIn("multi-agent orchestration", loaded.skills)
         self.assertIn("Python", loaded.skills)
@@ -151,7 +158,10 @@ class CandidateProfileCompilerTests(unittest.TestCase):
         self.assertTrue(any("3.11" in item for item in loaded.achievements))
         self.assertEqual(
             payload["summary"],
-            "Applied AI systems architect who builds the operating layer between model capability and dependable outcomes.",
+            (
+                "Applied AI systems architect who builds the operating layer between model "
+                "capability and dependable outcomes."
+            ),
         )
 
     def test_multi_resume_composition_deduplicates_and_preserves_primary_voice(self) -> None:
