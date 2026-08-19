@@ -36,7 +36,7 @@ permissions:
 jobs:
   crawl:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 330
     steps:
       - name: Check out Helix
         uses: actions/checkout@v6
@@ -83,7 +83,7 @@ jobs:
           set -euo pipefail
           if [ "${EVENT_NAME}" = "schedule" ]; then
             echo "mode=priority" >> "${GITHUB_OUTPUT}"
-            echo "hourly=25" >> "${GITHUB_OUTPUT}"
+            echo "hourly=50" >> "${GITHUB_OUTPUT}"
             echo "start=0" >> "${GITHUB_OUTPUT}"
             echo "limit=" >> "${GITHUB_OUTPUT}"
           else
@@ -108,7 +108,7 @@ jobs:
             python scripts/crawl_crystallization_estate.py
             --output /tmp/crystallization-receipt.json
             --content-mode "${MODE}"
-            --workers 6
+            --workers 10
             --start "${START}"
           )
           if [ -n "${LIMIT:-}" ]; then
