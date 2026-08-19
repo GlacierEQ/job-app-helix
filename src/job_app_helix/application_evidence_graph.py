@@ -238,15 +238,11 @@ def build_application_evidence_bundle(
             repository=repository,
             company_id=company_id,
             evidence_level=(
-                str(node["evidence_level"])
-                if node.get("evidence_level") is not None
-                else None
+                str(node["evidence_level"]) if node.get("evidence_level") is not None else None
             ),
             promotion_state=str(node.get("promotion_state", "UNCLASSIFIED")),
             provenance_state=str(node.get("provenance_state", "UNCLASSIFIED")),
-            flagship_systems=tuple(
-                sorted(set(flagship_by_repo.get(f"repo:{repository}", [])))
-            ),
+            flagship_systems=tuple(sorted(set(flagship_by_repo.get(f"repo:{repository}", [])))),
             paradigms=tuple(sorted(set(paradigms_by_repo.get(f"repo:{repository}", [])))),
             score=score,
             reasons=reasons,
