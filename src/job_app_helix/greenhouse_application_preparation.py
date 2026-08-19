@@ -261,7 +261,9 @@ def _resolve_release(release_path: Path) -> tuple[str, str, Path, str]:
     opening_id = _required_string(selected, "opening_id", label="selected release")
     packet_dir = Path(_required_string(selected, "packet_dir", label="selected release"))
     if not packet_dir.is_dir():
-        raise GreenhouseApplicationPreparationError(f"selected packet directory is unavailable: {packet_dir}")
+        raise GreenhouseApplicationPreparationError(
+            f"selected packet directory is unavailable: {packet_dir}"
+        )
     return application_id, opening_id, packet_dir, receipt
 
 
