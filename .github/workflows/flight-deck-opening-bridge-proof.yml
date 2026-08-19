@@ -1,0 +1,41 @@
+name: Flight Deck Opening Bridge Proof
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/flight_deck_opening_bridge.py"
+      - "src/job_app_helix/opening_watch.py"
+      - "tests/test_flight_deck_opening_bridge.py"
+      - ".github/workflows/flight-deck-opening-bridge-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/flight_deck_opening_bridge.py"
+      - "src/job_app_helix/opening_watch.py"
+      - "tests/test_flight_deck_opening_bridge.py"
+      - ".github/workflows/flight-deck-opening-bridge-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install exact package with test tools
+        run: python -m pip install -e '.[dev]'
+      - name: Strict lint
+        run: ruff check src/job_app_helix/flight_deck_opening_bridge.py tests/test_flight_deck_opening_bridge.py
+      - name: Adversarial bridge proof
+        run: pytest -q tests/test_flight_deck_opening_bridge.py tests/test_opening_watch.py
+      - name: Executable module proof
+        run: python -m job_app_helix.flight_deck_opening_bridge --help
