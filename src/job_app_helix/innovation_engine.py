@@ -16,6 +16,7 @@ POLICY_SCHEMA = "glaciereq.frontier-innovation-policy.v1"
 MEASURED_STATUS = "MEASURED"
 VERIFICATION_ASSERTING_STATUSES = {"VERIFIED", "MEASURED"}
 OPERATOR_ONLY_STATUSES = frozenset({"SOURCE_BOUND", "SUPERSEDED", "ARCHIVED"})
+APEX_INDEX_STATUSES = frozenset({"INDEXED", "UNINDEXED", "CONFLICTING", "BLOCKED"})
 ESTATE_REGISTRIES = (
     "system_registry",
     "capability_donor_registry",
@@ -488,10 +489,12 @@ def priority_score(
     weights = active.get("priority_weights")
     if not isinstance(weights, dict):
         raise InnovationContractError("priority_weights must be an object")
+    # APEX ranks by bottleneck effect and system value. Proofability is
+    # reported metadata, never an admission requirement or a positive proxy
+    # for usefulness.
     positive = (
         "bottleneck_importance",
         "repository_fit",
-        "proofability",
         "cross_repo_compounding",
         "enterprise_relevance",
         "expected_value",
@@ -667,11 +670,15 @@ def compile_estate_target_queue(
         candidate = dict(assessment)
         validate_payload(candidate, "target-assessment")
         identity = (candidate.get("repository"), candidate.get("system_id"))
-        if identity not in reference:
-            raise InnovationContractError(
-                "target assessment must resolve to an existing reference estate system: "
-                f"{identity!r}"
-            )
+        # APEX treats the registry as an index, not as the capability boundary.
+        # A source-bound assessment may enter exploration while its absence is
+        # retained explicitly for review and later reconciliation.
+        if identity in reference:
+            index_status = "INDEXED"
+        else:
+            index_status = "UNINDEXED"
+        candidate["index_status"] = index_status
+        candidate["active_route"] = "APEX_EXPLORATION"
         normalized.append(candidate)
 
     ranked = rank_targets(normalized, policy)

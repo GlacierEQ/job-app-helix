@@ -553,12 +553,13 @@ def test_estate_queue_rejects_tamper_wrong_hash_and_nonreference_target() -> Non
             expected_hash,
         )
 
-    with pytest.raises(InnovationContractError, match="existing reference estate system"):
-        compile_estate_target_queue(
-            bundle,
-            [assessment("GlacierEQ/fake", "sys-fake", 1.0)],
-            expected_hash,
-        )
+    queue = compile_estate_target_queue(
+        bundle,
+        [assessment("GlacierEQ/fake", "sys-fake", 1.0)],
+        expected_hash,
+    )
+    assert queue["targets"][0]["index_status"] == "UNINDEXED"
+    assert queue["targets"][0]["active_route"] == "APEX_EXPLORATION"
 
 
 def test_engineering_run_supports_progressive_state_before_final_ledger() -> None:

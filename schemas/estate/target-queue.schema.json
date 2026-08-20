@@ -14,7 +14,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["schema", "repository", "system_id", "bottleneck_importance", "repository_fit", "proofability", "cross_repo_compounding", "enterprise_relevance", "expected_value", "implementation_cost", "regression_risk", "uncertainty", "rationale_refs", "priority_score", "rank"],
+        "required": ["schema", "repository", "system_id", "bottleneck_importance", "repository_fit", "proofability", "cross_repo_compounding", "enterprise_relevance", "expected_value", "implementation_cost", "regression_risk", "uncertainty", "rationale_refs", "index_status", "active_route", "priority_score", "rank"],
         "properties": {
           "schema": {"const": "glaciereq.target-assessment.v1"},
           "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
@@ -29,6 +29,8 @@
           "regression_risk": {"type": "number", "minimum": 0, "maximum": 1},
           "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
           "rationale_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "index_status": {"enum": ["INDEXED", "UNINDEXED", "CONFLICTING", "BLOCKED"]},
+          "active_route": {"const": "APEX_EXPLORATION"},
           "priority_score": {"type": "number", "minimum": 0},
           "rank": {"type": "integer", "minimum": 1}
         }
