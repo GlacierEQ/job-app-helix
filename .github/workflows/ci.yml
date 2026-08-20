@@ -36,7 +36,7 @@ jobs:
 
       - name: Lint public source and audit runners
         run: >-
-          ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
+          ruff check src tests scripts showcase/demo_15min_run.py
           --output-format=github
 
       - name: Run tests

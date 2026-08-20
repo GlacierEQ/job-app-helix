@@ -12,7 +12,7 @@ license = { file = "LICENSE" }
 authors = [{ name = "Casey Barton" }]
 keywords = ["job-applications", "portfolio", "systems-engineering", "evidence", "orchestration"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
   "License :: Other/Proprietary License",
   "Programming Language :: Python :: 3",
@@ -95,11 +95,11 @@ module = ["job_app_helix.readme_mesh_manifest", "job_app_helix.readme_mesh"]
 ignore_errors = true
 
 [tool.ruff.lint.per-file-ignores]
-"apex_highway.py" = ["E501"]
-"apex_distributed_compute.py" = ["E501"]
-"ci_audit_portfolio.py" = ["E501"]
-"generate_outreach_dms.py" = ["E501"]
-"test_apex_distributed_compute.py" = ["E501"]
+"scripts/legacy/apex_highway.py" = ["E501"]
+"scripts/legacy/apex_distributed_compute.py" = ["E501"]
+"scripts/ci_audit_portfolio.py" = ["E501"]
+"scripts/legacy/generate_outreach_dms.py" = ["E501"]
+"tests/test_apex_distributed_compute.py" = ["E501"]
 "showcase/demo_15min_run.py" = ["E501"]
 "helix/**/*.py" = ["E501"]
 "src/job_app_helix/genius_engine.py" = ["E501", "F401"]
