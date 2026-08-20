@@ -281,6 +281,12 @@ def test_mutating_command_requires_explicit_authorization(tmp_path: Path) -> Non
 
     assert receipts[0].conclusion is VerificationState.BLOCKED
     assert "explicit authorization" in receipts[0].commands[0].stderr_tail
+    continuation = receipts[0].commands[0].continuation
+    assert continuation is not None
+    assert continuation.capability == "workspace evolution"
+    assert continuation.explicit_authorization_required is True
+    assert "rerun_same_command_with_read_back_verification" in continuation.next_actions
+    assert receipts[0].continuations == (continuation,)
 
 
 def test_atomic_receipt_replaces_stale_content(tmp_path: Path) -> None:
