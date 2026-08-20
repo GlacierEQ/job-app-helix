@@ -122,7 +122,7 @@ Build an estate graph that preserves identity, lineage, specialization, and comp
 
 Classifications are descriptive metadata, not authority. A repository may be predecessor, successor, experimental, dependency, supporting infrastructure, backup, demonstration, specialist, capability donor, compounding peer, or another evidence-supported role.
 
-**Do not use `canonical`, `duplicate`, `superseded`, `archived`, or similar labels as automatic grounds for suppression, deletion, retirement, or loss of independent capability.**
+**Do not use `reference`, `duplicate`, `superseded`, `archived`, or similar labels as automatic grounds for suppression, deletion, retirement, or loss of independent capability.**
 
 Do not count literal lineage copies as independent achievements in public projections, but preserve any unique implementation, experiment, interface, or capability until it has been deliberately evaluated and retained in the best living form.
 

@@ -19,7 +19,7 @@ from job_app_helix.repo_excellence import (  # noqa: E402
 LEGACY_HIGH_STATES_REQUIRING_REAL_RECEIPTS = {
     "PROOF_REPRODUCED",
     "PROMOTED",
-    "CANONICAL",
+    "SOURCE_BOUND",
     "EVOLVING",
 }
 
@@ -64,7 +64,7 @@ def migrate() -> None:
             t_arch = axes.get("target_architecture", {})
             c_proof = axes.get("current_proof", {}).get("grade", "C")
             c_fit = axes.get("company_fit", {}).get("score", 0.0)
-            c_conf = axes.get("canonical_confidence", {}).get("score", 0.0)
+            c_conf = axes.get("reference_confidence", {}).get("score", 0.0)
 
             t_arch_val = 10.0 if t_arch.get("grade") == "A" else (8.0 if t_arch.get("grade") == "B" else 5.0)
             if c_proof not in {"A", "B", "C", "D", "Q"}:
@@ -79,22 +79,22 @@ def migrate() -> None:
                 "identity": {
                     "repository": repo_name,
                     "repository_id": str(repo_name).replace("GlacierEQ/", ""),
-                    "canonical_head": "UNRESOLVED",
+                    "source_head": "UNRESOLVED",
                     "default_branch": "main",
                     "lineage_action": "RECONSTRUCT_LINEAGE",
                 },
                 "state": state_val,
-                "canonical_role": "INDEPENDENT_SYSTEM",
+                "reference_role": "INDEPENDENT_SYSTEM",
                 "scores": {
                     "target_architecture": float(t_arch_val),
                     "current_proof": str(c_proof),
                     "company_fit": float(c_fit),
-                    "canonical_confidence": float(c_conf),
+                    "reference_confidence": float(c_conf),
                 },
                 "gates": {
                     "problem_verified": old_gates.get("PROBLEM_VERIFIED", {}).get("status") == "PASS",
                     "unique_value_known": old_gates.get("TARGET_CONTRACT_FROZEN", {}).get("status") == "PASS",
-                    "canonical_identity_known": old_gates.get("IDENTITY_RESOLVED", {}).get("status") == "PASS",
+                    "source_identity_known": old_gates.get("IDENTITY_RESOLVED", {}).get("status") == "PASS",
                     "central_mechanism_implemented": old_gates.get("CENTRAL_MECHANISM_PRESENT", {}).get("status") == "PASS",
                     "deterministic_tests_pass": old_gates.get("DETERMINISTIC_PROOF_GREEN", {}).get("status") == "PASS",
                     "adversarial_tests_pass": old_gates.get("ADVERSARIAL_SURVIVAL", {}).get("status") == "PASS",

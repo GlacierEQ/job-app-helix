@@ -42,8 +42,8 @@
       "innovation": "Deployment Interface Standardizer",
       "verdict": "PARTIAL_REFERENCE",
       "implemented": "normalizes required workcell interface fields",
-      "missing_invariant": "field presence is treated as compatibility; no canonical interface standard or cross-cell mismatch detection exists",
-      "repair": "compare normalized cells against a reusable canonical contract and fail incompatible fixtures/safety/task interfaces"
+      "missing_invariant": "field presence is treated as compatibility; no reference interface standard or cross-cell mismatch detection exists",
+      "repair": "compare normalized cells against a reusable reference contract and fail incompatible fixtures/safety/task interfaces"
     },
     {
       "rank": 3,
@@ -239,7 +239,7 @@
       "company_id": "together_ai",
       "innovation": "Open-Model Fidelity Passport",
       "verdict": "REPAIR_REQUIRED",
-      "implemented": "canonicalizes an arbitrary config and SHA-256 fingerprints it",
+      "implemented": "source_binds an arbitrary config and SHA-256 fingerprints it",
       "core_defect": "no required passport schema is enforced; a fingerprint can be valid while weights lineage, compatibility constraints, or eval deltas are missing",
       "repair": "require weights lineage, quantization, sampler, kernel stack, eval deltas, and compatibility constraints before fingerprinting"
     },

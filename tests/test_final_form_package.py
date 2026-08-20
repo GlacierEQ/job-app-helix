@@ -41,7 +41,7 @@ def test_final_form_manifest_routes_every_declared_asset() -> None:
     )
 
     assert manifest["schema"] == "glaciereq.candidate-final-form-manifest.v1"
-    assert manifest["canonical_url"] == "https://casey-barton-glaciereq.vercel.app/"
+    assert manifest["source_url"] == "https://casey-barton-glaciereq.vercel.app/"
     assert manifest["deploy_repository"] == "GlacierEQ/job-application"
     assert manifest["public_surface_policy"]["sole_share_url"] == (
         "https://casey-barton-glaciereq.vercel.app/"
@@ -58,7 +58,7 @@ def test_final_form_manifest_routes_every_declared_asset() -> None:
     assert missing == []
 
 
-def test_public_hire_package_locks_canonical_share_url() -> None:
+def test_public_hire_package_locks_reference_share_url() -> None:
     """Primary share surfaces must use Vercel; dead/wrong URLs only as forbid lists."""
     required = "https://casey-barton-glaciereq.vercel.app/"
     send_this = (PACKAGE / "SEND_THIS.md").read_text(encoding="utf-8")
@@ -74,7 +74,7 @@ def test_public_hire_package_locks_canonical_share_url() -> None:
     assert resume.splitlines()[4].startswith(f"Portfolio: {required}")
     assert "Start here:** https://casey-barton-glaciereq.vercel.app/" in final_readme
     assert "Only share:** https://casey-barton-glaciereq.vercel.app/" in claim
-    assert manifest["canonical_url"] == required
+    assert manifest["source_url"] == required
     assert manifest["three_layer_surfaces"]["public_site"] == required
     # Explicitly catalogued as forbidden so agents do not re-promote them.
     forbidden = set(manifest["public_surface_policy"]["forbidden_share_urls"])

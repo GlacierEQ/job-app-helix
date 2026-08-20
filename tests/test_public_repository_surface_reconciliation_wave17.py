@@ -119,7 +119,7 @@ def test_wave17_admissions_are_exact_head_and_native_receipt_bound() -> None:
         evidence = record["decision_evidence"]
         assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
         assert record["admission"] == "ADMIT"
-        assert evidence["canonical_head"] == expected["head"]
+        assert evidence["source_head"] == expected["head"]
         assert evidence["proof_receipts"] == [
             {
                 "kind": "workflow_run",
@@ -143,8 +143,8 @@ def test_wave17_receipts_match_reconciliation_authority() -> None:
         receipt = load(ROOT / expected["receipt"])
         wave = wave_by_repo[repository]
         assert receipt["repository"] == repository
-        assert receipt["source_canonical_head"] == expected["head"]
-        assert wave["evidence"]["canonical_head"] == expected["head"]
+        assert receipt["source_head"] == expected["head"]
+        assert wave["evidence"]["source_head"] == expected["head"]
         assert receipt["proof_receipts"][0]["id"] == expected["run"]
         assert wave["evidence"]["proof_receipts"][0]["id"] == expected["run"]
         assert receipt["surface_decision"] == "ADMIT"

@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-08-07T03:39:00-10:00",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_head_before": "2b55207e1c30736f326923ad7604b97eef5515e9",
+  "source_head_before": "2b55207e1c30736f326923ad7604b97eef5515e9",
   "branch": "main",
   "merge_base": "2b55207e1c30736f326923ad7604b97eef5515e9",
   "ahead": 0,
@@ -11,7 +11,7 @@
   "decision": "PRESERVE_LEGAL_SPINE; RETIRE_SUPERSEDED_HELIX_PR; CLASSIFY_JOB_APPLICATION_SQUASH_SOURCE_RETIREMENT_READY; NO_NEW_RADAR_PROMOTION",
   "preservation": {
     "monolith_legal_spine": {
-      "canonical_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "source_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
       "branch": "synthesize/legal-live-reconciliation-20260807",
       "merge_base": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
       "ahead": 1,
@@ -23,7 +23,7 @@
       "stale_branch": "integration/make-it-heavy-estate-harness-20260807",
       "ahead": 6,
       "behind": 3,
-      "canonical_contains_re_synthesized_harness": true,
+      "reference_contains_re_synthesized_harness": true,
       "pr": 41,
       "pr_disposition": "CLOSED_SUPERSEDED_NOT_MERGED",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
@@ -33,18 +33,18 @@
       "ahead": 3,
       "behind": 1,
       "merge_base": "3b7c73292279a8f68956546a821d2e570dbe5245",
-      "canonical_head": "724a6090aed63b28730a57c54f5b08a26791a054",
-      "patch_value": "CANONICAL_ALREADY_CONTAINS_RELEASE_LABEL_AND_VALIDATOR_GUARD_VIA_MERGED_PR_19",
+      "source_head": "724a6090aed63b28730a57c54f5b08a26791a054",
+      "patch_value": "SOURCE_BOUND_ALREADY_CONTAINS_RELEASE_LABEL_AND_VALIDATOR_GUARD_VIA_MERGED_PR_19",
       "decision": "RETIREMENT_READY",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     }
   },
   "verification": {
-    "monolith": "NO_PR_TRIGGERED_NATIVE_WORKFLOW_RESULT_AVAILABLE_FOR_LEGAL_SYNTHESIS; canonical untouched",
+    "monolith": "NO_PR_TRIGGERED_NATIVE_WORKFLOW_RESULT_AVAILABLE_FOR_LEGAL_SYNTHESIS; reference untouched",
     "job_application": "PR 19 already merged; current main contains V16 + V17 release language and validator guard",
-    "helix": "canonical commit 2b55207 records fresh-head harness adoption after native CI, portfolio integrity, and registry validation passed"
+    "helix": "reference commit 2b55207 records fresh-head harness adoption after native CI, portfolio integrity, and registry validation passed"
   },
-  "canonical_head_after": "RECEIPT_COMMIT",
+  "source_head_after": "RECEIPT_COMMIT",
   "remote_ref_disposition": "NO_REMOTE_BRANCH_DELETION_TOOL_AVAILABLE_IN_CURRENT_CONNECTOR; DELETE_REF_REQUIRED recorded",
   "news_inputs": [
     "OpenAI primary-source search, last 24h: no new actionable signal returned",
@@ -54,12 +54,12 @@
     "Reuters search surfaced Meta Muse Code/Muse Spark 1.2 material already represented in the current radar; no duplicate promotion"
   ],
   "innovation_inputs": [
-    "GlacierEQ/make-it-heavy adaptive execution harness remains canonical Estate execution authority",
+    "GlacierEQ/make-it-heavy adaptive execution harness remains reference Estate execution authority",
     "no novelty-only replacement adopted"
   ],
   "blockers": [
     "Monolith legal synthesis lacks repository-native workflow proof in the available PR-triggered workflow surface",
     "remote branch deletion capability is not exposed by the current GitHub connector"
   ],
-  "next_cursor": "Continue priority spine after job-application retirement classification; verify Monolith legal synthesis through repository-native execution before canonical promotion; delete retirement-ready refs when a deletion-capable connector can prove the mutation."
+  "next_cursor": "Continue priority spine after job-application retirement classification; verify Monolith legal synthesis through repository-native execution before reference promotion; delete retirement-ready refs when a deletion-capable connector can prove the mutation."
 }

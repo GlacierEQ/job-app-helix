@@ -328,19 +328,19 @@ def build_systems(
         if repository not in engineering_names or target not in engineering_names:
             raise ValueError(f"lineage crosses namespace boundary: {repository} -> {target}")
         if relation is Relation.EXPLICIT_SUCCESSOR_OF:
-            child, canonical = target, repository
+            child, reference = target, repository
         else:
-            child, canonical = repository, target
-        if child in parent and parent[child] != canonical:
+            child, reference = repository, target
+        if child in parent and parent[child] != reference:
             raise ValueError(f"conflicting lineage parent for {child}")
-        parent[child] = canonical
+        parent[child] = reference
         edges.append(
             {
                 "repository": repository,
                 "relation": relation.value,
                 "target": target,
                 "collapse_child": child,
-                "collapse_parent": canonical,
+                "collapse_parent": reference,
                 "confidence": "EXPLICIT_EVIDENCE",
                 "evidence_refs": list(refs),
             }
@@ -433,7 +433,7 @@ def build_systems(
         systems.append(
             {
                 "system_id": system_id,
-                "canonical_repository": root,
+                "source_repository": root,
                 "member_repositories": [member.repository for member in members],
                 "historical_member_count": max(0, len(members) - 1),
                 "visibility": root_repo.visibility,
@@ -456,7 +456,7 @@ def build_systems(
     ]
     forks = [repo for repo in repos if repo.fork]
     registry: dict[str, Any] = {
-        "schema": "glaciereq.canonical-system-registry.v1",
+        "schema": "glaciereq.reference-system-registry.v1",
         "systems": systems,
         "lineage_edges": sorted(
             edges,
@@ -1041,7 +1041,7 @@ def build_company_projections(
                 "operating_problem": company.get("gap_or_next_gate"),
                 "operating_problem_source": "company_dossier.gap_or_next_gate",
                 "recruiter_thesis": company.get("recruiter_thesis"),
-                "canonical_systems": system_ids,
+                "reference_systems": system_ids,
                 "capabilities": sorted(
                     {
                         capability
@@ -1099,7 +1099,7 @@ def build_experiments(
     requirements = {
         ExperimentStage.DISTINCT_VALUE.value: ["unique_value_evidence"],
         ExperimentStage.TESTED.value: ["positive_count_test_receipt"],
-        ExperimentStage.SYSTEM_COMPONENT.value: ["canonical_system_integration_receipt"],
+        ExperimentStage.SYSTEM_COMPONENT.value: ["reference_system_integration_receipt"],
         ExperimentStage.FLAGSHIP_DONOR.value: [
             "capability_proof",
             "promotion_score_gate",
@@ -1205,7 +1205,7 @@ def compile_estate(
             ),
             "fork_references": sum(repo.fork for repo in repos),
             "namespace_assertions_applied": len(namespace_assertions),
-            "canonical_systems": len(systems["systems"]),
+            "reference_systems": len(systems["systems"]),
             "lineage_edges": len(systems["lineage_edges"]),
             "unresolved_lineage_candidates": len(systems["unresolved_lineage"]),
             "capabilities": len(capabilities["capabilities"]),
@@ -1216,7 +1216,7 @@ def compile_estate(
             "experiments": len(experiments),
         },
         "registry_hashes": {
-            "canonical_system_registry": systems["content_hash"],
+            "system_registry": systems["content_hash"],
             "capability_donor_registry": capabilities["content_hash"],
             "company_projection_registry": companies["content_hash"],
         },
@@ -1233,7 +1233,7 @@ def compile_estate(
     bundle: dict[str, Any] = {
         "schema": SCHEMA_VERSION,
         "source_digest": source_digest,
-        "canonical_system_registry": systems,
+        "system_registry": systems,
         "capability_donor_registry": capabilities,
         "company_projection_registry": companies,
         "experiment_pipeline": experiments,
@@ -1244,7 +1244,7 @@ def compile_estate(
 
 
 def public_safe_projection(bundle: Mapping[str, Any]) -> dict[str, Any]:
-    systems = bundle["canonical_system_registry"]["systems"]
+    systems = bundle["system_registry"]["systems"]
     globally_allowed = {
         row["system_id"]
         for row in systems
@@ -1298,14 +1298,14 @@ def public_safe_projection(bundle: Mapping[str, Any]) -> dict[str, Any]:
                     if key
                     not in {
                         "ranked_evidence",
-                        "canonical_systems",
+                        "reference_systems",
                         "minimal_proof_surface",
                         "capabilities",
                     }
                 },
-                "canonical_systems": [
+                "reference_systems": [
                     system_id
-                    for system_id in projection["canonical_systems"]
+                    for system_id in projection["reference_systems"]
                     if system_id in safe_ids
                 ],
                 "capabilities": safe_capabilities,

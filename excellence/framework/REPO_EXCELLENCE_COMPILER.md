@@ -45,9 +45,9 @@ A vertical slice is an optional experimental technique, never the target archite
 
 Principal states:
 
-`DISCOVERED → IDENTITY_RESOLVED → PURPOSE_RECONSTRUCTED → CAPABILITY_MAPPED → RESTORATION_COMPOSED → IMPLEMENTED → TESTED → ADVERSARIAL_VERIFIED → OPERABLE → PROOF_REPRODUCED → PROMOTED → CANONICAL → EVOLVING`
+`DISCOVERED → IDENTITY_RESOLVED → PURPOSE_RECONSTRUCTED → CAPABILITY_MAPPED → RESTORATION_COMPOSED → IMPLEMENTED → TESTED → ADVERSARIAL_VERIFIED → OPERABLE → PROOF_REPRODUCED → PROMOTED → SOURCE_BOUND → EVOLVING`
 
-`CANONICAL` is an exact-source anchor for a named capability only. It does not erase siblings or acquire authority over OPERATOR intent.
+`SOURCE_BOUND` is an exact-source anchor for a named capability only. It does not erase siblings or acquire authority over OPERATOR intent.
 
 Active facets:
 

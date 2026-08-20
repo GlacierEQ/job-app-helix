@@ -26,7 +26,7 @@ technology placement · interfaces · build gates · blockers
  deterministic package and repository receipts
 ```
 
-## Canonical Tower boundary
+## Source-bound Tower boundary
 
 Package pull anchor: `GlacierEQ/the-tower-of-babel@1028a58986be6bedd1d8d09a63593876aab52d1d`
 

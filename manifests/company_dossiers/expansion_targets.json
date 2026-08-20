@@ -68,7 +68,7 @@
       "display_name":"MongoDB",
       "track_state":"DIRECT_ESTATE_DISCOVERED_UPSTREAM_ONLY",
       "recruiter_thesis":"Three direct-name estate repositories exist, but GitHub metadata proves all three are upstream forks. They are useful reference and integration-context evidence, not Casey-authored MongoDB proof.",
-      "gap_or_next_gate":"Keep all direct-name forks excluded from authorship. Search canonical GlacierEQ systems for original MongoDB-relevant capabilities—governed MCP/database access, persistent agent state, connector security, observability, and database-grounded workflows—and admit only provenance-verified implementations with current proof.",
+      "gap_or_next_gate":"Keep all direct-name forks excluded from authorship. Search reference GlacierEQ systems for original MongoDB-relevant capabilities—governed MCP/database access, persistent agent state, connector security, observability, and database-grounded workflows—and admit only provenance-verified implementations with current proof.",
       "repositories":[
         ["GlacierEQ/mongodb-mcp-server","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
         ["GlacierEQ/mongodb-kubernetes","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],
@@ -98,7 +98,7 @@
       "company_id":"motherduck",
       "display_name":"MotherDuck",
       "track_state":"SEMANTIC_CAPABILITY_DONORS_ADMITTED_WITH_DEPLOYMENT_BOUNDARY",
-      "recruiter_thesis":"A public non-fork canonical gateway donor provides two transferable MotherDuck mechanisms: a bounded query facade and structured connector health telemetry. Recruiter projection stays capability-led and makes no production deployment or affiliation claim.",
+      "recruiter_thesis":"A public non-fork reference gateway donor provides two transferable MotherDuck mechanisms: a bounded query facade and structured connector health telemetry. Recruiter projection stays capability-led and makes no production deployment or affiliation claim.",
       "gap_or_next_gate":"Compile the public gateway donor's bounded MotherDuck capabilities and exact-head proof into role projections. Promote additional generic analytics mechanisms only after they exist in a neutral recruiter-eligible donor with independently verified evidence.",
       "repositories":[
         ["GlacierEQ/Z-BACKUP-apex-motherduck-engine","L2","PRIVATE_REFERENCE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]

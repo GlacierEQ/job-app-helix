@@ -19,7 +19,7 @@
   },
   "mission_orchestrator": {
     "id": "D0",
-    "responsibility": "Own the canonical company-track boundary, wave schedule, fail-closed completion, and deterministic receipts."
+    "responsibility": "Own the reference company-track boundary, wave schedule, fail-closed completion, and deterministic receipts."
   },
   "domain_leads": [
     {
@@ -37,7 +37,7 @@
     {"id": "S1", "role": "Official Source Analyst", "responsibility": "Extract current observed pressure and immutable source references."},
     {"id": "S2", "role": "Systems Bottleneck Analyst", "responsibility": "Infer the constraining system while preserving uncertainty."},
     {"id": "S3", "role": "Failure and Counterevidence Analyst", "responsibility": "Identify brick walls, failure modes, limiting evidence, and contradictions."},
-    {"id": "S4", "role": "Repository Evidence Mapper", "responsibility": "Map current canonical systems, capability donors, and evidence states."},
+    {"id": "S4", "role": "Repository Evidence Mapper", "responsibility": "Map current reference systems, capability donors, and evidence states."},
     {"id": "S5", "role": "Leverage Architect", "responsibility": "Design the smallest high-leverage technical contribution consistent with the evidence ceiling."},
     {"id": "S6", "role": "Impact Analyst", "responsibility": "Estimate operational and reviewer impact without inventing metrics."},
     {"id": "S7", "role": "Application Strategist", "responsibility": "Convert verified findings into a role-specific application move and next gate."},
@@ -50,7 +50,7 @@
   },
   "wave_size": 8,
   "quality_gates": [
-    "canonical_track_parity",
+    "reference_track_parity",
     "unique_track_assignment",
     "complete_specialist_matrix",
     "unique_task_identity",

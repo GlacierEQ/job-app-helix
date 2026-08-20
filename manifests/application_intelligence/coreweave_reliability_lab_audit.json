@@ -182,7 +182,7 @@
     },
     {
       "stage": "SYSTEM_COMPONENT",
-      "requires": ["canonical_system_integration_receipt"]
+      "requires": ["reference_system_integration_receipt"]
     },
     {
       "stage": "FLAGSHIP_DONOR",

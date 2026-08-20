@@ -82,7 +82,7 @@ PRODUCTION_STYLE_RESUME = (
     "Python; TypeScript; JavaScript; SQL; Bash; GitHub Actions; Docker; Vercel.\n\n"
     "## Selected Systems\n"
     "AKOS - CURRENT-HEAD EXECUTED MULTI-VERSION CI\n"
-    "Execution authority and delegated-identity verification at exact canonical head "
+    "Execution authority and delegated-identity verification at exact reference head "
     "`eac3cab001306225b99da41c37370528331966dd`. GitHub Actions succeeds across "
     "Python 3.11, 3.12, and 3.13.\n\n"
     "ECHO - TESTED REPOSITORY + PUBLIC/PRIVACY BOUNDARY\n"

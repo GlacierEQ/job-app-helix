@@ -108,14 +108,14 @@ def route_record(record: dict[str, Any]) -> dict[str, Any]:
         priority = 8
         reason = (
             "Archive/backup status is not an exemption; verify intentional archive reason "
-            "or canonical successor before resolving it from the active estate."
+            "or reference successor before resolving it from the active estate."
         )
     elif fork:
         lane = "VERIFY_FORK_DELTA_OR_UPSTREAM"
         priority = 12
         reason = (
             "Fork must be inspected for unique local capability, intentional reference value, "
-            "or safe canonicalization to upstream."
+            "or safe source_binding to upstream."
         )
     elif classification == "PRIORITY_SPINE":
         lane = "CRYSTALLIZE_PRIORITY"

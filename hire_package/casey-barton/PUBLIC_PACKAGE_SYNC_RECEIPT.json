@@ -2,7 +2,7 @@
   "schema": "glaciereq.candidate-public-package-sync.v1",
   "candidate": "Casey Del Carpio Barton",
   "package_release_date": "2026-07-30",
-  "purpose": "Bind the hardened recruiter package to public canonical repositories without publishing private contact data or application operations.",
+  "purpose": "Bind the hardened recruiter package to public reference repositories without publishing private contact data or application operations.",
   "repositories": {
     "job_application": {
       "repository": "GlacierEQ/job-application",

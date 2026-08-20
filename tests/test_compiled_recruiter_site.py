@@ -79,7 +79,7 @@ def _projection() -> dict:
             }
         ],
         "inference_boundary": "Facts and inferences remain distinct.",
-        "canonical_systems": ["sys-helix"],
+        "reference_systems": ["sys-helix"],
         "capabilities": capabilities,
         "minimal_proof_surface": ["sys-helix"],
         "audience_projection": {
@@ -170,7 +170,7 @@ def test_compiled_site_routes_public_estate_projection(
     assert (output / "capability_proof_lens.css").is_file()
     assert (output / "capability_proof_lens.js").is_file()
     assert "native_repository_count" not in projection
-    assert "canonical_accomplishments" not in projection
+    assert "reference_accomplishments" not in projection
 
 
 def test_compiled_manifest_hashes_projection_assets(
@@ -272,7 +272,7 @@ def test_capability_proof_unsafe_evidence_path_fails_closed(
 
 @pytest.mark.parametrize(
     "forbidden",
-    ["native_repository_count", "canonical_accomplishments"],
+    ["native_repository_count", "reference_accomplishments"],
 )
 def test_public_estate_counts_are_rejected(
     tmp_path: Path,

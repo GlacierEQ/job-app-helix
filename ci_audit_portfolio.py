@@ -103,7 +103,7 @@ def require_workspace() -> list[Path]:
     if not REPOS_DIR.is_dir():
         raise FileNotFoundError(
             f"Portfolio workspace not found: {REPOS_DIR}. "
-            "Run this command from the canonical job-app workspace containing repos/."
+            "Run this command from the reference job-app workspace containing repos/."
         )
     return sorted(
         path for path in REPOS_DIR.iterdir() if path.is_dir() and not path.name.startswith(".")

@@ -2,7 +2,7 @@
   "schema": "glaciereq.public-repository-surface-repair-blocker.v1",
   "generated_at": "2026-08-11T14:14:00-10:00",
   "repository": "GlacierEQ/spacex-thermal-protection",
-  "source_canonical_head": "f35cef2d9c115218766ac3ef8d023f8316ac02f0",
+  "source_head": "f35cef2d9c115218766ac3ef8d023f8316ac02f0",
   "evidence_token": "LOCAL_THERMAL_SCENARIO_MODEL_NOT_FLIGHT_TPS_AUTHORITY",
   "source_proof": [
     {"id": 31548120212, "name": "CI", "head_sha": "f35cef2d9c115218766ac3ef8d023f8316ac02f0", "conclusion": "success"},

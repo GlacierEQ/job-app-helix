@@ -34,6 +34,6 @@ def test_helix_forbids_copied_repository_payloads() -> None:
     links = validator._load(validator.LIVE_LINKS)
 
     assert links["source_code_copying_into_helix_forbidden"] is True
-    assert links["link_mode"] == "live_canonical_repository"
+    assert links["link_mode"] == "live_apex_repository"
     assert "copied_source_tree" in links["forbidden_projection_payloads"]
     assert "manually_duplicated_readme" in links["forbidden_projection_payloads"]

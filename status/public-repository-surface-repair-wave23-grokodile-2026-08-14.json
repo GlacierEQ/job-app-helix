@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T14:55:00-10:00",
   "wave": 23,
   "repository": "GlacierEQ/grokodile",
-  "source_canonical_head": "fb51c671e66005e93385d3828053b051083f4c5d",
+  "source_head": "fb51c671e66005e93385d3828053b051083f4c5d",
   "source_state": "LOCAL_OPERATOR_HYGIENE_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [{"kind":"workflow_run","id":31854959743,"name":"CI","head_sha":"fb51c671e66005e93385d3828053b051083f4c5d","conclusion":"success"}],
   "verified_capability": "deterministic-local-operator-hygiene-claim-gating-tool-classification-compaction-and-handoff",
@@ -13,7 +13,7 @@
     "preserved Lean source as an uncompiled reference artifact rather than formal-proof authority",
     "added Python 3.11/3.12/3.13 contract proof alongside the pinned repository-owned verifier",
     "restored the required machine evidence_state contract after CI caught its omission",
-    "bound repaired canonical main to exact-head CI run 31854959743"
+    "bound repaired reference main to exact-head CI run 31854959743"
   ],
   "nonclaims": [
     "no xAI affiliation employment endorsement proprietary access or Grok runtime access",

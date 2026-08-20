@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T14:55:00-10:00",
   "wave": 23,
   "repository": "GlacierEQ/aws-trainium-neuron-sentinel",
-  "source_canonical_head": "bfffd8dc67ecbd86e06dc375b9550f72788a398f",
+  "source_head": "bfffd8dc67ecbd86e06dc375b9550f72788a398f",
   "source_state": "MODELED_TRAINIUM_CAPABILITY_NATIVE_PROOF_REFRESHED",
   "prior_surface_decision": "ADMIT",
   "proof_receipts": [{"kind":"workflow_run","id":31854768152,"name":"Public Truth Gate","head_sha":"bfffd8dc67ecbd86e06dc375b9550f72788a398f","conclusion":"success"}],
@@ -11,7 +11,7 @@
   "evidence_token": "MODELED_TRAINIUM_SCENARIO_NOT_AWS_HARDWARE_MEASUREMENT",
   "repairs": [
     "replaced hyper-scaling machine metadata with exact modeled accelerator capabilities",
-    "demoted stale PROMOTED/HYPER_VALIDATED machine posture until refreshed canonical proof succeeded",
+    "demoted stale PROMOTED/HYPER_VALIDATED machine posture until refreshed reference proof succeeded",
     "made historical promotion verification time-stable and non-authoritative",
     "expanded exact-source proof to Python 3.11/3.12/3.13 and retained strict C++17 compilation",
     "pinned Actions dependencies and disabled persisted checkout credentials",

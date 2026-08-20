@@ -9,7 +9,7 @@
   "compiler_cli": "scripts/compile_live_repository_evidence.py",
   "observation_root": "observations/repositories",
   "assessment_root": "status/repository-assessments",
-  "source_mode": "canonical_links_and_receipts_only",
+  "source_mode": "reference_links_and_receipts_only",
   "copied_source_bytes": "forbidden",
   "repositories": [
     {
@@ -17,7 +17,7 @@
       "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
       "observation": "observations/repositories/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
       "current_assessment": "status/repository-assessments/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
-      "observation_id": "49daddbd413db11746942adf5321707d4039d922ae335a7be2eb4f5136d0d1c3",
+      "observation_id": "7af625c910cbbf7fa057b6a26072d0dd247f4508cbc6c9bb6d093b19c73af93d",
       "assessment_id": "5280c451d0ddedd1fcbbf5308ee6598dcbc96eb9a3a2fc25e2d706a6244ae866",
       "state": "PARTIALLY_VERIFIED",
       "health_score": 30.76,

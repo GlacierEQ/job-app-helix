@@ -32,23 +32,23 @@ def promoted_record() -> dict[str, object]:
         "identity": {
             "repository": "GlacierEQ/example",
             "repository_id": "123456",
-            "canonical_head": "a" * 40,
+            "source_head": "a" * 40,
             "default_branch": "main",
             "lineage_action": "verified",
         },
         "state": "PROMOTED",
-        "canonical_role": "SPECIALIST_COMPONENT",
+        "reference_role": "SPECIALIST_COMPONENT",
         "scores": {
             "target_architecture": 10.0,
             "current_proof": "A",
             "company_fit": 10.0,
-            "canonical_confidence": 1.0,
+            "reference_confidence": 1.0,
         },
         "gates": {gate: True for gate in REQUIRED_EXCELLENT_GATES},
-        "evolution": {"next_gate": "canonicalize"},
+        "evolution": {"next_gate": "source_bind"},
         "proof_receipt": {
             "source_sha": "c" * 40,
-            "canonical_merge_sha": "a" * 40,
+            "reference_merge_sha": "a" * 40,
             "identity": "receipt-example-001",
         },
     }
@@ -84,15 +84,15 @@ def test_promoted_record_rejects_non_digest_proof() -> None:
         validate_repo_excellence_record(payload)
 
 
-def test_promoted_record_rejects_canonical_merge_from_another_head() -> None:
+def test_promoted_record_rejects_reference_merge_from_another_head() -> None:
     payload = promoted_record()
     receipt = payload["proof_receipt"]
     assert isinstance(receipt, dict)
-    receipt["canonical_merge_sha"] = "b" * 40
+    receipt["reference_merge_sha"] = "b" * 40
 
     with pytest.raises(
         ExcellenceContractError,
-        match=r"proof_receipt\.canonical_merge_sha to match identity\.canonical_head",
+        match=r"proof_receipt\.reference_merge_sha to match identity\.source_head",
     ):
         validate_repo_excellence_record(payload)
 
@@ -101,18 +101,18 @@ def test_promoted_record_allows_distinct_artifact_source_when_merge_is_bound() -
     payload = promoted_record()
     validated = validate_repo_excellence_record(payload)
     assert validated["proof_receipt"]["source_sha"] == "c" * 40
-    assert validated["proof_receipt"]["canonical_merge_sha"] == "a" * 40
+    assert validated["proof_receipt"]["reference_merge_sha"] == "a" * 40
 
 
-def test_promoted_record_rejects_non_git_canonical_head() -> None:
+def test_promoted_record_rejects_non_git_source_head() -> None:
     payload = promoted_record()
     identity = payload["identity"]
     assert isinstance(identity, dict)
-    identity["canonical_head"] = "RESOLVED"
+    identity["source_head"] = "RESOLVED"
 
     with pytest.raises(
         ExcellenceContractError,
-        match=r"identity\.canonical_head to be an exact 40-hex Git commit",
+        match=r"identity\.source_head to be an exact 40-hex Git commit",
     ):
         validate_repo_excellence_record(payload)
 

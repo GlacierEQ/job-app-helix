@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://glaciereq.local/schemas/estate/promotion.schema.json",
-  "title": "Canonical Promotion Gate",
+  "title": "Source-bound Promotion Gate",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema", "repository", "source_head", "expected_head", "observed_head", "baseline_preserved", "central_mechanism_implemented", "existing_tests_pass", "new_behavior_tested", "failure_path_tested", "regression_risk_assessed", "claims_match_evidence", "architecture_documented", "limitations_documented", "benchmark", "decision", "evidence_refs"],

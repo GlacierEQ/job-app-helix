@@ -3,7 +3,7 @@
   "program": "library-readme-and-branch-consolidation",
   "operating_date_hst": "2026-07-30",
   "recorded_date_utc": "2026-07-31",
-  "canonical_control_plane": "GlacierEQ/job-app-helix",
+  "reference_control_plane": "GlacierEQ/job-app-helix",
   "scope": {
     "kind": "priority_spine_wave",
     "repositories": 9,
@@ -11,7 +11,7 @@
     "recruiter_portfolio_completion_claimed": false
   },
   "policy": {
-    "main_is_canonical": true,
+    "main_is_reference": true,
     "preserve_unique_value_before_closure": true,
     "require_repository_native_proof": true,
     "pr_closure_is_branch_deletion": false,
@@ -21,7 +21,7 @@
     {
       "repository": "GlacierEQ/the-tower-of-babel",
       "status": "MERGED_VERIFIED_CURRENT_RELEASE",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge": {
         "pull_request": 16,
         "commit": "dea2661270c343b6e17c617eee29c36123939414",
@@ -51,7 +51,7 @@
     {
       "repository": "GlacierEQ/job-application",
       "status": "MERGED_VERIFIED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge": {
         "pull_request": 4,
         "commit": "1efb16a7017ebae0454d556c5ac31b4149c18673",
@@ -66,8 +66,8 @@
     },
     {
       "repository": "GlacierEQ/job-app-helix",
-      "status": "CANONICAL_CONTROL_PLANE_VERIFIED",
-      "canonical_branch": "main",
+      "status": "SOURCE_BOUND_CONTROL_PLANE_VERIFIED",
+      "reference_branch": "main",
       "current_commit": "a438bba26676f8329a4ec874027029651e80c6fa",
       "proof": [
         "Python 3.11, 3.12, and 3.13 CI verified",
@@ -81,7 +81,7 @@
     {
       "repository": "GlacierEQ/monolith",
       "status": "PRESERVE_OPEN_BLOCKED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "active_pull_request": 2,
       "active_branch": "feat/monolith-evolution-roadmap",
       "unique_value": "PRESENT",
@@ -96,7 +96,7 @@
     {
       "repository": "GlacierEQ/AKOS",
       "status": "TEST_VERIFIED_BRANCH_FAMILIES_CLASSIFIED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "current_commit": "5ef48a8068a8079f3cbca3f83c5800909b1d5239",
       "proof": [
         "repository-native verification remains present",
@@ -115,7 +115,7 @@
     {
       "repository": "GlacierEQ/pro-code",
       "status": "MERGED_VERIFIED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge_commit": "a9c7697bb9a8b89e201721e29136ae95f1cc57e4",
       "proof": [
         "TypeScript lint and type-check passed",
@@ -130,7 +130,7 @@
     {
       "repository": "GlacierEQ/Pro_Code",
       "status": "STATIC_DOCTRINE_AND_RELATIONSHIP_CORPUS_VERIFIED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge": {
         "pull_request": 2,
         "commit": "5f5f718a6a88841ff6efe19c302cd29e8d611d54",
@@ -148,7 +148,7 @@
     {
       "repository": "GlacierEQ/mastermind",
       "status": "MERGED_VERIFIED_FRONT_DOOR",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge": {
         "pull_request": 152,
         "commit": "f82bf6ed9da2d4e27ddc7e1f7d624ed04026cb24",
@@ -165,7 +165,7 @@
     {
       "repository": "GlacierEQ/megaminds-pdf",
       "status": "MERGED_VERIFIED_VITE_MIGRATION",
-      "canonical_branch": "master",
+      "reference_branch": "master",
       "merge": {
         "pull_request": 3,
         "commit": "5ddcdc40c9b2bb625d39ddf49e3f44e2e892a773",

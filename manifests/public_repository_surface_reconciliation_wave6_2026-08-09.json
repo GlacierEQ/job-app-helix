@@ -17,8 +17,8 @@
       "decision": "ADMIT",
       "excellence_state": "LOCAL_CAPACITY_AND_GANG_SCHEDULER_VERIFIED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "ad4ae574efad762550b373967a57008848986df4",
+        "reference_branch": "main",
+        "source_head": "ad4ae574efad762550b373967a57008848986df4",
         "evidence_tokens": [
           "MODELED_TRAINING_CAPACITY_SCENARIO_NOT_CLUSTER_RUNTIME",
           "LOCAL_IN_MEMORY_GANG_SCHEDULER_NOT_CLUSTER_RUNTIME"
@@ -29,7 +29,7 @@
         ],
         "proof_scope": "Exact-current-head Python and Go proof verifies deterministic capacity admission, same-zone in-memory gang scheduling, validation, caller-ownership isolation, priority ordering, pending-job preservation, and public non-affiliation/nondeployment boundaries."
       },
-      "next_gate": "Reopen repair on canonical-head, proof-token, scheduler-correctness, xAI/Colossus affiliation, hardware/network/performance, or deployment-claim drift."
+      "next_gate": "Reopen repair on reference-head, proof-token, scheduler-correctness, xAI/Colossus affiliation, hardware/network/performance, or deployment-claim drift."
     },
     {
       "repository": "GlacierEQ/ai-auto-driller-unified",
@@ -38,12 +38,12 @@
       "repair_priority": "P1",
       "excellence_state": "EXACT_HEAD_USERSCRIPT_PROOF_VERIFIED_METADATA_DRIFT",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "c0c5d8b3d3e1adb47480a9619e10ed18ed1e3f76",
+        "reference_branch": "main",
+        "source_head": "c0c5d8b3d3e1adb47480a9619e10ed18ed1e3f76",
         "proof_receipts": [
           {"kind":"workflow_run","id":31349872706,"name":"Auto Driller — CI Validation","head_sha":"c0c5d8b3d3e1adb47480a9619e10ed18ed1e3f76","conclusion":"success"}
         ],
-        "source_state": "Canonical README and exact-head source validation now identify scripts/auto-driller-master.user.js as the bounded userscript runtime and separate browser/provider compatibility code from live integration claims.",
+        "source_state": "Source-bound README and exact-head source validation now identify scripts/auto-driller-master.user.js as the bounded userscript runtime and separate browser/provider compatibility code from live integration claims.",
         "blocking_metadata": {
           "description": "Unified auto-driller suite v4.0 — 11 AI platforms, 8 weighted drill categories, typing sim, draggable UI, session export",
           "homepage": null,
@@ -60,13 +60,13 @@
       "repair_priority": "P1",
       "excellence_state": "PRIVACY_SURFACE_REPAIRED_METADATA_DRIFT",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "ad307c30ab53df53876c7ecaff6682964c5ae5b1",
+        "reference_branch": "main",
+        "source_head": "ad307c30ab53df53876c7ecaff6682964c5ae5b1",
         "evidence_token": "LOCAL_HEALTH_SNAPSHOT_NOT_DEPLOYMENT_TELEMETRY",
         "proof_receipts": [
           {"kind":"workflow_run","id":31350253021,"name":"Public Truth Gate","head_sha":"ad307c30ab53df53876c7ecaff6682964c5ae5b1","conclusion":"success"}
         ],
-        "source_state": "Current public tree removes the case-specific metric identifier and legal/evidence automation health claims, replaces fabricated live telemetry with caller-supplied local snapshots, and proves the current privacy boundary on the exact canonical head.",
+        "source_state": "Current public tree removes the case-specific metric identifier and legal/evidence automation health claims, replaces fabricated live telemetry with caller-supplied local snapshots, and proves the current privacy boundary on the exact reference head.",
         "blocking_metadata": {
           "description": "Distributed Storage Backend - Phase deployments, artifacts, configurations, and system state"
         }
@@ -80,13 +80,13 @@
       "repair_priority": "P0",
       "excellence_state": "CURRENT_TREE_SECRET_REMOVAL_AND_LOCAL_CLI_PROOF_VERIFIED_HISTORY_REMEDIATION_REQUIRED",
       "evidence": {
-        "canonical_branch": "master",
-        "canonical_head": "2b92ca206a3b6d97382969c9f75896bfc71de0d2",
+        "reference_branch": "master",
+        "source_head": "2b92ca206a3b6d97382969c9f75896bfc71de0d2",
         "proof_receipts": [
           {"kind":"workflow_run","id":31348604660,"name":"CI","head_sha":"2b92ca206a3b6d97382969c9f75896bfc71de0d2","conclusion":"success"},
           {"kind":"workflow_run","id":31348604363,"name":"Public Truth Gate","head_sha":"2b92ca206a3b6d97382969c9f75896bfc71de0d2","conclusion":"success"}
         ],
-        "source_state": "Current tree removes tracked public credential material from the bundle template, makes provider diagnostics credential-explicit/read-only, isolates external casebuild state, and proves repository-local CLI behavior on the exact canonical head.",
+        "source_state": "Current tree removes tracked public credential material from the bundle template, makes provider diagnostics credential-explicit/read-only, isolates external casebuild state, and proves repository-local CLI behavior on the exact reference head.",
         "blocking_security_history": "Historical public Git commits contained credential material. Current-tree removal does not establish revocation, rotation, invalidation, or history remediation for those historical values."
       },
       "next_gate": "Obtain revocation/rotation evidence for historically exposed credentials and complete any required history/remediation procedure before public admission."

@@ -66,7 +66,7 @@ python scripts/check_proto_contract.py
 python -m job_app_helix.readme_mesh_cli validate
 ```
 
-The bounded multi-repository audit requires the canonical local workspace:
+The bounded multi-repository audit requires the reference local workspace:
 
 ```bash
 python ci_audit_portfolio.py

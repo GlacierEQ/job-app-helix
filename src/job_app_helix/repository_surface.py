@@ -470,10 +470,10 @@ def apply_surface_decisions(
         evidence = _object(decision_item.get("evidence"), f"items[{index}].evidence")
         record = by_repository[repository]
         if decision == "ADMIT":
-            canonical_head = str(evidence.get("canonical_head", "")).strip()
-            if EXACT_SHA_RE.fullmatch(canonical_head) is None:
+            source_head = str(evidence.get("source_head", "")).strip()
+            if EXACT_SHA_RE.fullmatch(source_head) is None:
                 raise RepositorySurfaceError(
-                    f"ADMIT decision for {repository} requires exact canonical_head"
+                    f"ADMIT decision for {repository} requires exact source_head"
                 )
             base_blockers = _admit_base_blockers(record)
             if base_blockers:

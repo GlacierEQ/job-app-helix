@@ -3,7 +3,7 @@
   "generated_at": "2026-08-13T16:28:00-10:00",
   "wave": 16,
   "repository": "GlacierEQ/spacex-satellite-mesh",
-  "source_canonical_head": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
+  "source_head": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
   "source_state": "LOCAL_STATIC_TEMPORAL_MESH_ROUTING_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [
     {
@@ -37,7 +37,7 @@
     "implemented trajectory-bounded temporal link windows and earliest-arrival routing that can wait for future modeled links",
     "added executable static and temporal JSON CLI surfaces with explicit operational_authority=false receipts",
     "implemented and verified a native Rust shortest-path routing kernel",
-    "bound Python 3.11/3.12/3.13 and Rust proof to the exact canonical source revision under pinned read-only workflow authority"
+    "bound Python 3.11/3.12/3.13 and Rust proof to the exact reference source revision under pinned read-only workflow authority"
   ],
   "nonclaims": [
     "no SpaceX affiliation, employment, adoption, endorsement, proprietary topology, telemetry, or production deployment",

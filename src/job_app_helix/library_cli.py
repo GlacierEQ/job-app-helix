@@ -28,7 +28,7 @@ _SOURCE_ROOT = Path(__file__).resolve().parents[2]
 
 
 def _default_manifest(filename: str) -> Path:
-    """Resolve canonical data from a source checkout or the installed wheel."""
+    """Resolve reference data from a source checkout or the installed wheel."""
 
     source_path = _SOURCE_ROOT / "manifests" / filename
     if source_path.is_file():
@@ -87,7 +87,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Analyze remote branches by ancestry and patch-equivalent unique value.",
     )
     branch_parser.add_argument("repository", type=Path)
-    branch_parser.add_argument("--canonical", default="main")
+    branch_parser.add_argument("--reference", default="main")
     branch_parser.add_argument("--remote", default="origin")
     branch_parser.add_argument("--fetch", action="store_true")
     branch_parser.add_argument("--receipt", type=Path)
@@ -144,7 +144,7 @@ def _branch_command(args: argparse.Namespace) -> int:
                 f"git fetch failed ({completed.returncode}): {completed.stderr.strip()}"
             )
 
-    payload = assess_repository(repository, canonical=args.canonical, remote=args.remote)
+    payload = assess_repository(repository, reference=args.reference, remote=args.remote)
     payload["timestamp"] = datetime.now(UTC).isoformat()
     payload["policy"] = {
         "never_merge_stale_tip_directly": True,
@@ -221,7 +221,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     {
                         "schema": payload["schema"],
                         "repositories": len(payload["repositories"]),
-                        "canonical_control_plane": payload["canonical_control_plane"],
+                        "reference_control_plane": payload["reference_control_plane"],
                         "latest_execution_receipt": payload["latest_execution_receipt"],
                         "receipt_program": receipt["program"],
                         "status": "VALID",

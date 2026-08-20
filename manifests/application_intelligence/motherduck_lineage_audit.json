@@ -22,7 +22,7 @@
     }
   ],
   "truth_boundary": {
-    "nonfork_does_not_equal_canonical": true,
+    "nonfork_does_not_equal_reference": true,
     "backup_name_requires_lineage_resolution": true,
     "legal_evidence_source_mutation_is_prohibited": true,
     "private_reference_is_not_public_company_proof": true,
@@ -34,5 +34,5 @@
     "connector normalization across Supabase, Notion, GitHub, and Vercel",
     "provenance-aware query and ingestion flows"
   ],
-  "next_cursor": "Preserve the legal/evidence repository read-only and extract reusable non-sensitive analytics mechanisms into a fresh canonical technical donor before any MotherDuck company claim is promoted."
+  "next_cursor": "Preserve the legal/evidence repository read-only and extract reusable non-sensitive analytics mechanisms into a fresh reference technical donor before any MotherDuck company claim is promoted."
 }

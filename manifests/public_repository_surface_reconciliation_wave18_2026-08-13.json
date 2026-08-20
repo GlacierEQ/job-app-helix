@@ -19,8 +19,8 @@
       "excellence_state": "LOCAL_SYNTHETIC_GPU_HEALTH_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "master",
-        "canonical_head": "3c2d2b98f700e0224685152b73d55276ef767286",
+        "reference_branch": "master",
+        "source_head": "3c2d2b98f700e0224685152b73d55276ef767286",
         "evidence_token": "LOCAL_SYNTHETIC_GPU_HEALTH_MODEL_NOT_NVIDIA_TELEMETRY_AUTHORITY",
         "verified_capability": "deterministic-local-synthetic-gpu-health-policy-evaluation",
         "verified_capabilities": [
@@ -60,7 +60,7 @@
           "assessment": "portfolio metadata is compatible with the bounded independent local GPU-health policy exhibit; the controlling README explicitly preserves NVIDIA non-affiliation and no-telemetry/no-hardware-authority boundaries"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the NVIDIA non-affiliation/no-telemetry/no-operational-authority boundary, physical diagnosis or failure-prediction claims without evidence, real telemetry/daemon/hardware/scheduler claims, live MCP/APEX/Mastermind/provider integration claims, production scale/performance/reliability claims, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, removal of the NVIDIA non-affiliation/no-telemetry/no-operational-authority boundary, physical diagnosis or failure-prediction claims without evidence, real telemetry/daemon/hardware/scheduler claims, live MCP/APEX/Mastermind/provider integration claims, production scale/performance/reliability claims, or contradictory GitHub About metadata."
     }
   ]
 }

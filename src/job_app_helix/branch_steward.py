@@ -14,7 +14,7 @@ class BranchStewardError(RuntimeError):
 @dataclass(frozen=True)
 class BranchAssessment:
     repository: str
-    canonical_branch: str
+    reference_branch: str
     branch: str
     merge_base: str
     ahead: int
@@ -61,19 +61,19 @@ def _count_pair(repo: Path, left: str, right: str) -> tuple[int, int]:
     return left_only, right_only
 
 
-def _unique_patch_commits(repo: Path, canonical: str, branch: str) -> tuple[str, ...]:
+def _unique_patch_commits(repo: Path, reference: str, branch: str) -> tuple[str, ...]:
     # Patch identity is useful evidence but is not a complete capability comparison.
     # A patch-equivalent branch may still contain purpose, structure, history, tests,
     # generated assets, integration context, or donor value that deserves inspection.
-    rows = _line_output(repo, "cherry", canonical, branch)
+    rows = _line_output(repo, "cherry", reference, branch)
     return tuple(row[2:].strip() for row in rows if row.startswith("+ "))
 
 
-def _changed_files(repo: Path, canonical: str, branch: str) -> tuple[str, ...]:
-    return _line_output(repo, "diff", "--name-only", f"{canonical}...{branch}")
+def _changed_files(repo: Path, reference: str, branch: str) -> tuple[str, ...]:
+    return _line_output(repo, "diff", "--name-only", f"{reference}...{branch}")
 
 
-def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
+def assess_branch(repo: Path, reference: str, branch: str) -> BranchAssessment:
     """Assess branch ancestry without converting ancestry into deletion authority.
 
     This function intentionally cannot declare a branch retirement-ready. Git ancestry
@@ -85,19 +85,19 @@ def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
     if not (repo / ".git").exists():
         raise BranchStewardError(f"not a git checkout: {repo}")
 
-    merge_base = _run(repo, "merge-base", canonical, branch).stdout.strip()
+    merge_base = _run(repo, "merge-base", reference, branch).stdout.strip()
     if not merge_base:
-        raise BranchStewardError(f"no merge base for {canonical} and {branch}")
+        raise BranchStewardError(f"no merge base for {reference} and {branch}")
 
-    behind, ahead = _count_pair(repo, canonical, branch)
-    unique = _unique_patch_commits(repo, canonical, branch)
-    files = _changed_files(repo, canonical, branch)
+    behind, ahead = _count_pair(repo, reference, branch)
+    unique = _unique_patch_commits(repo, reference, branch)
+    files = _changed_files(repo, reference, branch)
 
     if ahead == 0:
         classification = "ANCESTRY_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED"
         safe_direct_merge = False
         reason = (
-            "branch has no commits absent from canonical ancestry, but ancestry alone "
+            "branch has no commits absent from reference ancestry, but ancestry alone "
             "cannot establish capability exhaustion; inspect purpose, lineage, artifacts, "
             "consumers, and historical donor value before any lifecycle decision"
         )
@@ -125,7 +125,7 @@ def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
 
     return BranchAssessment(
         repository=repo.name,
-        canonical_branch=canonical,
+        reference_branch=reference,
         branch=branch,
         merge_base=merge_base,
         ahead=ahead,
@@ -143,7 +143,7 @@ def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
 
 def list_remote_branches(
     repo: Path,
-    canonical: str = "main",
+    reference: str = "main",
     remote: str = "origin",
     protected_prefixes: Sequence[str] = ("upstream", "vendor", "release/"),
 ) -> tuple[str, ...]:
@@ -160,7 +160,7 @@ def list_remote_branches(
         if not row.startswith(prefix):
             continue
         branch = row[len(prefix) :]
-        if branch in {"HEAD", canonical}:
+        if branch in {"HEAD", reference}:
             continue
         if branch.casefold().startswith(protected):
             continue
@@ -170,12 +170,12 @@ def list_remote_branches(
 
 def assess_repository(
     repo: Path,
-    canonical: str = "main",
+    reference: str = "main",
     remote: str = "origin",
 ) -> dict[str, object]:
-    canonical_ref = f"{remote}/{canonical}"
-    branches = list_remote_branches(repo, canonical=canonical, remote=remote)
-    assessments = [assess_branch(repo, canonical_ref, f"{remote}/{branch}") for branch in branches]
+    reference_ref = f"{remote}/{reference}"
+    branches = list_remote_branches(repo, reference=reference, remote=remote)
+    assessments = [assess_branch(repo, reference_ref, f"{remote}/{branch}") for branch in branches]
     priority_order = {
         "DIVERGED_UNIQUE_VALUE": 0,
         "CURRENT_UNIQUE_VALUE": 1,
@@ -191,7 +191,7 @@ def assess_repository(
     )
     return {
         "repository": repo.name,
-        "canonical": canonical_ref,
+        "reference": reference_ref,
         "branch_count": len(assessments),
         "actionable_unique": sum(bool(item.unique_patch_commits) for item in assessments),
         "capability_review_required": len(assessments),

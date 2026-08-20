@@ -3,7 +3,7 @@
   "created_date": "2026-08-10",
   "source_pull_request": 116,
   "source_head": "5f0d2dac8a0f700991ab6676c66f286c09761126",
-  "canonical_base": "721fbb2b8a8048de415a36f5ca018edefecbb337",
+  "reference_base": "721fbb2b8a8048de415a36f5ca018edefecbb337",
   "successor_branch": "canon/pr116-ai-architect-unique-value-20260810",
   "decision": "FRESH_HEAD_UNIQUE_VALUE_SYNTHESIS",
   "contamination_boundary": {

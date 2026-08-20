@@ -20,7 +20,7 @@
   ],
   "capture_contract": {
     "state_and_delta_required": true,
-    "canonical_heads_required": true,
+    "source_heads_required": true,
     "source_hash_algorithm": "sha256",
     "fail_closed_on_missing_private_estate_authority": true,
     "historical_reconstruction_must_identify_reconstruction": true,
@@ -28,7 +28,7 @@
   },
   "dimensions": [
     "repository_inventory",
-    "canonical_heads",
+    "source_heads",
     "genealogy",
     "capability_ontology",
     "original_intent",

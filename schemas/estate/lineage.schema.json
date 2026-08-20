@@ -4,11 +4,11 @@
   "title": "Repository Lineage Family",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "lineage_id", "canonical_repository", "members", "unresolved"],
+  "required": ["schema", "lineage_id", "source_repository", "members", "unresolved"],
   "properties": {
     "schema": {"const": "glaciereq.lineage.v1"},
     "lineage_id": {"type": "string", "minLength": 1},
-    "canonical_repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "source_repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
     "unresolved": {"type": "boolean"},
     "members": {
       "type": "array",
@@ -19,7 +19,7 @@
         "required": ["repository", "relation", "evidence_refs"],
         "properties": {
           "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
-          "relation": {"enum": ["CANONICAL", "BACKUP_OF", "ARCHIVE_OF", "PREDECESSOR_OF", "SUCCESSOR_OF", "DUPLICATE_OF", "RELATED_UNRESOLVED"]},
+          "relation": {"enum": ["SOURCE_BOUND", "BACKUP_OF", "ARCHIVE_OF", "PREDECESSOR_OF", "SUCCESSOR_OF", "DUPLICATE_OF", "RELATED_UNRESOLVED"]},
           "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
         }
       }

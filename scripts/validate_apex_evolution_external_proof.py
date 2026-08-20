@@ -69,8 +69,8 @@ def main() -> None:
 
     if proof["public_host_repository"] != PUBLIC_REPO:
         _fail("public proof host repository drift")
-    if disclosure["canonical_repository_visibility"] != "private":
-        _fail("canonical repository visibility boundary drift")
+    if disclosure["source_repository_visibility"] != "private":
+        _fail("reference repository visibility boundary drift")
     if disclosure["bounded_evolution_source_slice_publicly_disclosed"] is not True:
         _fail("public evolution source-slice disclosure is not truthful")
     if set(disclosure["public_slice_files"]) != set(EXPECTED_FILES):

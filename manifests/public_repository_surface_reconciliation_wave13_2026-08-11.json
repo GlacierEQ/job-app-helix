@@ -20,8 +20,8 @@
       "excellence_state": "LOCAL_ENVIRONMENTAL_RULE_GATE_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
+        "reference_branch": "main",
+        "source_head": "7f8ca0a9d4e346b7350b30e2a9263a10b3baae26",
         "evidence_token": "LOCAL_ENVIRONMENTAL_RULE_GATE_NOT_LAUNCH_SAFETY_AUTHORITY",
         "verified_capability": "deterministic-local-environmental-constraint-evaluation",
         "proof_receipts": [
@@ -47,7 +47,7 @@
           "assessment": "portfolio metadata is explicitly illustrative and compatible with the admitted local environmental-rule capability; the controlling README preserves SpaceX non-affiliation and no-launch-safety-authority boundaries"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/no-launch-safety-authority boundary, promotion of illustrative thresholds as official Launch Commit Criteria or range rules, real sensor or weather-network claims without evidence, probability/forecast or launch-window optimization claims without proof, live MCP/provider/mesh integration claims, production safety/certification/deployment claims, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, proof failure, removal of the SpaceX non-affiliation/no-launch-safety-authority boundary, promotion of illustrative thresholds as official Launch Commit Criteria or range rules, real sensor or weather-network claims without evidence, probability/forecast or launch-window optimization claims without proof, live MCP/provider/mesh integration claims, production safety/certification/deployment claims, or contradictory GitHub About metadata."
     }
   ]
 }

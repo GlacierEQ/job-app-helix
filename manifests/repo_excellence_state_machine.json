@@ -14,7 +14,7 @@
     "OPERABLE",
     "PROOF_REPRODUCED",
     "PROMOTED",
-    "CANONICAL",
+    "SOURCE_BOUND",
     "EVOLVING"
   ],
   "active_facets": [
@@ -39,10 +39,10 @@
       "security_authority_bounded",
       "projections_truth_consistent"
     ],
-    "PROMOTED->CANONICAL": [
+    "PROMOTED->SOURCE_BOUND": [
       "problem_verified",
       "unique_value_known",
-      "canonical_identity_known",
+      "source_identity_known",
       "central_mechanism_implemented",
       "deterministic_tests_pass",
       "adversarial_tests_pass",
@@ -54,7 +54,7 @@
       "evolution_cursor_defined"
     ]
   },
-  "canonical_semantics": {
+  "reference_semantics": {
     "meaning": "exact source identity / integration anchor for a capability record",
     "not_authority_for": [
       "repository deletion",
@@ -65,7 +65,7 @@
       "sibling demotion",
       "successor substitution"
     ],
-    "sibling_rule": "A canonical anchor for one capability does not make neighboring repositories redundant; sibling systems remain independent capability donors until full functional and lineage comparison proves otherwise and OPERATOR separately authorizes lifecycle change."
+    "sibling_rule": "A reference anchor for one capability does not make neighboring repositories redundant; sibling systems remain independent capability donors until full functional and lineage comparison proves otherwise and OPERATOR separately authorizes lifecycle change."
   },
   "projection_truth_closure": {
     "purpose": "Prevent outward projections from outrunning implementation evidence without allowing evidence gates to reduce underlying engineering ambition.",
@@ -80,7 +80,7 @@
   "excellent_gate_conjunction": [
     "problem_verified",
     "unique_value_known",
-    "canonical_identity_known",
+    "source_identity_known",
     "central_mechanism_implemented",
     "deterministic_tests_pass",
     "adversarial_tests_pass",
@@ -95,11 +95,11 @@
     "target_architecture": {"range": [0, 10], "meaning": "quality and ambition of intended architecture independent of implementation maturity"},
     "current_proof": {"values": ["A", "B", "C", "D", "Q"], "meaning": "strength of exact-source executable evidence; never a worth score"},
     "company_fit": {"range": [0, 10], "nullable": true, "meaning": "relevance to a bounded current company bottleneck"},
-    "canonical_confidence": {"range": [0, 1], "meaning": "confidence in exact source identity for the named capability, not authority over sibling repositories"}
+    "reference_confidence": {"range": [0, 1], "meaning": "confidence in exact source identity for the named capability, not authority over sibling repositories"}
   },
   "active_roles": [
     "INDEPENDENT_SYSTEM",
-    "CANONICAL_SYSTEM",
+    "SOURCE_BOUND_SYSTEM",
     "SPECIALIST_COMPONENT",
     "EXPERIMENT",
     "DONOR",

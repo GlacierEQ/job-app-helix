@@ -21,17 +21,17 @@ def valid_record():
         "identity": {
             "repository": "GlacierEQ/example",
             "repository_id": "123",
-            "canonical_head": "a" * 40,
+            "source_head": "a" * 40,
             "default_branch": "main",
-            "lineage_action": "EXTEND_CANONICAL",
+            "lineage_action": "EXTEND_SOURCE_BOUND",
         },
         "state": "ADVERSARIAL_VERIFIED",
-        "canonical_role": "SPECIALIST_COMPONENT",
+        "reference_role": "SPECIALIST_COMPONENT",
         "scores": {
             "target_architecture": 9.5,
             "current_proof": "B",
             "company_fit": 9.0,
-            "canonical_confidence": 0.95,
+            "reference_confidence": 0.95,
         },
         "gates": {name: False for name in REQUIRED_EXCELLENT_GATES},
         "evolution": {"next_gate": "OPERABLE"},
@@ -62,12 +62,12 @@ def test_historical_contraction_states_cannot_be_entered():
 def test_historical_retirement_record_upgrades_to_recovery_required():
     record = valid_record()
     record["state"] = "RETIREMENT_READY"
-    record["canonical_role"] = "RETIREMENT_READY"
+    record["reference_role"] = "RETIREMENT_READY"
     validated = validate_repo_excellence_record(record)
     assert validated["historical_state"] == "RETIREMENT_READY"
     assert validated["state"] == "RECOVERY_REQUIRED"
-    assert validated["historical_canonical_role"] == "RETIREMENT_READY"
-    assert validated["canonical_role"] == "DONOR"
+    assert validated["historical_reference_role"] == "RETIREMENT_READY"
+    assert validated["reference_role"] == "DONOR"
     assert validated["recovery_required"] is True
     assert validated["retirement_authorized"] is False
 
@@ -88,13 +88,13 @@ def test_proof_reproduced_to_promoted_requires_authority_and_projection_closure(
     assert allowed_transition("PROOF_REPRODUCED", "PROMOTED", gates)
 
 
-def test_promoted_to_canonical_requires_every_excellence_gate():
-    assert transition_gate_requirements("PROMOTED", "CANONICAL") == REQUIRED_EXCELLENT_GATES
-    assert not allowed_transition("PROMOTED", "CANONICAL")
+def test_promoted_to_reference_requires_every_excellence_gate():
+    assert transition_gate_requirements("PROMOTED", "SOURCE_BOUND") == REQUIRED_EXCELLENT_GATES
+    assert not allowed_transition("PROMOTED", "SOURCE_BOUND")
     gates = {name: True for name in REQUIRED_EXCELLENT_GATES}
-    assert allowed_transition("PROMOTED", "CANONICAL", gates)
+    assert allowed_transition("PROMOTED", "SOURCE_BOUND", gates)
     gates["projections_truth_consistent"] = False
-    assert not allowed_transition("PROMOTED", "CANONICAL", gates)
+    assert not allowed_transition("PROMOTED", "SOURCE_BOUND", gates)
 
 
 def test_promoted_record_must_preserve_earned_projection_closure():
@@ -102,7 +102,7 @@ def test_promoted_record_must_preserve_earned_projection_closure():
     record["state"] = "PROMOTED"
     record["proof_receipt"] = {
         "source_sha": "b" * 40,
-        "canonical_merge_sha": "a" * 40,
+        "reference_merge_sha": "a" * 40,
         "identity": "receipt:abc",
     }
     record["gates"] = {name: True for name in REQUIRED_EXCELLENT_GATES}
@@ -120,10 +120,10 @@ def test_promoted_record_must_preserve_earned_projection_closure():
     assert validate_repo_excellence_record(record)["state"] == "PROMOTED"
 
 
-def test_canonical_anchor_requires_exact_content_addressed_position_receipt():
+def test_reference_anchor_requires_exact_content_addressed_position_receipt():
     record = apex_record()
     assert validate_repo_excellence_record(record)["state"] == "EVOLVING"
-    record["canonical_position_receipt"]["blob_sha"] = "c" * 40
+    record["reference_position_receipt"]["blob_sha"] = "c" * 40
     try:
         validate_repo_excellence_record(record)
     except ExcellenceContractError as exc:
@@ -132,9 +132,9 @@ def test_canonical_anchor_requires_exact_content_addressed_position_receipt():
         raise AssertionError("EVOLVING with mismatched source-anchor receipt should fail")
 
 
-def test_canonical_anchor_rejects_lineage_conflict_but_not_sibling_existence():
+def test_reference_anchor_rejects_lineage_conflict_but_not_sibling_existence():
     record = apex_record()
-    record["canonical_position_receipt"]["lineage_conflict_absent"] = False
+    record["reference_position_receipt"]["lineage_conflict_absent"] = False
     try:
         validate_repo_excellence_record(record)
     except ExcellenceContractError as exc:
@@ -145,7 +145,7 @@ def test_canonical_anchor_rejects_lineage_conflict_but_not_sibling_existence():
     # This legacy flag used to reject a repository because another repository looked
     # duplicative. It is now historical metadata only and cannot veto evolution.
     record = apex_record()
-    record["canonical_position_receipt"]["duplicate_repository_rejected"] = False
+    record["reference_position_receipt"]["duplicate_repository_rejected"] = False
     validated = validate_repo_excellence_record(record)
     assert validated["state"] == "EVOLVING"
     assert validated["retirement_authorized"] is False
@@ -163,7 +163,7 @@ def test_evolving_requires_company_evidence():
         raise AssertionError("EVOLVING without company evidence should fail")
 
 
-def test_canonical_anchor_requires_all_retained_blockers_classified():
+def test_reference_anchor_requires_all_retained_blockers_classified():
     record = apex_record()
     record["blockers"].append({"id": "unclassified_blocker"})
     try:
@@ -174,7 +174,7 @@ def test_canonical_anchor_requires_all_retained_blockers_classified():
         raise AssertionError("unclassified EVOLVING blocker should fail")
 
 
-def test_canonical_anchor_rejects_malformed_blockers_container():
+def test_reference_anchor_rejects_malformed_blockers_container():
     record = apex_record()
     record["blockers"] = {"id": "github_actions_budget"}
     try:
@@ -207,7 +207,7 @@ def test_score_axes_are_independent_and_validated():
         "target_architecture": 9.8,
         "current_proof": "D",
         "company_fit": 9.8,
-        "canonical_confidence": 0.95,
+        "reference_confidence": 0.95,
     }
     validated = validate_repo_excellence_record(record)
     assert validated["scores"]["current_proof"] == "D"
@@ -252,19 +252,22 @@ def test_apex_merge_authority_record_is_machine_valid_evolving_and_bounded():
     validated = validate_repo_excellence_record(apex_record())
 
     assert validated["state"] == "EVOLVING"
-    assert validated["canonical_role"] == "SPECIALIST_COMPONENT"
+    assert validated["reference_role"] == "SPECIALIST_COMPONENT"
     assert validated["capability_id"] == "merge_authority_graph"
     assert validated["scores"]["current_proof"] == "A"
     assert validated["gates"]["runtime_behavior_observed"] is True
     assert validated["gates"]["security_authority_bounded"] is True
     assert validated["gates"]["projections_truth_consistent"] is True
     assert excellent(validated["gates"])
-    assert validated["proof_receipt"]["canonical_merge_sha"] == validated["identity"]["canonical_head"]
-    assert validated["identity"]["current_evolved_head"] == "346b330bbfd705579b3a4d10d298a89493a98ee6"
+    assert validated["proof_receipt"]["reference_merge_sha"] == validated["identity"]["source_head"]
+    assert (
+        validated["identity"]["current_evolved_head"]
+        == "346b330bbfd705579b3a4d10d298a89493a98ee6"
+    )
     assert validated["projection_receipt"]["projection_truth_closed"] is True
     assert validated["evolution"]["next_gate"] == "NEXT_MEASURED_EVOLUTION"
     assert validated["company_evidence"]["stage"] == "CLAIM_PROMOTED"
     assert validated["company_evidence"]["claim_ceiling"] == "proof_bound_company_specific"
     assert validated["retirement_authorized"] is False
-    assert allowed_transition("CANONICAL", validated["state"], validated["gates"])
-    assert not allowed_transition("EVOLVING", "CANONICAL", validated["gates"])
+    assert allowed_transition("SOURCE_BOUND", validated["state"], validated["gates"])
+    assert not allowed_transition("EVOLVING", "SOURCE_BOUND", validated["gates"])

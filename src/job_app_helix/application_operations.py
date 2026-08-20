@@ -80,7 +80,7 @@ def _utc_now() -> str:
     return value.isoformat().replace("+00:00", "Z")
 
 
-def _canonical_digest(value: object) -> str:
+def _reference_digest(value: object) -> str:
     payload = json.dumps(
         value,
         sort_keys=True,
@@ -350,7 +350,7 @@ def ingest_job_opening(
     preferred = _strings(
         value.get("preferred") or value.get("preferredQualifications")
     )
-    canonical = {
+    reference = {
         "company": company,
         "title": title,
         "description": description,
@@ -360,7 +360,7 @@ def ingest_job_opening(
         "requirements": requirements,
         "preferred": preferred,
     }
-    digest = _canonical_digest(canonical)
+    digest = _reference_digest(reference)
     opening_id = str(
         value.get("opening_id") or value.get("id") or f"job-{digest[:16]}"
     )
@@ -469,7 +469,7 @@ def load_candidate_profile(path: Path) -> CandidateProfile:
         "achievements": _strings(value.get("achievements")),
         "contact": dict(raw_contact) if isinstance(raw_contact, Mapping) else {},
     }
-    digest = _canonical_digest(body)
+    digest = _reference_digest(body)
     return CandidateProfile(
         profile_id=str(value.get("profile_id") or f"candidate-{digest[:16]}"),
         source_digest=digest,
@@ -523,7 +523,7 @@ def match_opening(
         "missing_terms": missing,
         "recommendation": recommendation,
     }
-    return MatchResult(digest=_canonical_digest(body), **body)
+    return MatchResult(digest=_reference_digest(body), **body)
 
 
 def _resume_markdown(
@@ -636,7 +636,7 @@ def project_application(
         "cover": cover,
         "outreach": outreach,
     }
-    digest = _canonical_digest(body)
+    digest = _reference_digest(body)
     projection = Projection(
         application_id=f"app-{digest[:16]}",
         opening_id=opening.opening_id,

@@ -14,7 +14,7 @@ artifact:
     - README.md
     - src/receipt_bus.py
     - tests/test_receipt_bus.py
-    - tests/test_canonical_position_contract.py
+    - tests/test_reference_position_contract.py
   review_method: >-
     Static source and behavioral-contract review at the recorded commit; this
     review does not assert that repository tests were executed during recovery.

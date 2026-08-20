@@ -3,7 +3,7 @@
   "run_id": "2026-08-09-atlas-count-reconciliation",
   "control_plane": "GlacierEQ/job-app-helix",
   "observed_at": "2026-08-08T17:49:58-10:00",
-  "canonical_head_before": "605edcb1b0f32a93e7804f6a0e58e2710370323b",
+  "source_head_before": "605edcb1b0f32a93e7804f6a0e58e2710370323b",
   "supersedes_gate_from": "status/estate_evolution/2026-08-09-atlas-monolith-refresh.json",
   "operation": "READ_ONLY_AUTHENTICATED_GITHUB_CENSUS_RECONCILIATION",
   "queries": [
@@ -50,5 +50,5 @@
   },
   "decision": "PRESERVE_1180_TOTAL_AND_598_NATIVE_AS_CURRENT_AUTHENTICATED_ATLAS_COUNTS; SEPARATE_COUNT_RECONCILIATION_FROM_FULL_MONOLITH_ID_AND_CLASSIFICATION_REGENERATION",
   "remaining_gate": "A full repository-ID set and Monolith classification regeneration remains unresolved. Current Monolith main explicitly retired the hosted regeneration workflow and blocks source write-back pending an admitted source-write credential contract.",
-  "next_cursor": "If exact ID-set reconciliation becomes higher value than current open engineering gates, perform bounded paginated authenticated read inventory without source mutation and compare IDs against the canonical catalog. Re-enable write-back only under an explicitly admitted credential contract."
+  "next_cursor": "If exact ID-set reconciliation becomes higher value than current open engineering gates, perform bounded paginated authenticated read inventory without source mutation and compare IDs against the reference catalog. Re-enable write-back only under an explicitly admitted credential contract."
 }

@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T14:17:00-10:00",
   "wave": 20,
   "repository": "GlacierEQ/notion-workspace-optimizer",
-  "source_canonical_head": "c52ee06ee1199e320cafd5b493689cf048632a13",
+  "source_head": "c52ee06ee1199e320cafd5b493689cf048632a13",
   "source_state": "LOCAL_WORKSPACE_POLICY_AND_PREFIX_GROUPING_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [
     {
@@ -23,10 +23,10 @@
     "made ranking ties deterministic and allowed caller-supplied timezone-aware observation time for a reproducible full output envelope",
     "made recommendation and clustering outputs explicitly operational_authority=false",
     "replaced hyper-scaling machine metadata with an exact bounded capability allowlist",
-    "demoted stale PROMOTED/HYPER_VALIDATED machine posture pending fresh canonical proof",
+    "demoted stale PROMOTED/HYPER_VALIDATED machine posture pending fresh reference proof",
     "extended the pinned repository-owned verifier with a public-truth gate and added Python 3.11, 3.12, and 3.13 contract proof",
     "made historical promotion grant verification time-stable and non-authoritative for current state",
-    "bound repaired canonical main to successful exact-head CI run 31853090260"
+    "bound repaired reference main to successful exact-head CI run 31853090260"
   ],
   "nonclaims": [
     "no Notion affiliation endorsement employment or proprietary access",

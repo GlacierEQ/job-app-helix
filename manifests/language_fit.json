@@ -28,7 +28,7 @@
       "name": "JSON",
       "kind": "data_format",
       "responsibility": "Human-inspectable manifests, campaign reports, language declarations, and audit receipts.",
-      "boundary": "Repository-local interchange and receipt artifacts; not the canonical cross-language wire schema.",
+      "boundary": "Repository-local interchange and receipt artifacts; not the reference cross-language wire schema.",
       "interface_contract": "UTF-8 JSON objects with explicit schema identifiers and deterministic field semantics.",
       "build_command": "python -m job_app_helix.readme_mesh_cli build --output-dir artifacts/readme-mesh",
       "test_command": "python -m pytest -q",

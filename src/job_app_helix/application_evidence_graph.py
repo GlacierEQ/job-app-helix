@@ -70,7 +70,7 @@ class ApplicationEvidenceBundle:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -309,7 +309,7 @@ def build_application_evidence_bundle(
         evidence_count=len(evidence),
         evidence=evidence,
         truth_boundary=truth_boundary,
-        receipt_sha256=_canonical_sha256(base),
+        receipt_sha256=_reference_sha256(base),
     )
 
 

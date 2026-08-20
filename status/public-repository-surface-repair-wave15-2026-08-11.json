@@ -3,7 +3,7 @@
   "generated_at": "2026-08-11T14:14:00-10:00",
   "wave": 15,
   "repository": "GlacierEQ/spacex-autonomy",
-  "source_canonical_head": "156629c65bdeff5397c1370b3e098eec26aa9377",
+  "source_head": "156629c65bdeff5397c1370b3e098eec26aa9377",
   "source_state": "LOCAL_AUTONOMY_SIMULATION_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [
     {

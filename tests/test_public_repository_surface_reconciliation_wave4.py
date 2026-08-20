@@ -104,7 +104,7 @@ def test_wave4_admits_only_exact_current_heads_with_success_receipts() -> None:
         record = by_repo[repository]
         assert record["admission"] == "ADMIT"
         assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
-        assert record["decision_evidence"]["canonical_head"] == head
+        assert record["decision_evidence"]["source_head"] == head
         receipts = record["decision_evidence"]["proof_receipts"]
         observed = [
             (item["id"], item["head_sha"], item["conclusion"])
@@ -117,8 +117,8 @@ def test_wave4_rejects_head_drift_receipt_drift_and_predecessor_drift() -> None:
     predecessor = report_through()
 
     malformed = deepcopy(load(WAVE4))
-    malformed["items"][0]["evidence"]["canonical_head"] = "z" * 40
-    with pytest.raises(RepositorySurfaceError, match="exact canonical_head"):
+    malformed["items"][0]["evidence"]["source_head"] = "z" * 40
+    with pytest.raises(RepositorySurfaceError, match="exact source_head"):
         apply_surface_reconciliation(predecessor, malformed)
 
     mismatch = deepcopy(load(WAVE4))
@@ -133,12 +133,12 @@ def test_wave4_rejects_head_drift_receipt_drift_and_predecessor_drift() -> None:
 
 
 def test_custom_sources_require_explicit_reconciliation_chain() -> None:
-    canonical_args = argparse.Namespace(
+    reference_args = argparse.Namespace(
         observations=DEFAULT_SURFACE_OBSERVATIONS,
         decisions=DEFAULT_SURFACE_DECISIONS,
         reconciliation=None,
     )
-    assert _resolve_reconciliation_paths(canonical_args) == DEFAULT_SURFACE_RECONCILIATIONS
+    assert _resolve_reconciliation_paths(reference_args) == DEFAULT_SURFACE_RECONCILIATIONS
 
     custom_args = argparse.Namespace(
         observations=Path("custom-observations.json"),

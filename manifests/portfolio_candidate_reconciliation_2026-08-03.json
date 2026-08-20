@@ -8,7 +8,7 @@
     "upgrade_code_before_weakening_earnable_claim": true,
     "admission_requires": [
       "clear original or substantially differentiated contribution",
-      "one canonical repository identity",
+      "one reference repository identity",
       "public-safe provenance",
       "runnable or inspectable implementation",
       "explicit claim boundary",
@@ -25,7 +25,7 @@
       "security and dependency controls",
       "failure and recovery behavior",
       "known limitations and promotion targets",
-      "canonical public source or explicit private-reference boundary"
+      "reference public source or explicit private-reference boundary"
     ],
     "never_infer": [
       "authorship from repository ownership",
@@ -84,13 +84,13 @@
     {
       "repository": "GlacierEQ/mastermind",
       "priority": "P0",
-      "target": "CANONICAL_CONTROL_PLANE_OR_ARCHIVED_LAB",
+      "target": "SOURCE_BOUND_CONTROL_PLANE_OR_ARCHIVED_LAB",
       "required_actions": [
         "cluster branches and generated variants by purpose",
         "extract unique runnable modules onto current ancestry",
         "replace simulated health with bounded probes",
         "rotate any historically exposed credentials",
-        "prove one canonical runtime beyond the local process sidecar",
+        "prove one reference runtime beyond the local process sidecar",
         "archive or close duplicate families only after value preservation"
       ]
     },
@@ -123,10 +123,10 @@
     {
       "repository": "GlacierEQ/job-application",
       "priority": "P0",
-      "target": "CANONICAL_DEPLOYED_PORTAL",
+      "target": "SOURCE_BOUND_DEPLOYED_PORTAL",
       "required_actions": [
         "commit the complete V12 deployable source rather than preserving the live build only as an external artifact",
-        "deploy automatically from canonical Git source",
+        "deploy automatically from reference Git source",
         "add route, API, mobile, accessibility, and machine-contract regression receipts",
         "synchronize the website graph to this reconciliation manifest",
         "publish role-specific application packets"
@@ -214,7 +214,7 @@
     },
     {
       "repository": "GlacierEQ/Office-Word-MCP-Server",
-      "reason": "README identifies GongRzhe as canonical source. Treat as a connected capability, not authored portfolio proof."
+      "reason": "README identifies GongRzhe as reference source. Treat as a connected capability, not authored portfolio proof."
     },
     {
       "repository": "GlacierEQ/openai-python",

@@ -158,7 +158,7 @@ def validate_evidence_contract(registry: dict[str, Any]) -> None:
         "company_second_depth.evidence_reference_contract",
     )
     if set(required_fields) != EVIDENCE_REQUIRED_FIELDS:
-        fail("evidence_reference_contract.required_fields drift from canonical schema")
+        fail("evidence_reference_contract.required_fields drift from reference schema")
     if contract.get("visibility") != "public":
         fail("evidence_reference_contract.visibility must be public")
     if contract.get("verification_states") != ["VERIFIED", "REPRODUCED"]:

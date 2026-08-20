@@ -22,12 +22,12 @@ class ExperienceGraphError(RuntimeError):
     pass
 
 
-def canonical_json(value: Any) -> str:
+def reference_json(value: Any) -> str:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
 def digest(value: Any) -> str:
-    return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
+    return hashlib.sha256(reference_json(value).encode("utf-8")).hexdigest()
 
 
 def normalize(value: str) -> str:

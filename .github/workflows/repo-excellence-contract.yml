@@ -10,7 +10,7 @@ on:
       - "excellence/receipts/**"
       - "scripts/validate_apex_evolution_external_proof.py"
       - "tests/test_repo_excellence.py"
-      - "tests/test_repo_excellence_canonicalization.py"
+      - "tests/test_repo_excellence_source_binding.py"
       - "tests/test_repo_excellence_evolution.py"
       - ".github/workflows/repo-excellence-contract.yml"
   push:
@@ -24,7 +24,7 @@ on:
       - "excellence/receipts/**"
       - "scripts/validate_apex_evolution_external_proof.py"
       - "tests/test_repo_excellence.py"
-      - "tests/test_repo_excellence_canonicalization.py"
+      - "tests/test_repo_excellence_source_binding.py"
       - "tests/test_repo_excellence_evolution.py"
       - ".github/workflows/repo-excellence-contract.yml"
 
@@ -56,13 +56,13 @@ jobs:
           src/job_app_helix/repo_excellence_evolution.py
           scripts/validate_apex_evolution_external_proof.py
           tests/test_repo_excellence.py
-          tests/test_repo_excellence_canonicalization.py
+          tests/test_repo_excellence_source_binding.py
           tests/test_repo_excellence_evolution.py
       - name: Verify repository-excellence contract
         run: >-
           pytest -q
           tests/test_repo_excellence.py
-          tests/test_repo_excellence_canonicalization.py
+          tests/test_repo_excellence_source_binding.py
           tests/test_repo_excellence_evolution.py
       - name: Verify public evolution proof provenance
         run: python scripts/validate_apex_evolution_external_proof.py

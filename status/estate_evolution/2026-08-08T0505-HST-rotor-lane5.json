@@ -5,7 +5,7 @@
   "control_plane": "GlacierEQ/job-app-helix",
   "primary_lane": "portfolio_proof_capability_harvest",
   "execution_mode": "CHECKPOINT_FIRST_TOOL_FIRST_FAIL_CLOSED",
-  "canonical_head_before": "f1234df9101dec2934e46a7935569e68a0eb23c5",
+  "source_head_before": "f1234df9101dec2934e46a7935569e68a0eb23c5",
   "branch": "estate/rotor-lane5-20260808-0505-hst",
   "repo_atlas": {
     "seed_document": "GlacierEQ/colossus-gateway:docs/REPO_ATLAS_V1.md",
@@ -21,7 +21,7 @@
     "application_projection_inventory": {
       "rows": 1179,
       "latest_fetch": "2026-08-05T11:15:09.384693Z",
-      "decision": "STALE_PROJECTION_DO_NOT_USE_TO_REPLACE_GITHUB_CANONICAL_COUNTS"
+      "decision": "STALE_PROJECTION_DO_NOT_USE_TO_REPLACE_GITHUB_SOURCE_BOUND_COUNTS"
     },
     "count_decision": "PRESERVE_1180_SEED_TOTAL_AND_598_NATIVE_COUNT_UNTIL_A_FULL_LIVE_ATLAS_REFRESH_RECOMPUTES_TOTAL_FORK_PRIVATE_PUBLIC_ARCHIVE_COUNTS"
   },
@@ -31,7 +31,7 @@
       "github_state": {
         "fork": false,
         "default_branch": "main",
-        "canonical_source": "README.md"
+        "source_reference": "README.md"
       },
       "prior_projection": {
         "capability_id": "ENERGY_COOLING_AND_DATACENTER",
@@ -101,7 +101,7 @@
     "decision": "DO_NOT_MERGE_STALE_TIP; PRESERVE_TWO_RECEIPT_DELTA_FOR_FRESH_HEAD_SYNTHESIS_OR_CONTAINMENT_CHECK"
   },
   "mutations": {
-    "github_canonical_main_modified": false,
+    "github_reference_main_modified": false,
     "supabase_projection_rows_upserted": 1,
     "repositories_deleted": 0,
     "branches_deleted": 0,
@@ -116,7 +116,7 @@
     "lineage_searches": "NO_DIRECT_SUCCESSOR_PROOF"
   },
   "blockers": [
-    "Full live Repo Atlas total/fork/private/public/archive refresh was not recomputed in this lane; the older 1179-row application projection is stale and cannot replace GitHub canonical counts.",
+    "Full live Repo Atlas total/fork/private/public/archive refresh was not recomputed in this lane; the older 1179-row application projection is stale and cannot replace GitHub reference counts.",
     "No repository-native lineage declaration was found for infinity-gauntlet-mcp-stack or polyglot-systems-architecture.",
     "PR #75 is one commit behind current main and must not merge as-is."
   ],

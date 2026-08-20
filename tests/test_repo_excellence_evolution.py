@@ -25,7 +25,7 @@ def test_apex_evolving_record_is_measured_content_addressed_and_claim_bounded() 
     validated = _validate(_record())
 
     assert validated["state"] == "EVOLVING"
-    assert validated["identity"]["canonical_head"] == (
+    assert validated["identity"]["source_head"] == (
         "f791c85a81768e72446619b39b5312ef1c768a02"
     )
     assert validated["identity"]["current_evolved_head"] == (
@@ -37,14 +37,14 @@ def test_apex_evolving_record_is_measured_content_addressed_and_claim_bounded() 
     assert validated["company_evidence"]["stage"] == "CLAIM_PROMOTED"
     assert validated["company_evidence"]["claim_ceiling"] == "proof_bound_company_specific"
     assert validated["evolution"]["next_gate"] == "NEXT_MEASURED_EVOLUTION"
-    assert allowed_transition("CANONICAL", "EVOLVING", validated["gates"])
-    assert not allowed_transition("EVOLVING", "CANONICAL", validated["gates"])
+    assert allowed_transition("SOURCE_BOUND", "EVOLVING", validated["gates"])
+    assert not allowed_transition("EVOLVING", "SOURCE_BOUND", validated["gates"])
 
 
 def test_non_evolving_record_is_rejected() -> None:
     record = _record()
     record["state"] = "PROMOTED"
-    record["evolution"]["next_gate"] = "CANONICAL"
+    record["evolution"]["next_gate"] = "SOURCE_BOUND"
     record["identity"].pop("current_evolved_head", None)
     record.pop("evolution_receipt", None)
 

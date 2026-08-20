@@ -99,7 +99,7 @@ class GreenhouseApplicationPreparation:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -433,7 +433,7 @@ def prepare_greenhouse_application_release(
             item.status in {"DRAFT_REVIEW_REQUIRED", "REVIEW_REQUIRED", "USER_DECISION_REQUIRED"}
             for item in prompts
         ),
-        receipt_sha256=_canonical_sha256(base),
+        receipt_sha256=_reference_sha256(base),
     )
     _write_json(packet_dir / "GREENHOUSE_APPLICATION_FIELDS.json", field_bundle.as_dict())
     _write_json(packet_dir / "GREENHOUSE_APPLICATION_PREPARATION.json", result.as_dict())

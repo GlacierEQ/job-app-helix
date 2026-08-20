@@ -1,18 +1,18 @@
 {
-  "schema": "glaciereq.repo-canonical-position-receipt.v1",
+  "schema": "glaciereq.repo-reference-position-receipt.v1",
   "status": "PASS",
-  "transition": "PROMOTED -> CANONICAL",
+  "transition": "PROMOTED -> SOURCE_BOUND",
   "repository": {
     "full_name": "GlacierEQ/apex-github-worker",
     "repository_id": "1260799790",
-    "canonical_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "source_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "default_branch": "main",
-    "canonical_role": "SPECIALIST_COMPONENT",
+    "reference_role": "SPECIALIST_COMPONENT",
     "capability_id": "merge_authority_graph",
     "family": "GitHub / developer-platform automation"
   },
   "lineage": {
-    "action": "EXTEND_CANONICAL",
+    "action": "EXTEND_SOURCE_BOUND",
     "decision": "Extend the existing apex-github-worker GitHub automation authority instead of opening a duplicate Merge Authority repository.",
     "source_repository": "GlacierEQ/apex-github-worker",
     "source_commit": "f791c85a81768e72446619b39b5312ef1c768a02",
@@ -31,12 +31,12 @@
     "record_path": "manifests/repo_excellence/apex-github-worker.json",
     "company_projection_path": "manifests/company_projections/github_merge_authority.json",
     "repo_excellence_registry_entries_observed": 1,
-    "competing_canonical_authority_admitted": false
+    "competing_reference_authority_admitted": false
   },
   "proof": {
     "grade": "A",
-    "canonical_confidence": 0.99,
-    "canonical_reproduction": "GlacierEQ/apex-github-worker@f791c85a81768e72446619b39b5312ef1c768a02:proof/merge-authority-canonical-reproduction-2026-08-09.json",
+    "reference_confidence": 0.99,
+    "reference_reproduction": "GlacierEQ/apex-github-worker@f791c85a81768e72446619b39b5312ef1c768a02:proof/merge-authority-reference-reproduction-2026-08-09.json",
     "deterministic_and_adversarial_tests": "26/26",
     "gateway_host_tests": "38/38",
     "provider_mutation_sha": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
@@ -45,7 +45,7 @@
     "token_revoked": true
   },
   "decision": {
-    "canonical_position_resolved": true,
+    "reference_position_resolved": true,
     "lineage_conflict_absent": true,
     "duplicate_repository_rejected": true,
     "proof_sha_bound": true,
@@ -53,8 +53,8 @@
     "authority_bounded": true,
     "evolution_cursor_defined": true,
     "company_claim_separate": true,
-    "canonicalization_blockers": [],
-    "retained_noncanonicalization_blockers": [
+    "source_binding_blockers": [],
+    "retained_nonsource_binding_blockers": [
       "github_actions_budget"
     ]
   },
@@ -67,8 +67,8 @@
     "production_scale_reliability_claimed": false
   },
   "result": {
-    "repository_state": "CANONICAL",
+    "repository_state": "SOURCE_BOUND",
     "next_gate": "EVOLVING",
-    "meaning": "apex-github-worker is the canonical specialist repository for the merge_authority_graph capability within its admitted GitHub/developer-platform automation lineage. This does not canonicalize unrelated legacy surfaces in the repository."
+    "meaning": "apex-github-worker is the reference specialist repository for the merge_authority_graph capability within its admitted GitHub/developer-platform automation lineage. This does not source_bind unrelated legacy surfaces in the repository."
   }
 }

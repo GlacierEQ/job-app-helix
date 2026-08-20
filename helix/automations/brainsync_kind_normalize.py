@@ -11,7 +11,7 @@ Problem
   naive title-dedupe or top-N truncation drops domain rows and breaks tooling
   that expects every skill rule to remain addressable from the index.
 
-Canonical mapping
+Source-bound mapping
   title == "What Was Done"  →  kind: note
   (session history is episodic project notes, not durable agent rules)
 
@@ -49,7 +49,7 @@ DEFAULT_INDEX = REPO_ROOT / ".brainsync" / "index.json"
 DEFAULT_PROJECT = REPO_ROOT / ".brainsync" / "project.json"
 
 # Titles that must always be notes (session / episodic history).
-CANONICAL_NOTE_TITLES = frozenset(
+SOURCE_BOUND_NOTE_TITLES = frozenset(
     {
         "What Was Done",
         "Last Session Summary",
@@ -113,10 +113,10 @@ def is_session_history_title(title: str | None) -> bool:
     if not title:
         return False
     t = title.strip()
-    if t in CANONICAL_NOTE_TITLES:
+    if t in SOURCE_BOUND_NOTE_TITLES:
         return True
     # Tolerate leading emoji / numbering noise
-    return any(t.endswith(canon) or t == canon for canon in CANONICAL_NOTE_TITLES)
+    return any(t.endswith(canon) or t == canon for canon in SOURCE_BOUND_NOTE_TITLES)
 
 
 def is_expert_skill_entry(entry: dict[str, Any]) -> bool:
@@ -379,7 +379,7 @@ def build_index(
             "key": "",
             "name": "",
             "rootPath": str(REPO_ROOT),
-            "canonical": "",
+            "reference": "",
             "createdAt": "",
             "updatedAt": "",
         },

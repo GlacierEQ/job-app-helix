@@ -2,8 +2,8 @@
   "schema": "glaciereq.estate-evolution.receipt.v1",
   "timestamp": "2026-08-08",
   "repository": "GlacierEQ/the-tower-of-babel",
-  "canonical_branch": "main",
-  "canonical_head_before": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+  "reference_branch": "main",
+  "source_head_before": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
   "branch": "fix/governed-tool-contracts-20260808",
   "merge_base": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
   "ahead": 9,
@@ -25,7 +25,7 @@
     "tower_quality_gate": "success",
     "tower_verification": "success"
   },
-  "canonical_head_after": "e3778353e92b404de43f41963a0c7bffb84897ac",
+  "source_head_after": "e3778353e92b404de43f41963a0c7bffb84897ac",
   "remote_ref_disposition": {
     "fix/governed-tool-contracts-20260808": "DELETE_REF_REQUIRED_UNLESS_NATIVE_BRANCH_HYGIENE_PROVES_DELETION",
     "fix/branch-hygiene-synthesis-prefixes-20260807": "DELETE_REF_REQUIRED",

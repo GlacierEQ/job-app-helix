@@ -171,10 +171,10 @@ def main() -> int:
 
     dedupe = master.get("dedupe", {})
     expected_counts = {
-        "canonical_tracks_before_expansion": 76,
-        "already_canonical_tracks": 22,
+        "reference_tracks_before_expansion": 76,
+        "already_reference_tracks": 22,
         "net_new_tracks": 90,
-        "canonical_tracks_after_expansion": 166,
+        "reference_tracks_after_expansion": 166,
         "p0_total": 25,
         "p0_existing_tracks": 9,
         "p0_net_new_tracks": 16,
@@ -224,7 +224,7 @@ def main() -> int:
         len(queue_ids) == len(set(queue_ids)),
         "execution queue contains duplicate company ids",
     )
-    require(queue_ids == p0, "P0 queue order differs from canonical p0_track_ids")
+    require(queue_ids == p0, "P0 queue order differs from reference p0_track_ids")
     require(ranks == list(range(1, 26)), "P0 queue ranks must be contiguous 1..25")
     require(
         queue.get("existing_track_deepen_count") == 9,

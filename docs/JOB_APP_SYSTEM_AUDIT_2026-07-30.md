@@ -1,19 +1,19 @@
-# Job-App System Audit — Canonical Ownership and Evidence Flow
+# Job-App System Audit — Source-bound Ownership and Evidence Flow
 
-**Audit date:** 2026-07-30 HST  
-**Canonical branch:** `main`  
+**Audit date:** 2026-07-30 HST
+**Source-bound branch:** `main`
 **Posture:** Evidence-bound. Repository names, README claims, hashes, branch age, and mergeability are not substitutes for current execution receipts.
 
 ## Executive verdict
 
 Four repositories carry distinct responsibilities in the hiring system:
 
-| Repository | Canonical responsibility | Current decision |
+| Repository | Source-bound responsibility | Current decision |
 |---|---|---|
 | `GlacierEQ/job-app` | Private application operations | Retain privately and narrow to active campaign work. |
 | `GlacierEQ/job-application` | Public recruiter distribution | Retain as the evidence-bound portfolio portal merged at `0ff1946f`. |
-| `GlacierEQ/job-app-helix` | Portfolio truth, readiness, and verification control | Retain as the canonical control plane merged at `04b86016`. |
-| `GlacierEQ/the-tower-of-babel` | Technology and language-placement authority | Retain as the canonical polyglot authority; consume pinned exports rather than duplicate source. |
+| `GlacierEQ/job-app-helix` | Portfolio truth, readiness, and verification control | Retain as the reference control plane merged at `04b86016`. |
+| `GlacierEQ/the-tower-of-babel` | Technology and language-placement authority | Retain as the reference polyglot authority; consume pinned exports rather than duplicate source. |
 
 The earlier ambiguity was not a lack of useful systems. It was competing authority: multiple repositories described themselves as the portfolio center, public visibility metadata had drifted, and historical aggregate claims exceeded current receipts.
 
@@ -32,7 +32,7 @@ Completed corrections:
 - linked the portal to Helix as its upstream evidence and governance authority;
 - passed strict shared CI after repository-wide lint and formatting repair.
 
-The portal is now canonical for recruiter presentation, but it is not an independent portfolio-verification authority.
+The portal is now reference for recruiter presentation, but it is not an independent portfolio-verification authority.
 
 ### `job-app-helix`
 
@@ -51,7 +51,7 @@ The current public surface now exposes:
 
 Helix remains `PARTIALLY_VERIFIED` because child repositories retain independent states.
 
-## Canonical ownership rules
+## Source-bound ownership rules
 
 ### Private application workspace — `job-app`
 
@@ -89,7 +89,7 @@ Must not own:
 
 Owns:
 
-- canonical portfolio inventory;
+- reference portfolio inventory;
 - verification states and evidence semantics;
 - rollout planning;
 - campaign readiness;
@@ -134,7 +134,7 @@ public recruiter portal   private campaign operations
 
 ## Global controls
 
-1. Exactly one repository owns each canonical role.
+1. Exactly one repository owns each reference role.
 2. Every aggregate count or grade names its source repository, source ref, scope, timestamp, and receipt.
 3. Public source is not deployment proof.
 4. A mergeable pull request is not a verified release.

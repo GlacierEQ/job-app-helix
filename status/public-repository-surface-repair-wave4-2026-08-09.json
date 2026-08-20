@@ -13,7 +13,7 @@
   "closed_repairs": [
     {
       "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
-      "canonical_head": "66864aed96061dc681555973452c0abdaeadc405",
+      "source_head": "66864aed96061dc681555973452c0abdaeadc405",
       "proof_run": 31341623265,
       "proof_name": "Public Truth Gate",
       "material_repairs": [
@@ -28,7 +28,7 @@
     },
     {
       "repository": "GlacierEQ/deepseek-mla-moe-sentinel",
-      "canonical_head": "09ee2cfff69498ac3ccdd2d805ea83a3cd917bab",
+      "source_head": "09ee2cfff69498ac3ccdd2d805ea83a3cd917bab",
       "proof_run": 31341886084,
       "proof_name": "Public Truth Gate",
       "material_repairs": [
@@ -42,7 +42,7 @@
     },
     {
       "repository": "GlacierEQ/kimi-mooncake-kv-stream",
-      "canonical_head": "5abe714fb6a2fc5088d8f80e1a6169373e944510",
+      "source_head": "5abe714fb6a2fc5088d8f80e1a6169373e944510",
       "proof_run": 31341805561,
       "proof_name": "Public Truth Gate",
       "material_repairs": [
@@ -51,7 +51,7 @@
         "fixed Rust ring pop so the logical head advances and FIFO behavior is tested",
         "fixed Go scheduler request loss when node capacity is unavailable",
         "added Go validation for nil malformed and duplicate requests",
-        "proved Python Rust and Go behavior on the exact canonical head"
+        "proved Python Rust and Go behavior on the exact reference head"
       ],
       "boundary": "No Kimi model execution, Mooncake deployment, RDMA or zero-copy transport, measured TTFT/throughput, affiliation, or proprietary access is inferred."
     }

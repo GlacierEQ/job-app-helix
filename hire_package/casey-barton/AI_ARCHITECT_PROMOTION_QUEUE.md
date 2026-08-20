@@ -4,7 +4,7 @@ This queue exists to prevent repeated rediscovery. Work is ordered by the strong
 
 ## P0 — Evaluation causal proof
 
-**Canonical source:** `GlacierEQ/make-it-heavy`
+**Source-bound source:** `GlacierEQ/make-it-heavy`
 
 Current state:
 
@@ -22,7 +22,7 @@ Do not redesign the experiment unless a new verified defect invalidates the exis
 
 ## P0 — Live capability-security proof
 
-**Canonical source:** `GlacierEQ/fileboss-whisperx-processor`
+**Source-bound source:** `GlacierEQ/fileboss-whisperx-processor`
 
 Current state: lease-gated Smithery capability mechanics are merged and regression-tested.
 
@@ -32,7 +32,7 @@ Current state: lease-gated Smithery capability mechanics are merged and regressi
 
 ## P1 — Reliability SLO proof
 
-**Canonical source:** `GlacierEQ/sigma-glue`
+**Source-bound source:** `GlacierEQ/sigma-glue`
 
 Current state: exact recovery identity, concurrency fencing, unsafe-retry prevention, and provider-aware reconciliation are already proven.
 
@@ -40,7 +40,7 @@ Current state: exact recovery identity, concurrency fencing, unsafe-retry preven
 
 ## P1 — Operating-scale proof
 
-**Canonical source:** `GlacierEQ/job-app-helix`
+**Source-bound source:** `GlacierEQ/job-app-helix`
 
 Current state: exact 67-repository governed boundary, AKOS 94/94 multi-version tests, 21-node README Mesh, and 76 required company tracks.
 

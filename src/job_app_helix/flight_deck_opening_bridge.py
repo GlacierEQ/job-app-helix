@@ -52,7 +52,7 @@ class FlightDeckOpeningBridgeResult:
         }
 
 
-def _canonical_sha256(value: object) -> str:
+def _reference_sha256(value: object) -> str:
     encoded = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
@@ -70,7 +70,7 @@ def _material_opening_digest(opening: Mapping[str, object]) -> str:
         field: opening.get(field)
         for field in sorted(RECRUITER_MATERIAL_FIELDS)
     }
-    return _canonical_sha256(material)
+    return _reference_sha256(material)
 
 
 def _snapshot_for_item(state_dir: Path, state_key: str) -> dict[str, object]:
@@ -171,7 +171,7 @@ def compile_flight_deck_opening_bridge(
         schema=BRIDGE_SCHEMA,
         observations=tuple(observations),
         isolated_failures=tuple(failures),
-        receipt_sha256=_canonical_sha256(base),
+        receipt_sha256=_reference_sha256(base),
     )
 
 

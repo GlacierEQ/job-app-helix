@@ -84,7 +84,7 @@
       "state": "REF_ABSENT_VERIFIED"
     },
     {
-      "name": "deploy/canonical-recruiter-surface-2026-07-30",
+      "name": "deploy/reference-recruiter-surface-2026-07-30",
       "pull_request": 11,
       "expected_head_sha": "a6225b9196c41143a2f1367a7bb322f6ad659f94",
       "state": "REF_ABSENT_VERIFIED"

@@ -171,8 +171,8 @@ def ablation(
     }
 
 
-def test_packaged_schema_matches_canonical_estate_contract() -> None:
-    canonical = json.loads(
+def test_packaged_schema_matches_reference_estate_contract() -> None:
+    reference = json.loads(
         (
             ROOT
             / "schemas"
@@ -180,7 +180,7 @@ def test_packaged_schema_matches_canonical_estate_contract() -> None:
             / "worker-science-experiment.schema.json"
         ).read_text(encoding="utf-8")
     )
-    assert canonical == WORKER_SCIENCE_EXPERIMENT_SCHEMA
+    assert reference == WORKER_SCIENCE_EXPERIMENT_SCHEMA
 
 
 def test_default_validation_uses_packaged_runtime_schema() -> None:

@@ -104,7 +104,7 @@ class TargetApplicationCycleResult:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -223,7 +223,7 @@ def _inspect_packet(packet_dir: Path) -> ApplicationReadyCandidate:
         artifact_sha256[relative] = _file_sha256(artifact)
         artifact_bytes[relative] = artifact.stat().st_size
 
-    bundle_sha = _canonical_sha256(
+    bundle_sha = _reference_sha256(
         {
             "application_id": application_id,
             "opening_id": opening_id,
@@ -318,7 +318,7 @@ def promote_strongest_application_ready_packet(
         "selected": selected.as_dict(),
         "rejected_higher_priority_packets": [dict(row) for row in higher_rejected],
     }
-    receipt_sha = _canonical_sha256(base)
+    receipt_sha = _reference_sha256(base)
     release = ApplicationReadyRelease(
         schema=str(base["schema"]),
         target_cycle_receipt_sha256=target_cycle_receipt_sha256,
@@ -377,7 +377,7 @@ def execute_target_application_cycle(
         "target_cycle_receipt_sha256": target_cycle.receipt_sha256,
         "application_ready_receipt_sha256": release.receipt_sha256 if release else None,
     }
-    receipt_sha = _canonical_sha256(base)
+    receipt_sha = _reference_sha256(base)
     result = TargetApplicationCycleResult(
         schema=str(base["schema"]),
         target_cycle=target_cycle,

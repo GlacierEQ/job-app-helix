@@ -44,7 +44,7 @@ def atomic_write(path: Path, value: object) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Project the canonical estate compiler bundle through role-fit, "
+            "Project the reference estate compiler bundle through role-fit, "
             "company intelligence, and support/reference boundaries."
         )
     )

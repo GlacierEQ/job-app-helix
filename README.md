@@ -263,6 +263,16 @@ Bounded proof mutation still requires explicit authorization. That protects curr
 
 ```yaml
 schema: glaciereq.readme.v1
+profile: glaciereq.readme-impact.v2-draft
+verified_at: 2026-08-19
+blocked_scope:
+  - External repository mutation and any retirement action without explicit operator authorization.
+unverified_scope:
+  - Claims beyond the repository-native receipts and current live-evidence registry.
+languages:
+  - manifests/language_fit.json
+limits:
+  - Evidence controls what may be claimed; it does not reduce the recovery or improvement objective.
 repository: GlacierEQ/job-app-helix
 default_branch: main
 package_version: 0.3.0
@@ -312,7 +322,7 @@ relationships:
     combined_value: lead product capability is completed and proven without reducing it to presentation-only evidence.
 ```
 
-### Canonical integration surfaces
+### Source-bound integration surfaces
 
 - **Portfolio inventory:** [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json)
 - **Upward rollout:** [`manifests/portfolio_rollout.json`](manifests/portfolio_rollout.json)

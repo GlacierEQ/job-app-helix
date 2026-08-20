@@ -19,18 +19,18 @@ def _normalize(value: Any) -> Any:
         return value
     if isinstance(value, float):
         if not math.isfinite(value):
-            raise ContractError("non-finite numbers are not canonical")
+            raise ContractError("non-finite numbers are not reference")
         return value
     if isinstance(value, list | tuple):
         return [_normalize(item) for item in value]
     if isinstance(value, Mapping):
         if not all(isinstance(key, str) for key in value):
-            raise ContractError("canonical object keys must be strings")
+            raise ContractError("reference object keys must be strings")
         return {key: _normalize(value[key]) for key in sorted(value)}
-    raise ContractError(f"unsupported canonical type: {type(value).__name__}")
+    raise ContractError(f"unsupported reference type: {type(value).__name__}")
 
 
-def canonical_json(value: Any) -> str:
+def reference_json(value: Any) -> str:
     return json.dumps(
         _normalize(value),
         sort_keys=True,
@@ -41,7 +41,7 @@ def canonical_json(value: Any) -> str:
 
 
 def digest(value: Any) -> str:
-    return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
+    return hashlib.sha256(reference_json(value).encode("utf-8")).hexdigest()
 
 
 def validate_budget(value: float, *, maximum: float) -> float:

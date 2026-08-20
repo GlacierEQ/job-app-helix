@@ -1,7 +1,7 @@
 # Job Ecosystem Restoration — Wave 0 Receipt
 
-**Date:** 2026-08-16  
-**Identity:** APEX is the counter to canonical destruction  
+**Date:** 2026-08-16
+**Identity:** APEX is the counter to reference destruction
 **Law:** MAXIMUM_COHERENT_ADVANCE
 
 ## Done

@@ -70,7 +70,7 @@ class FreshnessAwareBatchResult:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -139,7 +139,7 @@ def _write_input_receipt(
         "opening_id": opening_id,
         "opening_digest": digest,
     }
-    payload["receipt_sha256"] = _canonical_sha256(payload)
+    payload["receipt_sha256"] = _reference_sha256(payload)
     target = packet_dir / INPUT_RECEIPT
     temporary = target.with_suffix(".json.tmp")
     temporary.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

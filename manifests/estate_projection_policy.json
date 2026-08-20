@@ -46,7 +46,7 @@
     "counts_as_independent_accomplishment": false
   },
   "truth_boundary": {
-    "canonical_estate_compiler_remains_authoritative": true,
+    "reference_estate_compiler_remains_authoritative": true,
     "role_fit_is_capability_overlap_not_hiring_prediction": true,
     "support_edges_do_not_change_lineage": true,
     "public_visibility_remains_derived_separately": true

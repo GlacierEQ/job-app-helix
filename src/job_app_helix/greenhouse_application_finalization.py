@@ -85,7 +85,7 @@ class GreenhouseApplicationFinalization:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -429,7 +429,7 @@ def finalize_greenhouse_application(
         resolved_required_count=len(user_required) - len(unresolved),
         unresolved_required_fields=unresolved,
         ready_for_human_submission=not unresolved,
-        receipt_sha256=_canonical_sha256(base),
+        receipt_sha256=_reference_sha256(base),
     )
     destination = output_path or packet_dir / "GREENHOUSE_APPLICATION_FINAL.json"
     _write_json(destination, result.as_dict())

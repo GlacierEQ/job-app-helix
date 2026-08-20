@@ -2,7 +2,7 @@
 """Audit live GitHub state against Helix portfolio declarations.
 
 This is a read-only freshness layer, not a source-of-truth replacement. It
-compares canonical Helix declarations with observable GitHub metadata and the
+compares reference Helix declarations with observable GitHub metadata and the
 current live-evidence registry, then emits a deterministic-shape receipt.
 
 A repository-scoped Actions token cannot inspect sibling private repositories.
@@ -60,7 +60,7 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def canonical_bytes(value: Any) -> bytes:
+def reference_bytes(value: Any) -> bytes:
     return (
         json.dumps(
             value,
@@ -73,7 +73,7 @@ def canonical_bytes(value: Any) -> bytes:
 
 
 def digest(value: Any) -> str:
-    return hashlib.sha256(canonical_bytes(value)).hexdigest()
+    return hashlib.sha256(reference_bytes(value)).hexdigest()
 
 
 def parse_repository_identifier(repository: str) -> tuple[str, str]:
@@ -727,7 +727,7 @@ def main() -> int:
         if not output.is_absolute():
             output = ROOT / output
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_bytes(canonical_bytes(receipt))
+        output.write_bytes(reference_bytes(receipt))
         print(f"wrote {display_path(output)}")
 
     print(json.dumps(receipt, indent=2, sort_keys=True))

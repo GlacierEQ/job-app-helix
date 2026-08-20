@@ -28,9 +28,9 @@
   "repository_actions": [
     {
       "repository": "GlacierEQ/monolith",
-      "canonical_branch": "main",
-      "canonical_head_before": "b20e249f25c6cd7549572b0c62bf861de998e442",
-      "canonical_head_after": "b20e249f25c6cd7549572b0c62bf861de998e442",
+      "reference_branch": "main",
+      "source_head_before": "b20e249f25c6cd7549572b0c62bf861de998e442",
+      "source_head_after": "b20e249f25c6cd7549572b0c62bf861de998e442",
       "source_branch": "integrate/legal-live-reconciliation-20260803",
       "source_merge_base": "d0c8b16d9f33b26622eddf4faa34fc0f31d3ef1b",
       "source_ahead": 20,
@@ -39,14 +39,14 @@
       "files_affected": 8,
       "decision": "KEEP_PRIOR_SYNTHESIS_PR_45_CLOSE_DUPLICATE_46",
       "preservation_action": "Detected overlapping pass, kept stronger PR #45 and closed this run's duplicate PR #46 without merge.",
-      "verification_result": "PR #45 remains verification-gated; this run did not promote canonical.",
+      "verification_result": "PR #45 remains verification-gated; this run did not promote reference.",
       "remote_ref_disposition": "DUPLICATE_SYNTH_BRANCH_DELETE_REF_REQUIRED"
     },
     {
       "repository": "GlacierEQ/AKOS",
-      "canonical_branch": "main",
-      "canonical_head_before": "acbd2bd6a47f82553722ac296de1f045e2110b93",
-      "canonical_head_after": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
+      "reference_branch": "main",
+      "source_head_before": "acbd2bd6a47f82553722ac296de1f045e2110b93",
+      "source_head_after": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
       "source_branch": "runtime-v0.3-promotion",
       "source_merge_base": "9f4c124f1f4977ddc8731e3372b764b165b3cb89",
       "source_ahead": 17,
@@ -69,14 +69,14 @@
         "post_repair_runtime_ci": "SUCCESS",
         "post_repair_repository_verification": "SUCCESS",
         "promotion": "SQUASH_MERGED_WITH_EXPECTED_HEAD_GUARD",
-        "canonical_commit": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9"
+        "source_commit": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9"
       },
       "remote_ref_disposition": "SOURCE_AND_SYNTH_REFS_DELETE_REF_REQUIRED_AFTER_PATCH_EQUIVALENCE_RECHECK"
     },
     {
       "repository": "GlacierEQ/AKOS",
       "branch": "akos-operational-cognition-2026-07-21",
-      "canonical_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
+      "source_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
       "observed_status": "behind",
       "ahead": 0,
       "behind": 164,
@@ -88,7 +88,7 @@
     {
       "repository": "GlacierEQ/AKOS",
       "branch": "repair/integrity-gate-20260724",
-      "canonical_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
+      "source_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
       "observed_status": "behind",
       "ahead": 0,
       "behind": 138,
@@ -100,14 +100,14 @@
     {
       "repository": "GlacierEQ/AKOS",
       "branch": "feature/career-intelligence-platform-v2",
-      "canonical_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
+      "source_head_at_compare": "acbd2bd6a47f82553722ac296de1f045e2110b93",
       "merge_base": "c91f7d8ec70f6a5657ed689a6e85cff89ea2d729",
       "observed_status": "diverged",
       "ahead": 2,
       "behind": 18,
       "files_affected": 34,
       "decision": "NEXT_SEMANTIC_SYNTHESIS_REVIEW",
-      "unique_patch_value": "Substantial v2 career-intelligence platform; must be compared against the new post-runtime canonical head by capabilities and patch equivalence rather than stale-tip merge.",
+      "unique_patch_value": "Substantial v2 career-intelligence platform; must be compared against the new post-runtime reference head by capabilities and patch equivalence rather than stale-tip merge.",
       "remote_ref_disposition": "KEEP"
     }
   ],

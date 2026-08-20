@@ -18,8 +18,8 @@
       "excellence_state": "LOCAL_CONJUNCTION_ASSESSMENT_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "17537ed7ee2c7b01edf60953f403ebcb3a6c2fd8",
+        "reference_branch": "main",
+        "source_head": "17537ed7ee2c7b01edf60953f403ebcb3a6c2fd8",
         "verified_capabilities": [
           "analytic-relative-motion-cpa",
           "deterministic-encounter-plane-monte-carlo-pc",
@@ -61,7 +61,7 @@
           "assessment": "portfolio/problem-space metadata is compatible with the bounded independent local conjunction-review capability"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the SpaceX non-affiliation or no-operational-authority boundary, operational maneuver or flight-certification claims, SGP4/SDP4 or production catalog-scale claims without proof, live integration claims, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, removal of the SpaceX non-affiliation or no-operational-authority boundary, operational maneuver or flight-certification claims, SGP4/SDP4 or production catalog-scale claims without proof, live integration claims, or contradictory GitHub About metadata."
     },
     {
       "repository": "GlacierEQ/spacex-cryogenics",
@@ -70,8 +70,8 @@
       "excellence_state": "LOCAL_CRYOGENIC_DIGITAL_TWIN_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
+        "reference_branch": "main",
+        "source_head": "7b036b72c4a004fb0c21a18e08c7311aac8201e1",
         "verified_capabilities": [
           "si-consistent-cryogenic-thermodynamics",
           "normal-boiling-point-saturation-model",
@@ -115,7 +115,7 @@
           "assessment": "portfolio metadata is compatible with the bounded local cryogenic digital-twin capability"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the independent/non-flight-authority boundary, hardware/loading/control claims without evidence, mission-certified property-model claims, live integration claims, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, removal of the independent/non-flight-authority boundary, hardware/loading/control claims without evidence, mission-certified property-model claims, live integration claims, or contradictory GitHub About metadata."
     },
     {
       "repository": "GlacierEQ/spacex-ground-network",
@@ -124,8 +124,8 @@
       "excellence_state": "LOCAL_GROUND_NETWORK_PLANNING_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "f8992a0ac0ab4608d10e7bb2e20444c9cbad54fd",
+        "reference_branch": "main",
+        "source_head": "f8992a0ac0ab4608d10e7bb2e20444c9cbad54fd",
         "verified_capabilities": [
           "wgs84-lla-ecef-conversion",
           "look-angle-and-doppler-analysis",
@@ -170,7 +170,7 @@
           "assessment": "portfolio metadata is compatible with the bounded local ground-network planning capability"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the independent/no-network-authority boundary, RF transmit/uplink/antenna-actuation claims, operational ephemeris or acquisition-time claims without proof, live integration claims, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, removal of the independent/no-network-authority boundary, RF transmit/uplink/antenna-actuation claims, operational ephemeris or acquisition-time claims without proof, live integration claims, or contradictory GitHub About metadata."
     }
   ]
 }

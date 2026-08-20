@@ -1,7 +1,7 @@
 {
   "schema": "glaciereq.company-capability-donor-map.v2",
   "generated_at": "2026-08-08T17:39:00-10:00",
-  "purpose": "Promote reusable, non-sensitive technical mechanisms into public canonical capability donors without promoting private legal/evidence lineage sources.",
+  "purpose": "Promote reusable, non-sensitive technical mechanisms into public reference capability donors without promoting private legal/evidence lineage sources.",
   "truth_boundary": {
     "private_or_legal_lineage_sources_are_read_only_inputs": true,
     "private_or_legal_lineage_sources_are_never_capability_donors": true,
@@ -20,7 +20,7 @@
       "visibility": "public",
       "fork": false,
       "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
-      "canonical_role": "public_gateway_and_connector_system",
+      "reference_role": "public_gateway_and_connector_system",
       "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
       "proof_scope": "Capability mechanisms are source-evidenced at the immutable donor head. Exact-head check receipts prove repository-head verification, not separate live runtime certification of each connector.",
       "evidence_inventory": [
@@ -72,7 +72,7 @@
       "visibility": "public",
       "fork": false,
       "head_sha": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
-      "canonical_role": "public_control_plane",
+      "reference_role": "public_control_plane",
       "proof_state": "SOURCE_AND_EXACT_HEAD_REPOSITORY_SECURITY_VERIFIED",
       "proof_scope": "The connector state machine is source-evidenced at the immutable donor head; the receipt proves exact-head repository security status rather than a live Supabase service session.",
       "evidence_inventory": [

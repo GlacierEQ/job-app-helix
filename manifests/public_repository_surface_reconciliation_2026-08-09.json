@@ -17,8 +17,8 @@
       "decision": "ADMIT",
       "excellence_state": "PROOF_REPRODUCED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "4a1ca8e5c88a62e8a94a43213b2c509af6afcea3",
+        "reference_branch": "main",
+        "source_head": "4a1ca8e5c88a62e8a94a43213b2c509af6afcea3",
         "current_head_matches_proof_head": true,
         "proof_receipts": [
           {
@@ -36,7 +36,7 @@
             "conclusion": "success"
           }
         ],
-        "proof_scope": "Provider-aware ambiguous-outcome recovery, restart-readable recovery evidence, and replay suppression are verified on the current canonical head; provider-transactional exactly-once semantics are not inferred."
+        "proof_scope": "Provider-aware ambiguous-outcome recovery, restart-readable recovery evidence, and replay suppression are verified on the current reference head; provider-transactional exactly-once semantics are not inferred."
       },
       "next_gate": "Keep admission bound to this exact head; if main moves, require a fresh current-head proof receipt before preserving ADMIT."
     },
@@ -46,8 +46,8 @@
       "decision": "ADMIT",
       "excellence_state": "PROOF_REPRODUCED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "3b41af0465c55a7128e8d22130d0dd7e52b02a8b",
+        "reference_branch": "main",
+        "source_head": "3b41af0465c55a7128e8d22130d0dd7e52b02a8b",
         "predecessor_capability_proof_head": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
         "source_continuity": {
           "ahead_by": 1,
@@ -76,7 +76,7 @@
         ],
         "proof_scope": "Current-head repository verification plus unchanged capability-source continuity supports public capability-donor admission; no live Supabase or MotherDuck service deployment is inferred."
       },
-      "next_gate": "Keep capability projection exact-head bound and reopen repair if source, checks, privacy boundaries, or canonical head drift."
+      "next_gate": "Keep capability projection exact-head bound and reopen repair if source, checks, privacy boundaries, or reference head drift."
     },
     {
       "repository": "GlacierEQ/apex-control-plane",
@@ -85,8 +85,8 @@
       "repair_priority": "P1",
       "excellence_state": "PROOF_STALE_AT_CURRENT_HEAD",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "641b55787ea13c6c0b742eb045406803893fbfc5",
+        "reference_branch": "main",
+        "source_head": "641b55787ea13c6c0b742eb045406803893fbfc5",
         "predecessor_capability_proof_head": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
         "source_continuity": {
           "ahead_by": 2,
@@ -95,7 +95,7 @@
           "admitted_connector_source_changed": false
         },
         "current_head_workflow_run_count": 0,
-        "proof_scope": "The prior Supabase connector source remains unchanged, but current-head admission is withheld because the present canonical head has no observed repository-native workflow receipt."
+        "proof_scope": "The prior Supabase connector source remains unchanged, but current-head admission is withheld because the present reference head has no observed repository-native workflow receipt."
       },
       "next_gate": "Produce a successful repository-native proof receipt on exact current main; do not inherit ADMIT from the older donor proof head."
     },
@@ -106,8 +106,8 @@
       "repair_priority": "P1",
       "excellence_state": "PROMOTED_CONTENT_PROOF_COMMIT_BINDING_PENDING",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "f5331709efa52e5930208ee14c10911fadf9740b",
+        "reference_branch": "main",
+        "source_head": "f5331709efa52e5930208ee14c10911fadf9740b",
         "helix_wave_b_receipt": "excellence/receipts/wave_b_closed.json",
         "helix_wave_b_state": "PROMOTED",
         "helix_wave_b_result": "PASS",

@@ -11,7 +11,7 @@ This separation keeps the hiring story strong without hiding the scale and diver
 
 ## Four-layer repository mesh
 
-### Layer A — Canonical evidence
+### Layer A — Source-bound evidence
 
 Repositories already admitted into the recruiter portfolio or priority spine through an explicit governance decision. Claims must cite repository-native tests, builds, documentation receipts, or deployment evidence.
 

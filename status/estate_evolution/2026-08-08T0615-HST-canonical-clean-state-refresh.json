@@ -1,16 +1,16 @@
 {
   "schema": "glaciereq.estate-evolution.receipt.v1",
-  "run_id": "2026-08-08T0615-HST-canonical-clean-state-refresh",
+  "run_id": "2026-08-08T0615-HST-reference-clean-state-refresh",
   "recorded_at": "2026-08-08T16:15:15Z",
   "control_plane": "GlacierEQ/job-app-helix",
-  "canonical_head": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+  "source_head": "17c666190d84b1f8b49a3e377808a23011bd63a8",
   "completed": [
     {
       "repository": "GlacierEQ/job-app-helix",
       "pull_request": 80,
       "decision": "VERIFIED_CURRENT_HEAD_SYNTHESIS_PROMOTED",
-      "canonical_merge": "ae9027b23fe3ef0741cad10c891c3445bbcfd1a5",
-      "preservation": "Diamond/Gatling hierarchical planning topology rebuilt against the canonical company registry with dynamic cardinality, exact v2 node identity, nine truth/integrity gates, deterministic plan digests, and PLANNED_ONLY execution boundaries.",
+      "reference_merge": "ae9027b23fe3ef0741cad10c891c3445bbcfd1a5",
+      "preservation": "Diamond/Gatling hierarchical planning topology rebuilt against the reference company registry with dynamic cardinality, exact v2 node identity, nine truth/integrity gates, deterministic plan digests, and PLANNED_ONLY execution boundaries.",
       "verification": [
         "CI:success:python-3.11",
         "CI:success:python-3.12",
@@ -24,7 +24,7 @@
       "pull_request": 79,
       "decision": "VERIFIED_FRESH_HEAD_SYNTHESIS_PROMOTED_CONCURRENTLY",
       "verified_head": "628e192380a4c2a5d91793d660b7883a56ce920b",
-      "canonical_merge": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "reference_merge": "17c666190d84b1f8b49a3e377808a23011bd63a8",
       "preservation": "Longitudinal worker-science bridge with packaged schema identity, matched-control causal contracts, invalid-infrastructure exclusion, complete worker roster, ablation-gated causal attribution, and mission-family-specific learned topology gating.",
       "verification": [
         "CI:success:python-3.11",
@@ -40,11 +40,11 @@
       "decision": "OPEN_PR_SURFACE_CLEAN",
       "open_pull_request_count": 0,
       "retired_unmerged": [58, 42, 40, 39, 34, 37],
-      "retirement_rule": "Close only after canonical containment, stronger-successor proof, or explicit R&D non-promotion classification; preserve branch/history."
+      "retirement_rule": "Close only after reference containment, stronger-successor proof, or explicit R&D non-promotion classification; preserve branch/history."
     },
     {
       "repository": "GlacierEQ/job-app-helix",
-      "canonical_head": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "source_head": "17c666190d84b1f8b49a3e377808a23011bd63a8",
       "post_merge_verification": [
         "CI:success",
         "Portfolio Compiler Integrity:success"
@@ -56,7 +56,7 @@
       "repository": "GlacierEQ/monolith",
       "pull_request": 54,
       "state": "open_draft_mergeable_verification_blocked",
-      "canonical_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+      "source_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
       "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
       "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
       "ahead": 7,
@@ -77,5 +77,5 @@
     "worker_science_is_causal_only_where_ablation_contract_passes": true,
     "company_analysis_plan_is_execution": false
   },
-  "next_cursor": "Keep Helix canonical at 17c666190d84b1f8b49a3e377808a23011bd63a8. Preserve Monolith PR #54 at a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03 and solve exact-head proof execution without weakening legal-spine or verification gates."
+  "next_cursor": "Keep Helix reference at 17c666190d84b1f8b49a3e377808a23011bd63a8. Preserve Monolith PR #54 at a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03 and solve exact-head proof execution without weakening legal-spine or verification gates."
 }

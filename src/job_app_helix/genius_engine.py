@@ -1,6 +1,6 @@
 """Genius Engine — ENGINEERED invent → attack → rank → advance.
 
-APEX identity: counter to canonical destruction.
+APEX identity: counter to reference destruction.
 Execution law: MAXIMUM_COHERENT_ADVANCE.
 Core craft verb: ENGINEERED.
 
@@ -34,7 +34,7 @@ from job_app_helix.genius_research import (
 )
 
 ENGINE_ID = "glaciereq.genius-engine.v4"
-APEX_IDENTITY = "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION"
+APEX_IDENTITY = "APEX_IS_THE_COUNTER_TO_SOURCE_BOUND_DESTRUCTION"
 EXECUTION_LAW = "MAXIMUM_COHERENT_ADVANCE"
 CRAFT_VERB = "ENGINEERED"
 CRAFT_LAW = "PRO_ELITE_HUMANIZED_ENGINEERED_CODE"
@@ -459,7 +459,7 @@ def infer_bottleneck(
             + (f" (surface: {desc[:120]})" if desc else "")
             + ".",
             "Governance-as-denial / truth-harden treated unfinished ambition as defect and "
-            "canonicalized the demoted HEAD.",
+            "source_bindd the demoted HEAD.",
         )
     if missing_impl or "missing_impl" in signals:
         return (

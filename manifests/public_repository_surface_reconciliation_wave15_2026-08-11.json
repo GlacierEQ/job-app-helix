@@ -20,8 +20,8 @@
       "excellence_state": "LOCAL_AUTONOMY_SIMULATION_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "156629c65bdeff5397c1370b3e098eec26aa9377",
+        "reference_branch": "main",
+        "source_head": "156629c65bdeff5397c1370b3e098eec26aa9377",
         "evidence_token": "LOCAL_AUTONOMY_SIMULATION_NOT_FLIGHT_CONTROL_AUTHORITY",
         "verified_capability": "deterministic-local-python-go-autonomy-simulation",
         "proof_receipts": [
@@ -58,7 +58,7 @@
           "assessment": "portfolio metadata is compatible with the bounded local autonomy simulation; the controlling README and machine state preserve independent non-affiliation and no-flight-control-authority boundaries"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, proof failure, missing or non-race Go receipt, removal of the independent SpaceX non-affiliation/no-flight-control boundary, claims of real vehicle or actuator control, operational flight authority, navigation-grade or validated-threshold claims, Byzantine-consensus claims, production/deployment/performance claims without proof, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, proof failure, missing or non-race Go receipt, removal of the independent SpaceX non-affiliation/no-flight-control boundary, claims of real vehicle or actuator control, operational flight authority, navigation-grade or validated-threshold claims, Byzantine-consensus claims, production/deployment/performance claims without proof, or contradictory GitHub About metadata."
     }
   ]
 }

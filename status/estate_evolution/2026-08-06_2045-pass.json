@@ -7,7 +7,7 @@
     "news_signal_promoted": false,
     "repositories_materially_changed": 1,
     "branches_marked_retirement_ready": 4,
-    "canonical_promotions": 1
+    "reference_promotions": 1
   },
   "legal_spine": {
     "repository": "GlacierEQ/monolith",
@@ -19,7 +19,7 @@
   },
   "intelligence": {
     "window": "24h",
-    "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
+    "reference_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
     "changed": false,
     "decision": "NO_NEW_ACTIONABLE_SIGNAL_CLEARED_STRICT_24H_GATE",
     "notes": [
@@ -30,8 +30,8 @@
   "outcomes": [
     {
       "repository": "GlacierEQ/AKOS",
-      "canonical_branch": "main",
-      "canonical_head_before": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
+      "reference_branch": "main",
+      "source_head_before": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
       "branch_family": [
         "feature/career-intelligence-runtime-v1",
         "feature/career-intelligence-platform-v2"
@@ -57,7 +57,7 @@
         "upgraded career workflows from actions/setup-python@v5 to @v6 to remove Node 20 deprecation path"
       ],
       "pull_request": 20,
-      "canonical_head_after": "6d74c3137c20d530567eb28e5d8f5dc7e9155ea4",
+      "source_head_after": "6d74c3137c20d530567eb28e5d8f5dc7e9155ea4",
       "remote_ref_disposition": {
         "feature/career-intelligence-runtime-v1": "DELETE_REF_REQUIRED_AFTER_PATCH_EQUIVALENCE_RECEIPT",
         "feature/career-intelligence-platform-v2": "DELETE_REF_REQUIRED_PATCH_PRESERVED_BY_VERIFIED_SYNTHESIS",
@@ -66,8 +66,8 @@
     },
     {
       "repository": "GlacierEQ/pro-code",
-      "canonical_branch": "main",
-      "canonical_head_observed": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "reference_branch": "main",
+      "source_head_observed": "7eb0014944eed3efbeba8dcca14c940120251c0c",
       "branch": "hardening/native-proof-mainline-2026-07-31",
       "merge_base": "ec26b8e5a20b00dbd23e4d581577ff8493a84fe8",
       "ahead": 8,
@@ -77,23 +77,23 @@
       "decision": "RETIREMENT_READY_DO_NOT_MERGE",
       "preservation": "CI, README, Rust governor, Haskell invariants, Vite config, Vite env, and engineering protocol are byte-identical on main. Branch memory implementation is older and superseded by main's bounded Nexus sync implementation.",
       "verification": "PATCH_EQUIVALENCE_PLUS_SUPERSESSION_INSPECTION",
-      "canonical_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "source_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
       "repository": "GlacierEQ/pro-code",
-      "canonical_branch": "main",
-      "canonical_head_observed": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "reference_branch": "main",
+      "source_head_observed": "7eb0014944eed3efbeba8dcca14c940120251c0c",
       "branch": "hardening/readme-native-proof-2026-07-30",
       "merge_base": "f720cb8346fc19aae60a56e0a21eafbbd3cf1f55",
       "ahead": 7,
       "behind": 11,
       "files_changed": 7,
-      "unique_patch_value": "NO_SUPERIOR_VALUE_IDENTIFIED; sibling is older than reconciled mainline hardening and its README is superseded by canonical main.",
+      "unique_patch_value": "NO_SUPERIOR_VALUE_IDENTIFIED; sibling is older than reconciled mainline hardening and its README is superseded by reference main.",
       "decision": "RETIREMENT_READY_DO_NOT_MERGE",
-      "preservation": "Canonical main already contains the stronger native proof system and evolved runtime boundary.",
-      "verification": "SIBLING_COMPARISON_AND_CANONICAL_FILE_INSPECTION",
-      "canonical_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "preservation": "Source-bound main already contains the stronger native proof system and evolved runtime boundary.",
+      "verification": "SIBLING_COMPARISON_AND_SOURCE_BOUND_FILE_INSPECTION",
+      "source_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     }
   ],

@@ -101,7 +101,7 @@ def test_repository_assessment_has_zero_automatic_retirement_ready(tmp_path: Pat
     ):
         assess.return_value = branch_steward.BranchAssessment(
             repository=tmp_path.name,
-            canonical_branch="origin/main",
+            reference_branch="origin/main",
             branch="origin/old",
             merge_base="abc",
             ahead=0,

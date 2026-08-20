@@ -110,7 +110,7 @@ class IntelligenceCycleResult:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -123,7 +123,7 @@ def _write_json(path: Path, payload: Mapping[str, object]) -> None:
 
 
 def _intelligence_sha256(intelligence: CompanyIntelligence) -> str:
-    return _canonical_sha256(intelligence.as_dict())
+    return _reference_sha256(intelligence.as_dict())
 
 
 def _persist_initial_intelligence(
@@ -144,7 +144,7 @@ def _persist_initial_intelligence(
         "acquisition_receipt_sha256": acquisition.receipt_sha256,
         "active_intelligence_sha256": _intelligence_sha256(intelligence),
     }
-    receipt["receipt_sha256"] = _canonical_sha256(receipt)
+    receipt["receipt_sha256"] = _reference_sha256(receipt)
     _write_json(receipt_path, receipt)
     return str(receipt["receipt_sha256"])
 
@@ -354,7 +354,7 @@ def execute_intelligence_cycle(
 
     source_payload = source_calibration.as_dict()
     calibration_payload = effective_calibration.as_dict()
-    calibration_sha = _canonical_sha256(calibration_payload)
+    calibration_sha = _reference_sha256(calibration_payload)
     _write_json(state_dir / "OUTCOME_CALIBRATION_SOURCE.json", source_payload)
     _write_json(state_dir / "OUTCOME_CALIBRATION_DIAGNOSTICS.json", diagnostics.as_dict())
     _write_json(state_dir / "OUTCOME_CALIBRATION_GUARD.json", guard.as_dict())
@@ -382,7 +382,7 @@ def execute_intelligence_cycle(
         "freshness": freshness.as_dict(),
         "batch": batch.as_dict(),
     }
-    receipt_sha = _canonical_sha256(base_receipt)
+    receipt_sha = _reference_sha256(base_receipt)
     result = IntelligenceCycleResult(
         schema="glaciereq.job-intelligence-cycle.v3",
         candidate_count=len(candidates),

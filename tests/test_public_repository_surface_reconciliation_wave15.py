@@ -98,7 +98,7 @@ def test_autonomy_admission_binds_exact_native_receipts() -> None:
     assert record["decision_excellence_state"] == (
         "LOCAL_AUTONOMY_SIMULATION_NATIVE_PROOF_VERIFIED"
     )
-    assert evidence["canonical_head"] == HEAD
+    assert evidence["source_head"] == HEAD
     assert evidence["evidence_token"] == TOKEN
     assert evidence["verified_capability"] == CAPABILITY
     workflow = evidence["proof_receipts"]
@@ -129,7 +129,7 @@ def test_wave15_receipt_matches_reconciliation_authority() -> None:
     wave = load(WAVE15)["items"][0]
     receipt = load(RECEIPT)
     assert receipt["repository"] == wave["repository"] == TARGET
-    assert receipt["source_canonical_head"] == wave["evidence"]["canonical_head"] == HEAD
+    assert receipt["source_head"] == wave["evidence"]["source_head"] == HEAD
     assert receipt["evidence_token"] == wave["evidence"]["evidence_token"] == TOKEN
     assert receipt["verified_capability"] == wave["evidence"]["verified_capability"] == CAPABILITY
     assert receipt["proof_receipts"][0]["id"] == RUN_ID
@@ -141,7 +141,7 @@ def test_wave15_receipt_matches_reconciliation_authority() -> None:
 def test_thermal_source_gain_is_preserved_without_false_admission() -> None:
     blocker = load(THERMAL_BLOCKER)
     assert blocker["repository"] == "GlacierEQ/spacex-thermal-protection"
-    assert blocker["source_canonical_head"] == "f35cef2d9c115218766ac3ef8d023f8316ac02f0"
+    assert blocker["source_head"] == "f35cef2d9c115218766ac3ef8d023f8316ac02f0"
     assert blocker["surface_decision"] == "REPAIR_REQUIRED"
     assert blocker["blocker"] == "GITHUB_ABOUT_DESCRIPTION_CONTRADICTS_CLAIM_CEILING"
     assert blocker["connector_capability"]["repository_description_mutation"] == (

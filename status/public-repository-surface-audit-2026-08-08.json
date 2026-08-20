@@ -64,7 +64,7 @@
     },
     {
       "repository": "GlacierEQ/job-application",
-      "findings": ["description drift", "homepage points to AKOS instead of canonical evaluator surface", "license metadata absent"]
+      "findings": ["description drift", "homepage points to AKOS instead of reference evaluator surface", "license metadata absent"]
     },
     {
       "repository": "GlacierEQ/AKOS",

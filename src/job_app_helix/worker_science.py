@@ -58,7 +58,7 @@ def _load_schema(root: Path | None = None) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if payload != packaged:
         raise WorkerScienceContractError(
-            "packaged worker-science schema differs from canonical estate schema"
+            "packaged worker-science schema differs from reference estate schema"
         )
     Draft202012Validator.check_schema(payload)
     return payload

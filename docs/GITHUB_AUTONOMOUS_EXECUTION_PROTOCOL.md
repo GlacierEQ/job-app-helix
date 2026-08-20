@@ -4,7 +4,7 @@ This protocol implements the Frontier Repository Innovation Engine constitution 
 
 ## State machine
 
-`DISCOVERED -> CENSUSED -> LINEAGE_RESOLVED -> BASELINE_VERIFIED -> BOTTLENECK_SELECTED -> ENVIRONMENT_MODELED -> RESEARCHED -> HYPOTHESES_EVALUATED -> EXPERIMENTING -> IMPLEMENTED -> VERIFIED -> ADVERSARIALLY_REVIEWED -> PROMOTION_READY -> CANONICAL -> MONITORED`
+`DISCOVERED -> CENSUSED -> LINEAGE_RESOLVED -> BASELINE_VERIFIED -> BOTTLENECK_SELECTED -> ENVIRONMENT_MODELED -> RESEARCHED -> HYPOTHESES_EVALUATED -> EXPERIMENTING -> IMPLEMENTED -> VERIFIED -> ADVERSARIALLY_REVIEWED -> PROMOTION_READY -> SOURCE_BOUND -> MONITORED`
 
 Escape states: `BLOCKED`, `QUARANTINED`, `SUPERSEDED`, `ARCHIVED`, `NO_ACTION_JUSTIFIED`, `EXPERIMENT_FAILED`.
 
@@ -21,7 +21,7 @@ A failed experiment is valid engineering intelligence. It must never be promoted
 7. Form multiple falsifiable hypotheses when uncertainty warrants competition; score them from explicit rationale references rather than invented confidence.
 8. Run a novelty review against wrappers, renamed standard functionality, superior libraries, asymptotics, failure behavior, operational-step removal, and measurable effect.
 9. Build the smallest valid experiment on an isolated, reversible change surface.
-10. Enforce expected-head protection before canonical mutation. Stale analysis must be reconciled.
+10. Enforce expected-head protection before reference mutation. Stale analysis must be reconciled.
 11. Model relevant failure scenarios and the observability needed to detect, explain, contain, and recover from them.
 12. Verify using the strongest relevant ladder and choose tests capable of disproving the claim.
 13. Adversarially attack the candidate and repair, limit, or invalidate it.
@@ -34,7 +34,7 @@ A failed experiment is valid engineering intelligence. It must never be promoted
 
 ## Autonomous authority boundary
 
-Exploration is aggressive; canonical promotion is disciplined. Inspection, modeling, research, experiments, benchmarks, tests, adversarial review, evidence generation, and candidate preparation may proceed autonomously within available permissions. Irreversible, externally consequential, security-sensitive, deployment-sensitive, or governance-sensitive actions remain bounded by repository policy and the operating environment.
+Exploration is aggressive; reference promotion is disciplined. Inspection, modeling, research, experiments, benchmarks, tests, adversarial review, evidence generation, and candidate preparation may proceed autonomously within available permissions. Irreversible, externally consequential, security-sensitive, deployment-sensitive, or governance-sensitive actions remain bounded by repository policy and the operating environment.
 
 ## Estate priority model
 
@@ -46,4 +46,4 @@ Do not psychologically commit to the first invention. For a material bottleneck,
 
 ## Promotion principle
 
-A candidate becomes canonical only when the baseline is preserved, the selected bottleneck is actually addressed, the central mechanism exists, important invariants hold, relevant failure and observability models exist, meaningful failure paths are exercised, claims match evidence, limitations are explicit, and the change remains understandable and reversible where appropriate.
+A candidate becomes reference only when the baseline is preserved, the selected bottleneck is actually addressed, the central mechanism exists, important invariants hold, relevant failure and observability models exist, meaningful failure paths are exercised, claims match evidence, limitations are explicit, and the change remains understandable and reversible where appropriate.

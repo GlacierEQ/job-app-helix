@@ -7,30 +7,30 @@ import pytest
 from job_app_helix.scaffold_runtime import (
     AuthorityClaims,
     ContractError,
-    canonical_json,
+    reference_json,
     digest,
     sanitized_environment,
     validate_budget,
 )
 
 
-def test_canonical_json_is_order_independent() -> None:
+def test_reference_json_is_order_independent() -> None:
     assert digest({"b": 2, "a": 1}) == digest({"a": 1, "b": 2})
     expected = '{"a":true,"b":[2,1]}'
-    assert canonical_json({"b": [2, 1], "a": True}) == expected
+    assert reference_json({"b": [2, 1], "a": True}) == expected
 
 
 @pytest.mark.parametrize("value", [math.nan, math.inf, -math.inf])
 def test_non_finite_values_fail_closed(value: float) -> None:
     with pytest.raises(ContractError):
-        canonical_json({"value": value})
+        reference_json({"value": value})
     with pytest.raises(ContractError):
         validate_budget(value, maximum=10.0)
 
 
 def test_unsupported_types_are_rejected_not_stringified() -> None:
     with pytest.raises(ContractError):
-        canonical_json({"value": object()})
+        reference_json({"value": object()})
 
 
 def test_budget_has_explicit_upper_bound() -> None:

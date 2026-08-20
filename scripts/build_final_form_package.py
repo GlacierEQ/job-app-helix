@@ -138,11 +138,11 @@ def _copy_site(site_dir: Path, package_dir: Path) -> None:
 
 
 # Sole public hire surface. GitHub Pages is not enabled; do not reintroduce github.io.
-CANONICAL_PUBLIC_URL = "https://casey-barton-glaciereq.vercel.app/"
+SOURCE_BOUND_PUBLIC_URL = "https://casey-barton-glaciereq.vercel.app/"
 
 
 def _write_live_entry(package_dir: Path, *, snapshot_included: bool) -> None:
-    live_url = CANONICAL_PUBLIC_URL
+    live_url = SOURCE_BOUND_PUBLIC_URL
     presentation = package_dir / "07_LIVE_PRESENTATION"
     presentation.mkdir(parents=True, exist_ok=True)
     snapshot_text = (
@@ -153,7 +153,7 @@ def _write_live_entry(package_dir: Path, *, snapshot_included: bool) -> None:
     )
     (presentation / "README.md").write_text(
         "# Live Presentation\n\n"
-        f"Open the canonical presentation: {live_url}\n\n"
+        f"Open the reference presentation: {live_url}\n\n"
         f"{snapshot_text} The live site remains the primary share link.\n",
         encoding="utf-8",
     )
@@ -163,7 +163,7 @@ def _write_live_entry(package_dir: Path, *, snapshot_included: bool) -> None:
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
         "<title>Casey Barton - Applied AI Systems Portfolio</title></head>"
         '<body><main><h1>Casey Barton - Applied AI Systems Portfolio</h1>'
-        f'<p><a href="{live_url}">Open the canonical live presentation</a></p>'
+        f'<p><a href="{live_url}">Open the reference live presentation</a></p>'
         "<p>This file performs no automatic redirect.</p></main></body></html>\n",
         encoding="utf-8",
     )

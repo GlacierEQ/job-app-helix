@@ -23,7 +23,7 @@ FORBIDDEN_KEYS = {
     "fork_repository_count",
     "private_repository_count",
     "legal_private_repositories",
-    "canonical_accomplishments",
+    "reference_accomplishments",
 }
 REQUIRED_BOUNDARY = {
     "private_repository_identities_omitted",
@@ -245,7 +245,7 @@ def _section() -> str:
             <div class="eyebrow">Application intelligence compiler</div>
             <h2 id="compiler-title">Start with the company problem. Compile the proof.</h2>
           </div>
-          <p>Helix projects one canonical evidence graph into the smallest proof
+          <p>Helix projects one reference evidence graph into the smallest proof
           surface that matters for a specific company, role, and reviewer—without
           exposing private identities or raw estate cardinality.</p>
         </div>
@@ -301,7 +301,7 @@ def _section() -> str:
           </li>
           <li>
             <span class="compiler-chain-index">03</span>
-            <span class="compiler-chain-label">Canonical systems</span>
+            <span class="compiler-chain-label">Source-bound systems</span>
             <strong id="compiler-chain-systems">Promoted proof only</strong>
           </li>
           <li>
@@ -361,7 +361,7 @@ def _section() -> str:
         <div class="compiler-proof-heading">
           <div>
             <span class="compiler-kicker">Role-specific proof surface</span>
-            <h3>Canonical systems selected by fit and verification strength</h3>
+            <h3>Source-bound systems selected by fit and verification strength</h3>
           </div>
           <p id="compiler-problem-boundary">
             Dossier gate: projection loading
@@ -416,14 +416,14 @@ def _inject(index: str) -> str:
     for old, new in replacements:
         if index.count(old) != 1:
             raise ProjectionError(
-                f"Canonical recruiter anchor changed: {old}"
+                f"Source-bound recruiter anchor changed: {old}"
             )
         index = index.replace(old, new, 1)
 
     package_anchor = '    <section class="section shell" id="package"'
     if index.count(package_anchor) != 1:
         raise ProjectionError(
-            "Canonical recruiter package anchor changed"
+            "Source-bound recruiter package anchor changed"
         )
     return index.replace(
         package_anchor,

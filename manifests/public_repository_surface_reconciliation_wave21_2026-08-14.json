@@ -21,8 +21,8 @@
       "decision": "ADMIT",
       "excellence_state": "MODELED_APPLE_SILICON_KV_QUANTIZATION_NATIVE_PROOF_REFRESHED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
+        "reference_branch": "main",
+        "source_head": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
         "evidence_token": "MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT",
         "verified_capability": "deterministic-modeled-kv-storage-reduction-and-transfer-time-estimation",
         "verified_capabilities": [
@@ -60,12 +60,12 @@
           "remaining_exact_head_native_proof_gate_satisfied": true,
           "refreshes_existing_admission": true
         },
-        "proof_scope": "Exact-current-head canonical proof refresh verifies the local Python quantization-study surface on Python 3.11, 3.12, and 3.13, including finite/positive modeled inputs, FP16 KV storage arithmetic, modeled 4-bit and 8-bit storage representation, arithmetic storage-reduction ratios, transfer-time estimation under an explicit configured bandwidth, the MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT evidence token, and public/machine truth boundaries. This refresh supersedes the older admitted proof head without changing admission count. It does not establish Apple affiliation, endorsement, employment, proprietary access, Apple Neural Engine kernel execution, Metal runtime execution, measured device bandwidth/latency/throughput/energy, end-to-end model speedup, preserved accuracy or perplexity, live MCP/APEX/Mastermind/provider integration, or production inference authority.",
+        "proof_scope": "Exact-current-head reference proof refresh verifies the local Python quantization-study surface on Python 3.11, 3.12, and 3.13, including finite/positive modeled inputs, FP16 KV storage arithmetic, modeled 4-bit and 8-bit storage representation, arithmetic storage-reduction ratios, transfer-time estimation under an explicit configured bandwidth, the MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT evidence token, and public/machine truth boundaries. This refresh supersedes the older admitted proof head without changing admission count. It does not establish Apple affiliation, endorsement, employment, proprietary access, Apple Neural Engine kernel execution, Metal runtime execution, measured device bandwidth/latency/throughput/energy, end-to-end model speedup, preserved accuracy or perplexity, live MCP/APEX/Mastermind/provider integration, or production inference authority.",
         "metadata_readback": {
           "assessment": "compatible with the already-admitted bounded independent modeled Apple-Silicon-oriented KV quantization study"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, Apple affiliation or ANE/Metal execution claims without exact hardware proof, measured-performance or accuracy claims without evidence, live provider-mesh claims, or contradictory public metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, Apple affiliation or ANE/Metal execution claims without exact hardware proof, measured-performance or accuracy claims without evidence, live provider-mesh claims, or contradictory public metadata."
     },
     {
       "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
@@ -73,8 +73,8 @@
       "decision": "ADMIT",
       "excellence_state": "MODELED_TPU_STYLE_MESH_PLANNING_NATIVE_PROOF_REFRESHED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "2a23cd011367f23891c014c92e75f0b592c29db1",
+        "reference_branch": "main",
+        "source_head": "2a23cd011367f23891c014c92e75f0b592c29db1",
         "evidence_token": "MODELED_MESH_SCENARIO_NOT_TPU_MEASUREMENT",
         "verified_capability": "deterministic-modeled-mesh-sharding-transfer-compute-overlap-and-token-balancing",
         "verified_capabilities": [
@@ -113,12 +113,12 @@
           "remaining_exact_head_native_proof_gate_satisfied": true,
           "refreshes_existing_admission": true
         },
-        "proof_scope": "Exact-current-head canonical proof refresh verifies exact source identity plus the local Python TPU-style mesh scenario model on Python 3.11, 3.12, and 3.13. The proof covers validated mesh configuration, average activation sharding, transfer-time estimation under explicit link bandwidth, compute-time estimation under explicit FLOP-rate assumptions, modeled communication/compute overlap, ring-attention scenario arithmetic, deterministic multimodal token-balance suggestions, and public/machine truth boundaries. This refresh supersedes the older admitted proof head without changing admission count. It does not establish Google or Google DeepMind affiliation, endorsement, employment, proprietary access, Google Cloud TPU deployment, TPU v4/v5p/v6e performance, measured ICI latency/bandwidth, compiled custom TPU kernels, Verilog synthesis/timing/silicon behavior, Mojo performance, live MCP/APEX/Mastermind/provider integration, or production accelerator control/reliability/performance.",
+        "proof_scope": "Exact-current-head reference proof refresh verifies exact source identity plus the local Python TPU-style mesh scenario model on Python 3.11, 3.12, and 3.13. The proof covers validated mesh configuration, average activation sharding, transfer-time estimation under explicit link bandwidth, compute-time estimation under explicit FLOP-rate assumptions, modeled communication/compute overlap, ring-attention scenario arithmetic, deterministic multimodal token-balance suggestions, and public/machine truth boundaries. This refresh supersedes the older admitted proof head without changing admission count. It does not establish Google or Google DeepMind affiliation, endorsement, employment, proprietary access, Google Cloud TPU deployment, TPU v4/v5p/v6e performance, measured ICI latency/bandwidth, compiled custom TPU kernels, Verilog synthesis/timing/silicon behavior, Mojo performance, live MCP/APEX/Mastermind/provider integration, or production accelerator control/reliability/performance.",
         "metadata_readback": {
           "assessment": "compatible with the already-admitted bounded independent TPU-style mesh planning and communication-arithmetic study"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, Google/DeepMind affiliation or TPU execution claims without proof, measured ICI or hardware-performance claims without evidence, RTL/Mojo runtime claims without native receipts, live provider-mesh claims, or contradictory public metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, Google/DeepMind affiliation or TPU execution claims without proof, measured ICI or hardware-performance claims without evidence, RTL/Mojo runtime claims without native receipts, live provider-mesh claims, or contradictory public metadata."
     }
   ]
 }

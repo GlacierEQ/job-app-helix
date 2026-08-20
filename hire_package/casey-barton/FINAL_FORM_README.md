@@ -2,8 +2,8 @@
 
 > One evidence-bound candidate surface for human decision-makers, technical diligence, and machine ingestion.
 
-**Start here:** https://casey-barton-glaciereq.vercel.app/  
-**Canonical repository:** https://github.com/GlacierEQ/job-app-helix  
+**Start here:** https://casey-barton-glaciereq.vercel.app/
+**Source-bound repository:** https://github.com/GlacierEQ/job-app-helix
 **Current license:** Proprietary evaluation and partnership terms; discussion and negotiated growth paths are welcome.
 
 ---
@@ -133,9 +133,9 @@ This package does not claim portfolio-wide deployment, scale, performance, custo
 schema: glaciereq.candidate-final-form.v1
 candidate: Casey Del Carpio Barton
 location: Honolulu, Hawaii
-canonical_url: https://casey-barton-glaciereq.vercel.app/
+source_url: https://casey-barton-glaciereq.vercel.app/
 repository: GlacierEQ/job-app-helix
-canonical_branch: main
+reference_branch: main
 
 primary_roles:
   - Applied AI Architect

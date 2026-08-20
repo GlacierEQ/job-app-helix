@@ -18,8 +18,8 @@
       "excellence_state": "SYNTHETIC_TELEMETRY_CODEC_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "857ac40bf95d9cf010bee764c8e165dd32117dce",
+        "reference_branch": "main",
+        "source_head": "857ac40bf95d9cf010bee764c8e165dd32117dce",
         "evidence_token": "LOCAL_SYNTHETIC_TELEMETRY_CODEC_NOT_SPACEX_DATA",
         "verified_capability": "deterministic-synthetic-telemetry-codec-and-controller",
         "proof_receipts": [
@@ -45,7 +45,7 @@
           "assessment": "generic portfolio metadata; it does not assert SpaceX affiliation, production telemetry provenance, benchmark scale, or flight authority"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/provenance boundary, production throughput or latency claims without benchmarks, external telemetry or flight-control claims, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, proof failure, removal of the SpaceX non-affiliation/provenance boundary, production throughput or latency claims without benchmarks, external telemetry or flight-control claims, or contradictory GitHub About metadata."
     }
   ]
 }

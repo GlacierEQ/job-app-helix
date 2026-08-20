@@ -32,7 +32,7 @@ The estate contains many large third-party or reference-style codebases. Reposit
 
 ### 5. BACKUP / ARCHIVE / HISTORICAL
 
-`Z-BACKUP-*`, `__public_fork_archive`, and explicitly archived repositories should remain excluded from active capability and accomplishment counts unless a current canonical lineage explicitly depends on them.
+`Z-BACKUP-*`, `__public_fork_archive`, and explicitly archived repositories should remain excluded from active capability and accomplishment counts unless a current reference lineage explicitly depends on them.
 
 ### 6. INCOMPLETE / STUB-SCALE REPOSITORIES
 

@@ -23,7 +23,7 @@ from .application_operations import (
     ManualApplicationAdapter,
     MatchResult,
     Projection,
-    _canonical_digest,
+    _reference_digest,
     _tokens,
     load_candidate_profile,
     load_job_opening,
@@ -220,7 +220,7 @@ def project_requirement_aware_application(
         "outreach": outreach,
         "claim_sources": claim_sources,
     }
-    digest = _canonical_digest(body)
+    digest = _reference_digest(body)
     projection = replace(
         base_projection,
         application_id=f"app-{digest[:16]}",
@@ -282,7 +282,7 @@ def project_company_aware_application(
         "outreach": outreach,
         "claim_sources": base_projection.claim_sources,
     }
-    digest = _canonical_digest(body)
+    digest = _reference_digest(body)
     projection = replace(
         base_projection,
         application_id=f"app-{digest[:16]}",

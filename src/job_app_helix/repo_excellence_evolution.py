@@ -82,21 +82,21 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("evolution validator requires state EVOLVING")
 
     identity = validated["identity"]
-    anchor = _require_git_sha(identity.get("canonical_head"), "identity.canonical_head")
+    anchor = _require_git_sha(identity.get("source_head"), "identity.source_head")
     evolved = _require_git_sha(
         identity.get("current_evolved_head"),
         "identity.current_evolved_head",
     )
     if anchor == evolved:
-        raise ExcellenceContractError("EVOLVING requires a head distinct from its canonical anchor")
+        raise ExcellenceContractError("EVOLVING requires a head distinct from its reference anchor")
 
     evolution = validated.get("evolution")
     if not isinstance(evolution, Mapping):
         raise ExcellenceContractError("EVOLVING requires an evolution object")
     if evolution.get("next_gate") != "NEXT_MEASURED_EVOLUTION":
         raise ExcellenceContractError("EVOLVING requires NEXT_MEASURED_EVOLUTION as next gate")
-    if evolution.get("canonical_anchor_head") != anchor:
-        raise ExcellenceContractError("evolution canonical anchor drift")
+    if evolution.get("reference_anchor_head") != anchor:
+        raise ExcellenceContractError("evolution reference anchor drift")
     if evolution.get("current_head") != evolved:
         raise ExcellenceContractError("evolution current head drift")
 
@@ -107,10 +107,10 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("EVOLVING requires evolution receipt schema v1")
     if pointer.get("status") != "PASS":
         raise ExcellenceContractError("EVOLVING requires evolution receipt status PASS")
-    if pointer.get("transition") != "CANONICAL -> EVOLVING":
+    if pointer.get("transition") != "SOURCE_BOUND -> EVOLVING":
         raise ExcellenceContractError("EVOLVING transition receipt drift")
-    if pointer.get("canonical_anchor_head") != anchor:
-        raise ExcellenceContractError("evolution receipt canonical anchor pointer drift")
+    if pointer.get("reference_anchor_head") != anchor:
+        raise ExcellenceContractError("evolution receipt reference anchor pointer drift")
     if pointer.get("evolved_head") != evolved:
         raise ExcellenceContractError("evolution receipt evolved-head pointer drift")
     if pointer.get("winner") != "candidate":
@@ -166,10 +166,10 @@ def validate_evolving_repo_excellence_record(
     expected_repository = {
         "full_name": identity.get("repository"),
         "repository_id": identity.get("repository_id"),
-        "canonical_anchor_head": anchor,
+        "reference_anchor_head": anchor,
         "evolved_head": evolved,
         "default_branch": identity.get("default_branch"),
-        "canonical_role": validated.get("canonical_role"),
+        "reference_role": validated.get("reference_role"),
         "capability_id": validated.get("capability_id"),
         "lineage_action": identity.get("lineage_action"),
     }
@@ -277,7 +277,7 @@ def validate_evolving_repo_excellence_record(
         "winner_preserved_on_main",
         "exact_candidate_bytes_publicly_reproduced",
         "post_merge_bytes_match_proven_candidate",
-        "canonical_anchor_preserved",
+        "reference_anchor_preserved",
         "lineage_conflict_absent",
         "company_claim_separate",
     )
@@ -317,8 +317,8 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("evolution receipt result must be an object")
     if result.get("repository_state") != "EVOLVING":
         raise ExcellenceContractError("evolution receipt result state drift")
-    if result.get("canonical_anchor_head") != anchor:
-        raise ExcellenceContractError("evolution result canonical anchor drift")
+    if result.get("reference_anchor_head") != anchor:
+        raise ExcellenceContractError("evolution result reference anchor drift")
     if result.get("current_evolved_head") != evolved:
         raise ExcellenceContractError("evolution result current head drift")
     if result.get("next_gate") != evolution.get("next_gate"):
@@ -332,8 +332,8 @@ def validate_evolving_repo_excellence_record(
             raise ExcellenceContractError("EVOLVING projection implementation missing")
         if implementation.get("state") != "EVOLVING":
             raise ExcellenceContractError("EVOLVING projection state drift")
-        if implementation.get("canonical_head") != anchor:
-            raise ExcellenceContractError("EVOLVING projection canonical anchor drift")
+        if implementation.get("source_head") != anchor:
+            raise ExcellenceContractError("EVOLVING projection reference anchor drift")
         if implementation.get("evolved_head") != evolved:
             raise ExcellenceContractError("EVOLVING projection current head drift")
         if implementation.get("evolution_receipt") != relative:

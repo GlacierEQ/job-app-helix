@@ -12,7 +12,7 @@ A bounded experiment may be used when it is the best technical probe for a hypot
 
 ## Principal state machine
 
-`DISCOVERED → IDENTITY_RESOLVED → PURPOSE_RECONSTRUCTED → CAPABILITY_MAPPED → RESTORATION_COMPOSED → IMPLEMENTED → TESTED → ADVERSARIAL_VERIFIED → OPERABLE → PROOF_REPRODUCED → PROMOTED → CANONICAL → EVOLVING`
+`DISCOVERED → IDENTITY_RESOLVED → PURPOSE_RECONSTRUCTED → CAPABILITY_MAPPED → RESTORATION_COMPOSED → IMPLEMENTED → TESTED → ADVERSARIAL_VERIFIED → OPERABLE → PROOF_REPRODUCED → PROMOTED → SOURCE_BOUND → EVOLVING`
 
 Active facets describe work without demoting repository value:
 
@@ -20,7 +20,7 @@ Active facets describe work without demoting repository value:
 
 Historical labels `TARGET_CONTRACTED`, `SEEDED`, `VERTICAL_SLICE`, `SUPERSEDED`, `RETIREMENT_READY`, and `QUARANTINE` remain readable for provenance but **cannot be entered by active execution and cannot authorize retirement**. The validator upgrades destructive historical states into recovery work.
 
-`CANONICAL` is retained only where exact-source proof needs an integration anchor. It means **source identity for the named capability**, not “this repository outranks or replaces all similar repositories.”
+`SOURCE_BOUND` is retained only where exact-source proof needs an integration anchor. It means **source identity for the named capability**, not “this repository outranks or replaces all similar repositories.”
 
 ## APEX conjunction
 

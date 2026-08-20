@@ -2,8 +2,8 @@
   "schema": "glaciereq.estate-evolution.receipt.v1",
   "timestamp": "2026-08-07T16:56:50-10:00",
   "repository": "GlacierEQ/the-tower-of-babel",
-  "canonical_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
-  "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
+  "source_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
+  "source_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
   "branch": "synthesize/operational-evidence-selection-20260807",
   "pull_request": 31,
   "source_pull_request": 25,
@@ -12,7 +12,7 @@
   "merge_base": "5c3247ed6d6e964214afd37180d859e929875483",
   "ahead": 9,
   "behind": 0,
-  "unique_patch_value": "Evidence-gated deterministic technology selection plus truthful demotion of unproven CUDA, JAX/XLA, and RHL-Quant runtime claims to reference-only states while preserving intervening canonical hardening.",
+  "unique_patch_value": "Evidence-gated deterministic technology selection plus truthful demotion of unproven CUDA, JAX/XLA, and RHL-Quant runtime claims to reference-only states while preserving intervening reference hardening.",
   "files_affected": [
     "src/babel_registry.py",
     "registry/tower.d/compute-graphs.json",
@@ -28,11 +28,11 @@
     "tests/test_jax_grok_flagship.py"
   ],
   "decision": "PREPARED_FRESH_HEAD_INTEGRATION_PR_DO_NOT_PROMOTE",
-  "preservation_action": "Did not merge stale PR 25 tip and did not copy overlapping stale generated, claim-contract, atlas, documentation, or integrity surfaces. Replayed non-overlapping source semantics onto current canonical ancestry and restored generator/audit support from the stale source only where intervening main had not changed those files.",
+  "preservation_action": "Did not merge stale PR 25 tip and did not copy overlapping stale generated, claim-contract, atlas, documentation, or integrity surfaces. Replayed non-overlapping source semantics onto current reference ancestry and restored generator/audit support from the stale source only where intervening main had not changed those files.",
   "verification_result": {
     "pr_31_initial_head": "17a64489b2ddba1c0164b64f9cd09d582596ef1c",
     "pr_31_current_head": "ec10d0c2469ea9edbb4f54e8e90626da25c273b0",
-    "canonical_registry": "PASS_40_TECHNOLOGIES_ON_INITIAL_NATIVE_RUN",
+    "reference_registry": "PASS_40_TECHNOLOGIES_ON_INITIAL_NATIVE_RUN",
     "spiral_engine": "PASS_ON_INITIAL_NATIVE_RUN",
     "generated_surface_gate": "FAILED_AS_EXPECTED_BEFORE_GENERATOR_REPLAY",
     "initial_generated_drift": [
@@ -54,13 +54,13 @@
   },
   "monolith": {
     "repository": "GlacierEQ/monolith",
-    "canonical_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+    "source_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
     "candidate_pr": 48,
     "candidate_head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8",
     "ahead": 2,
     "behind": 0,
     "legal_spine_generated_drift": false,
-    "verification": "FAILED_BEFORE_EXPOSING_EXECUTABLE_STEPS_ON_RERUN; CANONICAL_UNTOUCHED"
+    "verification": "FAILED_BEFORE_EXPOSING_EXECUTABLE_STEPS_ON_RERUN; SOURCE_BOUND_UNTOUCHED"
   },
   "job_application": {
     "latest_material_promotion": 36,

@@ -56,7 +56,7 @@ def test_candidate_json_contracts_parse_and_use_timezone_aware_provenance() -> N
         assert parsed.utcoffset() is not None
 
 
-def test_spiral_sequence_is_canonical_across_human_and_machine_views() -> None:
+def test_spiral_sequence_is_reference_across_human_and_machine_views() -> None:
     spiral = _load("application_spiral.json")
     stages = spiral["stages"]
     assert [stage["order"] for stage in stages] == list(range(1, 9))

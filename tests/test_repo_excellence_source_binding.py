@@ -23,23 +23,23 @@ def _git_blob_sha(path: Path) -> str:
     return hashlib.sha1(framed, usedforsecurity=False).hexdigest()
 
 
-def test_apex_canonical_anchor_receipt_remains_exact_and_semantically_bound() -> None:
+def test_apex_reference_anchor_receipt_remains_exact_and_semantically_bound() -> None:
     record = _load(RECORD_PATH)
     validated = validate_repo_excellence_record(record)
-    pointer = validated["canonical_position_receipt"]
+    pointer = validated["reference_position_receipt"]
     receipt_path = ROOT / pointer["path"]
     receipt = _load(receipt_path)
 
     assert validated["state"] == "EVOLVING"
     assert _git_blob_sha(receipt_path) == pointer["blob_sha"]
     assert receipt["repository"]["full_name"] == validated["identity"]["repository"]
-    assert receipt["repository"]["canonical_head"] == validated["identity"]["canonical_head"]
-    assert receipt["repository"]["canonical_role"] == validated["canonical_role"]
+    assert receipt["repository"]["source_head"] == validated["identity"]["source_head"]
+    assert receipt["repository"]["reference_role"] == validated["reference_role"]
     assert receipt["repository"]["capability_id"] == validated["capability_id"]
     assert receipt["lineage"]["action"] == validated["identity"]["lineage_action"]
     assert receipt["lineage"]["source_blob_sha"] == pointer["source_blob_sha"]
-    assert receipt["decision"]["canonicalization_blockers"] == []
-    assert receipt["decision"]["retained_noncanonicalization_blockers"] == [
+    assert receipt["decision"]["source_binding_blockers"] == []
+    assert receipt["decision"]["retained_nonsource_binding_blockers"] == [
         blocker["id"] for blocker in validated["blockers"]
     ]
     assert receipt["claim_boundary"]["company_stage_unchanged"] == (
@@ -61,7 +61,7 @@ def test_apex_evolving_projection_preserves_anchor_and_current_head() -> None:
     identity = validated["identity"]
 
     assert implementation["repository"] == identity["repository"]
-    assert implementation["canonical_head"] == identity["canonical_head"]
+    assert implementation["source_head"] == identity["source_head"]
     assert implementation["evolved_head"] == identity["current_evolved_head"]
     assert implementation["capability"] == validated["capability_id"]
     assert implementation["state"] == "EVOLVING"

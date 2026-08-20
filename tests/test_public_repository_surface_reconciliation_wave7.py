@@ -74,7 +74,7 @@ def test_mcp_stack_admission_is_exact_head_and_scope_bound() -> None:
     head = "2ab81b15283505c407265ef27e3862279f61a94f"
     evidence = record["decision_evidence"]
     assert record["admission"] == "ADMIT"
-    assert evidence["canonical_head"] == head
+    assert evidence["source_head"] == head
     assert evidence["verified_capability"] == "policy-gated-local-tool-dispatch"
     assert evidence["evidence_token"] == (
         "LOCAL_ALLOWLIST_ROUTER_NOT_EXTERNAL_MCP_DEPLOYMENT"

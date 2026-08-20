@@ -4,8 +4,8 @@
   "owner": "GlacierEQ",
   "captured_at": "2026-07-31T08:01:00-10:00",
   "reconciled_at": "2026-07-31",
-  "canonical_control_plane": "GlacierEQ/job-app-helix",
-  "canonical_branch": "main",
+  "reference_control_plane": "GlacierEQ/job-app-helix",
+  "reference_branch": "main",
   "generated_receipt": {
     "schema": "glaciereq.owned-library-census-receipt.v1",
     "default_path": "artifacts/owned-library-census.json",

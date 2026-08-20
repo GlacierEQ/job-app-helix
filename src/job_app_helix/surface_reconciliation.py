@@ -78,10 +78,10 @@ def _proof_receipts(evidence: Mapping[str, Any], repository: str) -> list[dict[s
 def _validate_admit(
     record: Mapping[str, Any], evidence: Mapping[str, Any], repository: str
 ) -> None:
-    canonical_head = str(evidence.get("canonical_head", "")).strip()
-    if EXACT_SHA_RE.fullmatch(canonical_head) is None:
+    source_head = str(evidence.get("source_head", "")).strip()
+    if EXACT_SHA_RE.fullmatch(source_head) is None:
         raise RepositorySurfaceError(
-            f"ADMIT reconciliation for {repository} requires exact canonical_head"
+            f"ADMIT reconciliation for {repository} requires exact source_head"
         )
 
     blockers: list[str] = []
@@ -111,7 +111,7 @@ def _validate_admit(
             raise RepositorySurfaceError(
                 f"ADMIT reconciliation for {repository} has unsuccessful proof receipt"
             )
-        if str(receipt.get("head_sha", "")).strip() != canonical_head:
+        if str(receipt.get("head_sha", "")).strip() != source_head:
             raise RepositorySurfaceError(
                 f"ADMIT reconciliation for {repository} has proof/head drift"
             )

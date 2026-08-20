@@ -33,7 +33,7 @@ The table describes the intended architectural fit. It does **not** claim that e
 | Swift / Metal | Apple-device and neural-engine integration | [apple-ane-kv-quantizer](https://github.com/GlacierEQ/apple-ane-kv-quantizer) | native platform and accelerator access | unverified; device receipt required |
 | Lean 4 | formalized invariants and proof-carrying gates | [grokodile](https://github.com/GlacierEQ/grokodile) | machine-checked propositions rather than prose assertions | unverified; proofs must compile without placeholders |
 | Protobuf | versioned cross-language wire contracts | [Job-App Helix](https://github.com/GlacierEQ/job-app-helix) | deterministic schema evolution and generated bindings | verified for the README Mesh v1 contract |
-| SQL | canonical data, constraints, contradiction queries, vector search | [glaciereq-mcp-stack](https://github.com/GlacierEQ/glaciereq-mcp-stack) | transactional integrity and declarative data invariants | unverified |
+| SQL | reference data, constraints, contradiction queries, vector search | [glaciereq-mcp-stack](https://github.com/GlacierEQ/glaciereq-mcp-stack) | transactional integrity and declarative data invariants | unverified |
 | WebAssembly | sandboxed portable execution boundaries | [comet-browser-agent-bridge](https://github.com/GlacierEQ/comet-browser-agent-bridge) | constrained host interface and portable runtime | unverified |
 | Odin / Zig / Mojo / Haskell / WAT | specialized systems, simulation, accelerator, proof, or sandbox exhibits | [The Tower of Babel](https://github.com/GlacierEQ/the-tower-of-babel) | each may be appropriate at a narrowly defined boundary | candidate branch blocked/unverified |
 

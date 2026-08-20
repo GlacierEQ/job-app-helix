@@ -52,7 +52,7 @@ def test_overlay_preserves_historical_base_state_per_repository() -> None:
     assert coordinator["base_admission"] == "REPAIR_REQUIRED"
     assert coordinator["admission"] == "ADMIT"
     assert coordinator["assessment_state"] == "COMPLETE"
-    assert coordinator["decision_evidence"]["canonical_head"] == (
+    assert coordinator["decision_evidence"]["source_head"] == (
         "ac977563cfd59deb8e87177f53082184f6468aa8"
     )
 
@@ -77,8 +77,8 @@ def test_admit_decision_requires_an_exact_hex_sha() -> None:
     historical = compile_surface_report(load(OBSERVATIONS), expected_public_count=75)
     decisions = deepcopy(load(DECISIONS))
     item = next(value for value in decisions["items"] if value["decision"] == "ADMIT")
-    item["evidence"]["canonical_head"] = "z" * 40
-    with pytest.raises(RepositorySurfaceError, match="exact canonical_head"):
+    item["evidence"]["source_head"] = "z" * 40
+    with pytest.raises(RepositorySurfaceError, match="exact source_head"):
         apply_surface_decisions(historical, decisions)
 
 

@@ -30,7 +30,7 @@ def load(path: Path) -> dict:
 def test_post_wave_receipt_binds_historical_promoted_heads() -> None:
     receipt = load(RECEIPT)
     observed = {
-        item["repository"]: item["canonical_head"]
+        item["repository"]: item["source_head"]
         for item in receipt["alpha_omega_admission"]["repositories"]
     }
     assert receipt["alpha_omega_admission"]["state"] == "COMPLETE"
@@ -44,7 +44,7 @@ def test_post_wave_receipt_binds_historical_promoted_heads() -> None:
     assert lineage["historical_or_aspirational_documents"] == 3
 
     pro_code = receipt["pro_code_authority"]
-    assert pro_code["canonical_head"] == HISTORICAL_PRO_CODE_HEAD
+    assert pro_code["source_head"] == HISTORICAL_PRO_CODE_HEAD
     assert pro_code["state"] == "LOCAL_OPERABLE"
     assert pro_code["evidence_level"] == "TEST"
     assert pro_code["promotion_gates"] == [
@@ -78,7 +78,7 @@ def test_historical_unknowns_are_resolved_without_visibility_overclaim() -> None
 
 def test_current_pro_code_authority_receipt_is_exact_head_and_green() -> None:
     receipt = load(CURRENT_PRO_CODE_RECEIPT)
-    assert receipt["canonical_head"] == CURRENT_PRO_CODE_HEAD
+    assert receipt["source_head"] == CURRENT_PRO_CODE_HEAD
     assert receipt["state"] == "LOCAL_OPERABLE"
     assert receipt["evidence_level"] == "TEST"
     proof = receipt["proof_receipts"]

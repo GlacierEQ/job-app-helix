@@ -2,7 +2,7 @@
   "schema": "glaciereq.estate-evolution.receipt.v1",
   "timestamp": "2026-08-07T11:18:00Z",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_head_before": "3fcba0a583d4832f0753a66dcb4bd3478f7a6754",
+  "source_head_before": "3fcba0a583d4832f0753a66dcb4bd3478f7a6754",
   "branch": "main",
   "merge_base": "3fcba0a583d4832f0753a66dcb4bd3478f7a6754",
   "ahead": 0,
@@ -17,7 +17,7 @@
     "mastermind_completed_receipts": [
       "status/branch_consolidation/2026-08-07_0936-router-broad.json"
     ],
-    "mastermind_canonical_head_observed": "fcd0ce4e9ba7063d46be0c3244baf02046b91cab",
+    "mastermind_source_head_observed": "fcd0ce4e9ba7063d46be0c3244baf02046b91cab",
     "monolith_legal_spine_contract": "PRESERVED; PR 48 changed-file set does not touch catalog/legal_spines or generated legal-spine synchronization artifacts",
     "stale_branch_policy": "NO_STALE_TIP_MERGED",
     "tower_operational_evidence_branch": "PRESERVED_UNMERGED_PENDING_FRESH_SYNTHESIS_AND_GREEN_GOVERNANCE"
@@ -26,9 +26,9 @@
     "mastermind": "Current main includes verified retirement receipts for remaining Bolt hashing/skills and broad router families and the active crash-resume radar signal.",
     "library_of_links": "engines/ai_coding_radar.py publishes every active radar signal into LibraryOfLinks through signal_to_link/publish_to_library; no duplicate hand-maintained link registry is required.",
     "monolith_pr_48": "Fresh synthesis is one commit ahead of current Monolith main and preserves the legal-spine synchronization contract, but Monolith Catalog Evolution Gate run 31167473936 failed and executable proof is insufficient for merge.",
-    "monolith_pr_49": "Topology-only projection is prepared but its Monolith Catalog Evolution Gate run 31167582533 also failed; canonical left untouched.",
+    "monolith_pr_49": "Topology-only projection is prepared but its Monolith Catalog Evolution Gate run 31167582533 also failed; reference left untouched.",
     "tower_pr_25": {
-      "canonical_head": "8c96d1cc36b5d85a25dade434f452482dce98bdb",
+      "source_head": "8c96d1cc36b5d85a25dade434f452482dce98bdb",
       "branch": "fix/operational-evidence-selection",
       "branch_head": "ed8720db5ff565e9c1bbd3b5fc24da4bbb7284d6",
       "merge_base": "a7e2543e8acba2cfe6a67dc02dc217536b63bf2e",
@@ -39,7 +39,7 @@
       "decision": "KEEP_UNMERGED; REPAIR/REGENERATE CLAIM-CONTRACT COVERAGE ON FRESH MAIN BEFORE PROMOTION"
     }
   },
-  "canonical_head_after": "829737fa0d6aa774f6c43719989dbdc94b28830a",
+  "source_head_after": "829737fa0d6aa774f6c43719989dbdc94b28830a",
   "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_ALREADY_EXHAUSTED_MASTERMIND_FAMILIES; TOWER_PR25_KEEP; CONNECTOR_HAS_NO_PROVEN_DELETE_REF_ACTION",
   "news_inputs": [
     {

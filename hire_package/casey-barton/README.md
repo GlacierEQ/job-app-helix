@@ -48,4 +48,4 @@ The live repository inventory is `../../manifests/portfolio_repositories.json`; 
 
 ## Claim boundary
 
-See [`CLAIM_REGISTER.md`](CLAIM_REGISTER.md). Candidate, hosted, canonical, blocked, unverified, and failed evidence remain distinct; no presentation layer may silently promote a claim. Repository source is not deployment proof, and the hardened package does not claim portfolio-wide scale, reliability, performance, or customer impact without separate receipts.
+See [`CLAIM_REGISTER.md`](CLAIM_REGISTER.md). Candidate, hosted, reference, blocked, unverified, and failed evidence remain distinct; no presentation layer may silently promote a claim. Repository source is not deployment proof, and the hardened package does not claim portfolio-wide scale, reliability, performance, or customer impact without separate receipts.

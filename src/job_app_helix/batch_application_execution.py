@@ -91,7 +91,7 @@ class BatchExecutionResult:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
     return hashlib.sha256(encoded).hexdigest()
 
@@ -118,7 +118,7 @@ def load_outcome_calibration(path: Path) -> OutcomeCalibration:
 
 
 def _calibration_sha256(calibration: OutcomeCalibration | None) -> str | None:
-    return _canonical_sha256(calibration.as_dict()) if calibration is not None else None
+    return _reference_sha256(calibration.as_dict()) if calibration is not None else None
 
 
 def _score_decomposition(
@@ -185,7 +185,7 @@ def _write_priority_receipt(
         "calibration_sha256": calibration_sha256,
         "score_decomposition": _score_decomposition(item, calibration),
     }
-    payload["receipt_sha256"] = _canonical_sha256(payload)
+    payload["receipt_sha256"] = _reference_sha256(payload)
     target = packet_dir / "PRIORITY_RECEIPT.json"
     target.parent.mkdir(parents=True, exist_ok=True)
     temporary = target.with_suffix(".json.tmp")

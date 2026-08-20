@@ -69,7 +69,7 @@ jobs:
       contents: write
       pull-requests: read
     steps:
-      - name: Check out canonical main
+      - name: Check out reference main
         uses: actions/checkout@v6
         with:
           ref: main

@@ -80,7 +80,7 @@ def test_telemetry_admission_is_scope_and_receipt_bound() -> None:
     assert record["repair_priority"] is None
     assert record["decision_excellence_state"] == "SYNTHETIC_TELEMETRY_CODEC_VERIFIED"
     assert "SURFACE_ASSESSMENT_UNASSESSED" not in record["findings"]
-    assert evidence["canonical_head"] == head
+    assert evidence["source_head"] == head
     assert evidence["evidence_token"] == (
         "LOCAL_SYNTHETIC_TELEMETRY_CODEC_NOT_SPACEX_DATA"
     )

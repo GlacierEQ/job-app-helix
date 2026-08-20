@@ -19,8 +19,8 @@
       "findings_add": ["METADATA_DESCRIPTION_DRIFT"],
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
+        "reference_branch": "main",
+        "source_head": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
         "evidence_token": "LOCAL_MCP_STDIO_SERVER_NOT_EXTERNAL_COLOSSUS_RUNTIME",
         "verified_capability": "evidence-bound-mcp-stdio-gateway",
         "proof_receipts": [
@@ -60,7 +60,7 @@
           "reason": "The GitHub About description remains broader than the evidence-bound local stdio claim and does not carry the repository's explicit non-affiliation boundary."
         }
       },
-      "next_gate": "Update and read back GitHub About description to the evidence-bound non-affiliated MCP stdio scope; then re-evaluate ADMIT from the unchanged or freshly verified canonical head."
+      "next_gate": "Update and read back GitHub About description to the evidence-bound non-affiliated MCP stdio scope; then re-evaluate ADMIT from the unchanged or freshly verified reference head."
     }
   ]
 }

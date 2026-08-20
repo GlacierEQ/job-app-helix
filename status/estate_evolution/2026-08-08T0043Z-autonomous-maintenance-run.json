@@ -3,11 +3,11 @@
   "run": {
     "kind": "autonomous_estate_maintenance",
     "timestamp_utc": "2026-08-08T00:43:28Z",
-    "canonical_registry": "GlacierEQ/monolith:catalog/application_estate_registry.json",
+    "reference_registry": "GlacierEQ/monolith:catalog/application_estate_registry.json",
     "coverage": "accessible GitHub estate inventory plus prioritized active runtime/security/deployment lanes; per-repository deep inspection remains partial where connector pagination or write surfaces are unavailable"
   },
   "classification_model": [
-    "canonical-control-plane",
+    "reference-control-plane",
     "production-runtime",
     "memory-connector",
     "legal-process",
@@ -42,7 +42,7 @@
       "event": "dependency_security_lanes_preserved",
       "prs": [5, 6],
       "state": "open_non_mergeable",
-      "reason": "both branches are stale/non-mergeable after canonical upstream synchronization; no unsafe merge performed",
+      "reason": "both branches are stale/non-mergeable after reference upstream synchronization; no unsafe merge performed",
       "security_relevance": [
         "Hono and @hono/node-server authorization/static-path fixes",
         "js-yaml prototype-pollution fix",
@@ -56,7 +56,7 @@
     },
     {
       "repository": "GlacierEQ/the-tower-of-babel",
-      "class": "canonical-control-plane",
+      "class": "reference-control-plane",
       "event": "stale_cursor_resolved",
       "pr": 28,
       "state": "closed_unmerged",
@@ -88,9 +88,9 @@
     }
   ],
   "estate_governance_findings": [
-    "canonical estate registry exists at GlacierEQ/monolith/catalog/application_estate_registry.json and remains the registry substrate",
-    "multiple active Z-BACKUP repositories and several repositories with noncanonical-looking default branches require reference-aware disposition, not blind archival or branch rewriting",
-    "repository inventory is sufficiently large that registry generation must remain automated and canonical rather than manually maintained"
+    "reference estate registry exists at GlacierEQ/monolith/catalog/application_estate_registry.json and remains the registry substrate",
+    "multiple active Z-BACKUP repositories and several repositories with nonreference-looking default branches require reference-aware disposition, not blind archival or branch rewriting",
+    "repository inventory is sufficiently large that registry generation must remain automated and reference rather than manually maintained"
   ],
   "unknowns": [
     "complete per-repository deep inspection was not achieved for every accessible repository in this connector session",

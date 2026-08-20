@@ -48,22 +48,22 @@ def project_estate_intelligence(
         estate_facts,
         census,
     )
-    canonical = projected["canonical_system_registry"]
+    reference = projected["system_registry"]
     experiment_ids = _experiment_ids(projected)
     unresolved_ids = {
         row["system_id"]
-        for row in canonical["systems"]
+        for row in reference["systems"]
         if row.get("lineage_complete") is False
     }
     archived_ids = {
         row["system_id"]
-        for row in canonical["systems"]
+        for row in reference["systems"]
         if row.get("archived") is True
     }
     excluded = support_only | experiment_ids | unresolved_ids | archived_ids
 
-    _project_canonical_systems(
-        canonical,
+    _project_reference_systems(
+        reference,
         support_only=support_only,
         experiment_ids=experiment_ids,
         unresolved_ids=unresolved_ids,
@@ -89,7 +89,7 @@ def project_estate_intelligence(
         intelligence=intelligence,
         supports=supports,
         capability_assertions=capability_assertions,
-        canonical=canonical,
+        reference=reference,
         capability_registry=capability_registry,
         company_registry=company_registry,
         support_only=support_only,
@@ -119,7 +119,7 @@ def _resolve_supports(
         source_id = repo_to_system.get(row["repository"])
         target_id = repo_to_system.get(row["target"])
         if target_id is None:
-            raise ValueError(f"support target is not canonical: {row['target']}")
+            raise ValueError(f"support target is not reference: {row['target']}")
         if source_id is not None and source_id == target_id:
             raise ValueError(
                 "support assertion resolves inside one lineage: "
@@ -145,8 +145,8 @@ def _experiment_ids(projected: Mapping[str, Any]) -> set[str]:
     }
 
 
-def _project_canonical_systems(
-    canonical: dict[str, Any],
+def _project_reference_systems(
+    reference: dict[str, Any],
     *,
     support_only: set[str],
     experiment_ids: set[str],
@@ -154,7 +154,7 @@ def _project_canonical_systems(
     archived_ids: set[str],
     supports: list[dict[str, Any]],
 ) -> None:
-    for system in canonical["systems"]:
+    for system in reference["systems"]:
         system_id = str(system["system_id"])
         reasons = []
         if system_id in support_only:
@@ -168,14 +168,14 @@ def _project_canonical_systems(
         system["counts_as_independent_accomplishment"] = not reasons
         system["accomplishment_exclusion_reasons"] = reasons
 
-    canonical["schema"] = "glaciereq.canonical-system-registry.v2"
-    canonical["raw_canonical_graph_system_count"] = len(canonical["systems"])
-    canonical["canonical_accomplishment_count"] = sum(
+    reference["schema"] = "glaciereq.reference-system-registry.v2"
+    reference["raw_reference_graph_system_count"] = len(reference["systems"])
+    reference["reference_accomplishment_count"] = sum(
         row["counts_as_independent_accomplishment"]
-        for row in canonical["systems"]
+        for row in reference["systems"]
     )
-    canonical["support_references"] = supports
-    canonical["content_hash"] = _content_hash(canonical)
+    reference["support_references"] = supports
+    reference["content_hash"] = _content_hash(reference)
 
 
 def _project_capability_donors(
@@ -195,7 +195,7 @@ def _project_capability_donors(
         capability["independent_donor_count"] = donor_count
         capability["repeat_pattern"] = donor_count >= 2
         if donor_count == 0 and all_donors:
-            capability["verification_state"] = "SUPPORT_OR_NONCANONICAL_ONLY"
+            capability["verification_state"] = "SUPPORT_OR_NONSOURCE_BOUND_ONLY"
     registry["schema"] = "glaciereq.capability-donor-registry.v2"
     registry["content_hash"] = _content_hash(registry)
     return registry
@@ -208,7 +208,7 @@ def _update_bundle_receipt(
     intelligence: Mapping[str, Mapping[str, Any]],
     supports: list[dict[str, Any]],
     capability_assertions: list[dict[str, Any]],
-    canonical: Mapping[str, Any],
+    reference: Mapping[str, Any],
     capability_registry: Mapping[str, Any],
     company_registry: Mapping[str, Any],
     support_only: set[str],
@@ -234,9 +234,9 @@ def _update_bundle_receipt(
     receipt["source_digest"] = projected["source_digest"]
     receipt["counts"].update(
         {
-            "raw_canonical_graph_systems": len(canonical["systems"]),
-            "canonical_accomplishments": canonical[
-                "canonical_accomplishment_count"
+            "raw_reference_graph_systems": len(reference["systems"]),
+            "reference_accomplishments": reference[
+                "reference_accomplishment_count"
             ],
             "support_references": len(supports),
             "capability_assertions_applied": len(capability_assertions),
@@ -250,7 +250,7 @@ def _update_bundle_receipt(
         }
     )
     receipt["registry_hashes"] = {
-        "canonical_system_registry": canonical["content_hash"],
+        "system_registry": reference["content_hash"],
         "capability_donor_registry": capability_registry["content_hash"],
         "company_projection_registry": company_registry["content_hash"],
     }
@@ -260,8 +260,8 @@ def _update_bundle_receipt(
             "support_references_do_not_count_as_independent_accomplishments": True,
             "estate_capability_assertions_are_evidence_bound": True,
             "estate_capability_assertions_cannot_cross_namespace_boundary": True,
-            "experiments_do_not_count_as_canonical_accomplishments": True,
-            "unresolved_lineage_does_not_count_as_canonical_accomplishment": True,
+            "experiments_do_not_count_as_reference_accomplishments": True,
+            "unresolved_lineage_does_not_count_as_reference_accomplishment": True,
             "target_company_relevance_is_role_capability_overlap": True,
             "observed_company_pressure_is_distinct_from_glaciereq_inference": True,
         }

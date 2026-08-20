@@ -56,7 +56,7 @@ def test_akos_probe_is_truthfully_partial() -> None:
     assert len(assessment["blockers"]) == 2
 
 
-def test_installed_resources_match_canonical_contracts() -> None:
+def test_installed_resources_match_reference_contracts() -> None:
     assert load_adapter_policy() == json.loads(ADAPTER_POLICY.read_text(encoding="utf-8"))
     assert load_policy() == json.loads(HEALTH_POLICY.read_text(encoding="utf-8"))
     assert load_observation_schema() == json.loads(

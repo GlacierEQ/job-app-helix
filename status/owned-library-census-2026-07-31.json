@@ -2,7 +2,7 @@
   "schema": "glaciereq.owned-library-census-snapshot-receipt.v1",
   "operating_time_hst": "2026-07-31T08:01:00-10:00",
   "reconciled_on": "2026-07-31",
-  "canonical_control_plane": "GlacierEQ/job-app-helix",
+  "reference_control_plane": "GlacierEQ/job-app-helix",
   "operation": "authenticated owner census and presentation reconciliation",
   "conclusion": "VERIFIED_INVENTORY_BOUNDARY",
   "results": {

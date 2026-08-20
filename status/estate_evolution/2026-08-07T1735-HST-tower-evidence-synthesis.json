@@ -2,8 +2,8 @@
   "schema": "glaciereq.estate-evolution.receipt.v1",
   "timestamp": "2026-08-07T17:35:00-10:00",
   "repository": "GlacierEQ/the-tower-of-babel",
-  "canonical_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
-  "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
+  "source_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
+  "source_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
   "default_branch": "main",
   "fork": false,
   "branch": "synthesize/operational-evidence-selection-20260807",
@@ -38,10 +38,10 @@
     "generated/tower_topology.json",
     ".integrity/file_hashes.json"
   ],
-  "decision": "PREPARED_FRESH_HEAD_SYNTHESIS_AND_APPLIED_NATIVE_INTEGRITY_CANDIDATE; CANONICAL_HELD_PENDING_COMPLETE_GREEN",
-  "preservation_action": "Stale PR 25 was never merged directly. Intervening canonical changes were preserved. Derived surfaces were regenerated from the current synthesis tree using Tower-native generators. Temporary branch-only materialization workflows self-removed. The immutable ledger was regenerated from the exact current tree using tower.integrity.write_manifest and verified before commit.",
+  "decision": "PREPARED_FRESH_HEAD_SYNTHESIS_AND_APPLIED_NATIVE_INTEGRITY_CANDIDATE; SOURCE_BOUND_HELD_PENDING_COMPLETE_GREEN",
+  "preservation_action": "Stale PR 25 was never merged directly. Intervening reference changes were preserved. Derived surfaces were regenerated from the current synthesis tree using Tower-native generators. Temporary branch-only materialization workflows self-removed. The immutable ledger was regenerated from the exact current tree using tower.integrity.write_manifest and verified before commit.",
   "verification_result": {
-    "canonical_registry": "PASS_40",
+    "reference_registry": "PASS_40",
     "generated_surface_drift": "PASS",
     "advanced_atlas_drift": "PASS",
     "repository_tests": "PASS",
@@ -60,13 +60,13 @@
     "build/spaceflight-expansion-audit": "DELETE_REF_REQUIRED"
   },
   "monolith": {
-    "canonical_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+    "source_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
     "candidate_pr": 48,
     "candidate_head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8",
     "ahead": 2,
     "behind": 0,
     "legal_spine_generated_drift": false,
-    "verification": "HOSTED_JOBS_FAIL_BEFORE_EXPOSING_EXECUTABLE_STEPS_AFTER_RERUN; CANONICAL_UNTOUCHED"
+    "verification": "HOSTED_JOBS_FAIL_BEFORE_EXPOSING_EXECUTABLE_STEPS_AFTER_RERUN; SOURCE_BOUND_UNTOUCHED"
   },
   "news_inputs": [
     "Strict last-24-hour primary vendor/engineering source scan",
@@ -83,7 +83,7 @@
     "decision": "NO_NEW_ACTIONABLE_STRICT_24H_SIGNAL; EXISTING AGENT ECONOMICS, RESUMABILITY, SECURITY, CONTEXT, AND COST-TO-PROOF CONTROLS REMAIN CONTROLLING"
   },
   "blockers": [
-    "Tower PR 31 complete exact-head workflow family is still executing; canonical promotion is prohibited until every required workflow succeeds.",
+    "Tower PR 31 complete exact-head workflow family is still executing; reference promotion is prohibited until every required workflow succeeds.",
     "Monolith PR 48 hosted verification remains infrastructure-blocked before executable steps."
   ],
   "next_cursor": "Read every workflow on Tower PR 31 exact head dddf14d811489e20ebb9e51f20676b987c248ac5. Merge with expected-head guard only if all required workflows are success; otherwise repair the first failing native stage. Then prove stale PR25 patch-equivalence and mark its ref retirement-ready."

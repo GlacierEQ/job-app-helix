@@ -39,15 +39,15 @@ def _iso(value: datetime) -> str:
     return value.astimezone(UTC).isoformat().replace("+00:00", "Z")
 
 
-def _canonical_domain(value: str) -> str:
+def _reference_domain(value: str) -> str:
     return value.strip().lower().rstrip(".")
 
 
 def _domain_allowed(hostname: str, allowed_domains: Sequence[str]) -> bool:
-    host = _canonical_domain(hostname)
+    host = _reference_domain(hostname)
     return any(
         host == domain or host.endswith(f".{domain}")
-        for domain in (_canonical_domain(item) for item in allowed_domains)
+        for domain in (_reference_domain(item) for item in allowed_domains)
         if domain
     )
 

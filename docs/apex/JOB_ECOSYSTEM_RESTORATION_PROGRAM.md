@@ -1,8 +1,8 @@
 # Job Ecosystem Restoration Program
 
-**Identity:** APEX is the counter to canonical destruction.  
-**Law:** MAXIMUM_COHERENT_ADVANCE  
-**Incident:** ESTATE_CAPABILITY_NEUTRALIZATION_2026-08-15  
+**Identity:** APEX is the counter to reference destruction.
+**Law:** MAXIMUM_COHERENT_ADVANCE
+**Incident:** ESTATE_CAPABILITY_NEUTRALIZATION_2026-08-15
 **Status:** ACTIVE — restore and complete the full job-repo ecosystem
 
 ## Architecture (authority split)

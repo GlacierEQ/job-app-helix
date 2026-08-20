@@ -18,13 +18,13 @@
     "search_visible_nonfork_count": 598,
     "ordinal_598": "GlacierEQ/megamind",
     "ordinal_599": null,
-    "truth_boundary": "Repository cardinality only; not canonical-system, deployment, or capability count."
+    "truth_boundary": "Repository cardinality only; not reference-system, deployment, or capability count."
   },
   "major_promotions": {
     "make_it_heavy_semantic_firewall": {
       "pr": 38,
       "verified_head": "3d480f83a93009462e8006250508459ea7dd7a40",
-      "canonical": "d921bcc125ca08972f78fda5f921740dd3cdc6e1",
+      "reference": "d921bcc125ca08972f78fda5f921740dd3cdc6e1",
       "proof": "Adaptive Worker Integrity passed Python 3.9-3.13; sampled lane 132 passed",
       "value": "exact-span OBSERVED claim entailment, missing-span fail close, contradiction escalation, semantic quality cap, receipt-lineage integration"
     },
@@ -40,7 +40,7 @@
       "pr": 84,
       "verified_head": "18ba133c0655059c5775e79bd9e3c4b3ca9d9182",
       "proof": "AEON CI + AEON AI Evals",
-      "canonical_after": "af30d0e34835fad6e6584e4499fc10642d252e6d"
+      "reference_after": "af30d0e34835fad6e6584e4499fc10642d252e6d"
     },
     "aeon_resource_pointer_authority": {
       "source_pr": 78,
@@ -48,10 +48,10 @@
       "fresh_head": "d0256e8cbb0ac745dc72fb088d62d9b102249b78",
       "fresh_topology": "1 ahead / 0 behind",
       "replayed_files": 13,
-      "newer_canonical_path_overlap": 0,
-      "canonical_after": "cf58bd96def652f8f7f4473e3789fd15b6262170",
+      "newer_source_path_overlap": 0,
+      "reference_after": "cf58bd96def652f8f7f4473e3789fd15b6262170",
       "current_main": "e31f47df82ca9e0c810a762c0605cb0954fd4964",
-      "follow_on": "Evidence Intake Gate now binds evidence promotion to canonical Resource Pointer and Provenance Receipt contracts"
+      "follow_on": "Evidence Intake Gate now binds evidence promotion to reference Resource Pointer and Provenance Receipt contracts"
     },
     "helix_company_topology": {
       "pr": 80,
@@ -69,14 +69,14 @@
     "public_runner_safe_path": {
       "pr": 107,
       "verified_head": "dd2e799062a19b8b0828bd419d8e9ce9fb97849c",
-      "canonical_after": "1a98ebee9e40b5e9511a4bdd08acbeafa4063c86",
+      "reference_after": "1a98ebee9e40b5e9511a4bdd08acbeafa4063c86",
       "proof": "CI + Public Runner Team Contract",
       "value": "retain PYTHONSAFEPATH=1 while exposing only exact attested workload root via PYTHONPATH"
     },
     "public_runner_full_monolith_gate": {
       "pr": 110,
       "verified_head": "8cb76c25c6cff7527ed95bfa5e232956cf6b1ec0",
-      "canonical_after": "063834d8c909f9cd6636b53a1b5e6907afaddcb4",
+      "reference_after": "063834d8c909f9cd6636b53a1b5e6907afaddcb4",
       "current_main": "c6d662b9be5162455e122177adf57856b8081697",
       "proof": "CI + Public Runner Team Contract",
       "value": "all seven PR #54 promotion commands are individually executed and receipted"
@@ -84,9 +84,9 @@
     "monolith_legal_live": {
       "pr": 54,
       "verified_head": "db92a505b34a27d3caf7b8e57722f2d06428b344",
-      "canonical": "41bc29decca088bccdb3fc8014f840bab5074dbd",
+      "reference": "41bc29decca088bccdb3fc8014f840bab5074dbd",
       "legal_population": 72,
-      "atlas_repair": "legal-powerhouse added to canonical Legal/Case Atlas projection; legal_spines not modified",
+      "atlas_repair": "legal-powerhouse added to reference Legal/Case Atlas projection; legal_spines not modified",
       "r7": {
         "public_runner_run_id": 31266892921,
         "private_result": "GlacierEQ/llm-runner-teams:results/monolith-legal-live-pr54-r7-20260808.json",
@@ -108,7 +108,7 @@
     "r5": "overlay-specific three-command slice passed with 8 tests",
     "r6": "complete gate exposed authoritative projection drift: legal population 72 but Legal/Case Atlas expected 71 and omitted legal-powerhouse",
     "r7": "authoritative Atlas repaired; all seven declared promotion commands passed; PR #54 exact-head merged",
-    "trust_decision": "PR-event Keymaster 401 diagnostic did not justify broadening live OIDC trust; proven issue ingress remained canonical"
+    "trust_decision": "PR-event Keymaster 401 diagnostic did not justify broadening live OIDC trust; proven issue ingress remained reference"
   },
   "prepared_not_promoted": {
     "monolith_pr_56": {

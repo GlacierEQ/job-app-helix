@@ -18,7 +18,7 @@ SPEC.loader.exec_module(planner)
 
 CompanyAnalysisPlanError = planner.CompanyAnalysisPlanError
 build_plan = planner.build_plan
-canonical_sha256 = planner.canonical_sha256
+reference_sha256 = planner.reference_sha256
 load_json = planner.load_json
 source_label = planner.source_label
 validate_company_index = planner.validate_company_index
@@ -26,12 +26,12 @@ validate_plan = planner.validate_plan
 validate_topology = planner.validate_topology
 
 
-def canonical_inputs():
+def reference_inputs():
     return load_json(INDEX_PATH), load_json(TOPOLOGY_PATH)
 
 
 def build_current_plan():
-    index, topology = canonical_inputs()
+    index, topology = reference_inputs()
     plan = build_plan(
         index,
         topology,
@@ -69,11 +69,11 @@ def test_plan_is_deterministic_and_digest_bound():
     digest = first["plan_sha256"]
     body = copy.deepcopy(first)
     body.pop("plan_sha256")
-    assert canonical_sha256(body) == digest
+    assert reference_sha256(body) == digest
 
 
 def test_track_growth_changes_counts_without_topology_code_change():
-    index, topology = canonical_inputs()
+    index, topology = reference_inputs()
     expanded = copy.deepcopy(index)
     expanded["required_company_tracks"] = [
         *expanded["required_company_tracks"],
@@ -96,7 +96,7 @@ def test_track_growth_changes_counts_without_topology_code_change():
 
 
 def test_duplicate_company_track_fails_closed():
-    index, topology = canonical_inputs()
+    index, topology = reference_inputs()
     broken = copy.deepcopy(index)
     broken["required_company_tracks"].append(broken["required_company_tracks"][0])
 
@@ -110,7 +110,7 @@ def test_duplicate_company_track_fails_closed():
 
 
 def test_topology_cannot_claim_execution_or_model_consensus():
-    index, topology = canonical_inputs()
+    index, topology = reference_inputs()
     broken = copy.deepcopy(topology)
     broken["truth_boundary"]["plan_is_execution"] = True
 
@@ -133,8 +133,8 @@ def test_missing_specialist_task_is_detected_as_omission():
         validate_plan(plan, tracks, specialist_ids)
 
 
-def test_v2_topology_requires_all_eight_canonical_specialist_lanes():
-    index, topology = canonical_inputs()
+def test_v2_topology_requires_all_eight_reference_specialist_lanes():
+    index, topology = reference_inputs()
     broken = copy.deepcopy(topology)
     broken["specialists"].pop()
 
@@ -147,8 +147,8 @@ def test_v2_topology_requires_all_eight_canonical_specialist_lanes():
         )
 
 
-def test_v2_topology_requires_canonical_coordinator_identity():
-    index, topology = canonical_inputs()
+def test_v2_topology_requires_reference_coordinator_identity():
+    index, topology = reference_inputs()
     broken = copy.deepcopy(topology)
     broken["integration_coordinator"]["id"] = "D12"
 
@@ -162,7 +162,7 @@ def test_v2_topology_requires_canonical_coordinator_identity():
 
 
 def test_v2_topology_requires_every_truth_and_integrity_gate():
-    index, topology = canonical_inputs()
+    index, topology = reference_inputs()
     broken = copy.deepcopy(topology)
     broken["quality_gates"].remove("non_affiliation_boundary")
 
@@ -186,7 +186,7 @@ def test_integrations_bind_the_validated_coordinator_identity():
 
 
 def test_source_receipt_preserves_configured_input_paths(tmp_path):
-    index, topology = canonical_inputs()
+    index, topology = reference_inputs()
     custom_index = tmp_path / "custom-index.json"
     custom_topology = tmp_path / "custom-topology.json"
     custom_index.write_text("{}", encoding="utf-8")

@@ -26,16 +26,16 @@ class RepositoryHealthError(ValueError):
     """Raised when a repository-health input or policy is invalid."""
 
 
-def canonical_json(value: Any) -> str:
+def reference_json(value: Any) -> str:
     """Return deterministic JSON suitable for hashing and receipts."""
 
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
 def sha256_json(value: Any) -> str:
-    """Hash a JSON-compatible value using canonical serialization."""
+    """Hash a JSON-compatible value using reference serialization."""
 
-    return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
+    return hashlib.sha256(reference_json(value).encode("utf-8")).hexdigest()
 
 
 def load_policy(path: Path | None = None) -> dict[str, Any]:

@@ -4,7 +4,7 @@
   "node_kind": "candidate_application_surface",
   "candidate": "Casey Del Carpio Barton",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_branch": "main",
+  "reference_branch": "main",
   "purpose": "Unify recruiter impact, expert diligence, and AI ingestion around one evidence-bound candidate representation.",
   "status": {
     "state": "PARTIALLY_VERIFIED",
@@ -73,6 +73,6 @@
   "limits": [
     "No unsupported scale or throughput claims.",
     "README/hash coverage is not runtime proof.",
-    "Candidate/local evidence is not canonical hosted evidence."
+    "Candidate/local evidence is not reference hosted evidence."
   ]
 }

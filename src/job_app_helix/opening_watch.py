@@ -89,7 +89,7 @@ class OpeningWatchResult:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -214,7 +214,7 @@ def execute_opening_watch(
         "unchanged_count": counts["UNCHANGED"],
         "items": [item.as_dict() for item in items],
     }
-    receipt_sha = _canonical_sha256(base)
+    receipt_sha = _reference_sha256(base)
     result = OpeningWatchResult(
         schema=str(base["schema"]),
         target_count=len(targets),

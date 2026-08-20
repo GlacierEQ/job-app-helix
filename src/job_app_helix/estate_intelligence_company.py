@@ -34,7 +34,7 @@ def enrich_company_registry(
     }
     system_by_id = {
         str(row["system_id"]): row
-        for row in projected["canonical_system_registry"]["systems"]
+        for row in projected["system_registry"]["systems"]
     }
 
     company_scores: dict[str, Any] = {}
@@ -109,7 +109,7 @@ def enrich_company_registry(
             )
         )
         projection["ranked_evidence"] = ranked
-        projection["canonical_systems"] = [
+        projection["reference_systems"] = [
             row["system_id"] for row in ranked
         ]
         projection["capabilities"] = sorted(
@@ -160,7 +160,7 @@ def enrich_company_registry(
         "max capability overlap across declared target roles"
     )
     registry["policy"]["estate_candidate_discovery"] = (
-        "all eligible canonical systems with positive role-capability overlap"
+        "all eligible reference systems with positive role-capability overlap"
     )
     registry["policy"]["support_references_are_not_accomplishments"] = True
 
@@ -203,7 +203,7 @@ def _estate_capability_candidates(
         result.append(
             {
                 "system_id": system_id,
-                "source_repository": system.get("canonical_repository"),
+                "source_repository": system.get("source_repository"),
                 "level": system.get("flagship_level"),
                 "promotion_state": (
                     system.get("flagship_state")

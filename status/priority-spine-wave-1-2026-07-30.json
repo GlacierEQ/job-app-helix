@@ -3,7 +3,7 @@
   "program": "library-readme-and-branch-consolidation",
   "operating_date_hst": "2026-07-30",
   "recorded_date_utc": "2026-07-31",
-  "canonical_control_plane": "GlacierEQ/job-app-helix",
+  "reference_control_plane": "GlacierEQ/job-app-helix",
   "scope": {
     "kind": "priority_spine_wave",
     "repositories": 9,
@@ -11,7 +11,7 @@
     "recruiter_portfolio_completion_claimed": false
   },
   "policy": {
-    "main_is_canonical": true,
+    "main_is_reference": true,
     "preserve_unique_value_before_closure": true,
     "require_repository_native_proof": true,
     "pr_closure_is_branch_deletion": false,
@@ -21,18 +21,18 @@
     {
       "repository": "GlacierEQ/the-tower-of-babel",
       "status": "POLICY_AUTHORITY_PRESERVED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "readme": "MASTERCLASS_PRESENT",
       "proof": "REPOSITORY_NATIVE_RECEIPTS_PRESENT",
       "branch_dispositions": [
         {
-          "branch": "feature/canonical-language-manifest",
+          "branch": "feature/reference-language-manifest",
           "unique_value": "NONE",
           "pull_request_disposition": "NO_OPEN_PR",
           "remote_ref_disposition": "DELETE_REF_REQUIRED"
         },
         {
-          "branch": "feature/canonical-language-manifest-v2",
+          "branch": "feature/reference-language-manifest-v2",
           "unique_value": "BOOTSTRAP_FRAGMENT_AUDIT_REQUIRED",
           "pull_request_disposition": "NO_OPEN_PR",
           "remote_ref_disposition": "PRESERVE_PENDING_CONTENT_AUDIT"
@@ -42,7 +42,7 @@
     {
       "repository": "GlacierEQ/job-application",
       "status": "MERGED_VERIFIED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge": {
         "pull_request": 4,
         "commit": "1efb16a7017ebae0454d556c5ac31b4149c18673",
@@ -64,7 +64,7 @@
     {
       "repository": "GlacierEQ/job-app-helix",
       "status": "MERGED_VERIFIED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge": {
         "pull_request": 12,
         "commit": "daf6a446d677e274b599b3d2319c06dd7da90987",
@@ -80,7 +80,7 @@
     {
       "repository": "GlacierEQ/monolith",
       "status": "PRESERVE_OPEN_BLOCKED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "active_pull_request": 2,
       "active_branch": "feat/monolith-evolution-roadmap",
       "unique_value": "PRESENT",
@@ -95,7 +95,7 @@
     {
       "repository": "GlacierEQ/AKOS",
       "status": "MASTERCLASS_PRESERVED_BRANCH_AUDIT_STARTED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "proof": "94_OF_94_TESTS_AND_EXPLICIT_DEBT_BOUNDARY_ALREADY_PRESENT",
       "branch_dispositions": [
         {
@@ -110,7 +110,7 @@
     {
       "repository": "GlacierEQ/pro-code",
       "status": "MERGED_VERIFIED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge": {
         "pull_request": 5,
         "commit": "a9c7697bb9a8b89e201721e29136ae95f1cc57e4",
@@ -136,7 +136,7 @@
     {
       "repository": "GlacierEQ/Pro_Code",
       "status": "PRESERVE_OPEN_BLOCKED",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "active_pull_request": 1,
       "active_branch": "hardening/doctrine-truth-boundary-2026-07-30",
       "candidate_value": [
@@ -158,7 +158,7 @@
     {
       "repository": "GlacierEQ/mastermind",
       "status": "MERGED_VERIFIED_FRONT_DOOR",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "merge": {
         "pull_request": 152,
         "commit": "f82bf6ed9da2d4e27ddc7e1f7d624ed04026cb24",
@@ -189,7 +189,7 @@
     {
       "repository": "GlacierEQ/megaminds-pdf",
       "status": "PRESERVE_OPEN_BLOCKED_DEPENDENCY_SECURITY",
-      "canonical_branch": "master",
+      "reference_branch": "master",
       "active_pull_request": 3,
       "active_branch": "hardening/pdf-viewer-truth-contract-2026-07-30",
       "functional_proof": [

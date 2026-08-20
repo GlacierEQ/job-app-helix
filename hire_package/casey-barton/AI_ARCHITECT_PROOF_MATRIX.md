@@ -1,6 +1,6 @@
 # AI Architect Capability Proof Matrix
 
-> Canonical hiring proof surface for senior AI architecture roles. This file separates **verified mechanisms**, **current proof limits**, and **next promotion gates**. It is not a technology inventory.
+> Source-bound hiring proof surface for senior AI architecture roles. This file separates **verified mechanisms**, **current proof limits**, and **next promotion gates**. It is not a technology inventory.
 
 ## Positioning
 

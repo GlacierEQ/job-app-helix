@@ -8,8 +8,8 @@
       "repository": "GlacierEQ/monolith",
       "default_branch": "main",
       "fork": false,
-      "canonical_head_before_candidate_refresh": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
-      "canonical_head_after": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+      "source_head_before_candidate_refresh": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+      "source_head_after": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
       "stale_branch": "synthesize/legal-live-reconciliation-20260807",
       "stale_head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8",
       "stale_merge_base": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
@@ -44,7 +44,7 @@
         "contract_preserved": true
       },
       "decision": "FRESH_SYNTHESIS_VERIFICATION_GATED",
-      "preservation_action": "Replayed exact candidate blobs atomically onto current canonical tree; opened draft PR #54; closed stale PR #48 without merge.",
+      "preservation_action": "Replayed exact candidate blobs atomically onto current reference tree; opened draft PR #54; closed stale PR #48 without merge.",
       "verification_result": "NOT_EXECUTED_AGAINST_PRIVATE_WORKLOAD",
       "verification_blockers": [
         "Private GitHub-hosted Actions cannot allocate a runner because the account Actions budget prevents further use.",
@@ -83,25 +83,25 @@
         }
       ],
       "verification_result": "Ingress principal authorization, public runner identity, and strict job-envelope validation succeeded; bridge configuration check failed because required App variable/secret were empty; all private token, checkout, adapter, and result steps skipped; governed release failed closed.",
-      "remote_ref_disposition": "CANONICAL_MAIN_UPDATED; NO CUSTOM UPSTREAM_TRACKING_STATE",
+      "remote_ref_disposition": "SOURCE_BOUND_MAIN_UPDATED; NO CUSTOM UPSTREAM_TRACKING_STATE",
       "next_cursor": "Owner-consent bootstrap only; no PAT fallback and no manual private-key transport."
     },
     {
       "repository": "GlacierEQ/mastermind",
       "default_branch": "main",
       "fork": false,
-      "canonical_head_observed": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
-      "canonical_head_after": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
+      "source_head_observed": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
+      "source_head_after": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
       "branches": [
         {
           "pull_request": 60,
           "branch": "apex-ecosystem-integration-and-setup-7075357609019357210",
           "ahead": 2,
           "behind": 374,
-          "unique_patch_value": "No replay-worthy implementation value: simulated APEX hub returned synthetic success, deployment script was not fail-closed, dependency/tooling state was weaker than canonical, and capability claims were not receipt-bound.",
+          "unique_patch_value": "No replay-worthy implementation value: simulated APEX hub returned synthetic success, deployment script was not fail-closed, dependency/tooling state was weaker than reference, and capability claims were not receipt-bound.",
           "decision": "RETIREMENT_READY_PR_CLOSED",
-          "preservation_action": "Preserved APEX ecosystem integration aspiration through current canonical adapter/provider/receipt contracts rather than stale simulated implementation.",
-          "verification_result": "STATIC_UNIQUE_VALUE_REVIEW; NO_CANONICAL_MUTATION",
+          "preservation_action": "Preserved APEX ecosystem integration aspiration through current reference adapter/provider/receipt contracts rather than stale simulated implementation.",
+          "verification_result": "STATIC_UNIQUE_VALUE_REVIEW; NO_SOURCE_BOUND_MUTATION",
           "remote_ref_disposition": "DELETE_REF_REQUIRED"
         },
         {
@@ -109,10 +109,10 @@
           "branch": "hypermaster-v3-morpheus",
           "ahead": 1,
           "behind": 389,
-          "unique_patch_value": "Historical MORPHEUS personalization aspiration is already materially superseded by canonical consent-based morpheus/ implementation with observe-only defaults, policy/risk gates, safe apply, decision logs, memory-sync boundary, schemas, and user controls.",
+          "unique_patch_value": "Historical MORPHEUS personalization aspiration is already materially superseded by reference consent-based morpheus/ implementation with observe-only defaults, policy/risk gates, safe apply, decision logs, memory-sync boundary, schemas, and user controls.",
           "decision": "RETIREMENT_READY_PR_CLOSED",
-          "preservation_action": "Preserved personalization and bounded accelerator aspirations in current canonical MORPHEUS and Estate overlay doctrine.",
-          "verification_result": "PATCH_EQUIVALENCE_AND_SUPERSESSION_REVIEW; NO_CANONICAL_MUTATION",
+          "preservation_action": "Preserved personalization and bounded accelerator aspirations in current reference MORPHEUS and Estate overlay doctrine.",
+          "verification_result": "PATCH_EQUIVALENCE_AND_SUPERSESSION_REVIEW; NO_SOURCE_BOUND_MUTATION",
           "remote_ref_disposition": "DELETE_REF_REQUIRED"
         }
       ]

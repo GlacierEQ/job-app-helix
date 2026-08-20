@@ -123,7 +123,7 @@ jobs:
           --token "${GITHUB_TOKEN}"
           --output /tmp/owned-library-census.json
 
-      - name: Compile canonical estate bundle
+      - name: Compile reference estate bundle
         if: >-
           github.event_name != 'pull_request' &&
           steps.estate-auth.outputs.available == 'true'
@@ -145,7 +145,7 @@ jobs:
           --output /tmp/estate-compiler/estate-intelligence-bundle.json
           --public-output /tmp/estate-compiler/public-safe-company-projection-v2.json
 
-      - name: Build canonical compiled recruiter surface
+      - name: Build reference compiled recruiter surface
         if: >-
           github.event_name != 'pull_request' &&
           steps.estate-auth.outputs.available == 'true'
@@ -207,7 +207,7 @@ jobs:
           set -euo pipefail
           test ! -e artifacts/pages-site/owned-library-census.json
           test ! -e artifacts/pages-site/public-portfolio-census.json
-          test ! -e artifacts/pages-site/canonical-system-registry.json
+          test ! -e artifacts/pages-site/reference-system-registry.json
           test ! -e artifacts/pages-site/capability-donor-registry.json
           test ! -e artifacts/pages-site/company-projection-registry.json
           test ! -e artifacts/pages-site/estate-intelligence-bundle.json
@@ -229,7 +229,7 @@ jobs:
           if-no-files-found: error
 
   deploy:
-    name: Deploy canonical main
+    name: Deploy reference main
     if: >-
       github.event_name != 'pull_request' &&
       github.ref == 'refs/heads/main'
@@ -318,7 +318,7 @@ jobs:
             echo "The recruiter artifact was built and privacy-verified, but GitHub Pages is disabled."
             echo "No Pages deployment was attempted."
             echo
-            echo "**Canonical public hire surface (share this):**"
+            echo "**Source-bound public hire surface (share this):**"
             echo "https://casey-barton-glaciereq.vercel.app/"
             echo
             echo "Deploy source: GlacierEQ/job-application → site-v15"

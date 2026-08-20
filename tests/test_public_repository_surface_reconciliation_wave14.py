@@ -99,7 +99,7 @@ def test_propulsion_admission_is_scope_and_receipt_bound() -> None:
         "LOCAL_MULTI_SENSOR_HEALTH_SIMULATION_VERIFIED"
     )
     assert "SURFACE_ASSESSMENT_UNASSESSED" not in record["findings"]
-    assert evidence["canonical_head"] == HEAD
+    assert evidence["source_head"] == HEAD
     assert evidence["evidence_token"] == TOKEN
     assert evidence["verified_capability"] == CAPABILITY
     receipts = evidence["proof_receipts"]
@@ -119,7 +119,7 @@ def test_wave14_receipt_matches_reconciliation_authority() -> None:
     wave = load(WAVE14)["items"][0]
     receipt = load(RECEIPT)
     assert receipt["repository"] == wave["repository"]
-    assert receipt["source_canonical_head"] == wave["evidence"]["canonical_head"] == HEAD
+    assert receipt["source_head"] == wave["evidence"]["source_head"] == HEAD
     assert receipt["evidence_token"] == wave["evidence"]["evidence_token"] == TOKEN
     assert receipt["verified_capability"] == wave["evidence"]["verified_capability"] == CAPABILITY
     assert {item["id"] for item in receipt["proof_receipts"]} == RUN_IDS

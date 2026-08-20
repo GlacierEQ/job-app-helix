@@ -57,5 +57,5 @@
     "legal_evidence_source_mutation_is_prohibited": true,
     "reusable_capability_extraction_requires_non_sensitive_donor": true
   },
-  "next_cursor": "Inspect GlacierEQ/aspen-grove-supabase read-only for reusable Supabase-native mechanisms, then extract only non-sensitive capability into a fresh canonical technical donor with current tests and runtime receipts."
+  "next_cursor": "Inspect GlacierEQ/aspen-grove-supabase read-only for reusable Supabase-native mechanisms, then extract only non-sensitive capability into a fresh reference technical donor with current tests and runtime receipts."
 }

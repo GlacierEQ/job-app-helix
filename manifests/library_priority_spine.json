@@ -22,7 +22,7 @@
     "unverified_cannot_mean_disposable": true,
     "operator_authorization_required_for_retirement": true,
     "branch_lifecycle": ["DISCOVER","RECONSTRUCT_PURPOSE","COMPARE_LINEAGE","EXTRACT_UNIQUE_VALUE","RESTORE_LOST_CAPABILITY","COMPOSE_GAINS","IMPLEMENT","VERIFY","INTEGRATE","DEPLOY_OR_PACKAGE","RECEIPT"],
-    "retirement_boundary": "No merge-away, archive, close-as-duplicate, branch deletion, repository deletion, or successor substitution is authorized by this program. Retirement is a separate operator decision after proven capability preservation."
+    "retirement_boundary": "No merge-away, archive, close-as-duplicate, branch deletion, repository deletion, or successor substitution is authorized by this program; each is not authorized without a separate operator decision after proven capability preservation."
   },
   "repositories": [
     {"priority":0,"repository":"GlacierEQ/the-tower-of-babel","visibility":"public","default_branch":"main","role":"polyglot-technology-placement-and-cross-language-composition-system","action":"EVOLVE_AND_INTEGRATE","readme_state":"MASTERCLASS_AND_JOB_APPLICATION_INTEGRATION_MERGED","proof_state":"NATIVE_GOVERNANCE_AND_INTEGRITY_VERIFIED","branch_state":"PRESERVE_ALL_UNIQUE_LINEAGE_UNTIL_CAPABILITY_COMPARISON","identity_state":"CONFIRMED","aliases":["tower of babel"]},

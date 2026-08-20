@@ -39,7 +39,7 @@
     "name_match_is_not_authorship": true,
     "fork_presence_is_reference_evidence_only": true,
     "unique_glaciereq_delta_not_yet_proven": true,
-    "semantic_company_fit_requires_separate_canonical_system_mapping": true
+    "semantic_company_fit_requires_separate_reference_system_mapping": true
   },
-  "next_cursor": "Search the canonical GlacierEQ estate for original MongoDB-relevant capabilities such as governed MCP access, memory/state persistence, database-grounded agents, connector security, and observability; admit only implementations with verified provenance and current proof."
+  "next_cursor": "Search the reference GlacierEQ estate for original MongoDB-relevant capabilities such as governed MCP access, memory/state persistence, database-grounded agents, connector security, and observability; admit only implementations with verified provenance and current proof."
 }

@@ -8,10 +8,10 @@
     "record_count": 112
   },
   "dedupe": {
-    "canonical_tracks_before_expansion": 76,
-    "already_canonical_tracks": 22,
+    "reference_tracks_before_expansion": 76,
+    "already_reference_tracks": 22,
     "net_new_tracks": 90,
-    "canonical_tracks_after_expansion": 166,
+    "reference_tracks_after_expansion": 166,
     "p0_total": 25,
     "p0_existing_tracks": 9,
     "p0_net_new_tracks": 16
@@ -33,7 +33,7 @@
       "MEASURED_EXPERIMENT",
       "ADVERSARIAL_REVIEW",
       "PROMOTION_READY",
-      "CANONICAL"
+      "SOURCE_BOUND"
     ]
   },
   "existing_track_ids": [

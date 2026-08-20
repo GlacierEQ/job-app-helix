@@ -73,7 +73,7 @@ def test_colossus_training_flux_is_exact_head_admit() -> None:
     )
     head = "ad4ae574efad762550b373967a57008848986df4"
     assert record["admission"] == "ADMIT"
-    assert record["decision_evidence"]["canonical_head"] == head
+    assert record["decision_evidence"]["source_head"] == head
     receipts = record["decision_evidence"]["proof_receipts"]
     assert {receipt["id"] for receipt in receipts} == {31349338606, 31349338843}
     assert all(receipt["head_sha"] == head for receipt in receipts)
@@ -87,7 +87,7 @@ def test_repaired_but_blocked_surfaces_remain_repair_required() -> None:
     auto = by_repo["GlacierEQ/ai-auto-driller-unified"]
     assert auto["admission"] == "REPAIR_REQUIRED"
     assert (
-        auto["decision_evidence"]["canonical_head"]
+        auto["decision_evidence"]["source_head"]
         == "c0c5d8b3d3e1adb47480a9619e10ed18ed1e3f76"
     )
     assert "v4.0" in auto["decision_evidence"]["blocking_metadata"]["description"]
@@ -95,7 +95,7 @@ def test_repaired_but_blocked_surfaces_remain_repair_required() -> None:
     storage = by_repo["GlacierEQ/computer-user-storage"]
     assert storage["admission"] == "REPAIR_REQUIRED"
     assert (
-        storage["decision_evidence"]["canonical_head"]
+        storage["decision_evidence"]["source_head"]
         == "ad307c30ab53df53876c7ecaff6682964c5ae5b1"
     )
     storage_description = storage["decision_evidence"]["blocking_metadata"][
@@ -118,17 +118,17 @@ def test_wave6_admit_remains_fail_closed_against_receipt_drift() -> None:
         apply_surface_reconciliation(predecessor, mismatch)
 
 
-def test_canonical_manifests_are_cwd_independent_and_wheel_packaged(
+def test_reference_manifests_are_cwd_independent_and_wheel_packaged(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
     monkeypatch.chdir(tmp_path)
-    canonical_paths = (
+    source_paths = (
         library_cli.DEFAULT_PROGRAM,
         library_cli.DEFAULT_SURFACE_OBSERVATIONS,
         library_cli.DEFAULT_SURFACE_DECISIONS,
         *library_cli.DEFAULT_SURFACE_RECONCILIATIONS,
     )
-    assert all(path.is_absolute() and path.is_file() for path in canonical_paths)
+    assert all(path.is_absolute() and path.is_file() for path in source_paths)
 
     pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     assert '[tool.hatch.build.targets.wheel.force-include]' in pyproject

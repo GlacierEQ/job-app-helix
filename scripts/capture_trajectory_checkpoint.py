@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEDULE_PATH = ROOT / "machine" / "trajectory" / "2026_schedule.json"
 HST = ZoneInfo("Pacific/Honolulu")
 GRAPHQL_URL = "https://api.github.com/graphql"
-CANONICAL_OWNER = "GlacierEQ"
+SOURCE_BOUND_OWNER = "GlacierEQ"
 
 DIMENSION_SCOPES: dict[str, tuple[str, ...]] = {
     "genealogy": ("manifests", "schemas/estate"),
@@ -49,7 +49,7 @@ DIMENSION_SCOPES: dict[str, tuple[str, ...]] = {
 }
 
 
-def canonical_json(value: object) -> bytes:
+def reference_json(value: object) -> bytes:
     serialized = json.dumps(
         value,
         sort_keys=True,
@@ -79,7 +79,7 @@ def scheduled_entry(schedule: dict, date_text: str) -> tuple[int, dict]:
     for index, entry in enumerate(schedule["checkpoints"]):
         if entry["date"] == date_text:
             return index, entry
-    raise SystemExit(f"{date_text} is not a canonical 2026 trajectory checkpoint")
+    raise SystemExit(f"{date_text} is not a reference 2026 trajectory checkpoint")
 
 
 def files_for_scope(scope: tuple[str, ...]) -> list[Path]:
@@ -110,14 +110,14 @@ def scope_state(scope: tuple[str, ...], global_hashes: dict[str, str]) -> dict:
     return {
         "sources": list(scope),
         "file_count": len(rows),
-        "tree_sha256": sha256_bytes(canonical_json(tree_payload)),
+        "tree_sha256": sha256_bytes(reference_json(tree_payload)),
     }
 
 
 def graphql(token: str, query: str, variables: dict) -> dict:
     request = urllib.request.Request(
         GRAPHQL_URL,
-        data=canonical_json({"query": query, "variables": variables}),
+        data=reference_json({"query": query, "variables": variables}),
         headers={
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json",
@@ -230,17 +230,17 @@ def compute_delta(
             "repository_count_delta": None,
             "repositories_added": [],
             "repositories_removed": [],
-            "canonical_head_changes": [],
+            "source_head_changes": [],
             "dimension_changes": [],
         }
 
     current_heads = {
         row["repository"]: row["head_sha"]
-        for row in current["state"]["canonical_heads"]
+        for row in current["state"]["source_heads"]
     }
     previous_heads = {
         row["repository"]: row["head_sha"]
-        for row in previous["state"]["canonical_heads"]
+        for row in previous["state"]["source_heads"]
     }
     current_names = set(current_heads)
     previous_names = set(previous_heads)
@@ -266,7 +266,7 @@ def compute_delta(
         "repository_count_delta": current_count - previous_count,
         "repositories_added": sorted(current_names - previous_names),
         "repositories_removed": sorted(previous_names - current_names),
-        "canonical_head_changes": head_changes,
+        "source_head_changes": head_changes,
         "dimension_changes": dimension_changes,
     }
 
@@ -291,7 +291,7 @@ def build_checkpoint(
             "current-state capture cannot be backdated"
         )
 
-    repositories = fetch_owned_repositories(token, CANONICAL_OWNER)
+    repositories = fetch_owned_repositories(token, SOURCE_BOUND_OWNER)
     inventory, heads = repository_state(repositories)
     source_hashes: dict[str, str] = {}
     dimensions = {
@@ -314,18 +314,18 @@ def build_checkpoint(
             "repository": schedule["authority"]["repository"],
             "schedule_path": schedule["authority"]["path"],
             "schedule_sha256": schedule_sha,
-            "github_owner": CANONICAL_OWNER,
+            "github_owner": SOURCE_BOUND_OWNER,
         },
         "state": {
             "repository_inventory": inventory,
-            "canonical_heads": heads,
+            "source_heads": heads,
             "dimensions": dimensions,
             "source_hashes": dict(sorted(source_hashes.items())),
         },
         "delta": {},
     }
     checkpoint["delta"] = compute_delta(checkpoint, previous, previous_expected)
-    body_without_receipt = canonical_json(checkpoint)
+    body_without_receipt = reference_json(checkpoint)
     checkpoint["receipt"] = {
         "hash_algorithm": "sha256",
         "checkpoint_sha256": sha256_bytes(body_without_receipt),
@@ -338,7 +338,7 @@ def main() -> int:
     parser.add_argument(
         "--date",
         required=True,
-        help="Canonical checkpoint date YYYY-MM-DD",
+        help="Source-bound checkpoint date YYYY-MM-DD",
     )
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--previous", type=Path)

@@ -21,8 +21,8 @@
       "excellence_state": "LOCAL_WORKFLOW_HEURISTICS_AND_GUARDED_EXECUTION_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "master",
-        "canonical_head": "78d69a564c1f50cdcdc04668dc1ed41adbe5cec7",
+        "reference_branch": "master",
+        "source_head": "78d69a564c1f50cdcdc04668dc1ed41adbe5cec7",
         "evidence_token": "LOCAL_WORKFLOW_HEURISTICS_NOT_NOTION_API_OR_MODEL_AUTHORITY",
         "verified_capability": "deterministic-local-intent-heuristics-workflow-planning-and-guarded-stage-execution",
         "verified_capabilities": [
@@ -57,13 +57,13 @@
           "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_REQUIRED",
           "remaining_exact_head_native_proof_gate_satisfied": true
         },
-        "proof_scope": "Exact-current-head canonical CI verifies the local Python workflow-intelligence surfaces on Python 3.11, 3.12, and 3.13. The proof covers deterministic caller-supplied-context intent heuristics, dependency-aware local workflow planning, in-memory workflow coordination, guarded stage transitions that do not skip blocked stages, rule-derived workflow statistics, and the public-truth boundary. This proof does not establish Notion affiliation, endorsement, employment, proprietary access, live Notion API or workspace access, calibrated probabilities, language-model or embedding-model inference, persistent learning, live MCP/APEX/Mastermind/provider integration, real external multi-agent execution, autonomous external side effects, or production scale, reliability, latency, throughput, or security guarantees.",
+        "proof_scope": "Exact-current-head reference CI verifies the local Python workflow-intelligence surfaces on Python 3.11, 3.12, and 3.13. The proof covers deterministic caller-supplied-context intent heuristics, dependency-aware local workflow planning, in-memory workflow coordination, guarded stage transitions that do not skip blocked stages, rule-derived workflow statistics, and the public-truth boundary. This proof does not establish Notion affiliation, endorsement, employment, proprietary access, live Notion API or workspace access, calibrated probabilities, language-model or embedding-model inference, persistent learning, live MCP/APEX/Mastermind/provider integration, real external multi-agent execution, autonomous external side effects, or production scale, reliability, latency, throughput, or security guarantees.",
         "metadata_readback": {
           "description": "Workflow engine for ops craft (engineering only) · AKOS",
           "assessment": "compatible with the bounded local workflow-engine and planning proof"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, restoration of live Notion/API/MCP/APEX/model claims, probability or learned-intelligence semantics without evidence, external-agent execution claims without proof, or contradictory public metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, restoration of live Notion/API/MCP/APEX/model claims, probability or learned-intelligence semantics without evidence, external-agent execution claims without proof, or contradictory public metadata."
     },
     {
       "repository": "GlacierEQ/notion-workspace-optimizer",
@@ -72,8 +72,8 @@
       "excellence_state": "LOCAL_WORKSPACE_POLICY_AND_PREFIX_GROUPING_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "c52ee06ee1199e320cafd5b493689cf048632a13",
+        "reference_branch": "main",
+        "source_head": "c52ee06ee1199e320cafd5b493689cf048632a13",
         "evidence_token": "LOCAL_WORKSPACE_POLICY_NOT_NOTION_MUTATION_OR_SEMANTIC_AUTHORITY",
         "verified_capability": "deterministic-validated-local-workspace-policy-scoring-and-title-prefix-grouping",
         "verified_capabilities": [
@@ -110,13 +110,13 @@
           "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_REQUIRED",
           "remaining_exact_head_native_proof_gate_satisfied": true
         },
-        "proof_scope": "Exact-current-head canonical CI verifies the repository-owned proof under a trusted-caller boundary and the bounded workspace contract on Python 3.11, 3.12, and 3.13. The proof covers validated caller-supplied page metadata, deterministic weighted policy scoring, deterministic tie-breaking, recommendation labels for archive-candidate/collapse-nesting/split-hub/review, explicit operational_authority=false semantics, literal title-prefix grouping, malformed-input rejection, reproducible complete output when a timezone-aware observation time is supplied, and the public-truth boundary. This proof does not establish Notion affiliation, endorsement, employment, proprietary access, live Notion API or workspace access, automatic workspace mutation, actual archiving/collapse/split operations, database index tuning, semantic hashing, embeddings, duplicate detection, learned clustering, live MCP/APEX/Mastermind/provider integration, calibrated probability, or production scale, reliability, latency, throughput, or security guarantees.",
+        "proof_scope": "Exact-current-head reference CI verifies the repository-owned proof under a trusted-caller boundary and the bounded workspace contract on Python 3.11, 3.12, and 3.13. The proof covers validated caller-supplied page metadata, deterministic weighted policy scoring, deterministic tie-breaking, recommendation labels for archive-candidate/collapse-nesting/split-hub/review, explicit operational_authority=false semantics, literal title-prefix grouping, malformed-input rejection, reproducible complete output when a timezone-aware observation time is supplied, and the public-truth boundary. This proof does not establish Notion affiliation, endorsement, employment, proprietary access, live Notion API or workspace access, automatic workspace mutation, actual archiving/collapse/split operations, database index tuning, semantic hashing, embeddings, duplicate detection, learned clustering, live MCP/APEX/Mastermind/provider integration, calibrated probability, or production scale, reliability, latency, throughput, or security guarantees.",
         "metadata_readback": {
           "description": "Workspace page optimizer (portfolio) archive/collapse/split · AKOS P0",
           "assessment": "compatible when archive/collapse/split is read as bounded recommendation-label output rather than live workspace mutation"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, restoration of live Notion or workspace-mutation claims, semantic-hashing/embedding/duplicate-detection claims without proof, probability semantics, live mesh claims, or contradictory public metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, restoration of live Notion or workspace-mutation claims, semantic-hashing/embedding/duplicate-detection claims without proof, probability semantics, live mesh claims, or contradictory public metadata."
     }
   ]
 }

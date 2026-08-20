@@ -18,8 +18,8 @@
       "excellence_state": "SYNTHETIC_MISSION_OPERATIONS_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+        "reference_branch": "main",
+        "source_head": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
         "evidence_token": "LOCAL_MISSION_OPS_SIMULATION_NOT_FLIGHT_COMMAND_AUTHORITY",
         "verified_capability": "deterministic-local-mission-operations-simulation",
         "proof_receipts": [
@@ -45,7 +45,7 @@
           "assessment": "generic portfolio metadata aligned with the verified event-bus capability; it does not assert SpaceX affiliation, live flight operations, command authority, or production performance"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/no-flight-authority boundary, live flight/command/voice/WebSocket/MCP/mesh claims without proof, production performance claims without receipts, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, proof failure, removal of the SpaceX non-affiliation/no-flight-authority boundary, live flight/command/voice/WebSocket/MCP/mesh claims without proof, production performance claims without receipts, or contradictory GitHub About metadata."
     }
   ]
 }

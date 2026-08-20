@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T14:17:00-10:00",
   "wave": 20,
   "repository": "GlacierEQ/notion-workflow-intelligence",
-  "source_canonical_head": "78d69a564c1f50cdcdc04668dc1ed41adbe5cec7",
+  "source_head": "78d69a564c1f50cdcdc04668dc1ed41adbe5cec7",
   "source_state": "LOCAL_WORKFLOW_HEURISTICS_AND_GUARDED_EXECUTION_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [
     {
@@ -21,12 +21,12 @@
     "replaced live Notion API, MCP/APEX/Mastermind, and LLM claims with the implemented deterministic local workflow boundary",
     "reclassified confidence and alignment values as rule-derived bookkeeping rather than calibrated probability or model confidence",
     "replaced hyper-scaling machine metadata with an exact capability allowlist",
-    "demoted stale PROMOTED/HYPER_VALIDATED machine posture pending fresh canonical proof",
-    "corrected CI from the wrong main branch target to canonical master and added explicit workflow dispatch",
+    "demoted stale PROMOTED/HYPER_VALIDATED machine posture pending fresh reference proof",
+    "corrected CI from the wrong main branch target to reference master and added explicit workflow dispatch",
     "pinned checkout and setup-python, disabled persisted credentials, and proved Python 3.11, 3.12, and 3.13",
     "added deterministic mechanism contract tests and a fail-closed public-truth verifier",
     "made historical promotion-receipt verification time-stable and non-authoritative for current state",
-    "bound repaired canonical master to successful exact-head CI run 31852720612"
+    "bound repaired reference master to successful exact-head CI run 31852720612"
   ],
   "nonclaims": [
     "no Notion affiliation endorsement employment or proprietary access",

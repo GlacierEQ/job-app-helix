@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       checkpoint_date:
-        description: Canonical historical checkpoint date (YYYY-MM-DD)
+        description: Source-bound historical checkpoint date (YYYY-MM-DD)
         required: true
         type: string
 
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
-      - name: Check out canonical Helix main
+      - name: Check out reference Helix main
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
@@ -63,7 +63,7 @@ jobs:
           }
           if date_text not in historical:
               raise SystemExit(
-                  f"{date_text!r} is not a canonical historical checkpoint"
+                  f"{date_text!r} is not a reference historical checkpoint"
               )
           print(f"date={date_text}")
           PY

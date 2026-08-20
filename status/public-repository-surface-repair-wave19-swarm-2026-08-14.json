@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T14:02:00-10:00",
   "wave": 19,
   "repository": "GlacierEQ/GlacierEQ_Swarm",
-  "source_canonical_head": "08d08a1cf35a975e8541e9305359ceddb190fc67",
+  "source_head": "08d08a1cf35a975e8541e9305359ceddb190fc67",
   "source_state": "DURABLE_SWARM_AND_CRYSTALLIZATION_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [
     {
@@ -36,7 +36,7 @@
     "added a fail-closed public-truth gate that forbids automatic estate-completion and production-authority inflation",
     "pinned the reusable verification workflow and local Actions dependencies used by the repaired CI surface",
     "expanded crystallization contract proof across Python 3.11, 3.12, and 3.13",
-    "bound the repaired canonical main to successful exact-head CI, runtime, and container workflows",
+    "bound the repaired reference main to successful exact-head CI, runtime, and container workflows",
     "proved restart, failover, durable persistence, authenticated API behavior, container image execution, a real task, and restart against preserved state"
   ],
   "nonclaims": [

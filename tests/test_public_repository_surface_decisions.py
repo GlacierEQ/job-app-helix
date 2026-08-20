@@ -121,10 +121,10 @@ def test_admit_is_restricted_to_exact_head_evidence() -> None:
         "GlacierEQ/anthropic-safety-monitor",
     }
     assert admitted["GlacierEQ/anthropic-agent-coordinator"]["evidence"][
-        "canonical_head"
+        "source_head"
     ] == "ac977563cfd59deb8e87177f53082184f6468aa8"
     assert admitted["GlacierEQ/anthropic-safety-monitor"]["evidence"][
-        "canonical_head"
+        "source_head"
     ] == "a5c21172e32ce6054994402c38d86f7ef94bc56b"
 
 
@@ -149,7 +149,7 @@ def test_tower_does_not_inherit_older_admission_after_new_governance_failure() -
     )
     assert tower["decision"] == "REPAIR_REQUIRED"
     assert tower["excellence_state"] == "BLOCKED"
-    assert tower["evidence"]["canonical_head"] == (
+    assert tower["evidence"]["source_head"] == (
         "9055c92c638d3f5f98d17c2ac07f56afdc227cd1"
     )
     assert "Main Ruleset Contract" in tower["evidence"]["finding"]

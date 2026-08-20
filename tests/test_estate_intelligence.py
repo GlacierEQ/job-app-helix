@@ -171,8 +171,8 @@ def test_support_and_experiment_are_not_accomplishments() -> None:
         census=_census(),
     )
     systems = {
-        row["canonical_repository"]: row
-        for row in projected["canonical_system_registry"]["systems"]
+        row["source_repository"]: row
+        for row in projected["system_registry"]["systems"]
     }
     assert systems["GlacierEQ/alpha"][
         "counts_as_independent_accomplishment"
@@ -183,7 +183,7 @@ def test_support_and_experiment_are_not_accomplishments() -> None:
     assert not systems["GlacierEQ/gamma"][
         "counts_as_independent_accomplishment"
     ]
-    support = projected["canonical_system_registry"][
+    support = projected["system_registry"][
         "support_references"
     ][0]
     assert support["collapse_lineage"] is False
@@ -282,7 +282,7 @@ def test_public_projection_omits_non_accomplishments_and_raw_counts() -> None:
     assert public["schema"] == "glaciereq.estate-public-projection.v2"
     assert "GlacierEQ/beta" not in rendered
     assert "GlacierEQ/gamma" not in rendered
-    assert "canonical_accomplishments" not in rendered
+    assert "reference_accomplishments" not in rendered
     assert public["boundary"][
         "native_estate_cardinality_intentionally_not_published"
     ]

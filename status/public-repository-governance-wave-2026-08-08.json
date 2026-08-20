@@ -11,32 +11,32 @@
     "repositories": [
       {
         "repository": "GlacierEQ/xai-colossus-cooling-alpha",
-        "canonical_branch": "master",
-        "canonical_head": "bb96e13e23839e93016d8606984a8d81c61d340d",
+        "reference_branch": "master",
+        "source_head": "bb96e13e23839e93016d8606984a8d81c61d340d",
         "capability": "thermal_envelope_evaluator",
         "truth_gate": "Cooling Alpha Public Truth Gate",
         "python_versions": ["3.11", "3.13"]
       },
       {
         "repository": "GlacierEQ/xai-colossus-cooling-omega",
-        "canonical_branch": "master",
-        "canonical_head": "61ae6c24a997316bd77137872936412e795c9019",
+        "reference_branch": "master",
+        "source_head": "61ae6c24a997316bd77137872936412e795c9019",
         "capability": "modeled_flow_control_policy",
         "truth_gate": "Cooling Omega Public Truth Gate",
         "python_versions": ["3.11", "3.13"]
       },
       {
         "repository": "GlacierEQ/xai-colossus-energy-alpha",
-        "canonical_branch": "master",
-        "canonical_head": "ab76336ee12de0d3c7ee765332c06b0e42381fe6",
+        "reference_branch": "master",
+        "source_head": "ab76336ee12de0d3c7ee765332c06b0e42381fe6",
         "capability": "modeled_power_budget_evaluator",
         "truth_gate": "Energy Alpha Public Truth Gate",
         "python_versions": ["3.11", "3.13"]
       },
       {
         "repository": "GlacierEQ/xai-colossus-energy-omega",
-        "canonical_branch": "master",
-        "canonical_head": "24e3cc3e144e7acc64b54559ecabf39f32edb59f",
+        "reference_branch": "master",
+        "source_head": "24e3cc3e144e7acc64b54559ecabf39f32edb59f",
         "capability": "modeled_load_shed_policy",
         "truth_gate": "Energy Omega Public Truth Gate",
         "python_versions": ["3.11", "3.13"]
@@ -51,7 +51,7 @@
   },
   "colossal_cooling_legacy_lineage": {
     "repository": "GlacierEQ/xai-colossal-cooling",
-    "classification_canonical_head": "c97e5f94c37a97b595f053c9f9fb86d565e4fc06",
+    "classification_source_head": "c97e5f94c37a97b595f053c9f9fb86d565e4fc06",
     "legacy_pull_request": 1,
     "legacy_head": "607586549f07246adc19fea61d5ee3f29c274216",
     "legacy_pr_state": "CLOSED_UNMERGED",
@@ -59,12 +59,12 @@
     "capability_donor_candidates": 6,
     "historical_or_aspirational_documents": 3,
     "value_map": "manifests/legacy_orchestrator_pr1_value_map.json",
-    "truth_boundary": "Legacy production, affiliation, hardware, performance, savings, and external-integration claims do not inherit into canonical capability donors."
+    "truth_boundary": "Legacy production, affiliation, hardware, performance, savings, and external-integration claims do not inherit into reference capability donors."
   },
   "pro_code_authority": {
     "repository": "GlacierEQ/pro-code",
-    "canonical_branch": "main",
-    "canonical_head": "c9aa2faa0dcede7d6b7e7e6891b7930ee87040ab",
+    "reference_branch": "main",
+    "source_head": "c9aa2faa0dcede7d6b7e7e6891b7930ee87040ab",
     "state": "LOCAL_OPERABLE",
     "evidence_level": "TEST",
     "verified_surfaces": [
@@ -75,7 +75,7 @@
       "Python repository checks",
       "native Rust governor execution",
       "native Haskell AST invariant execution",
-      "canonical nervous-system compatibility contract"
+      "reference nervous-system compatibility contract"
     ],
     "promotion_gates": [
       "Pro-Code native verification: PASS",
@@ -111,9 +111,9 @@
     "reason": "The July receipt remains the historical nine-repository execution wave. This receipt binds later per-repository authority changes without rewriting that history."
   },
   "truth_boundary": [
-    "Every Alpha/Omega admission is bound to a current canonical head and repository-owned truth gate.",
-    "Legacy Colossal Cooling unique value was classified before PR retirement; the legacy branch was not merged into canonical runtime truth.",
-    "Pro-Code authority is bound to its current canonical main after all three current promotion gates passed.",
+    "Every Alpha/Omega admission is bound to a current reference head and repository-owned truth gate.",
+    "Legacy Colossal Cooling unique value was classified before PR retirement; the legacy branch was not merged into reference runtime truth.",
+    "Pro-Code authority is bound to its current reference main after all three current promotion gates passed.",
     "The 58 historical UNASSESSED observations remain reproducible; the governed overlay records later decisions separately.",
     "No repository visibility change, external deployment, company affiliation, or live hardware integration is inferred by this receipt."
   ]

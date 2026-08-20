@@ -1,7 +1,7 @@
 # Portfolio Evidence Audit — 66 Job-Application Repositories
 
-**Audit date:** 2026-07-29 HST  
-**Canonical portfolio:** `GlacierEQ/job-app-helix` plus the 65 repositories enumerated by the historical portfolio report  
+**Audit date:** 2026-07-29 HST
+**Source-bound portfolio:** `GlacierEQ/job-app-helix` plus the 65 repositories enumerated by the historical portfolio report
 **Posture:** evidence-bound. A hash, filename, README, or sample test is not proof that an entire repository works.
 
 ## Executive verdict
@@ -145,7 +145,7 @@ Defects:
 
 **Public main: 53/100. Candidate branch: materially stronger but not release-ready.**
 
-The thesis is excellent: language choice should follow workload semantics, safety, performance, interoperability, and verification requirements. The present public state overstates compiler validity and production readiness. The active candidate has partial author-reported execution, but CI is `action_required`, not green, and unresolved findings remain around path safety, canonicalization, build completeness, HDL correctness, workflow permissions and pinning, proof semantics, and fail-open deserialization.
+The thesis is excellent: language choice should follow workload semantics, safety, performance, interoperability, and verification requirements. The present public state overstates compiler validity and production readiness. The active candidate has partial author-reported execution, but CI is `action_required`, not green, and unresolved findings remain around path safety, source_binding, build completeness, HDL correctness, workflow permissions and pinning, proof semantics, and fail-open deserialization.
 
 Do not advertise production-grade polyglot architecture until every supported floor has a reproducible build command, test/proof command, receipt, and explicit `VERIFIED`, `BLOCKED`, or `FAILED` status.
 

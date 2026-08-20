@@ -73,7 +73,7 @@
   "guarantees": [
     "child repository source bytes are not copied into Helix",
     "the complete observation is validated against the packaged Draft 2020-12 schema",
-    "artifact and execution receipts require canonical repository, exact path, trusted provider, and current SHA binding",
+    "artifact and execution receipts require reference repository, exact path, trusted provider, and current SHA binding",
     "unverified execution dimensions receive no fallback execution coverage",
     "current trusted failures remain failures even when stale receipts are mixed in",
     "connector quality and data quality remain independent",

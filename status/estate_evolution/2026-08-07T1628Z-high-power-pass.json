@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-08-07T16:28:00Z",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_head_before": "44b52e5af2d84842e6ca2c036d51b622859b0e5c",
+  "source_head_before": "44b52e5af2d84842e6ca2c036d51b622859b0e5c",
   "branch": "main",
   "merge_base": "44b52e5af2d84842e6ca2c036d51b622859b0e5c",
   "ahead": 0,
@@ -18,7 +18,7 @@
     "monolith_topology": "PR_49_STATUS_PROJECTION_UPDATED_ON_ITS_EXISTING_BRANCH_TO_MASTERMIND_HEAD_4bbcfc2a20a593cb239cf908cba66b55ff16d2aa; MONOLITH_MAIN_UNTOUCHED",
     "tower": "PR_28_FUNCTIONAL_DELTA_PRESERVED; REPOSITORY_NATIVE_INTEGRITY_CANDIDATE_ARTIFACT_8995490871_REMAINS_THE_EXACT_REPAIR_SOURCE",
     "job_application": "SYNTHESIZE_V18_RELEASE_LANGUAGE_CURRENT_MAIN_BRANCH_VALUE_ALREADY_PROMOTED_BY_MERGED_PR_19; STALE_REMOTE_REF_CLASSIFIED_RETIREMENT_READY",
-    "make_it_heavy": "EXECUTION_HARNESS_CANONICAL_MAIN_INSPECTED; NO_OPEN_PRS; TURN_5_SEMANTIC_SUPPORT_AND PRIOR SECURITY_PROOF_HARDENING_PRESENT"
+    "make_it_heavy": "EXECUTION_HARNESS_SOURCE_BOUND_MAIN_INSPECTED; NO_OPEN_PRS; TURN_5_SEMANTIC_SUPPORT_AND PRIOR SECURITY_PROOF_HARDENING_PRESENT"
   },
   "verification": {
     "mastermind_pr_162": {
@@ -60,7 +60,7 @@
     },
     "job_application_release_branch": {
       "branch": "synthesize/v18-release-language-current-main-20260807",
-      "canonical_head": "724a6090aed63b28730a57c54f5b08a26791a054",
+      "source_head": "724a6090aed63b28730a57c54f5b08a26791a054",
       "status": "DIVERGED_AFTER_MERGE",
       "ahead": 3,
       "behind": 1,
@@ -76,7 +76,7 @@
       "latest_observed_main_commit": "eda411fb4d2bd7ffb10c31e397a39994f49fc58f"
     }
   },
-  "canonical_head_after": "PENDING_THIS_RECEIPT_COMMIT",
+  "source_head_after": "PENDING_THIS_RECEIPT_COMMIT",
   "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_RETIREMENT_READY_REFS; CONNECTOR_HAS_NO_PROVEN_BRANCH_DELETE_OPERATION",
   "news_inputs": [
     "Reuters 2026-08-07 corporate AI economics report: enterprise audit found more than 400 agents where CIO expected approximately 40; unbounded usage and costs drove agent deployment reconsideration",

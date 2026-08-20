@@ -1,16 +1,16 @@
 {
   "schema": "glaciereq.repo-evolution-receipt.v1",
   "status": "PASS",
-  "transition": "CANONICAL -> EVOLVING",
+  "transition": "SOURCE_BOUND -> EVOLVING",
   "repository": {
     "full_name": "GlacierEQ/apex-github-worker",
     "repository_id": "1260799790",
-    "canonical_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "reference_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "evolved_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
     "default_branch": "main",
-    "canonical_role": "SPECIALIST_COMPONENT",
+    "reference_role": "SPECIALIST_COMPONENT",
     "capability_id": "merge_authority_graph",
-    "lineage_action": "EXTEND_CANONICAL"
+    "lineage_action": "EXTEND_SOURCE_BOUND"
   },
   "experiment": {
     "id": "unique_check_evidence_integrity_v1",
@@ -66,7 +66,7 @@
       "evolution-benchmark.test.mjs": "16b68535908a0e04850a7afaf5979bfdc5038754"
     },
     "disclosure": {
-      "canonical_repository_visibility": "private",
+      "source_repository_visibility": "private",
       "bounded_evolution_source_slice_publicly_disclosed": true,
       "public_slice_files": [
         "merge-authority.mjs",
@@ -90,7 +90,7 @@
     "winner_preserved_on_main": true,
     "exact_candidate_bytes_publicly_reproduced": true,
     "post_merge_bytes_match_proven_candidate": true,
-    "canonical_anchor_preserved": true,
+    "reference_anchor_preserved": true,
     "lineage_conflict_absent": true,
     "duplicate_repository_created": false,
     "company_claim_separate": true,
@@ -105,14 +105,14 @@
     "github_affiliation_claimed": false,
     "github_capability_production_deployment_claimed": false,
     "production_scale_reliability_claimed": false,
-    "canonical_repository_visibility": "private",
+    "source_repository_visibility": "private",
     "bounded_evolution_source_slice_publicly_disclosed": true
   },
   "result": {
     "repository_state": "EVOLVING",
-    "canonical_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "reference_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "current_evolved_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
     "next_gate": "NEXT_MEASURED_EVOLUTION",
-    "meaning": "The canonical merge_authority_graph specialist has completed one measured evolution cycle: an adversarial ambiguity accepted by the canonical baseline is now rejected before provider access, with the winner preserved on main and independently reproduced from exact bytes."
+    "meaning": "The reference merge_authority_graph specialist has completed one measured evolution cycle: an adversarial ambiguity accepted by the reference baseline is now rejected before provider access, with the winner preserved on main and independently reproduced from exact bytes."
   }
 }

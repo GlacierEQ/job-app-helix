@@ -19,4 +19,4 @@ Each revolution carries forward more verified state. It is not a 2D iterative lo
 
 ## Trust contract
 
-Candidate/local, hosted, canonical, blocked, unverified, and failed states remain distinct. Unsupported scale, throughput, compliance, ranking, and customer-impact claims are excluded.
+Candidate/local, hosted, reference, blocked, unverified, and failed states remain distinct. Unsupported scale, throughput, compliance, ranking, and customer-impact claims are excluded.

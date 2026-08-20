@@ -105,7 +105,7 @@ class GreenhouseApplicationBundle:
         }
 
 
-def _canonical_sha256(payload: Mapping[str, object]) -> str:
+def _reference_sha256(payload: Mapping[str, object]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -335,7 +335,7 @@ def build_greenhouse_application_bundle(
         "profile_source_digest": profile.source_digest,
         "fields": [item.as_dict() for item in answers],
     }
-    receipt_sha = _canonical_sha256(base)
+    receipt_sha = _reference_sha256(base)
     return GreenhouseApplicationBundle(
         schema=str(base["schema"]),
         board_key=board_key,

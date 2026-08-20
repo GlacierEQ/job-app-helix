@@ -100,7 +100,7 @@ def test_gpu_health_admission_is_scope_and_receipt_bound() -> None:
     evidence = record["decision_evidence"]
     assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
     assert record["admission"] == "ADMIT"
-    assert evidence["canonical_head"] == HEAD
+    assert evidence["source_head"] == HEAD
     assert evidence["evidence_token"] == TOKEN
     assert evidence["verified_capability"] == CAPABILITY
     assert evidence["proof_receipts"] == [
@@ -124,7 +124,7 @@ def test_wave18_receipt_matches_reconciliation_authority() -> None:
     wave = load(WAVE18)["items"][0]
     receipt = load(RECEIPT)
     assert receipt["repository"] == wave["repository"] == TARGET
-    assert receipt["source_canonical_head"] == wave["evidence"]["canonical_head"] == HEAD
+    assert receipt["source_head"] == wave["evidence"]["source_head"] == HEAD
     assert receipt["evidence_token"] == wave["evidence"]["evidence_token"] == TOKEN
     assert receipt["verified_capability"] == wave["evidence"]["verified_capability"] == CAPABILITY
     assert receipt["proof_receipts"][0]["id"] == RUN_ID

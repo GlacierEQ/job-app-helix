@@ -9,7 +9,7 @@
   "exact_recruiter_workspace_child_count": 66,
   "exact_priority_spine_count": 9,
   "candidate_expansion_count": 5,
-  "canonical_sources": {
+  "source_references": {
     "owned_library_summary": "../../manifests/owned_library_census_2026-07-31.json",
     "internal_generated_receipt": "../../artifacts/owned-library-census.json",
     "recruiter_portfolio": "../../manifests/portfolio_repositories.json",
