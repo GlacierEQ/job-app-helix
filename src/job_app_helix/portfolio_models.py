@@ -85,9 +85,6 @@ class CommandSpec:
         payload["evidence_level"] = self.evidence_level.name
         payload["proof_mode"] = self.proof_mode.value
         payload["argv"] = list(self.argv)
-        payload["continuation"] = (
-            self.continuation.to_dict() if self.continuation is not None else None
-        )
         return payload
 
 
@@ -200,6 +197,9 @@ class CommandReceipt:
         payload["evidence_level"] = self.evidence_level.name
         payload["status"] = self.status.value
         payload["argv"] = list(self.argv)
+        payload["continuation"] = (
+            self.continuation.to_dict() if self.continuation is not None else None
+        )
         return payload
 
 
