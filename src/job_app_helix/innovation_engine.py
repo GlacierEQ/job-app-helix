@@ -15,7 +15,7 @@ from job_app_helix.estate_compiler import digest as estate_digest
 POLICY_SCHEMA = "glaciereq.frontier-innovation-policy.v1"
 MEASURED_STATUS = "MEASURED"
 VERIFICATION_ASSERTING_STATUSES = {"VERIFIED", "MEASURED"}
-OPERATOR_ONLY_TRANSITIONS = frozenset({"SOURCE_BOUND", "SUPERSEDED", "ARCHIVED"})
+OPERATOR_ONLY_STATUSES = frozenset({"SOURCE_BOUND", "SUPERSEDED", "ARCHIVED"})
 ESTATE_REGISTRIES = (
     "system_registry",
     "capability_donor_registry",
@@ -25,6 +25,27 @@ ESTATE_REGISTRIES = (
 
 class InnovationContractError(ValueError):
     """Raised when an innovation-engine invariant is violated."""
+
+
+def _assert_policy_operator_boundary(policy: Mapping[str, Any]) -> None:
+    states = policy.get("states")
+    if not isinstance(states, dict) or not states:
+        raise InnovationContractError("innovation policy requires states")
+    if any(not isinstance(targets, list) for targets in states.values()):
+        raise InnovationContractError("innovation policy state targets must be lists")
+    prohibited_targets = sorted(
+        {
+            target
+            for targets in states.values()
+            for target in targets
+            if target in OPERATOR_ONLY_STATUSES
+        }
+    )
+    if prohibited_targets:
+        raise InnovationContractError(
+            "innovation policy cannot expose engine transitions to "
+            f"operator-only statuses: {prohibited_targets}"
+        )
 
 
 @dataclass(frozen=True)
@@ -68,11 +89,7 @@ def load_policy(path: Path | None = None) -> dict[str, Any]:
     policy = load_json(policy_path)
     if policy.get("schema") != POLICY_SCHEMA:
         raise InnovationContractError("innovation policy schema mismatch")
-    states = policy.get("states")
-    if not isinstance(states, dict) or not states:
-        raise InnovationContractError("innovation policy requires states")
-    if any(not isinstance(targets, list) for targets in states.values()):
-        raise InnovationContractError("innovation policy state targets must be lists")
+    _assert_policy_operator_boundary(policy)
     return policy
 
 
@@ -96,6 +113,8 @@ def validate_payload(
     if errors:
         rendered = "; ".join(error.message for error in errors)
         raise InnovationContractError(f"{schema_name} validation failed: {rendered}")
+    if schema_name == "engineering-run":
+        _assert_operator_only_state_authorization(payload)
 
 
 def assert_expected_head(expected_head: str, observed_head: str) -> None:
@@ -113,13 +132,43 @@ def transition_allowed(
     policy: Mapping[str, Any] | None = None,
 ) -> bool:
     active = dict(policy or load_policy())
+    _assert_policy_operator_boundary(active)
     states = active.get("states")
     if not isinstance(states, dict) or current not in states:
         raise InnovationContractError(f"unknown current state: {current}")
     targets = states[current]
     if not isinstance(targets, list):
         raise InnovationContractError(f"invalid transition policy for {current}")
+    if target in OPERATOR_ONLY_STATUSES:
+        return False
     return target in targets
+
+
+def _assert_operator_only_state_authorization(run: Mapping[str, Any]) -> None:
+    state = str(run.get("state") or "")
+    if state not in OPERATOR_ONLY_STATUSES:
+        return
+    authorization = run.get("operator_authorization")
+    if not isinstance(authorization, Mapping):
+        raise InnovationContractError(
+            f"{state} requires an approved operator_authorization record"
+        )
+    if authorization.get("status") != "APPROVED":
+        raise InnovationContractError(
+            f"{state} requires operator_authorization.status='APPROVED'"
+        )
+    if authorization.get("target_state") != state:
+        raise InnovationContractError(
+            f"{state} requires operator_authorization.target_state={state!r}"
+        )
+    for field in ("repository", "expected_head", "observed_head"):
+        if authorization.get(field) != run.get(field):
+            raise InnovationContractError(
+                f"{state} operator authorization {field} does not match engineering run"
+            )
+    assert_expected_head(
+        str(run.get("expected_head") or ""), str(run.get("observed_head") or "")
+    )
 
 
 def _has_artifact(run: Mapping[str, Any], field: str) -> bool:
@@ -205,7 +254,7 @@ def _assert_transition_artifacts(
         raise InnovationContractError(
             "HYPOTHESES_EVALUATED requires novelty_decision='ADAPT' or 'PROCEED'"
         )
-    if target in {"PROMOTION_READY", "SOURCE_BOUND"}:
+    if target == "PROMOTION_READY":
         _assert_promotion_record(run)
     _assert_run_head_fresh(run, target)
 
@@ -217,8 +266,9 @@ def transition_run(
     policy: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     active = dict(policy or load_policy())
+    _assert_operator_only_state_authorization(run)
     current = str(run.get("state") or "")
-    if target in OPERATOR_ONLY_TRANSITIONS:
+    if target in OPERATOR_ONLY_STATUSES:
         raise InnovationContractError(
             f"{target} is an operator-only status; the innovation engine may "
             "prepare evidence and a recommendation but cannot assign it."
@@ -249,7 +299,7 @@ def transition_run(
         updated["blocked_from_state"] = current
     elif current == "BLOCKED":
         updated["blocked_from_state"] = None
-    if target in {"PROMOTION_READY", "SOURCE_BOUND"}:
+    if target == "PROMOTION_READY":
         updated["promotion_ready"] = True
     return updated
 
