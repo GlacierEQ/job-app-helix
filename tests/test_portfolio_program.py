@@ -311,3 +311,22 @@ def test_portfolio_receipt_uses_strongest_failure_state(tmp_path: Path) -> None:
 
     assert payload["conclusion"] == "FAILED"
     assert payload["summary"]["FAILED"] == 1
+
+
+
+def test_missing_executable_receipt_carries_toolchain_activation_path(tmp_path: Path) -> None:
+    _write_readme(tmp_path)
+    command = CommandSpec(
+        id="unavailable-tool",
+        evidence_level=EvidenceLevel.BUILD,
+        argv=("glaciereq-toolchain-not-installed", "--version"),
+        timeout_seconds=10,
+    )
+
+    receipts = execute_plan((_plan(tmp_path, command),))
+
+    receipt = receipts[0].commands[0]
+    assert receipts[0].conclusion is VerificationState.BLOCKED
+    assert receipt.continuation is not None
+    assert receipt.continuation.capability == "declared toolchain activation"
+    assert receipt.continuation.next_actions[0] == "provision_declared_executable"
