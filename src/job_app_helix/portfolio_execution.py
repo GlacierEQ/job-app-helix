@@ -12,6 +12,7 @@ from typing import Final
 
 from .portfolio_discovery import readme_contract
 from .portfolio_models import (
+    CommandContinuation,
     CommandReceipt,
     CommandSpec,
     EvidenceLevel,
@@ -93,6 +94,24 @@ def _internal_receipt(
     )
 
 
+def _continuation(
+    command: CommandSpec,
+    *,
+    capability: str,
+    reason: str,
+    next_actions: tuple[str, ...],
+    explicit_authorization_required: bool = False,
+) -> CommandContinuation:
+    """Return an actionable recovery program without changing receipt truth."""
+    return CommandContinuation(
+        command_id=command.id,
+        capability=capability,
+        reason=reason,
+        next_actions=next_actions,
+        explicit_authorization_required=explicit_authorization_required,
+    )
+
+
 def run_command(
     plan: RepositoryPlan,
     command: CommandSpec,
@@ -115,6 +134,17 @@ def run_command(
             observed_count=None,
             stdout_tail="",
             stderr_tail="mutating command blocked; rerun with explicit authorization",
+            continuation=_continuation(
+                command,
+                capability="workspace evolution",
+                reason="The declared command can evolve the workspace but has not received its execution authorization.",
+                next_actions=(
+                    "review_declared_workspace_effects",
+                    "authorize_workspace_mutation_for_this_plan",
+                    "rerun_same_command_with_read_back_verification",
+                ),
+                explicit_authorization_required=True,
+            ),
         )
 
     executable = command.argv[0]
@@ -134,6 +164,16 @@ def run_command(
             observed_count=None,
             stdout_tail="",
             stderr_tail=f"required executable is unavailable: {executable}",
+            continuation=_continuation(
+                command,
+                capability="declared toolchain activation",
+                reason=f"The execution plan requires {executable!r}, which is not available on this host.",
+                next_actions=(
+                    "provision_declared_executable",
+                    "verify_toolchain_version_against_plan",
+                    "rerun_same_command_with_read_back_verification",
+                ),
+            ),
         )
 
     env = os.environ.copy()
@@ -164,6 +204,16 @@ def run_command(
             stderr_tail=(
                 f"timed out after {command.timeout_seconds}s; {_tail(exc.stderr)}"
             ).strip(),
+            continuation=_continuation(
+                command,
+                capability="bounded verification recovery",
+                reason="The command exceeded its declared time budget and requires a bounded recovery attempt.",
+                next_actions=(
+                    "inspect_timeout_receipt",
+                    "repair_or_partition_declared_workload",
+                    "rerun_within_a_reviewed_time_budget",
+                ),
+            ),
         )
 
     elapsed_ms = round((time.perf_counter() - start) * 1000.0, 2)
@@ -184,6 +234,30 @@ def run_command(
     else:
         status = VerificationState.VERIFIED
 
+    continuation = None
+    if status is VerificationState.UNVERIFIED:
+        continuation = _continuation(
+            command,
+            capability="positive proof activation",
+            reason="The command exited successfully but did not establish the declared positive proof count.",
+            next_actions=(
+                "inspect_test_discovery_output",
+                "select_declared_test_target",
+                "rerun_for_positive_proof_count",
+            ),
+        )
+    elif status is VerificationState.FAILED:
+        continuation = _continuation(
+            command,
+            capability="verification repair",
+            reason="The command returned a non-zero result and has a retained receipt for targeted repair.",
+            next_actions=(
+                "inspect_failure_receipt",
+                "repair_declared_command_preconditions",
+                "rerun_same_command_with_read_back_verification",
+            ),
+        )
+
     return CommandReceipt(
         id=command.id,
         evidence_level=command.evidence_level,
@@ -196,6 +270,7 @@ def run_command(
         observed_count=count,
         stdout_tail=stdout,
         stderr_tail=stderr,
+        continuation=continuation,
     )
 
 
@@ -243,6 +318,11 @@ def execute_plan(
                 target_evidence=plan.target_evidence,
                 blockers=plan.blockers,
                 commands=command_receipts,
+                continuations=tuple(
+                    receipt.continuation
+                    for receipt in command_receipts
+                    if receipt.continuation is not None
+                ),
             )
         )
 
