@@ -225,7 +225,11 @@ def test_build_plan_surfaces_missing_repository_without_guessing(tmp_path: Path)
 
 def test_extract_test_count_handles_common_runners() -> None:
     assert extract_test_count("4 passed in 0.12s", "", ("python", "-m", "pytest")) == 4
-    assert extract_test_count("", "Ran 3 tests in 0.01s", ("python", "-m", "unittest")) == 3
+    assert extract_test_count(
+        "",
+        "Ran 3 tests in 0.01s",
+        ("python", "-m", "unittest"),
+    ) == 3
     assert extract_test_count("ok example/pkg 0.2s", "", ("go", "test", "./...")) == 1
 
 
@@ -285,7 +289,9 @@ def test_mutating_command_requires_explicit_authorization(tmp_path: Path) -> Non
     assert continuation is not None
     assert continuation.capability == "workspace evolution"
     assert continuation.explicit_authorization_required is True
-    assert "rerun_same_command_with_read_back_verification" in continuation.next_actions
+    assert (
+        "rerun_same_command_with_read_back_verification" in continuation.next_actions
+    )
     assert receipts[0].continuations == (continuation,)
 
 
@@ -319,8 +325,9 @@ def test_portfolio_receipt_uses_strongest_failure_state(tmp_path: Path) -> None:
     assert payload["summary"]["FAILED"] == 1
 
 
-
-def test_missing_executable_receipt_carries_toolchain_activation_path(tmp_path: Path) -> None:
+def test_missing_executable_has_toolchain_activation_continuation(
+    tmp_path: Path,
+) -> None:
     _write_readme(tmp_path)
     command = CommandSpec(
         id="unavailable-tool",
