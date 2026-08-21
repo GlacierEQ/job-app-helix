@@ -106,8 +106,8 @@ ignore_errors = true
 "helix/**/*.py" = ["E501"]
 "src/job_app_helix/genius_engine.py" = ["E501", "F401"]
 "src/job_app_helix/portfolio_execution.py" = ["E501"]
-# One-run family bisection: B/SIM/RUF remain active on production source.
-"src/job_app_helix/greenhouse_submission_execution.py" = ["E", "F", "I", "UP"]
+# One-run bisection: F/I/B/SIM/RUF stay enforced on production source.
+"src/job_app_helix/greenhouse_submission_execution.py" = ["E", "UP"]
 "tests/test_greenhouse_submission_execution.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 "src/job_app_helix/innovation_engine.py" = ["SIM108"]
 # Pre-existing style debt discovered on 2026-08-10. These files are explicitly
