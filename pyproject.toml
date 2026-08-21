@@ -104,15 +104,10 @@ ignore_errors = true
 "showcase/demo_15min_run.py" = ["E501"]
 "helix/**/*.py" = ["E501"]
 "src/job_app_helix/genius_engine.py" = ["E501", "F401"]
-# Temporary split: prove whether the remaining lint failure lives here.
+# Diagnostic isolation: the remaining lint regression is inside this three-file group.
 "src/job_app_helix/portfolio_execution.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 "src/job_app_helix/greenhouse_submission_execution.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 "tests/test_greenhouse_submission_execution.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
-# Temporary four-file split retained for the diagnostic build.
-"src/job_app_helix/greenhouse_application_fields.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
-"tests/test_greenhouse_application_fields.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
-"src/job_app_helix/innovation_engine.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
-"tests/test_innovation_engine.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 # Pre-existing style debt discovered on 2026-08-10. These files are explicitly
 # quarantined from unrelated style-only failures while the authority repair is verified.
 "scripts/audit_live_portfolio_freshness.py" = ["E402", "I001", "UP017"]
