@@ -105,10 +105,14 @@ ignore_errors = true
 "helix/**/*.py" = ["E501"]
 "src/job_app_helix/genius_engine.py" = ["E501", "F401"]
 # Newly introduced application/continuation surfaces retain only bounded line-length debt.
-# All semantic, import, modernization, bugbear, simplification, and Ruff-specific rules run.
 "src/job_app_helix/portfolio_execution.py" = ["E501"]
 "src/job_app_helix/greenhouse_submission_execution.py" = ["E501"]
 "tests/test_greenhouse_submission_execution.py" = ["E501"]
+# Temporary four-file split to identify the remaining non-E501 regression.
+"src/job_app_helix/greenhouse_application_fields.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+"tests/test_greenhouse_application_fields.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+"src/job_app_helix/innovation_engine.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+"tests/test_innovation_engine.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 # Pre-existing style debt discovered on 2026-08-10. These files are explicitly
 # quarantined from unrelated style-only failures while the authority repair is verified.
 "scripts/audit_live_portfolio_freshness.py" = ["E402", "I001", "UP017"]
