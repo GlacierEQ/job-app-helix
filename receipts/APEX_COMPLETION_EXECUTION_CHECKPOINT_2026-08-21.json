@@ -1,0 +1,32 @@
+{
+  "schema": "glaciereq.apex-completion-execution-checkpoint.v1",
+  "observed_at": "2026-08-21T22:00:00Z",
+  "objective": "KEEP_ALL_AND_COMPLETE_TO_STRONGEST_APPROPRIATE_FORM",
+  "completed_deltas": [
+    {
+      "repository": "GlacierEQ/job-application",
+      "commit": "bd1a202db643c4343a4d6079efc3c67e85eace52",
+      "result": "public privacy redaction and presentation validation repair landed on current main without losing newer identity-boundary work"
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "commit": "840c6edb96ff4d4ce36a2ebea37cb8e752977d7d",
+      "result": "freshness-continuation strict-quality repair advanced on main; exact-head Buildkite proof still required"
+    },
+    {
+      "system": "Vercel file deployment contract",
+      "deployment": "dpl_4eYYG7FFD2pamr484eKV6nYq7Zgp",
+      "result": "preview file-based serverless deployment and HTTP 200 readback proven; production not promoted from probe"
+    }
+  ],
+  "active_gates": [
+    "exact-head Helix CI success",
+    "exact-current-source V31 artifact proof",
+    "production V31 deployment",
+    "critical-route live readback",
+    "four-plane primary-branch required-check enforcement",
+    "four-plane machine contract integration",
+    "all-repository completion classification and advancement"
+  ],
+  "anti_theater": "No READY, old-green, generated, draft, or preview state is promoted as completion without exact-source and live proof."
+}
