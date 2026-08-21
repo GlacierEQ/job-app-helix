@@ -17,13 +17,21 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 INPUT_RECEIPT = "OPENING_INPUT_RECEIPT.json"
-VALID_STATES = {"fresh", "aging", "stale", "source_observation_required", "invalid_source_observation"}
+VALID_STATES = {
+    "fresh",
+    "aging",
+    "stale",
+    "source_observation_required",
+    "invalid_source_observation",
+}
 
 
 def _parse_timestamp(value: str) -> datetime:
     parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
     if parsed.tzinfo is None:
-        raise ValueError("source evidence observation timestamp must include a timezone")
+        raise ValueError(
+            "source evidence observation timestamp must include a timezone"
+        )
     return parsed.astimezone(UTC)
 
 
@@ -93,10 +101,15 @@ def plan_opening_evidence_reverification(
             source_evidence_observed_at=None,
             age_minutes=None,
             action="bind_opening_source_observation",
-            continuation=("acquire_opening_source_evidence", "compile_freshness_aware_batch_with_observed_timestamp"),
+            continuation=(
+                "acquire_opening_source_evidence",
+                "compile_freshness_aware_batch_with_observed_timestamp",
+            ),
         )
     opening_id = str(receipt.get("opening_id")) if receipt.get("opening_id") else None
-    opening_digest = str(receipt.get("opening_digest")) if receipt.get("opening_digest") else None
+    opening_digest = (
+        str(receipt.get("opening_digest")) if receipt.get("opening_digest") else None
+    )
     observed_raw = receipt.get("source_evidence_observed_at")
     if not isinstance(observed_raw, str) or not observed_raw.strip():
         return OpeningEvidenceFreshness(
@@ -107,7 +120,10 @@ def plan_opening_evidence_reverification(
             source_evidence_observed_at=None,
             age_minutes=None,
             action="record_upstream_source_observation",
-            continuation=("recheck_opening_source", "compile_freshness_aware_batch_with_observed_timestamp"),
+            continuation=(
+                "recheck_opening_source",
+                "compile_freshness_aware_batch_with_observed_timestamp",
+            ),
         )
     try:
         observed = _parse_timestamp(observed_raw)
@@ -120,22 +136,35 @@ def plan_opening_evidence_reverification(
             source_evidence_observed_at=observed_raw,
             age_minutes=None,
             action="correct_source_observation_timestamp",
-            continuation=("validate_upstream_observed_timestamp", "recompile_packet_with_verified_evidence"),
+            continuation=(
+                "validate_upstream_observed_timestamp",
+                "recompile_packet_with_verified_evidence",
+            ),
         )
     clock = (now or datetime.now(UTC)).astimezone(UTC)
     age_minutes = max(0, int((clock - observed).total_seconds() // 60))
     if observed > clock:
         state = "invalid_source_observation"
         action = "correct_future_source_observation"
-        continuation = ("validate_upstream_observed_timestamp", "recompile_packet_with_verified_evidence")
+        continuation = (
+            "validate_upstream_observed_timestamp",
+            "recompile_packet_with_verified_evidence",
+        )
     elif age_minutes > max_age_minutes:
         state = "stale"
         action = "reverify_opening_source"
-        continuation = ("refresh_opening_source", "compare_opening_digest", "compile_freshness_aware_batch_with_observed_timestamp")
+        continuation = (
+            "refresh_opening_source",
+            "compare_opening_digest",
+            "compile_freshness_aware_batch_with_observed_timestamp",
+        )
     elif age_minutes > max_age_minutes // 2:
         state = "aging"
         action = "schedule_opening_reverification"
-        continuation = ("recheck_opening_source_before_submission", "record_observed_timestamp")
+        continuation = (
+            "recheck_opening_source_before_submission",
+            "record_observed_timestamp",
+        )
     else:
         state = "fresh"
         action = "retain_current_packet_evidence"
@@ -159,11 +188,21 @@ def census_opening_evidence_freshness(
     now: datetime | None = None,
 ) -> OpeningEvidenceFreshnessCensus:
     """Build a non-mutating evidence-freshness census for active packet directories."""
-    packet_dirs = () if not output_dir.is_dir() else tuple(
-        path for path in sorted(output_dir.iterdir()) if path.is_dir() and path.name != ".stale"
+    packet_dirs = (
+        ()
+        if not output_dir.is_dir()
+        else tuple(
+            path
+            for path in sorted(output_dir.iterdir())
+            if path.is_dir() and path.name != ".stale"
+        )
     )
     decisions = tuple(
-        plan_opening_evidence_reverification(path, max_age_minutes=max_age_minutes, now=now)
+        plan_opening_evidence_reverification(
+            path,
+            max_age_minutes=max_age_minutes,
+            now=now,
+        )
         for path in packet_dirs
     )
     return OpeningEvidenceFreshnessCensus(
@@ -179,15 +218,25 @@ def census_opening_evidence_freshness(
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-opening-evidence-freshness",
-        description="Plan recruiter-packet opening-evidence re-verification without mutating packets or contacting sources.",
+        description=(
+            "Plan recruiter-packet opening-evidence re-verification without "
+            "mutating packets or contacting sources."
+        ),
     )
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--max-age-minutes", type=int, default=24 * 60)
-    parser.add_argument("--now", help="Optional ISO-8601 UTC evaluation timestamp for deterministic review")
+    parser.add_argument(
+        "--now",
+        help="Optional ISO-8601 UTC evaluation timestamp for deterministic review",
+    )
     parser.add_argument("--receipt", type=Path)
     args = parser.parse_args(argv)
     now = _parse_timestamp(args.now) if args.now else None
-    result = census_opening_evidence_freshness(args.output_dir, max_age_minutes=args.max_age_minutes, now=now)
+    result = census_opening_evidence_freshness(
+        args.output_dir,
+        max_age_minutes=args.max_age_minutes,
+        now=now,
+    )
     rendered = json.dumps(result.as_dict(), indent=2, sort_keys=True) + "\n"
     if args.receipt is not None:
         args.receipt.parent.mkdir(parents=True, exist_ok=True)

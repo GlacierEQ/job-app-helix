@@ -272,7 +272,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--calibration", type=Path)
     parser.add_argument("--lane", action="append", default=[])
     parser.add_argument("--limit", type=int)
-    parser.add_argument("--source-evidence-observed-at", help="Verified upstream opening-source observation timestamp in ISO-8601 form")
+    parser.add_argument(
+        "--source-evidence-observed-at",
+        help="Verified upstream opening-source observation timestamp in ISO-8601 form",
+    )
     parser.add_argument("--receipt", type=Path)
     args = parser.parse_args(argv)
 
