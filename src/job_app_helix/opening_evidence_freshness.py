@@ -11,10 +11,11 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 INPUT_RECEIPT = "OPENING_INPUT_RECEIPT.json"
 VALID_STATES = {
