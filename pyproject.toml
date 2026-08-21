@@ -105,8 +105,9 @@ ignore_errors = true
 "showcase/demo_15min_run.py" = ["E501"]
 "helix/**/*.py" = ["E501"]
 "src/job_app_helix/genius_engine.py" = ["E501", "F401"]
-# Diagnostic isolation: remaining defects inside this three-file group are still being reduced.
-"src/job_app_helix/portfolio_execution.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+# Continuation semantics are fully linted; only introduced line-length debt remains isolated.
+"src/job_app_helix/portfolio_execution.py" = ["E501"]
+# Binary split: submission implementation/test remain isolated while continuation runs strict semantics.
 "src/job_app_helix/greenhouse_submission_execution.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 "tests/test_greenhouse_submission_execution.py" = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 # APEX index routing keeps the explicit branch; only SIM108 is waived here.
