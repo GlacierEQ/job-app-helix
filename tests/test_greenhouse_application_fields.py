@@ -19,6 +19,7 @@ def _profile() -> CandidateProfile:
         contact={
             "email": "casey@example.com",
             "phone": "+1-808-555-0100",
+            "location": "Honolulu, Hawaiʻi, US",
             "linkedin": "https://www.linkedin.com/in/casey",
             "github": "https://github.com/casey",
             "portfolio": "https://casey.example",
@@ -45,6 +46,13 @@ def _payload() -> dict[str, object]:
                 "label": "Email",
                 "required": True,
                 "fields": [{"name": "email", "type": "input_text", "values": []}],
+            },
+            {
+                "label": "Your Location",
+                "required": True,
+                "fields": [
+                    {"name": "question_location", "type": "input_text", "values": []}
+                ],
             },
             {
                 "label": "LinkedIn Profile",
@@ -107,12 +115,14 @@ def test_build_bundle_autofills_only_exact_profile_evidence() -> None:
     assert answers["first_name"].value == "Casey"
     assert answers["last_name"].value == "Barton"
     assert answers["email"].value == "casey@example.com"
+    assert answers["question_location"].value == "Honolulu, Hawaiʻi, US"
+    assert answers["question_location"].provenance == "CandidateProfile.contact.location"
     assert answers["question_100"].value == "https://www.linkedin.com/in/casey"
     assert answers["resume"].status == "ATTACHMENT_REQUIRED"
     assert answers["question_101"].status == "REVIEW_REQUIRED"
     assert answers["question_102"].status == "USER_DECISION_REQUIRED"
     assert answers["latitude"].status == "PROVIDER_MANAGED"
-    assert bundle.auto_fill_count == 4
+    assert bundle.auto_fill_count == 5
     assert bundle.attachment_count == 1
     assert bundle.review_required_count == 2
     assert len(bundle.receipt_sha256) == 64
