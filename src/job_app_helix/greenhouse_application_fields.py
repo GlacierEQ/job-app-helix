@@ -34,6 +34,7 @@ SENSITIVE_LABEL_TERMS = (
 CONTACT_ALIASES = {
     "email": ("email", "e-mail"),
     "phone": ("phone", "telephone", "mobile"),
+    "location": ("location", "city", "where are you located"),
     "linkedin": ("linkedin",),
     "github": ("github",),
     "website": ("website", "portfolio", "personal site"),
