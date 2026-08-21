@@ -1,0 +1,249 @@
+{
+  "schema": "glaciereq.job-app-estate-audit.v1",
+  "audit_date_hst": "2026-08-21",
+  "audit_status": "CURRENT_STATE_AUDIT_WITH_EXPLICIT_UNVERIFIED_BOUNDARIES",
+  "source_branch": "audit/job-app-estate-20260821",
+  "base_helix_head": "c397365e0dc3dc30dfcf2918ef43060cef54bad3",
+  "estate_scope": {
+    "authenticated_owned_repository_count_baseline": 1183,
+    "live_linked_public_children": 66,
+    "admitted_rollout_with_helix_root": 67,
+    "direct_outside_rollout_dependencies": 5,
+    "modeled_current_job_system_repositories": 72,
+    "modeled_current_plus_historical_repositories": 73,
+    "count_boundary": "The modeled job-system count is not a claim that only these repositories can contribute to hiring."
+  },
+  "application_planes": [
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "plane": "CONTROL_AND_APPLICATION_INTELLIGENCE",
+      "primary_branch": "main",
+      "head": "c397365e0dc3dc30dfcf2918ef43060cef54bad3",
+      "grade": "B-",
+      "branch_protected": false,
+      "required_status_checks": [],
+      "current_ci": {
+        "context": "buildkite/job-app-helix",
+        "state": "failure",
+        "build": 923
+      },
+      "disposition": "KEEP_P0_REPAIR"
+    },
+    {
+      "repository": "GlacierEQ/job-app",
+      "plane": "PRIVATE_APPLICATION_EXECUTION",
+      "primary_branch": "master",
+      "head": "885d68fe821c70421b9685a7451fc14346a19f1a",
+      "grade": "B",
+      "branch_protected": false,
+      "required_status_checks": [],
+      "current_ci": "NO_CURRENT_COMBINED_STATUS_SURFACED",
+      "disposition": "KEEP_AND_PROMOTE_TO_OFFICIAL_TOPOLOGY"
+    },
+    {
+      "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "plane": "RESUME_TRANSFORMATION_PRODUCT",
+      "primary_branch": "main",
+      "head": "2fe047a883067a84e7a6497527572aabf4db28bb",
+      "grade": "B+",
+      "branch_protected": false,
+      "required_status_checks": [],
+      "current_ci": "PRIOR_EXACT_HEAD_VERIFY_SUCCESS_RECORDED; CURRENT_HEAD_COMBINED_STATUS_NOT_SURFACED",
+      "disposition": "KEEP_PRODUCT_FLAGSHIP"
+    },
+    {
+      "repository": "GlacierEQ/job-application",
+      "plane": "PUBLIC_RECRUITER_DISTRIBUTION",
+      "primary_branch": "main",
+      "head": "ee15697306d3db54c2bf2d9c88841acb58af1804",
+      "grade": "D",
+      "branch_protected": false,
+      "required_status_checks": [],
+      "current_ci": "NO_CURRENT_COMBINED_STATUS_SURFACED",
+      "production": {
+        "deployment_state": "READY_BUT_BROKEN_READBACK",
+        "root_http": 404,
+        "recruiter_review_http": 404,
+        "recruiter_role_matrix_http": 404
+      },
+      "disposition": "KEEP_ARCHITECTURE_P0_PRODUCTION_REPAIR"
+    }
+  ],
+  "p0_findings": [
+    {
+      "id": "P0_PUBLIC_PRODUCTION_404",
+      "repository": "GlacierEQ/job-application",
+      "state": "OPEN",
+      "finding": "Newest READY production deployment returns 404 at root and recruiter routes."
+    },
+    {
+      "id": "P0_PUBLIC_PRIVATE_IDENTITY_REDACTION",
+      "repository": "GlacierEQ/job-application",
+      "state": "OPEN",
+      "finding": "Current public portfolio source contains a private microcode repository URL; stale PR 244 carries a targeted repair."
+    },
+    {
+      "id": "P0_HELIX_BUILD_923",
+      "repository": "GlacierEQ/job-app-helix",
+      "state": "OPEN",
+      "finding": "Current Helix main is red after opening-freshness continuation commits."
+    },
+    {
+      "id": "P0_UNPROTECTED_APPLICATION_BRANCHES",
+      "repositories": [
+        "GlacierEQ/job-app-helix",
+        "GlacierEQ/job-app",
+        "GlacierEQ/JOB-RESUME-BUILDER-",
+        "GlacierEQ/job-application"
+      ],
+      "state": "OPEN",
+      "finding": "All four application primary branches are unprotected and require no status checks."
+    }
+  ],
+  "outside_rollout_support": [
+    {
+      "repository": "GlacierEQ/monolith",
+      "role": "PRIVATE_ESTATE_CATALOG_AND_PROVENANCE",
+      "grade": "B",
+      "disposition": "KEEP_PRIVATE_SUPPORT"
+    },
+    {
+      "repository": "GlacierEQ/Pro_Code",
+      "role": "PRIVATE_OPERATOR_DOCTRINE_AND_VALIDATION",
+      "grade": "B-",
+      "disposition": "KEEP_PRIVATE_SUPPORT"
+    },
+    {
+      "repository": "GlacierEQ/megaminds-pdf",
+      "role": "PORTFOLIO_EVIDENCE_SATELLITE",
+      "grade": "B+_PRODUCT_C_RELEVANCE",
+      "disposition": "KEEP_DEMOTE_FROM_APPLICATION_INFRASTRUCTURE"
+    },
+    {
+      "repository": "GlacierEQ/glaciereq-excellence-core",
+      "role": "SHARED_APEX_OBJECTIVE_INFRASTRUCTURE",
+      "grade": "B",
+      "disposition": "KEEP_SHARED_DEPENDENCY"
+    },
+    {
+      "repository": "GlacierEQ/job-app",
+      "role": "PRIVATE_APPLICATION_EXECUTION",
+      "grade": "B",
+      "disposition": "KEEP_APPLICATION_PLANE"
+    }
+  ],
+  "historical_or_quarantined": [
+    {
+      "repository": "GlacierEQ/portfolio-organization-master",
+      "classification": "HISTORICAL_SNAPSHOT",
+      "disposition": "PRESERVE_PROVENANCE_NOT_CURRENT_AUTHORITY"
+    },
+    {
+      "repository": "GlacierEQ/mastermind",
+      "classification": "QUARANTINED_DONOR",
+      "disposition": "RE_ADMIT_ONLY_AFTER_REGISTRY_CONFLICT_AND_PROOF_RESOLUTION"
+    }
+  ],
+  "live_linked_children": [
+    "GlacierEQ/AEON-777",
+    "GlacierEQ/AKOS",
+    "GlacierEQ/ECHO",
+    "GlacierEQ/GlacierEQ_Swarm",
+    "GlacierEQ/JOB-RESUME-BUILDER-",
+    "GlacierEQ/Pro-comet-agent",
+    "GlacierEQ/anthropic-agent-coordinator",
+    "GlacierEQ/anthropic-safety-monitor",
+    "GlacierEQ/apex-cli",
+    "GlacierEQ/apex-control-plane",
+    "GlacierEQ/apple-ane-kv-quantizer",
+    "GlacierEQ/aws-trainium-neuron-sentinel",
+    "GlacierEQ/colossus-gateway",
+    "GlacierEQ/colossus-training-flux",
+    "GlacierEQ/comet-browser-agent-bridge",
+    "GlacierEQ/deepmind-tpu-mesh-optimizer",
+    "GlacierEQ/deepseek-mla-moe-sentinel",
+    "GlacierEQ/glaciereq-mcp-stack",
+    "GlacierEQ/grokodile",
+    "GlacierEQ/job-application",
+    "GlacierEQ/kimi-mooncake-kv-stream",
+    "GlacierEQ/lovable-design-app-synth",
+    "GlacierEQ/manus-autonomous-web-agent",
+    "GlacierEQ/mastermind",
+    "GlacierEQ/meta-llama-collective-sentinel",
+    "GlacierEQ/microsoft-azure-ops",
+    "GlacierEQ/microsoft-identity-zero-trust",
+    "GlacierEQ/notion-mcp-empowerment-engine",
+    "GlacierEQ/notion-workflow-intelligence",
+    "GlacierEQ/notion-workspace-optimizer",
+    "GlacierEQ/nvidia-deep-reasoning",
+    "GlacierEQ/nvidia-gpu-health",
+    "GlacierEQ/openai-reasoning-kv-sentinel",
+    "GlacierEQ/openclaw",
+    "GlacierEQ/opera-neon-spatial-workspace",
+    "GlacierEQ/pro-code",
+    "GlacierEQ/qwen-vl-flash-router",
+    "GlacierEQ/robotics-vla-torque-sentinel",
+    "GlacierEQ/sigma-glue",
+    "GlacierEQ/spacex-autonomy",
+    "GlacierEQ/spacex-conjunction-sentinel",
+    "GlacierEQ/spacex-cryogenics",
+    "GlacierEQ/spacex-ground-network",
+    "GlacierEQ/spacex-launch-sequencer",
+    "GlacierEQ/spacex-mission-control",
+    "GlacierEQ/spacex-orbital-mechanics",
+    "GlacierEQ/spacex-pad-weather-gate",
+    "GlacierEQ/spacex-propulsion-monitor",
+    "GlacierEQ/spacex-satellite-mesh",
+    "GlacierEQ/spacex-telemetry",
+    "GlacierEQ/spacex-thermal-protection",
+    "GlacierEQ/spiral-engine",
+    "GlacierEQ/tasklet-micro-agent-engine",
+    "GlacierEQ/tesla-fsd-occupancy-stream",
+    "GlacierEQ/the-tower-of-babel",
+    "GlacierEQ/token_saver",
+    "GlacierEQ/xai-colossus-2",
+    "GlacierEQ/xai-colossus-cooling",
+    "GlacierEQ/xai-colossus-cooling-alpha",
+    "GlacierEQ/xai-colossus-cooling-omega",
+    "GlacierEQ/xai-colossus-energy",
+    "GlacierEQ/xai-colossus-energy-alpha",
+    "GlacierEQ/xai-colossus-energy-omega",
+    "GlacierEQ/xai-colossus-nanosphere",
+    "GlacierEQ/xai-colossus-security",
+    "GlacierEQ/xai-colossus-servers"
+  ],
+  "stranded_or_shadow_state": {
+    "helix_full_estate_pr_197": {
+      "state": "open",
+      "merged": false,
+      "mergeable": false,
+      "head": "2d2c6563dde4faa380f7c03f4d7cfe4cdf820e80",
+      "classification": "STRANDED_FULL_ESTATE_DONOR_NOT_CURRENT_MAIN"
+    },
+    "job_application_pr_244": {
+      "state": "open",
+      "merged": false,
+      "mergeable": false,
+      "head": "8ff385501a08078c77f55b8cd23cd657c2a2b939",
+      "classification": "STALE_REPAIR_REBASE_REQUIRED"
+    }
+  },
+  "projection_drift": {
+    "job_application_compiler_helix_pin": "8345955b67f163c3215b23195a267b6021a5be5e",
+    "current_helix_head": "c397365e0dc3dc30dfcf2918ef43060cef54bad3",
+    "state": "STALE_PIN_REQUIRES_NEW_PROVEN_BINDING"
+  },
+  "ranked_next_actions": [
+    "P0 restore job-application production from exact proven source and verify live 200 readback",
+    "P0 reapply current redaction/presentation repair onto current job-application main",
+    "P0 repair Helix Buildkite 923 without removing opening-freshness capability",
+    "P0 protect all four application primary branches with required proof gates",
+    "P1 advance job-application Helix pin to a newly verified current source identity and re-project",
+    "P1 formalize the four-plane machine topology and ownership boundaries",
+    "P1 regenerate current exact-head verification/freshness for all 66 recruiter children",
+    "P1 reconcile Monolith Mastermind promotion conflict",
+    "P2 classify all open job-system PRs by required/donor/superseded/historical/rebase state",
+    "P2 refresh stale status/readme/governance terminology without altering technical domain semantics"
+  ],
+  "audit_boundary": "Current GitHub/Vercel state and direct job-system manifests were inspected. This receipt does not claim line-by-line semantic inspection or current exact-head CI for every repository in the full estate."
+}
