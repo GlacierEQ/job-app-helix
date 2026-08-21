@@ -56,6 +56,7 @@ job-app-helix-application-evidence = "job_app_helix.application_evidence_graph:m
 job-app-helix-greenhouse-fields = "job_app_helix.greenhouse_application_fields:main"
 job-app-helix-greenhouse-prepare = "job_app_helix.greenhouse_application_preparation:main"
 job-app-helix-greenhouse-finalize = "job_app_helix.greenhouse_application_finalization:main"
+job-app-helix-greenhouse-submit = "job_app_helix.greenhouse_submission_execution:main"
 job-app-helix-profile = "job_app_helix.candidate_profile_compiler:main"
 job-app-helix-estate-recovery = "job_app_helix.estate_recovery_census:main"
 job-app-helix-estate-restore = "job_app_helix.estate_federated_restoration:main"
