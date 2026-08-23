@@ -10,7 +10,6 @@ import pytest
 from job_app_helix.application_engine import find_target, load_targets
 from job_app_helix.application_operations import (
     ApplicationStore,
-    JsonApiApplicationAdapter,
     compile_application_lifecycle,
     ingest_job_opening,
     ingest_job_opening_url,
@@ -192,7 +191,7 @@ def test_projection_uses_only_profile_claims_and_admitted_repositories(
     )
 
 
-def test_full_lifecycle_stays_ready_while_submission_is_frozen(
+def test_full_lifecycle_prepares_exact_artifact_set_without_collapsing(
     tmp_path: Path,
 ) -> None:
     profile = load_candidate_profile(_profile_file(tmp_path))
@@ -217,20 +216,21 @@ def test_full_lifecycle_stays_ready_while_submission_is_frozen(
             == "READY_FOR_MANUAL_SUBMISSION"
         )
         assert packet["adapter_receipt"]["submission_performed"] is False
+        assert packet["adapter_receipt"]["artifact_count"] == len(packet["artifacts"])
+        assert packet["adapter_receipt"]["artifact_count"] > 1
+        assert Path(packet["adapter_receipt"]["artifact"]).name == (
+            "ARTIFACT_SET_MANIFEST.json"
+        )
         for artifact in packet["artifacts"].values():
             assert Path(artifact).is_file()
 
-        with pytest.raises(RuntimeError, match="SUBMISSION_FROZEN"):
-            store.transition(
-                application_id,
-                "SUBMITTED",
-                external_reference="ats-123",
-            )
+        with pytest.raises(ValueError, match="invalid application status: SUBMITTED"):
+            store.transition(application_id, "SUBMITTED")
 
         store.record_feedback(
             application_id,
-            "submission_frozen",
-            "Artifact-set proof is required before external handoff.",
+            "submission_transport_removed",
+            "External submission transport is intentionally absent.",
         )
 
         assert store.get_application(application_id)["status"] == "READY"
@@ -271,9 +271,7 @@ def test_recompiling_same_projection_is_idempotent(tmp_path: Path) -> None:
         assert [event["event_type"] for event in events] == ["CREATED"]
 
 
-def test_submitted_state_is_frozen_even_with_external_reference(
-    tmp_path: Path,
-) -> None:
+def test_external_reference_cannot_create_submission_state(tmp_path: Path) -> None:
     profile = load_candidate_profile(_profile_file(tmp_path))
     target = find_target("anthropic", _targets())
     with ApplicationStore(tmp_path / "operations.sqlite3") as store:
@@ -284,55 +282,10 @@ def test_submitted_state_is_frozen_even_with_external_reference(
             output_dir=tmp_path / "out",
             store=store,
         )
-        with pytest.raises(RuntimeError, match="SUBMISSION_FROZEN"):
+        with pytest.raises(ValueError, match="external_reference may not mutate"):
             store.transition(
                 packet["application_id"],
-                "SUBMITTED",
+                "READY",
                 external_reference="ats-123",
             )
-
-
-def test_json_api_adapter_is_dry_run_only_while_submission_is_frozen(
-    tmp_path: Path,
-) -> None:
-    received: list[dict[str, object]] = []
-
-    class Handler(BaseHTTPRequestHandler):
-        def do_POST(self) -> None:
-            length = int(self.headers["Content-Length"])
-            received.append(json.loads(self.rfile.read(length)))
-            body = b'{"application_id":"remote-7"}'
-            self.send_response(201)
-            self.send_header("Content-Type", "application/json")
-            self.send_header("Content-Length", str(len(body)))
-            self.end_headers()
-            self.wfile.write(body)
-
-        def log_message(self, *_: object) -> None:
-            return
-
-    server = HTTPServer(("127.0.0.1", 0), Handler)
-    thread = threading.Thread(target=server.serve_forever, daemon=True)
-    thread.start()
-    try:
-        adapter = JsonApiApplicationAdapter(
-            f"http://127.0.0.1:{server.server_port}/applications"
-        )
-        packet = {
-            "application_id": "app-1",
-            "role": "Safety Systems Engineer",
-        }
-        prepared = adapter.prepare(packet, tmp_path)
-        dry_run = adapter.submit(packet)
-        assert prepared["status"] == "READY"
-        assert dry_run["status"] == "DRY_RUN"
-        assert dry_run["submission_performed"] is False
-        assert received == []
-        with pytest.raises(RuntimeError, match="SUBMISSION_FROZEN"):
-            adapter.submit(packet, submit=True)
-    finally:
-        server.shutdown()
-        thread.join(timeout=5)
-        server.server_close()
-
-    assert received == []
+        assert store.get_application(packet["application_id"])["status"] == "READY"
