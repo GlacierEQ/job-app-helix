@@ -1,0 +1,36 @@
+{
+  "schema": "glaciereq.application-submission-integrity.v1",
+  "state": "SUBMISSION_FROZEN",
+  "reason": "The legacy application lifecycle can flatten a multi-file application into one JSON artifact or one JSON request body and can mark SUBMITTED from an external reference or HTTP success without proving the intended artifact set survived the external handoff.",
+  "legacy_surfaces": [
+    "src/job_app_helix/application_operations.py::ManualApplicationAdapter",
+    "src/job_app_helix/application_operations.py::JsonApiApplicationAdapter",
+    "src/job_app_helix/application_operations.py::ApplicationStore.transition"
+  ],
+  "required_before_unfreeze": [
+    "declare the intended submitted artifact set before handoff",
+    "hash every intended artifact before handoff",
+    "preserve multiplicity: a multi-file set may not silently become one file",
+    "bind the external submission receipt to the exact artifact-set digest",
+    "read back or otherwise verify the externally accepted artifact identities",
+    "refuse SUBMITTED when only an HTTP success, opaque external reference, or local preparation receipt exists",
+    "record any destination-imposed attachment limit as a blocker rather than dropping artifacts"
+  ],
+  "allowed_states_while_frozen": [
+    "DRAFT",
+    "READY",
+    "QUEUED",
+    "READY_FOR_MANUAL_SUBMISSION",
+    "DRY_RUN"
+  ],
+  "forbidden_claims_while_frozen": [
+    "SUBMITTED",
+    "submission_performed=true",
+    "external handoff verified"
+  ],
+  "echo_disposition": {
+    "status": "NOT_CAUSAL_ON_THIS_PATH",
+    "basis": "No ECHO call is present in the application submission implementation. ECHO references elsewhere in Helix do not establish participation in this flattening boundary.",
+    "action": "Do not remove ECHO as a substitute for fixing the Helix submission adapter and state machine."
+  }
+}
