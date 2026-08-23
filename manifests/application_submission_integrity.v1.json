@@ -1,36 +1,44 @@
 {
   "schema": "glaciereq.application-submission-integrity.v1",
-  "state": "SUBMISSION_FROZEN",
-  "reason": "The legacy application lifecycle can flatten a multi-file application into one JSON artifact or one JSON request body and can mark SUBMITTED from an external reference or HTTP success without proving the intended artifact set survived the external handoff.",
-  "legacy_surfaces": [
-    "src/job_app_helix/application_operations.py::ManualApplicationAdapter",
-    "src/job_app_helix/application_operations.py::JsonApiApplicationAdapter",
-    "src/job_app_helix/application_operations.py::ApplicationStore.transition"
+  "state": "LEGACY_SUBMISSION_TRANSPORT_REMOVED",
+  "effective_date_hst": "2026-08-22",
+  "removed_capabilities": [
+    "generic JSON API application POST transport",
+    "HTTP success promotion to SUBMITTED",
+    "external-reference promotion to SUBMITTED",
+    "single-file SUBMISSION_PACKET.json preparation"
   ],
-  "required_before_unfreeze": [
+  "current_preparation_model": {
+    "state": "READY_FOR_MANUAL_SUBMISSION",
+    "transport": "NONE",
+    "submission_performed": false,
+    "artifact_model": "EXACT_MULTI_ARTIFACT_SET_MANIFEST"
+  },
+  "required_for_any_future_submission_transport": [
     "declare the intended submitted artifact set before handoff",
     "hash every intended artifact before handoff",
     "preserve multiplicity: a multi-file set may not silently become one file",
+    "resolve provider attachment and field capacity explicitly",
     "bind the external submission receipt to the exact artifact-set digest",
-    "read back or otherwise verify the externally accepted artifact identities",
-    "refuse SUBMITTED when only an HTTP success, opaque external reference, or local preparation receipt exists",
-    "record any destination-imposed attachment limit as a blocker rather than dropping artifacts"
+    "read back or otherwise verify externally accepted artifact identities",
+    "refuse submission success based only on HTTP status, an opaque reference, or a local preparation receipt",
+    "record destination-imposed limits as blockers rather than silently dropping artifacts"
   ],
-  "allowed_states_while_frozen": [
-    "DRAFT",
-    "READY",
-    "QUEUED",
-    "READY_FOR_MANUAL_SUBMISSION",
-    "DRY_RUN"
+  "forbidden_regression_signatures": [
+    "class JsonApiApplicationAdapter",
+    "SUBMISSION_PACKET.json",
+    "method=POST in application submission transport",
+    "HTTP 2xx implies SUBMITTED",
+    "external_reference implies SUBMITTED"
   ],
-  "forbidden_claims_while_frozen": [
-    "SUBMITTED",
-    "submission_performed=true",
-    "external handoff verified"
-  ],
+  "legacy_data_compatibility": {
+    "historical_SUBMITTED_rows": "readable only as historical source states",
+    "new_transition_to_SUBMITTED": false,
+    "external_reference_state_mutation": false
+  },
   "echo_disposition": {
     "status": "NOT_CAUSAL_ON_THIS_PATH",
-    "basis": "No ECHO call is present in the application submission implementation. ECHO references elsewhere in Helix do not establish participation in this flattening boundary.",
-    "action": "Do not remove ECHO as a substitute for fixing the Helix submission adapter and state machine."
+    "basis": "No ECHO call was present in the application submission implementation or the provider handoff that produced the collapse.",
+    "action": "Evaluate ECHO separately on evidence; it is not required for this eradication."
   }
 }
