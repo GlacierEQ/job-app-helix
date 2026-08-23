@@ -192,7 +192,9 @@ def test_projection_uses_only_profile_claims_and_admitted_repositories(
     )
 
 
-def test_full_lifecycle_persists_state_and_tracks_response(tmp_path: Path) -> None:
+def test_full_lifecycle_stays_ready_while_submission_is_frozen(
+    tmp_path: Path,
+) -> None:
     profile = load_candidate_profile(_profile_file(tmp_path))
     target = find_target("anthropic", _targets())
     db = tmp_path / "operations.sqlite3"
@@ -218,37 +220,27 @@ def test_full_lifecycle_persists_state_and_tracks_response(tmp_path: Path) -> No
         for artifact in packet["artifacts"].values():
             assert Path(artifact).is_file()
 
-        store.transition(
-            application_id,
-            "SUBMITTED",
-            external_reference="ats-123",
-        )
-        store.record_response(
-            application_id,
-            "interview",
-            "Recruiter requested a technical interview.",
-            source_reference="email-message-42",
-        )
+        with pytest.raises(RuntimeError, match="SUBMISSION_FROZEN"):
+            store.transition(
+                application_id,
+                "SUBMITTED",
+                external_reference="ats-123",
+            )
+
         store.record_feedback(
             application_id,
-            "positive",
-            "Interview requested.",
+            "submission_frozen",
+            "Artifact-set proof is required before external handoff.",
         )
 
-        assert store.get_application(application_id)["status"] == "INTERVIEW"
+        assert store.get_application(application_id)["status"] == "READY"
         event_types = [
             event["event_type"] for event in store.events(application_id)
         ]
-        assert event_types == [
-            "CREATED",
-            "STATUS_CHANGED",
-            "RESPONSE",
-            "STATUS_CHANGED",
-            "FEEDBACK",
-        ]
+        assert event_types == ["CREATED", "FEEDBACK"]
         summary = store.feedback_summary()
         assert summary["applications"] == 1
-        assert summary["response_events"] == 1
+        assert summary["response_events"] == 0
         assert summary["feedback_events"] == 1
 
 
@@ -279,7 +271,9 @@ def test_recompiling_same_projection_is_idempotent(tmp_path: Path) -> None:
         assert [event["event_type"] for event in events] == ["CREATED"]
 
 
-def test_submitted_state_requires_external_receipt(tmp_path: Path) -> None:
+def test_submitted_state_is_frozen_even_with_external_reference(
+    tmp_path: Path,
+) -> None:
     profile = load_candidate_profile(_profile_file(tmp_path))
     target = find_target("anthropic", _targets())
     with ApplicationStore(tmp_path / "operations.sqlite3") as store:
@@ -290,11 +284,17 @@ def test_submitted_state_requires_external_receipt(tmp_path: Path) -> None:
             output_dir=tmp_path / "out",
             store=store,
         )
-        with pytest.raises(ValueError, match="external_reference"):
-            store.transition(packet["application_id"], "SUBMITTED")
+        with pytest.raises(RuntimeError, match="SUBMISSION_FROZEN"):
+            store.transition(
+                packet["application_id"],
+                "SUBMITTED",
+                external_reference="ats-123",
+            )
 
 
-def test_json_api_adapter_requires_explicit_submission(tmp_path: Path) -> None:
+def test_json_api_adapter_is_dry_run_only_while_submission_is_frozen(
+    tmp_path: Path,
+) -> None:
     received: list[dict[str, object]] = []
 
     class Handler(BaseHTTPRequestHandler):
@@ -328,17 +328,11 @@ def test_json_api_adapter_requires_explicit_submission(tmp_path: Path) -> None:
         assert dry_run["status"] == "DRY_RUN"
         assert dry_run["submission_performed"] is False
         assert received == []
-        submitted = adapter.submit(packet, submit=True)
+        with pytest.raises(RuntimeError, match="SUBMISSION_FROZEN"):
+            adapter.submit(packet, submit=True)
     finally:
         server.shutdown()
         thread.join(timeout=5)
         server.server_close()
 
-    assert submitted["status"] == "SUBMITTED"
-    assert submitted["http_status"] == 201
-    assert received == [
-        {
-            "application_id": "app-1",
-            "role": "Safety Systems Engineer",
-        }
-    ]
+    assert received == []
