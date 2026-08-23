@@ -1,16 +1,17 @@
 """Lockheed multi-repo composition — leveled."""
 from __future__ import annotations
-import threading
+
 import unittest
+
 from pathutil import add_repo
 
 add_repo("lockheed-evidence-binding-gateway")
 add_repo("lockheed-dual-key-actuator-fence")
 add_repo("lockheed-mission-thread-isolator")
 
-from evidence_gateway import EvidenceBindingGateway, EvidenceSnapshot, GateVerdict
-from dual_key_fence import Decision, RefuseReason, build_stack
 from core import MissionThreadIsolator
+from dual_key_fence import Decision, RefuseReason, build_stack
+from evidence_gateway import EvidenceBindingGateway, EvidenceSnapshot, GateVerdict
 
 
 class LockheedTriadLeveled(unittest.TestCase):

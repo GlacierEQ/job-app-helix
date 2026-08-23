@@ -1,7 +1,10 @@
 """Smoke: frontier wave1c modules import and basic invariants."""
 from __future__ import annotations
+
 import unittest
+
 from pathutil import add_repo
+
 
 class FrontierSmoke(unittest.TestCase):
     def test_openai_budget(self):
@@ -20,7 +23,7 @@ class FrontierSmoke(unittest.TestCase):
 
     def test_nvidia_quorum(self):
         add_repo("nvidia-gradient-integrity-quorum")
-        from gradient_quorum import GradientIntegrityQuorum, RankReport, Commit
+        from gradient_quorum import Commit, GradientIntegrityQuorum, RankReport
         r = GradientIntegrityQuorum().evaluate({0: RankReport(0, 1.0, True)})
         self.assertEqual(r.decision, Commit.COMMIT)
 

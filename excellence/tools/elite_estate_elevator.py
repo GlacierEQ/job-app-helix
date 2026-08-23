@@ -2,7 +2,6 @@
 """Elite leaf bar enforcer for job-app/repos — inventory, regress PROMOTED, elevate or gap."""
 from __future__ import annotations
 
-import ast
 import hashlib
 import hmac
 import json
@@ -12,7 +11,7 @@ import subprocess
 import sys
 import textwrap
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -23,7 +22,7 @@ SCRATCH = Path(os.environ.get(
     "/var/folders/w3/hldw78112gzbvgd2_pj1bg3h0000gn/T/grok-goal-71072d58ed24/implementer",
 ))
 SECRET = b"glaciereq-local-operator-promotion-authority-v1"
-TS = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+TS = datetime.now(UTC).strftime("%Y-%m-%dT%H:%MZ")
 NOW = time.time()
 
 # Prefer 3.11+ (StrEnum, datetime.UTC used by many leaves). Fall back to sys.executable.

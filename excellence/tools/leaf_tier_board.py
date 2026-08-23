@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 REPOS = Path.home() / "job-app" / "repos"
@@ -86,7 +86,7 @@ def main() -> int:
 
     counts = Counter(r["tier"] for r in rows)
     board = {
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%MZ"),
         "counts": dict(counts),
         "dod": "excellence/framework/PIP_TO_BODYBUILDER_PIPELINE.md",
         "leaves": rows,
