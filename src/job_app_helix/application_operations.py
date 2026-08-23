@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Protocol
 
 from .application_engine import ApplicationKit, CompanyTarget, build_application_kit
+from .submission_integrity import write_artifact_set_manifest
 
 STOPWORDS = {
     "a",
@@ -55,7 +56,6 @@ VALID_STATUSES = {
     "DRAFT",
     "READY",
     "QUEUED",
-    "SUBMITTED",
     "INTERVIEW",
     "OFFER",
     "REJECTED",
@@ -64,14 +64,16 @@ VALID_STATUSES = {
 }
 ALLOWED_TRANSITIONS = {
     "DRAFT": {"READY", "WITHDRAWN"},
-    "READY": {"QUEUED", "SUBMITTED", "WITHDRAWN"},
-    "QUEUED": {"SUBMITTED", "WITHDRAWN"},
-    "SUBMITTED": {"INTERVIEW", "OFFER", "REJECTED", "WITHDRAWN", "CLOSED"},
+    "READY": {"QUEUED", "WITHDRAWN"},
+    "QUEUED": {"WITHDRAWN"},
     "INTERVIEW": {"INTERVIEW", "OFFER", "REJECTED", "WITHDRAWN", "CLOSED"},
     "OFFER": {"CLOSED"},
     "REJECTED": {"CLOSED"},
     "WITHDRAWN": {"CLOSED"},
     "CLOSED": set(),
+}
+LEGACY_SOURCE_STATUSES = {
+    "SUBMITTED": {"INTERVIEW", "OFFER", "REJECTED", "WITHDRAWN", "CLOSED"}
 }
 
 
@@ -221,114 +223,25 @@ class ApplicationAdapter(Protocol):
 
 
 class ManualApplicationAdapter:
-    """Create a complete human-submittable packet without claiming submission."""
+    """Prepare an exact artifact-set manifest without creating a collapsed packet."""
 
-    name = "manual"
+    name = "artifact-set-manual"
 
     def prepare(
         self,
         packet: Mapping[str, Any],
         output_dir: Path,
     ) -> Mapping[str, Any]:
-        output_dir.mkdir(parents=True, exist_ok=True)
-        path = output_dir / "SUBMISSION_PACKET.json"
-        body = {
-            "schema": "glaciereq.manual-application-adapter.v1",
+        receipt = write_artifact_set_manifest(packet, output_dir)
+        artifact_set = receipt["artifact_set"]
+        return {
             "adapter": self.name,
             "status": "READY_FOR_MANUAL_SUBMISSION",
             "submission_performed": False,
-            "packet": dict(packet),
+            "artifact_set_digest": receipt["artifact_set_digest"],
+            "artifact_count": len(artifact_set.artifacts),
+            "artifact": receipt["manifest_path"],
         }
-        path.write_text(
-            json.dumps(body, indent=2, sort_keys=True) + "\n",
-            encoding="utf-8",
-        )
-        return {
-            "adapter": self.name,
-            "status": body["status"],
-            "submission_performed": False,
-            "artifact": str(path),
-        }
-
-
-class JsonApiApplicationAdapter:
-    """Generic JSON POST adapter with explicit submission authority."""
-
-    name = "json-api"
-
-    def __init__(
-        self,
-        endpoint: str,
-        *,
-        headers: Mapping[str, str] | None = None,
-        timeout: float = 20.0,
-    ):
-        if not endpoint.startswith(("https://", "http://")):
-            raise ValueError("application endpoint must be http(s)")
-        self.endpoint = endpoint
-        self.headers = dict(headers or {})
-        self.timeout = timeout
-
-    def _body(self, packet: Mapping[str, Any]) -> bytes:
-        return json.dumps(dict(packet), sort_keys=True).encode("utf-8")
-
-    def prepare(
-        self,
-        packet: Mapping[str, Any],
-        output_dir: Path,
-    ) -> Mapping[str, Any]:
-        output_dir.mkdir(parents=True, exist_ok=True)
-        request_body = self._body(packet)
-        path = output_dir / "JSON_API_REQUEST.json"
-        path.write_bytes(request_body + b"\n")
-        return {
-            "adapter": self.name,
-            "status": "READY",
-            "endpoint": self.endpoint,
-            "request_digest": hashlib.sha256(request_body).hexdigest(),
-            "artifact": str(path),
-        }
-
-    def submit(
-        self,
-        packet: Mapping[str, Any],
-        *,
-        submit: bool = False,
-    ) -> Mapping[str, Any]:
-        body = self._body(packet)
-        digest = hashlib.sha256(body).hexdigest()
-        if not submit:
-            return {
-                "adapter": self.name,
-                "status": "DRY_RUN",
-                "submission_performed": False,
-                "request_digest": digest,
-            }
-        headers = {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            **self.headers,
-        }
-        request = urllib.request.Request(
-            self.endpoint,
-            data=body,
-            headers=headers,
-            method="POST",
-        )
-        with urllib.request.urlopen(request, timeout=self.timeout) as response:
-            response_body = response.read()
-            return {
-                "adapter": self.name,
-                "status": "SUBMITTED" if 200 <= response.status < 300 else "FAILED",
-                "submission_performed": True,
-                "http_status": response.status,
-                "request_digest": digest,
-                "response_digest": hashlib.sha256(response_body).hexdigest(),
-                "response_excerpt": response_body[:1000].decode(
-                    "utf-8",
-                    errors="replace",
-                ),
-            }
 
 
 def ingest_job_opening(
@@ -852,26 +765,28 @@ class ApplicationStore:
         note: str = "",
     ) -> None:
         status = status.upper()
+        if external_reference is not None:
+            raise ValueError(
+                "external_reference may not mutate application lifecycle state"
+            )
         if status not in VALID_STATUSES:
             raise ValueError(f"invalid application status: {status}")
         current = self.get_application(application_id)
-        allowed = ALLOWED_TRANSITIONS[current["status"]]
+        allowed = ALLOWED_TRANSITIONS.get(current["status"])
+        if allowed is None:
+            allowed = LEGACY_SOURCE_STATUSES.get(current["status"], set())
         if status not in allowed:
             raise ValueError(
                 f"invalid application transition: {current['status']} -> {status}"
             )
-        if status == "SUBMITTED" and not external_reference:
-            raise ValueError("SUBMITTED requires external_reference")
         now = _utc_now()
         self.connection.execute(
             """
             UPDATE applications
-            SET status=?,
-                external_reference=COALESCE(?,external_reference),
-                updated_at=?
+            SET status=?, updated_at=?
             WHERE application_id=?
             """,
-            (status, external_reference, now, application_id),
+            (status, now, application_id),
         )
         self._event(
             application_id,
@@ -880,7 +795,6 @@ class ApplicationStore:
                 "from": current["status"],
                 "to": status,
                 "note": note,
-                "external_reference": external_reference,
             },
             now,
         )
@@ -910,7 +824,9 @@ class ApplicationStore:
             "rejection": "REJECTED",
         }.get(kind.casefold())
         self.connection.commit()
-        allowed = ALLOWED_TRANSITIONS[current["status"]]
+        allowed = ALLOWED_TRANSITIONS.get(current["status"])
+        if allowed is None:
+            allowed = LEGACY_SOURCE_STATUSES.get(current["status"], set())
         if (
             target
             and current["status"] not in TERMINAL_STATUSES
@@ -988,7 +904,7 @@ def compile_application_lifecycle(
     )
     artifacts = write_projection(projection, match, output_dir)
     packet = {
-        "schema": "glaciereq.application-packet.v1",
+        "schema": "glaciereq.application-packet.v2",
         "application_id": projection.application_id,
         "opening": opening.as_dict(),
         "kit": kit.as_dict(),
