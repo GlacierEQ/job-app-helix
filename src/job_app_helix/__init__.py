@@ -67,7 +67,8 @@ def _install_submission_integrity_freeze() -> None:
 
 _install_submission_integrity_freeze()
 
-__all__ = [
+# Emergency incident exports are grouped by API role rather than formatter order.
+__all__ = [  # noqa: RUF022
     "CampaignDecision",
     "CampaignPolicy",
     "CampaignReport",
