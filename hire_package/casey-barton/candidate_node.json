@@ -51,8 +51,8 @@
   "relationships": [
     {
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "combined_value": "AKOS supplies authority and completion semantics; the candidate package supplies human and machine presentation."
+      "relation": "CONSUMES",
+      "combined_value": "The candidate package consumes AKOS evidence, provenance, and completion-state conventions as capability input; AKOS receives no project-direction authority."
     },
     {
       "target": "GlacierEQ/job-app-helix",
@@ -62,7 +62,7 @@
     {
       "target": "GlacierEQ/public-actions-runner-host",
       "relation": "EXECUTES_THROUGH",
-      "combined_value": "Public runner architecture supplies the governed execution model used as portfolio evidence."
+      "combined_value": "Public runner architecture supplies the evidence-bound execution model used as portfolio evidence."
     },
     {
       "target": "GlacierEQ/anthropic-agent-coordinator",
@@ -73,6 +73,6 @@
   "limits": [
     "No unsupported scale or throughput claims.",
     "README/hash coverage is not runtime proof.",
-    "Candidate/local evidence is not canonical hosted evidence."
+    "Candidate/local evidence is not current hosted evidence."
   ]
 }
