@@ -128,6 +128,31 @@ def test_root_manifest_forbids_competing_truth() -> None:
     assert "authenticated-estate" in model["portfolio_authority"]
 
 
+def test_active_portfolio_contract_is_non_governing() -> None:
+    manifest = load_json("manifests/portfolio_root_truth.json")
+    model = manifest["truth_model"]
+    authority_text = model["portfolio_authority"].lower()
+    purpose = manifest["purpose"].lower()
+    invariants = "\n".join(manifest["invariants"]).lower()
+
+    assert authority_text.startswith("no_project_direction_authority:")
+    assert "helix owns" not in authority_text
+    assert "do not grant helix authority" in authority_text
+    assert "project-direction authority" in purpose
+    assert "never grant project-direction authority" in invariants
+
+
+def test_agents_contract_is_operator_first_and_non_federated() -> None:
+    agents = (ROOT / "agents.md").read_text(encoding="utf-8")
+    lowered = agents.lower()
+
+    assert "casey barton" in lowered
+    assert "sole human authority" in lowered
+    assert "mermicorn grove federation rules" not in lowered
+    assert "cherry — domain judgment and final decisions" not in lowered
+    assert "no repository, registry, projection, receipt, ci workflow, federation" in lowered
+
+
 def test_public_projections_cannot_publish_private_records() -> None:
     manifest = load_json("manifests/portfolio_root_truth.json")
     public_ids = {"public_portal", "resume_shapeshifter", "machine_runtime"}
