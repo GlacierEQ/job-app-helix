@@ -5,11 +5,13 @@
   "execution_law": "MAXIMUM_COHERENT_ADVANCE",
   "incident": "ESTATE_CAPABILITY_NEUTRALIZATION_2026-08-15",
   "authority_split": {
+    "operator_authority": "Casey Barton",
     "control_plane": "GlacierEQ/job-app-helix",
     "public_distribution": "GlacierEQ/job-application",
     "public_site": "https://casey-barton-glaciereq.vercel.app",
-    "identity_os": "GlacierEQ/AKOS",
-    "placement_authority": "GlacierEQ/the-tower-of-babel"
+    "identity_capability_donor": "GlacierEQ/AKOS",
+    "technology_placement_capability": "GlacierEQ/the-tower-of-babel",
+    "project_direction_rule": "No repository, compiler, registry, donor, projection, receipt, workflow, or AI system acquires project-direction authority by existing."
   },
   "portfolio_surface": {
     "live_links_manifest": "manifests/live_repository_links.json",
@@ -97,6 +99,6 @@
     "docs": "docs/apex/GENIUS_ENGINE.md",
     "console_script": "job-app-helix-genius",
     "seed_receipt": "receipts/GENIUS_ESTATE_WAVE2_SEED_2026-08-16.json",
-    "role": "invent \u2192 attack \u2192 rank mechanisms for restore-and-complete waves"
+    "role": "invent → attack → rank mechanisms for restore-and-complete waves"
   }
 }
