@@ -3,116 +3,116 @@
     {
       "source": "GlacierEQ/spacex-telemetry",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-propulsion-monitor",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-ground-network",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-launch-sequencer",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-mission-control",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-satellite-mesh",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-autonomy",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-cryogenics",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-conjunction-sentinel",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-pad-weather-gate",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-orbital-mechanics",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/spacex-thermal-protection",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/anthropic-agent-coordinator",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/anthropic-safety-monitor",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/xai-colossus-cooling-alpha",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/xai-colossus-cooling-omega",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/xai-colossus-energy-alpha",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/xai-colossus-energy-omega",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/xai-colossus-servers",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS supplies the shared evidence, authority, provenance, and public-boundary contract."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence, provenance, and public-boundary conventions without granting AKOS project-direction authority."
     },
     {
       "source": "GlacierEQ/job-app-helix",
@@ -237,8 +237,8 @@
     {
       "source": "GlacierEQ/job-app-helix",
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "value": "AKOS defines evidence boundaries, execution authority, verification, and completion semantics for the README Mesh."
+      "relation": "CONSUMES",
+      "value": "Consumes AKOS evidence-boundary, provenance, verification, and completion-state conventions as capability input without granting AKOS project-direction authority."
     }
   ]
 }
