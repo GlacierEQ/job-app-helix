@@ -290,35 +290,25 @@ def test_relative_markdown_links_are_checked(tmp_path: Path) -> None:
     assert result["valid"] == 1
 
 
-def test_root_readme_preserves_audience_order_and_machine_contract() -> None:
+def test_root_readme_preserves_active_apex_contract() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    headings = [
-        "## For recruiters and non-technical reviewers",
-        "## For senior engineers and domain experts",
-        "## For AI systems and toolchains",
-    ]
-    positions = [readme.index(heading) for heading in headings]
 
-    assert positions == sorted(positions)
     for field in (
-        "schema: glaciereq.readme.v1",
-        "profile: glaciereq.readme-impact.v2-draft",
-        "verified_at:",
-        "blocked_scope:",
-        "unverified_scope:",
-        "languages:",
-        "relationships:",
-        "limits:",
-        "manifests/language_fit.json",
+        "# Job-App Helix — Evidence-Bound Employment Intelligence & Execution Engine",
+        "**Primary Operator:** Casey Barton",
+        "Helix is a **coordination and execution plane**, not an estate ruler.",
+        "manifests/portfolio_root_truth.json",
         "manifests/portfolio_repositories.json",
+        "src/job_app_helix/genius_engine.py",
+        "src/job_app_helix/restoration_executor.py",
+        "docs/README_APEX_TEMPLATE.md",
     ):
         assert field in readme
 
-    for unsupported in (
-        "relation: evaluates_language_fit_for",
-        "relation: represents",
-        "relation: connects",
-        "relation: verified_by",
-        "relation: routes_execution_to",
+    for retired in (
+        "relation: GOVERNED_BY",
+        "AKOS supplies authority",
+        "governance and verification center",
+        "Helix governs the evidence boundary",
     ):
-        assert unsupported not in readme
+        assert retired not in readme
