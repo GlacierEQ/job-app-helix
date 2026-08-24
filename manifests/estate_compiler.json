@@ -1,7 +1,7 @@
 {
   "schema": "glaciereq.estate-compiler-policy.v1",
-  "authority": "GlacierEQ/job-app-helix",
-  "purpose": "Compile the authenticated owned repository estate into lineage-collapsed canonical systems, reusable capability donors, and company/role projections without exposing private or legal source material.",
+  "authority": "NO_PROJECT_DIRECTION_AUTHORITY: GlacierEQ/job-app-helix coordinates this compiler policy; Casey Barton controls project direction and repository-native source state remains authoritative for factual implementation claims.",
+  "purpose": "Compile the authenticated owned repository estate into lineage-collapsed system identities, reusable capability donors, and company/role projections without exposing private or legal source material or granting compiler classifications project-direction authority.",
   "pipeline": [
     "authenticated_owned_library_census",
     "namespace_isolation",
@@ -35,7 +35,7 @@
       "target_repository",
       "nonempty_evidence_refs"
     ],
-    "successor_semantics": "EXPLICIT_SUCCESSOR_OF makes the asserted successor the canonical root.",
+    "successor_semantics": "EXPLICIT_SUCCESSOR_OF makes the asserted successor the canonical lineage root for deduplication only; it does not create project-direction authority.",
     "ambiguous_name_family": "emit_unresolved_lineage_candidate",
     "cycle_policy": "fail_closed",
     "silent_merge": false
