@@ -1,10 +1,10 @@
-# Portfolio Root Truth
+# Portfolio Evidence Root
 
-## One governed source, many synchronized projections
+## One evidence-bound coordination source, many synchronized projections
 
-`GlacierEQ/job-app-helix` is the canonical portfolio control plane. It does not copy child repository source and it does not replace repository-native proof. It compiles admission, classification, evidence state, company alignment, role fit, estate intelligence policy, and projection boundaries into a single governed contract.
+`GlacierEQ/job-app-helix` is the portfolio coordination and evidence plane for the job ecosystem. It does not copy child repository source, replace repository-native proof, or acquire project-direction authority over peer repositories. It compiles admission state, classification, evidence state, company alignment, role fit, estate intelligence policy, and projection boundaries into a synchronized contract.
 
-The canonical entrypoint is:
+The current entrypoint is:
 
 ```text
 manifests/portfolio_root_truth.json
@@ -16,25 +16,28 @@ Public raw URL:
 https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/manifests/portfolio_root_truth.json
 ```
 
-## Two inventory planes, one authority
+The historical file and schema names retain `root_truth` for compatibility. In current APEX semantics, that means an evidence/coordination root, not a ruler over project direction.
 
-The portfolio now distinguishes two different things that must never be conflated:
+## Two inventory planes, no project-direction authority
 
-1. **Admitted public portfolio subset** — the governed 67-repository inventory used for public proof, recruiter presentation, company dossiers, and stable downstream contracts.
-2. **Authenticated owned-estate substrate** — the larger private repository field compiled at runtime into lineage-collapsed canonical systems, capability donors, experiment state, support/reference ancestry, and company/role projections.
+The portfolio distinguishes two different things that must never be conflated:
 
-The public 67-repository inventory is not a claim about the size of the owned estate. The authenticated estate census is runtime-private. Its raw cardinality, private identities, and legal-private records are intentionally absent from public root truth and downstream public bundles.
+1. **Admitted public portfolio subset** — the 67-repository inventory used for public proof, recruiter presentation, company dossiers, and stable downstream contracts.
+2. **Authenticated owned-estate substrate** — the larger private repository field compiled at runtime into lineage-collapsed system groupings, capability donors, experiment state, support/reference ancestry, and company/role projections.
 
-## Authority split
+The public 67-repository inventory is not a claim about the size of the owned estate. The authenticated estate census is runtime-private. Its raw cardinality, private identities, and legal-private records are intentionally absent from public projection state and downstream public bundles.
 
-| Plane | Authority |
+## Responsibility split
+
+| Plane | Responsibility / source |
 |---|---|
-| Code, README, tests, releases, native receipts | Each canonical child repository |
+| Project direction, intended scope, architecture target, priorities | Casey Barton |
+| Code, README, tests, releases, native receipts, factual runtime state | Each child repository |
 | Admitted 67-repository public-portfolio boundary | `manifests/portfolio_repositories.json` |
 | Authenticated estate compiler policy | `manifests/estate_compiler.json` |
 | Role-capability, audience-cap, and support ancestry policy | `manifests/estate_projection_policy.json` |
 | Evidence-bound estate assertion seed | `manifests/estate_facts.json` |
-| Crown-jewel hierarchy and promotion gates | `manifests/flagship_registry.json` |
+| Evidence-backed flagship hierarchy and promotion state | `manifests/flagship_registry.json` |
 | Company alignment and company-specific repository sets | `manifests/company_dossiers.json` plus shards |
 | External company operating-pressure snapshot | `manifests/application_intelligence/company_bottleneck_atlas.external.json` |
 | Repository links and current evidence state | live-link and live-evidence manifests |
@@ -42,21 +45,24 @@ The public 67-repository inventory is not a claim about the size of the owned es
 | Public recruiter and machine presentation | `GlacierEQ/job-application` projection |
 | Human, ATS, and machine résumé generation | `GlacierEQ/JOB-RESUME-BUILDER-` projection |
 
+No row in this table transfers project-direction authority away from the Operator or factual source authority away from the repository that owns the underlying state.
+
 ## Why this exists
 
 The portfolio previously had several individually useful manifests, website data files, résumé facts, company matrices, evidence summaries, and a growing repository estate. The risk was not lack of information. The risk was **multiple surfaces becoming independent truth stores** or repository volume being mistaken for independent accomplishment.
 
-The root-truth contract eliminates that failure mode:
+The coordination contract addresses that failure mode:
 
-1. Helix references existing governed manifests rather than rebuilding them.
+1. Helix references existing evidence-bearing manifests rather than rebuilding them as competing truth stores.
 2. A deterministic validator reconciles admitted inventory, flagships, company shards, and projections.
 3. Every `HELIX_ADMITTED` repository must exist in the 67-repository admitted inventory.
-4. Every admitted inventory child must map to at least one governed company or GlacierEQ Core track.
+4. Every admitted inventory child must map to at least one tracked company or GlacierEQ Core evidence surface.
 5. Authenticated estate compilation happens separately and never rewrites the admitted inventory into a repository-count résumé.
 6. Duplicate, backup, archive, successor, dependency, and reference relationships are typed rather than counted as separate accomplishments.
 7. Public projections may not publish private records, legal-private identities, authenticated census rows, or raw owned-estate cardinality.
 8. A source-head, evidence, estate-policy, or company-intelligence change makes dependent projections stale.
 9. Consumers pull from Helix at build time or use a link-only projection.
+10. Coordination, ranking, validation, or receipt generation never creates project-direction authority.
 
 ## Estate intelligence compiler
 
@@ -69,7 +75,7 @@ namespace isolation
         ↓
 lineage collapse
         ↓
-canonical systems
+evidence-supported system groupings
         ↓
 capability donors
         ↓
@@ -88,19 +94,20 @@ The hard boundaries are intentional:
 - experiment state is not promoted as completed flagship work merely because a repository exists;
 - company relevance is capability overlap, not employer affiliation, endorsement, or hiring prediction;
 - external company operating-pressure records preserve the distinction between official-source observations and GlacierEQ inference;
-- public recruiter surfaces remain compressed even when the private estate is large.
+- public recruiter surfaces remain compressed even when the private estate is large;
+- no compiler classification supersedes explicit Operator intent or repository-native factual state.
 
 ## Projection model
 
 ### Public portal
 
-`GlacierEQ/job-application` consumes the root manifest and public-safe source records. It may change navigation, visual hierarchy, density, and audience ordering. It may not change evidence states, IDs, test counts, blockers, or authority boundaries.
+`GlacierEQ/job-application` consumes the root manifest and public-safe source records. It may change navigation, visual hierarchy, density, audience ordering, and evidence selection. It may not change evidence states, IDs, test counts, blockers, provenance, source boundaries, or project authority.
 
 The public portal may consume estate compiler policy, role-capability projection policy, and dated external company-intelligence metadata. It may not consume authenticated census rows, private estate identities, legal-private records, or the private estate assertion layer.
 
 ### Résumé Shapeshifter
 
-`GlacierEQ/JOB-RESUME-BUILDER-` consumes the same public-safe authority. It selects evidence according to role while preserving the factual record. Human, ATS, and machine views are projections of the same claims.
+`GlacierEQ/JOB-RESUME-BUILDER-` consumes the same public-safe evidence substrate. It selects evidence according to role while preserving the factual record. Human, ATS, and machine views are projections of the same claims.
 
 ### Company packets
 
@@ -112,7 +119,7 @@ Machine-public outputs may expose stable public-safe policy and proof metadata, 
 
 ### Cloud resources
 
-Google Drive, Dropbox, Box, and Notion may hold links, indexes, generated packets, private operational state, and evidence-bound internal assertions. They do not become competing sources of portfolio truth. Public projections receive only public-safe fields.
+Google Drive, Dropbox, Box, and Notion may hold links, indexes, generated packets, private operational state, and evidence-bound internal assertions. They do not become competing sources of portfolio truth or project-direction authority. Public projections receive only public-safe fields.
 
 ## Validation
 
@@ -122,7 +129,7 @@ Run:
 python scripts/validate_portfolio_root_truth.py
 python scripts/validate_portfolio_root_truth.py \
   --write-receipt artifacts/portfolio-root-truth-receipt.json
-python -m pytest -q tests/test_portfolio_root_truth.py
+python -m pytest -q tests/test_portfolio_root_truth.py tests/test_active_authority_boundaries.py
 ```
 
 The validator and contract tests check:
@@ -139,9 +146,11 @@ The validator and contract tests check:
 - complete required company-track coverage;
 - six-column repository-row contracts;
 - every `HELIX_ADMITTED` repository against admitted inventory;
-- every admitted inventory child against the governed dossier mesh;
+- every admitted inventory child against the tracked dossier/evidence mesh;
 - public/private publication boundaries;
-- deterministic receipt generation.
+- deterministic receipt generation;
+- Operator-first active authority surfaces;
+- absence of active `GOVERNED_BY` edges in the current mesh fragments.
 
 ## Update lifecycle
 
@@ -152,7 +161,7 @@ Helix live evidence + authenticated estate refresh
         ↓
 lineage / capability / company projection compilation
         ↓
-Portfolio Root Truth validation
+portfolio evidence-root validation
         ↓
 deterministic internal + public-safe receipts
         ↓
@@ -175,3 +184,5 @@ No projection is current merely because it renders. It is current only when its 
 - No company-affiliation implication.
 - No promotion from source presence alone.
 - No completion claim without a passing receipt.
+- No registry, graph edge, receipt, projection, workflow, donor system, or AI output acquiring project-direction authority by existing.
+- No Helix classification silently redefining the purpose or target architecture of a peer repository.
