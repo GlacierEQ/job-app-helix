@@ -2,74 +2,76 @@
 
 ## Candidate signal
 
-Casey Barton built Job-App Helix to turn a 67-repository engineering portfolio into an evidence-bound review system. The portfolio spans agent governance, distributed systems, model infrastructure, telemetry, safety controls, document intelligence, product engineering, and polyglot architecture.
+Casey Barton built Job-App Helix to turn a large engineering portfolio into an evidence-bound employment intelligence and execution system. The portfolio spans agent infrastructure, distributed systems, model infrastructure, telemetry, safety controls, document intelligence, product engineering, and polyglot architecture.
 
-The differentiator is not the number of repositories or languages. It is making a large body of work **legible, composable, and falsifiable**:
+The differentiator is not repository count or language count. It is making a large body of work **legible, composable, falsifiable, and useful for real hiring decisions**:
 
-- every repository receives an individual completeness, innovation, quality, function, and README grade;
-- documentation distinguishes verified, partially verified, blocked, unverified, failed, and candidate scope;
-- recruiter, expert, and AI-toolchain views are separated without contradicting one another;
-- language choices must own a real system boundary and provide a build/test receipt;
-- typed repository relationships describe combined value rather than merely cross-linking projects.
+- repository evidence remains distinct as verified, partially verified, blocked, unverified, failed, or candidate scope;
+- recruiter, expert, and AI-toolchain views can be generated from the same evidence without changing the underlying facts;
+- language choices must own a real system boundary and provide a build/test/proof path;
+- typed repository relationships describe combined capability rather than silently creating hierarchy;
+- portfolio intelligence can rank, route, restore, and project capability without becoming project-direction authority;
+- application state cannot advance beyond the strongest externally supported evidence.
 
-**Current live portfolio status:** `PARTIALLY VERIFIED`. The July 29 evidence audit covered the prior 66-repository boundary and classified one repository as partially verified, twenty as README-verified/runtime-unverified, one as blocked/unverified, and forty-four as unverified. `UNVERIFIED` means that current evidence is insufficient to make a working/not-working claim; it does not mean the repository is defective. Later component promotions and the July 31 admission of Resume Shapeshifter do not silently rewrite that dated audit.
+**Current portfolio posture:** `PARTIALLY VERIFIED`. Dated audits remain historical evidence at their original scope. Later promotions, restorations, and admissions do not silently rewrite those observations.
 
-The live boundary now contains one Helix root and sixty-six children. `JOB-RESUME-BUILDER-` was admitted because it is the lead product flagship presented by `job-application`; its absence created a governance gap between the recruiter portal and the evidence control plane.
+The admitted public boundary currently contains one Helix root and sixty-six child repositories. That inventory is a coordination/projection surface, not a claim that Helix owns the purpose or factual source state of those repositories.
 
 ## What a recruiter should open first
 
 | Priority | Artifact | Why it matters |
 |---:|---|---|
-| 1 | [Live recruiter presentation](https://casey-barton-glaciereq.vercel.app/) | Deployed recruiter, engineering, and AI reading paths generated from canonical Helix evidence records. |
-| 2 | [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) | Lead product flagship: source-grounded résumé tailoring with deterministic truthfulness checks and executable TypeScript tests. |
-| 3 | [Casey Barton candidate source](hire_package/casey-barton/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and immutable evidence links. |
-| 4 | [Root README](README.md) | Portfolio control-plane outcome, expert architecture, and machine contract. |
-| 5 | [Historical 66-repository evidence audit](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification states, and the highest-priority correction for the original audit boundary. |
-| 6 | [Exact live portfolio inventory](manifests/portfolio_repositories.json) | Pins the current boundary to one root and sixty-six child repositories. |
-| 7 | [GitHub curation ledger](manifests/github_repository_curation_2026-07-31.json) | Records admission, deferral, duplicate, private, backup, archive, and external-source decisions. |
-| 8 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
-| 9 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how canonical records become the live Vercel hire surface (`casey-barton-glaciereq.vercel.app`); Pages is optional/disabled. |
+| 1 | [Live recruiter presentation](https://casey-barton-glaciereq.vercel.app/) | Recruiter, engineering, and AI reading paths generated from public-safe evidence. |
+| 2 | [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) | Lead product flagship: source-grounded résumé tailoring with deterministic truthfulness controls and executable TypeScript tests. |
+| 3 | [Casey Barton candidate source](hire_package/casey-barton/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and evidence links. |
+| 4 | [Job-App Helix](README.md) | Employment intelligence, application execution, evidence compilation, Genius innovation, and capability-restoration architecture. |
+| 5 | [Historical 66-repository evidence audit](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades and verification states at the dated audit boundary. |
+| 6 | [Admitted portfolio inventory](manifests/portfolio_repositories.json) | Current public-portfolio coordination boundary. |
+| 7 | [GitHub curation ledger](manifests/github_repository_curation_2026-07-31.json) | Dated admission, deferral, duplicate, private, backup, archive, and external-source decisions. |
+| 8 | [Active APEX README contract](docs/README_APEX_TEMPLATE.md) | Current Operator-first, capability-preserving documentation architecture. |
+| 9 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains the Vercel hire surface and its public evidence boundary. |
 
 ## Strongest current exhibits
 
 ### Job-App Helix
 
-**Role:** portfolio control plane, evidence ledger, and deployed candidate presentation source.  
-**Signal:** systems architecture, deterministic decision logic, Protobuf contracts, CI design, documentation engineering, proof-weighted auditing, and truth-preserving deployment semantics.  
-**Status:** partially verified; repository CI is authoritative for named scopes; the live public presentation is the Vercel surface above, not GitHub Pages.
+**Role:** employment intelligence and execution plane, evidence compiler, application lifecycle engine, restoration system, and candidate-presentation source.  
+**Signal:** systems architecture, deterministic decision logic, portfolio intelligence, Protobuf contracts, application truth-state design, capability archaeology, reversible restoration, innovation ranking, recruiter compilation, and proof-weighted auditing.  
+**Boundary:** Helix coordinates and verifies evidence. It does not acquire project-direction authority over the Operator or peer repositories.
 
 ### Resume Shapeshifter
 
 **Role:** source-grounded résumé analysis and tailoring product.  
 **Signal:** Next.js/TypeScript product engineering, model-boundary failure semantics, Zod contracts, deterministic anti-fabrication controls, and human review.  
-**Status:** hardening; source, tests, lint, and build workflow are inspectable. Production deployment, document export, persistence, and calibrated applicant-tracking outcomes remain unverified.
+**Status:** source, tests, lint, and build workflow are inspectable; production deployment and applicant-tracking outcomes require their own evidence.
 
 ### AKOS
 
-**Role:** authority, provenance, maturity, and completion semantics for agentic systems.  
-**Signal:** governance architecture, operational cognition, read-only action boundaries, and evidence-bound verification.  
-**Status:** repository-native TEST evidence exists at its named promotion commit; later receipts should be consulted for exact counts and canonical SHAs.
+**Role:** capability donor for operational cognition, evidence/provenance conventions, and agent-system design.  
+**Signal:** repository-native tests, cognition architecture, read-only action boundaries, and evidence-aware verification.  
+**Boundary:** AKOS evidence may strengthen Helix and other systems; it does not receive project-direction authority by being referenced or consumed.
 
 ### Agent Coordinator
 
 **Role:** deterministic dependency-aware scheduling under global and specialist-role budgets.  
-**Signal:** typed scheduling policy, graph validation, hardened JUnit evidence, compatibility preservation, and explicit candidate-versus-hosted proof boundaries.  
-**Status:** 62 executed Python 3.13 tests are recorded at the named promotion receipt; hosted cross-version scope remains explicit in that receipt.
+**Signal:** typed scheduling policy, graph validation, hardened JUnit evidence, compatibility preservation, and explicit candidate-versus-hosted proof boundaries.
 
-### The Tower of Babel
+### Tower of Babel
 
-**Role:** reference architecture for choosing the right language for the right workload.  
-**Signal:** polyglot design with languages assigned to performance, safety, proof, hardware, interoperability, or deployment boundaries.  
-**Status:** later repository-native TEST promotion exists in the rollout manifest; claims remain bounded to the recorded proof.
+**Role:** technology-placement, interoperability, and proof capability donor.  
+**Signal:** polyglot design with technologies assigned to performance, safety, proof, hardware, interoperability, or deployment boundaries.  
+**Boundary:** Tower can inform technology placement at a scoped engineering boundary; it is not an estate-wide project-direction ruler.
 
 ## Engineering qualities demonstrated
 
-- **Architecture over accumulation:** related repositories are modeled as systems with directional relationships.
-- **Evidence discipline:** inventory hashes, README validation, runtime execution, benchmarks, hardware execution, and deployment receipts are treated as different proof classes.
-- **Polyglot judgment:** languages are accepted only when they materially improve a boundary.
-- **Failure semantics:** timeouts, zero-test runs, missing repositories, missing receipts, and blocked toolchains cannot silently become passes.
-- **Deployment integrity:** the recruiter site is generated from canonical source records and every public payload is SHA-256 listed.
-- **Human communication:** the first screen explains value; deeper sections reward technical scrutiny; machine blocks support ingestion and orchestration.
+- **Architecture over accumulation:** related repositories are modeled as systems with directional, scoped relationships.
+- **Function over governance:** useful software and real outcome paths remain the dominant criterion; gates and receipts support function rather than substitute for it.
+- **Evidence discipline:** inventory hashes, source identity, tests, runtime execution, benchmarks, hardware execution, and deployment receipts remain different proof classes.
+- **Capability preservation:** restoration tooling recovers exact historical capability while protecting later verified gains.
+- **Innovation with attack surfaces:** Genius candidates are invented, attacked, ranked, and advanced instead of being promoted because they sound novel.
+- **Polyglot judgment:** technologies earn their place at a boundary rather than by increasing a language count.
+- **Failure semantics:** timeouts, zero-test runs, missing repositories, stale receipts, unsafe mutation, and unverifiable external effects cannot silently become passes.
+- **Human communication:** the first screen explains value; deeper sections reward technical scrutiny; machine surfaces support deterministic continuation.
 
 ## Application spiral
 
@@ -77,17 +79,15 @@ The candidate surface uses one evidence-accumulating path:
 
 `OBSERVE → RECOVER → PLAN → ROUTE → ACT → VERIFY → PERSIST → RESUME`
 
-Each revolution begins from accumulated context, authority, artifacts, failures, and receipts. Improvement is the consequence of verified persistence and resumption, not an unbounded rewrite loop.
+Each revolution begins from accumulated context, artifacts, failures, receipts, and current Operator direction. Improvement is the consequence of verified persistence and stronger action, not an unbounded rewrite loop.
 
 ## Current limitations
 
-- The complete 67-repository runtime surface has not been executed in one authoritative environment.
-- The README Mesh rollout receipt covers twenty-one declared nodes, not all sixty-seven repositories.
-- Resume Shapeshifter has been admitted to the live inventory but still requires Wave 3 repository-native promotion evidence.
-- Many repositories still need clean-checkout CI, current test receipts, and README rewrites.
-- Publishing the recruiter surface proves a static deployment from a named Helix commit; it does not establish portfolio-wide production deployment.
-- Provider deployment, customer impact, portfolio-wide scale, and performance remain unverified unless a specific repository supplies a current receipt.
-- The connected Mac worktree was offline during the July 31 GitHub reconciliation, so local-only and uncommitted work was not inspected.
+- The complete admitted portfolio has not been executed in one authoritative runtime environment.
+- The README Mesh rollout receipt covers a bounded declared subset rather than every repository.
+- Many repositories still require current clean-checkout proof and stronger implementation depth.
+- Publishing a recruiter surface proves a deployment of that presentation, not portfolio-wide production operation.
+- Provider deployment, customer impact, portfolio-wide scale, and performance remain unverified unless a specific source supplies current evidence.
 
 ## Verification
 
@@ -98,11 +98,11 @@ python -m pip install -e ".[dev]"
 python -m ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
 python -m pytest -q
 python scripts/check_proto_contract.py
-python -m job_app_helix.readme_mesh_cli validate
+python scripts/check_public_surface.py
 job-app-helix-portfolio validate
 ```
 
-Build the recruiter surface from canonical records:
+Build the recruiter surface:
 
 ```bash
 python scripts/build_recruiter_site.py \
@@ -112,10 +112,4 @@ python scripts/build_recruiter_site.py \
 python -m pytest -q tests/test_recruiter_site_deployment.py
 ```
 
-The multi-repository audit additionally requires the canonical local `repos/` workspace:
-
-```bash
-python ci_audit_portfolio.py
-```
-
-That command validates the exact live inventory before executing its bounded runtime sample and demo suite. Its receipt names every repository process that actually ran.
+Multi-repository verification additionally requires an available workspace containing the referenced repositories. A receipt proves only what actually ran.
