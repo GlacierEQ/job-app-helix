@@ -160,16 +160,16 @@
       "stage": "CLAIM_PROMOTED"
     },
     "microsoft": {
-      "next_gate": "Verify a current public Microsoft role/team and inspect the exact recruiter-admitted Microsoft-aligned repositories before promoting beyond general systems alignment."
+      "next_gate": "Verify a current public Microsoft role/team and inspect relevant source-admitted Microsoft-aligned records before promoting beyond general systems alignment."
     },
     "notion": {
-      "next_gate": "Verify a current public Notion role/team and inspect the exact recruiter-admitted Notion-aligned repositories before promoting beyond general platform alignment."
+      "next_gate": "Verify a current public Notion role/team and inspect relevant source-admitted Notion-aligned records before promoting beyond general platform alignment."
     },
     "nvidia": {
-      "next_gate": "Verify a current public NVIDIA role/team, identify one externally supportable infrastructure problem, then inspect only the governed NVIDIA-aligned repositories that could materially address it."
+      "next_gate": "Verify a current public NVIDIA role/team, identify one externally supportable infrastructure problem, then inspect the relevant source-bound NVIDIA-aligned records that could materially address it."
     },
     "openai": {
-      "next_gate": "Verify a current public OpenAI role/team and inspect the exact admitted KV-sentinel implementation before connecting it to any company-specific engineering problem."
+      "next_gate": "Verify a current public OpenAI role/team and inspect the source-admitted KV-sentinel implementation before connecting it to any company-specific engineering problem."
     },
     "spacex": {
       "next_gate": "Verify a current public SpaceX role/team and operating problem, then reconcile it against the governed SpaceX repository family and existing README Mesh before any implementation claim."
