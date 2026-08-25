@@ -3,9 +3,11 @@
 > **APEX job-ecosystem restoration is ACTIVE.**  
 > Program: [`docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md`](docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md) · Estate elevation: [`docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md`](docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md) · Status: [`STATUS.md`](STATUS.md)
 
+> **Full-platform contract:** [`docs/FULL_PLATFORM_CONTRACT.md`](docs/FULL_PLATFORM_CONTRACT.md) defines the coherent public hiring platform, its connected authority and operational layers, and the rule that evidence boundaries do not impose arbitrary platform caps.
+
 > Turns a large engineering estate into a system that can recover lost capability, complete intended systems, compose complementary strengths, prove real behavior, and present the result without flattening distinct repositories into one oversized claim.
 
-Job-App Helix is the portfolio-intelligence, restoration, evolution, productization, and proof engine for the GlacierEQ hiring ecosystem. It maintains the exact recruiter-facing boundary while treating the wider owned estate as a dynamic capability substrate. It discovers repository-native execution paths, excavates earlier strong mechanisms, preserves later gains, composes complementary systems, and emits evidence records that humans and AI systems can read from the same source.
+Job-App Helix is the portfolio-intelligence, restoration, evolution, productization, and proof engine for the GlacierEQ hiring ecosystem. It governs public-safe audience projections while treating the wider owned estate as a dynamic capability substrate. It discovers repository-native execution paths, excavates earlier strong mechanisms, preserves later gains, composes complementary systems, and emits evidence records that humans and AI systems can read from the same source.
 
 **Release:** `0.3.0`  
 **Default branch:** `main`  
@@ -22,7 +24,7 @@ A large portfolio becomes weaker when evidence is inflated, but it also becomes 
 
 It does seven things:
 
-1. **Defines presentation boundaries without confusing them with the estate.** The recruiter set is exact; the engineering discovery set is wider.
+1. **Defines audience projections without confusing them with the estate.** Each public view is evidence-aware and purpose-specific; engineering discovery remains open across the connected capability graph.
 2. **Reconstructs purpose before judging structure.** Code, history, issues, branches, integrations, predecessors, successors, archives, and project context all contribute.
 3. **Recovers capability.** Earlier strong mechanisms can be restored additively without rewinding later gains.
 4. **Raises systems into operable products.** Missing central functions are implemented and natural package/deployment paths are completed.
@@ -36,7 +38,7 @@ It does seven things:
 |---|---|
 | [`docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md`](docs/LIBRARY_CAPABILITY_ELEVATION_PROGRAM.md) | Estate-wide upward lifecycle: purpose reconstruction → recovery → composition → implementation → proof → integration → deployment/package. |
 | [`docs/PORTFOLIO_EXECUTION_PROGRAM.md`](docs/PORTFOLIO_EXECUTION_PROGRAM.md) | The recruiter-portfolio operating model and four upward execution waves. |
-| [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json) | Exact recruiter-facing repository boundary. |
+| [`manifests/portfolio_repositories.json`](manifests/portfolio_repositories.json) | Current recruiter-facing projection with repository-native provenance and explicit evidence states. |
 | [`manifests/portfolio_rollout.json`](manifests/portfolio_rollout.json) | Upward wave partition, anti-contraction rules, evidence targets, and acceptance gates. |
 | [`manifests/library_priority_spine.json`](manifests/library_priority_spine.json) | High-leverage execution queue and capability-elevation lifecycle; priority is not authority over unlisted repos. |
 | [`manifests/readme_mesh.json`](manifests/readme_mesh.json) | Typed identities, evidence references, and directional relationships. |
