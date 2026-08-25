@@ -50,7 +50,7 @@ It does seven things:
 ### What is already real
 
 - deterministic campaign and portfolio engines;
-- exact recruiter inventory contracts;
+- source-aware recruiter inventory contracts;
 - four-wave upward execution planning;
 - stack-aware non-shell command discovery;
 - positive test-count proof semantics;
