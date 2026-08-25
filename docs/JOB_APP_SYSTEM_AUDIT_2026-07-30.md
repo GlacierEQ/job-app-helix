@@ -25,7 +25,7 @@ The public portal was rebuilt and merged into `main` at `0ff1946f22049bb22f614ea
 
 Completed corrections:
 
-- replaced repository-count marketing with three evidence-bearing flagship systems;
+- replaced repository-count marketing with a source-bound, evidence-bearing systems catalog;
 - corrected stale visibility for AKOS, pro-code, and xAI Colossus Cooling;
 - made the public showcase manifest-driven;
 - hardened generation and tests against stale access claims and blocked content;
