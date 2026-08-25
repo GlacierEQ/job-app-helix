@@ -86,7 +86,7 @@ Source-path readback confirmed the evidence modules referenced by the enriched R
 
 The reference manifest is the source for repository identity and topology. Future updates must:
 
-- preserve exactly three audience views;
+- preserve the complete audience-projection set and allow additional evidence-aware views to evolve without redefining the underlying capability graph;
 - point material claims to evidence;
 - keep graph edges directional and meaningful;
 - compile the real Protobuf schema;
