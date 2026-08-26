@@ -173,9 +173,8 @@ def _public_symbol_count(blob: bytes, path: str) -> tuple[int, bool]:
         return 0, False
     count = 0
     for node in tree.body:
-        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-            if not node.name.startswith("_"):
-                count += 1
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)) and not node.name.startswith("_"):
+            count += 1
     return count, True
 
 

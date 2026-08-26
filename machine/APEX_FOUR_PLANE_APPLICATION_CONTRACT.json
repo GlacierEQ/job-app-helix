@@ -1,0 +1,171 @@
+{
+  "schema": "glaciereq.apex-four-plane-application-contract.v1",
+  "objective": "compose all retained job-application systems into one complete outcome engine without collapsing their distinct responsibilities",
+  "planes": {
+    "intelligence_control": {
+      "repository": "GlacierEQ/job-app-helix",
+      "owns": [
+        "estate and repository evidence graph",
+        "company and role intelligence",
+        "opening discovery and freshness",
+        "candidate evidence contract",
+        "provider field discovery",
+        "provider preparation and finalization",
+        "submission authorization boundary",
+        "outcome calibration"
+      ],
+      "must_not_own": [
+        "private application lifecycle history",
+        "resume editor product UI",
+        "public recruiter website authority"
+      ]
+    },
+    "candidate_product": {
+      "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "owns": [
+        "resume and job description ingestion",
+        "source-grounded tailoring proposals",
+        "truth validation",
+        "human review",
+        "ATS JSON and printable artifact compilation",
+        "candidate product UX and local revision history"
+      ],
+      "must_not_own": [
+        "external submission state",
+        "estate-wide evidence authority",
+        "recruiter public projection authority"
+      ]
+    },
+    "private_execution": {
+      "repository": "GlacierEQ/job-app",
+      "owns": [
+        "private target and application lifecycle",
+        "claim and artifact provenance",
+        "integrity event ledger",
+        "transactional lifecycle mutations",
+        "external action receipt state",
+        "private operator notes and follow-up"
+      ],
+      "must_not_own": [
+        "public recruiter content",
+        "company intelligence truth",
+        "resume-generation truth authority"
+      ]
+    },
+    "public_distribution": {
+      "repository": "GlacierEQ/job-application",
+      "owns": [
+        "recruiter-facing experience",
+        "role company and proof projections",
+        "public-safe machine endpoints",
+        "portfolio navigation",
+        "deployment packaging",
+        "production health and readback"
+      ],
+      "must_not_own": [
+        "private application state",
+        "private repository identities",
+        "unverified source claims",
+        "submission authority"
+      ]
+    }
+  },
+  "handoffs": [
+    {
+      "from": "GlacierEQ/job-app-helix",
+      "to": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "contract": "HELIX_APPLICATION_INTELLIGENCE",
+      "required_fields": [
+        "source_commit",
+        "company_id",
+        "role identity",
+        "observed source evidence",
+        "inference boundary",
+        "freshness state",
+        "claim ceiling"
+      ],
+      "failure_behavior": "reject stale malformed or source-unbound intelligence; candidate history remains authoritative for personal claims"
+    },
+    {
+      "from": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "to": "GlacierEQ/job-app",
+      "contract": "REVIEWED_APPLICATION_ARTIFACT_SET",
+      "required_fields": [
+        "candidate identity",
+        "target identity",
+        "source resume digest",
+        "review state",
+        "artifact digests",
+        "change summary",
+        "truth-boundary receipt"
+      ],
+      "failure_behavior": "do not advance READY_TO_SEND when review provenance or artifact identity is incomplete"
+    },
+    {
+      "from": "GlacierEQ/job-app-helix",
+      "to": "GlacierEQ/job-app",
+      "contract": "LIVE_OPENING_AND_PROVIDER_PREPARATION",
+      "required_fields": [
+        "opening_id",
+        "opening digest",
+        "source observed timestamp",
+        "application_id",
+        "provider field bundle digest",
+        "preparation digest",
+        "unresolved applicant decisions"
+      ],
+      "failure_behavior": "invalidate readiness on opening or field drift; never infer applicant-only values"
+    },
+    {
+      "from": "GlacierEQ/job-app",
+      "to": "GlacierEQ/job-app-helix",
+      "contract": "APPLICATION_OUTCOME_RECEIPT",
+      "required_fields": [
+        "application_id",
+        "opening_id",
+        "state",
+        "state_version",
+        "external receipt type",
+        "receipt digest",
+        "observed_at"
+      ],
+      "failure_behavior": "no outcome calibration credit without external receipt evidence"
+    },
+    {
+      "from": "GlacierEQ/job-app-helix",
+      "to": "GlacierEQ/job-application",
+      "contract": "PUBLIC_PROOF_PROJECTION",
+      "required_fields": [
+        "source_commit",
+        "repository identities safe for publication",
+        "verification state",
+        "claim ceiling",
+        "freshness state",
+        "role company projections",
+        "private identity redactions"
+      ],
+      "failure_behavior": "fail closed on private identity leak unsupported claim stale source or projection mismatch"
+    }
+  ],
+  "external_action_boundary": {
+    "rule": "no send submit message or employer-facing mutation is inferred from preparation review export or deployment",
+    "submission_requires": [
+      "ready_for_human_submission true",
+      "all required applicant decisions resolved",
+      "live provider fields revalidated",
+      "exact artifact digests",
+      "explicit submit authorization",
+      "duplicate-submit fence",
+      "provider response capture"
+    ]
+  },
+  "completion_definition": [
+    "all five handoff contracts implemented and consumer-tested",
+    "all four planes independently verified at current heads",
+    "public plane deployed with exact source binding and critical-route readback",
+    "candidate product deployed with browser E2E",
+    "private execution plane has durable recoverable state and integrity proof",
+    "intelligence plane has current opening and repository freshness proofs",
+    "outcome receipts close the loop back into calibration"
+  ]
+}

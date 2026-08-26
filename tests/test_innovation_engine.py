@@ -21,6 +21,7 @@ from job_app_helix.innovation_engine import (
     priority_score,
     promotion_gate,
     rank_targets,
+    transition_allowed,
     transition_run,
     validate_estate_bundle_integrity,
     validate_payload,
@@ -131,6 +132,24 @@ def promotion_record(head: str = "abc123", *, ready: bool = True) -> dict[str, o
         },
         "decision": "PROMOTION_READY" if ready else "REJECTED",
         "evidence_refs": ["verification:fixture"],
+    }
+
+
+def operator_authorization(
+    target_state: str,
+    *,
+    repository: str = "GlacierEQ/high",
+    expected_head: str = "abc123",
+    observed_head: str = "abc123",
+) -> dict[str, object]:
+    return {
+        "authorization_id": "operator-authorization-1",
+        "operator_intent_id": "operator-intent-1",
+        "status": "APPROVED",
+        "target_state": target_state,
+        "repository": repository,
+        "expected_head": expected_head,
+        "observed_head": observed_head,
     }
 
 
@@ -534,12 +553,13 @@ def test_estate_queue_rejects_tamper_wrong_hash_and_nonreference_target() -> Non
             expected_hash,
         )
 
-    with pytest.raises(InnovationContractError, match="existing reference estate system"):
-        compile_estate_target_queue(
-            bundle,
-            [assessment("GlacierEQ/fake", "sys-fake", 1.0)],
-            expected_hash,
-        )
+    queue = compile_estate_target_queue(
+        bundle,
+        [assessment("GlacierEQ/fake", "sys-fake", 1.0)],
+        expected_hash,
+    )
+    assert queue["targets"][0]["index_status"] == "UNINDEXED"
+    assert queue["targets"][0]["active_route"] == "APEX_EXPLORATION"
 
 
 def test_engineering_run_supports_progressive_state_before_final_ledger() -> None:
@@ -558,7 +578,7 @@ def test_engineering_run_supports_progressive_state_before_final_ledger() -> Non
     validate_payload(updated, "engineering-run")
 
 
-def test_engine_cannot_assign_operator_only_statuses() -> None:
+def test_engine_cannot_assign_operator_only_statuses_even_with_approval_record() -> None:
     run = {
         "state": "PROMOTION_READY",
         "history": [],
@@ -568,11 +588,51 @@ def test_engine_cannot_assign_operator_only_statuses() -> None:
         "promotion_id": "promotion-1",
         "promotion_record": promotion_record("abc123"),
         "source_commit": "candidate123",
+        "operator_authorization": operator_authorization("SOURCE_BOUND"),
     }
 
     for target in ("SOURCE_BOUND", "SUPERSEDED", "ARCHIVED"):
         with pytest.raises(InnovationContractError, match="operator-only status"):
             transition_run(run, target, ["operator-decision-required"])
+
+
+def test_operator_only_persisted_state_requires_bound_operator_authorization() -> None:
+    run = {
+        "schema": "glaciereq.engineering-run.v1",
+        "run_id": "operator-state-fixture",
+        "repository": "GlacierEQ/high",
+        "expected_head": "abc123",
+        "observed_head": "abc123",
+        "state": "SOURCE_BOUND",
+        "history": [],
+    }
+    with pytest.raises(InnovationContractError, match="operator_authorization"):
+        validate_payload(run, "engineering-run")
+
+    run["operator_authorization"] = operator_authorization("SOURCE_BOUND")
+    validate_payload(run, "engineering-run")
+    monitored = transition_run(run, "MONITORED", ["operator:authorization"])
+    assert monitored["state"] == "MONITORED"
+
+    run["operator_authorization"]["observed_head"] = "def456"
+    with pytest.raises(InnovationContractError, match="observed_head does not match"):
+        validate_payload(run, "engineering-run")
+
+    run["observed_head"] = "def456"
+    with pytest.raises(InnovationContractError, match="stale repository state"):
+        validate_payload(run, "engineering-run")
+
+
+def test_injected_policy_cannot_make_operator_only_status_reachable(tmp_path: Path) -> None:
+    policy = load_policy()
+    policy["states"]["PROMOTION_READY"].append("SOURCE_BOUND")
+    policy_path = tmp_path / "injected-policy.json"
+    policy_path.write_text(json.dumps(policy), encoding="utf-8")
+
+    with pytest.raises(InnovationContractError, match="cannot expose engine transitions"):
+        load_policy(policy_path)
+    with pytest.raises(InnovationContractError, match="cannot expose engine transitions"):
+        transition_allowed("PROMOTION_READY", "SOURCE_BOUND", policy)
 
 
 def test_engineering_ledger_requires_all_truth_surfaces() -> None:

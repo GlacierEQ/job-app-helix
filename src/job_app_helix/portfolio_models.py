@@ -153,6 +153,31 @@ class RepositoryPlan:
 
 
 @dataclass(frozen=True)
+class CommandContinuation:
+    """A capability-recovery program for a command that did not yet verify.
+
+    Continuations preserve the original receipt and never assert that a command
+    executed, passed, or mutated a workspace. They turn an observable execution
+    state into a concrete next operational path.
+    """
+
+    command_id: str
+    capability: str
+    reason: str
+    next_actions: tuple[str, ...]
+    explicit_authorization_required: bool = False
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "command_id": self.command_id,
+            "capability": self.capability,
+            "reason": self.reason,
+            "next_actions": list(self.next_actions),
+            "explicit_authorization_required": self.explicit_authorization_required,
+        }
+
+
+@dataclass(frozen=True)
 class CommandReceipt:
     id: str
     evidence_level: EvidenceLevel
@@ -165,12 +190,16 @@ class CommandReceipt:
     observed_count: int | None
     stdout_tail: str
     stderr_tail: str
+    continuation: CommandContinuation | None = None
 
     def to_dict(self) -> dict[str, object]:
         payload = asdict(self)
         payload["evidence_level"] = self.evidence_level.name
         payload["status"] = self.status.value
         payload["argv"] = list(self.argv)
+        payload["continuation"] = (
+            self.continuation.to_dict() if self.continuation is not None else None
+        )
         return payload
 
 
@@ -183,6 +212,7 @@ class RepositoryReceipt:
     target_evidence: EvidenceLevel
     blockers: tuple[str, ...]
     commands: tuple[CommandReceipt, ...]
+    continuations: tuple[CommandContinuation, ...] = ()
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -193,4 +223,5 @@ class RepositoryReceipt:
             "target_evidence": self.target_evidence.name,
             "blockers": list(self.blockers),
             "commands": [command.to_dict() for command in self.commands],
+            "continuations": [continuation.to_dict() for continuation in self.continuations],
         }

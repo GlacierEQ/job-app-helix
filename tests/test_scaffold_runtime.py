@@ -7,8 +7,8 @@ import pytest
 from job_app_helix.scaffold_runtime import (
     AuthorityClaims,
     ContractError,
-    reference_json,
     digest,
+    reference_json,
     sanitized_environment,
     validate_budget,
 )

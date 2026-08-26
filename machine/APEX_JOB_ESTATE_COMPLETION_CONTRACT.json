@@ -1,0 +1,205 @@
+{
+  "schema": "glaciereq.apex-job-estate-completion.v1",
+  "date": "2026-08-21",
+  "objective": "MAXIMUM_COHERENT_ADVANCE",
+  "retention_rule": "KEEP_ALL_REPOSITORIES_PRESERVE_ALL_VERIFIED_GAINS",
+  "completion_rule": "NO_ACTIVE_REPOSITORY_IS_COMPLETE_UNTIL_ITS_STRONGEST_APPROPRIATE_FUNCTION_IS_IMPLEMENTED_VERIFIED_INTEGRATED_AND_LIVE_OR_PUBLISHED_WITH_READBACK",
+  "architecture": {
+    "application_planes": [
+      {
+        "repository": "GlacierEQ/job-app-helix",
+        "role": "INTELLIGENCE_CONTROL_ORCHESTRATION",
+        "must_own": [
+          "estate intelligence",
+          "company and opening intelligence",
+          "candidate and evidence contracts",
+          "provider field discovery",
+          "application preparation and finalization",
+          "submission authorization boundary",
+          "outcome feedback and calibration",
+          "cross-repository proof compilation"
+        ],
+        "deployment_form": "versioned control runtime plus machine APIs and proof artifacts"
+      },
+      {
+        "repository": "GlacierEQ/job-app",
+        "role": "PRIVATE_APPLICATION_EXECUTION",
+        "must_own": [
+          "private application lifecycle",
+          "claim and artifact provenance",
+          "integrity ledger",
+          "external receipt state transitions",
+          "private operator workflow",
+          "transactional rollback and recovery"
+        ],
+        "deployment_form": "private authenticated execution runtime with durable state and receipts"
+      },
+      {
+        "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+        "role": "TRUTH_CONSTRAINED_APPLICATION_PRODUCT",
+        "must_own": [
+          "resume and job-description analysis",
+          "source-grounded tailoring",
+          "human review",
+          "artifact compilation",
+          "browser workflow",
+          "product telemetry and reliability"
+        ],
+        "deployment_form": "production web application with browser E2E and live provider/readback proof"
+      },
+      {
+        "repository": "GlacierEQ/job-application",
+        "role": "PUBLIC_RECRUITER_DISTRIBUTION",
+        "must_own": [
+          "public recruiter experience",
+          "role and company projections",
+          "portfolio and proof navigation",
+          "public machine endpoints",
+          "deployment packaging",
+          "production health verification"
+        ],
+        "deployment_form": "production Vercel surface with exact-source binding and live route readback"
+      }
+    ],
+    "support_classes": {
+      "ACTIVE_RUNTIME": "must execute, test, integrate, deploy, observe, and recover",
+      "PRODUCT": "must provide a complete user workflow, production deployment, E2E proof, privacy and operational controls",
+      "LIBRARY_OR_SDK": "must expose a stable interface, package or consumable release, downstream integration proof, versioning and compatibility policy",
+      "CONTROL_PLANE": "must enforce state/authority boundaries, produce receipts, fail safely, and be exercised by at least one real downstream system",
+      "PROOF_SYSTEM": "must have reproducible execution, exact-source evidence, public-safe discoverability, and bounded claims",
+      "COMPANY_ALIGNED_SYSTEM": "must provide company-relevant technical capability with non-affiliation boundaries, current proof and a role-specific application projection",
+      "PRIVATE_SUPPORT": "must remain private, executable where appropriate, provenance-complete, redaction-safe and integrated through explicit contracts",
+      "DONOR": "must preserve lineage and either expose a reusable mechanism or be composed into a stronger active system without losing the donor repository",
+      "REFERENCE": "must be technically coherent, reproducible where runnable, limitation-explicit and discoverable from the estate graph",
+      "HISTORICAL": "must preserve provenance, freeze historical claims to dated state, link to successors and never impersonate current authority"
+    }
+  },
+  "completion_ladder": [
+    "DISCOVERED",
+    "ROLE_DEFINED",
+    "MECHANISM_COMPLETE",
+    "QUALITY_VERIFIED",
+    "ADVERSARIAL_VERIFIED",
+    "CONTRACT_INTEGRATED",
+    "DEPLOYABLE_OR_PUBLISHABLE",
+    "DEPLOYED_OR_PUBLISHED",
+    "LIVE_READBACK_VERIFIED",
+    "OBSERVABLE",
+    "RECOVERABLE",
+    "EVOLVABLE"
+  ],
+  "universal_gates": {
+    "identity": [
+      "explicit repository role",
+      "default branch and current head known",
+      "successor/predecessor relationships explicit",
+      "no conflicting ownership authority"
+    ],
+    "implementation": [
+      "central mechanism implemented",
+      "no decorative-only runtime claims",
+      "unfinished stubs tracked as blockers",
+      "verified gains preserved during refactoring"
+    ],
+    "quality": [
+      "format/lint/type/build gates appropriate to stack",
+      "deterministic automated tests",
+      "adversarial and failure-path tests",
+      "dependency and security hygiene",
+      "no secret or private-identity leakage"
+    ],
+    "integration": [
+      "typed or documented machine contracts",
+      "exact version or commit lineage where needed",
+      "consumer and producer tests",
+      "failure isolation",
+      "no second truth authority created by projection"
+    ],
+    "deployment": [
+      "reproducible deployment artifact",
+      "exact source identity in artifact",
+      "environment configuration documented",
+      "deployment receipt",
+      "health and critical route readback",
+      "rollback path"
+    ],
+    "operations": [
+      "runtime logs or equivalent observability",
+      "failure states distinguish code/provider/infrastructure errors",
+      "freshness and drift detection",
+      "recovery or re-verification path",
+      "outcome feedback where the system changes real workflows"
+    ],
+    "presentation": [
+      "human-readable purpose and proof",
+      "machine-readable status",
+      "claim ceiling",
+      "recruiter or operator continuation path",
+      "current-state timestamp"
+    ]
+  },
+  "anti_completion_theater": [
+    "README_ONLY",
+    "WORKFLOW_FILE_WITHOUT_SUCCESSFUL_RUN",
+    "READY_DEPLOYMENT_WITHOUT_HTTP_READBACK",
+    "GENERATED_ARTIFACT_WITHOUT_SOURCE_BINDING",
+    "GREEN_OLD_SHA_PROMOTED_AS_CURRENT_HEAD",
+    "DRAFT_PROMOTED_AS_EXTERNAL_ACTION",
+    "PUBLIC_PROJECTION_EXPOSING_PRIVATE_IDENTITY",
+    "REGISTRY_MEMBERSHIP_TREATED_AS_IMPLEMENTATION",
+    "PROTOTYPE_LABEL_USED_AS_PERMANENT_EXCUSE",
+    "SUPERSEDED_PR_LEFT_AS_SHADOW_AUTHORITY"
+  ],
+  "estate_execution_order": [
+    {
+      "tier": "P0",
+      "objective": "restore integrity of the four application planes",
+      "actions": [
+        "repair job-application public privacy and presentation gates",
+        "restore job-application production deployment and route readback",
+        "repair current job-app-helix exact-head CI",
+        "establish enforceable required-check policy for all four primary branches",
+        "bind deployment promotion to exact source plus live health"
+      ]
+    },
+    {
+      "tier": "P1",
+      "objective": "complete four-plane composition",
+      "actions": [
+        "formalize Helix to job-app handoff",
+        "formalize Resume Shapeshifter to job-app artifact handoff",
+        "formalize Helix to job-application projection contract",
+        "close stale Helix pins",
+        "make application outcome receipts feed Helix calibration",
+        "complete production E2E for Resume Shapeshifter"
+      ]
+    },
+    {
+      "tier": "P1",
+      "objective": "raise every recruiter child to current proof",
+      "actions": [
+        "refresh exact-head verification for all admitted child repositories",
+        "assign completion class and blocker list",
+        "upgrade thin mechanisms before presentation",
+        "deploy active product/runtime children where deployment adds real value",
+        "publish packaged libraries and reproducible proof systems"
+      ]
+    },
+    {
+      "tier": "P2",
+      "objective": "eliminate shadow state and estate drift",
+      "actions": [
+        "classify every open job-system PR",
+        "reconcile conflicting promotion ledgers",
+        "refresh stale status documents",
+        "replace project-control canonical terminology with APEX where semantic meaning is preserved",
+        "maintain one generated estate graph from authenticated repository state"
+      ]
+    }
+  ],
+  "terminal_definition": {
+    "active_repo": "EVOLVABLE with live or published readback and no known P0/P1 completion blocker",
+    "historical_repo": "provenance-complete, successor-linked, immutable historical boundary enforced",
+    "estate": "every retained repository has exactly one explicit strongest role, an evidence-backed completion state, an integration/discovery path, and no untracked deployment or verification gap"
+  }
+}

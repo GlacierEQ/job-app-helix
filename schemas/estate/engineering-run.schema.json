@@ -59,6 +59,38 @@
     "enterprise_consequence": {"type": "string", "minLength": 1},
     "failure_boundaries": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "evidence": {"type": "array", "items": {"type": "string", "minLength": 1}},
-    "next_constraint": {"type": "string", "minLength": 1}
-  }
+    "next_constraint": {"type": "string", "minLength": 1},
+    "operator_authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorization_id",
+        "operator_intent_id",
+        "status",
+        "target_state",
+        "repository",
+        "expected_head",
+        "observed_head"
+      ],
+      "properties": {
+        "authorization_id": {"type": "string", "minLength": 1},
+        "operator_intent_id": {"type": "string", "minLength": 1},
+        "status": {"const": "APPROVED"},
+        "target_state": {"enum": ["SOURCE_BOUND", "SUPERSEDED", "ARCHIVED"]},
+        "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+        "expected_head": {"type": "string", "minLength": 6},
+        "observed_head": {"type": "string", "minLength": 6}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {"enum": ["SOURCE_BOUND", "SUPERSEDED", "ARCHIVED"]}
+        }
+      },
+      "then": {"required": ["operator_authorization"]}
+    }
+  ]
 }

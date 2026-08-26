@@ -132,6 +132,7 @@ def _write_input_receipt(
     application_id: str,
     opening_id: str,
     digest: str,
+    source_evidence_observed_at: str | None = None,
 ) -> None:
     payload: dict[str, object] = {
         "schema": "glaciereq.opening-input-receipt.v1",
@@ -139,6 +140,8 @@ def _write_input_receipt(
         "opening_id": opening_id,
         "opening_digest": digest,
     }
+    if source_evidence_observed_at is not None:
+        payload["source_evidence_observed_at"] = source_evidence_observed_at
     payload["receipt_sha256"] = _reference_sha256(payload)
     target = packet_dir / INPUT_RECEIPT
     temporary = target.with_suffix(".json.tmp")
@@ -155,6 +158,7 @@ def compile_freshness_aware_batch(
     actionable_lanes: Sequence[str] = DEFAULT_ACTIONABLE_LANES,
     limit: int | None = None,
     calibration: OutcomeCalibration | None = None,
+    source_evidence_observed_at: str | None = None,
 ) -> FreshnessAwareBatchResult:
     """Compile ranked packets while quarantining stale packet lineage."""
     if not candidates:
@@ -238,6 +242,7 @@ def compile_freshness_aware_batch(
             application_id=application_id,
             opening_id=packet.opening_id,
             digest=digest,
+            source_evidence_observed_at=source_evidence_observed_at,
         )
 
     return FreshnessAwareBatchResult(
@@ -267,6 +272,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--calibration", type=Path)
     parser.add_argument("--lane", action="append", default=[])
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--source-evidence-observed-at", help="Verified upstream opening-source observation timestamp in ISO-8601 form")
     parser.add_argument("--receipt", type=Path)
     args = parser.parse_args(argv)
 
@@ -283,6 +289,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             actionable_lanes=lanes,
             limit=args.limit,
             calibration=calibration,
+            source_evidence_observed_at=args.source_evidence_observed_at,
         )
 
     rendered = json.dumps(result.as_dict(), indent=2, sort_keys=True) + "\n"

@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.abspath("src"))
 
-from job_app_helix.repo_excellence import (  # noqa: E402
+from job_app_helix.repo_excellence import (
     HISTORICAL_STATE_UPGRADES,
     PRINCIPAL_STATES,
     SIDE_EXIT_STATES,

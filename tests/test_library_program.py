@@ -130,7 +130,7 @@ def test_program_rejects_implicit_retirement_action(tmp_path: Path) -> None:
     payload = _payload()
     payload["repositories"][0]["action"] = "VERIFY_AND_CONSOLIDATE"
 
-    with pytest.raises(LibraryProgramError, match="unsupported action|contraction action"):
+    with pytest.raises(LibraryProgramError, match=r"unsupported action|contraction action"):
         validate_library_program(_write_program(tmp_path, payload))
 
 

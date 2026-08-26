@@ -4,9 +4,11 @@ This protocol implements the Frontier Repository Innovation Engine constitution 
 
 ## State machine
 
-`DISCOVERED -> CENSUSED -> LINEAGE_RESOLVED -> BASELINE_VERIFIED -> BOTTLENECK_SELECTED -> ENVIRONMENT_MODELED -> RESEARCHED -> HYPOTHESES_EVALUATED -> EXPERIMENTING -> IMPLEMENTED -> VERIFIED -> ADVERSARIALLY_REVIEWED -> PROMOTION_READY -> SOURCE_BOUND -> MONITORED`
+`DISCOVERED -> CENSUSED -> LINEAGE_RESOLVED -> BASELINE_VERIFIED -> BOTTLENECK_SELECTED -> ENVIRONMENT_MODELED -> RESEARCHED -> HYPOTHESES_EVALUATED -> EXPERIMENTING -> IMPLEMENTED -> VERIFIED -> ADVERSARIALLY_REVIEWED -> PROMOTION_READY`
 
-Escape states: `BLOCKED`, `QUARANTINED`, `SUPERSEDED`, `ARCHIVED`, `NO_ACTION_JUSTIFIED`, `EXPERIMENT_FAILED`.
+The engine may then continue experiment/review work or wait for an external operator decision. `SOURCE_BOUND`, `SUPERSEDED`, and `ARCHIVED` are **operator-only recorded statuses**, not engine transition targets. An operator-recorded status must carry an approved authorization ID, the linked operator-intent ID, and an exact repository/head binding. `SOURCE_BOUND -> MONITORED` is permitted only after that external record exists.
+
+Engine escape states: `BLOCKED`, `QUARANTINED`, `NO_ACTION_JUSTIFIED`, and `EXPERIMENT_FAILED`.
 
 A failed experiment is valid engineering intelligence. It must never be promoted as capability.
 
@@ -34,7 +36,7 @@ A failed experiment is valid engineering intelligence. It must never be promoted
 
 ## Autonomous authority boundary
 
-Exploration is aggressive; reference promotion is disciplined. Inspection, modeling, research, experiments, benchmarks, tests, adversarial review, evidence generation, and candidate preparation may proceed autonomously within available permissions. Irreversible, externally consequential, security-sensitive, deployment-sensitive, or governance-sensitive actions remain bounded by repository policy and the operating environment.
+Exploration is aggressive; source-bound promotion is disciplined. Inspection, modeling, research, experiments, benchmarks, tests, adversarial review, evidence generation, repair implementation, and candidate preparation may proceed autonomously within available permissions. The engine may reach `PROMOTION_READY`, but it cannot assign `SOURCE_BOUND`, `SUPERSEDED`, or `ARCHIVED`, even when a run contains an approval record. Those statuses are externally recorded only after operator approval bound to the exact repository and heads. Irreversible, externally consequential, security-sensitive, deployment-sensitive, or governance-sensitive actions remain bounded by repository policy and the operating environment.
 
 ## Estate priority model
 
@@ -46,4 +48,4 @@ Do not psychologically commit to the first invention. For a material bottleneck,
 
 ## Promotion principle
 
-A candidate becomes reference only when the baseline is preserved, the selected bottleneck is actually addressed, the central mechanism exists, important invariants hold, relevant failure and observability models exist, meaningful failure paths are exercised, claims match evidence, limitations are explicit, and the change remains understandable and reversible where appropriate.
+A candidate may reach `PROMOTION_READY` only when the baseline is preserved, the selected bottleneck is actually addressed, the central mechanism exists, important invariants hold, relevant failure and observability models exist, meaningful failure paths are exercised, claims match evidence, limitations are explicit, and the change remains understandable and reversible where appropriate. A source-bound record is an operator decision that may follow this evidence; it is not an engine-created rank or authorization.
