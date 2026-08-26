@@ -53,7 +53,7 @@ _PREFERRED_FNS = (
     "apply_batch", "encode_batch", "export_recommendation", "place",
     "fleet", "mode", "budget", "shed", "outlet", "control_loop",
     "miss_distance_km", "boiloff_rate_kg_s", "compact_session",
-    "flagship_count", "all_present", "verify_manifest",
+    "system_count", "all_present", "verify_manifest",
 )
 _PREFERRED_METHS = (
     "assign_task", "get_status", "register_agent", "mint", "verify",
