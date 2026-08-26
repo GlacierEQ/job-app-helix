@@ -4,7 +4,6 @@ import importlib.util
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs" / "LEGACY_IDENTIFIER_COMPATIBILITY.md"
 VALIDATOR = ROOT / "scripts" / "validate_application_registry.py"

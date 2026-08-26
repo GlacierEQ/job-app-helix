@@ -12,9 +12,11 @@ import argparse
 import hashlib
 import json
 import math
+from collections.abc import Callable, Iterable, Mapping
 from dataclasses import asdict, dataclass
+from itertools import pairwise
 from pathlib import Path
-from typing import Any, Callable, Iterable, Literal, Mapping
+from typing import Any, Literal
 
 Scenario = Literal["nominal", "recoverable", "terminal"]
 Decision = Literal["GO", "NO-GO"]
@@ -95,7 +97,7 @@ def _flight(scenario: Scenario) -> PairResult:
     sequences = [1, 2, 3, 4, 5]
     if scenario != "nominal":
         sequences = [1, 2, 5, 6, 7]
-    drops = sum(max(0, current - prior - 1) for prior, current in zip(sequences, sequences[1:]))
+    drops = sum(max(0, current - prior - 1) for prior, current in pairwise(sequences))
     telemetry = _piston(
         "telemetry_bridge",
         "bridge",

@@ -124,7 +124,7 @@ def _symbol_report(args: argparse.Namespace):
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     if args.command.startswith("federated-"):
-        packet = build_federated_packet(
+        federated_packet = build_federated_packet(
             args.repo,
             donor_source=args.donor_repo,
             donor_ref=args.donor,
@@ -135,14 +135,14 @@ def main(argv: list[str] | None = None) -> int:
             max_depth=args.max_depth,
         )
         if args.command == "federated-packet":
-            print(json.dumps(packet.to_dict(), indent=2, sort_keys=True))
+            print(json.dumps(federated_packet.to_dict(), indent=2, sort_keys=True))
             return 0
-        receipt = apply_federated_packet(args.repo, packet)
-        print(json.dumps(receipt.to_dict(), indent=2, sort_keys=True))
+        federated_receipt = apply_federated_packet(args.repo, federated_packet)
+        print(json.dumps(federated_receipt.to_dict(), indent=2, sort_keys=True))
         return 0
 
     if args.command.startswith("semantic-"):
-        packet = build_cross_file_packet(
+        semantic_packet = build_cross_file_packet(
             args.repo,
             donor_ref=args.donor,
             target_ref=args.target,
@@ -152,10 +152,10 @@ def main(argv: list[str] | None = None) -> int:
             max_depth=args.max_depth,
         )
         if args.command == "semantic-packet":
-            print(json.dumps(packet.to_dict(), indent=2, sort_keys=True))
+            print(json.dumps(semantic_packet.to_dict(), indent=2, sort_keys=True))
             return 0
-        receipt = apply_cross_file_packet(args.repo, packet)
-        print(json.dumps(receipt.to_dict(), indent=2, sort_keys=True))
+        semantic_receipt = apply_cross_file_packet(args.repo, semantic_packet)
+        print(json.dumps(semantic_receipt.to_dict(), indent=2, sort_keys=True))
         return 0
 
     if args.command.startswith("symbol-"):
@@ -163,17 +163,17 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "symbol-archaeology":
             print(json.dumps(report.to_dict(), indent=2, sort_keys=True))
             return 0
-        packet = build_symbol_packet(
+        symbol_packet = build_symbol_packet(
             report,
             selected_symbols=tuple(args.select_symbol),
             allow_replace=args.allow_replace,
             include_dependencies=not args.no_dependencies,
         )
         if args.command == "symbol-packet":
-            print(json.dumps(packet.to_dict(), indent=2, sort_keys=True))
+            print(json.dumps(symbol_packet.to_dict(), indent=2, sort_keys=True))
             return 0
-        receipt = apply_symbol_packet(args.repo, packet)
-        print(json.dumps(receipt.to_dict(), indent=2, sort_keys=True))
+        symbol_receipt = apply_symbol_packet(args.repo, symbol_packet)
+        print(json.dumps(symbol_receipt.to_dict(), indent=2, sort_keys=True))
         return 0
 
     report = excavate(
@@ -186,17 +186,17 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(report.to_dict(), indent=2, sort_keys=True))
         return 0
 
-    packet = build_packet(
+    restoration_packet = build_packet(
         report.candidates,
         selected_paths=tuple(args.select),
         allow_replace=args.allow_replace,
     )
     if args.command == "packet":
-        print(json.dumps(packet.to_dict(), indent=2, sort_keys=True))
+        print(json.dumps(restoration_packet.to_dict(), indent=2, sort_keys=True))
         return 0
 
-    receipt = apply_packet(args.repo, packet)
-    print(json.dumps(receipt.to_dict(), indent=2, sort_keys=True))
+    restoration_receipt = apply_packet(args.repo, restoration_packet)
+    print(json.dumps(restoration_receipt.to_dict(), indent=2, sort_keys=True))
     return 0
 
 

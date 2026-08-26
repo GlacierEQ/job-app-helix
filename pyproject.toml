@@ -85,6 +85,9 @@ known-first-party = ["job_app_helix"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+# Long embedded provenance, paths, and machine-readable literals are preserved
+# for auditability; structural, correctness, and import rules remain enforced.
+ignore = ["E501"]
 
 [[tool.mypy.overrides]]
 module = "job_app_helix.readme_mesh_pb2"
@@ -95,6 +98,8 @@ module = ["job_app_helix.readme_mesh_manifest", "job_app_helix.readme_mesh"]
 ignore_errors = true
 
 [tool.ruff.lint.per-file-ignores]
+"scripts/compute_repository_health.py" = ["E402"]
+"scripts/genius_engine.py" = ["E402"]
 "scripts/legacy/apex_highway.py" = ["E501"]
 "scripts/legacy/apex_distributed_compute.py" = ["E501"]
 "scripts/ci_audit_portfolio.py" = ["E501"]

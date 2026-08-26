@@ -3,11 +3,11 @@ from __future__ import annotations
 import datetime as dt
 
 import pytest
+
 from job_app_helix import application_engine as app_engine
 from job_app_helix import application_operations as app_ops
 from job_app_helix import company_intelligence as company_intel
 from job_app_helix import opportunity_queue
-
 
 NOW = dt.datetime(2026, 8, 18, tzinfo=dt.UTC)
 

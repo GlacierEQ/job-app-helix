@@ -6,13 +6,7 @@ import re
 from collections import defaultdict
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
-from enum import Enum
-try:
-    from enum import StrEnum
-except ImportError:
-    from enum import Enum
-    class StrEnum(str, Enum):
-        pass
+from enum import StrEnum
 from typing import Any
 
 SCHEMA_VERSION = "glaciereq.estate-compiler.v1"
@@ -371,20 +365,20 @@ def build_systems(
         ]
         if not candidates:
             continue
-        target = min(candidates, key=lambda item: (len(item.name), item.name.casefold()))
+        target_repo = min(candidates, key=lambda item: (len(item.name), item.name.casefold()))
         relation = (
             Relation.BACKUP_OF
             if lowered.startswith(BACKUP_PREFIXES) or lowered.endswith(BACKUP_SUFFIXES)
             else Relation.ARCHIVE_OF
         )
-        parent[repo.repository] = target.repository
+        parent[repo.repository] = target_repo.repository
         edges.append(
             {
                 "repository": repo.repository,
                 "relation": relation.value,
-                "target": target.repository,
+                "target": target_repo.repository,
                 "collapse_child": repo.repository,
-                "collapse_parent": target.repository,
+                "collapse_parent": target_repo.repository,
                 "confidence": "STRUCTURAL_HIGH",
                 "evidence_refs": ["authenticated_census:name+archive_metadata"],
             }
@@ -399,10 +393,10 @@ def build_systems(
     for repo in engineering:
         if repo.repository not in parent:
             roots_by_key[lineage_key(repo.name)].append(repo.repository)
-    for key, members in sorted(roots_by_key.items()):
-        if len(members) < 2:
+    for key, root_members in sorted(roots_by_key.items()):
+        if len(root_members) < 2:
             continue
-        ordered = sorted(members)
+        ordered = sorted(root_members)
         unresolved_members.update(ordered)
         unresolved.append(
             {
@@ -503,15 +497,15 @@ def build_capabilities(
             str(row.get(key) or "")
             for key in ("role", "evidence", "next_gate", "system_id")
         ).casefold()
-        capabilities = [
+        inferred_capabilities = [
             capability
             for capability, patterns in CAPABILITY_PATTERNS
             if any(pattern in text for pattern in patterns)
         ]
         role = row.get("role")
         if isinstance(role, str) and role.strip():
-            capabilities.append(f"role-{slug(role)}")
-        for capability in set(capabilities):
+            inferred_capabilities.append(f"role-{slug(role)}")
+        for capability in set(inferred_capabilities):
             donor = donors.setdefault(
                 capability,
                 {"systems": set(), "proof_refs": []},
@@ -550,11 +544,11 @@ def build_capabilities(
                 }
             )
 
-    capabilities: list[dict[str, Any]] = []
+    capability_records: list[dict[str, Any]] = []
     for capability_id in sorted(donors):
         donor = donors[capability_id]
         system_ids = sorted(donor["systems"])
-        capabilities.append(
+        capability_records.append(
             {
                 "capability_id": capability_id,
                 "donor_systems": system_ids,
@@ -569,7 +563,7 @@ def build_capabilities(
 
     registry: dict[str, Any] = {
         "schema": "glaciereq.capability-donor-registry.v1",
-        "capabilities": capabilities,
+        "capabilities": capability_records,
         "policy": {
             "multi_donor_claim_requires": 2,
             "metadata_inference_is_not_runtime_proof": True,

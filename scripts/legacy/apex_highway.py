@@ -6,12 +6,11 @@ Scans sidecar nodes across portfolio repositories.
 import json
 import time
 from pathlib import Path
-from typing import Optional
 
 ROOT = Path(__file__).resolve().parent
 
 class APEXHighwayEngine:
-    def __init__(self, root_dir: Optional[Path] = None):
+    def __init__(self, root_dir: Path | None = None):
         self.root_dir = root_dir or (ROOT / "repos")
         self.nodes = {}
 
