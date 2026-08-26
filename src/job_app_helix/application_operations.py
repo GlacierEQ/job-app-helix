@@ -460,7 +460,7 @@ def load_candidate_profile(path: Path) -> CandidateProfile:
     if not name:
         raise ValueError("candidate profile requires name")
     raw_contact = value.get("contact")
-    body = {
+    body: dict[str, Any] = {
         "name": name,
         "headline": str(value.get("headline") or "").strip(),
         "summary": str(value.get("summary") or "").strip(),
@@ -472,8 +472,14 @@ def load_candidate_profile(path: Path) -> CandidateProfile:
     digest = _reference_digest(body)
     return CandidateProfile(
         profile_id=str(value.get("profile_id") or f"candidate-{digest[:16]}"),
+        name=body["name"],
+        headline=body["headline"],
+        summary=body["summary"],
+        skills=body["skills"],
+        experience=body["experience"],
+        achievements=body["achievements"],
+        contact=body["contact"],
         source_digest=digest,
-        **body,
     )
 
 
@@ -511,7 +517,7 @@ def match_opening(
         recommendation = "VIABLE_MATCH"
     else:
         recommendation = "WEAK_MATCH"
-    body = {
+    body: dict[str, Any] = {
         "opening_id": opening.opening_id,
         "company_id": target.company_id,
         "mapped_role": role,
@@ -523,7 +529,19 @@ def match_opening(
         "missing_terms": missing,
         "recommendation": recommendation,
     }
-    return MatchResult(digest=_reference_digest(body), **body)
+    return MatchResult(
+        opening_id=body["opening_id"],
+        company_id=body["company_id"],
+        mapped_role=body["mapped_role"],
+        overall_score=body["overall_score"],
+        role_score=body["role_score"],
+        skill_score=body["skill_score"],
+        proof_score=body["proof_score"],
+        matched_terms=body["matched_terms"],
+        missing_terms=body["missing_terms"],
+        recommendation=body["recommendation"],
+        digest=_reference_digest(body),
+    )
 
 
 def _resume_markdown(
