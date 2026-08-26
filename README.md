@@ -184,7 +184,7 @@ Wave 4 is the direct counter-engineered replacement for the former archive-first
 | [`src/job_app_helix/restoration_executor.py`](src/job_app_helix/restoration_executor.py) | Restores selected donors without silently overwriting later gains. |
 | [`src/job_app_helix/library_program.py`](src/job_app_helix/library_program.py) | Enforces the estate-wide upward lifecycle and rejects contraction actions. |
 | [`src/job_app_helix/readme_mesh.py`](src/job_app_helix/readme_mesh.py) | Renders audience views and deterministic machine artifacts. |
-| [`ci_audit_portfolio.py`](ci_audit_portfolio.py) | Writes atomic scoped portfolio receipts. |
+| [`scripts/ci_audit_portfolio.py`](scripts/ci_audit_portfolio.py) | Writes atomic scoped portfolio receipts. |
 | [`scripts/check_public_surface.py`](scripts/check_public_surface.py) | Detects broken public-surface references and unsafe leakage. |
 
 ### Stack-native planning
@@ -206,7 +206,7 @@ Languages are selected for technical responsibility. Working systems are not rew
 
 ```bash
 python -m pip install -e ".[dev]"
-python -m ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
+python -m ruff check src tests scripts showcase/demo_15min_run.py
 python -m mypy src/job_app_helix/
 python -m pytest -q
 python scripts/check_proto_contract.py

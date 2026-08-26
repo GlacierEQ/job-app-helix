@@ -81,10 +81,11 @@ def test_expansion_map_is_truth_bounded_and_public_safe() -> None:
     text = (PACKAGE / "PORTFOLIO_EXPANSION_MAP.md").read_text(encoding="utf-8")
 
     assert "1,171 owner-accessible repositories" in text
-    assert "Exact recruiter boundary: **67 repositories**" in text
-    assert "one root plus sixty-six children" in text
+    assert "Recruiter-readable projection — 67 repositories at the July 31 snapshot" in text
+    assert "It is not a ceiling" in text
+    assert "one Helix control-plane root plus sixty-six recorded child repositories" in text
     assert "Blind mass mutation performed: **none**" in text
-    assert "1,171 production systems" in text
+    assert "ability to create and operate a governed portfolio architecture" in text
     assert "does not establish authorship" in text
     assert "name withheld" in text
 

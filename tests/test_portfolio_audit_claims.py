@@ -10,7 +10,7 @@ from types import ModuleType
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDIT_PATH = ROOT / "ci_audit_portfolio.py"
+AUDIT_PATH = ROOT / "scripts" / "ci_audit_portfolio.py"
 
 
 def _load_audit_module() -> ModuleType:
@@ -108,16 +108,17 @@ def test_failed_rerun_overwrites_running_receipt_with_failure(
     assert payload["evidence"]["mesh"]["mesh_status"] == "FAILED"
 
 
-def test_inventory_manifest_declares_exact_67_repositories() -> None:
+def test_inventory_manifest_matches_dynamic_workspace_membership() -> None:
     payload = json.loads(
         (ROOT / "manifests" / "portfolio_repositories.json").read_text(encoding="utf-8")
     )
     workspace = payload["workspace_repositories"]
 
     assert payload["portfolio_root"] == "job-app-helix"
-    assert payload["total_repositories"] == 67
-    assert len(workspace) == 66
-    assert len(set(workspace)) == 66
+    assert isinstance(payload["total_repositories"], int)
+    assert payload["total_repositories"] == len(workspace) + 1
+    assert len(workspace) > 0
+    assert len(set(workspace)) == len(workspace)
     assert "job-app-helix" not in workspace
     assert "JOB-RESUME-BUILDER-" in workspace
 

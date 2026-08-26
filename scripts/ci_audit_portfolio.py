@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import Final
 from urllib.parse import unquote, urlsplit
 
-ROOT: Final = Path(__file__).resolve().parent
+ROOT: Final = Path(__file__).resolve().parents[1]
 REPOS_DIR: Final = ROOT / "repos"
 RECEIPT_PATH = ROOT / "artifacts" / "portfolio_ci_receipt.json"
 LANGUAGE_FIT_PATH: Final = ROOT / "manifests" / "language_fit.json"
