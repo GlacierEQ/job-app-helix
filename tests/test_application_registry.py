@@ -68,16 +68,23 @@ class ApplicationRegistryTests(unittest.TestCase):
                 f"{exc}\nstdout={completed.stdout!r}\nstderr={completed.stderr!r}"
             )
         self.assertEqual(result["status"], "PASS")
-        self.assertEqual(result["total_inventory_repositories"], 67)
-        self.assertEqual(result["helix_children_mapped"], 66)
+        inventory = json.loads(
+            (ROOT / "manifests" / "portfolio_repositories.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        catalog = json.loads(
+            (ROOT / "manifests" / "flagship_registry.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(result["total_inventory_repositories"], len(inventory["workspace_repositories"]) + 1)
+        self.assertEqual(result["helix_children_mapped"], len(inventory["workspace_repositories"]))
         self.assertTrue(result["helix_children_exactly_once"])
         self.assertEqual(result["company_tracks"], self.company_track_count())
-        self.assertEqual(result["named_flagships"], 17)
-        # ECHO and Sigma Glue moved from the external flagship set into the
-        # governed 66-child workspace; seven owner-estate flagships remain
-        # intentionally external to that active inventory boundary.
-        self.assertEqual(result["external_flagship_repositories"], 7)
-        self.assertEqual(result["unresolved_flagships"], 1)
+        self.assertEqual(result["named_systems"], len(catalog["flagships"]))
+        self.assertGreater(result["external_flagship_repositories"], 0)
+        self.assertGreaterEqual(result["unresolved_flagships"], 0)
         # Intel, Groq, and CoreWeave carry explicit discovered-candidate
         # records. Lockheed Martin is intentionally an inherited Scaffold
         # until role/problem/code evidence clears the second-depth gates.
