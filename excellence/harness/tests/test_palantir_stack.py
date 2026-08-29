@@ -1,15 +1,22 @@
 """Palantir multi-repo composition — ledger + lineage."""
 from __future__ import annotations
+
 import unittest
+
 from pathutil import add_repo
 
 add_repo("palantir-ontology-writeback-ledger")
 add_repo("palantir-action-lineage-graph")
 
-from writeback_ledger import (
-    DiffOp, ObjectSnapshot, OntologyWritebackLedger, SignMode, WritebackDiff, ApplyStatus,
-)
 from lineage import ActionKind, ActionNode, CommitStatus, LineageGraph
+from writeback_ledger import (
+    ApplyStatus,
+    DiffOp,
+    ObjectSnapshot,
+    OntologyWritebackLedger,
+    SignMode,
+    WritebackDiff,
+)
 
 
 class PalantirStack(unittest.TestCase):

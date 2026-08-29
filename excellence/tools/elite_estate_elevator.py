@@ -2,7 +2,6 @@
 """Elite leaf bar enforcer for job-app/repos — inventory, regress PROMOTED, elevate or gap."""
 from __future__ import annotations
 
-import ast
 import hashlib
 import hmac
 import json
@@ -12,7 +11,7 @@ import subprocess
 import sys
 import textwrap
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -23,7 +22,7 @@ SCRATCH = Path(os.environ.get(
     "/var/folders/w3/hldw78112gzbvgd2_pj1bg3h0000gn/T/grok-goal-71072d58ed24/implementer",
 ))
 SECRET = b"glaciereq-local-operator-promotion-authority-v1"
-TS = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+TS = datetime.now(UTC).strftime("%Y-%m-%dT%H:%MZ")
 NOW = time.time()
 
 # Prefer 3.11+ (StrEnum, datetime.UTC used by many leaves). Fall back to sys.executable.
@@ -237,7 +236,12 @@ def is_operate_theater(primary: dict | None) -> tuple[bool, str]:
     if smoke.get("kind") == "error":
         return True, "smoke_error"
     # Elite path must have invoked a callable
-    if "content_checked" in json.dumps(primary) or "invoked" in smoke or smoke.get("kind") in {"fn", "class"}:
+    elite_invoked = (
+        "content_checked" in json.dumps(primary)
+        or "invoked" in smoke
+        or smoke.get("kind") in {"fn", "class"}
+    )
+    if elite_invoked:
         if smoke.get("kind") in {"fn", "class"}:
             if not smoke.get("invoked") and not smoke.get("content_checked"):
                 return True, "no_invoked_flag"
@@ -316,9 +320,11 @@ class AdversarialEliteTests(unittest.TestCase):
                 continue
             # include re-exported central classes (not pure stdlib typing)
             mname = getattr(cls, "__module__", None) or ""
-            if mname.startswith("typing") or mname in {{"builtins", "collections", "pathlib", "json", "sys", "os"}}:
+            if mname.startswith("typing") or mname in {{
+                "builtins", "collections", "pathlib", "json", "sys", "os"}}:
                 continue
-            if getattr(mod, cname, None) is not cls and mname not in {{mod.__name__, getattr(mod, "__package__", None)}}:
+            if getattr(mod, cname, None) is not cls and mname not in {{
+                    mod.__name__, getattr(mod, "__package__", None)}}:
                 continue
             try:
                 sig = inspect.signature(cls)
@@ -436,8 +442,10 @@ if __name__ == "__main__":
 def continuous_history(repo_id: str, evidence: dict) -> dict:
     hops = [
         ("DISCOVERED", "IDENTITY_RESOLVED", "IDENTITY_RESOLVED", f"github {repo_id}"),
-        ("IDENTITY_RESOLVED", "PROBLEM_VERIFIED", "PROBLEM_VERIFIED", "README/ISSUE_CONTRACT problem bound"),
-        ("PROBLEM_VERIFIED", "TARGET_CONTRACTED", "TARGET_CONTRACT_FROZEN", "machine/target-contract.json"),
+        ("IDENTITY_RESOLVED", "PROBLEM_VERIFIED", "PROBLEM_VERIFIED",
+         "README/ISSUE_CONTRACT problem bound"),
+        ("PROBLEM_VERIFIED", "TARGET_CONTRACTED", "TARGET_CONTRACT_FROZEN",
+         "machine/target-contract.json"),
         ("TARGET_CONTRACTED", "SEEDED", "DONOR_PLAN_RESOLVED", "elite bar seed; donor_reuse=none"),
         ("SEEDED", "VERTICAL_SLICE", "VERTICAL_SLICE_ALIVE", "src mechanism + scripts/operate.py"),
         ("VERTICAL_SLICE", "IMPLEMENTED", "CENTRAL_MECHANISM_PRESENT", "central mechanism in src/"),
@@ -453,13 +461,15 @@ def continuous_history(repo_id: str, evidence: dict) -> dict:
         "ADVERSARIAL_SURVIVAL", "OPERABLE_AND_OBSERVABLE", "PROOF_RECEIPT_BOUND",
         "AUTHORITY_BOUND", "PROJECTION_TRUTH_CLOSED", "CANONICAL_POSITION_RESOLVED",
     )}
-    gates["EVOLUTION_CURSOR_DEFINED"] = {"status": "PASS", "at": TS, "evidence": "elite estate elevator"}
+    gates["EVOLUTION_CURSOR_DEFINED"] = {
+        "status": "PASS", "at": TS, "evidence": "elite estate elevator"}
     history = []
     principal = "DISCOVERED"
     for frm, to, gate, note in hops:
         assert frm == principal
         gates[gate] = {"status": "PASS", "at": TS, "evidence": note}
-        history.append({"at": TS, "from": frm, "to": to, "gate": gate, "result": "PASS", "note": note})
+        history.append({
+            "at": TS, "from": frm, "to": to, "gate": gate, "result": "PASS", "note": note})
         principal = to
     # Compound promotion policy (monolith promotion-policy.v1 / #95):
     # PROOF_REPRODUCED → PROMOTED requires AUTHORITY_BOUND + PROJECTION_TRUTH_CLOSED.
@@ -559,7 +569,9 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
     if not has_src and not has_tests:
         entry["grade"] = "SKIP_NOT_A_LEAF" if not any(leaf.rglob("*.py")) else "GAP"
         if entry["grade"] == "GAP":
-            write_gap(leaf, "NO_SRC_NO_TESTS", f"leaves/{name}/", "no src/ or tests/ with test_*.py")
+            write_gap(
+                leaf, "NO_SRC_NO_TESTS", f"leaves/{name}/",
+                "no src/ or tests/ with test_*.py")
             entry["principal_state_or_gap"] = "GAP"
         entry["dual_run_ok"] = None
         return entry
@@ -584,7 +596,10 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
     # Ensure excellence pack files (complete authority; do not clobber richer donor)
     mod = primary_src_module(leaf) or name.replace("-", "_")
     auth_path = leaf / "src" / "promotion_authority.py"
-    if not auth_path.is_file() or "LOCAL_OPERATOR_SECRET" not in auth_path.read_text(encoding="utf-8", errors="replace"):
+    auth_content = (
+        auth_path.read_text(encoding="utf-8", errors="replace") if auth_path.is_file() else ""
+    )
+    if not auth_path.is_file() or "LOCAL_OPERATOR_SECRET" not in auth_content:
         write(auth_path, PROMO_AUTH)
     write(leaf / "tests" / "test_promotion_authority.py", PROMO_TEST)
     write(leaf / "tests" / "test_adversarial.py", generate_adversarial(mod))
@@ -624,7 +639,8 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
     # operate dual-run
     op_ok, op1, op2 = dual_run([PYTHON, "scripts/operate.py"], leaf, env)
     (out_dir / "launch.log").write_text(
-        f"=== run1 rc={op1[0]} ===\n{op1[1]}{op1[2]}\n=== run2 rc={op2[0]} ===\n{op2[1]}{op2[2]}\ndual_run_ok={op_ok}\n",
+        f"=== run1 rc={op1[0]} ===\n{op1[1]}{op1[2]}\n"
+        f"=== run2 rc={op2[0]} ===\n{op2[1]}{op2[2]}\ndual_run_ok={op_ok}\n",
         encoding="utf-8",
     )
     primary = None
@@ -642,18 +658,21 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
 
     # proof dual-run
     pr_ok, pr1, pr2 = dual_run(cmd, leaf, env, timeout=180)
-    proof_out = f"=== run1 rc={pr1[0]} ===\n{pr1[1]}{pr1[2]}\n=== run2 rc={pr2[0]} ===\n{pr2[1]}{pr2[2]}\n"
+    proof_out = (
+        f"=== run1 rc={pr1[0]} ===\n{pr1[1]}{pr1[2]}\n"
+        f"=== run2 rc={pr2[0]} ===\n{pr2[1]}{pr2[2]}\n"
+    )
     proof_out += f"dual_run_ok={pr_ok}\nentry={kind} cmd={' '.join(cmd)}\nPYTHONPATH={pypath}\n"
     (out_dir / "proof.log").write_text(proof_out, encoding="utf-8")
     ran = parse_ran(pr1[1] + pr1[2])
     # pytest may not say "Ran N tests"
     if kind == "pytest":
         combined = pr1[1] + pr1[2] + pr2[1] + pr2[2]
-        if "passed" in combined and "failed" not in combined.lower().split("passed")[0][-20:]:
-            pass
-        if re.search(r"\d+ passed", combined) and not re.search(r"[1-9]\d* failed", combined):
-            if pr_ok:
-                ran = max(ran, 1)
+        pytest_green = (
+            re.search(r"\d+ passed", combined) and not re.search(r"[1-9]\d* failed", combined)
+        )
+        if pytest_green and pr_ok:
+            ran = max(ran, 1)
 
     entry["dual_run_ok"] = bool(
         pr_ok and ran > 0 and op_ok and primary and primary.get("ok") is True and not theater
@@ -672,7 +691,8 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
             blocker = "OPERATE_FAIL"
         write_gap(
             leaf, blocker, f"leaves/{name}/proof.log+launch.log",
-            f"pr_ok={pr_ok} ran={ran} op_ok={op_ok} primary_ok={primary.get('ok') if primary else None}",
+            f"pr_ok={pr_ok} ran={ran} op_ok={op_ok} "
+            f"primary_ok={primary.get('ok') if primary else None}",
         )
         # Do not leave false PROMOTED
         if prior == "PROMOTED" and st_path.is_file():
@@ -681,7 +701,8 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
             st = json.loads(st_path.read_text())
             if st.get("principal_state") == "PROMOTED":
                 st["principal_state"] = "TESTED" if pr_ok else "IMPLEMENTED"
-                st["regression_note"] = "elite elevator: dual-run/operate failed; demoted from PROMOTED claim"
+                st["regression_note"] = (
+                    "elite elevator: dual-run/operate failed; demoted from PROMOTED claim")
                 st_path.write_text(json.dumps(st, indent=2) + "\n")
         entry["grade"] = "GAP"
         entry["principal_state_or_gap"] = "GAP"
@@ -732,7 +753,11 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
         "environment": {"python": PYTHON, "PYTHONPATH": pypath, "entry": kind},
         "tests": [" ".join(cmd) + " (x2)"],
         "adversarial_tests": ["tests/test_adversarial.py"],
-        "runtime": {"operate": "scripts/operate.py (x2)", "dual_run_ok": True, "proof_dual_run_ok": True},
+        "runtime": {
+            "operate": "scripts/operate.py (x2)",
+            "dual_run_ok": True,
+            "proof_dual_run_ok": True,
+        },
         "result": "PASS",
         "limitations": ["not production deployed", "reference implementation only"],
         "timestamp": TS,
@@ -750,7 +775,9 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
         encoding="utf-8",
     )
     if not pr2_ok:
-        write_gap(leaf, "POST_BIND_TESTS_FAIL", f"leaves/{name}/proof_after_bind.log", "tests failed after grant bind")
+        write_gap(
+            leaf, "POST_BIND_TESTS_FAIL", f"leaves/{name}/proof_after_bind.log",
+            "tests failed after grant bind")
         entry["grade"] = "GAP"
         entry["principal_state_or_gap"] = "GAP"
         entry["dual_run_ok"] = False
@@ -800,11 +827,14 @@ def main() -> int:
 
     For every `job-app/repos/<leaf>` that is a real code leaf:
 
-    1. **Operable:** `scripts/operate.py` cold-start dual-run; primary JSON `ok: true` content-checks shipped mechanism.
-    2. **Proof:** dual-run unit tests on real entry (`unittest discover` or documented `pytest`) with `PYTHONPATH` including leaf/`src`.
+    1. **Operable:** `scripts/operate.py` cold-start dual-run; primary JSON
+       `ok: true` content-checks shipped mechanism.
+    2. **Proof:** dual-run unit tests on real entry (`unittest discover` or
+       documented `pytest`) with `PYTHONPATH` including leaf/`src`.
     3. **Adversarial:** `tests/test_adversarial.py` exercises refuse/import edges on shipped path.
     4. **Authority:** `machine/promotion_authority.json` HMAC-bound to proof receipt + source_sha.
-    5. **State:** `machine/excellence-state.json` continuous DISCOVERED→PROMOTED **or** honest `machine/gap-receipt.json`.
+    5. **State:** `machine/excellence-state.json` continuous DISCOVERED→PROMOTED
+       **or** honest `machine/gap-receipt.json`.
 
     Non-leaves (no src/tests): SKIP_NOT_A_LEAF or GAP with receipt.
     """))
@@ -874,6 +904,7 @@ def main() -> int:
         "inventory": results,
     }
     write(SCRATCH / "leaf_inventory.json", json.dumps(inv, indent=2))
+    unclassified = len(results) - sum(inv["grades"].values())
     write(SCRATCH / "inventory_summary.md", textwrap.dedent(f"""\
     # Elite estate inventory summary
 
@@ -887,7 +918,7 @@ def main() -> int:
     | GAP | {inv['grades'].get('GAP', 0)} |
     | SKIP_NOT_A_LEAF | {inv['grades'].get('SKIP_NOT_A_LEAF', 0)} |
 
-    Unclassified: {sum(1 for r in results if r.get('grade') not in ('PROMOTED','GAP','SKIP_NOT_A_LEAF'))}
+    Unclassified: {unclassified}
     """))
 
     matrix = {
