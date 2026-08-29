@@ -1,0 +1,577 @@
+{
+  "schema": "glaciereq.company-repo-mesh.batch.v2",
+  "generated_on": "2026-08-29",
+  "group": "ecosystem",
+  "policy": {
+    "fixed_repo_cap": null,
+    "fixed_company_cap": null,
+    "fixed_relation_cap": null,
+    "counts_are": "observations",
+    "affiliation_inference": false,
+    "source_pagination": "exhausted per query"
+  },
+  "companies": {
+    "apple": {
+      "name": "Apple",
+      "query": "apple",
+      "observed_repo_count": 4,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/apple-ane-kv-quantizer",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 119,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/apple-mcp",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 26668,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/elex-to-finetuned",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1033,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-iOS",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 78,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "query": "deepseek",
+      "observed_repo_count": 10,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/code-sentinel",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 32,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/DeepSeek-Coder",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 13992,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/DeepSeek-Coder__public_fork_archive",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 13995,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/DeepSeek-Coder-V2",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 2065,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/DeepSeek-Coder-V2-main",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 43070,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/deepseek-mla-moe-sentinel",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 80,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/MCP-SuperAssistant",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 4892,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/ollama",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 52046,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/pipelining-sft",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1426,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/tig",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 160,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "moonshot_kimi": {
+      "name": "Moonshot AI / Kimi",
+      "query": "kimi",
+      "observed_repo_count": 6,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/ART",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 45628,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/claude-code-kimi-groq",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 17,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Kimi-K2",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1070,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Kimi-K3",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 5017,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/kimi-linear",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 1897,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/kimi-mooncake-kv-stream",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 85,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "alibaba_qwen": {
+      "name": "Alibaba / Qwen",
+      "query": "qwen",
+      "observed_repo_count": 3,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/qwen-code",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 11082,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/qwen-vl-flash-router",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 58,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/qwen2.5VLM-OCR",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 10,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "supabase": {
+      "name": "Supabase",
+      "query": "supabase",
+      "observed_repo_count": 23,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/apex-stack",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 151,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/aspen-grove-connectors",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 127,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/aspen-grove-memory",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 81,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/aspen-grove-supabase",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 154,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/cli",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "develop",
+          "size": 22266,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/command-center",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 24,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/connector",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/connector-repo",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 6,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/crawl4ai-rag-mcp",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 311,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/dashboard",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 8975,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/godmind-colossus-gateway",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 19,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/legal-brief-pipeline",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 14,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/legal-brief-system",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 11,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/mcp-iceberg-mansion",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 70,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/mcp-tool-belt",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 13,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-Connectors",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 3,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-Gateway",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 136,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-Memory",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 39,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/qmo-bridge",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 27,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/supabase-grafana",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1684,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/supabase-mcp",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 850,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/supabase-policy-carrying-ai-data-plane",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 55,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Z-BACKUP-apex-gateway",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 51,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "vercel": {
+      "name": "Vercel",
+      "query": "vercel",
+      "observed_repo_count": 19,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/ai-sdk-provider",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 464,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/antigravity-awesome-skills",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 9119,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/apex-stack",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 151,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/aspen-grove-connectors",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 127,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/chatgpt-vercel",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1935,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/command-center",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 24,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/godmind-colossus-gateway",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 19,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/gpt-ai-assistant",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 7551,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/job-app-helix",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 8117,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/job-application",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 14696,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/mcp-tool-belt",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 13,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-Connectors",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 3,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-Gateway",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 136,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/sdk",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 601,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/vercel-deploy-claim-compiler",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 51,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/vercel-deploy-preview-authority",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 32,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/vercel-edge-agent-cap-token",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 56,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/vercel-preview-truth-gate",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 57,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Z-BACKUP-apex-gateway",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 51,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    }
+  }
+}
