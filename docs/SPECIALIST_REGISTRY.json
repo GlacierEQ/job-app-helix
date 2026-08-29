@@ -1,0 +1,46 @@
+{
+  "schema": "apex.specialist-registry.job-app-helix.v1",
+  "generated_at": "2026-08-28T14:58:00-10:00",
+  "authority": "operator_override",
+  "policy": "stop_hallucination_not_progress",
+  "capability_federation": {
+    "activated_skills": [
+      {"id": "apex-sovereign-supreme", "role": "master orchestrator (bootup/connectors/device/runtime)", "entry": "scripts/bootup_runner.py", "status": "ACTIVE_ONLINE"},
+      {"id": "apex-command-core", "role": "mission control + agent modes", "entry": "apex_command.py", "status": "ACTIVE"},
+      {"id": "apex-execution-modes", "role": "execution/role/composite mode engine", "entry": "agent_modes.json", "status": "ACTIVE"},
+      {"id": "apex-specialist-registry", "role": "dynamic capability federation (this skill)", "entry": "apex_specialist.py", "status": "ACTIVE"},
+      {"id": "longest-horizon", "role": "deep-time memory + sequential thinking + high council", "entry": "framework/", "status": "ACTIVE (principles applied)"},
+      {"id": "token-optimizer", "role": "token budgeting + subagent delegation", "entry": "merged", "status": "ACTIVE"},
+      {"id": "smithery-holographic-mesh", "role": "32+ MCP connector gateway (9000/8999)", "entry": "connector_hub_supreme.py", "status": "ACTIVE_ONLINE"},
+      {"id": "aspen-grove-core", "role": "pointer-indexed durable memory", "entry": "ASPEN_GROVE_POINTER_INDEX.json", "status": "ACTIVE"},
+      {"id": "apex-connector-mesh", "role": "unified integration fabric", "entry": "merged", "status": "ACTIVE"},
+      {"id": "apex-engineering-excellence", "role": "pro-code verification suite", "entry": "merged", "status": "ACTIVE"},
+      {"id": "apex-legal-intelligence", "role": "15-step legal reasoning", "entry": "merged", "status": "AVAILABLE"},
+      {"id": "apex-memory-substrate", "role": "memory federation", "entry": "merged", "status": "AVAILABLE"},
+      {"id": "apex-device-interface", "role": "hardware control (8990)", "entry": "device_access_supreme.py", "status": "ACTIVE_ONLINE"},
+      {"id": "apex-bootup-supreme", "role": "vault + service resurrection", "entry": "bootup_runner.py", "status": "ACTIVE_ONLINE"},
+      {"id": "apex-mega-skills", "role": "unified CLI for 7 mega-skills", "entry": "apex_mega.py", "status": "ACTIVE"},
+      {"id": "apex-observability-tower", "role": "health/metrics (defined, sparse)", "entry": "TBD", "status": "STUB"},
+      {"id": "apex-security-fortress", "role": "security controls (defined, sparse)", "entry": "TBD", "status": "STUB"}
+    ],
+    "discovery_note": "specialist.discover across estate = the 225-deserving manifest + 228 solidify records are the discovered capability surface for job-app-helix."
+  },
+  "curated_links_library_of_links": [
+    {"id": "L-AUTH66", "target": "/tmp/helix_patch/authoritative_helix_66_boundary.json", "provenance": "GET raw.githubusercontent.com/GlacierEQ/job-app-helix/main/manifests/portfolio_repositories.json (200, valid)", "role": "Authoritative admitted helix boundary", "tags": ["helix","boundary","verified-source"]},
+    {"id": "L-UNIFIED", "target": "/tmp/helix_patch/unified_deserving_manifest.json", "provenance": "reconciled from L-AUTH66 + expanded_217 by subagent", "role": "225-deserving unified target", "tags": ["helix","manifest","unified"]},
+    {"id": "L-SOLIDIFY", "target": "/tmp/helix_patch/solidify/*.json", "provenance": "3-wave subagent solidify pass + unified fill (225 records)", "role": "Per-repo innovation/evidence/worthy records", "tags": ["evidence","solidify","225"]},
+    {"id": "L-EVIDENCE", "target": "/tmp/helix_patch/evidence_ledger_UPDATED.json", "provenance": "repo_excellence bridge (4 new VERIFIED claims)", "role": "Helix evidence ledger + computer-user proof", "tags": ["evidence","computer-user","203-test"]},
+    {"id": "L-PTR", "target": "/tmp/helix_patch/ASPEN_GROVE_POINTER_INDEX.json", "provenance": "aspen-grove pointer index", "role": "Durable cross-session memory (resolve by ID)", "tags": ["memory","pointer","durable"]},
+    {"id": "L-REPOEX", "target": "/root/repo_excellence/STRONG_COMPLETION.computer-user.md", "provenance": "203 tests PASS + live AKOS + restart-safe (VERIFIED anchor)", "role": "Highest-grade proof, not yet folded into 228", "tags": ["anchor","verified","computer-user"]},
+    {"id": "L-CPT1", "target": "/tmp/helix_patch/solidify/CHECKPOINT_LONGEST_HORIZON.md", "provenance": "longest-horizon checkpoint wave 1", "role": "Resumable state (waves done, next steps)", "tags": ["checkpoint","horizon"]},
+    {"id": "L-CPT2", "target": "/tmp/helix_patch/solidify/CHECKPOINT_WAVES_2_3.md", "provenance": "longest-horizon checkpoint waves 2-3", "role": "Resumable state (upgrade rolls, bottleneck)", "tags": ["checkpoint","horizon"]}
+  ],
+  "governance_status": {
+    "operator_authority": "operator_override active (66 freeze removed, all deserving in scope)",
+    "open_gates": [
+      "persistent_production_host_verified=false (no shell/git/network in sandbox)",
+      "company_fit=0.0 (COMPANY_EVIDENCE bracketed fields unfilled)"
+    ],
+    "next_activation": "On shell-enabled host: specialist.activate all + specialist.govern status; then push unified 225 + 228 records to GlacierEQ/job-app-helix."
+  }
+}
