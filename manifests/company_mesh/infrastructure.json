@@ -8,13 +8,17 @@
     "fixed_relation_cap": null,
     "counts_are": "observations",
     "affiliation_inference": false,
-    "source_pagination": "exhausted per query"
+    "source_pagination": "exhausted per query",
+    "public_visibility_only": true,
+    "private_repository_identities_omitted": true,
+    "private_overlay_repository": "GlacierEQ/job_app_helix",
+    "private_overlay_path": "company_mesh/infrastructure.json"
   },
   "companies": {
     "spacex": {
       "name": "SpaceX",
       "query": "spacex",
-      "observed_repo_count": 16,
+      "observed_repo_count": 14,
       "repositories": [
         {
           "repository_full_name": "GlacierEQ/spacex-autonomy",
@@ -81,14 +85,6 @@
           "relation": "DISCOVERED_RELEVANCE"
         },
         {
-          "repository_full_name": "GlacierEQ/spacex-orbital-assembly",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "main",
-          "size": 12,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
           "repository_full_name": "GlacierEQ/spacex-orbital-mechanics",
           "visibility": "public",
           "archived": false,
@@ -110,14 +106,6 @@
           "archived": false,
           "default_branch": "main",
           "size": 149,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/spacex-recovery-dynamics",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "main",
-          "size": 35,
           "relation": "DISCOVERED_RELEVANCE"
         },
         {
@@ -144,29 +132,15 @@
           "size": 94,
           "relation": "DISCOVERED_RELEVANCE"
         }
-      ]
+      ],
+      "source_observed_repo_count": 16,
+      "private_relations_redacted": 2
     },
     "coreweave": {
       "name": "CoreWeave",
       "query": "coreweave",
-      "observed_repo_count": 6,
+      "observed_repo_count": 1,
       "repositories": [
-        {
-          "repository_full_name": "GlacierEQ/coreweave-circuit-breaker",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 15,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/coreweave-entropy-engine",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 10,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
         {
           "repository_full_name": "GlacierEQ/coreweave-rack-power-autopilot",
           "visibility": "public",
@@ -174,60 +148,22 @@
           "default_branch": "main",
           "size": 36,
           "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/coreweave-shadow-monitor",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 9,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/coreweave-state-fusion",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 87,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/coreweave-temporal-router",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 24,
-          "relation": "DISCOVERED_RELEVANCE"
         }
-      ]
+      ],
+      "source_observed_repo_count": 6,
+      "private_relations_redacted": 5
     },
     "aws": {
       "name": "AWS",
       "query": "aws",
-      "observed_repo_count": 4,
+      "observed_repo_count": 2,
       "repositories": [
-        {
-          "repository_full_name": "GlacierEQ/aws-toolkit-vscode",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 165992,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
         {
           "repository_full_name": "GlacierEQ/aws-trainium-neuron-sentinel",
           "visibility": "public",
           "archived": false,
           "default_branch": "main",
           "size": 85,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/awscloud",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "main",
-          "size": 87,
           "relation": "DISCOVERED_RELEVANCE"
         },
         {
@@ -238,21 +174,15 @@
           "size": 22,
           "relation": "DISCOVERED_RELEVANCE"
         }
-      ]
+      ],
+      "source_observed_repo_count": 4,
+      "private_relations_redacted": 2
     },
     "microsoft": {
       "name": "Microsoft",
       "query": "microsoft",
-      "observed_repo_count": 7,
+      "observed_repo_count": 6,
       "repositories": [
-        {
-          "repository_full_name": "GlacierEQ/Autogen_GraphRAG_Ollama",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "main",
-          "size": 325,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
         {
           "repository_full_name": "GlacierEQ/microsoft-azure-ops",
           "visibility": "public",
@@ -301,69 +231,15 @@
           "size": 1247,
           "relation": "DISCOVERED_RELEVANCE"
         }
-      ]
+      ],
+      "source_observed_repo_count": 7,
+      "private_relations_redacted": 1
     },
     "lambda": {
       "name": "Lambda",
       "query": "lambda",
-      "observed_repo_count": 8,
+      "observed_repo_count": 1,
       "repositories": [
-        {
-          "repository_full_name": "GlacierEQ/aws-toolkit-vscode",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 165992,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/awscloud",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "main",
-          "size": 87,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/lambda-bodybuilder",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 2,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/lambda-cli-suite",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 3,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/lambda-intent-compiler",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 4,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/lambda-microwave-engine",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 3,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
-        {
-          "repository_full_name": "GlacierEQ/lambda-stealth-team",
-          "visibility": "private",
-          "archived": false,
-          "default_branch": "master",
-          "size": 2,
-          "relation": "DISCOVERED_RELEVANCE"
-        },
         {
           "repository_full_name": "GlacierEQ/lambda-useful-gpu-minute-contract",
           "visibility": "public",
@@ -372,7 +248,9 @@
           "size": 43,
           "relation": "DISCOVERED_RELEVANCE"
         }
-      ]
+      ],
+      "source_observed_repo_count": 8,
+      "private_relations_redacted": 7
     },
     "tesla": {
       "name": "Tesla",
@@ -387,7 +265,10 @@
           "size": 61,
           "relation": "DISCOVERED_RELEVANCE"
         }
-      ]
+      ],
+      "source_observed_repo_count": 1,
+      "private_relations_redacted": 0
     }
-  }
+  },
+  "scope": "PUBLIC_RECRUITER_PROJECTION"
 }
