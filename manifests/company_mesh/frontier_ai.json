@@ -1,0 +1,1161 @@
+{
+  "schema": "glaciereq.company-repo-mesh.batch.v2",
+  "generated_on": "2026-08-29",
+  "group": "frontier_ai",
+  "policy": {
+    "fixed_repo_cap": null,
+    "fixed_company_cap": null,
+    "fixed_relation_cap": null,
+    "counts_are": "observations",
+    "affiliation_inference": false,
+    "source_pagination": "exhausted per query"
+  },
+  "companies": {
+    "xai": {
+      "name": "xAI",
+      "query": "xai",
+      "observed_repo_count": 60,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/colossus-build-blueprint",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 63,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/electricity",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 47,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/grokodile",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 105,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-Colossus",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 28,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-Security",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 3,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Pro-xAI",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 83,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/vscode-grok",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1636,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-actuation-receipt-bus",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 58,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-community-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 16,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-community-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 21,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-cooling-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 46,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-cooling-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 29,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-energy-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 18,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-energy-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 23,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-justice-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 22,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-justice-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 24,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-microcode-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 17,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-microcode-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 24,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-nanosphere-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 17,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-nanosphere-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 21,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-nexus-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 14,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-nexus-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 23,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-security-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 34,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-security-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 23,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-servers-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 17,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-servers-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 23,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-waterplant-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 17,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-aeon777-waterplant-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 22,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-claim-promotion-fence",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 89,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossal-cooling",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 127,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-2",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 208,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-build",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 100,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-community",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 161,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-community-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 11,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-community-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 14,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-cooling",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 782,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-cooling-alpha",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 143,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-cooling-omega",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 128,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-energy",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 254,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-energy-alpha",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 114,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-energy-omega",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 95,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-microcode",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 90,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-microcode-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 12,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-microcode-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 17,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-nanosphere",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 293,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-nanosphere-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 12,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-nanosphere-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 14,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-nexus-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 9,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-nexus-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 16,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-security",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 266,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-security-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 26,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-security-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 16,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-servers",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 145,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-servers-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 12,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-servers-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 16,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-waterplant",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 115,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-waterplant-alpha",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 12,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-colossus-waterplant-omega",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 15,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/xai-legal-intelligence",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 17,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Z-BACKUP-mastermind-colossus",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 41,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "anthropic": {
+      "name": "Anthropic",
+      "query": "anthropic",
+      "observed_repo_count": 10,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/advancedresearch",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 2437,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/anthropic-agent-coordinator",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 269,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/anthropic-alignment-drift",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 3,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/anthropic-byzantine-consensus",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 12,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/anthropic-constitutional-tool-transcript",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 79,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/anthropic-cross-domain-fusion",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 2,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/anthropic-refusal-replay-harness",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 81,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/anthropic-safety-monitor",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 128,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/antigravity-awesome-skills",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 9119,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/awesome-llm-apps",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 173843,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "openai": {
+      "name": "OpenAI",
+      "query": "openai",
+      "observed_repo_count": 37,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/AI-powered-PDF-agent-project",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 176894,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/aichat",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 4340,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/awesome-codex",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 967,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/awesome-llm-apps",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 173843,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/client",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 2421,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/CLIProxyAPI",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 16037,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/codex_py2cpp",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 35,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/codex-supermemory",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 159,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/company-research-agent",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 32274,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/FastGPT",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 28953,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/flutter_gpt_box",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 5223,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/gpt-ai-assistant",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 7551,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/jupyterlab-codex",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 408,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/langfuse",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 23842,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/LocalAI",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 26786,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/MCP-Bridge",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 672,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/multi-agent-repo",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 6,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/open-codex",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 6370,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-agents-js",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 2045,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-agents-python",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 4444,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-assistant-swarm",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 2011,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-assistants-quickstart",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 112,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-codex-mcp",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 25,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-node",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 6802,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-python",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 7245,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-realtime-agents",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 2411,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-reasoning-budget-futures",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 57,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-reasoning-kv-sentinel",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 106,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/openai-tool-authority-matrix",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 52,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/project_openai_codex",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 162,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/public-openai-client-php",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 294,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/swarm",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 538,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/tig",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 160,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/vim_codex",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 5075,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/zen-mcp-server",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 4415,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/zsh_codex",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 65,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "hchscasey/codex-god-mode",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 19877,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "google_deepmind": {
+      "name": "Google / DeepMind",
+      "query": "google",
+      "observed_repo_count": 20,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/antigravity-sdk-python",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 773,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/ChatGPT-Google-Colab",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "dependabot/npm_and_yarn/npm_and_yarn-87a7e9fa24",
+          "size": 1407,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/ChatGPT-Google-Colab__public_fork_archive",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1804,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/company-research-agent",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 32274,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/connector",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/connector-repo",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 6,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/crx",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 477,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/CYBER-FORENSICS-APRIL2025",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 7,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/drive-front-door",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 11,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Extensity",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 756,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/gcp-storage-mcp",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 3295,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/gemini-mcp-tool",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 988,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/godmind-colossus-gateway",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 19,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/google-cli",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 10686,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/google-drive-mcp",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 113,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/langextract",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 10344,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/local-deepsearch-academic",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 808,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/MCP-SuperAssistant",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 4892,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/multi-agent-repo",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 6,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/susi_android",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "development",
+          "size": 19227,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "meta": {
+      "name": "Meta",
+      "query": "meta",
+      "observed_repo_count": 4,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/mcp-connector-awareness-engine",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 26,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/meta-llama-collective-sentinel",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 66,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/metaagent",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 733,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/zenith-orchestrator",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "main",
+          "size": 9,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    },
+    "nvidia": {
+      "name": "NVIDIA",
+      "query": "nvidia",
+      "observed_repo_count": 7,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/nvidia-agent-consensus",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 2,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/nvidia-circuit-breaker",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 3,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/nvidia-deep-reasoning",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 90,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/nvidia-gpu-health",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 92,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/nvidia-gradient-integrity-quorum",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 39,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/nvidia-gradient-shield",
+          "visibility": "private",
+          "archived": false,
+          "default_branch": "master",
+          "size": 3,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/nvidia-nan-circuit-breaker",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 58,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ]
+    }
+  }
+}
