@@ -63,7 +63,8 @@ job-app-helix-estate-compose = "job_app_helix.estate_federated_recovery:main"
 job-app-helix-company-refresh = "job_app_helix.company_intelligence_refresh:main"
 job-app-helix-company-acquire = "job_app_helix.company_intelligence_acquisition:main"
 job-app-helix-outcomes = "job_app_helix.outcome_calibration:main"
-job-app-helix-recover = "job_app_helix.intelligent_recovery_cli:main"\njob-app-helix-estate-mesh = "job_app_helix.estate_mesh:main"
+job-app-helix-recover = "job_app_helix.intelligent_recovery_cli:main"
+job-app-helix-estate-mesh = "job_app_helix.estate_mesh:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/job_app_helix"]
