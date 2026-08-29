@@ -1,4 +1,4 @@
-# GlacierEQ/job-app-helix
+\n> **Estate-size contract (2026-08-29):** numeric repository/family counts below are materialized snapshot observations, **not admission caps**. The live estate model is source-exhaustive; newly discovered repositories and companies remain in inventory even when unverified, unassigned, archived, or outside recruiter-focused views. See [docs/UNBOUNDED_ESTATE_CONTRACT.md](docs/UNBOUNDED_ESTATE_CONTRACT.md).\n# GlacierEQ/job-app-helix
 
 > The hard, evidence-bound public face of the GlacierEQ portfolio. Every claim in this README is anchored to a machine artifact. No prose inflation. No single-authority framing — this is a holographic mesh of 225 repositories across 21 families, with 8 VERIFIED anchors and one open gate.
 
