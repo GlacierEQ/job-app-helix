@@ -1,0 +1,20 @@
+{
+  "repo": "comet-voice-module-tests",
+  "family": "Comet / Perplexity Browser",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Dedicated voice-module testing suite for the Comet Assistant & Agent (JavaScript test repository). The catalog describes its intent and a capabilities_3layer stub (launch_cmd git clone, contract_proof) exists, but no actual test files, passing-run logs, or receipts are present to prove coverage or execution.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4412 (name=comet-voice-module-tests; JavaScript, private, domain lab_hire_stamps, desc present)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:48",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (group: Comet / Perplexity Browser, listed unprocessed)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=comet-voice-module-tests; launch_cmd git clone, contract_proof DONE, mesh_uri)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 4,
+  "makes_worthy": "Test-suite intent raises 2->3; cannot exceed 5 without committed tests and a passing run (CI/log receipt) proving coverage.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.965356",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=4"
+}

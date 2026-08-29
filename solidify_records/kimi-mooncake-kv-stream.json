@@ -1,0 +1,20 @@
+{
+  "repo": "kimi-mooncake-kv-stream",
+  "family": "Moonshot AI / Kimi",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "GlacierEQ's canonical Kimi/Moonshot-family KV-stream off the Mooncake architecture, cataloged in lab_hire_stamps as worked_solidified with a SHA-bound 3-layer record (sha256 95a71410...) and DONE contract proof (P0 Model Inference And Sentinels). Library desc empty; no fact card/test/runtime receipt was found locally, so capability is catalog-asserted only.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:8684 (name; domain lab_hire_stamps; desc empty; local_job_app true; Python; updatedAt 2026-08-10)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:22127 (layers 1-3; sha256_binding 95a71410946576bf154748a737b262ca5b206a39a54a7d6e689b0cce74eadd94; category MODEL_INFERENCE_AND_SENTINELS; contract_proof DONE; mesh_uri glaciereq://mesh/model_inference_and_sentinels/kimi-mooncake-kv-stream)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:148-153 (family Moonshot AI/Kimi; canonical_candidate; current_preparation)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED \u2014 repo inside boundary)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Supply the empty library desc, add a fact card with the KV-stream implementation and a benchmark vs baseline, and a test proving the streaming path.",
+  "repo_excellence_overlap": "Verification/receipt discipline from the computer-user VERIFIED anchor applies \u2014 bind any stream run to a hash receipt (proof_receipt schema v1).",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.874242",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,31 @@
+{
+  "repo": "xai-colossus-energy",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "wave3": true,
+  "evidence_state": "BOUNDED_ENERGY_FAMILY_TEST_VERIFIED",
+  "promotion_state": "FLAGSHIP_CANDIDATE_WITH_PINNED_ALPHA_OMEGA_COMPOSITION",
+  "merge_authorized": false,
+  "innovation_summary": "Colossus energy pillar of the AKOS portfolio. Wave-3 mining now binds the family hardening receipt (BOUNDED_ENERGY_FAMILY_TEST_VERIFIED) to this base repository: direct_family_gate run_id 30896081128 (Energy Family Truth Gate) succeeded on python 3.11.15 + rustc 1.97.1 + cargo 1.97.1 with 16 bounded tests (6 native_rust + 7 local_python + 2 pinned_alpha + 1 pinned_omega) at head_commit 8e7cf19a53f842a40cd4156893002a27f2b0519a. The cross-repository scenario (PINNED_CROSS_REPOSITORY_SCENARIO_VERIFIED) demonstrates alpha OVERSUBSCRIBED (used 68.0 MW, reserve 5.6 MW, headroom -3.6 MW), omega_need 3.6 MW, first_action shed batch-training 20.0 MW at priority 9, met=true, with historical_answer_or_confidence_fields_used_as_evidence=false. Artifact 8887063327 digest sha256:37a068f81a37abbb1e31d6801a4834f9bb14b7839a102ee1e7e3ab1f1f8ef9c3. Catalog flags confirm worked_on/worked_solidified + local_job_app=true. Real bounded test + cross-repo scenario + hashed artifact warrant 8, with 10 reserved for a merged, telemetry-integrated build.",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json line 47 (workflow='Energy Family Truth Gate', run_id=30896081128, conclusion=success)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json line 50 (toolchains python 3.11.15 / rustc 1.97.1 / cargo 1.97.1)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json line 56 (test_counts total_bounded_tests=16; native_rust=6, local_python=7, pinned_alpha=2, pinned_omega=1)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json line 65 (alpha commit 69229edbb5fbf511c2416604bf77a8067235885e pinned)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json line 70 (omega commit 7919943e0b73f2ca8784e417ff9efb0cf8c37a86 pinned)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json line 74 (cross_repository_scenario PINNED_CROSS_REPOSITORY_SCENARIO_VERIFIED, met=true)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json line 93 (artifact 8887063327 digest sha256:37a068f81a37abbb1e31d6801a4834f9bb14b7839a102ee1e7e3ab1f1f8ef9c3)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json line 102 (reusable CI gate run_id=30896081265, conclusion=success)",
+    "/tmp/monolith/catalog/library.json:18060 (catalog entry: domain=colossus_xai, role=part, activity=worked_on, status_detail=worked_solidified, local_job_app=true)"
+  ],
+  "verification_status": "VERIFIED_TEST",
+  "worthy_rating": 8,
+  "makes_worthy_10": "Remove or quarantine historical answer and synthetic confidence fields in child repositories; add typed versioned load/circuit/unit/timestamp/authority schemas; expand boundary and property tests for reserve and shedding policy; mount and authenticate the colossus-gateway MemoryRouter integration in a separate controlled gate; add replay and failure-injection fixtures; obtain independent domain review before physical-infrastructure interpretation; merge PR #10 to main; graduate from simulation to measured telemetry.",
+  "honest_limits": [
+    "memory_router_available was 'degraded' (colossus-gateway MemoryRouter not mounted in the isolated repository runner); provider_keys_present=false; live_memory_writes_verified=false",
+    "no real grid or utility integration, no real-time telemetry, no production load shedding",
+    "no 150 MW+ deployment, no measured PUE improvement, no operating-cost reduction",
+    "merge_authorized=false in source PR #10"
+  ]
+}

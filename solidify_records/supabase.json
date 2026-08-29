@@ -1,0 +1,19 @@
+{
+  "repo": "supabase",
+  "family": "Supabase",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "The Postgres development platform \u2014 a dedicated Postgres database to build web, mobile, and AI applications (catalog exec summary). Catalog classifies it as an Extended Utilities And Experiments engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/supabase). Honest limitation: cataloged as a reference/upstream dependency; no local modifications, tests, or fact card found, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 15932: entry supabase; exec summary='The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.'; url=https://github.com/GlacierEQ/supabase)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 46963: name=supabase; classifier=extended_utilities_and_experiments; executive_summary='The Postgres development platform...'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/supabase; launch_cmd='git clone https://github.com/GlacierEQ/supabase')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 270: supabase reference_or_upstream includes supabase)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Pin a GlacierEQ-tested fork version, add an integration test against a mock Postgres, and emit a fact card with source verification to reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:17.021510",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,21 @@
+{
+  "repo": "openai-python",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Official Python library for the OpenAI API. Triple-cataloged: (a) library.json desc='The official Python library for the OpenAI API' with status_detail=catalogued_unclassified + url; (b) capabilities_3layer.json classifier lab_benchmarks_and_stamps with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/lab_benchmarks_and_stamps/openai-python; (c) company_engineered_repositories.json family openai/reference_or_upstream (verbatim upstream mirror, no local edits). The expanded_job_app_helix_manifest.json (line 751) explicitly assigns it as a job-app-helix mesh leaf, family OpenAI / Codex, canonical openai-reasoning-kv-sentinel, state reference. This is the foundational Python SDK leaf that the rest of the openai-agents-python / openai-assistant-swarm / openai-realtime-agents contracts depend on at the mesh layer. Honest limitation: reference/upstream means zero local GlacierEQ modifications; without a pinned GlacierEQ-tested fork version, integration test against a mock server, or fact card, capability is contract-catalog + mesh-foundation + helix-membership proven, not runtime-verified \u2014 so 7 is the honest ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 12540: entry name=openai-python; desc='The official Python library for the OpenAI API'; status_detail=catalogued_unclassified; url=https://github.com/GlacierEQ/openai-python)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 25407: name=openai-python; classifier=lab_benchmarks_and_stamps; elevator_pitch='High-performance Lab Benchmarks And Stamps engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/openai-python; launch_cmd='git clone https://github.com/GlacierEQ/openai-python')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 220: family openai; reference_or_upstream list \u2014 verbatim upstream mirror, no local mods)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 751: kind=company, state=reference, family='OpenAI / Codex', canonical=openai-reasoning-kv-sentinel \u2014 confirmed job-app-helix mesh membership; foundational Python SDK leaf for 4 sibling openai-* contracts)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 123: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Pin a GlacierEQ-tested fork version, add an integration test against a mock OpenAI server, emit a fact card with a recorded test run, and update company_engineered_repositories.json from reference_or_upstream to in_preparation \u2014 would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.816087",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

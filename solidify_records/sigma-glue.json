@@ -1,0 +1,19 @@
+{
+  "repo": "sigma-glue",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "Sigma Orchestrator federation glue layer between the Sigma UI and independent component repositories; owns workflow state and sequencing, explicitly not credentials, approval authority, or provider gateways (JavaScript). Local evidence is a catalog description only; no test run or receipt was found.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=sigma-glue; domain=long_tail; activity=catalogued; status_detail=catalogued_unclassified; desc 'Sigma Orchestrator \u2014 federation glue layer between Sigma UI and independent component repositories. Owns workflow state and sequencing; never credentials, approval authority, or provider gateways.'; JavaScript)",
+    "/tmp/monolith/domains/long_tail.md line 591 (catalogued)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (contract_proof='DONE <=> issue-contract proof(pain) for sigma-glue')"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Implement and test the workflow-state/sequencing engine (state transitions, ordering guarantees) under a CI truth gate, and emit a hardening receipt with a pinned commit and hashed artifact. Currently only a catalog description exists.",
+  "last_verified": "2026-08-29T08:47:16.942811",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

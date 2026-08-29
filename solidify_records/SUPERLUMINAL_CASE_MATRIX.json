@@ -1,0 +1,18 @@
+{
+  "repo": "SUPERLUMINAL_CASE_MATRIX",
+  "family": "Legal / Case Portfolio",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "Production-grade Legal Case Portfolio asset (catalog exec summary). Catalog classifies it as a Legal Case Portfolio engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/SUPERLUMINAL_CASE_MATRIX); the catalog marks it foundation-level with impact P0 in the legal_case domain. Honest limitation: no independent test/receipt/fact card was found locally, so capability is catalog-proven (foundation), not independently runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 15980: entry SUPERLUMINAL_CASE_MATRIX; domain=legal_case; exec summary='Production-grade Legal Case Portfolio asset.'; url=https://github.com/GlacierEQ/SUPERLUMINAL_CASE_MATRIX)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 289: name=SUPERLUMINAL_CASE_MATRIX; classifier=legal_case_portfolio; domain=legal_case; capability_tags include foundation; impact P0; architecture_role=whole; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/legal_case_portfolio/SUPERLUMINAL_CASE_MATRIX; launch_cmd='git clone https://github.com/GlacierEQ/SUPERLUMINAL_CASE_MATRIX')"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt to independently confirm the case-portfolio logic and reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.776568",
+  "notes": " | NEEDS_REPAIR"
+}

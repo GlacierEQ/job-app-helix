@@ -1,0 +1,23 @@
+{
+  "repo": "google-drive-mcp",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A Google Drive MCP connector providing OAuth management, health monitoring, forensic logging, and MemoryPlugin integration for AI workflows \u2014 a control-point Drive surface (domain: lab_hire_stamps). Deeper mining reveals the strongest cross-source signal of the G-M batch: it is flagged in legal_spines/1FDV-23-0001009 as 'inspect_for_case_source_routes / legal_tech' (discovery-candidate JSON) AND cross-referenced in LAB_HIRE_DOMAIN_ATLAS, capabilities_3layer ('Legal Evidence Ledgers engine', mesh_uri glaciereq://mesh/legal_evidence_ledgers/google-drive-mcp), and validate_lab_hire_atlas.py. This ties it to the active legal case mesh, not just catalog. COMPANY_ENGINEERED_PROCESSING lists it unprocessed.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:7228 (name google-drive-mcp, Python, private, domain lab_hire_stamps)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:3321 (entry: elevator_pitch 'Legal Evidence Ledgers engine', mesh_uri glaciereq://mesh/legal_evidence_ledgers/google-drive-mcp, contract_proof template only)",
+    "/tmp/monolith/status/legal_spines/1FDV-23-0001009.md:79 (GlacierEQ/google-drive-mcp | inspect_for_case_source_routes | legal_tech)",
+    "/tmp/monolith/catalog/legal_spines/1FDV-23-0001009-discovery-candidates.json:22 ({repository:GlacierEQ/google-drive-mcp, status:inspect_for_case_source_routes, likely_layer:legal_tech})",
+    "/tmp/monolith/domains/lab_hire_stamps.md:54 (portfolio row: Maximum Control Point Google Drive Connector with OAuth/health/forensic logging)",
+    "/tmp/monolith/scripts/validate_lab_hire_atlas.py:60 (listed as a validated atlas record)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:109 (unprocessed: google-drive-mcp)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "wave3": true,
+  "makes_worthy": "Add a README documenting the OAuth/health/forensic-logging flow + a build/receipt + worked example, and resolve the legal_spines inspection route to convert the discovery-candidate into a verified legal-tech capability. Highest of batch due to concrete legal-mesh cross-reference (legal_spines receipt-style candidate), but still PARTIAL: no build/test receipt yet.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:17.029050",
+  "notes": " | NEEDS_REPAIR"
+}

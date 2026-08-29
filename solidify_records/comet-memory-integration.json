@@ -1,0 +1,22 @@
+{
+  "repo": "comet-memory-integration",
+  "family": "Comet / Perplexity Browser",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Central memory hub for the Perplexity Comet browser agent: exposes an auto-accessible repository registry and connector documentation for the GlacierEQ repo mesh, linking Comet agents to the broader repo mesh (domain: memory_aspen). Multi-source evidence: library.json (private, memory_aspen domain, desc present), capabilities_3layer (launch_cmd git clone, contract_proof DONE, mesh_uri), company_engineered_repositories.json (Comet/Perplexity Browser family, unprocessed, 5 memberships, P1_BROWSER_AGENT_SUITE focus), domains/memory_aspen.md:43, and the Helix 66-boundary inventory from the evidence ledger. Real mesh-linking role justifies lift from 4->5. Honest limitation: no local source, no runtime registry-query receipt, no connector-resolution smoke test in hand.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4396 (name=comet-memory-integration; language null, private, domain memory_aspen, desc present)",
+    "/tmp/monolith/domains/memory_aspen.md:43",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:86-95 (Comet/Perplexity Browser family; unprocessed; 5 memberships; P1_BROWSER_AGENT_SUITE focus)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=comet-memory-integration; launch_cmd git clone, contract_proof DONE, mesh_uri glaciereq://mesh/memory_aspen/comet-memory-integration)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json:helix_inventory (66-boundary portfolio governance \u2014 comet-memory-integration is the Comet-side bridge into that mesh)",
+    "Contradiction preserved: catalog states 'needs_work' while capabilities_3layer claims contract_proof=DONE \u2014 DONE here = contract_template wired, not test-verified; no >5 promotion without a registry-query receipt"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Promoted 4->5: multi-source presence (library + capabilities_3layer + memory_aspen domain + Comet family taxonomy) + Helix mesh cross-reference. To reach >=7: add a repository-registry query receipt (GET /registry/<repo> with stable ID) and a fact card. To reach >=9: add a real Comet agent consuming the registry to resolve a connector, with end-to-end log. Capped at 5: no local source, test, or run receipt.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.894921",
+  "notes": " | NEEDS_REPAIR"
+}

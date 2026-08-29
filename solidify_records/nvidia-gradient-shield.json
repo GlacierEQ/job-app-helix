@@ -1,0 +1,21 @@
+{
+  "repo": "nvidia-gradient-shield",
+  "family": "NVIDIA",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Gradient integrity / adversarial defense layer under the NVIDIA family. Quadruple-cataloged (same estate signal as the other NVIDIA helix members): (a) capabilities_3layer.json classifier lab_benchmarks_and_stamps with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/lab_benchmarks_and_stamps/nvidia-gradient-shield; (b) library.json entry + url; (c) application_estate_registry.json:76 explicitly names GlacierEQ/nvidia-gradient-shield as a helix portfolio member; (d) company_engineered_repositories.json family nvidia/unprocessed. The expanded_job_app_helix_manifest.json (line 653) further assigns it as a job-app-helix mesh leaf, family NVIDIA, state needs_work. The gradient-shield concept is a clean addition to the existing nvidia-agent-consensus / nvidia-circuit-breaker NVIDIA cluster in the helix portfolio, forming a coherent 'adversarial-defense + consensus + breaker' trio. Honest limitation: still in unprocessed; no runtime receipt, test, or fact card was found. Contract-catalog + application-estate-membership + cluster-coherence signal justifies 7.",
+  "evidence": [
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=nvidia-gradient-shield; classifier=lab_benchmarks_and_stamps; elevator_pitch='High-performance Lab Benchmarks And Stamps engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/nvidia-gradient-shield; launch_cmd='git clone https://github.com/GlacierEQ/nvidia-gradient-shield')",
+    "/tmp/monolith/catalog/library.json (entry name=nvidia-gradient-shield; url=https://github.com/GlacierEQ/nvidia-gradient-shield)",
+    "/tmp/monolith/catalog/application_estate_registry.json (line 76: GlacierEQ/nvidia-gradient-shield; helix portfolio member)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family nvidia; unprocessed list)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 653: kind=company, state=needs_work, family='NVIDIA' \u2014 confirmed job-app-helix mesh membership; forms cluster with nvidia-agent-consensus + nvidia-circuit-breaker)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Clone the repo, document its gradient-shield purpose (what it defends against, what guarantees it provides), add a minimal test or CLI that demonstrates the shield in action against a known adversarial input, and emit a repository_fact_card with source verification; a passing build/receipt would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.735721",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,22 @@
+{
+  "repo": "1FDV-23-0001009-FEDERAL-WARFARE",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "Private federal litigation system for case 1FDV-23-0001009, packaging RICO, 42 U.S.C. \u00a71983, and CFAA prosecution infrastructure wired into a 13-database Notion APEX system. The deeper catalog shows it carries a completed issue-contract proof(pain) marker and acts as the spine feeding the SUPERLUMINAL_CASE_MATRIX evidence brain and the AEON/aspen memory layers for the case.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=1FDV-23-0001009-FEDERAL-WARFARE; domain=legal_case; role=whole; status_detail=foundation_whole)",
+    "/tmp/monolith/catalog/legal_spines/1FDV-23-0001009.json",
+    "/tmp/monolith/catalog/legal_spines/1FDV-23-0001009-index.json",
+    "/tmp/monolith/catalog/legal_spines/1FDV-23-0001009-discovery-candidates.json",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=1FDV-23-0001009-FEDERAL-WARFARE; contract_proof='DONE <=> issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/legal_case_portfolio/1FDV-23-0001009-FEDERAL-WARFARE)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (case referenced as foundation for SUPERLUMINAL_CASE_MATRIX evidence brain)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "repo_excellence_anchor": "Peripheral \u2014 case pack is consumed by AKOS/pro-code governed orchestration but holds no governed-execution receipt; linkage is indirect via pro-code/AKOS.",
+  "makes_worthy": "Commit a docket/chronology manifest (docket.json with filing dates + exhibit IDs) and run a metadata-lint GitHub Action so the foundation pack becomes a re-verifiable deliverable.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.727220",
+  "notes": " | NEEDS_REPAIR"
+}

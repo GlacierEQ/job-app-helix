@@ -1,0 +1,22 @@
+{
+  "repo": "github-repo-enrichment-engine",
+  "family": "GitHub",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "An automated GitHub repository-enrichment system (deploy-production-grade metadata/improvement workflows). Multi-source: library.json:7020 (name github-repo-enrichment-engine; Automated GitHub repository enrichment system), capabilities_3layer:37093 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/github-repo-enrichment-engine, contract_proof template only), domains/long_tail.md:381 (portfolio row: Automated GitHub repository enrichment system - Deploy production-grade), company_engineered_repositories.json:129 (unprocessed: github-agent-orchestrator, apex-github-worker, github-repo-enrichment-engine, public-actions-runner-host), LONG_TAIL_ATLAS_BATCH_07.md:86 (current/automation_suite; honest limitation: not deployment/quality/production-grade, confidence=medium), COMPANY_ENGINEERED_PROCESSING.md:72 (processing line: github-repo-enrichment-engine). Rating held at 5: 4-entry unprocessed co-set + atlas + processing line = catalog ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:7020 (name github-repo-enrichment-engine; Automated GitHub repository enrichment system)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:37093 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/github-repo-enrichment-engine, contract_proof template only)",
+    "/tmp/monolith/domains/long_tail.md:381 (portfolio row: Automated GitHub repository enrichment system - Deploy production-grade)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:129 (unprocessed: github-agent-orchestrator, apex-github-worker, github-repo-enrichment-engine, public-actions-runner-host \u2014 4-entry unprocessed co-set)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_07.md:86 (current/automation_suite; honest limitation: not deployment/quality/production-grade, confidence=medium)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:72 (processing line: github-repo-enrichment-engine)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Held at 5: 4-entry unprocessed co-set + atlas + processing line = catalog ceiling. To reach >=7: a build/receipt from a real enrichment run + quality-gain metrics (e.g., before/after description quality score on N repos). Capped at 5: unprocessed, catalog scope only, no production proof.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.847058",
+  "notes": " | NEEDS_REPAIR"
+}

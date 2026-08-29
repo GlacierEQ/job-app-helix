@@ -1,0 +1,29 @@
+{
+  "repo": "xai-colossus-servers-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "evidence_state": "PRIVATE_HISTORICAL_EXPERIMENT_BLOCKED_TEST_REWRITE",
+  "not_counted_as_public_verified_component": true,
+  "preserve": true,
+  "innovation_summary": "Private historical experiment companion (alpha) of xai-colossus-servers (rack-placement planning). The family hardening receipt (xai_colossus_servers_hardening.json) explicitly inspected this repository at commit 0544f70c9a9cb3ac5c170bb308781716e2c00bd5 and documents findings: simplified switch-count and optical-temperature heuristics are present; maximum hop count is hardcoded; failed-spine bypass output is hardcoded; formula calibration and physical validity are undocumented; tracked compiled Python artifacts were observed; some tests only print success without asserting the stated integration. The receipt also documents a complementary VERIFIED base repo (xai-colossus-servers, 20/20 tests, run_id 30897116390) but explicitly NOT this alpha. Capped at 5 (catalog + hardening-receipt-documented private state with explicit preservation guidance; not counted as a public verified component).",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json line 87 (repository GlacierEQ/xai-colossus-servers-alpha; visibility private; inspected_commit 0544f70c9a9cb3ac5c170bb308781716e2c00bd5; state PRIVATE_HISTORICAL_EXPERIMENT_BLOCKED_TEST_REWRITE; not_counted_as_public_verified_component=true; preserve=true)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json lines 93-100 (six specific findings: simplified switch-count and optical-temperature heuristics; hardcoded max-hop count; hardcoded failed-spine bypass output; undocumented formula calibration/physical validity; tracked compiled Python artifacts; tests that only print success without asserting integration)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json line 129 (not_verified list includes 'Alpha or Omega runtime composition')",
+    "/tmp/monolith/catalog/library.json line 18300 (name=xai-colossus-servers-alpha; url=github.com/GlacierEQ/xai-colossus-servers-alpha)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 71 (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_7": "(1) Replace the hardcoded max-hop constant with a parameter that the test actually varies and asserts; (2) replace the hardcoded failed-spine bypass output with a value derived from a tested model; (3) document and cite the formula calibration source and physical-validity range; (4) remove tracked compiled Python artifacts; (5) rewrite tests to assert the stated switch-count/optical-temperature integration rather than only printing success; (6) add an independent CI truth gate with an artifact digest for this alpha in isolation; (7) obtain independent review before any controller-family composition claim. Until then, retain as a preserved historical experiment, not a public verified component.",
+  "honest_limits": [
+    "explicitly not_counted_as_public_verified_component=true per the family hardening receipt",
+    "hardcoded max-hop and hardcoded failed-spine bypass output are not real models",
+    "no isolated CI run, artifact, or test receipt for this alpha"
+  ],
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:17.038318",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

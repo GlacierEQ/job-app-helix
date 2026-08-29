@@ -1,0 +1,19 @@
+{
+  "repo": "perplexity-goose-integration",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A master integration guide/documentation for wiring Goose + Perplexity Enhancement MCP + evolution tracking into an autonomous AI system with permanent memory (Shell). Catalog classifies it as an Extended Utilities And Experiments engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/perplexity-goose-integration). Honest limitation: cataloged as documentation-oriented, unprocessed Perplexity-family repo; no fact card, build, or source evidence found locally, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry perplexity-goose-integration, line 13148; url=https://github.com/GlacierEQ/perplexity-goose-integration)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 9167: name=perplexity-goose-integration; classifier=extended_utilities_and_experiments=mcp_community_utilities; elevator_pitch='High-performance Mcp Community Utilities engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/mcp_community_utilities/perplexity-goose-integration; launch_cmd='git clone https://github.com/GlacierEQ/perplexity-goose-integration')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 239: unprocessed)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Produce a repository_fact_card proving the Goose+MCP wiring runs end-to-end (setup receipt, verified autonomous loop) and a README; only a catalog description currently exists locally (worthy>=8).",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.904471",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,27 @@
+{
+  "repo": "xai-colossus-community",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Designated domain umbrella for the non-technical delivery layer of a Colossus-class datacenter: community relations, political clearance, and licensing - described in its own catalog entry as 'the human layer that makes everything else possible'. Wave-3 mining confirmed the precise catalog desc (library.json:17964), the canonicalization disposition DOMAIN_UMBRELLA_CANDIDATE_REWRITE_REQUIRED, and the promotion-index directive to reclassify it out of infrastructure runtime if it is primarily stakeholder/political planning. No source inspection, tests, or receipts exist locally, so rating raised to the catalog-evidence ceiling (5) and capped there \u2014 no execution artifact justifies more.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 17964 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, desc 'xAI Colossus 2 - Community Relations, Political Clearance & Licensing Hub. The human layer that makes everything else possible.', updatedAt 2026-07-12T18:25:43Z)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (canonical_architecture.domain_umbrellas includes xai-colossus-community; disposition DOMAIN_UMBRELLA_CANDIDATE_REWRITE_REQUIRED; absent from both inspection lists)",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md line 151 (remaining sequence item 3: 'Community - reclassify away from infrastructure runtime if it is primarily stakeholder or political planning')",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md lines 129-140 (10-point domain promotion gate)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 41 (Build, realignment, and community; system level governance; 'Covers community relations, political clearance, licensing, and related nontechnical delivery constraints'; confidence high)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md canonical tree line 43 (domain umbrellas) and execution order item 5 (line 148)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 151 (unprocessed) and line 174 (Community canonical: unresolved; compare base, alpha, omega, AEON variants)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/domains/colossus_xai.md line 31",
+    "/tmp/monolith/receipts/company_families/ (no community receipt)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Settle the classification question the promotion index raises: if stakeholder/permitting planning, own that explicitly and reclassify out of infrastructure runtime. Then make it evidence-bound - a licensing/permit register with dated official sources, a stakeholder/jurisdiction map, and a small tracker validating permit dependency ordering with tests. Resolve the community base/alpha/omega duplication. Honest, sourced siting-and-permitting work reaches 8 on citations plus one runnable tracker.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:17.025009",
+  "notes": " | NEEDS_REPAIR"
+}

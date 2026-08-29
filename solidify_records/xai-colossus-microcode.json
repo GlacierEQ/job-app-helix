@@ -1,0 +1,27 @@
+{
+  "repo": "xai-colossus-microcode",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Designated domain umbrella for GPU-rack firmware concerns: a firmware manifest, driver matrix, flash controller, and firmware audit CLI for Colossus GPU racks. Of the unpromoted umbrellas this has the most concretely named deliverables (a manifest, a matrix, a CLI), which makes it the most tractable next promotion target. Wave-3 mining confirmed the precise catalog desc (library.json:18108), the canonicalization disposition DOMAIN_UMBRELLA_CANDIDATE_REWRITE_REQUIRED, the promotion-index note to separate manifest/driver inventory tooling from firmware-control claims, and the COLOSSUS_XAI_ATLAS/ATLAS entries. No source inspection, tests, or receipts exist locally, so rating raised to the catalog-evidence ceiling (5) and capped there \u2014 no execution artifact justifies more.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 18108 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, desc 'Firmware manifest, driver matrix, flash controller, and firmware audit CLI for xAI Colossus GPU racks', updatedAt 2026-07-12T18:26:01Z)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (canonical_architecture.domain_umbrellas includes xai-colossus-microcode; disposition DOMAIN_UMBRELLA_CANDIDATE_REWRITE_REQUIRED; absent from both inspection lists)",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md line 150 (remaining sequence item 2: 'Microcode - separate manifest/driver inventory tooling from firmware-control claims')",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md lines 129-140 (10-point domain promotion gate)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 44 (Servers, firmware, and placement; system level firmware; 'Organizes firmware manifests, driver matrices, flashing controls, and firmware-audit concerns'; confidence high)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md canonical tree line 44 (domain umbrellas) and execution order item 5 (line 148)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 152 (unprocessed) and line 176 (Microcode canonical: unresolved; compare base, alpha, omega, AEON microcode variants)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/domains/colossus_xai.md line 34",
+    "/tmp/monolith/receipts/company_families/ (no microcode receipt)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Follow the exact pattern that got xai-colossus-servers to VERIFIED. Keep the read-only half (typed firmware manifest schema with versions/provenance, driver compatibility matrix, audit CLI reporting drift), delete/fence the flash-controller half as unimplemented/no-hardware-action, add a bounded test suite + truth-surface test, wire scripts/ci/verify_portfolio_core.sh, and publish receipts/company_families/xai_colossus_microcode_hardening.json with a hashed artifact.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:17.025553",
+  "notes": " | NEEDS_REPAIR"
+}

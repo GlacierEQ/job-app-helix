@@ -1,0 +1,20 @@
+{
+  "repo": "Z-BACKUP-ollama-notion-apex-orchestrator",
+  "family": "Notion",
+  "kind": "company",
+  "source_state": "needs_work",
+  "wave3": true,
+  "innovation_summary": "Backup integration hub combining Ollama + Notion + MCP + E2B + A2A for AI orchestration (Notion family, unprocessed Z-BACKUP). Catalog desc present but the repo is an unprocessed backup; no fact card, source inspection, or tests were found locally, so it is not yet a portfolio capability. Wave-3 mining confirmed the library.json entry (domain=apex_cognitive_os, catalogued_unclassified, JavaScript, desc present, private=true) and the unprocessed Notion-family listing. No receipt exists. Rating raised modestly to 4 (catalog entry + desc confirmed) and capped at \u22645 \u2014 no execution artifact justifies more.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=Z-BACKUP-ollama-notion-apex-orchestrator: domain=apex_cognitive_os, status_detail=catalogued_unclassified, language=JavaScript, desc present, private=true)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family 'notion': unprocessed includes Z-BACKUP-ollama-notion-apex-orchestrator)",
+    "/tmp/monolith/evidence/repository_fact_cards/ (no fact card)",
+    "/tmp/monolith/receipts/company_families/ (no notion receipt)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Decide keep-vs-retire: if kept, promote to a solidify pass with README, working entrypoint, and a test/build receipt; generate a fact card. Otherwise archive clearly as a backup.",
+  "last_verified": "2026-08-29T08:47:16.909619",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

@@ -1,0 +1,23 @@
+{
+  "repo": "xai-colossus-cooling-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "Alpha-side thermal-envelope spec in the Colossus cooling pair \u2014 defines the thermal envelope boundary the Omega flow controller consumes; marked AKOS P0. Evidence: the canonicalization pass inspected its source/README and classified Alpha/Omega as complementary (finding XAI-001), but the cooling family hardening receipt explicitly lists 'Alpha/Omega integration as one deployed system' under NOT verified, and no repo-local test run or receipt names this child directly.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=xai-colossus-cooling-alpha; domain=colossus_xai; activity=worked_on; status_detail=worked_solidified; desc 'Colossus cooling Alpha \u2014 thermal envelope spec \u00b7 AKOS P0'; Python; local_job_app=true)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json inspection.source_and_readme_inspected includes 'xai-colossus-cooling-alpha'",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json findings.XAI-001 ('Cooling Alpha and Omega are complementary rather than simple duplicates'; CORROBORATED_BY_README_AND_SOURCE_PATHS)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json dispositions.SUPPORTING_HELIX_MODULE_PENDING_BEHAVIORAL_AUDIT includes cooling-alpha",
+    "/tmp/monolith/receipts/company_families/xai_colossus_cooling_hardening.json not_verified includes 'Alpha/Omega integration as one deployed system'",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (xai_colossus.historical_or_cross_company)",
+    "/tmp/monolith/domains/colossus_xai.md"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Give it its own CI truth gate. The cooling umbrella gate (run_id 30895011833, 37 tests) covers the umbrella only; add repo-local thermal-envelope tests pinned to a commit with a hashed artifact, and verify Alpha/Omega composition as one system to clear the parent receipt's not_verified item.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.943781",
+  "notes": " | NEEDS_REPAIR"
+}

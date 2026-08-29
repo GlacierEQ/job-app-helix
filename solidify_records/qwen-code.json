@@ -1,0 +1,21 @@
+{
+  "repo": "qwen-code",
+  "family": "Qwen / Alibaba",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "qwen-code: a coding agent that lives in a digital world (Qwen/Alibaba). Triple-cataloged: (a) library.json:14332 (exec summary 'qwen-code is a coding agent that lives in digital world.'; url=https://github.com/GlacierEQ/qwen-code); (b) capabilities_3layer.json:25533 classifier lab_benchmarks_and_stamps with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/lab_benchmarks_and_stamps/qwen-code; (c) company_engineered_repositories.json:250 reference_or_upstream includes qwen-code. The expanded_job_app_helix_manifest.json (line 905) assigns it as a job-app-helix mesh leaf, family Alibaba / Qwen, state reference. Honest limitation: reference/upstream with no local GlacierEQ modification; the 'coding agent in a digital world' concept is interesting but the local copy is verbatim upstream. Catalog + helix membership justify 6, but no local differentiation, test, or receipt keeps it from 7.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 14332: entry qwen-code; exec summary='qwen-code is a coding agent that lives in digital world.'; url=https://github.com/GlacierEQ/qwen-code)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 25533: name=qwen-code; classifier=lab_benchmarks_and_stamps; executive_summary='qwen-code is a coding agent that lives in digital world.'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/qwen-code; launch_cmd='git clone https://github.com/GlacierEQ/qwen-code')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 250: reference_or_upstream includes qwen-code)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 905: kind=company, state=reference, family='Alibaba / Qwen' \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 145: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Honest cap at 6 \u2014 strong catalog + helix membership, but no local modification/test/receipt. To reach 7+ requires: (1) add a GlacierEQ example integrating qwen-code with one of the openai-* helix leaves, (2) add a test that runs the agent on a held-out coding task, (3) emit a fact card with execution receipt, and (4) update company_engineered_repositories.json from reference_or_upstream to in_preparation.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.786115",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

@@ -1,0 +1,21 @@
+{
+  "repo": "TextCraft",
+  "family": "Microsoft",
+  "kind": "company",
+  "source_state": "needs_work",
+  "wave3": true,
+  "innovation_summary": "Microsoft Word add-in that integrates AI tools (Microsoft upstream reference). Catalog desc: 'Integrates AI tools into Microsoft Word' in C#. Multi-source: library.json (entry name=TextCraft: domain=long_tail, status_detail=catalogued_unclassified, language=C#, desc 'Integrates AI tools into Microsoft Word' present), company_engineered_repositories.json (Microsoft family; unprocessed includes TextCraft alongside browser-operator-core, word-GPT-Plus \u2014 3-entry unprocessed co-set). Honest limitation: no implementation artifact, README, test, or fact card located locally. Rating held at 4: a concrete C# Word add-in description is stronger than name-only, but the unprocessed + catalogued_unclassified status + missing test/receipt keeps it at the catalog floor.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=TextCraft: domain=long_tail, status_detail=catalogued_unclassified, language=C#, desc 'Integrates AI tools into Microsoft Word' present)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:189 (Microsoft family; unprocessed: TextCraft, browser-operator-core, word-GPT-Plus \u2014 3-entry unprocessed co-set)",
+    "/tmp/monolith/evidence/repository_fact_cards/ (control_plane_orchestration only; no TextCraft fact card)",
+    "/tmp/monolith/receipts/company_families/ (no microsoft receipt for TextCraft)",
+    "Contradiction preserved: 'reference_or_upstream' for catalog presence but 'unprocessed' family status \u2014 the add-in is real upstream but the catalog does not claim GlacierEQ authorship."
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Held at 4: concrete C# Word add-in description + 3-entry unprocessed co-set is real catalog depth. To reach >=6: README + working add-in entrypoint + build/test receipt. To reach >=8: a fact card with runtime evidence (Word load + AI-tool invocation log). Capped at 4: no test/receipt, no fact card, upstream reference only.",
+  "last_verified": "2026-08-29T08:47:16.963475",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

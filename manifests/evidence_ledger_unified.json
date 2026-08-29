@@ -1,0 +1,129 @@
+{
+  "schema": "glaciereq.candidate-evidence-ledger.v1",
+  "generated_at": "2026-07-30T17:12:00-10:00",
+  "updated_at": "2026-08-27T22:59:00-10:00",
+  "update_note": "Addendum: GlacierEQ/computer-user governed execution verification (203 tests PASS, live AKOS, restart-safe)",
+  "claims": [
+    {
+      "id": "helix_inventory",
+      "claim": "Job-App Helix governs an exact 66-repository application boundary",
+      "state": "VERIFIED_BOUNDARY",
+      "evidence": "../../manifests/portfolio_repositories.json",
+      "presentation": {
+        "metric": "66",
+        "label": "Exact portfolio boundary",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "akos_tests",
+      "claim": "AKOS passed 94/94 tests across 12 modules on Python 3.11-3.13",
+      "state": "VERIFIED_TEST",
+      "evidence": "https://github.com/GlacierEQ/AKOS/actions/runs/30532339028",
+      "source_commit": "d00eb4a9889fb4b78621d422a70c2677e12a467d",
+      "promotion_merge": "b4b9ecba71f41bf9e3ddffa1f6c2c34c6a9b7192",
+      "presentation": {
+        "metric": "94/94",
+        "label": "AKOS tests passed",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "mesh_rollout",
+      "claim": "README Mesh rollout verified for 21 nodes",
+      "state": "VERIFIED_DOCUMENTATION",
+      "evidence": "../../docs/README_MESH_ROLLOUT_2026-07-28.md",
+      "presentation": {
+        "metric": "21",
+        "label": "README Mesh nodes",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "coordinator_tests",
+      "claim": "Agent coordinator passed 62/62 independent Python 3.13 tests",
+      "state": "CANDIDATE_TEST_PROOF",
+      "evidence": "coordinator_candidate_receipt.json",
+      "presentation": {
+        "metric": "62/62",
+        "label": "Coordinator candidate tests",
+        "display_state": "CANDIDATE"
+      }
+    },
+    {
+      "id": "runner_activation",
+      "claim": "Coordinator route is registered through the public runner architecture",
+      "state": "IMPLEMENTED_ACTIVATION_BLOCKED",
+      "evidence": "https://github.com/GlacierEQ/public-actions-runner-host/actions/runs/30573535595",
+      "catalog_merge": "570021d36e7cc0b39305522de167680cad837869",
+      "activation_issue": "https://github.com/GlacierEQ/public-actions-runner-host/issues/58"
+    },
+    {
+      "id": "governed_execution_kernel",
+      "claim": "Governed computer execution kernel (piston) emits hash-bound action receipts (caller + capability + exact source SHA + terminal receipt), under AKOS authority, with restart-safe state",
+      "state": "VERIFIED_TEST",
+      "evidence": "GlacierEQ/computer-user: tests/test_adversarial.py + unittest discover (dual-run green)",
+      "source_ref": "1eb2e2f4525d556488383af4624ce8a4a5873d44a77b58c181b973652637a397",
+      "test_ref": "5881b9fc6c57599d059432499098fdf3636b7eb4",
+      "addendum_date": "2026-08-27",
+      "presentation": {
+        "metric": "203",
+        "label": "Governed execution tests passed",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "live_akos_verification",
+      "claim": "Live AKOS HTTP invocation independently verified the terminal receipt",
+      "state": "VERIFIED_TEST",
+      "evidence": "AKOS independently verified terminal receipt over HTTP",
+      "addendum_date": "2026-08-27",
+      "presentation": {
+        "metric": "LIVE",
+        "label": "AKOS live verification",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "restart_safe_execution",
+      "claim": "Container browser.navigate + restart persistence verified inside hardened container",
+      "state": "VERIFIED_TEST",
+      "evidence": "Container kernel deployment proof; pro-code originated receipt with capability + exact terminal/AKOS source SHA bound",
+      "addendum_date": "2026-08-27",
+      "presentation": {
+        "metric": "RESTART_SAFE",
+        "label": "Restart-safe execution verified",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "proof_receipt_schema",
+      "claim": "Hash-bound action receipt preserving caller + capability + source provenance; dual-run operability check",
+      "state": "VERIFIED_TEST",
+      "evidence": "proof_receipt.schema = glaciereq.proof-receipt.v1",
+      "addendum_date": "2026-08-27",
+      "presentation": {
+        "metric": "PROOF_RECEIPT_SCHEMA",
+        "label": "Hash-bound receipt schema verified",
+        "display_state": "VERIFIED"
+      }
+    }
+  ],
+  "excluded": [
+    "400,000 agents",
+    "1,200 files/hour",
+    "production-grade across 1,104 repositories",
+    "top-percentile ranking",
+    "legal compliance conclusion",
+    "AWS master's degree"
+  ],
+  "addenda": [
+    {
+      "date": "2026-08-27",
+      "source": "GlacierEQ/computer-user",
+      "source_ref": "1eb2e2f4525d556488383af4624ce8a4a5873d44a77b58c181b973652637a397",
+      "summary": "4 new verified claims: governed execution kernel (203 tests), live AKOS verification, restart-safe execution, proof receipt schema",
+      "role_impact": "Strengthens Agent Infrastructure Engineer profile by adding trust/verification layer"
+    }
+  ]
+}

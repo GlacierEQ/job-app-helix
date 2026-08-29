@@ -1,0 +1,21 @@
+{
+  "repo": "chatgpt_infinity",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "Advanced automation userscripts for AI platforms (Perplexity Auto-Driller Pro, ChatGPT enhancements, infinite-conversation tools) \u2014 Tampermonkey scripts with intelligent drilling, auto-approval, and context-aware follow-ups (JavaScript). Cross-source evidence: library.json:3420 (desc present with feature list), company_engineered_repositories.json:221 (historical_or_cross_company: chatgpt-vercel, chatgpt_infinity, gpt-ai-assistant \u2014 3-entry set), capabilities_3layer (name=chatgpt_infinity, launch_cmd, contract_proof DONE, mesh_uri), and HIERARCHICAL_FUNCTION_MAP.json:1232,2810 (chatgpt_infinity listed as a function-systems node, path=/data/data/com.termux/files/home/chatgpt_infinity). The HIERARCHICAL_FUNCTION_MAP cross-reference is a stronger signal than catalog-only \u2014 it confirms the repo is wired into the function-systems map. Promoted 4->6: catalog + function-map presence + cross-company trio membership.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:3420 (name chatgpt_infinity; desc present with feature list: Perplexity Auto-Driller Pro, ChatGPT enhancements, infinite-conversation tools)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:221 (historical_or_cross_company: chatgpt-vercel, chatgpt_infinity, gpt-ai-assistant)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=chatgpt_infinity; launch_cmd git clone, contract_proof DONE, mesh_uri glaciereq://mesh/long_tail/chatgpt_infinity)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:1232-1234 (function-systems node: name=chatgpt_infinity, path=/data/data/com.termux/files/home/chatgpt_infinity)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:2810-2812 (second function-systems reference: name=chatgpt_infinity, path=/data/data/com.termux/files/home/chatgpt_infinity)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Promoted 4->6: HIERARCHICAL_FUNCTION_MAP dual-reference (function-systems nodes) is a real depth signal beyond catalog presence. To reach >=8: a tested auto-drill userscript execution receipt (Tampermonkey load + flow log) and a fact card. Capped at 6: no test/receipt, no run id.",
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:16.892481",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

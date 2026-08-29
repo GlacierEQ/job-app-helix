@@ -1,0 +1,23 @@
+{
+  "repo": "grok-build-nix",
+  "family": "xAI / Grok",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A Nix flake intended to run Grok Build, written by Grok Code. Cataloged unprocessed / xAI-adjacent. Deeper mining confirms LONG_TAIL_ATLAS_BATCH_08 classifies it 'current / infrastructure_component' with the honest limitation that 'the catalog supports reproducible-environment scope but does not prove provider access, a successful build, or active deployment' (confidence=medium), and XAI_COLOSSUS_CANONICALIZATION states it 'remain[s] xAI-adjacent developer tooling, but ... not Colossus infrastructure subsystems.' Listed in xai_colossus_canonicalization.json. capabilities_3layer tags it 'Human Ui Web And Desktop Apps engine'. No build receipt located.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:7500 (name grok-build-nix; Flake to run Grok Build, written by Grok Code)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:20359 (entry: elevator_pitch 'Human Ui Web And Desktop Apps engine', mesh_uri glaciereq://mesh/human_ui_web_and_desktop_apps/grok-build-nix, contract_proof template only)",
+    "/tmp/monolith/domains/long_tail.md:395 (portfolio row: Flake to run Grok Build, written by Grok Code)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json:121 (grok-build-nix in canonicalization set)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:309 (unprocessed: ... grok-build-nix)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_08.md:52 (current/infrastructure_component; honest limitation: no provider access/successful build/active deployment, confidence=medium)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md:125 (xAI-adjacent tooling, not Colossus infrastructure)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Add a successful Nix build receipt (reproducible env) to lift above 5. Capped at 5: xAI-adjacent, reproducible-env scope only, no successful build proof.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:17.031606",
+  "notes": " | NEEDS_REPAIR"
+}

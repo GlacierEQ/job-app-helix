@@ -1,0 +1,29 @@
+{
+  "repo": "xai-colossus-nanosphere-omega",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "evidence_state": "PRIVATE_STATEFUL_CONTROL_SIMULATION_BLOCKED_AUTHORITY_AND_STATE_ISOLATION",
+  "not_counted_as_public_verified_component": true,
+  "preserve": true,
+  "innovation_summary": "Private historical experiment companion (omega) of xai-colossus-nanosphere (nanofluid model). The family hardening receipt (xai_colossus_nanosphere_hardening.json) explicitly inspected this repository at commit ea089c1ec15add80bc1d9ff9290fb51652773561 and documents findings: a stateful viscosity monitor and running-average history are present; execution mutates tracked .shadow_memory.json state; an out-of-band sentinel file forces dosing state; a 2.0-tesla recovery pulse is represented only by an in-memory variable and sleep; viscometer calibration, dosing, and electromagnetic-control language is unsupported by sensors or hardware; runtime state, tests, and source are not cleanly isolated. The receipt also documents a complementary VERIFIED base repo (xai-colossus-nanosphere, 58/58 tests, run_id 30899305574) but explicitly NOT this omega. Capped at 5 (catalog + hardening-receipt-documented private state with explicit preservation guidance; not counted as a public verified component).",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 130 (repository GlacierEQ/xai-colossus-nanosphere-omega; visibility private; inspected_commit ea089c1ec15add80bc1d9ff9290fb51652773561; state PRIVATE_STATEFUL_CONTROL_SIMULATION_BLOCKED_AUTHORITY_AND_STATE_ISOLATION; not_counted_as_public_verified_component=true; preserve=true)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json lines 136-143 (six specific findings: stateful viscosity monitor + running-average history; execution mutates tracked .shadow_memory.json; out-of-band sentinel file forces dosing state; 2.0-tesla recovery pulse is in-memory variable + sleep only; viscometer/dosing/electromagnetic-control language unsupported by sensors or hardware; runtime/tests/source not cleanly isolated)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 153 (not_verified list includes 'private Alpha or Omega composition')",
+    "/tmp/monolith/catalog/library.json line 18364 (entry xai-colossus-nanosphere-omega)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 75 (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_7": "(1) Stop mutating tracked .shadow_memory.json \u2014 move state to an untracked, isolated runtime path or an in-memory fixture; (2) remove the out-of-band sentinel file or make it an explicit, tested config input; (3) replace the 'recovery pulse as in-memory variable + sleep' with an asserted, tested model or remove the claim entirely; (4) gate any dosing/electromagnetic output behind an authority boundary with an explicit receipted action; (5) add an independent CI truth gate with an artifact digest for this omega in isolation; (6) harden separately before any controller-family composition claim. Until then, retain as a preserved historical experiment, not a public verified component.",
+  "honest_limits": [
+    "explicitly not_counted_as_public_verified_component=true per the family hardening receipt",
+    "tracked .shadow_memory.json mutation breaks git reproducibility",
+    "no isolated CI run, artifact, or test receipt for this omega"
+  ],
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:17.040150",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

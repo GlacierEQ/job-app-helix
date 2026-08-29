@@ -1,0 +1,19 @@
+{
+  "repo": "Office-Word-MCP-Server",
+  "family": "Microsoft",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "MCP server for creating, reading, and manipulating Microsoft Word documents so AI assistants can edit them through a standardized interface (Microsoft reference upstream). Catalog classifies it as a Mcp Core Servers engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI (glaciereq://mesh/mcp_core_servers/Office-Word-MCP-Server), a detailed description, Python (library.json), and a public GitHub source (GlacierEQ/Office-Word-MCP-Server). Honest limitation: cataloged as reference/upstream; no local fact card or tests found, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 12172: entry name=Office-Word-MCP-Server: domain=mcp_connectors, status_detail=catalogued_unclassified, language=Python, detailed desc present; url=https://github.com/GlacierEQ/Office-Word-MCP-Server)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 5759: name=Office-Word-MCP-Server; classifier=mcp_core_servers; elevator_pitch='High-performance Mcp Core Servers engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/mcp_core_servers/Office-Word-MCP-Server; launch_cmd='git clone https://github.com/GlacierEQ/Office-Word-MCP-Server')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 190: family 'microsoft'; reference_or_upstream includes Office-Word-MCP-Server)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Add a README, a runnable MCP server entrypoint, and a test/build receipt; produce a fact card with a live tool-call demo to reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.895976",
+  "notes": " | NEEDS_REPAIR"
+}

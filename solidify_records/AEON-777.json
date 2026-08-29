@@ -1,0 +1,17 @@
+{
+  "repo": "AEON-777",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "MOC tag knowledge index serving as the AEON long-horizon agent brain (portfolio), registered as AKOS P1. It organizes memory/knowledge as a navigable map-of-content structure feeding the broader APEX cognitive OS, and the catalog shows it is a worked_solidified local job-app whole with a completed issue-contract proof and a live mesh registration.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=AEON-777; domain=memory_aspen; role=whole; status_detail=worked_solidified; desc='MOC tag knowledge index (portfolio) · AKOS P1'; local_job_app=true)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=AEON-777; contract_proof='DONE <=> issue-contract proof(pain) for AEON-777'; mesh_uri=glaciereq://mesh/memory_mem0_and_supermemory/AEON-777; launch_cmd 'python3 ~/job-app/apex_highway.py --target AEON-777')",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (AEON-777 present in memory layer map)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 1898: 'Notion Workers GitHub connector + super intelligent worker chains (AEON-777 hardened, memory connectors, forensic logging)')"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "repo_excellence_anchor": "Indirect — memory layer, not a governed-run surface; AKOS P1 sits under the same authority the computer-user 203-test kernel executes under.",
+  "makes_worthy": "Publish a README with the MOC schema diagram and add a local fact card with a tag-graph integrity test (assert no orphan nodes) to reach >=9."
+}

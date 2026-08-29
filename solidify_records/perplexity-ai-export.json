@@ -1,0 +1,19 @@
+{
+  "repo": "perplexity-ai-export",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A tool that grabs all Perplexity conversations and exports them into a file/folder structure for retrieval (TypeScript). Catalog classifies it as an Extended Utilities And Experiments engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/perplexity-ai-export). Honest limitation: cataloged as an unprocessed Perplexity-family repo; no fact card or source evidence found locally, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry perplexity-ai-export, line 13084; executive_summary='Grabs all your Perplexity conversations data, spits it out into a nice file folder structure...'; url=https://github.com/GlacierEQ/perplexity-ai-export)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 43771: name=perplexity-ai-export; classifier=extended_utilities_and_experiments; executive_summary='Grabs all your Perplexity conversations data...'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/perplexity-ai-export; launch_cmd='git clone https://github.com/GlacierEQ/perplexity-ai-export')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 239: unprocessed)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Produce a repository_fact_card with implementation evidence (export run, tests, build receipt) and a README; only a catalog description currently exists locally (worthy>=8).",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:17.024497",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,19 @@
+{
+  "repo": "spacex-cryogenics",
+  "family": "SpaceX",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "Cryogenic boil-off energy balance (portfolio) on AKOS (catalog exec summary). Catalog classifies it as an Aerospace And Control Systems engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/spacex-cryogenics); the catalog marks it worked_on with impact P0 and it is in the spacex family's current_preparation. Honest limitation: no independent test/receipt/fact card found locally, so capability is catalog-proven (worked_on), not independently runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 15484: entry spacex-cryogenics; exec summary='Cryogenic boil-off energy balance (portfolio) \u00b7 AKOS'; url=https://github.com/GlacierEQ/spacex-cryogenics)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 23725: name=spacex-cryogenics; classifier=aerospace_and_control_systems; worked_on; impact P0; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/aerospace_and_control_systems/spacex-cryogenics; launch_cmd='git clone https://github.com/GlacierEQ/spacex-cryogenics')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 258: spacex current_preparation includes spacex-cryogenics)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt to independently confirm the energy-balance model and reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.833078",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,19 @@
+{
+  "repo": "awesome-codex",
+  "family": "OpenAI",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Curated 'awesome' list repo aggregating OpenAI Codex-adjacent tooling (openai-agents-js/python, assistants, node, python, realtime-agents, codex-supermemory, open-codex, public-openai-client-php) rather than a standalone engineering contribution. Multi-source: company_engineered_repositories.json:220 (listed in reference_or_upstream alongside 9 other openai-*/codex-* tools), library.json:2492 (name awesome-codex; url https://github.com/GlacierEQ/awesome-codex), capabilities_3layer:13877 (stub: name, launch_cmd git clone, contract_proof DONE, mesh_uri). The list membership (10+ tools) is a real catalog signal but curation is not implementation. Promoted 2->4: the 10+ reference_or_upstream sibling-list membership adds depth over name-only.",
+  "evidence": [
+    "/tmp/monolith/catalog/company_engineered_repositories.json:218-222 (OpenAI family: unprocessed: openai-codex-mcp, project_openai_codex, MCP-Bridge, openai-assistant-swarm, codex_py2cpp, jupyterlab-codex, vim_codex, zsh_codex; reference_or_upstream: openai-agents-js, openai-agents-python, openai-assistants-quickstart, openai-node, openai-python, openai-realtime-agents, codex-supermemory, open-codex, awesome-codex, public-openai-client-php \u2014 10+ sibling list)",
+    "/tmp/monolith/catalog/library.json:2492 (name awesome-codex; url https://github.com/GlacierEQ/awesome-codex)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:13877 (stub: name, launch_cmd git clone, contract_proof DONE, mesh_uri \u2014 no functional summary)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "wave3": true,
+  "makes_worthy": "Promoted 2->4: 10+ sibling-list reference_or_upstream membership + library entry + capabilities_3layer stub. To reach >=6: contribute original engineering beyond listing (e.g., a per-tool status matrix, an integration smoke test). Capped at 4: it is a curation/aggregation list, not implemented capability.",
+  "last_verified": "2026-08-29T08:47:16.955424",
+  "notes": "catalog_only | VERIFIED_EXTERNAL_REFERENCE",
+  "classification_reason": "classified_as_reference"
+}

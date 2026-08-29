@@ -1,0 +1,28 @@
+{
+  "repo": "xai-colossus-build",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Private Python repository holding a ground-up build blueprint for Colossus 2 covering geotechnical, foundation, structural, water-delivery, community-integration, and site-infrastructure work, organized around a stated 'piping-first' design philosophy. The piping-first sequencing idea is a real, distinctive engineering point of view. Wave-3 mining confirmed the precise catalog desc (library.json:17948), the canonicalization disposition MERGE_CANDIDATE_AFTER_UNIQUE_VALUE_EXTRACTION, the COLOSSUS_XAI_ATLAS 'complete' truth-boundary flag, and the unprocessed status. Local evidence is registry/metadata only (no source inspection, tests, or receipts), so rating raised to the catalog-evidence ceiling (5) and capped there \u2014 no execution artifact justifies more.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 17948 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, desc 'xAI Colossus 2 - Complete Ground-Up Build Blueprint: geotechnical, foundation, structural, water delivery, community integration, and site infrastructure. Piping-first design philosophy: all systems mapped as the building rises.', updatedAt 2026-07-12T18:25:41Z)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (disposition MERGE_CANDIDATE_AFTER_UNIQUE_VALUE_EXTRACTION; absent from both inspection lists)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json inspection.remaining_scope (registry/metadata classified only)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 40 (Build, realignment, and community; system level blueprint; 'without proving construction readiness'; confidence medium)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 62 truth boundary (the word 'complete' is a catalog signal only)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md canonical tree line 57 and inference note line 85",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 150 (unprocessed) and line 178 (build/realignment comparison set)",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md line 152",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/domains/colossus_xai.md line 30",
+    "/tmp/monolith/receipts/company_families/ (no build receipt)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Lead with the piping-first sequencing thesis (the one distinctive asset), drop the unearned word 'Complete'. Deliverables for 8: a documented build-sequence dependency graph, a stated-assumptions block for every geotechnical/water figure, a small script validating the sequence graph (no cycles, all utilities mapped before enclosure) with tests, and resolution of the overlap against colossus-build-blueprint so only one build source survives.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:17.022355",
+  "notes": " | NEEDS_REPAIR"
+}

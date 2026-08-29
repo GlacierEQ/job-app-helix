@@ -1,0 +1,21 @@
+{
+  "repo": "run-gemini-cli",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "GitHub Action invoking the Gemini CLI (Google/DeepMind family). Triple-cataloged: (a) library.json:14780 (exec summary 'A GitHub Action invoking the Gemini CLI.'; url=https://github.com/GlacierEQ/run-gemini-cli); (b) capabilities_3layer.json:45661 classifier extended_utilities_and_experiments with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/extended_utilities_and_experiments/run-gemini-cli; (c) company_engineered_repositories.json:109 unprocessed backlog (Google/DeepMind). The expanded_job_app_helix_manifest.json (line 380) assigns it as a job-app-helix mesh leaf, family Google/DeepMind, state needs_work. The action-y nature of this repo is concrete and immediately runnable in CI, but the 'unprocessed' backlog placement means no local invocation test or fact card was found. Cap honestly at 6 \u2014 strong catalog + helix membership, but no receipt.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 14780: entry run-gemini-cli; exec summary='A GitHub Action invoking the Gemini CLI.'; url=https://github.com/GlacierEQ/run-gemini-cli)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 45661: name=run-gemini-cli; classifier=extended_utilities_and_experiments; executive_summary='A GitHub Action invoking the Gemini CLI.'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/run-gemini-cli; launch_cmd='git clone https://github.com/GlacierEQ/run-gemini-cli')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 109: Google/DeepMind unprocessed includes run-gemini-cli)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 380: kind=company, state=needs_work, family='Google / DeepMind' \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 70: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Honest cap at 6 \u2014 strong catalog + helix membership, but no live GitHub Actions run / fact card. To reach 7+ requires: (1) clone the action, (2) wire it into a real workflow run on a GlacierEQ repo and capture the action.yml invocation, (3) add a test using act or a stub Gemini CLI mock, (4) emit a fact card with the run receipt, and (5) update company_engineered_repositories.json from unprocessed to in_preparation.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.788308",
+  "notes": " | NEEDS_REPAIR"
+}

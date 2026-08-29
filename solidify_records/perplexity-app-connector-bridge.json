@@ -1,0 +1,19 @@
+{
+  "repo": "perplexity-app-connector-bridge",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A bridge service to enable full connector support in the Perplexity mobile/desktop app with MCP integration (Python). Catalog classifies it as an Mcp Tool Connectors engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/perplexity-app-connector-bridge). Honest limitation: cataloged as an unprocessed Perplexity-family repo; no fact card or source evidence found locally, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry perplexity-app-connector-bridge, line 13100; url=https://github.com/GlacierEQ/perplexity-app-connector-bridge)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 6223: name=perplexity-app-connector-bridge; classifier=mcp_tool_connectors; elevator_pitch='High-performance Mcp Tool Connectors engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/mcp_tool_connectors/perplexity-app-connector-bridge; launch_cmd='git clone https://github.com/GlacierEQ/perplexity-app-connector-bridge')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 239: unprocessed)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Produce a repository_fact_card with implementation evidence (running bridge, MCP handshake tests, build receipt) and a README; only a catalog description currently exists locally (worthy>=8).",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:17.020717",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,19 @@
+{
+  "repo": "supabase-mcp",
+  "family": "Supabase",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Connect Supabase to your AI assistants (catalog exec summary). Catalog classifies it as an Mcp Community Utilities engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/supabase-mcp). Honest limitation: listed in company_engineered_repositories 'unprocessed' (supabase family, canonical_candidate aspen-grove-supabase); no tests, build, or fact card found locally, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 15964: entry supabase-mcp; exec summary='Connect Supabase to your AI assistants'; url=https://github.com/GlacierEQ/supabase-mcp)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 9587: name=supabase-mcp; classifier=mcp_community_utilities; executive_summary='Connect Supabase to your AI assistants'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/mcp_community_utilities/supabase-mcp; launch_cmd='git clone https://github.com/GlacierEQ/supabase-mcp')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 269: supabase unprocessed includes supabase-mcp; canonical_candidate=aspen-grove-supabase)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Add a runnable MCP server demo, a tool-call test, and a fact card with a live handshake receipt to reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.908717",
+  "notes": " | NEEDS_REPAIR"
+}

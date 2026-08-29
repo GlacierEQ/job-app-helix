@@ -1,0 +1,21 @@
+{
+  "repo": "nvidia-agent-consensus",
+  "family": "NVIDIA",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Multi-agent consensus protocol under the NVIDIA family, classified with focus P1_CUDA_HARDWARE_PROOF. Quadruple-cataloged (the strongest evidence among the targets): (a) capabilities_3layer.json classifier lab_benchmarks_and_stamps with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/lab_benchmarks_and_stamps/nvidia-agent-consensus; (b) library.json entry + url; (c) application_estate_registry.json:75 explicitly names GlacierEQ/nvidia-agent-consensus as a helix portfolio member (job-app-helix application estate); (d) company_engineered_repositories.json family nvidia/unprocessed with focus P1_CUDA_HARDWARE_PROOF. The expanded_job_app_helix_manifest.json (line 639) further assigns it as a job-app-helix mesh leaf, family NVIDIA, state needs_work. The P1_CUDA_HARDWARE_PROOF focus is a real estate signal that hardware-level proof is on the critical path \u2014 the consensus protocol is expected to run on actual NVIDIA hardware, not just simulated. Honest limitation: still in unprocessed; no runtime receipt, test, or fact card was found. The contract-catalog + application-estate-membership + focus-tier signal justifies 7, but 8+ requires an actual CUDA receipt.",
+  "evidence": [
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=nvidia-agent-consensus; classifier=lab_benchmarks_and_stamps; elevator_pitch='High-performance Lab Benchmarks And Stamps engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/nvidia-agent-consensus; launch_cmd='git clone https://github.com/GlacierEQ/nvidia-agent-consensus')",
+    "/tmp/monolith/catalog/library.json (entry name=nvidia-agent-consensus; url=https://github.com/GlacierEQ/nvidia-agent-consensus)",
+    "/tmp/monolith/catalog/application_estate_registry.json (line 75: GlacierEQ/nvidia-agent-consensus; helix portfolio member \u2014 application_estate_registry membership is the strongest estate signal beyond catalog)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family nvidia; unprocessed list; focus P1_CUDA_HARDWARE_PROOF)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 639: kind=company, state=needs_work, family='NVIDIA' \u2014 confirmed job-app-helix mesh membership)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Clone/inspect the repo, add a README stating the consensus purpose and CUDA dependency, write a minimal test or CLI that exercises the consensus protocol, run it on a CUDA-capable host, and emit a repository_fact_card with source verification + a real execution receipt; a passing build/receipt on actual NVIDIA hardware would justify worthy>=9.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.731766",
+  "notes": " | NEEDS_REPAIR"
+}

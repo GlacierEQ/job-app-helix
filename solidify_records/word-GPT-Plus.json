@@ -1,0 +1,20 @@
+{
+  "repo": "word-GPT-Plus",
+  "family": "Microsoft",
+  "kind": "company",
+  "source_state": "needs_work",
+  "wave3": true,
+  "innovation_summary": "Word add-in integrating the ChatGPT model into Microsoft Word (supports official and web API) (Microsoft upstream reference). Catalog desc present, JavaScript. Wave-3 mining confirmed it is a catalogued_unclassified long_tail part under the Microsoft family unprocessed list, with no implementation evidence (README, entrypoint, build/test receipt, or fact card) located locally. The only grounded innovation signal is the catalog description plus family/domain classification; rating raised modestly to 4 (catalog evidence present) and capped there without an execution artifact.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=word-GPT-Plus: domain=long_tail, status_detail=catalogued_unclassified, language=JavaScript, desc present)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family 'microsoft': unprocessed includes word-GPT-Plus)",
+    "/tmp/monolith/evidence/repository_fact_cards/ (no word-GPT-Plus fact card)",
+    "/tmp/monolith/receipts/company_families/ (no microsoft receipt)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Add a README, a working add-in entrypoint, and a build/test receipt; produce a fact card with runtime evidence to lift it from catalogued to portfolio-ready (>=8).",
+  "last_verified": "2026-08-29T08:47:16.988483",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

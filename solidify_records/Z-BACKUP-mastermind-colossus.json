@@ -1,0 +1,26 @@
+{
+  "repo": "Z-BACKUP-mastermind-colossus",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Explicitly named backup ('Z-BACKUP') of a Mastermind-oriented APEX orchestration engine, Colossus edition, described as a shadow tree wired to an xai-colossus-cooling 'Ring -3' codex. The monolith's disposition for it is ARCHIVED_BACKUP_PRESERVE - it is retained as a preserved generation, not advanced as a portfolio candidate, and the atlas records it only as 'a backup generation of a Mastermind-oriented Colossus orchestration concept'. Wave-3 mining confirmed library.json (catalogued_unclassified, empty-desc, private), the ARCHIVED_BACKUP_PRESERVE disposition (sole member of that class), the canonicalization 'Archived backup preserved | 1' note, and the capabilities_3layer templated (metadata-only) entry. No source inspection, tests, or receipts exist locally, and by its own naming it is a snapshot, not a maintained system. Rating stays 1; it cannot be raised without being diffed against the canonical mastermind/colossus-gateway lines and having unique content extracted and receipted.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 19260 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, desc 'GlacierEQ Mastermind - APEX Sovereign Orchestration Engine | Colossus Edition | Shadow tree wired to xai-colossus-cooling Ring -3 codex', updatedAt 2026-06-24T21:06:27Z)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 123-125 (disposition ARCHIVED_BACKUP_PRESERVE - the sole member of that class; absent from both inspection lists)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md line 66 (canonical tree: preserved historical lineages) and line 20 ('Archived backup preserved | 1')",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 34 (Gateways and orchestration; generation preserved; system level preserved_system; confidence medium)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 179 (Gateway family: compare godmind-colossus-gateway and 'the archived Mastermind-Colossus line' against canonical colossus-gateway)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (xai_colossus.historical_or_cross_company)",
+    "/tmp/monolith/catalog/capabilities_3layer.json lines 12657-12689 (templated registry entry, category STORAGE_CLOUD_AND_DRIVE_SYNCS - metadata only, no capability proof)",
+    "/tmp/monolith/domains/colossus_xai.md line 24",
+    "/tmp/monolith/receipts/company_families/ (no receipt for this backup)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Honest assessment: a repository whose own name declares it a backup should probably never be presented as a portfolio piece, and the monolith's own disposition is preserve-not-promote. The right next step is not to inflate it but to diff it against the canonical mastermind and colossus-gateway lines, extract any orchestration code that exists nowhere else into the canonical repo where it can be tested and receipted, and leave this one as a clearly labelled archive with a provenance note pointing at its successor. Reaching 8 here means retiring it correctly, not rebranding it.",
+  "last_verified": "2026-08-29T08:47:17.032648",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

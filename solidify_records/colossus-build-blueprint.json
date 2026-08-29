@@ -1,0 +1,24 @@
+{
+  "repo": "colossus-build-blueprint",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "innovation_summary": "Private Python repository holding a master build plan for a Colossus-2-class AI datacenter spanning geotechnical, foundation, water, architecture, GPU, and cooling engineering. Local evidence is registry/metadata only: canonicalization classified it as a MERGE_CANDIDATE pending unique-value extraction and never inspected its source, so the plan's depth/accuracy/engineering rigor is unconfirmed. Catalog does carry a substantial description ('xAI Colossus 2 - Hyper-Intelligent Master Build Plan: Geotechnical, Foundation, Water, Architecture, GPU, Cooling Engineering').",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4268 (domain=colossus_xai, role=part, private=true, Python, desc 'xAI Colossus 2 - Hyper-Intelligent Master Build Plan: Geotechnical, Foundation, Water, Architecture, GPU, Cooling Engineering', updatedAt 2026-07-12T08:45:33Z)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (disposition MERGE_CANDIDATE_AFTER_UNIQUE_VALUE_EXTRACTION; NOT in inspection.source_and_readme_inspected)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json inspection.remaining_scope: 'All other members remain registry/metadata classified until their owning repositories receive source-level comparison.'",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md (canonical tree line 58; inference note line 85: 'no merge decision is justified until their unique plans, data, and implementation artifacts are compared')",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md:35,62 (completion claims unverified; 'hyper-intelligent' is a catalog signal only)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/domains/colossus_xai.md:25"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Substantial catalog description + canonicalization evidence raise 2->4. CONTRADICTION preserved: catalog 'hyper-intelligent' framing vs monolith truth boundary ('catalog signal only'). Do the four-way diff (vs xai-colossus-build, colossus-realignment, colossus2-realignment); if this wins, rename to plain engineering title, add stated-assumptions/units + computable checks with tests. Cannot exceed 5 without source inspection.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:17.001871",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

@@ -1,0 +1,19 @@
+{
+  "repo": "spacex-recovery-dynamics",
+  "family": "SpaceX",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Spacex-recovery-dynamics \u2014 Double Helix Architecture (Alpha/Omega), described as production-grade with zero dependencies (catalog exec summary). Catalog classifies it as an Aerospace And Control Systems engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/spacex-recovery-dynamics). Honest limitation: listed in company_engineered_repositories 'unprocessed'; catalogued but not worked_on; no tests, build, or fact card found locally, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 15644: entry spacex-recovery-dynamics; exec summary='SpaceX spacex-recovery-dynamics \u2014 Double Helix Architecture (Alpha/Omega), production-grade, zero dependencies'; url=https://github.com/GlacierEQ/spacex-recovery-dynamics)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 24061: name=spacex-recovery-dynamics; classifier=aerospace_and_control_systems; catalogued; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/aerospace_and_control_systems/spacex-recovery-dynamics; launch_cmd='git clone https://github.com/GlacierEQ/spacex-recovery-dynamics')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 259: spacex unprocessed includes spacex-recovery-dynamics)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt to move from catalogued to worked_on and reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:17.010781",
+  "notes": " | NEEDS_REPAIR"
+}
