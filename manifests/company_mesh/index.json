@@ -1,0 +1,54 @@
+{
+  "schema": "glaciereq.company-repo-mesh.index.v2",
+  "generated_on": "2026-08-29",
+  "authority": "GlacierEQ/job-app-helix",
+  "policy": {
+    "membership": "source-exhaustive",
+    "fixed_repo_cap": null,
+    "fixed_company_cap": null,
+    "fixed_relation_cap": null,
+    "counts_are": "observed receipts, never admission limits",
+    "affiliation_inference": false
+  },
+  "groups": [
+    {
+      "path": "manifests/company_mesh/frontier_ai.json",
+      "company_count": 6,
+      "observed_relation_count": 138
+    },
+    {
+      "path": "manifests/company_mesh/infrastructure.json",
+      "company_count": 6,
+      "observed_relation_count": 42
+    },
+    {
+      "path": "manifests/company_mesh/tools_platforms.json",
+      "company_count": 6,
+      "observed_relation_count": 67
+    },
+    {
+      "path": "manifests/company_mesh/ecosystem.json",
+      "company_count": 6,
+      "observed_relation_count": 65
+    }
+  ],
+  "observed_company_count": 24,
+  "observed_relation_count": 312,
+  "shared_capability_roots": [
+    "GlacierEQ/AKOS",
+    "GlacierEQ/pro-code",
+    "GlacierEQ/job-app-helix",
+    "GlacierEQ/job-application",
+    "GlacierEQ/job-app",
+    "GlacierEQ/job_app_helix",
+    "GlacierEQ/JOB-RESUME-BUILDER-",
+    "GlacierEQ/the-tower-of-babel",
+    "GlacierEQ/mastermind"
+  ],
+  "interpretation": [
+    "Each company batch exhausts the connected GitHub search pagination for its query.",
+    "A repository may appear in more than one company projection.",
+    "Company relevance does not imply affiliation, employment, proprietary access, deployment, endorsement, or customer status.",
+    "Whole-estate census and company projections are separate concerns: a repo never disappears merely because it has no company edge."
+  ]
+}
