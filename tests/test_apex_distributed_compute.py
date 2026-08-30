@@ -4,7 +4,7 @@ Unit tests for APEX External Compute Delegation Engine.
 """
 import unittest
 
-from apex_distributed_compute import ExternalComputeDelegator
+from scripts.legacy.apex_distributed_compute import ExternalComputeDelegator
 
 
 class TestExternalComputeDelegator(unittest.TestCase):
