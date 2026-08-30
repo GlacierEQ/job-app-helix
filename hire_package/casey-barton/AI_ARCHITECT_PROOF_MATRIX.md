@@ -167,9 +167,11 @@ Do not upgrade the claim until those live receipts exist.
 
 ### VERIFIED
 
-Current hiring package claims are already bounded by an exact register:
+Current hiring package claims are bounded by an exact register while separating present estate size from historical audit scope:
 
-- **67-repository Job-App Helix boundary**: one control-plane root plus 66 child repositories.
+- **Current source-exhaustive estate:** 225 deserving repositories across 21 families.
+- **Historical governed Helix boundary:** 67 repositories — one control-plane root plus 66 children — preserved as a dated recruiter/audit scope, not a present portfolio cap.
+- **Verified trust anchors:** 8 repository-level anchors in the current estate evidence surface.
 - **AKOS: 94/94 tests** across 12 modules on Python 3.11–3.13.
 - **21-node README Mesh rollout** verified.
 - One governed public APEX Action Face execution path is verified; this is intentionally not generalized to every route or workload.
@@ -186,7 +188,7 @@ Current company-analysis topology also demonstrates orchestration breadth withou
 
 Safe external claim:
 
-> Operates a multi-repository AI systems portfolio with a 67-repository governed Helix boundary, cross-version AKOS verification, a 21-node human/machine documentation mesh, and a deterministic company-analysis control plane spanning 76 target tracks.
+> Operates an evidence-bound AI systems estate of 225 deserving repositories across 21 families, preserves a historical 67-repository governed audit boundary for receipt integrity, maintains 8 verified trust anchors, cross-version AKOS verification, a 21-node human/machine documentation mesh, and a deterministic company-analysis control plane spanning 76 target tracks.
 
 The number is secondary. Lead with what the systems coordinate, verify, and govern.
 
