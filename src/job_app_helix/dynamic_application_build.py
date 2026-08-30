@@ -61,6 +61,13 @@ STOPWORDS = frozenset(
         "requirements",
         "qualification",
         "qualifications",
+        "staff",
+        "senior",
+        "principal",
+        "engineer",
+        "engineering",
+        "software",
+        "developer",
     }
 )
 PUBLIC_STATES = frozenset({"PROMOTED", "REFERENCE_ONLY"})
