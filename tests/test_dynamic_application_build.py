@@ -206,3 +206,40 @@ def test_dynamic_build_preserves_uncovered_demand_for_new_engineering(tmp_path: 
     assert result.application_id is None
     assert {"quantum", "error", "correction"} <= set(result.uncovered_signals)
     assert any(row["action"] == "EVOLVE_OR_INVENT" for row in result.build_actions)
+
+
+def test_dynamic_evidence_graph_has_no_fixed_repository_ceiling() -> None:
+    estate = _estate()
+    systems = estate["system_registry"]["systems"]
+    capabilities = estate["capability_donor_registry"]["capabilities"]
+
+    generated = []
+    for index in range(80):
+        system_id = f"agent-donor-{index:03d}"
+        generated.append(
+            {
+                "system_id": system_id,
+                "source_repository": f"GlacierEQ/{system_id}",
+                "flagship_level": "L3",
+                "flagship_state": "PROMOTED",
+                "visibility": "public",
+                "role": "Agent orchestration recovery runtime",
+                "evidence": "Agent orchestration runtime proof.",
+            }
+        )
+        capabilities.append(
+            {
+                "capability_id": f"agent-orchestration-{index:03d}",
+                "donor_systems": [system_id],
+                "proof_refs": [{"system_id": system_id, "evidence": "tests"}],
+                "verification_state": "EVIDENCE_BOUND",
+            }
+        )
+    systems.extend(generated)
+
+    evidence = derive_evidence_graph(_opening(), estate)
+
+    generated_matches = [
+        row for row in evidence if row.system_id.startswith("agent-donor-")
+    ]
+    assert len(generated_matches) == 80
