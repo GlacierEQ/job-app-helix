@@ -1,4 +1,8 @@
 name: Estate Federated Recovery Proof
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 on:
   pull_request:
@@ -25,6 +29,7 @@ jobs:
   proof:
     name: Estate composition / Python ${{ matrix.python-version }}
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:

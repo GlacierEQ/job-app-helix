@@ -1,4 +1,8 @@
 name: Proof-weighted portfolio audit
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 on:
   pull_request:
@@ -18,6 +22,7 @@ jobs:
   python-verification:
     name: "Python · ${{ matrix.name }}"
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     continue-on-error: true
     strategy:
       fail-fast: false
@@ -170,6 +175,7 @@ jobs:
   native-verification:
     name: "Native · ${{ matrix.name }}"
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     continue-on-error: true
     strategy:
       fail-fast: false

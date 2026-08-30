@@ -3,6 +3,12 @@ name: CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '**.txt'
+      - '.agents/**'
+      - 'LICENSE*'
   pull_request:
 
 permissions:
@@ -16,6 +22,7 @@ jobs:
   quality:
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:

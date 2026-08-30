@@ -1,4 +1,8 @@
 name: Job Intelligence Cycle Proof
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 on:
   pull_request:
@@ -40,6 +44,7 @@ jobs:
   prove:
     name: Intelligence cycle / Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:

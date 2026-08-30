@@ -1,4 +1,8 @@
 name: Admitted job rollout projection census
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 on:
   pull_request:
@@ -21,6 +25,7 @@ permissions:
 jobs:
   prepare:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     outputs:
       repositories: ${{ steps.matrix.outputs.repositories }}
     steps:
@@ -47,6 +52,7 @@ jobs:
     needs: prepare
     name: "Projection census · ${{ matrix.repository }}"
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     continue-on-error: true
     strategy:
       fail-fast: false
@@ -174,6 +180,7 @@ jobs:
     if: always()
     needs: [prepare, census]
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out current control plane
         uses: actions/checkout@v4

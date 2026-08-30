@@ -1,4 +1,8 @@
 name: SmartRecruiters Target Discovery Proof
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 on:
   pull_request:
@@ -17,6 +21,7 @@ jobs:
   proof:
     name: SmartRecruiters target discovery / Python ${{ matrix.python-version }}
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:

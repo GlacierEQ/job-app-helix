@@ -25,6 +25,7 @@ jobs:
   verify:
     name: Verify exact lock and execute it
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v6

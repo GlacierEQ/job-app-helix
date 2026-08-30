@@ -1,4 +1,8 @@
 name: Greenhouse Application Fields Proof
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 on:
   pull_request:
@@ -16,6 +20,7 @@ jobs:
   application-fields:
     name: Application fields / Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:

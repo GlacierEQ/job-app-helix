@@ -1,10 +1,26 @@
 name: APEX Estate Non-Regression
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 on:
   pull_request:
     branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '**.txt'
+      - '.agents/**'
+      - 'LICENSE*'
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '**.txt'
+      - '.agents/**'
+      - 'LICENSE*'
 
 permissions:
   contents: read
