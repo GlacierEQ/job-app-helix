@@ -26,7 +26,6 @@ state/
 
 # BrainSync-generated agent memory mirrors at repo root
 AGENT.md
-AGENTS.md
 CLAUDE.md
 GEMINI.md
 

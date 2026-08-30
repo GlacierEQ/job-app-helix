@@ -1,0 +1,12 @@
+schema: apex.capabilities/v1
+repository: glaciereq/job-app-helix
+status: active
+paradigm: INNOVATION_HOLOGRAPHIC_MESH
+domains:
+  - hire_and_recruiter_evidence
+description: Job-App Helix control plane: evidence ledger, hire package, excellence FSM.
+epistemic_standard: L0_TO_L5
+evidence_policy: ZERO_FAKE_EXECUTION
+owner_intent:
+  role: specialist_capability_donor
+  precedence: INNOVATION_WINS
