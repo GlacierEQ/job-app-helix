@@ -9,7 +9,9 @@
 
 ## Verified / allowed
 
-- Exact 67-repository Job-App Helix boundary: one control-plane root plus 66 child repositories.
+- Current source-exhaustive estate: 225 deserving repositories across 21 families.
+- Current verified trust surface: 8 repository-level verified anchors recorded in the estate evidence surface.
+- Historical governed Job-App Helix boundary: exact 67 repositories - one control-plane root plus 66 children. This remains a valid dated audit/recruiter scope and is not the current estate cap.
 - Live hire site at the reference Vercel URL responds HTTP 200 with security headers (CSP, frame deny, nosniff); product stack is labeled on `/data/portfolio.json` release (not the legacy “V15” product name).
 - AKOS 94/94 tests across 12 modules on Python 3.11-3.13.
 - Verified 21-node README Mesh rollout.
