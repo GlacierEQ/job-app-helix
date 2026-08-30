@@ -4,12 +4,10 @@
   "portfolio_root": "job-app-helix",
   "scope": "ADMITTED_JOB_ENGINEERING_ROLLOUT_PROJECTION",
   "is_full_estate_inventory": false,
-  "admission_policy": "FULL_ESTATE_DISCOVERY_THEN_RELEVANCE_ROUTING",
+  "admission_policy": "SOURCE_EXHAUSTIVE_ESTATE_THEN_PUBLIC_VISIBILITY_AND_RELEVANCE_PROJECTION",
   "estate_scope_receipt": "manifests/estate_scope_receipt_2026-08-17.json",
-  "total_repositories": 67,
+  "total_repositories": 63,
   "workspace_repositories": [
-    "AEON-777",
-    "AKOS",
     "ECHO",
     "GlacierEQ_Swarm",
     "JOB-RESUME-BUILDER-",
@@ -31,11 +29,9 @@
     "kimi-mooncake-kv-stream",
     "lovable-design-app-synth",
     "manus-autonomous-web-agent",
-    "mastermind",
     "meta-llama-collective-sentinel",
     "microsoft-azure-ops",
     "microsoft-identity-zero-trust",
-    "notion-mcp-empowerment-engine",
     "notion-workflow-intelligence",
     "notion-workspace-optimizer",
     "nvidia-deep-reasoning",
@@ -76,6 +72,9 @@
     "xai-colossus-servers"
   ],
   "_source": "https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/manifests/portfolio_repositories.json",
-  "_fetched": "2026-08-28T14:43:00-10:00",
-  "_verified": "GET 200, valid JSON, total_repositories=67 (root + 66 children)"
+  "_fetched": "2026-08-29",
+  "_verified": "2026-08-29 connected GitHub metadata: public projection excludes repositories currently marked private",
+  "visibility_scope": "PUBLIC_ONLY",
+  "count_semantics": "materialized public snapshot; not an estate membership cap",
+  "private_repository_identities_omitted": true
 }
