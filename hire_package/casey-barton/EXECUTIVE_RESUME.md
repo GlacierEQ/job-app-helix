@@ -8,11 +8,11 @@ Portfolio: https://casey-barton-glaciereq.vercel.app/ | GitHub: https://github.c
 
 Applied AI systems architect who builds the operating layer between powerful models and dependable human outcomes. Specializes in agent orchestration, Model Context Protocol and tool boundaries, context and retrieval systems, deterministic state, permissioned execution, verification, provenance, and evidence-backed release decisions. Turns ambiguous, high-stakes workflows into typed contracts, bounded actions, visible failure semantics, and resumable operating systems.
 
-Built Job-App Helix to govern an exact 67-repository portfolio boundary - one control-plane root plus 66 child repositories - partition every child into a four-wave verification program, and present one consistent candidate record to recruiters, senior engineers, ATS systems, and AI agents. Promoted AKOS through 94/94 tests across Python 3.11, 3.12, and 3.13 while preserving unverified and blocked claims instead of flattening the portfolio into unsupported success language.
+Built Job-App Helix as the evidence-bound control plane for a current 225-repository engineering estate across 21 families, while preserving the earlier exact 67-repository governed boundary - one control-plane root plus 66 children - as a dated audit and recruiter proof scope. The system presents one consistent candidate record to recruiters, senior engineers, ATS systems, and AI agents. Promoted AKOS through 94/94 tests across Python 3.11, 3.12, and 3.13 while preserving unverified and blocked claims instead of flattening the portfolio into unsupported success language.
 
 ## Evidence Snapshot
 
-- **Job-App Helix:** exact 67-repository boundary and complete 66-child rollout partition.
+- **Job-App Helix:** current 225-repository source-exhaustive estate across 21 families; 8 verified trust anchors; historical exact 67-repository governed boundary preserved for dated audit integrity.
 - **AKOS:** 94/94 tests across 12 modules on Python 3.11-3.13.
 - **README Mesh:** verified 21-node recruiter / expert / AI documentation rollout.
 - **Agent Coordinator:** 62/62 candidate-local Python 3.13 tests; hosted multi-version promotion remains explicitly pending.
@@ -24,7 +24,7 @@ Built Job-App Helix to govern an exact 67-repository portfolio boundary - one co
 
 - Designed Job-App Helix as a typed control plane for inventory, promotion policy, stack-native proof discovery, bounded command execution, positive test-count enforcement, deterministic JSON and Protocol Buffers output, and atomic receipts.
 - Built a monotonic evidence ladder separating inventory, documentation, static analysis, build, test, integration, and deployment so a lower artifact cannot silently inherit a stronger claim.
-- Exact-partitioned 66 child repositories into native CI, Tower repair, technical exhibit, and consolidation waves with fail-closed validation before execution.
+- Exact-partitioned the historical 66-child governed boundary into native CI, Tower repair, technical exhibit, and consolidation waves with fail-closed validation, then expanded the estate model to the current 225-repository source-exhaustive mesh without erasing the earlier receipts.
 
 ### Agent governance and infrastructure
 
