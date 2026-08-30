@@ -3,7 +3,7 @@
   "observed_at": "2026-08-08T23:46:00Z",
   "mutation_state": "BLOCKED_CONNECTOR_CAPABILITY",
   "mutation_boundary": "Do not claim GitHub About metadata changed until a repository description/homepage/topics mutation is executed and read back.",
-  "canonical_portfolio_url": "https://casey-barton-glaciereq.vercel.app/",
+  "reference_portfolio_url": "https://casey-barton-glaciereq.vercel.app/",
   "items": [
     {
       "repository": "GlacierEQ/job-app-helix",
@@ -55,10 +55,10 @@
       "current_findings": ["description missing", "homepage missing", "topics missing", "license metadata absent"],
       "truth_hardening": {
         "state": "SATISFIED",
-        "canonical_head": "65f4e9c1b0a7c0e355d9b314cd975ebbee48b574",
+        "source_head": "65f4e9c1b0a7c0e355d9b314cd975ebbee48b574",
         "gate": "Public Reasoning Retention Truth Gate",
         "verified_python_versions": ["3.11", "3.12"],
-        "canonical_capability": "reasoning_record_retention_policy",
+        "reference_capability": "reasoning_record_retention_policy",
         "nonclaims": [
           "no KV tensor mutation",
           "no model-server integration",

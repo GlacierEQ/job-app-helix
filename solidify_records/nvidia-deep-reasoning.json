@@ -1,0 +1,20 @@
+{
+  "repo": "nvidia-deep-reasoning",
+  "family": "NVIDIA",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "Reasoning-budget scheduler operating under GPU caps for the NVIDIA family (focus P1_CUDA_HARDWARE_PROOF). Catalog classifies it as a Model Inference And Sentinels engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, a runnable launch command (python3 ~/job-app/apex_highway.py --target nvidia-deep-reasoning), and library.json marks it worked_solidified / local_job_app (Python). Honest limitation: not present in application_estate_registry.json; no independent runtime receipt, test, or fact card was found, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=nvidia-deep-reasoning: domain=lab_hire_stamps, status_detail=worked_solidified, local_job_app=true, language=Python, desc='Reasoning budget scheduler (portfolio) under GPU caps \u00b7 AKOS portfolio')",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=nvidia-deep-reasoning; classifier=model_inference_and_sentinels; elevator_pitch='High-performance Model Inference And Sentinels engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/model_inference_and_sentinels/nvidia-deep-reasoning; launch_cmd='python3 ~/job-app/apex_highway.py --target nvidia-deep-reasoning')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family 'nvidia': current_preparation includes nvidia-deep-reasoning, focus P1_CUDA_HARDWARE_PROOF)",
+    "/tmp/monolith/domains/lab_hire_stamps.md (row: worked_on, no contract)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt; publish a README documenting the budget scheduler and a live GPU-capped demo to reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.913791",
+  "notes": " | NEEDS_REPAIR"
+}

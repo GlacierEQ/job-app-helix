@@ -32,27 +32,27 @@ def _capability(donors: dict, capability_id: str) -> dict:
     return matches[0]
 
 
-def _assert_projection_is_canonical(
+def _assert_projection_is_reference(
     donors: dict,
     dossier_company: dict,
     company_id: str,
 ) -> None:
     projection = donors["company_projection"][company_id]
-    canonical = {
+    reference = {
         row["capability_id"]: row
         for row in donors["capabilities"]
         if row["company_id"] == company_id
     }
-    assert canonical
+    assert reference
 
     dossier_ids = {row[1] for row in dossier_company["capability_donors"]}
     dossier_repos = {row[0] for row in dossier_company["capability_donors"]}
     projected_ids = set(projection["capability_ids"])
     projected_repos = set(projection["donor_repositories"])
-    canonical_repos = {row["donor_repository"] for row in canonical.values()}
+    reference_repos = {row["donor_repository"] for row in reference.values()}
 
-    assert projected_ids == dossier_ids == set(canonical)
-    assert projected_repos == dossier_repos == canonical_repos
+    assert projected_ids == dossier_ids == set(reference)
+    assert projected_repos == dossier_repos == reference_repos
     assert projected_repos <= set(donors["donor_systems"])
     assert all(row[3] == "REFERENCE_ONLY" for row in dossier_company["capability_donors"])
 
@@ -136,7 +136,7 @@ def test_supabase_company_projection_uses_only_public_semantic_donors() -> None:
     assert supabase["track_state"] == "SEMANTIC_CAPABILITY_DONORS_ADMITTED"
     assert projection["state"] == supabase["track_state"]
     assert projection["affiliation_claim"] is False
-    _assert_projection_is_canonical(donors, supabase, "supabase")
+    _assert_projection_is_reference(donors, supabase, "supabase")
 
     private_refs = {
         row[0] for row in supabase["repositories"] if row[2] == "PRIVATE_REFERENCE"
@@ -155,7 +155,7 @@ def test_motherduck_projection_preserves_no_deployment_boundary() -> None:
     assert projection["state"] == expected_state
     assert projection["affiliation_claim"] is False
     assert projection["deployment_claim"] is False
-    _assert_projection_is_canonical(donors, motherduck, "motherduck")
+    _assert_projection_is_reference(donors, motherduck, "motherduck")
 
     private_refs = {
         row[0]

@@ -1,0 +1,23 @@
+{
+  "repo": "grok-build",
+  "family": "SpaceX",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "Cataloged as SpaceXAI's coding-agent harness and fullscreen mouse-interactive TUI, originally Rust, in the portfolio as a historical/cross-company part. Deeper mining confirms a local hierarchy placement (HIERARCHICAL_FUNCTION_MAP path /data/data/com.termux/files/home/grok-build, symlink anchor, destination CATEGORIES/02_AI_ENGINES_AND_MODELS/swarm_orchestrators/grok-build) and a capabilities_3layer entry tagging it an 'Aerospace And Control Systems engine' (mesh_uri glaciereq://mesh/aerospace_and_control_systems/grok-build). HONEST LIMITATION: it is listed under historical_or_cross_company and COMPANY_ENGINEERED_PROCESSING flags it as 'adjacent to both xAI/Grok and SpaceX naming ... requires provenance and target-role review before permanent company assignment.' No local fork, build receipt, or runtime evidence was located; only catalog + structure + status cross-reference exist.",
+  "evidence": [
+    "/tmp/monolith/catalog/capabilities_3layer.json:23641 (entry: elevator_pitch 'Aerospace And Control Systems engine', mesh_uri glaciereq://mesh/aerospace_and_control_systems/grok-build, contract_proof is template only)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:117 (name grok-build; path /data/data/com.termux/files/home/grok-build; relative_path grok-build)",
+    "/tmp/monolith/status/HIERARCHICAL_ORGANIZATION_PASS_02.md:94 (Destination: CATEGORIES/02_AI_ENGINES_AND_MODELS/swarm_orchestrators/grok-build; Symlink Anchor /data/data/com.termux/files/home/grok-build)",
+    "/tmp/monolith/domains/spacex_aerospace.md:22 (portfolio row: SpaceXAI's coding agent harness and TUI, status=catalogued)",
+    "/tmp/monolith/status/SPACEX_AEROSPACE_ATLAS.md:40 (catalog description, confidence=medium; developer_tool)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:261 (historical_or_cross_company: grok-build)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:188 (CONTRADICTION/limitation: 'adjacent to both xAI/Grok and SpaceX naming ... requires provenance and target-role review before permanent company assignment')"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Decide keep-vs-archive; if kept, extract the fork, confirm it still builds, document its differentiation from upstream Grok Build, resolve the SpaceX/xAI provenance ambiguity, and add a fact card with a build receipt. Capped at 5 because cross-company provenance is still unverified and no local build artifact exists.",
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:17.015275",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

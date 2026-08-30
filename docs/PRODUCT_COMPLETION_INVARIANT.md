@@ -8,11 +8,11 @@ If a discovered next gate is executable under existing authorization, execute it
 
 ## Completion chain
 
-Diagnose → bounded repair → deterministic verification → adversarial verification → review closure for addressed findings → exact-head integrity check → authorized merge → canonical readback → post-merge verification where applicable → final SHA-bound receipt → outcome closure.
+Diagnose → bounded repair → deterministic verification → adversarial verification → review closure for addressed findings → exact-head integrity check → authorized merge → APEX readback → post-merge verification where applicable → final SHA-bound receipt → outcome closure.
 
 ## Non-stopping checkpoints
 
-The rotor must continue through a proof rerun, review resolution, merge, receipt update, canonical readback, or equivalent bounded step when that step is already authorized and executable.
+The rotor must continue through a proof rerun, review resolution, merge, receipt update, APEX readback, or equivalent bounded step when that step is already authorized and executable.
 
 ## Legitimate stop classes
 
@@ -22,4 +22,4 @@ Only proven blockers outside standing authorization stop the chain: owner-only a
 
 Do not insert artificial approval, narration, proof, review, merge, or receipt bus stops inside an already-approved product outcome.
 
-Canonical machine authority: `GlacierEQ/monolith/catalog/product_completion_invariant.json`.
+APEX machine authority: `GlacierEQ/monolith/catalog/product_completion_invariant.json`.

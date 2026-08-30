@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T13:56:00-10:00",
   "wave": 19,
   "repository": "GlacierEQ/Pro-comet-agent",
-  "source_canonical_head": "27879babe8dfd3242f7579b3604c809686e84940",
+  "source_head": "27879babe8dfd3242f7579b3604c809686e84940",
   "source_state": "BOUNDED_CONNECTOR_AND_BROWSER_SERVICE_BUILD_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [
     {
@@ -24,7 +24,7 @@
     "demoted stale PROMOTED machine posture until fresh exact-current-head proof existed",
     "expanded Python proof to 3.11, 3.12, and 3.13 and retained Node locked-install, Jest, and TypeScript build proof",
     "added a fail-closed public-truth verifier covering claims, identity, license, capability allowlist, and operational-authority boundaries",
-    "bound the repaired canonical main to successful exact-head CI run 31851939532"
+    "bound the repaired reference main to successful exact-head CI run 31851939532"
   ],
   "nonclaims": [
     "no bundled or live Google Drive, Dropbox, Gmail, GitHub, OneDrive, or other SaaS connector connectivity",

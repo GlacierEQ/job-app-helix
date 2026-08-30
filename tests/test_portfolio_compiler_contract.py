@@ -12,7 +12,7 @@ def load(path: str) -> dict:
 
 def test_compiler_is_link_and_generate_only() -> None:
     compiler = load("manifests/portfolio_compiler.json")
-    assert compiler["source_of_truth"] == "canonical_child_repository"
+    assert compiler["source_of_truth"] == "reference_child_repository"
     assert compiler["copy_policy"] == "link_and_generate_only"
     assert compiler["stale_on_head_change"] is True
     assert compiler["fail_closed_on_unsupported_claim"] is True

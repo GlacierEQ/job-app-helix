@@ -11,7 +11,7 @@
     "repository_id": {"type": "integer", "minimum": 1},
     "default_branch": {"type": "string", "minLength": 1},
     "observed_head": {"type": "string", "minLength": 6},
-    "classification": {"enum": ["CANONICAL", "PREDECESSOR", "SUCCESSOR", "EXPERIMENTAL", "DEPENDENCY", "SUPPORTING_INFRASTRUCTURE", "ARCHIVED", "BACKUP", "DEMONSTRATION", "DUPLICATE", "UNKNOWN"]},
+    "classification": {"enum": ["SOURCE_BOUND", "PREDECESSOR", "SUCCESSOR", "EXPERIMENTAL", "DEPENDENCY", "SUPPORTING_INFRASTRUCTURE", "ARCHIVED", "BACKUP", "DEMONSTRATION", "DUPLICATE", "UNKNOWN"]},
     "lineage_id": {"type": ["string", "null"]},
     "system_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
     "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}

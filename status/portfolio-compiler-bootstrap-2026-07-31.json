@@ -11,7 +11,7 @@
     ".github/workflows/portfolio-compiler-integrity.yml"
   ],
   "guarantees": [
-    "canonical child repositories remain the source of truth",
+    "reference child repositories remain the source of truth",
     "Helix is link-and-generate only",
     "provenance classes are machine-readable",
     "copied-source payloads are explicitly forbidden",

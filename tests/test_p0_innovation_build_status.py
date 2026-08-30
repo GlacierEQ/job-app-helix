@@ -21,7 +21,7 @@ def load(path: Path) -> dict:
 
 def test_p0_build_status_is_exact_head_and_complete() -> None:
     status = load(STATUS)
-    head = status["source_canonical_head"]
+    head = status["source_head"]
 
     assert status["schema"] == "glaciereq.p0-innovation-build-status.v1"
     assert status["verification_state"] == "REFERENCE_BUILDS_VERIFIED"

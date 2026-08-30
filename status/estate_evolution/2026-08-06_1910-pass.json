@@ -12,7 +12,7 @@
   },
   "news": {
     "window_hours": 24,
-    "canonical_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
+    "reference_radar": "GlacierEQ/mastermind:knowledge/ai_coding_radar.json",
     "radar_changed": false,
     "decision": "NO_NEW_PRIMARY_SOURCE_SIGNAL_CLEARED_ACTIONABILITY_AND_FRESHNESS_GATE",
     "background_sources_reviewed": [
@@ -28,15 +28,15 @@
       "repository": "GlacierEQ/AKOS",
       "default_branch": "main",
       "fork_status": "not_observed_as_fork",
-      "canonical_head_before": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
-      "canonical_head_after": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
+      "source_head_before": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
+      "source_head_after": "30aaa5bcdf9e01dbb21a6faa1eb80bc679f460a9",
       "branch": "feature/career-intelligence-platform-v2",
       "merge_base": "c91f7d8ec70f6a5657ed689a6e85cff89ea2d729",
       "ahead": 2,
       "behind": 19,
       "unique_patch_commits": 2,
       "files_changed": 34,
-      "decision": "KEEP_AND_SYNTHESIZE_LATER_ON_FRESH_CANONICAL",
+      "decision": "KEEP_AND_SYNTHESIZE_LATER_ON_FRESH_SOURCE_BOUND",
       "preservation": "The branch contains a substantial v2 career platform layered on career-intelligence runtime components that are already present on current main. The stale tip was not merged. The latest branch hardening adds explicit ATS projection failure handling and mid-read resource indexing failure handling with tests; these remain useful unique value.",
       "verification": "NOT_REEXECUTED_THIS_PASS; semantic dependency inspection completed; promotion blocked until fresh-ancestry synthesis receives repository-native verification",
       "remote_ref_disposition": "KEEP"
@@ -45,8 +45,8 @@
       "repository": "GlacierEQ/pro-code",
       "default_branch": "main",
       "fork_status": "not_observed_as_fork",
-      "canonical_head_before": "7eb0014944eed3efbeba8dcca14c940120251c0c",
-      "canonical_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "source_head_before": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "source_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
       "branch": "hardening/native-proof-mainline-2026-07-31",
       "merge_base": "ec26b8e5a20b00dbd23e4d581577ff8493a84fe8",
       "ahead": 8,
@@ -62,8 +62,8 @@
       "repository": "GlacierEQ/pro-code",
       "default_branch": "main",
       "fork_status": "not_observed_as_fork",
-      "canonical_head_before": "7eb0014944eed3efbeba8dcca14c940120251c0c",
-      "canonical_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "source_head_before": "7eb0014944eed3efbeba8dcca14c940120251c0c",
+      "source_head_after": "7eb0014944eed3efbeba8dcca14c940120251c0c",
       "branch": "hardening/readme-native-proof-2026-07-30",
       "merge_base": "f720cb8346fc19aae60a56e0a21eafbbd3cf1f55",
       "ahead": 7,
@@ -82,7 +82,7 @@
   ],
   "blockers": [
     "Current connector exposes no remote branch-ref deletion action.",
-    "Large multi-file synthesis requires a fresh-ancestry integration commit plus repository-native verification before canonical promotion."
+    "Large multi-file synthesis requires a fresh-ancestry integration commit plus repository-native verification before reference promotion."
   ],
   "next_cursor": {
     "repository": "GlacierEQ/AKOS",

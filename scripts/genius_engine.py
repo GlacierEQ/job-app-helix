@@ -10,14 +10,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from job_app_helix.genius_build import (  # noqa: E402
+from job_app_helix.genius_build import (
     build_receipt,
     doctor,
     invent_impact_estate,
     landed_index,
     status_summary,
 )
-from job_app_helix.genius_engine import (  # noqa: E402
+from job_app_helix.genius_engine import (
     compose_advance_brief,
     invent,
     invent_estate,

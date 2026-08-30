@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T14:36:00-10:00",
   "wave": 21,
   "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
-  "source_canonical_head": "2a23cd011367f23891c014c92e75f0b592c29db1",
+  "source_head": "2a23cd011367f23891c014c92e75f0b592c29db1",
   "source_state": "MODELED_TPU_STYLE_MESH_PLANNING_NATIVE_PROOF_REFRESHED",
   "prior_surface_decision": "ADMIT",
   "proof_receipts": [
@@ -24,7 +24,7 @@
     "added fail-closed public and machine truth enforcement",
     "expanded the exact-source Public Truth Gate from Python 3.11/3.13 to Python 3.11/3.12/3.13",
     "pinned checkout and setup-python while preserving exact PR-head identity checks and disabling persisted credentials",
-    "bound repaired canonical main to successful exact-head Public Truth Gate run 31853699272",
+    "bound repaired reference main to successful exact-head Public Truth Gate run 31853699272",
     "refreshed the existing Wave 4 admission evidence without incrementing governed admission count"
   ],
   "nonclaims": [

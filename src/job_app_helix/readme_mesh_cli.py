@@ -85,7 +85,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     inventory = {
         "schema_version": mesh.schema_version,
-        "canonical_repo": mesh.canonical_repo,
+        "apex_repo": mesh.apex_repo,
         "repositories": [node.repository for node in mesh.repositories],
         "edges": [
             {

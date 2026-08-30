@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a deterministic, truth-bounded company analysis plan from canonical tracks."""
+"""Build a deterministic, truth-bounded company analysis plan from reference tracks."""
 
 from __future__ import annotations
 
@@ -17,13 +17,13 @@ COMPANY_INDEX = ROOT / "manifests" / "company_dossiers.json"
 TOPOLOGY_PROFILE = ROOT / "manifests" / "company_analysis_topology.json"
 EXPECTED_PROFILE_SCHEMA = "glaciereq.company-analysis-topology.v2"
 EXPECTED_INDEX_SCHEMA = "glaciereq.company-dossiers-index.v2"
-CANONICAL_ORCHESTRATOR_ID = "D0"
-CANONICAL_DOMAIN_LEAD_IDS = ("D1", "D2")
-CANONICAL_SPECIALIST_IDS = tuple(f"S{index}" for index in range(1, 9))
-CANONICAL_COORDINATOR_ID = "D11"
+SOURCE_BOUND_ORCHESTRATOR_ID = "D0"
+SOURCE_BOUND_DOMAIN_LEAD_IDS = ("D1", "D2")
+SOURCE_BOUND_SPECIALIST_IDS = tuple(f"S{index}" for index in range(1, 9))
+SOURCE_BOUND_COORDINATOR_ID = "D11"
 REQUIRED_QUALITY_GATES = frozenset(
     {
-        "canonical_track_parity",
+        "reference_track_parity",
         "unique_track_assignment",
         "complete_specialist_matrix",
         "unique_task_identity",
@@ -60,7 +60,7 @@ def file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def canonical_sha256(payload: Any) -> str:
+def reference_sha256(payload: Any) -> str:
     encoded = json.dumps(
         payload,
         sort_keys=True,
@@ -135,27 +135,27 @@ def _validate_nodes(nodes: Any, source: str) -> list[dict[str, str]]:
     return normalized
 
 
-def _require_canonical_node_ids(
+def _require_reference_node_ids(
     orchestrator_id: str,
     domain_leads: list[dict[str, str]],
     specialists: list[dict[str, str]],
     coordinator_id: str,
 ) -> None:
-    if orchestrator_id != CANONICAL_ORCHESTRATOR_ID:
+    if orchestrator_id != SOURCE_BOUND_ORCHESTRATOR_ID:
         raise CompanyAnalysisPlanError(
             "topology orchestrator identity drift requires a schema version change"
         )
     domain_ids = tuple(node["id"] for node in domain_leads)
-    if domain_ids != CANONICAL_DOMAIN_LEAD_IDS:
+    if domain_ids != SOURCE_BOUND_DOMAIN_LEAD_IDS:
         raise CompanyAnalysisPlanError(
             "topology domain-lead identity drift requires a schema version change"
         )
     specialist_ids = tuple(node["id"] for node in specialists)
-    if specialist_ids != CANONICAL_SPECIALIST_IDS:
+    if specialist_ids != SOURCE_BOUND_SPECIALIST_IDS:
         raise CompanyAnalysisPlanError(
             "topology specialist identity drift requires a schema version change"
         )
-    if coordinator_id != CANONICAL_COORDINATOR_ID:
+    if coordinator_id != SOURCE_BOUND_COORDINATOR_ID:
         raise CompanyAnalysisPlanError(
             "topology coordinator identity drift requires a schema version change"
         )
@@ -193,7 +193,7 @@ def validate_topology(profile: dict[str, Any]) -> dict[str, Any]:
     all_ids.extend(node["id"] for node in specialists)
     if len(all_ids) != len(set(all_ids)):
         raise CompanyAnalysisPlanError("topology node ids must be globally unique")
-    _require_canonical_node_ids(
+    _require_reference_node_ids(
         orchestrator_id,
         domain_leads,
         specialists,
@@ -311,7 +311,7 @@ def validate_plan(
     if set(task_pairs) != expected_pairs:
         raise CompanyAnalysisPlanError("specialist matrix is incomplete")
     if integration_tracks != tracks:
-        raise CompanyAnalysisPlanError("integration coverage does not match canonical tracks")
+        raise CompanyAnalysisPlanError("integration coverage does not match reference tracks")
 
     counts = plan.get("counts")
     if not isinstance(counts, dict):
@@ -416,7 +416,7 @@ def build_plan(
         "waves": waves,
     }
     validate_plan(plan, tracks, specialist_ids)
-    plan["plan_sha256"] = canonical_sha256(plan)
+    plan["plan_sha256"] = reference_sha256(plan)
     return plan
 
 

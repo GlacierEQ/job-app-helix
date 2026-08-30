@@ -13,7 +13,7 @@
     "prior_unresolved_created_visible_count": 29,
     "new_inventory_promotion": false,
     "rename_or_transfer_promotion": false,
-    "reason": "No repository-ID continuity evidence was collected in this bounded run; prior discovered repositories remain unresolved pending canonical-family lanes."
+    "reason": "No repository-ID continuity evidence was collected in this bounded run; prior discovered repositories remain unresolved pending reference-family lanes."
   },
   "repository_progress": {
     "repository": "GlacierEQ/apex-cli",
@@ -22,9 +22,9 @@
     "pr_state": "MERGED",
     "pr_head_sha": "d86a715603b2eec72b093c473d66bd89acf73eb0",
     "merge_commit_sha": "a879fd324865969a256b915bff3de12c4fb43da2",
-    "canonical_branch": "master",
-    "canonical_head_sha": "05078c8c02a67e609233e3dade137fd6ca596c7d",
-    "canonical_head_message": "chore(proof): refresh exact-head verification after cleanup",
+    "reference_branch": "master",
+    "source_head_sha": "05078c8c02a67e609233e3dade137fd6ca596c7d",
+    "source_head_message": "chore(proof): refresh exact-head verification after cleanup",
     "exact_head_verification": {
       "ci_push_run": 31879445558,
       "ci_push_conclusion": "success",
@@ -38,15 +38,15 @@
       "deterministic_tests_pass": "PASS_CURRENT_HEAD",
       "adversarial_tests_pass": "PASS_VIA_PUBLIC_TRUTH_GATE",
       "runtime_behavior_observed": "PASS_VIA_PUBLIC_TRUTH_GATE",
-      "security_authority_bounded": "PRESERVED_FROM_CANONICAL_RUNTIME_PROJECTION_CONTRACT",
+      "security_authority_bounded": "PRESERVED_FROM_SOURCE_BOUND_RUNTIME_PROJECTION_CONTRACT",
       "proof_receipt_bound_to_sha": "PASS_CURRENT_HEAD",
       "projections_truth_consistent": "PASS_CURRENT_HEAD",
       "evolution_cursor_defined": "PASS"
     },
-    "role": "active canonical CLI/runtime distribution surface",
+    "role": "active reference CLI/runtime distribution surface",
     "language_lane_note": "No language migration was introduced; this closure preserves the existing runtime projection boundary rather than refactoring for uniformity.",
     "rollback": "Historical PR and pre-merge ancestry remain preserved in Git; no force-push, deletion, or protected-branch bypass was used.",
-    "state_change": "OPEN_VERIFICATION_CURSOR -> MERGED_CANONICAL_EXACT_HEAD_PROVEN"
+    "state_change": "OPEN_VERIFICATION_CURSOR -> MERGED_SOURCE_BOUND_EXACT_HEAD_PROVEN"
   },
   "remaining_atlas_cursor": "Classify the 29 repositories discovered by the earlier 2026-08-15 Atlas delta using direct lineage, repository-ID continuity, package identity, unique patch value, and architecture-lane evidence; do not infer novelty from names."
 }

@@ -1,0 +1,42 @@
+name: Experience Graph Proof
+
+on:
+  pull_request:
+    paths:
+      - "scripts/discover_experience_graph.py"
+      - "policies/experience_graph_policy.json"
+      - "schemas/live-experience-graph.schema.json"
+      - "tests/test_experience_graph_discovery.py"
+      - ".github/workflows/experience-graph-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/discover_experience_graph.py"
+      - "policies/experience_graph_policy.json"
+      - "schemas/live-experience-graph.schema.json"
+      - "tests/test_experience_graph_discovery.py"
+      - ".github/workflows/experience-graph-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e ".[dev]"
+      - name: Compile restored runtime
+        run: python -m py_compile scripts/discover_experience_graph.py
+      - name: Run adversarial experience-graph tests
+        run: python -m pytest -q tests/test_experience_graph_discovery.py
+      - name: Validate output schema fixture
+        run: >-
+          python -c "import json,pathlib; s=json.loads(pathlib.Path('schemas/live-experience-graph.schema.json').read_text()); assert s['properties']['schema']['const']=='glaciereq.live-experience-graph.v1'; print('experience-graph-schema=PASS')"

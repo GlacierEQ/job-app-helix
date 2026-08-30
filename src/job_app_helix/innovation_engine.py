@@ -15,8 +15,9 @@ from job_app_helix.estate_compiler import digest as estate_digest
 POLICY_SCHEMA = "glaciereq.frontier-innovation-policy.v1"
 MEASURED_STATUS = "MEASURED"
 VERIFICATION_ASSERTING_STATUSES = {"VERIFIED", "MEASURED"}
+OPERATOR_ONLY_TRANSITIONS = frozenset({"SOURCE_BOUND", "SUPERSEDED", "ARCHIVED"})
 ESTATE_REGISTRIES = (
-    "canonical_system_registry",
+    "system_registry",
     "capability_donor_registry",
     "company_projection_registry",
 )
@@ -204,7 +205,7 @@ def _assert_transition_artifacts(
         raise InnovationContractError(
             "HYPOTHESES_EVALUATED requires novelty_decision='ADAPT' or 'PROCEED'"
         )
-    if target in {"PROMOTION_READY", "CANONICAL"}:
+    if target in {"PROMOTION_READY", "SOURCE_BOUND"}:
         _assert_promotion_record(run)
     _assert_run_head_fresh(run, target)
 
@@ -217,6 +218,11 @@ def transition_run(
 ) -> dict[str, Any]:
     active = dict(policy or load_policy())
     current = str(run.get("state") or "")
+    if target in OPERATOR_ONLY_TRANSITIONS:
+        raise InnovationContractError(
+            f"{target} is an operator-only status; the innovation engine may "
+            "prepare evidence and a recommendation but cannot assign it."
+        )
     if not transition_allowed(current, target, active):
         raise InnovationContractError(f"illegal transition: {current} -> {target}")
     if not evidence_refs:
@@ -243,7 +249,7 @@ def transition_run(
         updated["blocked_from_state"] = current
     elif current == "BLOCKED":
         updated["blocked_from_state"] = None
-    if target in {"PROMOTION_READY", "CANONICAL"}:
+    if target in {"PROMOTION_READY", "SOURCE_BOUND"}:
         updated["promotion_ready"] = True
     return updated
 
@@ -596,13 +602,13 @@ def compile_estate_target_queue(
     source_digest = estate_bundle.get("source_digest")
     if not isinstance(source_digest, str) or not source_digest:
         raise InnovationContractError("estate bundle requires source_digest")
-    registry = estate_bundle["canonical_system_registry"]
+    registry = estate_bundle["system_registry"]
     systems = registry.get("systems")
     if not isinstance(systems, list):
-        raise InnovationContractError("canonical_system_registry.systems must be a list")
+        raise InnovationContractError("system_registry.systems must be a list")
 
-    canonical = {
-        (row.get("canonical_repository"), row.get("system_id"))
+    reference = {
+        (row.get("source_repository"), row.get("system_id"))
         for row in systems
         if isinstance(row, dict)
     }
@@ -611,9 +617,9 @@ def compile_estate_target_queue(
         candidate = dict(assessment)
         validate_payload(candidate, "target-assessment")
         identity = (candidate.get("repository"), candidate.get("system_id"))
-        if identity not in canonical:
+        if identity not in reference:
             raise InnovationContractError(
-                "target assessment must resolve to an existing canonical estate system: "
+                "target assessment must resolve to an existing reference estate system: "
                 f"{identity!r}"
             )
         normalized.append(candidate)

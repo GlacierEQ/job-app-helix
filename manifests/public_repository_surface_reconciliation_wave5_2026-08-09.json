@@ -17,15 +17,15 @@
       "decision": "ADMIT",
       "excellence_state": "EXACT_HEAD_CONTROL_PLANE_PROOF_VERIFIED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "2ada79228f83c31cc21c5194062c64b353d9cc48",
+        "reference_branch": "main",
+        "source_head": "2ada79228f83c31cc21c5194062c64b353d9cc48",
         "proof_receipts": [
           {"kind":"workflow_run","id":31346871422,"name":"CI","head_sha":"2ada79228f83c31cc21c5194062c64b353d9cc48","conclusion":"success"},
           {"kind":"workflow_run","id":31346871196,"name":"Casey Continuity Auto-Boot","head_sha":"2ada79228f83c31cc21c5194062c64b353d9cc48","conclusion":"success"}
         ],
-        "proof_scope": "Exact-current-head CI verifies repository registry/audit behavior and the continuity wrapper on the canonical squash commit. The public surface explicitly bounds provider, private-record, sibling-runtime, and autonomous-external-action claims."
+        "proof_scope": "Exact-current-head CI verifies repository registry/audit behavior and the continuity wrapper on the reference squash commit. The public surface explicitly bounds provider, private-record, sibling-runtime, and autonomous-external-action claims."
       },
-      "next_gate": "Reopen repair on canonical-head, provider/private boundary, registry/audit proof, or runtime-connectivity claim drift."
+      "next_gate": "Reopen repair on reference-head, provider/private boundary, registry/audit proof, or runtime-connectivity claim drift."
     },
     {
       "repository": "GlacierEQ/aws-trainium-neuron-sentinel",
@@ -33,15 +33,15 @@
       "decision": "ADMIT",
       "excellence_state": "MODELED_TRAINIUM_CAPABILITY_VERIFIED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "b30bc0ae04030a565204c4e0abced082a7b50979",
+        "reference_branch": "main",
+        "source_head": "b30bc0ae04030a565204c4e0abced082a7b50979",
         "evidence_token": "MODELED_TRAINIUM_SCENARIO_NOT_AWS_HARDWARE_MEASUREMENT",
         "proof_receipts": [
           {"kind":"workflow_run","id":31346903588,"name":"Public Truth Gate","head_sha":"b30bc0ae04030a565204c4e0abced082a7b50979","conclusion":"success"}
         ],
         "proof_scope": "Exact-current-head Python 3.11/3.13 proof verifies deterministic accelerator scenario arithmetic, fail-closed count/latency validation, stable fingerprints, and C++ reference-source compilation. No AWS Neuron hardware, measured throughput, cost, deployment, affiliation, or proprietary-access claim is inherited."
       },
-      "next_gate": "Reopen repair on canonical-head, evidence-token, C++ build, hardware/performance claim, or AWS-boundary drift."
+      "next_gate": "Reopen repair on reference-head, evidence-token, C++ build, hardware/performance claim, or AWS-boundary drift."
     },
     {
       "repository": "GlacierEQ/megamind",
@@ -49,14 +49,14 @@
       "decision": "ADMIT",
       "excellence_state": "LOCAL_REGISTRY_SCHEMA_CAPABILITY_VERIFIED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "b70121db3ef1fad23ef6001234707bcabce21856",
+        "reference_branch": "main",
+        "source_head": "b70121db3ef1fad23ef6001234707bcabce21856",
         "proof_receipts": [
           {"kind":"workflow_run","id":31347374683,"name":"Public Truth Gate","head_sha":"b70121db3ef1fad23ef6001234707bcabce21856","conclusion":"success"}
         ],
         "proof_scope": "Exact-current-head Python 3.11/3.13 proof runs the full repository tests, validates JSON schemas plus recursive YAML registries, verifies package/version identity, removes the workstation-specific Tower default, and validates explicitly configured Tower maps before use. Sibling links and taxonomy labels do not inherit live fleet, hardware, connector, provider, or external-authority claims."
       },
-      "next_gate": "Reopen repair on canonical-head, registry/schema proof, adapter validation, package-version, or ecosystem-connectivity claim drift."
+      "next_gate": "Reopen repair on reference-head, registry/schema proof, adapter validation, package-version, or ecosystem-connectivity claim drift."
     }
   ]
 }

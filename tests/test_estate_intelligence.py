@@ -127,11 +127,12 @@ def _company_shards() -> list[dict]:
 
 def _policy() -> dict:
     return {
-        "audience_caps": {
+        "audience_presentation_defaults": {
             "recruiter": 10,
             "company_reviewer": 5,
             "senior_engineer": 20,
         },
+        "audience_projection_membership": "complete_ranked_relation_graph",
         "role_capability_rules": [
             {
                 "match_any": ["agent", "infrastructure", "engineer"],
@@ -171,8 +172,8 @@ def test_support_and_experiment_are_not_accomplishments() -> None:
         census=_census(),
     )
     systems = {
-        row["canonical_repository"]: row
-        for row in projected["canonical_system_registry"]["systems"]
+        row["source_repository"]: row
+        for row in projected["system_registry"]["systems"]
     }
     assert systems["GlacierEQ/alpha"][
         "counts_as_independent_accomplishment"
@@ -183,7 +184,7 @@ def test_support_and_experiment_are_not_accomplishments() -> None:
     assert not systems["GlacierEQ/gamma"][
         "counts_as_independent_accomplishment"
     ]
-    support = projected["canonical_system_registry"][
+    support = projected["system_registry"][
         "support_references"
     ][0]
     assert support["collapse_lineage"] is False
@@ -193,6 +194,20 @@ def test_support_and_experiment_are_not_accomplishments() -> None:
         for row in projection["ranked_evidence"]
     }
     assert repositories == {"GlacierEQ/alpha"}
+
+
+def test_audience_projection_does_not_truncate_ranked_evidence() -> None:
+    projected = project_estate_intelligence(
+        _bundle(),
+        policy=_policy(),
+        census=_census(),
+    )
+    projection = projected["company_projection_registry"]["projections"][0]
+    ranked_ids = [row["system_id"] for row in projection["ranked_evidence"]]
+    assert projection["audience_projection_state"] == "COMPLETE_UNCAPPED"
+    assert set(projection["audience_projection"]["recruiter"]) == set(ranked_ids)
+    assert set(projection["audience_projection"]["company_reviewer"]) == set(ranked_ids)
+    assert projection["audience_projection"]["senior_engineer"] == ranked_ids
 
 
 def test_role_fit_replaces_company_count_relevance() -> None:
@@ -282,7 +297,7 @@ def test_public_projection_omits_non_accomplishments_and_raw_counts() -> None:
     assert public["schema"] == "glaciereq.estate-public-projection.v2"
     assert "GlacierEQ/beta" not in rendered
     assert "GlacierEQ/gamma" not in rendered
-    assert "canonical_accomplishments" not in rendered
+    assert "reference_accomplishments" not in rendered
     assert public["boundary"][
         "native_estate_cardinality_intentionally_not_published"
     ]

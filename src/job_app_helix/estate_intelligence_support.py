@@ -10,7 +10,7 @@ CAPABILITY_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 def repository_system_map(bundle: Mapping[str, Any]) -> dict[str, str]:
     result: dict[str, str] = {}
-    for system in bundle["canonical_system_registry"]["systems"]:
+    for system in bundle["system_registry"]["systems"]:
         for repository in system.get("member_repositories", []):
             if isinstance(repository, str):
                 result[repository] = str(system["system_id"])
@@ -146,7 +146,7 @@ def apply_capability_assertions(
         system_id = repo_to_system.get(repository)
         if system_id is None:
             raise ValueError(
-                "capability assertion must resolve to a canonical engineering system: "
+                "capability assertion must resolve to a reference engineering system: "
                 f"{repository}"
             )
         capability_id = assertion["capability_id"]
@@ -193,7 +193,7 @@ def apply_capability_assertions(
     capabilities.sort(key=lambda row: str(row["capability_id"]))
     policy = registry.setdefault("policy", {})
     policy["estate_capability_assertions_require_evidence_refs"] = True
-    policy["estate_capability_assertions_require_canonical_engineering_system"] = True
+    policy["estate_capability_assertions_require_reference_engineering_system"] = True
     return applied
 
 
@@ -231,7 +231,7 @@ def dynamic_score(
 
 def minimal_surface(
     rows: Sequence[Mapping[str, Any]],
-    limit: int,
+    limit: int | None = None,
 ) -> list[str]:
     remaining = list(rows)
     selected: list[str] = []
@@ -241,7 +241,7 @@ def minimal_surface(
         for capability in row.get("capabilities", [])
         if isinstance(capability, str)
     }
-    while remaining and len(selected) < limit:
+    while remaining and uncovered and (limit is None or len(selected) < limit):
         best = max(
             remaining,
             key=lambda row: (
@@ -252,7 +252,7 @@ def minimal_surface(
         )
         system_id = str(best["system_id"])
         newly_covered = uncovered & set(best.get("capabilities", []))
-        if selected and uncovered and not newly_covered:
+        if not newly_covered:
             break
         selected.append(system_id)
         uncovered -= newly_covered

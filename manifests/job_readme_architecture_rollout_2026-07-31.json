@@ -29,7 +29,7 @@
   "repositories": [
     {
       "repository": "GlacierEQ/job-app-helix",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "role": "CONTROL_PLANE",
       "visibility": "PUBLIC",
       "readme_action": "ALIGN_AND_LINK_AUTHORITY",
@@ -37,7 +37,7 @@
     },
     {
       "repository": "GlacierEQ/job-application",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "role": "PUBLIC_PORTAL",
       "visibility": "PUBLIC",
       "readme_action": "HARDEN_AND_CORRECT_TYPED_EDGES",
@@ -45,7 +45,7 @@
     },
     {
       "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "role": "PRODUCT_FLAGSHIP",
       "visibility": "PUBLIC",
       "readme_action": "HARDEN_AND_CORRECT_TYPED_EDGES",
@@ -53,7 +53,7 @@
     },
     {
       "repository": "GlacierEQ/job-app",
-      "canonical_branch": "master",
+      "reference_branch": "master",
       "role": "PRIVATE_OPERATIONS",
       "visibility": "PRIVATE",
       "readme_action": "FULL_REWRITE_WITH_PRIVACY_BOUNDARY",
@@ -61,7 +61,7 @@
     },
     {
       "repository": "GlacierEQ/portfolio-organization-master",
-      "canonical_branch": "main",
+      "reference_branch": "main",
       "role": "HISTORICAL_SNAPSHOT",
       "visibility": "PRIVATE",
       "readme_action": "FULL_REWRITE_WITH_SUCCESSOR_BOUNDARY",

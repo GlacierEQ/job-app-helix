@@ -1,0 +1,21 @@
+{
+  "repo": "qwen2.5VLM-OCR",
+  "family": "Qwen / Alibaba",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Streamlit app, dockerized, to do OCR on documents using the Qwen 2.5 VLM family. Triple-cataloged: (a) library.json:14364 (exec summary 'A simple streamlit app, dockerized, to do OCR on documents.'; url=https://github.com/GlacierEQ/qwen2.5VLM-OCR); (b) capabilities_3layer.json:21579 classifier doc_processing_and_transcription with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/doc_processing_and_transcription/qwen2.5VLM-OCR; (c) company_engineered_repositories.json:250 reference_or_upstream includes qwen2.5VLM-OCR. The expanded_job_app_helix_manifest.json (line 912) assigns it as a job-app-helix mesh leaf, family Alibaba / Qwen, state reference. Notable: the doc_processing_and_transcription classifier is concrete and connects to a real document-handling whole (superluminal_case_matrix uses transcription heavily). Honest limitation: reference/upstream with no local GlacierEQ modification; no test, build receipt, or fact card. Catalog + classifier + helix membership justify 6, but lack of any local modification keeps it from 7.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 14364: entry qwen2.5VLM-OCR; exec summary='A simple streamlit app, dockerized, to do OCR on documents.'; url=https://github.com/GlacierEQ/qwen2.5VLM-OCR)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 21579: name=qwen2.5VLM-OCR; classifier=doc_processing_and_transcription; executive_summary='A simple streamlit app, dockerized, to do OCR on documents.'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/doc_processing_and_transcription/qwen2.5VLM-OCR; launch_cmd='git clone https://github.com/GlacierEQ/qwen2.5VLM-OCR')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 250: reference_or_upstream includes qwen2.5VLM-OCR)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 912: kind=company, state=reference, family='Alibaba / Qwen' \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 146: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Honest cap at 6 \u2014 strong catalog + concrete classifier + helix membership, but no local modification/test/receipt. To reach 7+ requires: (1) clone + build the docker image, (2) run OCR on a held-out document set, (3) add a test that verifies the OCR output against ground truth, (4) emit a fact card with execution receipt, and (5) update company_engineered_repositories.json from reference_or_upstream to in_preparation.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.807179",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

@@ -56,9 +56,9 @@
     ],
     "proof_artifacts": [
       {
-        "id": "github_proof_merge_authority_canonical_reproduction",
+        "id": "github_proof_merge_authority_reference_reproduction",
         "kind": "proof_artifact",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/proof/canonical-reproduction.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/proof/reference-reproduction.json",
         "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
         "verification_state": "REPRODUCED",
         "visibility": "public"

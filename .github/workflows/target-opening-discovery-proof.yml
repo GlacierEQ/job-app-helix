@@ -1,0 +1,56 @@
+name: Target Opening Discovery Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/target_opening_discovery.py"
+      - "src/job_app_helix/opening_watch.py"
+      - "src/job_app_helix/opening_acquisition.py"
+      - "tests/test_target_opening_discovery.py"
+      - "pyproject.toml"
+      - ".github/workflows/target-opening-discovery-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/target_opening_discovery.py"
+      - "src/job_app_helix/opening_watch.py"
+      - "src/job_app_helix/opening_acquisition.py"
+      - "tests/test_target_opening_discovery.py"
+      - "pyproject.toml"
+      - ".github/workflows/target-opening-discovery-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  target-opening-discovery:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and proof tools
+        run: python -m pip install -e '.[dev]'
+
+      - name: Lint target opening discovery surface
+        run: >-
+          ruff check
+          src/job_app_helix/target_opening_discovery.py
+          tests/test_target_opening_discovery.py
+
+      - name: Run adversarial target opening discovery tests
+        run: python -m pytest -q tests/test_target_opening_discovery.py tests/test_opening_watch.py
+
+      - name: Prove installed executable
+        run: job-app-helix-discover-openings --help

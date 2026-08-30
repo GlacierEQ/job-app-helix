@@ -1,0 +1,23 @@
+{
+  "repo": "Kimi-K2",
+  "family": "Moonshot AI / Lab",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Kimi K2, the large language model series developed by Moonshot AI. Deeper mining confirms broad multi-source presence: library.json:8636 (Kimi K2 LLM series by Moonshot AI), capabilities_3layer:24903 (entry: elevator_pitch 'Lab Benchmarks And Stamps engine', mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/Kimi-K2, contract_proof template), domains/lab_hire_stamps.md:37, validate_lab_hire_atlas.py:77 (validated atlas record), tests/test_lab_hire_atlas.py (test suite references it), LAB_HIRE_DOMAIN_ATLAS.md:41, and company_engineered_repositories.json:150 (reference_or_upstream). HONEST LIMITATION: it is a reference/upstream model repo; upstream model claims are not GlacierEQ-authored proof. Rating promoted 5->6 on the test-atlas cross-reference + validated-script check (records['Kimi-K2'] is checked by an executed validation script).",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:8636 (name Kimi-K2; Kimi K2 LLM series by Moonshot AI)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24903 (entry: elevator_pitch 'Lab Benchmarks And Stamps engine', mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/Kimi-K2, contract_proof template only)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:37 (portfolio row: Kimi K2 large language model series, Moonshot AI)",
+    "/tmp/monolith/scripts/validate_lab_hire_atlas.py:77 (listed as validated atlas record)",
+    "/tmp/monolith/tests/test_lab_hire_atlas.py (records['Kimi-K2'] referenced in test suite)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:147-151 (Moonshot AI / Kimi family; reference_or_upstream: Kimi-K2, Kimi-K3)",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md:41 (Kimi-K2 in lab_hire domain set)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "wave3": true,
+  "makes_worthy": "Promoted 5->6: validated atlas record + test-suite reference are real cross-source signals (catalog scope + an executed validation script + a referenced test). To reach >=8: produce a GlacierEQ-authored fine-tune or benchmark on Kimi-K2 with a hashed run receipt, OR a fact card with a reproducible eval. Capped at 6: reference/upstream model repo with catalog + validate-script cross-reference only; no local proof of GlacierEQ authorship.",
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.880077",
+  "notes": " | NEEDS_REPAIR"
+}

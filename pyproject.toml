@@ -12,7 +12,7 @@ license = { file = "LICENSE" }
 authors = [{ name = "Casey Barton" }]
 keywords = ["job-applications", "portfolio", "systems-engineering", "evidence", "orchestration"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
   "License :: Other/Proprietary License",
   "Programming Language :: Python :: 3",
@@ -37,9 +37,35 @@ dev = [
 job-app-helix = "job_app_helix.cli:main"
 job-app-helix-readme = "job_app_helix.readme_mesh_cli:main"
 job-app-helix-portfolio = "job_app_helix.portfolio_cli:main"
+job-app-helix-productize = "job_app_helix.productization_cli:main"
 job-app-helix-library = "job_app_helix.library_cli:main"
 job-app-helix-genius = "job_app_helix.genius_engine:main"
 job-app-helix-restore = "job_app_helix.restoration_cli:main"
+job-app-helix-prioritize = "job_app_helix.restoration_workforce_cli:main"
+job-app-helix-opportunity = "job_app_helix.opportunity_intelligence:main"
+job-app-helix-dynamic-build = "job_app_helix.dynamic_application_build:main"
+job-app-helix-strategy = "job_app_helix.application_strategy:main"
+job-app-helix-queue = "job_app_helix.opportunity_queue:main"
+job-app-helix-batch = "job_app_helix.batch_application_execution:main"
+job-app-helix-freshness-batch = "job_app_helix.freshness_aware_batch:main"
+job-app-helix-cycle = "job_app_helix.intelligence_cycle:main"
+job-app-helix-watch-cycle = "job_app_helix.opening_watch_cycle:main"
+job-app-helix-discover-openings = "job_app_helix.target_opening_discovery:main"
+job-app-helix-target-cycle = "job_app_helix.target_intelligence_cycle:main"
+job-app-helix-target-application = "job_app_helix.target_application_cycle:main"
+job-app-helix-application-evidence = "job_app_helix.application_evidence_graph:main"
+job-app-helix-greenhouse-fields = "job_app_helix.greenhouse_application_fields:main"
+job-app-helix-greenhouse-prepare = "job_app_helix.greenhouse_application_preparation:main"
+job-app-helix-greenhouse-finalize = "job_app_helix.greenhouse_application_finalization:main"
+job-app-helix-profile = "job_app_helix.candidate_profile_compiler:main"
+job-app-helix-estate-recovery = "job_app_helix.estate_recovery_census:main"
+job-app-helix-estate-restore = "job_app_helix.estate_federated_restoration:main"
+job-app-helix-estate-compose = "job_app_helix.estate_federated_recovery:main"
+job-app-helix-company-refresh = "job_app_helix.company_intelligence_refresh:main"
+job-app-helix-company-acquire = "job_app_helix.company_intelligence_acquisition:main"
+job-app-helix-outcomes = "job_app_helix.outcome_calibration:main"
+job-app-helix-recover = "job_app_helix.intelligent_recovery_cli:main"
+job-app-helix-estate-mesh = "job_app_helix.estate_mesh:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/job_app_helix"]
@@ -61,6 +87,9 @@ known-first-party = ["job_app_helix"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+# Long embedded provenance, paths, and machine-readable literals are preserved
+# for auditability; structural, correctness, and import rules remain enforced.
+ignore = ["E501"]
 
 [[tool.mypy.overrides]]
 module = "job_app_helix.readme_mesh_pb2"
@@ -71,11 +100,13 @@ module = ["job_app_helix.readme_mesh_manifest", "job_app_helix.readme_mesh"]
 ignore_errors = true
 
 [tool.ruff.lint.per-file-ignores]
-"apex_highway.py" = ["E501"]
-"apex_distributed_compute.py" = ["E501"]
-"ci_audit_portfolio.py" = ["E501"]
-"generate_outreach_dms.py" = ["E501"]
-"test_apex_distributed_compute.py" = ["E501"]
+"scripts/compute_repository_health.py" = ["E402"]
+"scripts/genius_engine.py" = ["E402"]
+"scripts/legacy/apex_highway.py" = ["E501"]
+"scripts/legacy/apex_distributed_compute.py" = ["E501"]
+"scripts/ci_audit_portfolio.py" = ["E501"]
+"scripts/legacy/generate_outreach_dms.py" = ["E501"]
+"tests/test_apex_distributed_compute.py" = ["E501"]
 "showcase/demo_15min_run.py" = ["E501"]
 "helix/**/*.py" = ["E501"]
 "src/job_app_helix/genius_engine.py" = ["E501", "F401"]
@@ -89,6 +120,5 @@ ignore_errors = true
 "scripts/cleanup_obsolete_branches.py" = ["E501", "I001"]
 "scripts/census_public_portfolio.py" = ["E402", "I001", "UP017"]
 "src/job_app_helix/portfolio_models.py" = ["I001", "UP042"]
-"src/job_app_helix/library_cli.py" = ["E402", "I001", "UP017"]
 "src/job_app_helix/estate_compiler.py" = ["I001", "UP042"]
 "excellence/harness/tests/*.py" = ["E402"]

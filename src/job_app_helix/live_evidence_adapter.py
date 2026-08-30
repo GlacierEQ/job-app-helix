@@ -62,16 +62,16 @@ class LiveEvidenceAdapterError(ValueError):
     """Raised when an observation cannot be safely compiled."""
 
 
-def canonical_json(value: Any) -> str:
+def reference_json(value: Any) -> str:
     """Return deterministic JSON for hashes and receipt identities."""
 
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
 def sha256_json(value: Any) -> str:
-    """Hash a JSON-compatible object using canonical serialization."""
+    """Hash a JSON-compatible object using reference serialization."""
 
-    return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
+    return hashlib.sha256(reference_json(value).encode("utf-8")).hexdigest()
 
 
 def _load_json_resource(name: str) -> dict[str, Any]:
@@ -180,13 +180,13 @@ def _require_sequence(value: Any, name: str) -> Sequence[Any]:
     return value
 
 
-def _canonical_path(canonical_url: str) -> str:
-    parsed = urlparse(canonical_url)
+def _source_path(source_url: str) -> str:
+    parsed = urlparse(source_url)
     if parsed.scheme != "https" or parsed.netloc != "github.com":
-        raise LiveEvidenceAdapterError("canonical repository URL must use github.com HTTPS")
+        raise LiveEvidenceAdapterError("reference repository URL must use github.com HTTPS")
     parts = [part for part in parsed.path.split("/") if part]
     if len(parts) != 2:
-        raise LiveEvidenceAdapterError("canonical repository URL must use owner/name form")
+        raise LiveEvidenceAdapterError("reference repository URL must use owner/name form")
     return f"/{parts[0]}/{parts[1]}"
 
 
@@ -206,14 +206,14 @@ def _trusted_artifact_url(
     receipt: str,
     declared_path: str,
     head_sha: str,
-    canonical_url: str,
+    source_url: str,
 ) -> bool:
     parsed = urlparse(receipt)
     if parsed.scheme != "https" or parsed.netloc != "github.com":
         return False
     if parsed.query or parsed.fragment:
         return False
-    expected = f"{_canonical_path(canonical_url)}/blob/{head_sha}/{declared_path}"
+    expected = f"{_source_path(source_url)}/blob/{head_sha}/{declared_path}"
     return unquote(parsed.path) == expected
 
 
@@ -221,7 +221,7 @@ def _artifact_receipts(
     value: Any,
     name: str,
     head_sha: str,
-    canonical_url: str,
+    source_url: str,
 ) -> list[str]:
     receipts: list[str] = []
     for index, artifact in enumerate(_require_sequence(value, name)):
@@ -229,7 +229,7 @@ def _artifact_receipts(
         item = _require_mapping(artifact, item_name)
         path = _normalize_artifact_path(str(item.get("path", "")).strip(), item_name)
         url = str(item.get("url", "")).strip()
-        if not url or not _trusted_artifact_url(url, path, head_sha, canonical_url):
+        if not url or not _trusted_artifact_url(url, path, head_sha, source_url):
             raise LiveEvidenceAdapterError(
                 f"{item_name}.url must resolve to its declared path at the observed HEAD"
             )
@@ -241,7 +241,7 @@ def _optional_artifact_receipts(
     value: Any,
     name: str,
     head_sha: str,
-    canonical_url: str,
+    source_url: str,
 ) -> list[str]:
     item = _require_mapping(value, name)
     present = item.get("present")
@@ -251,7 +251,7 @@ def _optional_artifact_receipts(
         return []
     path = _normalize_artifact_path(str(item.get("path", "")).strip(), name)
     url = str(item.get("url", "")).strip()
-    if not url or not _trusted_artifact_url(url, path, head_sha, canonical_url):
+    if not url or not _trusted_artifact_url(url, path, head_sha, source_url):
         raise LiveEvidenceAdapterError(
             f"{name}.url must resolve to its declared path at the observed HEAD"
         )
@@ -291,31 +291,31 @@ def _execution_item(value: Any, name: str) -> dict[str, Any]:
     }
 
 
-def _trusted_metadata_receipt(receipt: str, canonical_url: str) -> bool:
-    canonical_path = _canonical_path(canonical_url)
+def _trusted_metadata_receipt(receipt: str, source_url: str) -> bool:
+    source_path = _source_path(source_url)
     parsed = urlparse(receipt)
     if parsed.scheme != "https" or parsed.query or parsed.fragment:
         return False
     return (
-        parsed.netloc == "github.com" and parsed.path.rstrip("/") == canonical_path
+        parsed.netloc == "github.com" and parsed.path.rstrip("/") == source_path
     ) or (
         parsed.netloc == "api.github.com"
-        and parsed.path.rstrip("/") == f"/repos{canonical_path}"
+        and parsed.path.rstrip("/") == f"/repos{source_path}"
     )
 
 
 def _trusted_receipt_bound_to_head(
     receipt: str,
     head_sha: str,
-    canonical_url: str,
+    source_url: str,
 ) -> bool:
-    canonical_path = _canonical_path(canonical_url)
+    source_path = _source_path(source_url)
     parsed = urlparse(receipt)
     if parsed.scheme != "https" or parsed.fragment:
         return False
 
     if parsed.netloc == "github.com":
-        prefix = f"{canonical_path}/"
+        prefix = f"{source_path}/"
         if not parsed.path.startswith(prefix):
             return False
         relative_path = parsed.path[len(prefix) :]
@@ -333,7 +333,7 @@ def _trusted_receipt_bound_to_head(
         return False
 
     if parsed.netloc == "api.github.com":
-        prefix = f"/repos{canonical_path}/"
+        prefix = f"/repos{source_path}/"
         if not parsed.path.startswith(prefix):
             return False
         return parse_qs(parsed.query).get("sha") == [head_sha]
@@ -343,14 +343,14 @@ def _trusted_receipt_bound_to_head(
 def _execution_can_verify(
     item: Mapping[str, Any],
     head_sha: str,
-    canonical_url: str,
+    source_url: str,
     *,
     require_positive_test_count: bool = False,
 ) -> bool:
     if item["state"] != "SUCCESS":
         return False
     if not item["receipts"] or not all(
-        _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+        _trusted_receipt_bound_to_head(receipt, head_sha, source_url)
         for receipt in item["receipts"]
     ):
         return False
@@ -382,7 +382,7 @@ def _compile_execution_dimension(
     name: str,
     execution: Mapping[str, Any],
     head_sha: str,
-    canonical_url: str,
+    source_url: str,
     defaults: Mapping[str, Any],
 ) -> dict[str, Any]:
     item = _execution_item(execution.get(name), name)
@@ -392,7 +392,7 @@ def _compile_execution_dimension(
     current_receipts = [
         receipt
         for receipt in receipts
-        if _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+        if _trusted_receipt_bound_to_head(receipt, head_sha, source_url)
     ]
     rejected_receipts = sorted(set(receipts) - set(current_receipts))
 
@@ -499,23 +499,23 @@ def _connector_quality(
 ) -> float:
     points = policy["connector_quality_points"]
     receipts = [str(item) for item in connector.get("receipts", [])]
-    canonical_url = str(observation["canonical_url"])
+    source_url = str(observation["source_url"])
     head_sha = str(observation["observed_head_sha"])
     score = 0.0
 
     if (
         observation.get("repository_id")
-        and any(_trusted_metadata_receipt(receipt, canonical_url) for receipt in receipts)
+        and any(_trusted_metadata_receipt(receipt, source_url) for receipt in receipts)
     ):
         score += float(points["repository_metadata_receipt"])
     if any(
-        _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+        _trusted_receipt_bound_to_head(receipt, head_sha, source_url)
         and "/commit/" in urlparse(receipt).path
         for receipt in receipts
     ):
         score += float(points["head_commit_receipt"])
     if artifact_receipts and all(
-        _trusted_receipt_bound_to_head(receipt, head_sha, canonical_url)
+        _trusted_receipt_bound_to_head(receipt, head_sha, source_url)
         for receipt in artifact_receipts
     ):
         score += float(points["sha_bound_artifact_receipts"])
@@ -583,13 +583,13 @@ def compile_repository_observation(
     payload = _validate_observation_contract(observation)
 
     repository = str(payload["repository"]).strip()
-    canonical_url = str(payload["canonical_url"]).rstrip("/")
+    source_url = str(payload["source_url"]).rstrip("/")
     expected_url = f"https://github.com/{repository}"
-    if canonical_url != expected_url:
+    if source_url != expected_url:
         raise LiveEvidenceAdapterError(
-            f"canonical_url must equal {expected_url}, got {canonical_url}"
+            f"source_url must equal {expected_url}, got {source_url}"
         )
-    _canonical_path(canonical_url)
+    _source_path(source_url)
 
     head_sha = str(payload["observed_head_sha"]).lower()
     if len(head_sha) not in {40, 64} or any(
@@ -620,19 +620,19 @@ def compile_repository_observation(
         )
 
     readme = _optional_artifact_receipts(
-        artifacts["readme"], "artifacts.readme", head_sha, canonical_url
+        artifacts["readme"], "artifacts.readme", head_sha, source_url
     )
     package_manifest = _optional_artifact_receipts(
         artifacts["package_manifest"],
         "artifacts.package_manifest",
         head_sha,
-        canonical_url,
+        source_url,
     )
     license_receipts = _optional_artifact_receipts(
         artifacts.get("license", {"present": False, "path": None, "url": None}),
         "artifacts.license",
         head_sha,
-        canonical_url,
+        source_url,
     )
     security_policy_receipts = _optional_artifact_receipts(
         artifacts.get(
@@ -640,43 +640,43 @@ def compile_repository_observation(
         ),
         "artifacts.security_policy",
         head_sha,
-        canonical_url,
+        source_url,
     )
     category_receipts = {
         "readme": readme,
         "package_manifest": package_manifest,
         "workflows": _artifact_receipts(
-            artifacts["workflows"], "artifacts.workflows", head_sha, canonical_url
+            artifacts["workflows"], "artifacts.workflows", head_sha, source_url
         ),
         "source_files": _artifact_receipts(
             artifacts["source_files"],
             "artifacts.source_files",
             head_sha,
-            canonical_url,
+            source_url,
         ),
         "test_files": _artifact_receipts(
-            artifacts["test_files"], "artifacts.test_files", head_sha, canonical_url
+            artifacts["test_files"], "artifacts.test_files", head_sha, source_url
         ),
         "architecture_files": _artifact_receipts(
             artifacts["architecture_files"],
             "artifacts.architecture_files",
             head_sha,
-            canonical_url,
+            source_url,
         ),
         "integration_files": _artifact_receipts(
             artifacts["integration_files"],
             "artifacts.integration_files",
             head_sha,
-            canonical_url,
+            source_url,
         ),
         "ai_files": _artifact_receipts(
-            artifacts["ai_files"], "artifacts.ai_files", head_sha, canonical_url
+            artifacts["ai_files"], "artifacts.ai_files", head_sha, source_url
         ),
         "recruiter_files": _artifact_receipts(
             artifacts["recruiter_files"],
             "artifacts.recruiter_files",
             head_sha,
-            canonical_url,
+            source_url,
         ),
     }
     artifact_receipts = sorted(
@@ -698,11 +698,11 @@ def compile_repository_observation(
     source_receipts = [*package_manifest, *category_receipts["source_files"]]
     if package_manifest and category_receipts["source_files"]:
         reality_verified = _execution_can_verify(
-            critical_execution["build"], head_sha, canonical_url
+            critical_execution["build"], head_sha, source_url
         ) and _execution_can_verify(
             critical_execution["tests"],
             head_sha,
-            canonical_url,
+            source_url,
             require_positive_test_count=True,
         )
         dimensions["reality"] = _evidence(
@@ -727,10 +727,10 @@ def compile_repository_observation(
         )
 
     dimensions["build"] = _compile_execution_dimension(
-        "build", execution, head_sha, canonical_url, defaults["build"]
+        "build", execution, head_sha, source_url, defaults["build"]
     )
     dimensions["tests"] = _compile_execution_dimension(
-        "tests", execution, head_sha, canonical_url, defaults["tests"]
+        "tests", execution, head_sha, source_url, defaults["tests"]
     )
 
     documentation_item = critical_execution["documentation"]
@@ -738,7 +738,7 @@ def compile_repository_observation(
         "documentation",
         execution,
         head_sha,
-        canonical_url,
+        source_url,
         defaults["documentation"],
     )
     if (
@@ -782,7 +782,7 @@ def compile_repository_observation(
         )
 
     dimensions["security"] = _compile_execution_dimension(
-        "security", execution, head_sha, canonical_url, defaults["security"]
+        "security", execution, head_sha, source_url, defaults["security"]
     )
 
     for dimension, category, finding in (

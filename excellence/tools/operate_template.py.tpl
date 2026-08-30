@@ -24,7 +24,7 @@ _CONTENT_KEYS = frozenset({
     "reason", "error", "stations", "mbps", "cost", "stage", "holds",
     "assignments", "connectors", "public_count", "score", "margin", "jobs",
     "samples", "receipt", "state", "can_vote", "bytes_in", "bytes_out",
-    "savings_pct", "sha256", "canonical_uri", "measurement_unit", "agents",
+    "savings_pct", "sha256", "reference_uri", "measurement_unit", "agents",
     "available", "verdict", "token_fp", "mac", "chain", "payload_keys",
 })
 # Field-name / sample-echo denylist (never content_checked as a bare value)
@@ -53,7 +53,7 @@ _PREFERRED_FNS = (
     "apply_batch", "encode_batch", "export_recommendation", "place",
     "fleet", "mode", "budget", "shed", "outlet", "control_loop",
     "miss_distance_km", "boiloff_rate_kg_s", "compact_session",
-    "flagship_count", "all_present", "verify_manifest",
+    "system_count", "all_present", "verify_manifest",
 )
 _PREFERRED_METHS = (
     "assign_task", "get_status", "register_agent", "mint", "verify",
@@ -157,7 +157,7 @@ def _contentful(value, *, called_name: str | None = None) -> bool:
     # Dataclass instances returned by real methods (Pointer, receipts, tokens)
     if hasattr(value, "__dataclass_fields__"):
         return True
-    for attr in ("fingerprint", "digest", "sha256", "canonical_uri", "mac"):
+    for attr in ("fingerprint", "digest", "sha256", "reference_uri", "mac"):
         if hasattr(value, attr):
             v = getattr(value, attr)
             if isinstance(v, str) and len(v) > 0 and not v.startswith("<function "):

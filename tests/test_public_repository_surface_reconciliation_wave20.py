@@ -126,7 +126,7 @@ def test_wave20_admissions_are_exact_head_scope_and_receipt_bound() -> None:
         record = by_repo[repository]
         evidence = record["decision_evidence"]
         assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
-        assert evidence["canonical_head"] == expected["head"]
+        assert evidence["source_head"] == expected["head"]
         assert evidence["evidence_token"] == expected["token"]
         assert evidence["verified_capability"] == expected["capability"]
         assert evidence["proof_receipts"] == [
@@ -151,8 +151,8 @@ def test_wave20_receipts_match_reconciliation_authority() -> None:
         wave = wave_by_repo[repository]
         receipt = load(ROOT / expected["receipt"])
         assert receipt["repository"] == repository
-        assert receipt["source_canonical_head"] == expected["head"]
-        assert wave["evidence"]["canonical_head"] == expected["head"]
+        assert receipt["source_head"] == expected["head"]
+        assert wave["evidence"]["source_head"] == expected["head"]
         assert receipt["evidence_token"] == expected["token"]
         assert wave["evidence"]["evidence_token"] == expected["token"]
         assert receipt["verified_capability"] == expected["capability"]

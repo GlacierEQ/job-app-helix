@@ -101,13 +101,13 @@ def test_wave23_exact_heads_and_receipts_are_bound() -> None:
     trainium = by_repo[TRAINIUM]
     assert grok["prior_reconciled_admission"] == "REPAIR_REQUIRED"
     assert (
-        grok["decision_evidence"]["canonical_head"]
+        grok["decision_evidence"]["source_head"]
         == "fb51c671e66005e93385d3828053b051083f4c5d"
     )
     assert grok["decision_evidence"]["proof_receipts"][0]["id"] == 31854959743
     assert trainium["prior_reconciled_admission"] == "ADMIT"
     assert (
-        trainium["decision_evidence"]["canonical_head"]
+        trainium["decision_evidence"]["source_head"]
         == "bfffd8dc67ecbd86e06dc375b9550f72788a398f"
     )
     assert trainium["decision_evidence"]["proof_receipts"][0]["id"] == 31854768152
@@ -129,16 +129,16 @@ def test_wave23_receipts_match_mixed_delta_contract() -> None:
         / "status/public-repository-surface-repair-wave23-trainium-refresh-2026-08-14.json"
     )
     assert (
-        grok_receipt["source_canonical_head"]
-        == wave[GROK]["evidence"]["canonical_head"]
+        grok_receipt["source_head"]
+        == wave[GROK]["evidence"]["source_head"]
     )
     assert grok_receipt["governed_subset_delta"] == {
         "ADMIT": 1,
         "REPAIR_REQUIRED": -1,
     }
     assert (
-        trainium_receipt["source_canonical_head"]
-        == wave[TRAINIUM]["evidence"]["canonical_head"]
+        trainium_receipt["source_head"]
+        == wave[TRAINIUM]["evidence"]["source_head"]
     )
     assert trainium_receipt["prior_surface_decision"] == "ADMIT"
     assert trainium_receipt["refreshes_existing_admission"] is True

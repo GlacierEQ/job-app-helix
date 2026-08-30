@@ -2,11 +2,11 @@
   "schema": "glaciereq.estate-evolution.state.v1",
   "updated_at": "2026-08-08T16:15:15Z",
   "control_plane": "GlacierEQ/job-app-helix",
-  "phase": "HELIX_CANONICAL_CLEAN_MONOLITH_EXACT_HEAD_PROOF_BLOCKED",
+  "phase": "HELIX_SOURCE_BOUND_CLEAN_MONOLITH_EXACT_HEAD_PROOF_BLOCKED",
   "cursor": {
     "repository": "GlacierEQ/monolith",
-    "canonical_branch": "main",
-    "canonical_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "reference_branch": "main",
+    "source_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
     "pull_request": 54,
     "branch": "synthesize/legal-live-reconciliation-20260808",
     "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
@@ -24,8 +24,8 @@
       "pull_request": 80,
       "decision": "VERIFIED_CURRENT_HEAD_SYNTHESIS_PROMOTED",
       "verified_head": "f37d801625571ed56f3b67c3fe9f8c9d2fe59d78",
-      "canonical_head_after": "ae9027b23fe3ef0741cad10c891c3445bbcfd1a5",
-      "preservation": "Diamond/Gatling planning mechanics rebuilt on the canonical company registry with dynamic cardinality, exact v2 topology identity, nine truth/integrity gates, deterministic digesting, and PLANNED_ONLY execution boundaries.",
+      "source_head_after": "ae9027b23fe3ef0741cad10c891c3445bbcfd1a5",
+      "preservation": "Diamond/Gatling planning mechanics rebuilt on the reference company registry with dynamic cardinality, exact v2 topology identity, nine truth/integrity gates, deterministic digesting, and PLANNED_ONLY execution boundaries.",
       "verification": [
         "CI:success:python-3.11",
         "CI:success:python-3.12",
@@ -39,7 +39,7 @@
       "pull_request": 79,
       "decision": "VERIFIED_FRESH_HEAD_SYNTHESIS_PROMOTED_CONCURRENTLY",
       "verified_head": "628e192380a4c2a5d91793d660b7883a56ce920b",
-      "canonical_head_after": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "source_head_after": "17c666190d84b1f8b49a3e377808a23011bd63a8",
       "preservation": "Longitudinal worker-science bridge with packaged schema identity, matched controls, infrastructure-invalid exclusion, complete worker roster, ablation-gated causal attribution, and mission-family learned-topology gating.",
       "verification": [
         "CI:success:python-3.11",
@@ -55,11 +55,11 @@
       "decision": "OPEN_PR_SURFACE_CLEAN",
       "open_pull_request_count": 0,
       "retired_unmerged": [58, 42, 40, 39, 34, 37],
-      "remote_ref_disposition": "BRANCH_HISTORY_PRESERVED; REF_DELETION_NOT_REQUIRED_FOR_CANONICAL_TRUTH"
+      "remote_ref_disposition": "BRANCH_HISTORY_PRESERVED; REF_DELETION_NOT_REQUIRED_FOR_SOURCE_BOUND_TRUTH"
     },
     {
       "repository": "GlacierEQ/job-app-helix",
-      "canonical_head": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "source_head": "17c666190d84b1f8b49a3e377808a23011bd63a8",
       "post_merge_verification": [
         "CI:success",
         "Portfolio Compiler Integrity:success"
@@ -87,7 +87,7 @@
     }
   ],
   "intelligence": {
-    "canonical_company_registry": "manifests/company_dossiers.json",
+    "reference_company_registry": "manifests/company_dossiers.json",
     "company_analysis_topology": "manifests/company_analysis_topology.json",
     "company_analysis_planner": "scripts/build_company_analysis_plan.py",
     "worker_science_bridge": "src/job_app_helix/worker_science.py",
@@ -98,7 +98,7 @@
     "drift_detected": false,
     "contract_preserved": true,
     "monolith_candidate_changed_files_touch_generated_legal_spine_artifacts": false,
-    "canonical_head_observed": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "source_head_observed": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
     "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
     "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
     "ahead": 7,
@@ -109,5 +109,5 @@
     "monolith_private_github_hosted_actions": "WORKFLOW_RUNS_CREATED_BUT_FAILURE_OCCURRED_BEFORE_JOB_STEPS_EXECUTED",
     "public_fixed_command_runner": "AVAILABLE_IN_ESTATE; MONOLITH_a93c3f79_EXACT_HEAD_SUCCESS_NOT_OBSERVED"
   },
-  "next_run_contract": "Begin from Helix canonical 17c666190d84b1f8b49a3e377808a23011bd63a8 with zero open Helix PRs, dynamic company-analysis topology canonical, and worker-science bridge canonical. Preserve Monolith PR #54 at a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03; do not merge until exact-head legal/catalog proof executes. Treat pre-step workflow failure as an execution blocker, not a validator failure."
+  "next_run_contract": "Begin from Helix reference 17c666190d84b1f8b49a3e377808a23011bd63a8 with zero open Helix PRs, dynamic company-analysis topology reference, and worker-science bridge reference. Preserve Monolith PR #54 at a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03; do not merge until exact-head legal/catalog proof executes. Treat pre-step workflow failure as an execution blocker, not a validator failure."
 }

@@ -1,0 +1,20 @@
+{
+  "repo": "deepseek-mla-moe-sentinel",
+  "family": "DeepSeek",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "GlacierEQ's canonical DeepSeek-family MLA/MoE inference 'sentinel', cataloged in lab_hire_stamps as worked_solidified with a SHA-bound 3-layer record (sha256 e475faba...) and DONE contract proof (P0 Model Inference And Sentinels). The library library desc is empty and no fact card/test/runtime receipt exists locally, so the innovation is catalog-asserted only.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:5436 (name; domain lab_hire_stamps; desc empty; local_job_app true; Python; updatedAt 2026-08-10)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:22043 (layers 1-3; sha256_binding e475faba3f609f305a596d8aeb1ae60cf00c5cf256d130e2cc7c436b029b9fd2; category MODEL_INFERENCE_AND_SENTINELS; contract_proof DONE; mesh_uri glaciereq://mesh/model_inference_and_sentinels/deepseek-mla-moe-sentinel)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:118-123 (family DeepSeek; canonical_candidate; current_preparation)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED \u2014 repo inside boundary)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Supply the missing README/description, add a fact card describing what the sentinel monitors/degrades, and a test proving it runs against a real DeepSeek MLA/MoE endpoint.",
+  "repo_excellence_overlap": "Receipt/verification discipline from the computer-user VERIFIED anchor applies \u2014 bind any sentinel run to a hash receipt (proof_receipt schema v1).",
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.811516",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

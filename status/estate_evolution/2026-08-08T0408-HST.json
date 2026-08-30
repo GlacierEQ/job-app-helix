@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-08-08T04:08:00-10:00",
   "repository": "GlacierEQ Estate",
-  "canonical_head_before": "0304ac9600f495a778e9040c716ef396577a14ee",
+  "source_head_before": "0304ac9600f495a778e9040c716ef396577a14ee",
   "branch": "multi-repository-maintenance-pass",
   "merge_base": null,
   "ahead": null,
@@ -12,14 +12,14 @@
     "GlacierEQ/the-tower-of-babel:tests/test_security_boundaries.py",
     "GlacierEQ/job-application:.github/workflows/helix-projection-sync.yml"
   ],
-  "decision": "PREPARE_VERIFIED_REPAIRS_AND_HOLD_CANONICAL",
+  "decision": "PREPARE_VERIFIED_REPAIRS_AND_HOLD_SOURCE_BOUND",
   "preservation": "Monolith PR #48 remains 1 ahead / 0 behind current main and does not modify catalog/legal_spines generated synchronization surfaces. Tower repair was based on PR #28 exact repaired head so the native integrity candidate is preserved. Job Application repair was applied to the existing fresh PR #23 branch rather than restarting or replacing its atlas work.",
   "verification": {
-    "monolith_pr_48": "Repository-native Monolith Catalog Evolution Gate remains failed; canonical untouched.",
-    "tower_pr_29": "Opened from PR #28 exact head. Adds only seven canonical-registry-declared specialized primary tool frontends to the existing argv allowlist plus a regression test. Native workflows started; Spiral Engine Verification and Nervous System Contract passed while remaining gates were still running at receipt time.",
+    "monolith_pr_48": "Repository-native Monolith Catalog Evolution Gate remains failed; reference untouched.",
+    "tower_pr_29": "Opened from PR #28 exact head. Adds only seven reference-registry-declared specialized primary tool frontends to the existing argv allowlist plus a regression test. Native workflows started; Spiral Engine Verification and Nervous System Contract passed while remaining gates were still running at receipt time.",
     "job_application_pr_23": "Prior head passed CI, Portfolio truth gate, V14, V15, V16 and Company Atlas Verify. Helix Portfolio Projection failed after successful projection/render because company-constellation rendering rewrote site-v15/atlas/index.html before the base Atlas validator ran. Workflow repaired to validate base Atlas before linking the company constellation, and to run the previously omitted link-company-constellation step. New head awaiting native rerun."
   },
-  "canonical_head_after": "receipt commit produced by this write",
+  "source_head_after": "receipt commit produced by this write",
   "remote_ref_disposition": "NO_REMOTE_REFS_DELETED; Tower PR #28 retained; Tower PR #29 open; Job Application PR #23 open; Monolith PR #48 open.",
   "news_inputs": [
     "Strict 24-hour searches of OpenAI, Anthropic, GitHub engineering/changelog, Google developer sources, and Reuters.",

@@ -1,12 +1,12 @@
 {
   "schema": "glaciereq.estate-compiler-policy.v1",
   "authority": "GlacierEQ/job-app-helix",
-  "purpose": "Compile the authenticated owned repository estate into lineage-collapsed canonical systems, reusable capability donors, and company/role projections without exposing private or legal source material.",
+  "purpose": "Compile the authenticated owned repository estate into lineage-collapsed reference systems, reusable capability donors, and company/role projections without exposing private or legal source material.",
   "pipeline": [
     "authenticated_owned_library_census",
     "namespace_isolation",
     "lineage_collapse",
-    "canonical_system_registry",
+    "system_registry",
     "capability_donor_registry",
     "proof_binding",
     "company_projection_registry",
@@ -35,7 +35,7 @@
       "target_repository",
       "nonempty_evidence_refs"
     ],
-    "successor_semantics": "EXPLICIT_SUCCESSOR_OF makes the asserted successor the canonical root.",
+    "successor_semantics": "EXPLICIT_SUCCESSOR_OF makes the asserted successor the reference root.",
     "ambiguous_name_family": "emit_unresolved_lineage_candidate",
     "cycle_policy": "fail_closed",
     "silent_merge": false
@@ -60,13 +60,15 @@
   },
   "projection_policy": {
     "company_problem_source": "existing Helix company dossier gap_or_next_gate unless separately refreshed by current research",
-    "selection": "bounded_greedy_capability_set_cover",
-    "company_surface_max_systems": 5,
+    "selection": "complete_ranked_relation_graph",
+    "company_surface_max_systems": null,
     "public_recruiter_states": [
       "PROMOTED",
       "REFERENCE_ONLY"
     ],
-    "goal": "Maximize distinct relevant capability proof while minimizing repository exposure and redundant evidence."
+    "goal": "Preserve every evidence-eligible company/system relation, rank all evidence, and provide compact optional views without deleting graph membership.",
+    "minimal_proof_surface": "non-authoritative capability-cover convenience view",
+    "presentation_pagination_changes_membership": false
   },
   "experiment_pipeline": [
     "EXPERIMENT",
@@ -86,7 +88,7 @@
     ]
   },
   "self_healing": {
-    "source_digest": "sha256 canonical JSON over all compiler inputs",
+    "source_digest": "sha256 reference JSON over all compiler inputs",
     "registry_hashes": true,
     "stale_inputs": "recompile",
     "independent_failure": "preserve unrelated systems and emit unresolved queue",
@@ -94,7 +96,7 @@
   },
   "outputs": {
     "internal_directory": "artifacts/estate-compiler",
-    "canonical_system_registry": "canonical-system-registry.json",
+    "system_registry": "reference-system-registry.json",
     "capability_donor_registry": "capability-donor-registry.json",
     "company_projection_registry": "company-projection-registry.json",
     "experiment_pipeline": "experiment-pipeline.json",

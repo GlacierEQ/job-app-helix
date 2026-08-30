@@ -29,25 +29,25 @@
       }
     ]
   },
-  "bottleneck": "Agent-generated repository changes need a trustworthy promotion boundary that binds the intended change, current canonical state, required validation, authorized approval, unambiguous check evidence, exact mutation bytes, provider result, eventual-state reconciliation, post-action readback, replay behavior, and durable evidence.",
-  "reusable_invariant": "A repository mutation is complete only when the exact intended bytes were authorized against the expected canonical head, required check evidence is unique and well formed, required gates passed, bounded authority executed the mutation once, provider state reconciled to the returned mutation identity, canonical readback confirmed it, replay could not duplicate it, and a terminal receipt preserved the result.",
+  "bottleneck": "Agent-generated repository changes need a trustworthy promotion boundary that binds the intended change, current reference state, required validation, authorized approval, unambiguous check evidence, exact mutation bytes, provider result, eventual-state reconciliation, post-action readback, replay behavior, and durable evidence.",
+  "reusable_invariant": "A repository mutation is complete only when the exact intended bytes were authorized against the expected reference head, required check evidence is unique and well formed, required gates passed, bounded authority executed the mutation once, provider state reconciled to the returned mutation identity, reference readback confirmed it, replay could not duplicate it, and a terminal receipt preserved the result.",
   "implementation": {
     "repository": "GlacierEQ/apex-github-worker",
     "visibility": "private",
-    "canonical_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "source_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "evolved_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
     "capability": "merge_authority_graph",
     "state": "EVOLVING",
     "proof_source_sha": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
-    "proof_receipt": "proof/merge-authority-canonical-reproduction-2026-08-09.json",
-    "canonical_position_receipt": "excellence/receipts/apex-github-worker-canonical-position-2026-08-10.json",
+    "proof_receipt": "proof/merge-authority-reference-reproduction-2026-08-09.json",
+    "reference_position_receipt": "excellence/receipts/apex-github-worker-reference-position-2026-08-10.json",
     "evolution_receipt": "excellence/receipts/apex-github-worker-evolution-2026-08-12.json",
     "public_safe_proof_package": "GlacierEQ/job-application@577f63c506c6c4df9c1751a0ff5b8fa07822e491:projects/github-merge-authority-proof/"
   },
-  "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, expected repository state, required validation, bounded approval, short-lived repository authority, exact provider bytes, provider mutation identity, bounded eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. The canonical specialist has now completed a measured evolution cycle that rejects contradictory or malformed check evidence before provider access. This proof-bound company-specific claim remains transferable engineering evidence for the public GitHub operating problem; it is not GitHub adoption evidence.",
+  "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, expected repository state, required validation, bounded approval, short-lived repository authority, exact provider bytes, provider mutation identity, bounded eventual-state reconciliation, reference readback, replay suppression, and receipt evidence. The reference specialist has now completed a measured evolution cycle that rejects contradictory or malformed check evidence before provider access. This proof-bound company-specific claim remains transferable engineering evidence for the public GitHub operating problem; it is not GitHub adoption evidence.",
   "current_proof": {
     "grade": "A",
-    "observed": "The canonical Apex provider proof remains preserved: 26/26 exact Merge Authority tests and 38/38 proof-host gateway tests passed, a real disposable-branch provider mutation reconciled to canonical readback, replay returned DUPLICATE_ALREADY_COMPLETED, the short-lived token was revoked, and target main remained unchanged. The evolved control logic was then measured against canonical head f791c85a81768e72446619b39b5312ef1c768a02: the baseline accepted contradictory duplicate security evidence by last-write-wins normalization, while exact candidate bytes rejected it. Public proof-host CI passed 21/21 tests and the winner was merged to Apex main at 346b330bbfd705579b3a4d10d298a89493a98ee6 with exact source/test blob readback.",
+    "observed": "The reference Apex provider proof remains preserved: 26/26 exact Merge Authority tests and 38/38 proof-host gateway tests passed, a real disposable-branch provider mutation reconciled to reference readback, replay returned DUPLICATE_ALREADY_COMPLETED, the short-lived token was revoked, and target main remained unchanged. The evolved control logic was then measured against reference head f791c85a81768e72446619b39b5312ef1c768a02: the baseline accepted contradictory duplicate security evidence by last-write-wins normalization, while exact candidate bytes rejected it. Public proof-host CI passed 21/21 tests and the winner was merged to Apex main at 346b330bbfd705579b3a4d10d298a89493a98ee6 with exact source/test blob readback.",
     "public_provider_mutation": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
     "public_completed_receipt_blob": "175d6e236eb460d2913b711f5d72c13c8c5ef4cd",
     "public_replay_receipt_blob": "166f4f86a095392fc38a7a6e657e9e2b172f3cc5",

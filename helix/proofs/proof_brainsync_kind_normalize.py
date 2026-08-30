@@ -37,7 +37,7 @@ def main() -> int:
                     "key": "test",
                     "name": "test",
                     "rootPath": str(root),
-                    "canonical": "",
+                    "reference": "",
                     "createdAt": "2026-01-01T00:00:00.000Z",
                     "updatedAt": "2026-01-01T00:00:00.000Z",
                 }

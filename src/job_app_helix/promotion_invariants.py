@@ -190,7 +190,7 @@ def enforce_nonpromoted_state(
     if assessment.eligible:
         return out
 
-    if out.get("principal_state") in {"PROMOTED", "CANONICAL", "EVOLVING"}:
+    if out.get("principal_state") in {"PROMOTED", "SOURCE_BOUND", "EVOLVING"}:
         out["principal_state"] = "OPERABLE"
     out["scaffold"] = bool(assessment.scaffold_evidence)
     out["promotion_eligible"] = False

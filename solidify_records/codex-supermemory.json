@@ -1,0 +1,21 @@
+{
+  "repo": "codex-supermemory",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Persistent memory layer for the OpenAI Codex CLI, powered by Supermemory (TypeScript) \u2014 providing a coding agent with durable cross-session recall directly relevant to the Aspen-Grove memory substrate. Triple-cataloged: (a) library.json:4108 (desc present); (b) capabilities_3layer.json with launch_cmd git clone, contract_proof 'DONE \u21d4 issue-contract proof(pain)', and mesh URI; (c) company_engineered_repositories.json:220 reference_or_upstream list (verbatim upstream mirror, no local edits). The expanded_job_app_helix_manifest.json (line 765) assigns it as a job-app-helix mesh leaf, family OpenAI / Codex, canonical openai-reasoning-kv-sentinel, state reference. Honest limitation: reference/upstream with no local GlacierEQ modification means there is no Aspen-Grove-specific adapter, no test, no receipt; only a catalog stub is locally verifiable. The cross-session-recall concept is highly relevant to Aspen-Grove but the integration has not been done locally, so the rating cannot rise above 2 on the strict evidence ladder. Promotion to 7+ requires a real GlacierEQ modification that wires Supermemory into Aspen-Grove + a recorded test + a fact card.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4108 (name codex-supermemory; desc present)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:220 (reference_or_upstream \u2014 verbatim upstream mirror, no local mods)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=codex-supermemory; launch_cmd git clone, contract_proof DONE, mesh_uri)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 765: kind=company, state=reference, family='OpenAI / Codex', canonical=openai-reasoning-kv-sentinel \u2014 helix membership confirms estate relevance, not local readiness)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 125: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Promote out of reference by (1) writing a GlacierEQ adapter that bridges Supermemory's recall API into Aspen-Grove pointer pointers, (2) adding an integration test that round-trips a Codex session summary through the adapter, (3) emitting a fact card with execution receipt, and (4) updating company_engineered_repositories.json from reference_or_upstream to in_preparation. The cross-session memory bridge to Aspen-Grove is the explicit innovation opportunity; until that exists, worthy=2 is honest.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.886411",
+  "notes": "catalog_only | VERIFIED_EXTERNAL_REFERENCE",
+  "classification_reason": "classified_as_reference"
+}

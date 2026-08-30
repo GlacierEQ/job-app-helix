@@ -3,17 +3,17 @@
   "as_of": "2026-08-13T16:57:36-10:00",
   "authority": "GlacierEQ/job-app-helix",
   "objective": "Make the hiring estate legible as one system: one recruiter front door, one evidence/application authority, bounded specialist proofs, and explicit historical/support roles.",
-  "canonical_roles": [
+  "reference_roles": [
     {
       "repository": "GlacierEQ/job-application",
       "role": "PUBLIC_RECRUITER_FRONT_DOOR",
       "status": "ACTIVE",
-      "reason": "Canonical public site with recruiter-surface compression, canonical route authority, production-bound proof surfaces, resume and technical deep routes.",
+      "reason": "Source-bound public site with recruiter-surface compression, reference route authority, production-bound proof surfaces, resume and technical deep routes.",
       "must_not_be_used_as": ["estate evidence authority", "source resume authority"]
     },
     {
       "repository": "GlacierEQ/job-app-helix",
-      "role": "CANONICAL_EVIDENCE_AND_APPLICATION_AUTHORITY",
+      "role": "SOURCE_BOUND_EVIDENCE_AND_APPLICATION_AUTHORITY",
       "status": "ACTIVE",
       "reason": "Owns admitted proofs, company mappings, application lifecycle, evidence-bounded projections, receipts, and current rollout state.",
       "must_not_be_used_as": ["primary recruiter landing page"]
@@ -29,7 +29,7 @@
       "repository": "GlacierEQ/AKOS",
       "role": "ESTATE_GOVERNANCE_AND_SCHEMA_AUTHORITY",
       "status": "ACTIVE_SUPPORT",
-      "reason": "Canonical estate schemas, provenance/governance contracts, nervous-system registry, receipt verification, and repository-excellence controls.",
+      "reason": "Source-bound estate schemas, provenance/governance contracts, nervous-system registry, receipt verification, and repository-excellence controls.",
       "must_not_be_used_as": ["primary recruiter landing page", "proof that registered integrations are live"]
     },
     {
@@ -50,7 +50,7 @@
       "repository": "GlacierEQ/anthropic-agent-coordinator",
       "role": "SCHEDULER_SPECIALIST",
       "status": "ACTIVE_BOUNDED_PROOF",
-      "reason": "Canonical master head 6f30cb84e03b8e6448538ef734089e4b8cf171ee passed governed exact-head verification in public-actions-runner-host APEX run 416: credential-free workload checkout, exact commit bind, repository-owned adapter execution, post-run integrity guard, immutable result publication, and successful completion.",
+      "reason": "Source-bound master head 6f30cb84e03b8e6448538ef734089e4b8cf171ee passed governed exact-head verification in public-actions-runner-host APEX run 416: credential-free workload checkout, exact commit bind, repository-owned adapter execution, post-run integrity guard, immutable result publication, and successful completion.",
       "proof": {
         "source_sha": "6f30cb84e03b8e6448538ef734089e4b8cf171ee",
         "runner_repository": "GlacierEQ/public-actions-runner-host",
@@ -71,9 +71,9 @@
     {
       "repository": "GlacierEQ/job-app",
       "role": "LEGACY_PRIVATE_JOB_APP",
-      "status": "NON_CANONICAL",
+      "status": "NON_SOURCE_BOUND",
       "reason": "Private legacy surface; superseded by job-application and job-app-helix for public presentation and evidence authority.",
-      "must_not_be_used_as": ["public recruiter front door", "canonical application authority"]
+      "must_not_be_used_as": ["public recruiter front door", "reference application authority"]
     },
     {
       "repository": "GlacierEQ/apex-stack",

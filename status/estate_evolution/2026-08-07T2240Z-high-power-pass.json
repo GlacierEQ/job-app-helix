@@ -2,7 +2,7 @@
   "schema": "glaciereq.estate-evolution.receipt.v1",
   "timestamp": "2026-08-07T22:40:00Z",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_head_before": "69f6d3a55a4ad0db63e42e396b967f336a155427",
+  "source_head_before": "69f6d3a55a4ad0db63e42e396b967f336a155427",
   "branch": "estate/high-power-pass-20260807-2240z",
   "merge_base": "69f6d3a55a4ad0db63e42e396b967f336a155427",
   "ahead": 1,
@@ -26,7 +26,7 @@
       "changed_files": 10,
       "legal_live_reconciliation_verification": "failure_before_steps_on_rerun",
       "catalog_evolution_gate": "failure_before_steps_on_rerun",
-      "interpretation": "execution-path/infrastructure blocker; no repository-native proof available and therefore no canonical promotion"
+      "interpretation": "execution-path/infrastructure blocker; no repository-native proof available and therefore no reference promotion"
     },
     "mastermind_pr_111": {
       "ahead": 4,
@@ -50,7 +50,7 @@
       "merge": "squash_with_expected_head_guard"
     }
   },
-  "canonical_head_after": "0a46632d46f342a200e7a0e0cb22115c77e55c86",
+  "source_head_after": "0a46632d46f342a200e7a0e0cb22115c77e55c86",
   "remote_ref_disposition": {
     "GlacierEQ/mastermind:sentinel-harden-overleaf-mcp-12743448724538258220": "DELETE_REF_REQUIRED",
     "GlacierEQ/mastermind:sentinel-harden-apex-vault-3924747673028592930": "DELETE_REF_REQUIRED",

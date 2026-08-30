@@ -1,8 +1,8 @@
 {
   "schema": "glaciereq.candidate-public-package-sync.v1",
   "candidate": "Casey Del Carpio Barton",
-  "package_release_date": "2026-07-30",
-  "purpose": "Bind the hardened recruiter package to public canonical repositories without publishing private contact data or application operations.",
+  "package_release_date": "2026-08-29",
+  "purpose": "Bind the current evidence-bound recruiter package and estate reconciliation to public reference repositories without publishing private contact data or application operations.",
   "repositories": {
     "job_application": {
       "repository": "GlacierEQ/job-application",
@@ -11,9 +11,12 @@
     },
     "job_app_helix": {
       "repository": "GlacierEQ/job-app-helix",
-      "pulled_main": "1bcb70ab26b633a7b3cef7a3560a766b56917d80",
-      "final_form_release": "9942936b5fddf2bf5c4b64808253fdf9b0648d93",
-      "role": "evidence_and_release_control_plane"
+      "pulled_main": "097be1a9a5515708d6f44d3543c399518d0e6876",
+      "final_form_release": "097be1a9a5515708d6f44d3543c399518d0e6876",
+      "role": "evidence_and_release_control_plane",
+      "historical_pulled_main": "1bcb70ab26b633a7b3cef7a3560a766b56917d80",
+      "historical_final_form_release": "9942936b5fddf2bf5c4b64808253fdf9b0648d93",
+      "reconciliation": "current 225-repository source-exhaustive estate across 21 families; 8 verified trust anchors; historical 67-repository governed boundary preserved as dated recruiter/audit scope"
     },
     "tower_of_babel": {
       "repository": "GlacierEQ/the-tower-of-babel",
@@ -49,5 +52,14 @@
     "private_contact_data_in_public_repo": false,
     "repository_source_is_deployment_proof": false,
     "blocked_candidate_and_unverified_states_preserved": true
+  },
+  "estate_scope": {
+    "current_source_exhaustive_repositories": 225,
+    "current_families": 21,
+    "verified_trust_anchors": 8,
+    "historical_governed_boundary_total": 67,
+    "historical_governed_boundary_children": 66,
+    "current_manifest": "../../manifests/unified_deserving_manifest.json",
+    "historical_boundary_manifest": "../../manifests/portfolio_repositories.json"
   }
 }

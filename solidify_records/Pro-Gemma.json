@@ -1,0 +1,21 @@
+{
+  "repo": "Pro-Gemma",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Pro-tier on-device + cloud AI dispatch layer: a Gemma 4 E4B/26B router with Notion/ClickUp/Supermemory integrations and a sovereign local inference layer (per library desc). Triple-cataloged: (a) library.json entry with detailed desc on the Gemma router + Notion/ClickUp/Supermemory integrations + url; (b) capabilities_3layer.json classifier human_ui_pro_control_surfaces with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/human_ui_pro_control_surfaces/Pro-Gemma; (c) company_engineered_repositories.json:109 unprocessed backlog (Google/DeepMind family). The expanded_job_app_helix_manifest.json (line 387) assigns it as a job-app-helix mesh leaf, family Google/DeepMind, state needs_work. The pro_control_surfaces classifier is a strong signal: this is not a generic long-tail leaf but a user-facing pro-control-surface candidate aligned with the pro-code whole. Honest limitation: no local code, dispatch test, or fact card was found; the integrations are catalog-described, not runtime-verified. Cap honestly at 6 (catalog + pro-control-surface classifier + helix membership, but no receipt).",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=Pro-Gemma; detailed desc on Gemma router + Notion/ClickUp/Supermemory integrations; url=https://github.com/GlacierEQ/Pro-Gemma)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 19181: name=Pro-Gemma; classifier=human_ui_pro_control_surfaces; elevator_pitch='High-performance Human Ui Pro Control Surfaces engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/human_ui_pro_control_surfaces/Pro-Gemma; launch_cmd='git clone https://github.com/GlacierEQ/Pro-Gemma')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 109: family Google/DeepMind, unprocessed)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 387: kind=company, state=needs_work, family='Google / DeepMind' \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 71: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Honest cap at 6 (no local code/test/receipt). To reach 7+ requires: (1) clone + inspect the repo, (2) add a runnable dispatch demo that routes a prompt between local Gemma 4 and a cloud model, (3) add a test exercising the routing logic with measured latency/accuracy, and (4) emit a fact card with execution receipt + update company_engineered_repositories.json from unprocessed to in_preparation. Until then, 6 is the honest ceiling \u2014 the pro_control_surfaces classifier is real signal but not proof.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.797442",
+  "notes": " | NEEDS_REPAIR"
+}

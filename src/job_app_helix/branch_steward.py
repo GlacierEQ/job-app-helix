@@ -14,7 +14,7 @@ class BranchStewardError(RuntimeError):
 @dataclass(frozen=True)
 class BranchAssessment:
     repository: str
-    canonical_branch: str
+    reference_branch: str
     branch: str
     merge_base: str
     ahead: int
@@ -24,6 +24,8 @@ class BranchAssessment:
     classification: str
     safe_direct_merge: bool
     retirement_ready: bool
+    operator_review_required: bool
+    capability_review_required: bool
     reason: str
 
     def to_dict(self) -> dict[str, object]:
@@ -59,58 +61,71 @@ def _count_pair(repo: Path, left: str, right: str) -> tuple[int, int]:
     return left_only, right_only
 
 
-def _unique_patch_commits(repo: Path, canonical: str, branch: str) -> tuple[str, ...]:
-    # git cherry compares patch identity, so cherry-picked commits already represented
-    # on canonical do not masquerade as unique branch value merely because SHA differs.
-    rows = _line_output(repo, "cherry", canonical, branch)
+def _unique_patch_commits(repo: Path, reference: str, branch: str) -> tuple[str, ...]:
+    # Patch identity is useful evidence but is not a complete capability comparison.
+    # A patch-equivalent branch may still contain purpose, structure, history, tests,
+    # generated assets, integration context, or donor value that deserves inspection.
+    rows = _line_output(repo, "cherry", reference, branch)
     return tuple(row[2:].strip() for row in rows if row.startswith("+ "))
 
 
-def _changed_files(repo: Path, canonical: str, branch: str) -> tuple[str, ...]:
-    return _line_output(repo, "diff", "--name-only", f"{canonical}...{branch}")
+def _changed_files(repo: Path, reference: str, branch: str) -> tuple[str, ...]:
+    return _line_output(repo, "diff", "--name-only", f"{reference}...{branch}")
 
 
-def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
+def assess_branch(repo: Path, reference: str, branch: str) -> BranchAssessment:
+    """Assess branch ancestry without converting ancestry into deletion authority.
+
+    This function intentionally cannot declare a branch retirement-ready. Git ancestry
+    and patch equivalence are only inputs to a later capability/lineage review. Any
+    actual retirement remains an explicit OPERATOR decision outside this module.
+    """
+
     repo = repo.resolve()
     if not (repo / ".git").exists():
         raise BranchStewardError(f"not a git checkout: {repo}")
 
-    merge_base = _run(repo, "merge-base", canonical, branch).stdout.strip()
+    merge_base = _run(repo, "merge-base", reference, branch).stdout.strip()
     if not merge_base:
-        raise BranchStewardError(f"no merge base for {canonical} and {branch}")
+        raise BranchStewardError(f"no merge base for {reference} and {branch}")
 
-    behind, ahead = _count_pair(repo, canonical, branch)
-    unique = _unique_patch_commits(repo, canonical, branch)
-    files = _changed_files(repo, canonical, branch)
+    behind, ahead = _count_pair(repo, reference, branch)
+    unique = _unique_patch_commits(repo, reference, branch)
+    files = _changed_files(repo, reference, branch)
 
     if ahead == 0:
-        classification = "ANCESTRY_EXHAUSTED"
+        classification = "ANCESTRY_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED"
         safe_direct_merge = False
-        retirement_ready = True
-        reason = "branch has no commits absent from canonical ancestry"
+        reason = (
+            "branch has no commits absent from reference ancestry, but ancestry alone "
+            "cannot establish capability exhaustion; inspect purpose, lineage, artifacts, "
+            "consumers, and historical donor value before any lifecycle decision"
+        )
     elif not unique:
-        classification = "PATCH_EQUIVALENT_EXHAUSTED"
+        classification = "PATCH_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED"
         safe_direct_merge = False
-        retirement_ready = True
-        reason = "branch SHAs differ, but git-cherry found no unique patch value"
+        reason = (
+            "git-cherry found no unique patch commits, but patch equivalence is not proof "
+            "of functional or historical redundancy; perform capability review"
+        )
     elif behind == 0:
         classification = "CURRENT_UNIQUE_VALUE"
         safe_direct_merge = True
-        retirement_ready = False
-        reason = "branch is based on canonical ancestry and contains unique patches"
+        reason = (
+            "branch is based on current ancestry and contains unique patches; verify and "
+            "compose its useful capability into the strongest current system"
+        )
     else:
         classification = "DIVERGED_UNIQUE_VALUE"
         safe_direct_merge = False
-        retirement_ready = False
         reason = (
-            "branch is behind canonical and still contains unique patches; "
-            "synthesize its useful delta "
-            "onto fresh canonical ancestry instead of merging the stale tip directly"
+            "branch is behind current ancestry and contains unique patches; synthesize its "
+            "useful delta with later gains on fresh ancestry rather than discarding either side"
         )
 
     return BranchAssessment(
         repository=repo.name,
-        canonical_branch=canonical,
+        reference_branch=reference,
         branch=branch,
         merge_base=merge_base,
         ahead=ahead,
@@ -119,14 +134,16 @@ def assess_branch(repo: Path, canonical: str, branch: str) -> BranchAssessment:
         changed_files=files,
         classification=classification,
         safe_direct_merge=safe_direct_merge,
-        retirement_ready=retirement_ready,
+        retirement_ready=False,
+        operator_review_required=True,
+        capability_review_required=True,
         reason=reason,
     )
 
 
 def list_remote_branches(
     repo: Path,
-    canonical: str = "main",
+    reference: str = "main",
     remote: str = "origin",
     protected_prefixes: Sequence[str] = ("upstream", "vendor", "release/"),
 ) -> tuple[str, ...]:
@@ -143,7 +160,7 @@ def list_remote_branches(
         if not row.startswith(prefix):
             continue
         branch = row[len(prefix) :]
-        if branch in {"HEAD", canonical}:
+        if branch in {"HEAD", reference}:
             continue
         if branch.casefold().startswith(protected):
             continue
@@ -153,17 +170,17 @@ def list_remote_branches(
 
 def assess_repository(
     repo: Path,
-    canonical: str = "main",
+    reference: str = "main",
     remote: str = "origin",
 ) -> dict[str, object]:
-    canonical_ref = f"{remote}/{canonical}"
-    branches = list_remote_branches(repo, canonical=canonical, remote=remote)
-    assessments = [assess_branch(repo, canonical_ref, f"{remote}/{branch}") for branch in branches]
+    reference_ref = f"{remote}/{reference}"
+    branches = list_remote_branches(repo, reference=reference, remote=remote)
+    assessments = [assess_branch(repo, reference_ref, f"{remote}/{branch}") for branch in branches]
     priority_order = {
         "DIVERGED_UNIQUE_VALUE": 0,
         "CURRENT_UNIQUE_VALUE": 1,
-        "PATCH_EQUIVALENT_EXHAUSTED": 2,
-        "ANCESTRY_EXHAUSTED": 3,
+        "PATCH_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED": 2,
+        "ANCESTRY_EQUIVALENT_CAPABILITY_REVIEW_REQUIRED": 3,
     }
     assessments.sort(
         key=lambda item: (
@@ -174,10 +191,12 @@ def assess_repository(
     )
     return {
         "repository": repo.name,
-        "canonical": canonical_ref,
+        "reference": reference_ref,
         "branch_count": len(assessments),
-        "actionable_unique": sum(not item.retirement_ready for item in assessments),
-        "retirement_ready": sum(item.retirement_ready for item in assessments),
+        "actionable_unique": sum(bool(item.unique_patch_commits) for item in assessments),
+        "capability_review_required": len(assessments),
+        "retirement_ready": 0,
+        "retirement_policy": "OPERATOR_AUTHORIZATION_REQUIRED_AFTER_CAPABILITY_REVIEW",
         "branches": [item.to_dict() for item in assessments],
     }
 

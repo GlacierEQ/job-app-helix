@@ -14,7 +14,7 @@
     "legal_spine_drift": false,
     "legal_spine_source_registry_blob": "c78526a5a738a25699fc02bedccb5c2e23cc186d",
     "legal_spine_discovery_blob": "02a35c71ec91cd3614e33e7bebdb12741d169927",
-    "canonical_head": "b20e249f25c6cd7549572b0c62bf861de998e442",
+    "source_head": "b20e249f25c6cd7549572b0c62bf861de998e442",
     "source_branch": "integrate/legal-live-reconciliation-20260803",
     "source_branch_status": "diverged",
     "source_ahead": 20,
@@ -27,8 +27,8 @@
     "pull_request_state": "DRAFT_OPEN",
     "files_changed": 9,
     "current_topology_reconciliation": {
-      "historical_canonical_population": 71,
-      "current_canonical_population": 72,
+      "historical_reference_population": 71,
+      "current_reference_population": 72,
       "historical_source_inspections": 18,
       "promoted_since_baseline": ["GlacierEQ/apex-legal-case"],
       "current_overlay_only_population": 17
@@ -39,7 +39,7 @@
   },
   "akos": {
     "repository": "GlacierEQ/AKOS",
-    "canonical_head_observed": "5056bbc1b0e84838dec99594592fbe1bb4b47493",
+    "source_head_observed": "5056bbc1b0e84838dec99594592fbe1bb4b47493",
     "branch_inspected": "feature/career-intelligence-platform-v2",
     "branch_status": "diverged",
     "ahead": 2,

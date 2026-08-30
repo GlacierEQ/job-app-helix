@@ -1,0 +1,16 @@
+{
+  "repo": "apex-control-plane",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "APEX worker registry plus capacity dispatch (AKOS P0), a live job application and the control-plane mass that registers workers and schedules capacity across the APEX fleet. The deeper catalog shows a concrete capability entry ('MCP tool router with allow-list · AKOS P0') and a completed issue-contract proof, grounding it as an operable dispatch surface.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=apex-control-plane; domain=apex_cognitive_os; role=whole; status_detail=worked_solidified; desc='APEX worker registry + capacity dispatch · AKOS P0'; local_job_app=true)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 7242: 'MCP tool router with allow-list (portfolio) · AKOS P0'; line 8964: 'Intent→Notion MCP tool chains (portfolio) · AKOS P0')",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=apex-control-plane cluster carries contract_proof 'DONE <=> issue-contract proof(pain)')"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "repo_excellence_anchor": "Indirect — AKOS P0 control-plane; the computer-user governed kernel is the estate's verified-run reference it would dispatch under.",
+  "makes_worthy": "Add a README with the registry/dispatch data model and a local fact card proving a runnable dispatch path (unit test or recorded demo receipt) to reach >=9."
+}

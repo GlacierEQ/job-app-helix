@@ -3,7 +3,7 @@
   "generated_at": "2026-08-11T10:24:00-10:00",
   "wave": 11,
   "repository": "GlacierEQ/spacex-launch-sequencer",
-  "source_canonical_head": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
+  "source_head": "f931665de0d91b3a5a52748a30a76716d65bbe0a",
   "source_state": "LOCAL_COUNTDOWN_ORCHESTRATION_VERIFIED",
   "proof_receipts": [
     {

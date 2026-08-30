@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.portfolio-root-truth.v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "authority": {
     "repository": "GlacierEQ/job-app-helix",
     "branch": "main",
@@ -10,7 +10,7 @@
   "purpose": "Keep the job-application ecosystem current from one governed source while separating the admitted public portfolio subset from the authenticated owned-estate intelligence substrate, without copying child repository source or maintaining competing inventories.",
   "truth_model": {
     "control_plane": "GlacierEQ/job-app-helix",
-    "child_source_authority": "Each canonical child repository owns its code, README, tests, releases, and repository-native receipts.",
+    "child_source_authority": "Each reference child repository owns its code, README, tests, releases, and repository-native receipts.",
     "portfolio_authority": "Helix owns admitted-portfolio classification, authenticated-estate compiler policy, evidence-bound lineage and support assertions, capability projection, company alignment, second-depth progression, and public/private projection boundaries.",
     "projection_rule": "Downstream systems consume links, public-safe policies, and generated snapshots only. They do not become independent sources of portfolio truth, and public consumers never require the authenticated census or private estate identities.",
     "stale_on_source_head_change": true,
@@ -20,7 +20,7 @@
     {
       "id": "inventory",
       "path": "manifests/portfolio_repositories.json",
-      "role": "Canonical admitted 67-repository public-portfolio boundary; not the full authenticated owned estate",
+      "role": "Source-bound current public recruiter inventory snapshot; count is derived from the inventory manifest and is not the full authenticated owned estate",
       "required": true
     },
     {
@@ -32,7 +32,7 @@
     {
       "id": "live_links",
       "path": "manifests/live_repository_links.json",
-      "role": "Canonical repository URLs and live-link contract",
+      "role": "Source-bound repository URLs and live-link contract",
       "required": true
     },
     {
@@ -80,13 +80,13 @@
     {
       "id": "estate_compiler_policy",
       "path": "manifests/estate_compiler.json",
-      "role": "Authenticated owned-estate compiler policy for namespace isolation, lineage collapse, canonical systems, capability donors, company projection, and public-safe output",
+      "role": "Authenticated owned-estate compiler policy for namespace isolation, lineage collapse, reference systems, capability donors, company projection, and public-safe output",
       "required": true
     },
     {
       "id": "estate_projection_policy",
       "path": "manifests/estate_projection_policy.json",
-      "role": "Public-safe role-capability rules, audience proof-surface caps, support ancestry semantics, and truth boundaries",
+      "role": "Public-safe role-capability rules, complete ranked audience projections, non-authoritative presentation defaults, support ancestry semantics, and truth boundaries",
       "required": true
     },
     {
@@ -172,7 +172,7 @@
         "company dossiers",
         "role-fit packets",
         "promotion queues",
-        "canonical-system proof surfaces"
+        "reference-system proof surfaces"
       ],
       "may_publish_private_records": false,
       "boundary": "Private estate facts may inform internal compilation, but generated company packets must pass the estate public-safe projection boundary before publication."
@@ -226,7 +226,7 @@
     }
   ],
   "update_contract": {
-    "canonical_schedule": "daily",
+    "reference_schedule": "daily",
     "event_triggers": [
       "portfolio source change",
       "child default-branch head change",
@@ -241,14 +241,14 @@
     "required_sequence": [
       "load root manifest",
       "validate all required control-plane source files",
-      "reconcile the admitted 67-repository public-portfolio boundary",
+      "reconcile the current public-portfolio inventory from its source manifest without assuming a fixed repository count",
       "resolve company-shard defaults",
       "validate company second-depth stages, prerequisites, blockers, and claim ceilings",
       "verify every HELIX_ADMITTED repository maps to admitted inventory",
       "verify every admitted inventory child maps to at least one governed track",
       "when authenticated estate authority is available, census the full owned estate without committing private census rows",
       "apply evidence-bound namespace lineage and support assertions fail closed",
-      "compile canonical systems capability donors company projections and experiment state",
+      "compile reference systems capability donors company projections and experiment state",
       "compile public-safe and private projections separately",
       "write deterministic receipts",
       "publish projections only after validation"
@@ -257,11 +257,11 @@
   },
   "invariants": [
     "The admitted inventory root plus workspace repository count equals its total_repositories field.",
-    "The 67-repository inventory is the admitted public-portfolio subset, not the full authenticated owned estate.",
+    "The current inventory is a public-portfolio snapshot whose count is derived from source; it is not a fixed estate ceiling.",
     "Authenticated owned-estate cardinality and private repository identities remain runtime-private and absent from downstream public bundles.",
     "Workspace repository identities in the admitted inventory are unique.",
-    "Every HELIX_ADMITTED dossier repository exists in the admitted canonical inventory.",
-    "Every admitted canonical inventory child appears in at least one company or GlacierEQ Core dossier.",
+    "Every HELIX_ADMITTED dossier repository exists in the admitted reference inventory.",
+    "Every admitted reference inventory child appears in at least one company or GlacierEQ Core dossier.",
     "Every required company track resolves to a fail-closed second-depth state; missing overrides never imply completion.",
     "Second-depth stages are monotonic and public claim ceilings may not exceed the strongest satisfied stage prerequisites.",
     "Evidence-bound dependency and reference support never collapses lineage or counts as an independent accomplishment.",
@@ -270,7 +270,8 @@
     "L0, QUARANTINED, EXCLUDED, and private-only records never enter public recruiter projections.",
     "Company naming never implies affiliation, endorsement, employment, proprietary access, contract relationship, clearance, or production deployment.",
     "Repository ownership does not by itself establish authorship, originality, security, runtime success, or recruiter readiness.",
-    "Downstream projections may change presentation but may not change factual IDs, evidence states, second-depth stages, claim ceilings, test counts, blockers, or authority boundaries."
+    "Downstream projections may change presentation but may not change factual IDs, evidence states, second-depth stages, claim ceilings, test counts, blockers, or authority boundaries.",
+    "Company and audience projections preserve complete eligible relation membership; ranking, compact proof views, and pagination never define what exists."
   ],
   "receipt": {
     "schema": "glaciereq.portfolio-root-truth-receipt.v1",

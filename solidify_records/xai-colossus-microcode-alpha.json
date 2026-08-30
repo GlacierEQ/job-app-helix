@@ -1,0 +1,20 @@
+{
+  "repo": "xai-colossus-microcode-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "Private historical companion (alpha split) of the xAI-Colossus microcode stack. The capability index provides only a generic 'Model Inference And Sentinels engine' elevator pitch plus an issue-contract proof; no hardening receipt, test run, or artifact was found for this repo.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 18124 (name=xai-colossus-microcode-alpha; url=github.com/GlacierEQ/xai-colossus-microcode-alpha)",
+    "/tmp/monolith/catalog/capabilities_3layer.json line 22967 (generic elevator_pitch; contract_proof issue-contract only)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 78 (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Clone the repository and add a runnable test suite plus a CI truth gate; emit a hardening receipt with a pinned commit and artifact digest. As a historical companion, either independently harden or formally retire.",
+  "from_unified_fill": true,
+  "last_verified": "2026-08-29T08:47:16.945474",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

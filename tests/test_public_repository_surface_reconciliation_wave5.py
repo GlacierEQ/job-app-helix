@@ -87,7 +87,7 @@ def test_wave5_admits_only_exact_current_heads_with_success_receipts() -> None:
         record = by_repo[repository]
         assert record["admission"] == "ADMIT"
         assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
-        assert record["decision_evidence"]["canonical_head"] == head
+        assert record["decision_evidence"]["source_head"] == head
         receipts = record["decision_evidence"]["proof_receipts"]
         assert {receipt["id"] for receipt in receipts} == run_ids
         assert all(receipt["head_sha"] == head for receipt in receipts)
@@ -98,8 +98,8 @@ def test_wave5_rejects_head_receipt_and_predecessor_drift() -> None:
     predecessor = report_through_wave4()
 
     malformed = deepcopy(load(WAVE5))
-    malformed["items"][0]["evidence"]["canonical_head"] = "not-a-sha"
-    with pytest.raises(RepositorySurfaceError, match="exact canonical_head"):
+    malformed["items"][0]["evidence"]["source_head"] = "not-a-sha"
+    with pytest.raises(RepositorySurfaceError, match="exact source_head"):
         apply_surface_reconciliation(predecessor, malformed)
 
     mismatch = deepcopy(load(WAVE5))

@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T14:42:00-10:00",
   "wave": 22,
   "repository": "GlacierEQ/apex-cli",
-  "source_canonical_head": "612c059b8e6a0103a1f7163af0461be7a7495fe9",
+  "source_head": "612c059b8e6a0103a1f7163af0461be7a7495fe9",
   "source_state": "BOUNDED_LOCAL_CLI_AND_FRESH_INSTALL_RUNTIME_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [
     {
@@ -24,7 +24,7 @@
     "pinned checkout and setup-python and disabled persisted checkout credentials",
     "preserved fail-closed external job-app dependency handling and explicit Casebuilder/Red Helix harness roots",
     "proved fresh-install runtime bootstrap and READY runtime-status receipts inside an isolated temporary HOME",
-    "bound repaired canonical master to successful exact-head Public Truth Gate run 31854284196"
+    "bound repaired reference master to successful exact-head Public Truth Gate run 31854284196"
   ],
   "nonclaims": [
     "no bundled or proven Casebuilder4000 Red Helix or external job-application checkout",

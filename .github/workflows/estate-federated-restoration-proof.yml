@@ -1,0 +1,38 @@
+name: Estate Federated Restoration Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/estate_federated_restoration.py"
+      - "tests/test_estate_federated_restoration.py"
+      - "pyproject.toml"
+      - ".github/workflows/estate-federated-restoration-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/estate_federated_restoration.py"
+      - "tests/test_estate_federated_restoration.py"
+      - "pyproject.toml"
+      - ".github/workflows/estate-federated-restoration-proof.yml"
+
+jobs:
+  proof:
+    name: Estate federated restoration / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package and proof tools
+        run: python -m pip install -e '.[dev]'
+      - name: Lint executable surface
+        run: ruff check src/job_app_helix/estate_federated_restoration.py tests/test_estate_federated_restoration.py
+      - name: Run adversarial orchestration tests
+        run: python -m pytest -q tests/test_estate_federated_restoration.py
+      - name: Prove installed executable
+        run: job-app-helix-estate-restore --help

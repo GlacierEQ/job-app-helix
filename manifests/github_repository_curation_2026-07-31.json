@@ -103,7 +103,7 @@
     },
     {
       "category": "backup, recovery, snapshot, and Z-BACKUP repositories",
-      "decision": "EXCLUDE_FROM_CANONICAL_INVENTORY",
+      "decision": "EXCLUDE_FROM_SOURCE_BOUND_INVENTORY",
       "reason": "Backups preserve data; they are not independent portfolio systems and would double-count work."
     },
     {

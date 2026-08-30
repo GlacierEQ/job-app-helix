@@ -8,7 +8,7 @@
     "schema",
     "repository",
     "repository_id",
-    "canonical_url",
+    "source_url",
     "default_branch",
     "observed_head_sha",
     "observed_at",
@@ -24,7 +24,7 @@
     "schema": {"const": "glaciereq.repository-observation.v1"},
     "repository": {"type": "string", "pattern": "^[^/\\s]+/[^/\\s]+$"},
     "repository_id": {"type": ["string", "integer"]},
-    "canonical_url": {"type": "string", "format": "uri"},
+    "source_url": {"type": "string", "format": "uri"},
     "default_branch": {"type": "string", "minLength": 1},
     "observed_head_sha": {
       "type": "string",

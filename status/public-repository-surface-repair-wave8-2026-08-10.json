@@ -3,7 +3,7 @@
   "generated_at": "2026-08-10T19:17:00-10:00",
   "wave": 8,
   "repository": "GlacierEQ/colossus-gateway",
-  "source_canonical_head": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
+  "source_head": "940dd403c797a0fcc71b7b576a7d1c5d23ebadb5",
   "source_state": "SOURCE_TRUTH_COMPLETE_METADATA_BLOCKED",
   "prior_surface_decision": "ADMIT",
   "proof_receipts": [

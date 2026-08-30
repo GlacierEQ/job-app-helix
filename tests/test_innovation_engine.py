@@ -143,9 +143,9 @@ def _hashed_registry(payload: dict[str, object]) -> dict[str, object]:
 def estate_bundle() -> dict[str, object]:
     systems = _hashed_registry(
         {
-            "schema": "glaciereq.canonical-system-registry.v1",
+            "schema": "glaciereq.reference-system-registry.v1",
             "systems": [
-                {"canonical_repository": "GlacierEQ/high", "system_id": "sys-high"}
+                {"source_repository": "GlacierEQ/high", "system_id": "sys-high"}
             ],
         }
     )
@@ -162,7 +162,7 @@ def estate_bundle() -> dict[str, object]:
     bundle: dict[str, object] = {
         "schema": ESTATE_SCHEMA_VERSION,
         "source_digest": "source-fixture",
-        "canonical_system_registry": systems,
+        "system_registry": systems,
         "capability_donor_registry": capabilities,
         "company_projection_registry": companies,
         "experiment_pipeline": [],
@@ -170,7 +170,7 @@ def estate_bundle() -> dict[str, object]:
             "schema": "glaciereq.estate-compiler-receipt.v1",
             "status": "PASS",
             "registry_hashes": {
-                "canonical_system_registry": systems["content_hash"],
+                "system_registry": systems["content_hash"],
                 "capability_donor_registry": capabilities["content_hash"],
                 "company_projection_registry": companies["content_hash"],
             },
@@ -198,8 +198,8 @@ def test_transition_requires_state_specific_artifacts() -> None:
     assert advanced["state"] == "CENSUSED"
     assert advanced["history"][0]["evidence_refs"] == ["census:verified"]
 
-    with pytest.raises(InnovationContractError, match="illegal transition"):
-        transition_run(run, "CANONICAL", ["wishful-thinking"], policy)
+    with pytest.raises(InnovationContractError, match="operator-only status"):
+        transition_run(run, "SOURCE_BOUND", ["wishful-thinking"], policy)
     with pytest.raises(InnovationContractError, match="require evidence_refs"):
         transition_run(run, "CENSUSED", [], policy)
 
@@ -513,7 +513,7 @@ def test_estate_queue_binds_to_trusted_compiler_hash() -> None:
     assert queue["estate_source_digest"] == "source-fixture"
 
 
-def test_estate_queue_rejects_tamper_wrong_hash_and_noncanonical_target() -> None:
+def test_estate_queue_rejects_tamper_wrong_hash_and_nonreference_target() -> None:
     bundle = estate_bundle()
     expected_hash = str(bundle["content_hash"])
     with pytest.raises(InnovationContractError, match="trusted expected estate hash"):
@@ -524,9 +524,9 @@ def test_estate_queue_rejects_tamper_wrong_hash_and_noncanonical_target() -> Non
         )
 
     tampered = dict(bundle)
-    tampered_registry = dict(tampered["canonical_system_registry"])
+    tampered_registry = dict(tampered["system_registry"])
     tampered_registry["systems"] = []
-    tampered["canonical_system_registry"] = tampered_registry
+    tampered["system_registry"] = tampered_registry
     with pytest.raises(InnovationContractError, match="content_hash mismatch"):
         compile_estate_target_queue(
             tampered,
@@ -534,7 +534,7 @@ def test_estate_queue_rejects_tamper_wrong_hash_and_noncanonical_target() -> Non
             expected_hash,
         )
 
-    with pytest.raises(InnovationContractError, match="existing canonical estate system"):
+    with pytest.raises(InnovationContractError, match="existing reference estate system"):
         compile_estate_target_queue(
             bundle,
             [assessment("GlacierEQ/fake", "sys-fake", 1.0)],
@@ -558,7 +558,7 @@ def test_engineering_run_supports_progressive_state_before_final_ledger() -> Non
     validate_payload(updated, "engineering-run")
 
 
-def test_canonical_transition_requires_fresh_gate_bound_to_same_run() -> None:
+def test_engine_cannot_assign_operator_only_statuses() -> None:
     run = {
         "state": "PROMOTION_READY",
         "history": [],
@@ -567,14 +567,12 @@ def test_canonical_transition_requires_fresh_gate_bound_to_same_run() -> None:
         "observed_head": "abc123",
         "promotion_id": "promotion-1",
         "promotion_record": promotion_record("abc123"),
-        "canonical_commit": "candidate123",
+        "source_commit": "candidate123",
     }
-    canonical = transition_run(run, "CANONICAL", ["promotion:fixture"])
-    assert canonical["state"] == "CANONICAL"
 
-    run["observed_head"] = "def456"
-    with pytest.raises(InnovationContractError, match="promotion record"):
-        transition_run(run, "CANONICAL", ["promotion:fixture"])
+    for target in ("SOURCE_BOUND", "SUPERSEDED", "ARCHIVED"):
+        with pytest.raises(InnovationContractError, match="operator-only status"):
+            transition_run(run, target, ["operator-decision-required"])
 
 
 def test_engineering_ledger_requires_all_truth_surfaces() -> None:

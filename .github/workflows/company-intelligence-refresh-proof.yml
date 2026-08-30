@@ -1,0 +1,104 @@
+name: Company Intelligence Refresh Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/company_intelligence.py"
+      - "src/job_app_helix/company_intelligence_refresh.py"
+      - "tests/test_company_intelligence_refresh.py"
+      - "pyproject.toml"
+      - ".github/workflows/company-intelligence-refresh-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/company_intelligence.py"
+      - "src/job_app_helix/company_intelligence_refresh.py"
+      - "tests/test_company_intelligence_refresh.py"
+      - "pyproject.toml"
+      - ".github/workflows/company-intelligence-refresh-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    name: Company refresh / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package and proof tools
+        run: python -m pip install -e ".[dev]"
+      - name: Lint refresh surfaces
+        run: >-
+          ruff check
+          src/job_app_helix/company_intelligence_refresh.py
+          tests/test_company_intelligence_refresh.py
+      - name: Run adversarial refresh tests
+        run: python -m pytest -q tests/test_company_intelligence_refresh.py
+      - name: Execute installed CLI refresh probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="${RUNNER_TEMP}/company-refresh"
+          mkdir -p "${work}"
+          cat > "${work}/current.json" <<'JSON'
+          {
+            "company_id": "example",
+            "company": "Example",
+            "collected_at": "2026-08-17T00:00:00Z",
+            "max_age_days": 30,
+            "signals": [
+              {
+                "kind": "engineering",
+                "statement": "Build agent systems.",
+                "source_url": "https://example.com/engineering",
+                "observed_at": "2026-08-17T00:00:00Z"
+              }
+            ]
+          }
+          JSON
+          cat > "${work}/incoming.json" <<'JSON'
+          {
+            "company_id": "example",
+            "company": "Example",
+            "collected_at": "2026-08-18T00:00:00Z",
+            "max_age_days": 30,
+            "signals": [
+              {
+                "kind": "engineering",
+                "statement": "Build agent systems with production observability.",
+                "source_url": "https://example.com/engineering",
+                "observed_at": "2026-08-18T00:00:00Z"
+              }
+            ]
+          }
+          JSON
+          job-app-helix-company-refresh \
+            --current "${work}/current.json" \
+            --incoming "${work}/incoming.json" \
+            --output "${work}/active.json" \
+            --history "${work}/history.jsonl" \
+            --receipt "${work}/receipt.json"
+          python - <<'PY' "${work}"
+          import json
+          import pathlib
+          import sys
+
+          root = pathlib.Path(sys.argv[1])
+          active = json.loads((root / "active.json").read_text())
+          receipt = json.loads((root / "receipt.json").read_text())
+          history = [json.loads(row) for row in (root / "history.jsonl").read_text().splitlines()]
+          assert active["signals"][0]["statement"].endswith("production observability.")
+          assert receipt["superseded_count"] == 1
+          assert receipt["active_count"] == 1
+          assert len(receipt["receipt_sha256"]) == 64
+          assert history[0]["reason"] == "SUPERSEDED"
+          print(json.dumps(receipt, sort_keys=True))
+          PY

@@ -19,8 +19,8 @@
       "excellence_state": "LOCAL_STATIC_TEMPORAL_MESH_ROUTING_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
+        "reference_branch": "main",
+        "source_head": "489cff52ed1da8c5e7da0769807bad8b58ef394f",
         "evidence_token": "LOCAL_MESH_SIMULATION_NOT_SPACECRAFT_OR_LASER_TERMINAL_AUTHORITY",
         "verified_capability": "deterministic-local-static-and-temporal-satellite-mesh-routing",
         "proof_receipts": [
@@ -61,7 +61,7 @@
           "assessment": "portfolio metadata is compatible with the bounded local static and temporal routing capability; the controlling source proof preserves SpaceX non-affiliation and no-spacecraft-or-laser-terminal-authority boundaries"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, removal of the independent SpaceX non-affiliation/no-operational-authority boundary, claims of real spacecraft or laser-terminal control, operational ephemeris or constellation digital-twin claims, production-scale or guaranteed-delivery claims, live provider/telemetry integration claims, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, removal of the independent SpaceX non-affiliation/no-operational-authority boundary, claims of real spacecraft or laser-terminal control, operational ephemeris or constellation digital-twin claims, production-scale or guaranteed-delivery claims, live provider/telemetry integration claims, or contradictory GitHub About metadata."
     }
   ]
 }

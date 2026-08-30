@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-08-07T03:58:00-10:00",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_head_before": "230e8a05b5afc553584034e70bf4da084d33db94",
+  "source_head_before": "230e8a05b5afc553584034e70bf4da084d33db94",
   "branch": "estate/maintenance-blocker-receipt-20260807-1358Z",
   "merge_base": "230e8a05b5afc553584034e70bf4da084d33db94",
   "ahead": 1,
@@ -16,8 +16,8 @@
       "repository": "GlacierEQ/monolith",
       "default_branch": "main",
       "fork_upstream_status": "OWNED_NONFORK_REPOSITORY",
-      "canonical_head_before": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
-      "canonical_head_after": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "source_head_before": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "source_head_after": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
       "branch": "synthesize/legal-live-reconciliation-20260807",
       "merge_base": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
       "ahead": 1,
@@ -45,12 +45,12 @@
         "result": "FAIL_CLOSED_BEFORE_PRIVATE_TOKEN_MINT",
         "passed_steps": [
           "owner ingress authorization",
-          "canonical public action-face guard",
+          "reference public action-face guard",
           "strict job envelope normalization",
           "GitHub App bridge requirement step entered"
         ],
         "blocker": "APEX_RUNNER_APP_CLIENT_ID and APEX_RUNNER_APP_PRIVATE_KEY were absent from the repository Actions environment",
-        "canonical_activation_target": "issue 95 / workflow run 31170532956 remains pinned to the same immutable Monolith SHA; owner-consent bootstrap is required before rerun",
+        "reference_activation_target": "issue 95 / workflow run 31170532956 remains pinned to the same immutable Monolith SHA; owner-consent bootstrap is required before rerun",
         "duplicate_probe_disposition": "issue 98 closed not_planned after diagnosis"
       },
       "decision": "KEEP_PR48_UNMERGED_VERIFICATION_GATED",
@@ -60,8 +60,8 @@
       "repository": "GlacierEQ/the-tower-of-babel",
       "default_branch": "main",
       "fork_upstream_status": "OWNED_NONFORK_REPOSITORY",
-      "canonical_head_before": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
-      "canonical_head_after": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+      "source_head_before": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+      "source_head_after": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
       "branch": "fix/branch-hygiene-synthesis-prefixes-20260807",
       "merge_base": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
       "ahead": 1,
@@ -87,7 +87,7 @@
       "repository": "GlacierEQ/job-application",
       "default_branch": "main",
       "fork_upstream_status": "OWNED_NONFORK_REPOSITORY",
-      "canonical_head": "724a6090aed63b28730a57c54f5b08a26791a054",
+      "source_head": "724a6090aed63b28730a57c54f5b08a26791a054",
       "retirement_ready": [
         {
           "branch": "synthesize/v18-release-language-current-main-20260807",
@@ -114,7 +114,7 @@
     },
     "helix_make_it_heavy": {
       "repository": "GlacierEQ/job-app-helix",
-      "canonical_harness_commit": "2b55207e1c30736f326923ad7604b97eef5515e9",
+      "reference_harness_commit": "2b55207e1c30736f326923ad7604b97eef5515e9",
       "decision": "FRESH_HEAD_RESYNTHESIS_ALREADY_PROMOTED_AFTER_NATIVE_CI_PORTFOLIO_AND_REGISTRY_VALIDATION",
       "superseded_branch": "integration/make-it-heavy-estate-harness-20260807",
       "superseded_pr": 41,
@@ -141,7 +141,7 @@
     "Tower PR28 cannot be promoted until .integrity/file_hashes.json is regenerated for the intentional branch-hygiene workflow change and native gates re-run",
     "remote-ref deletion action is not exposed by the current connector, so retirement-ready refs remain DELETE_REF_REQUIRED"
   ],
-  "canonical_head_after": "UNCHANGED_PENDING_RECEIPT_PR_VERIFICATION",
+  "source_head_after": "UNCHANGED_PENDING_RECEIPT_PR_VERIFICATION",
   "remote_ref_disposition": "NO_REMOTE_DELETIONS_CLAIMED",
   "next_cursor": "Complete Tower integrity-manifest refresh or verify a repository-native regeneration path; after Monolith App activation rerun exact pinned validation; continue next unresolved priority-spine/legal-spine family without revisiting proven-complete Mastermind Bolt families."
 }

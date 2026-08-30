@@ -33,7 +33,7 @@
   },
   "nonclaims": [
     "does not re-open Wave A residual",
-    "does not claim CANONICAL or estate-wide mass promote",
+    "does not claim SOURCE_BOUND or estate-wide mass promote",
     "no employer affiliation or production deployment",
     "LOCAL_OPERATOR_SECRET is reference-only not production key material"
   ],

@@ -1,0 +1,83 @@
+name: Application Evidence Graph Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/application_evidence_graph.py"
+      - "scripts/discover_experience_graph.py"
+      - "scripts/census_public_portfolio.py"
+      - "tests/test_application_evidence_graph.py"
+      - "pyproject.toml"
+      - ".github/workflows/application-evidence-graph-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/application_evidence_graph.py"
+      - "scripts/discover_experience_graph.py"
+      - "scripts/census_public_portfolio.py"
+      - "tests/test_application_evidence_graph.py"
+      - "pyproject.toml"
+      - ".github/workflows/application-evidence-graph-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Lint executable surface
+        run: |
+          ruff check src/job_app_helix/application_evidence_graph.py tests/test_application_evidence_graph.py
+          ruff format --check src/job_app_helix/application_evidence_graph.py tests/test_application_evidence_graph.py
+      - name: Adversarial tests
+        run: pytest tests/test_application_evidence_graph.py
+      - name: Installed executable
+        run: job-app-helix-application-evidence --help
+      - name: Build current public recruiter census
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/census_public_portfolio.py
+          --output /tmp/public-portfolio-census.json
+      - name: Compile current live public experience graph
+        run: >-
+          python scripts/discover_experience_graph.py
+          --census /tmp/public-portfolio-census.json
+          --output /tmp/live-experience-graph.json
+      - name: Prove xAI application evidence projection
+        run: |
+          job-app-helix-application-evidence \
+            --graph /tmp/live-experience-graph.json \
+            --company xAI \
+            --output /tmp/xai-application-evidence.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('/tmp/xai-application-evidence.json').read_text())
+          assert payload['schema'] == 'glaciereq.application-evidence-graph.v1'
+          assert payload['target_company_id'] == 'xai'
+          assert payload['evidence_count'] > 0
+          assert payload['truth_boundary']['only_public_repository_identity_emitted'] is True
+          assert payload['truth_boundary']['projection_is_evidence_selection_not_claim_generation'] is True
+          assert all(row['company_id'] == 'xai' for row in payload['evidence'])
+          assert all(row['repository'].startswith('GlacierEQ/') for row in payload['evidence'])
+          print(json.dumps({
+              'target_company_id': payload['target_company_id'],
+              'evidence_count': payload['evidence_count'],
+              'receipt_sha256': payload['receipt_sha256'],
+              'top_repository': payload['evidence'][0]['repository'],
+              'top_score': payload['evidence'][0]['score'],
+          }, sort_keys=True))
+          PY

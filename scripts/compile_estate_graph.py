@@ -102,7 +102,7 @@ def main() -> int:
         semantic_capabilities=semantic_capabilities,
     )
     out = args.output_dir
-    atomic_write(out / "canonical-system-registry.json", bundle["canonical_system_registry"])
+    atomic_write(out / "reference-system-registry.json", bundle["system_registry"])
     atomic_write(out / "capability-donor-registry.json", bundle["capability_donor_registry"])
     atomic_write(out / "company-projection-registry.json", bundle["company_projection_registry"])
     atomic_write(out / "experiment-pipeline.json", bundle["experiment_pipeline"])

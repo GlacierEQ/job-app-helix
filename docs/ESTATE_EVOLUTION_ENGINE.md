@@ -1,95 +1,103 @@
-# Estate Evolution Engine
+# Estate Evolution Engine — Maximum Coherent Advance
 
 ## Mission
 
-Continuously reduce repository and branch entropy while preserving every useful contribution, keeping upstream sources refreshable, and improving the estate with evidence-backed maintenance and current engineering intelligence.
+Continuously **increase the useful capability of the GlacierEQ estate** while preserving every valuable contribution, recovering buried or removed mechanisms, keeping upstream sources refreshable, connecting complementary systems, and turning incomplete repositories into operable products.
 
-The engine is not a blind merge bot. It is a synthesis system.
+The engine is not a cleanup bot, a branch-deletion bot, or a consolidation machine. It is a **recovery + synthesis + implementation + integration + deployment engine**.
 
 ```text
 CURRENT INTELLIGENCE
-  -> TOPOLOGY + PRIORITY
-  -> BRANCH / REPO INSPECTION
-  -> UNIQUE-VALUE ANALYSIS
-  -> SYNTHESIS ON CURRENT ANCESTRY
+  -> ESTATE DISCOVERY
+  -> PURPOSE + LINEAGE RECONSTRUCTION
+  -> UNIQUE / COMPLEMENTARY VALUE ANALYSIS
+  -> LOST-CAPABILITY RECOVERY
+  -> IMPLEMENTATION ON CURRENT ANCESTRY
+  -> CROSS-REPO COMPOSITION
   -> REPOSITORY-NATIVE VERIFICATION
-  -> PROMOTION
-  -> RETIREMENT
+  -> INTEGRATION / DEPLOYMENT / PACKAGE
   -> RECEIPT
-  -> NEXT PRIORITY
+  -> NEXT UPWARD CHECKPOINT
 ```
 
-## One hourly pass, many useful actions
+## One pass, maximum useful advance
 
 The engine is deliberately not limited to one repository or one branch per invocation. It continues from the prior cursor until the execution environment reaches a real time or tool boundary.
 
 Each pass may:
 
-- refresh Monolith topology and legal-spine projections;
-- ingest important AI coding and software-engineering developments into Mastermind's Library of Links;
+- refresh estate topology and legal/job-system projections;
+- ingest current engineering intelligence into reusable knowledge surfaces;
+- recover capabilities lost from current branches or successors;
 - repair concrete defects and stale automation;
-- update dependencies when repository-native proof supports the change;
-- strengthen tests before risky refactors;
-- analyze multiple branches across multiple repositories;
-- preserve useful deltas from old branches on fresh canonical ancestry;
-- merge verified low-risk work;
-- prepare focused integration branches or PRs for work requiring stronger proof;
-- retire branches only after unique-value exhaustion is proven;
-- write a durable cursor and receipt for the next run.
+- implement missing central mechanisms;
+- strengthen tests around important behavior;
+- analyze multiple branches and repository families;
+- preserve useful deltas from historical lines on current ancestry;
+- connect complementary systems through APIs, packages, MCP, events, schemas, or workers;
+- prepare focused integration branches or PRs when deeper proof is required;
+- deploy or package systems whose natural purpose requires operational delivery;
+- write a durable cursor and receipt for the next upward run.
 
-## The stale-branch rule
+Scale changes concurrency and scheduling. It does not lower the completion standard.
 
-A branch being `ahead` does not make it safe to merge.
+## Historical-branch rule
 
-A branch that is behind or diverged from `main`/`master` is evaluated relative to its merge base. Its useful patch value is identified, then recreated or merged onto a synthesis branch starting from the current canonical head.
+A branch being `ahead`, `behind`, or `diverged` is **not a lifecycle verdict**.
+
+Evaluate a branch relative to its merge base, current head, repository purpose, and surrounding lineage. Identify its useful delta and compose that value onto current ancestry without discarding later gains.
 
 ```text
-old branch tip ----- unique delta
-       \            /
-        merge base
-             \
-              current main ----> synthesis branch ----> tests ----> canonical
+historical branch ---- unique capability ----┐
+       \                                     │
+        merge base                           ├─> synthesis on current ancestry
+             \                               │
+              current main ---- later gains -┘
+                                      |
+                                      v
+                          implementation + tests
+                                      |
+                                      v
+                          stronger current system
 ```
 
-The old tip itself is never treated as the desired repository state merely because it contains commits that `main` does not.
+The historical tip itself is not automatically the desired final state, but neither is the current tip automatically superior. **Best-of-all-worlds composition decides.**
 
-## Patch equivalence
+## Patch and capability equivalence
 
-Commit SHAs are not sufficient evidence of unique value. Cherry-picks, squashes, and rewritten history can leave an old branch looking divergent even after its useful change is already present.
+Commit SHAs are not sufficient evidence of unique value. Cherry-picks, squashes, rewrites, reimplementations, and partial transplants can make ancestry misleading.
 
-The branch steward therefore distinguishes:
+The branch steward therefore records capability-oriented states:
 
-- `ANCESTRY_EXHAUSTED` — no commits remain outside canonical ancestry;
-- `PATCH_EQUIVALENT_EXHAUSTED` — history differs but no unique patch remains;
-- `CURRENT_UNIQUE_VALUE` — branch is based on current canonical ancestry and contains useful delta;
-- `DIVERGED_UNIQUE_VALUE` — useful delta exists but the branch is behind and must be synthesized on fresh ancestry.
+- `ANCESTRY_EQUIVALENT` — no commits remain outside current ancestry;
+- `PATCH_EQUIVALENT` — history differs but patch semantics appear present;
+- `CURRENT_UNIQUE_VALUE` — useful delta exists on current ancestry;
+- `DIVERGED_UNIQUE_VALUE` — useful delta exists on historical/diverged ancestry and should be synthesized;
+- `CAPABILITY_DONOR` — implementation or design contains useful mechanisms regardless of merge ancestry;
+- `RESTORATION_REQUIRED` — current state lost a useful prior mechanism;
+- `COMPOSITION_REQUIRED` — multiple branches or repos contain complementary gains.
 
-## Fork model: source stays pure, GlacierEQ builds around it
+None of these states authorizes deletion.
 
-A fork has two durable logical lines:
+## Fork model: source stays recoverable, GlacierEQ builds upward
 
-1. **upstream-tracking** — a clean mirror of the source project's canonical line;
-2. **canonical-overlay** — GlacierEQ's maintained product line built around refreshed upstream state.
+A fork can maintain two durable logical lines:
 
-Short-lived synthesis branches may exist while integrating changes, but are retired after promotion.
+1. **upstream-tracking** — recoverable view of the source project's line;
+2. **GlacierEQ evolution line** — maintained product/research line that integrates upstream gains with GlacierEQ capability.
 
 Rules:
 
-- upstream-tracking advances only from the source/upstream repository;
-- GlacierEQ custom commits never land on the upstream-tracking line;
-- upstream is refreshed before a major overlay synthesis;
-- custom behavior should use extension points, adapters, plugins, wrappers, configuration, or clearly isolated modifications when possible;
-- unavoidable source modifications remain narrow and reviewable;
-- the overlay is tested after every upstream refresh;
-- upstream and overlay identities remain separately recoverable.
-
-This preserves the original engineering balance while allowing GlacierEQ innovation to evolve independently.
+- preserve upstream identity and provenance;
+- refresh upstream before major synthesis when useful;
+- prefer extension points, adapters, plugins, wrappers, configuration, or isolated modifications where they improve maintainability;
+- source modifications may be deep when the technical purpose requires them, but remain understandable and testable;
+- verify the evolved line after upstream refreshes;
+- preserve both source and GlacierEQ contributions as recoverable lineage.
 
 ## Intelligence loop
 
-Mastermind owns current technical intelligence through `knowledge/ai_coding_radar.json` and its Library-of-Links adapter.
-
-An item is promoted only when it can materially affect one of:
+Current technical intelligence becomes candidate leverage for:
 
 - agent harness design;
 - context engineering;
@@ -99,44 +107,69 @@ An item is promoted only when it can materially affect one of:
 - model routing;
 - developer workflow;
 - runtime cost;
-- reliability.
+- reliability;
+- new algorithms and execution models;
+- integration opportunities;
+- product capability.
 
-News does not automatically trigger refactoring. It creates a candidate innovation. Adoption requires a measurable benefit and repository-native proof.
+News does not automatically trigger refactoring, but innovation is not artificially suppressed because it is ambitious. Adoption is driven by technical advantage and fit with repository purpose.
 
-## Maintenance loop
+## Maintenance + expansion loop
 
-While a repository is already open for branch work, the engine may repair nearby problems instead of paying the context cost twice. The order is:
+When a repository is already open, use the context to push the system materially forward. Work may combine:
 
-1. correctness and broken behavior;
-2. failing or missing tests;
-3. stale APIs/dependencies/configuration;
-4. automation reliability;
-5. documentation truth;
-6. measurable performance or maintainability improvements;
-7. innovation candidates from the current intelligence radar.
+1. correctness and broken-behavior repair;
+2. recovery of missing historical capability;
+3. missing-feature implementation;
+4. integration with complementary estate systems;
+5. stale API/dependency/configuration repair;
+6. automation and observability improvement;
+7. documentation truth;
+8. measurable performance improvement;
+9. architecture simplification only where it **increases** function;
+10. innovation candidates that raise the ceiling.
 
-`repair before expand` and `no refactoring for novelty` remain hard rules.
+`NO_REFACTORING_FOR_NOVELTY` remains useful. **`repair before expand` is retired as a global ordering rule.** Repair and expansion are composed into the strongest coherent checkpoint the system can support.
 
-## Retirement gate
+## No automatic retirement lane
 
-A branch is eligible for retirement only when all applicable conditions hold:
+Retirement is deliberately outside the automated evolution loop.
 
-- its useful content is already canonical or was deliberately rejected with a recorded reason;
-- patch-equivalent unique value is zero;
-- no active PR or dependency still requires the branch;
-- the canonical result has adequate verification;
-- upstream/fork preservation rules are satisfied;
-- the remote ref deletion is actually performed by a capable tool and separately receipted.
+The engine may discover that a historical branch, repository, or implementation appears fully represented elsewhere, but that conclusion is only a **candidate observation**. It cannot trigger archive, deletion, close-as-duplicate, merge-away, or ref deletion.
 
-Closing a PR is not branch deletion. Marking a branch obsolete is not branch deletion. Only a confirmed remote-ref deletion may be recorded as deleted.
+Any retirement decision requires:
 
-## Control-plane split
+- explicit OPERATOR authorization;
+- reconstructed purpose and lineage;
+- complete unique-capability comparison;
+- verified preservation of valuable functionality, history, and provenance;
+- demonstrated stronger resulting system;
+- proof that the operation does not break consumers or future donor value.
 
-| System | Owns |
+Without that authorization, the system preserves the source and continues upward around it.
+
+## Control-plane composition
+
+| System | Contributes |
 |---|---|
-| `job-app-helix` | maintenance policy, branch stewardship, consolidation execution, proof gates, receipts |
-| `monolith` | estate topology, ownership, priority and generated status projections |
-| `mastermind` | current engineering intelligence and Library of Links |
-| owning repository | code, tests, branches, releases, runtime truth |
+| `job-app-helix` | estate discovery, capability archaeology, restoration, productization, integration planning, proof, receipts |
+| `monolith` | estate topology, ownership, composition graph, generated status projections |
+| `mastermind` | engineering intelligence, orchestration, power-chain integration, specialist-agent coordination |
+| `AKOS` | adaptive operating-system mechanisms, persistence, context, completion semantics |
+| owning repository | its own code, purpose, tests, branches, releases, runtime truth, specialist capability |
 
-The control planes coordinate; they do not swallow the repositories they govern.
+These systems **compose**. None becomes authority over OPERATOR intent or a license to swallow another repository.
+
+## Final invariant
+
+```text
+EVERY USEFUL MECHANISM PRESERVED
++ EVERY LOST CAPABILITY RECOVERED
++ EVERY MATERIAL GAP IMPLEMENTED
++ EVERY COMPLEMENTARY SYSTEM CONNECTED
++ EVERY MATERIAL CLAIM PROVEN
++ EVERY NATURAL PRODUCT DELIVERED
+= ESTATE EVOLUTION
+```
+
+The desired direction is not fewer repositories. The desired direction is **more coherent capability, more operational power, more useful products, and no silent loss of prior gains**.

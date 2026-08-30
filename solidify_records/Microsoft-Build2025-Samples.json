@@ -1,0 +1,11 @@
+{
+  "repo": "Microsoft-Build2025-Samples",
+  "family": "Microsoft",
+  "source_state": "reference",
+  "worthy_rating": 6,
+  "verification_status": "NEEDS_REPAIR",
+  "description": "Microsoft Build 2025 samples",
+  "notes": "fixed | NEEDS_REPAIR",
+  "last_verified": "2026-08-29T08:47:16.990390",
+  "classification_reason": "needs_repair: worthy=6"
+}

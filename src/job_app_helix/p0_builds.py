@@ -1,4 +1,3 @@
-# ruff: noqa: E501
 from __future__ import annotations
 
 import hashlib
@@ -214,8 +213,8 @@ def judgment_replication_fabric(examples):
     return {'target_examples': ids, 'disagreement_count': len(ids)}
 
 def open_model_fidelity_passport(config):
-    canonical = json.dumps(config, sort_keys=True, separators=(',', ':'))
-    return {'canonical': canonical, 'fingerprint': hashlib.sha256(canonical.encode()).hexdigest()}
+    reference = json.dumps(config, sort_keys=True, separators=(',', ':'))
+    return {'reference': reference, 'fingerprint': hashlib.sha256(reference.encode()).hexdigest()}
 
 def persistent_world_state_compiler(observations):
     objects = {}

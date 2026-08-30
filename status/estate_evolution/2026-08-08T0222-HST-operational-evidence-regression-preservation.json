@@ -7,8 +7,8 @@
   "repository": "GlacierEQ/the-tower-of-babel",
   "default_branch": "main",
   "fork": false,
-  "canonical_head_before": "e878c2eac4a1a6f0eac32de86c6048149f55ec0a",
-  "canonical_head_after": "9055c92c638d3f5f98d17c2ac07f56afdc227cd1",
+  "source_head_before": "e878c2eac4a1a6f0eac32de86c6048149f55ec0a",
+  "source_head_after": "9055c92c638d3f5f98d17c2ac07f56afdc227cd1",
   "branch": "synthesize/operational-evidence-regressions-20260808",
   "pull_request": 33,
   "merge_base": "e878c2eac4a1a6f0eac32de86c6048149f55ec0a",
@@ -27,10 +27,10 @@
   "preservation_action": {
     "source_branch": "fix/operational-evidence-selection",
     "source_pr": 25,
-    "implementation_disposition": "NOT_REPLAYED_STALE_IMPLEMENTATION_ALREADY_CANONICAL_VIA_VERIFIED_LINEAGE",
-    "test_value": "EXTRACTED_ONTO_FRESH_CANONICAL_ANCESTRY",
+    "implementation_disposition": "NOT_REPLAYED_STALE_IMPLEMENTATION_ALREADY_SOURCE_BOUND_VIA_VERIFIED_LINEAGE",
+    "test_value": "EXTRACTED_ONTO_FRESH_SOURCE_BOUND_ANCESTRY",
     "checkout_branch": "synthesize/checkout-v7-20260807",
-    "checkout_disposition": "SEMANTIC_VALUE_ALREADY_CANONICAL_VIA_MERGED_PR_27"
+    "checkout_disposition": "SEMANTIC_VALUE_ALREADY_SOURCE_BOUND_VIA_MERGED_PR_27"
   },
   "verification": {
     "first_candidate_head": "561db21cd049d3487c66f0dbdb0426834c8262f3",
@@ -58,7 +58,7 @@
   "monolith_legal_spine_preservation": {
     "repository": "GlacierEQ/monolith",
     "pull_request": 54,
-    "canonical_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "source_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
     "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
     "ahead": 1,
     "behind": 0,
@@ -66,7 +66,7 @@
     "changed_files": 10,
     "generated_legal_spine_files_changed": 0,
     "decision": "FRESH_SYNTHESIS_VERIFICATION_GATED",
-    "verification_state": "native workflow runs remain failed; canonical untouched"
+    "verification_state": "native workflow runs remain failed; reference untouched"
   },
   "news_inputs": [],
   "innovation_inputs": [
@@ -76,8 +76,8 @@
     "exact native-generated integrity artifact bound by Git blob identity"
   ],
   "blockers": [
-    "Monolith PR #54 remains verification-gated; its latest native workflows are failed and canonical remains untouched.",
+    "Monolith PR #54 remains verification-gated; its latest native workflows are failed and reference remains untouched.",
     "No available connector action proves deletion of the two surviving historical Tower refs, so both remain DELETE_REF_REQUIRED."
   ],
-  "next_cursor": "Continue from Tower canonical 9055c92c638d3f5f98d17c2ac07f56afdc227cd1; preserve Monolith PR #54 until executable proof succeeds; retire surviving historical Tower refs only with deletion proof; continue priority-spine maintenance from latest Helix main."
+  "next_cursor": "Continue from Tower reference 9055c92c638d3f5f98d17c2ac07f56afdc227cd1; preserve Monolith PR #54 until executable proof succeeds; retire surviving historical Tower refs only with deletion proof; continue priority-spine maintenance from latest Helix main."
 }

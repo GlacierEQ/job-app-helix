@@ -17,8 +17,8 @@
       "decision": "ADMIT",
       "excellence_state": "POLICY_GATED_LOCAL_TOOL_DISPATCH_VERIFIED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "2ab81b15283505c407265ef27e3862279f61a94f",
+        "reference_branch": "main",
+        "source_head": "2ab81b15283505c407265ef27e3862279f61a94f",
         "evidence_token": "LOCAL_ALLOWLIST_ROUTER_NOT_EXTERNAL_MCP_DEPLOYMENT",
         "verified_capability": "policy-gated-local-tool-dispatch",
         "proof_receipts": [
@@ -32,7 +32,7 @@
           "assessment": "non-contradictory topology metadata; does not override the repository-local nondeployment boundary"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, proof failure, authorization-policy drift, external MCP/provider/persistence/mesh claims, machine/APEX authority drift, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, proof failure, authorization-policy drift, external MCP/provider/persistence/mesh claims, machine/APEX authority drift, or contradictory GitHub About metadata."
     }
   ]
 }

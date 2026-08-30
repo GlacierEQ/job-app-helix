@@ -155,11 +155,11 @@ def test_compiler_collapses_only_high_confidence_history():
         company_index=company_index(),
         company_shards=company_shards(),
     )
-    registry = bundle["canonical_system_registry"]
+    registry = bundle["system_registry"]
     alpha = next(
         row
         for row in registry["systems"]
-        if row["canonical_repository"] == "GlacierEQ/alpha"
+        if row["source_repository"] == "GlacierEQ/alpha"
     )
     assert "GlacierEQ/z-backup-alpha" in alpha["member_repositories"]
     assert registry["separate_namespaces"]["legal_private"]["repository_count"] == 1
@@ -170,8 +170,8 @@ def test_ambiguous_lineage_is_not_silently_merged():
     payload = census()
     payload["repositories"][2]["repository"] = "GlacierEQ/alpha-v2"
     bundle = compile_estate(payload, flagships=flagships())
-    systems = bundle["canonical_system_registry"]["systems"]
-    assert any(row["canonical_repository"] == "GlacierEQ/alpha-v2" for row in systems)
+    systems = bundle["system_registry"]["systems"]
+    assert any(row["source_repository"] == "GlacierEQ/alpha-v2" for row in systems)
 
 
 def test_capability_donors_are_evidence_bound():
@@ -193,9 +193,13 @@ def test_company_projection_uses_system_and_separate_visibility_score():
     )
     projection = bundle["company_projection_registry"]["projections"][0]
     assert projection["company_id"] == "acme"
-    assert len(projection["canonical_systems"]) == 1
-    assert projection["minimal_proof_surface"] == projection["canonical_systems"]
-    assert projection["projection_innovation"] == "bounded_greedy_capability_set_cover"
+    assert len(projection["reference_systems"]) == 1
+    assert projection["minimal_proof_surface"] == projection["reference_systems"]
+    assert projection["projection_innovation"] == (
+        "complete_ranked_relation_graph_with_minimal_proof_view"
+    )
+    assert bundle["company_projection_registry"]["policy"]["company_surface_max_systems"] is None
+    assert bundle["company_projection_registry"]["policy"]["presentation_pagination_changes_membership"] is False
     score = next(iter(bundle["company_projection_registry"]["promotion_scores"].values()))
     assert "visibility_decision" in score
     assert set(score["components"]) == {
@@ -303,16 +307,16 @@ def test_explicit_namespace_assertion_is_evidence_bound() -> None:
         ]
     }
     bundle = compile_estate(census(), flagships=flagships(), lineage=facts)
-    registry = bundle["canonical_system_registry"]
+    registry = bundle["system_registry"]
     assert registry["namespace_assertions_applied"] == 1
     assert registry["separate_namespaces"]["legal_private"]["repository_count"] == 2
     assert all(
-        row["canonical_repository"] != "GlacierEQ/alpha_v2"
+        row["source_repository"] != "GlacierEQ/alpha_v2"
         for row in registry["systems"]
     )
 
 
-def test_explicit_successor_becomes_canonical_root() -> None:
+def test_explicit_successor_becomes_reference_root() -> None:
     facts = {
         "relationships": [
             {
@@ -324,11 +328,11 @@ def test_explicit_successor_becomes_canonical_root() -> None:
         ]
     }
     bundle = compile_estate(census(), flagships=flagships(), lineage=facts)
-    systems = bundle["canonical_system_registry"]["systems"]
+    systems = bundle["system_registry"]["systems"]
     successor = next(
         row
         for row in systems
-        if row["canonical_repository"] == "GlacierEQ/alpha_v2"
+        if row["source_repository"] == "GlacierEQ/alpha_v2"
     )
     assert "GlacierEQ/alpha" in successor["member_repositories"]
     assert "GlacierEQ/z-backup-alpha" in successor["member_repositories"]
@@ -363,7 +367,7 @@ def test_experiment_pipeline_has_monotonic_gate_contract():
     public = public_safe_projection(bundle)
     projection = public["company_projections"][0]
     experiment_system = experiment["system_id"]
-    assert experiment_system not in projection["canonical_systems"]
+    assert experiment_system not in projection["reference_systems"]
     assert all(
         row["system_id"] != experiment_system
         for row in projection["ranked_evidence"]

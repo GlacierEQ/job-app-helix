@@ -27,7 +27,7 @@ jobs:
       - name: Install package and test dependencies
         run: python -m pip install -e ".[dev]"
 
-      - name: Verify canonical compiler and projection contracts
+      - name: Verify reference compiler and projection contracts
         run: >-
           python -m pytest -q
           tests/test_estate_compiler.py
@@ -80,7 +80,7 @@ jobs:
           printf '%s\n' '{"namespaces":[],"relationships":[]}' \
             > /tmp/estate-facts.json
 
-      - name: Compile canonical estate bundle
+      - name: Compile reference estate bundle
         run: |
           python scripts/compile_estate_graph.py \
             --census /tmp/estate-census.json \
@@ -133,7 +133,7 @@ jobs:
               "fork_repository_count",
               "private_repository_count",
               "legal_private_repositories",
-              "canonical_accomplishments",
+              "reference_accomplishments",
           }
 
           def walk(value, path="$"):
@@ -159,7 +159,7 @@ jobs:
             artifacts/estate-compiler-public/public-safe-company-projection-v2.json
           test ! -e artifacts/owned-library-census.json
           test ! -e artifacts/public-portfolio-census.json
-          test ! -e artifacts/estate-compiler/canonical-system-registry.json
+          test ! -e artifacts/estate-compiler/reference-system-registry.json
           test ! -e artifacts/estate-compiler/company-projection-registry.json
           test ! -e artifacts/estate-compiler-public/estate-intelligence-receipt.json
 

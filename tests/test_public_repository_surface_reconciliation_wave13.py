@@ -94,7 +94,7 @@ def test_weather_admission_is_scope_and_receipt_bound() -> None:
     assert record["repair_priority"] is None
     assert record["decision_excellence_state"] == "LOCAL_ENVIRONMENTAL_RULE_GATE_VERIFIED"
     assert "SURFACE_ASSESSMENT_UNASSESSED" not in record["findings"]
-    assert evidence["canonical_head"] == HEAD
+    assert evidence["source_head"] == HEAD
     assert evidence["evidence_token"] == (
         "LOCAL_ENVIRONMENTAL_RULE_GATE_NOT_LAUNCH_SAFETY_AUTHORITY"
     )
@@ -115,7 +115,7 @@ def test_wave13_receipt_matches_reconciliation_authority() -> None:
     wave = load(WAVE13)["items"][0]
     receipt = load(RECEIPT)
     assert receipt["repository"] == wave["repository"]
-    assert receipt["source_canonical_head"] == wave["evidence"]["canonical_head"] == HEAD
+    assert receipt["source_head"] == wave["evidence"]["source_head"] == HEAD
     assert receipt["evidence_token"] == wave["evidence"]["evidence_token"]
     assert receipt["verified_capability"] == wave["evidence"]["verified_capability"]
     assert {item["id"] for item in receipt["proof_receipts"]} == RUN_IDS

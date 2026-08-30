@@ -53,7 +53,7 @@ python3 helix/proofs/proof_brainsync_kind_normalize.py
 
 ## Commands
 
-Canonical tool: `helix/automations/brainsync_path_sanitize.py`
+Source-bound tool: `helix/automations/brainsync_path_sanitize.py`
 
 ```bash
 # Scrub absolute paths in local generated files

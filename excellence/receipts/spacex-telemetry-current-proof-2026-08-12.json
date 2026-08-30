@@ -1,14 +1,14 @@
 {
   "schema": "glaciereq.repo-excellence.external-current-proof.v1",
-  "status": "CURRENT_CANONICAL_EXACT_HEAD_PROOF",
+  "status": "CURRENT_SOURCE_BOUND_EXACT_HEAD_PROOF",
   "repository": "GlacierEQ/spacex-telemetry",
-  "canonical_repository_head": {
+  "source_repository_head": {
     "branch": "main",
     "sha": "d179ae2de780c023f53b328180bd798f0bc912a4",
     "parent_proven_source_sha": "e3e54b4c9ced28ffd02962d2a8983adf3019e93a"
   },
   "role": "ACTIVE_SPECIALIST_COMPONENT",
-  "canonical_family_decision": "Separate specialist owner of the synthetic telemetry codec/laboratory mechanism; not a routing, propulsion-health, or application-control projection.",
+  "reference_family_decision": "Separate specialist owner of the synthetic telemetry codec/laboratory mechanism; not a routing, propulsion-health, or application-control projection.",
   "verified_capability": "deterministic-local-telemetry-integrity-control-and-codec-laboratory",
   "unique_value": "Python framed-stream integrity/control plus generated Protobuf round trips plus strict Go packet codec plus installed deterministic local operator surface under one repository-native verification contract.",
   "proof_chain": {
@@ -16,14 +16,14 @@
     "ci_run_id": 31644298278,
     "public_truth_run_id": 31644297856,
     "conclusion": "success",
-    "canonicalization_commit": "d179ae2de780c023f53b328180bd798f0bc912a4",
-    "canonicalization_parent": "e3e54b4c9ced28ffd02962d2a8983adf3019e93a",
-    "canonicalization_change": "machine/excellence-current-proof-2026-08-12.json only"
+    "source_binding_commit": "d179ae2de780c023f53b328180bd798f0bc912a4",
+    "source_binding_parent": "e3e54b4c9ced28ffd02962d2a8983adf3019e93a",
+    "source_binding_change": "machine/excellence-current-proof-2026-08-12.json only"
   },
   "gates": {
     "problem_verified": true,
     "unique_value_known": true,
-    "canonical_identity_known": true,
+    "source_identity_known": true,
     "central_mechanism_implemented": true,
     "deterministic_tests_pass": true,
     "adversarial_tests_pass": true,

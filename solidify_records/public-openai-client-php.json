@@ -1,0 +1,19 @@
+{
+  "repo": "public-openai-client-php",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "An OpenAI API client for PHP that includes all endpoints and models (DTOs) for requests and responses (PHP). Catalog classifies it as an Extended Utilities And Experiments engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/public-openai-client-php). Honest limitation: cataloged reference for server-side OpenAI integration in PHP stacks; no fact card, tests, or build receipt found locally, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry public-openai-client-php, line 14156; executive_summary='OpenAI API Client for PHP. Includes all endpoints and models (DTOs)'; url=https://github.com/GlacierEQ/public-openai-client-php)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 44779: name=public-openai-client-php; classifier=extended_utilities_and_experiments; executive_summary='OpenAI API Client for PHP. Includes all endpoints and models (DTOs)'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/public-openai-client-php; launch_cmd='git clone https://github.com/GlacierEQ/public-openai-client-php')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 220: reference_or_upstream)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Produce a repository_fact_card with implementation evidence (typed DTO coverage, passing unit tests, composer build receipt) and a README; only a catalog description currently exists locally (worthy>=8).",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.889568",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

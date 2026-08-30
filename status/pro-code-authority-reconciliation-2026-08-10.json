@@ -3,8 +3,8 @@
   "observed_at": "2026-08-10T19:04:00-10:00",
   "control_plane": "GlacierEQ/job-app-helix",
   "repository": "GlacierEQ/pro-code",
-  "canonical_branch": "main",
-  "canonical_head": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
+  "reference_branch": "main",
+  "source_head": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
   "state": "LOCAL_OPERABLE",
   "evidence_level": "TEST",
   "proof_receipts": [
@@ -51,6 +51,6 @@
     "prior_authority_head": "c9aa2faa0dcede7d6b7e7e6891b7930ee87040ab",
     "prior_authority_receipt": "status/public-repository-governance-wave-2026-08-08.json",
     "current_authority_head": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
-    "reason": "The priority spine marked authority CURRENT while pointing to an older verified head. Current canonical main has fresh native-verification and Helix-Verify success receipts, so authority advances without rewriting the historical August 8 receipt."
+    "reason": "The priority spine marked authority CURRENT while pointing to an older verified head. Current reference main has fresh native-verification and Helix-Verify success receipts, so authority advances without rewriting the historical August 8 receipt."
   }
 }

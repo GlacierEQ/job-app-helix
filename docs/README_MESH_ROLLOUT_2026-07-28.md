@@ -1,8 +1,8 @@
 # README Mesh Rollout Receipt — 2026-07-28
 
-Status: complete  
-Canonical engine: `GlacierEQ/job-app-helix`  
-Schema: `glaciereq.readme.v1` / `proto/readme_mesh.proto`  
+Status: complete
+Source-bound engine: `GlacierEQ/job-app-helix`
+Schema: `glaciereq.readme.v1` / `proto/readme_mesh.proto`
 Scope: original portfolio-eligible repositories declared in `manifests/readme_mesh.json`
 
 ## Result
@@ -19,7 +19,7 @@ Each README now contains:
 
 No repository visibility was changed. Legal/case workstreams, forks, vendored mirrors, credentials, private evidence, and unsupported employment or operational-deployment claims were excluded.
 
-## Canonical verification
+## Source-bound verification
 
 Job-App Helix PR #3 passed the complete GitHub Actions matrix on Python 3.11, 3.12, and 3.13 before squash merge.
 
@@ -33,18 +33,18 @@ Every matrix job passed:
 - 21-node / 40-edge manifest validation;
 - deterministic Protobuf and ProtoJSON round trips;
 - rendering of all README blocks;
-- canonical README idempotency;
+- reference README idempotency;
 - existing campaign scenarios and fail-closed hard failure;
 - public-boundary checks;
 - artifact upload.
 
-Canonical merge: `3a1f0c033bb18309cc8678f91541ae54a7400709`
+Source-bound merge: `3a1f0c033bb18309cc8678f91541ae54a7400709`
 
 ## Released repository receipts
 
 | Repository | Branch | Release commit | Role |
 |---|---|---|---|
-| `GlacierEQ/job-app-helix` | `main` | `3a1f0c033bb18309cc8678f91541ae54a7400709` | canonical mesh engine and campaign orchestrator |
+| `GlacierEQ/job-app-helix` | `main` | `3a1f0c033bb18309cc8678f91541ae54a7400709` | reference mesh engine and campaign orchestrator |
 | `GlacierEQ/AKOS` | `main` | `c5af6740cee211e2710a5d77aeb3d9c43adcb616` | governance, authority, provenance, and completion |
 | `GlacierEQ/spacex-telemetry` | `main` | `da5a8cb394d43230c66012aa288b6f5d01724499` | ordered telemetry and real Protobuf export |
 | `GlacierEQ/spacex-propulsion-monitor` | `main` | `0456fc918ce6d052b5e2a40eaafd29af419fbda6` | propulsion-health evidence |
@@ -68,7 +68,7 @@ Canonical merge: `3a1f0c033bb18309cc8678f91541ae54a7400709`
 
 ## Readback verification
 
-Provider readback confirmed the generated marker and three audience headings on the canonical, governance, agent, Alpha/Omega, orbital, and thermal READMEs. GitHub code search also resolved the first SpaceX rollout commits after indexing.
+Provider readback confirmed the generated marker and three audience headings on the reference, governance, agent, Alpha/Omega, orbital, and thermal READMEs. GitHub code search also resolved the first SpaceX rollout commits after indexing.
 
 Source-path readback confirmed the evidence modules referenced by the enriched READMEs, including:
 
@@ -84,9 +84,9 @@ Source-path readback confirmed the evidence modules referenced by the enriched R
 
 ## Continuing contract
 
-The canonical manifest is the source for repository identity and topology. Future updates must:
+The reference manifest is the source for repository identity and topology. Future updates must:
 
-- preserve exactly three audience views;
+- preserve the complete audience-projection set and allow additional evidence-aware views to evolve without redefining the underlying capability graph;
 - point material claims to evidence;
 - keep graph edges directional and meaningful;
 - compile the real Protobuf schema;

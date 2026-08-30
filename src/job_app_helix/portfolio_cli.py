@@ -28,13 +28,13 @@ def _add_contract_paths(parser: argparse.ArgumentParser) -> None:
         "--inventory",
         type=Path,
         default=DEFAULT_INVENTORY,
-        help="Exact portfolio inventory manifest.",
+        help="Admitted job-engineering rollout projection. This is not the full estate census.",
     )
     parser.add_argument(
         "--rollout",
         type=Path,
         default=DEFAULT_ROLLOUT,
-        help="Portfolio rollout program manifest.",
+        help="Execution program for repositories admitted to this rollout projection.",
     )
 
 
@@ -42,21 +42,21 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-portfolio",
         description=(
-            "Validate, discover, and execute evidence-bound verification waves "
-            "across the exact GlacierEQ job-application portfolio."
+            "Validate, discover, and execute evidence-bound rollout waves across the admitted "
+            "job-engineering projection after full-estate discovery and relevance routing."
         ),
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     validate_parser = subparsers.add_parser(
         "validate",
-        help="Validate that rollout waves partition the exact portfolio inventory.",
+        help="Validate that rollout waves partition the admitted rollout projection.",
     )
     _add_contract_paths(validate_parser)
 
     render_parser = subparsers.add_parser(
         "render-program",
-        help="Render the high-level rollout program as Markdown.",
+        help="Render the admitted rollout program as Markdown.",
     )
     _add_contract_paths(render_parser)
     render_parser.add_argument("--output", type=Path)
@@ -70,7 +70,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--workspace",
         type=Path,
         required=True,
-        help="Directory containing the 65 child repositories.",
+        help="Directory containing locally available repositories for the selected rollout waves.",
     )
     plan_parser.add_argument(
         "--wave",
@@ -126,6 +126,7 @@ def _validate(args: argparse.Namespace) -> int:
             {
                 "schema": program.schema,
                 "portfolio_root": program.portfolio_root,
+                "scope": "ADMITTED_JOB_ENGINEERING_ROLLOUT_PROJECTION",
                 "waves": len(program.waves),
                 "repositories": len(program.repositories),
                 "status": "VALID",

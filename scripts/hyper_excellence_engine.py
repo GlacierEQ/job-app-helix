@@ -15,7 +15,7 @@ QUARANTINE_MESSAGE = (
     "HyperExcellenceEngine automatic promotion is quarantined. "
     "This entrypoint may validate an existing excellence record, but it must not "
     "create gates, fabricate tests, mint authority, synthesize proof receipts, "
-    "or persist a promoted state. Use the canonical proof-producing workflow."
+    "or persist a promoted state. Use the reference proof-producing workflow."
 )
 
 

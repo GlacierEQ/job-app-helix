@@ -1,0 +1,19 @@
+{
+  "repo": "deepmind-temporal-router",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "unprocessed",
+  "innovation_summary": "Temporal/routing layer under the DeepMind problem space. Listed in the unprocessed backlog (company_engineered_repositories.json:109) with only a capabilities_3layer stub (launch_cmd git clone, contract_proof, mesh_uri) and no inspected code, test, or fact card.",
+  "evidence": [
+    "/tmp/monolith/catalog/company_engineered_repositories.json:109 (Google / DeepMind 'unprocessed' backlog)",
+    "/tmp/monolith/catalog/library.json:5324 (name deepmind-temporal-router; url https://github.com/GlacierEQ/deepmind-temporal-router)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24693 (stub: name, launch_cmd git clone, contract_proof DONE, mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/deepmind-temporal-router)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 3,
+  "makes_worthy": "Unprocessed backlog stub only; raised 1->2 on catalog presence. Cannot exceed 5 without implemented routing logic + a run/receipt.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.932492",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=3"
+}

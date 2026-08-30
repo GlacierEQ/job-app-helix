@@ -111,12 +111,12 @@ def test_wave21_refreshes_only_two_existing_admissions_without_count_delta() -> 
 
     for repository, expected in TARGETS.items():
         assert before_by_repo[repository]["admission"] == "ADMIT"
-        assert before_by_repo[repository]["decision_evidence"]["canonical_head"] == expected[
+        assert before_by_repo[repository]["decision_evidence"]["source_head"] == expected[
             "prior_head"
         ]
         assert after_by_repo[repository]["admission"] == "ADMIT"
         assert after_by_repo[repository]["repair_priority"] is None
-        assert after_by_repo[repository]["decision_evidence"]["canonical_head"] == expected[
+        assert after_by_repo[repository]["decision_evidence"]["source_head"] == expected[
             "head"
         ]
 
@@ -133,7 +133,7 @@ def test_wave21_refreshes_are_exact_head_scope_and_receipt_bound() -> None:
         evidence = record["decision_evidence"]
         assert record["prior_reconciled_admission"] == "ADMIT"
         assert record["admission"] == "ADMIT"
-        assert evidence["canonical_head"] == expected["head"]
+        assert evidence["source_head"] == expected["head"]
         assert evidence["evidence_token"] == expected["token"]
         assert evidence["verified_capability"] == expected["capability"]
         assert evidence["proof_receipts"] == [
@@ -162,8 +162,8 @@ def test_wave21_receipts_record_zero_delta_refresh() -> None:
         assert wave["decision"] == "ADMIT"
         assert receipt["repository"] == repository
         assert receipt["prior_surface_decision"] == "ADMIT"
-        assert receipt["source_canonical_head"] == expected["head"]
-        assert wave["evidence"]["canonical_head"] == expected["head"]
+        assert receipt["source_head"] == expected["head"]
+        assert wave["evidence"]["source_head"] == expected["head"]
         assert receipt["evidence_token"] == expected["token"]
         assert wave["evidence"]["evidence_token"] == expected["token"]
         assert receipt["verified_capability"] == expected["capability"]

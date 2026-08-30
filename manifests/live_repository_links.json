@@ -2,11 +2,11 @@
   "schema": "glaciereq.portfolio.live-links.v1",
   "owner": "GlacierEQ",
   "portfolio_root": "https://github.com/GlacierEQ/job-app-helix",
-  "canonical_branch": "main",
-  "link_mode": "live_canonical_repository",
+  "apex_branch": "main",
+  "link_mode": "live_apex_repository",
   "generated_presentations_may_cache_metadata": true,
   "source_code_copying_into_helix_forbidden": true,
-  "repository_updates_must_be_observed_from_canonical_origin": true,
+  "repository_updates_must_be_observed_from_apex_origin": true,
   "repositories": [
     "AEON-777",
     "AKOS",
@@ -78,7 +78,7 @@
   "url_template": "https://github.com/GlacierEQ/{repository}",
   "required_projection_fields": [
     "repository",
-    "canonical_url",
+    "apex_url",
     "default_branch",
     "head_sha",
     "visibility",

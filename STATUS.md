@@ -1,11 +1,11 @@
 # Status
 
 **State:** APEX_JOB_ECOSYSTEM_RESTORATION_ACTIVE  
-**Identity:** APEX is the counter to canonical destruction  
+**Identity:** APEX restores and governs the strongest verified project state  
 **Law:** MAXIMUM_COHERENT_ADVANCE  
 **Program:** [docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md](docs/apex/JOB_ECOSYSTEM_RESTORATION_PROGRAM.md)  
 **Machine:** [machine/job_ecosystem_restoration.json](machine/job_ecosystem_restoration.json)  
-**Last updated:** 2026-08-16
+**Last updated:** 2026-08-18
 
 ## Live architecture
 

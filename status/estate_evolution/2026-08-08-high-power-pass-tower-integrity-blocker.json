@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-08-08",
   "repository": "GlacierEQ/the-tower-of-babel",
-  "canonical_head_before": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+  "source_head_before": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
   "branch": "fix/branch-hygiene-synthesis-prefixes-20260807",
   "merge_base": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
   "ahead": 1,
@@ -20,7 +20,7 @@
     "generated_candidate_file_count": 200,
     "generated_candidate_branch_hygiene_sha256": "a02ad748ee978a15f227d4870823246312bda929a9c3839f99c9df8ec92cfa6e"
   },
-  "canonical_head_after": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
+  "source_head_after": "1a9e774ea163bc6ff4a132b6523da5daabae91a6",
   "remote_ref_disposition": "KEEP_UNTIL_VERIFIED; prior merged synthesis ref remains DELETE_REF_REQUIRED unless exact deletion is proven",
   "news_inputs": [
     "Reuters: Meta Muse Code/Muse Spark crash-resumable agent harness signal (already represented; no duplicate promotion)",

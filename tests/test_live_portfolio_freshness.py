@@ -160,7 +160,7 @@ def test_missing_live_evidence_is_visible_without_fabricating_failure():
         receipt = module.audit(getter(), "FIXTURE")
     assert "MISSING_FLAGSHIP_LIVE_EVIDENCE" in finding_codes(receipt)
     assert receipt["portfolio"]["recruiter_eligible_missing_live_evidence"] == 1
-    assert receipt["freshness"]["all_flagship_evidence_current"] is False
+    assert receipt["freshness"]["all_source_admitted_system_evidence_current"] is False
 
 
 def test_stale_live_evidence_is_an_error():
@@ -190,5 +190,5 @@ def test_current_evidence_and_public_visibility_can_be_clean():
         row for row in receipt["findings"] if row["severity"] == "ERROR"
     ]
     assert not errors
-    assert receipt["freshness"]["all_flagship_evidence_current"] is True
+    assert receipt["freshness"]["all_source_admitted_system_evidence_current"] is True
     assert receipt["freshness"]["declared_visibility_matches_live"] is True

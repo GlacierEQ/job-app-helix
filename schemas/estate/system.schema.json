@@ -1,15 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://glaciereq.local/schemas/estate/system.schema.json",
-  "title": "Canonical Engineering System",
+  "title": "Source-bound Engineering System",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "system_id", "name", "canonical_repository", "repository_refs", "capability_ids", "mechanism_ids", "bottleneck_ids", "evidence_ids"],
+  "required": ["schema", "system_id", "name", "source_repository", "repository_refs", "capability_ids", "mechanism_ids", "bottleneck_ids", "evidence_ids"],
   "properties": {
     "schema": {"const": "glaciereq.system.v1"},
     "system_id": {"type": "string", "minLength": 1},
     "name": {"type": "string", "minLength": 1},
-    "canonical_repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "source_repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
     "repository_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
     "capability_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
     "mechanism_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},

@@ -1,0 +1,21 @@
+{
+  "repo": "gpt-ai-assistant",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "An assistant combining OpenAI + LINE + Vercel (GPT AI Assistant, JavaScript). Cataloged as historical integration showing a messaging-platform-backed AI assistant pattern. Deeper mining confirms it is in historical_or_cross_company and LONG_TAIL_ATLAS_BATCH_07 classifies it 'preserved_upstream / application' with the explicit honest limitation that it is 'retained as upstream application without asserting credentials, deployment, or messaging availability.' No source, README, build receipt, or runtime evidence was located beyond catalog + status cross-reference.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:7308 (entry gpt-ai-assistant)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:37219 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/gpt-ai-assistant, contract_proof template only)",
+    "/tmp/monolith/domains/long_tail.md:386 (portfolio row: OpenAI + LINE + Vercel = GPT AI Assistant)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:221 (historical_or_cross_company: gpt-ai-assistant)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_07.md:91 (preserved_upstream/application; honest limitation: 'without asserting credentials, deployment, or messaging availability', confidence=medium)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Produce a repository_fact_card with implementation evidence (LINE webhook + Vercel deploy, tests, build receipt) and a README; only a catalog description currently exists locally. Capped at 5: upstream-preserved catalog entry with no deployment or runtime proof.",
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:16.977435",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

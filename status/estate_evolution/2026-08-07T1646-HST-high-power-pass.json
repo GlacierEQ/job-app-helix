@@ -11,8 +11,8 @@
       "repository": "GlacierEQ/the-tower-of-babel",
       "default_branch": "main",
       "fork_upstream_status": "owned; no upstream-tracking mutation performed",
-      "canonical_head_before": "e3778353e92b404de43f41963a0c7bffb84897ac",
-      "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
+      "source_head_before": "e3778353e92b404de43f41963a0c7bffb84897ac",
+      "source_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
       "branch": "synthesize/spaceflight-expansion-audit-20260807",
       "merge_base": "e3778353e92b404de43f41963a0c7bffb84897ac",
       "ahead": 4,
@@ -24,7 +24,7 @@
         "registry/proposals/spaceflight-expansion.candidates.json"
       ],
       "decision": "MERGED_VERIFIED_SYNTHESIS",
-      "preservation_action": "Recovered stale PR #24 value onto current main ancestry, reconciled pre-existing canonical registry.py ledger drift, committed the head-specific native-generated 202-entry integrity candidate byte-exactly, then promoted only after all required workflows passed.",
+      "preservation_action": "Recovered stale PR #24 value onto current main ancestry, reconciled pre-existing reference registry.py ledger drift, committed the head-specific native-generated 202-entry integrity candidate byte-exactly, then promoted only after all required workflows passed.",
       "verification_result": {
         "exact_verified_head": "c7e18956e2aac0785707343a44ced1bda6027873",
         "native_artifact_blob_sha": "994315e329d7aeb6c36352f19f7063178c4387b4",
@@ -40,7 +40,7 @@
         "pull_request": 24,
         "branch": "build/spaceflight-expansion-audit",
         "source_head": "14943f2719d6ae45583686a0fc28323b431eb854",
-        "patch_equivalence": "Both unique source files are blob-identical to canonical after PR #30; zero remaining unique value.",
+        "patch_equivalence": "Both unique source files are blob-identical to reference after PR #30; zero remaining unique value.",
         "remote_ref_disposition": "DELETE_REF_REQUIRED"
       },
       "next_cursor": {
@@ -58,7 +58,7 @@
       "repository": "GlacierEQ/job-application",
       "default_branch": "main",
       "fork_upstream_status": "owned; no upstream-tracking mutation performed",
-      "canonical_head_observed": "7355d13503a6c50c426d780f283707c89a272c3f",
+      "source_head_observed": "7355d13503a6c50c426d780f283707c89a272c3f",
       "branch_family": "release/v16-tree-probe*",
       "branch_head": "5c12b17bc2da4ee9cc49a3f3a6f9110c483b5e29",
       "merge_base": "5c12b17bc2da4ee9cc49a3f3a6f9110c483b5e29",
@@ -77,15 +77,15 @@
         "release/v16-tree-probe-9"
       ],
       "decision": "RETIREMENT_READY",
-      "preservation_action": "No merge or synthesis required; canonical contains the exact branch head and 93 subsequent commits.",
+      "preservation_action": "No merge or synthesis required; reference contains the exact branch head and 93 subsequent commits.",
       "verification_result": "ancestry proven by compare API",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
       "repository": "GlacierEQ/monolith",
       "default_branch": "main",
-      "canonical_head_before": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
-      "canonical_head_after": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "source_head_before": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "source_head_after": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
       "branch": "synthesize/legal-live-reconciliation-20260807",
       "branch_head": "7ed43326f0a621e8275b24e489b8fbbaa55f67c8",
       "merge_base": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
@@ -93,7 +93,7 @@
       "behind": 0,
       "files_affected": 10,
       "unique_patch_value": "Legal live-source reconciliation/hardening remains isolated from generated legal-spine artifacts.",
-      "decision": "KEEP_CANONICAL_UNTOUCHED",
+      "decision": "KEEP_SOURCE_BOUND_UNTOUCHED",
       "preservation_action": "Deterministic legal-spine synchronization contract preserved; no generated legal-spine drift detected or introduced.",
       "verification_result": {
         "Monolith Catalog Evolution Gate": "failure",
@@ -122,8 +122,8 @@
   ],
   "innovation_inputs": [],
   "blockers": [
-    "Monolith PR #48 hosted verification cannot currently provide executable proof; canonical remains fail-closed.",
+    "Monolith PR #48 hosted verification cannot currently provide executable proof; reference remains fail-closed.",
     "GitHub connector exposes no proven remote branch-ref deletion action; all retirement-ready refs remain DELETE_REF_REQUIRED."
   ],
-  "next_cursor": "Fresh-head synthesize Tower PR #25 anti-theater/evidence-selection delta onto canonical 5c3247ed6d6e964214afd37180d859e929875483, preserving intervening registry/generator hardening and regenerating derived surfaces before native verification."
+  "next_cursor": "Fresh-head synthesize Tower PR #25 anti-theater/evidence-selection delta onto reference 5c3247ed6d6e964214afd37180d859e929875483, preserving intervening registry/generator hardening and regenerating derived surfaces before native verification."
 }

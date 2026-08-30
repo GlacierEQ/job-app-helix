@@ -13,7 +13,7 @@
   "closed_repairs": [
     {
       "repository": "GlacierEQ/apex-control-plane",
-      "canonical_head": "2ada79228f83c31cc21c5194062c64b353d9cc48",
+      "source_head": "2ada79228f83c31cc21c5194062c64b353d9cc48",
       "proof_runs": [31346871422, 31346871196],
       "material_repairs": [
         "bound registry and audit CI to the exact pull-request or push source head",
@@ -23,7 +23,7 @@
     },
     {
       "repository": "GlacierEQ/aws-trainium-neuron-sentinel",
-      "canonical_head": "b30bc0ae04030a565204c4e0abced082a7b50979",
+      "source_head": "b30bc0ae04030a565204c4e0abced082a7b50979",
       "proof_runs": [31346903588],
       "material_repairs": [
         "replaced AWS hardware and production-performance semantics with deterministic local scenario arithmetic",
@@ -33,7 +33,7 @@
     },
     {
       "repository": "GlacierEQ/megamind",
-      "canonical_head": "b70121db3ef1fad23ef6001234707bcabce21856",
+      "source_head": "b70121db3ef1fad23ef6001234707bcabce21856",
       "proof_runs": [31347374683],
       "material_repairs": [
         "removed the workstation-specific Tower integration default and required explicit local configuration",

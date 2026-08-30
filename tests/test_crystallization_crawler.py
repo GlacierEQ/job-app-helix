@@ -1,9 +1,14 @@
 from __future__ import annotations
 
 import base64
+import io
+import json
+import urllib.error
 import urllib.parse
 
+import job_app_helix.crystallization_crawler as crystallization_crawler
 from job_app_helix.crystallization_crawler import (
+    GitHubApi,
     Repository,
     crawl_estate,
     crawl_repository,
@@ -23,6 +28,20 @@ class FakeApi:
         if isinstance(value, Exception):
             raise value
         return value
+
+
+class FakeResponse:
+    def __init__(self, payload):
+        self.payload = payload
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, traceback):
+        return False
+
+    def read(self):
+        return json.dumps(self.payload).encode()
 
 
 def _blob(text: str):
@@ -59,6 +78,54 @@ def _repo_item(full_name: str, ident: int):
         "fork": False,
         "permissions": {"push": True, "admin": ident == 1},
     }
+
+
+def test_github_api_retries_transient_http_failures(monkeypatch) -> None:
+    attempts = []
+    failure = urllib.error.HTTPError(
+        "https://api.github.com/test",
+        503,
+        "service unavailable",
+        {"Retry-After": "0"},
+        io.BytesIO(b"temporary outage"),
+    )
+
+    def fake_urlopen(request, timeout):
+        attempts.append((request.full_url, timeout))
+        if len(attempts) == 1:
+            raise failure
+        return FakeResponse({"state": "ok"})
+
+    monkeypatch.setattr(crystallization_crawler.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(crystallization_crawler.time, "sleep", lambda _: None)
+
+    assert GitHubApi("token", retries=2).get_json("/test") == {"state": "ok"}
+    assert len(attempts) == 2
+
+
+def test_github_api_does_not_retry_authorization_errors(monkeypatch) -> None:
+    attempts = []
+    failure = urllib.error.HTTPError(
+        "https://api.github.com/test",
+        401,
+        "unauthorized",
+        {},
+        io.BytesIO(b"invalid token"),
+    )
+
+    def fake_urlopen(request, timeout):
+        attempts.append((request.full_url, timeout))
+        raise failure
+
+    monkeypatch.setattr(crystallization_crawler.urllib.request, "urlopen", fake_urlopen)
+
+    try:
+        GitHubApi("token", retries=2).get_json("/test")
+    except crystallization_crawler.CrawlError as exc:
+        assert "GitHub HTTP 401" in str(exc)
+    else:
+        raise AssertionError("authorization failure must not be retried")
+    assert len(attempts) == 1
 
 
 def test_accessible_census_includes_owner_org_and_collaborator_pages() -> None:

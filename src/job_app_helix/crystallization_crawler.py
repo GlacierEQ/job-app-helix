@@ -13,6 +13,7 @@ import binascii
 import hashlib
 import json
 import re
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -191,11 +192,27 @@ class Repository:
 
 
 class GitHubApi:
-    def __init__(self, token: str, api_root: str = "https://api.github.com") -> None:
+    def __init__(
+        self,
+        token: str,
+        api_root: str = "https://api.github.com",
+        retries: int = 3,
+    ) -> None:
         if not token:
             raise CrawlError("GitHub token is required")
         self.token = token
         self.api_root = api_root.rstrip("/")
+        self.retries = retries
+
+    @staticmethod
+    def _retry_delay(exc: urllib.error.HTTPError, attempt: int) -> float | None:
+        rate_limited = exc.code == 403 and exc.headers.get("X-RateLimit-Remaining") == "0"
+        if exc.code not in {429, 500, 502, 503, 504} and not rate_limited:
+            return None
+        retry_after = exc.headers.get("Retry-After")
+        if retry_after and retry_after.isdigit():
+            return min(float(retry_after), 60.0)
+        return min(2.0**attempt, 30.0)
 
     def get_json(self, path: str) -> Any:
         request = urllib.request.Request(
@@ -207,18 +224,25 @@ class GitHubApi:
                 "User-Agent": "job-app-helix-crystallization-crawler",
             },
         )
-        try:
-            with urllib.request.urlopen(request, timeout=60) as response:
-                return json.loads(response.read().decode("utf-8"))
-        except urllib.error.HTTPError as exc:
-            detail = exc.read().decode("utf-8", errors="replace")
-            message = f"GitHub HTTP {exc.code} for {path}: {detail[:300]}"
-            raise CrawlError(message) from exc
-        except urllib.error.URLError as exc:
-            message = f"GitHub transport failure for {path}: {exc.reason}"
-            raise CrawlError(message) from exc
-        except json.JSONDecodeError as exc:
-            raise CrawlError(f"GitHub returned invalid JSON for {path}") from exc
+        for attempt in range(self.retries + 1):
+            try:
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    return json.loads(response.read().decode("utf-8"))
+            except urllib.error.HTTPError as exc:
+                delay = self._retry_delay(exc, attempt)
+                if delay is None or attempt == self.retries:
+                    detail = exc.read().decode("utf-8", errors="replace")
+                    message = f"GitHub HTTP {exc.code} for {path}: {detail[:300]}"
+                    raise CrawlError(message) from exc
+                time.sleep(delay)
+            except urllib.error.URLError as exc:
+                if attempt == self.retries:
+                    message = f"GitHub transport failure for {path}: {exc.reason}"
+                    raise CrawlError(message) from exc
+                time.sleep(min(2.0**attempt, 30.0))
+            except json.JSONDecodeError as exc:
+                raise CrawlError(f"GitHub returned invalid JSON for {path}") from exc
+        raise AssertionError("unreachable")
 
 
 def _repo_from_api(item: dict[str, Any], position: int) -> Repository:

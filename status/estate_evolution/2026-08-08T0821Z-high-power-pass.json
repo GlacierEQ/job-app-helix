@@ -8,8 +8,8 @@
       "repository": "GlacierEQ/monolith",
       "default_branch": "main",
       "fork": false,
-      "canonical_head_before": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
-      "canonical_head_after": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+      "source_head_before": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+      "source_head_after": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
       "branch": "synthesize/legal-live-reconciliation-20260808",
       "pull_request": 54,
       "candidate_head": "204b3b30328a476cf43106e5830e36aec9829011",
@@ -19,7 +19,7 @@
       "unique_patch_commits": 1,
       "files_changed": 10,
       "decision": "KEEP_VERIFICATION_GATED",
-      "preservation": "Fresh synthesis remains pinned to current canonical; legal-spine generated surfaces remain untouched.",
+      "preservation": "Fresh synthesis remains pinned to current reference; legal-spine generated surfaces remain untouched.",
       "verification": "BLOCKED_EXTERNALLY_BEFORE_PRIVATE_WORKLOAD_EXECUTION",
       "legal_spine": {
         "generated_drift_detected": false,
@@ -36,8 +36,8 @@
       "repository": "GlacierEQ/mastermind",
       "default_branch": "main",
       "fork": false,
-      "canonical_head_before": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
-      "canonical_head_after": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
+      "source_head_before": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
+      "source_head_after": "4bbcfc2a20a593cb239cf908cba66b55ff16d2aa",
       "branch": "synthesize/bandit-1.9.4-20260808",
       "pull_request": 163,
       "candidate_head": "447edf137cee36cbb028fe09132574faa5d8b99b",
@@ -46,10 +46,10 @@
       "behind": 0,
       "unique_patch_commits": 1,
       "files_changed": ["pyproject.toml"],
-      "unique_patch_value": "Bandit security scanner maintenance update from ^1.7.0 to ^1.9.4, preserving stale Dependabot PR #140's useful one-line delta on fresh canonical ancestry.",
+      "unique_patch_value": "Bandit security scanner maintenance update from ^1.7.0 to ^1.9.4, preserving stale Dependabot PR #140's useful one-line delta on fresh reference ancestry.",
       "decision": "FRESH_SYNTHESIS_VERIFICATION_GATED",
       "preservation": "Created fresh synthesis branch and draft PR #163; closed stale PR #140 after exact value preservation.",
-      "verification": "MASTERmind_TRUTH_CONTRACT_RUN_31248025835_QUEUED; CANONICAL_UNTOUCHED",
+      "verification": "MASTERmind_TRUTH_CONTRACT_RUN_31248025835_QUEUED; SOURCE_BOUND_UNTOUCHED",
       "remote_ref_disposition": {
         "dependabot/pip/bandit-tw-1.9.4": "DELETE_REF_REQUIRED",
         "synthesize/bandit-1.9.4-20260808": "KEEP_PENDING_VERIFICATION"
@@ -64,7 +64,7 @@
           "pull_request": 45,
           "decision": "RETIREMENT_READY_PR_CLOSED",
           "unique_patch_value": "ZERO_CURRENT_REPLAY_VALUE",
-          "reason": "Both changed paths from the grouped Next.js/ESLint/diff Dependabot PR return 404 on current canonical main; replay would resurrect deleted topology.",
+          "reason": "Both changed paths from the grouped Next.js/ESLint/diff Dependabot PR return 404 on current reference main; replay would resurrect deleted topology.",
           "remote_ref_disposition": "DELETE_REF_REQUIRED"
         }
       ],

@@ -3,7 +3,7 @@
   "generated_at": "2026-08-10T20:00:00-10:00",
   "wave": 10,
   "repository": "GlacierEQ/spacex-mission-control",
-  "source_canonical_head": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
+  "source_head": "18f46561b6ff1eb00fb3b5c228f88996c9b13590",
   "source_state": "SYNTHETIC_MISSION_OPERATIONS_VERIFIED",
   "proof_receipts": [
     {
@@ -26,7 +26,7 @@
   "repairs": [
     "replaced live flight-operations, command-authority, voice-loop, telemetry-scale, WebSocket, MCP, and mesh overclaims with repository-native mission-operations simulation scope",
     "added explicit SpaceX non-affiliation and no-flight-command-authority boundary",
-    "made create_demo_mission the canonical synthetic profile while preserving create_f9_mission as a bounded historical alias",
+    "made create_demo_mission the reference synthetic profile while preserving create_f9_mission as a bounded historical alias",
     "fixed mission elapsed tracking so phase transitions no longer reset total mission elapsed",
     "prevented action exception text from leaking into public event logs",
     "replaced generic scaling capability metadata with verified event-bus, aggregation, orchestration, callback, abort, and local-ops capabilities",

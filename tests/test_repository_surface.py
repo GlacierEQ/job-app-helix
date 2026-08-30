@@ -31,7 +31,7 @@ def clean_record() -> dict:
         },
         "metadata": {
             "description_matches_readme": True,
-            "homepage_matches_canonical_surface": True,
+            "homepage_matches_reference_surface": True,
             "topics_present": True,
             "license_state_explicit": True,
         },

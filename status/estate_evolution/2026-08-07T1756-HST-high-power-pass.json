@@ -8,8 +8,8 @@
       "repository": "GlacierEQ/the-tower-of-babel",
       "default_branch": "main",
       "fork": false,
-      "canonical_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
-      "canonical_head_after": "e878c2eac4a1a6f0eac32de86c6048149f55ec0a",
+      "source_head_before": "5c3247ed6d6e964214afd37180d859e929875483",
+      "source_head_after": "e878c2eac4a1a6f0eac32de86c6048149f55ec0a",
       "branches": [
         {
           "branch": "synthesize/operational-evidence-selection-20260807",
@@ -57,14 +57,14 @@
     {
       "repository": "GlacierEQ/monolith",
       "default_branch": "main",
-      "canonical_head_before": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
-      "canonical_head_after": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "source_head_before": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "source_head_after": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
       "branch": "synthesize/legal-live-reconciliation-20260807",
       "pull_request": 48,
       "merge_base": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
       "ahead": 2,
       "behind": 0,
-      "decision": "CANONICAL_HELD",
+      "decision": "SOURCE_BOUND_HELD",
       "preservation_action": "Legal-spine generated surfaces remain untouched; candidate remains isolated.",
       "verification_result": "HOSTED WORKFLOWS RERUN BUT STILL FAIL BEFORE EXPOSING EXECUTABLE STEPS",
       "remote_ref_disposition": "KEEP"
@@ -72,7 +72,7 @@
     {
       "repository": "GlacierEQ/job-application",
       "default_branch": "main",
-      "canonical_head_after": "7355d13503a6c50c426d780f283707c89a272c3f",
+      "source_head_after": "7355d13503a6c50c426d780f283707c89a272c3f",
       "fork": false,
       "branch": "synthesize/company-atlas-current-main-20260808",
       "pull_request": 26,

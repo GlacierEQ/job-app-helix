@@ -8,7 +8,7 @@ The authenticated estate census is the **intelligence substrate**, not a recruit
 owned GitHub estate
   -> namespace isolation
   -> evidence-bound lineage collapse
-  -> canonical systems
+  -> APEX systems
   -> reusable capability donors
   -> proof binding
   -> company operating problems
@@ -18,13 +18,13 @@ owned GitHub estate
 
 The full native estate sits upstream of the existing governed recruiter portfolio. The smaller portfolio remains a projection; it is no longer the ceiling on what Helix can discover or prove.
 
-## Canonical outputs
+## APEX outputs
 
 A successful compile emits three primary registries:
 
-1. **Canonical System Registry** — one engineering-system identity per reconciled lineage root, with backups and archives retained as historical members and forks retained outside the accomplishment count.
-2. **Capability Donor Registry** — reusable capabilities linked to one or more canonical systems and their proof references. Repeated implementation across independent systems is represented explicitly.
-3. **Company Projection Registry** — company track -> operating problem -> target roles -> canonical systems -> capabilities -> ranked evidence -> bounded proof surface.
+1. **APEX System Registry** - one engineering-system identity per reconciled lineage root, with backups and archives retained as historical members and forks retained outside the accomplishment count.
+2. **Capability Donor Registry** - reusable capabilities linked to one or more APEX systems and their proof references. Repeated implementation across independent systems is represented explicitly.
+3. **Company Projection Registry** - company track -> operating problem -> target roles -> APEX systems -> capabilities -> ranked evidence -> bounded proof surface.
 
 Generated full registries remain internal because the authenticated census can contain private repository identities. Only the compiler receipt and separately generated public-safe projection are publication-eligible.
 
@@ -41,13 +41,13 @@ Forks are isolated as `FORK_REFERENCE` directly from authenticated GitHub metada
 Automatic collapse is conservative:
 
 - explicit typed lineage with evidence may collapse;
-- `EXPLICIT_SUCCESSOR_OF` makes the asserted successor the canonical root;
+- `EXPLICIT_SUCCESSOR_OF` makes the asserted successor the APEX root;
 - high-confidence backup/archive identity plus authenticated census metadata may collapse;
 - similar normalized names without sufficient evidence emit `UNRESOLVED_LINEAGE_CANDIDATE`;
 - cycles fail closed;
-- historical members remain preserved after canonicalization.
+- historical members remain preserved after APEX reconciliation.
 
-The canonical-system count therefore emerges from reconciliation rather than from a guessed target number.
+The APEX-system count therefore emerges from reconciliation rather than from a guessed target number.
 
 ## Capability donors
 
@@ -57,7 +57,7 @@ Each capability records donor systems, independent donor count, proof references
 
 ## Promotion score
 
-Every canonical system receives five equal-weight dimensions:
+Every APEX system receives five equal-weight dimensions:
 
 - originality;
 - technical depth;
@@ -69,7 +69,7 @@ Every canonical system receives five equal-weight dimensions:
 
 ## Bounded proof-surface compiler
 
-Company projection uses a bounded greedy capability set-cover. For each target, Helix chooses at most five canonical systems that maximize distinct capability coverage and proof strength. This minimizes redundant repository exposure while preserving the full ranked evidence graph internally.
+Company projection uses a bounded greedy capability set-cover. For each target, Helix chooses at most five APEX systems that maximize distinct capability coverage and proof strength. This minimizes redundant repository exposure while preserving the full ranked evidence graph internally.
 
 The public-safe pass is stricter than the internal graph: a repository must be public **and** its company-level promotion state must be recruiter-eligible (`PROMOTED` or `REFERENCE_ONLY`). Public experiments, blocked candidates, private systems, and legal-private records are excluded.
 
@@ -108,4 +108,4 @@ python scripts/compile_estate_graph.py \
 
 ## Completion contract
 
-A run is complete only after it emits the canonical-system registry, capability-donor registry, company-projection registry, experiment pipeline, deterministic receipt, and—when requested—a public-safe projection. Unresolved lineage or incomplete namespace classification is a valid fail-visible state; it is never permission to guess.
+A run is complete only after it emits the APEX-system registry, capability-donor registry, company-projection registry, experiment pipeline, deterministic receipt, and, when requested, a public-safe projection. Unresolved lineage or incomplete namespace classification is a valid fail-visible state; it is never permission to guess.

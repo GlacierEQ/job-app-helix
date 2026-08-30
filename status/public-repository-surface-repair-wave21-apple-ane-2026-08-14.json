@@ -3,7 +3,7 @@
   "generated_at": "2026-08-14T14:36:00-10:00",
   "wave": 21,
   "repository": "GlacierEQ/apple-ane-kv-quantizer",
-  "source_canonical_head": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
+  "source_head": "f784f80b8b17484e8aa89b034348687b6e8b85ab",
   "source_state": "MODELED_APPLE_SILICON_KV_QUANTIZATION_NATIVE_PROOF_REFRESHED",
   "prior_surface_decision": "ADMIT",
   "proof_receipts": [
@@ -24,7 +24,7 @@
     "added fail-closed public and machine truth enforcement",
     "expanded the Public Truth Gate from Python 3.11/3.13 to Python 3.11/3.12/3.13",
     "pinned checkout and setup-python and disabled persisted checkout credentials",
-    "bound repaired canonical main to successful exact-head Public Truth Gate run 31853557343",
+    "bound repaired reference main to successful exact-head Public Truth Gate run 31853557343",
     "refreshed the existing Wave 3 admission evidence without incrementing governed admission count"
   ],
   "nonclaims": [

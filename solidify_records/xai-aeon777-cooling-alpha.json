@@ -1,0 +1,27 @@
+{
+  "repo": "xai-aeon777-cooling-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Wave-3 mining of local sources confirms this is an alpha/omega variant of the xAI/Colossus portfolio listed under xai_colossus.historical_or_cross_company (canonical candidate xai-colossus-cooling). The monolith catalog (library.json) records it as a Python 'part' with domain=memory_aspen, activity=catalogued, status_detail=catalogued_unclassified, private=true, desc='' (EMPTY), local_job_app=false, issue_contract=false. No local clone, README, code, tests, fact card, or CI receipt was found. The xai_colossus_cooling_hardening.json receipt verifies the canonical xai-colossus-cooling (37/37 tests, run_id 30895011833, artifact 8886632264 digest sha256:53c6f26ece8696d8b9d1aed54e4be5a537908a372751210acdace2e44648227b) but NOT this aeon777-named variant. Name collision risk: do not attribute the verified 37/37 lineage to this catalog stub. Capped honestly at 3.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry xai-aeon777-cooling-alpha: domain=memory_aspen, role=part, activity=catalogued, status_detail=catalogued_unclassified, language=Python, desc='' (EMPTY), private=true, local_job_app=false, issue_contract=false)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company includes 'xai-aeon777-cooling-alpha')",
+    "xai_colossus_cooling_hardening.json verifies the canonical xai-colossus-cooling lineage (NOT this aeon777 variant \u2014 confirmed absence)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_5": "(1) Clone the repository; (2) confirm whether implementation exists; (3) extract a README and any tests into a fact card; (4) add a runnable test suite plus a CI truth gate; (5) emit a hardening receipt with a pinned commit and artifact digest, mirroring xai_colossus_cooling_hardening.json structure (cooling-blueprint + DXF/PDF/SVG/PNG blueprint outputs + SHA-256 hashes).",
+  "makes_worthy_7": "After worthy_5 steps, also: (a) demonstrate cooling simulation with a typed, versioned scenario; (b) add boundary tests for thermal regime transitions; (c) obtain independent cooling-systems review. Until then, this remains a name-only catalog stub.",
+  "honest_limits": [
+    "catalog desc field is EMPTY; no mechanism evidence beyond the family grouping",
+    "no local clone, source inspection, test, CI run id, artifact, or receipt found locally",
+    "name collision risk: the verified 37/37 xai-colossus-cooling lineage is distinct; this aeon777 variant is not covered by that receipt"
+  ],
+  "last_verified": "2026-08-29T08:47:16.818656",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

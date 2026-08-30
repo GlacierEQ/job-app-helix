@@ -1,0 +1,33 @@
+{
+  "repo": "xai-colossus-nanosphere",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "wave3": true,
+  "evidence_state": "BOUNDED_NANOFLUID_MODEL_TEST_VERIFIED",
+  "promotion_state": "FLAGSHIP_CANDIDATE_WITH_MODELED_NOT_MEASURED_BOUNDARY",
+  "merge_authorized": false,
+  "innovation_summary": "Colossus nanosphere pillar of the AKOS portfolio. Wave-3 mining now binds the family hardening receipt (BOUNDED_NANOFLUID_MODEL_TEST_VERIFIED) to this base repository: direct truth-gate run_id 30899305574 (Nanosphere Model Truth Gate) on Python 3.11.15 passed 58/58 tests with 0 failures/errors/skipped at tested_commit 6d6df009ba30665cbc554d071f1f48b83dd1ebb9, exercised a MODELED_SCENARIO_VERIFIED (water+Al2O3 φ=0.03, T=30°C, age=30d) with scenario_sha256=4617e8f107cf7f9454c42d1a2819a9d39ddf3ee25d5902a2e106f08e39a298e0 and manifest_sha256=713e3656953c800fbf27998c4355d7cb1a2e492fe4cd1d14454e054aa20153cc, and produced artifact 8888366530 (sha256:c00fd60d251f6eaae6c2ec3ad5a316438c1f7049bd923e31aa54d71fd5df3e48, expires 2026-08-18T10:07:37Z). Catalog flags confirm worked_on/worked_solidified + local_job_app=true. Real test + hashed receipt in-hand warrants 8, with a ceiling at 10 reserved for a merged, telemetry-validated deployment.",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 46 (workflow='Nanosphere Model Truth Gate', run_id=30899305574, conclusion=success, python=3.11.15)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 52 (tests passed=58, total=58, failures=0, errors=0, skipped=0)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 58 (tested_commit 6d6df009ba30665cbc554d071f1f48b83dd1ebb9)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 93 (scenario_sha256 4617e8f107cf7f9454c42d1a2819a9d39ddf3ee25d5902a2e106f08e39a298e0)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 94 (manifest_sha256 713e3656953c800fbf27998c4355d7cb1a2e492fe4cd1d14454e054aa20153cc)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 100 (artifact digest sha256:c00fd60d251f6eaae6c2ec3ad5a316438c1f7049bd923e31aa54d71fd5df3e48)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 106 (reusable CI gate run_id=30899307243, conclusion=success)",
+    "/tmp/monolith/catalog/library.json:18156 (catalog entry: domain=colossus_xai, role=part, activity=worked_on, status_detail=worked_solidified, local_job_app=true)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:308 (xAI/Colossus family, current_preparation listing)"
+  ],
+  "verification_status": "VERIFIED_TEST",
+  "worthy_rating": 8,
+  "makes_worthy_10": "Add primary citations and versioned provenance for every constant/threshold; add uncertainty ranges + sensitivity analysis; compare against laboratory or published reference datasets; model additional pressure-drop, concentration-interaction, corrosion, erosion, filtration effects; add signed measured-data ingestion with calibration metadata; obtain independent chemical, materials, thermal, and safety review; merge PR #4 to main; graduate to a measured, not modeled, scenario.",
+  "honest_limits": [
+    "scenario is MODELED_NOT_MELEMETRY (no laboratory measurements, no real physical-circuit telemetry)",
+    "no chemical dosing, magnetic recovery, or hardware actuation",
+    "private alpha/omega runtime composition remains blocked (separate hardening required)",
+    "complete multiphase, Brownian, agglomeration, or non-Newtonian behavior not modeled",
+    "corrosion, erosion, filtration, toxicology, or materials compatibility not modeled",
+    "merge_authorized=false in source PR #4"
+  ]
+}

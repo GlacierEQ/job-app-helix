@@ -2,7 +2,7 @@
   "schema": "glaciereq.estate-evolution.receipt.v1",
   "timestamp": "2026-08-07T15:33:00Z",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_head_before": "a6ecfc95e105d98480dc80d0b80298ec8c8b1ebc",
+  "source_head_before": "a6ecfc95e105d98480dc80d0b80298ec8c8b1ebc",
   "branch": "main",
   "merge_base": "a6ecfc95e105d98480dc80d0b80298ec8c8b1ebc",
   "ahead": 0,
@@ -16,7 +16,7 @@
   "decision": "ADVANCE_VERIFIED_VALUE_RETIRE_PATCH_EQUIVALENT_VALUE_AND_FAIL_CLOSED_ON_UNPROVEN_SURFACES",
   "preservation": {
     "monolith_legal_spine": {
-      "canonical_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
+      "source_head": "4c924ef5f50fdf5bb68103f456793e1ad3b822c0",
       "pr": 48,
       "branch": "synthesize/legal-live-reconciliation-20260807",
       "head": "f686505aa521faf5f9511e423124832ad08aae3a",
@@ -48,7 +48,7 @@
     "job_application": {
       "default_branch": "main",
       "fork_upstream_status": "not exposed by current repository metadata",
-      "canonical_head": "724a6090aed63b28730a57c54f5b08a26791a054",
+      "source_head": "724a6090aed63b28730a57c54f5b08a26791a054",
       "branch": "synthesize/v18-release-language-current-main-20260807",
       "merge_base": "3b7c73292279a8f68956546a821d2e570dbe5245",
       "ahead": 3,
@@ -105,7 +105,7 @@
       "repository": "GlacierEQ/Pro_Code",
       "default_branch": "main",
       "fork_upstream_status": "not exposed by current repository metadata",
-      "canonical_head": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
+      "source_head": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
       "open_prs": 0,
       "branches_inspected": {
         "hardening/doctrine-truth-boundary-2026-07-30": {"ahead": 15, "behind": 10},
@@ -125,13 +125,13 @@
       "stale_pr_156": "closed as superseded only after receipt value was preserved by PR 161",
       "monolith_projection_branch": "status/mastermind-estate-20260807",
       "monolith_projection_head": "ebf475eb1f76dfc8240c83ae17b3fdc251947a61",
-      "monolith_projection_verification": "Catalog Evolution Gate validate-catalog failure; canonical Monolith untouched",
+      "monolith_projection_verification": "Catalog Evolution Gate validate-catalog failure; reference Monolith untouched",
       "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_SUPERSEDED_REFS"
     },
     "megaminds_pdf": {
       "default_branch": "master",
       "fork_upstream_status": "not exposed by current repository metadata",
-      "canonical_head": "37b78ae54a852c94eba54702b4a667caca20d87e",
+      "source_head": "37b78ae54a852c94eba54702b4a667caca20d87e",
       "branches_inspected": {
         "dependabot/npm_and_yarn/npm_and_yarn-1cf6c73f19": {"ahead": 1, "behind": 3},
         "hardening/pdf-viewer-truth-contract-2026-07-30": {"ahead": 33, "behind": 2}
@@ -165,7 +165,7 @@
     "make_it_heavy": "FOUR_FILE_EXACT_BLOB_EQUIVALENCE_PROVED_BEFORE_PR29_CLOSURE",
     "monolith_status_projection": "UPDATED_ON_PR49_BRANCH_BUT_NATIVE_CATALOG_GATE_FAILS"
   },
-  "canonical_head_after": "PENDING_THIS_RECEIPT_COMMIT",
+  "source_head_after": "PENDING_THIS_RECEIPT_COMMIT",
   "remote_ref_disposition": "DELETE_REF_REQUIRED for retirement-ready refs; current GitHub connector exposes ref movement but no proven branch-ref deletion primitive",
   "news_inputs": {
     "window_hours": 24,
@@ -176,7 +176,7 @@
     "decision": "NO_NEW_ACTIONABLE_SIGNAL_REQUIRING_RADAR_OR_LIBRARY_OF_LINKS_MUTATION"
   },
   "innovation_inputs": [
-    "retain make-it-heavy adaptive execution harness and conservative source-span semantic gate already present on canonical",
+    "retain make-it-heavy adaptive execution harness and conservative source-span semantic gate already present on reference",
     "content-address verification receipts to exact checked-out commit identity; synthesize Helix PR42 delta on fresh main before promotion",
     "use deterministic integrity-candidate artifacts to repair immutable manifests rather than weakening integrity gates",
     "preserve aspiration while calibrating only at deployment and verification boundaries",

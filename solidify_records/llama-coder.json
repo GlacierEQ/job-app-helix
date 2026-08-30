@@ -1,0 +1,21 @@
+{
+  "repo": "llama-coder",
+  "family": "Meta",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Local AI coding assistant positioned as a Copilot replacement (Meta upstream reference, TypeScript). Multi-source: library.json:9628 (entry name=llama-coder, domain=long_tail, language=TypeScript), capabilities_3layer:40327 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/llama-coder, contract_proof template only), domains/long_tail.md:460 (portfolio row: Replace Copilot local AI), company_engineered_repositories.json:180 (reference_or_upstream: llama-coder, llama-fs__public_fork_archive), and LONG_TAIL_ATLAS_BATCH_09.md:68 (preserved_upstream/assistant; honest limitation: catalog scope only, not deployment/security/performance, confidence=medium). Rating held at 5: catalog + domain + family + atlas cross-reference, but no deployment proof.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:9628 (entry name=llama-coder, domain=long_tail, language=TypeScript)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:40327 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/llama-coder, contract_proof template only)",
+    "/tmp/monolith/domains/long_tail.md:460 (portfolio row: Replace Copilot local AI)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:178-183 (Meta family; reference_or_upstream: llama-coder, llama-fs__public_fork_archive; canonical_candidate=meta-llama-collective-sentinel)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_09.md:68 (preserved_upstream/assistant; honest limitation: catalog scope only, not deployment/security/performance, confidence=medium)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Held at 5: multi-source catalog + family + atlas cross-reference = solid catalog floor. To reach >=7: a README + a runnable entrypoint + a build/test receipt, plus a fact card with runtime evidence (model load + first-completion log) to lift from reference to portfolio-ready. Capped at 5: upstream reference with catalog scope only, no local deployment proof.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.956512",
+  "notes": " | NEEDS_REPAIR"
+}

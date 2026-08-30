@@ -1,0 +1,26 @@
+{
+  "repo": "colossus-realignment",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "unprocessed",
+  "wave3": true,
+  "innovation_summary": "Realignment controller for the Colossus generation (model_inference_and_sentinels domain). Wave-3 mining confirms a concrete capability entry in capabilities_3layer.json (name, launch_cmd, contract_proof DONE, mesh_uri glaciereq://mesh/model_inference_and_sentinels/colossus-realignment), a library.json row, and a family canonicalization cross-reference. It is, however, in the unprocessed backlog \u2014 no hardening receipt, no test run, no artifact digest, and no fact card. Capped honestly at 4 (catalog + capability stub + family canonicalization only; no runtime verification).",
+  "evidence": [
+    "/tmp/monolith/catalog/company_engineered_repositories.json:309 (unprocessed backlog: colossus-realignment)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json:89 (colossus family canonicalization)",
+    "/tmp/monolith/catalog/library.json:4300 (name colossus-realignment; url https://github.com/GlacierEQ/colossus-realignment)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:21875 (stub: name, launch_cmd 'git clone', contract_proof DONE, mesh_uri glaciereq://mesh/model_inference_and_sentinels/colossus-realignment)",
+    "Absence: no entry under /tmp/monolith/receipts/company_families/* pins colossus-realignment"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy_7": "(1) Move from unprocessed to current_preparation; (2) implement or import the realignment controller; (3) add a runnable test suite (rack-state, MW-thermal, job-priority realignment scenarios); (4) add a CI truth gate; (5) emit a hardening receipt with a pinned commit and scenario + artifact SHA-256 digests mirroring xai_colossus_servers_hardening.json. Until then, capability_3layer contract_proof is a contract declaration, not a runtime verification.",
+  "honest_limits": [
+    "capabilities_3layer contract_proof DONE is a declaration, not an executed test",
+    "no hardening receipt, no test run, no artifact digest, no fact card",
+    "launch_cmd is 'git clone' \u2014 no executable surface yet"
+  ],
+  "last_verified": "2026-08-29T08:47:16.898029",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

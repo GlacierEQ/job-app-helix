@@ -3,7 +3,7 @@
   "generated_at": "2026-08-13T16:45:00-10:00",
   "wave": 18,
   "repository": "GlacierEQ/nvidia-gpu-health",
-  "source_canonical_head": "3c2d2b98f700e0224685152b73d55276ef767286",
+  "source_head": "3c2d2b98f700e0224685152b73d55276ef767286",
   "source_state": "LOCAL_SYNTHETIC_GPU_HEALTH_NATIVE_PROOF_VERIFIED",
   "proof_receipts": [
     {
@@ -23,7 +23,7 @@
     "made modeled link bandwidth participate in the C11 policy and added explicit invalid-input handling",
     "compiled and executed the C11 kernel under strict warnings-as-errors as part of repository-owned verification",
     "replaced hyper-scaling capability theater and stale PROMOTED state with an exact bounded capability whitelist and FUNCTIONAL_CANDIDATE state pending native proof",
-    "bound canonical post-merge CI to exact master and reproduced the Python, public-boundary, and native C truth gates"
+    "bound reference post-merge CI to exact master and reproduced the Python, public-boundary, and native C truth gates"
   ],
   "nonclaims": [
     "no NVIDIA affiliation, employment, endorsement, or proprietary access",

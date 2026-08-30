@@ -1,0 +1,21 @@
+{
+  "repo": "anthropic-cross-domain-fusion",
+  "family": "Anthropic",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Anthropic-family lab_hire_stamps repository targeting cross-domain fusion. Catalog evidence: library.json (activity=catalogued, status_detail=catalogued_unclassified, role=part, issue_contract=false, language=Python), company_engineered_repositories.json (anthropic group, unprocessed), capabilities_3layer.json (LAB_BENCHMARKS_AND_STAMPS, impact_score=P1, contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding in the LAB_BENCHMARKS_AND_STAMPS slot, agent_tool_registration=tool_anthropic_cross_domain_fusion, git-clone launch_cmd). The contract_proof DONE, mesh_uri, and sha256_binding establish catalog-grade mesh registration; the empty desc and unprocessed status establish that no functional summary, README scope, or executed test exists locally. Purpose inferred only from name and group placement.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:1372 (name=anthropic-cross-domain-fusion, domain=lab_hire_stamps, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, desc='', issue_contract=false, local_job_app=false, language=Python, updatedAt=2026-07-19T19:57:26Z)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:59 (anthropic.unprocessed)",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md (name listed)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md (name listed)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24357 (LAB_BENCHMARKS_AND_STAMPS, impact_score=P1, executive_summary absent, launch_cmd='git clone https://github.com/GlacierEQ/anthropic-cross-domain-fusion', contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/anthropic-cross-domain-fusion, agent_tool_registration.name=tool_anthropic_cross_domain_fusion, description empty)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Catalog-only with mesh registration (contract_proof + mesh_uri + sha256) bumps 2->5 honestly. Cannot exceed 7 without: (1) a README defining cross-domain fusion scope (input domains, fusion method, output contract), (2) a fact card with a runnable example, (3) a per-repo executed test producing a glaciereq.proof-receipt.v1 receipt. Promotion to 8+ requires a reproducible fusion run with two+ input domains producing a hash-bound fused output.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.739763",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

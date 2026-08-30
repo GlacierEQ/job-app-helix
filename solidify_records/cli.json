@@ -1,0 +1,19 @@
+{
+  "repo": "cli",
+  "family": "Supabase",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Reference/upstream fork of the Supabase CLI (Postgres migrations, local dev, edge-function deploy, types generation). No GlacierEQ-specific changes, tests, or runtime evidence found locally; it is an unmodified upstream mirror. Catalog carries a real description and a capabilities_3layer stub, but no local modifications.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:3740 (domain=long_tail, role=part, desc='Supabase CLI. Manage postgres migrations, run Supabase locally, deploy edge functions...', local_job_app=false)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:270 (Supabase family, reference_or_upstream)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=cli; launch_cmd git clone, contract_proof DONE, mesh_uri)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 3,
+  "makes_worthy": "Unmodified upstream mirror; cannot raise above 2 without a real GlacierEQ modification + test. Keep as pinned upstream reference.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:17.023970",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=3"
+}

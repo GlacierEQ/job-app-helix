@@ -27,10 +27,10 @@
     "capture_contract": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["state_and_delta_required", "canonical_heads_required", "source_hash_algorithm", "fail_closed_on_missing_private_estate_authority", "historical_reconstruction_must_identify_reconstruction", "contemporary_capture_must_record_capture_time_hst"],
+      "required": ["state_and_delta_required", "source_heads_required", "source_hash_algorithm", "fail_closed_on_missing_private_estate_authority", "historical_reconstruction_must_identify_reconstruction", "contemporary_capture_must_record_capture_time_hst"],
       "properties": {
         "state_and_delta_required": {"const": true},
-        "canonical_heads_required": {"const": true},
+        "source_heads_required": {"const": true},
         "source_hash_algorithm": {"const": "sha256"},
         "fail_closed_on_missing_private_estate_authority": {"const": true},
         "historical_reconstruction_must_identify_reconstruction": {"const": true},

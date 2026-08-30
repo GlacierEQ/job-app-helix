@@ -110,7 +110,7 @@ AUDIENCE_TERMS = {
     ),
     "ai_mesh": (
         "ai ingestion",
-        "canonical graph",
+        "reference graph",
         "for ai systems",
         "machine-readable",
         "mcp tool",

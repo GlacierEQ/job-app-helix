@@ -9,7 +9,7 @@
   "exact_recruiter_workspace_child_count": 66,
   "exact_priority_spine_count": 9,
   "candidate_expansion_count": 5,
-  "canonical_sources": {
+  "source_references": {
     "owned_library_summary": "../../manifests/owned_library_census_2026-07-31.json",
     "internal_generated_receipt": "../../artifacts/owned-library-census.json",
     "recruiter_portfolio": "../../manifests/portfolio_repositories.json",
@@ -44,7 +44,10 @@
   "nonclaims": [
     "1171 repositories is an exact owner-accessible inventory count, not a claim of 1171 original production systems.",
     "Repository ownership does not establish authorship, originality, production readiness, deployment, security, or customer impact.",
-    "The five tail-derived expansion candidates remain outside the exact 67-repository recruiter portfolio until separately reviewed and promoted.",
+    "At the July 31 snapshot, the five tail-derived expansion candidates remained outside the exact 67-repository recruiter portfolio; subsequent estate expansion is represented by the current estate pointer rather than by rewriting this historical census.",
     "No blind mass merge, pull, push, or overwrite operation was performed across child repositories."
-  ]
+  ],
+  "snapshot_scope": "HISTORICAL_2026_07_31",
+  "current_estate_pointer": "../../manifests/unified_deserving_manifest.json",
+  "current_estate_note": "The present Job-App Helix source-exhaustive estate is 225 deserving repositories across 21 families. The 67/66 counts in this file are preserved as the July 31 recruiter-boundary snapshot and must not be interpreted as the current estate cap."
 }

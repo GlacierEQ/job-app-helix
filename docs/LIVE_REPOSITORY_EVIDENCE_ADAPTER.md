@@ -9,7 +9,7 @@ It does not clone or copy child repositories into Helix. It stores public-safe m
 ## Pipeline
 
 ```text
-Canonical repository
+APEX repository
         │
         ├── repository metadata
         ├── current default-branch SHA
@@ -84,7 +84,7 @@ GlacierEQ/AKOS
 head: 1607c0d27897ea963eb572062300342f1922b84c
 ```
 
-The observation confirms a public canonical repository, current head identity, package manifest, substantive source, test files, workflows, documentation, architecture, integration surfaces, and AI manifests.
+The observation confirms a public APEX repository, current head identity, package manifest, substantive source, test files, workflows, documentation, architecture, integration surfaces, and AI manifests.
 
 It does not claim current build, test, documentation-contract, or security execution because the available direct-main status probe did not provide a current provider run receipt. The resulting assessment must therefore remain partial.
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the canonical GlacierEQ portfolio root and emit a deterministic receipt."""
+"""Validate the reference GlacierEQ portfolio root and emit a deterministic receipt."""
 
 from __future__ import annotations
 
@@ -41,7 +41,7 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def canonical_bytes(value: Any) -> bytes:
+def reference_bytes(value: Any) -> bytes:
     return (
         json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False) + "\n"
     ).encode("utf-8")
@@ -303,7 +303,7 @@ def validate() -> dict[str, Any]:
                     require(
                         name in workspace_set,
                         f"HELIX_ADMITTED repository is absent from "
-                        f"canonical inventory: {repository}",
+                        f"reference inventory: {repository}",
                     )
                     mapped_inventory.add(name)
 
@@ -315,10 +315,10 @@ def validate() -> dict[str, Any]:
     unmapped_inventory = sorted(workspace_set - mapped_inventory)
     require(
         not unmapped_inventory,
-        f"canonical inventory children missing governed company/core mapping: {unmapped_inventory}",
+        f"reference inventory children missing governed company/core mapping: {unmapped_inventory}",
     )
 
-    source_digest = hashlib.sha256(canonical_bytes(source_hashes)).hexdigest()
+    source_digest = hashlib.sha256(reference_bytes(source_hashes)).hexdigest()
     receipt = {
         "schema": "glaciereq.portfolio-root-truth-receipt.v1",
         "status": "PASS",
@@ -359,7 +359,7 @@ def validate() -> dict[str, Any]:
             "public_projection_policy_enforced": True,
         },
     }
-    receipt["receipt_sha256"] = hashlib.sha256(canonical_bytes(receipt)).hexdigest()
+    receipt["receipt_sha256"] = hashlib.sha256(reference_bytes(receipt)).hexdigest()
     return receipt
 
 
@@ -378,7 +378,7 @@ def main() -> int:
         if not output.is_absolute():
             output = ROOT / output
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_bytes(canonical_bytes(receipt))
+        output.write_bytes(reference_bytes(receipt))
         print(f"wrote {output.relative_to(ROOT)}")
     print(json.dumps(receipt, indent=2, sort_keys=True))
     return 0

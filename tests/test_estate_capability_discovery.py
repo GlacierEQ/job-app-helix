@@ -140,8 +140,8 @@ def test_evidence_bound_estate_capability_becomes_internal_company_candidate() -
     donor = capabilities["deterministic-orchestration"]
     delta_system = next(
         row["system_id"]
-        for row in projected["canonical_system_registry"]["systems"]
-        if row["canonical_repository"] == "GlacierEQ/delta"
+        for row in projected["system_registry"]["systems"]
+        if row["source_repository"] == "GlacierEQ/delta"
     )
     assert delta_system in donor["donor_systems"]
     assert donor["verification_state"] == "EVIDENCE_BOUND"
@@ -175,7 +175,7 @@ def test_capability_assertion_cannot_cross_legal_private_boundary() -> None:
     }
     with pytest.raises(
         ValueError,
-        match="canonical engineering system",
+        match="reference engineering system",
     ):
         project_estate_intelligence(
             _bundle(),

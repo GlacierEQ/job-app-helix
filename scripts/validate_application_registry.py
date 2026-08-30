@@ -262,16 +262,11 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
     workspace_repositories = string_set(
         workspace_raw, "portfolio_repositories.workspace_repositories"
     )
-    if len(workspace_raw) != 66:
-        fail(
-            "Helix workspace inventory must contain exactly 66 unique children; "
-            f"found {len(workspace_raw)}"
-        )
     total_repositories = inventory.get("total_repositories")
     if total_repositories != len(workspace_raw) + 1:
         fail(
-            "portfolio_repositories.total_repositories must equal the 66 children "
-            f"plus the Helix root; found {total_repositories!r}"
+            "portfolio_repositories.total_repositories must equal the dynamic workspace "
+            f"inventory plus the Helix root; found {total_repositories!r}"
         )
     if inventory.get("owner") != "GlacierEQ":
         fail("portfolio_repositories.owner must be GlacierEQ")
@@ -442,7 +437,7 @@ def validate_registry(root: Path = ROOT) -> dict[str, Any]:
         "helix_children_mapped": len(workspace_repositories),
         "helix_children_exactly_once": True,
         "company_tracks": len(company_ids),
-        "named_flagships": len(flagship_ids),
+        "named_systems": len(flagship_ids),
         "external_flagship_repositories": len(verified_external_repositories),
         "unresolved_flagships": len(unresolved_system_ids),
         "inherited_company_dossiers": sum(

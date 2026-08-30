@@ -1,0 +1,56 @@
+repository: GlacierEQ/xai-colossus-energy
+commit: 3c919e96772f15fe6ab286d4c68284e4586c9813
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Typed local scenario modeling of compute load, PUE-derived overhead, facility
+  input, and capacity headroom under explicitly supplied assumptions.
+artifact:
+  repository_url: https://github.com/GlacierEQ/xai-colossus-energy
+  inspected_paths:
+    - README.md
+    - src/energy_optimizer.rs
+    - tests/energy_optimizer_rust.rs
+    - tests/test_portfolio_truth_surface.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit; this
+    review does not assert that Rust tests or family verification were executed
+    during recovery.
+claim: >-
+  At the reviewed commit, the repository implements a typed local scenario model
+  that validates active power, PUE, and capacity inputs; calculates PUE-derived
+  facility overhead and input; and returns capacity headroom, including an
+  explicitly modeled negative shortfall. Native Rust tests encode the formula
+  behavior and fail-closed invalid-input handling.
+known_limit: >-
+  The artifact does not establish measured PUE, real MW telemetry, utility or
+  grid integration, transformer protection, physical load-shed authority,
+  datacenter operation, operating-cost results, or any relationship with xAI.
+  Its Alpha/Omega family verifier and cross-repository scenario were not run in
+  this review, and related historical fields are not evidence.
+evidence_boundary: >-
+  Caller-supplied local power scenario calculations only; no live telemetry,
+  grid integration, or physical infrastructure control.
+thread_relationships:
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-cooling
+    note: >-
+      Curator-defined power/thermal-scenario connection. It does not assert
+      shared execution, telemetry, facility access, or a deployed integration.
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-actuation-receipt-bus
+    note: >-
+      Curator-defined scenario/evidence connection. It does not assert a
+      physical controller, actuator, or authority path.
+  - type: experimental_variation
+    repository: GlacierEQ/xai-colossus-energy-alpha
+    note: >-
+      Preserved as a distinct Alpha lineage thread. Its role is documented by
+      the parent README but it was not executed or promoted by this review.
+  - type: experimental_variation
+    repository: GlacierEQ/xai-colossus-energy-omega
+    note: >-
+      Preserved as a distinct Omega lineage thread. Its role is documented by
+      the parent README but it was not executed or promoted by this review.

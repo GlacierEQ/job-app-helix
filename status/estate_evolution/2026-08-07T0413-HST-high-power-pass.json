@@ -2,7 +2,7 @@
   "schema": "glaciereq.estate-evolution.receipt.v1",
   "timestamp": "2026-08-07T04:13:00-10:00",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_head_before": "230e8a05b5afc553584034e70bf4da084d33db94",
+  "source_head_before": "230e8a05b5afc553584034e70bf4da084d33db94",
   "branch": "main",
   "merge_base": "230e8a05b5afc553584034e70bf4da084d33db94",
   "ahead": 0,
@@ -11,10 +11,10 @@
   "files_changed": ["status/estate_evolution/2026-08-07T0413-HST-high-power-pass.json"],
   "decision": "ADVANCE_WITH_BLOCKERS_AND_FRESH_HEAD_PRESERVATION",
   "preservation": {
-    "monolith_legal_spine": "PR 48 remains 1 ahead / 0 behind current Monolith main and does not modify catalog/legal_spines generated surfaces or synchronization receipt. Canonical promotion remains blocked because Monolith Catalog Evolution Gate failed before executable proof could be established; no stale legal branch was merged.",
+    "monolith_legal_spine": "PR 48 remains 1 ahead / 0 behind current Monolith main and does not modify catalog/legal_spines generated surfaces or synchronization receipt. Source-bound promotion remains blocked because Monolith Catalog Evolution Gate failed before executable proof could be established; no stale legal branch was merged.",
     "mastermind": "Stale PR 156 was not merged. Its two receipt files were replayed onto fresh current main as synthesize/bolt-retirement-receipts-20260807 and PR 161.",
     "pro_code": "Dependabot PR 7 was 1 ahead / 5 behind. Requested Dependabot rebase rather than merging the stale tip. Existing native checks on the old head had passed; fresh-head proof is required after rebase.",
-    "tower": "PR 28 branch-hygiene repair has substantive tests passing, but immutable integrity verification correctly rejected the changed workflow because .integrity/file_hashes.json was not regenerated. Canonical untouched."
+    "tower": "PR 28 branch-hygiene repair has substantive tests passing, but immutable integrity verification correctly rejected the changed workflow because .integrity/file_hashes.json was not regenerated. Source-bound untouched."
   },
   "verification": {
     "monolith_pr48": "BLOCKED: Monolith Catalog Evolution Gate conclusion=failure; job logs unavailable from connector and no successful repository-native legal reconciliation proof observed.",
@@ -22,7 +22,7 @@
     "mastermind_pr161": "PENDING: fresh-head PR created; no workflow run observed yet.",
     "pro_code_pr7": "REBASE_REQUESTED: old head had Helix Verify and Pro-Code native verification success, but branch is stale and cannot be promoted until rebased and reverified."
   },
-  "canonical_head_after": "PENDING_THIS_RECEIPT_COMMIT",
+  "source_head_after": "PENDING_THIS_RECEIPT_COMMIT",
   "remote_ref_disposition": "DELETE_REF_REQUIRED where prior retirement receipts establish zero remaining unique value; current connector has no delete-ref action.",
   "news_inputs": {
     "window_hours": 24,
@@ -32,7 +32,7 @@
     "notes": "No new qualifying primary-source development surfaced in the strict window. Reuters returned Meta Muse Code/Muse Spark 1.2, already represented by the existing crash-resumable agent-harness radar signal; no duplicate radar mutation made."
   },
   "innovation_inputs": [
-    "retain make-it-heavy execution-harness contract already canonical in Helix",
+    "retain make-it-heavy execution-harness contract already reference in Helix",
     "fail closed on integrity-manifest drift rather than weakening the gate",
     "fresh-head synthesis for stale receipt value",
     "request dependency rebase before promotion instead of merging a behind tip"
@@ -47,6 +47,6 @@
   "next_cursor": {
     "priority": 0,
     "repository": "GlacierEQ/the-tower-of-babel",
-    "action": "regenerate integrity manifest for PR 28 on fresh canonical ancestry, verify all required gates, then promote only with expected-head guard; continue priority spine afterward"
+    "action": "regenerate integrity manifest for PR 28 on fresh reference ancestry, verify all required gates, then promote only with expected-head guard; continue priority spine afterward"
   }
 }

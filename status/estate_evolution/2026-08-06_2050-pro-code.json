@@ -3,10 +3,10 @@
   "timestamp": "2026-08-06T20:50:00-10:00",
   "control_plane": "GlacierEQ/job-app-helix",
   "repository": "GlacierEQ/Pro_Code",
-  "canonical_branch": "main",
-  "canonical_head_before": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
-  "canonical_head_after": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
-  "decision": "NO_CANONICAL_MUTATION_REQUIRED_BRANCH_FAMILY_EXHAUSTED",
+  "reference_branch": "main",
+  "source_head_before": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
+  "source_head_after": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
+  "decision": "NO_SOURCE_BOUND_MUTATION_REQUIRED_BRANCH_FAMILY_EXHAUSTED",
   "branches": [
     {
       "branch": "helix-phase-1a",
@@ -35,7 +35,7 @@
       "behind": 6,
       "files_changed": 16,
       "unique_patch_value": "NO_SUPERIOR_VALUE_IDENTIFIED_AFTER_PATCH_INSPECTION",
-      "preservation": "Canonical main is byte-identical for README.md, .github/workflows/ci.yml, scripts/verify_doctrine.py, and LINK-LIBRARY.md, while main has subsequently evolved PLAYBOOK.md beyond the branch.",
+      "preservation": "Source-bound main is byte-identical for README.md, .github/workflows/ci.yml, scripts/verify_doctrine.py, and LINK-LIBRARY.md, while main has subsequently evolved PLAYBOOK.md beyond the branch.",
       "decision": "RETIREMENT_READY_DO_NOT_MERGE",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
@@ -45,14 +45,14 @@
       "ahead": 15,
       "behind": 10,
       "files_changed": 12,
-      "unique_patch_value": "SUPERSEDED_BY_LATER_VERIFIED_DOCTRINE_AND_CANONICAL_MAIN",
-      "preservation": "Later doctrine-verified branch added nervous-system verification and canonical main contains the verified doctrine corpus plus newer aspiration/deployment calibration.",
+      "unique_patch_value": "SUPERSEDED_BY_LATER_VERIFIED_DOCTRINE_AND_SOURCE_BOUND_MAIN",
+      "preservation": "Later doctrine-verified branch added nervous-system verification and reference main contains the verified doctrine corpus plus newer aspiration/deployment calibration.",
       "decision": "RETIREMENT_READY_DO_NOT_MERGE",
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     }
   ],
   "verification": {
-    "method": "Git ancestry plus canonical blob equality plus semantic successor inspection",
+    "method": "Git ancestry plus reference blob equality plus semantic successor inspection",
     "main_unchanged": true,
     "stale_tip_merged": false
   },

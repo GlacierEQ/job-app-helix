@@ -29,7 +29,7 @@ def signed_previous(module, date: str, head_sha: str = "1" * 40) -> dict:
         "schema": module.CHECKPOINT_SCHEMA,
         "date": date,
         "state": {
-            "canonical_heads": [
+            "source_heads": [
                 {"repository": "GlacierEQ/a", "head_sha": head_sha}
             ],
             "dimensions": {
@@ -43,7 +43,7 @@ def signed_previous(module, date: str, head_sha: str = "1" * 40) -> dict:
     checkpoint["receipt"] = {
         "hash_algorithm": "sha256",
         "checkpoint_sha256": module.sha256_bytes(
-            module.canonical_json(checkpoint)
+            module.reference_json(checkpoint)
         ),
     }
     return checkpoint
@@ -227,7 +227,7 @@ def test_previous_checkpoint_requires_adjacent_date_and_valid_receipt() -> None:
         module.validate_previous_checkpoint(wrong_date, "2026-07-20")
 
     tampered = signed_previous(module, "2026-07-20")
-    tampered["state"]["canonical_heads"][0]["head_sha"] = "9" * 40
+    tampered["state"]["source_heads"][0]["head_sha"] = "9" * 40
     with pytest.raises(SystemExit, match="receipt mismatch"):
         module.validate_previous_checkpoint(tampered, "2026-07-20")
 
@@ -237,7 +237,7 @@ def test_bounded_delta_marks_evidence_scope() -> None:
     previous = signed_previous(module, "2026-07-20")
     current = {
         "state": {
-            "canonical_heads": [
+            "source_heads": [
                 {"repository": "GlacierEQ/a", "head_sha": "2" * 40},
                 {"repository": "GlacierEQ/b", "head_sha": "3" * 40},
             ],
@@ -253,7 +253,7 @@ def test_bounded_delta_marks_evidence_scope() -> None:
     assert delta["status"] == "bounded_historical_reconstruction"
     assert delta["repository_count_delta"] is None
     assert delta["repositories_added"] == ["GlacierEQ/b"]
-    assert delta["canonical_head_changes"] == [
+    assert delta["source_head_changes"] == [
         {
             "repository": "GlacierEQ/a",
             "before": "1" * 40,

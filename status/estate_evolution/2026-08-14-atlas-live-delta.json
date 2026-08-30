@@ -20,10 +20,10 @@
   },
   "monolith_excellence": {
     "repository": "GlacierEQ/monolith",
-    "role": "CANONICAL_CANDIDATE_ESTATE_CARTOGRAPHY_AND_REPOSITORY_REGISTRY",
+    "role": "SOURCE_BOUND_CANDIDATE_ESTATE_CARTOGRAPHY_AND_REPOSITORY_REGISTRY",
     "problem_verified": "PASS",
     "unique_value_known": "PASS",
-    "canonical_identity_known": "PASS",
+    "source_identity_known": "PASS",
     "central_mechanism_implemented": "PASS_WITH_CURRENT_HEAD_DRIFT",
     "deterministic_tests_pass": "UNPROVEN_CURRENT_HEAD",
     "adversarial_tests_pass": "UNPROVEN_CURRENT_HEAD",

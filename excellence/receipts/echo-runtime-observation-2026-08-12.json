@@ -3,9 +3,9 @@
   "status": "PARTIAL",
   "repository": {
     "full_name": "GlacierEQ/ECHO",
-    "canonical_head": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
+    "source_head": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
     "default_branch": "main",
-    "role": "CANONICAL_SYSTEM"
+    "role": "SOURCE_BOUND_SYSTEM"
   },
   "runtime": {
     "platform": "Vercel",
@@ -15,7 +15,7 @@
     "deployment_target": "production",
     "deployment_state": "READY",
     "deployment_created_unix_ms": 1785593752076,
-    "canonical_alias": "glaciereq-echo.vercel.app",
+    "reference_alias": "glaciereq-echo.vercel.app",
     "framework": "fastapi",
     "region": "iad1"
   },
@@ -66,10 +66,10 @@
   },
   "source_binding": {
     "exact_deployed_source_sha": null,
-    "canonical_head_created_at_utc": "2026-08-09T22:56:08Z",
-    "deployment_predates_canonical_head": true,
+    "source_head_created_at_utc": "2026-08-09T22:56:08Z",
+    "deployment_predates_source_head": true,
     "current_head_runtime_inheritance_allowed": false,
-    "reason": "The live deployment is healthy and behaviorally observable, but the latest production deployment predates the current canonical ECHO commit and Vercel deployment metadata does not expose an exact Git source SHA. Historical/live runtime behavior therefore does not certify current-head runtime correctness."
+    "reason": "The live deployment is healthy and behaviorally observable, but the latest production deployment predates the current reference ECHO commit and Vercel deployment metadata does not expose an exact Git source SHA. Historical/live runtime behavior therefore does not certify current-head runtime correctness."
   },
   "excellence_gate_delta": {
     "runtime_behavior_observed": "LIVE_RUNTIME_OBSERVED_SOURCE_SHA_UNBOUND",
@@ -83,5 +83,5 @@
     "Authentication is observed in shadow mode with configured=false; this is not an enforce-all OIDC deployment claim.",
     "No production traffic scale, external adoption, latency SLO, or durability claim is established."
   ],
-  "next_cursor": "Redeploy or otherwise source-bind the production ECHO runtime to an exact canonical Git SHA, then rerun /health plus repository-native live smoke and record the resulting exact-SHA runtime/deployment receipt before setting runtime_behavior_observed=true for the canonical head."
+  "next_cursor": "Redeploy or otherwise source-bind the production ECHO runtime to an exact reference Git SHA, then rerun /health plus repository-native live smoke and record the resulting exact-SHA runtime/deployment receipt before setting runtime_behavior_observed=true for the reference head."
 }

@@ -5,7 +5,7 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-SCHEMA = "glaciereq.library.priority-spine.v1"
+SCHEMA = "glaciereq.library.priority-spine.v2"
 RECEIPT_SCHEMA = "glaciereq.library.execution-receipt.v1"
 EXPECTED_REPOSITORIES = (
     "GlacierEQ/the-tower-of-babel",
@@ -19,28 +19,40 @@ EXPECTED_REPOSITORIES = (
     "GlacierEQ/megaminds-pdf",
 )
 VALID_ACTIONS = {
-    "VERIFY_AND_CONSOLIDATE",
-    "EXTEND_CONTROL_PLANE",
-    "COMPLETE_ACTIVE_PR",
-    "PRESERVE_AND_MONITOR",
-    "HARDEN_AND_VERIFY",
-    "HARDEN_AND_BOUND",
-    "AUDIT_HARDEN_AND_CONSOLIDATE",
-    "IDENTITY_REVIEW_BEFORE_HARDENING",
+    "EVOLVE_AND_INTEGRATE",
+    "EVOLVE_AND_DEPLOY",
+    "EXTEND_UPWARD_EXECUTION_ENGINE",
+    "COMPLETE_AND_EXPAND_ACTIVE_CAPABILITY",
+    "EVOLVE_AND_CONNECT",
+    "HARDEN_EXPAND_AND_INTEGRATE",
+    "RESTORE_EXPAND_AND_INTEGRATE",
+    "RECONSTRUCT_PURPOSE_AND_EVOLVE",
 }
 BRANCH_LIFECYCLE = (
     "DISCOVER",
-    "COMPARE",
-    "PRESERVE",
+    "RECONSTRUCT_PURPOSE",
+    "COMPARE_LINEAGE",
+    "EXTRACT_UNIQUE_VALUE",
+    "RESTORE_LOST_CAPABILITY",
+    "COMPOSE_GAINS",
+    "IMPLEMENT",
     "VERIFY",
-    "MERGE_OR_CLOSE",
-    "DELETE_REF",
+    "INTEGRATE",
+    "DEPLOY_OR_PACKAGE",
     "RECEIPT",
+)
+FORBIDDEN_ACTIVE_ACTION_FRAGMENTS = (
+    "DELETE",
+    "ARCHIVE",
+    "KILL",
+    "MERGE_OR_CLOSE",
+    "CONSOLIDATE",
+    "SUPERSEDE",
 )
 
 
 class LibraryProgramError(ValueError):
-    """Raised when the library priority contract is incomplete or contradictory."""
+    """Raised when the library evolution contract is incomplete or contradicts upward execution."""
 
 
 def _require_mapping(value: Any, label: str) -> Mapping[str, Any]:
@@ -56,8 +68,6 @@ def _require_nonempty_text(value: Any, label: str) -> str:
 
 
 def _normalized_alias(value: str) -> str:
-    """Normalize case and whitespace without collapsing meaningful separators."""
-
     return " ".join(value.casefold().split())
 
 
@@ -67,16 +77,44 @@ def _repository_root(program_path: Path) -> Path:
     return program_path.parent
 
 
+def _assert_upward_policy(policy: Mapping[str, Any]) -> None:
+    if policy.get("direction") != "MAXIMUM_COHERENT_ADVANCE":
+        raise LibraryProgramError("direction must remain MAXIMUM_COHERENT_ADVANCE")
+    required_true = (
+        "preserve_unique_value",
+        "require_repository_native_proof",
+        "require_explicit_nonclaims",
+        "inventory_cannot_authorize_retirement",
+        "similarity_cannot_establish_redundancy",
+        "failed_proof_cannot_establish_irrelevance",
+        "unverified_cannot_mean_disposable",
+        "operator_authorization_required_for_retirement",
+    )
+    for key in required_true:
+        if policy.get(key) is not True:
+            raise LibraryProgramError(f"{key} must remain true")
+
+    lifecycle = tuple(policy.get("branch_lifecycle", ()))
+    if lifecycle != BRANCH_LIFECYCLE:
+        raise LibraryProgramError("branch lifecycle does not match upward capability evolution")
+    if any(fragment in step for step in lifecycle for fragment in FORBIDDEN_ACTIVE_ACTION_FRAGMENTS):
+        raise LibraryProgramError("active lifecycle contains a retirement/contraction action")
+
+    boundary = _require_nonempty_text(policy.get("retirement_boundary"), "retirement_boundary")
+    if "operator" not in boundary.casefold() or "not authorized" not in boundary.casefold():
+        raise LibraryProgramError("retirement boundary must reserve destructive lifecycle decisions to operator authority")
+
+
 def validate_library_program(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     root = _require_mapping(payload, "library program")
 
     if root.get("schema") != SCHEMA:
         raise LibraryProgramError(f"schema must be {SCHEMA}")
-    if root.get("canonical_control_plane") != "GlacierEQ/job-app-helix":
-        raise LibraryProgramError("canonical control plane must be GlacierEQ/job-app-helix")
-    if root.get("canonical_branch") != "main":
-        raise LibraryProgramError("canonical branch must be main")
+    if root.get("control_plane") != "GlacierEQ/job-app-helix":
+        raise LibraryProgramError("control plane must be GlacierEQ/job-app-helix")
+    if root.get("default_branch") != "main":
+        raise LibraryProgramError("default branch must be main")
 
     receipt_reference = _require_nonempty_text(
         root.get("latest_execution_receipt"), "latest_execution_receipt"
@@ -91,14 +129,12 @@ def validate_library_program(path: Path) -> dict[str, Any]:
     if recruiter.get("rollout") != "manifests/portfolio_rollout.json":
         raise LibraryProgramError("recruiter portfolio must reuse the exact rollout manifest")
 
+    owned = _require_mapping(scopes.get("owned_library"), "owned_library")
+    if owned.get("kind") != "dynamic_census":
+        raise LibraryProgramError("owned library must remain a dynamic census")
+
     policy = _require_mapping(root.get("policy"), "policy")
-    lifecycle = tuple(policy.get("branch_lifecycle", ()))
-    if lifecycle != BRANCH_LIFECYCLE:
-        raise LibraryProgramError("branch lifecycle does not match the canonical retirement order")
-    if policy.get("main_is_canonical") is not True:
-        raise LibraryProgramError("main_is_canonical must be true")
-    if policy.get("preserve_unique_value_before_closure") is not True:
-        raise LibraryProgramError("unique value must be preserved before closure")
+    _assert_upward_policy(policy)
 
     repositories = root.get("repositories")
     if not isinstance(repositories, list) or not repositories:
@@ -114,20 +150,17 @@ def validate_library_program(path: Path) -> dict[str, Any]:
         priority = repository.get("priority")
         if not isinstance(priority, int) or priority < 0:
             raise LibraryProgramError(f"{name}: priority must be a non-negative integer")
-        if repository.get("action") not in VALID_ACTIONS:
-            raise LibraryProgramError(f"{name}: unsupported action {repository.get('action')!r}")
+        action = _require_nonempty_text(repository.get("action"), f"{name}.action")
+        if action not in VALID_ACTIONS:
+            raise LibraryProgramError(f"{name}: unsupported action {action!r}")
+        if any(fragment in action for fragment in FORBIDDEN_ACTIVE_ACTION_FRAGMENTS):
+            raise LibraryProgramError(f"{name}: contraction action is not permitted")
         if repository.get("default_branch") not in {"main", "master"}:
             raise LibraryProgramError(f"{name}: unsupported default branch")
         if repository.get("visibility") not in {"public", "private"}:
             raise LibraryProgramError(f"{name}: visibility must be public or private")
 
-        for field in (
-            "role",
-            "readme_state",
-            "proof_state",
-            "branch_state",
-            "identity_state",
-        ):
+        for field in ("role", "readme_state", "proof_state", "branch_state", "identity_state"):
             _require_nonempty_text(repository.get(field), f"{name}.{field}")
 
         aliases = repository.get("aliases")
@@ -173,10 +206,6 @@ def validate_latest_execution_receipt(
 
     if receipt.get("schema") != RECEIPT_SCHEMA:
         raise LibraryProgramError(f"execution receipt schema must be {RECEIPT_SCHEMA}")
-    if receipt.get("canonical_control_plane") != program_payload.get(
-        "canonical_control_plane"
-    ):
-        raise LibraryProgramError("execution receipt control plane does not match the program")
 
     scope = _require_mapping(receipt.get("scope"), "execution receipt scope")
     if scope.get("kind") != "priority_spine_wave":
@@ -197,21 +226,11 @@ def validate_latest_execution_receipt(
         for index, item in enumerate(outcomes)
     )
     if observed != EXPECTED_REPOSITORIES:
-        raise LibraryProgramError(
-            "execution receipt outcomes must match the exact priority spine order"
-        )
-
-    receipt_policy = _require_mapping(receipt.get("policy"), "execution receipt policy")
-    if receipt_policy.get("pr_closure_is_branch_deletion") is not False:
-        raise LibraryProgramError("execution receipt conflates PR closure with branch deletion")
-    if receipt_policy.get("remote_ref_deletion_capability_available") is not False:
-        raise LibraryProgramError("execution receipt overstates remote-ref deletion capability")
+        raise LibraryProgramError("execution receipt outcomes must match the exact priority spine order")
 
     summary = _require_mapping(receipt.get("summary"), "execution receipt summary")
     if summary.get("whole_library_complete") is not False:
         raise LibraryProgramError("execution receipt overstates whole-library completion")
-    if summary.get("remote_branch_refs_deleted") != 0:
-        raise LibraryProgramError("execution receipt overstates remote branch deletion")
 
     return dict(receipt_payload)
 
@@ -219,12 +238,11 @@ def validate_latest_execution_receipt(
 def render_library_program(payload: Mapping[str, Any]) -> str:
     repositories = payload["repositories"]
     lines = [
-        "# Library README and Branch Consolidation Program",
+        "# Library Capability Elevation Program",
         "",
-        "`main` is canonical. Claims advance only with repository-native evidence, and "
-        "unique branch value is preserved before closure.",
+        "The estate moves upward: reconstruct purpose, recover lost capability, preserve unique value, compose complementary gains, implement, verify, integrate, and deploy or package. Inventory, similarity, proof gaps, or assistant-generated classifications cannot authorize retirement.",
         "",
-        "| Priority | Repository | Role | Action | README | Proof | Branch |",
+        "| Priority | Repository | Role | Upward action | README | Proof | Branch |",
         "|---:|---|---|---|---|---|---|",
     ]
     for repository in repositories:
@@ -235,12 +253,11 @@ def render_library_program(payload: Mapping[str, Any]) -> str:
     lines.extend(
         (
             "",
-            "## Branch retirement",
+            "## Capability evolution",
             "",
-            "`DISCOVER -> COMPARE -> PRESERVE -> VERIFY -> MERGE_OR_CLOSE -> "
-            "DELETE_REF -> RECEIPT`",
+            "`DISCOVER -> RECONSTRUCT_PURPOSE -> COMPARE_LINEAGE -> EXTRACT_UNIQUE_VALUE -> RESTORE_LOST_CAPABILITY -> COMPOSE_GAINS -> IMPLEMENT -> VERIFY -> INTEGRATE -> DEPLOY_OR_PACKAGE -> RECEIPT`",
             "",
-            "Closing a pull request does not prove that its remote branch ref was deleted.",
+            "Retirement, archival, merge-away, close-as-duplicate, and ref deletion are outside this automated lifecycle and require explicit operator authorization after verified capability preservation.",
         )
     )
     return "\n".join(lines) + "\n"

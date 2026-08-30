@@ -1,1 +1,383 @@
-{"adapter_policy_version":"1.0.0","assessment":{"assessment_id":"5280c451d0ddedd1fcbbf5308ee6598dcbc96eb9a3a2fc25e2d706a6244ae866","blockers":["Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.","No current security verification receipt is available for the observed SHA."],"confidence_score":48.75,"critical_not_verified":["build","documentation","reality","security","tests"],"dimensions":{"ai_readiness":{"blockers":[],"confidence":0.85,"critical":false,"effective_fraction":0.5355,"findings":["machine-readable AI surfaces were observed but not executed"],"normalization_reasons":[],"points":2.6774999999999998,"raw_score":90.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/governance/glaciereq.nervous-system.v1.json","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/manifests/agents/AGENT-MEMORY-CURATOR.yaml"],"requested_state":"PARTIALLY_VERIFIED","state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c","weight":5.0},"architecture":{"blockers":[],"confidence":0.85,"critical":false,"effective_fraction":0.5355,"findings":["architecture artifacts were observed; implementation alignment is unexecuted"],"normalization_reasons":[],"points":5.3549999999999995,"raw_score":90.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/SPECIFICATION.md","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/docs/architecture/PUBLIC_ACTION_FACE.md"],"requested_state":"PARTIALLY_VERIFIED","state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c","weight":10.0},"build":{"blockers":[],"confidence":0.0,"critical":true,"effective_fraction":0.0,"findings":["The current default-branch head was observed, but the available status probe returned no status contexts and did not establish a successful build for this SHA.","build invocation state is ambiguous"],"normalization_reasons":[],"points":0.0,"raw_score":0.0,"receipts":[],"requested_state":"UNVERIFIED","state":"UNVERIFIED","verified_sha":null,"weight":15.0},"documentation":{"blockers":[],"confidence":0.9,"critical":true,"effective_fraction":0.5670000000000001,"findings":["current README and recruiter-facing documentation were observed","the repository documentation verifier was not proven for the observed SHA"],"normalization_reasons":[],"points":5.670000000000001,"raw_score":90.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"],"requested_state":"PARTIALLY_VERIFIED","state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c","weight":10.0},"integration":{"blockers":[],"confidence":0.85,"critical":false,"effective_fraction":0.5057499999999999,"findings":["integration surfaces were observed but not executed"],"normalization_reasons":[],"points":5.057499999999999,"raw_score":85.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/kimi_memory.py","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/live_memory.py","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/supabase/migrations/0001_casebrain_core.sql"],"requested_state":"PARTIALLY_VERIFIED","state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c","weight":10.0},"reality":{"blockers":[],"confidence":0.95,"critical":true,"effective_fraction":0.6317499999999999,"findings":["substantive source and a package manifest were observed","runtime behavior remains separately gated"],"normalization_reasons":[],"points":9.476249999999999,"raw_score":95.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/finisher/finisher.py","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/engine.py","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/pyproject.toml","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_repository.py"],"requested_state":"PARTIALLY_VERIFIED","state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c","weight":15.0},"recruiter_impact":{"blockers":[],"confidence":0.85,"critical":false,"effective_fraction":0.5057499999999999,"findings":["recruiter-facing surfaces were observed but impact is not a runtime claim"],"normalization_reasons":[],"points":2.5287499999999996,"raw_score":85.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"],"requested_state":"PARTIALLY_VERIFIED","state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c","weight":5.0},"security":{"blockers":[],"confidence":0.0,"critical":true,"effective_fraction":0.0,"findings":["Security documentation exists, but no current security-scan or policy-execution receipt was observed.","security verification has not been run for the observed SHA"],"normalization_reasons":[],"points":0.0,"raw_score":0.0,"receipts":[],"requested_state":"UNVERIFIED","state":"UNVERIFIED","verified_sha":null,"weight":10.0},"tests":{"blockers":[],"confidence":0.0,"critical":true,"effective_fraction":0.0,"findings":["README claims and workflow configuration were observed, but no current provider run receipt was available for the observed SHA.","tests invocation state is ambiguous"],"normalization_reasons":[],"points":0.0,"raw_score":0.0,"receipts":[],"requested_state":"UNVERIFIED","state":"UNVERIFIED","verified_sha":null,"weight":20.0}},"elite_eligible":false,"elite_gate_failures":["health score below elite threshold","evidence coverage below elite threshold","data quality is missing or below elite threshold","connector quality is missing or below elite threshold","critical dimensions are not currently verified","unresolved blockers remain"],"evidence_coverage":55.0,"health_score":30.76,"health_state":"PARTIALLY_VERIFIED","integrity":{"input_sha256":"9cb3c5a7ae107847cd831fb86cc034e9b96f32ca898c58c60a9abe8390260534","policy_sha256":"11868b9629983e42c0b6fef6f3f4cb2863111da851ae81e5f339f7bc0f330574"},"next_actions":["collect executable or reviewable evidence for build","collect executable or reviewable evidence for security","collect executable or reviewable evidence for tests"],"observed_at":"2026-08-02T12:00:00Z","observed_head_sha":"1607c0d27897ea963eb572062300342f1922b84c","policy_version":"1.0.0","quality_context":{"connector_quality_score":75.0,"data_quality_score":80.0},"repository":"GlacierEQ/AKOS","schema":"glaciereq.repository-health-assessment.v1"},"health_input":{"blockers":["Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.","No current security verification receipt is available for the observed SHA."],"dimensions":{"ai_readiness":{"blockers":[],"confidence":0.85,"findings":["machine-readable AI surfaces were observed but not executed"],"raw_score":90.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/governance/glaciereq.nervous-system.v1.json","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/manifests/agents/AGENT-MEMORY-CURATOR.yaml"],"state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c"},"architecture":{"blockers":[],"confidence":0.85,"findings":["architecture artifacts were observed; implementation alignment is unexecuted"],"raw_score":90.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/SPECIFICATION.md","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/docs/architecture/PUBLIC_ACTION_FACE.md"],"state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c"},"build":{"blockers":[],"confidence":0,"findings":["The current default-branch head was observed, but the available status probe returned no status contexts and did not establish a successful build for this SHA.","build invocation state is ambiguous"],"raw_score":0,"receipts":[],"state":"UNVERIFIED","verified_sha":null},"documentation":{"blockers":[],"confidence":0.9,"findings":["current README and recruiter-facing documentation were observed","the repository documentation verifier was not proven for the observed SHA"],"raw_score":90.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"],"state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c"},"integration":{"blockers":[],"confidence":0.85,"findings":["integration surfaces were observed but not executed"],"raw_score":85.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/kimi_memory.py","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/live_memory.py","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/supabase/migrations/0001_casebrain_core.sql"],"state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c"},"reality":{"blockers":[],"confidence":0.95,"findings":["substantive source and a package manifest were observed","runtime behavior remains separately gated"],"raw_score":95.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/finisher/finisher.py","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/engine.py","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/pyproject.toml","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_repository.py"],"state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c"},"recruiter_impact":{"blockers":[],"confidence":0.85,"findings":["recruiter-facing surfaces were observed but impact is not a runtime claim"],"raw_score":85.0,"receipts":["https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md","https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"],"state":"PARTIALLY_VERIFIED","verified_sha":"1607c0d27897ea963eb572062300342f1922b84c"},"security":{"blockers":[],"confidence":0,"findings":["Security documentation exists, but no current security-scan or policy-execution receipt was observed.","security verification has not been run for the observed SHA"],"raw_score":0,"receipts":[],"state":"UNVERIFIED","verified_sha":null},"tests":{"blockers":[],"confidence":0,"findings":["README claims and workflow configuration were observed, but no current provider run receipt was available for the observed SHA.","tests invocation state is ambiguous"],"raw_score":0,"receipts":[],"state":"UNVERIFIED","verified_sha":null}},"observed_at":"2026-08-02T12:00:00Z","observed_head_sha":"1607c0d27897ea963eb572062300342f1922b84c","quality_context":{"connector_quality_score":75.0,"data_quality_score":80.0},"repository":"GlacierEQ/AKOS"},"health_policy_version":"1.0.0","integrity":{"adapter_policy_sha256":"0b2dcd19fc69a6f6986801f0b07a50fa9481ecb75347dfc8f3d5315ed4d55990","health_policy_sha256":"11868b9629983e42c0b6fef6f3f4cb2863111da851ae81e5f339f7bc0f330574","observation_sha256":"49daddbd413db11746942adf5321707d4039d922ae335a7be2eb4f5136d0d1c3"},"observation_id":"49daddbd413db11746942adf5321707d4039d922ae335a7be2eb4f5136d0d1c3","observed_head_sha":"1607c0d27897ea963eb572062300342f1922b84c","repository":"GlacierEQ/AKOS","schema":"glaciereq.live-evidence-adapter-result.v1"}
+{
+  "adapter_policy_version": "1.0.0",
+  "assessment": {
+    "assessment_id": "5280c451d0ddedd1fcbbf5308ee6598dcbc96eb9a3a2fc25e2d706a6244ae866",
+    "blockers": [
+      "Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.",
+      "No current security verification receipt is available for the observed SHA."
+    ],
+    "confidence_score": 48.75,
+    "critical_not_verified": [
+      "build",
+      "documentation",
+      "reality",
+      "security",
+      "tests"
+    ],
+    "dimensions": {
+      "ai_readiness": {
+        "blockers": [],
+        "confidence": 0.85,
+        "critical": false,
+        "effective_fraction": 0.5355,
+        "findings": [
+          "machine-readable AI surfaces were observed but not executed"
+        ],
+        "normalization_reasons": [],
+        "points": 2.6774999999999998,
+        "raw_score": 90.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/governance/glaciereq.nervous-system.v1.json",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/manifests/agents/AGENT-MEMORY-CURATOR.yaml"
+        ],
+        "requested_state": "PARTIALLY_VERIFIED",
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+        "weight": 5.0
+      },
+      "architecture": {
+        "blockers": [],
+        "confidence": 0.85,
+        "critical": false,
+        "effective_fraction": 0.5355,
+        "findings": [
+          "architecture artifacts were observed; implementation alignment is unexecuted"
+        ],
+        "normalization_reasons": [],
+        "points": 5.3549999999999995,
+        "raw_score": 90.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/SPECIFICATION.md",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/docs/architecture/PUBLIC_ACTION_FACE.md"
+        ],
+        "requested_state": "PARTIALLY_VERIFIED",
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+        "weight": 10.0
+      },
+      "build": {
+        "blockers": [],
+        "confidence": 0.0,
+        "critical": true,
+        "effective_fraction": 0.0,
+        "findings": [
+          "The current default-branch head was observed, but the available status probe returned no status contexts and did not establish a successful build for this SHA.",
+          "build invocation state is ambiguous"
+        ],
+        "normalization_reasons": [],
+        "points": 0.0,
+        "raw_score": 0.0,
+        "receipts": [],
+        "requested_state": "UNVERIFIED",
+        "state": "UNVERIFIED",
+        "verified_sha": null,
+        "weight": 15.0
+      },
+      "documentation": {
+        "blockers": [],
+        "confidence": 0.9,
+        "critical": true,
+        "effective_fraction": 0.5670000000000001,
+        "findings": [
+          "current README and recruiter-facing documentation were observed",
+          "the repository documentation verifier was not proven for the observed SHA"
+        ],
+        "normalization_reasons": [],
+        "points": 5.670000000000001,
+        "raw_score": 90.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"
+        ],
+        "requested_state": "PARTIALLY_VERIFIED",
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+        "weight": 10.0
+      },
+      "integration": {
+        "blockers": [],
+        "confidence": 0.85,
+        "critical": false,
+        "effective_fraction": 0.5057499999999999,
+        "findings": [
+          "integration surfaces were observed but not executed"
+        ],
+        "normalization_reasons": [],
+        "points": 5.057499999999999,
+        "raw_score": 85.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/kimi_memory.py",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/live_memory.py",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/supabase/migrations/0001_casebrain_core.sql"
+        ],
+        "requested_state": "PARTIALLY_VERIFIED",
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+        "weight": 10.0
+      },
+      "reality": {
+        "blockers": [],
+        "confidence": 0.95,
+        "critical": true,
+        "effective_fraction": 0.6317499999999999,
+        "findings": [
+          "substantive source and a package manifest were observed",
+          "runtime behavior remains separately gated"
+        ],
+        "normalization_reasons": [],
+        "points": 9.476249999999999,
+        "raw_score": 95.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/finisher/finisher.py",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/engine.py",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/pyproject.toml",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_repository.py"
+        ],
+        "requested_state": "PARTIALLY_VERIFIED",
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+        "weight": 15.0
+      },
+      "recruiter_impact": {
+        "blockers": [],
+        "confidence": 0.85,
+        "critical": false,
+        "effective_fraction": 0.5057499999999999,
+        "findings": [
+          "recruiter-facing surfaces were observed but impact is not a runtime claim"
+        ],
+        "normalization_reasons": [],
+        "points": 2.5287499999999996,
+        "raw_score": 85.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"
+        ],
+        "requested_state": "PARTIALLY_VERIFIED",
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+        "weight": 5.0
+      },
+      "security": {
+        "blockers": [],
+        "confidence": 0.0,
+        "critical": true,
+        "effective_fraction": 0.0,
+        "findings": [
+          "Security documentation exists, but no current security-scan or policy-execution receipt was observed.",
+          "security verification has not been run for the observed SHA"
+        ],
+        "normalization_reasons": [],
+        "points": 0.0,
+        "raw_score": 0.0,
+        "receipts": [],
+        "requested_state": "UNVERIFIED",
+        "state": "UNVERIFIED",
+        "verified_sha": null,
+        "weight": 10.0
+      },
+      "tests": {
+        "blockers": [],
+        "confidence": 0.0,
+        "critical": true,
+        "effective_fraction": 0.0,
+        "findings": [
+          "README claims and workflow configuration were observed, but no current provider run receipt was available for the observed SHA.",
+          "tests invocation state is ambiguous"
+        ],
+        "normalization_reasons": [],
+        "points": 0.0,
+        "raw_score": 0.0,
+        "receipts": [],
+        "requested_state": "UNVERIFIED",
+        "state": "UNVERIFIED",
+        "verified_sha": null,
+        "weight": 20.0
+      }
+    },
+    "elite_eligible": false,
+    "elite_gate_failures": [
+      "health score below elite threshold",
+      "evidence coverage below elite threshold",
+      "data quality is missing or below elite threshold",
+      "connector quality is missing or below elite threshold",
+      "critical dimensions are not currently verified",
+      "unresolved blockers remain"
+    ],
+    "evidence_coverage": 55.0,
+    "health_score": 30.76,
+    "health_state": "PARTIALLY_VERIFIED",
+    "integrity": {
+      "input_sha256": "9cb3c5a7ae107847cd831fb86cc034e9b96f32ca898c58c60a9abe8390260534",
+      "policy_sha256": "11868b9629983e42c0b6fef6f3f4cb2863111da851ae81e5f339f7bc0f330574"
+    },
+    "next_actions": [
+      "collect executable or reviewable evidence for build",
+      "collect executable or reviewable evidence for security",
+      "collect executable or reviewable evidence for tests"
+    ],
+    "observed_at": "2026-08-02T12:00:00Z",
+    "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+    "policy_version": "1.0.0",
+    "quality_context": {
+      "connector_quality_score": 75.0,
+      "data_quality_score": 80.0
+    },
+    "repository": "GlacierEQ/AKOS",
+    "schema": "glaciereq.repository-health-assessment.v1"
+  },
+  "health_input": {
+    "blockers": [
+      "Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.",
+      "No current security verification receipt is available for the observed SHA."
+    ],
+    "dimensions": {
+      "ai_readiness": {
+        "blockers": [],
+        "confidence": 0.85,
+        "findings": [
+          "machine-readable AI surfaces were observed but not executed"
+        ],
+        "raw_score": 90.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/governance/glaciereq.nervous-system.v1.json",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/manifests/agents/AGENT-MEMORY-CURATOR.yaml"
+        ],
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c"
+      },
+      "architecture": {
+        "blockers": [],
+        "confidence": 0.85,
+        "findings": [
+          "architecture artifacts were observed; implementation alignment is unexecuted"
+        ],
+        "raw_score": 90.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/AKOS_MANIFEST.yaml",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/SPECIFICATION.md",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/docs/architecture/PUBLIC_ACTION_FACE.md"
+        ],
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c"
+      },
+      "build": {
+        "blockers": [],
+        "confidence": 0,
+        "findings": [
+          "The current default-branch head was observed, but the available status probe returned no status contexts and did not establish a successful build for this SHA.",
+          "build invocation state is ambiguous"
+        ],
+        "raw_score": 0,
+        "receipts": [],
+        "state": "UNVERIFIED",
+        "verified_sha": null
+      },
+      "documentation": {
+        "blockers": [],
+        "confidence": 0.9,
+        "findings": [
+          "current README and recruiter-facing documentation were observed",
+          "the repository documentation verifier was not proven for the observed SHA"
+        ],
+        "raw_score": 90.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"
+        ],
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c"
+      },
+      "integration": {
+        "blockers": [],
+        "confidence": 0.85,
+        "findings": [
+          "integration surfaces were observed but not executed"
+        ],
+        "raw_score": 85.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/kimi_memory.py",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/connectors/live_memory.py",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/supabase/migrations/0001_casebrain_core.sql"
+        ],
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c"
+      },
+      "reality": {
+        "blockers": [],
+        "confidence": 0.95,
+        "findings": [
+          "substantive source and a package manifest were observed",
+          "runtime behavior remains separately gated"
+        ],
+        "raw_score": 95.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/finisher/finisher.py",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/operational_cognition/engine.py",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/pyproject.toml",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_repository.py"
+        ],
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c"
+      },
+      "recruiter_impact": {
+        "blockers": [],
+        "confidence": 0.85,
+        "findings": [
+          "recruiter-facing surfaces were observed but impact is not a runtime claim"
+        ],
+        "raw_score": 85.0,
+        "receipts": [
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/README.md",
+          "https://github.com/GlacierEQ/AKOS/blob/1607c0d27897ea963eb572062300342f1922b84c/scripts/verify_readme_contract.py"
+        ],
+        "state": "PARTIALLY_VERIFIED",
+        "verified_sha": "1607c0d27897ea963eb572062300342f1922b84c"
+      },
+      "security": {
+        "blockers": [],
+        "confidence": 0,
+        "findings": [
+          "Security documentation exists, but no current security-scan or policy-execution receipt was observed.",
+          "security verification has not been run for the observed SHA"
+        ],
+        "raw_score": 0,
+        "receipts": [],
+        "state": "UNVERIFIED",
+        "verified_sha": null
+      },
+      "tests": {
+        "blockers": [],
+        "confidence": 0,
+        "findings": [
+          "README claims and workflow configuration were observed, but no current provider run receipt was available for the observed SHA.",
+          "tests invocation state is ambiguous"
+        ],
+        "raw_score": 0,
+        "receipts": [],
+        "state": "UNVERIFIED",
+        "verified_sha": null
+      }
+    },
+    "observed_at": "2026-08-02T12:00:00Z",
+    "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+    "quality_context": {
+      "connector_quality_score": 75.0,
+      "data_quality_score": 80.0
+    },
+    "repository": "GlacierEQ/AKOS"
+  },
+  "health_policy_version": "1.0.0",
+  "integrity": {
+    "adapter_policy_sha256": "20c9bcfd74125815a0087061c5b2adba319caaea57e494ef67ba4f3b07bef345",
+    "health_policy_sha256": "11868b9629983e42c0b6fef6f3f4cb2863111da851ae81e5f339f7bc0f330574",
+    "observation_sha256": "7af625c910cbbf7fa057b6a26072d0dd247f4508cbc6c9bb6d093b19c73af93d"
+  },
+  "observation_id": "7af625c910cbbf7fa057b6a26072d0dd247f4508cbc6c9bb6d093b19c73af93d",
+  "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+  "repository": "GlacierEQ/AKOS",
+  "schema": "glaciereq.live-evidence-adapter-result.v1"
+}

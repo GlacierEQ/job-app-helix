@@ -17,7 +17,7 @@
       "repository": "GlacierEQ/job-app",
       "visibility": "private",
       "role": "private_application_workspace",
-      "canonical": true,
+      "reference": true,
       "owns": [
         "active_application_packets",
         "private_resumes",
@@ -41,7 +41,7 @@
       "repository": "GlacierEQ/job-application",
       "visibility": "public",
       "role": "public_recruiter_distribution",
-      "canonical": true,
+      "reference": true,
       "owns": [
         "evidence_bound_portfolio_portal",
         "generated_showcase",
@@ -64,7 +64,7 @@
       "repository": "GlacierEQ/job-app-helix",
       "visibility": "public",
       "role": "portfolio_control_plane",
-      "canonical": true,
+      "reference": true,
       "owns": [
         "portfolio_inventory",
         "proof_weighted_grades",
@@ -81,7 +81,7 @@
       "upstream_authorities": [
         "GlacierEQ/the-tower-of-babel"
       ],
-      "state": "CANONICAL_PARTIALLY_VERIFIED",
+      "state": "SOURCE_BOUND_PARTIALLY_VERIFIED",
       "verified_commit": "04b86016ce4282ad2c6d91a3db62810152bc824e",
       "next_gate": "Integrate proof-weighted cross-repository audit receipts without inflating child states."
     },
@@ -89,7 +89,7 @@
       "repository": "GlacierEQ/the-tower-of-babel",
       "visibility": "public",
       "role": "technology_placement_authority",
-      "canonical": true,
+      "reference": true,
       "owns": [
         "technology_floor_registry",
         "language_placement",

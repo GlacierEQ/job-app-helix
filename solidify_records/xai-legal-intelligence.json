@@ -1,0 +1,28 @@
+{
+  "repo": "xai-legal-intelligence",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Private Python repository framed as an APEX legal-intelligence engine for tracking, analyzing, and strategically mapping xAI and Elon Musk litigation. Two independent monolith registries flag it rather than endorse it: the xAI canonicalization pass dispositions it REASSIGN_AWAY_FROM_COLOSSUS_INFRASTRUCTURE (it does not belong in the compute-infrastructure story), and the legal source-inspection registry lists it in name_only_backlog, meaning no commit or content inspection has ever been performed. Wave-3 mining confirmed the catalog desc, the name_only_backlog status, the reassignment disposition, the templated capabilities entry, and the 'real-time' truth-boundary flag. Its 'real-time' framing is unsupported by any local evidence; rating raised only to 3 (catalog desc + recorded dispositions, still unverified and un-inspected) and cannot exceed 5 without source-level inspection and a provenance/citation receipt.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 18380 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, desc 'APEX Legal Intelligence Engine - Real-time tracking, analysis, and strategic mapping of xAI & Elon Musk litigation | Colossus Stack | GlacierEQ Sovereign System', updatedAt 2026-06-24T08:08:22Z)",
+    "/tmp/monolith/catalog/legal_source_inspection_registry.json line 226-231 name_only_backlog includes 'GlacierEQ/xai-legal-intelligence' - explicit record that no source-level inspection exists",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (disposition REASSIGN_AWAY_FROM_COLOSSUS_INFRASTRUCTURE, alongside grokodile and the AEON justice variants)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md line 120 (proposed destination: 'Legal / case research or company-risk research')",
+    "/tmp/monolith/catalog/capabilities_3layer.json lines 2478-2504 (category LEGAL_FORENSIC_PIPELINES, impact_score P1, launch_cmd 'git clone ...', templated elevator pitch - registry metadata, not capability proof)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 58 (Security and legal intelligence; system level intelligence; 'legal accuracy requires source and jurisdiction review'; confidence medium)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 62 truth boundary (the term 'real-time' is a catalog signal only)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 154 (unprocessed)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/domains/colossus_xai.md line 48",
+    "/tmp/monolith/receipts/company_families/ (no legal-intelligence receipt)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 4,
+  "makes_worthy": "Move it out of the Colossus infrastructure family as already directed, then submit it to the same discipline the legal_source_inspection_registry applies to peer repos: commit-level source inspection, official-source provenance and effective-date metadata for every cited matter, exact-quotation control, and an explicit capability boundary forbidding legal conclusions. Remove 'real-time' unless a live docket ingestion path is demonstrated with a receipt. A docket tracker with verifiable citations and a stated no-legal-advice boundary can reach 8; an unspecified 'intelligence engine' about a named company cannot.",
+  "last_verified": "2026-08-29T08:47:16.929393",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=4"
+}

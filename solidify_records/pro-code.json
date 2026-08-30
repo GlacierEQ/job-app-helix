@@ -1,0 +1,33 @@
+{
+  "repo": "pro-code",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "pro-code is the operator control surface of the APEX estate: a TypeScript human-facing coding and worker-mesh console for directing repository work while preserving operator authority and keeping execution visible rather than implicit. The catalog records it as a domain 'whole' (not a part) with the whole_note 'human control surface / worker mesh', and the function atlas names it the head of the Operator Surfaces function system. Its strongest external proof is cross-repository: the VERIFIED computer-user dossier records a pro-code-originated live receipt in which a call issued from pro-code produced a hash-bound action receipt carrying caller, capability, and the exact terminal/AKOS source SHA, independently verified by AKOS over HTTP. That makes the origination path \u2014 operator intent becoming an authority-bounded, provenance-carrying action \u2014 a verified path rather than a claim, even though pro-code's own repository-native gates are not yet published.",
+  "evidence": [
+    "/root/repo_excellence/STRONG_COMPLETION.computer-user.md:33-34 (receipts include pro-code-originated-live-receipt-proof.json) and :18-19 ('a Pro-Code-originated receipt with capability + exact terminal/AKOS source SHA bound') and :46 (dependencies: AKOS governance, pro-code / Pro_Code operator client)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json:87-98 (claim id=restart_safe_execution, state=VERIFIED_TEST, evidence='Container kernel deployment proof; pro-code originated receipt with capability + exact terminal/AKOS source SHA bound', source_ref 1eb2e2f4525d556488383af4624ce8a4a5873d44a77b58c181b973652637a397)",
+    "/tmp/helix_patch/repo_excellence_evidence_addendum.json:30-40 (same claim, display_state VERIFIED, test_ref 5881b9fc6c57599d059432499098fdf3636b7eb4)",
+    "/tmp/monolith/catalog/library.json:13628 (domain=apex_cognitive_os, role=whole, activity=worked_on, status_detail=worked_solidified, desc='Pro_Code standards / APEX control surface. AKOS-linked. Live job application.', whole_note='human control surface / worker mesh', language=TypeScript, local_job_app=true, updatedAt 2026-08-10T06:17:00Z)",
+    "/tmp/monolith/status/functions/operator_surface.md:11 (pro-code | whole_system | apex_cognitive_os | 'Human-facing coding and worker-mesh control surface for directing repository work while preserving operator authority and visible execution' | basis: curated map; confidence: high)",
+    "/tmp/monolith/status/FUNCTION_SYSTEMS.md:25 (Operator Surfaces function system, 4 members, head repository = pro-code)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:1314 (local clone WORKSPACE/pro-code; category 09_APPLICATIONS_AND_SURFACES/control_surfaces; 12 sample files, Node.js/TypeScript) \u2014 same category and subcategory as PROJECTS/computer-user at :1346, i.e. the anchor and pro-code are classified as the same control-surface family by the independent scanner",
+    "/tmp/monolith/catalog/capabilities_3layer.json:15347-15379 (sha256_binding 6be7acbcec80827e69ac5789344365b7cafef82f06b5454dfcb1f95611c3a2af; mesh_uri glaciereq://mesh/cognitive_os_agent_kernels/pro-code)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:13842,14934 (sibling records describe the mesh pro-code drives: 'APEX 13-node worker execution runtime \u2014 receives POST from pro-code WorkersManager and dispatches capability handlers'; 'APEX Nexus API server \u2014 local :8002 trigger gateway for the pro-code control surface')",
+    "/tmp/monolith/status/APPLICATION_ESTATE_ZERO_OMISSION.md:42 (pro-code listed at estate layer L4 alongside Monolith and job-application)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json:111-115 (kind=core, state=core_wholes, family=GlacierEQ-core)",
+    "/tmp/monolith/status/PRO_CONTROL_SURFACE_ATLAS.md:43 (sibling Pro_Code classified whole_system / developer environment, basis: catalog description, confidence medium \u2014 the standards face, distinct from this control surface)"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 9,
+  "makes_worthy": "Reach 10 by publishing pro-code's own repository-native proof rather than inheriting it: commit a WorkersManager contract test that POSTs to the 13-node worker runtime through the :8002 Nexus gateway, assert the returned receipt binds caller + capability + source SHA, and emit a BUILD_RECEIPT plus a repository_fact_card at R2+ using /tmp/monolith/schemas/repository-fact-card.schema.json. That converts the currently-external pro-code-originated receipt into a gate this repository owns.",
+  "repo_excellence_anchor": "Strongest linkage in this batch. pro-code is a named dependency of the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS at source SHA 1eb2e2f4..., live AKOS HTTP receipt verification, restart-safe state, 12/12 honest lifecycle gates, principal_state PROMOTED) and is the caller of record in pro-code-originated-live-receipt-proof.json. The anchor's governed-execution invariants \u2014 authority binding, receipt provenance, post-action readback \u2014 are exercised through pro-code's origination path, so the verification claim here is scoped to that path only. Scope caveat carried verbatim from the anchor: the pro-code-originated receipt used a loopback ephemeral integration runner; persistent_production_host_verified=false remains the one open gate.",
+  "honest_limits": [
+    "VERIFIED is scoped to the operator-client origination path proven in computer-user, not to the whole pro-code control surface",
+    "no pro-code-native test suite, CI run id, or fact card was found locally",
+    "the pro-code-originated receipt used a loopback ephemeral integration runner; no public internet exposure or persistent production host claimed",
+    "worker-mesh capability descriptions at capabilities_3layer.json:13842/14934 are catalog records, not executed integration proofs"
+  ],
+  "last_verified": "2026-08-29T04:30:00-10:00",
+  "notes": "local;2files"
+}

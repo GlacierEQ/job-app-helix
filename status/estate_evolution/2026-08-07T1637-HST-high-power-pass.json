@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-08-07T16:37:39-10:00",
   "repository": "GlacierEQ/the-tower-of-babel",
-  "canonical_head_before": "e3778353e92b404de43f41963a0c7bffb84897ac",
+  "source_head_before": "e3778353e92b404de43f41963a0c7bffb84897ac",
   "branch": "synthesize/spaceflight-expansion-audit-20260807",
   "merge_base": "e3778353e92b404de43f41963a0c7bffb84897ac",
   "ahead": 4,
@@ -25,7 +25,7 @@
     },
     "expected_head_guard": "satisfied"
   },
-  "canonical_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
+  "source_head_after": "5c3247ed6d6e964214afd37180d859e929875483",
   "remote_ref_disposition": "DELETE_REF_REQUIRED",
   "news_inputs": [
     {
@@ -49,7 +49,7 @@
         "Monolith Catalog Evolution Gate": "failure",
         "Legal Live Reconciliation Verification": "failure"
       },
-      "decision": "KEEP_CANONICAL_UNTOUCHED"
+      "decision": "KEEP_SOURCE_BOUND_UNTOUCHED"
     }
   ],
   "next_cursor": "Inspect Monolith PR #48 failing workflow jobs/logs to distinguish infrastructure failure from code failure; then continue priority spine."

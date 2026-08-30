@@ -1,7 +1,7 @@
 # Proof-Weighted Portfolio Audit Standard
 
-**Canonical owner:** `GlacierEQ/job-app-helix`  
-**Effective date:** 2026-07-30  
+**Source-bound owner:** `GlacierEQ/job-app-helix`
+**Effective date:** 2026-07-30
 **Purpose:** Grade portfolio repositories by what the current repository can actually prove while preserving strong human communication and machine-readable topology.
 
 ## Why this standard exists
@@ -74,7 +74,7 @@ The middle exposes:
 
 The final depth provides:
 
-- canonical repository identity and role;
+- reference repository identity and role;
 - schemas and machine-readable contracts;
 - capabilities, commands, inputs, outputs, and limitations;
 - evidence paths;
@@ -111,13 +111,13 @@ Tower of Babel is the technology-placement authority. Job-App Helix consumes tho
 
 ## Portfolio admission classes
 
-- **Canonical mesh:** original, public, evidence-verifiable repositories admitted to the typed graph.
+- **Source-bound mesh:** original, public, evidence-verifiable repositories admitted to the typed graph.
 - **Candidate:** potentially valuable original work awaiting proof or public-boundary review.
 - **Supporting reference:** fork, vendor mirror, sample, upstream dependency, or external codebase.
 - **Private or excluded:** credentials, personal evidence, mixed private workstreams, or repositories unsuitable for public hiring claims.
 - **Archive or retired:** preserved history, not active product proof.
 
-Only canonical mesh repositories contribute to headline portfolio metrics.
+Only reference mesh repositories contribute to headline portfolio metrics.
 
 ## Definition of `works`
 

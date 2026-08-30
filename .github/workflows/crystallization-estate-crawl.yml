@@ -36,7 +36,7 @@ permissions:
 jobs:
   crawl:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 330
     steps:
       - name: Check out Helix
         uses: actions/checkout@v6
@@ -52,11 +52,12 @@ jobs:
       - name: Install package and test dependencies
         run: python -m pip install -e ".[dev]"
 
-      - name: Prove crawler and zero-exemption queue behavior
+      - name: Prove crawler, uplift routing, and zero-exemption queue behavior
         run: >-
           python -m pytest -q
           tests/test_crystallization_crawler.py
           tests/test_private_crystallization_publisher.py
+          tests/test_crystallization_uplift_digest.py
           tests/test_estate_work_queue.py
 
       - name: Require authenticated private estate authority
@@ -83,7 +84,7 @@ jobs:
           set -euo pipefail
           if [ "${EVENT_NAME}" = "schedule" ]; then
             echo "mode=priority" >> "${GITHUB_OUTPUT}"
-            echo "hourly=25" >> "${GITHUB_OUTPUT}"
+            echo "hourly=50" >> "${GITHUB_OUTPUT}"
             echo "start=0" >> "${GITHUB_OUTPUT}"
             echo "limit=" >> "${GITHUB_OUTPUT}"
           else
@@ -108,7 +109,7 @@ jobs:
             python scripts/crawl_crystallization_estate.py
             --output /tmp/crystallization-receipt.json
             --content-mode "${MODE}"
-            --workers 6
+            --workers 10
             --start "${START}"
           )
           if [ -n "${LIMIT:-}" ]; then
@@ -128,7 +129,22 @@ jobs:
             exit 1
           }
 
-      - name: Resolve private receipt destination
+      - name: Build compact code-uplift routing digest
+        run: >-
+          python scripts/build_crystallization_uplift_digest.py
+          --input /tmp/crystallization-receipt.json
+          --output /tmp/crystallization-uplift.json
+
+      - name: Preserve raw crawl evidence privately
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-crystallization-raw-${{ github.run_id }}
+          path: /tmp/crystallization-receipt.json
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 9
+
+      - name: Resolve compact Monolith uplift destination
         id: destination
         shell: bash
         run: |
@@ -141,27 +157,30 @@ jobs:
           mode = receipt['content_mode']
           start = receipt.get('selection_start')
           selected = receipt['selected_repository_count']
-          if receipt.get('full_estate_selection') and mode == 'tree-only':
-              destination = 'catalog/crystallization/estate-tree-index-latest.json'
+          shard = receipt.get('hourly_shard_index')
+          digest = receipt['receipt_digest'][:12]
+          if shard is not None:
+              stop = start + selected - 1 if selected else start
+              destination = f'catalog/crystallization/uplift/{mode}-{start:04d}-{stop:04d}.json'
           elif start is None:
-              destination = f'catalog/crystallization/explicit-{mode}-{receipt["receipt_digest"][:12]}.json'
+              destination = f'catalog/crystallization/uplift/explicit-{mode}-{digest}.json'
           else:
               stop = start + selected - 1 if selected else start
-              destination = f'catalog/crystallization/shards/{mode}-{start:04d}-{stop:04d}.json'
+              destination = f'catalog/crystallization/uplift/manual-{mode}-{start:04d}-{stop:04d}.json'
           print(f'destination={destination}')
           PY
 
-      - name: Publish full private receipt into monolith
+      - name: Publish compact uplift intelligence into Monolith
         env:
           GLACIEREQ_ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
           DESTINATION: ${{ steps.destination.outputs.destination }}
         run: >-
           python scripts/publish_private_crystallization_receipt.py
-          /tmp/crystallization-receipt.json
+          /tmp/crystallization-uplift.json
           --repository GlacierEQ/monolith
           --destination "${DESTINATION}"
 
-      - name: Emit public-safe count summary only
+      - name: Emit public-safe uplift summary only
         shell: bash
         run: |
           python - <<'PY' >> "${GITHUB_STEP_SUMMARY}"
@@ -169,7 +188,8 @@ jobs:
           from pathlib import Path
 
           r = json.loads(Path('/tmp/crystallization-receipt.json').read_text())
-          print('### Crystallization estate crawl')
+          u = json.loads(Path('/tmp/crystallization-uplift.json').read_text())
+          print('### Crystallization estate crawl → code uplift')
           print()
           print(f"- Accessible repositories: {r['accessible_repository_count']}")
           print(f"- Repositories in this shard: {r['selected_repository_count']}")
@@ -179,14 +199,16 @@ jobs:
           print(f"- Unresolved content objects: {r['unresolved_content_count']}")
           print(f"- Repository failures: {r['repository_failure_count']}")
           print(f"- Content mode: {r['content_mode']}")
-          print(f"- Estate exit eligible: {r['estate_exit_eligible']}")
+          print(f"- Uplift queue entries: {u['queue_count']}")
+          print(f"- Raw evidence artifact: private-crystallization-raw-${{ github.run_id }}")
           print()
-          print('Private repository identities and per-file evidence were written only to the private monolith.')
+          print('Raw per-file evidence is preserved as a private workflow artifact.')
+          print('Monolith receives compact evidence-bounded code-uplift routing intelligence.')
           PY
 
-      - name: Fail closed after private receipt publication
+      - name: Fail closed after evidence preservation and uplift publication
         if: steps.crawl.outputs.exit_code != '0'
         shell: bash
         run: |
-          echo "Crystallization crawl reported unresolved repository failures. Private receipt was preserved." >&2
+          echo "Crystallization crawl reported unresolved repository failures. Raw evidence and compact uplift routing were preserved." >&2
           exit 1

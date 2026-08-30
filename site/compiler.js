@@ -293,7 +293,7 @@
       appendText(
         card,
         "span",
-        row.promotion_state === "PROMOTED" ? "Canonical proof donor" : "Public evidence donor",
+        row.promotion_state === "PROMOTED" ? "Source-bound proof donor" : "Public evidence donor",
         "compiler-card-kicker",
       );
       appendText(card, "h3", titleCase(sourceName || systemId));
@@ -332,7 +332,7 @@
         link.className = "text-link compiler-source-link";
         link.href = `https://github.com/${row.source_repository}`;
         link.rel = "noopener noreferrer";
-        link.textContent = "Inspect canonical source →";
+        link.textContent = "Inspect reference source →";
         card.appendChild(link);
       }
     });

@@ -3,8 +3,8 @@
   "portfolio_root": "GlacierEQ/job-app-helix",
   "wave": "wave-1-native-ci",
   "repository": "GlacierEQ/anthropic-safety-monitor",
-  "canonical_branch": "master",
-  "canonical_commits": {
+  "reference_branch": "master",
+  "source_commits": {
     "runtime_and_evidence": "c7ab52e0e70a5cd449f9335f90030059d254325f",
     "verified_public_readme": "a5c21172e32ce6054994402c38d86f7ef94bc56b"
   },
@@ -18,7 +18,7 @@
     },
     {
       "number": 2,
-      "purpose": "canonical VERIFIED recruiter-expert-AI README",
+      "purpose": "reference VERIFIED recruiter-expert-AI README",
       "source_head": "74966675784d9fc13b005a8ef630877d05609980",
       "merge_commit": "a5c21172e32ce6054994402c38d86f7ef94bc56b",
       "method": "squash"
@@ -30,7 +30,7 @@
     "workflow": "Safety Monitor Verification",
     "hardened_run_id": 30645777132,
     "receipt_head_run_id": 30645921064,
-    "canonical_readme_run_id": 30646622273,
+    "reference_readme_run_id": 30646622273,
     "python_versions": [
       "3.11",
       "3.12",
@@ -87,7 +87,7 @@
       "remote_ref_disposition": "DELETE_REF_REQUIRED"
     },
     {
-      "branch": "docs/canonical-verified-readme-2026-07-31",
+      "branch": "docs/reference-verified-readme-2026-07-31",
       "classification": "MERGED_OBSOLETE",
       "unique_unmerged_value": false,
       "remote_ref_disposition": "DELETE_REF_REQUIRED"

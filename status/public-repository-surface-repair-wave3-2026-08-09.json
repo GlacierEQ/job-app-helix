@@ -29,7 +29,7 @@
   "closed_repairs": [
     {
       "repository": "GlacierEQ/ECHO",
-      "canonical_head": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
+      "source_head": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
       "decision": "ADMIT",
       "repair": "Removed direct family-court repository projection from the public mesh and locked the sanitized transferable-capability admission boundary with regression tests.",
       "proof": [
@@ -48,7 +48,7 @@
     },
     {
       "repository": "GlacierEQ/apple-ane-kv-quantizer",
-      "canonical_head": "32f69cfa064cbb833b663bc43ace04507f8570c5",
+      "source_head": "32f69cfa064cbb833b663bc43ace04507f8570c5",
       "decision": "ADMIT",
       "repair": "Replaced broken file paths and unsupported ANE/performance claims with a deterministic KV storage/transfer model, fail-closed inputs, correct file map, explicit nonclaims, and the repository's first native Public Truth Gate.",
       "proof": [
@@ -66,17 +66,17 @@
   "still_observed_for_future_repair": [
     {
       "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
-      "canonical_head": "101baed3f8411d0d049fe601eaf3175b0841adce",
+      "source_head": "101baed3f8411d0d049fe601eaf3175b0841adce",
       "current_head_workflow_run_count": 0
     },
     {
       "repository": "GlacierEQ/deepseek-mla-moe-sentinel",
-      "canonical_head": "4d7df95e1976078c265e8cff42d9654bd4094b7b",
+      "source_head": "4d7df95e1976078c265e8cff42d9654bd4094b7b",
       "current_head_workflow_run_count": 0
     },
     {
       "repository": "GlacierEQ/kimi-mooncake-kv-stream",
-      "canonical_head": "fed1d31d4a85c51dfe70fee22e0e66bd5f082a89",
+      "source_head": "fed1d31d4a85c51dfe70fee22e0e66bd5f082a89",
       "current_head_workflow_run_count": 0
     }
   ],

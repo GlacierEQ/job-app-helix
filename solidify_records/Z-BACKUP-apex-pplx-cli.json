@@ -1,0 +1,20 @@
+{
+  "repo": "Z-BACKUP-apex-pplx-cli",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "needs_work",
+  "wave3": true,
+  "innovation_summary": "APEX Perplexity CLI \u2014 a sovereign command-line intelligence tool for Case 1FDV-23-0001009 covering legal research, RICO analysis, deadline tracking, memory ops, and GitHub orchestration (TypeScript). Cataloged as a Perplexity-family backup repo. Wave-3 mining confirmed the library.json entry (line 18860) and the unprocessed status (company_engineered_repositories.json line 239), and that no fact card, source inspection, test, or receipt exists locally. The catalog provides only a name/backup classification; no implementation evidence. Rating raised modestly to 4 (catalog entry confirmed) and capped at \u22645 \u2014 no execution artifact justifies more.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry Z-BACKUP-apex-pplx-cli, line 18860; desc present, status_detail=catalogued_unclassified)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (unprocessed, line 239)",
+    "/tmp/monolith/evidence/repository_fact_cards/ (no Z-BACKUP-apex-pplx-cli fact card)",
+    "/tmp/monolith/receipts/company_families/ (no perplexity receipt)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Produce a repository_fact_card with implementation evidence (CLI runs legal-research/RICO/deadline commands, tests, build receipt) and a README; only a catalog description currently exists locally.",
+  "last_verified": "2026-08-29T08:47:17.026681",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

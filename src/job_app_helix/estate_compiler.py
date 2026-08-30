@@ -6,13 +6,7 @@ import re
 from collections import defaultdict
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
-from enum import Enum
-try:
-    from enum import StrEnum
-except ImportError:
-    from enum import Enum
-    class StrEnum(str, Enum):
-        pass
+from enum import StrEnum
 from typing import Any
 
 SCHEMA_VERSION = "glaciereq.estate-compiler.v1"
@@ -328,19 +322,19 @@ def build_systems(
         if repository not in engineering_names or target not in engineering_names:
             raise ValueError(f"lineage crosses namespace boundary: {repository} -> {target}")
         if relation is Relation.EXPLICIT_SUCCESSOR_OF:
-            child, canonical = target, repository
+            child, reference = target, repository
         else:
-            child, canonical = repository, target
-        if child in parent and parent[child] != canonical:
+            child, reference = repository, target
+        if child in parent and parent[child] != reference:
             raise ValueError(f"conflicting lineage parent for {child}")
-        parent[child] = canonical
+        parent[child] = reference
         edges.append(
             {
                 "repository": repository,
                 "relation": relation.value,
                 "target": target,
                 "collapse_child": child,
-                "collapse_parent": canonical,
+                "collapse_parent": reference,
                 "confidence": "EXPLICIT_EVIDENCE",
                 "evidence_refs": list(refs),
             }
@@ -371,20 +365,20 @@ def build_systems(
         ]
         if not candidates:
             continue
-        target = min(candidates, key=lambda item: (len(item.name), item.name.casefold()))
+        target_repo = min(candidates, key=lambda item: (len(item.name), item.name.casefold()))
         relation = (
             Relation.BACKUP_OF
             if lowered.startswith(BACKUP_PREFIXES) or lowered.endswith(BACKUP_SUFFIXES)
             else Relation.ARCHIVE_OF
         )
-        parent[repo.repository] = target.repository
+        parent[repo.repository] = target_repo.repository
         edges.append(
             {
                 "repository": repo.repository,
                 "relation": relation.value,
-                "target": target.repository,
+                "target": target_repo.repository,
                 "collapse_child": repo.repository,
-                "collapse_parent": target.repository,
+                "collapse_parent": target_repo.repository,
                 "confidence": "STRUCTURAL_HIGH",
                 "evidence_refs": ["authenticated_census:name+archive_metadata"],
             }
@@ -399,10 +393,10 @@ def build_systems(
     for repo in engineering:
         if repo.repository not in parent:
             roots_by_key[lineage_key(repo.name)].append(repo.repository)
-    for key, members in sorted(roots_by_key.items()):
-        if len(members) < 2:
+    for key, root_members in sorted(roots_by_key.items()):
+        if len(root_members) < 2:
             continue
-        ordered = sorted(members)
+        ordered = sorted(root_members)
         unresolved_members.update(ordered)
         unresolved.append(
             {
@@ -433,7 +427,7 @@ def build_systems(
         systems.append(
             {
                 "system_id": system_id,
-                "canonical_repository": root,
+                "source_repository": root,
                 "member_repositories": [member.repository for member in members],
                 "historical_member_count": max(0, len(members) - 1),
                 "visibility": root_repo.visibility,
@@ -456,7 +450,7 @@ def build_systems(
     ]
     forks = [repo for repo in repos if repo.fork]
     registry: dict[str, Any] = {
-        "schema": "glaciereq.canonical-system-registry.v1",
+        "schema": "glaciereq.reference-system-registry.v1",
         "systems": systems,
         "lineage_edges": sorted(
             edges,
@@ -503,15 +497,15 @@ def build_capabilities(
             str(row.get(key) or "")
             for key in ("role", "evidence", "next_gate", "system_id")
         ).casefold()
-        capabilities = [
+        inferred_capabilities = [
             capability
             for capability, patterns in CAPABILITY_PATTERNS
             if any(pattern in text for pattern in patterns)
         ]
         role = row.get("role")
         if isinstance(role, str) and role.strip():
-            capabilities.append(f"role-{slug(role)}")
-        for capability in set(capabilities):
+            inferred_capabilities.append(f"role-{slug(role)}")
+        for capability in set(inferred_capabilities):
             donor = donors.setdefault(
                 capability,
                 {"systems": set(), "proof_refs": []},
@@ -550,11 +544,11 @@ def build_capabilities(
                 }
             )
 
-    capabilities: list[dict[str, Any]] = []
+    capability_records: list[dict[str, Any]] = []
     for capability_id in sorted(donors):
         donor = donors[capability_id]
         system_ids = sorted(donor["systems"])
-        capabilities.append(
+        capability_records.append(
             {
                 "capability_id": capability_id,
                 "donor_systems": system_ids,
@@ -569,7 +563,7 @@ def build_capabilities(
 
     registry: dict[str, Any] = {
         "schema": "glaciereq.capability-donor-registry.v1",
-        "capabilities": capabilities,
+        "capabilities": capability_records,
         "policy": {
             "multi_donor_claim_requires": 2,
             "metadata_inference_is_not_runtime_proof": True,
@@ -893,7 +887,7 @@ def _minimal_surface(
     rows: Sequence[Mapping[str, Any]],
     capabilities: Mapping[str, Sequence[str] | set[str]],
     scores: Mapping[str, Mapping[str, Any]],
-    limit: int = 5,
+    limit: int | None = None,
 ) -> list[str]:
     remaining = list(rows)
     selected: list[str] = []
@@ -902,7 +896,7 @@ def _minimal_surface(
         for row in remaining
         for capability in capabilities.get(str(row["system_id"]), ())
     }
-    while remaining and len(selected) < limit:
+    while remaining and uncovered and (limit is None or len(selected) < limit):
         best = max(
             remaining,
             key=lambda row: (
@@ -913,7 +907,7 @@ def _minimal_surface(
         )
         system_id = str(best["system_id"])
         new_coverage = uncovered & set(capabilities.get(system_id, ()))
-        if selected and uncovered and not new_coverage:
+        if not new_coverage:
             break
         selected.append(system_id)
         uncovered -= new_coverage
@@ -1041,7 +1035,7 @@ def build_company_projections(
                 "operating_problem": company.get("gap_or_next_gate"),
                 "operating_problem_source": "company_dossier.gap_or_next_gate",
                 "recruiter_thesis": company.get("recruiter_thesis"),
-                "canonical_systems": system_ids,
+                "reference_systems": system_ids,
                 "capabilities": sorted(
                     {
                         capability
@@ -1054,7 +1048,7 @@ def build_company_projections(
                     scoped_capabilities,
                     scores,
                 ),
-                "projection_innovation": "bounded_greedy_capability_set_cover",
+                "projection_innovation": "complete_ranked_relation_graph_with_minimal_proof_view",
                 "ranked_evidence": [
                     {
                         **row,
@@ -1084,7 +1078,10 @@ def build_company_projections(
             "score_weights": "equal",
             "public_visibility_is_derived_separately": True,
             "company_projection_cannot_publish_legal_private_namespace": True,
-            "company_surface_max_systems": 5,
+            "company_surface_max_systems": None,
+            "company_relation_membership": "complete_ranked_relation_graph",
+            "minimal_proof_surface_is_non_authoritative": True,
+            "presentation_pagination_changes_membership": False,
             "semantic_capability_donors_are_company_scoped": True,
         },
     }
@@ -1099,7 +1096,7 @@ def build_experiments(
     requirements = {
         ExperimentStage.DISTINCT_VALUE.value: ["unique_value_evidence"],
         ExperimentStage.TESTED.value: ["positive_count_test_receipt"],
-        ExperimentStage.SYSTEM_COMPONENT.value: ["canonical_system_integration_receipt"],
+        ExperimentStage.SYSTEM_COMPONENT.value: ["reference_system_integration_receipt"],
         ExperimentStage.FLAGSHIP_DONOR.value: [
             "capability_proof",
             "promotion_score_gate",
@@ -1205,7 +1202,7 @@ def compile_estate(
             ),
             "fork_references": sum(repo.fork for repo in repos),
             "namespace_assertions_applied": len(namespace_assertions),
-            "canonical_systems": len(systems["systems"]),
+            "reference_systems": len(systems["systems"]),
             "lineage_edges": len(systems["lineage_edges"]),
             "unresolved_lineage_candidates": len(systems["unresolved_lineage"]),
             "capabilities": len(capabilities["capabilities"]),
@@ -1216,7 +1213,7 @@ def compile_estate(
             "experiments": len(experiments),
         },
         "registry_hashes": {
-            "canonical_system_registry": systems["content_hash"],
+            "system_registry": systems["content_hash"],
             "capability_donor_registry": capabilities["content_hash"],
             "company_projection_registry": companies["content_hash"],
         },
@@ -1233,7 +1230,7 @@ def compile_estate(
     bundle: dict[str, Any] = {
         "schema": SCHEMA_VERSION,
         "source_digest": source_digest,
-        "canonical_system_registry": systems,
+        "system_registry": systems,
         "capability_donor_registry": capabilities,
         "company_projection_registry": companies,
         "experiment_pipeline": experiments,
@@ -1244,7 +1241,7 @@ def compile_estate(
 
 
 def public_safe_projection(bundle: Mapping[str, Any]) -> dict[str, Any]:
-    systems = bundle["canonical_system_registry"]["systems"]
+    systems = bundle["system_registry"]["systems"]
     globally_allowed = {
         row["system_id"]
         for row in systems
@@ -1298,14 +1295,14 @@ def public_safe_projection(bundle: Mapping[str, Any]) -> dict[str, Any]:
                     if key
                     not in {
                         "ranked_evidence",
-                        "canonical_systems",
+                        "reference_systems",
                         "minimal_proof_surface",
                         "capabilities",
                     }
                 },
-                "canonical_systems": [
+                "reference_systems": [
                     system_id
-                    for system_id in projection["canonical_systems"]
+                    for system_id in projection["reference_systems"]
                     if system_id in safe_ids
                 ],
                 "capabilities": safe_capabilities,

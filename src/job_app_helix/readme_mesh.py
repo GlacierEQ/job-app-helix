@@ -70,8 +70,8 @@ def load_mesh(path: Path) -> readme_mesh_pb2.ReadmeMesh:
 def validate_mesh(mesh: readme_mesh_pb2.ReadmeMesh) -> None:
     if not mesh.schema_version.strip():
         raise ReadmeMeshError("schema_version is required")
-    if not mesh.canonical_repo.strip():
-        raise ReadmeMeshError("legacy v1 mesh root is required for wire compatibility")
+    if not mesh.apex_repo.strip():
+        raise ReadmeMeshError("APEX mesh root is required")
 
     repositories: dict[str, readme_mesh_pb2.RepositoryNode] = {}
     for node in mesh.repositories:
@@ -83,9 +83,9 @@ def validate_mesh(mesh: readme_mesh_pb2.ReadmeMesh) -> None:
         repositories[repository] = node
         _validate_node(node)
 
-    if mesh.canonical_repo not in repositories:
+    if mesh.apex_repo not in repositories:
         raise ReadmeMeshError(
-            f"legacy v1 mesh root {mesh.canonical_repo!r} is not declared as a repository"
+            f"APEX mesh root {mesh.apex_repo!r} is not declared as a repository"
         )
 
     seen_edges: set[tuple[str, str, int]] = set()

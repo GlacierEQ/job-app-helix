@@ -86,7 +86,7 @@ The final delivery package routes information by audience:
 The census program is complete when:
 
 - the exact owner count is reproducible;
-- the exact recruiter and priority-spine boundaries change only through deliberate, tested governance revisions;
+- recruiter-facing projections and priority planning evolve through deliberate, tested source-contract revisions without defining the full capability estate;
 - new repositories enter candidate expansion rather than silently entering résumé claims;
 - every promotion is backed by repository-native evidence;
 - each mutation wave has its own receipt;

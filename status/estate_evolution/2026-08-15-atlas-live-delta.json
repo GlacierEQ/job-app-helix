@@ -45,7 +45,7 @@
     {"id":1334094381,"name":"GlacierEQ/mermicorn-grove","visibility":"private"}
   ],
   "classification_state": "DISCOVERED_UNRESOLVED",
-  "classification_rule": "Do not infer canonical-system status from repository names. Resolve role/lineage/unique value from direct repository evidence before ignition or excellence promotion.",
+  "classification_rule": "Do not infer reference-system status from repository names. Resolve role/lineage/unique value from direct repository evidence before ignition or excellence promotion.",
   "active_completion_packet": {
     "repository": "GlacierEQ/apex-cli",
     "pr": 3,
@@ -54,5 +54,5 @@
     "master_unique_patch": "fail-closed public/machine truth verifier and workflow invocation",
     "reconciliation_strategy": "Preserve the stronger runtime candidate tree, synthesize the unique verifier against its bounded capability contract, and reconcile ancestry with a two-parent merge commit rather than dropping either lineage."
   },
-  "next_cursor": "Classify the 29 newly-created visible repositories by direct evidence in later canonical-family lanes. Continue apex-cli PR #3 through exact-head proof on the reconciled lineage and guarded merge only if all gates pass."
+  "next_cursor": "Classify the 29 newly-created visible repositories by direct evidence in later reference-family lanes. Continue apex-cli PR #3 through exact-head proof on the reconciled lineage and guarded merge only if all gates pass."
 }

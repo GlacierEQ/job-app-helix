@@ -30,7 +30,7 @@
       "ordinal_599_present": false,
       "decision": "LIVE_NATIVE_NONFORK_CARDINALITY_CONFIRMED"
     },
-    "truth_boundary": "GitHub search-visible non-fork repository cardinality only; not a count of canonical systems, production deployments, or independently verified capabilities."
+    "truth_boundary": "GitHub search-visible non-fork repository cardinality only; not a count of reference systems, production deployments, or independently verified capabilities."
   },
   "make_it_heavy": {
     "repository": "GlacierEQ/make-it-heavy",
@@ -65,8 +65,8 @@
         "promotion_rule": "exact-head guard"
       },
       "merge_result": "MERGED",
-      "canonical_sha_after": "d921bcc125ca08972f78fda5f921740dd3cdc6e1",
-      "canonical_readback": "CONFIRMED",
+      "reference_sha_after": "d921bcc125ca08972f78fda5f921740dd3cdc6e1",
+      "reference_readback": "CONFIRMED",
       "remote_ref": "DELETE_REF_REQUIRED"
     },
     "retired_pr_surfaces": [
@@ -93,7 +93,7 @@
     "comparison_when_checked": "3 ahead / 2 behind",
     "merge_base": "9add29a6dfa8113935c5dfa1eb4f98cc2b319bfa",
     "disposition": "CLOSED_UNMERGED_STALE_TIP",
-    "canonical_authority": "PR #77 preserved the stale-lineage boundary; stale #75 history was not merged"
+    "reference_authority": "PR #77 preserved the stale-lineage boundary; stale #75 history was not merged"
   },
   "monolith": {
     "repository": "GlacierEQ/monolith",
@@ -108,7 +108,7 @@
         "private GitHub Actions account budget blocks runner allocation",
         "approved public validator bridge lacks APEX_RUNNER_APP_CLIENT_ID and APEX_RUNNER_APP_PRIVATE_KEY at runtime"
       ],
-      "canonical_mutation": false
+      "reference_mutation": false
     },
     "category_heads_pr_55": {
       "head": "de3155aea354c3ae9cfd2bf115dea9eb884d2d43",

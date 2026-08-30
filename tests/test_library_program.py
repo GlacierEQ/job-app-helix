@@ -51,34 +51,32 @@ def _receipt_payload() -> dict[str, object]:
     return json.loads(RECEIPT.read_text(encoding="utf-8"))
 
 
-def test_checked_in_library_program_is_valid() -> None:
+def test_checked_in_library_program_is_valid_and_points_up() -> None:
     payload = validate_library_program(PROGRAM)
 
-    assert tuple(item["repository"] for item in payload["repositories"]) == (
-        EXPECTED_REPOSITORIES
-    )
-    assert payload["canonical_control_plane"] == "GlacierEQ/job-app-helix"
+    assert tuple(item["repository"] for item in payload["repositories"]) == EXPECTED_REPOSITORIES
+    assert payload["control_plane"] == "GlacierEQ/job-app-helix"
+    assert payload["policy"]["direction"] == "MAXIMUM_COHERENT_ADVANCE"
+    assert payload["policy"]["inventory_cannot_authorize_retirement"] is True
+    assert payload["policy"]["similarity_cannot_establish_redundancy"] is True
+    assert payload["policy"]["operator_authorization_required_for_retirement"] is True
 
 
 def test_checked_in_latest_execution_receipt_is_valid() -> None:
     program = validate_library_program(PROGRAM)
     receipt = validate_latest_execution_receipt(PROGRAM, program)
 
-    assert tuple(item["repository"] for item in receipt["outcomes"]) == (
-        EXPECTED_REPOSITORIES
-    )
+    assert tuple(item["repository"] for item in receipt["outcomes"]) == EXPECTED_REPOSITORIES
     assert receipt["summary"]["whole_library_complete"] is False
-    assert receipt["summary"]["remote_branch_refs_deleted"] == 0
 
 
 def test_priorities_are_exact_and_contiguous() -> None:
     payload = _payload()
     repositories = payload["repositories"]
-
     assert [item["priority"] for item in repositories] == list(range(len(repositories)))
 
 
-def test_program_rejects_reordered_authority(tmp_path: Path) -> None:
+def test_program_rejects_reordered_priority_queue(tmp_path: Path) -> None:
     payload = _payload()
     repositories = payload["repositories"]
     repositories[0], repositories[1] = repositories[1], repositories[0]
@@ -104,47 +102,59 @@ def test_program_preserves_megamind_identity_boundary(tmp_path: Path) -> None:
         validate_library_program(_write_program(tmp_path, payload))
 
 
-def test_program_rejects_branch_closure_without_preservation(tmp_path: Path) -> None:
+def test_program_rejects_inventory_retirement_authority(tmp_path: Path) -> None:
     payload = _payload()
-    payload["policy"]["preserve_unique_value_before_closure"] = False
+    payload["policy"]["inventory_cannot_authorize_retirement"] = False
 
-    with pytest.raises(LibraryProgramError, match="preserved before closure"):
+    with pytest.raises(LibraryProgramError, match="inventory_cannot_authorize_retirement"):
         validate_library_program(_write_program(tmp_path, payload))
 
 
-def test_receipt_rejects_remote_branch_deletion_overclaim(tmp_path: Path) -> None:
-    program_payload = _payload()
-    receipt_payload = _receipt_payload()
-    receipt_payload["summary"]["remote_branch_refs_deleted"] = 1
-    program_path = _write_program_with_receipt(
-        tmp_path, program_payload, receipt_payload
-    )
-    program = validate_library_program(program_path)
+def test_program_rejects_similarity_as_redundancy_authority(tmp_path: Path) -> None:
+    payload = _payload()
+    payload["policy"]["similarity_cannot_establish_redundancy"] = False
 
-    with pytest.raises(LibraryProgramError, match="overstates remote branch deletion"):
-        validate_latest_execution_receipt(program_path, program)
+    with pytest.raises(LibraryProgramError, match="similarity_cannot_establish_redundancy"):
+        validate_library_program(_write_program(tmp_path, payload))
+
+
+def test_program_rejects_downward_branch_lifecycle(tmp_path: Path) -> None:
+    payload = _payload()
+    payload["policy"]["branch_lifecycle"][-2] = "DELETE_REF"
+
+    with pytest.raises(LibraryProgramError, match="branch lifecycle"):
+        validate_library_program(_write_program(tmp_path, payload))
+
+
+def test_program_rejects_implicit_retirement_action(tmp_path: Path) -> None:
+    payload = _payload()
+    payload["repositories"][0]["action"] = "VERIFY_AND_CONSOLIDATE"
+
+    with pytest.raises(LibraryProgramError, match=r"unsupported action|contraction action"):
+        validate_library_program(_write_program(tmp_path, payload))
 
 
 def test_receipt_rejects_whole_library_completion_overclaim(tmp_path: Path) -> None:
     program_payload = _payload()
     receipt_payload = _receipt_payload()
     receipt_payload["summary"]["whole_library_complete"] = True
-    program_path = _write_program_with_receipt(
-        tmp_path, program_payload, receipt_payload
-    )
+    program_path = _write_program_with_receipt(tmp_path, program_payload, receipt_payload)
     program = validate_library_program(program_path)
 
     with pytest.raises(LibraryProgramError, match="whole-library completion"):
         validate_latest_execution_receipt(program_path, program)
 
 
-def test_render_is_deterministic_and_truth_bounded() -> None:
+def test_render_is_deterministic_and_points_up() -> None:
     payload = validate_library_program(PROGRAM)
 
     first = render_library_program(payload)
     second = render_library_program(copy.deepcopy(payload))
 
     assert first == second
-    assert "Closing a pull request does not prove" in first
+    assert "MAXIMUM" not in first or "capability" in first.casefold()
+    assert "RESTORE_LOST_CAPABILITY" in first
+    assert "DEPLOY_OR_PACKAGE" in first
+    assert "Retirement, archival, merge-away" in first
     assert "GlacierEQ/pro-code" in first
     assert "PENDING_USER_INTENT_CONFIRMATION" not in first

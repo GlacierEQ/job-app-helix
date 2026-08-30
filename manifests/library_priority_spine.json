@@ -1,165 +1,38 @@
 {
-  "schema": "glaciereq.library.priority-spine.v1",
+  "schema": "glaciereq.library.priority-spine.v2",
   "owner": "GlacierEQ",
-  "canonical_control_plane": "GlacierEQ/job-app-helix",
-  "canonical_branch": "main",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "default_branch": "main",
   "generated_at_policy": "runtime_receipt_only",
   "latest_execution_receipt": "status/priority-spine-wave-2-2026-07-31.json",
   "scopes": {
-    "priority_spine": {
-      "kind": "curated",
-      "exact": true,
-      "purpose": "Named repositories that establish policy, presentation, governance, engineering standards, intelligence, and consolidation order."
-    },
-    "recruiter_portfolio": {
-      "kind": "manifest",
-      "exact": true,
-      "source": "manifests/portfolio_repositories.json",
-      "rollout": "manifests/portfolio_rollout.json"
-    },
-    "owned_library": {
-      "kind": "dynamic_census",
-      "exact": false,
-      "purpose": "All repositories accessible as owner; must be discovered at execution time and classified before mutation."
-    }
+    "priority_spine": {"kind":"curated","exact":true,"purpose":"Named high-leverage repositories that seed estate-wide capability elevation; this list is a priority queue, not authority over unlisted repositories."},
+    "recruiter_portfolio": {"kind":"manifest","exact":true,"source":"manifests/portfolio_repositories.json","rollout":"manifests/portfolio_rollout.json"},
+    "owned_library": {"kind":"dynamic_census","exact":false,"purpose":"Every accessible owned repository remains a potential capability donor and independent system until purpose, lineage, implementation, and unique value are reconstructed."}
   },
   "policy": {
+    "direction": "MAXIMUM_COHERENT_ADVANCE",
     "readme_profile": "recruiter-expert-ai",
-    "main_is_canonical": true,
-    "preserve_unique_value_before_closure": true,
+    "preserve_unique_value": true,
     "require_repository_native_proof": true,
     "require_explicit_nonclaims": true,
-    "branch_lifecycle": [
-      "DISCOVER",
-      "COMPARE",
-      "PRESERVE",
-      "VERIFY",
-      "MERGE_OR_CLOSE",
-      "DELETE_REF",
-      "RECEIPT"
-    ],
-    "deletion_truth_boundary": "Pull-request closure and remote branch-ref deletion are separate evidence events."
+    "inventory_cannot_authorize_retirement": true,
+    "similarity_cannot_establish_redundancy": true,
+    "failed_proof_cannot_establish_irrelevance": true,
+    "unverified_cannot_mean_disposable": true,
+    "operator_authorization_required_for_retirement": true,
+    "branch_lifecycle": ["DISCOVER","RECONSTRUCT_PURPOSE","COMPARE_LINEAGE","EXTRACT_UNIQUE_VALUE","RESTORE_LOST_CAPABILITY","COMPOSE_GAINS","IMPLEMENT","VERIFY","INTEGRATE","DEPLOY_OR_PACKAGE","RECEIPT"],
+    "retirement_boundary": "No merge-away, archive, close-as-duplicate, branch deletion, repository deletion, or successor substitution is authorized by this program; each is not authorized without a separate operator decision after proven capability preservation."
   },
   "repositories": [
-    {
-      "priority": 0,
-      "repository": "GlacierEQ/the-tower-of-babel",
-      "visibility": "public",
-      "default_branch": "main",
-      "role": "technology-placement-and-proof-policy-authority",
-      "action": "VERIFY_AND_CONSOLIDATE",
-      "readme_state": "MASTERCLASS_AND_JOB_APPLICATION_INTEGRATION_MERGED",
-      "proof_state": "NATIVE_GOVERNANCE_AND_INTEGRITY_VERIFIED",
-      "branch_state": "ADVANCED_EXHIBITS_RETIRED_THREE_SUPERSEDED_REFS_REMAIN",
-      "identity_state": "CONFIRMED",
-      "aliases": ["tower of babel"]
-    },
-    {
-      "priority": 1,
-      "repository": "GlacierEQ/job-application",
-      "visibility": "public",
-      "default_branch": "main",
-      "role": "recruiter-facing-portfolio-front-door",
-      "action": "VERIFY_AND_CONSOLIDATE",
-      "readme_state": "MASTERCLASS_AND_ORCHESTRATION_CONTRACT_PRESENT",
-      "proof_state": "TRUTH_GATE_VERIFIED",
-      "branch_state": "SUPERSEDED_REFS_DELETE_REQUIRED",
-      "identity_state": "CONFIRMED",
-      "aliases": ["job application"]
-    },
-    {
-      "priority": 2,
-      "repository": "GlacierEQ/job-app-helix",
-      "visibility": "public",
-      "default_branch": "main",
-      "role": "portfolio-execution-audit-and-consolidation-control-plane",
-      "action": "EXTEND_CONTROL_PLANE",
-      "readme_state": "MASTERCLASS_FINAL_FORM_AND_LIBRARY_PROGRAM_PRESENT",
-      "proof_state": "PYTHON_3_11_TO_3_13_TEST_VERIFIED",
-      "branch_state": "RETIREMENT_RECEIPT_COMPLETE_EXACT_DELETE_BLOCKERS_RECORDED",
-      "identity_state": "CONFIRMED",
-      "aliases": ["job app helix"]
-    },
-    {
-      "priority": 3,
-      "repository": "GlacierEQ/monolith",
-      "visibility": "private",
-      "default_branch": "main",
-      "role": "owned-library-catalog-and-evolution-topology",
-      "action": "COMPLETE_ACTIVE_PR",
-      "readme_state": "LIBRARY_ENTRYPOINT_CANDIDATE_PRESENT",
-      "proof_state": "BLOCKED_ACTIONS_EXECUTION_AND_MISSING_GENERATED_LEDGER",
-      "branch_state": "ACTIVE_UNMERGED_VALUE_PRESERVE_OPEN",
-      "identity_state": "CONFIRMED",
-      "aliases": ["monolith"]
-    },
-    {
-      "priority": 4,
-      "repository": "GlacierEQ/AKOS",
-      "visibility": "public",
-      "default_branch": "main",
-      "role": "identity-authority-evidence-persistence-and-completion-governance",
-      "action": "PRESERVE_AND_MONITOR",
-      "readme_state": "MASTERCLASS_PRESENT",
-      "proof_state": "TEST_VERIFIED_BRANCH_FAMILIES_CLASSIFIED",
-      "branch_state": "NINE_OBSOLETE_TWO_UNIQUE_ONE_QUARANTINED",
-      "identity_state": "CONFIRMED",
-      "aliases": ["akos"]
-    },
-    {
-      "priority": 5,
-      "repository": "GlacierEQ/pro-code",
-      "visibility": "public",
-      "default_branch": "main",
-      "role": "executable-polyglot-engineering-and-public-proof-strand",
-      "action": "HARDEN_AND_VERIFY",
-      "readme_state": "LOCAL_OPERABLE_TRUTH_BOUNDARY_MERGED",
-      "proof_state": "LOCAL_NEXUS_AUTOMATION_NATIVE_CI_HELIX_AND_NERVOUS_SYSTEM_VERIFIED",
-      "branch_state": "AUTHORITY_SYNC_MERGED_SUPERSEDED_REFS_DELETE_REQUIRED",
-      "identity_state": "CONFIRMED",
-      "authority_state": "CURRENT",
-      "authority_head": "1f4ada2f2cb6b58578490c28eccbb7ea007b9235",
-      "authority_receipt": "status/pro-code-authority-reconciliation-2026-08-10.json",
-      "aliases": ["pro-code"]
-    },
-    {
-      "priority": 6,
-      "repository": "GlacierEQ/Pro_Code",
-      "visibility": "private",
-      "default_branch": "main",
-      "role": "operator-doctrine-style-and-agent-context-strand",
-      "action": "HARDEN_AND_BOUND",
-      "readme_state": "STATIC_DOCTRINE_AND_RELATIONSHIP_CORPUS_VERIFIED",
-      "proof_state": "THIRTEEN_TESTS_EXACT_BLOB_VERIFIED_ACTIONS_BLOCKED",
-      "branch_state": "FOUR_OBSOLETE_REFS_CLASSIFIED_DELETE_BLOCKED_TOOLING",
-      "identity_state": "CONFIRMED",
-      "aliases": ["pro_code", "pro code"]
-    },
-    {
-      "priority": 7,
-      "repository": "GlacierEQ/mastermind",
-      "visibility": "public",
-      "default_branch": "main",
-      "role": "intelligence-orchestration-system",
-      "action": "AUDIT_HARDEN_AND_CONSOLIDATE",
-      "readme_state": "EVIDENCE_BOUND_CONSOLIDATION_FRONT_DOOR_MERGED",
-      "proof_state": "LOCAL_PROCESS_AND_CONSOLIDATION_GATE_VERIFIED",
-      "branch_state": "FRONT_DOOR_MERGED_BACKLOG_FAMILY_AUDIT_REQUIRED",
-      "identity_state": "CONFIRMED",
-      "aliases": ["mastermind"]
-    },
-    {
-      "priority": 8,
-      "repository": "GlacierEQ/megaminds-pdf",
-      "visibility": "public",
-      "default_branch": "master",
-      "role": "focused-technical-pdf-viewer",
-      "action": "IDENTITY_REVIEW_BEFORE_HARDENING",
-      "readme_state": "VERIFIED_VITE_VIEWER_MASTERCLASS_MERGED",
-      "proof_state": "FOUR_TESTS_BUILD_AND_ZERO_PRODUCTION_VULNERABILITIES",
-      "branch_state": "MIGRATION_MERGED_STALE_REFS_REQUIRE_DISPOSITION",
-      "identity_state": "PENDING_USER_INTENT_CONFIRMATION",
-      "aliases": ["megamind", "megaminds pdf"]
-    }
+    {"priority":0,"repository":"GlacierEQ/the-tower-of-babel","visibility":"public","default_branch":"main","role":"polyglot-technology-placement-and-cross-language-composition-system","action":"EVOLVE_AND_INTEGRATE","readme_state":"MASTERCLASS_AND_JOB_APPLICATION_INTEGRATION_MERGED","proof_state":"NATIVE_GOVERNANCE_AND_INTEGRITY_VERIFIED","branch_state":"PRESERVE_ALL_UNIQUE_LINEAGE_UNTIL_CAPABILITY_COMPARISON","identity_state":"CONFIRMED","aliases":["tower of babel"]},
+    {"priority":1,"repository":"GlacierEQ/job-application","visibility":"public","default_branch":"main","role":"recruiter-facing-portfolio-front-door-and-application-system","action":"EVOLVE_AND_DEPLOY","readme_state":"MASTERCLASS_AND_ORCHESTRATION_CONTRACT_PRESENT","proof_state":"TRUTH_GATE_VERIFIED","branch_state":"PRESERVE_UNIQUE_BRANCH_GAINS","identity_state":"CONFIRMED","aliases":["job application"]},
+    {"priority":2,"repository":"GlacierEQ/job-app-helix","visibility":"public","default_branch":"main","role":"portfolio-intelligence-restoration-evolution-and-proof-engine","action":"EXTEND_UPWARD_EXECUTION_ENGINE","readme_state":"MASTERCLASS_FINAL_FORM_AND_LIBRARY_PROGRAM_PRESENT","proof_state":"PYTHON_3_11_TO_3_13_TEST_VERIFIED","branch_state":"RESTORE_AND_COMPOSE_BEFORE_ANY_RETIREMENT_DECISION","identity_state":"CONFIRMED","aliases":["job app helix"]},
+    {"priority":3,"repository":"GlacierEQ/monolith","visibility":"private","default_branch":"main","role":"owned-library-catalog-composition-and-evolution-topology","action":"COMPLETE_AND_EXPAND_ACTIVE_CAPABILITY","readme_state":"LIBRARY_ENTRYPOINT_CANDIDATE_PRESENT","proof_state":"BLOCKED_ACTIONS_EXECUTION_AND_MISSING_GENERATED_LEDGER","branch_state":"ACTIVE_UNMERGED_VALUE_PRESERVE_AND_ADVANCE","identity_state":"CONFIRMED","aliases":["monolith"]},
+    {"priority":4,"repository":"GlacierEQ/AKOS","visibility":"public","default_branch":"main","role":"adaptive-knowledge-operating-system-and-capability-composition-runtime","action":"EVOLVE_AND_CONNECT","readme_state":"MASTERCLASS_PRESENT","proof_state":"TEST_VERIFIED_BRANCH_FAMILIES_CLASSIFIED","branch_state":"CLASSIFICATIONS_ARE_HISTORICAL_NOT_RETIREMENT_AUTHORITY","identity_state":"CONFIRMED","aliases":["akos"]},
+    {"priority":5,"repository":"GlacierEQ/pro-code","visibility":"public","default_branch":"main","role":"executable-polyglot-engineering-and-public-proof-strand","action":"HARDEN_EXPAND_AND_INTEGRATE","readme_state":"LOCAL_OPERABLE_TRUTH_BOUNDARY_MERGED","proof_state":"LOCAL_NEXUS_AUTOMATION_NATIVE_CI_HELIX_AND_NERVOUS_SYSTEM_VERIFIED","branch_state":"PRESERVE_AND_COMPOSE_UNIQUE_GAINS","identity_state":"CONFIRMED","authority_state":"CURRENT","authority_head":"1f4ada2f2cb6b58578490c28eccbb7ea007b9235","authority_receipt":"status/pro-code-authority-reconciliation-2026-08-10.json","aliases":["pro-code"]},
+    {"priority":6,"repository":"GlacierEQ/Pro_Code","visibility":"private","default_branch":"main","role":"operator-doctrine-style-agent-context-and-complementary-engineering-strand","action":"HARDEN_EXPAND_AND_INTEGRATE","readme_state":"STATIC_DOCTRINE_AND_RELATIONSHIP_CORPUS_VERIFIED","proof_state":"THIRTEEN_TESTS_EXACT_BLOB_VERIFIED_ACTIONS_BLOCKED","branch_state":"PRESERVE_DISTINCT_BRAINS_AND_BRAWN_ROLE","identity_state":"CONFIRMED","aliases":["pro_code","pro code"]},
+    {"priority":7,"repository":"GlacierEQ/mastermind","visibility":"public","default_branch":"main","role":"intelligence-orchestration-and-cross-system-power-chain","action":"RESTORE_EXPAND_AND_INTEGRATE","readme_state":"EVIDENCE_BOUND_FRONT_DOOR_PRESENT","proof_state":"LOCAL_PROCESS_EVIDENCE_EXISTS","branch_state":"RESTORE_COLLAPSED_WORKSTREAMS_AND_PRESERVE_SPECIALISTS","identity_state":"CONFIRMED","aliases":["mastermind"]},
+    {"priority":8,"repository":"GlacierEQ/megaminds-pdf","visibility":"public","default_branch":"master","role":"focused-technical-pdf-viewer-and-document-capability-donor","action":"RECONSTRUCT_PURPOSE_AND_EVOLVE","readme_state":"VERIFIED_VITE_VIEWER_MASTERCLASS_MERGED","proof_state":"FOUR_TESTS_BUILD_AND_ZERO_PRODUCTION_VULNERABILITIES","branch_state":"NO_RETIREMENT_DECISION_FROM_ALIAS_OR_SIMILARITY","identity_state":"PENDING_USER_INTENT_CONFIRMATION","aliases":["megamind","megaminds pdf"]}
   ]
 }

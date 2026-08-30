@@ -13,7 +13,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from job_app_helix.repository_health import (  # noqa: E402
+from job_app_helix.repository_health import (
     RepositoryHealthError,
     assess_repository_health,
     load_policy,

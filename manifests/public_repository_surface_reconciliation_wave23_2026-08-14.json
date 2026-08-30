@@ -20,8 +20,8 @@
       "excellence_state": "LOCAL_OPERATOR_HYGIENE_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "fb51c671e66005e93385d3828053b051083f4c5d",
+        "reference_branch": "main",
+        "source_head": "fb51c671e66005e93385d3828053b051083f4c5d",
         "evidence_token": "LOCAL_OPERATOR_HYGIENE_NOT_XAI_RUNTIME_OR_FORMAL_PROOF",
         "verified_capability": "deterministic-local-operator-hygiene-claim-gating-tool-classification-compaction-and-handoff",
         "verified_capabilities": [
@@ -59,12 +59,12 @@
           "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_REQUIRED",
           "remaining_exact_head_native_proof_gate_satisfied": true
         },
-        "proof_scope": "Exact-current-head canonical CI verifies the repository-owned Grokodile proof and Python 3.11/3.12/3.13 contract matrix. The proof covers deterministic false-claim pattern gating, local tool-name allow/deny classification, deterministic caller-supplied context compaction without external-memory writes, caller-asserted handoff-envelope serialization, and public truth boundaries under operational_authority=false. This proof does not establish xAI affiliation, employment, endorsement, proprietary access, Grok runtime access, live MCP/APEX/Mastermind/ECHO/provider integration, Lean compiler proof, mathematically guaranteed safety, OS process sandboxing, external-memory persistence, independent verification of caller-supplied handoff assertions, production deployment, reliability, scale, or operational authority.",
+        "proof_scope": "Exact-current-head reference CI verifies the repository-owned Grokodile proof and Python 3.11/3.12/3.13 contract matrix. The proof covers deterministic false-claim pattern gating, local tool-name allow/deny classification, deterministic caller-supplied context compaction without external-memory writes, caller-asserted handoff-envelope serialization, and public truth boundaries under operational_authority=false. This proof does not establish xAI affiliation, employment, endorsement, proprietary access, Grok runtime access, live MCP/APEX/Mastermind/ECHO/provider integration, Lean compiler proof, mathematically guaranteed safety, OS process sandboxing, external-memory persistence, independent verification of caller-supplied handoff assertions, production deployment, reliability, scale, or operational authority.",
         "metadata_readback": {
           "assessment": "compatible with the bounded independent local operator-hygiene proof"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof failure, xAI/Grok runtime or affiliation claims, Lean/formal-proof inflation, sandbox/external-memory claims without proof, live provider integration claims, or contradictory public metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof failure, xAI/Grok runtime or affiliation claims, Lean/formal-proof inflation, sandbox/external-memory claims without proof, live provider integration claims, or contradictory public metadata."
     },
     {
       "repository": "GlacierEQ/aws-trainium-neuron-sentinel",
@@ -72,8 +72,8 @@
       "decision": "ADMIT",
       "excellence_state": "MODELED_TRAINIUM_CAPABILITY_NATIVE_PROOF_REFRESHED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "bfffd8dc67ecbd86e06dc375b9550f72788a398f",
+        "reference_branch": "main",
+        "source_head": "bfffd8dc67ecbd86e06dc375b9550f72788a398f",
         "evidence_token": "MODELED_TRAINIUM_SCENARIO_NOT_AWS_HARDWARE_MEASUREMENT",
         "verified_capability": "deterministic-modeled-trainium-core-partitioning-latency-throughput-and-fingerprint-study",
         "verified_capabilities": [
@@ -112,12 +112,12 @@
           "remaining_exact_head_native_proof_gate_satisfied": true,
           "refreshes_existing_admission": true
         },
-        "proof_scope": "Exact-current-head canonical proof refresh verifies the modeled Trainium/Inferentia-inspired local scenario surface on Python 3.11, 3.12, and 3.13 plus strict C++17 compilation of reference allocator/executor sources. The proof covers deterministic core/token partition arithmetic, modeled pipeline-bubble heuristics, latency/throughput upper-bound arithmetic, stable SHA-256 result fingerprints, input validation, the modeled-evidence token, and public/machine truth boundaries. This refresh supersedes Wave 5 head b30bc0ae04030a565204c4e0abced082a7b50979 without changing admission count. It does not establish AWS affiliation, Neuron/Trainium/Inferentia hardware execution or measurement, neuronx-cc compilation, S3 Express measurement, measured throughput/latency/memory/cost/accuracy, multi-node collectives, live MCP/APEX/provider integration, or production accelerator authority.",
+        "proof_scope": "Exact-current-head reference proof refresh verifies the modeled Trainium/Inferentia-inspired local scenario surface on Python 3.11, 3.12, and 3.13 plus strict C++17 compilation of reference allocator/executor sources. The proof covers deterministic core/token partition arithmetic, modeled pipeline-bubble heuristics, latency/throughput upper-bound arithmetic, stable SHA-256 result fingerprints, input validation, the modeled-evidence token, and public/machine truth boundaries. This refresh supersedes Wave 5 head b30bc0ae04030a565204c4e0abced082a7b50979 without changing admission count. It does not establish AWS affiliation, Neuron/Trainium/Inferentia hardware execution or measurement, neuronx-cc compilation, S3 Express measurement, measured throughput/latency/memory/cost/accuracy, multi-node collectives, live MCP/APEX/provider integration, or production accelerator authority.",
         "metadata_readback": {
           "assessment": "compatible with the already-admitted bounded modeled Trainium/Inferentia study"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, native proof or C++ compilation failure, AWS affiliation/hardware claims, measured-performance inflation, live provider integration claims, or contradictory public metadata."
+      "next_gate": "Reopen repair on reference-head drift, native proof or C++ compilation failure, AWS affiliation/hardware claims, measured-performance inflation, live provider integration claims, or contradictory public metadata."
     }
   ]
 }

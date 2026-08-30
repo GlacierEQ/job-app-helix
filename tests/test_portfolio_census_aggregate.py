@@ -133,7 +133,7 @@ def test_inventory_rejects_empty_workspace() -> None:
     except ValueError as exc:
         assert "workspace_repositories" in str(exc)
     else:
-        raise AssertionError("Empty canonical workspace did not fail closed")
+        raise AssertionError("Empty reference workspace did not fail closed")
 
 
 def test_aggregate_fails_on_missing_expected_receipt(tmp_path: Path) -> None:

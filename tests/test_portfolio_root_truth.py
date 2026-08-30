@@ -48,8 +48,11 @@ def test_root_truth_validation_passes() -> None:
     assert receipt["projection_freshness"]["all_projections_current"] is False
     assert receipt["projection_freshness"]["state"] == "PENDING_CONSUMER_RECEIPTS"
     assert set(receipt["projection_freshness"]["projections"]) == EXPECTED_PROJECTIONS
-    assert receipt["counts"]["total_repositories"] == 67
-    assert receipt["counts"]["workspace_repositories"] == 66
+    inventory = load_json("manifests/portfolio_repositories.json")
+    assert receipt["counts"]["total_repositories"] == inventory["total_repositories"]
+    assert receipt["counts"]["workspace_repositories"] == len(
+        inventory["workspace_repositories"]
+    )
     assert receipt["counts"]["company_tracks"] == len(required_company_tracks)
     assert receipt["counts"]["flagship_systems"] == 17
     assert receipt["counts"]["projections"] == len(EXPECTED_PROJECTIONS)
@@ -65,6 +68,20 @@ def test_root_truth_validation_passes() -> None:
     assert len(receipt["source_digest"]) == 64
     assert len(receipt["receipt_sha256"]) == 64
     assert all(receipt["invariants"].values())
+
+
+def test_root_and_projection_policies_have_no_fixed_membership_ceiling() -> None:
+    root = load_json("manifests/portfolio_root_truth.json")
+    compiler = load_json("manifests/estate_compiler.json")
+    projection = load_json("manifests/estate_projection_policy.json")
+    serialized_root = json.dumps(root, sort_keys=True)
+
+    assert "67-repository" not in serialized_root
+    assert compiler["projection_policy"]["company_surface_max_systems"] is None
+    assert compiler["projection_policy"]["presentation_pagination_changes_membership"] is False
+    assert "audience_caps" not in projection
+    assert projection["membership_policy"]["fixed_system_cap"] is None
+    assert projection["membership_policy"]["presentation_pagination_changes_membership"] is False
 
 
 def test_every_projection_resolves_declared_sources() -> None:

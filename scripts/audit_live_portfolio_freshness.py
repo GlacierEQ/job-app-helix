@@ -2,7 +2,7 @@
 """Audit live GitHub state against Helix portfolio declarations.
 
 This is a read-only freshness layer, not a source-of-truth replacement. It
-compares canonical Helix declarations with observable GitHub metadata and the
+compares reference Helix declarations with observable GitHub metadata and the
 current live-evidence registry, then emits a deterministic-shape receipt.
 
 A repository-scoped Actions token cannot inspect sibling private repositories.
@@ -60,7 +60,7 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def canonical_bytes(value: Any) -> bytes:
+def reference_bytes(value: Any) -> bytes:
     return (
         json.dumps(
             value,
@@ -73,7 +73,7 @@ def canonical_bytes(value: Any) -> bytes:
 
 
 def digest(value: Any) -> str:
-    return hashlib.sha256(canonical_bytes(value)).hexdigest()
+    return hashlib.sha256(reference_bytes(value)).hexdigest()
 
 
 def parse_repository_identifier(repository: str) -> tuple[str, str]:
@@ -611,8 +611,8 @@ def audit(
     def count(code: str) -> int:
         return sum(row["code"] == code for row in findings)
 
-    stale_count = count("STALE_FLAGSHIP_LIVE_EVIDENCE")
-    missing_flagship_count = count("MISSING_FLAGSHIP_LIVE_EVIDENCE")
+    stale_system_count = count("STALE_FLAGSHIP_LIVE_EVIDENCE")
+    missing_system_count = count("MISSING_FLAGSHIP_LIVE_EVIDENCE")
     visibility_mismatch_count = count("LIVE_VISIBILITY_MISMATCH")
     public_unobservable_count = count(
         "DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE"
@@ -632,7 +632,7 @@ def audit(
             "owner_estate_repositories_audited": len(
                 portfolio["all_repositories"]
             ),
-            "flagships": len(flagships),
+            "source_admitted_systems": len(flagships),
             "live_evidence_rows": len(evidence_by_repository),
             "recruiter_eligible_dossier_repositories": len(
                 recruiter_eligible_repositories
@@ -644,16 +644,16 @@ def audit(
         "freshness": {
             "visibility_mismatches": visibility_mismatch_count,
             "declared_public_unobservable": public_unobservable_count,
-            "stale_flagship_evidence": stale_count,
-            "missing_flagship_live_evidence": missing_flagship_count,
+            "stale_system_evidence": stale_system_count,
+            "missing_system_live_evidence": missing_system_count,
             "ambiguous_public_surface_private_source": count(
                 "AMBIGUOUS_PUBLIC_SURFACE_PRIVATE_SOURCE"
             ),
             "all_recruiter_eligible_have_live_evidence": (
                 not recruiter_missing_evidence
             ),
-            "all_flagship_evidence_current": (
-                not stale_count and not missing_flagship_count
+            "all_source_admitted_system_evidence_current": (
+                not stale_system_count and not missing_system_count
             ),
             "declared_visibility_matches_live": (
                 not visibility_mismatch_count
@@ -727,7 +727,7 @@ def main() -> int:
         if not output.is_absolute():
             output = ROOT / output
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_bytes(canonical_bytes(receipt))
+        output.write_bytes(reference_bytes(receipt))
         print(f"wrote {display_path(output)}")
 
     print(json.dumps(receipt, indent=2, sort_keys=True))

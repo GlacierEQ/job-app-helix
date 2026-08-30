@@ -10,7 +10,7 @@
     "support_assertions_do_not_collapse_lineage": true,
     "support_assertions_do_not_count_as_independent_accomplishments": true,
     "capability_assertions_require_nonempty_evidence_refs": true,
-    "capability_assertions_must_resolve_to_canonical_engineering_systems": true,
+    "capability_assertions_must_resolve_to_reference_engineering_systems": true,
     "capability_assertions_do_not_override_public_visibility_or_promotion_state": true,
     "exact_legal_namespace_membership_requires_evidence_bound_assertions": true
   }

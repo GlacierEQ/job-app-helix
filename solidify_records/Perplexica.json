@@ -1,0 +1,20 @@
+{
+  "repo": "Perplexica",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Perplexica: an open-source AI-powered search engine pitched as an alternative to Perplexity AI. Triple-cataloged: (a) library.json:13052 (name=Perplexica, domain=long_tail, activity=catalogued, status_detail=catalogued_unclassified, local_job_app=false, language=TypeScript, desc='AI-powered search engine, open-source alternative to Perplexity AI'; url=https://github.com/GlacierEQ/Perplexica); (b) capabilities_3layer.json:43687 classifier extended_utilities_and_experiments with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/extended_utilities_and_experiments/Perplexica; (c) company_engineered_repositories.json:240 reference_or_upstream includes Perplexica. The expanded_job_app_helix_manifest.json (line 884) assigns it as a job-app-helix mesh leaf, family Perplexity, state reference. The Perplexity-family connection and the search-engine use case make this a direct candidate for integration with apex-connector-mesh (Exa, Tavily, Jina connectors), but as a verbatim upstream mirror with no local integration, it cannot be rated above 6 honestly.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 13052: name=Perplexica, domain=long_tail, activity=catalogued, status_detail=catalogued_unclassified, local_job_app=false, language=TypeScript, desc='AI-powered search engine, open-source alternative to Perplexity AI'; url=https://github.com/GlacierEQ/Perplexica)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 43687: name=Perplexica; classifier=extended_utilities_and_experiments; executive_summary='AI-powered search engine, open-source alternative to Perplexity AI'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/Perplexica; launch_cmd='git clone https://github.com/GlacierEQ/Perplexica')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (perplexity.reference_or_upstream includes Perplexica, line 240)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 884: kind=company, state=reference, family='Perplexity' \u2014 confirmed job-app-helix mesh membership)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Honest cap at 6 \u2014 strong catalog + helix membership, but no local integration or receipt. To reach 7+ requires: (1) extract the upstream Perplexica source, (2) produce a successful build/run receipt, (3) integrate with one of the apex-connector-mesh search backends (Exa/Tavily/Jina) as a GlacierEQ differentiation, (4) write a fact card citing the actual search/retrieval implementation, and (5) update company_engineered_repositories.json from reference_or_upstream to in_preparation.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.780422",
+  "notes": " | NEEDS_REPAIR"
+}

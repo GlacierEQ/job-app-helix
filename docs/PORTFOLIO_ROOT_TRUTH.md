@@ -2,9 +2,9 @@
 
 ## One governed source, many synchronized projections
 
-`GlacierEQ/job-app-helix` is the canonical portfolio control plane. It does not copy child repository source and it does not replace repository-native proof. It compiles admission, classification, evidence state, company alignment, role fit, estate intelligence policy, and projection boundaries into a single governed contract.
+`GlacierEQ/job-app-helix` is the APEX portfolio control plane. It does not copy child repository source and it does not replace repository-native proof. It compiles admission, classification, evidence state, company alignment, role fit, estate intelligence policy, and projection boundaries into a single governed contract.
 
-The canonical entrypoint is:
+The APEX entrypoint is:
 
 ```text
 manifests/portfolio_root_truth.json
@@ -21,7 +21,7 @@ https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/manifests/portfol
 The portfolio now distinguishes two different things that must never be conflated:
 
 1. **Admitted public portfolio subset** — the governed 67-repository inventory used for public proof, recruiter presentation, company dossiers, and stable downstream contracts.
-2. **Authenticated owned-estate substrate** — the larger private repository field compiled at runtime into lineage-collapsed canonical systems, capability donors, experiment state, support/reference ancestry, and company/role projections.
+2. **Authenticated owned-estate substrate** — the larger private repository field compiled at runtime into lineage-collapsed APEX systems, capability donors, experiment state, support/reference ancestry, and company/role projections.
 
 The public 67-repository inventory is not a claim about the size of the owned estate. The authenticated estate census is runtime-private. Its raw cardinality, private identities, and legal-private records are intentionally absent from public root truth and downstream public bundles.
 
@@ -29,7 +29,7 @@ The public 67-repository inventory is not a claim about the size of the owned es
 
 | Plane | Authority |
 |---|---|
-| Code, README, tests, releases, native receipts | Each canonical child repository |
+| Code, README, tests, releases, native receipts | Each APEX child repository |
 | Admitted 67-repository public-portfolio boundary | `manifests/portfolio_repositories.json` |
 | Authenticated estate compiler policy | `manifests/estate_compiler.json` |
 | Role-capability, audience-cap, and support ancestry policy | `manifests/estate_projection_policy.json` |
@@ -69,7 +69,7 @@ namespace isolation
         ↓
 lineage collapse
         ↓
-canonical systems
+APEX systems
         ↓
 capability donors
         ↓

@@ -1,0 +1,22 @@
+{
+  "repo": "github-agent-orchestrator",
+  "family": "GitHub",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "An autonomous GitHub agent for bulk repository operations (VibeCode-led). Multi-source: library.json:6988 (name github-agent-orchestrator; Autonomous GitHub Agent for bulk repository operations), capabilities_3layer:37051 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/github-agent-orchestrator, contract_proof template only), domains/long_tail.md:380, company_engineered_repositories.json:129 (unprocessed: github-agent-orchestrator, apex-github-worker, github-repo-enrichment-engine, public-actions-runner-host), LONG_TAIL_ATLAS_BATCH_07.md:85 (current/agent; honest limitation: no authorization/safe-execution/scale/mutation proof, confidence=medium), COMPANY_ENGINEERED_PROCESSING.md:70 (processing line: github-agent-orchestrator). Rating held at 5: catalog + processing line + 4-repo github-orchestrator unprocessed co-set (apex-github-worker, github-repo-enrichment-engine, public-actions-runner-host) is real catalog depth; honest-limitation caps at catalog-scope.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:6988 (name github-agent-orchestrator; Autonomous GitHub Agent for bulk repository operations)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:37051 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/github-agent-orchestrator, contract_proof template only)",
+    "/tmp/monolith/domains/long_tail.md:380 (portfolio row: Autonomous GitHub Agent for bulk repository operations - VibeCode-led)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:129 (unprocessed: github-agent-orchestrator, apex-github-worker, github-repo-enrichment-engine, public-actions-runner-host \u2014 4-entry unprocessed co-set)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_07.md:85 (current/agent; honest limitation: no authorization/safe-execution/scale/mutation proof, confidence=medium)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:70 (processing line: github-agent-orchestrator)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Held at 5: 4-repo unprocessed co-set + atlas + processing line = catalog ceiling. To reach >=7: authorization controls + a sandboxed bulk-run receipt (a recorded dry-run on a real repo with rate-limit + diff summary). Capped at 5: unprocessed, catalog scope only, no safe-execution proof.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.838435",
+  "notes": " | NEEDS_REPAIR"
+}

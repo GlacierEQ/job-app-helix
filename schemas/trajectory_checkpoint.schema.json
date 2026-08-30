@@ -28,7 +28,7 @@
     "state": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["repository_inventory", "canonical_heads", "dimensions", "source_hashes"],
+      "required": ["repository_inventory", "source_heads", "dimensions", "source_hashes"],
       "properties": {
         "repository_inventory": {
           "type": "object",
@@ -47,7 +47,7 @@
             "deleted_or_transferred_repository_gap_resolved": {"type": "boolean"}
           }
         },
-        "canonical_heads": {
+        "source_heads": {
           "type": "array",
           "items": {
             "type": "object",
@@ -92,7 +92,7 @@
     },
     "delta": {
       "type": "object",
-      "required": ["status", "previous_checkpoint_expected", "previous_checkpoint", "repository_count_delta", "repositories_added", "repositories_removed", "canonical_head_changes", "dimension_changes"],
+      "required": ["status", "previous_checkpoint_expected", "previous_checkpoint", "repository_count_delta", "repositories_added", "repositories_removed", "source_head_changes", "dimension_changes"],
       "properties": {
         "status": {"enum": ["computed", "previous_checkpoint_not_materialized", "bounded_historical_reconstruction"]},
         "previous_checkpoint_expected": {"type": ["string", "null"]},
@@ -100,7 +100,7 @@
         "repository_count_delta": {"type": ["integer", "null"]},
         "repositories_added": {"type": "array", "items": {"type": "string"}},
         "repositories_removed": {"type": "array", "items": {"type": "string"}},
-        "canonical_head_changes": {"type": "array"},
+        "source_head_changes": {"type": "array"},
         "dimension_changes": {"type": "array", "items": {"type": "string"}},
         "dimension_evidence_transitions": {"type": "array"},
         "delta_semantics": {"type": "string"}

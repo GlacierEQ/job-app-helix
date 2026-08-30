@@ -65,7 +65,7 @@ def test_echo_is_admitted_only_from_exact_current_head_proof() -> None:
     assert echo["admission"] == "ADMIT"
     assert echo["prior_reconciled_admission"] == "REPAIR_REQUIRED"
     assert echo["decision_excellence_state"] == "PUBLIC_BOUNDARY_VERIFIED"
-    assert echo["decision_evidence"]["canonical_head"] == (
+    assert echo["decision_evidence"]["source_head"] == (
         "6acdb3be1739f1659f3cec9f4b7d39d5799cd476"
     )
     assert {receipt["id"] for receipt in echo["decision_evidence"]["proof_receipts"]} == {
@@ -85,7 +85,7 @@ def test_apple_is_admitted_only_as_modeled_capability() -> None:
     assert apple["admission"] == "ADMIT"
     assert apple["prior_reconciled_admission"] == "REPAIR_REQUIRED"
     assert apple["decision_excellence_state"] == "MODELED_CAPABILITY_VERIFIED"
-    assert apple["decision_evidence"]["canonical_head"] == (
+    assert apple["decision_evidence"]["source_head"] == (
         "32f69cfa064cbb833b663bc43ace04507f8570c5"
     )
     assert apple["decision_evidence"]["evidence_token"] == (
@@ -101,8 +101,8 @@ def test_wave3_rejects_invalid_head_receipt_or_predecessor_state() -> None:
     wave2 = apply_surface_reconciliation(governed_report(), load(WAVE2))
 
     malformed = deepcopy(load(WAVE3))
-    malformed["items"][0]["evidence"]["canonical_head"] = "z" * 40
-    with pytest.raises(RepositorySurfaceError, match="exact canonical_head"):
+    malformed["items"][0]["evidence"]["source_head"] = "z" * 40
+    with pytest.raises(RepositorySurfaceError, match="exact source_head"):
         apply_surface_reconciliation(wave2, malformed)
 
     mismatch = deepcopy(load(WAVE3))

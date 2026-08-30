@@ -20,8 +20,8 @@
       "excellence_state": "LOCAL_MULTI_SENSOR_HEALTH_SIMULATION_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "1903e562e801a6153b0e78b9d236418c849f1867",
+        "reference_branch": "main",
+        "source_head": "1903e562e801a6153b0e78b9d236418c849f1867",
         "evidence_token": "LOCAL_PROPULSION_HEALTH_SIMULATION_NOT_FLIGHT_ENGINE_AUTHORITY",
         "verified_capability": "deterministic-local-multi-sensor-health-evaluation",
         "proof_receipts": [
@@ -47,7 +47,7 @@
           "assessment": "generic portfolio metadata is compatible with the admitted local simulation capability; the controlling README and machine state preserve SpaceX non-affiliation and no-flight-engine-authority boundaries"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of the SpaceX non-affiliation/no-flight-engine-authority boundary, claims of proprietary or real flight telemetry, hardware command/control claims, calibrated probability/diagnosis/RUL or validated predictive-performance claims without evidence, live provider/mesh integration claims, production deployment or certification claims, unbounded diagnostic state, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, proof failure, removal of the SpaceX non-affiliation/no-flight-engine-authority boundary, claims of proprietary or real flight telemetry, hardware command/control claims, calibrated probability/diagnosis/RUL or validated predictive-performance claims without evidence, live provider/mesh integration claims, production deployment or certification claims, unbounded diagnostic state, or contradictory GitHub About metadata."
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Job-App Helix is a small, inspectable example of a larger systems principle: components become valuable when their outputs are explicit, their verification is independent, and their composition produces a decision a human can understand.
+Job-App Helix is an inspectable systems platform built around a durable systems principle: components become valuable when their outputs are explicit, their verification is independent, and their composition produces a decision a human can understand.
 
 ## Runtime flow
 

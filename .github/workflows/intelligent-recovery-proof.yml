@@ -1,0 +1,233 @@
+name: Intelligent Recovery Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/intelligent_recovery.py"
+      - "src/job_app_helix/intelligent_recovery_cli.py"
+      - "src/job_app_helix/recovery_reconnaissance.py"
+      - "src/job_app_helix/recovery_ref_graph.py"
+      - "tests/test_intelligent_recovery.py"
+      - "tests/test_recovery_reconnaissance.py"
+      - "tests/test_recovery_ref_graph.py"
+      - "manifests/obsolete_branches.json"
+      - "pyproject.toml"
+      - ".github/workflows/intelligent-recovery-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/intelligent_recovery.py"
+      - "src/job_app_helix/intelligent_recovery_cli.py"
+      - "src/job_app_helix/recovery_reconnaissance.py"
+      - "src/job_app_helix/recovery_ref_graph.py"
+      - "tests/test_intelligent_recovery.py"
+      - "tests/test_recovery_reconnaissance.py"
+      - "tests/test_recovery_ref_graph.py"
+      - "manifests/obsolete_branches.json"
+      - "pyproject.toml"
+      - ".github/workflows/intelligent-recovery-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    name: Recovery engine / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and proof tools
+        run: python -m pip install -e ".[dev]"
+
+      - name: Check executable recovery surfaces
+        run: >-
+          ruff check
+          --select F,B,UP,RUF
+          src/job_app_helix/intelligent_recovery.py
+          src/job_app_helix/intelligent_recovery_cli.py
+          src/job_app_helix/recovery_reconnaissance.py
+          src/job_app_helix/recovery_ref_graph.py
+          tests/test_intelligent_recovery.py
+          tests/test_recovery_reconnaissance.py
+          tests/test_recovery_ref_graph.py
+
+      - name: Run adversarial recovery tests
+        run: >-
+          python -m pytest -q
+          tests/test_intelligent_recovery.py
+          tests/test_recovery_reconnaissance.py
+          tests/test_recovery_ref_graph.py
+
+      - name: Execute fresh-repository recovery smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="${RUNNER_TEMP}/recovery-smoke"
+          mkdir -p "${work}/src"
+          git -C "${work}" init -b main
+          git -C "${work}" config user.name "Recovery Proof"
+          git -C "${work}" config user.email "recovery-proof@example.invalid"
+          printf "def restored():\n    return 'capability'\n" > "${work}/src/lost.py"
+          git -C "${work}" add .
+          git -C "${work}" commit -m "donor capability"
+          donor="$(git -C "${work}" rev-parse HEAD)"
+          rm "${work}/src/lost.py"
+          printf "later gain\n" > "${work}/README.md"
+          git -C "${work}" add -A
+          git -C "${work}" commit -m "later target"
+
+          job-app-helix-recover --repo "${work}" plan \
+            --donor "${donor}" --summary --output "${work}/plan.json"
+          job-app-helix-recover --repo "${work}" apply \
+            --donor "${donor}" --output "${work}/receipt.json"
+
+          test -f "${work}/src/lost.py"
+          grep -F "return 'capability'" "${work}/src/lost.py"
+          grep -Fx "later gain" "${work}/README.md"
+          python - <<'PY' "${work}/plan.json" "${work}/receipt.json"
+          import json
+          import sys
+
+          plan = json.load(open(sys.argv[1], encoding="utf-8"))
+          receipt = json.load(open(sys.argv[2], encoding="utf-8"))
+          assert plan["auto_recoverable_count"] >= 1
+          assert receipt["restored_paths"] == ["src/lost.py"]
+          assert len(receipt["receipt_sha256"]) == 64
+          print(json.dumps({
+              "auto_recoverable_count": plan["auto_recoverable_count"],
+              "restored_paths": receipt["restored_paths"],
+              "receipt_sha256": receipt["receipt_sha256"],
+          }, sort_keys=True))
+          PY
+
+      - name: Scan real Helix historical donor manifest
+        if: matrix.python-version == '3.13'
+        run: >-
+          job-app-helix-recover --repo . discover
+          --manifest manifests/obsolete_branches.json
+          --fetch-missing
+          --output artifacts/recovery-reconnaissance.json
+
+      - name: Verify real lineage-aware reconnaissance receipt
+        if: matrix.python-version == '3.13'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+
+          report = json.load(open("artifacts/recovery-reconnaissance.json", encoding="utf-8"))
+          head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          assert report["schema"] == "glaciereq.recovery-reconnaissance.v2"
+          assert report["target_sha"] == head
+          assert len(report["donors"]) >= 10
+          assert len(report["receipt_sha256"]) == 64
+          available = [row for row in report["donors"] if row["availability"] != "UNAVAILABLE"]
+          assert available
+
+          public_runtime = next(
+              row for row in report["donors"]
+              if row["name"] == "cleanup/public-reproducible-runtime"
+          )
+          assert public_runtime["lineage_mode"] == "DIVERGED_BRANCH"
+          assert "helix/public_runtime.py" in public_runtime["qualified_paths"]
+          assert public_runtime["excluded_baseline_count"] > 0
+          assert public_runtime["candidate_count"] < public_runtime["observed_candidate_count"]
+          assert public_runtime["deleted_source_test_count"] <= 10
+          print(json.dumps({
+              "target_sha": report["target_sha"],
+              "donor_count": len(report["donors"]),
+              "available_count": len(available),
+              "public_runtime_lineage": {
+                  "observed_candidate_count": public_runtime["observed_candidate_count"],
+                  "qualified_candidate_count": public_runtime["candidate_count"],
+                  "excluded_baseline_count": public_runtime["excluded_baseline_count"],
+                  "deleted_source_test_count": public_runtime["deleted_source_test_count"],
+              },
+              "receipt_sha256": report["receipt_sha256"],
+          }, sort_keys=True))
+          PY
+
+      - name: Scan complete local and remote recovery ref graph
+        if: matrix.python-version == '3.13'
+        run: >-
+          job-app-helix-recover --repo . scan-refs
+          --max-deep-families 24
+          --output artifacts/recovery-ref-graph.json
+
+      - name: Verify real ref graph intelligence
+        if: matrix.python-version == '3.13'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+
+          graph = json.load(open("artifacts/recovery-ref-graph.json", encoding="utf-8"))
+          head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          assert graph["schema"] == "glaciereq.recovery-ref-graph.v1"
+          assert graph["target_sha"] == head
+          assert graph["refs_scanned"] >= 100
+          assert graph["divergent_refs"] > 0
+          assert graph["ancestor_refs"] > 0
+          assert graph["families"]
+          assert graph["deep_reconnaissance"] is not None
+          assert len(graph["receipt_sha256"]) == 64
+          deeply_ranked = [
+              family for family in graph["families"]
+              if family["reconnaissance"] is not None
+          ]
+          assert deeply_ranked
+          print(json.dumps({
+              "target_sha": graph["target_sha"],
+              "refs_scanned": graph["refs_scanned"],
+              "divergent_refs": graph["divergent_refs"],
+              "equivalent_refs": graph["equivalent_refs"],
+              "ancestor_refs": graph["ancestor_refs"],
+              "family_count": len(graph["families"]),
+              "top_families": [
+                  {
+                      "family_id": family["family_id"],
+                      "representative_ref": family["representative_ref"],
+                      "alias_count": len(family["aliases"]),
+                      "executable_path_count": family["executable_path_count"],
+                      "preliminary_score": family["preliminary_score"],
+                      "disposition": (
+                          family["reconnaissance"]["disposition"]
+                          if family["reconnaissance"] is not None else None
+                      ),
+                      "recovery_priority": (
+                          family["reconnaissance"]["priority_score"]
+                          if family["reconnaissance"] is not None else None
+                      ),
+                  }
+                  for family in graph["families"][:8]
+              ],
+              "receipt_sha256": graph["receipt_sha256"],
+          }, sort_keys=True))
+          PY
+
+      - name: Upload real recovery intelligence
+        if: matrix.python-version == '3.13'
+        uses: actions/upload-artifact@v4
+        with:
+          name: helix-recovery-intelligence-${{ github.sha }}
+          path: |
+            artifacts/recovery-reconnaissance.json
+            artifacts/recovery-ref-graph.json
+          if-no-files-found: error
+          retention-days: 30

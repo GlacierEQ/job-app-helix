@@ -1,0 +1,31 @@
+{
+  "repo": "tasklet-micro-agent-engine",
+  "family": "Tasklet",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "tasklet-micro-agent-engine is a micro-agent execution engine that decomposes work into small bounded tasklets with explicit inputs and outputs \u2014 the opposite of the open-ended agent loop, trading autonomy for contractability. Its portfolio thesis is that agent reliability comes from shrinking the unit of work until each step has a declared signature that can be validated, retried, and attributed independently, which is what makes a swarm auditable instead of merely parallel. The domain atlas places it in the agent-orchestration cluster next to anthropic-agent-coordinator and manus-autonomous-web-agent, and it is the sole repository in the Tasklet family with an issue contract attached and a recorded priority of 'P1 implement runtime' \u2014 the estate's own assessment that the contract is defined but the runtime is not yet demonstrated.",
+  "evidence": [
+    "/tmp/monolith/status/functions/orchestration.md:18 (tasklet-micro-agent-engine | active_specialist | lab_hire_stamps | 'Micro-agent execution engine for decomposing work into small bounded tasklets with explicit inputs and outputs' | basis: name + domain; confidence: high)",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md:21 (agent-orchestration cluster: anthropic-agent-coordinator, manus-autonomous-web-agent, tasklet-micro-agent-engine, openai-agents-js, openai-agents-python, openai-assistant-swarm, openai-realtime-agents)",
+    "/tmp/monolith/catalog/library.json:16236 (domain=lab_hire_stamps, role=part, activity=worked_on, status_detail=worked_solidified, desc='' (EMPTY), language=Python, local_job_app=true, issue_contract=true, private=false, updatedAt 2026-08-10T06:18:10Z)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:25659-25698 (category LAB_BENCHMARKS_AND_STAMPS; impact P0; launch_cmd 'python3 ~/job-app/apex_highway.py --target tasklet-micro-agent-engine'; contract_proof 'DONE <=> issue-contract proof(pain) for tasklet-micro-agent-engine'; sha256_binding f1a3151c202eba3d35ddb813ed0cea94bdd44a23e12aa2a7b83a2e239507ee16; mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/tasklet-micro-agent-engine; agent_tool_registration name=tool_tasklet_micro_agent_engine with EMPTY description)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:32 (portfolio row: part | worked_on | issue_contract=yes)",
+    "/tmp/monolith/status/WORKED_ON.md:98 (tasklet-micro-agent-engine | lab_hire_stamps | part | worked_solidified)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:278,283 (tasklet.current_preparation=[tasklet-micro-agent-engine]; canonical_candidate=tasklet-micro-agent-engine)",
+    "/tmp/monolith/domains/company_engineered_portfolio.md:58 (Tasklet | 1 repo | 1 in preparation | 0 unprocessed | 0 reference | canonical tasklet-micro-agent-engine | priority 'P1 implement runtime')",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json:1066-1071 (sole Tasklet-family entry, state=in_preparation)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "One concrete step to 8+: implement and test the tasklet contract itself \u2014 a pytest that registers two tasklets with declared input/output schemas, runs a three-step chain, and asserts that a schema-violating output is rejected at the boundary (not passed downstream), that a failing tasklet is retried exactly per policy and then surfaced rather than swallowed, and that each completed tasklet emits an attribution record naming its inputs. Publish the run id and passing test names in a BUILD_RECEIPT and file a repository_fact_card at R3+; that is precisely the 'implement runtime' gate the estate has recorded as outstanding.",
+  "repo_excellence_anchor": "Closest conceptual sibling to the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe) in this batch. The anchor is a governed execution kernel that emits hash-bound action receipts binding caller + capability + exact source SHA under AKOS authority (/tmp/helix_patch/evidence_ledger_UPDATED.json:62-74) \u2014 a tasklet engine is the same idea one level up: bounded units of work, each with declared authority and a recoverable record. The anchor also supplies the ready-made adversarial suite shape (replay, expired authority, partial completion, restart; /root/repo_excellence/STRONG_COMPLETION.computer-user.md:26-28), which maps directly onto tasklet failure modes and would let this repo reach ADVERSARIAL_VERIFIED without inventing a test strategy.",
+  "honest_limits": [
+    "catalog desc field is EMPTY and the generated agent_tool_registration description is also empty; mechanism inferred from the function atlas, whose basis is 'name + domain'",
+    "no source inspection, local clone, README, test, CI run id, artifact, or receipt found locally",
+    "an issue contract exists but 'contract defined' is not 'runtime implemented' \u2014 the estate itself records the runtime as the outstanding P1",
+    "no Tasklet affiliation claimed"
+  ],
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.925337",
+  "notes": " | NEEDS_REPAIR"
+}

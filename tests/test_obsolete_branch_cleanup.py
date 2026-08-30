@@ -167,7 +167,7 @@ def _write_manifest(path: Path) -> None:
     )
 
 
-def test_canonical_manifest_has_unique_immutable_branch_records() -> None:
+def test_reference_manifest_has_unique_immutable_branch_records() -> None:
     payload = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     branches = payload["branches"]
     names = [entry["name"] for entry in branches]

@@ -1,0 +1,21 @@
+{
+  "repo": "openai-agents-js",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Lightweight, powerful framework for multi-agent workflows and voice agents (TypeScript). Triple-cataloged: (a) library.json desc='A lightweight, powerful framework for multi-agent workflows and voice agents' with status_detail=catalogued_unclassified + url; (b) capabilities_3layer.json classifier lab_benchmarks_and_stamps with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/lab_benchmarks_and_stamps/openai-agents-js; (c) company_engineered_repositories.json family openai/reference_or_upstream (verbatim upstream mirror, no local edits). The expanded_job_app_helix_manifest.json (line 723) explicitly assigns it as a job-app-helix mesh leaf, family OpenAI / Codex, canonical openai-reasoning-kv-sentinel, state reference. Honest limitation: reference/upstream means zero local GlacierEQ modifications; without a differentiating voice-agent example, integration test, or fact card, capability is contract-catalog + helix-membership proven, not runtime-verified \u2014 so 7 is the honest ceiling, not 8.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 12444: entry name=openai-agents-js; desc='A lightweight, powerful framework for multi-agent workflows and voice agents'; status_detail=catalogued_unclassified; url=https://github.com/GlacierEQ/openai-agents-js)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 25281: name=openai-agents-js; classifier=lab_benchmarks_and_stamps; elevator_pitch='High-performance Lab Benchmarks And Stamps engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/openai-agents-js; launch_cmd='git clone https://github.com/GlacierEQ/openai-agents-js')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 220: family openai; reference_or_upstream list \u2014 verbatim upstream mirror, no local mods)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 723: kind=company, state=reference, family='OpenAI / Codex', canonical=openai-reasoning-kv-sentinel \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 119: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Promote out of reference by (1) adding a GlacierEQ voice-agent example in a subdirectory, (2) running the framework's own vitest suite to green, (3) emitting a fact card with a recorded test run, and (4) updating company_engineered_repositories.json to mark it as 'in_preparation' instead of 'reference_or_upstream' \u2014 would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.790302",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

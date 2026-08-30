@@ -3,24 +3,24 @@
   "identity": {
     "repository": "GlacierEQ/apex-github-worker",
     "repository_id": "1260799790",
-    "canonical_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "source_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "current_evolved_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
     "default_branch": "main",
-    "lineage_action": "EXTEND_CANONICAL"
+    "lineage_action": "EXTEND_SOURCE_BOUND"
   },
   "state": "EVOLVING",
-  "canonical_role": "SPECIALIST_COMPONENT",
+  "reference_role": "SPECIALIST_COMPONENT",
   "capability_id": "merge_authority_graph",
   "scores": {
     "target_architecture": 9.6,
     "current_proof": "A",
     "company_fit": 9.6,
-    "canonical_confidence": 0.99
+    "reference_confidence": 0.99
   },
   "gates": {
     "problem_verified": true,
     "unique_value_known": true,
-    "canonical_identity_known": true,
+    "source_identity_known": true,
     "central_mechanism_implemented": true,
     "deterministic_tests_pass": true,
     "adversarial_tests_pass": true,
@@ -32,10 +32,10 @@
     "evolution_cursor_defined": true
   },
   "proof_receipt": {
-    "identity": "GlacierEQ/apex-github-worker/proof/merge-authority-canonical-reproduction-2026-08-09.json",
+    "identity": "GlacierEQ/apex-github-worker/proof/merge-authority-reference-reproduction-2026-08-09.json",
     "source_sha": "1a5331a0203e1273c1045589ea66f5bcf1080b55",
-    "canonical_merge_sha": "f791c85a81768e72446619b39b5312ef1c768a02",
-    "evidence_level": "CANONICAL_SOURCE_REAL_PROVIDER_REPRODUCTION",
+    "reference_merge_sha": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "evidence_level": "SOURCE_BOUND_SOURCE_REAL_PROVIDER_REPRODUCTION",
     "deterministic_and_adversarial_tests": {"passed": 26, "failed": 0},
     "gateway_host_tests": {"passed": 38, "failed": 0},
     "production_dependency_high_severity_findings": 0,
@@ -44,9 +44,9 @@
       "target_branch": "operability/merge-authority-v4",
       "receipt_branch": "receipts/merge-authority-v4",
       "merge_sha": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
-      "canonical_readback_sha": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
+      "reference_readback_sha": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
       "patch_sha256": "27c40028f1471dbc9d60eab4fbfd628151d3ffb93c19f57796c0d19cd385310a",
-      "canonical_receipt_blob_sha": "175d6e236eb460d2913b711f5d72c13c8c5ef4cd",
+      "reference_receipt_blob_sha": "175d6e236eb460d2913b711f5d72c13c8c5ef4cd",
       "replay_receipt_blob_sha": "166f4f86a095392fc38a7a6e657e9e2b172f3cc5",
       "replay_result": "DUPLICATE_ALREADY_COMPLETED",
       "replay_merge_attempted": false,
@@ -61,7 +61,7 @@
     "deployed_source_sha": "ddc745c7c7358232fc817d95972bbd4acf002a7a",
     "helix_authority_sha": "86e642b01817adad3d4e89da86a0f9a857c09cc4",
     "deployment_id": "dpl_5xSnF1gFFq52CCdmo4TLZnQbPcm5",
-    "canonical_alias": "casey-barton-glaciereq.vercel.app",
+    "reference_alias": "casey-barton-glaciereq.vercel.app",
     "bundle_verifier": "PASS",
     "v25_verifier": "PASS",
     "v26_verifier": "PASS",
@@ -70,19 +70,19 @@
     "claim_boundary_preserved": true,
     "projection_truth_closed": true
   },
-  "canonical_position_receipt": {
-    "path": "excellence/receipts/apex-github-worker-canonical-position-2026-08-10.json",
-    "blob_sha": "e41cd0b058392ad139dbd99ac132b2e6ee3adda7",
-    "schema": "glaciereq.repo-canonical-position-receipt.v1",
+  "reference_position_receipt": {
+    "path": "excellence/receipts/apex-github-worker-reference-position-2026-08-10.json",
+    "blob_sha": "1751679084ae2d4d005ab444b0066554e5716e48",
+    "schema": "glaciereq.repo-reference-position-receipt.v1",
     "status": "PASS",
-    "transition": "PROMOTED -> CANONICAL",
+    "transition": "PROMOTED -> SOURCE_BOUND",
     "repository": "GlacierEQ/apex-github-worker",
-    "canonical_head": "f791c85a81768e72446619b39b5312ef1c768a02",
-    "canonical_role": "SPECIALIST_COMPONENT",
+    "source_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "reference_role": "SPECIALIST_COMPONENT",
     "capability_id": "merge_authority_graph",
-    "lineage_action": "EXTEND_CANONICAL",
+    "lineage_action": "EXTEND_SOURCE_BOUND",
     "source_blob_sha": "dd0b1c601a273923d22f837af3a63579ef9a7c8f",
-    "canonical_position_resolved": true,
+    "reference_position_resolved": true,
     "lineage_conflict_absent": true,
     "duplicate_repository_rejected": true,
     "proof_sha_bound": true,
@@ -92,18 +92,18 @@
     "company_claim_separate": true,
     "company_stage_unchanged": "CLAIM_PROMOTED",
     "company_claim_ceiling_unchanged": "proof_bound_company_specific",
-    "canonicalization_blockers": [],
-    "retained_noncanonicalization_blockers": [
+    "source_binding_blockers": [],
+    "retained_nonsource_binding_blockers": [
       "github_actions_budget"
     ]
   },
   "evolution_receipt": {
     "path": "excellence/receipts/apex-github-worker-evolution-2026-08-12.json",
-    "blob_sha": "e5711d0afd61e521f0fd487287545240efaa355d",
+    "blob_sha": "e7ac45d3cc2d4a48b89ced4ca0c90aaa37da45d2",
     "schema": "glaciereq.repo-evolution-receipt.v1",
     "status": "PASS",
-    "transition": "CANONICAL -> EVOLVING",
-    "canonical_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "transition": "SOURCE_BOUND -> EVOLVING",
+    "reference_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "evolved_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
     "experiment_id": "unique_check_evidence_integrity_v1",
     "winner": "candidate",
@@ -132,7 +132,7 @@
     "replay_before_stale_head_rejection",
     "provider_confirmation_before_completion",
     "bounded_eventual_readback_reconciliation",
-    "canonical_post_action_readback",
+    "reference_post_action_readback",
     "receipt_backed_terminal_state",
     "preflight_before_provider_access",
     "short_lived_repository_scoped_authority",
@@ -151,10 +151,10 @@
       "https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/",
       "https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/"
     ],
-    "bounded_problem": "As coding agents act directly in repositories, agent-generated changes require security validation, policy-constrained workflow execution, human approval at sensitive boundaries, and trustworthy promotion into canonical repository state.",
-    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, canonical readback, replay suppression, and receipt evidence. The canonical specialist now also rejects contradictory or malformed check evidence before provider access. The proof-bound company-specific claim remains independently promoted within the public evidence ceiling and does not imply GitHub adoption.",
+    "bounded_problem": "As coding agents act directly in repositories, agent-generated changes require security validation, policy-constrained workflow execution, human approval at sensitive boundaries, and trustworthy promotion into reference repository state.",
+    "transfer_argument": "GlacierEQ independently implemented and reproduced a governed GitHub mutation path that binds exact change identity, current repository state, required validation, bounded approval, provider mutation, eventual-state reconciliation, reference readback, replay suppression, and receipt evidence. The reference specialist now also rejects contradictory or malformed check evidence before provider access. The proof-bound company-specific claim remains independently promoted within the public evidence ceiling and does not imply GitHub adoption.",
     "source_disclosure": {
-      "canonical_repository_visibility": "private",
+      "source_repository_visibility": "private",
       "bounded_evolution_source_slice_publicly_disclosed": true,
       "public_location": "GlacierEQ/public-actions-runner-host#269"
     }
@@ -168,7 +168,7 @@
   ],
   "evolution": {
     "next_gate": "NEXT_MEASURED_EVOLUTION",
-    "canonical_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "reference_anchor_head": "f791c85a81768e72446619b39b5312ef1c768a02",
     "current_head": "346b330bbfd705579b3a4d10d298a89493a98ee6",
     "current_cycle": "unique_check_evidence_integrity_v1",
     "receipt": "excellence/receipts/apex-github-worker-evolution-2026-08-12.json",

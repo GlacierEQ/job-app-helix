@@ -30,7 +30,7 @@ SCHEDULE_PATH = ROOT / "machine" / "trajectory" / "2026_schedule.json"
 HST = ZoneInfo("Pacific/Honolulu")
 GRAPHQL_URL = "https://api.github.com/graphql"
 API_ROOT = "https://api.github.com"
-CANONICAL_OWNER = "GlacierEQ"
+SOURCE_BOUND_OWNER = "GlacierEQ"
 AUTHORITY_REPO = "GlacierEQ/job-app-helix"
 CHECKPOINT_SCHEMA = "glaciereq.trajectory-checkpoint.v1"
 HST_CLOCK_RE = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$")
@@ -62,7 +62,7 @@ DIMENSION_SCOPES: dict[str, tuple[str, ...]] = {
 }
 
 
-def canonical_json(value: object) -> bytes:
+def reference_json(value: object) -> bytes:
     text = json.dumps(
         value,
         sort_keys=True,
@@ -118,7 +118,7 @@ def graphql(token: str, query: str, variables: dict) -> dict:
     payload = request_json(
         GRAPHQL_URL,
         token,
-        data=canonical_json({"query": query, "variables": variables}),
+        data=reference_json({"query": query, "variables": variables}),
     )
     if payload.get("errors"):
         raise SystemExit(f"GitHub GraphQL error: {payload['errors']}")
@@ -134,7 +134,7 @@ def scheduled_historical_entry(schedule: dict, date_text: str) -> tuple[int, dic
                 f"{date_text} is contemporary and cannot be reconstructed historically"
             )
         return index, entry
-    raise SystemExit(f"{date_text} is not a canonical 2026 trajectory checkpoint")
+    raise SystemExit(f"{date_text} is not a reference 2026 trajectory checkpoint")
 
 
 def cutoff_iso(date_text: str, clock_text: str) -> str:
@@ -192,7 +192,7 @@ def fetch_survivor_history(token: str, until_iso: str) -> list[dict]:
             token,
             query,
             {
-                "owner": CANONICAL_OWNER,
+                "owner": SOURCE_BOUND_OWNER,
                 "cursor": cursor,
                 "until": until_iso,
             },
@@ -200,7 +200,7 @@ def fetch_survivor_history(token: str, until_iso: str) -> list[dict]:
         user = data.get("user")
         if user is None:
             raise SystemExit(
-                f"GitHub owner not visible to token: {CANONICAL_OWNER}"
+                f"GitHub owner not visible to token: {SOURCE_BOUND_OWNER}"
             )
         connection = user["repositories"]
         repositories.extend(connection["nodes"])
@@ -358,7 +358,7 @@ def reconstruct_dimensions(
         dimensions[name] = {
             "sources": list(scope),
             "file_count": len(matching),
-            "tree_sha256": sha256_bytes(canonical_json(matching)),
+            "tree_sha256": sha256_bytes(reference_json(matching)),
             "evidence_class": "exact_authority_git_tree_at_cutoff",
             "authority_commit": authority_commit,
             "authority_tree": tree_sha,
@@ -376,7 +376,7 @@ def unresolved_dimensions() -> tuple[dict, dict[str, str]]:
         dimensions[name] = {
             "sources": list(scope),
             "file_count": 0,
-            "tree_sha256": sha256_bytes(canonical_json(unresolved)),
+            "tree_sha256": sha256_bytes(reference_json(unresolved)),
             "evidence_class": "unresolved_authority_not_yet_created",
             "authority_commit": None,
             "authority_tree": None,
@@ -437,14 +437,14 @@ def validate_previous_checkpoint(
     if not isinstance(receipt, dict) or receipt.get("hash_algorithm") != "sha256":
         raise SystemExit("previous checkpoint receipt missing or unsupported")
     claimed = receipt.get("checkpoint_sha256")
-    calculated = sha256_bytes(canonical_json(checkpoint_receipt_payload(previous)))
+    calculated = sha256_bytes(reference_json(checkpoint_receipt_payload(previous)))
     if claimed != calculated:
         raise SystemExit("previous checkpoint receipt mismatch")
     state = previous.get("state")
     if not isinstance(state, dict):
         raise SystemExit("previous checkpoint state missing")
-    if not isinstance(state.get("canonical_heads"), list):
-        raise SystemExit("previous checkpoint canonical_heads missing")
+    if not isinstance(state.get("source_heads"), list):
+        raise SystemExit("previous checkpoint source_heads missing")
     if not isinstance(state.get("dimensions"), dict):
         raise SystemExit("previous checkpoint dimensions missing")
 
@@ -463,7 +463,7 @@ def bounded_delta(
             "repository_count_delta": None,
             "repositories_added": [],
             "repositories_removed": [],
-            "canonical_head_changes": [],
+            "source_head_changes": [],
             "dimension_changes": [],
             "dimension_evidence_transitions": [],
             "delta_semantics": "not_computed_without_previous_materialization",
@@ -471,11 +471,11 @@ def bounded_delta(
 
     current_heads = {
         row["repository"]: row["head_sha"]
-        for row in current["state"]["canonical_heads"]
+        for row in current["state"]["source_heads"]
     }
     previous_heads = {
         row["repository"]: row["head_sha"]
-        for row in previous["state"]["canonical_heads"]
+        for row in previous["state"]["source_heads"]
     }
     common = set(current_heads) & set(previous_heads)
     changes = [
@@ -498,7 +498,7 @@ def bounded_delta(
         "repository_count_delta": None,
         "repositories_added": sorted(set(current_heads) - set(previous_heads)),
         "repositories_removed": sorted(set(previous_heads) - set(current_heads)),
-        "canonical_head_changes": changes,
+        "source_head_changes": changes,
         "dimension_changes": dimension_changes,
         "dimension_evidence_transitions": evidence_transitions,
         "delta_semantics": (
@@ -570,11 +570,11 @@ def build_checkpoint(
                 SCHEDULE_PATH.read_bytes()
             ).hexdigest(),
             "schedule_semantics": "current_reconstruction_contract_not_historical_state",
-            "github_owner": CANONICAL_OWNER,
+            "github_owner": SOURCE_BOUND_OWNER,
         },
         "state": {
             "repository_inventory": inventory,
-            "canonical_heads": heads,
+            "source_heads": heads,
             "dimensions": dimensions,
             "source_hashes": source_hashes,
         },
@@ -598,7 +598,7 @@ def build_checkpoint(
     )
     checkpoint["receipt"] = {
         "hash_algorithm": "sha256",
-        "checkpoint_sha256": sha256_bytes(canonical_json(checkpoint)),
+        "checkpoint_sha256": sha256_bytes(reference_json(checkpoint)),
     }
     return checkpoint
 

@@ -46,7 +46,7 @@ concurrency:
 
 jobs:
   build:
-    name: Verify and package canonical candidate surface
+    name: Verify and package reference candidate surface
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository

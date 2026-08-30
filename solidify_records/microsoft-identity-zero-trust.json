@@ -1,0 +1,11 @@
+{
+  "repo": "microsoft-identity-zero-trust",
+  "family": "Microsoft",
+  "source_state": "in_preparation",
+  "worthy_rating": 7,
+  "verification_status": "NEEDS_REPAIR",
+  "description": "Microsoft identity zero-trust",
+  "notes": "fixed | NEEDS_REPAIR",
+  "last_verified": "2026-08-29T08:47:16.891633",
+  "classification_reason": "needs_repair: worthy=7"
+}

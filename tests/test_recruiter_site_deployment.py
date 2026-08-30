@@ -53,7 +53,7 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def test_recruiter_site_builds_from_canonical_candidate_records(tmp_path: Path) -> None:
+def test_recruiter_site_builds_from_reference_candidate_records(tmp_path: Path) -> None:
     builder = _load_builder()
     output = tmp_path / "site"
 

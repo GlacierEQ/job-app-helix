@@ -1,0 +1,22 @@
+{
+  "repo": "Pro-comet-agent",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "Operator-facing Comet agent surface within the Pro control family implementing the plan/act/reflect agent loop identified as an AKOS P0 component. Evidence is catalog plus status-atlas (worked_solidified, active_specialist, high confidence from curated map) but no executed test run or receipt was found locally.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=Pro-comet-agent; domain=pro_control_surfaces; activity=worked_on; status_detail=worked_solidified; desc 'Pro-* plan/act/reflect agent loop \u00b7 AKOS P0'; Python; local_job_app=true)",
+    "/tmp/monolith/domains/pro_control_surfaces.md line 8 (worked_on)",
+    "/tmp/monolith/status/PRO_CONTROL_SURFACE_ATLAS.md line 21 (active_specialist; implements Pro-series plan/act/reflect loop, AKOS priority)",
+    "/tmp/monolith/status/functions/operator_surface.md line 12 (Operator-facing Comet agent surface, active_specialist)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (contract_proof='DONE <=> issue-contract proof(pain) for Pro-comet-agent')",
+    "/tmp/monolith/status/WORKED_ON.md line 11"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Add a CI truth gate with executable plan/act/reflect loop tests (e.g. a recorded scenario with assertions), and publish a hardening receipt with a pinned commit and artifact digest. Status is 'solidified' in catalog but no run artifact is present.",
+  "last_verified": "2026-08-29T08:47:16.941620",
+  "notes": "catalog_only_upgraded | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

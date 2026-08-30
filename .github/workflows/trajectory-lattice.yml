@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       checkpoint_date:
-        description: Canonical contemporary checkpoint date (YYYY-MM-DD)
+        description: Source-bound contemporary checkpoint date (YYYY-MM-DD)
         required: true
         type: string
   schedule:
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - name: Check out canonical Helix main
+      - name: Check out reference Helix main
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
@@ -72,7 +72,7 @@ jobs:
           print(f"should_run={'true' if should_run else 'false'}")
           if event == "workflow_dispatch" and not should_run:
               raise SystemExit(
-                  f"dispatch date {date_text!r} is not a canonical contemporary checkpoint"
+                  f"dispatch date {date_text!r} is not a reference contemporary checkpoint"
               )
           PY
 

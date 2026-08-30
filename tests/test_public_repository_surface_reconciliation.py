@@ -59,7 +59,7 @@ def test_sigma_and_gateway_are_current_head_admitted() -> None:
     sigma = repos["GlacierEQ/sigma-glue"]
     assert sigma["prior_reconciled_admission"] == "REPAIR_REQUIRED"
     assert sigma["admission"] == "ADMIT"
-    assert sigma["decision_evidence"]["canonical_head"] == (
+    assert sigma["decision_evidence"]["source_head"] == (
         "4a1ca8e5c88a62e8a94a43213b2c509af6afcea3"
     )
     assert {receipt["id"] for receipt in sigma["decision_evidence"]["proof_receipts"]} == {
@@ -70,7 +70,7 @@ def test_sigma_and_gateway_are_current_head_admitted() -> None:
     gateway = repos["GlacierEQ/colossus-gateway"]
     assert gateway["prior_reconciled_admission"] == "REPAIR_REQUIRED"
     assert gateway["admission"] == "ADMIT"
-    assert gateway["decision_evidence"]["canonical_head"] == (
+    assert gateway["decision_evidence"]["source_head"] == (
         "3b41af0465c55a7128e8d22130d0dd7e52b02a8b"
     )
     continuity = gateway["decision_evidence"]["source_continuity"]
@@ -84,7 +84,7 @@ def test_apex_control_plane_does_not_inherit_ancestor_admission() -> None:
 
     assert apex["admission"] == "REPAIR_REQUIRED"
     assert apex["repair_priority"] == "P1"
-    assert apex["decision_evidence"]["canonical_head"] == (
+    assert apex["decision_evidence"]["source_head"] == (
         "641b55787ea13c6c0b742eb045406803893fbfc5"
     )
     assert apex["decision_evidence"]["current_head_workflow_run_count"] == 0
@@ -100,7 +100,7 @@ def test_aws_wave_b_proof_does_not_bypass_exact_git_head_binding() -> None:
     assert aws["decision_excellence_state"] == (
         "PROMOTED_CONTENT_PROOF_COMMIT_BINDING_PENDING"
     )
-    assert aws["decision_evidence"]["canonical_head"] == (
+    assert aws["decision_evidence"]["source_head"] == (
         "f5331709efa52e5930208ee14c10911fadf9740b"
     )
     assert aws["decision_evidence"]["helix_wave_b_state"] == "PROMOTED"
@@ -114,8 +114,8 @@ def test_admit_reconciliation_rejects_non_hex_or_mismatched_receipts() -> None:
     predecessor = governed_report()
     reconciliation = deepcopy(load(RECONCILIATION))
     sigma = reconciliation["items"][0]
-    sigma["evidence"]["canonical_head"] = "z" * 40
-    with pytest.raises(RepositorySurfaceError, match="exact canonical_head"):
+    sigma["evidence"]["source_head"] = "z" * 40
+    with pytest.raises(RepositorySurfaceError, match="exact source_head"):
         apply_surface_reconciliation(predecessor, reconciliation)
 
     reconciliation = deepcopy(load(RECONCILIATION))

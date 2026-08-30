@@ -20,8 +20,8 @@
       "excellence_state": "BOUNDED_LOCAL_CLI_AND_FRESH_INSTALL_RUNTIME_NATIVE_PROOF_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "master",
-        "canonical_head": "612c059b8e6a0103a1f7163af0461be7a7495fe9",
+        "reference_branch": "master",
+        "source_head": "612c059b8e6a0103a1f7163af0461be7a7495fe9",
         "evidence_token": "LOCAL_APEX_CLI_RUNTIME_NOT_EXTERNAL_SYSTEM_AUTHORITY",
         "verified_capability": "deterministic-repository-local-cli-dispatch-and-fresh-install-runtime-bootstrap",
         "verified_capabilities": [
@@ -60,13 +60,13 @@
           "evidence_state": "IMPLEMENTED_CURRENT_HEAD_NATIVE_PROOF_VERIFIED",
           "remaining_exact_head_native_proof_gate_satisfied": true
         },
-        "proof_scope": "Exact-current-head canonical Public Truth Gate verifies exact source identity and the bounded APEX CLI surface on Python 3.11, 3.12, and 3.13. The proof covers repository-local Bash command dispatch, shell syntax and help behavior, fail-closed exit 78 when an explicitly external job-application dependency is absent, environment-controlled local path resolution, repository-local Python compilation/tests, a fresh-install bootstrap into an isolated temporary HOME, presence of the bundled runtime skill/configuration files, a READY runtime-status receipt, explicit Casebuilder/Red Helix harness roots rather than hard-coded device paths, secret-pattern checks, and public/machine truth boundaries. This proof does not establish that Casebuilder4000, Red Helix, any external job-application checkout, Dropbox, Android/Termux, provider credentials, external services, or a live MCP/APEX mesh are installed, authenticated, reachable, or operational. Preserved whole-tree lint debt reported by the broader CI remains outside the admitted bounded surface and is not represented as resolved.",
+        "proof_scope": "Exact-current-head reference Public Truth Gate verifies exact source identity and the bounded APEX CLI surface on Python 3.11, 3.12, and 3.13. The proof covers repository-local Bash command dispatch, shell syntax and help behavior, fail-closed exit 78 when an explicitly external job-application dependency is absent, environment-controlled local path resolution, repository-local Python compilation/tests, a fresh-install bootstrap into an isolated temporary HOME, presence of the bundled runtime skill/configuration files, a READY runtime-status receipt, explicit Casebuilder/Red Helix harness roots rather than hard-coded device paths, secret-pattern checks, and public/machine truth boundaries. This proof does not establish that Casebuilder4000, Red Helix, any external job-application checkout, Dropbox, Android/Termux, provider credentials, external services, or a live MCP/APEX mesh are installed, authenticated, reachable, or operational. Preserved whole-tree lint debt reported by the broader CI remains outside the admitted bounded surface and is not represented as resolved.",
         "metadata_readback": {
           "description": "APEX CLI. AKOS portfolio.",
           "assessment": "compatible with the bounded repository-local command dispatcher and fresh-install runtime proof"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, Public Truth Gate failure, restoration of hyper-scaling or external-system availability claims, bundled Casebuilder/Red Helix/job-app claims without proof, device-specific path assumptions, production external authority claims, concealment of preserved legacy lint debt, or contradictory public metadata."
+      "next_gate": "Reopen repair on reference-head drift, Public Truth Gate failure, restoration of hyper-scaling or external-system availability claims, bundled Casebuilder/Red Helix/job-app claims without proof, device-specific path assumptions, production external authority claims, concealment of preserved legacy lint debt, or contradictory public metadata."
     }
   ]
 }

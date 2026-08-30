@@ -19,8 +19,8 @@
       "excellence_state": "LOCAL_ORBITAL_MATH_VERIFIED",
       "findings_remove": ["SURFACE_ASSESSMENT_UNASSESSED"],
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "b99a1f7ea0534d3a268f9bea432399c9862bd1e4",
+        "reference_branch": "main",
+        "source_head": "b99a1f7ea0534d3a268f9bea432399c9862bd1e4",
         "evidence_token": "LOCAL_ORBITAL_MATH_NOT_FLIGHT_DYNAMICS_AUTHORITY",
         "verified_capability": "deterministic-local-orbital-mechanics-calculation",
         "proof_receipts": [
@@ -46,7 +46,7 @@
           "assessment": "generic portfolio metadata compatible with the admitted local orbital-math capability; repository README carries the controlling SpaceX non-affiliation and no-flight-dynamics-authority boundary"
         }
       },
-      "next_gate": "Reopen repair on canonical-head drift, proof failure, removal of SpaceX non-affiliation/no-flight-dynamics-authority boundaries, promotion of the historical C++ filename as Lambert capability without a real time-of-flight boundary-value solver, N-body/high-precision claims without convergence proof, live ephemeris/telemetry/MCP/provider/mesh claims without evidence, production performance or deployment claims, or contradictory GitHub About metadata."
+      "next_gate": "Reopen repair on reference-head drift, proof failure, removal of SpaceX non-affiliation/no-flight-dynamics-authority boundaries, promotion of the historical C++ filename as Lambert capability without a real time-of-flight boundary-value solver, N-body/high-precision claims without convergence proof, live ephemeris/telemetry/MCP/provider/mesh claims without evidence, production performance or deployment claims, or contradictory GitHub About metadata."
     }
   ]
 }

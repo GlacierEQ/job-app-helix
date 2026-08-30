@@ -16,6 +16,24 @@ from .portfolio_models import (
 
 REPOSITORY_RE: Final = re.compile(r"^[A-Za-z0-9_.-]+$")
 
+PRODUCTIZE_OBJECTIVE: Final = (
+    "Restore and preserve the repository's intended unique value, implement its central "
+    "mechanism completely, harden it with deterministic and adversarial proof, compose it "
+    "with stronger estate capabilities where that increases value, and deliver it in the "
+    "most useful operable form the repository can support. Prefer a real deployment, "
+    "installable package, runnable service, or directly usable tool over documentation-only "
+    "completion. Retirement or archival requires explicit operator authorization and a "
+    "verified stronger successor that preserves the repository's valuable capabilities."
+)
+
+MODE_MINIMUM_EVIDENCE: Final[dict[ExecutionMode, EvidenceLevel]] = {
+    ExecutionMode.PRODUCTIZE: EvidenceLevel.TEST,
+    ExecutionMode.INTEGRATE: EvidenceLevel.INTEGRATION,
+    ExecutionMode.DEPLOY: EvidenceLevel.DEPLOYMENT,
+    ExecutionMode.OPERATE: EvidenceLevel.DEPLOYMENT,
+    ExecutionMode.EVOLVE: EvidenceLevel.TEST,
+}
+
 
 def _require_mapping(value: object, label: str) -> dict[str, Any]:
     if not isinstance(value, dict):
@@ -35,6 +53,41 @@ def _require_bool(mapping: dict[str, Any], key: str, label: str) -> bool:
     if not isinstance(value, bool):
         raise PortfolioProgramError(f"{label}.{key} must be a boolean")
     return value
+
+
+def _compile_execution_mode(
+    raw_mode: str,
+    objective: str,
+    target_evidence: EvidenceLevel,
+    require_positive_test_count: bool,
+) -> tuple[ExecutionMode, str, EvidenceLevel, bool, str | None]:
+    """Compile historical rollout intent into the current APEX execution model.
+
+    The old ``CONSOLIDATE_OR_ARCHIVE`` mode is evidence about a previous control
+    model, not current authority. It is preserved in ``historical_mode`` while
+    its executable meaning is upgraded to PRODUCTIZE.
+    """
+
+    try:
+        parsed = ExecutionMode(raw_mode)
+    except ValueError as exc:
+        raise PortfolioProgramError(f"invalid execution mode: {raw_mode!r}") from exc
+
+    if parsed is ExecutionMode.CONSOLIDATE_OR_ARCHIVE:
+        return (
+            ExecutionMode.PRODUCTIZE,
+            PRODUCTIZE_OBJECTIVE,
+            max(target_evidence, EvidenceLevel.TEST),
+            True,
+            parsed.value,
+        )
+
+    minimum = MODE_MINIMUM_EVIDENCE.get(parsed)
+    if minimum is not None and target_evidence < minimum:
+        raise PortfolioProgramError(
+            f"execution mode {parsed.value} requires target evidence >= {minimum.name}"
+        )
+    return parsed, objective, target_evidence, require_positive_test_count, None
 
 
 def load_inventory(path: Path) -> tuple[str, str, tuple[str, ...]]:
@@ -115,12 +168,11 @@ def load_rollout(path: Path) -> RolloutProgram:
             raise PortfolioProgramError(f"{label}.priority must be a positive integer")
 
         try:
-            mode = ExecutionMode(_require_string(wave_payload, "mode", label))
             current_state = VerificationState(
                 _require_string(wave_payload, "current_state", label)
             )
         except ValueError as exc:
-            raise PortfolioProgramError(f"{label} contains an invalid enum value") from exc
+            raise PortfolioProgramError(f"{label} contains an invalid verification state") from exc
 
         current_evidence = EvidenceLevel.parse(
             _require_string(wave_payload, "current_evidence", label)
@@ -128,12 +180,36 @@ def load_rollout(path: Path) -> RolloutProgram:
         target_evidence = EvidenceLevel.parse(
             _require_string(wave_payload, "target_evidence", label)
         )
-        if mode is ExecutionMode.VERIFY and target_evidence < current_evidence:
+        acceptance = _require_mapping(wave_payload.get("acceptance"), f"{label}.acceptance")
+        require_readme_contract = _require_bool(
+            acceptance, "require_readme_contract", f"{label}.acceptance"
+        )
+        wave_positive_test_count = _require_bool(
+            acceptance, "require_positive_test_count", f"{label}.acceptance"
+        )
+        require_build_receipt = _require_bool(
+            acceptance, "require_build_receipt", f"{label}.acceptance"
+        )
+        objective = _require_string(wave_payload, "objective", label)
+        raw_mode = _require_string(wave_payload, "mode", label)
+        (
+            mode,
+            objective,
+            target_evidence,
+            wave_positive_test_count,
+            historical_mode,
+        ) = _compile_execution_mode(
+            raw_mode,
+            objective,
+            target_evidence,
+            wave_positive_test_count,
+        )
+
+        if target_evidence < current_evidence:
             raise PortfolioProgramError(
                 f"{label}.target_evidence cannot be lower than current_evidence"
             )
 
-        acceptance = _require_mapping(wave_payload.get("acceptance"), f"{label}.acceptance")
         raw_repositories = wave_payload.get("repositories")
         if not isinstance(raw_repositories, list) or not raw_repositories:
             raise PortfolioProgramError(f"{label}.repositories must be a non-empty list")
@@ -153,20 +229,15 @@ def load_rollout(path: Path) -> RolloutProgram:
                 id=wave_id,
                 priority=priority,
                 mode=mode,
-                objective=_require_string(wave_payload, "objective", label),
+                objective=objective,
                 current_state=current_state,
                 current_evidence=current_evidence,
                 target_evidence=target_evidence,
                 repositories=tuple(repositories),
-                require_readme_contract=_require_bool(
-                    acceptance, "require_readme_contract", f"{label}.acceptance"
-                ),
-                require_positive_test_count=_require_bool(
-                    acceptance, "require_positive_test_count", f"{label}.acceptance"
-                ),
-                require_build_receipt=_require_bool(
-                    acceptance, "require_build_receipt", f"{label}.acceptance"
-                ),
+                require_readme_contract=require_readme_contract,
+                require_positive_test_count=wave_positive_test_count,
+                require_build_receipt=require_build_receipt,
+                historical_mode=historical_mode,
             )
         )
 

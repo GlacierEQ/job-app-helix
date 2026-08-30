@@ -81,7 +81,7 @@ def test_mission_control_admission_is_scope_and_receipt_bound() -> None:
     assert record["repair_priority"] is None
     assert record["decision_excellence_state"] == "SYNTHETIC_MISSION_OPERATIONS_VERIFIED"
     assert "SURFACE_ASSESSMENT_UNASSESSED" not in record["findings"]
-    assert evidence["canonical_head"] == head
+    assert evidence["source_head"] == head
     assert evidence["evidence_token"] == (
         "LOCAL_MISSION_OPS_SIMULATION_NOT_FLIGHT_COMMAND_AUTHORITY"
     )

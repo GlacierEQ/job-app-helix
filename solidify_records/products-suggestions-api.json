@@ -1,0 +1,21 @@
+{
+  "repo": "products-suggestions-api",
+  "family": "Amazon Web Services",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Product-suggestion API deployment example using AWS ECS Fargate, Terraform, an ALB, and autoscaling (long_tail domain, EXTENDED_TYPESCRIPT_JAVASCRIPT category). Catalog evidence: library.json (catalogued, url=https://github.com/GlacierEQ/products-suggestions-api), company_engineered_repositories.json:79 (aws.unprocessed), capabilities_3layer.json:27765 (EXTENDED_TYPESCRIPT_JAVASCRIPT, impact_score=P1, executive_summary='Deploy to AWS ECS Fargate via Terraform. Using a ALB with auto scaling.', contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=b4805731e4f8bb212d5ca7c623d28cf4c8fdab199c43ce48ec09233b9cd3bfb8, agent_tool_registration=tool_products_suggestions_api, multi-stack tech_stack, git-clone launch_cmd). The executive_summary is one of the most concrete in the set: ECS Fargate + Terraform + ALB + autoscaling is a specific deployment pattern, not a generic description. LONG_TAIL_ATLAS_BATCH_11 flags 'preserved_upstream, no deployment proof' \u2014 capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:14012 (name=products-suggestions-api, catalogued, url=https://github.com/GlacierEQ/products-suggestions-api)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:79 (aws.unprocessed; aws-trainium-neuron-sentinel is the canonical_candidate)",
+    "/tmp/monolith/domains/long_tail.md (description)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_11.md (preserved_upstream, no deployment proof)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:27765 (EXTENDED_TYPESCRIPT_JAVASCRIPT, impact_score=P1, executive_summary='Deploy to AWS ECS Fargate via Terraform. Using a ALB with auto scaling.', tech_stack=[Python, TypeScript, Rust, Go, Docker, MCP], launch_cmd='git clone https://github.com/GlacierEQ/products-suggestions-api', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=b4805731e4f8bb212d5ca7c623d28cf4c8fdab199c43ce48ec09233b9cd3bfb8, mesh_uri=glaciereq://mesh/extended_typescript_javascript/products-suggestions-api, agent_tool_registration.name=tool_products_suggestions_api)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Holds 6->7: concrete deployment-pattern executive_summary (ECS Fargate + Terraform + ALB + autoscaling) plus full mesh registration. Cannot exceed 8 until: (1) the Terraform plan is run (terraform plan hash-bound), (2) a test ECS Fargate environment is deployed with a live ALB endpoint, (3) at least one suggestion request is captured with HTTP 200 + response hash. Per evidence_ledger, AKOS 94/94 and computer-user 203 tests prove harness authority but do not constitute ECS Fargate deployment proof.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.798506",
+  "notes": " | NEEDS_REPAIR"
+}

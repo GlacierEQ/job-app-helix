@@ -1,0 +1,62 @@
+name: Batch Application Execution Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/batch_application_execution.py"
+      - "src/job_app_helix/company_intelligence_refresh.py"
+      - "tests/test_batch_application_execution.py"
+      - "tests/test_company_intelligence_refresh.py"
+      - "pyproject.toml"
+      - ".github/workflows/batch-application-execution-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/batch_application_execution.py"
+      - "src/job_app_helix/company_intelligence_refresh.py"
+      - "tests/test_batch_application_execution.py"
+      - "tests/test_company_intelligence_refresh.py"
+      - "pyproject.toml"
+      - ".github/workflows/batch-application-execution-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    name: Job execution surfaces / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and proof tools
+        run: python -m pip install -e ".[dev]"
+
+      - name: Lint executable surfaces
+        run: >-
+          ruff check
+          src/job_app_helix/batch_application_execution.py
+          src/job_app_helix/company_intelligence_refresh.py
+          tests/test_batch_application_execution.py
+          tests/test_company_intelligence_refresh.py
+
+      - name: Run adversarial executable tests
+        run: >-
+          python -m pytest -q
+          tests/test_batch_application_execution.py
+          tests/test_company_intelligence_refresh.py
+
+      - name: Prove installed executables exist
+        run: |
+          job-app-helix-batch --help >/dev/null
+          job-app-helix-company-refresh --help >/dev/null

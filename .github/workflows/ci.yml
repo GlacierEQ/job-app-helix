@@ -36,7 +36,7 @@ jobs:
 
       - name: Lint public source and audit runners
         run: >-
-          ruff check src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
+          ruff check src tests scripts showcase/demo_15min_run.py
           --output-format=github
 
       - name: Run tests
@@ -62,7 +62,7 @@ jobs:
       - name: Render all repository README blocks
         run: python -m job_app_helix.readme_mesh_cli render-all --output-dir artifacts/readme-mesh/blocks
 
-      - name: Verify canonical README and generated projection
+      - name: Verify reference README and generated projection
         shell: bash
         run: |
           python -m job_app_helix.readme_mesh_cli render GlacierEQ/job-app-helix \
@@ -80,7 +80,7 @@ jobs:
           ]
           positions = [readme.index(heading) for heading in ordered_headings]
           if positions != sorted(positions):
-              raise SystemExit("canonical README audience layers are out of order")
+              raise SystemExit("reference README audience layers are out of order")
 
           required_readme_contract = [
               "schema: glaciereq.readme.v1",
@@ -93,7 +93,7 @@ jobs:
           ]
           missing = [value for value in required_readme_contract if value not in readme]
           if missing:
-              raise SystemExit(f"canonical README contract missing: {missing}")
+              raise SystemExit(f"reference README contract missing: {missing}")
 
           required_projection = [
               "<!-- README-MESH:BEGIN -->",

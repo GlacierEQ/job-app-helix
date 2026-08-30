@@ -12,7 +12,7 @@
     "expected_head": {"type": "string", "minLength": 6},
     "observed_head": {"type": "string", "minLength": 6},
     "branch": {"type": ["string", "null"]},
-    "state": {"enum": ["DISCOVERED", "CENSUSED", "LINEAGE_RESOLVED", "BASELINE_VERIFIED", "BOTTLENECK_SELECTED", "ENVIRONMENT_MODELED", "RESEARCHED", "HYPOTHESES_EVALUATED", "EXPERIMENTING", "IMPLEMENTED", "VERIFIED", "ADVERSARIALLY_REVIEWED", "PROMOTION_READY", "CANONICAL", "MONITORED", "BLOCKED", "QUARANTINED", "SUPERSEDED", "ARCHIVED", "NO_ACTION_JUSTIFIED", "EXPERIMENT_FAILED"]},
+    "state": {"enum": ["DISCOVERED", "CENSUSED", "LINEAGE_RESOLVED", "BASELINE_VERIFIED", "BOTTLENECK_SELECTED", "ENVIRONMENT_MODELED", "RESEARCHED", "HYPOTHESES_EVALUATED", "EXPERIMENTING", "IMPLEMENTED", "VERIFIED", "ADVERSARIALLY_REVIEWED", "PROMOTION_READY", "SOURCE_BOUND", "MONITORED", "BLOCKED", "QUARANTINED", "SUPERSEDED", "ARCHIVED", "NO_ACTION_JUSTIFIED", "EXPERIMENT_FAILED"]},
     "history": {
       "type": "array",
       "items": {
@@ -47,7 +47,7 @@
     "promotion_id": {"type": ["string", "null"]},
     "promotion_record": {"type": "object"},
     "promotion_ready": {"type": "boolean"},
-    "canonical_commit": {"type": "string", "minLength": 6},
+    "source_commit": {"type": "string", "minLength": 6},
     "verification_status": {"enum": ["VERIFIED", "FAILED", "PARTIAL", "BLOCKED"]},
     "system": {"type": "string", "minLength": 1},
     "bottleneck": {"type": "string", "minLength": 1},

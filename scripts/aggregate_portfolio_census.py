@@ -46,7 +46,7 @@ def expected_repositories(inventory: dict[str, Any]) -> tuple[str, list[str]]:
     root_repository = f"{owner}/{root}"
     repositories = [root_repository, *(f"{owner}/{item}" for item in workspace)]
     if len(repositories) != len(set(repositories)):
-        raise ValueError("Canonical inventory contains duplicate repositories")
+        raise ValueError("Source-bound inventory contains duplicate repositories")
     if declared_total is not None:
         if not isinstance(declared_total, int) or declared_total < 1:
             raise ValueError("Inventory total_repositories must be a positive integer")

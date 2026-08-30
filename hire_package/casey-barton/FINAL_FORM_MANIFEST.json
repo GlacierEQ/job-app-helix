@@ -1,12 +1,12 @@
 {
   "schema": "glaciereq.candidate-final-form-manifest.v1",
-  "release": "2026-08-09-canonical-vercel-surface",
+  "release": "2026-08-29-current-estate-reconciliation",
   "candidate": "Casey Del Carpio Barton",
-  "canonical_url": "https://casey-barton-glaciereq.vercel.app/",
+  "source_url": "https://casey-barton-glaciereq.vercel.app/",
   "repository": "GlacierEQ/job-app-helix",
   "deploy_repository": "GlacierEQ/job-application",
   "deploy_output_directory": "site-v15",
-  "canonical_branch": "main",
+  "reference_branch": "main",
   "public_surface_policy": {
     "sole_share_url": "https://casey-barton-glaciereq.vercel.app/",
     "forbidden_share_urls": [
@@ -69,8 +69,9 @@
   ],
   "evidence": {
     "portfolio_boundary": {
-      "state": "VERIFIED_BOUNDARY",
-      "claim": "Exact 67-repository boundary with one Helix root and all 66 child repositories assigned to one rollout wave."
+      "state": "VERIFIED_HISTORICAL_BOUNDARY",
+      "claim": "Historical governed Helix boundary contains exactly 67 repositories: one control-plane root plus 66 children, each assigned to the recorded rollout program.",
+      "role": "dated recruiter/audit scope; not the current estate cap"
     },
     "owned_library_census": {
       "state": "VERIFIED_INVENTORY",
@@ -93,6 +94,14 @@
     "portfolio_operations": {
       "state": "PARTIALLY_VERIFIED",
       "limitation": "Portfolio-wide deployment, scale, performance, reliability, and customer-impact claims require separate receipts."
+    },
+    "current_estate": {
+      "state": "MATERIALIZED_CURRENT_ESTATE",
+      "claim": "Current source-exhaustive estate contains 225 deserving repositories across 21 families."
+    },
+    "verified_trust_anchors": {
+      "state": "VERIFIED_ANCHOR_REGISTER",
+      "claim": "8 repository-level verified trust anchors are recorded in the current estate evidence surface."
     }
   },
   "license": {

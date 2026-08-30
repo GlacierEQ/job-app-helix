@@ -459,7 +459,7 @@ def continuous_history(repo_id: str, evidence: dict) -> dict:
         "IDENTITY_RESOLVED", "PROBLEM_VERIFIED", "TARGET_CONTRACT_FROZEN", "DONOR_PLAN_RESOLVED",
         "VERTICAL_SLICE_ALIVE", "CENTRAL_MECHANISM_PRESENT", "DETERMINISTIC_PROOF_GREEN",
         "ADVERSARIAL_SURVIVAL", "OPERABLE_AND_OBSERVABLE", "PROOF_RECEIPT_BOUND",
-        "AUTHORITY_BOUND", "PROJECTION_TRUTH_CLOSED", "CANONICAL_POSITION_RESOLVED",
+        "AUTHORITY_BOUND", "PROJECTION_TRUTH_CLOSED", "SOURCE_BOUND_POSITION_RESOLVED",
     )}
     gates["EVOLUTION_CURSOR_DEFINED"] = {
         "status": "PASS", "at": TS, "evidence": "elite estate elevator"}
@@ -490,7 +490,7 @@ def continuous_history(repo_id: str, evidence: dict) -> dict:
         "history": history,
         "contract_ref": "machine/target-contract.json",
         "scores_ref": "machine/excellence-scores.json",
-        "evolution_cursor": "next:canonical_position_only_if_estate_role_resolved",
+        "evolution_cursor": "next:reference_position_only_if_estate_role_resolved",
         "wave": {
             "id": "ELITE-ESTATE-2026-08-10",
             "proof_ok": True,
@@ -729,7 +729,7 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
             "target_architecture": {"grade": "B"},
             "current_proof": {"grade": "A"},
             "company_fit": {"score": 0.0},
-            "canonical_confidence": {"score": 0.0, "role": "PROMOTED_LEAF"},
+            "reference_confidence": {"score": 0.0, "role": "PROMOTED_LEAF"},
         },
     }, indent=2))
 

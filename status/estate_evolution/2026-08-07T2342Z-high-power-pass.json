@@ -2,7 +2,7 @@
   "schema": "glaciereq.estate-evolution.receipt.v1",
   "timestamp": "2026-08-07T23:42:00Z",
   "repository": "GlacierEQ/job-app-helix",
-  "canonical_head_before": "87dd202abbff08ad2e7f6cf57739a8bdd661bd46",
+  "source_head_before": "87dd202abbff08ad2e7f6cf57739a8bdd661bd46",
   "branch": "main",
   "merge_base": "87dd202abbff08ad2e7f6cf57739a8bdd661bd46",
   "ahead": 0,
@@ -30,7 +30,7 @@
     "job_application_pr_31_current_gate": "V15 and Helix Projection success; CI, V16, Portfolio truth gate still in progress at observation",
     "expected_head_guard": "merge rejected 409 after PR head advanced; no stale verified head promoted"
   },
-  "canonical_head_after": "WRITE_COMMIT_RETURNED_BY_GITHUB",
+  "source_head_after": "WRITE_COMMIT_RETURNED_BY_GITHUB",
   "remote_ref_disposition": "KEEP_ACTIVE_REFS; DELETE_REF_REQUIRED remains separate where previously classified",
   "news_inputs": [
     "Reuters 2026-08-07 corporate AI economics/cardinality report",
@@ -39,7 +39,7 @@
   "innovation_inputs": [],
   "intelligence_decision": "NO_NEW_SIGNAL; current Mastermind radar already contains the August 7 agent-cardinality/cost-governance signal and prior crash-resume/security controls",
   "blockers": [
-    "Monolith hosted verification jobs fail before executable steps, so PR 48 and topology/status projections remain canonical-merge blocked",
+    "Monolith hosted verification jobs fail before executable steps, so PR 48 and topology/status projections remain reference-merge blocked",
     "Job Application PR 31 head moved after its first complete green gate; current head must independently finish all required native workflows"
   ],
   "next_cursor": {

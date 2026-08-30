@@ -15,8 +15,8 @@
       "decision": "ADMIT",
       "excellence_state": "PUBLIC_BOUNDARY_VERIFIED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
+        "reference_branch": "main",
+        "source_head": "6acdb3be1739f1659f3cec9f4b7d39d5799cd476",
         "surface_repair": "Removed direct family-court repository projection from the public mesh and required separately admitted sanitized transferable capabilities.",
         "proof_receipts": [
           {
@@ -34,9 +34,9 @@
             "conclusion": "success"
           }
         ],
-        "proof_scope": "Current canonical head passes compile, correctness lint, dependency audit, behavioral tests, CLI verification, public-boundary regression, and the repository deployment-evidence workflow. Private/legal repository identity is not projected through the public mesh."
+        "proof_scope": "Current reference head passes compile, correctness lint, dependency audit, behavioral tests, CLI verification, public-boundary regression, and the repository deployment-evidence workflow. Private/legal repository identity is not projected through the public mesh."
       },
-      "next_gate": "Keep ECHO admission exact-head bound; any future public-mesh, privacy, or canonical-head drift reopens repair."
+      "next_gate": "Keep ECHO admission exact-head bound; any future public-mesh, privacy, or reference-head drift reopens repair."
     },
     {
       "repository": "GlacierEQ/apple-ane-kv-quantizer",
@@ -44,8 +44,8 @@
       "decision": "ADMIT",
       "excellence_state": "MODELED_CAPABILITY_VERIFIED",
       "evidence": {
-        "canonical_branch": "main",
-        "canonical_head": "32f69cfa064cbb833b663bc43ace04507f8570c5",
+        "reference_branch": "main",
+        "source_head": "32f69cfa064cbb833b663bc43ace04507f8570c5",
         "evidence_token": "MODELED_SCENARIO_NOT_HARDWARE_MEASUREMENT",
         "proof_receipts": [
           {

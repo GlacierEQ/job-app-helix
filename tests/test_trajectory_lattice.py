@@ -17,7 +17,7 @@ def load_module():
     return module
 
 
-def test_canonical_2026_schedule_is_exact_and_ordered():
+def test_reference_2026_schedule_is_exact_and_ordered():
     schedule = json.loads(SCHEDULE.read_text(encoding="utf-8"))
     dates = [entry["date"] for entry in schedule["checkpoints"]]
     assert dates == [
@@ -44,7 +44,7 @@ def test_canonical_2026_schedule_is_exact_and_ordered():
     assert len(dates) == len(set(dates)) == 19
     assert schedule["timezone"] == "Pacific/Honolulu"
     assert schedule["capture_contract"]["state_and_delta_required"] is True
-    assert schedule["capture_contract"]["canonical_heads_required"] is True
+    assert schedule["capture_contract"]["source_heads_required"] is True
     assert schedule["capture_contract"]["fail_closed_on_missing_private_estate_authority"] is True
     assert schedule["phase_model"] == [
         "expansion",
@@ -66,7 +66,7 @@ def test_all_required_dimensions_are_present():
     schedule = json.loads(SCHEDULE.read_text(encoding="utf-8"))
     assert set(schedule["dimensions"]) == {
         "repository_inventory",
-        "canonical_heads",
+        "source_heads",
         "genealogy",
         "capability_ontology",
         "original_intent",
@@ -91,7 +91,7 @@ def test_delta_reports_repo_head_and_dimension_changes():
         "date": "2026-08-15",
         "state": {
             "repository_inventory": {"owned_repository_count": 2},
-            "canonical_heads": [
+            "source_heads": [
                 {"repository": "GlacierEQ/a", "head_sha": "aaa"},
                 {"repository": "GlacierEQ/b", "head_sha": "bbb"},
             ],
@@ -104,7 +104,7 @@ def test_delta_reports_repo_head_and_dimension_changes():
     current = {
         "state": {
             "repository_inventory": {"owned_repository_count": 3},
-            "canonical_heads": [
+            "source_heads": [
                 {"repository": "GlacierEQ/a", "head_sha": "ccc"},
                 {"repository": "GlacierEQ/b", "head_sha": "bbb"},
                 {"repository": "GlacierEQ/c", "head_sha": "ddd"},
@@ -120,7 +120,7 @@ def test_delta_reports_repo_head_and_dimension_changes():
     assert delta["repository_count_delta"] == 1
     assert delta["repositories_added"] == ["GlacierEQ/c"]
     assert delta["repositories_removed"] == []
-    assert delta["canonical_head_changes"] == [
+    assert delta["source_head_changes"] == [
         {"repository": "GlacierEQ/a", "before": "aaa", "after": "ccc"}
     ]
     assert delta["dimension_changes"] == ["implementation"]
@@ -131,7 +131,7 @@ def test_missing_previous_checkpoint_fails_closed_without_fabricating_delta():
     current = {
         "state": {
             "repository_inventory": {"owned_repository_count": 1},
-            "canonical_heads": [],
+            "source_heads": [],
             "dimensions": {},
         }
     }

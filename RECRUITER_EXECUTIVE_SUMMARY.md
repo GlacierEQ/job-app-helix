@@ -2,7 +2,7 @@
 
 ## Candidate signal
 
-Casey Barton built Job-App Helix to turn a 67-repository engineering portfolio into an evidence-bound review system. The portfolio spans agent governance, distributed systems, model infrastructure, telemetry, safety controls, document intelligence, product engineering, and polyglot architecture.
+Casey Barton built Job-App Helix to turn a large engineering estate into an evidence-bound review system. The current source-exhaustive estate contains 225 deserving repositories across 21 families; the earlier 67-repository Helix boundary (one control-plane root plus 66 children) remains a historical governed recruiter/audit scope, not a cap on the current portfolio. The portfolio spans agent governance, distributed systems, model infrastructure, telemetry, safety controls, document intelligence, product engineering, and polyglot architecture.
 
 The differentiator is not the number of repositories or languages. It is making a large body of work **legible, composable, and falsifiable**:
 
@@ -14,21 +14,22 @@ The differentiator is not the number of repositories or languages. It is making 
 
 **Current live portfolio status:** `PARTIALLY VERIFIED`. The July 29 evidence audit covered the prior 66-repository boundary and classified one repository as partially verified, twenty as README-verified/runtime-unverified, one as blocked/unverified, and forty-four as unverified. `UNVERIFIED` means that current evidence is insufficient to make a working/not-working claim; it does not mean the repository is defective. Later component promotions and the July 31 admission of Resume Shapeshifter do not silently rewrite that dated audit.
 
-The live boundary now contains one Helix root and sixty-six children. `JOB-RESUME-BUILDER-` was admitted because it is the lead product flagship presented by `job-application`; its absence created a governance gap between the recruiter portal and the evidence control plane.
+The current estate is the 225-repository source-exhaustive mesh recorded in `manifests/unified_deserving_manifest.json` and the 225 `solidify/*.json` records. The 67-repository Helix boundary remains preserved as a dated, governed recruiter/audit scope. `JOB-RESUME-BUILDER-` was admitted to that earlier boundary because it is the lead product flagship presented by `job-application`; preserving that historical boundary keeps its evidence receipts interpretable without misrepresenting it as the present estate size.
 
 ## What a recruiter should open first
 
 | Priority | Artifact | Why it matters |
 |---:|---|---|
-| 1 | [Live recruiter presentation](https://casey-barton-glaciereq.vercel.app/) | Deployed recruiter, engineering, and AI reading paths generated from canonical Helix evidence records. |
+| 1 | [Live recruiter presentation](https://casey-barton-glaciereq.vercel.app/) | Deployed recruiter, engineering, and AI reading paths generated from APEX Helix evidence records. |
 | 2 | [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) | Lead product flagship: source-grounded résumé tailoring with deterministic truthfulness checks and executable TypeScript tests. |
 | 3 | [Casey Barton candidate source](hire_package/casey-barton/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and immutable evidence links. |
 | 4 | [Root README](README.md) | Portfolio control-plane outcome, expert architecture, and machine contract. |
 | 5 | [Historical 66-repository evidence audit](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification states, and the highest-priority correction for the original audit boundary. |
-| 6 | [Exact live portfolio inventory](manifests/portfolio_repositories.json) | Pins the current boundary to one root and sixty-six child repositories. |
-| 7 | [GitHub curation ledger](manifests/github_repository_curation_2026-07-31.json) | Records admission, deferral, duplicate, private, backup, archive, and external-source decisions. |
-| 8 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
-| 9 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how canonical records become the live Vercel hire surface (`casey-barton-glaciereq.vercel.app`); Pages is optional/disabled. |
+| 6 | [Current source-exhaustive estate](manifests/unified_deserving_manifest.json) | Records the current 225-repository deserving estate used by the root portfolio control plane. |
+| 7 | [Historical governed recruiter boundary](manifests/portfolio_repositories.json) | Preserves the earlier one-root + 66-child scope used by dated audits and receipts; it is not the current estate cap. |
+| 8 | [GitHub curation ledger](manifests/github_repository_curation_2026-07-31.json) | Records admission, deferral, duplicate, private, backup, archive, and external-source decisions. |
+| 9 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
+| 10 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how APEX records become the live Vercel hire surface (`casey-barton-glaciereq.vercel.app`); Pages is optional/disabled. |
 
 ## Strongest current exhibits
 
@@ -48,7 +49,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 
 **Role:** authority, provenance, maturity, and completion semantics for agentic systems.  
 **Signal:** governance architecture, operational cognition, read-only action boundaries, and evidence-bound verification.  
-**Status:** repository-native TEST evidence exists at its named promotion commit; later receipts should be consulted for exact counts and canonical SHAs.
+**Status:** repository-native TEST evidence exists at its named promotion commit; later receipts should be consulted for exact counts and APEX SHAs.
 
 ### Agent Coordinator
 
@@ -68,7 +69,7 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 - **Evidence discipline:** inventory hashes, README validation, runtime execution, benchmarks, hardware execution, and deployment receipts are treated as different proof classes.
 - **Polyglot judgment:** languages are accepted only when they materially improve a boundary.
 - **Failure semantics:** timeouts, zero-test runs, missing repositories, missing receipts, and blocked toolchains cannot silently become passes.
-- **Deployment integrity:** the recruiter site is generated from canonical source records and every public payload is SHA-256 listed.
+- **Deployment integrity:** the recruiter site is generated from APEX source records and every public payload is SHA-256 listed.
 - **Human communication:** the first screen explains value; deeper sections reward technical scrutiny; machine blocks support ingestion and orchestration.
 
 ## Application spiral
@@ -81,8 +82,8 @@ Each revolution begins from accumulated context, authority, artifacts, failures,
 
 ## Current limitations
 
-- The complete 67-repository runtime surface has not been executed in one authoritative environment.
-- The README Mesh rollout receipt covers twenty-one declared nodes, not all sixty-seven repositories.
+- The complete 225-repository current estate has not been executed in one authoritative environment; verification remains repository- and receipt-scoped.
+- The README Mesh rollout receipt covers twenty-one declared nodes, not the entire current 225-repository estate.
 - Resume Shapeshifter has been admitted to the live inventory but still requires Wave 3 repository-native promotion evidence.
 - Many repositories still need clean-checkout CI, current test receipts, and README rewrites.
 - Publishing the recruiter surface proves a static deployment from a named Helix commit; it does not establish portfolio-wide production deployment.
@@ -102,7 +103,7 @@ python -m job_app_helix.readme_mesh_cli validate
 job-app-helix-portfolio validate
 ```
 
-Build the recruiter surface from canonical records:
+Build the recruiter surface from APEX records:
 
 ```bash
 python scripts/build_recruiter_site.py \
@@ -112,7 +113,7 @@ python scripts/build_recruiter_site.py \
 python -m pytest -q tests/test_recruiter_site_deployment.py
 ```
 
-The multi-repository audit additionally requires the canonical local `repos/` workspace:
+The multi-repository audit additionally requires the APEX local `repos/` workspace:
 
 ```bash
 python ci_audit_portfolio.py

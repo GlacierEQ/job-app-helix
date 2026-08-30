@@ -1,0 +1,22 @@
+{
+  "repo": "job-application",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "The public evaluator projection consumer / recruiter front door: a hireable showcase tying AKOS, pro-code, and the Pro-/motion families to xAI/SpaceX/Anthropic/NVIDIA/Notion targets, and the documented consumer of the helix tower's projection. Strong release evidence exists (helix push/pull receipts pin it at named commits and the merge-authority graph references its proof project) but no workflow test run was observed \u2014 the pushed commit was docs-only per the release receipt.",
+  "evidence": [
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/10_RELEASE_RECEIPTS/REMOTE_REPOSITORY_PUSH_RECEIPT.md line 10 (GlacierEQ/job-application commit 42dc5ecd1c65bc2cf891b24929bd347957eaadb8; 're-fetched and verified; no workflow run was observed for the docs-only commit')",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/10_RELEASE_RECEIPTS/REMOTE_REPOSITORY_PULL_RECEIPT.md line 3 (main 1efb16a7017ebae0454d556c5ac31b4149c18673)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/README.md line 35 ('GlacierEQ/job-application | Public recruiter front door' SHA 1efb16a7)",
+    "/tmp/monolith/catalog/library.json (name=job-application; domain=apex_cognitive_os; activity=worked_on; status_detail=worked_solidified; desc hireable showcase; HTML; local_job_app=true)",
+    "/tmp/monolith/catalog/capabilities/merge_authority_graph.json (proof_ref 'job-application/projects/github-merge-authority-proof'; repository 'GlacierEQ/job-application/projects/github-merge-authority-proof')",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json lines 1110, 3955 (path WORKSPACE/job-application)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (contract_proof='DONE <=> issue-contract proof(pain) for job-application')"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 8,
+  "makes_worthy": "Add a CI build/test gate over the projection pipeline (the recruiter-package render + merge-authority proof) so the docs-only commit becomes an executable, receipted build; pin a run id and artifact digest to reach 8+.",
+  "last_verified": "2026-08-29T04:30:00-10:00",
+  "notes": "tests:pass; has_ci; buildable"
+}

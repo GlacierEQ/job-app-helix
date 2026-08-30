@@ -1,0 +1,60 @@
+name: Unified Ashby Target Cycle Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/job_app_helix/target_opening_discovery.py"
+      - "src/job_app_helix/ashby_opening_discovery.py"
+      - "src/job_app_helix/target_intelligence_cycle.py"
+      - "tests/test_unified_ashby_target_cycle.py"
+      - "tests/test_target_opening_discovery.py"
+      - "tests/test_target_intelligence_cycle.py"
+      - ".github/workflows/unified-ashby-target-cycle-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/job_app_helix/target_opening_discovery.py"
+      - "src/job_app_helix/ashby_opening_discovery.py"
+      - "src/job_app_helix/target_intelligence_cycle.py"
+      - "tests/test_unified_ashby_target_cycle.py"
+      - ".github/workflows/unified-ashby-target-cycle-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  unified-ashby-target-cycle:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and proof tools
+        run: python -m pip install -e '.[dev]'
+
+      - name: Lint unified provider and vertical proof surface
+        run: >-
+          ruff check
+          src/job_app_helix/target_opening_discovery.py
+          src/job_app_helix/ashby_opening_discovery.py
+          tests/test_unified_ashby_target_cycle.py
+
+      - name: Run provider regression and vertical composition tests
+        run: >-
+          python -m pytest -q
+          tests/test_target_opening_discovery.py
+          tests/test_unified_ashby_target_cycle.py
+
+      - name: Prove unified discovery executable
+        run: job-app-helix-discover-openings --help

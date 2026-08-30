@@ -281,7 +281,7 @@ The machine block must be deterministic, compact, versioned, and consistent with
 schema: glaciereq.readme.v1
 profile: glaciereq.readme-impact.v2.1
 repository: GlacierEQ/example
-canonical_branch: main
+reference_branch: main
 role: PRODUCT_FLAGSHIP
 visibility: PUBLIC
 purpose: ...

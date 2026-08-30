@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE_SOURCE = ROOT / "site"
 CANDIDATE_ROOT = ROOT / "hire_package" / "casey-barton"
 REPO_URL = "https://github.com/GlacierEQ/job-app-helix"
-CANONICAL_SPIRAL = [
+SOURCE_BOUND_SPIRAL = [
     "OBSERVE",
     "RECOVER",
     "PLAN",
@@ -248,7 +248,7 @@ def _role_cards(roles: list[str]) -> str:
 
 def _spiral_steps(stages: list[dict[str, Any]]) -> str:
     ordered = [str(stage.get("name", "")) for stage in stages]
-    if ordered != CANONICAL_SPIRAL:
+    if ordered != SOURCE_BOUND_SPIRAL:
         raise SystemExit(f"Spiral contract drift: {ordered}")
     return "".join(
         "<li>"
@@ -294,8 +294,8 @@ def _validate_contracts(
     stage_names = [
         stage.get("name") for stage in stages if isinstance(stage, dict)
     ]
-    if stage_names != CANONICAL_SPIRAL:
-        raise SystemExit("application spiral does not match canonical stage order")
+    if stage_names != SOURCE_BOUND_SPIRAL:
+        raise SystemExit("application spiral does not match reference stage order")
 
     claims = ledger.get("claims")
     if not isinstance(claims, list):
@@ -545,7 +545,7 @@ def build(output: Path, source_commit: str) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Build the canonical recruiter GitHub Pages surface"
+        description="Build the reference recruiter GitHub Pages surface"
     )
     parser.add_argument(
         "--output",

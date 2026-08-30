@@ -503,7 +503,7 @@ def rebuild_index(
             "key": "",
             "name": REPO_ROOT.name,
             "rootPath": str(REPO_ROOT),
-            "canonical": "",
+            "reference": "",
             "createdAt": "",
             "updatedAt": utc_now(),
         }

@@ -99,7 +99,7 @@ def test_satellite_mesh_admission_binds_native_proof() -> None:
     assert record["prior_reconciled_admission"] == "REPAIR_REQUIRED"
     assert record["admission"] == "ADMIT"
     assert record["repair_priority"] is None
-    assert evidence["canonical_head"] == HEAD
+    assert evidence["source_head"] == HEAD
     assert evidence["evidence_token"] == TOKEN
     assert evidence["verified_capability"] == CAPABILITY
     assert evidence["proof_receipts"] == [
@@ -125,8 +125,8 @@ def test_wave16_receipt_matches_reconciliation_authority() -> None:
     wave = load(WAVE16)["items"][0]
     receipt = load(RECEIPT)
     assert receipt["repository"] == wave["repository"] == TARGET
-    assert receipt["source_canonical_head"] == HEAD
-    assert wave["evidence"]["canonical_head"] == HEAD
+    assert receipt["source_head"] == HEAD
+    assert wave["evidence"]["source_head"] == HEAD
     assert receipt["evidence_token"] == wave["evidence"]["evidence_token"] == TOKEN
     assert receipt["verified_capability"] == CAPABILITY
     assert wave["evidence"]["verified_capability"] == CAPABILITY

@@ -1,0 +1,297 @@
+{
+  "schema": "glaciereq.company-repo-mesh.batch.v2",
+  "generated_on": "2026-08-29",
+  "group": "tools_platforms",
+  "policy": {
+    "fixed_repo_cap": null,
+    "fixed_company_cap": null,
+    "fixed_relation_cap": null,
+    "counts_are": "observations",
+    "affiliation_inference": false,
+    "source_pagination": "exhausted per query",
+    "public_visibility_only": true,
+    "private_repository_identities_omitted": true,
+    "private_relations": "redacted from public projection; preserved in private estate overlay"
+  },
+  "companies": {
+    "cursor": {
+      "name": "Cursor / Anysphere",
+      "query": "cursor",
+      "observed_repo_count": 10,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/cursor",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 429312,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/cursor-patch-intent-twin",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 86,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/cursor-vip",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 14715,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/everything-claude-code",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 49883,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/firecrawl-mcp-server",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 5805,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/mcp-playwright",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 26027,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/redis-stream-claim-cursor-fence",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 34,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/system-prompts-and-models-of-ai-tools",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1428,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Taskade-mcp",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 208,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/unity-mcp",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 17916,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ],
+      "source_observed_repo_count": 13,
+      "private_relations_redacted": 3
+    },
+    "glean": {
+      "name": "Glean",
+      "query": "glean",
+      "observed_repo_count": 1,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/glean-enterprise-search-claim-fence",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 85,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ],
+      "source_observed_repo_count": 1,
+      "private_relations_redacted": 0
+    },
+    "replit": {
+      "name": "Replit",
+      "query": "replit",
+      "observed_repo_count": 2,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/replit-workspace-cap-matrix",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 90,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/system-prompts-and-models-of-ai-tools",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1428,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ],
+      "source_observed_repo_count": 2,
+      "private_relations_redacted": 0
+    },
+    "cognition": {
+      "name": "Cognition",
+      "query": "cognition",
+      "observed_repo_count": 1,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/cognition-execution-checkpoint-lattice",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 107,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ],
+      "source_observed_repo_count": 1,
+      "private_relations_redacted": 0
+    },
+    "notion": {
+      "name": "Notion",
+      "query": "notion",
+      "observed_repo_count": 4,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/notion-mcp-server",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1224,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/notion-workflow-intelligence",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 87,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/notion-workspace-optimizer",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 96,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Rube",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 925,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ],
+      "source_observed_repo_count": 30,
+      "private_relations_redacted": 26
+    },
+    "perplexity": {
+      "name": "Perplexity",
+      "query": "perplexity",
+      "observed_repo_count": 10,
+      "repositories": [
+        {
+          "repository_full_name": "GlacierEQ/Apex-EYE",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 1493,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/complexity",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "nxt",
+          "size": 15488,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/MCP-SuperAssistant",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 4892,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/modelcontextprotocol",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 822,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/opensearch-ai",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 3864,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/OSINT-Assistant",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 567,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/Perplexica",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 18305,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/perplexity-ai-app",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 18575,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/perplexity-ai-export",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "master",
+          "size": 192,
+          "relation": "DISCOVERED_RELEVANCE"
+        },
+        {
+          "repository_full_name": "GlacierEQ/perplexity-node",
+          "visibility": "public",
+          "archived": false,
+          "default_branch": "main",
+          "size": 240,
+          "relation": "DISCOVERED_RELEVANCE"
+        }
+      ],
+      "source_observed_repo_count": 20,
+      "private_relations_redacted": 10
+    }
+  },
+  "scope": "PUBLIC_RECRUITER_PROJECTION"
+}

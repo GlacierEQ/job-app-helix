@@ -1,0 +1,27 @@
+{
+  "repo": "xai-aeon777-nanosphere-omega",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Wave-3 mining of local sources confirms this is an alpha/omega variant of the xAI/Colossus portfolio listed under xai_colossus.historical_or_cross_company (canonical candidate xai-colossus-cooling). The monolith catalog (library.json) records it as a Python 'part' with domain=memory_aspen, activity=catalogued, status_detail=catalogued_unclassified, private=true, desc='' (EMPTY), local_job_app=false, issue_contract=false. No local clone, README, code, tests, fact card, or CI receipt was found. The xai_colossus_nanosphere_hardening.json receipt verifies the canonical xai-colossus-nanosphere lineage (58/58 tests, run_id 30899305574, scenario_sha256=4617e8f107cf7f9454c42d1a2819a9d39ddf3ee25d5902a2e106f08e39a298e0, artifact 8888366530 digest sha256:c00fd60d251f6eaae6c2ec3ad5a316438c1f7049bd923e31aa54d71fd5df3e48) but NOT this aeon777-named variant. Name collision risk: do not attribute the verified 58/58 lineage to this catalog stub. Capped honestly at 3.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry xai-aeon777-nanosphere-omega: domain=memory_aspen, role=part, activity=catalogued, status_detail=catalogued_unclassified, language=Python, desc='' (EMPTY), private=true, local_job_app=false, issue_contract=false)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company includes 'xai-aeon777-nanosphere-omega')",
+    "xai_colossus_nanosphere_hardening.json verifies the canonical xai-colossus-nanosphere lineage (NOT this aeon777 variant \u2014 confirmed absence)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_5": "(1) Clone the repository; (2) confirm whether implementation exists; (3) extract a README and any tests into a fact card; (4) add a runnable test suite plus a CI truth gate; (5) emit a hardening receipt with a pinned commit and artifact digest.",
+  "makes_worthy_7": "After worthy_5 steps, also: (a) demonstrate microcode logic with a typed, versioned scenario; (b) add boundary tests for instruction set coverage and state transitions; (c) obtain independent microcode/systems review. Until then, this remains a name-only catalog stub.",
+  "honest_limits": [
+    "catalog desc field is EMPTY; no mechanism evidence beyond the family grouping",
+    "no local clone, source inspection, test, CI run id, artifact, or receipt found locally",
+    "lineage discrepancy: catalogued under xai_colossus.historical_or_cross_company yet absent from the family hardening receipts that cover sibling xai-colossus-* alpha/omega \u2014 provenance of these aeon777 variants is unverified"
+  ],
+  "last_verified": "2026-08-29T08:47:16.854835",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

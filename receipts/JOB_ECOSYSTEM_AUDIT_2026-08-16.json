@@ -237,7 +237,7 @@
       "description": "Reasoning budget scheduler (portfolio) under GPU caps \u00b7 AKOS portfolio",
       "archived": false,
       "neut_stamps_8": 1,
-      "last_msg": "Allow explicit canonical CI proof dispatch (#4)",
+      "last_msg": "Allow explicit reference CI proof dispatch (#4)",
       "has_src_hint": true,
       "has_tests_hint": true,
       "root_n": 15
@@ -733,7 +733,7 @@
       "description": "Workflow engine for ops craft (engineering only) \u00b7 AKOS",
       "archived": false,
       "neut_stamps_8": 0,
-      "last_msg": "Repair Notion workflow truth and canonical proof path",
+      "last_msg": "Repair Notion workflow truth and reference proof path",
       "has_src_hint": true,
       "has_tests_hint": true,
       "root_n": 15

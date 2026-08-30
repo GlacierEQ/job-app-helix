@@ -2,7 +2,7 @@
   "schema": "glaciereq.repository-observation.v1",
   "repository": "GlacierEQ/AKOS",
   "repository_id": "1289648128",
-  "canonical_url": "https://github.com/GlacierEQ/AKOS",
+  "source_url": "https://github.com/GlacierEQ/AKOS",
   "default_branch": "main",
   "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
   "observed_at": "2026-08-02T12:00:00Z",
@@ -170,7 +170,7 @@
     "head_sha_bound": true,
     "original_bytes_copied": false,
     "notes": [
-      "The observation stores canonical URLs and public metadata only.",
+      "The observation stores reference URLs and public metadata only.",
       "The public GitHub repository and immutable public artifact URLs do not require an authenticated connector session.",
       "No child-repository source tree, archive, README copy, or raw provider payload is stored in Helix."
     ]

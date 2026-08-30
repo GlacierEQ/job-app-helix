@@ -13,14 +13,14 @@ PRIVATE_HEAD = "b" * 40
 def _bundle() -> dict:
     public_system = {
         "system_id": "sys-public",
-        "canonical_repository": "GlacierEQ/public-donor",
+        "source_repository": "GlacierEQ/public-donor",
         "member_repositories": ["GlacierEQ/public-donor"],
         "visibility": "public",
         "public_surface": "PUBLIC",
     }
     private_system = {
         "system_id": "sys-private",
-        "canonical_repository": "GlacierEQ/private-case-source",
+        "source_repository": "GlacierEQ/private-case-source",
         "member_repositories": ["GlacierEQ/private-case-source"],
         "visibility": "private",
         "public_surface": "PRIVATE_UNTIL_SANITIZED",
@@ -65,7 +65,7 @@ def _bundle() -> dict:
     }
     return {
         "source_digest": "c" * 64,
-        "canonical_system_registry": {
+        "system_registry": {
             "systems": [public_system, private_system],
         },
         "capability_donor_registry": {
@@ -94,7 +94,7 @@ def _bundle() -> dict:
                     "target_roles": ["Platform Engineer"],
                     "operating_problem": "Secure data-platform integration.",
                     "recruiter_thesis": "Public semantic donor proof.",
-                    "canonical_systems": ["sys-public", "sys-private"],
+                    "reference_systems": ["sys-public", "sys-private"],
                     "capabilities": [
                         "supabase-least-privilege-broker",
                         "private-case-mechanism",
@@ -164,7 +164,7 @@ def test_public_capability_proof_packet_is_exact_head_and_private_safe() -> None
         "semantic_capability_proof_is_exact_head_and_public_only"
     ] is True
     assert company["capabilities"] == ["supabase-least-privilege-broker"]
-    assert company["canonical_systems"] == ["sys-public"]
+    assert company["reference_systems"] == ["sys-public"]
     assert company["capability_proofs"] == [
         {
             "capability_id": "supabase-least-privilege-broker",

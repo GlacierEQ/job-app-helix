@@ -74,7 +74,7 @@ def test_colossus_gateway_is_source_complete_but_metadata_blocked() -> None:
     assert record["decision_excellence_state"] == "SOURCE_TRUTH_COMPLETE_METADATA_BLOCKED"
     assert "METADATA_DESCRIPTION_DRIFT" in record["findings"]
     assert "SURFACE_ASSESSMENT_UNASSESSED" not in record["findings"]
-    assert evidence["canonical_head"] == head
+    assert evidence["source_head"] == head
     assert evidence["evidence_token"] == (
         "LOCAL_MCP_STDIO_SERVER_NOT_EXTERNAL_COLOSSUS_RUNTIME"
     )
