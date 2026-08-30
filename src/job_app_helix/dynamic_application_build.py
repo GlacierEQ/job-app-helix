@@ -124,7 +124,8 @@ class DynamicBuildResult:
 
 
 def _tokens(value: str) -> set[str]:
-    raw = re.findall(r"[a-z0-9][a-z0-9+#.-]{1,}", value.casefold())
+    normalized = re.sub(r"[-_.:/]+", " ", value.casefold())
+    raw = re.findall(r"[a-z0-9][a-z0-9+#]{1,}", normalized)
     return {token for token in raw if token not in STOPWORDS and len(token) > 1}
 
 
