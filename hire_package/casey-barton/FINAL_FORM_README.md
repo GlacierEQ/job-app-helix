@@ -30,8 +30,10 @@ Most portfolios ask the reader to trust polished prose. This one provides a cont
 
 Current evidence includes:
 
-- an exact 67-repository Job-App Helix boundary - one root plus 66 child repositories;
-- a complete four-wave program covering all 66 child repositories;
+- a source-exhaustive estate of 225 deserving repositories across 21 families;
+- 8 verified trust anchors in the current estate evidence surface;
+- the earlier exact 67-repository Helix boundary - one root plus 66 children - preserved as a historical governed audit scope rather than a present cap;
+- a complete four-wave program covering that historical 66-child boundary;
 - AKOS at 94/94 tests across Python 3.11, 3.12, and 3.13;
 - a verified 21-node recruiter / expert / AI README Mesh;
 - an Agent Coordinator candidate receipt at 62/62 Python 3.13 tests, with hosted multi-version promotion still clearly pending.
@@ -189,9 +191,15 @@ languages_and_platforms:
   - Protocol Buffers
 
 proof:
-  portfolio_boundary:
-    claim: exact 67-repository boundary - one root plus 66 child repositories
-    state: VERIFIED_BOUNDARY
+  current_estate:
+    claim: 225 deserving repositories across 21 families
+    state: MATERIALIZED_CURRENT_ESTATE
+  verified_trust_anchors:
+    claim: 8 repository-level verified anchors in the current estate evidence surface
+    state: VERIFIED_ANCHOR_REGISTER
+  historical_portfolio_boundary:
+    claim: exact 67-repository governed boundary - one root plus 66 children
+    state: VERIFIED_HISTORICAL_BOUNDARY
   akos:
     claim: 94/94 tests across 12 modules on Python 3.11-3.13
     state: VERIFIED_TEST
