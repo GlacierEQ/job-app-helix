@@ -1,46 +1,133 @@
 {
   "schema": "glaciereq.estate-intelligence-projection-policy.v1",
-  "audience_caps": {
-    "recruiter": 10,
-    "company_reviewer": 5,
-    "senior_engineer": 20
-  },
   "role_capability_rules": [
     {
-      "match_any": ["applied ai", "agent", "agents", "eval", "reasoning"],
-      "capabilities": ["deterministic-orchestration", "provenance-and-evidence", "memory-and-continuity", "mcp-and-tool-integration", "reasoning-and-agent-systems"]
+      "match_any": [
+        "applied ai",
+        "agent",
+        "agents",
+        "eval",
+        "reasoning"
+      ],
+      "capabilities": [
+        "deterministic-orchestration",
+        "provenance-and-evidence",
+        "memory-and-continuity",
+        "mcp-and-tool-integration",
+        "reasoning-and-agent-systems"
+      ]
     },
     {
-      "match_any": ["infrastructure", "platform", "distributed", "systems", "reliability"],
-      "capabilities": ["distributed-state-and-recovery", "accelerator-and-infrastructure", "fail-closed-governance", "provenance-and-evidence", "deterministic-orchestration"]
+      "match_any": [
+        "infrastructure",
+        "platform",
+        "distributed",
+        "systems",
+        "reliability"
+      ],
+      "capabilities": [
+        "distributed-state-and-recovery",
+        "accelerator-and-infrastructure",
+        "fail-closed-governance",
+        "provenance-and-evidence",
+        "deterministic-orchestration"
+      ]
     },
     {
-      "match_any": ["forward-deployed", "forward deployed", "solutions", "architect", "integration"],
-      "capabilities": ["mcp-and-tool-integration", "browser-and-operator-control", "deterministic-orchestration", "provenance-and-evidence", "fail-closed-governance"]
+      "match_any": [
+        "forward-deployed",
+        "forward deployed",
+        "solutions",
+        "architect",
+        "integration"
+      ],
+      "capabilities": [
+        "mcp-and-tool-integration",
+        "browser-and-operator-control",
+        "deterministic-orchestration",
+        "provenance-and-evidence",
+        "fail-closed-governance"
+      ]
     },
     {
-      "match_any": ["safety", "security", "trust", "identity", "governance"],
-      "capabilities": ["fail-closed-governance", "provenance-and-evidence", "deterministic-orchestration", "distributed-state-and-recovery"]
+      "match_any": [
+        "safety",
+        "security",
+        "trust",
+        "identity",
+        "governance"
+      ],
+      "capabilities": [
+        "fail-closed-governance",
+        "provenance-and-evidence",
+        "deterministic-orchestration",
+        "distributed-state-and-recovery"
+      ]
     },
     {
-      "match_any": ["ml", "machine learning", "model", "gpu", "accelerator", "compute", "performance"],
-      "capabilities": ["accelerator-and-infrastructure", "distributed-state-and-recovery", "reasoning-and-agent-systems", "deterministic-orchestration"]
+      "match_any": [
+        "ml",
+        "machine learning",
+        "model",
+        "gpu",
+        "accelerator",
+        "compute",
+        "performance"
+      ],
+      "capabilities": [
+        "accelerator-and-infrastructure",
+        "distributed-state-and-recovery",
+        "reasoning-and-agent-systems",
+        "deterministic-orchestration"
+      ]
     },
     {
-      "match_any": ["browser", "automation", "computer use", "operator"],
-      "capabilities": ["browser-and-operator-control", "mcp-and-tool-integration", "fail-closed-governance", "memory-and-continuity"]
+      "match_any": [
+        "browser",
+        "automation",
+        "computer use",
+        "operator"
+      ],
+      "capabilities": [
+        "browser-and-operator-control",
+        "mcp-and-tool-integration",
+        "fail-closed-governance",
+        "memory-and-continuity"
+      ]
     },
     {
-      "match_any": ["document", "knowledge", "memory", "research"],
-      "capabilities": ["document-intelligence", "provenance-and-evidence", "memory-and-continuity", "repository-intelligence"]
+      "match_any": [
+        "document",
+        "knowledge",
+        "memory",
+        "research"
+      ],
+      "capabilities": [
+        "document-intelligence",
+        "provenance-and-evidence",
+        "memory-and-continuity",
+        "repository-intelligence"
+      ]
     },
     {
-      "match_any": ["staff", "software", "engineer"],
-      "capabilities": ["deterministic-orchestration", "provenance-and-evidence", "distributed-state-and-recovery", "mcp-and-tool-integration"]
+      "match_any": [
+        "staff",
+        "software",
+        "engineer"
+      ],
+      "capabilities": [
+        "deterministic-orchestration",
+        "provenance-and-evidence",
+        "distributed-state-and-recovery",
+        "mcp-and-tool-integration"
+      ]
     }
   ],
   "support_policy": {
-    "allowed_relations": ["DEPENDENCY_OF", "REFERENCE_OF"],
+    "allowed_relations": [
+      "DEPENDENCY_OF",
+      "REFERENCE_OF"
+    ],
     "requires_evidence_refs": true,
     "collapse_lineage": false,
     "counts_as_independent_accomplishment": false
@@ -49,6 +136,20 @@
     "reference_estate_compiler_remains_authoritative": true,
     "role_fit_is_capability_overlap_not_hiring_prediction": true,
     "support_edges_do_not_change_lineage": true,
-    "public_visibility_remains_derived_separately": true
+    "public_visibility_remains_derived_separately": true,
+    "full_ranked_projection_remains_available": true
+  },
+  "membership_policy": {
+    "fixed_system_cap": null,
+    "fixed_company_cap": null,
+    "fixed_relation_cap": null,
+    "audience_projection_membership": "complete_ranked_relation_graph",
+    "presentation_pagination_changes_membership": false
+  },
+  "audience_presentation_defaults": {
+    "recruiter": 10,
+    "company_reviewer": 5,
+    "senior_engineer": 20,
+    "semantics": "display/page-size hints only; never truncate source or projection membership"
   }
 }

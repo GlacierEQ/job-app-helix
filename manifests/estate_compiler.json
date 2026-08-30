@@ -60,13 +60,15 @@
   },
   "projection_policy": {
     "company_problem_source": "existing Helix company dossier gap_or_next_gate unless separately refreshed by current research",
-    "selection": "bounded_greedy_capability_set_cover",
-    "company_surface_max_systems": 5,
+    "selection": "complete_ranked_relation_graph",
+    "company_surface_max_systems": null,
     "public_recruiter_states": [
       "PROMOTED",
       "REFERENCE_ONLY"
     ],
-    "goal": "Maximize distinct relevant capability proof while minimizing repository exposure and redundant evidence."
+    "goal": "Preserve every evidence-eligible company/system relation, rank all evidence, and provide compact optional views without deleting graph membership.",
+    "minimal_proof_surface": "non-authoritative capability-cover convenience view",
+    "presentation_pagination_changes_membership": false
   },
   "experiment_pipeline": [
     "EXPERIMENT",

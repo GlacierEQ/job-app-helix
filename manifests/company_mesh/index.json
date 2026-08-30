@@ -10,7 +10,10 @@
     "counts_are": "observed receipts, never admission limits",
     "affiliation_inference": false,
     "public_visibility_only": true,
-    "private_repository_identities_omitted": true
+    "private_repository_identities_omitted": true,
+    "company_authority": "manifests/company_dossiers.json",
+    "query_enrichment_is_not_company_ceiling": true,
+    "zero_direct_dossier_rows_do_not_block_runtime_capability_attachment": true
   },
   "groups": [
     {
@@ -34,7 +37,7 @@
       "observed_relation_count": 33
     }
   ],
-  "observed_company_count": 24,
+  "observed_company_count": 166,
   "observed_relation_count": 156,
   "shared_capability_roots": [
     "GlacierEQ/pro-code",
@@ -48,9 +51,33 @@
     "A repository may appear in more than one company projection.",
     "Company relevance does not imply affiliation, employment, proprietary access, deployment, endorsement, or customer status.",
     "Whole-estate census and company projections are separate concerns: a repo never disappears merely because it has no company edge.",
-    "Private repository identities and private company edges are omitted from this public projection."
+    "Private repository identities and private company edges are omitted from this public projection.",
+    "The governed company universe comes from company_dossiers.json and all resolved shards; query-backed mesh groups enrich that authority rather than limiting it."
   ],
   "scope": "PUBLIC_RECRUITER_PROJECTION",
   "source_observed_relation_count": 312,
-  "private_relations_redacted": 156
+  "private_relations_redacted": 156,
+  "governed_company_authority": {
+    "index_path": "manifests/company_dossiers.json",
+    "shard_paths": [
+      "manifests/company_dossiers/frontier_ai.json",
+      "manifests/company_dossiers/platform_infrastructure.json",
+      "manifests/company_dossiers/model_product_companies.json",
+      "manifests/company_dossiers/additional_targets.json",
+      "manifests/company_dossiers/expansion_targets.json",
+      "manifests/company_dossiers/innovation_expansion_2026_08_09.json",
+      "manifests/company_dossiers/glaciereq_core.json"
+    ],
+    "observed_company_track_count": 166,
+    "count_semantics": "current governed observation, never a company ceiling",
+    "relationship_source": "dossier repository rows plus runtime estate capability matching",
+    "runtime_attachment": "all eligible reference systems with positive role-capability overlap remain attachable even when a dossier has zero direct repository rows"
+  },
+  "query_enrichment": {
+    "observed_query_company_count": 24,
+    "observed_public_relation_count": 156,
+    "source_observed_public_and_private_relation_count": 312,
+    "private_relations_redacted": 156,
+    "semantics": "query-backed enrichment edges for selected company families; not the company authority or company ceiling"
+  }
 }

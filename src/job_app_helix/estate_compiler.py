@@ -887,7 +887,7 @@ def _minimal_surface(
     rows: Sequence[Mapping[str, Any]],
     capabilities: Mapping[str, Sequence[str] | set[str]],
     scores: Mapping[str, Mapping[str, Any]],
-    limit: int = 5,
+    limit: int | None = None,
 ) -> list[str]:
     remaining = list(rows)
     selected: list[str] = []
@@ -896,7 +896,7 @@ def _minimal_surface(
         for row in remaining
         for capability in capabilities.get(str(row["system_id"]), ())
     }
-    while remaining and len(selected) < limit:
+    while remaining and uncovered and (limit is None or len(selected) < limit):
         best = max(
             remaining,
             key=lambda row: (
@@ -907,7 +907,7 @@ def _minimal_surface(
         )
         system_id = str(best["system_id"])
         new_coverage = uncovered & set(capabilities.get(system_id, ()))
-        if selected and uncovered and not new_coverage:
+        if not new_coverage:
             break
         selected.append(system_id)
         uncovered -= new_coverage
@@ -1048,7 +1048,7 @@ def build_company_projections(
                     scoped_capabilities,
                     scores,
                 ),
-                "projection_innovation": "bounded_greedy_capability_set_cover",
+                "projection_innovation": "complete_ranked_relation_graph_with_minimal_proof_view",
                 "ranked_evidence": [
                     {
                         **row,
@@ -1078,7 +1078,10 @@ def build_company_projections(
             "score_weights": "equal",
             "public_visibility_is_derived_separately": True,
             "company_projection_cannot_publish_legal_private_namespace": True,
-            "company_surface_max_systems": 5,
+            "company_surface_max_systems": None,
+            "company_relation_membership": "complete_ranked_relation_graph",
+            "minimal_proof_surface_is_non_authoritative": True,
+            "presentation_pagination_changes_membership": False,
             "semantic_capability_donors_are_company_scoped": True,
         },
     }

@@ -195,7 +195,11 @@ def test_company_projection_uses_system_and_separate_visibility_score():
     assert projection["company_id"] == "acme"
     assert len(projection["reference_systems"]) == 1
     assert projection["minimal_proof_surface"] == projection["reference_systems"]
-    assert projection["projection_innovation"] == "bounded_greedy_capability_set_cover"
+    assert projection["projection_innovation"] == (
+        "complete_ranked_relation_graph_with_minimal_proof_view"
+    )
+    assert bundle["company_projection_registry"]["policy"]["company_surface_max_systems"] is None
+    assert bundle["company_projection_registry"]["policy"]["presentation_pagination_changes_membership"] is False
     score = next(iter(bundle["company_projection_registry"]["promotion_scores"].values()))
     assert "visibility_decision" in score
     assert set(score["components"]) == {
