@@ -8,47 +8,49 @@
     "fixed_company_cap": null,
     "fixed_relation_cap": null,
     "counts_are": "observed receipts, never admission limits",
-    "affiliation_inference": false
+    "affiliation_inference": false,
+    "public_visibility_only": true,
+    "private_repository_identities_omitted": true
   },
   "groups": [
     {
       "path": "manifests/company_mesh/frontier_ai.json",
       "company_count": 6,
-      "observed_relation_count": 138
+      "observed_relation_count": 70
     },
     {
       "path": "manifests/company_mesh/infrastructure.json",
       "company_count": 6,
-      "observed_relation_count": 42
+      "observed_relation_count": 25
     },
     {
       "path": "manifests/company_mesh/tools_platforms.json",
       "company_count": 6,
-      "observed_relation_count": 67
+      "observed_relation_count": 28
     },
     {
       "path": "manifests/company_mesh/ecosystem.json",
       "company_count": 6,
-      "observed_relation_count": 65
+      "observed_relation_count": 33
     }
   ],
   "observed_company_count": 24,
-  "observed_relation_count": 312,
+  "observed_relation_count": 156,
   "shared_capability_roots": [
-    "GlacierEQ/AKOS",
     "GlacierEQ/pro-code",
     "GlacierEQ/job-app-helix",
     "GlacierEQ/job-application",
-    "GlacierEQ/job-app",
-    "GlacierEQ/job_app_helix",
     "GlacierEQ/JOB-RESUME-BUILDER-",
-    "GlacierEQ/the-tower-of-babel",
-    "GlacierEQ/mastermind"
+    "GlacierEQ/the-tower-of-babel"
   ],
   "interpretation": [
     "Each company batch exhausts the connected GitHub search pagination for its query.",
     "A repository may appear in more than one company projection.",
     "Company relevance does not imply affiliation, employment, proprietary access, deployment, endorsement, or customer status.",
-    "Whole-estate census and company projections are separate concerns: a repo never disappears merely because it has no company edge."
-  ]
+    "Whole-estate census and company projections are separate concerns: a repo never disappears merely because it has no company edge.",
+    "Private repository identities and private company edges are omitted from this public projection."
+  ],
+  "scope": "PUBLIC_RECRUITER_PROJECTION",
+  "source_observed_relation_count": 312,
+  "private_relations_redacted": 156
 }
