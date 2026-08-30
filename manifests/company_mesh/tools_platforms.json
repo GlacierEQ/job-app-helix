@@ -11,8 +11,7 @@
     "source_pagination": "exhausted per query",
     "public_visibility_only": true,
     "private_repository_identities_omitted": true,
-    "private_overlay_repository": "GlacierEQ/job_app_helix",
-    "private_overlay_path": "company_mesh/tools_platforms.json"
+    "private_relations": "redacted from public projection; preserved in private estate overlay"
   },
   "companies": {
     "cursor": {
