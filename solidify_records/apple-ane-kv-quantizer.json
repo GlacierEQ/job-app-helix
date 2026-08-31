@@ -3,18 +3,23 @@
   "family": "Apple",
   "kind": "company",
   "source_state": "in_preparation",
-  "innovation_summary": "GlacierEQ's canonical Apple-family KV-cache quantization specialist targeting Apple Neural Engine constraints for efficient local inference, cataloged in lab_hire_stamps as worked_solidified with a SHA-bound 3-layer capability record (sha256 549331eb...) and a DONE issue-contract proof. The library desc is empty, so the catalog asserts intent (Model Inference And Sentinels, P0) but no measured benchmark or test exists locally.",
+  "innovation_summary": "Source-inspected Apple-Silicon-oriented KV planning system with full KV topology arithmetic, adaptive recency-tiered precision candidates, explicit memory/transfer/precision constraints, Pareto frontier selection, hash-bound plan artifacts, and a new local privacy/authority capsule. The authority policy distinguishes public/personal/sensitive data, allows local modeled work, requires explicit user confirmation for non-sensitive network egress, and denies sensitive network egress while recording that no network or ANE execution occurred.",
   "evidence": [
     "/tmp/monolith/catalog/library.json:1948 (name; domain lab_hire_stamps; desc empty; local_job_app true; Python; updatedAt 2026-08-10)",
     "/tmp/monolith/catalog/capabilities_3layer.json:21707 (layers 1-3; sha256_binding 549331eb993476e56f0d1dc7b38e12094f16c73fc49c236a3a22e77465d9aedf; category MODEL_INFERENCE_AND_SENTINELS; contract_proof DONE; mesh_uri glaciereq://mesh/model_inference_and_sentinels/apple-ane-kv-quantizer)",
     "/tmp/monolith/catalog/company_engineered_repositories.json:68-73 (family Apple; canonical_candidate; current_preparation)",
-    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED \u2014 repo inside boundary)"
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED — repo inside boundary)",
+    "GitHub live source inspection at d0c151d233e0447e4f5435ffc22ac6586d25ebd0",
+    "src/kv_frontier.py (adaptive constrained Pareto KV planner)",
+    "src/on_device_authority.py (local/data-class/network authority capsule)",
+    "tests/test_on_device_authority.py + scripts/verify_public_truth.py"
   ],
-  "verification_status": "NEEDS_REPAIR",
-  "worthy_rating": 7,
-  "makes_worthy": "Add a fact card with a measured ANE KV-cache quantization benchmark and a pytest/build receipt proving local-inference gains; fill the empty library desc.",
+  "verification_status": "SOURCE_IMPLEMENTED_CURRENT_HEAD_PROOF_PENDING",
+  "worthy_rating": 9,
+  "makes_worthy": "The prior empty-description gap is closed by live source and a substantial planning/authority surface. The current extension adds the missing on-device trust story: data class -> local/network boundary -> user confirmation or denial -> hash-bound decision receipt. Exact-current-head public-truth CI is the remaining promotion proof.",
   "repo_excellence_overlap": "Shares the repo_excellence verification/receipt discipline (GlacierEQ/computer-user, 203 tests PASS, proof_receipt schema v1): once a benchmark test exists it should bind a hash receipt like the computer-user proof_receipt.",
   "classification_reason": "needs_repair: worthy=7",
-  "last_verified": "2026-08-29T08:47:16.770368",
-  "notes": " | NEEDS_REPAIR"
+  "last_verified": "2026-08-30T18:45:00-10:00",
+  "notes": " | NEEDS_REPAIR",
+  "live_source_head": "d0c151d233e0447e4f5435ffc22ac6586d25ebd0"
 }
