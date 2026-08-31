@@ -1,0 +1,61 @@
+{
+  "schema": "glaciereq.company-solidification-receipt.v1",
+  "at": "2026-08-30T18:45:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "control_plane_head_before_receipt": "9cfd562102845ca1491d69ed3add0b84f3e915cb",
+  "tranche": "anthropic-nvidia-openai-deepen",
+  "selection_basis": "highest-impact existing company families with concrete source-native gaps; deepen existing repos before adding speculative new repos",
+  "repositories": [
+    {
+      "repository": "GlacierEQ/anthropic-safety-monitor",
+      "branch": "master",
+      "head": "7ee79004f4b145b9ee0fcab904423b96d818018c",
+      "mechanisms": [
+        "hash-bound tool-review transcript receipts",
+        "predecessor-linked receipt chain",
+        "tamper detection",
+        "policy/result rebinding refusal"
+      ],
+      "repairs": [
+        "removed unresolved README merge-conflict markers"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    },
+    {
+      "repository": "GlacierEQ/nvidia-gpu-health",
+      "branch": "master",
+      "head": "2db44a8c656dce195a2e41c104747fc12c546216",
+      "mechanisms": [
+        "deterministic multi-GPU integrity quorum",
+        "numerical-integrity fail-closed trip",
+        "review-candidate aggregation",
+        "hash-bound local quorum receipt"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    },
+    {
+      "repository": "GlacierEQ/openai-reasoning-kv-sentinel",
+      "branch": "main",
+      "head": "b3a28deb87310bb2188e2c744485badd1972748f",
+      "mechanisms": [
+        "user-authored context pointer",
+        "exact content SHA-256 binding",
+        "required-pointer fail-closed resolution",
+        "supersession-aware active pointer selection",
+        "deterministic handoff receipt"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    }
+  ],
+  "helix_records": [
+    "solidify_records/anthropic-safety-monitor.json",
+    "solidify_records/nvidia-gpu-health.json",
+    "solidify_records/openai-reasoning-kv-sentinel.json"
+  ],
+  "next_tranche": [
+    "GlacierEQ/spacex-autonomy",
+    "GlacierEQ/anthropic-agent-coordinator",
+    "GlacierEQ/nvidia-deep-reasoning"
+  ],
+  "invariant": "mechanism -> tests -> truth contract -> exact source head -> estate solidify record"
+}
