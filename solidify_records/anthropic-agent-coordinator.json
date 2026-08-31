@@ -3,17 +3,23 @@
   "family": "Anthropic",
   "kind": "company",
   "source_state": "in_preparation",
-  "innovation_summary": "GlacierEQ's canonical Anthropic-family multi-agent coordinator (portfolio) driving AZOP delegation/role-separation waves, cataloged in domain lab_hire_stamps as worked_solidified with an issue_contract and a SHA-bound 3-layer capability record (sha256 7e653df8...). It is the source_repository named in the live helix coordinator candidate receipt, which ran 62/62 pytest across four modules (junit_sha256 2d0b8ba5...) — the only repo-owned test artifact in this wave.",
+  "innovation_summary": "Deterministic dependency-aware coordinator with historical 62/62 candidate proof now adds an assignment-bound tool-proposal handoff. Only fully assigned tasks may emit a proposal; deferred, unknown, duplicate, oversized, or malformed proposals fail closed. Proposal order follows scheduler assignment order, each batch binds to the exact plan SHA-256, and the call payload is shaped for independent Anthropic Safety Monitor review without executing tools or calling providers.",
   "evidence": [
     "/tmp/monolith/catalog/library.json:1308 (name; domain lab_hire_stamps; desc 'Multi-agent coordinator (portfolio) AZOP waves · AKOS portfolio'; local_job_app true; issue_contract true; Python; updatedAt 2026-08-10)",
     "/tmp/monolith/catalog/capabilities_3layer.json:24231 (layers 1-3; sha256_binding 7e653df8124f5b0fb16859d65ffb208622fd1ffc62232d1b7cb3eba28520212e; contract_proof DONE; mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/anthropic-agent-coordinator)",
     "/tmp/monolith/catalog/company_engineered_repositories.json:58-63 (family Anthropic; canonical_candidate; current_preparation)",
     "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/03_JOB_APP_HELIX/03_MACHINE_CONTRACTS/coordinator_candidate_receipt.json (schema glaciereq.agent-coordinator.candidate-test-receipt.v1; source_repository GlacierEQ/anthropic-agent-coordinator; source_ref 75953087...; 62/62 passed; junit_sha256 2d0b8ba5cbc14f31bd58297f41f55ef46149f5748fbe89885caefc9c5d4ad340; evidence_state CANDIDATE_TEST_PROOF)",
-    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim coordinator_tests (62/62, display_state CANDIDATE) + claim helix_inventory (66-repo boundary VERIFIED)"
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim coordinator_tests (62/62, display_state CANDIDATE) + claim helix_inventory (66-repo boundary VERIFIED)",
+    "GitHub live source inspection at 21d118ef14577dcdb56c77cf61738c5c9e0ff590",
+    "src/anthropic_agent_coordinator/tool_proposal.py (assignment-bound ToolCall-compatible proposal batch)",
+    "tests/test_tool_proposal.py (deferred/unknown/duplicate/bounds/order/determinism)",
+    "README.md relationship now binds coordinator proposals to independent safety-monitor review"
   ],
-  "verification_status": "PARTIAL",
+  "verification_status": "SOURCE_IMPLEMENTED_CURRENT_HEAD_PROOF_PENDING",
   "worthy_rating": 9,
   "worthy_rating_note": "Real candidate test receipt (62/62, junit_sha256 bound) exists but is explicitly candidate-grade (not GitHub-hosted gate) per receipt limitations, so VERIFIED is deferred; rating capped at 9 not 10.",
-  "makes_worthy": "Promote to VERIFIED by running the repo's own GitHub Actions gate (Python 3.11/3.12 + wheel/build + artifact upload) at source_ref 75953087... and merging the PR; until then keep PARTIAL.",
-  "repo_excellence_overlap": "Overlaps the repo_excellence VERIFIED anchor (GlacierEQ/computer-user, 203 tests PASS, hash-bound action receipts, live AKOS, restart-safe): the coordinator receipt's junit_sha256 binding mirrors the proof_receipt schema (glaciereq.proof-receipt.v1) — apply the same receipt-provenance + post-action readback invariants."
+  "makes_worthy": "The coordinator and safety-monitor repos now compose at a concrete contract boundary: scheduled assignment -> plan-hashed ToolCall-compatible proposal -> independent safety review -> hash-bound review transcript. Current-head source and tests exist; exact-head repository-native CI remains the promotion proof.",
+  "repo_excellence_overlap": "Overlaps the repo_excellence VERIFIED anchor (GlacierEQ/computer-user, 203 tests PASS, hash-bound action receipts, live AKOS, restart-safe): the coordinator receipt's junit_sha256 binding mirrors the proof_receipt schema (glaciereq.proof-receipt.v1) — apply the same receipt-provenance + post-action readback invariants.",
+  "last_verified": "2026-08-30T18:45:00-10:00",
+  "live_source_head": "21d118ef14577dcdb56c77cf61738c5c9e0ff590"
 }
