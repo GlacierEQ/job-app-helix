@@ -141,6 +141,51 @@ jobs:
             const fullName = `${owner}/${repo}`;
             const repoMeta = await github.rest.repos.get({ owner, repo });
             const defaultBranch = repoMeta.data.default_branch;
+
+            const localPolicy = {
+              source_path: ".github/branch-lifecycle-policy.json",
+              source_sha: null,
+              protected_branches: [],
+              protected_patterns: [],
+              preservation_reasons: {},
+            };
+            try {
+              const policyFile = await github.rest.repos.getContent({
+                owner,
+                repo,
+                path: localPolicy.source_path,
+                ref: defaultBranch,
+              });
+              if (!Array.isArray(policyFile.data) && policyFile.data.type === "file" && policyFile.data.content) {
+                const decoded = Buffer.from(policyFile.data.content, policyFile.data.encoding || "base64").toString("utf8");
+                const parsed = JSON.parse(decoded);
+                if (parsed.schema !== "glaciereq.branch-lifecycle-repository-policy.v1") {
+                  throw new Error(`unsupported_repository_policy_schema:${parsed.schema || "missing"}`);
+                }
+                if (Array.isArray(parsed.protected_branches)) {
+                  localPolicy.protected_branches = parsed.protected_branches.filter(value => typeof value === "string" && value.trim());
+                }
+                if (Array.isArray(parsed.protected_patterns)) {
+                  localPolicy.protected_patterns = parsed.protected_patterns.filter(value => typeof value === "string" && value.trim());
+                }
+                if (Array.isArray(parsed.preservations)) {
+                  for (const entry of parsed.preservations) {
+                    if (!entry || typeof entry.name !== "string" || !entry.name.trim()) continue;
+                    if (!localPolicy.protected_branches.includes(entry.name)) {
+                      localPolicy.protected_branches.push(entry.name);
+                    }
+                    localPolicy.preservation_reasons[entry.name] =
+                      typeof entry.reason === "string" ? entry.reason : "repository-local preservation";
+                  }
+                }
+                localPolicy.source_sha = policyFile.data.sha || null;
+              }
+            } catch (error) {
+              if (error.status !== 404) {
+                core.setFailed(`Repository branch lifecycle policy is invalid or unreadable: ${error.message || error}`);
+                return;
+              }
+            }
             const eventPr = context.payload.pull_request || null;
             const scope = requestedScope === "auto"
               ? (context.eventName === "pull_request" && eventPr?.head?.repo?.full_name === fullName ? "event_head" : "full")
@@ -150,11 +195,14 @@ jobs:
               throw new Error("event_head scope requires a same-repository pull_request event");
             }
 
+            function matchesPattern(name, pattern) {
+              if (pattern.endsWith("/*")) return name.startsWith(pattern.slice(0, -1));
+              return name === pattern;
+            }
+
             function protectedByPattern(name) {
-              return protectedPatterns.some(pattern => {
-                if (pattern.endsWith("/*")) return name.startsWith(pattern.slice(0, -1));
-                return name === pattern;
-              });
+              if (localPolicy.protected_branches.includes(name)) return true;
+              return [...protectedPatterns, ...localPolicy.protected_patterns].some(pattern => matchesPattern(name, pattern));
             }
 
             function familyKey(name) {
@@ -439,6 +487,13 @@ jobs:
               stale_days: staleDays,
               minimum_delete_confidence: minimumDeleteConfidence,
               protected_patterns: protectedPatterns,
+              repository_policy: {
+                source_path: localPolicy.source_path,
+                source_sha: localPolicy.source_sha,
+                protected_branches: [...localPolicy.protected_branches].sort(),
+                protected_patterns: [...localPolicy.protected_patterns].sort(),
+                preservation_reasons: localPolicy.preservation_reasons,
+              },
               inventory_sha256: digest(normalizedInventory),
               classifications: classificationCounts,
               actions: actionCounts,
@@ -670,6 +725,10 @@ jobs:
                 stale_days: staleDays,
                 minimum_delete_confidence: minimumDeleteConfidence,
                 protected_patterns: protectedPatterns,
+                repository_policy_source_sha: localPolicy.source_sha,
+                repository_protected_branches: [...localPolicy.protected_branches].sort(),
+                repository_protected_patterns: [...localPolicy.protected_patterns].sort(),
+                repository_preservation_reasons: localPolicy.preservation_reasons,
               },
             };
             receipt.receipt_sha256 = digest(receipt);
@@ -685,6 +744,8 @@ jobs:
                 ["Mode", mode],
                 ["Scope", scope],
                 ["Native delete-on-merge", String(Boolean(repoMeta.data.delete_branch_on_merge))],
+                ["Repository policy", localPolicy.source_sha || "none"],
+                ["Repository protected refs", String(localPolicy.protected_branches.length)],
                 ["Before branches", String(allBranches.length)],
                 ["Inspected branches", String(branches.length)],
                 ["After branches", String(afterBranches.length)],
