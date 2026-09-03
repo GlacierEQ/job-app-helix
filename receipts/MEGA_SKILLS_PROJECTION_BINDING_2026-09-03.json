@@ -1,0 +1,50 @@
+{
+  "schema": "job-app-helix.projection-binding.v1",
+  "binding_id": "mega-skills-public-projection-2026-09-03",
+  "state": "SOURCE_BOUND_PENDING_PUBLIC_READBACK",
+  "canonical_source": {
+    "repository": "GlacierEQ/mega-skills",
+    "branch": "main",
+    "ontology_commit": "9b575b8335b56e4eb21903f8780e0545cddd49d0",
+    "hierarchy_contract": "HIERARCHY.md",
+    "pyramid_index": "registry/mega-skill-pyramids.json",
+    "registries": [
+      "registry/skills.json",
+      "registry/combo-skills.json",
+      "registry/mega-skills.json"
+    ]
+  },
+  "binding_law": {
+    "prime": "Every node in a Mega-Skill pyramid is a proper Skill at its own scale.",
+    "level_0": "Mega Skill = proper end-to-end workflow/pipeline Skill",
+    "level_1": "Compound Skill = proper reusable workflow Skill; existing Combo manifests are its compatibility/source representation",
+    "level_2": "Atomic Skill = proper independently valid Skill building block",
+    "machine_shape": "DAG when lower Skills are shared; rendered as a pyramid for human comprehension"
+  },
+  "verified_registry_state": {
+    "atomic_skills": 709,
+    "compound_skills": 33,
+    "mega_skills": 29,
+    "internal_compound_to_atomic_references": 123,
+    "external_skill_references": 10,
+    "unresolved_internal_skill_references": 0,
+    "unresolved_mega_to_compound_references": 0
+  },
+  "public_projection": {
+    "control_repository": "GlacierEQ/job-app-helix",
+    "source_repository": "GlacierEQ/job-application",
+    "source_root": "site-v15/",
+    "human_route_source": "site-v15/mega-skills/index.html",
+    "human_route_commit": "212ccadb04f0db95189da994d6f6d6cdbf417c2b",
+    "machine_projection_source": "site-v15/data/mega-skills.json",
+    "machine_projection_commit": "456a667c6cb5f2c87aff582d52b7c65bf22e6580",
+    "home_binding_commit": "6cbdebd70622e9e2ea6d0ce708d8dfa59f7f5aaf",
+    "ci_binding_commit": "d0d214dc9c3f5df3a8810a52890fe70a2068cfbe",
+    "llm_binding_commit": "125ca74297586e3cb9d6ca96f651871beb38bca5",
+    "sitemap_binding_commit": "b9cd8cfe032ef68c31e51128694631d59ebfd1a7",
+    "public_url": "https://casey-barton-glaciereq.vercel.app/mega-skills/",
+    "machine_url": "https://casey-barton-glaciereq.vercel.app/data/mega-skills.json"
+  },
+  "claim_boundary": "This binding projects structural capability architecture and canonical registry relationships. Registry counts do not imply external adoption, production deployment, certification, employment, affiliation, endorsement, or proprietary access.",
+  "completion_test": "Public human route returns the Mega-Skills pyramid page and public machine URL returns schema glaciereq.public-mega-skills.v1 with 29 unique Mega apex entries."
+}
