@@ -1,18 +1,14 @@
 {
   "schema": "job-app-helix.projection-binding.v1",
   "binding_id": "mega-skills-public-projection-2026-09-03",
-  "state": "SOURCE_BOUND_PENDING_PUBLIC_READBACK",
+  "state": "SOURCE_VALIDATED_PUBLIC_READBACK_UNRESOLVED",
   "canonical_source": {
     "repository": "GlacierEQ/mega-skills",
     "branch": "main",
     "ontology_commit": "9b575b8335b56e4eb21903f8780e0545cddd49d0",
     "hierarchy_contract": "HIERARCHY.md",
     "pyramid_index": "registry/mega-skill-pyramids.json",
-    "registries": [
-      "registry/skills.json",
-      "registry/combo-skills.json",
-      "registry/mega-skills.json"
-    ]
+    "pyramid_check": "PASS: 29 pyramids; 709 atomic Skills; 33 compound Skills; 29 Mega Skills"
   },
   "binding_law": {
     "prime": "Every node in a Mega-Skill pyramid is a proper Skill at its own scale.",
@@ -44,6 +40,32 @@
     "sitemap_binding_commit": "b9cd8cfe032ef68c31e51128694631d59ebfd1a7",
     "public_url": "https://casey-barton-glaciereq.vercel.app/mega-skills/",
     "machine_url": "https://casey-barton-glaciereq.vercel.app/data/mega-skills.json"
+  },
+  "source_validation": {
+    "status": "PASS",
+    "validator": "site-v15/scripts/validate-mega-skills.mjs",
+    "checks": [
+      "exactly one h1",
+      "zero client scripts",
+      "zero inline style attributes",
+      "all five production stylesheets present",
+      "29 unique Mega apex entries",
+      "four examples resolve real compound children",
+      "home navigation binding present",
+      "sitemap binding present",
+      "LLM orientation binding present"
+    ]
+  },
+  "public_readback": {
+    "status": "UNRESOLVED",
+    "observed_root": "Public web crawler returned a cached pre-binding root revision that did not yet expose the Mega-Skills navigation entry.",
+    "direct_route_attempts": [
+      "web direct-path fetch rejected by URL-safety gate because only the root URL was supplied in the user message",
+      "Exa fresh crawler blocked by provider usage-limit HTTP 402",
+      "Opera Neon direct navigation disabled by connector permission",
+      "container network has no DNS egress"
+    ],
+    "claim": "No live-deployment success is claimed until a fresh provider-side or public HTTP readback succeeds."
   },
   "claim_boundary": "This binding projects structural capability architecture and canonical registry relationships. Registry counts do not imply external adoption, production deployment, certification, employment, affiliation, endorsement, or proprietary access.",
   "completion_test": "Public human route returns the Mega-Skills pyramid page and public machine URL returns schema glaciereq.public-mega-skills.v1 with 29 unique Mega apex entries."
