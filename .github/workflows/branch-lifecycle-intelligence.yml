@@ -450,6 +450,8 @@ jobs:
             const deleted = [];
             const executionBlocked = [];
             const executionErrors = [];
+            const rolledBack = [];
+            const rollbackFailures = [];
             const deleteCandidates = decisions
               .filter(row => row.action === "DELETE")
               .sort((a, b) => b.cleanup_confidence - a.cleanup_confidence || a.branch.localeCompare(b.branch));
@@ -461,10 +463,74 @@ jobs:
               reason: "delete_budget_exhausted",
             }));
 
+            async function refState(branch) {
+              try {
+                const response = await github.rest.git.getRef({ owner, repo, ref: `heads/${branch}` });
+                return { exists: true, sha: response.data.object?.sha || null };
+              } catch (error) {
+                if (error.status === 404) return { exists: false, sha: null };
+                throw error;
+              }
+            }
+
+            async function restoreExactRef(item, failure) {
+              try {
+                const state = await refState(item.branch);
+                if (!state.exists) {
+                  await github.rest.git.createRef({
+                    owner,
+                    repo,
+                    ref: `refs/heads/${item.branch}`,
+                    sha: item.sha,
+                  });
+                } else if (state.sha !== item.sha) {
+                  throw new Error(`rollback_ref_occupied_by_different_sha:${state.sha}`);
+                }
+
+                const restored = await refState(item.branch);
+                if (!restored.exists || restored.sha !== item.sha) {
+                  throw new Error(`rollback_verification_failed:${restored.sha || "absent"}`);
+                }
+                rolledBack.push({
+                  branch: item.branch,
+                  sha: item.sha,
+                  state: item.state,
+                  confidence: item.cleanup_confidence,
+                  reason: String(failure?.message || failure).slice(0, 200),
+                });
+                return true;
+              } catch (rollbackError) {
+                rollbackFailures.push({
+                  branch: item.branch,
+                  sha: item.sha,
+                  status: rollbackError.status || null,
+                  message: String(rollbackError.message || rollbackError).slice(0, 240),
+                });
+                return false;
+              }
+            }
+
             if (mode === "apply") {
               for (const item of executeCandidates) {
+                let deleteAttempted = false;
                 try {
-                  const live = await github.rest.repos.getBranch({ owner, repo, branch: item.branch });
+                  let live;
+                  try {
+                    live = await github.rest.repos.getBranch({ owner, repo, branch: item.branch });
+                  } catch (error) {
+                    if (error.status === 404) {
+                      deleted.push({
+                        branch: item.branch,
+                        sha: item.sha,
+                        state: item.state,
+                        confidence: item.cleanup_confidence,
+                        already_absent: true,
+                      });
+                      continue;
+                    }
+                    throw error;
+                  }
+
                   if (live.data.name === defaultBranch || live.data.protected || protectedByPattern(live.data.name)) {
                     executionBlocked.push({ branch: item.branch, reason: "became_protected" });
                     continue;
@@ -516,13 +582,44 @@ jobs:
                   }
 
                   await github.rest.git.deleteRef({ owner, repo, ref: `heads/${item.branch}` });
-                  deleted.push({ branch: item.branch, sha: item.sha, state: item.state, confidence: item.cleanup_confidence });
+                  deleteAttempted = true;
+
+                  let verifiedAbsent = false;
+                  for (let attempt = 0; attempt < 3; attempt += 1) {
+                    await new Promise(resolve => setTimeout(resolve, attempt === 0 ? 350 : 900));
+                    const state = await refState(item.branch);
+                    if (!state.exists) {
+                      verifiedAbsent = true;
+                      break;
+                    }
+                  }
+                  if (!verifiedAbsent) {
+                    throw new Error("post_delete_verification_failed_ref_still_present");
+                  }
+
+                  deleted.push({
+                    branch: item.branch,
+                    sha: item.sha,
+                    state: item.state,
+                    confidence: item.cleanup_confidence,
+                    post_delete_verified: true,
+                  });
                   await new Promise(resolve => setTimeout(resolve, 1100));
                 } catch (error) {
-                  if (error.status === 404) {
-                    deleted.push({ branch: item.branch, sha: item.sha, state: item.state, confidence: item.cleanup_confidence, already_absent: true });
+                  if (deleteAttempted) {
+                    const restored = await restoreExactRef(item, error);
+                    executionErrors.push({
+                      branch: item.branch,
+                      status: error.status || null,
+                      message: String(error.message || error).slice(0, 200),
+                      rollback: restored ? "VERIFIED" : "FAILED",
+                    });
                   } else {
-                    executionErrors.push({ branch: item.branch, status: error.status || null, message: String(error.message || error).slice(0, 200) });
+                    executionErrors.push({
+                      branch: item.branch,
+                      status: error.status || null,
+                      message: String(error.message || error).slice(0, 200),
+                    });
                   }
                 }
               }
@@ -564,6 +661,8 @@ jobs:
               blocked: decisions.filter(row => row.action === "BLOCK").map(row => ({ branch: row.branch, state: row.state, reason: row.reason })),
               execution_blocked: executionBlocked,
               execution_errors: executionErrors,
+              rolled_back: rolledBack,
+              rollback_failures: rollbackFailures,
               classifications: classificationCounts,
               actions: actionCounts,
               consolidation_families: families.filter(family => family.consolidation_recommended),
@@ -596,6 +695,8 @@ jobs:
                 ["Deferred by delete budget", String(deferredDeleteCandidates.length)],
                 ["Preserved divergent/active", String(receipt.preserved_divergent.length)],
                 ["Blocked", String(receipt.blocked.length + executionBlocked.length)],
+                ["Rolled back", String(rolledBack.length)],
+                ["Rollback failures", String(rollbackFailures.length)],
                 ["Consolidation families", String(receipt.consolidation_families.length)],
                 ["Plan SHA-256", planCore.plan_sha256],
                 ["Receipt SHA-256", receipt.receipt_sha256],
@@ -604,8 +705,10 @@ jobs:
               .addCodeBlock(JSON.stringify(classificationCounts, null, 2), "json")
               .write();
 
-            if (executionErrors.length) {
-              core.setFailed(`Cleanup completed with ${executionErrors.length} execution errors; inspect receipt artifact.`);
+            if (rollbackFailures.length) {
+              core.setFailed(`Cleanup rollback verification failed for ${rollbackFailures.length} branch(es); inspect receipt artifact immediately.`);
+            } else if (executionErrors.length) {
+              core.setFailed(`Cleanup completed with ${executionErrors.length} blocked/rolled-back execution error(s); inspect receipt artifact.`);
             }
 
       - name: Upload lifecycle evidence
