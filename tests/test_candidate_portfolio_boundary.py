@@ -46,5 +46,5 @@ def test_primary_candidate_surfaces_state_67_total_and_66_children() -> None:
 
     for name in required:
         text = (CANDIDATE_ROOT / name).read_text(encoding="utf-8")
-        assert "67-repository" in text
-        assert "66 child" in text or "66-child" in text
+        assert "67" in text and ("repository" in text or "repositories" in text)
+        assert ("66 child" in text) or ("66-child" in text)

@@ -1,0 +1,199 @@
+schema: apex.workflow/v1
+repository: glaciereq/job-app-helix
+status: active
+
+workflows:
+  - id: portfolio-evidence-ledger
+    name: Build Portfolio Evidence Ledger
+    description: Generates hash-bound evidence ledger for 225-repo portfolio with VERIFIED anchor tracking
+    mode: capability-build
+    steps:
+      - name: load_manifest
+        capability: portfolio.evidence_ledger
+        action: build_ledger
+        inputs:
+          anchor_threshold: 8
+        outputs:
+          - ledger
+          - merkle_root
+          - verified_anchors
+      - name: verify_ledger
+        role: verification-agent
+        action: verify_receipt
+        inputs:
+          receipt: "{{steps.load_manifest.outputs.merkle_root}}"
+        outputs:
+          - verification_status
+    triggers:
+      - schedule: "0 */6 * * *"
+      - manual: true
+    receipt: required
+
+  - id: capability-federation-query
+    name: Federate Capabilities Across Monolith + Tower
+    description: Queries monolith catalog and Tower of Babel registry for capability matches
+    mode: capability-federation
+    steps:
+      - name: query_monolith
+        capability: portfolio.capability_federation
+        action: federate_capabilities
+        inputs:
+          domain: "{domain}"
+          requirement: "{requirement}"
+          monolith_catalog: "/data/data/com.termux/files/home/monolith/catalog"
+          tower_registry: "/data/data/com.termux/files/home/the-tower-of-babel"
+        outputs:
+          - federated_capabilities
+          - resolution_receipt
+      - name: verify_federation
+        role: verification-agent
+        action: verify_federation_result
+        inputs:
+          receipt: "{{steps.query_monolith.outputs.resolution_receipt}}"
+    triggers:
+      - manual: true
+      - capability_request: true
+    receipt: required
+
+  - id: tower-capability-resolution
+    name: Resolve Optimal Tech Placement via Tower
+    description: Evaluates 10-dimension fitness for technology placement decisions
+    mode: capability-build
+    steps:
+      - name: evaluate_fitness
+        capability: tower.capability_resolution
+        action: resolve_placement
+        inputs:
+          requirement: "{requirement}"
+          domain: "{domain}"
+          performance_requirements:
+            memory_safety: true
+          constraints: "{constraints}"
+        outputs:
+          - placement_decision
+          - fitness_scores
+          - top_candidates
+      - name: verify_resolution
+        role: verification-agent
+        action: verify_placement_receipt
+        inputs:
+          receipt: "{{steps.evaluate_fitness.outputs.placement_decision.receipt_hash}}"
+    triggers:
+      - manual: true
+      - placement_request: true
+    receipt: required
+
+  - id: monolith-catalog-sync
+    name: Sync Portfolio to Monolith Catalogs
+    description: Updates capabilities_3layer, runtime_power_spine, library, repo_excellence_state_machine
+    mode: portfolio-sync
+    steps:
+      - name: sync_catalogs
+        capability: monolith.catalog_sync
+        action: sync_monolith
+        inputs:
+          mode: "{mode}"
+          monolith_root: "/data/data/com.termux/files/home/monolith"
+        outputs:
+          - sync_receipt
+          - updated_catalogs
+      - name: verify_sync
+        role: verification-agent
+        action: verify_sync_receipt
+        inputs:
+          receipt: "{{steps.sync_catalogs.outputs.sync_receipt}}"
+    triggers:
+      - schedule: "0 */4 * * *"
+      - manual: true
+      - portfolio_change: true
+    receipt: required
+
+  - id: helix-automation-execution
+    name: Execute Helix Automation
+    description: Runs brainsync, crystallization, or evidence adaptation automations
+    mode: helix-automation
+    steps:
+      - name: run_automation
+        capability: helix.automation_engine
+        action: run_automation
+        inputs:
+          automation: "{automation}"
+          target: "{target}"
+          params: "{params}"
+        outputs:
+          - automation_result
+          - receipt_hash
+      - name: verify_automation
+        role: reliability-engineer
+        action: verify_automation_result
+        inputs:
+          receipt: "{{steps.run_automation.outputs.receipt_hash}}"
+    triggers:
+      - manual: true
+      - automation_trigger: true
+    receipt: required
+
+  - id: evidence-legal-bridge
+    name: Bridge Evidence to Legal Spines
+    description: Connects portfolio evidence ledger to monolith legal spines with provenance
+    mode: evidence-integration
+    steps:
+      - name: bridge_evidence
+        capability: evidence.bridge
+        action: bridge_from_ledger
+        inputs:
+          target_spine: "{target_spine}"
+          monolith_legal_path: "/data/data/com.termux/files/home/monolith/catalog/legal_spines"
+        outputs:
+          - bridge_receipts
+          - bridged_count
+      - name: verify_bridge
+        role: evidence-authenticator
+        action: verify_bridge_provenance
+        inputs:
+          receipts: "{{steps.bridge_evidence.outputs.bridge_receipts}}"
+    triggers:
+      - manual: true
+      - legal_filing: true
+    receipt: required
+
+  - id: full-portfolio-cycle
+    name: Complete Portfolio Capability Cycle
+    description: "End-to-end: ledger -> federation -> resolution -> sync -> bridge"
+    mode: standard
+    steps:
+      - name: build_ledger
+        workflow: portfolio-evidence-ledger
+      - name: federate_capabilities
+        workflow: capability-federation-query
+        inputs:
+          domain: "legal_evidence"
+          requirement: "ledger"
+      - name: resolve_placement
+        workflow: tower-capability-resolution
+        inputs:
+          requirement: "evidence_graph"
+          domain: "legal_evidence"
+          performance_requirements:
+            memory_safety: true
+      - name: sync_monolith
+        workflow: monolith-catalog-sync
+        inputs:
+          mode: "incremental"
+      - name: bridge_evidence
+        workflow: evidence-legal-bridge
+        inputs:
+          target_spine: "case_1FDV"
+    triggers:
+      - schedule: "0 2 * * *"
+      - manual: true
+    receipt: required
+
+dag:
+  portfolio-evidence-ledger: []
+  capability-federation-query: []
+  tower-capability-resolution: []
+  monolith-catalog-sync: ["portfolio-evidence-ledger"]
+  helix-automation-execution: []
+  evidence-legal-bridge: ["portfolio-evidence-ledger"]
+  full-portfolio-cycle: ["portfolio-evidence-ledger", "capability-federation-query", "tower-capability-resolution", "monolith-catalog-sync", "evidence-legal-bridge"]

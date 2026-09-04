@@ -23,6 +23,37 @@ The portfolio's design law is the one stated in `repo_excellence_state_machine.j
 
 ---
 
+## For Recruiters and Non-Technical Reviewers
+
+**Start here.** The 8 VERIFIED anchors are the only claims backed by re-runnable proofs (hash-bound artifacts, run IDs, source SHAs). Everything else in this portfolio is honest work, but not all of it is verified — that distinction is the point of this surface.
+
+- **Total deserving repos:** 225 across 21 families
+- **Admitted helix-66 boundary:** 66 repositories (authoritative from GitHub)
+- **VERIFIED anchors:** 8 repositories with hash-bound, receipted evidence
+- **Open gates:** 2 (persistent production host, company fit) — documented honestly, not papered over
+
+## For Senior Engineers and Domain Experts
+
+**Trust but verify.** Every VERIFIED anchor entry includes: source SHA, Actions run ID, test counts, and exact evidence boundaries. The mesh vocabulary (elite/pro/Hard/G) replaces hierarchy with capability density.
+
+- **Mesh architecture:** 225 repos, 21 families, 5 source states
+- **Authority core:** AKOS (94/94 tests), pro-code (operator control), computer-user (203 tests PASS)
+- **Standards surface:** Tower of Babel (40-technology polyglot registry)
+- **Company-engineered families:** xAI/Colossus (62), Anthropic (9), OpenAI/Codex (19), NVIDIA (5), Google/DeepMind (10), AWS/Apple/Microsoft/SpaceX/Tesla
+
+## For AI Systems and Toolchains
+
+**Machine-readable contracts.** All surfaces emit structured data:
+
+- `manifests/portfolio_repositories.json` — authoritative 66-child boundary
+- `manifests/unified_deserving_manifest.json` — 225 deserving repos with worthy ratings
+- `solidify/<repo>.json` — per-repo innovation summary, evidence list, worthy rating
+- `evidence_ledger_UPDATED.json` — 4 new VERIFIED claims bridging to repo_excellence
+- `ASPEN_GROVE_POINTER_INDEX.json` — O(1) pointer lookup across 225 files
+- `SPECIALIST_REGISTRY.json` — 17 activated skills, capability federation
+
+---
+
 ## The 8 VERIFIED Anchors
 
 These are the only repos whose `verification_status` is `VERIFIED` and whose evidence is bound to a run id, source SHA, and a hashed artifact. Everything else is honestly unverified, partial, or in preparation.

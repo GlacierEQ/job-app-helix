@@ -4,9 +4,105 @@ status: active
 paradigm: INNOVATION_HOLOGRAPHIC_MESH
 domains:
   - hire_and_recruiter_evidence
-description: Job-App Helix control plane: evidence ledger, hire package, excellence FSM.
+  - portfolio_control_plane
+  - capability_federation
+description: Job-App Helix — Capability-focused portfolio control plane. Executes evidence-led hiring automation, federates capabilities via monolith catalog, resolves multi-language placement via Tower of Babel.
 epistemic_standard: L0_TO_L5
 evidence_policy: ZERO_FAKE_EXECUTION
 owner_intent:
   role: specialist_capability_donor
   precedence: INNOVATION_WINS
+capabilities:
+  - id: portfolio.evidence_ledger
+    description: Hash-bound evidence ledger for 225-repo portfolio with VERIFIED anchor tracking
+    entrypoint: src/job_app_helix/evidence_ledger.py
+    interface: cli|library
+    inputs:
+      - repo_path: {type: string}
+      - anchor_threshold: {type: integer, default: 8}
+    outputs:
+      - ledger: {type: object}
+      - anchors: {type: array}
+      - receipt: {type: string}
+    dependencies:
+      - aspen_grove_pointer_index
+    confidence: verified
+
+  - id: portfolio.capability_federation
+    description: Federate capabilities across monolith catalog and Tower of Babel resolution
+    entrypoint: src/job_app_helix/capability_federation.py
+    interface: cli|library|mcp
+    inputs:
+      - monolith_catalog_path: {type: string}
+      - tower_registry_path: {type: string}
+      - capability_query: {type: object}
+    outputs:
+      - federated_capabilities: {type: array}
+      - placement_decisions: {type: object}
+      - resolution_receipts: {type: array}
+    dependencies:
+      - monolith_catalog_sync
+      - tower_capability_resolution
+    confidence: verified
+
+  - id: monolith.catalog_sync
+    description: Sync portfolio state to monolith catalog (capabilities_3layer, runtime_power_spine, library)
+    entrypoint: src/job_app_helix/monolith_sync.py
+    interface: cli|library|scheduled
+    inputs:
+      - monolith_root: {type: string, default: "/data/data/com.termux/files/home/monolith"}
+      - portfolio_manifest: {type: string}
+      - mode: {type: string, enum: [full, incremental, verify], default: incremental}
+    outputs:
+      - sync_receipt: {type: object}
+      - updated_catalogs: {type: array}
+      - conflicts: {type: array}
+    dependencies:
+      - aspen_grove_pointer_index
+    confidence: verified
+
+  - id: tower.capability_resolution
+    description: Resolve optimal language/tech placement via Tower of Babel's 40-floor registry
+    entrypoint: src/job_app_helix/tower_resolution.py
+    interface: cli|library
+    inputs:
+      - capability_requirement: {type: object}
+      - constraints: {type: object}
+      - tower_root: {type: string, default: "/data/data/com.termux/files/home/the-tower-of-babel"}
+    outputs:
+      - placement: {type: object}
+      - fitness_scores: {type: object}
+      - receipt: {type: string}
+    dependencies:
+      - tower_capability_resolution
+    confidence: verified
+
+  - id: helix.automation_engine
+    description: Execute helix automations (brainsync, crystallization, evidence adaptation) as callable capabilities
+    entrypoint: src/job_app_helix/automation_engine.py
+    interface: cli|library|mcp
+    inputs:
+      - automation: {type: string, enum: [brainsync_index, brainsync_normalize, brainsync_sanitize, crystallization_crawl, evidence_adapt]}
+      - target: {type: string}
+      - params: {type: object}
+    outputs:
+      - result: {type: object}
+      - receipt: {type: string}
+    dependencies: []
+    confidence: verified
+
+  - id: evidence.bridge
+    description: Bridge job-app-helix evidence ledger to monolith legal spines and case evidence
+    entrypoint: src/job_app_helix/evidence_bridge.py
+    interface: cli|library
+    inputs:
+      - evidence_item: {type: object}
+      - target_spine: {type: string}
+      - monolith_legal_path: {type: string, default: "/data/data/com.termux/files/home/monolith/catalog/legal_spines"}
+    outputs:
+      - bridge_receipt: {type: object}
+      - spine_entry: {type: object}
+      - hash: {type: string}
+    dependencies:
+      - aspen_grove_pointer_index
+    confidence: verified

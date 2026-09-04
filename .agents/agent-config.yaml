@@ -1,0 +1,177 @@
+schema: apex.agent-config/v1
+repository: glaciereq/job-app-helix
+status: active
+paradigm: INNOVATION_HOLOGRAPHIC_MESH
+purpose: Capability-focused portfolio control plane agent configuration
+
+lead_agent:
+  role: architect
+  persona: capability-architect
+  authority: MAXIMUM_COHERENT_ADVANCE
+  constraints:
+    - governance_serves_progress_only
+    - zero_fake_execution
+    - hash_bound_receipts_required
+    - capability_density_over_governance
+
+worker_roles:
+  - id: repo-cartographer
+    skill: apex-specialist-registry
+    capability: Maps repositories, interfaces, lineage, dependencies, tests
+    trigger: portfolio discovery, estate mapping
+    output: capability_manifest.yaml
+
+  - id: capability-miner
+    skill: apex-mega-skills
+    capability: Finds strong mechanisms in repos, determines reusability
+    trigger: new capability requirement
+    output: capability_assessment.json
+
+  - id: connector-broker
+    skill: apex-connector-mesh
+    capability: Discovers/invokes MCP servers, normalizes results
+    trigger: external capability needed
+    output: connector_result.json
+
+  - id: systems-architect
+    skill: apex-orchestration
+    capability: Designs composable integration without destroying boundaries
+    trigger: cross-repo integration
+    output: integration_design.yaml
+
+  - id: implementation-engineer
+    skill: apex-engineering-excellence
+    capability: Writes production-grade code, closes execution paths
+    trigger: capability build
+    output: implementation + tests + receipt
+
+  - id: reliability-engineer
+    skill: verification
+    capability: Tests failure modes, observability, recovery, rollback
+    trigger: pre-deployment
+    output: reliability_report.json
+
+  - id: performance-engineer
+    skill: benchmark-suite
+    capability: Profiles bottlenecks, improves throughput/latency/memory
+    trigger: performance requirement
+    output: benchmark_results.json
+
+  - id: evidence-authenticator
+    skill: apex-legal-intelligence
+    capability: Separates original evidence, copies, transcriptions, assertions
+    trigger: evidence integration
+    output: evidence_authenticity.json
+
+  - id: contradiction-hunter
+    skill: apex-legal-intelligence
+    capability: Searches for conflicts across statements, dockets, metadata
+    trigger: pre-legal-filing
+    output: contradiction_matrix.json
+
+  - id: verification-agent
+    skill: verification
+    capability: Independently checks claimed execution vs actual state
+    trigger: post-execution
+    output: verification_receipt.json
+
+execution_modes:
+  standard:
+    intent: Balanced execution with verification gates
+    parallelism: bounded
+    verification: per-phase
+    blast_radius: scoped
+    fail_safe: apex-fail-safe-governor
+
+  aggressive:
+    intent: Maximum throughput, parallelize independent lanes
+    parallelism: max
+    verification: terminal-only
+    blast_radius: scoped
+    fail_safe: apex-fail-safe-governor
+
+  conservative:
+    intent: Extra verification, rollback-safe, minimal blast radius
+    parallelism: serial
+    verification: per-step
+    blast_radius: minimal
+    fail_safe: apex-fail-safe-governor + explicit confirm
+
+  deep:
+    intent: Deep-horizon planning with sequential reasoning + High Council
+    parallelism: bounded
+    verification: per-phase + council
+    blast_radius: scoped
+    fail_safe: apex-fail-safe-governor
+
+  capability-build:
+    intent: Execute capability module with full verification ladder
+    parallelism: serial
+    verification: syntax->unit->integration->e2e->receipt
+    blast_radius: scoped
+    fail_safe: apex-fail-safe-governor
+
+composite_modes:
+  portfolio-sync:
+    execution_mode: standard
+    workers: [repo-cartographer, capability-miner, implementation-engineer, verification-agent]
+    use_when: Syncing portfolio to monolith catalog
+
+  capability-federation:
+    execution_mode: aggressive
+    workers: [connector-broker, systems-architect, capability-miner, verification-agent]
+    use_when: Federating capabilities across monolith + tower
+
+  evidence-integration:
+    execution_mode: conservative
+    workers: [evidence-authenticator, contradiction-hunter, verification-agent]
+    use_when: Integrating evidence to legal spines
+
+  helix-automation:
+    execution_mode: capability-build
+    workers: [implementation-engineer, reliability-engineer, verification-agent]
+    use_when: Running helix automations (brainsync, crystallization)
+
+orchestration:
+  dag_default: capability-build
+  max_parallel_workers: 4
+  timeout_seconds: 300
+  retry_policy:
+    max_retries: 2
+    backoff_seconds: 5
+    exponential: true
+
+verification_ladder:
+  - syntax
+  - unit
+  - integration
+  - e2e
+  - runtime
+  - receipt
+
+receipts:
+  required: true
+  format: hash_bound
+  storage: .agents/receipts/
+
+memory:
+  pointer_index: /tmp/aspen_grove_pointer_index.json
+  layers: [mem0, supermemory, pinecone, qdrant, context7]
+
+token_optimization:
+  tier_routing: true
+  compression: true
+  artifact_offload: true
+  subagent_delegation: true
+
+integration_endpoints:
+  monolith:
+    catalog_sync: monolith.catalog_sync
+    runtime_spine: runtime_power_spine.json
+    legal_spines: catalog/legal_spines/
+  tower_of_babel:
+    capability_resolution: tower.capability_resolution
+    registry: registry/tower.d/nextgen-innovations.json
+  legal_mesh:
+    evidence_bridge: evidence.bridge
+    case_spines: catalog/legal_spines/
