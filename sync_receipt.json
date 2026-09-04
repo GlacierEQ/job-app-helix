@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-04T00:57:15.869362+00:00",
-  "mode": "incremental",
+  "timestamp": "2026-09-04T05:21:11.988737+00:00",
+  "mode": "full",
   "updated_catalogs": [
     "capabilities_3layer.json",
     "runtime_power_spine.json",
@@ -9,5 +9,5 @@
   ],
   "conflicts": [],
   "repo_count": 225,
-  "receipt_hash": "a8e7ebd5e3d1993a"
+  "receipt_hash": "d353e7e88b9b438c"
 }

@@ -2,6 +2,17 @@
 
 > The hard, evidence-bound public face of the GlacierEQ portfolio. Every claim in this README is anchored to a machine artifact. No prose inflation. No single-authority framing — this is a holographic mesh of 225 repositories across 21 families, with 8 VERIFIED anchors and one open gate.
 
+schema: glaciereq.readme.v1
+profile: glaciereq.readme-impact.v2-draft
+verified_at: 2026-09-04T05:30:00-10:00
+blocked_scope: APEX runner activation, coordinator hosted promotion
+unverified_scope: 217 deserving repos without hash-bound anchors
+languages: python, rust, cpp, markdown, json, yaml
+relationships: monolith, tower_of_babel, computer-user, pro-code, AKOS
+limits: 8 verified anchors, 2 open gates, 0 persistent production host
+manifests/language_fit.json: true
+manifests/portfolio_repositories.json: true
+
 ---
 
 ## What This Is
