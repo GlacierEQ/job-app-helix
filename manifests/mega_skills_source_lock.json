@@ -1,0 +1,29 @@
+{
+  "schema": "job-app-helix.mega-skills-source-lock.v1",
+  "source_repository": "GlacierEQ/mega-skills",
+  "source_branch": "main",
+  "source_commit": "4166e09b86c257ba02e32fc20a65b0f63b8e46f7",
+  "source_graph": "registry/mega-skill-pyramids.json",
+  "source_graph_blob_sha": "cfb14824419a51afd84fdec469f000667adbb7fd",
+  "source_graph_sha256": "0dcb93440657c27233121ca78a916463a8f4f9796f87c4a9ff1cb388d6966e84",
+  "source_registry_blob_shas": {
+    "registry/skills.json": "2c1223f70935a91367a8f92b8e10c47a8e7d4f51",
+    "registry/combo-skills.json": "0a64b52721d7e602d0b83b015dabd473af25f436",
+    "registry/mega-skills.json": "4f74f5c1dad0a9ad7481a9e12b5c4762c9a5c736",
+    "registry/external-skills.json": "8236103aed60f26a17ea835491fe1b4a6e65479a"
+  },
+  "canonical_counts": {
+    "atomic_skills": 709,
+    "compound_skills": 33,
+    "mega_skills": 29,
+    "external_member_references": 10,
+    "mega_pyramids": 29,
+    "unresolved_owned_references": 0,
+    "compound_cycles": 0
+  },
+  "public_schema": "glaciereq.public-mega-skills.v2",
+  "public_route_root": "/mega-skills/",
+  "public_machine_route": "/data/mega-skills.json",
+  "expected_generated_bundle_sha256": "2be115443073bc9c237881ae22a39558fd1772c11b43ae4739a5fd23c10b4797",
+  "projection_law": "Public Mega-Skills data must be generated from this exact pinned canonical source revision. Hand-edited registry facts are not authoritative. Advancing source requires advancing this lock and regenerating the bundle."
+}
