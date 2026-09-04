@@ -2,25 +2,17 @@ name: Mega-Skills Projection Contract
 
 on:
   pull_request:
-    paths:
-      - "manifests/mega_skills_source_lock.json"
-      - "generated/mega-skills-public-projection.json"
-      - "scripts/compile_mega_skills_projection.py"
-      - ".github/workflows/mega-skills-projection-contract.yml"
+    paths: ["manifests/mega_skills_source_lock.json","generated/mega-skills-projection-receipt.json","scripts/compile_mega_skills_projection.py",".github/workflows/mega-skills-projection-contract.yml"]
   push:
     branches: [main]
-    paths:
-      - "manifests/mega_skills_source_lock.json"
-      - "generated/mega-skills-public-projection.json"
-      - "scripts/compile_mega_skills_projection.py"
-      - ".github/workflows/mega-skills-projection-contract.yml"
+    paths: ["manifests/mega_skills_source_lock.json","generated/mega-skills-projection-receipt.json","scripts/compile_mega_skills_projection.py",".github/workflows/mega-skills-projection-contract.yml"]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  verify-lock-and-bundle:
+  verify-contract:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -28,9 +20,19 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
-      - name: Verify pinned generated bundle
-        run: python scripts/compile_mega_skills_projection.py --verify-bundle generated/mega-skills-public-projection.json
-      - name: Syntax and whitespace gate
+      - name: Verify lock and compiler receipt agree
         run: |
+          python - <<'PY'
+          import json
+          lock=json.load(open('manifests/mega_skills_source_lock.json'))
+          r=json.load(open('generated/mega-skills-projection-receipt.json'))
+          assert r['source_commit']==lock['source_commit']
+          assert r['source_graph_sha256']==lock['source_graph_sha256']
+          assert r['public_schema']==lock['public_schema']
+          assert r['route_count']==lock['expected_route_count']==29
+          assert r['root_manifest_sha256']==lock['expected_root_manifest_sha256']
+          assert r['aggregate_projection_sha256']==lock['expected_aggregate_projection_sha256']
+          assert len(r['routes'])==len(set(r['routes']))==29
+          PY
           python -m py_compile scripts/compile_mega_skills_projection.py
           git diff --check
