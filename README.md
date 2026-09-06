@@ -12,6 +12,13 @@ Job-App Helix is the portfolio-intelligence, restoration, evolution, productizat
 **Direction:** `MAXIMUM_COHERENT_ADVANCE`  
 **Current posture:** `PARTIALLY_VERIFIED` — Helix itself and substantial connected systems have repository-native evidence; every child and wider-estate repository retains its own state and remains eligible for capability discovery and advancement regardless of current proof level.
 
+## 🚀 The Capability Expansion Doctrine & Trophy Case
+
+> **Doctrine:** [`docs/CAPABILITY_EXPANSION_DOCTRINE.md`](docs/CAPABILITY_EXPANSION_DOCTRINE.md) · **Trophy Case Atlas:** [`manifests/trophy_case_constellations.json`](manifests/trophy_case_constellations.json)
+> 
+> **Prioritize ≠ minimize. Feature ≠ hide. Organize ≠ delete. Recruiter-readable ≠ small.**  
+> The GlacierEQ estate spans **216+ repositories across 27 orbits** engineered around **Target Company Bottleneck Engineering**: solving each company's hardest scaling, thermal, power, latency, and agent safety bottlenecks before they ask. The estate is a living, continuously expanding capability engine.
+
 ## The Portfolio Goes Up From Here
 
 *Recruiter lens · product value and evidence signal in one minute*

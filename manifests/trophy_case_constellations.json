@@ -1,0 +1,190 @@
+{
+  "schema": "glaciereq.trophy-case-constellations.v1",
+  "generated_at": "2026-09-05T15:06:00-10:00",
+  "authority": "GlacierEQ/job-app-helix",
+  "architecture": "Hero Funnel: Spotlight -> Case Study -> Trophy Case -> Machine Proof",
+  "rules": {
+    "prioritize_not_minimize": true,
+    "feature_not_hide": true,
+    "organize_not_delete": true,
+    "recruiter_readable_not_small": true
+  },
+  "total_repositories_tracked": 216,
+  "sovereign_core": {
+    "display_name": "GlacierEQ Core Foundations",
+    "total_repos": 8,
+    "flagships": [
+      {
+        "id": "AKOS",
+        "role": "Apex Kernel Operating System",
+        "level": "L5",
+        "state": "PROMOTED",
+        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/AKOS"
+      },
+      {
+        "id": "the-tower-of-babel",
+        "role": "Polyglot Systems Verification (51 Languages)",
+        "level": "L4",
+        "state": "REFERENCE_ONLY",
+        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/the-tower-of-babel"
+      },
+      {
+        "id": "monolith",
+        "role": "Estate Cartography Head",
+        "level": "L5",
+        "state": "ACTIVE",
+        "path": "/Users/kcbflux/monolith"
+      },
+      {
+        "id": "job-app-helix",
+        "role": "Build & Verify Campaign Engine",
+        "level": "L4",
+        "state": "PROMOTED",
+        "path": "/Users/kcbflux/.grok/work/job-app-helix"
+      },
+      {
+        "id": "JOB-RESUME-BUILDER-",
+        "role": "Resume Shapeshifter Next.js Application",
+        "level": "L4",
+        "state": "VERIFIED",
+        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/JOB-RESUME-BUILDER-"
+      },
+      {
+        "id": "pro-code",
+        "role": "Engineering Standards & Invariants",
+        "level": "L4",
+        "state": "REFERENCE_ONLY",
+        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/pro-code"
+      },
+      {
+        "id": "apex-fs",
+        "role": "Multimodal Perception & Filesystem MCP",
+        "level": "L4",
+        "state": "VERIFIED",
+        "path": "/Users/kcbflux/apex-fs"
+      },
+      {
+        "id": "antigravity-cli",
+        "role": "Multi-Model Swarm Runtime",
+        "level": "L4",
+        "state": "ACTIVE",
+        "path": "/Users/kcbflux/antigravity-cli"
+      }
+    ]
+  },
+  "constellations": {
+    "spacex": {
+      "display_name": "SpaceX Flight & Mission Systems",
+      "hero_repository": "spacex-autonomy",
+      "total_repos": 15,
+      "thesis": "End-to-end flight, avionics, orbital mechanics, and thermal failure software engineered from bedrock physics.",
+      "subsystems": {
+        "hero_spotlight": [
+          {"repo": "spacex-autonomy", "level": "L3", "role": "Distributed Consensus & Quorum Engine under Latency"}
+        ],
+        "propulsion_and_thermal": [
+          {"repo": "spacex-thermal-protection", "level": "L3", "role": "Starship PICA-X heat-flux ablation physics"},
+          {"repo": "spacex-propulsion-monitor", "level": "L3", "role": "Raptor turbopump pressure curves & health gates"},
+          {"repo": "spacex-cryogenics", "level": "L3", "role": "LOX/CH4 boiloff and tank pressurization dynamics"}
+        ],
+        "guidance_and_orbital": [
+          {"repo": "spacex-orbital-mechanics", "level": "L3", "role": "Keplerian state propagation & J2 perturbation"},
+          {"repo": "spacex-conjunction-sentinel", "level": "L3", "role": "Debris collision probability (PoC) calculation"},
+          {"repo": "spacex-orbital-assembly", "level": "L2", "role": "Autonomous space docking kinematics"}
+        ],
+        "mission_ops_and_network": [
+          {"repo": "spacex-mission-control", "level": "L3", "role": "Real-time telemetry ingestion & flight trajectory"},
+          {"repo": "spacex-launch-sequencer", "level": "L3", "role": "Automated countdown sequencing & scrub gates"},
+          {"repo": "spacex-ground-network", "level": "L3", "role": "Downlink scheduling & antenna handover"},
+          {"repo": "spacex-pad-weather-gate", "level": "L3", "role": "Go/No-Go wind shear & lightning constraints"}
+        ],
+        "comms_and_telemetry": [
+          {"repo": "spacex-satellite-mesh", "level": "L3", "role": "Starlink optical laser inter-satellite routing"},
+          {"repo": "spacex-telemetry", "level": "L3", "role": "High-throughput packet serialization ring buffers"},
+          {"repo": "spacex-recovery-dynamics", "level": "L2", "role": "Booster grid fin aerodynamics & barge sync"},
+          {"repo": "grok-build", "level": "L2", "role": "Aerospace telemetry and simulation asset tooling"}
+        ]
+      }
+    },
+    "xai": {
+      "display_name": "xAI Colossus Hyperscale Infrastructure",
+      "hero_repository": "xai-colossus-cooling",
+      "total_repos": 62,
+      "thesis": "Hyperscale cluster engineering solving gigawatt-scale power, liquid cooling, and 100k+ GPU server fabric.",
+      "subsystems": {
+        "hero_spotlight": [
+          {"repo": "xai-colossus-cooling", "level": "L3", "role": "Liquid thermal CFD & PUE 1.08 optimization across 100k GPUs"}
+        ],
+        "power_and_facility": [
+          {"repo": "xai-colossus-energy", "level": "L3", "role": "1.5GW hybrid substation & Tesla Megapack peak shaving"},
+          {"repo": "xai-colossus-waterplant", "level": "L2", "role": "Closed-loop zero liquid discharge (ZLD) treatment"}
+        ],
+        "servers_and_fabric": [
+          {"repo": "xai-colossus-servers", "level": "L3", "role": "Dense compute rack thermal balance & PCIe/NVLink topology"},
+          {"repo": "xai-colossus-2", "level": "L3", "role": "300k GPU cluster scale architecture"},
+          {"repo": "colossus-gateway", "level": "L3", "role": "Inference gateway load-balancing across multi-cluster zones"},
+          {"repo": "colossus-training-flux", "level": "L3", "role": "Distributed training loss telemetry & node-drop recovery"}
+        ],
+        "security_and_diagnostics": [
+          {"repo": "xai-colossus-security", "level": "L3", "role": "TEMPEST RF shielding & zero-trust hardware attestation"},
+          {"repo": "xai-colossus-nanosphere", "level": "L3", "role": "Microchannel cold-plate sensor telemetry"},
+          {"repo": "grokodile", "level": "L3", "role": "Autonomous cluster diagnostics & thermal throttling detection"}
+        ],
+        "historical_sweeps_count": 39
+      }
+    },
+    "anthropic": {
+      "display_name": "Anthropic Safety & Multi-Agent Systems",
+      "hero_repository": "anthropic-agent-coordinator",
+      "total_repos": 9,
+      "thesis": "Deterministic agent coordination, fail-closed runtime safety monitors, and Byzantine consensus.",
+      "subsystems": {
+        "hero_spotlight": [
+          {"repo": "anthropic-agent-coordinator", "level": "L4", "role": "Deterministic multi-agent scheduling & DAG resolution"},
+          {"repo": "anthropic-safety-monitor", "level": "L4", "role": "Real-time action boundary governor & prompt quarantine"}
+        ],
+        "consensus_and_alignment": [
+          {"repo": "anthropic-byzantine-consensus", "level": "L2", "role": "Multi-model dialectic consensus against output drift"},
+          {"repo": "anthropic-alignment-drift", "level": "L2", "role": "Statistical semantic drift tracking over long sessions"},
+          {"repo": "anthropic-cross-domain-fusion", "level": "L2", "role": "Multi-modal evidence synthesis across document sets"}
+        ],
+        "upstream_and_tools": [
+          {"repo": "claude-code", "level": "L1", "role": "Upstream Claude Code CLI analysis"},
+          {"repo": "claude-setup", "level": "L1", "role": "Environment orchestration harness"}
+        ]
+      }
+    },
+    "openai": {
+      "display_name": "OpenAI Reasoning & Developer Infrastructure",
+      "hero_repository": "openai-reasoning-kv-sentinel",
+      "total_repos": 22,
+      "thesis": "Reasoning-model token efficiency, KV cache budgeting, and advanced developer code generation.",
+      "subsystems": {
+        "hero_spotlight": [
+          {"repo": "openai-reasoning-kv-sentinel", "level": "L3", "role": "Token budget enforcement & reasoning KV-cache thrash prevention"}
+        ],
+        "developer_tooling": [
+          {"repo": "openai-codex-mcp", "level": "L2", "role": "MCP bridge connecting reasoning models to IDE compilers"},
+          {"repo": "openai-assistant-swarm", "level": "L2", "role": "Stateful agent orchestration via Assistants API primitives"},
+          {"repo": "project_openai_codex", "level": "L2", "role": "AST-aware code transformation and automated test generator"}
+        ]
+      }
+    },
+    "hardware_and_frontier_sentinels": {
+      "display_name": "Hardware & Frontier AI Sentinels",
+      "total_repos": 38,
+      "orbits": {
+        "nvidia": {"hero": "nvidia-gpu-health", "repos": ["nvidia-gpu-health", "nvidia-deep-reasoning", "nvidia-agent-consensus", "nvidia-circuit-breaker", "nvidia-gradient-shield"]},
+        "apple": {"hero": "apple-ane-kv-quantizer", "repos": ["apple-ane-kv-quantizer", "coreml-quant-tools"]},
+        "aws": {"hero": "aws-trainium-neuron-sentinel", "repos": ["aws-trainium-neuron-sentinel", "trainium-ring-allreduce"]},
+        "deepseek": {"hero": "deepseek-mla-moe-sentinel", "repos": ["deepseek-mla-moe-sentinel", "DeepSeek-Coder", "DeepSeek-Coder-V2"]},
+        "kimi": {"hero": "kimi-mooncake-kv-stream", "repos": ["kimi-mooncake-kv-stream", "kimi-linear"]},
+        "deepmind": {"hero": "deepmind-tpu-mesh-optimizer", "repos": ["deepmind-tpu-mesh-optimizer", "deepmind-core-think", "deepmind-orbital-surfing", "deepmind-predictive-handoff", "deepmind-temporal-router", "deepmind-request-router"]},
+        "meta": {"hero": "meta-llama-collective-sentinel", "repos": ["meta-llama-collective-sentinel", "metaagent", "llama-coder"]},
+        "tesla": {"hero": "tesla-fsd-occupancy-stream", "repos": ["tesla-fsd-occupancy-stream"]},
+        "qwen": {"hero": "qwen-vl-flash-router", "repos": ["qwen-vl-flash-router", "Qwen3-Coder"]},
+        "robotics": {"hero": "robotics-vla-torque-sentinel", "repos": ["robotics-vla-torque-sentinel"]}
+      }
+    }
+  }
+}
