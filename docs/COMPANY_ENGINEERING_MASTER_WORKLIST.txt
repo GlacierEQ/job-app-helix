@@ -1,0 +1,321 @@
+## RECOVER_LINEAGE
+[ ] GlacierEQ/Qwen3-Coder | Alibaba / Qwen | MISSING-NAME
+[ ] GlacierEQ/github-mcp-server | GitHub | MISSING-NAME
+[ ] GlacierEQ/google_workspace_mcp | Google / DeepMind | MISSING-NAME
+[ ] GlacierEQ/browser-operator-core | Microsoft | MISSING-NAME
+[ ] GlacierEQ/Z-BACKUP-ollama-notion-apex-orchestrator | Notion | MISSING-NAME
+[ ] GlacierEQ/Z-BACKUP-apex-pplx-cli | Perplexity | MISSING-NAME
+[ ] GlacierEQ/grok-build | SpaceX | MISSING-NAME
+[ ] GlacierEQ/supabase | Supabase | MISSING-NAME
+
+## ADVANCE_ENGINEERING
+[ ] GlacierEQ/adobe-creative-provenance-gate | Adobe | LIVE
+[ ] GlacierEQ/qwen-vl-flash-router | Alibaba / Qwen | LIVE
+[ ] GlacierEQ/aws-trainium-neuron-sentinel | Amazon Web Services | LIVE
+[ ] GlacierEQ/amd-hetero-placement-contract | AMD | LIVE
+[ ] GlacierEQ/anduril-lattice-dissent-freeze | Anduril | LIVE
+[ ] GlacierEQ/anduril-sensor-health-quorum | Anduril | LIVE
+[ ] GlacierEQ/anduril-track-envelope-compiler | Anduril | LIVE
+[ ] GlacierEQ/anthropic-agent-coordinator | Anthropic | LIVE
+[ ] GlacierEQ/anthropic-constitutional-tool-transcript | Anthropic | LIVE
+[ ] GlacierEQ/anthropic-refusal-replay-harness | Anthropic | LIVE
+[ ] GlacierEQ/anthropic-safety-monitor | Anthropic | LIVE
+[ ] GlacierEQ/apple-ane-kv-quantizer | Apple | LIVE
+[ ] GlacierEQ/atlassian-workgraph-intent-twin | Atlassian | LIVE
+[ ] GlacierEQ/baseten-serving-slo-circuit | Baseten | LIVE
+[ ] GlacierEQ/blue-origin-cryo-telemetry-half-life | Blue Origin | LIVE
+[ ] GlacierEQ/cerebras-wafer-batch-admission-gate | Cerebras | LIVE
+[ ] GlacierEQ/cloudflare-bot-intent-receipt | Cloudflare | LIVE
+[ ] GlacierEQ/cloudflare-edge-cap-mint | Cloudflare | LIVE
+[ ] GlacierEQ/cloudflare-workers-agent-cap | Cloudflare | LIVE
+[ ] GlacierEQ/cognition-execution-checkpoint-lattice | Cognition | LIVE
+[ ] GlacierEQ/cohere-retrieval-claim-fence | Cohere | LIVE
+[ ] GlacierEQ/comet-browser-agent-bridge | Comet / Perplexity Browser | LIVE
+[ ] GlacierEQ/robotics-vla-torque-sentinel | Company-adjacent / assignment pending | LIVE
+[ ] GlacierEQ/coreweave-rack-power-autopilot | CoreWeave | LIVE
+[ ] GlacierEQ/crusoe-rack-to-token-autopilot | Crusoe | LIVE
+[ ] GlacierEQ/cursor-patch-intent-twin | Cursor | LIVE
+[ ] GlacierEQ/databricks-feature-lineage-passport | Databricks | LIVE
+[ ] GlacierEQ/databricks-notebook-claim-fence | Databricks | LIVE
+[ ] GlacierEQ/deepseek-mla-moe-sentinel | DeepSeek | LIVE
+[ ] GlacierEQ/elastic-trajectory-index-layout | Elastic | LIVE
+[ ] GlacierEQ/fireworks-ai-optimization-safety-envelope | Fireworks AI | LIVE
+[ ] GlacierEQ/github-pr-authority-matrix | GitHub | LIVE
+[ ] GlacierEQ/gitlab-pipeline-intent-contract | GitLab | LIVE
+[ ] GlacierEQ/glaciereq-excellence-core | GlacierEQ Excellence Core | LIVE
+[ ] GlacierEQ/colossus-gateway | GlacierEQ-core | LIVE
+[ ] GlacierEQ/xai-colossus-2 | GlacierEQ-core | LIVE
+[ ] GlacierEQ/glean-enterprise-search-claim-fence | Glean | LIVE
+[ ] GlacierEQ/deepmind-tpu-mesh-optimizer | Google / DeepMind | LIVE
+[ ] GlacierEQ/groq-batch-admission-gate | Groq | LIVE
+[ ] GlacierEQ/groq-jitter-envelope-contract | Groq | LIVE
+[ ] GlacierEQ/hugging-face-model-card-provenance-seal | Hugging Face | LIVE
+[ ] GlacierEQ/ibm-governed-tool-catalog | IBM | LIVE
+[ ] GlacierEQ/intel-npu-placement-passport | Intel | LIVE
+[ ] GlacierEQ/lambda-useful-gpu-minute-contract | Lambda | LIVE
+[ ] GlacierEQ/linear-issue-intent-twin | Linear | LIVE
+[ ] GlacierEQ/lockheed-dual-key-actuator-fence | Lockheed Martin | LIVE
+[ ] GlacierEQ/lockheed-evidence-binding-gateway | Lockheed Martin | LIVE
+[ ] GlacierEQ/lockheed-martin-mission-assurance-gateway | Lockheed Martin | LIVE
+[ ] GlacierEQ/lockheed-mission-thread-isolator | Lockheed Martin | LIVE
+[ ] GlacierEQ/lovable-design-app-synth | Lovable | LIVE
+[ ] GlacierEQ/manus-autonomous-web-agent | Manus | LIVE
+[ ] GlacierEQ/meta-llama-collective-sentinel | Meta | LIVE
+[ ] GlacierEQ/microsoft-azure-ops | Microsoft | LIVE
+[ ] GlacierEQ/microsoft-identity-zero-trust | Microsoft | LIVE
+[ ] GlacierEQ/mistral-open-weight-eval-fence | Mistral | LIVE
+[ ] GlacierEQ/modal-ephemeral-sandbox-receipt | Modal | LIVE
+[ ] GlacierEQ/mongodb-operational-semantic-twin-index | MongoDB | LIVE
+[ ] GlacierEQ/kimi-mooncake-kv-stream | Moonshot AI / Kimi | LIVE
+[ ] GlacierEQ/motherduck-local-cloud-query-passport | MotherDuck | LIVE
+[ ] GlacierEQ/nasa-command-authority-half-life | NASA | LIVE
+[ ] GlacierEQ/nasa-telemetry-anomaly-receipt | NASA | LIVE
+[ ] GlacierEQ/nebius-cluster-energy-admission | Nebius | LIVE
+[ ] GlacierEQ/notion-mcp-empowerment-engine | Notion | LIVE
+[ ] GlacierEQ/notion-workflow-intelligence | Notion | LIVE
+[ ] GlacierEQ/notion-workspace-optimizer | Notion | LIVE
+[ ] GlacierEQ/nvidia-deep-reasoning | NVIDIA | LIVE
+[ ] GlacierEQ/nvidia-gpu-health | NVIDIA | LIVE
+[ ] GlacierEQ/nvidia-gradient-integrity-quorum | NVIDIA | LIVE
+[ ] GlacierEQ/nvidia-nan-circuit-breaker | NVIDIA | LIVE
+[ ] GlacierEQ/openai-reasoning-budget-futures | OpenAI | LIVE
+[ ] GlacierEQ/openai-tool-authority-matrix | OpenAI | LIVE
+[ ] GlacierEQ/openai-reasoning-kv-sentinel | OpenAI / Codex | LIVE
+[ ] GlacierEQ/opera-neon-spatial-workspace | Opera | LIVE
+[ ] GlacierEQ/oracle-sovereign-data-boundary-gate | Oracle | LIVE
+[ ] GlacierEQ/palantir-action-lineage-graph | Palantir | LIVE
+[ ] GlacierEQ/palantir-object-authority-matrix | Palantir | LIVE
+[ ] GlacierEQ/palantir-ontology-writeback-ledger | Palantir | LIVE
+[ ] GlacierEQ/pinecone-retrieval-outcome-optimizer | Pinecone | LIVE
+[ ] GlacierEQ/qdrant-collection-quorum-guard | Qdrant | LIVE
+[ ] GlacierEQ/qualcomm-on-device-budget-futures | Qualcomm | LIVE
+[ ] GlacierEQ/redis-stream-claim-cursor-fence | Redis | LIVE
+[ ] GlacierEQ/replicate-model-version-pin-gate | Replicate | LIVE
+[ ] GlacierEQ/replit-workspace-cap-matrix | Replit | LIVE
+[ ] GlacierEQ/rocket-lab-launch-hold-receipt | Rocket Lab | LIVE
+[ ] GlacierEQ/runpod-pod-preempt-receipt | RunPod | LIVE
+[ ] GlacierEQ/salesforce-crm-action-authority | Salesforce | LIVE
+[ ] GlacierEQ/scale-agreement-budget-allocator | Scale AI | LIVE
+[ ] GlacierEQ/scale-ai-label-consensus-fence | Scale AI | LIVE
+[ ] GlacierEQ/scale-eval-poison-sentinel | Scale AI | LIVE
+[ ] GlacierEQ/scale-label-collusion-bound | Scale AI | LIVE
+[ ] GlacierEQ/snowflake-cortex-claim-bound | Snowflake | LIVE
+[ ] GlacierEQ/snowflake-query-intent-ledger | Snowflake | LIVE
+[ ] GlacierEQ/snowflake-warehouse-spend-circuit | Snowflake | LIVE
+[ ] GlacierEQ/sourcegraph-code-nav-intent-gate | Sourcegraph | LIVE
+[ ] GlacierEQ/spacex-autonomy | SpaceX | LIVE
+[ ] GlacierEQ/spacex-conjunction-sentinel | SpaceX | LIVE
+[ ] GlacierEQ/spacex-cryogenics | SpaceX | LIVE
+[ ] GlacierEQ/spacex-ground-network | SpaceX | LIVE
+[ ] GlacierEQ/spacex-hold-reason-compiler | SpaceX | LIVE
+[ ] GlacierEQ/spacex-launch-sequencer | SpaceX | LIVE
+[ ] GlacierEQ/spacex-mission-control | SpaceX | LIVE
+[ ] GlacierEQ/spacex-mission-thread-quorum | SpaceX | LIVE
+[ ] GlacierEQ/spacex-orbital-mechanics | SpaceX | LIVE
+[ ] GlacierEQ/spacex-pad-weather-gate | SpaceX | LIVE
+[ ] GlacierEQ/spacex-propulsion-monitor | SpaceX | LIVE
+[ ] GlacierEQ/spacex-satellite-mesh | SpaceX | LIVE
+[ ] GlacierEQ/spacex-telemetry | SpaceX | LIVE
+[ ] GlacierEQ/spacex-thermal-protection | SpaceX | LIVE
+[ ] GlacierEQ/supabase-policy-carrying-ai-data-plane | Supabase | LIVE
+[ ] GlacierEQ/tasklet-micro-agent-engine | Tasklet | LIVE
+[ ] GlacierEQ/tesla-fsd-occupancy-stream | Tesla | LIVE
+[ ] GlacierEQ/together-ai-open-model-fidelity-passport | Together AI | LIVE
+[ ] GlacierEQ/vercel-deploy-claim-compiler | Vercel | LIVE
+[ ] GlacierEQ/vercel-deploy-preview-authority | Vercel | LIVE
+[ ] GlacierEQ/vercel-edge-agent-cap-token | Vercel | LIVE
+[ ] GlacierEQ/vercel-preview-truth-gate | Vercel | LIVE
+[ ] GlacierEQ/waymo-phantom-freespace-certificate | Waymo | LIVE
+[ ] GlacierEQ/waymo-uncertainty-lane-graph | Waymo | LIVE
+[ ] GlacierEQ/weaviate-hybrid-search-claim-fence | Weaviate | LIVE
+[ ] GlacierEQ/windsurf-cascade-intent-twin | Windsurf | LIVE
+[ ] GlacierEQ/xai-actuation-receipt-bus | xAI | LIVE
+[ ] GlacierEQ/xai-claim-promotion-fence | xAI | LIVE
+[ ] GlacierEQ/colossus-training-flux | xAI / Colossus | LIVE
+[ ] GlacierEQ/grokodile | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-cooling | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-energy | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-nanosphere | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-security | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-servers | xAI / Colossus | LIVE
+[ ] GlacierEQ/zoox-fleet-skill-promotion-gate | Zoox | LIVE
+
+## AUDIT_THEN_BUILD
+[ ] GlacierEQ/awscloud | Amazon Web Services | LIVE
+[ ] GlacierEQ/products-suggestions-api | Amazon Web Services | LIVE
+[ ] GlacierEQ/anthropic-alignment-drift | Anthropic | LIVE
+[ ] GlacierEQ/anthropic-byzantine-consensus | Anthropic | LIVE
+[ ] GlacierEQ/anthropic-cross-domain-fusion | Anthropic | LIVE
+[ ] GlacierEQ/apple-mcp | Apple | LIVE
+[ ] GlacierEQ/Pro-iOS | Apple | LIVE
+[ ] GlacierEQ/comet-agent | Comet / Perplexity Browser | LIVE
+[ ] GlacierEQ/comet-extension | Comet / Perplexity Browser | LIVE
+[ ] GlacierEQ/comet-memory-integration | Comet / Perplexity Browser | LIVE
+[ ] GlacierEQ/comet-voice-module-tests | Comet / Perplexity Browser | LIVE
+[ ] GlacierEQ/coreweave-circuit-breaker | CoreWeave | LIVE
+[ ] GlacierEQ/coreweave-entropy-engine | CoreWeave | LIVE
+[ ] GlacierEQ/coreweave-shadow-monitor | CoreWeave | LIVE
+[ ] GlacierEQ/coreweave-state-fusion | CoreWeave | LIVE
+[ ] GlacierEQ/coreweave-temporal-router | CoreWeave | LIVE
+[ ] GlacierEQ/apex-github-worker | GitHub | LIVE
+[ ] GlacierEQ/github-agent-orchestrator | GitHub | LIVE
+[ ] GlacierEQ/github-repo-enrichment-engine | GitHub | LIVE
+[ ] GlacierEQ/public-actions-runner-host | GitHub | LIVE
+[ ] GlacierEQ/apex-gemma | Google / DeepMind | LIVE
+[ ] GlacierEQ/deepmind-core-think | Google / DeepMind | LIVE
+[ ] GlacierEQ/deepmind-orbital-surfing | Google / DeepMind | LIVE
+[ ] GlacierEQ/deepmind-predictive-handoff | Google / DeepMind | LIVE
+[ ] GlacierEQ/deepmind-request-router | Google / DeepMind | LIVE
+[ ] GlacierEQ/deepmind-temporal-router | Google / DeepMind | LIVE
+[ ] GlacierEQ/google-drive-mcp | Google / DeepMind | LIVE
+[ ] GlacierEQ/Pro-Gemma | Google / DeepMind | LIVE
+[ ] GlacierEQ/run-gemini-cli | Google / DeepMind | LIVE
+[ ] GlacierEQ/groqchat | Groq | LIVE
+[ ] GlacierEQ/metaagent | Meta | LIVE
+[ ] GlacierEQ/TextCraft | Microsoft | LIVE
+[ ] GlacierEQ/word-GPT-Plus | Microsoft | LIVE
+[ ] GlacierEQ/kimi-linear | Moonshot AI / Kimi | LIVE
+[ ] GlacierEQ/nvidia-agent-consensus | NVIDIA | LIVE
+[ ] GlacierEQ/nvidia-circuit-breaker | NVIDIA | LIVE
+[ ] GlacierEQ/nvidia-gradient-shield | NVIDIA | LIVE
+[ ] GlacierEQ/chatgpt-vercel | OpenAI / Codex | LIVE
+[ ] GlacierEQ/codex_py2cpp | OpenAI / Codex | LIVE
+[ ] GlacierEQ/jupyterlab-codex | OpenAI / Codex | LIVE
+[ ] GlacierEQ/MCP-Bridge | OpenAI / Codex | LIVE
+[ ] GlacierEQ/openai-assistant-swarm | OpenAI / Codex | LIVE
+[ ] GlacierEQ/openai-codex-mcp | OpenAI / Codex | LIVE
+[ ] GlacierEQ/project_openai_codex | OpenAI / Codex | LIVE
+[ ] GlacierEQ/vim_codex | OpenAI / Codex | LIVE
+[ ] GlacierEQ/zsh_codex | OpenAI / Codex | LIVE
+[ ] GlacierEQ/perplexity-ai-app | Perplexity | LIVE
+[ ] GlacierEQ/perplexity-ai-export | Perplexity | LIVE
+[ ] GlacierEQ/perplexity-app-connector-bridge | Perplexity | LIVE
+[ ] GlacierEQ/perplexity-enhancement-mcp | Perplexity | LIVE
+[ ] GlacierEQ/perplexity-extension | Perplexity | LIVE
+[ ] GlacierEQ/perplexity-goose-integration | Perplexity | LIVE
+[ ] GlacierEQ/perplexity-node | Perplexity | LIVE
+[ ] GlacierEQ/perplexity-voice-integration | Perplexity | LIVE
+[ ] GlacierEQ/spacex-orbital-assembly | SpaceX | LIVE
+[ ] GlacierEQ/spacex-recovery-dynamics | SpaceX | LIVE
+[ ] GlacierEQ/aspen-grove-supabase | Supabase | LIVE
+[ ] GlacierEQ/supabase-grafana | Supabase | LIVE
+[ ] GlacierEQ/supabase-mcp | Supabase | LIVE
+[ ] GlacierEQ/ai-sdk-provider | Vercel | LIVE
+[ ] GlacierEQ/colossus-build-blueprint | xAI / Colossus | LIVE
+[ ] GlacierEQ/colossus-realignment | xAI / Colossus | LIVE
+[ ] GlacierEQ/colossus2-realignment | xAI / Colossus | LIVE
+[ ] GlacierEQ/godmind-colossus-gateway | xAI / Colossus | LIVE
+[ ] GlacierEQ/grok-build-nix | xAI / Colossus | LIVE
+[ ] GlacierEQ/Pro-Colossus | xAI / Colossus | LIVE
+[ ] GlacierEQ/Pro-xAI | xAI / Colossus | LIVE
+[ ] GlacierEQ/vscode-grok | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossal-cooling | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-build | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-community | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-microcode | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-waterplant | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-legal-intelligence | xAI / Colossus | LIVE
+
+## CORE_REVIEW
+[ ] GlacierEQ/1FDV-23-0001009-FEDERAL-WARFARE | GlacierEQ-core | LIVE
+[ ] GlacierEQ/AEON-777 | GlacierEQ-core | LIVE
+[ ] GlacierEQ/AEON-BRAIN-777 | GlacierEQ-core | LIVE
+[ ] GlacierEQ/AKOS | GlacierEQ-core | LIVE
+[ ] GlacierEQ/apex-cli | GlacierEQ-core | LIVE
+[ ] GlacierEQ/apex-control-plane | GlacierEQ-core | LIVE
+[ ] GlacierEQ/apex-stack | GlacierEQ-core | LIVE
+[ ] GlacierEQ/aspen-grove-memory | GlacierEQ-core | LIVE
+[ ] GlacierEQ/CASE-1FDV-23-0001009 | GlacierEQ-core | LIVE
+[ ] GlacierEQ/ECHO | GlacierEQ-core | LIVE
+[ ] GlacierEQ/glaciereq-mcp-stack | GlacierEQ-core | LIVE
+[ ] GlacierEQ/GlacierEQ_Swarm | GlacierEQ-core | LIVE
+[ ] GlacierEQ/job-app-helix | GlacierEQ-core | LIVE
+[ ] GlacierEQ/job-application | GlacierEQ-core | LIVE
+[ ] GlacierEQ/JOB-RESUME-BUILDER- | GlacierEQ-core | LIVE
+[ ] GlacierEQ/mastermind | GlacierEQ-core | LIVE
+[ ] GlacierEQ/monolith | GlacierEQ-core | LIVE
+[ ] GlacierEQ/openclaw | GlacierEQ-core | LIVE
+[ ] GlacierEQ/pro-code | GlacierEQ-core | LIVE
+[ ] GlacierEQ/Pro-comet-agent | GlacierEQ-core | LIVE
+[ ] GlacierEQ/sigma-glue | GlacierEQ-core | LIVE
+[ ] GlacierEQ/spiral-engine | GlacierEQ-core | LIVE
+[ ] GlacierEQ/SUPERLUMINAL_CASE_MATRIX | GlacierEQ-core | LIVE
+[ ] GlacierEQ/the-tower-of-babel | GlacierEQ-core | LIVE
+[ ] GlacierEQ/token_saver | GlacierEQ-core | LIVE
+
+## REVIEW_HISTORY
+[ ] GlacierEQ/claude-code-kimi-groq | Anthropic | LIVE
+[ ] GlacierEQ/chatgpt_infinity | OpenAI / Codex | LIVE
+[ ] GlacierEQ/gpt-ai-assistant | OpenAI / Codex | LIVE
+[ ] GlacierEQ/xai-aeon777-community-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-community-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-cooling-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-cooling-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-energy-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-energy-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-justice-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-justice-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-microcode-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-microcode-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-nanosphere-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-nanosphere-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-nexus-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-nexus-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-security-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-security-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-servers-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-servers-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-waterplant-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-aeon777-waterplant-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-community-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-community-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-cooling-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-cooling-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-energy-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-energy-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-microcode-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-microcode-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-nanosphere-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-nanosphere-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-nexus-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-nexus-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-security-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-security-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-servers-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-servers-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-waterplant-alpha | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-colossus-waterplant-omega | xAI / Colossus | LIVE
+[ ] GlacierEQ/Z-BACKUP-mastermind-colossus | xAI / Colossus | LIVE
+
+## REFERENCE_ONLY
+[ ] GlacierEQ/qwen-code | Alibaba / Qwen | LIVE
+[ ] GlacierEQ/qwen2.5VLM-OCR | Alibaba / Qwen | LIVE
+[ ] GlacierEQ/aws-toolkit-vscode | Amazon Web Services | LIVE
+[ ] GlacierEQ/claude-code | Anthropic | LIVE
+[ ] GlacierEQ/claude-explorer__public_fork_archive | Anthropic | LIVE
+[ ] GlacierEQ/claude-setup | Anthropic | LIVE
+[ ] GlacierEQ/DeepSeek-Coder | DeepSeek | LIVE
+[ ] GlacierEQ/DeepSeek-Coder-V2 | DeepSeek | LIVE
+[ ] GlacierEQ/DeepSeek-Coder-V2-main | DeepSeek | LIVE
+[ ] GlacierEQ/github-script | GitHub | LIVE
+[ ] GlacierEQ/llama-coder | Meta | LIVE
+[ ] GlacierEQ/llama-fs__public_fork_archive | Meta | LIVE
+[ ] GlacierEQ/Microsoft-Build2025-Samples | Microsoft | LIVE
+[ ] GlacierEQ/Office-Word-MCP-Server | Microsoft | LIVE
+[ ] GlacierEQ/Kimi-K2 | Moonshot AI / Kimi | LIVE
+[ ] GlacierEQ/Kimi-K3 | Moonshot AI / Kimi | LIVE
+[ ] GlacierEQ/notion-mcp-server | Notion | LIVE
+[ ] GlacierEQ/awesome-codex | OpenAI / Codex | LIVE
+[ ] GlacierEQ/codex-supermemory | OpenAI / Codex | LIVE
+[ ] GlacierEQ/open-codex | OpenAI / Codex | LIVE
+[ ] GlacierEQ/openai-agents-js | OpenAI / Codex | LIVE
+[ ] GlacierEQ/openai-agents-python | OpenAI / Codex | LIVE
+[ ] GlacierEQ/openai-assistants-quickstart | OpenAI / Codex | LIVE
+[ ] GlacierEQ/openai-node | OpenAI / Codex | LIVE
+[ ] GlacierEQ/openai-python | OpenAI / Codex | LIVE
+[ ] GlacierEQ/openai-realtime-agents | OpenAI / Codex | LIVE
+[ ] GlacierEQ/public-openai-client-php | OpenAI / Codex | LIVE
+[ ] GlacierEQ/Perplexica | Perplexity | LIVE
+[ ] GlacierEQ/cli | Supabase | LIVE
+[ ] GlacierEQ/dashboard | Supabase | LIVE
+[ ] GlacierEQ/sdk | Vercel | LIVE

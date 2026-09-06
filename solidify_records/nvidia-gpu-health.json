@@ -3,23 +3,27 @@
   "family": "NVIDIA",
   "kind": "company",
   "source_state": "in_preparation",
-  "innovation_summary": "nvidia-gpu-health is a GPU health-index service that fuses thermal, power, and occupancy signals into a single reliability score, positioned by the function atlas as a monitor for detecting degraded hardware, thermal, memory, or workload conditions before they become silent throughput loss. Its portfolio value is the composite-index framing: rather than alerting per-metric, it is designed to answer 'is this GPU still trustworthy for scheduling' as one governed judgement \u2014 the same shape as the estate's other sentinels. It is the canonical head of a five-repository NVIDIA family (three of which were only surfaced by the estate-registry omission repair) and is the strongest-documented member of this batch's sentinel cluster: it is the only lab_hire_stamps flagship here that carries both a substantive catalog description and an issue contract.",
+  "innovation_summary": "Deterministic local GPU-health scoring now composes into a multi-GPU integrity quorum over caller-supplied thermal/power/ECC and numerical-integrity signals. The new quorum produces NOMINAL/WARNING/CRITICAL state, identifies review candidates, fails closed on a caller-supplied non-finite numerical-integrity signal, and emits a deterministic SHA-256 receipt while explicitly retaining operational_authority=false and hardware_action=false. Native unittest and public-truth surfaces were extended to cover the mechanism.",
   "evidence": [
     "/tmp/monolith/status/functions/infrastructure.md:14 (nvidia-gpu-health | active_specialist | lab_hire_stamps | 'GPU health and reliability monitor for detecting degraded hardware, thermal, memory, or workload conditions' | basis: name + domain; confidence: high)",
-    "/tmp/monolith/catalog/library.json:12076 (domain=lab_hire_stamps, role=part, activity=worked_on, status_detail=worked_solidified, desc='GPU health index (portfolio) \u2014 thermal/power/occupancy \u00b7 AKOS portfolio', language=Python, local_job_app=true, issue_contract=true, private=false, updatedAt 2026-08-10T06:16:15Z)",
+    "/tmp/monolith/catalog/library.json:12076 (domain=lab_hire_stamps, role=part, activity=worked_on, status_detail=worked_solidified, desc='GPU health index (portfolio) — thermal/power/occupancy · AKOS portfolio', language=Python, local_job_app=true, issue_contract=true, private=false, updatedAt 2026-08-10T06:16:15Z)",
     "/tmp/monolith/catalog/capabilities_3layer.json:22253-22292 (category MODEL_INFERENCE_AND_SENTINELS; impact_score P0; layer_2 contract_proof 'DONE <=> issue-contract proof(pain) for nvidia-gpu-health'; launch_cmd 'python3 ~/job-app/apex_highway.py --target nvidia-gpu-health'; sha256_binding 6faa5e43ffe241af230769ede5a02f499a85dd37594f8c46611eaab056b37c91; mesh_uri glaciereq://mesh/model_inference_and_sentinels/nvidia-gpu-health; agent_tool_registration name=tool_nvidia_gpu_health)",
     "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md:29 (grouped in the model-inference-and-sentinels cluster with apple-ane-kv-quantizer, deepmind-tpu-mesh-optimizer, deepseek-mla-moe-sentinel, kimi-mooncake-kv-stream, openai-reasoning-kv-sentinel, qwen-vl-flash-router)",
-    "/tmp/monolith/domains/lab_hire_stamps.md:23 (portfolio row: part | worked_on | issue_contract=yes | 'GPU health index (portfolio) \u2014 thermal/power/occupancy \u00b7 AKOS portfolio')",
+    "/tmp/monolith/domains/lab_hire_stamps.md:23 (portfolio row: part | worked_on | issue_contract=yes | 'GPU health index (portfolio) — thermal/power/occupancy · AKOS portfolio')",
     "/tmp/monolith/status/WORKED_ON.md:63 (nvidia-gpu-health | lab_hire_stamps | part | worked_solidified)",
     "/tmp/monolith/catalog/company_engineered_repositories.json:208,213 (nvidia.current_preparation=[nvidia-deep-reasoning, nvidia-gpu-health]; canonical_candidate=nvidia-gpu-health)",
     "/tmp/monolith/domains/company_engineered_portfolio.md:51 (NVIDIA | 5 repos | 2 in preparation | 3 unprocessed | canonical nvidia-gpu-health | priority 'P1 CUDA and hardware proof')",
     "/tmp/monolith/catalog/application_estate_registry.json:71-79 (material omission repaired: NVIDIA corrected from 2 public to 5 estate-named, adding private nvidia-agent-consensus, nvidia-gradient-shield, nvidia-circuit-breaker)",
-    "/tmp/helix_patch/expanded_job_app_helix_manifest.json:632-637 (kind=company, state=in_preparation, family=NVIDIA, canonical=nvidia-gpu-health)"
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json:632-637 (kind=company, state=in_preparation, family=NVIDIA, canonical=nvidia-gpu-health)",
+    "GitHub live source inspection at 2db44a8c656dce195a2e41c104747fc12c546216",
+    "src/gpu_integrity_quorum.py (multi-GPU local integrity quorum)",
+    "tests/test_gpu_integrity_quorum.py (nominal/warning/critical/numerics/duplicate-ID paths)",
+    ".github/verification/verify.sh and machine capability/target contracts updated"
   ],
-  "verification_status": "NEEDS_REPAIR",
-  "worthy_rating": 7,
-  "makes_worthy": "One concrete step to 8+: commit a pytest that feeds a recorded nvidia-smi / DCGM sample fixture (thermal, power, occupancy) through the index function and asserts exact scores plus the degraded/healthy boundary, including a clamp test for a missing or garbage metric so the index cannot silently report healthy on partial telemetry. Publish the run id and passing test names in a BUILD_RECEIPT and file a repository_fact_card at R3+; that satisfies the family's recorded 'P1 CUDA and hardware proof' gate without needing a real GPU.",
-  "repo_excellence_anchor": "Overlaps the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe) on the post-action readback invariant (/root/repo_excellence/STRONG_COMPLETION.computer-user.md:23). A health index is only trustworthy if the reading is verified after the fact rather than assumed \u2014 the anchor's hash-bound receipt pattern (proof_receipt.schema = glaciereq.proof-receipt.v1) is directly reusable to bind each health verdict to the exact telemetry sample and code SHA that produced it, which is what would turn this from a monitor into a governed sentinel.",
+  "verification_status": "SOURCE_IMPLEMENTED_CURRENT_HEAD_PROOF_PENDING",
+  "worthy_rating": 8,
+  "makes_worthy": "The repo now has the concrete multi-member integrity mechanism the NVIDIA family lacked: per-GPU policy -> quorum aggregation -> numerical-integrity trip -> review candidate set -> hash-bound local receipt. Next promotion is exact-current-head CI evidence and then a bounded recorded fixture path (DCGM/nvidia-smi-shaped sample or equivalent public fixture) without claiming live NVIDIA telemetry.",
+  "repo_excellence_anchor": "Overlaps the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe) on the post-action readback invariant (/root/repo_excellence/STRONG_COMPLETION.computer-user.md:23). A health index is only trustworthy if the reading is verified after the fact rather than assumed — the anchor's hash-bound receipt pattern (proof_receipt.schema = glaciereq.proof-receipt.v1) is directly reusable to bind each health verdict to the exact telemetry sample and code SHA that produced it, which is what would turn this from a monitor into a governed sentinel.",
   "honest_limits": [
     "atlas confidence rests on 'name + domain', not source inspection; no local clone appears in HIERARCHICAL_FUNCTION_MAP.json",
     "no test, CI run id, artifact, or receipt found locally; the capabilities_3layer 'contract_proof' string is a generated template, not an execution record",
@@ -27,6 +31,7 @@
     "no NVIDIA affiliation claimed"
   ],
   "classification_reason": "needs_repair: worthy=7",
-  "last_verified": "2026-08-29T08:47:16.729706",
-  "notes": " | NEEDS_REPAIR"
+  "last_verified": "2026-08-30T18:45:00-10:00",
+  "notes": " | NEEDS_REPAIR",
+  "live_source_head": "2db44a8c656dce195a2e41c104747fc12c546216"
 }

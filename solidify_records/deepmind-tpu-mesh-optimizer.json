@@ -3,15 +3,21 @@
   "family": "Google / DeepMind",
   "kind": "company",
   "source_state": "in_preparation",
-  "innovation_summary": "GlacierEQ's canonical DeepMind-family TPU mesh optimizer, cataloged in lab_hire_stamps as worked_solidified with an issue_contract and a SHA-bound 3-layer record (sha256 b90b7586...) and DONE contract proof (P0 Model Inference And Sentinels). Library desc empty; no implementation artifact substantiates it locally beyond the catalog and capability mesh binding.",
+  "innovation_summary": "Source-inspected TPU-style mesh planning system with deterministic sharding/transfer/compute/overlap arithmetic, Pareto mesh-frontier selection, and a new receipt-class experiment promotion fence. The fence keeps MODELED, LOCAL_TESTED, COMPILED, and HARDWARE_MEASURED evidence distinct: compile evidence requires test evidence and hardware evidence requires the compile chain; attempted over-promotion returns an explicit refusal receipt.",
   "evidence": [
     "/tmp/monolith/catalog/library.json:5340 (name; domain lab_hire_stamps; desc empty; issue_contract true; local_job_app true; Python; updatedAt 2026-08-10)",
     "/tmp/monolith/catalog/capabilities_3layer.json:22001 (layers 1-3; sha256_binding b90b75865eccf9ce6976643c1dc03d75a762441a3aae4131d4bf738d7c8cc9e9; category MODEL_INFERENCE_AND_SENTINELS; contract_proof DONE; mesh_uri glaciereq://mesh/model_inference_and_sentinels/deepmind-tpu-mesh-optimizer)",
     "/tmp/monolith/catalog/company_engineered_repositories.json:108-113 (family Google/DeepMind; canonical_candidate; current_preparation)",
-    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED — repo inside boundary)"
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED — repo inside boundary)",
+    "GitHub live source inspection at 85a646c4d8f01597e74b2dca83c95efecac2fb09",
+    "src/mesh_frontier.py (Pareto mesh topology planner)",
+    "src/experiment_promotion.py (MODELED -> LOCAL_TESTED -> COMPILED -> HARDWARE_MEASURED fence)",
+    "tests/test_experiment_promotion.py + scripts/verify_public_truth.py"
   ],
-  "verification_status": "PARTIAL",
-  "worthy_rating": 8,
-  "makes_worthy": "Produce a fact card / run receipt describing the TPU-mesh optimization actually implemented and a pytest proving the scheduling path; fill the empty library desc.",
-  "repo_excellence_overlap": "Governed-execution/receipt discipline from the computer-user VERIFIED anchor applies — bind any scheduler run to a hash receipt (proof_receipt schema v1)."
+  "verification_status": "SOURCE_IMPLEMENTED_CURRENT_HEAD_PROOF_PENDING",
+  "worthy_rating": 9,
+  "makes_worthy": "The prior empty-description/catalog-only gap is obsolete. The repository now has a direct promotion boundary for future JAX/XLA and hardware work, so modeled mesh results cannot silently become compile or TPU-performance claims. Exact-current-head public-truth CI is the remaining promotion proof.",
+  "repo_excellence_overlap": "Governed-execution/receipt discipline from the computer-user VERIFIED anchor applies — bind any scheduler run to a hash receipt (proof_receipt schema v1).",
+  "last_verified": "2026-08-30T18:45:00-10:00",
+  "live_source_head": "85a646c4d8f01597e74b2dca83c95efecac2fb09"
 }

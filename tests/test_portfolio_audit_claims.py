@@ -294,9 +294,9 @@ def test_relative_markdown_links_are_checked(tmp_path: Path) -> None:
 def test_root_readme_preserves_audience_order_and_machine_contract() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     headings = [
-        "## For recruiters and non-technical reviewers",
-        "## For senior engineers and domain experts",
-        "## For AI systems and toolchains",
+        "## For Recruiters and Non-Technical Reviewers",
+        "## For Senior Engineers and Domain Experts",
+        "## For AI Systems and Toolchains",
     ]
     positions = [readme.index(heading) for heading in headings]
 

@@ -1,0 +1,127 @@
+schema: apex.skills-registry/v1
+repository: glaciereq/job-app-helix
+status: active
+
+skills:
+  - name: portfolio-evidence-ledger
+    version: 1.0.0
+    description: Hash-bound evidence ledger for 225-repo portfolio with VERIFIED anchor tracking
+    capability_id: portfolio.evidence_ledger
+    entrypoint: src/job_app_helix/evidence_ledger.py
+    interface: cli|library
+    category: portfolio
+    dependencies:
+      - aspen_grove_pointer_index
+    verification_gates:
+      - syntax
+      - unit
+      - integration
+      - receipt
+    tags: [evidence, ledger, merkle, anchors, L0]
+
+  - name: capability-federation
+    version: 1.0.0
+    description: Federates capabilities across monolith catalog and Tower of Babel resolution
+    capability_id: portfolio.capability_federation
+    entrypoint: src/job_app_helix/capability_federation.py
+    interface: cli|library|mcp
+    category: federation
+    dependencies:
+      - monolith_catalog_sync
+      - tower_capability_resolution
+    verification_gates:
+      - syntax
+      - unit
+      - integration
+      - receipt
+    tags: [federation, monolith, tower, capability]
+
+  - name: monolith-catalog-sync
+    version: 1.0.0
+    description: Syncs portfolio state to monolith catalogs (capabilities_3layer, runtime_power_spine, library)
+    capability_id: monolith.catalog_sync
+    entrypoint: src/job_app_helix/monolith_sync.py
+    interface: cli|library|scheduled
+    category: integration
+    dependencies:
+      - aspen_grove_pointer_index
+    verification_gates:
+      - syntax
+      - unit
+      - integration
+      - e2e
+      - receipt
+    tags: [monolith, sync, catalog, scheduled]
+
+  - name: tower-capability-resolution
+    version: 1.0.0
+    description: Resolves optimal language/tech placement via Tower of Babel's 40-floor registry
+    capability_id: tower.capability_resolution
+    entrypoint: src/job_app_helix/tower_resolution.py
+    interface: cli|library
+    category: placement
+    dependencies:
+      - tower_capability_resolution
+    verification_gates:
+      - syntax
+      - unit
+      - integration
+      - receipt
+    tags: [tower, placement, fitness, resolution]
+
+  - name: helix-automation-engine
+    version: 1.0.0
+    description: Executes helix automations (brainsync, crystallization, evidence adaptation) as callable capabilities
+    capability_id: helix.automation_engine
+    entrypoint: src/job_app_helix/automation_engine.py
+    interface: cli|library|mcp
+    category: automation
+    dependencies: []
+    verification_gates:
+      - syntax
+      - unit
+      - receipt
+    tags: [automation, brainsync, crystallization, evidence]
+
+  - name: evidence-bridge
+    version: 1.0.0
+    description: Bridges job-app-helix evidence ledger to monolith legal spines and case evidence
+    capability_id: evidence.bridge
+    entrypoint: src/job_app_helix/evidence_bridge.py
+    interface: cli|library
+    category: legal
+    dependencies:
+      - aspen_grove_pointer_index
+    verification_gates:
+      - syntax
+      - unit
+      - integration
+      - receipt
+    tags: [evidence, legal, bridge, provenance, L0]
+
+compositions:
+  - name: portfolio-capability-cycle
+    description: "Complete portfolio capability cycle: ledger -> federation -> resolution -> sync -> bridge"
+    skills:
+      - portfolio-evidence-ledger
+      - capability-federation
+      - tower-capability-resolution
+      - monolith-catalog-sync
+      - evidence-bridge
+    orchestration: sequential
+    verification: all_gates
+
+  - name: automation-suite
+    description: "Run multiple helix automations in parallel"
+    skills:
+      - helix-automation-engine
+    orchestration: parallel
+    verification: receipt
+
+discovery:
+  local_path: .agents/skills/
+  remote_sources:
+    - monolith: /data/data/com.termux/files/home/monolith/catalog
+    - tower: /data/data/com.termux/files/home/the-tower-of-babel
+  auto_refresh: true
+  refresh_interval_hours: 6

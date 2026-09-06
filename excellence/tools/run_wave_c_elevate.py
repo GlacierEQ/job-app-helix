@@ -14,7 +14,7 @@ import importlib.util
 import json
 import sys
 import traceback
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -42,7 +42,7 @@ def _load_elevator():
 def elevate_one(name: str, plan_generated_at: str | None) -> dict:
     elev = _load_elevator()
     leaf = REPOS / name
-    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%MZ")
+    ts = datetime.now(UTC).strftime("%Y-%m-%dT%H%MZ")
     scratch = ROOT / "excellence" / "receipts" / "wave_c_scratch" / "leaves" / name
     scratch.mkdir(parents=True, exist_ok=True)
     try:
@@ -161,7 +161,7 @@ def main() -> int:
     promoted = [r for r in results if r.get("grade") == "PROMOTED"]
     scaffold_proven = [r for r in results if r.get("grade") == "SCAFFOLD_PROVEN"]
     gapped = [r for r in results if r.get("grade") not in {"PROMOTED", "SCAFFOLD_PROVEN"}]
-    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%MZ")
+    ts = datetime.now(UTC).strftime("%Y-%m-%dT%H%MZ")
     result = "PASS" if len(promoted) == len(leaves) else "PARTIAL"
 
     summary = {
@@ -232,6 +232,12 @@ def main() -> int:
     plan["gapped_count"] = len(gapped)
     plan_path.write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
 
+    gapped_md = (
+        chr(10).join(
+            f"- `{g['leaf']}` — {g['blocker']}" for g in summary["wave_c"]["leaves_gapped"]
+        )
+        or "_none_"
+    )
     (ROOT / "excellence" / "framework" / "WAVE_C_INNOVATION_SCAFFOLD_MAP.md").write_text(
         f"""# Wave C — Innovation Scaffold Excellence Group
 
@@ -260,7 +266,7 @@ def main() -> int:
 
 ## Gapped leaves
 
-{chr(10).join(f"- `{g['leaf']}` — {g['blocker']}" for g in summary["wave_c"]["leaves_gapped"]) or "_none_"}
+{gapped_md}
 
 ## Receipts
 

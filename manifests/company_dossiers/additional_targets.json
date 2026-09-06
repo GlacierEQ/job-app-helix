@@ -22,14 +22,46 @@
     ]
   },
   "companies": [
-    {"company_id": "palantir", "display_name": "Palantir", "repositories": []},
-    {"company_id": "anduril", "display_name": "Anduril", "repositories": []},
-    {"company_id": "scale_ai", "display_name": "Scale AI", "repositories": []},
-    {"company_id": "mistral", "display_name": "Mistral AI", "repositories": []},
-    {"company_id": "cohere", "display_name": "Cohere", "repositories": []},
-    {"company_id": "databricks", "display_name": "Databricks", "repositories": []},
-    {"company_id": "snowflake", "display_name": "Snowflake", "repositories": []},
-    {"company_id": "ibm", "display_name": "IBM", "repositories": []},
+    {
+      "company_id": "palantir",
+      "display_name": "Palantir",
+      "repositories": []
+    },
+    {
+      "company_id": "anduril",
+      "display_name": "Anduril",
+      "repositories": []
+    },
+    {
+      "company_id": "scale_ai",
+      "display_name": "Scale AI",
+      "repositories": []
+    },
+    {
+      "company_id": "mistral",
+      "display_name": "Mistral AI",
+      "repositories": []
+    },
+    {
+      "company_id": "cohere",
+      "display_name": "Cohere",
+      "repositories": []
+    },
+    {
+      "company_id": "databricks",
+      "display_name": "Databricks",
+      "repositories": []
+    },
+    {
+      "company_id": "snowflake",
+      "display_name": "Snowflake",
+      "repositories": []
+    },
+    {
+      "company_id": "ibm",
+      "display_name": "IBM",
+      "repositories": []
+    },
     {
       "company_id": "intel",
       "display_name": "Intel",
@@ -37,29 +69,93 @@
       "recruiter_thesis": "The private NPU repository is a converted, diverged continuation of Intel's upstream library, not an original GlacierEQ system. Casey-side history contains some direct robustness and test edits, but those deltas must be isolated from Intel-authored code, imported feature branches, generated artifacts, and maintenance-only changes before any donor credit is assigned.",
       "gap_or_next_gate": "Keep both repositories below recruiter admission. Isolate candidate Casey-side SDPA robustness changes into a clean patch against the archived Intel base, remove generated/history/node_modules noise and unsupported QA claims, then require deterministic tests and a provenance receipt before considering capability-donor promotion.",
       "repositories": [
-        ["GlacierEQ/intel-npu-acceleration-library", "L2", "AUDIT_UPSTREAM_DELTA", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM_SHAPED"],
-        ["GlacierEQ/intel-npu-acceleration-library__public_fork_archive", "L1", "EXCLUDED_AUTHORSHIP", "public", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM"]
+        [
+          "GlacierEQ/intel-npu-acceleration-library",
+          "L2",
+          "AUDIT_UPSTREAM_DELTA",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM_SHAPED"
+        ],
+        [
+          "GlacierEQ/intel-npu-acceleration-library__public_fork_archive",
+          "L1",
+          "EXCLUDED_AUTHORSHIP",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM"
+        ]
       ]
     },
-    {"company_id": "amd", "display_name": "AMD", "repositories": []},
-    {"company_id": "qualcomm", "display_name": "Qualcomm", "repositories": []},
-    {"company_id": "oracle", "display_name": "Oracle", "repositories": []},
-    {"company_id": "salesforce", "display_name": "Salesforce", "repositories": []},
-    {"company_id": "adobe", "display_name": "Adobe", "repositories": []},
-    {"company_id": "cloudflare", "display_name": "Cloudflare", "repositories": []},
-    {"company_id": "vercel", "display_name": "Vercel", "repositories": []},
-    {"company_id": "hugging_face", "display_name": "Hugging Face", "repositories": []},
+    {
+      "company_id": "amd",
+      "display_name": "AMD",
+      "repositories": []
+    },
+    {
+      "company_id": "qualcomm",
+      "display_name": "Qualcomm",
+      "repositories": []
+    },
+    {
+      "company_id": "oracle",
+      "display_name": "Oracle",
+      "repositories": []
+    },
+    {
+      "company_id": "salesforce",
+      "display_name": "Salesforce",
+      "repositories": []
+    },
+    {
+      "company_id": "adobe",
+      "display_name": "Adobe",
+      "repositories": []
+    },
+    {
+      "company_id": "cloudflare",
+      "display_name": "Cloudflare",
+      "repositories": []
+    },
+    {
+      "company_id": "vercel",
+      "display_name": "Vercel",
+      "repositories": []
+    },
+    {
+      "company_id": "hugging_face",
+      "display_name": "Hugging Face",
+      "repositories": []
+    },
     {
       "company_id": "groq",
       "display_name": "Groq",
       "track_state": "DIRECT_ESTATE_DISCOVERED_NOT_RECRUITER_READY",
       "gap_or_next_gate": "groqchat explicitly derives from an external FreeGenius implementation; claude-code-kimi-groq is inspired by an external proxy. Preserve both as provenance-audit references until original delta, tests, and security boundaries are measured.",
       "repositories": [
-        ["GlacierEQ/groqchat", "L1", "AUDIT_UPSTREAM_DELTA", "public", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM_SHAPED"],
-        ["GlacierEQ/claude-code-kimi-groq", "L2", "AUDIT_UPSTREAM_DELTA", "public", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "UPSTREAM_SHAPED"]
+        [
+          "GlacierEQ/groqchat",
+          "L1",
+          "AUDIT_UPSTREAM_DELTA",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM_SHAPED"
+        ],
+        [
+          "GlacierEQ/claude-code-kimi-groq",
+          "L2",
+          "AUDIT_UPSTREAM_DELTA",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM_SHAPED"
+        ]
       ]
     },
-    {"company_id": "cerebras", "display_name": "Cerebras", "repositories": []},
+    {
+      "company_id": "cerebras",
+      "display_name": "Cerebras",
+      "repositories": []
+    },
     {
       "company_id": "coreweave",
       "display_name": "CoreWeave",
@@ -68,17 +164,68 @@
       "recruiter_thesis": "Five private CoreWeave-named prototypes form one reliability R&D family, not five independent accomplishments. None is recruiter proof until claims are bounded and positive verification receipts exist.",
       "gap_or_next_gate": "Promote only through the experiment ladder: prove unique value, add deterministic tests and runtime receipts, integrate surviving mechanisms into a reference system, then require capability proof and the promotion-score gate. Current source audit found unverified claims and concrete implementation defects, so all five remain private experiments.",
       "repositories": [
-        ["GlacierEQ/coreweave-state-fusion", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
-        ["GlacierEQ/coreweave-temporal-router", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
-        ["GlacierEQ/coreweave-circuit-breaker", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
-        ["GlacierEQ/coreweave-shadow-monitor", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"],
-        ["GlacierEQ/coreweave-entropy-engine", "L2", "PRIVATE_EXPERIMENT", "private", "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED", "ORIGINAL_CANDIDATE"]
+        [
+          "GlacierEQ/coreweave-state-fusion",
+          "L2",
+          "PRIVATE_EXPERIMENT",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/coreweave-temporal-router",
+          "L2",
+          "PRIVATE_EXPERIMENT",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/coreweave-circuit-breaker",
+          "L2",
+          "PRIVATE_EXPERIMENT",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/coreweave-shadow-monitor",
+          "L2",
+          "PRIVATE_EXPERIMENT",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/coreweave-entropy-engine",
+          "L2",
+          "PRIVATE_EXPERIMENT",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ]
       ]
     },
-    {"company_id": "waymo", "display_name": "Waymo", "repositories": []},
-    {"company_id": "zoox", "display_name": "Zoox", "repositories": []},
-    {"company_id": "blue_origin", "display_name": "Blue Origin", "repositories": []},
-    {"company_id": "rocket_lab", "display_name": "Rocket Lab", "repositories": []},
+    {
+      "company_id": "waymo",
+      "display_name": "Waymo",
+      "repositories": []
+    },
+    {
+      "company_id": "zoox",
+      "display_name": "Zoox",
+      "repositories": []
+    },
+    {
+      "company_id": "blue_origin",
+      "display_name": "Blue Origin",
+      "repositories": []
+    },
+    {
+      "company_id": "rocket_lab",
+      "display_name": "Rocket Lab",
+      "repositories": []
+    },
     {
       "company_id": "lockheed_martin",
       "display_name": "Lockheed Martin",
@@ -92,6 +239,10 @@
       "non_affiliation": "Independent GlacierEQ work; no Lockheed Martin affiliation, endorsement, employment, proprietary access, contract relationship, clearance, or production deployment is claimed.",
       "repositories": []
     },
-    {"company_id": "nasa", "display_name": "NASA", "repositories": []}
+    {
+      "company_id": "nasa",
+      "display_name": "NASA",
+      "repositories": []
+    }
   ]
 }

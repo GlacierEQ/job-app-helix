@@ -1,16 +1,17 @@
 """Lockheed multi-repo composition — leveled."""
 from __future__ import annotations
-import threading
+
 import unittest
+
 from pathutil import add_repo
 
 add_repo("lockheed-evidence-binding-gateway")
 add_repo("lockheed-dual-key-actuator-fence")
 add_repo("lockheed-mission-thread-isolator")
 
-from evidence_gateway import EvidenceBindingGateway, EvidenceSnapshot, GateVerdict
-from dual_key_fence import Decision, RefuseReason, build_stack
 from core import MissionThreadIsolator
+from dual_key_fence import Decision, RefuseReason, build_stack
+from evidence_gateway import EvidenceBindingGateway, EvidenceSnapshot, GateVerdict
 
 
 class LockheedTriadLeveled(unittest.TestCase):
@@ -58,11 +59,11 @@ class LockheedTriadLeveled(unittest.TestCase):
         multi = gw.bind_many("d", "act", ["e1", "e2"])
         self.assertEqual(gw.authorize_multi(multi)[0], GateVerdict.ALLOW)
         gw.put(EvidenceSnapshot("e1", {"a": 9}))
-        v, r = gw.authorize_multi(multi)
+        v, _r = gw.authorize_multi(multi)
         self.assertEqual(v, GateVerdict.REFUSE)
 
     def test_end_to_end_refuse_without_grant(self):
-        brain, issuer, muscle, _ = build_stack("p", lambda i: (True, "OK"), b"s")
+        brain, _issuer, muscle, _ = build_stack("p", lambda i: (True, "OK"), b"s")
         d = brain.decide({"ok": True}, now=1.0)
         r = muscle.execute(d, None, {"ok": True}, lambda i: 1, now=2.0)
         self.assertEqual(r.refuse_reason, RefuseReason.MISSING_GRANT.value)

@@ -1,0 +1,17 @@
+{
+  "schema": "job-app-helix.mega-skills-source-lock.v2",
+  "source_repository": "GlacierEQ/mega-skills",
+  "source_branch": "main",
+  "source_commit": "4166e09b86c257ba02e32fc20a65b0f63b8e46f7",
+  "source_graph": "registry/mega-skill-pyramids.json",
+  "source_graph_blob_sha": "cfb14824419a51afd84fdec469f000667adbb7fd",
+  "source_graph_sha256": "0dcb93440657c27233121ca78a916463a8f4f9796f87c4a9ff1cb388d6966e84",
+  "canonical_counts": {"atomic_skills":709,"compound_skills":33,"mega_skills":29,"external_member_references":10,"mega_pyramids":29,"unresolved_owned_references":0,"compound_cycles":0},
+  "public_schema": "glaciereq.public-mega-skills.v2",
+  "public_route_root": "/mega-skills/",
+  "public_machine_route": "/data/mega-skills.json",
+  "expected_root_manifest_sha256": "25a26ec6ed43089e5afe4002b572dbbe995c501b0b5edf42cf04779939ecc0b0",
+  "expected_route_count": 29,
+  "expected_aggregate_projection_sha256": "6686b24a8142e81d1cbc65d0824940b7ca0b6bd3da83a721bcd9aaed20eedd86",
+  "projection_law": "One deterministic Helix compiler invocation generates the public machine manifest and all 29 static Mega-Skill pyramid routes from this exact pinned canonical source. Hand-edited registry facts are not authoritative."
+}

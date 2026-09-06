@@ -1,1 +1,527 @@
-{"schema":"glaciereq.company-dossiers-shard.v2","group_id":"platform_infrastructure","generated_at":"2026-08-04T18:46:00-10:00","companies":[{"company_id":"microsoft","display_name":"Microsoft","track_state":"MAPPED_NOT_RECRUITER_READY","target_roles":["AI Platform Engineer","Cloud Solutions Architect","Identity/Security Engineer"],"recruiter_thesis":"Enterprise AI operations, identity, zero-trust, document/operator workflows, and auditable platform control.","gap_or_next_gate":"Two admitted prototypes; document/operator candidates need provenance/security audit.","non_affiliation":"Independent GlacierEQ work; no Microsoft affiliation, endorsement, employment, proprietary access, or production deployment is claimed.","repositories":[["GlacierEQ/microsoft-azure-ops","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/microsoft-identity-zero-trust","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/Microsoft-Build2025-Samples","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM_SAMPLE"],["GlacierEQ/Office-Word-MCP-Server","L1","EXCLUDED_AUTHORSHIP","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"],["GlacierEQ/TextCraft","L2","AUDIT_BEFORE_ADMISSION","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/browser-operator-core","L2","AUDIT_BEFORE_ADMISSION","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/word-GPT-Plus","L1","AUDIT_UPSTREAM_DELTA","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/Autogen_GraphRAG_Ollama","L1","PRIVATE_STUDY","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]]},{"company_id":"aws","display_name":"AWS","track_state":"MAPPED_NOT_RECRUITER_READY","target_roles":["Cloud AI Engineer","Solutions Architect","AI Infrastructure Engineer"],"recruiter_thesis":"Cloud and accelerator systems, Trainium/Neuron observability, and evidence-bound deployment operations.","gap_or_next_gate":"Trainium exhibit is thin; products API and private education evidence need originality/privacy/deployment review.","non_affiliation":"Independent GlacierEQ work; no AWS affiliation, endorsement, employment, proprietary access, or production deployment is claimed.","repositories":[["GlacierEQ/aws-trainium-neuron-sentinel","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/products-suggestions-api","L2","AUDIT_BEFORE_ADMISSION","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/awscloud","L2","PRIVATE_EDUCATION_OR_ARCHITECTURE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/aws-toolkit-vscode","L1","PRIVATE_UPSTREAM_REFERENCE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","UPSTREAM"]]},{"company_id":"spacex","display_name":"SpaceX","track_state":"MAPPED_NOT_RECRUITER_READY","target_roles":["Software Engineer, Avionics","Mission Systems Engineer","Infrastructure/Automation Engineer"],"recruiter_thesis":"Mission systems across telemetry, propulsion, sequencing, ground, autonomy, orbital, conjunction, cryogenics, weather, mesh, control, and thermal protection.","gap_or_next_gate":"Estate count is 14 direct-named repos; public suite remains 12 until two private candidates earn admission.","non_affiliation":"Independent GlacierEQ work; no SpaceX affiliation, endorsement, employment, proprietary access, or production deployment is claimed.","repositories":[["GlacierEQ/spacex-autonomy","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-conjunction-sentinel","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-cryogenics","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-ground-network","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-launch-sequencer","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-mission-control","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-orbital-mechanics","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-pad-weather-gate","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-propulsion-monitor","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-satellite-mesh","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-telemetry","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-thermal-protection","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-recovery-dynamics","L2","PRIVATE_CANDIDATE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/spacex-orbital-assembly","L2","PRIVATE_CANDIDATE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]]},{"company_id":"nvidia","display_name":"NVIDIA","track_state":"MAPPED_NOT_RECRUITER_READY","target_roles":["AI Infrastructure Engineer","GPU Reliability Engineer","Applied Deep Learning Engineer"],"recruiter_thesis":"GPU reliability, health, gradient protection, circuit breaking, deep reasoning, and agent consensus.","gap_or_next_gate":"Five direct NVIDIA-named repos exist; all need CUDA/hardware correctness and benchmark receipts.","non_affiliation":"Independent GlacierEQ work; no NVIDIA affiliation, endorsement, employment, proprietary access, or production deployment is claimed.","repositories":[["GlacierEQ/nvidia-deep-reasoning","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/nvidia-gpu-health","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/nvidia-agent-consensus","L2","PRIVATE_CANDIDATE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/nvidia-gradient-shield","L2","PRIVATE_CANDIDATE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/nvidia-circuit-breaker","L2","PRIVATE_CANDIDATE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]]},{"company_id":"apple","display_name":"Apple","track_state":"MAPPED_NOT_RECRUITER_READY","target_roles":["Machine Learning Engineer","AI/ML Platform Engineer","Software Engineer, Apple Platforms"],"recruiter_thesis":"On-device AI, ANE/Metal/Swift performance, Apple automation, and privacy-aware local intelligence.","gap_or_next_gate":"Public ANE prototype plus private Apple MCP/iOS doctrine; device-level verification required.","non_affiliation":"Independent GlacierEQ work; no Apple affiliation, endorsement, employment, proprietary access, or production deployment is claimed.","repositories":[["GlacierEQ/apple-ane-kv-quantizer","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/apple-mcp","L2","PRIVATE_CANDIDATE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/Pro-iOS","L2","PRIVATE_DOCTRINE","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/elex-to-finetuned","L1","PRIVATE_STUDY","private","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]]},{"company_id":"meta","display_name":"Meta","track_state":"MAPPED_NOT_RECRUITER_READY","target_roles":["AI Systems Engineer","Applied AI Engineer"],"recruiter_thesis":"Llama collective reliability and multi-agent coordination under bounded evidence.","gap_or_next_gate":"Public exhibit needs distributed-behavior proof; metaagent originality requires audit.","non_affiliation":"Independent GlacierEQ work; no Meta affiliation, endorsement, employment, proprietary access, or production deployment is claimed.","repositories":[["GlacierEQ/meta-llama-collective-sentinel","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"],["GlacierEQ/metaagent","L2","AUDIT_BEFORE_ADMISSION","public","ESTATE_DISCOVERED_NOT_HELIX_ADMITTED","ORIGINAL_CANDIDATE"]]},{"company_id":"tesla","display_name":"Tesla","track_state":"MAPPED_NOT_RECRUITER_READY","target_roles":["AI Infrastructure Engineer","Autonomy Software Engineer","Data/Platform Engineer"],"recruiter_thesis":"Streaming occupancy and perception-system reliability with explicit latency/failure boundaries.","gap_or_next_gate":"Requires stream correctness, latency, backpressure, fault, and replay receipts.","non_affiliation":"Independent GlacierEQ work; no Tesla affiliation, endorsement, employment, proprietary access, or production deployment is claimed.","repositories":[["GlacierEQ/tesla-fsd-occupancy-stream","L3","REFERENCE_ONLY","public","HELIX_ADMITTED","ORIGINAL_CANDIDATE"]]}]}
+{
+  "schema": "glaciereq.company-dossiers-shard.v2",
+  "group_id": "platform_infrastructure",
+  "generated_at": "2026-08-04T18:46:00-10:00",
+  "companies": [
+    {
+      "company_id": "microsoft",
+      "display_name": "Microsoft",
+      "track_state": "MAPPED_NOT_RECRUITER_READY",
+      "target_roles": [
+        "AI Platform Engineer",
+        "Cloud Solutions Architect",
+        "Identity/Security Engineer"
+      ],
+      "recruiter_thesis": "Enterprise AI operations, identity, zero-trust, document/operator workflows, and auditable platform control.",
+      "gap_or_next_gate": "Two admitted prototypes; document/operator candidates need provenance/security audit.",
+      "non_affiliation": "Independent GlacierEQ work; no Microsoft affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "repositories": [
+        [
+          "GlacierEQ/microsoft-azure-ops",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/microsoft-identity-zero-trust",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/Microsoft-Build2025-Samples",
+          "L1",
+          "EXCLUDED_AUTHORSHIP",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM_SAMPLE"
+        ],
+        [
+          "GlacierEQ/Office-Word-MCP-Server",
+          "L1",
+          "EXCLUDED_AUTHORSHIP",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM"
+        ],
+        [
+          "GlacierEQ/TextCraft",
+          "L2",
+          "AUDIT_BEFORE_ADMISSION",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/browser-operator-core",
+          "L2",
+          "AUDIT_BEFORE_ADMISSION",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/word-GPT-Plus",
+          "L1",
+          "AUDIT_UPSTREAM_DELTA",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/Autogen_GraphRAG_Ollama",
+          "L1",
+          "PRIVATE_STUDY",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
+    },
+    {
+      "company_id": "aws",
+      "display_name": "AWS",
+      "track_state": "MAPPED_NOT_RECRUITER_READY",
+      "target_roles": [
+        "Cloud AI Engineer",
+        "Solutions Architect",
+        "AI Infrastructure Engineer"
+      ],
+      "recruiter_thesis": "Cloud and accelerator systems, Trainium/Neuron observability, and evidence-bound deployment operations.",
+      "gap_or_next_gate": "Trainium exhibit is thin; products API and private education evidence need originality/privacy/deployment review.",
+      "non_affiliation": "Independent GlacierEQ work; no AWS affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "repositories": [
+        [
+          "GlacierEQ/aws-trainium-neuron-sentinel",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/products-suggestions-api",
+          "L2",
+          "AUDIT_BEFORE_ADMISSION",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/awscloud",
+          "L2",
+          "PRIVATE_EDUCATION_OR_ARCHITECTURE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/aws-toolkit-vscode",
+          "L1",
+          "PRIVATE_UPSTREAM_REFERENCE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM"
+        ]
+      ]
+    },
+    {
+      "company_id": "spacex",
+      "display_name": "SpaceX",
+      "track_state": "MAPPED_NOT_RECRUITER_READY",
+      "target_roles": [
+        "Software Engineer, Avionics",
+        "Mission Systems Engineer",
+        "Infrastructure/Automation Engineer"
+      ],
+      "recruiter_thesis": "Mission systems across telemetry, propulsion, sequencing, ground, autonomy, orbital, conjunction, cryogenics, weather, mesh, control, and thermal protection.",
+      "gap_or_next_gate": "Twenty-one direct SpaceX-named repos exist; all mapped with forward-deployed Starship flight software capabilities.",
+      "non_affiliation": "Independent GlacierEQ work; no SpaceX affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "repositories": [
+        [
+          "GlacierEQ/spacex-autonomy",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-conjunction-sentinel",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-cryogenics",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-ground-network",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-launch-sequencer",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-mission-control",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-orbital-mechanics",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-pad-weather-gate",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-propulsion-monitor",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-satellite-mesh",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-telemetry",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-thermal-protection",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-recovery-dynamics",
+          "L2",
+          "PRIVATE_CANDIDATE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-orbital-assembly",
+          "L2",
+          "PRIVATE_CANDIDATE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-starship-flight-software",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-ai-flight-controller",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-engine-out-compensator",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-stage-separation-optimizer",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-flight-termination-hardener",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-hitl-testbed-automation",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/spacex-in-space-refueling-planner",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
+    },
+    {
+      "company_id": "nvidia",
+      "display_name": "NVIDIA",
+      "track_state": "MAPPED_NOT_RECRUITER_READY",
+      "target_roles": [
+        "AI Infrastructure Engineer",
+        "GPU Reliability Engineer",
+        "Applied Deep Learning Engineer"
+      ],
+      "recruiter_thesis": "GPU reliability, health, gradient protection, circuit breaking, deep reasoning, and agent consensus.",
+      "gap_or_next_gate": "Twelve direct NVIDIA-named repos exist; all mapped with forward-deployed Blackwell/ CUDA capabilities.",
+      "non_affiliation": "Independent GlacierEQ work; no NVIDIA affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "repositories": [
+        [
+          "GlacierEQ/nvidia-deep-reasoning",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-gpu-health",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-agent-consensus",
+          "L2",
+          "PRIVATE_CANDIDATE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-gradient-shield",
+          "L2",
+          "PRIVATE_CANDIDATE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-circuit-breaker",
+          "L2",
+          "PRIVATE_CANDIDATE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-blackwell-fp4-optimizer",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-cuda-graphs-conditional",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-moe-grouped-gemm",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-nvlink-scaler",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-tensorrt-llm-tuner",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-kernel-autotuner",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/nvidia-power-perf-profiler",
+          "L4",
+          "PROMOTED",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
+    },
+    {
+      "company_id": "apple",
+      "display_name": "Apple",
+      "track_state": "MAPPED_NOT_RECRUITER_READY",
+      "target_roles": [
+        "Machine Learning Engineer",
+        "AI/ML Platform Engineer",
+        "Software Engineer, Apple Platforms"
+      ],
+      "recruiter_thesis": "On-device AI, ANE/Metal/Swift performance, Apple automation, and privacy-aware local intelligence.",
+      "gap_or_next_gate": "Public ANE prototype plus private Apple MCP/iOS doctrine; device-level verification required.",
+      "non_affiliation": "Independent GlacierEQ work; no Apple affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "repositories": [
+        [
+          "GlacierEQ/apple-ane-kv-quantizer",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/apple-mcp",
+          "L2",
+          "PRIVATE_CANDIDATE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/Pro-iOS",
+          "L2",
+          "PRIVATE_DOCTRINE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/elex-to-finetuned",
+          "L1",
+          "PRIVATE_STUDY",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
+    },
+    {
+      "company_id": "meta",
+      "display_name": "Meta",
+      "track_state": "MAPPED_NOT_RECRUITER_READY",
+      "target_roles": [
+        "AI Systems Engineer",
+        "Applied AI Engineer"
+      ],
+      "recruiter_thesis": "Llama collective reliability and multi-agent coordination under bounded evidence.",
+      "gap_or_next_gate": "Public exhibit needs distributed-behavior proof; metaagent originality requires audit.",
+      "non_affiliation": "Independent GlacierEQ work; no Meta affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "repositories": [
+        [
+          "GlacierEQ/meta-llama-collective-sentinel",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/metaagent",
+          "L2",
+          "AUDIT_BEFORE_ADMISSION",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
+    },
+    {
+      "company_id": "tesla",
+      "display_name": "Tesla",
+      "track_state": "MAPPED_NOT_RECRUITER_READY",
+      "target_roles": [
+        "AI Infrastructure Engineer",
+        "Autonomy Software Engineer",
+        "Data/Platform Engineer"
+      ],
+      "recruiter_thesis": "Streaming occupancy and perception-system reliability with explicit latency/failure boundaries.",
+      "gap_or_next_gate": "Requires stream correctness, latency, backpressure, fault, and replay receipts.",
+      "non_affiliation": "Independent GlacierEQ work; no Tesla affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "repositories": [
+        [
+          "GlacierEQ/tesla-fsd-occupancy-stream",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "HELIX_ADMITTED",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
+    }
+  ]
+}

@@ -8,8 +8,9 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 REPOS = Path.home() / "job-app" / "repos"
@@ -41,16 +42,12 @@ def analyze(p: Path) -> dict:
     # count test methods lightly
     tmethods = 0
     for f in tests:
-        try:
+        with contextlib.suppress(OSError):
             tmethods += f.read_text(errors="replace").count("def test_")
-        except OSError:
-            pass
     loc = 0
     for f in py[:120]:
-        try:
-            loc += sum(1 for _ in open(f, "rb"))
-        except OSError:
-            pass
+        with contextlib.suppress(OSError), open(f, "rb") as fh:
+            loc += sum(1 for _ in fh)
     go = (p / "go").is_dir() or any(p.glob("**/*_test.go"))
     native = (p / "native").is_dir()
     ts = (p / "ts").is_dir()
@@ -86,7 +83,7 @@ def main() -> int:
 
     counts = Counter(r["tier"] for r in rows)
     board = {
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%MZ"),
         "counts": dict(counts),
         "dod": "excellence/framework/PIP_TO_BODYBUILDER_PIPELINE.md",
         "leaves": rows,

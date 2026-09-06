@@ -1,0 +1,6205 @@
+{
+  "schema": "glaciereq.company-engineering-master-inventory.v1",
+  "generated_at": "2026-08-31T01:46:00-10:00",
+  "authority_sources": [
+    "GlacierEQ/job-app-helix/manifests/unified_deserving_manifest.json",
+    "GlacierEQ/monolith/catalog/company_engineered_repositories.json",
+    "GitHub live repositories with description match: GlacierEQ excellence pack",
+    "Authenticated owner repository census"
+  ],
+  "counts": {
+    "known_unique": 310,
+    "live_exact_name": 302,
+    "needs_lineage_recovery": 8,
+    "live_account_total": 1184,
+    "RECOVER_LINEAGE": 8,
+    "ADVANCE_ENGINEERING": 130,
+    "AUDIT_THEN_BUILD": 74,
+    "CORE_REVIEW": 25,
+    "REVIEW_HISTORY": 42,
+    "REFERENCE_ONLY": 31
+  },
+  "repositories": [
+    {
+      "repository": "Qwen3-Coder",
+      "full_name": "GlacierEQ/Qwen3-Coder",
+      "family": "Alibaba / Qwen",
+      "live_exact_name": false,
+      "private": null,
+      "archived": null,
+      "updated_at": null,
+      "url": null,
+      "action": "RECOVER_LINEAGE",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "github-mcp-server",
+      "full_name": "GlacierEQ/github-mcp-server",
+      "family": "GitHub",
+      "live_exact_name": false,
+      "private": null,
+      "archived": null,
+      "updated_at": null,
+      "url": null,
+      "action": "RECOVER_LINEAGE",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "google_workspace_mcp",
+      "full_name": "GlacierEQ/google_workspace_mcp",
+      "family": "Google / DeepMind",
+      "live_exact_name": false,
+      "private": null,
+      "archived": null,
+      "updated_at": null,
+      "url": null,
+      "action": "RECOVER_LINEAGE",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "browser-operator-core",
+      "full_name": "GlacierEQ/browser-operator-core",
+      "family": "Microsoft",
+      "live_exact_name": false,
+      "private": null,
+      "archived": null,
+      "updated_at": null,
+      "url": null,
+      "action": "RECOVER_LINEAGE",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Z-BACKUP-ollama-notion-apex-orchestrator",
+      "full_name": "GlacierEQ/Z-BACKUP-ollama-notion-apex-orchestrator",
+      "family": "Notion",
+      "live_exact_name": false,
+      "private": null,
+      "archived": null,
+      "updated_at": null,
+      "url": null,
+      "action": "RECOVER_LINEAGE",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Z-BACKUP-apex-pplx-cli",
+      "full_name": "GlacierEQ/Z-BACKUP-apex-pplx-cli",
+      "family": "Perplexity",
+      "live_exact_name": false,
+      "private": null,
+      "archived": null,
+      "updated_at": null,
+      "url": null,
+      "action": "RECOVER_LINEAGE",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "grok-build",
+      "full_name": "GlacierEQ/grok-build",
+      "family": "SpaceX",
+      "live_exact_name": false,
+      "private": null,
+      "archived": null,
+      "updated_at": null,
+      "url": null,
+      "action": "RECOVER_LINEAGE",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "supabase",
+      "full_name": "GlacierEQ/supabase",
+      "family": "Supabase",
+      "live_exact_name": false,
+      "private": null,
+      "archived": null,
+      "updated_at": null,
+      "url": null,
+      "action": "RECOVER_LINEAGE",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "adobe-creative-provenance-gate",
+      "full_name": "GlacierEQ/adobe-creative-provenance-gate",
+      "family": "Adobe",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:22:20Z",
+      "url": "https://github.com/GlacierEQ/adobe-creative-provenance-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "qwen-vl-flash-router",
+      "full_name": "GlacierEQ/qwen-vl-flash-router",
+      "family": "Alibaba / Qwen",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-22T08:57:15Z",
+      "url": "https://github.com/GlacierEQ/qwen-vl-flash-router",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "aws-trainium-neuron-sentinel",
+      "full_name": "GlacierEQ/aws-trainium-neuron-sentinel",
+      "family": "Amazon Web Services",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T05:04:25Z",
+      "url": "https://github.com/GlacierEQ/aws-trainium-neuron-sentinel",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "amd-hetero-placement-contract",
+      "full_name": "GlacierEQ/amd-hetero-placement-contract",
+      "family": "AMD",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:22:39Z",
+      "url": "https://github.com/GlacierEQ/amd-hetero-placement-contract",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "anduril-lattice-dissent-freeze",
+      "full_name": "GlacierEQ/anduril-lattice-dissent-freeze",
+      "family": "Anduril",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:57:35Z",
+      "url": "https://github.com/GlacierEQ/anduril-lattice-dissent-freeze",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "anduril-sensor-health-quorum",
+      "full_name": "GlacierEQ/anduril-sensor-health-quorum",
+      "family": "Anduril",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:35Z",
+      "url": "https://github.com/GlacierEQ/anduril-sensor-health-quorum",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "anduril-track-envelope-compiler",
+      "full_name": "GlacierEQ/anduril-track-envelope-compiler",
+      "family": "Anduril",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:57:58Z",
+      "url": "https://github.com/GlacierEQ/anduril-track-envelope-compiler",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "anthropic-agent-coordinator",
+      "full_name": "GlacierEQ/anthropic-agent-coordinator",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T04:54:52Z",
+      "url": "https://github.com/GlacierEQ/anthropic-agent-coordinator",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "anthropic-constitutional-tool-transcript",
+      "full_name": "GlacierEQ/anthropic-constitutional-tool-transcript",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-11T05:40:49Z",
+      "url": "https://github.com/GlacierEQ/anthropic-constitutional-tool-transcript",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "anthropic-refusal-replay-harness",
+      "full_name": "GlacierEQ/anthropic-refusal-replay-harness",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:57:48Z",
+      "url": "https://github.com/GlacierEQ/anthropic-refusal-replay-harness",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "anthropic-safety-monitor",
+      "full_name": "GlacierEQ/anthropic-safety-monitor",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T04:47:24Z",
+      "url": "https://github.com/GlacierEQ/anthropic-safety-monitor",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "apple-ane-kv-quantizer",
+      "full_name": "GlacierEQ/apple-ane-kv-quantizer",
+      "family": "Apple",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T05:03:32Z",
+      "url": "https://github.com/GlacierEQ/apple-ane-kv-quantizer",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "atlassian-workgraph-intent-twin",
+      "full_name": "GlacierEQ/atlassian-workgraph-intent-twin",
+      "family": "Atlassian",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:22:46Z",
+      "url": "https://github.com/GlacierEQ/atlassian-workgraph-intent-twin",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "baseten-serving-slo-circuit",
+      "full_name": "GlacierEQ/baseten-serving-slo-circuit",
+      "family": "Baseten",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:20Z",
+      "url": "https://github.com/GlacierEQ/baseten-serving-slo-circuit",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "blue-origin-cryo-telemetry-half-life",
+      "full_name": "GlacierEQ/blue-origin-cryo-telemetry-half-life",
+      "family": "Blue Origin",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:22:41Z",
+      "url": "https://github.com/GlacierEQ/blue-origin-cryo-telemetry-half-life",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "cerebras-wafer-batch-admission-gate",
+      "full_name": "GlacierEQ/cerebras-wafer-batch-admission-gate",
+      "family": "Cerebras",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:22:46Z",
+      "url": "https://github.com/GlacierEQ/cerebras-wafer-batch-admission-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "cloudflare-bot-intent-receipt",
+      "full_name": "GlacierEQ/cloudflare-bot-intent-receipt",
+      "family": "Cloudflare",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:57:48Z",
+      "url": "https://github.com/GlacierEQ/cloudflare-bot-intent-receipt",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "cloudflare-edge-cap-mint",
+      "full_name": "GlacierEQ/cloudflare-edge-cap-mint",
+      "family": "Cloudflare",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:22:56Z",
+      "url": "https://github.com/GlacierEQ/cloudflare-edge-cap-mint",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "cloudflare-workers-agent-cap",
+      "full_name": "GlacierEQ/cloudflare-workers-agent-cap",
+      "family": "Cloudflare",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:57:59Z",
+      "url": "https://github.com/GlacierEQ/cloudflare-workers-agent-cap",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "cognition-execution-checkpoint-lattice",
+      "full_name": "GlacierEQ/cognition-execution-checkpoint-lattice",
+      "family": "Cognition",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:19Z",
+      "url": "https://github.com/GlacierEQ/cognition-execution-checkpoint-lattice",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "cohere-retrieval-claim-fence",
+      "full_name": "GlacierEQ/cohere-retrieval-claim-fence",
+      "family": "Cohere",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:43Z",
+      "url": "https://github.com/GlacierEQ/cohere-retrieval-claim-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "comet-browser-agent-bridge",
+      "full_name": "GlacierEQ/comet-browser-agent-bridge",
+      "family": "Comet / Perplexity Browser",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-22T08:56:16Z",
+      "url": "https://github.com/GlacierEQ/comet-browser-agent-bridge",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "robotics-vla-torque-sentinel",
+      "full_name": "GlacierEQ/robotics-vla-torque-sentinel",
+      "family": "Company-adjacent / assignment pending",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-10T06:28:43Z",
+      "url": "https://github.com/GlacierEQ/robotics-vla-torque-sentinel",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "coreweave-rack-power-autopilot",
+      "full_name": "GlacierEQ/coreweave-rack-power-autopilot",
+      "family": "CoreWeave",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:09Z",
+      "url": "https://github.com/GlacierEQ/coreweave-rack-power-autopilot",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "crusoe-rack-to-token-autopilot",
+      "full_name": "GlacierEQ/crusoe-rack-to-token-autopilot",
+      "family": "Crusoe",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:15Z",
+      "url": "https://github.com/GlacierEQ/crusoe-rack-to-token-autopilot",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "cursor-patch-intent-twin",
+      "full_name": "GlacierEQ/cursor-patch-intent-twin",
+      "family": "Cursor",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:14Z",
+      "url": "https://github.com/GlacierEQ/cursor-patch-intent-twin",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "databricks-feature-lineage-passport",
+      "full_name": "GlacierEQ/databricks-feature-lineage-passport",
+      "family": "Databricks",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:07Z",
+      "url": "https://github.com/GlacierEQ/databricks-feature-lineage-passport",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "databricks-notebook-claim-fence",
+      "full_name": "GlacierEQ/databricks-notebook-claim-fence",
+      "family": "Databricks",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:44Z",
+      "url": "https://github.com/GlacierEQ/databricks-notebook-claim-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "deepseek-mla-moe-sentinel",
+      "full_name": "GlacierEQ/deepseek-mla-moe-sentinel",
+      "family": "DeepSeek",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-28T02:09:46Z",
+      "url": "https://github.com/GlacierEQ/deepseek-mla-moe-sentinel",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "elastic-trajectory-index-layout",
+      "full_name": "GlacierEQ/elastic-trajectory-index-layout",
+      "family": "Elastic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:22Z",
+      "url": "https://github.com/GlacierEQ/elastic-trajectory-index-layout",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "fireworks-ai-optimization-safety-envelope",
+      "full_name": "GlacierEQ/fireworks-ai-optimization-safety-envelope",
+      "family": "Fireworks AI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:43Z",
+      "url": "https://github.com/GlacierEQ/fireworks-ai-optimization-safety-envelope",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "github-pr-authority-matrix",
+      "full_name": "GlacierEQ/github-pr-authority-matrix",
+      "family": "GitHub",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:50Z",
+      "url": "https://github.com/GlacierEQ/github-pr-authority-matrix",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "gitlab-pipeline-intent-contract",
+      "full_name": "GlacierEQ/gitlab-pipeline-intent-contract",
+      "family": "GitLab",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:48Z",
+      "url": "https://github.com/GlacierEQ/gitlab-pipeline-intent-contract",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "glaciereq-excellence-core",
+      "full_name": "GlacierEQ/glaciereq-excellence-core",
+      "family": "GlacierEQ Excellence Core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:07Z",
+      "url": "https://github.com/GlacierEQ/glaciereq-excellence-core",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "colossus-gateway",
+      "full_name": "GlacierEQ/colossus-gateway",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-28T02:09:48Z",
+      "url": "https://github.com/GlacierEQ/colossus-gateway",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-2",
+      "full_name": "GlacierEQ/xai-colossus-2",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T21:45:31Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-2",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "glean-enterprise-search-claim-fence",
+      "full_name": "GlacierEQ/glean-enterprise-search-claim-fence",
+      "family": "Glean",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:32Z",
+      "url": "https://github.com/GlacierEQ/glean-enterprise-search-claim-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "deepmind-tpu-mesh-optimizer",
+      "full_name": "GlacierEQ/deepmind-tpu-mesh-optimizer",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T05:04:47Z",
+      "url": "https://github.com/GlacierEQ/deepmind-tpu-mesh-optimizer",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "groq-batch-admission-gate",
+      "full_name": "GlacierEQ/groq-batch-admission-gate",
+      "family": "Groq",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:13Z",
+      "url": "https://github.com/GlacierEQ/groq-batch-admission-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "groq-jitter-envelope-contract",
+      "full_name": "GlacierEQ/groq-jitter-envelope-contract",
+      "family": "Groq",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:19Z",
+      "url": "https://github.com/GlacierEQ/groq-jitter-envelope-contract",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "hugging-face-model-card-provenance-seal",
+      "full_name": "GlacierEQ/hugging-face-model-card-provenance-seal",
+      "family": "Hugging Face",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:00Z",
+      "url": "https://github.com/GlacierEQ/hugging-face-model-card-provenance-seal",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "ibm-governed-tool-catalog",
+      "full_name": "GlacierEQ/ibm-governed-tool-catalog",
+      "family": "IBM",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:50Z",
+      "url": "https://github.com/GlacierEQ/ibm-governed-tool-catalog",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "intel-npu-placement-passport",
+      "full_name": "GlacierEQ/intel-npu-placement-passport",
+      "family": "Intel",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:23:36Z",
+      "url": "https://github.com/GlacierEQ/intel-npu-placement-passport",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "lambda-useful-gpu-minute-contract",
+      "full_name": "GlacierEQ/lambda-useful-gpu-minute-contract",
+      "family": "Lambda",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:44Z",
+      "url": "https://github.com/GlacierEQ/lambda-useful-gpu-minute-contract",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "linear-issue-intent-twin",
+      "full_name": "GlacierEQ/linear-issue-intent-twin",
+      "family": "Linear",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:31Z",
+      "url": "https://github.com/GlacierEQ/linear-issue-intent-twin",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "lockheed-dual-key-actuator-fence",
+      "full_name": "GlacierEQ/lockheed-dual-key-actuator-fence",
+      "family": "Lockheed Martin",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:02Z",
+      "url": "https://github.com/GlacierEQ/lockheed-dual-key-actuator-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "lockheed-evidence-binding-gateway",
+      "full_name": "GlacierEQ/lockheed-evidence-binding-gateway",
+      "family": "Lockheed Martin",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:06Z",
+      "url": "https://github.com/GlacierEQ/lockheed-evidence-binding-gateway",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "lockheed-martin-mission-assurance-gateway",
+      "full_name": "GlacierEQ/lockheed-martin-mission-assurance-gateway",
+      "family": "Lockheed Martin",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:01Z",
+      "url": "https://github.com/GlacierEQ/lockheed-martin-mission-assurance-gateway",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "lockheed-mission-thread-isolator",
+      "full_name": "GlacierEQ/lockheed-mission-thread-isolator",
+      "family": "Lockheed Martin",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:07Z",
+      "url": "https://github.com/GlacierEQ/lockheed-mission-thread-isolator",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "lovable-design-app-synth",
+      "full_name": "GlacierEQ/lovable-design-app-synth",
+      "family": "Lovable",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-22T08:57:33Z",
+      "url": "https://github.com/GlacierEQ/lovable-design-app-synth",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "manus-autonomous-web-agent",
+      "full_name": "GlacierEQ/manus-autonomous-web-agent",
+      "family": "Manus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-22T08:56:08Z",
+      "url": "https://github.com/GlacierEQ/manus-autonomous-web-agent",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "meta-llama-collective-sentinel",
+      "full_name": "GlacierEQ/meta-llama-collective-sentinel",
+      "family": "Meta",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-28T02:10:58Z",
+      "url": "https://github.com/GlacierEQ/meta-llama-collective-sentinel",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "microsoft-azure-ops",
+      "full_name": "GlacierEQ/microsoft-azure-ops",
+      "family": "Microsoft",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:16:21Z",
+      "url": "https://github.com/GlacierEQ/microsoft-azure-ops",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "microsoft-identity-zero-trust",
+      "full_name": "GlacierEQ/microsoft-identity-zero-trust",
+      "family": "Microsoft",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T05:08:31Z",
+      "url": "https://github.com/GlacierEQ/microsoft-identity-zero-trust",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "mistral-open-weight-eval-fence",
+      "full_name": "GlacierEQ/mistral-open-weight-eval-fence",
+      "family": "Mistral",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:05Z",
+      "url": "https://github.com/GlacierEQ/mistral-open-weight-eval-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "modal-ephemeral-sandbox-receipt",
+      "full_name": "GlacierEQ/modal-ephemeral-sandbox-receipt",
+      "family": "Modal",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:27Z",
+      "url": "https://github.com/GlacierEQ/modal-ephemeral-sandbox-receipt",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "mongodb-operational-semantic-twin-index",
+      "full_name": "GlacierEQ/mongodb-operational-semantic-twin-index",
+      "family": "MongoDB",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:03Z",
+      "url": "https://github.com/GlacierEQ/mongodb-operational-semantic-twin-index",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "kimi-mooncake-kv-stream",
+      "full_name": "GlacierEQ/kimi-mooncake-kv-stream",
+      "family": "Moonshot AI / Kimi",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-12T21:16:33Z",
+      "url": "https://github.com/GlacierEQ/kimi-mooncake-kv-stream",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "motherduck-local-cloud-query-passport",
+      "full_name": "GlacierEQ/motherduck-local-cloud-query-passport",
+      "family": "MotherDuck",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:52Z",
+      "url": "https://github.com/GlacierEQ/motherduck-local-cloud-query-passport",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "nasa-command-authority-half-life",
+      "full_name": "GlacierEQ/nasa-command-authority-half-life",
+      "family": "NASA",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:35Z",
+      "url": "https://github.com/GlacierEQ/nasa-command-authority-half-life",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "nasa-telemetry-anomaly-receipt",
+      "full_name": "GlacierEQ/nasa-telemetry-anomaly-receipt",
+      "family": "NASA",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:37Z",
+      "url": "https://github.com/GlacierEQ/nasa-telemetry-anomaly-receipt",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "nebius-cluster-energy-admission",
+      "full_name": "GlacierEQ/nebius-cluster-energy-admission",
+      "family": "Nebius",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:52Z",
+      "url": "https://github.com/GlacierEQ/nebius-cluster-energy-admission",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "notion-mcp-empowerment-engine",
+      "full_name": "GlacierEQ/notion-mcp-empowerment-engine",
+      "family": "Notion",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-31T05:11:42Z",
+      "url": "https://github.com/GlacierEQ/notion-mcp-empowerment-engine",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "notion-workflow-intelligence",
+      "full_name": "GlacierEQ/notion-workflow-intelligence",
+      "family": "Notion",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:13:26Z",
+      "url": "https://github.com/GlacierEQ/notion-workflow-intelligence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "notion-workspace-optimizer",
+      "full_name": "GlacierEQ/notion-workspace-optimizer",
+      "family": "Notion",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:15:39Z",
+      "url": "https://github.com/GlacierEQ/notion-workspace-optimizer",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "nvidia-deep-reasoning",
+      "full_name": "GlacierEQ/nvidia-deep-reasoning",
+      "family": "NVIDIA",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T04:58:18Z",
+      "url": "https://github.com/GlacierEQ/nvidia-deep-reasoning",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "nvidia-gpu-health",
+      "full_name": "GlacierEQ/nvidia-gpu-health",
+      "family": "NVIDIA",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T04:48:42Z",
+      "url": "https://github.com/GlacierEQ/nvidia-gpu-health",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "nvidia-gradient-integrity-quorum",
+      "full_name": "GlacierEQ/nvidia-gradient-integrity-quorum",
+      "family": "NVIDIA",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:38Z",
+      "url": "https://github.com/GlacierEQ/nvidia-gradient-integrity-quorum",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "nvidia-nan-circuit-breaker",
+      "full_name": "GlacierEQ/nvidia-nan-circuit-breaker",
+      "family": "NVIDIA",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T21:00:17Z",
+      "url": "https://github.com/GlacierEQ/nvidia-nan-circuit-breaker",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "openai-reasoning-budget-futures",
+      "full_name": "GlacierEQ/openai-reasoning-budget-futures",
+      "family": "OpenAI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:36Z",
+      "url": "https://github.com/GlacierEQ/openai-reasoning-budget-futures",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "openai-tool-authority-matrix",
+      "full_name": "GlacierEQ/openai-tool-authority-matrix",
+      "family": "OpenAI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:11Z",
+      "url": "https://github.com/GlacierEQ/openai-tool-authority-matrix",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "openai-reasoning-kv-sentinel",
+      "full_name": "GlacierEQ/openai-reasoning-kv-sentinel",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T04:49:57Z",
+      "url": "https://github.com/GlacierEQ/openai-reasoning-kv-sentinel",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "opera-neon-spatial-workspace",
+      "full_name": "GlacierEQ/opera-neon-spatial-workspace",
+      "family": "Opera",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-22T08:57:24Z",
+      "url": "https://github.com/GlacierEQ/opera-neon-spatial-workspace",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "oracle-sovereign-data-boundary-gate",
+      "full_name": "GlacierEQ/oracle-sovereign-data-boundary-gate",
+      "family": "Oracle",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:33Z",
+      "url": "https://github.com/GlacierEQ/oracle-sovereign-data-boundary-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "palantir-action-lineage-graph",
+      "full_name": "GlacierEQ/palantir-action-lineage-graph",
+      "family": "Palantir",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T21:00:12Z",
+      "url": "https://github.com/GlacierEQ/palantir-action-lineage-graph",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "palantir-object-authority-matrix",
+      "full_name": "GlacierEQ/palantir-object-authority-matrix",
+      "family": "Palantir",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:23Z",
+      "url": "https://github.com/GlacierEQ/palantir-object-authority-matrix",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "palantir-ontology-writeback-ledger",
+      "full_name": "GlacierEQ/palantir-ontology-writeback-ledger",
+      "family": "Palantir",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:02Z",
+      "url": "https://github.com/GlacierEQ/palantir-ontology-writeback-ledger",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "pinecone-retrieval-outcome-optimizer",
+      "full_name": "GlacierEQ/pinecone-retrieval-outcome-optimizer",
+      "family": "Pinecone",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:12Z",
+      "url": "https://github.com/GlacierEQ/pinecone-retrieval-outcome-optimizer",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "qdrant-collection-quorum-guard",
+      "full_name": "GlacierEQ/qdrant-collection-quorum-guard",
+      "family": "Qdrant",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:37Z",
+      "url": "https://github.com/GlacierEQ/qdrant-collection-quorum-guard",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "qualcomm-on-device-budget-futures",
+      "full_name": "GlacierEQ/qualcomm-on-device-budget-futures",
+      "family": "Qualcomm",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:40Z",
+      "url": "https://github.com/GlacierEQ/qualcomm-on-device-budget-futures",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "redis-stream-claim-cursor-fence",
+      "full_name": "GlacierEQ/redis-stream-claim-cursor-fence",
+      "family": "Redis",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:13Z",
+      "url": "https://github.com/GlacierEQ/redis-stream-claim-cursor-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "replicate-model-version-pin-gate",
+      "full_name": "GlacierEQ/replicate-model-version-pin-gate",
+      "family": "Replicate",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:24:47Z",
+      "url": "https://github.com/GlacierEQ/replicate-model-version-pin-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "replit-workspace-cap-matrix",
+      "full_name": "GlacierEQ/replit-workspace-cap-matrix",
+      "family": "Replit",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:59Z",
+      "url": "https://github.com/GlacierEQ/replit-workspace-cap-matrix",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "rocket-lab-launch-hold-receipt",
+      "full_name": "GlacierEQ/rocket-lab-launch-hold-receipt",
+      "family": "Rocket Lab",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:19Z",
+      "url": "https://github.com/GlacierEQ/rocket-lab-launch-hold-receipt",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "runpod-pod-preempt-receipt",
+      "full_name": "GlacierEQ/runpod-pod-preempt-receipt",
+      "family": "RunPod",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:45Z",
+      "url": "https://github.com/GlacierEQ/runpod-pod-preempt-receipt",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "salesforce-crm-action-authority",
+      "full_name": "GlacierEQ/salesforce-crm-action-authority",
+      "family": "Salesforce",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:26Z",
+      "url": "https://github.com/GlacierEQ/salesforce-crm-action-authority",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "scale-agreement-budget-allocator",
+      "full_name": "GlacierEQ/scale-agreement-budget-allocator",
+      "family": "Scale AI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:54Z",
+      "url": "https://github.com/GlacierEQ/scale-agreement-budget-allocator",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "scale-ai-label-consensus-fence",
+      "full_name": "GlacierEQ/scale-ai-label-consensus-fence",
+      "family": "Scale AI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:53Z",
+      "url": "https://github.com/GlacierEQ/scale-ai-label-consensus-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "scale-eval-poison-sentinel",
+      "full_name": "GlacierEQ/scale-eval-poison-sentinel",
+      "family": "Scale AI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:37Z",
+      "url": "https://github.com/GlacierEQ/scale-eval-poison-sentinel",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "scale-label-collusion-bound",
+      "full_name": "GlacierEQ/scale-label-collusion-bound",
+      "family": "Scale AI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:35Z",
+      "url": "https://github.com/GlacierEQ/scale-label-collusion-bound",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "snowflake-cortex-claim-bound",
+      "full_name": "GlacierEQ/snowflake-cortex-claim-bound",
+      "family": "Snowflake",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:34Z",
+      "url": "https://github.com/GlacierEQ/snowflake-cortex-claim-bound",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "snowflake-query-intent-ledger",
+      "full_name": "GlacierEQ/snowflake-query-intent-ledger",
+      "family": "Snowflake",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:35Z",
+      "url": "https://github.com/GlacierEQ/snowflake-query-intent-ledger",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "snowflake-warehouse-spend-circuit",
+      "full_name": "GlacierEQ/snowflake-warehouse-spend-circuit",
+      "family": "Snowflake",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:41Z",
+      "url": "https://github.com/GlacierEQ/snowflake-warehouse-spend-circuit",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "sourcegraph-code-nav-intent-gate",
+      "full_name": "GlacierEQ/sourcegraph-code-nav-intent-gate",
+      "family": "Sourcegraph",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:16Z",
+      "url": "https://github.com/GlacierEQ/sourcegraph-code-nav-intent-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "spacex-autonomy",
+      "full_name": "GlacierEQ/spacex-autonomy",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T04:53:41Z",
+      "url": "https://github.com/GlacierEQ/spacex-autonomy",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-conjunction-sentinel",
+      "full_name": "GlacierEQ/spacex-conjunction-sentinel",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:14:43Z",
+      "url": "https://github.com/GlacierEQ/spacex-conjunction-sentinel",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-cryogenics",
+      "full_name": "GlacierEQ/spacex-cryogenics",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:14:38Z",
+      "url": "https://github.com/GlacierEQ/spacex-cryogenics",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-ground-network",
+      "full_name": "GlacierEQ/spacex-ground-network",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:15:19Z",
+      "url": "https://github.com/GlacierEQ/spacex-ground-network",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-hold-reason-compiler",
+      "full_name": "GlacierEQ/spacex-hold-reason-compiler",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:41Z",
+      "url": "https://github.com/GlacierEQ/spacex-hold-reason-compiler",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "spacex-launch-sequencer",
+      "full_name": "GlacierEQ/spacex-launch-sequencer",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-22T11:08:11Z",
+      "url": "https://github.com/GlacierEQ/spacex-launch-sequencer",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-mission-control",
+      "full_name": "GlacierEQ/spacex-mission-control",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-25T02:02:33Z",
+      "url": "https://github.com/GlacierEQ/spacex-mission-control",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-mission-thread-quorum",
+      "full_name": "GlacierEQ/spacex-mission-thread-quorum",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:15Z",
+      "url": "https://github.com/GlacierEQ/spacex-mission-thread-quorum",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "spacex-orbital-mechanics",
+      "full_name": "GlacierEQ/spacex-orbital-mechanics",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-20T09:07:33Z",
+      "url": "https://github.com/GlacierEQ/spacex-orbital-mechanics",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-pad-weather-gate",
+      "full_name": "GlacierEQ/spacex-pad-weather-gate",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-22T09:01:33Z",
+      "url": "https://github.com/GlacierEQ/spacex-pad-weather-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-propulsion-monitor",
+      "full_name": "GlacierEQ/spacex-propulsion-monitor",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-20T09:11:42Z",
+      "url": "https://github.com/GlacierEQ/spacex-propulsion-monitor",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-satellite-mesh",
+      "full_name": "GlacierEQ/spacex-satellite-mesh",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:12:48Z",
+      "url": "https://github.com/GlacierEQ/spacex-satellite-mesh",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-telemetry",
+      "full_name": "GlacierEQ/spacex-telemetry",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:11:45Z",
+      "url": "https://github.com/GlacierEQ/spacex-telemetry",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-thermal-protection",
+      "full_name": "GlacierEQ/spacex-thermal-protection",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T21:45:23Z",
+      "url": "https://github.com/GlacierEQ/spacex-thermal-protection",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "supabase-policy-carrying-ai-data-plane",
+      "full_name": "GlacierEQ/supabase-policy-carrying-ai-data-plane",
+      "family": "Supabase",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:15Z",
+      "url": "https://github.com/GlacierEQ/supabase-policy-carrying-ai-data-plane",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "tasklet-micro-agent-engine",
+      "full_name": "GlacierEQ/tasklet-micro-agent-engine",
+      "family": "Tasklet",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-18T04:50:22Z",
+      "url": "https://github.com/GlacierEQ/tasklet-micro-agent-engine",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "tesla-fsd-occupancy-stream",
+      "full_name": "GlacierEQ/tesla-fsd-occupancy-stream",
+      "family": "Tesla",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T05:11:54Z",
+      "url": "https://github.com/GlacierEQ/tesla-fsd-occupancy-stream",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "together-ai-open-model-fidelity-passport",
+      "full_name": "GlacierEQ/together-ai-open-model-fidelity-passport",
+      "family": "Together AI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:23Z",
+      "url": "https://github.com/GlacierEQ/together-ai-open-model-fidelity-passport",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "vercel-deploy-claim-compiler",
+      "full_name": "GlacierEQ/vercel-deploy-claim-compiler",
+      "family": "Vercel",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:14Z",
+      "url": "https://github.com/GlacierEQ/vercel-deploy-claim-compiler",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "vercel-deploy-preview-authority",
+      "full_name": "GlacierEQ/vercel-deploy-preview-authority",
+      "family": "Vercel",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:02Z",
+      "url": "https://github.com/GlacierEQ/vercel-deploy-preview-authority",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "vercel-edge-agent-cap-token",
+      "full_name": "GlacierEQ/vercel-edge-agent-cap-token",
+      "family": "Vercel",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:20Z",
+      "url": "https://github.com/GlacierEQ/vercel-edge-agent-cap-token",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "vercel-preview-truth-gate",
+      "full_name": "GlacierEQ/vercel-preview-truth-gate",
+      "family": "Vercel",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:13Z",
+      "url": "https://github.com/GlacierEQ/vercel-preview-truth-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "waymo-phantom-freespace-certificate",
+      "full_name": "GlacierEQ/waymo-phantom-freespace-certificate",
+      "family": "Waymo",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:11Z",
+      "url": "https://github.com/GlacierEQ/waymo-phantom-freespace-certificate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "waymo-uncertainty-lane-graph",
+      "full_name": "GlacierEQ/waymo-uncertainty-lane-graph",
+      "family": "Waymo",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:28:23Z",
+      "url": "https://github.com/GlacierEQ/waymo-uncertainty-lane-graph",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "weaviate-hybrid-search-claim-fence",
+      "full_name": "GlacierEQ/weaviate-hybrid-search-claim-fence",
+      "family": "Weaviate",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:26:07Z",
+      "url": "https://github.com/GlacierEQ/weaviate-hybrid-search-claim-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "windsurf-cascade-intent-twin",
+      "full_name": "GlacierEQ/windsurf-cascade-intent-twin",
+      "family": "Windsurf",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:27:11Z",
+      "url": "https://github.com/GlacierEQ/windsurf-cascade-intent-twin",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "xai-actuation-receipt-bus",
+      "full_name": "GlacierEQ/xai-actuation-receipt-bus",
+      "family": "xAI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:15Z",
+      "url": "https://github.com/GlacierEQ/xai-actuation-receipt-bus",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "xai-claim-promotion-fence",
+      "full_name": "GlacierEQ/xai-claim-promotion-fence",
+      "family": "xAI",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T20:58:01Z",
+      "url": "https://github.com/GlacierEQ/xai-claim-promotion-fence",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "colossus-training-flux",
+      "full_name": "GlacierEQ/colossus-training-flux",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-28T02:09:18Z",
+      "url": "https://github.com/GlacierEQ/colossus-training-flux",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "grokodile",
+      "full_name": "GlacierEQ/grokodile",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-28T02:10:36Z",
+      "url": "https://github.com/GlacierEQ/grokodile",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-cooling",
+      "full_name": "GlacierEQ/xai-colossus-cooling",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T21:44:51Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-cooling",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-energy",
+      "full_name": "GlacierEQ/xai-colossus-energy",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T21:46:30Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-energy",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-nanosphere",
+      "full_name": "GlacierEQ/xai-colossus-nanosphere",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T21:45:56Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-nanosphere",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-security",
+      "full_name": "GlacierEQ/xai-colossus-security",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T21:45:08Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-security",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-servers",
+      "full_name": "GlacierEQ/xai-colossus-servers",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:13:06Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-servers",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "current_preparation"
+      ],
+      "unified_source_state": "in_preparation",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "zoox-fleet-skill-promotion-gate",
+      "full_name": "GlacierEQ/zoox-fleet-skill-promotion-gate",
+      "family": "Zoox",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:25:52Z",
+      "url": "https://github.com/GlacierEQ/zoox-fleet-skill-promotion-gate",
+      "action": "ADVANCE_ENGINEERING",
+      "sources": [
+        "excellence_pack"
+      ],
+      "historical_states": [],
+      "unified_source_state": null,
+      "helix_admitted": null,
+      "has_solidify_record": null
+    },
+    {
+      "repository": "awscloud",
+      "full_name": "GlacierEQ/awscloud",
+      "family": "Amazon Web Services",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-24T01:36:09Z",
+      "url": "https://github.com/GlacierEQ/awscloud",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "products-suggestions-api",
+      "full_name": "GlacierEQ/products-suggestions-api",
+      "family": "Amazon Web Services",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:09:01Z",
+      "url": "https://github.com/GlacierEQ/products-suggestions-api",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "anthropic-alignment-drift",
+      "full_name": "GlacierEQ/anthropic-alignment-drift",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:03Z",
+      "url": "https://github.com/GlacierEQ/anthropic-alignment-drift",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "anthropic-byzantine-consensus",
+      "full_name": "GlacierEQ/anthropic-byzantine-consensus",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:31Z",
+      "url": "https://github.com/GlacierEQ/anthropic-byzantine-consensus",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "anthropic-cross-domain-fusion",
+      "full_name": "GlacierEQ/anthropic-cross-domain-fusion",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:26Z",
+      "url": "https://github.com/GlacierEQ/anthropic-cross-domain-fusion",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "apple-mcp",
+      "full_name": "GlacierEQ/apple-mcp",
+      "family": "Apple",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-18T01:47:10Z",
+      "url": "https://github.com/GlacierEQ/apple-mcp",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Pro-iOS",
+      "full_name": "GlacierEQ/Pro-iOS",
+      "family": "Apple",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-31T04:45:38Z",
+      "url": "https://github.com/GlacierEQ/Pro-iOS",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "comet-agent",
+      "full_name": "GlacierEQ/comet-agent",
+      "family": "Comet / Perplexity Browser",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T17:54:56Z",
+      "url": "https://github.com/GlacierEQ/comet-agent",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "comet-extension",
+      "full_name": "GlacierEQ/comet-extension",
+      "family": "Comet / Perplexity Browser",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:12:23Z",
+      "url": "https://github.com/GlacierEQ/comet-extension",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "comet-memory-integration",
+      "full_name": "GlacierEQ/comet-memory-integration",
+      "family": "Comet / Perplexity Browser",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-23T21:12:01Z",
+      "url": "https://github.com/GlacierEQ/comet-memory-integration",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "comet-voice-module-tests",
+      "full_name": "GlacierEQ/comet-voice-module-tests",
+      "family": "Comet / Perplexity Browser",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:07:51Z",
+      "url": "https://github.com/GlacierEQ/comet-voice-module-tests",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "coreweave-circuit-breaker",
+      "full_name": "GlacierEQ/coreweave-circuit-breaker",
+      "family": "CoreWeave",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:20Z",
+      "url": "https://github.com/GlacierEQ/coreweave-circuit-breaker",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "coreweave-entropy-engine",
+      "full_name": "GlacierEQ/coreweave-entropy-engine",
+      "family": "CoreWeave",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T18:05:30Z",
+      "url": "https://github.com/GlacierEQ/coreweave-entropy-engine",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "coreweave-shadow-monitor",
+      "full_name": "GlacierEQ/coreweave-shadow-monitor",
+      "family": "CoreWeave",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-29T01:50:04Z",
+      "url": "https://github.com/GlacierEQ/coreweave-shadow-monitor",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "coreweave-state-fusion",
+      "full_name": "GlacierEQ/coreweave-state-fusion",
+      "family": "CoreWeave",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:23Z",
+      "url": "https://github.com/GlacierEQ/coreweave-state-fusion",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "coreweave-temporal-router",
+      "full_name": "GlacierEQ/coreweave-temporal-router",
+      "family": "CoreWeave",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-19T12:46:14Z",
+      "url": "https://github.com/GlacierEQ/coreweave-temporal-router",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "apex-github-worker",
+      "full_name": "GlacierEQ/apex-github-worker",
+      "family": "GitHub",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-15T20:17:42Z",
+      "url": "https://github.com/GlacierEQ/apex-github-worker",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "github-agent-orchestrator",
+      "full_name": "GlacierEQ/github-agent-orchestrator",
+      "family": "GitHub",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-26T01:21:42Z",
+      "url": "https://github.com/GlacierEQ/github-agent-orchestrator",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "github-repo-enrichment-engine",
+      "full_name": "GlacierEQ/github-repo-enrichment-engine",
+      "family": "GitHub",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:08:32Z",
+      "url": "https://github.com/GlacierEQ/github-repo-enrichment-engine",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "public-actions-runner-host",
+      "full_name": "GlacierEQ/public-actions-runner-host",
+      "family": "GitHub",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T08:31:38Z",
+      "url": "https://github.com/GlacierEQ/public-actions-runner-host",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "apex-gemma",
+      "full_name": "GlacierEQ/apex-gemma",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T08:44:01Z",
+      "url": "https://github.com/GlacierEQ/apex-gemma",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "deepmind-core-think",
+      "full_name": "GlacierEQ/deepmind-core-think",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:14Z",
+      "url": "https://github.com/GlacierEQ/deepmind-core-think",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "deepmind-orbital-surfing",
+      "full_name": "GlacierEQ/deepmind-orbital-surfing",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:17Z",
+      "url": "https://github.com/GlacierEQ/deepmind-orbital-surfing",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "deepmind-predictive-handoff",
+      "full_name": "GlacierEQ/deepmind-predictive-handoff",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:34Z",
+      "url": "https://github.com/GlacierEQ/deepmind-predictive-handoff",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "deepmind-request-router",
+      "full_name": "GlacierEQ/deepmind-request-router",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T18:05:28Z",
+      "url": "https://github.com/GlacierEQ/deepmind-request-router",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "deepmind-temporal-router",
+      "full_name": "GlacierEQ/deepmind-temporal-router",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-29T01:50:32Z",
+      "url": "https://github.com/GlacierEQ/deepmind-temporal-router",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "google-drive-mcp",
+      "full_name": "GlacierEQ/google-drive-mcp",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-25T23:59:32Z",
+      "url": "https://github.com/GlacierEQ/google-drive-mcp",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Pro-Gemma",
+      "full_name": "GlacierEQ/Pro-Gemma",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-03T20:25:58Z",
+      "url": "https://github.com/GlacierEQ/Pro-Gemma",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "run-gemini-cli",
+      "full_name": "GlacierEQ/run-gemini-cli",
+      "family": "Google / DeepMind",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:34:58Z",
+      "url": "https://github.com/GlacierEQ/run-gemini-cli",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "groqchat",
+      "full_name": "GlacierEQ/groqchat",
+      "family": "Groq",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:14:50Z",
+      "url": "https://github.com/GlacierEQ/groqchat",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "metaagent",
+      "full_name": "GlacierEQ/metaagent",
+      "family": "Meta",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:34:07Z",
+      "url": "https://github.com/GlacierEQ/metaagent",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "TextCraft",
+      "full_name": "GlacierEQ/TextCraft",
+      "family": "Microsoft",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:24:20Z",
+      "url": "https://github.com/GlacierEQ/TextCraft",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "word-GPT-Plus",
+      "full_name": "GlacierEQ/word-GPT-Plus",
+      "family": "Microsoft",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:26:01Z",
+      "url": "https://github.com/GlacierEQ/word-GPT-Plus",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "kimi-linear",
+      "full_name": "GlacierEQ/kimi-linear",
+      "family": "Moonshot AI / Kimi",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:36:56Z",
+      "url": "https://github.com/GlacierEQ/kimi-linear",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "nvidia-agent-consensus",
+      "full_name": "GlacierEQ/nvidia-agent-consensus",
+      "family": "NVIDIA",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:29Z",
+      "url": "https://github.com/GlacierEQ/nvidia-agent-consensus",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "nvidia-circuit-breaker",
+      "full_name": "GlacierEQ/nvidia-circuit-breaker",
+      "family": "NVIDIA",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-29T01:42:07Z",
+      "url": "https://github.com/GlacierEQ/nvidia-circuit-breaker",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "nvidia-gradient-shield",
+      "full_name": "GlacierEQ/nvidia-gradient-shield",
+      "family": "NVIDIA",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T19:57:06Z",
+      "url": "https://github.com/GlacierEQ/nvidia-gradient-shield",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "chatgpt-vercel",
+      "full_name": "GlacierEQ/chatgpt-vercel",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-04T02:20:39Z",
+      "url": "https://github.com/GlacierEQ/chatgpt-vercel",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company",
+        "unprocessed"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "codex_py2cpp",
+      "full_name": "GlacierEQ/codex_py2cpp",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:32:09Z",
+      "url": "https://github.com/GlacierEQ/codex_py2cpp",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "jupyterlab-codex",
+      "full_name": "GlacierEQ/jupyterlab-codex",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:32:31Z",
+      "url": "https://github.com/GlacierEQ/jupyterlab-codex",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "MCP-Bridge",
+      "full_name": "GlacierEQ/MCP-Bridge",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:57:30Z",
+      "url": "https://github.com/GlacierEQ/MCP-Bridge",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openai-assistant-swarm",
+      "full_name": "GlacierEQ/openai-assistant-swarm",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:56:08Z",
+      "url": "https://github.com/GlacierEQ/openai-assistant-swarm",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openai-codex-mcp",
+      "full_name": "GlacierEQ/openai-codex-mcp",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:33:11Z",
+      "url": "https://github.com/GlacierEQ/openai-codex-mcp",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "project_openai_codex",
+      "full_name": "GlacierEQ/project_openai_codex",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:31:46Z",
+      "url": "https://github.com/GlacierEQ/project_openai_codex",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "vim_codex",
+      "full_name": "GlacierEQ/vim_codex",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:32:42Z",
+      "url": "https://github.com/GlacierEQ/vim_codex",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "zsh_codex",
+      "full_name": "GlacierEQ/zsh_codex",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:31:50Z",
+      "url": "https://github.com/GlacierEQ/zsh_codex",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "perplexity-ai-app",
+      "full_name": "GlacierEQ/perplexity-ai-app",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:55:40Z",
+      "url": "https://github.com/GlacierEQ/perplexity-ai-app",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "perplexity-ai-export",
+      "full_name": "GlacierEQ/perplexity-ai-export",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:54:43Z",
+      "url": "https://github.com/GlacierEQ/perplexity-ai-export",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "perplexity-app-connector-bridge",
+      "full_name": "GlacierEQ/perplexity-app-connector-bridge",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-25T23:55:49Z",
+      "url": "https://github.com/GlacierEQ/perplexity-app-connector-bridge",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "perplexity-enhancement-mcp",
+      "full_name": "GlacierEQ/perplexity-enhancement-mcp",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-22T00:20:39Z",
+      "url": "https://github.com/GlacierEQ/perplexity-enhancement-mcp",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "perplexity-extension",
+      "full_name": "GlacierEQ/perplexity-extension",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-25T23:55:52Z",
+      "url": "https://github.com/GlacierEQ/perplexity-extension",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "perplexity-goose-integration",
+      "full_name": "GlacierEQ/perplexity-goose-integration",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:08:30Z",
+      "url": "https://github.com/GlacierEQ/perplexity-goose-integration",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "perplexity-node",
+      "full_name": "GlacierEQ/perplexity-node",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:55:44Z",
+      "url": "https://github.com/GlacierEQ/perplexity-node",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "perplexity-voice-integration",
+      "full_name": "GlacierEQ/perplexity-voice-integration",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:10:37Z",
+      "url": "https://github.com/GlacierEQ/perplexity-voice-integration",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-orbital-assembly",
+      "full_name": "GlacierEQ/spacex-orbital-assembly",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T17:55:26Z",
+      "url": "https://github.com/GlacierEQ/spacex-orbital-assembly",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "spacex-recovery-dynamics",
+      "full_name": "GlacierEQ/spacex-recovery-dynamics",
+      "family": "SpaceX",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T17:55:23Z",
+      "url": "https://github.com/GlacierEQ/spacex-recovery-dynamics",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "aspen-grove-supabase",
+      "full_name": "GlacierEQ/aspen-grove-supabase",
+      "family": "Supabase",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-23T21:34:54Z",
+      "url": "https://github.com/GlacierEQ/aspen-grove-supabase",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "supabase-grafana",
+      "full_name": "GlacierEQ/supabase-grafana",
+      "family": "Supabase",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:32:41Z",
+      "url": "https://github.com/GlacierEQ/supabase-grafana",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "supabase-mcp",
+      "full_name": "GlacierEQ/supabase-mcp",
+      "family": "Supabase",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-06-04T00:23:40Z",
+      "url": "https://github.com/GlacierEQ/supabase-mcp",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "ai-sdk-provider",
+      "full_name": "GlacierEQ/ai-sdk-provider",
+      "family": "Vercel",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:03:36Z",
+      "url": "https://github.com/GlacierEQ/ai-sdk-provider",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "colossus-build-blueprint",
+      "full_name": "GlacierEQ/colossus-build-blueprint",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T08:45:33Z",
+      "url": "https://github.com/GlacierEQ/colossus-build-blueprint",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "colossus-realignment",
+      "full_name": "GlacierEQ/colossus-realignment",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T08:45:36Z",
+      "url": "https://github.com/GlacierEQ/colossus-realignment",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "colossus2-realignment",
+      "full_name": "GlacierEQ/colossus2-realignment",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-22T00:21:26Z",
+      "url": "https://github.com/GlacierEQ/colossus2-realignment",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "godmind-colossus-gateway",
+      "full_name": "GlacierEQ/godmind-colossus-gateway",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-12T20:58:09Z",
+      "url": "https://github.com/GlacierEQ/godmind-colossus-gateway",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "grok-build-nix",
+      "full_name": "GlacierEQ/grok-build-nix",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-06-21T16:05:10Z",
+      "url": "https://github.com/GlacierEQ/grok-build-nix",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Pro-Colossus",
+      "full_name": "GlacierEQ/Pro-Colossus",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-29T00:55:54Z",
+      "url": "https://github.com/GlacierEQ/Pro-Colossus",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Pro-xAI",
+      "full_name": "GlacierEQ/Pro-xAI",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-22T00:20:17Z",
+      "url": "https://github.com/GlacierEQ/Pro-xAI",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "vscode-grok",
+      "full_name": "GlacierEQ/vscode-grok",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:07:09Z",
+      "url": "https://github.com/GlacierEQ/vscode-grok",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossal-cooling",
+      "full_name": "GlacierEQ/xai-colossal-cooling",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-12T21:38:33Z",
+      "url": "https://github.com/GlacierEQ/xai-colossal-cooling",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-build",
+      "full_name": "GlacierEQ/xai-colossus-build",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:25:41Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-build",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-community",
+      "full_name": "GlacierEQ/xai-colossus-community",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:25:43Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-community",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-microcode",
+      "full_name": "GlacierEQ/xai-colossus-microcode",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-16T19:02:23Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-microcode",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-waterplant",
+      "full_name": "GlacierEQ/xai-colossus-waterplant",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-16T19:02:29Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-waterplant",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-legal-intelligence",
+      "full_name": "GlacierEQ/xai-legal-intelligence",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-22T00:10:15Z",
+      "url": "https://github.com/GlacierEQ/xai-legal-intelligence",
+      "action": "AUDIT_THEN_BUILD",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "unprocessed"
+      ],
+      "unified_source_state": "needs_work",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "1FDV-23-0001009-FEDERAL-WARFARE",
+      "full_name": "GlacierEQ/1FDV-23-0001009-FEDERAL-WARFARE",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-25T15:30:18Z",
+      "url": "https://github.com/GlacierEQ/1FDV-23-0001009-FEDERAL-WARFARE",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "AEON-777",
+      "full_name": "GlacierEQ/AEON-777",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-29T20:59:13Z",
+      "url": "https://github.com/GlacierEQ/AEON-777",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "AEON-BRAIN-777",
+      "full_name": "GlacierEQ/AEON-BRAIN-777",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-21T10:28:33Z",
+      "url": "https://github.com/GlacierEQ/AEON-BRAIN-777",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "AKOS",
+      "full_name": "GlacierEQ/AKOS",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-31T09:28:39Z",
+      "url": "https://github.com/GlacierEQ/AKOS",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "apex-cli",
+      "full_name": "GlacierEQ/apex-cli",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T02:14:14Z",
+      "url": "https://github.com/GlacierEQ/apex-cli",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "apex-control-plane",
+      "full_name": "GlacierEQ/apex-control-plane",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-29T22:20:04Z",
+      "url": "https://github.com/GlacierEQ/apex-control-plane",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "apex-stack",
+      "full_name": "GlacierEQ/apex-stack",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-13T09:03:27Z",
+      "url": "https://github.com/GlacierEQ/apex-stack",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "aspen-grove-memory",
+      "full_name": "GlacierEQ/aspen-grove-memory",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-29T21:07:03Z",
+      "url": "https://github.com/GlacierEQ/aspen-grove-memory",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "CASE-1FDV-23-0001009",
+      "full_name": "GlacierEQ/CASE-1FDV-23-0001009",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-31T09:14:24Z",
+      "url": "https://github.com/GlacierEQ/CASE-1FDV-23-0001009",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "ECHO",
+      "full_name": "GlacierEQ/ECHO",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-30T23:40:27Z",
+      "url": "https://github.com/GlacierEQ/ECHO",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "admitted_boundary",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "glaciereq-mcp-stack",
+      "full_name": "GlacierEQ/glaciereq-mcp-stack",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-28T02:09:53Z",
+      "url": "https://github.com/GlacierEQ/glaciereq-mcp-stack",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "admitted_boundary",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "GlacierEQ_Swarm",
+      "full_name": "GlacierEQ/GlacierEQ_Swarm",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T11:44:49Z",
+      "url": "https://github.com/GlacierEQ/GlacierEQ_Swarm",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "job-app-helix",
+      "full_name": "GlacierEQ/job-app-helix",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T06:27:42Z",
+      "url": "https://github.com/GlacierEQ/job-app-helix",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "job-application",
+      "full_name": "GlacierEQ/job-application",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T08:54:09Z",
+      "url": "https://github.com/GlacierEQ/job-application",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "admitted_boundary",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "JOB-RESUME-BUILDER-",
+      "full_name": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-30T00:01:57Z",
+      "url": "https://github.com/GlacierEQ/JOB-RESUME-BUILDER-",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "admitted_boundary",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "mastermind",
+      "full_name": "GlacierEQ/mastermind",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-31T09:25:40Z",
+      "url": "https://github.com/GlacierEQ/mastermind",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "monolith",
+      "full_name": "GlacierEQ/monolith",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-31T11:26:32Z",
+      "url": "https://github.com/GlacierEQ/monolith",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openclaw",
+      "full_name": "GlacierEQ/openclaw",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-28T02:11:30Z",
+      "url": "https://github.com/GlacierEQ/openclaw",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "admitted_boundary",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "pro-code",
+      "full_name": "GlacierEQ/pro-code",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T07:39:57Z",
+      "url": "https://github.com/GlacierEQ/pro-code",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Pro-comet-agent",
+      "full_name": "GlacierEQ/Pro-comet-agent",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-28T02:08:03Z",
+      "url": "https://github.com/GlacierEQ/Pro-comet-agent",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "admitted_boundary",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "sigma-glue",
+      "full_name": "GlacierEQ/sigma-glue",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-08T21:40:59Z",
+      "url": "https://github.com/GlacierEQ/sigma-glue",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "admitted_boundary",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "spiral-engine",
+      "full_name": "GlacierEQ/spiral-engine",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T01:00:27Z",
+      "url": "https://github.com/GlacierEQ/spiral-engine",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "SUPERLUMINAL_CASE_MATRIX",
+      "full_name": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-31T09:24:44Z",
+      "url": "https://github.com/GlacierEQ/SUPERLUMINAL_CASE_MATRIX",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "the-tower-of-babel",
+      "full_name": "GlacierEQ/the-tower-of-babel",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-31T05:04:32Z",
+      "url": "https://github.com/GlacierEQ/the-tower-of-babel",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "admitted_boundary",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "token_saver",
+      "full_name": "GlacierEQ/token_saver",
+      "family": "GlacierEQ-core",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T21:43:01Z",
+      "url": "https://github.com/GlacierEQ/token_saver",
+      "action": "CORE_REVIEW",
+      "sources": [
+        "unified_deserving"
+      ],
+      "historical_states": [],
+      "unified_source_state": "core_wholes",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "claude-code-kimi-groq",
+      "full_name": "GlacierEQ/claude-code-kimi-groq",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:08:44Z",
+      "url": "https://github.com/GlacierEQ/claude-code-kimi-groq",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "chatgpt_infinity",
+      "full_name": "GlacierEQ/chatgpt_infinity",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:08:19Z",
+      "url": "https://github.com/GlacierEQ/chatgpt_infinity",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "gpt-ai-assistant",
+      "full_name": "GlacierEQ/gpt-ai-assistant",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:59:28Z",
+      "url": "https://github.com/GlacierEQ/gpt-ai-assistant",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-community-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-community-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:17:42Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-community-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-community-omega",
+      "full_name": "GlacierEQ/xai-aeon777-community-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:17:47Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-community-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-cooling-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-cooling-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:17:52Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-cooling-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-cooling-omega",
+      "full_name": "GlacierEQ/xai-aeon777-cooling-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:17:57Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-cooling-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-energy-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-energy-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:01Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-energy-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-energy-omega",
+      "full_name": "GlacierEQ/xai-aeon777-energy-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:08Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-energy-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-justice-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-justice-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T02:15:51Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-justice-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-justice-omega",
+      "full_name": "GlacierEQ/xai-aeon777-justice-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T02:06:22Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-justice-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-microcode-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-microcode-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:18Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-microcode-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-microcode-omega",
+      "full_name": "GlacierEQ/xai-aeon777-microcode-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:23Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-microcode-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-nanosphere-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-nanosphere-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:28Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-nanosphere-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-nanosphere-omega",
+      "full_name": "GlacierEQ/xai-aeon777-nanosphere-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:34Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-nanosphere-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-nexus-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-nexus-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:39Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-nexus-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-nexus-omega",
+      "full_name": "GlacierEQ/xai-aeon777-nexus-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:44Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-nexus-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-security-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-security-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:49Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-security-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-security-omega",
+      "full_name": "GlacierEQ/xai-aeon777-security-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:18:54Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-security-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-servers-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-servers-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:19:00Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-servers-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-aeon777-servers-omega",
+      "full_name": "GlacierEQ/xai-aeon777-servers-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:19:05Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-servers-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-waterplant-alpha",
+      "full_name": "GlacierEQ/xai-aeon777-waterplant-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:19:10Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-waterplant-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-aeon777-waterplant-omega",
+      "full_name": "GlacierEQ/xai-aeon777-waterplant-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-06-25T06:19:15Z",
+      "url": "https://github.com/GlacierEQ/xai-aeon777-waterplant-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-community-alpha",
+      "full_name": "GlacierEQ/xai-colossus-community-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:25:44Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-community-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-community-omega",
+      "full_name": "GlacierEQ/xai-colossus-community-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:25:47Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-community-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-cooling-alpha",
+      "full_name": "GlacierEQ/xai-colossus-cooling-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:13:09Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-cooling-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-cooling-omega",
+      "full_name": "GlacierEQ/xai-colossus-cooling-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:13:57Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-cooling-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-energy-alpha",
+      "full_name": "GlacierEQ/xai-colossus-energy-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:16:08Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-energy-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": true,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-energy-omega",
+      "full_name": "GlacierEQ/xai-colossus-energy-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-23T23:13:24Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-energy-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": true,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-microcode-alpha",
+      "full_name": "GlacierEQ/xai-colossus-microcode-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:03Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-microcode-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-microcode-omega",
+      "full_name": "GlacierEQ/xai-colossus-microcode-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:04Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-microcode-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-nanosphere-alpha",
+      "full_name": "GlacierEQ/xai-colossus-nanosphere-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:08Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-nanosphere-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-nanosphere-omega",
+      "full_name": "GlacierEQ/xai-colossus-nanosphere-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:09Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-nanosphere-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-nexus-alpha",
+      "full_name": "GlacierEQ/xai-colossus-nexus-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:11Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-nexus-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-nexus-omega",
+      "full_name": "GlacierEQ/xai-colossus-nexus-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:13Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-nexus-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-security-alpha",
+      "full_name": "GlacierEQ/xai-colossus-security-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:16Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-security-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-security-omega",
+      "full_name": "GlacierEQ/xai-colossus-security-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:18Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-security-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-servers-alpha",
+      "full_name": "GlacierEQ/xai-colossus-servers-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:22Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-servers-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-servers-omega",
+      "full_name": "GlacierEQ/xai-colossus-servers-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:26Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-servers-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "xai-colossus-waterplant-alpha",
+      "full_name": "GlacierEQ/xai-colossus-waterplant-alpha",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:27Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-waterplant-alpha",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "xai-colossus-waterplant-omega",
+      "full_name": "GlacierEQ/xai-colossus-waterplant-omega",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-12T18:26:29Z",
+      "url": "https://github.com/GlacierEQ/xai-colossus-waterplant-omega",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": false
+    },
+    {
+      "repository": "Z-BACKUP-mastermind-colossus",
+      "full_name": "GlacierEQ/Z-BACKUP-mastermind-colossus",
+      "family": "xAI / Colossus",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-20T10:39:13Z",
+      "url": "https://github.com/GlacierEQ/Z-BACKUP-mastermind-colossus",
+      "action": "REVIEW_HISTORY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "historical_or_cross_company"
+      ],
+      "unified_source_state": "historical",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "qwen-code",
+      "full_name": "GlacierEQ/qwen-code",
+      "family": "Alibaba / Qwen",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:55:17Z",
+      "url": "https://github.com/GlacierEQ/qwen-code",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "qwen2.5VLM-OCR",
+      "full_name": "GlacierEQ/qwen2.5VLM-OCR",
+      "family": "Alibaba / Qwen",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:09:53Z",
+      "url": "https://github.com/GlacierEQ/qwen2.5VLM-OCR",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "aws-toolkit-vscode",
+      "full_name": "GlacierEQ/aws-toolkit-vscode",
+      "family": "Amazon Web Services",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:02:39Z",
+      "url": "https://github.com/GlacierEQ/aws-toolkit-vscode",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "claude-code",
+      "full_name": "GlacierEQ/claude-code",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:40:10Z",
+      "url": "https://github.com/GlacierEQ/claude-code",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "claude-explorer__public_fork_archive",
+      "full_name": "GlacierEQ/claude-explorer__public_fork_archive",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-20T10:39:14Z",
+      "url": "https://github.com/GlacierEQ/claude-explorer__public_fork_archive",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "claude-setup",
+      "full_name": "GlacierEQ/claude-setup",
+      "family": "Anthropic",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:39:01Z",
+      "url": "https://github.com/GlacierEQ/claude-setup",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "DeepSeek-Coder",
+      "full_name": "GlacierEQ/DeepSeek-Coder",
+      "family": "DeepSeek",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-07-19T17:53:35Z",
+      "url": "https://github.com/GlacierEQ/DeepSeek-Coder",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "DeepSeek-Coder-V2",
+      "full_name": "GlacierEQ/DeepSeek-Coder-V2",
+      "family": "DeepSeek",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:29:12Z",
+      "url": "https://github.com/GlacierEQ/DeepSeek-Coder-V2",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "DeepSeek-Coder-V2-main",
+      "full_name": "GlacierEQ/DeepSeek-Coder-V2-main",
+      "family": "DeepSeek",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-05-26T00:09:57Z",
+      "url": "https://github.com/GlacierEQ/DeepSeek-Coder-V2-main",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "github-script",
+      "full_name": "GlacierEQ/github-script",
+      "family": "GitHub",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:59:43Z",
+      "url": "https://github.com/GlacierEQ/github-script",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "llama-coder",
+      "full_name": "GlacierEQ/llama-coder",
+      "family": "Meta",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:25:13Z",
+      "url": "https://github.com/GlacierEQ/llama-coder",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "llama-fs__public_fork_archive",
+      "full_name": "GlacierEQ/llama-fs__public_fork_archive",
+      "family": "Meta",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:25:17Z",
+      "url": "https://github.com/GlacierEQ/llama-fs__public_fork_archive",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Microsoft-Build2025-Samples",
+      "full_name": "GlacierEQ/Microsoft-Build2025-Samples",
+      "family": "Microsoft",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:31:10Z",
+      "url": "https://github.com/GlacierEQ/Microsoft-Build2025-Samples",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Office-Word-MCP-Server",
+      "full_name": "GlacierEQ/Office-Word-MCP-Server",
+      "family": "Microsoft",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T01:03:00Z",
+      "url": "https://github.com/GlacierEQ/Office-Word-MCP-Server",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Kimi-K2",
+      "full_name": "GlacierEQ/Kimi-K2",
+      "family": "Moonshot AI / Kimi",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:55:12Z",
+      "url": "https://github.com/GlacierEQ/Kimi-K2",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Kimi-K3",
+      "full_name": "GlacierEQ/Kimi-K3",
+      "family": "Moonshot AI / Kimi",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-07-29T05:27:39Z",
+      "url": "https://github.com/GlacierEQ/Kimi-K3",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "notion-mcp-server",
+      "full_name": "GlacierEQ/notion-mcp-server",
+      "family": "Notion",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:56:20Z",
+      "url": "https://github.com/GlacierEQ/notion-mcp-server",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "awesome-codex",
+      "full_name": "GlacierEQ/awesome-codex",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": true,
+      "archived": false,
+      "updated_at": "2026-08-24T01:32:55Z",
+      "url": "https://github.com/GlacierEQ/awesome-codex",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "codex-supermemory",
+      "full_name": "GlacierEQ/codex-supermemory",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-06-19T20:10:56Z",
+      "url": "https://github.com/GlacierEQ/codex-supermemory",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "open-codex",
+      "full_name": "GlacierEQ/open-codex",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:32:15Z",
+      "url": "https://github.com/GlacierEQ/open-codex",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openai-agents-js",
+      "full_name": "GlacierEQ/openai-agents-js",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:53:04Z",
+      "url": "https://github.com/GlacierEQ/openai-agents-js",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openai-agents-python",
+      "full_name": "GlacierEQ/openai-agents-python",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:56:03Z",
+      "url": "https://github.com/GlacierEQ/openai-agents-python",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openai-assistants-quickstart",
+      "full_name": "GlacierEQ/openai-assistants-quickstart",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:56:05Z",
+      "url": "https://github.com/GlacierEQ/openai-assistants-quickstart",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openai-node",
+      "full_name": "GlacierEQ/openai-node",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:53:08Z",
+      "url": "https://github.com/GlacierEQ/openai-node",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openai-python",
+      "full_name": "GlacierEQ/openai-python",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:35:38Z",
+      "url": "https://github.com/GlacierEQ/openai-python",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "openai-realtime-agents",
+      "full_name": "GlacierEQ/openai-realtime-agents",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:56:04Z",
+      "url": "https://github.com/GlacierEQ/openai-realtime-agents",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "public-openai-client-php",
+      "full_name": "GlacierEQ/public-openai-client-php",
+      "family": "OpenAI / Codex",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-08-24T01:32:57Z",
+      "url": "https://github.com/GlacierEQ/public-openai-client-php",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "Perplexica",
+      "full_name": "GlacierEQ/Perplexica",
+      "family": "Perplexity",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:55:42Z",
+      "url": "https://github.com/GlacierEQ/Perplexica",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "cli",
+      "full_name": "GlacierEQ/cli",
+      "family": "Supabase",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:01:49Z",
+      "url": "https://github.com/GlacierEQ/cli",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "dashboard",
+      "full_name": "GlacierEQ/dashboard",
+      "family": "Supabase",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-26T00:01:00Z",
+      "url": "https://github.com/GlacierEQ/dashboard",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    },
+    {
+      "repository": "sdk",
+      "full_name": "GlacierEQ/sdk",
+      "family": "Vercel",
+      "live_exact_name": true,
+      "private": false,
+      "archived": false,
+      "updated_at": "2026-05-25T23:54:49Z",
+      "url": "https://github.com/GlacierEQ/sdk",
+      "action": "REFERENCE_ONLY",
+      "sources": [
+        "unified_deserving",
+        "historical_company_catalog"
+      ],
+      "historical_states": [
+        "reference_or_upstream"
+      ],
+      "unified_source_state": "reference",
+      "helix_admitted": false,
+      "has_solidify_record": true
+    }
+  ]
+}

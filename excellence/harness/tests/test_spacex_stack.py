@@ -1,13 +1,15 @@
 """SpaceX multi-repo composition — leveled."""
 from __future__ import annotations
+
 import unittest
+
 from pathutil import add_repo
 
 add_repo("spacex-mission-thread-quorum")
 add_repo("spacex-hold-reason-compiler")
 
-from quorum import MissionThreadQuorum, SubsystemVote, Vote, Severity, StackState, DEFAULT_REQUIRED
 from hold_compiler import HoldReasonCompiler, HoldResidual
+from quorum import DEFAULT_REQUIRED, MissionThreadQuorum, Severity, StackState, SubsystemVote, Vote
 
 
 class SpaceXStackLeveled(unittest.TestCase):

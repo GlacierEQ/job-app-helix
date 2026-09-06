@@ -1,0 +1,50 @@
+{
+  "schema": "glaciereq.branch-lifecycle-repository-policy.v1",
+  "protected_branches": [
+    "cleanup/apply-verified-obsolete-refs-2026-07-30",
+    "docs/readme-masterclass-2026-07-30",
+    "hire-package/spiral-recruiter-presentation-2026-07-30",
+    "program/library-readme-consolidation-2026-07-30",
+    "feat/readme-intelligence-mesh",
+    "fix/public-product-standard",
+    "release/final-form-presentation-2026-07-30"
+  ],
+  "protected_patterns": [],
+  "preservations": [
+    {
+      "name": "cleanup/apply-verified-obsolete-refs-2026-07-30",
+      "reason": "Prior cleanup proof was accepted but deletion was denied or failed. Preserve until explicitly resolved.",
+      "source": "manifests/obsolete_branches.json:blocked_refs"
+    },
+    {
+      "name": "docs/readme-masterclass-2026-07-30",
+      "reason": "Prior cleanup proof was accepted but deletion was denied or failed. Preserve until explicitly resolved.",
+      "source": "manifests/obsolete_branches.json:blocked_refs"
+    },
+    {
+      "name": "hire-package/spiral-recruiter-presentation-2026-07-30",
+      "reason": "Prior deletion verification failed and an independent transaction restored the exact ref.",
+      "source": "manifests/obsolete_branches.json:blocked_refs"
+    },
+    {
+      "name": "program/library-readme-consolidation-2026-07-30",
+      "reason": "Prior cleanup proof was accepted but deletion was denied or failed. Preserve until explicitly resolved.",
+      "source": "manifests/obsolete_branches.json:blocked_refs"
+    },
+    {
+      "name": "feat/readme-intelligence-mesh",
+      "reason": "Restored from exact SHA after failed rollback; preserve as recovery evidence and capability donor without operator authorization.",
+      "source": "manifests/obsolete_branches.json:restored_refs_after_failed_transaction"
+    },
+    {
+      "name": "fix/public-product-standard",
+      "reason": "Restored from exact SHA after failed rollback; preserve as recovery evidence and capability donor without operator authorization.",
+      "source": "manifests/obsolete_branches.json:restored_refs_after_failed_transaction"
+    },
+    {
+      "name": "release/final-form-presentation-2026-07-30",
+      "reason": "Active unmerged unique-value final-form recruiter package under independent review.",
+      "source": "manifests/obsolete_branches.json:preserved_active_refs"
+    }
+  ]
+}

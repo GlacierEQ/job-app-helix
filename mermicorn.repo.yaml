@@ -2,23 +2,23 @@ schema_version: "1.0"
 
 id: job-app-helix
 display_name: Job App Helix Career Automation
-owner: cherry
+owner: GlacierEQ
 lane: career
 visibility: private
 status: foundation
 
 purpose:
-  problem: GlacierEQ Sovereign project Job App Helix Career Automation
+  problem: GlacierEQ Innovation Engine Job App Helix Career Automation
   audience:
-    - Cherry
+    - GlacierEQ
     - portfolio reviewers
 
 shared_services:
-  boot: mermicorn-mega-boot
-  memory: mermicorn-memory
-  token_efficiency: mermicorn-token-saver
-  graphics: mermicorn-graphic-ai
-  commerce: mermicorn-commerce-ai
+  boot: apex-bootup-supreme
+  memory: apex-memory-substrate
+  token_efficiency: token-optimizer
+  graphics: frontend-ui-toolkit
+  connectors: apex-connector-mesh
 
 privacy:
   public:

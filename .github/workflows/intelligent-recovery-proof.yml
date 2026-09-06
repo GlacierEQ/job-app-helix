@@ -1,4 +1,8 @@
 name: Intelligent Recovery Proof
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 on:
   pull_request:
@@ -34,6 +38,7 @@ jobs:
   prove:
     name: Recovery engine / Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
