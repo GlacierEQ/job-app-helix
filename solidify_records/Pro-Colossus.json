@@ -1,0 +1,22 @@
+{
+  "repo": "Pro-Colossus",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "innovation_summary": "Private 'Pro-tier' umbrella repository that indexes the xAI Colossus infrastructure suite (cooling, energy, servers, microcode, security, waterplant, nanosphere, build blueprint). Its README was inspected during the canonicalization pass and the recorded finding is negative: it is a strategy/registry surface, not a verified runtime flagship, and its copy asserts operational command-center status and Director/VP-level engineering the inspected source does not establish. The capabilities catalog now records a classifier (model_inference_and_sentinels), a recorded issue-contract proof, and a mesh URI \u2014 but that is a catalog assertion, not runtime verification. Its portfolio value is organizational, not implementational; a P0 rewrite is on record.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 13644 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, desc 'Pro-tier flagship for xAI Colossus infrastructure suite - cooling, energy, servers, microcode, security, waterplant, nanosphere, and build blueprint...', updatedAt 2026-06-29T00:55:54Z)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:22337 (name=Pro-Colossus; classifier=model_inference_and_sentinels; elevator_pitch='High-performance Model Inference And Sentinels engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/model_inference_and_sentinels/Pro-Colossus)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (disposition PRIVATE_STRATEGY_OR_REGISTRY_HUB_REWRITE_REQUIRED; finding XAI-004: 'Pro-xAI and Pro-Colossus are strategy/registry hubs, not verified runtime flagships' - state VERIFIED_FROM_CURRENT_READMES; next_actions P0: 'Rewrite ... with no operational, affiliation, or Director/VP-level capability claims.')",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md finding 4 (line 78); /tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md line 154; /tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 144 (xAI/Colossus unprocessed)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Execute the recorded P0 rewrite: strip operational, affiliation, and Director/VP-level capability claims, rebuild as an honest private index whose every row links to a real receipt (e.g. xai_colossus_servers_hardening.json) with an explicit UNVERIFIED marker for rows that have none. A registry hub can legitimately reach 8 by being provably accurate about what is/isn't verified - but not while it claims flagship runtime status.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.993664",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,21 @@
+{
+  "repo": "open-codex",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Fully open-source command-line AI assistant inspired by OpenAI Codex, supports local language models (Python). Triple-cataloged: (a) library.json entry + url; (b) capabilities_3layer.json classifier cognitive_os_agent_kernels with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/cognitive_os_agent_kernels/open-codex; (c) company_engineered_repositories.json family openai/reference_or_upstream (verbatim upstream mirror, no local edits). The expanded_job_app_helix_manifest.json (line 772) explicitly assigns it as a job-app-helix mesh leaf, family OpenAI / Codex, canonical openai-reasoning-kv-sentinel, state reference. Notable: the cognitive_os_agent_kernels classifier is more concrete than the typical 'lab_benchmarks' fallback and ties it to the apex-cognitive-os whole \u2014 a direct mesh integration target. Cataloged reference for self-hosted coding-agent infrastructure. Honest limitation: reference/upstream means zero local GlacierEQ modifications; without a local-LLM run, tests, build receipt, or fact card, capability is contract-catalog + cognitive-os-classified + helix-membership proven, not runtime-verified \u2014 so 7 is the honest ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 12428: entry open-codex; url=https://github.com/GlacierEQ/open-codex)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 15263: name=open-codex; classifier=cognitive_os_agent_kernels; elevator_pitch='High-performance Cognitive Os Agent Kernels engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/cognitive_os_agent_kernels/open-codex; launch_cmd='git clone https://github.com/GlacierEQ/open-codex')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 220: reference_or_upstream list \u2014 verbatim upstream mirror, no local mods)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 772: kind=company, state=reference, family='OpenAI / Codex', canonical=openai-reasoning-kv-sentinel \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 126: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Produce a repository_fact_card with implementation evidence (local-LLM run, passing tests, build receipt) and a README; update company_engineered_repositories.json from reference_or_upstream to in_preparation \u2014 would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.887502",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

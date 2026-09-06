@@ -10,11 +10,11 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import itertools
 import json
 import math
 from collections.abc import Callable, Iterable, Mapping
 from dataclasses import asdict, dataclass
+from itertools import pairwise
 from pathlib import Path
 from typing import Any, Literal
 
@@ -97,7 +97,7 @@ def _flight(scenario: Scenario) -> PairResult:
     sequences = [1, 2, 3, 4, 5]
     if scenario != "nominal":
         sequences = [1, 2, 5, 6, 7]
-    drops = sum(max(0, current - prior - 1) for prior, current in itertools.pairwise(sequences))
+    drops = sum(max(0, current - prior - 1) for prior, current in pairwise(sequences))
     telemetry = _piston(
         "telemetry_bridge",
         "bridge",

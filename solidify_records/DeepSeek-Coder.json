@@ -1,0 +1,20 @@
+{
+  "repo": "DeepSeek-Coder",
+  "family": "DeepSeek",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "GENUINE portfolio divergence: a private GlacierEQ fork of deepseek-ai/DeepSeek-Coder that is ahead by 51 commits (converted 2026-07-12), per capabilities_3layer executive_summary. Distinct from the pure upstream mirrors (DeepSeek-Coder-V2 / -V2-main). Multi-source evidence: library.json (private, desc 'Private diverged from deepseek-ai/DeepSeek-Coder (ahead=51) \u00b7 converted 2026-07-12'), capabilities_3layer:24735 (executive_summary, launch_cmd, contract_proof DONE), and company_engineered_repositories.json:117-120 (DeepSeek family, reference_or_upstream). The 51-commit-ahead signal is a real catalog claim, but not the same as a GlacierEQ-authored benchmark, fine-tune, or test run.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:5372 (name DeepSeek-Coder; desc 'Private diverged from deepseek-ai/DeepSeek-Coder (ahead=51) \u00b7 converted 2026-07-12'; url https://github.com/GlacierEQ/DeepSeek-Coder)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24735 (executive_summary 'Private diverged from deepseek-ai/DeepSeek-Coder (ahead=51) \u00b7 converted 2026-07-12'; launch_cmd git clone; contract_proof DONE)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:117-120 (family DeepSeek; reference_or_upstream list explicitly includes DeepSeek-Coder)",
+    "Contradiction preserved: 'reference_or_upstream' classification vs. the ahead=51 divergence signal \u2014 divergence is real but small, and the family-level promotion level is P2/P3 (audit/reclassify); a 51-commit patch on a huge model repo is not a portfolio contribution unless reviewed."
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Promoted 5->6: the ahead=51 divergence is a verifiable catalog claim and the family taxonomy (P1/P2 audit, explicit unprocessed-or-reference placement) is grounded. To reach >=8: produce a diff-vs-upstream summary of the 51 commits, a build/test receipt, and at least one GlacierEQ-authored benchmark or fine-tune artifact. To reach >=10: a hashed run receipt (e.g., a HumanEval/MBPP delta vs upstream). Capped at 6: divergence metadata only, no local inspection of what those 51 commits actually changed.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.821020",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

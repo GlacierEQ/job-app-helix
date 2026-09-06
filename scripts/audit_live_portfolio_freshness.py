@@ -611,8 +611,8 @@ def audit(
     def count(code: str) -> int:
         return sum(row["code"] == code for row in findings)
 
-    stale_count = count("STALE_FLAGSHIP_LIVE_EVIDENCE")
-    missing_flagship_count = count("MISSING_FLAGSHIP_LIVE_EVIDENCE")
+    stale_system_count = count("STALE_FLAGSHIP_LIVE_EVIDENCE")
+    missing_system_count = count("MISSING_FLAGSHIP_LIVE_EVIDENCE")
     visibility_mismatch_count = count("LIVE_VISIBILITY_MISMATCH")
     public_unobservable_count = count(
         "DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE"
@@ -632,7 +632,7 @@ def audit(
             "owner_estate_repositories_audited": len(
                 portfolio["all_repositories"]
             ),
-            "flagships": len(flagships),
+            "source_admitted_systems": len(flagships),
             "live_evidence_rows": len(evidence_by_repository),
             "recruiter_eligible_dossier_repositories": len(
                 recruiter_eligible_repositories
@@ -644,16 +644,16 @@ def audit(
         "freshness": {
             "visibility_mismatches": visibility_mismatch_count,
             "declared_public_unobservable": public_unobservable_count,
-            "stale_flagship_evidence": stale_count,
-            "missing_flagship_live_evidence": missing_flagship_count,
+            "stale_system_evidence": stale_system_count,
+            "missing_system_live_evidence": missing_system_count,
             "ambiguous_public_surface_private_source": count(
                 "AMBIGUOUS_PUBLIC_SURFACE_PRIVATE_SOURCE"
             ),
             "all_recruiter_eligible_have_live_evidence": (
                 not recruiter_missing_evidence
             ),
-            "all_flagship_evidence_current": (
-                not stale_count and not missing_flagship_count
+            "all_source_admitted_system_evidence_current": (
+                not stale_system_count and not missing_system_count
             ),
             "declared_visibility_matches_live": (
                 not visibility_mismatch_count

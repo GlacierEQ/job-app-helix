@@ -1,0 +1,20 @@
+{
+  "repo": "notion-workspace-optimizer",
+  "family": "Notion",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "Notion workspace page optimizer (archive/collapse/split) for the Notion family (AKOS P0, canonical co-family). Catalog classifies it as an Extended Utilities And Experiments engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, a runnable launch command (python3 ~/job-app/apex_highway.py --target notion-workspace-optimizer), and library.json marks it worked_solidified / local_job_app (Python). Honest limitation: not present in application_estate_registry.json; no independent runtime receipt, test, or fact card was found, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=notion-workspace-optimizer: domain=notion_ops, status_detail=worked_solidified, local_job_app=true, language=Python, desc='Workspace page optimizer (portfolio) archive/collapse/split \u00b7 AKOS P0')",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=notion-workspace-optimizer; classifier=extended_utilities_and_experiments; elevator_pitch='High-performance Extended Utilities And Experiments engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/notion-workspace-optimizer; launch_cmd='python3 ~/job-app/apex_highway.py --target notion-workspace-optimizer')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family 'notion': current_preparation includes notion-workspace-optimizer, focus P1_WORKSPACE_INTELLIGENCE_SUITE)",
+    "/tmp/monolith/domains/notion_ops.md (row: worked_on, no contract)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt; publish a README documenting the optimize operations and a live demo to reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.907660",
+  "notes": " | NEEDS_REPAIR"
+}

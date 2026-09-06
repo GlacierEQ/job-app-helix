@@ -12,7 +12,7 @@ Each revolution carries forward more verified state. It is not a 2D iterative lo
 
 ## Evidence systems
 
-- **Job-App Helix - PARTIALLY VERIFIED:** exact 67-repository boundary - one root plus 66 child repositories - evidence ladder, deterministic campaign engine, README Mesh, and JSON/Protobuf output.
+- **Job-App Helix - PARTIALLY VERIFIED:** current 225-repository source-exhaustive estate across 21 families with 8 verified trust anchors; the historical exact 67-repository governed boundary (one root plus 66 children) is preserved for dated audit integrity. Helix supplies the evidence ladder, deterministic campaign engine, README Mesh, and JSON/Protobuf output.
 - **AKOS - TEST VERIFIED:** 94/94 tests across 12 modules on Python 3.11-3.13.
 - **APEX Public Action Face - IMPLEMENTED / ACTIVATION BLOCKED:** public execution/private governance, allowlists, scoped credentials, replay guards, private receipts.
 - **Agent Coordinator - CANDIDATE TEST PROOF:** 62/62 independent Python 3.13 tests; hosted multi-version promotion pending.

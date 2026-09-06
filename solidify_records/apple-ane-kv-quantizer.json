@@ -1,0 +1,20 @@
+{
+  "repo": "apple-ane-kv-quantizer",
+  "family": "Apple",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "GlacierEQ's canonical Apple-family KV-cache quantization specialist targeting Apple Neural Engine constraints for efficient local inference, cataloged in lab_hire_stamps as worked_solidified with a SHA-bound 3-layer capability record (sha256 549331eb...) and a DONE issue-contract proof. The library desc is empty, so the catalog asserts intent (Model Inference And Sentinels, P0) but no measured benchmark or test exists locally.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:1948 (name; domain lab_hire_stamps; desc empty; local_job_app true; Python; updatedAt 2026-08-10)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:21707 (layers 1-3; sha256_binding 549331eb993476e56f0d1dc7b38e12094f16c73fc49c236a3a22e77465d9aedf; category MODEL_INFERENCE_AND_SENTINELS; contract_proof DONE; mesh_uri glaciereq://mesh/model_inference_and_sentinels/apple-ane-kv-quantizer)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:68-73 (family Apple; canonical_candidate; current_preparation)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED \u2014 repo inside boundary)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Add a fact card with a measured ANE KV-cache quantization benchmark and a pytest/build receipt proving local-inference gains; fill the empty library desc.",
+  "repo_excellence_overlap": "Shares the repo_excellence verification/receipt discipline (GlacierEQ/computer-user, 203 tests PASS, proof_receipt schema v1): once a benchmark test exists it should bind a hash receipt like the computer-user proof_receipt.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.770368",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,19 @@
+{
+  "repo": "codex_py2cpp",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Converts Python code into C++ using OpenAI Codex (library.json desc), placed in the apex_cognitive_os domain. Multi-source: library.json:4140 (name=codex_py2cpp; desc='Converts python code into c++ by using OpenAI CODEX.'; domain=apex_cognitive_os), capabilities_3layer (name=codex_py2cpp; elevator_pitch; contract_proof claim='DONE'; launch_cmd), company_engineered_repositories.json:219 (OpenAI unprocessed list). Honest limitation: no round-trip test (python-in, c++-out) or fact card found locally. Rating held at 5: catalog + domain classification + contract_proof DONE claim are real but the family-claim of an unprocessed entry with no round-trip is the catalog ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4140 (name=codex_py2cpp; desc='Converts python code into c++ by using OpenAI CODEX.'; domain=apex_cognitive_os)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=codex_py2cpp; elevator_pitch; contract_proof claim='DONE'; launch_cmd)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:218-222 (OpenAI family; unprocessed: ... codex_py2cpp ...; reference_or_upstream list)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "wave3": true,
+  "makes_worthy": "Held at 5: concrete py->cpp-via-Codex function + domain + capabilities entry = catalog ceiling. To reach >=8: a round-trip test (python-in, c++-out, c++ compile + run parity) + a real conversion execution receipt / fact card. Capped at 5: no round-trip test, no fact card.",
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.749594",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

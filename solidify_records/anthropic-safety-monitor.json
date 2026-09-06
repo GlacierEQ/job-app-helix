@@ -1,0 +1,20 @@
+{
+  "repo": "anthropic-safety-monitor",
+  "family": "Anthropic",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "Tool-use safety-policy monitor (portfolio) for an Anthropic-class problem space, detecting policy/behavioral/execution risks in agent workflows (lab_hire_stamps / governance). catalog evidence: library.json (activity=worked_on, status_detail=worked_solidified, local_job_app=true, issue_contract=true), company_engineered_repositories.json (anthropic group, current_preparation, P0_REFRESH_FLAGSHIP, canonical_candidate=anthropic-agent-coordinator), capabilities_3layer.json (LAB_BENCHMARKS_AND_STAMPS, impact_score=P0, contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=7530d6772a5d5c73a9611548919c34d9b7d918f5eea3af5ef46c4149aba721b0, agent_tool_registration=tool_anthropic_safety_monitor, unique launch_cmd='python3 ~/job-app/apex_highway.py --target anthropic-safety-monitor' distinguishing it from generic git-clone stubs). No per-repo executed test receipt was found locally; the P0/worked_solidified status is a GlacierEQ classification, not a runtime-verified test of the safety monitor itself.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:1404 (activity=worked_on, status_detail=worked_solidified, local_job_app=true, issue_contract=true, language=Python, updatedAt=2026-08-10T06:13:19Z)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:58 (anthropic.current_preparation; focus P0_REFRESH_FLAGSHIP)",
+    "/tmp/monolith/domains/lab_hire_stamps.md (Tool-use safety policy)",
+    "/tmp/monolith/status/WORKED_ON.md",
+    "/tmp/monolith/status/functions/governance.md (active_specialist)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24399 (LAB_BENCHMARKS_AND_STAMPS, impact_score=P0, executive_summary='Tool-use safety policy (portfolio) Anthropic-class problem space . AKOS portfolio', launch_cmd='python3 ~/job-app/apex_highway.py --target anthropic-safety-monitor', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=7530d6772a5d5c73a9611548919c34d9b7d918f5eea3af5ef46c4149aba721b0, mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/anthropic-safety-monitor, agent_tool_registration.name=tool_anthropic_safety_monitor)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json (AKOS 94/94 tests VERIFIED_TEST; computer-user 203 governed-execution tests VERIFIED_TEST) — provides cross-repo proof of harness authority, NOT per-repo safety-monitor execution proof"
+  ],
+  "verification_status": "CATALOG_PROOF_PLUS_HASH_RECEIPT",
+  "worthy_rating": 8,
+  "makes_worthy": "Strongest target set: P0 impact_score + worked_solidified + issue_contract=true + mesh_uri + sha256_binding + unique apex_highway launch_cmd + AKOS portfolio classification. Cannot reach 9-10 without a per-repo executed safety-policy test receipt (e.g., python3 ~/job-app/apex_highway.py --target anthropic-safety-monitor producing a hash-bound receipt of a real policy check). Next step: run apex_highway target and capture the resulting proof_receipt under glaciereq.proof-receipt.v1.",
+  "wave3": true
+}

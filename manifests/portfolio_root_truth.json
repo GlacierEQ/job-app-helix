@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.portfolio-root-truth.v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "authority": {
     "repository": "GlacierEQ/job-app-helix",
     "branch": "main",
@@ -20,7 +20,7 @@
     {
       "id": "inventory",
       "path": "manifests/portfolio_repositories.json",
-      "role": "Source-bound admitted 67-repository public-portfolio boundary; not the full authenticated owned estate",
+      "role": "Source-bound current public recruiter inventory snapshot; count is derived from the inventory manifest and is not the full authenticated owned estate",
       "required": true
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "estate_projection_policy",
       "path": "manifests/estate_projection_policy.json",
-      "role": "Public-safe role-capability rules, audience proof-surface caps, support ancestry semantics, and truth boundaries",
+      "role": "Public-safe role-capability rules, complete ranked audience projections, non-authoritative presentation defaults, support ancestry semantics, and truth boundaries",
       "required": true
     },
     {
@@ -241,7 +241,7 @@
     "required_sequence": [
       "load root manifest",
       "validate all required control-plane source files",
-      "reconcile the admitted 67-repository public-portfolio boundary",
+      "reconcile the current public-portfolio inventory from its source manifest without assuming a fixed repository count",
       "resolve company-shard defaults",
       "validate company second-depth stages, prerequisites, blockers, and claim ceilings",
       "verify every HELIX_ADMITTED repository maps to admitted inventory",
@@ -257,7 +257,7 @@
   },
   "invariants": [
     "The admitted inventory root plus workspace repository count equals its total_repositories field.",
-    "The 67-repository inventory is the admitted public-portfolio subset, not the full authenticated owned estate.",
+    "The current inventory is a public-portfolio snapshot whose count is derived from source; it is not a fixed estate ceiling.",
     "Authenticated owned-estate cardinality and private repository identities remain runtime-private and absent from downstream public bundles.",
     "Workspace repository identities in the admitted inventory are unique.",
     "Every HELIX_ADMITTED dossier repository exists in the admitted reference inventory.",
@@ -270,7 +270,8 @@
     "L0, QUARANTINED, EXCLUDED, and private-only records never enter public recruiter projections.",
     "Company naming never implies affiliation, endorsement, employment, proprietary access, contract relationship, clearance, or production deployment.",
     "Repository ownership does not by itself establish authorship, originality, security, runtime success, or recruiter readiness.",
-    "Downstream projections may change presentation but may not change factual IDs, evidence states, second-depth stages, claim ceilings, test counts, blockers, or authority boundaries."
+    "Downstream projections may change presentation but may not change factual IDs, evidence states, second-depth stages, claim ceilings, test counts, blockers, or authority boundaries.",
+    "Company and audience projections preserve complete eligible relation membership; ranking, compact proof views, and pagination never define what exists."
   ],
   "receipt": {
     "schema": "glaciereq.portfolio-root-truth-receipt.v1",

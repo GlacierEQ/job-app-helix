@@ -1,0 +1,21 @@
+{
+  "repo": "project_openai_codex",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Project to build and deploy a ChatGPT-style AI coding application, placed in the apex_cognitive_os domain. Triple-cataloged: (a) library.json desc + domain=apex_cognitive_os + url; (b) capabilities_3layer.json classifier cognitive_os_agent_kernels with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/cognitive_os_agent_kernels/project_openai_codex; (c) company_engineered_repositories.json family openai/unprocessed. The expanded_job_app_helix_manifest.json (line 674) explicitly assigns it as a job-app-helix mesh leaf, family OpenAI / Codex, canonical openai-reasoning-kv-sentinel, state needs_work. Notable: domain=apex_cognitive_os in library.json is stronger than the typical 'long_tail' placement, signaling it is a domain-aligned leaf, not a generic long-tail entry. Honest limitation: no end-to-end coding demo, test, or fact card was found; capability is contract-catalog + apex-domain + helix-membership proven, not runtime-verified, so 7 is the honest ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=project_openai_codex; desc='Build and Deploy Your Own ChatGPT AI Application That Will Help You Code'; domain=apex_cognitive_os; url=https://github.com/GlacierEQ/project_openai_codex)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 15431: name=project_openai_codex; classifier=cognitive_os_agent_kernels; elevator_pitch='High-performance Cognitive Os Agent Kernels engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/cognitive_os_agent_kernels/project_openai_codex; launch_cmd='git clone https://github.com/GlacierEQ/project_openai_codex')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 219: family openai; unprocessed list)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 674: kind=company, state=needs_work, family='OpenAI / Codex', canonical=openai-reasoning-kv-sentinel, confirmed job-app-helix mesh membership + domain-aligned leaf)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 112: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Stand up the ChatGPT-style coding app, add an end-to-end test (prompt -> code -> run -> output), record a fact card with execution receipt, and promote state from needs_work to in_preparation \u2014 would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.743868",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

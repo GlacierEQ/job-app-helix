@@ -1,0 +1,21 @@
+{
+  "repo": "nvidia-circuit-breaker",
+  "family": "NVIDIA",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Circuit-breaker / failure-isolation layer under the NVIDIA family. Quadruple-cataloged: (a) capabilities_3layer.json classifier human_ui_web_and_desktop_apps with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/human_ui_web_and_desktop_apps/nvidia-circuit-breaker; (b) library.json entry + url; (c) application_estate_registry.json:77 explicitly names GlacierEQ/nvidia-circuit-breaker as a helix portfolio member; (d) company_engineered_repositories.json family nvidia/unprocessed. The expanded_job_app_helix_manifest.json (line 646) further assigns it as a job-app-helix mesh leaf, family NVIDIA, state needs_work. The human_ui_web_and_desktop_apps classifier is interesting (rather than the typical lab_benchmarks) and suggests this is a user-facing safety UI surface, not a pure library \u2014 likely a console/visualization for the breaker state. Forms the third leg of the nvidia-* cluster alongside agent-consensus (compute) and gradient-shield (defense). Honest limitation: still in unprocessed; no runtime receipt, test, or fact card was found. Contract-catalog + application-estate-membership + UI-classifier signal justifies 7.",
+  "evidence": [
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=nvidia-circuit-breaker; classifier=human_ui_web_and_desktop_apps; elevator_pitch='High-performance Human Ui Web And Desktop Apps engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/human_ui_web_and_desktop_apps/nvidia-circuit-breaker; launch_cmd='git clone https://github.com/GlacierEQ/nvidia-circuit-breaker')",
+    "/tmp/monolith/catalog/library.json (entry name=nvidia-circuit-breaker; url=https://github.com/GlacierEQ/nvidia-circuit-breaker)",
+    "/tmp/monolith/catalog/application_estate_registry.json (line 77: GlacierEQ/nvidia-circuit-breaker; helix portfolio member)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family nvidia; unprocessed list)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 646: kind=company, state=needs_work, family='NVIDIA' \u2014 confirmed job-app-helix mesh membership)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Clone the repo, add a README stating its circuit-breaker purpose and UI surface, write a minimal test or CLI that demonstrates tripping + resetting the breaker, and emit a repository_fact_card with source verification; a passing build/receipt would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.734719",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,19 @@
+{
+  "repo": "coreweave-shadow-monitor",
+  "family": "CoreWeave",
+  "kind": "company",
+  "source_state": "unprocessed",
+  "innovation_summary": "Shadow/stealth monitoring layer under the CoreWeave problem space (Extended Utilities And Experiments). Listed in the unprocessed backlog (company_engineered_repositories.json:99) with a capability stub (launch_cmd git clone, contract_proof, mesh_uri) and no inspected code, test, or fact card.",
+  "evidence": [
+    "/tmp/monolith/catalog/company_engineered_repositories.json:99 (unprocessed backlog: coreweave-shadow-monitor)",
+    "/tmp/monolith/catalog/library.json:4780 (name coreweave-shadow-monitor; url https://github.com/GlacierEQ/coreweave-shadow-monitor)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:33859 (stub: name, launch_cmd git clone, contract_proof DONE, mesh_uri glaciereq://mesh/extended_utilities_and_experiments/coreweave-shadow-monitor)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 3,
+  "makes_worthy": "Unprocessed backlog stub only; raised 1->2 on catalog presence. Cannot exceed 5 without implemented monitor + run/receipt.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.903167",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=3"
+}

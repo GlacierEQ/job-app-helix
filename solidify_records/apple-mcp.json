@@ -1,0 +1,21 @@
+{
+  "repo": "apple-mcp",
+  "family": "Apple",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Collection of apple-native tools for the Model Context Protocol (lab_hire_stamps domain, MCP_COMMUNITY_UTILITIES category). Catalog evidence: library.json (catalogued, desc='Collection of apple-native tools for the model context protocol.', domain=lab_hire_stamps, role=part, language=Python), company_engineered_repositories.json (apple.unprocessed), capabilities_3layer.json (MCP_COMMUNITY_UTILITIES, impact_score=P1, executive_summary='Collection of apple-native tools for the model context protocol.', contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=68e8316a61ac0ba7b81b7843fa9a07e449d39a963dbda0f3d6d4d034a3e34881, agent_tool_registration=tool_apple_mcp, multi-stack tech_stack=Python+TypeScript+Rust+Go+Docker+MCP, git-clone launch_cmd). The capabilities_3layer entry is the strongest mesh registration in the apple group: explicit category, multi-language tech stack, sha256, and agent_tool_registration. Still unprocessed, no fact card or test evidence of working MCP tools found locally.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:1964 (name=apple-mcp, catalogued, desc present, domain=lab_hire_stamps, role=part, language=Python, url=https://github.com/GlacierEQ/apple-mcp)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:69 (apple.unprocessed)",
+    "/tmp/monolith/domains/lab_hire_stamps.md (description)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md (name listed)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:6563 (MCP_COMMUNITY_UTILITIES, impact_score=P1, executive_summary='Collection of apple-native tools for the model context protocol.', tech_stack=[Python, TypeScript, Rust, Go, Docker, MCP], launch_cmd='git clone https://github.com/GlacierEQ/apple-mcp', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=68e8316a61ac0ba7b81b7843fa9a07e449d39a963dbda0f3d6d4d034a3e34881, mesh_uri=glaciereq://mesh/mcp_community_utilities/apple-mcp, agent_tool_registration.name=tool_apple_mcp)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Bumps 4->6 with the strongest apple-group mesh registration: explicit MCP_COMMUNITY_UTILITIES category, multi-language tech stack, sha256, agent_tool_registration. Cannot exceed 7 until: (1) a verified working MCP tool (e.g., apple-mcp tool_apple_mcp registered in a live MCP host) is demonstrated, (2) at least one tool call produces a hash-bound receipt, (3) the catalog's impact_score is reconciled with a runtime test. Honest cap at 7 without runtime MCP proof; Pro-iOS reference should be cited to avoid double-counting apple-native surface.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.779455",
+  "notes": " | NEEDS_REPAIR"
+}

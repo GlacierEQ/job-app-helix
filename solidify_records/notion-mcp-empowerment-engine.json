@@ -1,0 +1,11 @@
+{
+  "repo": "notion-mcp-empowerment-engine",
+  "family": "Notion",
+  "source_state": "in_preparation",
+  "worthy_rating": 7,
+  "verification_status": "NEEDS_REPAIR",
+  "description": "Notion MCP empowerment engine",
+  "notes": "fixed | NEEDS_REPAIR",
+  "last_verified": "2026-08-29T08:47:16.896981",
+  "classification_reason": "needs_repair: worthy=7"
+}

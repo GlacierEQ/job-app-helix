@@ -24,14 +24,9 @@ def enrich_company_registry(
     global_scores = registry.get("promotion_scores", {})
     if not isinstance(global_scores, dict):
         raise ValueError("company promotion_scores must be an object")
-    audience = policy.get("audience_caps", {})
-    if not isinstance(audience, dict):
-        raise ValueError("audience_caps must be an object")
-    caps_by_audience = {
-        "recruiter": int(audience.get("recruiter", 10)),
-        "company_reviewer": int(audience.get("company_reviewer", 5)),
-        "senior_engineer": int(audience.get("senior_engineer", 20)),
-    }
+    presentation_defaults = policy.get("audience_presentation_defaults", {})
+    if not isinstance(presentation_defaults, dict):
+        raise ValueError("audience_presentation_defaults must be an object")
     system_by_id = {
         str(row["system_id"]): row
         for row in projected["system_registry"]["systems"]
@@ -119,12 +114,9 @@ def enrich_company_registry(
                 for capability in row["capabilities"]
             }
         )
-        projection["minimal_proof_surface"] = minimal_surface(
-            ranked,
-            caps_by_audience["company_reviewer"],
-        )
+        projection["minimal_proof_surface"] = minimal_surface(ranked)
         projection["projection_innovation"] = (
-            "bounded_greedy_capability_set_cover_with_role_relevance"
+            "complete_ranked_relation_graph_with_role_relevance"
         )
         projection["role_projection"] = _role_projection(
             ranked,
@@ -133,16 +125,17 @@ def enrich_company_registry(
             policy,
         )
         proof_ids = projection["minimal_proof_surface"]
+        all_ids = [row["system_id"] for row in ranked]
+        proof_first = proof_ids + [
+            system_id for system_id in all_ids if system_id not in set(proof_ids)
+        ]
         projection["audience_projection"] = {
-            "recruiter": proof_ids[: caps_by_audience["recruiter"]],
-            "company_reviewer": proof_ids[
-                : caps_by_audience["company_reviewer"]
-            ],
-            "senior_engineer": [
-                row["system_id"]
-                for row in ranked[: caps_by_audience["senior_engineer"]]
-            ],
+            "recruiter": proof_first,
+            "company_reviewer": proof_first,
+            "senior_engineer": all_ids,
         }
+        projection["audience_projection_state"] = "COMPLETE_UNCAPPED"
+        projection["audience_presentation_defaults"] = dict(presentation_defaults)
         projection["dossier_next_gate"] = projection.get(
             "operating_problem"
         )
@@ -163,6 +156,9 @@ def enrich_company_registry(
         "all eligible reference systems with positive role-capability overlap"
     )
     registry["policy"]["support_references_are_not_accomplishments"] = True
+    registry["policy"]["audience_projection_membership"] = "complete_ranked_relation_graph"
+    registry["policy"]["audience_presentation_defaults_are_non_authoritative"] = True
+    registry["policy"]["presentation_pagination_changes_membership"] = False
 
 
 def _estate_capability_candidates(

@@ -1,0 +1,28 @@
+{
+  "repo": "xai-aeon777-servers-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Name-only alpha-side experimental companion of the AEON-777 servers workstream (Memory / Mem0 + Supermemory). Wave-3 mining confirms the catalog records this repo uniformly with all 19 other xai-aeon777-* entries: domain=memory_aspen, role=part, activity=catalogued, status_detail=catalogued_unclassified, language=Python, desc='' (EMPTY), private=true, local_job_app=false, issue_contract=false. The capability index gives only a generic 'Memory Mem0 And Supermemory engine' elevator pitch and an issue-contract proof. The five xAI/Colossus family hardening receipts (cooling/energy/nanosphere/security/servers) bind the canonical xai-colossus-* + pinned alpha/omega lineages; this aeon777-named variant is absent from every receipt. Capped honestly at 3 (catalog + capability stub + family grouping only; not a public verified component).",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry xai-aeon777-servers-alpha: domain=memory_aspen, role=part, activity=catalogued, status_detail=catalogued_unclassified, language=Python, desc='' (EMPTY), private=true, local_job_app=false, issue_contract=false)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (elevator_pitch 'Memory Mem0 And Supermemory engine'; contract_proof issue-contract only)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 98 (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company)",
+    "Absence: xai_colossus_servers_hardening.json (the verified 20/20 servers lineage) does not reference this aeon777 variant"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_5": "(1) Clone the repository; (2) confirm whether implementation exists; (3) extract a README and any tests into a fact card; (4) add a runnable test suite plus a CI truth gate; (5) emit a hardening receipt with a pinned commit and artifact digest, mirroring the structure of xai_colossus_servers_hardening.json.",
+  "makes_worthy_7": "After worthy_5 steps, also: (a) demonstrate Mem0 + Supermemory memory-router integration with a fixture and a live (or simulated-live) write/read receipt; (b) add boundary tests for memory isolation, capacity, and recall; (c) obtain independent memory-systems review. Until then, this remains a name-only catalog stub.",
+  "honest_limits": [
+    "catalog desc field is EMPTY; no mechanism evidence beyond the family grouping",
+    "no local clone, source inspection, test, CI run id, artifact, or receipt found locally",
+    "lineage discrepancy: catalogued under xai_colossus.historical_or_cross_company yet absent from the family hardening receipts that cover sibling xai-colossus-* alpha/omega"
+  ],
+  "last_verified": "2026-08-29T08:47:17.040644",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

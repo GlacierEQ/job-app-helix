@@ -1,0 +1,20 @@
+{
+  "repo": "deepmind-predictive-handoff",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Cataloged as a DeepMind family agent component (role: part) but the library record carries no description; a capabilities_3layer stub (launch_cmd git clone, contract_proof) exists with no functional summary. No source, fact card, test, or receipt in the monolith.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:5292 (name=deepmind-predictive-handoff; Python, private, domain lab_hire_stamps, desc empty)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:51 (no description)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (group: Google / DeepMind, listed unprocessed)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=deepmind-predictive-handoff; launch_cmd git clone, contract_proof DONE, mesh_uri \u2014 no functional summary)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 3,
+  "makes_worthy": "Raised 1->2 on catalog stub only. Cannot exceed 5 without a description, README, and a fact card or run receipt.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:17.027984",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=3"
+}

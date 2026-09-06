@@ -1,0 +1,32 @@
+{
+  "repo": "aspen-grove-supabase",
+  "family": "Supabase",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "aspen-grove-supabase is the governed-persistence layer of the Aspen Grove platform and of legal case 1FDV-23-0001009: a Supabase-native architecture combining a PostgreSQL/PLpgSQL schema, Edge Functions, a Python client, and realtime subscriptions. Its distinguishing property is that persistence is treated as an evidence problem, not a storage problem — the function atlas characterises it as secure canonical state with relational constraints, row-level security, vector retrieval, audit records, and append-only evidence-aware storage. This is the one repo in this batch whose classification basis is recorded as 'source inspection', not name or catalog description, and the independent hierarchical scanner places it under 01_GOVERNANCE_AND_CONSTITUTION/identity_and_authority rather than generic storage — the same governance tier as AKOS. The legal spine names it a Layer 5 shared platform providing 'governed persistence', explicitly not the owner of case evidence or filing state, which is a deliberate authority boundary rather than an omission.",
+  "evidence": [
+    "/tmp/monolith/status/functions/infrastructure.md:10 (aspen-grove-supabase | active_specialist | memory_aspen | 'Persistence specialization for secure canonical state, relational constraints, row-level security, vector retrieval, audit records, and append-only evidence-aware storage.' | basis: SOURCE INSPECTION; confidence: high)",
+    "/tmp/monolith/catalog/library.json:2124 (domain=memory_aspen, role=part, activity=worked_on, status_detail=local_job_app, private=true, desc='APEX Legal Ops — Supabase-native architecture for case 1FDV-23-0001009. PostgreSQL schema, Edge Functions, Python client, realtime subscriptions.', language=PLpgSQL, local_job_app=true, updatedAt 2026-08-10T06:14:40Z)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:78 (local clone at ~/aspen-grove-supabase; category 01_GOVERNANCE_AND_CONSTITUTION / subcategory identity_and_authority; primary_function 'AKOS Identity, Hireability & Portfolio Governance'; technologies Node.js/TypeScript + Python; 7 sample files) — same governance subcategory as AKOS at :66",
+    "/tmp/monolith/status/HIERARCHICAL_ORGANIZATION_PASS_02.md:239-242 (organized destination CATEGORIES/01_GOVERNANCE_AND_CONSTITUTION/identity_and_authority/aspen-grove-supabase with symlink anchor preserved)",
+    "/tmp/monolith/LEGAL_SPINE_1FDV_23_0001009.md:112 (Layer 5 shared platform: 'aspen-grove-supabase — governed persistence') with :115 boundary ('reusable platform components; they do not own the case's evidence or filing state')",
+    "/tmp/monolith/status/legal_spines/1FDV-23-0001009.md:63 (GlacierEQ/aspen-grove-supabase | shared_platform | no case-code binding)",
+    "/tmp/monolith/status/memory/legal-evidence.md:13 (part | worked_on | 'Supabase-native storage and operations layer for the Aspen legal ecosystem and case 1FDV-23-0001009' | basis: catalog description | confidence: high)",
+    "/tmp/monolith/domains/memory_aspen.md:16 (portfolio table row)",
+    "/tmp/monolith/status/WORKED_ON.md:28 (aspen-grove-supabase | memory_aspen | part | local_job_app)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:16529-16561 (sha256_binding 653d8245b1695661a54fbf79f923dc7ecf90aec49bd4145f010bd9409be79fef; mesh_uri glaciereq://mesh/memory_aspen_ecology/aspen-grove-supabase)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:269,273 (Supabase family: unprocessed=[aspen-grove-supabase, supabase-mcp, supabase-grafana]; canonical_candidate=aspen-grove-supabase)",
+    "/tmp/monolith/domains/company_engineered_portfolio.md:57 (Supabase | 6 repos | 0 worked | 3 unprocessed | 3 reference | canonical aspen-grove-supabase | priority 'P1 database and MCP suite')",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:133 (listed in the Supabase unprocessed queue)"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "makes_worthy": "One concrete step to 9+: run the migration chain against a local Supabase instance and commit a pgTAP or pytest suite that proves the three claims already asserted by source inspection — row-level security denies a cross-tenant read, the audit table is append-only (UPDATE/DELETE rejected), and a realtime subscription delivers an insert to the Python client. Emit a BUILD_RECEIPT with the migration SHA and passing test names, and file a repository_fact_card at runtime level R3+ per /tmp/monolith/schemas/repository-fact-card.schema.json.",
+  "repo_excellence_anchor": "Overlaps the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe) on two of its four invariants: receipt provenance and authority binding. The anchor proves append-only, hash-bound action receipts at the execution layer (proof_receipt.schema = glaciereq.proof-receipt.v1, /tmp/helix_patch/evidence_ledger_UPDATED.json:100-109); aspen-grove-supabase is the durable, row-level-secured store those receipts and case records would land in. The anchor's restart-safe state requirement is exactly the property this repo must demonstrate at the database tier, which is why the missing proof is a migration-plus-RLS test run rather than more architecture.",
+  "honest_limits": [
+    "source was inspected but never executed: no migration run, no test names, no build or deploy receipt found locally",
+    "repository is private; no public CI run id exists to cite",
+    "the case-1FDV integration is a documented platform role, not a verified legal-operations deployment",
+    "no Supabase affiliation claimed"
+  ]
+}

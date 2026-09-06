@@ -1,0 +1,21 @@
+{
+  "repo": "jupyterlab-codex",
+  "family": "OpenAI / Cognitive OS",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A JupyterLab Extension that unlocks the power of OpenAI's Codex Model. Multi-source: library.json:8492 (name jupyterlab-codex; JupyterLab Extension for OpenAI Codex Model), capabilities_3layer:14633 (entry: elevator_pitch 'Cognitive Os Agent Kernels engine', mesh_uri glaciereq://mesh/cognitive_os_agent_kernels/jupyterlab-codex, contract_proof template only), domains/apex_cognitive_os.md:113 (portfolio row: JupyterLab Extension unlocking OpenAI's Codex Model), company_engineered_repositories.json:219 (unprocessed: openai-codex-mcp, project_openai_codex, MCP-Bridge, openai-assistant-swarm, codex_py2cpp, jupyterlab-codex, vim_codex, zsh_codex \u2014 8-entry unprocessed co-set), COMPANY_ENGINEERED_PROCESSING.md:110 (processing line: jupyterlab-codex). Rating held at 5: Cognitive Os Agent Kernels engine + 8-entry unprocessed co-set + processing line = catalog ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:8492 (name jupyterlab-codex; JupyterLab Extension for OpenAI Codex Model)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:14633 (entry: elevator_pitch 'Cognitive Os Agent Kernels engine', mesh_uri glaciereq://mesh/cognitive_os_agent_kernels/jupyterlab-codex, contract_proof template only)",
+    "/tmp/monolith/domains/apex_cognitive_os.md:113 (portfolio row: JupyterLab Extension unlocking OpenAI's Codex Model)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:218-222 (OpenAI family; unprocessed: openai-codex-mcp, project_openai_codex, MCP-Bridge, openai-assistant-swarm, codex_py2cpp, jupyterlab-codex, vim_codex, zsh_codex \u2014 8-entry unprocessed co-set)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:110 (processing line: jupyterlab-codex)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "wave3": true,
+  "makes_worthy": "Held at 5: Cognitive Os Agent Kernels engine + 8-entry unprocessed co-set + processing line = catalog ceiling. To reach >=7: extension build/receipt (jupyter labextension install .) + a Codex-call example (completion log). Capped at 5: unprocessed, catalog + cognitive-OS domain cross-reference only, no runtime proof.",
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.778343",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

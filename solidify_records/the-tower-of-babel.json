@@ -1,0 +1,20 @@
+{
+  "repo": "the-tower-of-babel",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "Definitive multi-language systems-engineering Rosetta Stone (20+ languages, W4H framework, production exhibits) and the technology-placement/proof authority referenced throughout the helix tower. Strong release evidence: the helix tower push receipt shows PR 16 merged with 'Spiral Engine Verification: success, Tower Verification: success, Tower of Babel Quality Gate: success' at merge commit dea26612..., and the pull receipt pins main at 1028a589....",
+  "evidence": [
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/10_RELEASE_RECEIPTS/REMOTE_REPOSITORY_PUSH_RECEIPT.md line 12 (GlacierEQ/the-tower-of-babel PR 16 merged; SHA dea2661270c343b6e17c617eee29c36123939414; 'Spiral Engine Verification: success, Tower Verification: success, Tower of Babel Quality Gate: success')",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/10_RELEASE_RECEIPTS/REMOTE_REPOSITORY_PULL_RECEIPT.md line 6 (main 1028a58986be6bedd1d8d09a63593876aab52d1d)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/10_RELEASE_RECEIPTS/BUILD_METADATA.json lines 24,29 (tower_of_babel_main SHAs)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/04_TOWER_OF_BABEL/README.md (canonical repository)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/04_TOWER_OF_BABEL/tower_candidate_contract.json (repository GlacierEQ/the-tower-of-babel)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/SHA256SUMS.txt lines 71-76 (hashed tower artifacts)",
+    "/tmp/monolith/catalog/library.json (name=the-tower-of-babel; activity=worked_on; status_detail=local_job_app; Python; desc multi-language Rosetta Stone)"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 8,
+  "makes_worthy": "Add a pinned-commit CI test run with an artifact digest (e.g. a build of the W4H exhibits) to reach 10; concretely link the 'Tower of Babel Quality Gate: success' to a reproducible test invocation rather than only a release-gate line."
+}

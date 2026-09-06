@@ -2,7 +2,7 @@
 
 ## Candidate signal
 
-Casey Barton built Job-App Helix to turn a 67-repository engineering portfolio into an evidence-bound review system. The portfolio spans agent governance, distributed systems, model infrastructure, telemetry, safety controls, document intelligence, product engineering, and polyglot architecture.
+Casey Barton built Job-App Helix to turn a large engineering estate into an evidence-bound review system. The current source-exhaustive estate contains 225 deserving repositories across 21 families; the earlier 67-repository Helix boundary (one control-plane root plus 66 children) remains a historical governed recruiter/audit scope, not a cap on the current portfolio. The portfolio spans agent governance, distributed systems, model infrastructure, telemetry, safety controls, document intelligence, product engineering, and polyglot architecture.
 
 The differentiator is not the number of repositories or languages. It is making a large body of work **legible, composable, and falsifiable**:
 
@@ -14,7 +14,7 @@ The differentiator is not the number of repositories or languages. It is making 
 
 **Current live portfolio status:** `PARTIALLY VERIFIED`. The July 29 evidence audit covered the prior 66-repository boundary and classified one repository as partially verified, twenty as README-verified/runtime-unverified, one as blocked/unverified, and forty-four as unverified. `UNVERIFIED` means that current evidence is insufficient to make a working/not-working claim; it does not mean the repository is defective. Later component promotions and the July 31 admission of Resume Shapeshifter do not silently rewrite that dated audit.
 
-The live boundary now contains one Helix root and sixty-six children. `JOB-RESUME-BUILDER-` was admitted because it is the lead product flagship presented by `job-application`; its absence created a governance gap between the recruiter portal and the evidence control plane.
+The current estate is the 225-repository source-exhaustive mesh recorded in `manifests/unified_deserving_manifest.json` and the 225 `solidify/*.json` records. The 67-repository Helix boundary remains preserved as a dated, governed recruiter/audit scope. `JOB-RESUME-BUILDER-` was admitted to that earlier boundary because it is the lead product flagship presented by `job-application`; preserving that historical boundary keeps its evidence receipts interpretable without misrepresenting it as the present estate size.
 
 ## What a recruiter should open first
 
@@ -25,10 +25,11 @@ The live boundary now contains one Helix root and sixty-six children. `JOB-RESUM
 | 3 | [Casey Barton candidate source](hire_package/casey-barton/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and immutable evidence links. |
 | 4 | [Root README](README.md) | Portfolio control-plane outcome, expert architecture, and machine contract. |
 | 5 | [Historical 66-repository evidence audit](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification states, and the highest-priority correction for the original audit boundary. |
-| 6 | [Exact live portfolio inventory](manifests/portfolio_repositories.json) | Pins the current boundary to one root and sixty-six child repositories. |
-| 7 | [GitHub curation ledger](manifests/github_repository_curation_2026-07-31.json) | Records admission, deferral, duplicate, private, backup, archive, and external-source decisions. |
-| 8 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
-| 9 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how APEX records become the live Vercel hire surface (`casey-barton-glaciereq.vercel.app`); Pages is optional/disabled. |
+| 6 | [Current source-exhaustive estate](manifests/unified_deserving_manifest.json) | Records the current 225-repository deserving estate used by the root portfolio control plane. |
+| 7 | [Historical governed recruiter boundary](manifests/portfolio_repositories.json) | Preserves the earlier one-root + 66-child scope used by dated audits and receipts; it is not the current estate cap. |
+| 8 | [GitHub curation ledger](manifests/github_repository_curation_2026-07-31.json) | Records admission, deferral, duplicate, private, backup, archive, and external-source decisions. |
+| 9 | [README impact standard](docs/README_OPTIMAL_IMPACT_FRAME.md) | Defines the recruiter → expert → AI documentation architecture. |
+| 10 | [Recruiter deployment contract](docs/RECRUITER_SITE_DEPLOYMENT.md) | Explains how APEX records become the live Vercel hire surface (`casey-barton-glaciereq.vercel.app`); Pages is optional/disabled. |
 
 ## Strongest current exhibits
 
@@ -81,8 +82,8 @@ Each revolution begins from accumulated context, authority, artifacts, failures,
 
 ## Current limitations
 
-- The complete 67-repository runtime surface has not been executed in one authoritative environment.
-- The README Mesh rollout receipt covers twenty-one declared nodes, not all sixty-seven repositories.
+- The complete 225-repository current estate has not been executed in one authoritative environment; verification remains repository- and receipt-scoped.
+- The README Mesh rollout receipt covers twenty-one declared nodes, not the entire current 225-repository estate.
 - Resume Shapeshifter has been admitted to the live inventory but still requires Wave 3 repository-native promotion evidence.
 - Many repositories still need clean-checkout CI, current test receipts, and README rewrites.
 - Publishing the recruiter surface proves a static deployment from a named Helix commit; it does not establish portfolio-wide production deployment.

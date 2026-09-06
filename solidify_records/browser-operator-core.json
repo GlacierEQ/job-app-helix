@@ -1,0 +1,19 @@
+{
+  "repo": "browser-operator-core",
+  "family": "Microsoft",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Open-source AI browser with a built-in multi-agent platform, positioned as an alternative to ChatGPT Atlas / Perplexity Comet / Dia / Copilot Edge (Microsoft upstream reference). Catalog carries a real description, TypeScript, and a capabilities_3layer entry (launch_cmd, contract_proof, mesh_uri); listed in the Microsoft unprocessed backlog. No local fact card or tests found.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=browser-operator-core; domain=long_tail; status_detail=catalogued_unclassified; language=TypeScript; desc='Browser Operator - The AI browser with built in Multi-Agent platform!')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family 'microsoft': unprocessed includes browser-operator-core)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=browser-operator-core; launch_cmd git clone, contract_proof DONE, mesh_uri)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Concrete multi-agent browser concept + catalog description raise 4->5; still no runnable entrypoint or test/build receipt. Add a README, runnable entrypoint, and a fact card with runtime evidence to exceed 5.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.974780",
+  "notes": " | NEEDS_REPAIR"
+}

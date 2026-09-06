@@ -1,0 +1,19 @@
+{
+  "repo": "spacex-orbital-assembly",
+  "family": "SpaceX",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Autonomous orbital assembly \u2014 multi-vehicle consensus for in-space construction, described as critical for the Starship Mars mission (catalog exec summary). Catalog classifies it as an Aerospace And Control Systems engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/spacex-orbital-assembly). Honest limitation: listed in company_engineered_repositories 'unprocessed'; catalogued but not worked_on; no tests, build, or fact card found locally, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 15580: entry spacex-orbital-assembly; exec summary='Autonomous orbital assembly \u2014 multi-vehicle consensus for in-space construction. Critical for Starship Mars mission.'; url=https://github.com/GlacierEQ/spacex-orbital-assembly)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 23893: name=spacex-orbital-assembly; classifier=aerospace_and_control_systems; catalogued; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/aerospace_and_control_systems/spacex-orbital-assembly; launch_cmd='git clone https://github.com/GlacierEQ/spacex-orbital-assembly')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 259: spacex unprocessed includes spacex-orbital-assembly)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt to move from catalogued to worked_on and reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.881866",
+  "notes": " | NEEDS_REPAIR"
+}

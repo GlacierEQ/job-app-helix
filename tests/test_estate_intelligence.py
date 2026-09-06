@@ -127,11 +127,12 @@ def _company_shards() -> list[dict]:
 
 def _policy() -> dict:
     return {
-        "audience_caps": {
+        "audience_presentation_defaults": {
             "recruiter": 10,
             "company_reviewer": 5,
             "senior_engineer": 20,
         },
+        "audience_projection_membership": "complete_ranked_relation_graph",
         "role_capability_rules": [
             {
                 "match_any": ["agent", "infrastructure", "engineer"],
@@ -193,6 +194,20 @@ def test_support_and_experiment_are_not_accomplishments() -> None:
         for row in projection["ranked_evidence"]
     }
     assert repositories == {"GlacierEQ/alpha"}
+
+
+def test_audience_projection_does_not_truncate_ranked_evidence() -> None:
+    projected = project_estate_intelligence(
+        _bundle(),
+        policy=_policy(),
+        census=_census(),
+    )
+    projection = projected["company_projection_registry"]["projections"][0]
+    ranked_ids = [row["system_id"] for row in projection["ranked_evidence"]]
+    assert projection["audience_projection_state"] == "COMPLETE_UNCAPPED"
+    assert set(projection["audience_projection"]["recruiter"]) == set(ranked_ids)
+    assert set(projection["audience_projection"]["company_reviewer"]) == set(ranked_ids)
+    assert projection["audience_projection"]["senior_engineer"] == ranked_ids
 
 
 def test_role_fit_replaces_company_count_relevance() -> None:

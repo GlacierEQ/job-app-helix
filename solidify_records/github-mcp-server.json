@@ -1,0 +1,21 @@
+{
+  "repo": "github-mcp-server",
+  "family": "GitHub",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "GitHub's official MCP server exposing supported repository, issue, pull-request, and code operations. Multi-source with relatively high confidence: library.json:7004 (name github-mcp-server; GitHub's official MCP Server), capabilities_3layer:5255 (entry: elevator_pitch 'Mcp Core Servers engine', mesh_uri glaciereq://mesh/mcp_core_servers/github-mcp-server, contract_proof template only), domains/mcp_connectors.md:59 (portfolio row: GitHub's official MCP Server), status/connectors/sdk-registry-tooling.md:15 (Official GitHub MCP server exposing repo/issue/PR/code ops; confidence=high), company_engineered_repositories.json:130 (reference_or_upstream: github-mcp-server, github-script). The official-status + mcp_core_servers engine + connectors registry high-confidence tag is the strongest upstream-connector signal in the target set. Promoted 6->7: the mcp_core_servers engine placement + connectors/sdk-registry-tooling confidence=high is real depth beyond reference-only.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:7004 (name github-mcp-server; GitHub's official MCP Server)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:5255 (entry: elevator_pitch 'Mcp Core Servers engine', mesh_uri glaciereq://mesh/mcp_core_servers/github-mcp-server, contract_proof template only)",
+    "/tmp/monolith/domains/mcp_connectors.md:59 (portfolio row: GitHub's official MCP Server)",
+    "/tmp/monolith/status/connectors/sdk-registry-tooling.md:15 (Official GitHub MCP server exposing repo/issue/PR/code ops; confidence=high)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:129-130 (GitHub family; unprocessed: github-agent-orchestrator, apex-github-worker, github-repo-enrichment-engine, public-actions-runner-host; reference_or_upstream: github-mcp-server, github-script)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "wave3": true,
+  "makes_worthy": "Promoted 6->7: Mcp Core Servers engine + connectors/sdk-registry-tooling confidence=high is a real depth signal. To reach >=9: a worked MCP tool-call receipt (a recorded tool invocation with response excerpt) and a fact card. Capped at 7: still PARTIAL because no local run/receipt; the high-confidence tag is on the catalog entry, not on a GlacierEQ execution.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.853859",
+  "notes": " | NEEDS_REPAIR"
+}

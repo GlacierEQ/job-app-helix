@@ -1,0 +1,30 @@
+{
+  "repo": "xai-colossus-2",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "wave3": true,
+  "innovation_summary": "Whole-system portfolio hub for Colossus-scale compute, facility, energy, cooling, security, and server-system engineering work (colossus_xai domain). Marked worked_solidified with a completed issue-contract proof, but the canonicalization review warns its README mixes infrastructure simulation with unrelated legal pistons and presents scenario values (1.5 GW, 200,000 GPUs) as if operational. Wave-3 mining confirmed the issue-contract proof and worked_solidified status via capabilities_3layer.json and library.json, plus a HIERARCHICAL_FUNCTION_MAP local clone path and multiple monolith status files (WHOLES/WORKED_ON/COLOSSUS_XAI_ATLAS/XAI_COLOSSUS_PROMOTION_INDEX). No standalone build/test receipt or fact card was found, and the README overstatement is a recorded honest limitation. Rating raised to 7 (worked_solidified + completed issue-contract proof + whole-hub role with real catalog/function-map bindings) but NOT to 8+ because no green test/receipt artifact proves the described system actually runs.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry: whole, worked_solidified)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (xai_colossus group, current_preparation)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=xai-colossus-2; contract_proof='DONE <=> issue-contract proof(pain) for xai-colossus-2')",
+    "/tmp/monolith/domains/colossus_xai.md (Colossus infra portfolio hub)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md (critique of README overstatement: scenario values 1.5 GW / 200,000 GPUs presented as operational)",
+    "/tmp/monolith/status/WHOLES.md, WORKED_ON.md, COLOSSUS_XAI_ATLAS.md, XAI_COLOSSUS_PROMOTION_INDEX.md",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (name=xai-colossus-2; path=/data/data/com.termux/files/home/MISSIONS/xai-colossus-2)",
+    "/tmp/monolith/receipts/company_families/ (no xai-colossus-2 standalone receipt)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "repo_excellence_anchor": "No \u2014 separate company infra scope; not part of the AKOS-governed execution kernel lineage.",
+  "makes_worthy": "Rewrite README to separate infrastructure simulation from legal pistons; add a fact card with a measured/runnable artifact and a current-SHA build receipt proving the described system actually runs before any 8+ claim.",
+  "honest_limits": [
+    "README overstatement recorded: scenario values (1.5 GW / 200,000 GPUs) presented as operational",
+    "no standalone test/receipt artifact located; issue-contract proof is a catalog claim, not a green CI run id",
+    "no local_job_app/clone confirmed in extraction /tmp/helix/"
+  ],
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.724336",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,23 @@
+{
+  "repo": "kimi-linear",
+  "family": "Moonshot AI / Lab",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A Kimi-related linear/reasoning capability listed in the lab_hire_stamps domain (portfolio row description empty in source). Multi-source presence: library.json:8668 (lab_hire_stamps), capabilities_3layer:24987 ('Lab Benchmarks And Stamps engine', mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/kimi-linear), domains/lab_hire_stamps.md:56, validate_lab_hire_atlas.py:85 (validated atlas record), company_engineered_repositories.json:149 (unprocessed), COMPANY_ENGINEERED_PROCESSING.md:81 (processing line). Honest limitation: empty description; no source or runtime proof. Rating stays at 5 \u2014 the validated-atlas reference is a real but shallow signal; without a description or test, the catalog is the only floor.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:8668 (name kimi-linear; lab_hire_stamps entry)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24987 (entry: elevator_pitch 'Lab Benchmarks And Stamps engine', mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/kimi-linear, contract_proof template only)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:56 (portfolio row: empty description)",
+    "/tmp/monolith/scripts/validate_lab_hire_atlas.py:85 (listed as validated atlas record)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:147-151 (Moonshot AI / Kimi family; unprocessed: kimi-linear)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:81 (processing line: kimi-linear)",
+    "Contradiction: library.json family=Kimi-Moonshot but the source description is empty \u2014 name implies linear-attention variant, but the variant identity is unverified."
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Held at 5: validated-atlas reference + multi-source catalog + unprocessed status = solid catalog floor. To reach >=7: add a description of the linear-attention variant, a source/commit pointer, and a build or load receipt. Capped at 5: unprocessed, source description empty, catalog cross-reference only.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.877467",
+  "notes": " | NEEDS_REPAIR"
+}

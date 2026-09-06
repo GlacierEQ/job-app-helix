@@ -1,0 +1,20 @@
+{
+  "repo": "comet-browser-agent-bridge",
+  "family": "Comet / Perplexity Browser",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "GlacierEQ's canonical Comet/Perplexity-family bridge linking browser-agent activity to external tools/connectors, cataloged in lab_hire_stamps as worked_solidified with a SHA-bound 3-layer record (sha256 3ff038f8...) and DONE contract proof (category HUMAN_UI_WEB_AND_DESKTOP_APPS). Library desc empty; no fact card or test receipt was found locally, so capability is catalog-asserted only.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4364 (name; domain lab_hire_stamps; desc empty; local_job_app true; Python; updatedAt 2026-08-10)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:20149 (layers 1-3; sha256_binding 3ff038f80e926cd6e3915906b985e7ab3d27322132f60fd327eef54da8fcda29; category HUMAN_UI_WEB_AND_DESKTOP_APPS; contract_proof DONE; mesh_uri glaciereq://mesh/human_ui_web_and_desktop_apps/comet-browser-agent-bridge)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:88-93 (family Comet; canonical_candidate; current_preparation)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED \u2014 repo inside boundary)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Add a fact card with a browser-agent bridge run exercising the external-tool integration and a test receipt; fill the empty library desc.",
+  "repo_excellence_overlap": "The computer-user VERIFIED anchor (governed browser automation + restart-safe execution, 203 tests PASS) is the closest VERIFIED parallel for a browser-agent bridge \u2014 reuse its proof_receipt schema and dual-run operability check.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.822040",
+  "notes": " | NEEDS_REPAIR"
+}

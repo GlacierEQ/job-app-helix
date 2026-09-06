@@ -1,0 +1,19 @@
+{
+  "repo": "perplexity-node",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A TypeScript/JavaScript Perplexity client (public). Catalog classifies it as an Extended Typescript Javascript engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/perplexity-node). Honest limitation: the catalog description was empty (purpose inferred from the name only); no fact card, build, or source evidence found locally, so contents and working state remain catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry perplexity-node, line 13164; empty desc; url=https://github.com/GlacierEQ/perplexity-node)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 27723: name=perplexity-node; classifier=extended_typescript_javascript; elevator_pitch='High-performance Extended Typescript Javascript engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_typescript_javascript/perplexity-node; launch_cmd='git clone https://github.com/GlacierEQ/perplexity-node')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 239: unprocessed)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Recover/inspect the repository, generate a fact card from actual source (typed client API, passing tests, build receipt) and a README; only an empty-description catalog record exists locally (worthy>=8).",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:17.023318",
+  "notes": " | NEEDS_REPAIR"
+}

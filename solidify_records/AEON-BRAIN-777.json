@@ -1,0 +1,20 @@
+{
+  "repo": "AEON-BRAIN-777",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "Catalogued as the 'AEON brain materials' whole and the materials layer behind the AEON long-horizon agent brain. The capability ledger registers it as a foundation whole with a completed issue-contract proof (contract_proof DONE) and a memory-domain mesh URI (glaciereq://mesh/memory_mem0_and_supermemory/AEON-BRAIN-777), so the materials layer exists as a tracked core whole \u2014 but the library record has an EMPTY description, is private, and there is no execution-kernel linkage (memory/materials layer, not a governed-run surface).",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=AEON-BRAIN-777; domain=memory_aspen; role=whole; status_detail=foundation_whole; desc EMPTY; private=true)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=AEON-BRAIN-777; contract_proof='DONE <=> issue-contract proof(pain) for AEON-BRAIN-777'; mesh_uri=glaciereq://mesh/memory_mem0_and_supermemory/AEON-BRAIN-777)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=AEON-777; sibling AEON whole, same mesh family)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "repo_excellence_anchor": "No direct execution-kernel linkage; memory/materials layer, not a governed-run surface.",
+  "makes_worthy": "Registered core whole with completed issue-contract proof raises 5->6; still no fact card or runnable sanity check (desc EMPTY, private). Cannot reach 10 without a README, file inventory, and one runnable check. Stays below 8 without a fact card.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.728195",
+  "notes": " | NEEDS_REPAIR"
+}

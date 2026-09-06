@@ -1,0 +1,31 @@
+{
+  "repo": "qwen-vl-flash-router",
+  "family": "Alibaba / Qwen",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "qwen-vl-flash-router is a routing specialist for fast multimodal Qwen-VL requests, choosing a target model under joint latency, modality, and model-selection constraints \u2014 a dispatch layer that decides whether an image-plus-text request needs the full vision-language model or can be served by a cheaper flash path. Its portfolio thesis is that multimodal serving cost is dominated by over-routing: sending every request to the heaviest capable model. It is the canonical head of a four-repository Qwen family in which the other three are all reference-only upstream material, so its explicit job in the estate is to be the authored boundary marker \u2014 the recorded family priority is 'P1 router proof and reference boundary', meaning the router must be provably original work sitting in front of vendored Qwen code.",
+  "evidence": [
+    "/tmp/monolith/status/functions/research.md:17 (qwen-vl-flash-router | active_specialist | lab_hire_stamps | 'Routing specialist for fast multimodal Qwen-VL requests, balancing latency, modality, and model-selection constraints' | basis: name + domain; confidence: high)",
+    "/tmp/monolith/catalog/library.json:14348 (domain=lab_hire_stamps, role=part, activity=worked_on, status_detail=worked_solidified, desc='' (EMPTY), language=Python, local_job_app=true, issue_contract=false, private=false, updatedAt 2026-08-10T06:16:24Z)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:25575-25607 (category LAB_BENCHMARKS_AND_STAMPS; impact P0; launch_cmd 'python3 ~/job-app/apex_highway.py --target qwen-vl-flash-router'; sha256_binding c22ef013af089c6f30a2aa426f59ff4370304c72acb05fbceeab6df0a5e7a1fb; mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/qwen-vl-flash-router)",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md:29 (model-inference-and-sentinels cluster membership)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:30 (portfolio row: part | worked_on | issue_contract='\u2014' | description column blank)",
+    "/tmp/monolith/status/WORKED_ON.md:76 (qwen-vl-flash-router | lab_hire_stamps | part | worked_solidified)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:248,253 (qwen_alibaba.current_preparation=[qwen-vl-flash-router]; canonical_candidate=qwen-vl-flash-router)",
+    "/tmp/monolith/domains/company_engineered_portfolio.md:55 (Alibaba / Qwen | 4 repos | 1 in preparation | 0 unprocessed | 3 reference | canonical qwen-vl-flash-router | priority 'P1 router proof and reference boundary')",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json:891-917 (sole in_preparation Qwen entry; Qwen3-Coder, qwen-code, qwen2.5VLM-OCR all state=reference)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "One concrete step to 8+: expose the routing decision as a pure function and commit a table-driven pytest over a fixture set of request shapes (text-only, single image, multi-image, oversized, latency-budget-exceeded) asserting the exact chosen route plus the fallback when the flash path is unavailable \u2014 no model weights or network calls required. Publish the run id and passing test names in a BUILD_RECEIPT and file a repository_fact_card at R3+, which simultaneously discharges the family's 'reference boundary' obligation by demonstrating authored logic distinct from the three vendored Qwen repos.",
+  "repo_excellence_anchor": "Overlaps the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe) on capability-bounded dispatch. The anchor's receipts bind caller + capability + exact source SHA for every action taken (/tmp/helix_patch/evidence_ledger_UPDATED.json:62-74), which is the same contract a model router owes its callers: the decision, the reason, and the code version that made it must be recoverable after the fact. Emitting a per-decision routing receipt in the anchor's format is the cheapest way to make this router auditable rather than merely fast.",
+  "honest_limits": [
+    "catalog desc field is EMPTY; mechanism inferred from the function atlas, whose basis is 'name + domain'",
+    "no issue contract, no source inspection, no local clone in HIERARCHICAL_FUNCTION_MAP.json, no test, CI run, artifact, or receipt found locally",
+    "no measured latency, throughput, or cost improvement verified; no live Qwen-VL inference observed",
+    "no Alibaba or Qwen affiliation claimed"
+  ],
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.793695",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

@@ -1,0 +1,21 @@
+{
+  "repo": "CASE-1FDV-23-0001009",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "Primary case pack for Casey Barton v. Brower et al., spanning RICO, 42 U.S.C. \u00a71983, and CFAA claims with 117 files, 28 motions, and 22 defendants. The deeper catalog shows it carries a completed issue-contract proof and a legal_case_portfolio mesh registration, making it the evidentiary and procedural core of the federal litigation portfolio.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=CASE-1FDV-23-0001009; domain=legal_case; role=whole; status_detail=foundation_whole; desc='Federal case: Casey Barton v. Brower et al. \u2014 RICO, \u00a71983, CFAA. 117 files, 28 motions, 22 defendants.')",
+    "/tmp/monolith/catalog/legal_spines/1FDV-23-0001009.json",
+    "/tmp/monolith/catalog/legal_spines/1FDV-23-0001009-index.json",
+    "/tmp/monolith/catalog/legal_spines/1FDV-23-0001009-discovery-candidates.json",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=CASE-1FDV-23-0001009; contract_proof='DONE <=> issue-contract proof(pain) for CASE-1FDV-23-0001009'; mesh_uri=glaciereq://mesh/legal_case_portfolio/CASE-1FDV-23-0001009)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "repo_excellence_anchor": "Peripheral \u2014 case pack is consumed by AKOS/pro-code governed orchestration but holds no governed-execution receipt; linkage indirect via pro-code/AKOS.",
+  "makes_worthy": "Add a public index README, a docket/chronology manifest, and a GitHub Action that lints filing metadata + checks exhibit ID consistency to convert the foundation pack into a demonstrable deliverable.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.736738",
+  "notes": " | NEEDS_REPAIR"
+}

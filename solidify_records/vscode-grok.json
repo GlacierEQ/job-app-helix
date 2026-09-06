@@ -1,0 +1,24 @@
+{
+  "repo": "vscode-grok",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Public TypeScript Visual Studio Code extension that integrates the xAI API so developers can query Grok about their codebase from the editor - across the whole workspace, specific files, functions, or selected snippets - with customizable output and model selection. The monolith classifies it as xAI-adjacent developer tooling that is explicitly NOT a Colossus infrastructure subsystem, and holds it as SUPPORTING_GROK_DEVELOPER_TOOL_PENDING_PROVENANCE: authorship/originality has not been established. Wave-3 mining found the catalog desc is concrete and the long_tail atlas explicitly warns catalog evidence proves intended scope only, not deployment/readiness/security/performance/execution. No test, .vsix build artifact, or provenance statement was located locally. Provenance remains the recorded blocker; rating stays low (3) and cannot exceed 5 without a provenance + green build receipt.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 17132 (domain=long_tail, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=false, TypeScript, desc present)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_13.md line 43 (family: Coding agents and developer assistants; 'catalog evidence establishes intended scope only and does not prove local deployment, configured access, production readiness, security, accuracy, performance, or successful execution'; confidence medium)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (disposition SUPPORTING_GROK_DEVELOPER_TOOL_PENDING_PROVENANCE, with grok-build-nix)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md line 125 ('vscode-grok and grok-build-nix remain xAI-adjacent developer tooling, but they are not Colossus infrastructure subsystems')",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 156 (xAI/Colossus unprocessed)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/receipts/company_families/ (no grok/vscode receipt)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 4,
+  "makes_worthy": "Settle provenance first (original vs fork + contribution delta), then unit tests over prompt/context assembly, a mocked xAI-API integration test (no key needed in CI), a packaged .vsix build artifact with a CI receipt, and documented missing-key/oversized-workspace behavior. Provenance plus green build + published package reaches 8.",
+  "last_verified": "2026-08-29T08:47:17.030775",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=4"
+}

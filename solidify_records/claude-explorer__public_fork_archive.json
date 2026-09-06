@@ -1,0 +1,24 @@
+{
+  "repo": "claude-explorer__public_fork_archive",
+  "family": "Anthropic",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Archived public fork of claude-explorer, retained as a historical comparison record after supersession by the private claude-explorer (johnlindquist upstream diverged 72 commits ahead, converted 2026-07-12). Catalog evidence: library.json (catalogued, desc='[ARCHIVED public fork] superseded by private claude-explorer'), company_engineered_repositories.json (anthropic.reference_or_upstream + extended_to=claude-explorer), capabilities_3layer.json (EXTENDED_FORKS_AND_STUDY, impact_score=P1, architecture_role='left_behind', activity_status='left_behind', executive_summary='[ARCHIVED public fork] superseded by private claude-explorer', contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=009a7a8f05ffd8bfc975aae842cd9e1bfb543bfb0f4fd6c1258c913f8a8e5445, agent_tool_registration=tool_claude_explorer__public_fork_archive, git-clone launch_cmd). The capabilities_3layer.json explicitly records architecture_role='left_behind' and activity_status='left_behind', which is a high-fidelity provenance signal. No current runtime or maintenance is inferred.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:3660 (name=claude-explorer__public_fork_archive, desc='[ARCHIVED public fork] superseded by private claude-explorer', url=https://github.com/GlacierEQ/claude-explorer__public_fork_archive)",
+    "/tmp/monolith/catalog/library.json:3644-3652 (private claude-explorer supersession: 'Private diverged from johnlindquist/claude-explorer (ahead=72) . converted 2026-07-12')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:60 (anthropic.reference_or_upstream)",
+    "/tmp/monolith/domains/forks_study.md",
+    "/tmp/monolith/status/FORKS_STUDY_ARCHIVE_ATLAS.md",
+    "/tmp/monolith/status/LEFT_BEHIND.md",
+    "/tmp/monolith/audits/P0_PUBLIC_REPOSITORY_SWEEP_2026-07-30.md",
+    "/tmp/monolith/catalog/capabilities_3layer.json:25787 (EXTENDED_FORKS_AND_STUDY, impact_score=P1, architecture_role='left_behind', activity_status='left_behind', executive_summary='[ARCHIVED public fork] superseded by private claude-explorer', launch_cmd='git clone https://github.com/GlacierEQ/claude-explorer__public_fork_archive', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=009a7a8f05ffd8bfc975aae842cd9e1bfb543bfb0f4fd6c1258c913f8a8e5445, mesh_uri=glaciereq://mesh/extended_forks_and_study/claude-explorer__public_fork_archive, agent_tool_registration.name=tool_claude_explorer__public_fork_archive)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Bumps 4->6 with the cleanest provenance signal of the set: left_behind architecture_role, supersession lineage to private claude-explorer (ahead=72), and full mesh registration. Cannot exceed 7 for an archive \u2014 the left_behind classification is correct, and presenting an archive above 7 risks overstating active work. Honest cap at 6 unless: (1) the archive is brought back into active rotation, OR (2) it is used as a frozen baseline for an A/B test against the private claude-explorer with a hash-bound divergence receipt.",
+  "wave3": true,
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:16.750535",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

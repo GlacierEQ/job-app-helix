@@ -1,0 +1,17 @@
+{
+  "repo": "deepmind-tpu-mesh-optimizer",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "GlacierEQ's canonical DeepMind-family TPU mesh optimizer, cataloged in lab_hire_stamps as worked_solidified with an issue_contract and a SHA-bound 3-layer record (sha256 b90b7586...) and DONE contract proof (P0 Model Inference And Sentinels). Library desc empty; no implementation artifact substantiates it locally beyond the catalog and capability mesh binding.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:5340 (name; domain lab_hire_stamps; desc empty; issue_contract true; local_job_app true; Python; updatedAt 2026-08-10)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:22001 (layers 1-3; sha256_binding b90b75865eccf9ce6976643c1dc03d75a762441a3aae4131d4bf738d7c8cc9e9; category MODEL_INFERENCE_AND_SENTINELS; contract_proof DONE; mesh_uri glaciereq://mesh/model_inference_and_sentinels/deepmind-tpu-mesh-optimizer)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:108-113 (family Google/DeepMind; canonical_candidate; current_preparation)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim helix_inventory (66-repo boundary VERIFIED — repo inside boundary)"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "makes_worthy": "Produce a fact card / run receipt describing the TPU-mesh optimization actually implemented and a pytest proving the scheduling path; fill the empty library desc.",
+  "repo_excellence_overlap": "Governed-execution/receipt discipline from the computer-user VERIFIED anchor applies — bind any scheduler run to a hash receipt (proof_receipt schema v1)."
+}

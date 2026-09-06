@@ -1,0 +1,21 @@
+{
+  "repo": "xai-colossus-energy-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "Alpha-side power-budget model in the Colossus energy pair — given a megawatt budget it models load/reserve and flags oversubscription that the Omega controller then sheds; marked AKOS P0. Unlike most historical variants, the energy family truth gate pinned THIS repository at exact commit 69229edb... and executed a cross-repository scenario (Alpha oversubscribed at 68.0 MW used / 5.6 reserve / -3.6 headroom) that met its target, producing a hashed CI artifact (sha256:37a068f...). The parent receipt still flags synthetic confidence fields in child repos to quarantine.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=xai-colossus-energy-alpha; domain=colossus_xai; activity=worked_on; status_detail=worked_solidified; desc 'Colossus energy Alpha — power budget model · AKOS P0'; Python; local_job_app=true)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json pinned_children.alpha: GlacierEQ/xai-colossus-energy-alpha pinned at commit 69229edbb5fbf511c2416604bf77a8067235885e",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json test_counts: pinned_alpha=2 of total_bounded_tests=16",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json cross_repository_scenario: PINNED_CROSS_REPOSITORY_SCENARIO_VERIFIED; alpha_status=OVERSUBSCRIBED; used_mw 68.0; reserve_mw 5.6; headroom_mw -3.6; met=true; historical_answer_or_confidence_fields_used_as_evidence=false",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json direct_family_gate: workflow 'Energy Family Truth Gate' run_id 30896081128 conclusion=success; artifact 'energy-family-verification' digest sha256:37a068f81a37abbb1e31d6801a4834f9bb14b7839a102ee1e7e3ab1f1f8ef9c3",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json next_gate item 1: 'remove or quarantine historical answer and synthetic confidence fields in child repositories'",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json dispositions.SUPPORTING_HELIX_MODULE_PENDING_BEHAVIORAL_AUDIT includes energy-alpha",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (xai_colossus.historical_or_cross_company)"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 8,
+  "makes_worthy": "Give this repository its own CI truth gate instead of borrowing the parent's: add a repo-local test suite with more than the two pinned assertions, quarantine the synthetic confidence / historical answer fields the parent receipt flags, and publish a standalone hardening receipt with typed load, unit, timestamp, and authority schemas plus failure-injection fixtures. That converts it from 'verified inside the family gate' to an independently defensible model."
+}

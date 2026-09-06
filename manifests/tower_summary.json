@@ -1,0 +1,431 @@
+{
+  "schema": "glaciereq.job-app-helix.tower-summary.v1",
+  "generated_at": "2026-08-29T00:27:33-10:00",
+  "authority": "operator_override",
+  "policy": "stop_hallucination_not_progress",
+  "source_manifest": "/tmp/helix_patch/unified_deserving_manifest.json",
+  "total_repos": 225,
+  "helix_admitted_66": 66,
+  "deserving_extra_159": 159,
+  "missing_solidify_records": 11,
+  "by_verification": {
+    "VERIFIED": 8,
+    "PARTIAL": 1,
+    "UNVERIFIED_HAS_SOLIDIFY": 205,
+    "ADMITTED_BOUNDARY_NO_RECORD": 11
+  },
+  "verified_anchors": [
+    {
+      "repo": "GlacierEQ/computer-user",
+      "role": "execution_kernel_anchor",
+      "family": "execution",
+      "worthy_rating": null,
+      "verification_status": "VERIFIED",
+      "evidence": "203 tests PASS at source SHA 1eb2e2f4525d556488383af4624ce8a4a5873d44a77b58c181b973652637a397; live AKOS HTTP verification; restart-safe container; pro-code-originated-live-receipt-proof.json",
+      "principal_state": "PROMOTED",
+      "lifecycle_gates_passed": "12/12",
+      "open_gate": "persistent_production_host_verified = false",
+      "source": "/root/repo_excellence/STRONG_COMPLETION.computer-user.md"
+    },
+    {
+      "repo": "AKOS",
+      "role": "authority_core_identity_governance",
+      "family": "GlacierEQ-core",
+      "worthy_rating": 9,
+      "verification_status": "VERIFIED",
+      "evidence": "94/94 tests across 12 modules on Python 3.11-3.13; Actions run 30532339028; source_commit d00eb4a9889fb4b78621d422a70c2677e12a467d; promotion_merge b4b9ecba71f41bf9e3ddffa1f6c2c34c6a9b7192",
+      "source_record": "/tmp/helix_patch/solidify/AKOS.json"
+    },
+    {
+      "repo": "pro-code",
+      "role": "operator_control_surface",
+      "family": "GlacierEQ-core",
+      "worthy_rating": 9,
+      "verification_status": "VERIFIED",
+      "scope": "operator-client origination path proven through computer-user",
+      "evidence": "pro-code-originated-live-receipt-proof.json with capability + exact terminal/AKOS source SHA bound; AKOS-verified over HTTP",
+      "source_record": "/tmp/helix_patch/solidify/pro-code.json"
+    },
+    {
+      "repo": "job-app-helix",
+      "role": "portfolio_control_plane",
+      "family": "GlacierEQ-core",
+      "worthy_rating": 9,
+      "verification_status": "VERIFIED",
+      "evidence": "Public GitHub Pages deployment; remote push/pull release receipts; FINAL_FORM_MANIFEST; INTEGRITY_MANIFEST",
+      "source_record": "/tmp/helix_patch/solidify/job-app-helix.json"
+    },
+    {
+      "repo": "the-tower-of-babel",
+      "role": "multi_language_standards_authority",
+      "family": "GlacierEQ-core",
+      "worthy_rating": 8,
+      "verification_status": "VERIFIED",
+      "evidence": "PR #16 merged; merge commit dea2661270c343b6e17c617eee29c36123939414; 'Spiral Engine Verification: success, Tower Verification: success, Tower of Babel Quality Gate: success'; main pinned 1028a58986be6bedd1d8d09a63593876aab52d1d",
+      "source_record": "/tmp/helix_patch/solidify/the-tower-of-babel.json"
+    },
+    {
+      "repo": "xai-colossus-cooling",
+      "role": "colossus_thermal_truth_surface",
+      "family": "xAI / Colossus",
+      "worthy_rating": 9,
+      "verification_status": "VERIFIED",
+      "canonical_role": "canonical head of 62-repo xAI/Colossus family",
+      "evidence": {
+        "direct_gate_run": "30895011833",
+        "direct_gate_tests_passed": 37,
+        "direct_gate_artifact_id": "8886632264",
+        "direct_gate_artifact_sha256": "53c6f26ece8696d8b9d1aed54e4be5a537908a372751210acdace2e44648227b",
+        "reusable_gate_run": "30895011023",
+        "reusable_gate_job_id": "91945716503",
+        "head_commit": "32208669d1af111b9768b22eed906e80fabbb402"
+      },
+      "source_record": "/tmp/helix_patch/solidify/xai-colossus-cooling.json"
+    },
+    {
+      "repo": "xai-colossus-servers",
+      "role": "colossus_rack_planner",
+      "family": "xAI / Colossus",
+      "worthy_rating": 8,
+      "verification_status": "VERIFIED",
+      "evidence": {
+        "direct_gate_run": "30897116390",
+        "direct_gate_job_id": "91952549493",
+        "direct_gate_tests_passed": 20,
+        "deterministic_scenario": "DETERMINISTIC_SCENARIO_VERIFIED, algorithm=first_fit_decreasing_with_preference, scenario_sha256=9917ef6cbc25f9a842206b097e9e7194866040b5d3a727ed50f274a82f3f7617",
+        "artifact_id": "8887480269",
+        "artifact_sha256": "c9dd3f0da5fd37a4e792728bee2228066ddd25bc7f7a475a913809044b70612f",
+        "head_commit": "4f3bbdc0396b75188dcb88ce81938fee5d1451e6"
+      },
+      "source_record": "/tmp/helix_patch/solidify/xai-colossus-servers.json"
+    },
+    {
+      "repo": "xai-colossus-energy-omega",
+      "role": "colossus_load_shed_controller",
+      "family": "xAI / Colossus",
+      "worthy_rating": 8,
+      "verification_status": "VERIFIED",
+      "evidence": {
+        "family_gate_run": "30896081128",
+        "artifact_id": "8887063327",
+        "artifact_sha256": "37a068f81a37abbb1e31d6801a4834f9bb14b7839a102ee1e7e3ab1f1f8ef9c3",
+        "pinned_commit": "7919943e0b73f2ca8784e417ff9efb0cf8c37a86",
+        "cross_repo_scenario": "PINNED_CROSS_REPOSITORY_SCENARIO_VERIFIED, alpha_status=OVERSUBSCRIBED, headroom_mw=-3.6, omega_need_mw=3.6, first_action shed batch-training mw=20.0 priority=9, met=true"
+      },
+      "source_record": "/tmp/helix_patch/solidify/xai-colossus-energy-omega.json"
+    }
+  ],
+  "partial_repos": [
+    {
+      "repo": "xai-colossus-2",
+      "family": "xAI / Colossus",
+      "worthy_rating": 7,
+      "verification_status": "PARTIAL",
+      "evidence": "worked_solidified + completed issue-contract proof; whole-hub role; no standalone CI receipt (honest limit)",
+      "source_record": "/tmp/helix_patch/solidify/xai-colossus-2.json"
+    }
+  ],
+  "by_tier": {
+    "tier_0_authority_core": [
+      "AKOS", "pro-code", "job-app-helix", "the-tower-of-babel", "apex-control-plane", "apex-stack",
+      "mastermind", "monolith", "aspen-grove-memory", "token_saver", "spiral-engine", "colossus-gateway",
+      "apex-cli", "apex-github-worker", "AEON-777", "AEON-BRAIN-777", "ECHO", "JOB-RESUME-BUILDER-",
+      "Pro-comet-agent", "glaciereq-mcp-stack", "job-application", "openclaw", "sigma-glue",
+      "1FDV-23-0001009-FEDERAL-WARFARE", "CASE-1FDV-23-0001009", "SUPERLUMINAL_CASE_MATRIX"
+    ],
+    "tier_1_flagships": [
+      "computer-user", "xai-colossus-cooling", "xai-colossus-servers", "xai-colossus-energy-omega", "xai-colossus-2"
+    ],
+    "tier_2_capabilities_in_preparation": [
+      "anthropic-agent-coordinator", "anthropic-safety-monitor",
+      "apple-ane-kv-quantizer",
+      "aws-trainium-neuron-sentinel",
+      "comet-browser-agent-bridge",
+      "deepmind-tpu-mesh-optimizer",
+      "deepseek-mla-moe-sentinel",
+      "kimi-mooncake-kv-stream",
+      "lovable-design-app-synth",
+      "manus-autonomous-web-agent",
+      "meta-llama-collective-sentinel",
+      "microsoft-azure-ops", "microsoft-identity-zero-trust",
+      "notion-mcp-empowerment-engine", "notion-workflow-intelligence", "notion-workspace-optimizer",
+      "nvidia-deep-reasoning", "nvidia-gpu-health",
+      "openai-reasoning-kv-sentinel",
+      "opera-neon-spatial-workspace",
+      "qwen-vl-flash-router",
+      "spacex-autonomy", "spacex-conjunction-sentinel", "spacex-cryogenics", "spacex-ground-network",
+      "spacex-launch-sequencer", "spacex-mission-control", "spacex-orbital-mechanics",
+      "spacex-pad-weather-gate", "spacex-propulsion-monitor", "spacex-satellite-mesh",
+      "spacex-telemetry", "spacex-thermal-protection",
+      "tasklet-micro-agent-engine",
+      "tesla-fsd-occupancy-stream",
+      "robotics-vla-torque-sentinel",
+      "xai-colossus-build", "xai-colossus-cooling", "xai-colossus-energy", "xai-colossus-nanosphere",
+      "xai-colossus-security", "xai-colossus-servers", "grokodile", "colossus-training-flux"
+    ],
+    "tier_3_references_needs_work_historical": [
+      "anthropic-alignment-drift", "anthropic-byzantine-consensus", "anthropic-cross-domain-fusion",
+      "claude-code", "claude-setup", "claude-explorer__public_fork_archive", "claude-code-kimi-groq",
+      "apple-mcp", "Pro-iOS",
+      "products-suggestions-api", "awscloud", "aws-toolkit-vscode",
+      "comet-agent", "comet-extension", "comet-voice-module-tests", "comet-memory-integration",
+      "coreweave-state-fusion", "coreweave-temporal-router", "coreweave-circuit-breaker",
+      "coreweave-shadow-monitor", "coreweave-entropy-engine",
+      "deepmind-core-think", "deepmind-orbital-surfing", "deepmind-predictive-handoff",
+      "deepmind-request-router", "deepmind-temporal-router", "google-drive-mcp", "google_workspace_mcp",
+      "apex-gemma", "run-gemini-cli", "Pro-Gemma",
+      "DeepSeek-Coder", "DeepSeek-Coder-V2", "DeepSeek-Coder-V2-main",
+      "github-agent-orchestrator", "apex-github-worker", "github-repo-enrichment-engine",
+      "public-actions-runner-host", "github-mcp-server", "github-script",
+      "groqchat",
+      "kimi-linear", "Kimi-K2", "Kimi-K3",
+      "metaagent", "llama-coder", "llama-fs__public_fork_archive",
+      "TextCraft", "browser-operator-core", "word-GPT-Plus", "Microsoft-Build2025-Samples", "Office-Word-MCP-Server",
+      "Z-BACKUP-ollama-notion-apex-orchestrator", "notion-mcp-server",
+      "nvidia-agent-consensus", "nvidia-circuit-breaker", "nvidia-gradient-shield",
+      "openai-codex-mcp", "project_openai_codex", "MCP-Bridge", "openai-assistant-swarm",
+      "codex_py2cpp", "jupyterlab-codex", "vim_codex", "zsh_codex",
+      "openai-agents-js", "openai-agents-python", "openai-assistants-quickstart", "openai-node",
+      "openai-python", "openai-realtime-agents", "codex-supermemory", "open-codex", "awesome-codex",
+      "public-openai-client-php", "chatgpt-vercel", "chatgpt_infinity", "gpt-ai-assistant",
+      "perplexity-extension", "perplexity-goose-integration", "perplexity-enhancement-mcp",
+      "perplexity-voice-integration", "perplexity-app-connector-bridge", "perplexity-node",
+      "perplexity-ai-export", "perplexity-ai-app", "Z-BACKUP-apex-pplx-cli", "Perplexica",
+      "Qwen3-Coder", "qwen-code", "qwen2.5VLM-OCR",
+      "spacex-orbital-assembly", "spacex-recovery-dynamics", "grok-build",
+      "aspen-grove-supabase", "supabase-mcp", "supabase-grafana", "supabase", "cli", "dashboard",
+      "ai-sdk-provider", "sdk",
+      "xai-colossal-cooling", "xai-colossus-build", "xai-colossus-community",
+      "xai-colossus-microcode", "xai-colossus-waterplant", "xai-legal-intelligence",
+      "Pro-Colossus", "colossus-build-blueprint", "colossus-realignment", "colossus2-realignment",
+      "godmind-colossus-gateway", "xai-colossal-cooling", "xai-colossus-build", "xai-colossus-community",
+      "xai-colossus-microcode", "xai-colossus-waterplant", "xai-legal-intelligence",
+      "Pro-xAI", "vscode-grok", "grok-build-nix",
+      "Z-BACKUP-mastermind-colossus",
+      "xai-colossus-energy-alpha", "xai-colossus-energy-omega", "xai-colossus-cooling-alpha", "xai-colossus-cooling-omega",
+      "xai-colossus-community-alpha", "xai-colossus-community-omega", "xai-colossus-microcode-alpha", "xai-colossus-microcode-omega",
+      "xai-colossus-nanosphere-alpha", "xai-colossus-nanosphere-omega", "xai-colossus-nexus-alpha", "xai-colossus-nexus-omega",
+      "xai-colossus-security-alpha", "xai-colossus-security-omega", "xai-colossus-servers-alpha", "xai-colossus-servers-omega",
+      "xai-colossus-waterplant-alpha", "xai-colossus-waterplant-omega",
+      "xai-aeon777-servers-alpha", "xai-aeon777-waterplant-omega", "xai-aeon777-justice-omega",
+      "xai-aeon777-nexus-alpha", "xai-aeon777-security-omega", "xai-aeon777-cooling-alpha", "xai-aeon777-nexus-omega",
+      "xai-aeon777-community-alpha", "xai-aeon777-community-omega", "xai-aeon777-nanosphere-alpha",
+      "xai-aeon777-energy-alpha", "xai-aeon777-waterplant-alpha", "xai-aeon777-justice-alpha",
+      "xai-aeon777-energy-omega", "xai-aeon777-microcode-alpha", "xai-aeon777-nanosphere-omega",
+      "xai-aeon777-microcode-omega", "xai-aeon777-servers-omega", "xai-aeon777-security-alpha",
+      "xai-aeon777-cooling-omega"
+    ]
+  },
+  "by_family": {
+    "GlacierEQ-core": [
+      "AKOS", "pro-code", "job-app-helix", "the-tower-of-babel", "apex-control-plane", "apex-stack",
+      "mastermind", "monolith", "aspen-grove-memory", "token_saver", "spiral-engine", "colossus-gateway",
+      "apex-cli", "apex-github-worker", "AEON-777", "AEON-BRAIN-777", "GlacierEQ_Swarm", "xai-colossus-2",
+      "ECHO", "JOB-RESUME-BUILDER-", "Pro-comet-agent", "glaciereq-mcp-stack", "job-application",
+      "openclaw", "sigma-glue", "1FDV-23-0001009-FEDERAL-WARFARE", "CASE-1FDV-23-0001009",
+      "SUPERLUMINAL_CASE_MATRIX"
+    ],
+    "Anthropic": [
+      "anthropic-agent-coordinator", "anthropic-safety-monitor", "anthropic-alignment-drift",
+      "anthropic-byzantine-consensus", "anthropic-cross-domain-fusion", "claude-code", "claude-setup",
+      "claude-explorer__public_fork_archive", "claude-code-kimi-groq"
+    ],
+    "Apple": ["apple-ane-kv-quantizer", "apple-mcp", "Pro-iOS"],
+    "Amazon Web Services": [
+      "aws-trainium-neuron-sentinel", "products-suggestions-api", "awscloud", "aws-toolkit-vscode"
+    ],
+    "Comet / Perplexity Browser": [
+      "comet-browser-agent-bridge", "comet-agent", "comet-extension", "comet-voice-module-tests",
+      "comet-memory-integration"
+    ],
+    "CoreWeave": [
+      "coreweave-state-fusion", "coreweave-temporal-router", "coreweave-circuit-breaker",
+      "coreweave-shadow-monitor", "coreweave-entropy-engine"
+    ],
+    "Google / DeepMind": [
+      "deepmind-tpu-mesh-optimizer", "deepmind-core-think", "deepmind-orbital-surfing",
+      "deepmind-predictive-handoff", "deepmind-request-router", "deepmind-temporal-router",
+      "google-drive-mcp", "google_workspace_mcp", "apex-gemma", "run-gemini-cli", "Pro-Gemma"
+    ],
+    "DeepSeek": [
+      "deepseek-mla-moe-sentinel", "DeepSeek-Coder", "DeepSeek-Coder-V2", "DeepSeek-Coder-V2-main"
+    ],
+    "GitHub": [
+      "github-agent-orchestrator", "apex-github-worker", "github-repo-enrichment-engine",
+      "public-actions-runner-host", "github-mcp-server", "github-script"
+    ],
+    "Groq": ["groqchat"],
+    "Moonshot AI / Kimi": [
+      "kimi-mooncake-kv-stream", "kimi-linear", "Kimi-K2", "Kimi-K3"
+    ],
+    "Lovable": ["lovable-design-app-synth"],
+    "Manus": ["manus-autonomous-web-agent"],
+    "Meta": [
+      "meta-llama-collective-sentinel", "metaagent", "llama-coder", "llama-fs__public_fork_archive"
+    ],
+    "Microsoft": [
+      "microsoft-azure-ops", "microsoft-identity-zero-trust", "TextCraft", "browser-operator-core",
+      "word-GPT-Plus", "Microsoft-Build2025-Samples", "Office-Word-MCP-Server"
+    ],
+    "Notion": [
+      "notion-mcp-empowerment-engine", "notion-workflow-intelligence", "notion-workspace-optimizer",
+      "Z-BACKUP-ollama-notion-apex-orchestrator", "notion-mcp-server"
+    ],
+    "NVIDIA": [
+      "nvidia-deep-reasoning", "nvidia-gpu-health", "nvidia-agent-consensus",
+      "nvidia-circuit-breaker", "nvidia-gradient-shield"
+    ],
+    "OpenAI / Codex": [
+      "openai-reasoning-kv-sentinel", "openai-codex-mcp", "project_openai_codex", "MCP-Bridge",
+      "openai-assistant-swarm", "codex_py2cpp", "jupyterlab-codex", "vim_codex", "zsh_codex",
+      "openai-agents-js", "openai-agents-python", "openai-assistants-quickstart", "openai-node",
+      "openai-python", "openai-realtime-agents", "codex-supermemory", "open-codex", "awesome-codex",
+      "public-openai-client-php", "chatgpt-vercel", "chatgpt_infinity", "gpt-ai-assistant"
+    ],
+    "Opera": ["opera-neon-spatial-workspace"],
+    "Perplexity": [
+      "perplexity-extension", "perplexity-goose-integration", "perplexity-enhancement-mcp",
+      "perplexity-voice-integration", "perplexity-app-connector-bridge", "perplexity-node",
+      "perplexity-ai-export", "perplexity-ai-app", "Z-BACKUP-apex-pplx-cli", "Perplexica"
+    ],
+    "Alibaba / Qwen": [
+      "qwen-vl-flash-router", "Qwen3-Coder", "qwen-code", "qwen2.5VLM-OCR"
+    ],
+    "SpaceX": [
+      "spacex-autonomy", "spacex-conjunction-sentinel", "spacex-cryogenics", "spacex-ground-network",
+      "spacex-launch-sequencer", "spacex-mission-control", "spacex-orbital-mechanics",
+      "spacex-pad-weather-gate", "spacex-propulsion-monitor", "spacex-satellite-mesh",
+      "spacex-telemetry", "spacex-thermal-protection", "spacex-orbital-assembly",
+      "spacex-recovery-dynamics", "grok-build"
+    ],
+    "Supabase": [
+      "aspen-grove-supabase", "supabase-mcp", "supabase-grafana", "supabase", "cli", "dashboard"
+    ],
+    "Tasklet": ["tasklet-micro-agent-engine"],
+    "Tesla": ["tesla-fsd-occupancy-stream"],
+    "Vercel": ["ai-sdk-provider", "sdk"],
+    "xAI / Colossus": [
+      "xai-colossus-build", "xai-colossus-cooling", "xai-colossus-energy", "xai-colossus-nanosphere",
+      "xai-colossus-security", "xai-colossus-servers", "xai-colossal-cooling", "xai-colossus-community",
+      "xai-colossus-microcode", "xai-colossus-waterplant", "colossus-training-flux", "grokodile",
+      "Pro-Colossus", "colossus-build-blueprint", "colossus-realignment", "colossus2-realignment",
+      "godmind-colossus-gateway", "xai-legal-intelligence", "Pro-xAI", "vscode-grok", "grok-build-nix",
+      "Z-BACKUP-mastermind-colossus",
+      "xai-colossus-energy-alpha", "xai-colossus-energy-omega", "xai-colossus-cooling-alpha",
+      "xai-colossus-cooling-omega", "xai-colossus-community-alpha", "xai-colossus-community-omega",
+      "xai-colossus-microcode-alpha", "xai-colossus-microcode-omega", "xai-colossus-nanosphere-alpha",
+      "xai-colossus-nanosphere-omega", "xai-colossus-nexus-alpha", "xai-colossus-nexus-omega",
+      "xai-colossus-security-alpha", "xai-colossus-security-omega", "xai-colossus-servers-alpha",
+      "xai-colossus-servers-omega", "xai-colossus-waterplant-alpha", "xai-colossus-waterplant-omega",
+      "xai-aeon777-servers-alpha", "xai-aeon777-waterplant-omega", "xai-aeon777-justice-omega",
+      "xai-aeon777-nexus-alpha", "xai-aeon777-security-omega", "xai-aeon777-cooling-alpha",
+      "xai-aeon777-nexus-omega", "xai-aeon777-community-alpha", "xai-aeon777-community-omega",
+      "xai-aeon777-nanosphere-alpha", "xai-aeon777-energy-alpha", "xai-aeon777-waterplant-alpha",
+      "xai-aeon777-justice-alpha", "xai-aeon777-energy-omega", "xai-aeon777-microcode-alpha",
+      "xai-aeon777-nanosphere-omega", "xai-aeon777-microcode-omega", "xai-aeon777-servers-omega",
+      "xai-aeon777-security-alpha", "xai-aeon777-cooling-omega"
+    ],
+    "Company-adjacent / assignment pending": ["robotics-vla-torque-sentinel"]
+  },
+  "by_source_state": {
+    "core_wholes": [
+      "1FDV-23-0001009-FEDERAL-WARFARE", "AEON-777", "AEON-BRAIN-777", "AKOS", "CASE-1FDV-23-0001009",
+      "GlacierEQ_Swarm", "SUPERLUMINAL_CASE_MATRIX", "apex-cli", "apex-control-plane", "apex-stack",
+      "aspen-grove-memory", "colossus-gateway", "job-app-helix", "mastermind", "monolith", "pro-code",
+      "spiral-engine", "token_saver", "xai-colossus-2"
+    ],
+    "in_preparation": [
+      "anthropic-agent-coordinator", "anthropic-safety-monitor", "apple-ane-kv-quantizer",
+      "aws-trainium-neuron-sentinel", "comet-browser-agent-bridge", "deepmind-tpu-mesh-optimizer",
+      "deepseek-mla-moe-sentinel", "kimi-mooncake-kv-stream", "lovable-design-app-synth",
+      "manus-autonomous-web-agent", "meta-llama-collective-sentinel", "microsoft-azure-ops",
+      "microsoft-identity-zero-trust", "notion-mcp-empowerment-engine", "notion-workflow-intelligence",
+      "notion-workspace-optimizer", "nvidia-deep-reasoning", "nvidia-gpu-health",
+      "openai-reasoning-kv-sentinel", "opera-neon-spatial-workspace", "qwen-vl-flash-router",
+      "spacex-autonomy", "spacex-conjunction-sentinel", "spacex-cryogenics", "spacex-ground-network",
+      "spacex-launch-sequencer", "spacex-mission-control", "spacex-orbital-mechanics",
+      "spacex-pad-weather-gate", "spacex-propulsion-monitor", "spacex-satellite-mesh",
+      "spacex-telemetry", "spacex-thermal-protection", "tasklet-micro-agent-engine",
+      "tesla-fsd-occupancy-stream", "robotics-vla-torque-sentinel",
+      "xai-colossus-build", "xai-colossus-cooling", "xai-colossus-energy", "xai-colossus-nanosphere",
+      "xai-colossus-security", "xai-colossus-servers", "grokodile", "colossus-training-flux"
+    ],
+    "needs_work": [
+      "anthropic-alignment-drift", "anthropic-byzantine-consensus", "anthropic-cross-domain-fusion",
+      "apple-mcp", "Pro-iOS", "products-suggestions-api", "awscloud", "comet-agent", "comet-extension",
+      "comet-voice-module-tests", "comet-memory-integration", "coreweave-state-fusion",
+      "coreweave-temporal-router", "coreweave-circuit-breaker", "coreweave-shadow-monitor",
+      "coreweave-entropy-engine", "deepmind-core-think", "deepmind-orbital-surfing",
+      "deepmind-predictive-handoff", "deepmind-request-router", "deepmind-temporal-router",
+      "google-drive-mcp", "google_workspace_mcp", "apex-gemma", "run-gemini-cli", "Pro-Gemma",
+      "github-agent-orchestrator", "apex-github-worker", "github-repo-enrichment-engine",
+      "public-actions-runner-host", "groqchat", "kimi-linear", "metaagent", "TextCraft",
+      "browser-operator-core", "word-GPT-Plus", "Z-BACKUP-ollama-notion-apex-orchestrator",
+      "nvidia-agent-consensus", "nvidia-circuit-breaker", "nvidia-gradient-shield",
+      "openai-codex-mcp", "project_openai_codex", "MCP-Bridge", "openai-assistant-swarm",
+      "codex_py2cpp", "jupyterlab-codex", "vim_codex", "zsh_codex", "perplexity-extension",
+      "perplexity-goose-integration", "perplexity-enhancement-mcp", "perplexity-voice-integration",
+      "perplexity-app-connector-bridge", "perplexity-node", "perplexity-ai-export",
+      "perplexity-ai-app", "Z-BACKUP-apex-pplx-cli", "spacex-orbital-assembly",
+      "spacex-recovery-dynamics", "aspen-grove-supabase", "supabase-mcp", "supabase-grafana",
+      "ai-sdk-provider", "xai-colossal-cooling", "xai-colossus-build", "xai-colossus-community",
+      "xai-colossus-microcode", "xai-colossus-waterplant", "Pro-Colossus", "colossus-build-blueprint",
+      "colossus-realignment", "colossus2-realignment", "godmind-colossus-gateway",
+      "xai-legal-intelligence", "Pro-xAI", "vscode-grok", "grok-build-nix"
+    ],
+    "reference": [
+      "claude-code", "claude-setup", "claude-explorer__public_fork_archive", "aws-toolkit-vscode",
+      "DeepSeek-Coder", "DeepSeek-Coder-V2", "DeepSeek-Coder-V2-main", "github-mcp-server",
+      "github-script", "Kimi-K2", "Kimi-K3", "llama-coder", "llama-fs__public_fork_archive",
+      "Microsoft-Build2025-Samples", "Office-Word-MCP-Server", "notion-mcp-server",
+      "openai-agents-js", "openai-agents-python", "openai-assistants-quickstart", "openai-node",
+      "openai-python", "openai-realtime-agents", "codex-supermemory", "open-codex", "awesome-codex",
+      "public-openai-client-php", "Perplexica", "Qwen3-Coder", "qwen-code", "qwen2.5VLM-OCR",
+      "supabase", "cli", "dashboard", "sdk"
+    ],
+    "historical": [
+      "claude-code-kimi-groq", "chatgpt-vercel", "chatgpt_infinity", "gpt-ai-assistant", "grok-build",
+      "Z-BACKUP-mastermind-colossus",
+      "xai-colossus-energy-alpha", "xai-colossus-energy-omega", "xai-colossus-cooling-alpha",
+      "xai-colossus-cooling-omega", "xai-colossus-community-alpha", "xai-colossus-community-omega",
+      "xai-colossus-microcode-alpha", "xai-colossus-microcode-omega", "xai-colossus-nanosphere-alpha",
+      "xai-colossus-nanosphere-omega", "xai-colossus-nexus-alpha", "xai-colossus-nexus-omega",
+      "xai-colossus-security-alpha", "xai-colossus-security-omega", "xai-colossus-servers-alpha",
+      "xai-colossus-servers-omega", "xai-colossus-waterplant-alpha", "xai-colossus-waterplant-omega",
+      "xai-aeon777-servers-alpha", "xai-aeon777-waterplant-omega", "xai-aeon777-justice-omega",
+      "xai-aeon777-nexus-alpha", "xai-aeon777-security-omega", "xai-aeon777-cooling-alpha",
+      "xai-aeon777-nexus-omega", "xai-aeon777-community-alpha", "xai-aeon777-community-omega",
+      "xai-aeon777-nanosphere-alpha", "xai-aeon777-energy-alpha", "xai-aeon777-waterplant-alpha",
+      "xai-aeon777-justice-alpha", "xai-aeon777-energy-omega", "xai-aeon777-microcode-alpha",
+      "xai-aeon777-nanosphere-omega", "xai-aeon777-microcode-omega", "xai-aeon777-servers-omega",
+      "xai-aeon777-security-alpha", "xai-aeon777-cooling-omega"
+    ],
+    "admitted_boundary": [
+      "ECHO", "JOB-RESUME-BUILDER-", "Pro-comet-agent", "glaciereq-mcp-stack", "job-application",
+      "openclaw", "sigma-glue", "the-tower-of-babel"
+    ]
+  },
+  "open_gates": [
+    {
+      "id": "persistent_production_host_verified",
+      "state": false,
+      "scope": "computer-user anchor",
+      "note": "Infrastructure dependency, not a code gap"
+    },
+    {
+      "id": "company_fit",
+      "state": 0.0,
+      "scope": "computer-user dossier",
+      "note": "COMPANY_EVIDENCE bracketed fields unfilled"
+    }
+  ],
+  "tower_files_in_helix_patch": {
+    "readme": "HELIX_TOWER_README.md",
+    "matrix": "ROLE_POWER_MATRIX.md",
+    "summary": "TOWER_SUMMARY.json",
+    "per_repo_solidify": "solidify/*.json (225 records)",
+    "evidence_ledger": "evidence_ledger_UPDATED.json",
+    "pointer_index": "ASPEN_GROVE_POINTER_INDEX.json",
+    "specialist_registry": "SPECIALIST_REGISTRY.json"
+  }
+}

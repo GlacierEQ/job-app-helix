@@ -1,0 +1,16 @@
+{
+  "repo": "aspen-grove-memory",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "ASpen Grove Memory — a 4-tier memory constellation (Tier1 in-process, Tier2 Supabase pgvector, Tier3 Pinecone+Mem0, Tier4 Neo4j+MemoryPlugin+Supermemory) acting as a bidirectional file↔memory organism that inherits aspen-grove-core and supports case 1FDV-23-0001009. The capability ledger places it as a node in the Supreme Memory Orchestration Architecture (56 integration points), confirming a real multi-tier composition rather than a stub.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=aspen-grove-memory; domain=memory_aspen; role=whole; status_detail=local_job_app; desc='ASPEN GROVE MEMORY — 4-tier memory constellation... Bidirectional file↔memory organism. Inherits aspen-grove-core. Case 1FDV-23-0001009 | GlacierEQ'; local_job_app=true)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 11740: 'Supreme Memory Orchestration Architecture - Unified gateway for ... SUPERLUMINAL_CASE_MATRIX, Neo4j + InfraNodus. 56 integration points, <300ms response, triple-redundant persistence')",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (memory layer entries tie aspen-grove-memory to AEON-777 hardened connectors)"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "repo_excellence_anchor": "Indirect — memory layer, not a governed-run surface; AKOS-linked via the orchestration architecture.",
+  "makes_worthy": "Add a README with the tier topology diagram and a local fact card proving at least one tier is live (pgvector round-trip or serialization test) to reach >=9."
+}

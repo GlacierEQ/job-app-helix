@@ -1,0 +1,82 @@
+{
+  "schema": "aspen-grove.pointer-index.v1",
+  "realm": "job-app-helix-solidify",
+  "created": "2026-08-28T14:55:00-10:00",
+  "authority": "operator_override",
+  "policy": "stop_hallucination_not_progress",
+  "note": "Pointer index only. Resolve by ID, then read the target. Do NOT scan the 228 solidify files directly — use P-SOLIDIFY glob. Digests pending shell (sha256 needs bash; pointers valid without).",
+  "pointers": {
+    "P-AUTH-66": {
+      "target": "/tmp/helix_patch/authoritative_helix_66_boundary.json",
+      "role": "Authoritative admitted helix boundary (66 children) fetched from GitHub raw GET",
+      "status": "VERIFIED_SOURCE"
+    },
+    "P-EXPANDED-217": {
+      "target": "/tmp/helix_patch/expanded_job_app_helix_manifest.json",
+      "role": "Operator-override expanded set: 19 cores + 198 company = 217 repos (66 freeze removed)",
+      "status": "ACTIVE"
+    },
+    "P-UNIFIED-225": {
+      "target": "/tmp/helix_patch/unified_deserving_manifest.json",
+      "role": "Union of helix-66 + expanded-217 = 225 deserving-target repos",
+      "status": "ACTIVE"
+    },
+    "P-EVIDENCE-LEDGER": {
+      "target": "/tmp/helix_patch/evidence_ledger_UPDATED.json",
+      "role": "Helix evidence ledger with repo_excellence bridge (4 new VERIFIED claims: 203-test governed kernel, live AKOS, restart-safe, proof-receipt schema)",
+      "status": "ACTIVE"
+    },
+    "P-SOLIDIFY": {
+      "target": "/tmp/helix_patch/solidify/*.json",
+      "role": "225 solidify records (one per repo): innovation_summary, evidence[], verification_status, worthy_rating, makes_worthy",
+      "count": 225,
+      "coverage": "all 225 deserving repos (66 helix children + 159 extras)",
+      "status": "ACTIVE"
+    },
+    "P-CPT-LH": {
+      "target": "/tmp/helix_patch/solidify/CHECKPOINT_LONGEST_HORIZON.md",
+      "role": "Longest-horizon checkpoint wave 1 (217 records, state distribution, high-council reconciliation)",
+      "status": "ACTIVE"
+    },
+    "P-CPT-W23": {
+      "target": "/tmp/helix_patch/solidify/CHECKPOINT_WAVES_2_3.md",
+      "role": "Checkpoint waves 2-3 (49 cores/flagships upgraded, 177 long-tail enriched, bottleneck noted)",
+      "status": "ACTIVE"
+    },
+    "P-REPO-EXCELLENCE": {
+      "target": "/root/repo_excellence/STRONG_COMPLETION.computer-user.md",
+      "role": "Highest-grade VERIFIED anchor: 203 tests PASS, live AKOS receipt, restart-safe. Not yet folded into 228.",
+      "status": "VERIFIED_ANCHOR"
+    },
+    "P-COMPANY-EVIDENCE": {
+      "target": "/root/repo_excellence/COMPANY_EVIDENCE.computer-user.md",
+      "role": "Company evidence template — bracketed fields still unfilled (company_fit=0.0)",
+      "status": "OPEN"
+    }
+  },
+  "milestones": [
+    {"id": "M1", "done": true, "what": "Expanded manifest 217 (66 freeze removed)"},
+    {"id": "M2", "done": true, "what": "Wave 1: 217 baseline solidify records"},
+    {"id": "M3", "done": true, "what": "Wave 2: 49 cores+flagships upgraded to worthy 7-9"},
+    {"id": "M4", "done": true, "what": "Wave 3: 177 long-tail enriched (honest cap <=5 where no code access)"},
+    {"id": "M5", "done": true, "what": "Fetched authoritative helix-66 from GitHub (Smithery/GET route)"},
+    {"id": "M6", "done": true, "what": "Reconciled -> unified 225; filled 11 gap records (all 66 helix children solidified)"},
+    {"id": "M7", "open": true, "what": "Fold repo_excellence VERIFIED anchor into 228 as exemplar"},
+    {"id": "M8", "open": true, "what": "Push unified 225 + records into GlacierEQ/job-app-helix (needs shell/git host)"},
+    {"id": "M9", "open": true, "what": "Run real tests on Tier-2 canonicals -> PARTIAL to VERIFIED (closes persistent_production_host_verified)"}
+  ],
+  "evidence_tree_VERIFIED": [
+    "AKOS (94/94 tests, run 30532339028, commit d00eb4a)",
+    "job-app-helix (INTEGRITY_MANIFEST + release receipts + GitHub Pages deploy)",
+    "xai-colossus-servers (20 passing tests, PR #11, artifact 8887480269)",
+    "xai-colossus-energy-omega (pinned 7919943e, artifact 8887063327)",
+    "xai-colossus-cooling (PR #37, 37 tests, artifact 8886632264)",
+    "pro-code (pro-code-originated-live-receipt-proof.json, scoped)",
+    "the-tower-of-babel (PR #16 + QA gate, pinned SHAs)",
+    "repo_excellence/computer-user (203 tests, live AKOS, restart-safe) -- anchor, not yet in 228"
+  ],
+  "open_gates": [
+    "persistent_production_host_verified = false (no shell/git/network in this sandbox)",
+    "company_fit = 0.0 (COMPANY_EVIDENCE bracketed fields unfilled)"
+  ]
+}

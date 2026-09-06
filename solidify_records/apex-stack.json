@@ -1,0 +1,19 @@
+{
+  "repo": "apex-stack",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "APEX Stack \u2014 sovereign AI development infrastructure integrating GitHub, Notion, Vercel, Supabase, and Supermemory.ai, the integration hub composing the external services the APEX portfolio depends on. Marked foundation_whole and private, but the capability ledger and function map reference it as a tracked integration hub, so the composition surface exists even if not yet demonstrated end-to-end.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=apex-stack; domain=apex_cognitive_os; role=whole; status_detail=foundation_whole; desc='APEX Stack \u2014 GitHub + Notion + Vercel + Supabase + Supermemory.ai sovereign AI development infrastructure'; private=true)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (apex-stack cluster referenced within cognitive_os integration layers)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (integration-hub capability entries: GitHub/Notion/Vercel/Supabase/Supermemory wiring)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "repo_excellence_anchor": "Indirect \u2014 integration hub, not a governed-run surface; depends on AKOS-linked components.",
+  "makes_worthy": "Add a public architecture README and a local fact card with a pinned commit + one provisioning/integration check (config-lint or connection smoke test) to move to >=8.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.789201",
+  "notes": " | NEEDS_REPAIR"
+}

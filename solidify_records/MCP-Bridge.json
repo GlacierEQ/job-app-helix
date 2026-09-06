@@ -1,0 +1,22 @@
+{
+  "repo": "MCP-Bridge",
+  "family": "MCP / Connectors",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Middleware that presents an OpenAI-compatible endpoint while routing supported requests into MCP tools. Cataloged unprocessed. Deeper mining confirms multi-source presence with relatively high confidence: status/connectors/client-bridges.md records it 'Middleware that presents an OpenAI-compatible endpoint while routing supported requests into MCP tools' (confidence=high), mcp_connectors domain atlas lists it, and capabilities_3layer tags it 'Mcp Tool Connectors engine' (mesh_uri glaciereq://mesh/mcp_tool_connectors/MCP-Bridge). COMPANY_ENGINEERED_PROCESSING lists it unprocessed. No source or live routing receipt located.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:10108 (name MCP-Bridge; OpenAI-compatible endpoint calling MCP tools)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:6055 (entry: elevator_pitch 'Mcp Tool Connectors engine', mesh_uri glaciereq://mesh/mcp_tool_connectors/MCP-Bridge, contract_proof template only)",
+    "/tmp/monolith/domains/mcp_connectors.md:11 (portfolio row: middleware providing openAI-compatible endpoint that can call MCP)",
+    "/tmp/monolith/status/connectors/client-bridges.md:12 (middleware OpenAI-compatible -> MCP tools; confidence=high)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:219 (unprocessed: ... MCP-Bridge ...)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:107 (processing line: MCP-Bridge)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Add a README + a live routing receipt (OpenAI-style call -> MCP tool) + build/receipt to lift above 5. Capped at 5: unprocessed, high-confidence catalog description only, no runtime proof.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.746557",
+  "notes": " | NEEDS_REPAIR"
+}

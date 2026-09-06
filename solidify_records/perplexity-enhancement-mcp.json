@@ -1,0 +1,31 @@
+{
+  "repo": "perplexity-enhancement-mcp",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "perplexity-enhancement-mcp is a TypeScript MCP server intended as a permanent capability upgrade for a Claude Desktop MCP constellation: persistent memory, repository intelligence, legal templates, and cross-session learning. It is the most substantively described repo in this batch \u2014 the catalog carries a real mechanism claim \u2014 and it is the named canonical candidate fronting a ten-repository Perplexity family in which nine members are unprocessed. Two facts hold its rating down and are not cosmetic: the catalog records it as activity=catalogued / status_detail=catalogued_unclassified with local_job_app=false (never worked into the portfolio), and the legal spine places it in discovery quarantine pending inspection of its case-research routes. The capabilities catalog now additionally records a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)') and a mesh URI, but that is a catalog assertion, not a runtime receipt. It is therefore a high-potential integration surface with a specific, assigned inspection obligation \u2014 not a solidified exhibit.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:13116 (domain=mcp_connectors, activity=CATALOGUED, status_detail=CATALOGUED_UNCLASSIFIED, private=true, local_job_app=FALSE, issue_contract=FALSE, language=TypeScript, desc='Perplexity Enhancement MCP Server - Permanent capability upgrade with persistent memory, repo intelligence, legal templates, and cross-session learning. Integrates with Claude Desktop MCP constellation for permanent AI enhancement.', updatedAt 2026-05-25T23:55:50Z)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:9125-9157 (category MCP_COMMUNITY_UTILITIES; classifier=mcp_community_utilities; contract_proof='DONE \u21d4 issue-contract proof(pain)'; sha256_binding d11ffeda1f6d968eba7d7f1ba0818c3cb3d4d47f920c3a78ef7ddb90f3dc812e; mesh_uri glaciereq://mesh/mcp_community_utilities/perplexity-enhancement-mcp; launch_cmd bare 'git clone https://github.com/GlacierEQ/perplexity-enhancement-mcp' \u2014 no portfolio entrypoint registered)",
+    "/tmp/monolith/domains/mcp_connectors.md:110 (portfolio row: part | catalogued | '\u2014')",
+    "/tmp/monolith/status/legal_spines/1FDV-23-0001009.md:85 (DISCOVERY QUARANTINE: GlacierEQ/perplexity-enhancement-mcp | status=inspect_for_case_research_routes | likely layer=legal_tech)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:239,243 (perplexity.unprocessed lists 9 repos incl. perplexity-enhancement-mcp; canonical_candidate=perplexity-enhancement-mcp)",
+    "/tmp/monolith/domains/company_engineered_portfolio.md:54 (Perplexity | 10 repos | 0 worked | 9 unprocessed | 1 reference | canonical perplexity-enhancement-mcp | priority 'P1 large unprocessed integration suite')",
+    "NEGATIVE FINDINGS (searched, not found): no fact card in /tmp/monolith/evidence/repository_fact_cards/; no local clone in HIERARCHICAL_FUNCTION_MAP.json; no row in WORKED_ON.md; no receipt in /tmp/monolith/receipts/; no claim in evidence_ledger_UPDATED.json"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Two gated steps, in order. (1) Clear the quarantine first: perform the assigned inspect_for_case_research_routes review and publish the finding. (2) Then prove the server runs: npm build plus an MCP handshake test demonstrating memory persisting across two sessions, captured in a BUILD_RECEIPT. Step 2 alone reaches 7; both together reach 8+.",
+  "repo_excellence_anchor": "Overlaps the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe) on the property this repo most needs and least has: cross-session durability under authority. The anchor proved restart-safe state and independent receipt verification, which is the exact claim 'persistent memory and cross-session learning' asserts here without evidence. 'host-activation scripts/tests are not evidence a host was reached' is the governing precedent, so a rich catalog description is likewise not evidence a server ran, which is why this record stays below 7.",
+  "honest_limits": [
+    "raised to 6 from 5: every locally available signal is a catalog description plus a catalog-asserted issue-contract proof, not a runtime receipt",
+    "activity=catalogued and local_job_app=false: unlike worked flagships, this one was never marked as worked into the portfolio",
+    "unresolved security/privacy review: it sits in the legal-spine discovery quarantine awaiting case-research-route inspection",
+    "no build, no MCP handshake, no tool-call trace, no demonstration of persistent memory, no README inspected, no receipt",
+    "no Perplexity or Anthropic affiliation claimed; 'permanent AI enhancement' is preserved as the owner's stated scope, not accepted as a verified outcome"
+  ],
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.906784",
+  "notes": " | NEEDS_REPAIR"
+}

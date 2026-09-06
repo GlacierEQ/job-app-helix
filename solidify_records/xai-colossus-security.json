@@ -1,0 +1,31 @@
+{
+  "repo": "xai-colossus-security",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "wave3": true,
+  "evidence_state": "BOUNDED_SECURITY_PROPOSAL_ENGINE_TEST_VERIFIED",
+  "promotion_state": "FLAGSHIP_CANDIDATE_WITH_EXTERNAL_ACTIONS_EXPLICITLY_EXCLUDED",
+  "merge_authorized": false,
+  "innovation_summary": "Colossus security pillar of the AKOS portfolio. Wave-3 mining now binds the family hardening receipt (BOUNDED_SECURITY_PROPOSAL_ENGINE_TEST_VERIFIED) to this base repository: direct_gate run_id 30897980078 (Security Proposal Truth Gate) on Python 3.11.15 passed 35/35 tests with 0 failures/errors/skipped at tested_commit 8ad1cf8b5eb9ece6fee03877b340b35179491dc0. The lifecycle_scenario (PROPOSAL_AND_RECEIPTED_RESOLUTION_VERIFIED) detected THREAT-7-zone-7 at threat_level_before_resolution=HIGH, response_method=BLOCK_IP, response_executed=false (external_authority_required=true, external_actions_executed=0), resolution_ref=incident:SEC-2026-0007, threat_level_after_resolution=NONE, scenario_sha256=f3b0bd4920ff1888bdf2a2a1941a6fab5a9624c329915ce1b9239820c5ad1a76. Artifact 8887833822 digest sha256:9cfbbfaa8fe97810a720c9e6bbd4b73dbba7fe9817f581425b2e283549f54f70. Catalog flags confirm worked_on/worked_solidified + local_job_app=true. Real bounded test + lifecycle scenario + hashed artifact warrant 8, with 10 reserved for a merged, externally-acted, telemetry-driven deployment.",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 43 (workflow='Security Proposal Truth Gate', run_id=30897980078, job_id=91955328019, conclusion=success, python=3.11.15)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 48 (tests passed=35, total=35, failures=0, errors=0, skipped=0)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 54 (tested_commit 8ad1cf8b5eb9ece6fee03877b340b35179491dc0)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 56 (lifecycle_scenario PROPOSAL_AND_RECEIPTED_RESOLUTION_VERIFIED, threat=SEC-2026-0007, external_actions_executed=0)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 65 (scenario_sha256 f3b0bd4920ff1888bdf2a2a1941a6fab5a9624c329915ce1b9239820c5ad1a76)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 72 (artifact 8887833822 digest sha256:9cfbbfaa8fe97810a720c9e6bbd4b73dbba7fe9817f581425b2e283549f54f70)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 80 (reusable CI gate run_id=30897980581, conclusion=success)",
+    "/tmp/monolith/catalog/library.json:18236 (catalog entry: domain=colossus_xai, role=part, activity=worked_on, status_detail=worked_solidified, local_job_app=true)"
+  ],
+  "verification_status": "VERIFIED_TEST",
+  "worthy_rating": 8,
+  "makes_worthy_10": "Add versioned event and policy schemas; authenticate event-source adapters and enforce freshness; add durable append-only audit receipts; separate approval, execution, confirmation, and reconciliation states; add replay, race, tamper, duplicate, and partial-failure tests; audit additional access-control, anomaly, event-bus, and runbook modules independently; obtain independent security and physical-safety review; merge PR #5 to main; graduate from proposal-engine to a live, externally-acted mitigation system.",
+  "honest_limits": [
+    "response_executed=false (external_authority_required=true, external_actions_executed=0) — only proposal+receipted resolution verified, not external mitigation",
+    "additional repository surfaces (access-control/, ghost-ember/, incident-response/, src/security_event_bus.py) NOT covered by core receipt",
+    "no zero-trust enforcement, no mTLS, no immutable production audit logging, no autonomous external mitigation",
+    "private alpha/omega (physics/SCIF) require independent hardware+safety review",
+    "merge_authorized=false in source PR #5"
+  ]
+}

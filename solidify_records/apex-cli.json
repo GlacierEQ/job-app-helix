@@ -1,0 +1,16 @@
+{
+  "repo": "apex-cli",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "APEX CLI surface, part of the AKOS portfolio and a live job application — the command-line entrypoint exposing APEX cognitive-OS capabilities to operators and automation. The deeper catalog shows it is a worked_solidified local job-app whole with a completed issue-contract proof, a live mesh URI, and a registered launch command, confirming it is an operable surface rather than a stub.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=apex-cli; domain=apex_cognitive_os; role=whole; status_detail=worked_solidified; desc='APEX CLI. AKOS portfolio.'; local_job_app=true)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=apex-cli; contract_proof='DONE <=> issue-contract proof(pain) for apex-cli'; mesh_uri=glaciereq://mesh/cognitive_os_agent_kernels/apex-cli; launch_cmd 'python3 ~/job-app/apex_highway.py --target apex-cli')",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (name=apex-cli; path=/data/data/com.termux/files/home/apex-cli)"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "repo_excellence_anchor": "Indirect — AKOS-linked CLI surface; governed-execution verification pattern is the estate reference, not an internal receipt.",
+  "makes_worthy": "Publish a command-reference README and a local fact card with a --help smoke test + one integration test against a stub capability to reach >=9."
+}

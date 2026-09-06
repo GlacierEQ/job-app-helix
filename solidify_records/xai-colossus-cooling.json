@@ -1,0 +1,34 @@
+{
+  "repo": "xai-colossus-cooling",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "Thermal-management core for Colossus-class AI compute: thermal-node and zone simulation, bounded anomaly detection and controller logic, a root CLI status path, and generation of DXF/PDF/SVG/PNG cooling blueprints. Its distinguishing engineering contribution is not the physics but the truth surface: a dedicated regression suite (tests/test_portfolio_truth_surface.py) that mechanically deletes unsupported public claims (100,000+ GPU coordination, zero-copy telemetry, live APEX Highway integration, production PUE/cost outcomes) and removes stale nonexistent paths, so the README cannot drift ahead of executed code. Two independent CI gates — a direct 'Cooling Core Truth Gate' and a reusable CI workflow driving the repository-owned scripts/ci/verify_portfolio_core.sh — both passed 37 tests at the exact head commit, with a hashed direct artifact. It is the canonical head of the 62-repository xAI/Colossus family and the first of five domains to cross a bounded executable promotion gate.",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_cooling_hardening.json (schema glaciereq.monolith.company-family-promotion-receipt.v1; evidence_state=BOUNDED_CORE_TEST_VERIFIED; promotion DOMAIN_UMBRELLA_CANDIDATE_REWRITE_REQUIRED -> BOUNDED_CORE_TEST_VERIFIED; portfolio_role=FLAGSHIP_CANDIDATE_WITH_EXPLICIT_LIMITS)",
+    "Direct truth gate: workflow 'Cooling Core Truth Gate', run_id 30895011833, conclusion=success, Python 3.11, tests_passed=37 over tests/test_portfolio_truth_surface.py + tests/test_thermal_core.py, head_commit 32208669d1af111b9768b22eed906e80fabbb402",
+    "Reusable gate: workflow 'CI', run_id 30895011023, job_id 91945716503, conclusion=success, Python 3.11.15, repository-owned verify script scripts/ci/verify_portfolio_core.sh, tests_passed=37, reusable_workflow_commit 0b20f6060a2f173353fb59e33fa74777ccdfb0fc",
+    "Direct artifact id 8886632264 'cooling-blueprint-smoke', 191511 bytes, digest sha256:53c6f26ece8696d8b9d1aed54e4be5a537908a372751210acdace2e44648227b, expired=false",
+    "Blueprint outputs hashed in-receipt: DXF sha256 0d0f49d3a59099b216de2b02ad09acd4944362907b5f0bf3c55d8e3b8d70eda9; PDF 5daf44ac26381545f76820a4a33d29b41b86a813e2472eb69665f8b4665fe394; SVG 1288b2b29fcbf51abb9f19197fdf25ffd0a9c96b25c8afad9b162b8040f4910f; PNG c2d0440141c3f6beec6600c1fb0307e212dcf2854178c355aaf800bad2a2a7de",
+    "Source PR GlacierEQ/xai-colossus-cooling#37 branch portfolio-truth-hardening-v1, head 32208669d1af111b9768b22eed906e80fabbb402, tested merge commit 99000a0fdd78cf1b9b337a8acc5cf88bbc171644, base 1bc32a9323f44513ec302805acc0ecd7a3e6d4a9, state DRAFT_OPEN, merged=false",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md:11 (Cooling | xai-colossus-cooling#37 | BOUNDED_CORE_TEST_VERIFIED | 37 passing | artifact 8886632264 | source merged: No) and :19 (166 aggregate bounded tests across five domains)",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md:39-52 (explicit verified vs not-verified delta for Cooling)",
+    "/tmp/monolith/catalog/library.json:18012 (domain=colossus_xai, role=part, activity=worked_on, status_detail=worked_solidified, desc='Thermal management for Colossus-class AI compute. AKOS portfolio.', language=Python, local_job_app=true, issue_contract=true, updatedAt 2026-08-10T06:18:11Z)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:1060 (local clone MISSIONS/xai-colossus-cooling; category 07_HARDWARE_AND_PHYSICAL_SYSTEMS/thermal_pid_control; primary_function 'Colossus xAI Adaptive PID Thermal Controller'; 22 sample files, Python)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:22673-22705 (sha256_binding 3c5a6ac7301d769e6c02f22ddd63ea264c23dae84f0c203c9fbe95b7060a3587; mesh_uri glaciereq://mesh/model_inference_and_sentinels/xai-colossus-cooling; impact P0)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json:27,52,133 (canonical Cooling head; alpha/omega variants held as separate lineages)",
+    "/tmp/monolith/catalog/regen_receipt.json:38 (sample_names_present.xai-colossus-cooling=true at catalog regen 2026-08-10T06:23:39Z)",
+    "/tmp/monolith/domains/colossus_xai.md:14 (portfolio row, issue_contract=yes)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:308,313 (current_preparation + canonical_candidate=xai-colossus-cooling)"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 9,
+  "makes_worthy": "Reach 10 by clearing the receipt's own next_gate: land PR #37 out of draft, then publish a second receipt covering Alpha/Omega composition plus a typed fix for the four recorded warnings (COOLING-MANIFEST-UNKNOWN, NANOSPHERE-MANIFEST-MISSING, SIBLING-SERVERS-NOT-MOUNTED, OPTIONAL-DEPENDENCIES-ABSENT) by separating optional-connector tests from the isolated core gate. Also resolve public-actions-runner-host#79 so the reusable gate uploads its own artifact instead of relying on the direct run.",
+  "repo_excellence_anchor": "Direct methodological overlap with the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe; /root/repo_excellence/STRONG_COMPLETION.computer-user.md, /tmp/helix_patch/evidence_ledger_UPDATED.json claims governed_execution_kernel + proof_receipt_schema). Both instantiate the same law from /tmp/monolith/catalog/repo_excellence_state_machine.json — 'a repository advances because a gate changed state, not because prose sounds finished' — and both bind proof to an exact source SHA plus a hashed receipt. computer-user is the receipt-emitting execution kernel; xai-colossus-cooling is the receipt-bound domain simulation, with an explicit non-affiliation and simulation boundary in place of production claims.",
+  "honest_limits": [
+    "not verified: real GPU telemetry, cooling hardware control, production deployment, hyperscale performance, PUE/latency/availability/cost outcomes",
+    "not verified: complete repository test estate, external provider connectivity, sibling repository integration, Alpha/Omega as one deployed system",
+    "source PR remains draft and unmerged; merge_authorized=false",
+    "no xAI affiliation claimed"
+  ]
+}

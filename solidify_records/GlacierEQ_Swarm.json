@@ -1,0 +1,18 @@
+{
+  "repo": "GlacierEQ_Swarm",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "Local Swarm OS bundling MICROWAVE flippers, token-saver discipline, a voice Stage A/C queue, make-heavy build orchestration, and a toolbelt. It is the runtime swarm layer of the APEX cognitive OS as a code-only environment, and the function map pins it to a concrete local path with a defined primary function, confirming it is a tracked worked whole rather than a stub.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=GlacierEQ_Swarm; domain=apex_cognitive_os; role=whole; status_detail=worked_solidified; desc='Local Swarm OS: MICROWAVE flippers, token-saver, voice Stage A/C queue, make-heavy, toolbelt. Code only \u2014 no legal/voice audio.'; local_job_app=true)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (name=GlacierEQ_Swarm; path=/data/data/com.termux/files/home/GlacierEQ_Swarm; relative_path=GlacierEQ_Swarm; primary swarm runtime entry)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (token-saver/MICROWAVE referenced across swarm capability layers)"
+  ],
+  "verification_status": "CATALOG_PROOF",
+  "worthy_rating": 8,
+  "repo_excellence_anchor": "Indirect \u2014 AKOS-linked runtime layer; governed-execution verification pattern is the estate reference, not an internal receipt.",
+  "makes_worthy": "Add a README with an architecture/control-flow diagram and a local fact card proving at least one runnable component (a make target or flipper smoke test) to reach >=9.",
+  "last_verified": "2026-08-29T04:30:00-10:00",
+  "notes": "local;0files"
+}

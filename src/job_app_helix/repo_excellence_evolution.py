@@ -187,7 +187,11 @@ def validate_evolving_repo_excellence_record(
     baseline = experiment.get("baseline")
     candidate = experiment.get("candidate")
     comparison = experiment.get("comparison")
-    if not all(isinstance(item, Mapping) for item in (baseline, candidate, comparison)):
+    if not isinstance(baseline, Mapping):
+        raise ExcellenceContractError("evolution experiment baseline must be an object")
+    if not isinstance(candidate, Mapping):
+        raise ExcellenceContractError("evolution experiment candidate must be an object")
+    if not isinstance(comparison, Mapping):
         raise ExcellenceContractError("evolution experiment comparison contract incomplete")
     if baseline.get("head") != anchor or baseline.get("allowed") is not True:
         raise ExcellenceContractError("EVOLVING requires a reproduced weaker baseline")

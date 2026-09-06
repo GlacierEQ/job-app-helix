@@ -1,0 +1,29 @@
+{
+  "repo": "xai-colossus-servers-omega",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "evidence_state": "PRIVATE_HISTORICAL_EXPERIMENT_BLOCKED_TEST_REWRITE",
+  "not_counted_as_public_verified_component": true,
+  "preserve": true,
+  "innovation_summary": "Private historical experiment companion (omega) of xai-colossus-servers (rack-placement planning). The family hardening receipt (xai_colossus_servers_hardening.json) explicitly inspected this repository at commit 7b12a0234041b316bad5c878733bc0a217aa9aaf and documents findings: local thermal-history and policy code is present; tracked shadow-state data is mutated by execution; Alpha is imported by a dynamic sibling filesystem path; reset and isolation behavior is simulated with prints and sleeps; time-based predictive routing is a hardcoded string trigger; tests label simulated behavior as hardware or integration verification. The receipt also documents a complementary VERIFIED base repo (xai-colossus-servers, 20/20 tests, run_id 30897116390, scenario_sha256=9917ef6cbc25f9a842206b097e9e7194866040b5d3a727ed50f274a82f3f7617, artifact 8887480269 digest sha256:c9dd3f0da5fd37a4e792728bee2228066ddd25bc7f7a475a913809044b70612f) but explicitly NOT this omega. Capped at 5 (catalog + hardening-receipt-documented private state with explicit preservation guidance; not counted as a public verified component).",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json line 103 (repository GlacierEQ/xai-colossus-servers-omega; visibility private; inspected_commit 7b12a0234041b316bad5c878733bc0a217aa9aaf; state PRIVATE_HISTORICAL_EXPERIMENT_BLOCKED_TEST_REWRITE; not_counted_as_public_verified_component=true; preserve=true)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json lines 109-116 (six specific findings: local thermal-history code, shadow-state mutation, dynamic sibling import, simulated reset via prints/sleeps, hardcoded predictive-routing string trigger, tests labeling simulated behavior as hardware/integration verification)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json line 129 (not_verified list includes 'Alpha or Omega runtime composition')",
+    "/tmp/monolith/catalog/library.json line 18316 (name=xai-colossus-servers-omega; url=github.com/GlacierEQ/xai-colossus-servers-omega)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 70 (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_7": "(1) Rewrite the predictive-routing trigger so it is driven by a typed schedule/state model, not a hardcoded string; (2) replace 'reset/isolation via prints and sleeps' with asserted, tested logic; (3) move shadow-state into an explicit, non-tracked runtime path; (4) replace dynamic sibling-filesystem import with a normal Python import; (5) add an independent CI truth gate with an artifact digest for this omega in isolation; (6) obtain independent review before any controller-family composition claim. Until then, retain as a preserved historical experiment, not a public verified component.",
+  "honest_limits": [
+    "explicitly not_counted_as_public_verified_component=true per the family hardening receipt",
+    "tracked shadow-state mutation breaks git reproducibility",
+    "no isolated CI run, artifact, or test receipt for this omega"
+  ],
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:17.039062",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

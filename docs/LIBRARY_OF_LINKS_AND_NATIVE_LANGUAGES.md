@@ -56,4 +56,4 @@ Language count by itself earns no portfolio credit.
 - [Hierarchical Portfolio Map](../HIERARCHICAL_PORTFOLIO_MAP.md)
 - [Exact Portfolio Inventory](../manifests/portfolio_repositories.json)
 - [Language-Fit Manifest](../manifests/language_fit.json)
-- [Portfolio Audit Runner](../ci_audit_portfolio.py)
+- [Portfolio Audit Runner](../scripts/ci_audit_portfolio.py)

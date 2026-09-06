@@ -23,7 +23,7 @@ class RepositoryProof:
     def recruiter_usable(self) -> bool:
         return (
             self.visibility == "public"
-            and self.admission == "HELIX_ADMITTED"
+            and self.admission in {"HELIX_ADMITTED", "DYNAMIC_EVIDENCE_MATCH"}
             and self.state in {"PROMOTED", "REFERENCE_ONLY"}
         )
 

@@ -1,0 +1,31 @@
+{
+  "repo": "spacex-autonomy",
+  "family": "SpaceX",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "spacex-autonomy is a portfolio hybrid-autonomy controller that changes operating mode according to bounded sensor-confidence signals — the interesting part is the degradation contract, not the autonomy itself: as confidence falls the system is designed to hand authority down a defined ladder rather than fail open or silently continue. The aerospace atlas classifies it as a current subsystem-level autonomy and developer-tooling component, and the function atlas as an active_specialist for decision logic, vehicle/mission-state control, and bounded autonomous operation. It is the canonical head of a 15-repository SpaceX family with 12 siblings already in preparation, so its real portfolio job is to be the scenario-proof anchor those siblings compose against. A local clone with 10 inventoried Python files exists, giving it more concrete substance than the description-only members of this batch, but nothing has been executed.",
+  "evidence": [
+    "/tmp/monolith/status/SPACEX_AEROSPACE_ATLAS.md:39 (spacex-autonomy | family 'Autonomy and developer tooling' | part | worked_on | generation=current | system level=subsystem | 'Portfolio hybrid-autonomy controller that changes operating mode according to bounded sensor-confidence signals' | basis: catalog description | confidence: high)",
+    "/tmp/monolith/status/functions/infrastructure.md:15 (spacex-autonomy | active_specialist | spacex_aerospace | 'Aerospace autonomy specialist for decision logic, vehicle or mission-state control, and bounded autonomous operation' | basis: name + domain; confidence: high)",
+    "/tmp/monolith/catalog/library.json:15452 (domain=spacex_aerospace, role=part, activity=worked_on, status_detail=worked_solidified, desc='Hybrid autonomy mode under sensor confidence (portfolio) · AKOS', language=Python, local_job_app=true, issue_contract=false, updatedAt 2026-08-10T06:17:00Z)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:790 (local clone at ~/spacex-autonomy; technologies Python; 10 sample files — a real working tree, not a name-only record)",
+    "/tmp/monolith/status/HIERARCHICAL_ORGANIZATION_PASS_02.md:259-262 (organized clone with symlink anchor preserved at ~/spacex-autonomy)",
+    "/tmp/monolith/domains/spacex_aerospace.md:8 (portfolio row: part | worked_on | 'Hybrid autonomy mode under sensor confidence (portfolio) · AKOS')",
+    "/tmp/monolith/status/WORKED_ON.md:83 (spacex-autonomy | spacex_aerospace | part | worked_solidified)",
+    "/tmp/monolith/README.md:459 (rendered as node spacex_autonomy in the estate architecture graph)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:23683-23715 (category AEROSPACE_AND_CONTROL_SYSTEMS; sha256_binding ed048f1bd01f6593050963b953aa54896b8a642dd9adc29e1affa7c17a25eb15; mesh_uri glaciereq://mesh/aerospace_and_control_systems/spacex-autonomy; impact P0)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:258,263 (spacex.current_preparation lists 12 siblings; canonical_candidate=spacex-autonomy)",
+    "/tmp/monolith/domains/company_engineered_portfolio.md:56 (SpaceX | 15 repos | 12 in preparation | 2 unprocessed | 1 historical | canonical spacex-autonomy | priority 'P0 suite consolidation and scenario proof')",
+    "/tmp/monolith/catalog/application_estate_registry.json:54-61 (material omission repaired: SpaceX corrected from 12 public to 14 estate-named, adding private spacex-recovery-dynamics and spacex-orbital-assembly)"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "makes_worthy": "One concrete step to 9+: extract the mode-selection function from the existing 10-file clone and commit a table-driven pytest that walks sensor confidence down through every threshold, asserting the exact mode transition, hysteresis behaviour at the boundary, and that a confidence dropout degrades to the safe mode instead of holding the last command. Emit a BUILD_RECEIPT with the run id and passing test names, and file a repository_fact_card at R3+ so the atlas basis upgrades from 'catalog description' to executed proof.",
+  "repo_excellence_anchor": "Overlaps the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe) on failure semantics. The anchor's adversarial suite covers expired authority, partial completion, and restart, each producing failure -> detection -> containment -> recovery -> receipt (/root/repo_excellence/STRONG_COMPLETION.computer-user.md:26-28). spacex-autonomy's sensor-confidence ladder is the same pattern in the aerospace domain: bounded authority that must degrade observably. Reusing the anchor's adversarial test shape is the cheapest path from description to proof here.",
+  "honest_limits": [
+    "no test, CI run, or receipt was found; the clone was inventoried but never executed",
+    "atlas confidence 'high' rests on catalog description, not source inspection",
+    "the hierarchical scanner misfiled this clone under 04_LEGAL_AND_FORENSIC_INTEL/dockets_and_motions with primary_function 'Court Docket Tracker & Motion Generator' (HIERARCHICAL_FUNCTION_MAP.json:790-799) — a recorded classifier contradiction against the aerospace atlas, preserved rather than silently corrected",
+    "simulation only: no flight hardware, vehicle telemetry, or mission deployment; no SpaceX affiliation claimed"
+  ]
+}

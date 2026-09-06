@@ -1,0 +1,21 @@
+{
+  "repo": "JOB-RESUME-BUILDER-",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "Grok-powered job and r\u00e9sum\u00e9 builder (TypeScript, web/desktop). Local evidence is catalog-only: the LONG_TAIL atlas notes the narrow prose does not verify model access, document quality, ATS compatibility, or a deployed application. No local test or receipt was found.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=JOB-RESUME-BUILDER-; domain=long_tail; activity=catalogued; status_detail=catalogued_unclassified; desc 'POWERED BY GROK '; TypeScript)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_02.md line 68 (catalogued only; prose does not verify model access, document quality, ATS compatibility, or deployment)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=JOB-RESUME-BUILDER-; contract_proof='DONE <=> issue-contract proof(pain)')",
+    "/tmp/monolith/config/previous_application_baseline.json line 10 (named in baseline)",
+    "/tmp/monolith/domains/long_tail.md line 112 (catalogued)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 4,
+  "makes_worthy": "Build a minimal working r\u00e9sum\u00e9-generation demo with unit tests over the document templates, verify ATS export format, and publish a run receipt. Currently only a catalog description exists.",
+  "last_verified": "2026-08-29T08:47:16.939042",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=4"
+}

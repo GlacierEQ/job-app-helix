@@ -1,0 +1,27 @@
+{
+  "repo": "xai-colossal-cooling",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Independent research lineage on evolutionary cooling methodologies for Colossal-scale AI compute - first-principles thermal architecture, cost optimization, and scalable design. This is one of only two repositories in the whole 62-repo xAI/Colossus family that received source-and-README level inspection, and that inspection produced a genuinely useful positive finding: it is NOT a misspelled duplicate of xai-colossus-cooling but a distinct lineage containing its own research library, architecture documents, monitoring code, thermal-physics core, optimization code, and integration artifacts. Wave-3 mining confirmed the catalog desc, the source_and_readme_inspected finding, the VERIFIED_DISTINCT_FILES state, and the MERGE_CANDIDATE_AFTER_UNIQUE_VALUE_EXTRACTION disposition. No tests or CI receipts were found for it locally, so rating raised to the catalog-evidence ceiling (5) \u2014 the distinct-lineage finding is a real verification but not a capability test/receipt, so it cannot exceed 5 without a bounded test gate.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 17916 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=false, Python, desc 'Evolutionary cooling methodologies for XAI Colossal supercomputer - First-principles thermal architecture, cost optimization, scalable design', updatedAt 2026-08-09T04:19:48Z)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json inspection.source_and_readme_inspected: ['xai-colossus-cooling-alpha', 'xai-colossal-cooling'] - one of only two source-inspected repos in the family",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json finding XAI-003: 'xai-colossal-cooling is a separate research/code lineage, not merely a spelling duplicate.' - state VERIFIED_DISTINCT_FILES",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md finding 2 (line 76): 'It contains a separate research library, architecture documents, monitoring code, a thermal-physics core, optimization code, and integration artifacts.'",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (disposition MERGE_CANDIDATE_AFTER_UNIQUE_VALUE_EXTRACTION) and next_actions P0: 'Diff xai-colossal-cooling against cooling base, Alpha, and Omega; extract unique physics, fixtures, and documentation before any merge decision.'",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 39 (Thermal and water systems; generation experimental; system level research; 'scientific and engineering claims require source validation'; confidence medium)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 149 (unprocessed) and line 169 (Cooling family comparison target)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/domains/colossus_xai.md line 29",
+    "/tmp/monolith/receipts/company_families/ (no colossal-cooling receipt; only xai_colossus_cooling_hardening.json exists, for the canonical cooling base)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "This repo has the rarest asset in the family - a source-level finding that its content is genuinely distinct. Capitalize on it: run the on-record P0 diff against cooling base/Alpha/Omega, publish the unique-physics extraction as a written comparison, then put the thermal-physics core under bounded tests with documented calibration assumptions and ship a hardening receipt mirroring xai_colossus_cooling_hardening.json. Verified distinct physics plus a passing test gate would justify 8+.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.911718",
+  "notes": " | NEEDS_REPAIR"
+}

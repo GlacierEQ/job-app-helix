@@ -1,0 +1,27 @@
+{
+  "repo": "xai-colossus-waterplant",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Designated domain umbrella for datacenter water systems: an engineering blueprint for a Colossus water-recycling plant covering Memphis Maxson WWTP intake, the treatment train, permitting strategy, and a fast-restart construction sequence for a facility its own description states is on indefinite pause. It is explicitly named as the NEXT domain in the monolith's xAI/Colossus promotion sequence. Wave-3 mining confirmed the precise catalog desc (library.json:18332), the canonicalization disposition DOMAIN_UMBRELLA_CANDIDATE_REWRITE_REQUIRED, and the promotion-index first-step to isolate any real water-balance/treatment/control model from site/regulatory claims. No source inspection, tests, or receipts exist locally, so rating raised to the catalog-evidence ceiling (5) and capped there \u2014 no execution artifact justifies more.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 18332 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, desc 'xAI Colossus Water Recycling Plant - Memphis Maxson WWTP intake, treatment train, permitting strategy, and fast-restart construction sequence. Engineering blueprint for the $80M facility currently on indefinite pause.', updatedAt 2026-07-12T18:26:25Z)",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md line 163 ('Next domain: Waterplant') and line 149 (remaining sequence item 1: 'Waterplant - isolate any real water-balance, treatment, or control model from site-specific or regulatory claims')",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (canonical_architecture.domain_umbrellas includes xai-colossus-waterplant; disposition DOMAIN_UMBRELLA_CANDIDATE_REWRITE_REQUIRED; absent from both inspection lists)",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md lines 129-140 (10-point domain promotion gate)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 55 (Thermal and water systems; system level utility_system; 'Models a water-recycling plant concept involving intake, treatment, and facility water supply concerns'; confidence high)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md canonical tree line 45 (domain umbrellas) and execution order item 5 (line 148)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 153 (unprocessed) and line 175 (Water canonical: unresolved; compare waterplant base, alpha, omega, AEON variants)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/domains/colossus_xai.md line 45",
+    "/tmp/monolith/receipts/company_families/ (no waterplant receipt)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Split the repo into (a) a testable water-balance/treatment model with declared units, flow rates, recovery ratios, and stated assumptions, and (b) a clearly separated site/permitting narrative whose every factual claim about the Memphis facility, the $80M figure, and the pause carries a dated public citation. Add bounded tests over mass-balance arithmetic, a no-hardware-action boundary, and publish xai_colossus_waterplant_hardening.json with a hashed CI artifact \u2014 a verified 8.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.928473",
+  "notes": " | NEEDS_REPAIR"
+}

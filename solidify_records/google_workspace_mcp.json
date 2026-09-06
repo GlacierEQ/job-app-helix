@@ -1,0 +1,22 @@
+{
+  "repo": "google_workspace_mcp",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A comprehensive Google Workspace / G Suite MCP server (public) controlling Gmail, Calendar, Docs, Sheets, Slides, Chat, Forms, Tasks, Search and Drive with AI. Broad productivity-connector surface in the MCP mesh (domain: lab_hire_stamps). Deeper mining confirms multi-source presence: a capabilities_3layer entry ('Mcp Community Utilities engine', mesh_uri glaciereq://mesh/mcp_community_utilities/google_workspace_mcp), the lab_hire_stamps domain atlas, and inclusion in validate_lab_hire_atlas.py as a checked record. COMPANY_ENGINEERED_PROCESSING lists it unprocessed. No source, README, build receipt, or worked example located.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:7244 (name google_workspace_mcp, Python, public, domain lab_hire_stamps)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:7277 (entry: elevator_pitch 'Mcp Community Utilities engine', tool_google_workspace_mcp, mesh_uri glaciereq://mesh/mcp_community_utilities/google_workspace_mcp, contract_proof template only)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:55 (portfolio row: Control Gmail/Calendar/Docs/Sheets/Slides/Chat/Forms/Tasks/Search/Drive)",
+    "/tmp/monolith/scripts/validate_lab_hire_atlas.py:61 (listed as a validated atlas record)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:109 (unprocessed: google_workspace_mcp)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:63 (processing line: google_workspace_mcp)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "wave3": true,
+  "makes_worthy": "No source or run receipt present. Add a README, document the tool surface, include a build/receipt plus a worked example to reach worthy>=8. Raised to 6 on multi-source catalog + validator cross-reference; cap below 7 because still unprocessed with no runtime proof.",
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:17.029679",
+  "notes": " | NEEDS_REPAIR"
+}

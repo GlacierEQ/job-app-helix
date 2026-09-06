@@ -1,0 +1,21 @@
+{
+  "repo": "llama-fs__public_fork_archive",
+  "family": "Meta (fork)",
+  "kind": "company",
+  "source_state": "left_behind",
+  "innovation_summary": "An ARCHIVED public fork of llama-fs, explicitly superseded by the private llama-fs repository. Deliberately left_behind: library.json:9660 (public archived fork), capabilities_3layer:10639 (Filesystem Fileboss And Search engine, mesh_uri glaciereq://mesh/filesystem_fileboss_and_search/llama-fs__public_fork_archive, contract_proof template only), domains/forks_study.md:26 ([ARCHIVED public fork] superseded by private llama-fs), status/LEFT_BEHIND.md:25 (left_behind_fork), FORKS_STUDY_ARCHIVE_ATLAS.md:43 (superseded_public_fork; archive_snapshot; no active integration/runtime inferred, confidence=high), company_engineered_repositories.json:180 (reference_or_upstream), audits/P0_PUBLIC_REPOSITORY_SWEEP_2026-07-30.md:27 (public, archived). This is a historical record, not an active capability. Rating held at 4 (correctly capped): the left_behind_fork + superseded_public_fork classifications are explicit archived-supersession signals that prevent any >5 promotion.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:9660 (name llama-fs__public_fork_archive; public archived fork)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:10639 (entry: elevator_pitch 'Filesystem Fileboss And Search engine', mesh_uri glaciereq://mesh/filesystem_fileboss_and_search/llama-fs__public_fork_archive, contract_proof template only)",
+    "/tmp/monolith/domains/forks_study.md:26 ([ARCHIVED public fork] superseded by private llama-fs)",
+    "/tmp/monolith/status/LEFT_BEHIND.md:25 (llama-fs__public_fork_archive | forks_study | left_behind | left_behind_fork)",
+    "/tmp/monolith/status/FORKS_STUDY_ARCHIVE_ATLAS.md:43 (superseded_public_fork | archive_snapshot; no active integration/runtime inferred, confidence=high)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:178-183 (Meta family; reference_or_upstream: llama-coder, llama-fs__public_fork_archive)",
+    "/tmp/monolith/audits/P0_PUBLIC_REPOSITORY_SWEEP_2026-07-30.md:27 (public, archived)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "last_verified": "2026-08-29T08:47:16.890734",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

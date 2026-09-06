@@ -1,0 +1,19 @@
+{
+  "repo": "ai-sdk-provider",
+  "family": "Vercel / AI SDK",
+  "kind": "company",
+  "source_state": "unprocessed",
+  "innovation_summary": "AI SDK provider adapter under Extended Utilities And Experiments. Listed in the unprocessed backlog (company_engineered_repositories.json:299) with a capability stub (launch_cmd git clone, contract_proof, mesh_uri) and no inspected implementation, test, or fact card.",
+  "evidence": [
+    "/tmp/monolith/catalog/company_engineered_repositories.json:299 (unprocessed backlog: ai-sdk-provider)",
+    "/tmp/monolith/catalog/library.json:700 (name ai-sdk-provider; url https://github.com/GlacierEQ/ai-sdk-provider)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:29449 (stub: name, launch_cmd git clone, contract_proof DONE, mesh_uri glaciereq://mesh/extended_utilities_and_experiments/ai-sdk-provider)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 4,
+  "makes_worthy": "Unprocessed stub only; cannot exceed 5 without implemented provider logic + a run/receipt.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.930377",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=4"
+}

@@ -1,0 +1,23 @@
+{
+  "repo": "openclaw",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "File-integrity watchdog specialist that computes SHA-256 baselines and detects repository-tree modifications (Python). Evidence is catalog plus a governance status entry describing source-inspected capability, and it is listed in the P0 public-repository sweep, but no local test run or receipt was found.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=openclaw; domain=long_tail; activity=worked_on; status_detail=local_job_app; language=Python; local_job_app=true; desc empty)",
+    "/tmp/monolith/status/functions/governance.md line 12 ('openclaw' | active_specialist | long_tail | File-integrity watchdog specialist that computes SHA-256 baselines and detects repository-tree modifications; atlas membership does not establish deployment; source inspection; high)",
+    "/tmp/monolith/domains/long_tail.md line 22 (worked_on)",
+    "/tmp/monolith/audits/P0_PUBLIC_REPOSITORY_SWEEP_2026-07-30.md line 77 (listed among audited repos)",
+    "/tmp/monolith/config/full_estate_application_rules.json line 156 (OpenClaw capability systems: AGENT_RUNTIME_AND_ORCHESTRATION, MCP_CONNECTORS_AND_TOOL_FABRIC, DEVELOPER_TOOLS_AND_CODE_INTELLIGENCE)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (contract_proof='DONE <=> issue-contract proof(pain) for openclaw')",
+    "/tmp/monolith/status/WORKED_ON.md line 69"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Add SHA-256 baseline unit tests (compute, compare, drift-detection) under a CI truth gate and publish a hardening receipt with a pinned commit and artifact digest; catalog/atlas membership is not an execution proof.",
+  "last_verified": "2026-08-29T08:47:17.033901",
+  "notes": "catalog_only_upgraded | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

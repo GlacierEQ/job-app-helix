@@ -1,0 +1,22 @@
+{
+  "repo": "metaagent",
+  "family": "Meta / Research",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A research project on self-evolving agents using tool meta-learning techniques (MetaAgent: Toward Self-Evolving Agent via Tool Meta-Learning). Multi-source: library.json:10908 (name metaagent; MetaAgent: Toward Self-Evolving Agent via Tool Meta-Learning), capabilities_3layer:41125 (entry: elevator_pitch 'Extended Utilities And Experiments engine', tool_metaagent, mesh_uri glaciereq://mesh/extended_utilities_and_experiments/metaagent, contract_proof template only), domains/long_tail.md:477 (portfolio row: MetaAgent: Toward Self-Evolving Agent via Tool Meta-Learning), company_engineered_repositories.json:179 (unprocessed: metaagent), LONG_TAIL_ATLAS_BATCH_09.md:84 (experimental/research_component; honest limitation: catalog scope only, no deployment/readiness/execution, confidence=high), COMPANY_ENGINEERED_PROCESSING.md:85 (processing line: metaagent). Rating held at 5: catalog + atlas + processing cross-reference = solid catalog floor; the honest-limitation explicitly caps at catalog-scope.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:10908 (name metaagent; MetaAgent: Toward Self-Evolving Agent via Tool Meta-Learning)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:41125 (entry: elevator_pitch 'Extended Utilities And Experiments engine', tool_metaagent, mesh_uri glaciereq://mesh/extended_utilities_and_experiments/metaagent, contract_proof template only)",
+    "/tmp/monolith/domains/long_tail.md:477 (portfolio row: MetaAgent: Toward Self-Evolving Agent via Tool Meta-Learning)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:178-183 (Meta family; unprocessed: metaagent; canonical_candidate=meta-llama-collective-sentinel)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_09.md:84 (experimental/research_component; honest limitation: catalog scope only, no deployment/readiness/execution, confidence=high)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:85 (processing line: metaagent)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Held at 5: meta-learning research project + multi-source catalog + tool_metaagent capability + processing line = catalog ceiling. To reach >=7: a meta-learning experiment receipt (a recorded self-evolving tool-use run with measurable improvement) + build/receipt. Capped at 5: unprocessed research_component, catalog scope only, no execution proof.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.888605",
+  "notes": " | NEEDS_REPAIR"
+}

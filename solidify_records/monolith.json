@@ -1,0 +1,24 @@
+{
+  "repo": "monolith",
+  "family": "GlacierEQ Control Plane",
+  "kind": "control_plane",
+  "source_state": "active",
+  "innovation_summary": "The GlacierEQ Monolith \u2014 constitutional root / control-plane repository that indexes the whole library, domain classification, repository registry, and estate application graph. Deeper mining confirms strong multi-source grounding: function_systems.json assigns it lane 'constitutional_root'; HIERARCHICAL_FUNCTION_MAP.json records its node (name monolith, relative_path monolith) at two hierarchy levels; capabilities_3layer holds two capability entries; apex_atlas.py ROOTS set includes monolith among AKOS/apex-control-plane/mastermind/job-app-helix; and regenerate_catalog.py treats it as foundation (status_detail 'foundation_whole', role 'whole'). Scripts (monolith_cli.py) confirm it ships a real control-plane CLI. This is one of the few repos with genuine structural/local presence rather than catalog-only evidence.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:11436 (name monolith; library roadmap / index entry)",
+    "/tmp/monolith/catalog/function_systems.json:34 ({repository: monolith, lane: constitutional_root})",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:1958,3791 (name monolith; relative_path monolith at two hierarchy levels)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:14885,78886 (two capability entries: monolith)",
+    "/tmp/monolith/scripts/apex_atlas.py:26 (ROOTS set includes monolith alongside AKOS/apex-control-plane/mastermind/job-app-helix)",
+    "/tmp/monolith/scripts/monolith_cli.py:124 (argparse prog='monolith' control-plane CLI)",
+    "/tmp/monolith/scripts/regenerate_catalog.py:259-267 (monolith treated as foundation; status_detail 'foundation_whole', role 'whole')",
+    "/tmp/monolith/scripts/build_full_estate_application_graph.py:33 (monolith in estate graph build)",
+    "/tmp/monolith/catalog/library.json:64 (monolith: library roadmap this index)"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 8,
+  "wave3": true,
+  "makes_worthy": "Add a control-plane CLI smoke-test receipt (monolith --help / catalog regenerate run) to reach VERIFIED and worthy>=8. Strongest structural evidence of batch (constitutional_root + real CLI + multi-level hierarchy node); still PARTIAL because no recorded CLI run/receipt located in sources.",
+  "last_verified": "2026-08-29T04:30:00-10:00",
+  "notes": "local;tests;ci;readme;791files"
+}

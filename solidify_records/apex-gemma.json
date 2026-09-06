@@ -1,0 +1,20 @@
+{
+  "repo": "apex-gemma",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "On-device + cloud Gemma 4 dispatch layer (E4B/26B router) bridging local Gemma models to cloud and productivity connectors (Notion/ClickUp/Supermemory) under the apex_cognitive_os domain. Cataloged as a first-class capability with a defined launch_cmd (git clone https://github.com/GlacierEQ/apex-gemma) and mesh_uri (glaciereq://mesh/cognitive_os_agent_kernels/apex-gemma), but it still sits in the unprocessed backlog (company_engineered_repositories.json:109) with no README, build, or run/receipt present.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:1644 (name=apex-gemma; url https://github.com/GlacierEQ/apex-gemma; domain apex_cognitive_os)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:13457 (name, url, launch_cmd 'git clone https://github.com/GlacierEQ/apex-gemma', contract_proof 'DONE issue-contract proof(pain)', mesh_uri glaciereq://mesh/cognitive_os_agent_kernels/apex-gemma)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:109 (Google / DeepMind 'unprocessed' backlog, listed alongside Pro-Gemma/run-gemini-cli)",
+    "/tmp/monolith/domains/apex_cognitive_os.md:89"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Concrete capability entry + launch_cmd exist (raise 3->4), but no run receipt, README, or build/test artifact. Add a worked E4B/26B routing example plus a build/receipt to reach >=8.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:17.030245",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

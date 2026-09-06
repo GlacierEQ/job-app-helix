@@ -1,0 +1,23 @@
+{
+  "repo": "Kimi-K3",
+  "family": "Moonshot AI / Lab",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Kimi-K3 ('Open Frontier Intelligence'). Deeper mining confirms multi-source presence with explicit atlas test-suite reference: library.json:8652, capabilities_3layer:24945 (entry: elevator_pitch 'Lab Benchmarks And Stamps engine', mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/Kimi-K3, contract_proof template), domains/lab_hire_stamps.md:38, tests/test_lab_hire_atlas.py:74 (records['Kimi-K3'] referenced in test suite), validate_lab_hire_atlas.py:78, company_engineered_repositories.json:150 (reference_or_upstream), and LAB_HIRE_DOMAIN_ATLAS.md:65 (honest limitation: upstream model claims not GlacierEQ-authored proof). Rating promoted 5->6 on the validated-atlas + test-suite cross-reference (records['Kimi-K3'] is checked by an executed test).",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:8652 (name Kimi-K3; Open Frontier Intelligence)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24945 (entry: elevator_pitch 'Lab Benchmarks And Stamps engine', mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/Kimi-K3, contract_proof template only)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:38 (portfolio row: Open Frontier Intelligence)",
+    "/tmp/monolith/tests/test_lab_hire_atlas.py:74 (records['Kimi-K3'] referenced in test suite)",
+    "/tmp/monolith/scripts/validate_lab_hire_atlas.py:78 (listed as validated atlas record)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:147-151 (Moonshot AI / Kimi family; reference_or_upstream)",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md:65 (honest limitation: upstream model claims not GlacierEQ-authored proof)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "wave3": true,
+  "makes_worthy": "Promoted 5->6: validated atlas record + tests/test_lab_hire_atlas.py:74 cross-reference are real catalog-and-test cross-signals. To reach >=8: a GlacierEQ-authored fine-tune, integration recipe, or benchmark on Kimi-K3 with a hashed run receipt. Capped at 6: reference/upstream model repo, test suite only references it as a record, no local GlacierEQ-authored proof.",
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.883357",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,20 @@
+{
+  "repo": "coreweave-entropy-engine",
+  "family": "CoreWeave",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Cataloged as a CoreWeave family agent component (role: part) but the library record carries no description; a capabilities_3layer stub (launch_cmd git clone, contract_proof) exists with no functional summary. No source, fact card, test, or receipt in the monolith; purpose only inferable from the name.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4764 (name=coreweave-entropy-engine; Python, private, domain long_tail, desc empty)",
+    "/tmp/monolith/domains/long_tail.md:303 (no description)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (group: CoreWeave, listed unprocessed)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=coreweave-entropy-engine; launch_cmd git clone, contract_proof DONE, mesh_uri \u2014 no functional summary)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 3,
+  "makes_worthy": "Raised 1->2 on catalog stub only. Cannot exceed 5 without a description, README, and a fact card or run receipt.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:17.018760",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=3"
+}

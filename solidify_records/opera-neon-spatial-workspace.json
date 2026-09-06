@@ -1,0 +1,32 @@
+{
+  "repo": "opera-neon-spatial-workspace",
+  "family": "Opera",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "opera-neon-spatial-workspace is a spatial-workspace specialist exploring browser-centered, multimodal, and agent-assisted interaction patterns associated with Opera Neon \u2014 treating the browser as a spatial canvas where agent work is laid out and supervised rather than hidden behind a chat transcript. Its portfolio thesis is operator legibility: if an agent is acting inside a browser, the human needs a spatial representation of what is in flight, not a log. The function atlas files it under Operator Surfaces, the same function system headed by pro-code, which makes it the browser-side companion to the estate's control-surface line. It is the sole repository in the Opera family with a recorded priority of 'P2 browser-workspace proof'; catalog signals show real work (worked_solidified, local_job_app) but the description is empty and no independent artifact was located.",
+  "evidence": [
+    "/tmp/monolith/status/functions/operator_surface.md:10 (opera-neon-spatial-workspace | active_specialist | lab_hire_stamps | 'Spatial-workspace specialist exploring browser-centered, multimodal, or agent-assisted interaction patterns associated with Opera Neon' | basis: name + domain; confidence: high)",
+    "/tmp/monolith/status/FUNCTION_SYSTEMS.md:25 (Operator Surfaces function system, 4 members, head pro-code, spanning 'human control; coding; browser-agent control; multimodal workspaces' \u2014 this repo is the multimodal-workspace member)",
+    "/tmp/monolith/catalog/library.json:12732 (domain=lab_hire_stamps, role=part, activity=worked_on, status_detail=worked_solidified, desc='' (EMPTY), language=Python, local_job_app=true, issue_contract=false, private=false, updatedAt 2026-08-10T06:16:37Z)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:25491-25523 (category LAB_BENCHMARKS_AND_STAMPS; impact P0; launch_cmd 'python3 ~/job-app/apex_highway.py --target opera-neon-spatial-workspace'; sha256_binding 633b806dbece1b4f551d57dc8b395538b003eb75c452593941db085cf9f62aa6; mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/opera-neon-spatial-workspace)",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md:33 (browser/connector cluster membership alongside comet-browser-agent-bridge, comet-agent, comet-extension, apple-mcp, openai-codex-mcp)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:29 (portfolio row: part | worked_on | issue_contract='\u2014' | description column blank)",
+    "/tmp/monolith/status/WORKED_ON.md:70 (opera-neon-spatial-workspace | lab_hire_stamps | part | worked_solidified)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:228,233 (opera.current_preparation=[opera-neon-spatial-workspace]; canonical_candidate=opera-neon-spatial-workspace)",
+    "/tmp/monolith/domains/company_engineered_portfolio.md:53 (Opera | 1 repo | 1 in preparation | 0 unprocessed | 0 reference | canonical opera-neon-spatial-workspace | priority 'P2 browser-workspace proof')",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json:814-819 (sole Opera-family entry, state=in_preparation)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "One concrete step to 8+: write the README defining the spatial model (what a workspace node is, how agent tasks are placed and moved, what the operator can interrupt) and commit a headless test that constructs a workspace, drives one agent-assisted navigation action through it, and asserts the resulting layout state plus an operator-visible record of the action. Publish the run id and passing test names in a BUILD_RECEIPT and file a repository_fact_card at R3+ \u2014 that discharges the recorded 'P2 browser-workspace proof' gate.",
+  "repo_excellence_anchor": "Direct capability overlap with the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe): the anchor has already verified browser.navigate plus restart persistence inside a hardened container and emits hash-bound receipts for each browser action (/root/repo_excellence/STRONG_COMPLETION.computer-user.md:18-19; /tmp/helix_patch/evidence_ledger_UPDATED.json:87-98). Both repos also sit in the same Operator Surfaces function system as pro-code. The cheapest credible path here is therefore composition rather than reimplementation: drive the anchor's already-proven governed browser kernel and let this repo own only the spatial supervision layer, inheriting observable, receipt-backed execution instead of asserting it.",
+  "honest_limits": [
+    "catalog desc field is EMPTY; mechanism inferred from the function atlas, whose basis is 'name + domain'",
+    "no issue contract, no source inspection, no local clone in HIERARCHICAL_FUNCTION_MAP.json, no README, test, CI run id, or receipt found locally",
+    "catalog language is recorded as Python although the described capability is a browser workspace \u2014 unreconciled and preserved as-is",
+    "no Opera or Opera Neon affiliation, integration, or extension-store presence claimed"
+  ],
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.992154",
+  "notes": " | NEEDS_REPAIR"
+}

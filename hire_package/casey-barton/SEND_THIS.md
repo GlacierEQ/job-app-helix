@@ -30,7 +30,7 @@ This is the reference first-stop presentation for recruiters, hiring leaders, se
 
 ## Current Truth Boundary
 
-**Verified:** exact 67-repository boundary - one Helix root plus 66 child repositories; complete 66-child rollout partition; AKOS 94/94 tests across Python 3.11-3.13; 21-node README Mesh rollout; live reference hire surface at https://casey-barton-glaciereq.vercel.app/ (HTTP 200).
+**Current estate:** 225 deserving repositories across 21 families, with 8 verified trust anchors in the current evidence surface. **Historical governed proof scope:** exact 67-repository boundary - one Helix root plus 66 children - preserved with its complete 66-child rollout partition and dated receipts. **Additional verified proof:** AKOS 94/94 tests across Python 3.11-3.13; 21-node README Mesh rollout; live reference hire surface at https://casey-barton-glaciereq.vercel.app/ (HTTP 200).
 **Candidate proof:** Agent Coordinator 62/62 Python 3.13 tests.
 **Pending:** hosted multi-version coordinator promotion and portfolio-wide deployment, scale, performance, reliability, and customer-impact proof.
 **Not share links:** GitHub Pages (`glaciereq.github.io/job-app-helix/`) is not enabled; `job-application.vercel.app` is a different project.

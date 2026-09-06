@@ -1,0 +1,19 @@
+{
+  "repo": "xai-colossus-waterplant-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "Private historical companion (alpha split) of the xAI-Colossus waterplant stack. Only a catalog entry and family canonicalization listing were found; the capability index gives a generic elevator pitch and an issue-contract proof, but no hardening receipt, test run, or artifact was found for this repo.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 18348 (name=xai-colossus-waterplant-alpha; url=github.com/GlacierEQ/xai-colossus-waterplant-alpha)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 80 (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Clone the repository and add a runnable test suite plus a CI truth gate; emit a hardening receipt with a pinned commit and artifact digest. As a historical companion, either independently harden or formally retire.",
+  "from_unified_fill": true,
+  "last_verified": "2026-08-29T08:47:16.948387",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

@@ -92,8 +92,16 @@
       "repository": "GlacierEQ/job-app-helix",
       "evidence": [
         {
+          "type": "current_estate",
+          "claim": "current source-exhaustive estate contains 225 deserving repositories across 21 families"
+        },
+        {
+          "type": "verified_anchor_register",
+          "claim": "8 repository-level verified trust anchors in the current estate evidence surface"
+        },
+        {
           "type": "claim_register",
-          "claim": "exact 67-repository Helix boundary: one control-plane root plus 66 child repositories"
+          "claim": "historical governed Helix boundary: exact 67 repositories (one control-plane root plus 66 children), preserved as dated recruiter/audit scope rather than current estate cap"
         },
         {
           "type": "claim_register",
@@ -108,7 +116,7 @@
           "claim": "76 required company tracks including glaciereq_core"
         }
       ],
-      "claim_ceiling": "governed systems breadth and deterministic planning topology; not proof of runtime throughput, customer scale, or all-track execution",
+      "claim_ceiling": "evidence-bound systems breadth across the current 225-repository estate, with historical 67-repository audit scope preserved for receipt integrity; not proof of portfolio-wide runtime throughput, customer scale, or all-track execution",
       "next_gate": "persist executed workflow counts, integration counts by proof state, event/document volumes, recovery counts, cost/performance metrics, and user-impact receipts"
     }
   },

@@ -2,7 +2,7 @@
 
 **Outcome:** One evidence-bound application surface connects recruiter value, senior-engineer proof, and AI/ATS ingestion.
 
-**Current status:** `PARTIALLY VERIFIED` - exact 67-repository live boundary, repository-native component receipts, and a 21-node README Mesh rollout are recorded. APEX runner activation remains `BLOCKED`; coordinator hosted promotion remains `UNVERIFIED`. The July 29 portfolio audit remains a historical 66-repository snapshot. Portfolio-wide runtime, deployment, scale, and performance remain unverified.
+**Current status:** `PARTIALLY VERIFIED` - the source-exhaustive estate now contains 225 deserving repositories across 21 families with 8 verified trust anchors. The earlier exact 67-repository governed boundary (one Helix root plus 66 children) remains preserved as a dated recruiter/audit scope. Repository-native component receipts and a 21-node README Mesh rollout are recorded. APEX runner activation remains `BLOCKED`; coordinator hosted promotion remains `UNVERIFIED`. The July 29 audit remains a historical 66-child snapshot. Estate-wide runtime, deployment, scale, and performance are tracked separately from inventory breadth.
 
 ## For recruiters
 
@@ -10,7 +10,7 @@ Casey builds the execution and trust layer around intelligent systems: context, 
 
 ## Proof in 60 seconds
 
-- [Job-App Helix](../../README.md) - exact live portfolio boundary and evidence control plane.
+- [Job-App Helix](../../README.md) - current 225-repository source-exhaustive estate, 8 verified trust anchors, and evidence control plane.
 - [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) - public product flagship with deterministic truthfulness checks and executable TypeScript tests.
 - [AKOS immutable verification run](https://github.com/GlacierEQ/AKOS/actions/runs/30532339028) - named repository-native test evidence.
 - [Coordinator candidate receipt](coordinator_candidate_receipt.json) - 62 independent Python 3.13 tests with explicit hosted limitations.
@@ -44,7 +44,7 @@ Resume Shapeshifter enters the public system through `job-application`, but its 
 
 Machine metadata lives in `candidate_node.json`, `application_spiral.json`, `evidence_ledger.json`, `coordinator_candidate_receipt.json`, `package_mesh.json`, and `PUBLIC_PACKAGE_SYNC_RECEIPT.json`. Typed relationships use only the compiled `glaciereq.readme.v1` enum.
 
-The live repository inventory is `../../manifests/portfolio_repositories.json`; the dated GitHub admission and exclusion decisions are `../../manifests/github_repository_curation_2026-07-31.json`.
+The current source-exhaustive estate is `../../manifests/unified_deserving_manifest.json`; the historical 67-repository governed recruiter boundary remains in `../../manifests/portfolio_repositories.json`; the dated GitHub admission and exclusion decisions are `../../manifests/github_repository_curation_2026-07-31.json`.
 
 ## Claim boundary
 

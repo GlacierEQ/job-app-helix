@@ -1,0 +1,17 @@
+{
+  "repo": "colossus-gateway",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "Universal MCP bridge for Colossus-class orchestration, part of the AKOS portfolio and a live job application, connecting Colossus-scale compute orchestration to the MCP tool surface used across the APEX estate. The deeper catalog shows a completed issue-contract proof, a live mesh URI, a launch command, and a company-family listing under current_preparation, grounding it as an operable bridge rather than a stub.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=colossus-gateway; domain=colossus_xai; role=whole; status_detail=worked_solidified; desc='Universal MCP bridge for Colossus-class orchestration. AKOS portfolio.'; local_job_app=true)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (colossus-gateway listed under xAI family 'current_preparation')",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=colossus-gateway; contract_proof='DONE <=> issue-contract proof(pain) for colossus-gateway'; mesh_uri=glaciereq://mesh/cognitive_os_agent_kernels/colossus-gateway; launch_cmd 'python3 ~/job-app/apex_highway.py --target colossus-gateway')",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (name=colossus-gateway; path=/data/data/com.termux/files/home/MISSIONS/colossus-gateway)"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "repo_excellence_anchor": "Indirect — AKOS portfolio MCP bridge; governed-execution verification pattern is the estate reference, not an internal receipt.",
+  "makes_worthy": "Publish a protocol/README and a local fact card demonstrating a working MCP handshake or bridge test against a stub server to reach >=9."
+}

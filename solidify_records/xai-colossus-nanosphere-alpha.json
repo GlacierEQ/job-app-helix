@@ -1,0 +1,29 @@
+{
+  "repo": "xai-colossus-nanosphere-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "evidence_state": "PRIVATE_SPECULATIVE_PHYSICS_EXPERIMENT_BLOCKED_CALIBRATION",
+  "not_counted_as_public_verified_component": true,
+  "preserve": true,
+  "innovation_summary": "Private historical experiment companion (alpha) of xai-colossus-nanosphere (nanofluid model). The family hardening receipt (xai_colossus_nanosphere_hardening.json) explicitly inspected this repository at commit 1b39fae3277a034c48d62c957883fd5c3a3118ce and documents findings: Arrhenius, shear-decay, magnetic-restoration, and flocculation formulas are present; invalid Kelvin input is silently clamped to 100 K rather than rejected; surfactant readiness is a fixed threshold without units or calibration; magnetic restoration and sweep outputs are undocumented speculative assumptions; emergency behavior prints a control demand without an authority or execution boundary; tracked compiled Python artifacts were observed. The receipt also documents a complementary VERIFIED base repo (xai-colossus-nanosphere, 58/58 tests, run_id 30899305574) but explicitly NOT this alpha. Capped at 5 (catalog + hardening-receipt-documented private state with explicit preservation guidance; not counted as a public verified component).",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 114 (repository GlacierEQ/xai-colossus-nanosphere-alpha; visibility private; inspected_commit 1b39fae3277a034c48d62c957883fd5c3a3118ce; state PRIVATE_SPECULATIVE_PHYSICS_EXPERIMENT_BLOCKED_CALIBRATION; not_counted_as_public_verified_component=true; preserve=true)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json lines 120-127 (six specific findings: Arrhenius/shear-decay/magnetic-restoration/flocculation formulas present; invalid Kelvin input silently clamped to 100K; surfactant readiness is fixed threshold without units/calibration; magnetic restoration/sweep outputs undocumented speculative assumptions; emergency behavior prints control demand without authority/execution boundary; tracked compiled Python artifacts observed)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_nanosphere_hardening.json line 153 (not_verified list includes 'private Alpha or Omega composition')",
+    "/tmp/monolith/catalog/library.json (entry xai-colossus-nanosphere-alpha; url=github.com/GlacierEQ/xai-colossus-nanosphere-alpha)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 74 (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_7": "(1) Reject (do not silently clamp) invalid Kelvin input; (2) replace the fixed-threshold surfactant readiness with calibrated values that carry units and a citation; (3) cite primary references for Arrhenius, shear-decay, magnetic-restoration, and flocculation parameters; (4) gate the emergency 'print control demand' behind an asserted, bounded action with an authority boundary and a receipted action; (5) remove tracked compiled Python artifacts; (6) add an independent CI truth gate with an artifact digest for this alpha in isolation; (7) harden separately before any controller-family composition claim. Until then, retain as a preserved historical experiment, not a public verified component.",
+  "honest_limits": [
+    "explicitly not_counted_as_public_verified_component=true per the family hardening receipt",
+    "silent 100K Kelvin clamp is a data-integrity defect that masks invalid inputs",
+    "no isolated CI run, artifact, or test receipt for this alpha"
+  ],
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:17.039604",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

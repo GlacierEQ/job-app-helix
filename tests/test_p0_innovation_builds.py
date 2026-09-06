@@ -1,4 +1,3 @@
-# ruff: noqa: E501
 from job_app_helix.p0_builds import (
     P0_IDS,
     agent_relationship_graph_firewall,

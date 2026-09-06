@@ -1,0 +1,22 @@
+{
+  "repo": "github-script",
+  "family": "GitHub",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "GitHub Actions utility for scripting the GitHub API in JavaScript. Multi-source: library.json:7036 (name github-script; JavaScript GitHub API workflow scripting), capabilities_3layer:37135 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/github-script, contract_proof template only), domains/long_tail.md:382 (portfolio row: Write workflows scripting the GitHub API in JavaScript), company_engineered_repositories.json:130 (reference_or_upstream: github-mcp-server, github-script), LONG_TAIL_ATLAS_BATCH_07.md:87 (preserved_upstream/utility; honest limitation: no workflow enabled or safely authorized, confidence=high), COMPANY_ENGINEERED_PROCESSING.md:200 (processing line: GitHub MCP server and github-script). Rating held at 5: catalog + processing line + high-confidence preserved_upstream cross-reference = catalog ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:7036 (name github-script; JavaScript GitHub API workflow scripting)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:37135 (entry: elevator_pitch 'Extended Utilities And Experiments engine', mesh_uri glaciereq://mesh/extended_utilities_and_experiments/github-script, contract_proof template only)",
+    "/tmp/monolith/domains/long_tail.md:382 (portfolio row: Write workflows scripting the GitHub API in JavaScript)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:129-130 (GitHub family; reference_or_upstream: github-mcp-server, github-script)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_07.md:87 (preserved_upstream/utility; honest limitation: no workflow enabled or safely authorized, confidence=high)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md:200 (processing line: GitHub MCP server and github-script)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Held at 5: catalog + processing line + high-confidence preserved_upstream cross-reference = catalog ceiling. To reach >=7: a worked example workflow + authorization notes + a build/receipt. Capped at 5: upstream-preserved catalog entry, no enabled-workflow proof.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.857362",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,22 @@
+{
+  "repo": "glaciereq-mcp-stack",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "MCP tool router with allow-list (portfolio) \u2014 the GlacierEQ connector stack for composing MCP servers, transport layers, tool discovery, and allow-listed execution / connector-plane integration; marked AKOS P0. Evidence is catalog plus connector atlas (worked_solidified, curated map, high) but no local test run or receipt was found.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=glaciereq-mcp-stack; domain=mcp_connectors; activity=worked_on; status_detail=worked_solidified; desc 'MCP tool router with allow-list (portfolio) \u00b7 AKOS P0'; Python; local_job_app=true)",
+    "/tmp/monolith/domains/mcp_connectors.md line 8 (worked_on; 'MCP tool router with allow-list (portfolio) \u00b7 AKOS P0')",
+    "/tmp/monolith/status/connectors/federation-gateways.md line 12 (curated GlacierEQ MCP routing stack; curated map; high)",
+    "/tmp/monolith/status/CONNECTOR_FABRIC_ATLAS.md line 34 (one of 2 worked_on repositories)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (contract_proof='DONE <=> issue-contract proof(pain) for glaciereq-mcp-stack')",
+    "/tmp/monolith/status/WORKED_ON.md line 41"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Add a connector-plane integration test suite (allow-list enforcement, tool-discovery, transport round-trip) under a CI truth gate, and emit a hardening receipt with a pinned commit and hashed artifact.",
+  "last_verified": "2026-08-29T08:47:17.033259",
+  "notes": "catalog_only_upgraded | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

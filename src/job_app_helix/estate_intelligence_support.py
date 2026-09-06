@@ -231,7 +231,7 @@ def dynamic_score(
 
 def minimal_surface(
     rows: Sequence[Mapping[str, Any]],
-    limit: int,
+    limit: int | None = None,
 ) -> list[str]:
     remaining = list(rows)
     selected: list[str] = []
@@ -241,7 +241,7 @@ def minimal_surface(
         for capability in row.get("capabilities", [])
         if isinstance(capability, str)
     }
-    while remaining and len(selected) < limit:
+    while remaining and uncovered and (limit is None or len(selected) < limit):
         best = max(
             remaining,
             key=lambda row: (
@@ -252,7 +252,7 @@ def minimal_surface(
         )
         system_id = str(best["system_id"])
         newly_covered = uncovered & set(best.get("capabilities", []))
-        if selected and uncovered and not newly_covered:
+        if not newly_covered:
             break
         selected.append(system_id)
         uncovered -= newly_covered

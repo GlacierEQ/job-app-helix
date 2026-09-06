@@ -1,0 +1,21 @@
+{
+  "repo": "openai-assistant-swarm",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Extension to the OpenAI Node SDK that delegates work to a swarm of specialized assistants through one unified interface and manager. Triple-cataloged: (a) library.json desc 'Extension to the OpenAI Node SDK to delegate work to a swarm of specialized assistants through one unified interface and manager' + url; (b) capabilities_3layer.json classifier orchestration_swarms_and_pipelines with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/orchestration_swarms_and_pipelines/openai-assistant-swarm; (c) company_engineered_repositories.json family openai/unprocessed. The expanded_job_app_helix_manifest.json (line 688) explicitly assigns it as a job-app-helix mesh leaf, family OpenAI / Codex, canonical openai-reasoning-kv-sentinel, state needs_work. Notable: the orchestrator_swarms_and_pipelines classifier is more concrete than the typical 'lab_benchmarks' fallback and points to a direct mesh integration with the apex-orchestration whole. Honest limitation: no GlacierEQ test, swarm manager test, or fact card was found; capability is contract-catalog + orchestrator-classified + helix-membership proven, not runtime-verified, so 7 is the honest ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 12476: entry name=openai-assistant-swarm; desc='Extension to the OpenAI Node SDK to delegate work to a swarm of specialized assistants through one unified interface and manager'; url=https://github.com/GlacierEQ/openai-assistant-swarm)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 16149: name=openai-assistant-swarm; classifier=orchestration_swarms_and_pipelines; elevator_pitch='High-performance Orchestration Swarms And Pipelines engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/orchestration_swarms_and_pipelines/openai-assistant-swarm; launch_cmd='git clone https://github.com/GlacierEQ/openai-assistant-swarm')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 219: family openai; unprocessed list)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 688: kind=company, state=needs_work, family='OpenAI / Codex', canonical=openai-reasoning-kv-sentinel \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 114: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Add unit tests for the swarm manager/delegation logic against a mocked OpenAI client, run them to green, emit a fact card with a real execution receipt, and promote state from needs_work to in_preparation \u2014 would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.747859",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

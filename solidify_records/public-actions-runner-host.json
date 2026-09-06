@@ -1,0 +1,21 @@
+{
+  "repo": "public-actions-runner-host",
+  "family": "GitHub",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A self-hosted GitHub Actions runner (GlacierEQ fork). Unlike most of this slice it has real operating evidence: a hardening receipt referencing PR #79, a tracked activation issue, a live Actions run, a real workspace path in the function map, and now a recorded issue-contract proof plus mesh URI in the capabilities catalog (classifier=extended_utilities_and_experiments). The operating evidence is consolidated and independently re-runnable.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:14140 (name public-actions-runner-host; desc 'Self-hosted GitHub Actions runner'; language Python; url=https://github.com/GlacierEQ/public-actions-runner-host)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_cooling_hardening.json:94 (runner_fix_pull_request GlacierEQ/public-actions-runner-host#79)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/06_EVIDENCE_AND_QA/evidence_ledger.json:55 (evidence actions/runs/30573535595)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/06_EVIDENCE_AND_QA/evidence_ledger.json:57 (activation_issue #58)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:257 (real path WORKSPACE/public-actions-runner-host)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:44737 (name=public-actions-runner-host; classifier=extended_utilities_and_experiments; executive_summary='Self-hosted GitHub Actions runner'; contract_proof='DONE ⇔ issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/public-actions-runner-host)",
+    "/tmp/monolith/automation/public-runner/company-engineered-registry.request.json:3 (execution_repository GlacierEQ/public-actions-runner-host)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 129: github group, unprocessed)"
+  ],
+  "verification_status": "RECEIPT_VERIFIED",
+  "worthy_rating": 8,
+  "makes_worthy": "Add a fact card capturing the runner setup, the PR #79 fix, and a reproducible CI result (passing run) so the operating evidence is consolidated and independently re-runnable; a passing test/receipt would justify worthy=9.",
+  "wave3": true
+}
