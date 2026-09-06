@@ -1,0 +1,222 @@
+{
+  "advance_brief": {
+    "failure_mode": "If `src/glaciereq_mcp_stack/anti_neutralization_gate.py` silent-fails, forges authority, or ships without `tests/test_glaciereq_mcp_stack_anti_neutralization_gate.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
+    "measurement": "1) `tests/test_glaciereq_mcp_stack_anti_neutralization_gate.py` \u2014 unit tests for happy path + refuse path for anti_neutralization_gate.\n2) Exact-head proof receipt at `receipts/anti_neutralization_gate_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/anti_neutralization_gate.py` and exercise one real bottleneck case from `glaciereq-mcp-stack` (desc: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+    "mechanism_id": "anti_neutralization_gate",
+    "mechanism_title": "Anti-Neutralization Merge Gate for GlacierEQ/glaciereq-mcp-stack",
+    "paths": [
+      "src/glaciereq_mcp_stack/anti_neutralization_gate.py",
+      "src/glaciereq_mcp_stack/anti_neutralization_gate_config.py",
+      "receipts/anti_neutralization_gate_proof.json"
+    ],
+    "plane": "IMPLEMENTED",
+    "problem": "glaciereq-mcp-stack: intended capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass (surface: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).",
+    "receipt_sha256": "ea6561ccf5caa4742e5eda91b40d1944a1ef9555ba71db2d9df94f682a64e7c8",
+    "repository": "GlacierEQ/glaciereq-mcp-stack",
+    "research_signals": [
+      "neutralization",
+      "paper_recovery",
+      "no_test_mention",
+      "mcp_tools",
+      "governance",
+      "hire_surface",
+      "has_prior_knowledge",
+      "prior_mechanism_known"
+    ],
+    "schema": "glaciereq.genius-advance-brief.v1",
+    "status": "READY",
+    "steps": [
+      "Create module path from brief with typed public API.",
+      "Add refuse-path unit tests before happy path.",
+      "Wire bottleneck call sites through the mechanism.",
+      "Emit proof receipt JSON bound to commit SHA.",
+      "Keep dual-plane labels honest (no false VERIFIED)."
+    ]
+  },
+  "craft": [
+    "ENGINEERED",
+    "PRO_ELITE_HUMANIZED_ENGINEERED_CODE",
+    "CONTINUOUSLY_IMPRESSIVE_TO_MASTERS",
+    "COMPLETE",
+    "BORN_TO_RUN",
+    "FIRST_PASS_IS_LAST_PASS",
+    "GOVERNANCE_BALANCED_WITH_BRAVERY"
+  ],
+  "engine_id": "glaciereq.genius-engine.v3",
+  "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
+  "knowledge_path": "/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge/GlacierEQ__glaciereq-mcp-stack.json",
+  "law": "MAXIMUM_COHERENT_ADVANCE",
+  "library_link_path": "/Users/kcbflux/.grok/work/library-of-links/domains/genius/GlacierEQ__glaciereq-mcp-stack.json",
+  "primary": {
+    "apex_aligned": true,
+    "boundary": "Leaf=GlacierEQ/glaciereq-mcp-stack; domain=mcp; language=Python. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
+    "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+    "coherence_score": 1.0,
+    "company_track": null,
+    "domain": "mcp",
+    "failure_mode": "If `src/glaciereq_mcp_stack/anti_neutralization_gate.py` silent-fails, forges authority, or ships without `tests/test_glaciereq_mcp_stack_anti_neutralization_gate.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
+    "genius_score": 1.0,
+    "implementation": "ENGINEER `anti_neutralization_gate` into `glaciereq-mcp-stack` as first-pass-is-last-pass code.\n- Module: `src/glaciereq_mcp_stack/anti_neutralization_gate.py` \u2014 typed API for Anti-Neutralization Merge Gate; named invariants; no magic.\n- Config: `src/glaciereq_mcp_stack/anti_neutralization_gate_config.py` \u2014 leaf boundaries from research signals [neutralization, paper_recovery, no_test_mention, mcp_tools, governance, hire_surface, has_prior_knowledge, prior_mechanism_known]; language=Python.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/anti_neutralization_gate_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
+    "measurement": "1) `tests/test_glaciereq_mcp_stack_anti_neutralization_gate.py` \u2014 unit tests for happy path + refuse path for anti_neutralization_gate.\n2) Exact-head proof receipt at `receipts/anti_neutralization_gate_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/anti_neutralization_gate.py` and exercise one real bottleneck case from `glaciereq-mcp-stack` (desc: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+    "mechanism": "Anti-Neutralization Merge Gate: CI fails capability shrink or package amputation without OPERATOR_AUTHORIZED_REDUCTION.",
+    "novelty_score": 0.8999999999999999,
+    "plane": "IMPLEMENTED",
+    "problem": "glaciereq-mcp-stack: intended capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass (surface: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).",
+    "repository": "GlacierEQ/glaciereq-mcp-stack",
+    "solution_id": "genius-24182ec059e9",
+    "tags": [
+      "anti_neutralization_gate",
+      "mcp",
+      "MAXIMUM_COHERENT_ADVANCE",
+      "PRO_ELITE_HUMANIZED_ENGINEERED_CODE",
+      "ENGINEERED"
+    ],
+    "title": "Anti-Neutralization Merge Gate for GlacierEQ/glaciereq-mcp-stack",
+    "value": "Removes the named bottleneck on `glaciereq-mcp-stack` with ENGINEERED executable power: CI fails capability shrink or package amputation without OPERATOR_AUTHORIZED_REDUCTION. \u2014 complete mechanism masters can review in `src/glaciereq_mcp_stack/anti_neutralization_gate.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
+  },
+  "receipt_sha256": "ea6561ccf5caa4742e5eda91b40d1944a1ef9555ba71db2d9df94f682a64e7c8",
+  "rejected": [],
+  "research": {
+    "advanced_context": [
+      "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness \u2014 calibrates dual-plane claims and ref",
+      "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
+      "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth \u2014 not chatbot wrappers. Directly informs m",
+      "Agentic Artificial Intelligence in Finance: A Comprehensive Survey | https://arxiv.org/abs/2604.21672 | Maps agentic systems onto high-stakes domains with architecture + regulatory surfaces \u2014 useful pattern language for authority half-life, receipt buses, and non-affiliation claim fe",
+      "HTTP Semantics (RFC 9110) | https://www.rfc-editor.org/rfc/rfc9110.html | Durable systems law for every control-plane and MCP HTTP surface \u2014 masters still mis-implement idempotency and cache semantics; primary standard beats blog folklore."
+    ],
+    "default_branch": "main",
+    "description": "MCP tool router with allow-list (portfolio) \u00b7 AKOS P0",
+    "exists": true,
+    "full_name": "GlacierEQ/glaciereq-mcp-stack",
+    "impact_actions": [
+      "Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+      "Invent/advance `authority_half_life` on GlacierEQ/glaciereq-mcp-stack using knowledge: Model Context Protocol (MCP) Specification",
+      "Invent/advance `authority_half_life` on GlacierEQ/megamind using knowledge: The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale",
+      "Invent/advance `authority_half_life` on GlacierEQ/megamind using knowledge: Agentic Artificial Intelligence in Finance: A Comprehensive Survey",
+      "Invent/advance `mcp_package_restore` on GlacierEQ/glaciereq-mcp-stack using knowledge: HTTP Semantics (RFC 9110)"
+    ],
+    "languages": {
+      "Dockerfile": 2769,
+      "JavaScript": 3931,
+      "Python": 47035,
+      "Shell": 965,
+      "TypeScript": 39753
+    },
+    "lite_facts": [
+      "repo:GlacierEQ/glaciereq-mcp-stack",
+      "primary_language:Python",
+      "languages:Python:47035,TypeScript:39753,JavaScript:3931",
+      "description:MCP tool router with allow-list (portfolio) \u00b7 AKOS P0",
+      "signal:neutralization",
+      "signal:paper_recovery",
+      "signal:no_test_mention",
+      "signal:mcp_tools",
+      "signal:governance",
+      "signal:hire_surface",
+      "signal:has_prior_knowledge",
+      "signal:prior_mechanism_known",
+      "advanced:International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution ",
+      "advanced:Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surf",
+      "advanced:The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primit"
+    ],
+    "primary_language": "Python",
+    "prior_primary_mechanism": "claim_fence",
+    "prior_run_count": 3,
+    "readme_excerpt": "",
+    "repository": "GlacierEQ/glaciereq-mcp-stack",
+    "researched_at": "2026-08-17T09:13:54+00:00",
+    "schema": "glaciereq.genius-research.v1",
+    "signals": [
+      "neutralization",
+      "paper_recovery",
+      "no_test_mention",
+      "mcp_tools",
+      "governance",
+      "hire_surface",
+      "has_prior_knowledge",
+      "prior_mechanism_known"
+    ],
+    "sources": [
+      "subject_fields",
+      "github_api",
+      "prior_knowledge",
+      "library_impact_queue"
+    ],
+    "topics": []
+  },
+  "solutions": [
+    {
+      "apex_aligned": true,
+      "boundary": "Leaf=GlacierEQ/glaciereq-mcp-stack; domain=mcp; language=Python. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
+      "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+      "coherence_score": 1.0,
+      "company_track": null,
+      "domain": "mcp",
+      "failure_mode": "If `src/glaciereq_mcp_stack/anti_neutralization_gate.py` silent-fails, forges authority, or ships without `tests/test_glaciereq_mcp_stack_anti_neutralization_gate.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
+      "genius_score": 1.0,
+      "implementation": "ENGINEER `anti_neutralization_gate` into `glaciereq-mcp-stack` as first-pass-is-last-pass code.\n- Module: `src/glaciereq_mcp_stack/anti_neutralization_gate.py` \u2014 typed API for Anti-Neutralization Merge Gate; named invariants; no magic.\n- Config: `src/glaciereq_mcp_stack/anti_neutralization_gate_config.py` \u2014 leaf boundaries from research signals [neutralization, paper_recovery, no_test_mention, mcp_tools, governance, hire_surface, has_prior_knowledge, prior_mechanism_known]; language=Python.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/anti_neutralization_gate_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
+      "measurement": "1) `tests/test_glaciereq_mcp_stack_anti_neutralization_gate.py` \u2014 unit tests for happy path + refuse path for anti_neutralization_gate.\n2) Exact-head proof receipt at `receipts/anti_neutralization_gate_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/anti_neutralization_gate.py` and exercise one real bottleneck case from `glaciereq-mcp-stack` (desc: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+      "mechanism": "Anti-Neutralization Merge Gate: CI fails capability shrink or package amputation without OPERATOR_AUTHORIZED_REDUCTION.",
+      "novelty_score": 0.8999999999999999,
+      "plane": "IMPLEMENTED",
+      "problem": "glaciereq-mcp-stack: intended capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass (surface: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).",
+      "repository": "GlacierEQ/glaciereq-mcp-stack",
+      "solution_id": "genius-24182ec059e9",
+      "tags": [
+        "anti_neutralization_gate",
+        "mcp",
+        "MAXIMUM_COHERENT_ADVANCE",
+        "PRO_ELITE_HUMANIZED_ENGINEERED_CODE",
+        "ENGINEERED"
+      ],
+      "title": "Anti-Neutralization Merge Gate for GlacierEQ/glaciereq-mcp-stack",
+      "value": "Removes the named bottleneck on `glaciereq-mcp-stack` with ENGINEERED executable power: CI fails capability shrink or package amputation without OPERATOR_AUTHORIZED_REDUCTION. \u2014 complete mechanism masters can review in `src/glaciereq_mcp_stack/anti_neutralization_gate.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
+    },
+    {
+      "apex_aligned": true,
+      "boundary": "Leaf=GlacierEQ/glaciereq-mcp-stack; domain=mcp; language=Python. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
+      "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+      "coherence_score": 1.0,
+      "company_track": null,
+      "domain": "mcp",
+      "failure_mode": "If `src/glaciereq_mcp_stack/dual_plane_truth.py` silent-fails, forges authority, or ships without `tests/test_glaciereq_mcp_stack_dual_plane_truth.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
+      "genius_score": 1.0,
+      "implementation": "ENGINEER `dual_plane_truth` into `glaciereq-mcp-stack` as first-pass-is-last-pass code.\n- Module: `src/glaciereq_mcp_stack/dual_plane_truth.py` \u2014 typed API for Dual-Plane Truth Router; named invariants; no magic.\n- Config: `src/glaciereq_mcp_stack/dual_plane_truth_config.py` \u2014 leaf boundaries from research signals [neutralization, paper_recovery, no_test_mention, mcp_tools, governance, hire_surface, has_prior_knowledge, prior_mechanism_known]; language=Python.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/dual_plane_truth_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
+      "measurement": "1) `tests/test_glaciereq_mcp_stack_dual_plane_truth.py` \u2014 unit tests for happy path + refuse path for dual_plane_truth.\n2) Exact-head proof receipt at `receipts/dual_plane_truth_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/dual_plane_truth.py` and exercise one real bottleneck case from `glaciereq-mcp-stack` (desc: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+      "mechanism": "Dual-Plane Truth Router: VERIFIED/IMPLEMENTED/TARGET planes coexist; never delete implemented power to green a smaller harness.",
+      "novelty_score": 1.0,
+      "plane": "IMPLEMENTED",
+      "problem": "glaciereq-mcp-stack: intended capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass (surface: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).",
+      "repository": "GlacierEQ/glaciereq-mcp-stack",
+      "solution_id": "genius-554a555b0998",
+      "tags": [
+        "dual_plane_truth",
+        "mcp",
+        "MAXIMUM_COHERENT_ADVANCE",
+        "PRO_ELITE_HUMANIZED_ENGINEERED_CODE",
+        "ENGINEERED"
+      ],
+      "title": "Dual-Plane Truth Router for GlacierEQ/glaciereq-mcp-stack",
+      "value": "Removes the named bottleneck on `glaciereq-mcp-stack` with ENGINEERED executable power: VERIFIED/IMPLEMENTED/TARGET planes coexist; never delete implemented power to green a smaller harness. \u2014 complete mechanism masters can review in `src/glaciereq_mcp_stack/dual_plane_truth.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
+    }
+  ],
+  "subject": {
+    "cause": "Governance-as-denial / truth-harden treated unfinished ambition as defect and canonicalized the demoted HEAD.",
+    "company": null,
+    "domain": "mcp",
+    "neutralization_stamps": 2,
+    "paper_recovery_only": true,
+    "problem": "glaciereq-mcp-stack: intended capability was reduced to a local/synthetic/proof-only surface so a smaller harness could pass (surface: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).",
+    "repository": "GlacierEQ/glaciereq-mcp-stack",
+    "research_signals": [
+      "neutralization",
+      "paper_recovery",
+      "no_test_mention",
+      "mcp_tools",
+      "governance",
+      "hire_surface",
+      "has_prior_knowledge",
+      "prior_mechanism_known"
+    ]
+  }
+}
