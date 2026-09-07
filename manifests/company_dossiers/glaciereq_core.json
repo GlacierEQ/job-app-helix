@@ -18,10 +18,10 @@
       "repositories": [
         [
           "GlacierEQ/AEON-777",
-          "L3",
+          "L1",
           "REFERENCE_ONLY",
-          "public",
-          "HELIX_ADMITTED",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ],
         [

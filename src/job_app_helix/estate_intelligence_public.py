@@ -44,7 +44,7 @@ def _repository_pattern(identity: str) -> re.Pattern[str]:
     return re.compile(
         rf"(?<![{_REPOSITORY_TOKEN_CHARS}])"
         rf"{re.escape(identity)}"
-        rf"(?![{_REPOSITORY_TOKEN_CHARS}])"
+        rf"(?![A-Za-z0-9_-]|\.(?=[A-Za-z0-9_-]))"
     )
 
 

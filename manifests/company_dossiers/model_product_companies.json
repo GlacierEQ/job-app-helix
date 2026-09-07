@@ -79,15 +79,15 @@
         "Solutions Engineer"
       ],
       "recruiter_thesis": "Workspace intelligence, MCP empowerment, and governed workflow optimization.",
-      "gap_or_next_gate": "Three admitted prototypes; upstream delta and archive excluded.",
+      "gap_or_next_gate": "Two admitted prototypes; upstream delta and archive excluded.",
       "non_affiliation": "Independent GlacierEQ work; no Notion affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
       "repositories": [
         [
           "GlacierEQ/notion-mcp-empowerment-engine",
-          "L3",
+          "L1",
           "REFERENCE_ONLY",
-          "public",
-          "HELIX_ADMITTED",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ],
         [
