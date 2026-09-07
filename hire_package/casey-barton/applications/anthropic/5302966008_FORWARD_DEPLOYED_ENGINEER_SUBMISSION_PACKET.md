@@ -1,4 +1,4 @@
-# Anthropic — Forward Deployed Engineer — Submission Packet
+# Anthropic — Forward Deployed Engineer — Received Application Record
 
 **Provider job ID:** `5302966008`  
 **Company:** Anthropic  
@@ -6,14 +6,19 @@
 **Provider:** Greenhouse / Anthropic careers  
 **Role source:** https://job-boards.greenhouse.io/anthropic/jobs/5302966008  
 **Candidate:** Casey Del Carpio Barton  
-**Current application state:** `READY_FOR_MANUAL_SUBMISSION`  
-**Truth boundary:** This packet prepares provider-form content. It does **not** claim submission, receipt, interview, affiliation, adoption, or employment.
+**Current application state:** `SUBMITTED_RECEIVED`  
+**Duplicate-submission guard:** `DO_NOT_RESUBMIT_5302966008`  
+**Receipt:** `evidence/applications/anthropic/5302966008-application-received-2026-09-01.json`
 
-## 1. Why this is the active acquisition frontier
+**Truth boundary:** A prior-conversation user-supplied screenshot showed Anthropic Careers acknowledging receipt of Casey's application for this exact role and job ID on September 1, 2026. The two Gmail accounts connected in the current runtime do not contain that message; the screenshot displayed delivery to `caseybarton.ab@gmail.com`, which is not one of those connected accounts. This record therefore preserves the source-bearing prior screenshot without falsely claiming a current-turn provider API retrieval.
 
-The verified Anthropic opening asks FDEs to embed with strategic customers, build production Claude applications in customer systems, deliver MCP servers / sub-agents / agent skills, provide white-glove enterprise deployment support, and turn field learning into repeatable deployment patterns. The role also emphasizes autonomous execution under ambiguity, Python plus additional languages, agent/evaluation experience, cross-functional communication, safety, and reliability.
+> **NO RESUBMISSION.** This file was generated after the application had already been received. It is now a post-submission reference and lifecycle record, not an instruction to submit another application to job `5302966008`.
 
-The existing Casey Barton package already contains source-bounded evidence directly relevant to those requirements:
+## 1. Current acquisition state
+
+Anthropic's verified opening asks Forward Deployed Engineers to embed with strategic customers, build production Claude applications in customer systems, deliver MCP servers / sub-agents / agent skills, provide white-glove enterprise deployment support, and turn field learning into repeatable deployment patterns. The role also emphasizes autonomous execution under ambiguity, Python plus additional languages, agent/evaluation experience, cross-functional communication, safety, and reliability.
+
+The Casey Barton package contains source-bounded evidence directly relevant to those requirements:
 
 - applied AI and forward-deployed role framing;
 - agent orchestration and Model Context Protocol / tool integration;
@@ -22,44 +27,35 @@ The existing Casey Barton package already contains source-bounded evidence direc
 - architecture and execution across ambiguous, high-stakes, multi-system environments;
 - recruiter-facing proof surfaces that preserve blocked, partial, and unverified claims instead of converting them into unsupported success language.
 
-**Acquisition rule:** no additional internal proof artifact is a prerequisite to submitting this application unless a newly verified provider requirement exposes a blocking defect.
+**Acquisition rule:** the FDE acquisition action is complete at the submission layer. The active frontier is now provider response tracking, recruiter/interview follow-up, and the separate Applied AI Architect lane. Additional internal proof may strengthen later interview or follow-up work, but it is not a prerequisite for an application Anthropic has already received.
 
-## 2. Provider form — source-resolved fields
+## 2. Submission-time fact boundary
 
-| Provider field | Source-bounded value / action |
+The September 7 package reconstruction contains candidate/form values prepared from the current Casey package. It must **not** be treated as proof that every field below exactly matches what was entered on September 1.
+
+| Field | Current source-bounded value / status |
 |---|---|
 | First name | `Casey` |
 | Last name | `Barton` |
 | Full candidate identity | `Casey Del Carpio Barton` |
-| Email | `glacier.equilibrium@gmail.com` |
+| Receipt-delivery email observed in prior screenshot | `caseybarton.ab@gmail.com` |
+| Current recruiter-package email | `glacier.equilibrium@gmail.com` |
 | Current location | `Honolulu, Hawaii` |
 | Website | `https://casey-barton-glaciereq.vercel.app/` |
 | GitHub | `https://github.com/GlacierEQ` |
-| Resume/CV | Use `hire_package/casey-barton/EXECUTIVE_RESUME.md` or its current generated final-form export. |
+| Current resume source | `hire_package/casey-barton/EXECUTIVE_RESUME.md` or current generated final-form export |
 | Role | `Forward Deployed Engineer` |
 | Job ID | `5302966008` |
 
-The source package contains a private direct-contact record. Do not copy a phone number into public artifacts; use the current private application/contact-card source if the optional provider phone field is populated.
+The two email values are intentionally preserved as a contradiction rather than silently reconciled. The provider receipt establishes that Anthropic correspondence for the submitted application was sent to `caseybarton.ab@gmail.com`; the current package independently uses `glacier.equilibrium@gmail.com`.
 
-## 3. Provider form — Operator-choice fields
+The exact September 1 provider-form answers, attached résumé revision, phone value, voluntary demographic fields, arbitration choice, relocation/work-location answers, visa answers, and AI-use-policy acknowledgement remain **unrecovered submission-time details** unless a source-bearing provider/application copy is later retrieved.
 
-These fields require a current personal/legal choice and must not be inferred from old application state:
+## 3. September 7 role-targeted narrative reference
 
-- open to working in an Anthropic office at least 25% of the time;
-- earliest desired start date;
-- deadlines or timeline considerations;
-- current/future visa sponsorship requirement;
-- relocation willingness;
-- planned work address / `relocating`;
-- prior Anthropic interview history;
-- LinkedIn profile URL if used;
-- acknowledgement of Anthropic's candidate AI-use policy;
-- agreement or non-agreement to the provider's arbitration agreement;
-- all voluntary demographic / veteran / disability self-identification fields.
+The following material was prepared on September 7 as a role-targeted reference. It may be useful for recruiter follow-up or interview preparation, but it is **not evidence of the exact text submitted September 1**.
 
-**Rule:** provider submission cannot be marked complete until the required Operator-choice fields are supplied on the provider form and an external receipt exists.
-
-## 4. `Why Anthropic?` — 200–400 word answer
+### Why Anthropic?
 
 I want to work at Anthropic because the Forward Deployed Engineer role sits almost exactly at the boundary I have been building toward: turning powerful model capability into dependable systems that work inside real organizations.
 
@@ -69,7 +65,7 @@ That maps directly to what excites me about Anthropic's FDE motion. I want to wo
 
 Anthropic is especially compelling because safety and reliability are treated as engineering requirements rather than presentation language. I value systems that preserve boundaries, make failure visible, and distinguish demonstrated capability from unsupported claims. I would bring a field-builder mindset: diagnose the whole system, build across boundaries, verify the outcome, preserve what was learned, and turn one successful deployment into a stronger repeatable capability for the next customer.
 
-## 5. Additional Information / cover-letter field
+### Additional information reference
 
 I am an independent Applied AI Systems Architect and Forward-Deployed AI Engineer based in Honolulu. Through GlacierEQ, I have built a broad source-visible engineering estate focused on the operating layer between models, tools, data, infrastructure, evidence, and human operators.
 
@@ -80,7 +76,7 @@ My portfolio is intentionally evidence-bound. It distinguishes tested, partially
 Portfolio: https://casey-barton-glaciereq.vercel.app/  
 GitHub: https://github.com/GlacierEQ
 
-## 6. Role-to-proof routing
+## 4. Role-to-proof routing
 
 | Anthropic FDE requirement | Existing Casey / GlacierEQ proof route |
 |---|---|
@@ -93,31 +89,51 @@ GitHub: https://github.com/GlacierEQ
 | Customer discovery and communication | prior field-inspection diagnosis plus current human-operable technical communication and three-audience recruiter/engineer/machine documentation surfaces |
 | Safety and reliability | explicit non-claims, fail-closed execution, bounded authority, visibility of blocked/partial/unverified states |
 
-## 7. Submission receipt contract
-
-After the provider form is actually submitted, capture all available external evidence before transitioning application state:
+## 5. Actual receipt state
 
 ```yaml
 company: Anthropic
 role: Forward Deployed Engineer
 provider_job_id: "5302966008"
-application_state_before: READY_FOR_MANUAL_SUBMISSION
-submitted_at: <provider-observed timestamp>
-provider_application_id: <external id if supplied>
-confirmation_url: <external confirmation URL if supplied>
-confirmation_email_message_id: <message id if received>
-provider_confirmation_text: <bounded excerpt / normalized receipt>
-application_state_after: SUBMITTED
+application_state: SUBMITTED_RECEIVED
+provider_acknowledgement: true
+receipt_source: PRIOR_CONVERSATION_USER_SUPPLIED_SCREENSHOT
+receipt_displayed_date: "Tue, Sep 1, 2026 at 12:47 AM"
+receipt_displayed_sender: "Anthropic Careers <jobs-noreply@anthropic.com>"
+receipt_displayed_recipient: "Casey Barton <caseybarton.ab@gmail.com>"
+receipt_displayed_subject: "Application received: Forward Deployed Engineer – 5302966008"
+provider_confirmation_text: "Thank you for applying to the Forward Deployed Engineer position at Anthropic. We have received your application."
+current_turn_provider_api_retrieval: false
+current_turn_connected_gmail_match: false
+duplicate_submission_guard: true
+next_state: POST_SUBMISSION_RESPONSE_TRACKING
 ```
 
-If the provider does not expose an application ID, the confirmation page or provider email is sufficient evidence when source identity and timestamp are captured. **No provider receipt = no `SUBMITTED` claim.**
+The detailed machine-readable receipt lives at:
 
-## 8. Immediate parallel route
+`evidence/applications/anthropic/5302966008-application-received-2026-09-01.json`
 
-The verified Anthropic `Applied AI Architect, Strategic Enterprise Tech` opening (`5409008008`) remains a separate high-fit application lane. Submission of FDE `5302966008` should not demote or erase that route.
+## 6. Immediate parallel route
+
+The verified Anthropic `Applied AI Architect, Strategic Enterprise Tech` opening (`5409008008`) remains a separate high-fit application lane. The already-received FDE application must not demote or erase that route.
+
+## 7. Post-submission continuation
+
+For FDE `5302966008`, only new provider-side lifecycle evidence should advance state:
+
+- recruiter contact;
+- interview invitation or scheduling;
+- assessment request;
+- provider status update;
+- rejection/closure notice;
+- offer or other explicit application-state event.
+
+Do not create another FDE submission merely because a later internal compiler regenerated a `READY_FOR_MANUAL_SUBMISSION` packet.
 
 ## Source lineage
 
+- `evidence/applications/anthropic/5302966008-application-received-2026-09-01.json`
+- prior-conversation user-supplied Anthropic Careers receipt screenshot, September 1, 2026
 - `manifests/company_intelligence/anthropic.json`
 - `evidence/company_intelligence/anthropic-2026-09-07-source-receipt.json`
 - `hire_package/casey-barton/EXECUTIVE_RESUME.md`
