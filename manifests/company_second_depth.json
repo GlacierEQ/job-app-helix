@@ -28,7 +28,7 @@
           "visibility": "public"
         }
       ],
-      "next_gate": "Bound one company-specific reliability remedy against the verified Staff Software Engineer, AI Reliability problem using the inspected coordinator and safety-monitor mechanisms; preserve the non-deployment and non-semantic-safety boundaries before any IMPLEMENTED or reproduced-proof claim.",
+      "next_gate": "Bound and implement one current Anthropic Applied AI remedy that directly demonstrates the live Forward Deployed Engineer / Applied AI Architect requirements: customer-system integration, Claude/agent deployment architecture, MCP or agent-skill delivery, evaluation, reliability, reusable deployment patterns, and explicit safety boundaries. Preserve the historical AI Reliability evidence as lineage rather than treating it as the current role target.",
       "problem_evidence": [
         {
           "id": "anthropic_problem_ai_reliability_serving_path",
@@ -45,6 +45,22 @@
           "kind": "role",
           "source_identity": "https://github.com/GlacierEQ/job-application/blob/440e353a6eb6073aaca724a6402ae5329d0e9be6/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
           "source_ref": "commit:440e353a6eb6073aaca724a6402ae5329d0e9be6",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "anthropic_role_forward_deployed_engineer_5302966008",
+          "kind": "role",
+          "source_identity": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008",
+          "source_ref": "sha256:21f1c0938619e8b536d0e0e7102c3be480143d9420eb9e30d77b8d1ea1e0264f",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "anthropic_role_applied_ai_architect_strategic_enterprise_5409008008",
+          "kind": "role",
+          "source_identity": "https://job-boards.greenhouse.io/anthropic/jobs/5409008008",
+          "source_ref": "sha256:7590c48e40e3b692c887ab8c49125dd139b55eff20f7fa5b532c283203dfebd4",
           "verification_state": "VERIFIED",
           "visibility": "public"
         }
