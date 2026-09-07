@@ -1,0 +1,126 @@
+{
+  "schema": "glaciereq.candidate-final-form-manifest.v1",
+  "release": "2026-08-09-canonical-vercel-surface",
+  "candidate": "Casey Del Carpio Barton",
+  "canonical_url": "https://casey-barton-glaciereq.vercel.app/",
+  "repository": "GlacierEQ/job-app-helix",
+  "deploy_repository": "GlacierEQ/job-application",
+  "deploy_output_directory": "site-v15",
+  "canonical_branch": "main",
+  "public_surface_policy": {
+    "sole_share_url": "https://casey-barton-glaciereq.vercel.app/",
+    "forbidden_share_urls": [
+      "https://glaciereq.github.io/job-app-helix/",
+      "https://job-application.vercel.app/",
+      "https://glaciereq.com"
+    ],
+    "github_pages": "OPTIONAL_MIRROR_DISABLED"
+  },
+  "purpose": "Provide one sendable, evidence-bound candidate package for recruiters, technical reviewers, ATS systems, and AI agents.",
+  "reading_order": [
+    "EXECUTIVE_RESUME.md",
+    "ROADMAP.md",
+    "FINAL_FORM_README.md",
+    "ROLE_POWER_MATRIX.md",
+    "TECHNICAL_PORTFOLIO_BRIEF.md",
+    "CLAIM_REGISTER.md",
+    "LICENSE_SUMMARY.md"
+  ],
+  "complete_delivery_reading_order": [
+    "EXECUTIVE_RESUME.md",
+    "ROADMAP.md",
+    "FINAL_FORM_README.md",
+    "ROLE_POWER_MATRIX.md",
+    "TECHNICAL_PORTFOLIO_BRIEF.md",
+    "PORTFOLIO_EXPANSION_MAP.md",
+    "CLAIM_REGISTER.md",
+    "LICENSE_SUMMARY.md"
+  ],
+  "three_layer_surfaces": {
+    "candidate": "FINAL_FORM_README.md",
+    "role_power": "ROLE_POWER_MATRIX.md",
+    "portfolio_expansion": "PORTFOLIO_EXPANSION_MAP.md",
+    "public_site": "https://casey-barton-glaciereq.vercel.app/"
+  },
+  "machine_entrypoints": [
+    "candidate_node.json",
+    "evidence_ledger.json",
+    "application_spiral.json",
+    "package_mesh.json",
+    "coordinator_candidate_receipt.json"
+  ],
+  "complete_delivery_machine_entrypoints": [
+    "candidate_node.json",
+    "evidence_ledger.json",
+    "application_spiral.json",
+    "package_mesh.json",
+    "coordinator_candidate_receipt.json",
+    "owned_library_census.json"
+  ],
+  "primary_roles": [
+    "Applied AI Architect",
+    "Forward-Deployed AI Engineer",
+    "Agent Infrastructure Engineer"
+  ],
+  "adjacent_roles": [
+    "AI Solutions Architect",
+    "AI Deployment Engineer",
+    "Applied AI Systems Architect"
+  ],
+  "evidence": {
+    "portfolio_boundary": {
+      "state": "VERIFIED_BOUNDARY",
+      "claim": "Exact 67-repository boundary with one Helix root and all 66 child repositories assigned to one rollout wave."
+    },
+    "owned_library_census": {
+      "state": "VERIFIED_INVENTORY",
+      "claim": "Exact authenticated boundary of 1171 owner-accessible repositories captured July 31, 2026.",
+      "limitation": "Inventory does not establish authorship, originality, production readiness, deployment, security, or recruiter inclusion."
+    },
+    "akos": {
+      "state": "VERIFIED_TEST",
+      "claim": "94/94 tests across 12 modules on Python 3.11, 3.12, and 3.13."
+    },
+    "readme_mesh": {
+      "state": "VERIFIED_DOCUMENTATION",
+      "claim": "21-node recruiter, expert, and AI documentation rollout."
+    },
+    "agent_coordinator": {
+      "state": "CANDIDATE_TEST_PROOF",
+      "claim": "62/62 candidate-local Python 3.13 tests.",
+      "limitation": "Hosted Python 3.11-3.13 promotion remains pending."
+    },
+    "portfolio_operations": {
+      "state": "PARTIALLY_VERIFIED",
+      "limitation": "Portfolio-wide deployment, scale, performance, reliability, and customer-impact claims require separate receipts."
+    }
+  },
+  "license": {
+    "state": "PROPRIETARY_SOURCE_VISIBLE",
+    "controlling_file": "../../LICENSE",
+    "summary": "Evaluation is permitted for bona fide employment, recruiting, partnership, investment, procurement, research, collaboration, or licensing discussion. Production or broader use requires a separate written agreement.",
+    "growth_paths": [
+      "employment",
+      "commercial licensing",
+      "systems integration",
+      "joint development",
+      "research collaboration",
+      "investment or acquisition",
+      "separately negotiated source-available or open-source release"
+    ]
+  },
+  "public_privacy": {
+    "direct_phone_in_public_surface": false,
+    "direct_email_in_public_surface": false,
+    "authorized_zip_may_include_private_contact_card": true,
+    "private_or_sensitive_repository_names_in_public_census": false
+  },
+  "truth_policy": {
+    "fail_closed": true,
+    "evidence_is_monotonic": true,
+    "blocked_and_unverified_states_are_preserved": true,
+    "unsupported_scale_claims_are_forbidden": true,
+    "repository_ownership_is_not_authorship_proof": true,
+    "candidate_expansion_requires_repository_native_promotion": true
+  }
+}

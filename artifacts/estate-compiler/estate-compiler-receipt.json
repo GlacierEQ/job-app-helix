@@ -1,0 +1,34 @@
+{
+  "counts": {
+    "canonical_systems": 653,
+    "capabilities": 29,
+    "company_projections": 166,
+    "engineering_native_repositories": 654,
+    "experiments": 43,
+    "fork_references": 513,
+    "legal_private_repositories": 14,
+    "lineage_edges": 1,
+    "namespace_assertions_applied": 0,
+    "native_repositories": 668,
+    "semantic_capability_assertions": 5,
+    "total_holdings": 1181,
+    "unresolved_lineage_candidates": 5
+  },
+  "invariants": {
+    "ambiguous_lineage_not_silently_collapsed": true,
+    "blocked_repositories_not_semantic_capability_donors": true,
+    "forks_not_counted_as_native_accomplishments": true,
+    "legal_private_namespace_not_company_projectable": true,
+    "public_visibility_separate_from_promotion_score": true,
+    "semantic_donor_proof_receipts_match_exact_head": true,
+    "unsupported_capabilities_not_promoted_as_runtime_proof": true
+  },
+  "registry_hashes": {
+    "canonical_system_registry": "fcd3c82dccf6688aa09d69c09d454d697aa0c7a4d96cd4f44b0720cfe7a76221",
+    "capability_donor_registry": "2672537fdb54e306f990aebccc806fc77589d86754d9ff55bce2bac0a685fe50",
+    "company_projection_registry": "a9159d2a91245d2d278e20a7b569e79ef7d2e7e8af8ef75d750b78506a50d7c5"
+  },
+  "schema": "glaciereq.estate-compiler-receipt.v1",
+  "source_digest": "3b2361575207a244ee712b9fc90e1eee9c28875fab56a7542e448515beb72191",
+  "status": "PASS_WITH_UNRESOLVED"
+}

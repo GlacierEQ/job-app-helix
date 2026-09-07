@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -10,6 +11,7 @@ from types import ModuleType
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
+PYTHONPATH = str(ROOT / "src")
 SCRIPT = ROOT / "scripts" / "compile_live_repository_evidence.py"
 OBSERVATION = ROOT / "observations" / "repositories" / (
     "GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json"
@@ -37,6 +39,7 @@ def test_output_failure_uses_json_error_contract() -> None:
         check=False,
         capture_output=True,
         text=True,
+        env={**os.environ, "PYTHONPATH": PYTHONPATH},
     )
 
     assert completed.returncode == 2
@@ -56,6 +59,7 @@ def test_non_object_json_uses_json_error_contract(tmp_path: Path) -> None:
         check=False,
         capture_output=True,
         text=True,
+        env={**os.environ, "PYTHONPATH": PYTHONPATH},
     )
 
     assert completed.returncode == 2
