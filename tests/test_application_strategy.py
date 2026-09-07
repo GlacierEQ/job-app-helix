@@ -61,7 +61,7 @@ def _opening():
     return ingest_job_opening(
         {
             "company": "Anthropic",
-            "title": "Safety Systems Engineer",
+            "title": "Forward Deployed Engineer",
             "description": "Build reliable Python evaluation and observability systems.",
             "requirements": ["Python", "observability", "AI safety evaluation"],
             "preferred": ["systems architecture"],
@@ -81,7 +81,7 @@ def test_projection_places_explicit_requirement_evidence_in_recruiter_copy(
         _opening(),
         _target(),
         profile,
-        role="Safety Systems Engineer",
+        role="Forward Deployed Engineer",
     )
 
     assert assessment.recommendation == "APPLY_PRIORITY"
@@ -98,7 +98,7 @@ def test_strategy_never_invents_missing_requirement_evidence(tmp_path: Path) -> 
     opening = ingest_job_opening(
         {
             "company": "Anthropic",
-            "title": "Safety Systems Engineer",
+            "title": "Forward Deployed Engineer",
             "description": "Python CUDA ASIC compiler role.",
             "requirements": [
                 "Python",
@@ -113,7 +113,7 @@ def test_strategy_never_invents_missing_requirement_evidence(tmp_path: Path) -> 
         opening,
         _target(),
         profile,
-        role="Safety Systems Engineer",
+        role="Forward Deployed Engineer",
     )
 
     assert assessment.recommendation == "GAPS_TO_CLOSE"
@@ -131,11 +131,11 @@ def test_company_direction_changes_recruiter_copy_only_when_evidence_exists(
         _target(),
         profile,
         _intelligence(),
-        role="Safety Systems Engineer",
+        role="Forward Deployed Engineer",
     )
 
     assert opportunity.recommendation == "APPLY_PRIORITY"
-    assert company_fit.fresh_signal_count == 5
+    assert company_fit.fresh_signal_count == 8
     assert company_fit.matched_signals
     assert "## Current company-direction alignment" in projection.resume_markdown
     assert "containment" in projection.resume_markdown.lower()
@@ -161,7 +161,7 @@ def test_company_intelligence_must_match_application_target(tmp_path: Path) -> N
             _target(),
             profile,
             load_company_intelligence(bad_path),
-            role="Safety Systems Engineer",
+            role="Forward Deployed Engineer",
         )
 
 
@@ -175,7 +175,7 @@ def test_compile_lifecycle_persists_company_strategy_receipts(tmp_path: Path) ->
             profile,
             output_dir=output_dir,
             store=store,
-            role="Safety Systems Engineer",
+            role="Forward Deployed Engineer",
             company_intelligence=_intelligence(),
         )
         application = store.get_application(str(packet["application_id"]))
@@ -195,7 +195,7 @@ def test_compile_lifecycle_persists_company_strategy_receipts(tmp_path: Path) ->
         "observability",
         "AI safety evaluation",
     ]
-    assert receipt["company_fresh_signal_count"] == 5
-    assert len(receipt["company_source_urls"]) == 5
+    assert receipt["company_fresh_signal_count"] == 8
+    assert len(receipt["company_source_urls"]) == 7
     assert packet["schema"] == "glaciereq.company-aware-application-packet.v1"
     assert application["status"] == "READY"
