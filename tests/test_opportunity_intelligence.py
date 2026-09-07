@@ -56,7 +56,7 @@ def test_explicit_requirements_are_not_diluted_by_long_description(
     opening = ingest_job_opening(
         {
             "company": "Anthropic",
-            "title": "Safety Systems Engineer",
+            "title": "Forward Deployed Engineer",
             "description": " ".join(
                 [
                     "Join a multidisciplinary organization building ambitious products",
@@ -81,7 +81,7 @@ def test_explicit_requirements_are_not_diluted_by_long_description(
         opening,
         _target(),
         profile,
-        mapped_role="Safety Systems Engineer",
+        mapped_role="Forward Deployed Engineer",
     )
 
     assert assessment.required_coverage == 1.0
@@ -98,7 +98,7 @@ def test_missing_majority_of_explicit_requirements_caps_recommendation(
     opening = ingest_job_opening(
         {
             "company": "Anthropic",
-            "title": "Safety Systems Engineer",
+            "title": "Forward Deployed Engineer",
             "description": (
                 "Python systems role with specialized hardware and compiler ownership."
             ),
@@ -115,7 +115,7 @@ def test_missing_majority_of_explicit_requirements_caps_recommendation(
         opening,
         _target(),
         profile,
-        mapped_role="Safety Systems Engineer",
+        mapped_role="Forward Deployed Engineer",
     )
 
     assert assessment.required_coverage == 0.25
@@ -131,7 +131,7 @@ def test_assessment_is_explainable_and_proof_aware(tmp_path: Path) -> None:
     opening = ingest_job_opening(
         {
             "company": "Anthropic",
-            "title": "Safety Systems Engineer",
+            "title": "Forward Deployed Engineer",
             "description": "Build reliable Python evaluation and observability systems.",
             "requirements": ["Python", "observability"],
         }
@@ -141,7 +141,7 @@ def test_assessment_is_explainable_and_proof_aware(tmp_path: Path) -> None:
         opening,
         _target(),
         profile,
-        mapped_role="Safety Systems Engineer",
+        mapped_role="Forward Deployed Engineer",
     )
     payload = assessment.as_dict()
 

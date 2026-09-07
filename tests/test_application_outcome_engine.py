@@ -21,10 +21,10 @@ def targets():
 
 def test_anthropic_application_kit_uses_admitted_public_proof() -> None:
     target = find_target("anthropic", targets())
-    kit = build_application_kit(target, "Safety Systems Engineer")
+    kit = build_application_kit(target, "Forward Deployed Engineer")
 
     assert kit.company == "Anthropic"
-    assert kit.role == "Safety Systems Engineer"
+    assert kit.role == "Forward Deployed Engineer"
     assert kit.readiness == "READY_WITH_PUBLIC_PROOF"
     repositories = {
         row["repository"]
@@ -102,14 +102,14 @@ def test_primary_cli_compiles_application_json(capsys) -> None:
             "application",
             "anthropic",
             "--role",
-            "Safety Systems Engineer",
+            "Forward Deployed Engineer",
             "--json",
         ]
     )
     assert result == 0
     payload = json.loads(capsys.readouterr().out)
     assert payload["company_id"] == "anthropic"
-    assert payload["role"] == "Safety Systems Engineer"
+    assert payload["role"] == "Forward Deployed Engineer"
     assert payload["proof_repositories"]
 
 
