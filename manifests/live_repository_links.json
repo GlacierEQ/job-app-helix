@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.live-repository-links.v1",
-  "generated_at": "2026-09-04T05:30:00-10:00",
+  "generated_at": "2026-09-07T05:18:00-10:00",
   "authority": "GlacierEQ/job-app-helix",
   "link_mode": "live_apex_repository",
   "source_code_copying_into_helix_forbidden": true,
@@ -87,11 +87,6 @@
     "xai-colossus-nanosphere",
     "xai-colossus-security",
     "xai-colossus-servers",
-    "anthropic-constitutional-automation",
-    "anthropic-interpretability-engine",
-    "anthropic-containment-verifier",
-    "anthropic-eval-hardener",
-    "anthropic-agent-skills-runtime",
     "nvidia-blackwell-fp4-optimizer",
     "nvidia-cuda-graphs-conditional",
     "nvidia-moe-grouped-gemm",
@@ -105,8 +100,9 @@
     "spacex-stage-separation-optimizer",
     "spacex-flight-termination-hardener",
     "spacex-hitl-testbed-automation",
-    "spacex-in-space-refueling-planner",
-    "notion-mcp-empowerment-engine",
-    "AEON-777"
-  ]
+    "spacex-in-space-refueling-planner"
+  ],
+  "visibility_scope": "PUBLIC_ONLY",
+  "count_semantics": "current public-link projection; not an estate membership cap",
+  "private_repository_identities_omitted": true
 }
