@@ -6,7 +6,7 @@
   "is_full_estate_inventory": false,
   "admission_policy": "SOURCE_EXHAUSTIVE_ESTATE_THEN_PUBLIC_VISIBILITY_AND_RELEVANCE_PROJECTION",
   "estate_scope_receipt": "manifests/estate_scope_receipt_2026-08-17.json",
-  "total_repositories": 63,
+  "total_repositories": 77,
   "workspace_repositories": [
     "ECHO",
     "GlacierEQ_Swarm",
@@ -69,12 +69,27 @@
     "xai-colossus-energy-omega",
     "xai-colossus-nanosphere",
     "xai-colossus-security",
-    "xai-colossus-servers"
+    "xai-colossus-servers",
+    "nvidia-blackwell-fp4-optimizer",
+    "nvidia-cuda-graphs-conditional",
+    "nvidia-moe-grouped-gemm",
+    "nvidia-nvlink-scaler",
+    "nvidia-tensorrt-llm-tuner",
+    "nvidia-kernel-autotuner",
+    "nvidia-power-perf-profiler",
+    "spacex-starship-flight-software",
+    "spacex-ai-flight-controller",
+    "spacex-engine-out-compensator",
+    "spacex-stage-separation-optimizer",
+    "spacex-flight-termination-hardener",
+    "spacex-hitl-testbed-automation",
+    "spacex-in-space-refueling-planner"
   ],
   "_source": "https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/manifests/portfolio_repositories.json",
-  "_fetched": "2026-08-29",
-  "_verified": "2026-08-29 connected GitHub metadata: public projection excludes repositories currently marked private",
+  "_fetched": "2026-09-07",
+  "_verified": "2026-09-07 connected GitHub metadata: AEON-777 and notion-mcp-empowerment-engine are private and excluded from this public-only projection while remaining in the authenticated estate",
   "visibility_scope": "PUBLIC_ONLY",
   "count_semantics": "materialized public snapshot; not an estate membership cap",
-  "private_repository_identities_omitted": true
+  "private_repository_identities_omitted": true,
+  "private_repositories_preserved_in_authenticated_estate": true
 }
