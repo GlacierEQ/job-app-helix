@@ -98,16 +98,11 @@
     {
       "company_id": "anthropic",
       "display_name": "Anthropic",
-      "gap_or_next_gate": "Current official Applied AI roles are source-verified. Bind the existing Anthropic-oriented agent, safety, evaluation, containment, and tool-runtime systems to the current Forward Deployed Engineer / Applied AI Architect requirements without claiming Anthropic affiliation or production use.",
+      "gap_or_next_gate": "Current official Applied AI roles are source-verified. Public recruiter evidence is now limited to provider-resolvable Anthropic-oriented systems; build the next Forward Deployed Engineer / Applied AI Architect proof by integrating customer-system delivery, evaluation, reliability, reusable deployment patterns, and explicit safety boundaries without claiming Anthropic affiliation or production use.",
       "non_affiliation": "Independent GlacierEQ work; no Anthropic affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
       "recruiter_admitted_repositories": [
         "GlacierEQ/anthropic-agent-coordinator",
-        "GlacierEQ/anthropic-safety-monitor",
-        "GlacierEQ/anthropic-constitutional-automation",
-        "GlacierEQ/anthropic-interpretability-engine",
-        "GlacierEQ/anthropic-containment-verifier",
-        "GlacierEQ/anthropic-eval-hardener",
-        "GlacierEQ/anthropic-agent-skills-runtime"
+        "GlacierEQ/anthropic-safety-monitor"
       ],
       "recruiter_thesis": "Forward-deployed AI architecture and engineering: build inside ambiguous customer environments, integrate models/tools into real systems, preserve reliability and safety boundaries, and turn repeatable deployment patterns into reusable capability.",
       "repositories": [
@@ -149,46 +144,6 @@
           "PRIVATE_CANDIDATE",
           "private",
           "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-constitutional-automation",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-interpretability-engine",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-containment-verifier",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-eval-hardener",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-agent-skills-runtime",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ]
       ],
