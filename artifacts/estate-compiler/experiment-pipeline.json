@@ -1,0 +1,991 @@
+[
+  {
+    "company_tracks": [
+      "coreweave"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/coreweave-circuit-breaker",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-coreweave-circuit-breaker-820e1629"
+  },
+  {
+    "company_tracks": [
+      "coreweave"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/coreweave-entropy-engine",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-coreweave-entropy-engine-37272ed6"
+  },
+  {
+    "company_tracks": [
+      "coreweave"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/coreweave-shadow-monitor",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-coreweave-shadow-monitor-996ab904"
+  },
+  {
+    "company_tracks": [
+      "coreweave"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/coreweave-state-fusion",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-coreweave-state-fusion-8fc8b6a9"
+  },
+  {
+    "company_tracks": [
+      "coreweave"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/coreweave-temporal-router",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-coreweave-temporal-router-e5c7c612"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-community-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-community-alpha-d9d68c88"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-community-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-community-omega-d771fbc7"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-cooling-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-cooling-alpha-36e03ada"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-cooling-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-cooling-omega-60dac149"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-energy-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-energy-alpha-e93bdf37"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-energy-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-energy-omega-d47221c3"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-justice-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-justice-alpha-d22db595"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-justice-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-justice-omega-0ecf89ab"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-microcode-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-microcode-alpha-49e6392d"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-microcode-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-microcode-omega-234cae5c"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-nanosphere-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-nanosphere-alpha-e9dbf567"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-nanosphere-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-nanosphere-omega-3e6a4f4e"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-nexus-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-nexus-alpha-2efbb320"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-nexus-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-nexus-omega-c11699d1"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-security-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-security-alpha-64873731"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-security-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-security-omega-769a4ba6"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-servers-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-servers-alpha-c533ca2e"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-servers-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-servers-omega-a68a6951"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-waterplant-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-waterplant-alpha-2f9f9a83"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-aeon777-waterplant-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-aeon777-waterplant-omega-3455d130"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-community-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-community-alpha-860ae254"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-community-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-community-omega-8c75dd3b"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-cooling-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-cooling-alpha-4ac1694a"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-cooling-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-cooling-omega-0c4179ec"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-energy-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-energy-alpha-f308401d"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-energy-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-energy-omega-1d874fe7"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-microcode-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-microcode-alpha-06697208"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-microcode-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-microcode-omega-6503c0f2"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-nanosphere-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-nanosphere-alpha-6f540b23"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-nanosphere-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-nanosphere-omega-793dcb47"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-nexus-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-nexus-alpha-70714ed6"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-nexus-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-nexus-omega-3c59e874"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-security-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-security-alpha-22cd866b"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-security-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-security-omega-1ffe438e"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-servers-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-servers-alpha-11f1164d"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-servers-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-servers-omega-b48c90fd"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-waterplant-alpha",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-waterplant-alpha-cdc2e60c"
+  },
+  {
+    "company_tracks": [
+      "xai"
+    ],
+    "promotion_requirements": {
+      "DISTINCT_VALUE": [
+        "unique_value_evidence"
+      ],
+      "FLAGSHIP_DONOR": [
+        "capability_proof",
+        "promotion_score_gate"
+      ],
+      "SYSTEM_COMPONENT": [
+        "canonical_system_integration_receipt"
+      ],
+      "TESTED": [
+        "positive_count_test_receipt"
+      ]
+    },
+    "repository": "GlacierEQ/xai-colossus-waterplant-omega",
+    "stage": "EXPERIMENT",
+    "system_id": "sys-xai-colossus-waterplant-omega-0d432840"
+  }
+]

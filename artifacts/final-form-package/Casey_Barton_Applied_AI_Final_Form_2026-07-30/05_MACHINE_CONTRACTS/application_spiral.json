@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.application-spiral.v1",
+  "candidate": "Casey Del Carpio Barton",
+  "stages": [
+    {
+      "order": 1,
+      "name": "OBSERVE",
+      "output": "signals, users, constraints, evidence"
+    },
+    {
+      "order": 2,
+      "name": "RECOVER",
+      "output": "context, prior state, missing dependencies"
+    },
+    {
+      "order": 3,
+      "name": "PLAN",
+      "output": "typed objective, boundaries, acceptance criteria"
+    },
+    {
+      "order": 4,
+      "name": "ROUTE",
+      "output": "tools, models, agents, authority path"
+    },
+    {
+      "order": 5,
+      "name": "ACT",
+      "output": "bounded implementation and artifacts"
+    },
+    {
+      "order": 6,
+      "name": "VERIFY",
+      "output": "tests, receipts, failure classification"
+    },
+    {
+      "order": 7,
+      "name": "PERSIST",
+      "output": "source, hashes, manifests, durable state"
+    },
+    {
+      "order": 8,
+      "name": "RESUME",
+      "output": "next pass begins from elevated verified state"
+    }
+  ],
+  "audience_turns": [
+    "recruiter impact",
+    "engineering diligence",
+    "AI/toolchain ingestion"
+  ]
+}

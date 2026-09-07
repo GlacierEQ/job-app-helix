@@ -2,13 +2,15 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
-from job_app_helix.innovation_engine import load_policy
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from job_app_helix.innovation_engine import load_policy  # noqa: E402
 SCHEMA_DIR = ROOT / "schemas" / "estate"
 REQUIRED_SCHEMAS = {
     "estate",

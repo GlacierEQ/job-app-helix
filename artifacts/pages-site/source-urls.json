@@ -1,0 +1,8 @@
+{
+  "claim_register": "https://github.com/GlacierEQ/job-app-helix/blob/local-uncommitted/hire_package/casey-barton/CLAIM_REGISTER.md",
+  "deployment_contract": "https://github.com/GlacierEQ/job-app-helix/blob/local-uncommitted/docs/RECRUITER_SITE_DEPLOYMENT.md",
+  "executive_resume": "https://github.com/GlacierEQ/job-app-helix/blob/local-uncommitted/hire_package/casey-barton/EXECUTIVE_RESUME.md",
+  "schema": "glaciereq.recruiter-source-urls.v1",
+  "source_commit": "local-uncommitted",
+  "technical_portfolio_brief": "https://github.com/GlacierEQ/job-app-helix/blob/local-uncommitted/hire_package/casey-barton/TECHNICAL_PORTFOLIO_BRIEF.md"
+}

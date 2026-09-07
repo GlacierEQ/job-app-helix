@@ -1,0 +1,707 @@
+{
+  "capabilities": [
+    {
+      "capability_id": "deterministic-orchestration",
+      "donor_systems": [
+        "sys-job-app-helix-1492d886",
+        "sys-sigma-glue-c069b3f8"
+      ],
+      "independent_donor_count": 2,
+      "proof_refs": [
+        {
+          "evidence": "148/148 plus lint, Protobuf, rollout, provenance and public-surface checks.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-job-app-helix-1492d886"
+        },
+        {
+          "evidence": "Canonical 4a1ca8e5: 140/140 Node 22 tests; live GitHub Contents canary performed 2 writes/5 reads, recovered a deliberately lost success response to confirmed_applied, preserved restart-readable recovery evidence, and blocked replay before a third write.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-sigma-glue-c069b3f8"
+        }
+      ],
+      "repeat_pattern": true,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "distributed-state-and-recovery",
+      "donor_systems": [
+        "sys-sigma-glue-c069b3f8"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Canonical 4a1ca8e5: 140/140 Node 22 tests; live GitHub Contents canary performed 2 writes/5 reads, recovered a deliberately lost success response to confirmed_applied, preserved restart-readable recovery evidence, and blocked replay before a third write.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-sigma-glue-c069b3f8"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "document-intelligence",
+      "donor_systems": [
+        "sys-mega-pdf-c3118e75"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Private architecture; identity separate from upstream SDK and Megamind.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-mega-pdf-c3118e75"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "fail-closed-governance",
+      "donor_systems": [
+        "sys-sigma-glue-c069b3f8"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Canonical 4a1ca8e5: 140/140 Node 22 tests; live GitHub Contents canary performed 2 writes/5 reads, recovered a deliberately lost success response to confirmed_applied, preserved restart-readable recovery evidence, and blocked replay before a third write.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-sigma-glue-c069b3f8"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "mcp-and-tool-integration",
+      "donor_systems": [
+        "sys-akos-f0c71de1"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Diligence records 118/118 per interpreter, 10/10 Forge, 4/4 PSYSOC-X.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-akos-f0c71de1"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "memory-and-continuity",
+      "donor_systems": [
+        "sys-echo-1e299991",
+        "sys-mega-pdf-c3118e75",
+        "sys-megamind-c3cf5cb6"
+      ],
+      "independent_donor_count": 3,
+      "proof_refs": [
+        {
+          "evidence": "Prior audit recorded 46/46; original runnable continuity engine.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-echo-1e299991"
+        },
+        {
+          "evidence": "Private architecture; identity separate from upstream SDK and Megamind.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-mega-pdf-c3118e75"
+        },
+        {
+          "evidence": "Prior audit 19 pass/1 fail; 14-vs-15 mismatch.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-megamind-c3cf5cb6"
+        }
+      ],
+      "repeat_pattern": true,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "motherduck-query-facade",
+      "donor_systems": [
+        "sys-colossus-gateway-640d5c80"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "admission_state": "REFERENCE_ONLY",
+          "company_id": "motherduck",
+          "evidence_refs": [
+            "src/godmind/connectors/motherduck.ts"
+          ],
+          "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+          "proof_receipts": [
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025513,
+              "kind": "check_run",
+              "name": "Memory Hooks Unit Tests"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025486,
+              "kind": "check_run",
+              "name": "Gauntlet Patch Status"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025461,
+              "kind": "check_run",
+              "name": "Memory Backend Health"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175027796,
+              "kind": "check_run",
+              "name": "Socket Security: Project Report"
+            }
+          ],
+          "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+          "repository": "GlacierEQ/colossus-gateway",
+          "source": "semantic_capability_map",
+          "system_id": "sys-colossus-gateway-640d5c80"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "motherduck-structured-health-telemetry",
+      "donor_systems": [
+        "sys-colossus-gateway-640d5c80"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "admission_state": "REFERENCE_ONLY",
+          "company_id": "motherduck",
+          "evidence_refs": [
+            "src/godmind/connectors/motherduck.ts"
+          ],
+          "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+          "proof_receipts": [
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025513,
+              "kind": "check_run",
+              "name": "Memory Hooks Unit Tests"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025486,
+              "kind": "check_run",
+              "name": "Gauntlet Patch Status"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025461,
+              "kind": "check_run",
+              "name": "Memory Backend Health"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175027796,
+              "kind": "check_run",
+              "name": "Socket Security: Project Report"
+            }
+          ],
+          "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+          "repository": "GlacierEQ/colossus-gateway",
+          "source": "semantic_capability_map",
+          "system_id": "sys-colossus-gateway-640d5c80"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "polyglot-systems",
+      "donor_systems": [
+        "sys-pro-code-d61a6f2e",
+        "sys-the-tower-of-babel-cae383f9"
+      ],
+      "independent_donor_count": 2,
+      "proof_refs": [
+        {
+          "evidence": "A- verified-with-hardening; external production references separate from local proof.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-the-tower-of-babel-cae383f9"
+        },
+        {
+          "evidence": "Python/TypeScript planes passed; Rust/Haskell blocked.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-pro-code-d61a6f2e"
+        }
+      ],
+      "repeat_pattern": true,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "provenance-and-evidence",
+      "donor_systems": [
+        "sys-akos-f0c71de1",
+        "sys-echo-1e299991",
+        "sys-fileboss-30cc61df",
+        "sys-job-app-helix-1492d886",
+        "sys-monolith-92f73dbd",
+        "sys-pro-code-82e350c1",
+        "sys-pro-doctor-strange-e2f50363",
+        "sys-sigma-glue-c069b3f8"
+      ],
+      "independent_donor_count": 8,
+      "proof_refs": [
+        {
+          "evidence": "148/148 plus lint, Protobuf, rollout, provenance and public-surface checks.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-job-app-helix-1492d886"
+        },
+        {
+          "evidence": "Diligence records 118/118 per interpreter, 10/10 Forge, 4/4 PSYSOC-X.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-akos-f0c71de1"
+        },
+        {
+          "evidence": "11/11 tests and cryptographic Receipt Zero replay; no fake consensus.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-pro-doctor-strange-e2f50363"
+        },
+        {
+          "evidence": "Prior audit recorded 46/46; original runnable continuity engine.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-echo-1e299991"
+        },
+        {
+          "evidence": "Canonical 4a1ca8e5: 140/140 Node 22 tests; live GitHub Contents canary performed 2 writes/5 reads, recovered a deliberately lost success response to confirmed_applied, preserved restart-readable recovery evidence, and blocked replay before a third write.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-sigma-glue-c069b3f8"
+        },
+        {
+          "evidence": "Private architecture, not executable public proof.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-pro-code-82e350c1"
+        },
+        {
+          "evidence": "1,165 catalog entries classified; shallow source inspection is not runtime proof.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-monolith-92f73dbd"
+        },
+        {
+          "evidence": "Private architecture; no public execution claim.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-fileboss-30cc61df"
+        }
+      ],
+      "repeat_pattern": true,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "reasoning-and-agent-systems",
+      "donor_systems": [
+        "sys-megamind-c3cf5cb6"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Prior audit 19 pass/1 fail; 14-vs-15 mismatch.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-megamind-c3cf5cb6"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "repository-intelligence",
+      "donor_systems": [
+        "sys-monolith-92f73dbd"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "1,165 catalog entries classified; shallow source inspection is not runtime proof.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-monolith-92f73dbd"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-authority-evidence-tool-state-closure-runtime",
+      "donor_systems": [
+        "sys-akos-f0c71de1"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Diligence records 118/118 per interpreter, 10/10 Forge, 4/4 PSYSOC-X.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-akos-f0c71de1"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-candidate-reasoning-control-system",
+      "donor_systems": [
+        "sys-megamind-c3cf5cb6"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Prior audit 19 pass/1 fail; 14-vs-15 mismatch.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-megamind-c3cf5cb6"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-canonical-recruiter-runtime-source",
+      "donor_systems": [
+        "sys-job-application-13dea159"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Strong public/private contract and release-candidate website checks.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-job-application-13dea159"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-canonical-release-control-plane",
+      "donor_systems": [
+        "sys-job-app-helix-1492d886"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "148/148 plus lint, Protobuf, rollout, provenance and public-surface checks.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-job-app-helix-1492d886"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-document-intelligence-lifecycle-architecture",
+      "donor_systems": [
+        "sys-mega-pdf-c3118e75"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Private architecture; identity separate from upstream SDK and Megamind.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-mega-pdf-c3118e75"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-estate-catalog-evidence-authority",
+      "donor_systems": [
+        "sys-monolith-92f73dbd"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "1,165 catalog entries classified; shallow source inspection is not runtime proof.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-monolith-92f73dbd"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-governed-file-proposal-before-mutation",
+      "donor_systems": [
+        "sys-fileboss-30cc61df"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Private architecture; no public execution claim.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-fileboss-30cc61df"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-governed-polyglot-architecture",
+      "donor_systems": [
+        "sys-the-tower-of-babel-cae383f9"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "A- verified-with-hardening; external production references separate from local proof.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-the-tower-of-babel-cae383f9"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-independent-reader-convergence-authority",
+      "donor_systems": [
+        "sys-pro-doctor-strange-e2f50363"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "11/11 tests and cryptographic Receipt Zero replay; no fake consensus.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-pro-doctor-strange-e2f50363"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-legacy-private-control-plane-lab",
+      "donor_systems": [
+        "sys-mastermind-ecf74b40"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Sensitive material/current failures; unsafe recruiter exposure.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-mastermind-ecf74b40"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-polyglot-runtime-implementation",
+      "donor_systems": [
+        "sys-pro-code-d61a6f2e"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Python/TypeScript planes passed; Rust/Haskell blocked.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-pro-code-d61a6f2e"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-portable-continuity-durable-identity",
+      "donor_systems": [
+        "sys-echo-1e299991"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Prior audit recorded 46/46; original runnable continuity engine.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-echo-1e299991"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-private-engineering-doctrine",
+      "donor_systems": [
+        "sys-pro-code-82e350c1"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Private architecture, not executable public proof.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-pro-code-82e350c1"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "role-reversible-approval-bound-orchestration-with-provider-ambiguity-recovery",
+      "donor_systems": [
+        "sys-sigma-glue-c069b3f8"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "evidence": "Canonical 4a1ca8e5: 140/140 Node 22 tests; live GitHub Contents canary performed 2 writes/5 reads, recovered a deliberately lost success response to confirmed_applied, preserved restart-readable recovery evidence, and blocked replay before a third write.",
+          "source": "manifests/flagship_registry.json",
+          "system_id": "sys-sigma-glue-c069b3f8"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "supabase-connector-health-state-machine",
+      "donor_systems": [
+        "sys-apex-control-plane-61f65264"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "admission_state": "REFERENCE_ONLY",
+          "company_id": "supabase",
+          "evidence_refs": [
+            "connectors/supabase_validator.py"
+          ],
+          "head_sha": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
+          "proof_receipts": [
+            {
+              "conclusion": "success",
+              "head_sha": "299e7b44c51a386df5c9885f4ad68bd02a7961ee",
+              "id": 93145100197,
+              "kind": "check_run",
+              "name": "Repository security / \ud83d\udcca Status"
+            }
+          ],
+          "proof_state": "SOURCE_AND_EXACT_HEAD_REPOSITORY_SECURITY_VERIFIED",
+          "repository": "GlacierEQ/apex-control-plane",
+          "source": "semantic_capability_map",
+          "system_id": "sys-apex-control-plane-61f65264"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "supabase-edge-broker-least-privilege",
+      "donor_systems": [
+        "sys-colossus-gateway-640d5c80"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "admission_state": "REFERENCE_ONLY",
+          "company_id": "supabase",
+          "evidence_refs": [
+            "supabase/functions/apex-github-repo-atlas-seed/index.ts"
+          ],
+          "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+          "proof_receipts": [
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025513,
+              "kind": "check_run",
+              "name": "Memory Hooks Unit Tests"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025486,
+              "kind": "check_run",
+              "name": "Gauntlet Patch Status"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025461,
+              "kind": "check_run",
+              "name": "Memory Backend Health"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175027796,
+              "kind": "check_run",
+              "name": "Socket Security: Project Report"
+            }
+          ],
+          "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+          "repository": "GlacierEQ/colossus-gateway",
+          "source": "semantic_capability_map",
+          "system_id": "sys-colossus-gateway-640d5c80"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    },
+    {
+      "capability_id": "supabase-idempotent-state-audit-persistence",
+      "donor_systems": [
+        "sys-colossus-gateway-640d5c80"
+      ],
+      "independent_donor_count": 1,
+      "proof_refs": [
+        {
+          "admission_state": "REFERENCE_ONLY",
+          "company_id": "supabase",
+          "evidence_refs": [
+            "supabase/functions/apex-github-repo-atlas-seed/index.ts",
+            "src/godmind/connectors/supabase.ts"
+          ],
+          "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+          "proof_receipts": [
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025513,
+              "kind": "check_run",
+              "name": "Memory Hooks Unit Tests"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025486,
+              "kind": "check_run",
+              "name": "Gauntlet Patch Status"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175025461,
+              "kind": "check_run",
+              "name": "Memory Backend Health"
+            },
+            {
+              "conclusion": "success",
+              "head_sha": "3d7ea7b248d083304edeb8943584e491ddf5fa1d",
+              "id": 93175027796,
+              "kind": "check_run",
+              "name": "Socket Security: Project Report"
+            }
+          ],
+          "proof_state": "SOURCE_AND_EXACT_HEAD_CHECKS_VERIFIED",
+          "repository": "GlacierEQ/colossus-gateway",
+          "source": "semantic_capability_map",
+          "system_id": "sys-colossus-gateway-640d5c80"
+        }
+      ],
+      "repeat_pattern": false,
+      "verification_state": "EVIDENCE_BOUND"
+    }
+  ],
+  "content_hash": "2672537fdb54e306f990aebccc806fc77589d86754d9ff55bce2bac0a685fe50",
+  "policy": {
+    "legal_private_namespace_may_export_raw_records": false,
+    "metadata_inference_is_not_runtime_proof": true,
+    "multi_donor_claim_requires": 2,
+    "semantic_donors_require_public_exact_head_receipts": true
+  },
+  "schema": "glaciereq.capability-donor-registry.v1"
+}
