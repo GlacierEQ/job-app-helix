@@ -1,44 +1,65 @@
 {
-  "schema": "glaciereq.company-intelligence.v1",
-  "company_id": "anthropic",
+  "collected_at": "2026-09-07T09:23:49.358619Z",
   "company": "Anthropic",
-  "collected_at": "2026-08-18T05:20:00Z",
-  "max_age_days": 120,
+  "company_id": "anthropic",
+  "max_age_days": 45,
+  "schema": "glaciereq.company-intelligence.v1",
   "signals": [
     {
-      "kind": "product",
-      "statement": "Claude Sonnet 5 is available across plans and in Claude Code and the Claude Platform, with emphasis on agentic search and computer use performance.",
-      "source_url": "https://www.anthropic.com/news/claude-sonnet-5",
-      "observed_at": "2026-08-18T05:20:00Z",
-      "source_title": "Introducing Claude Sonnet 5"
-    },
-    {
-      "kind": "investment",
-      "statement": "Anthropic committed more than $100 billion over ten years to AWS technologies and up to 5GW of new capacity for training and serving Claude.",
-      "source_url": "https://www.anthropic.com/news/anthropic-amazon-compute",
-      "observed_at": "2026-08-18T05:20:00Z",
-      "source_title": "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute"
-    },
-    {
-      "kind": "engineering",
-      "statement": "Anthropic engineering is building containment for increasingly capable agents across claude.ai, Claude Code, and Cowork to cap blast radius while preserving useful access.",
-      "source_url": "https://www.anthropic.com/engineering/how-we-contain-claude",
-      "observed_at": "2026-08-18T05:20:00Z",
-      "source_title": "How we contain Claude across products"
-    },
-    {
-      "kind": "value",
-      "statement": "Anthropic states that its values include acting for the global good, holding light and shade about AI risks and benefits, and being good to users.",
-      "source_url": "https://www.anthropic.com/careers",
-      "observed_at": "2026-08-18T05:20:00Z",
-      "source_title": "Careers at Anthropic"
+      "kind": "hiring",
+      "observed_at": "2026-09-07T09:23:49.358619Z",
+      "source_title": "Forward Deployed Engineer \u2014 Anthropic",
+      "source_url": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008",
+      "statement": "Anthropic currently lists a Forward Deployed Engineer role in New York City, San Francisco, and Seattle; the role embeds with strategic customers to ship production Claude applications and customer-facing technical artifacts including MCP servers, sub-agents, and agent skills."
     },
     {
       "kind": "hiring",
-      "statement": "Anthropic is actively hiring across AI research and engineering, including model evaluations, safeguards, research infrastructure, performance engineering, and computer use.",
+      "observed_at": "2026-09-07T09:23:49.358619Z",
+      "source_title": "Applied AI Architect, Strategic Enterprise Tech \u2014 Anthropic",
+      "source_url": "https://job-boards.greenhouse.io/anthropic/jobs/5409008008",
+      "statement": "Anthropic currently lists Applied AI Architect, Strategic Enterprise Tech in San Francisco, New York City, and Seattle; the role is a customer-facing technical architecture position for integrating and deploying Claude in enterprise technology stacks."
+    },
+    {
+      "kind": "hiring",
+      "observed_at": "2026-09-07T09:23:49.358619Z",
+      "source_title": "Anthropic jobs \u2014 Applied AI",
       "source_url": "https://www.anthropic.com/careers/jobs",
+      "statement": "Anthropic\u2019s Applied AI job family currently includes Forward Deployed Engineer, Applied AI Architect, and Applied AI Engineer openings."
+    },
+    {
+      "kind": "product",
       "observed_at": "2026-08-18T05:20:00Z",
-      "source_title": "Anthropic jobs"
+      "source_title": "Introducing Claude Sonnet 5",
+      "source_url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "statement": "Claude Sonnet 5 is available across plans and in Claude Code and the Claude Platform, with emphasis on agentic search and computer use performance."
+    },
+    {
+      "kind": "investment",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute",
+      "source_url": "https://www.anthropic.com/news/anthropic-amazon-compute",
+      "statement": "Anthropic committed more than $100 billion over ten years to AWS technologies and up to 5GW of new capacity for training and serving Claude."
+    },
+    {
+      "kind": "engineering",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "How we contain Claude across products",
+      "source_url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "statement": "Anthropic engineering is building containment for increasingly capable agents across claude.ai, Claude Code, and Cowork to cap blast radius while preserving useful access."
+    },
+    {
+      "kind": "value",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "Careers at Anthropic",
+      "source_url": "https://www.anthropic.com/careers",
+      "statement": "Anthropic states that its values include acting for the global good, holding light and shade about AI risks and benefits, and being good to users."
+    },
+    {
+      "kind": "hiring",
+      "observed_at": "2026-08-18T05:20:00Z",
+      "source_title": "Anthropic jobs",
+      "source_url": "https://www.anthropic.com/careers/jobs",
+      "statement": "Anthropic is actively hiring across AI research and engineering, including model evaluations, safeguards, research infrastructure, performance engineering, and computer use."
     }
   ]
 }

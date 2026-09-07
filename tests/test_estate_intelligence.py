@@ -320,3 +320,20 @@ def test_external_atlas_has_47_external_tracks() -> None:
     assert records["openai"]["inferred_bottleneck"]
     source = records["openai"]["official_sources"][0]
     assert len(source["source_sha256"]) == 64
+
+
+def test_external_atlas_allows_company_level_freshness_without_promoting_peers() -> None:
+    manifest_path = ROOT / "manifests/application_intelligence"
+    manifest_path /= "company_bottleneck_atlas.external.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    shards = {
+        ref["path"]: json.loads((ROOT / ref["path"]).read_text(encoding="utf-8"))
+        for ref in manifest["shards"]
+    }
+    records = parse_company_intelligence(manifest, shards)
+    assert records["anthropic"]["freshness_state"] == "CURRENT_OFFICIAL_SOURCE_SNAPSHOT"
+    assert records["anthropic"]["research_as_of"] == "2026-09-07"
+    assert records["openai"]["freshness_state"] == manifest["freshness_state"]
+    assert records["openai"]["research_as_of"] == manifest["research_as_of"]
+    assert "Forward Deployed Engineer" in records["anthropic"]["target_roles"]
+    assert "Applied AI Architect" in records["anthropic"]["target_roles"]

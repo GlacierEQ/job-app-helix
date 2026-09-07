@@ -30,7 +30,7 @@ def _opening():
     return ingest_job_opening(
         {
             "company": "Anthropic",
-            "title": "Safety Systems Engineer",
+            "title": "Forward Deployed Engineer",
             "description": (
                 "Build reliable AI safety systems, Python services, evaluation "
                 "pipelines, distributed infrastructure, observability, and "
@@ -105,7 +105,7 @@ def test_live_job_url_ingests_json_ld_jobposting() -> None:
                 {
                     "@context": "https://schema.org",
                     "@type": "JobPosting",
-                    "title": "Safety Systems Engineer",
+                    "title": "Forward Deployed Engineer",
                     "description": "<p>Build AI safety evaluation systems.</p>",
                     "hiringOrganization": {"name": "Anthropic"},
                     "jobLocation": {
@@ -142,7 +142,7 @@ def test_live_job_url_ingests_json_ld_jobposting() -> None:
         server.server_close()
 
     assert opening.company == "Anthropic"
-    assert opening.title == "Safety Systems Engineer"
+    assert opening.title == "Forward Deployed Engineer"
     assert "AI safety evaluation systems" in opening.description
     assert opening.source == "url"
 
@@ -156,7 +156,7 @@ def test_matching_uses_candidate_evidence_and_public_proof(
         _opening(),
         target,
         profile,
-        mapped_role="Safety Systems Engineer",
+        mapped_role="Forward Deployed Engineer",
     )
     assert match.role_score == 1.0
     assert match.proof_score > 0
@@ -174,7 +174,7 @@ def test_projection_uses_only_profile_claims_and_admitted_repositories(
         _opening(),
         target,
         profile,
-        role="Safety Systems Engineer",
+        role="Forward Deployed Engineer",
     )
     assert (
         "Built execution systems with deterministic receipts"
@@ -205,7 +205,7 @@ def test_full_lifecycle_persists_state_and_tracks_response(tmp_path: Path) -> No
             profile,
             output_dir=output,
             store=store,
-            role="Safety Systems Engineer",
+            role="Forward Deployed Engineer",
         )
         application_id = packet["application_id"]
         row = store.get_application(application_id)
@@ -320,7 +320,7 @@ def test_json_api_adapter_requires_explicit_submission(tmp_path: Path) -> None:
         )
         packet = {
             "application_id": "app-1",
-            "role": "Safety Systems Engineer",
+            "role": "Forward Deployed Engineer",
         }
         prepared = adapter.prepare(packet, tmp_path)
         dry_run = adapter.submit(packet)
@@ -339,6 +339,6 @@ def test_json_api_adapter_requires_explicit_submission(tmp_path: Path) -> None:
     assert received == [
         {
             "application_id": "app-1",
-            "role": "Safety Systems Engineer",
+            "role": "Forward Deployed Engineer",
         }
     ]

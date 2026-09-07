@@ -159,9 +159,17 @@ def parse_company_intelligence(
             record = dict(raw)
             record["leverage_mechanism"] = leverage.get("mechanism")
             record["expected_impact"] = leverage.get("expected_impact")
-            record["research_as_of"] = manifest.get("research_as_of")
-            record["freshness_state"] = manifest.get("freshness_state")
-            record["inference_boundary"] = manifest.get("inference_boundary")
+            # A single company can be refreshed independently without falsely
+            # promoting the rest of the dated external atlas to current.
+            record["research_as_of"] = raw.get(
+                "research_as_of", manifest.get("research_as_of")
+            )
+            record["freshness_state"] = raw.get(
+                "freshness_state", manifest.get("freshness_state")
+            )
+            record["inference_boundary"] = raw.get(
+                "inference_boundary", manifest.get("inference_boundary")
+            )
             records[company_id] = record
 
     expected_total = int(manifest.get("record_count", observed_total))

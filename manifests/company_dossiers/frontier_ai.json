@@ -1,20 +1,11 @@
 {
-  "schema": "glaciereq.company-dossiers-shard.v2",
-  "group_id": "frontier_ai",
-  "generated_at": "2026-08-07T08:05:00-10:00",
   "companies": [
     {
       "company_id": "openai",
       "display_name": "OpenAI",
-      "track_state": "MAPPED_NOT_RECRUITER_READY",
-      "target_roles": [
-        "Applied AI Engineer",
-        "Agents Infrastructure Engineer",
-        "Solutions Architect"
-      ],
-      "recruiter_thesis": "Evidence-bound agents, tool authority, evaluation, context integrity, and inspectable provider convergence.",
       "gap_or_next_gate": "KV sentinel is admitted; Codex/MCP candidates need provenance/runtime audit; upstream SDK/framework repos are excluded.",
       "non_affiliation": "Independent GlacierEQ work; no OpenAI affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "recruiter_thesis": "Evidence-bound agents, tool authority, evaluation, context integrity, and inspectable provider convergence.",
       "repositories": [
         [
           "GlacierEQ/openai-reasoning-kv-sentinel",
@@ -96,20 +87,29 @@
           "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
           "UPSTREAM_SHAPED"
         ]
-      ]
+      ],
+      "target_roles": [
+        "Applied AI Engineer",
+        "Agents Infrastructure Engineer",
+        "Solutions Architect"
+      ],
+      "track_state": "MAPPED_NOT_RECRUITER_READY"
     },
     {
       "company_id": "anthropic",
       "display_name": "Anthropic",
-      "track_state": "MAPPED_WITH_RECRUITER_READY_PUBLIC_SUBSET",
-      "target_roles": [
-        "Agent Infrastructure Engineer",
-        "Safety Systems Engineer",
-        "Applied AI Engineer"
-      ],
-      "recruiter_thesis": "Deterministic coordination, fail-closed safety, human escalation, and honest limitations.",
-      "gap_or_next_gate": "Ten direct Anthropic-named repos exist; all mapped with forward-deployed capabilities.",
+      "gap_or_next_gate": "Current official Applied AI roles are source-verified. Bind the existing Anthropic-oriented agent, safety, evaluation, containment, and tool-runtime systems to the current Forward Deployed Engineer / Applied AI Architect requirements without claiming Anthropic affiliation or production use.",
       "non_affiliation": "Independent GlacierEQ work; no Anthropic affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "recruiter_admitted_repositories": [
+        "GlacierEQ/anthropic-agent-coordinator",
+        "GlacierEQ/anthropic-safety-monitor",
+        "GlacierEQ/anthropic-constitutional-automation",
+        "GlacierEQ/anthropic-interpretability-engine",
+        "GlacierEQ/anthropic-containment-verifier",
+        "GlacierEQ/anthropic-eval-hardener",
+        "GlacierEQ/anthropic-agent-skills-runtime"
+      ],
+      "recruiter_thesis": "Forward-deployed AI architecture and engineering: build inside ambiguous customer environments, integrate models/tools into real systems, preserve reliability and safety boundaries, and turn repeatable deployment patterns into reusable capability.",
       "repositories": [
         [
           "GlacierEQ/anthropic-agent-coordinator",
@@ -192,28 +192,19 @@
           "ORIGINAL_CANDIDATE"
         ]
       ],
-      "recruiter_admitted_repositories": [
-        "GlacierEQ/anthropic-agent-coordinator",
-        "GlacierEQ/anthropic-safety-monitor",
-        "GlacierEQ/anthropic-constitutional-automation",
-        "GlacierEQ/anthropic-interpretability-engine",
-        "GlacierEQ/anthropic-containment-verifier",
-        "GlacierEQ/anthropic-eval-hardener",
-        "GlacierEQ/anthropic-agent-skills-runtime"
-      ]
+      "target_roles": [
+        "Forward Deployed Engineer",
+        "Applied AI Architect",
+        "Applied AI Engineer"
+      ],
+      "track_state": "MAPPED_WITH_RECRUITER_READY_PUBLIC_SUBSET"
     },
     {
       "company_id": "google_deepmind",
       "display_name": "Google / DeepMind",
-      "track_state": "MAPPED_NOT_RECRUITER_READY",
-      "target_roles": [
-        "ML Systems Engineer",
-        "Applied AI Engineer",
-        "Infrastructure Engineer"
-      ],
-      "recruiter_thesis": "ML systems, TPU/mesh optimization, temporal routing, predictive handoff, and governed polyglot execution.",
       "gap_or_next_gate": "Six direct DeepMind-named repos exist; one public prototype and five private candidates.",
       "non_affiliation": "Independent GlacierEQ work; no Google / DeepMind affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "recruiter_thesis": "ML systems, TPU/mesh optimization, temporal routing, predictive handoff, and governed polyglot execution.",
       "repositories": [
         [
           "GlacierEQ/deepmind-tpu-mesh-optimizer",
@@ -263,20 +254,20 @@
           "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ]
-      ]
+      ],
+      "target_roles": [
+        "ML Systems Engineer",
+        "Applied AI Engineer",
+        "Infrastructure Engineer"
+      ],
+      "track_state": "MAPPED_NOT_RECRUITER_READY"
     },
     {
       "company_id": "xai",
       "display_name": "xAI",
-      "track_state": "MAPPED_NOT_RECRUITER_READY",
-      "target_roles": [
-        "Infrastructure Engineer",
-        "Forward-Deployed Engineer",
-        "Applied AI Systems Engineer"
-      ],
-      "recruiter_thesis": "Frontier infrastructure reasoning across cooling, energy, servers, security, facilities, and Grok-adjacent orchestration.",
       "gap_or_next_gate": "Collapse variants into one suite, one bounded flagship, supporting systems, experiments, public references, private references, and quarantined exclusions; xai-colossal-cooling is public but remains outside admission until successor/unique-value analysis is complete.",
       "non_affiliation": "Independent GlacierEQ work; no xAI affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "recruiter_thesis": "Frontier infrastructure reasoning across cooling, energy, servers, security, facilities, and Grok-adjacent orchestration.",
       "repositories": [
         [
           "GlacierEQ/xai-colossus-cooling",
@@ -702,7 +693,16 @@
           "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ]
-      ]
+      ],
+      "target_roles": [
+        "Infrastructure Engineer",
+        "Forward-Deployed Engineer",
+        "Applied AI Systems Engineer"
+      ],
+      "track_state": "MAPPED_NOT_RECRUITER_READY"
     }
-  ]
+  ],
+  "generated_at": "2026-08-07T08:05:00-10:00",
+  "group_id": "frontier_ai",
+  "schema": "glaciereq.company-dossiers-shard.v2"
 }

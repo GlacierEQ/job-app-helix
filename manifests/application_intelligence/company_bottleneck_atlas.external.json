@@ -11,7 +11,7 @@
     {
       "path": "manifests/application_intelligence/atlas_shards/frontier_ai.json",
       "record_count": 4,
-      "shard_sha256": "9fd7437faf7b1a5b8b9df35438282f6ee7128e7894c2626903dfff502eda69b4"
+      "shard_sha256": "0ffda8e6bc0565bd7d70a1180288760cc733f877431ca566cc252f131cf614b4"
     },
     {
       "path": "manifests/application_intelligence/atlas_shards/platform_infrastructure.json",
