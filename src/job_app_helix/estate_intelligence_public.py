@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import copy
+import json
+import re
 from collections.abc import Mapping
 from typing import Any
 
@@ -21,15 +24,131 @@ PUBLIC_FIELDS = (
     "dossier_next_gate",
 )
 PUBLIC_ADMISSION_STATES = {"PROMOTED", "REFERENCE_ONLY"}
+_REPOSITORY_TOKEN_CHARS = "A-Za-z0-9_.-"
+_PRIVATE_REPOSITORY_PLACEHOLDER = "[private repository]"
+
+
+def _private_repository_identities(bundle: Mapping[str, Any]) -> tuple[str, ...]:
+    systems = bundle.get("system_registry", {}).get("systems", [])
+    identities = {
+        member
+        for system in systems
+        if isinstance(system, Mapping) and system.get("visibility") != "public"
+        for member in system.get("member_repositories", [])
+        if isinstance(member, str) and member.startswith("GlacierEQ/")
+    }
+    return tuple(sorted(identities, key=lambda value: (-len(value), value)))
+
+
+def _repository_pattern(identity: str) -> re.Pattern[str]:
+    return re.compile(
+        rf"(?<![{_REPOSITORY_TOKEN_CHARS}])"
+        rf"{re.escape(identity)}"
+        rf"(?![{_REPOSITORY_TOKEN_CHARS}])"
+    )
+
+
+def _redact_private_repository_identities(
+    value: Any,
+    identities: tuple[str, ...],
+) -> Any:
+    if isinstance(value, str):
+        result = value
+        for identity in identities:
+            result = _repository_pattern(identity).sub(
+                _PRIVATE_REPOSITORY_PLACEHOLDER,
+                result,
+            )
+        return result
+    if isinstance(value, list):
+        return [
+            _redact_private_repository_identities(item, identities)
+            for item in value
+        ]
+    if isinstance(value, tuple):
+        return tuple(
+            _redact_private_repository_identities(item, identities)
+            for item in value
+        )
+    if isinstance(value, dict):
+        return {
+            _redact_private_repository_identities(key, identities):
+            _redact_private_repository_identities(item, identities)
+            for key, item in value.items()
+        }
+    return value
+
+
+def _prepare_public_boundary_bundle(
+    bundle: Mapping[str, Any],
+) -> tuple[dict[str, Any], tuple[str, ...]]:
+    """Build a public-only working copy without weakening the internal estate.
+
+    Company prose may legitimately discuss private estate evidence internally. Public
+    projection must remove those exact identities while preserving longer public names
+    that merely share a prefix (for example ``GlacierEQ/job-app-helix`` versus the
+    private ``GlacierEQ/job-app`` repository).
+
+    The legacy compiler performs a substring leak check against private system members.
+    Private member identities are replaced with opaque sentinels in this *working copy*
+    so that check cannot confuse a private repository with a longer public repository
+    that shares its prefix. A token-aware fail-closed scan runs again on the completed
+    public artifact below.
+    """
+
+    prepared = copy.deepcopy(dict(bundle))
+    identities = _private_repository_identities(bundle)
+
+    registry = prepared.get("company_projection_registry", {})
+    if isinstance(registry, dict):
+        projections = registry.get("projections", [])
+        if isinstance(projections, list):
+            registry["projections"] = _redact_private_repository_identities(
+                projections,
+                identities,
+            )
+
+    systems = prepared.get("system_registry", {}).get("systems", [])
+    if isinstance(systems, list):
+        for system_index, system in enumerate(systems):
+            if not isinstance(system, dict) or system.get("visibility") == "public":
+                continue
+            members = system.get("member_repositories", [])
+            if not isinstance(members, list):
+                continue
+            system["member_repositories"] = [
+                f"__private_member_{system_index}_{member_index}__"
+                for member_index, _ in enumerate(members)
+            ]
+
+    return prepared, identities
+
+
+def _assert_no_private_repository_identity(
+    public: Mapping[str, Any],
+    identities: tuple[str, ...],
+) -> None:
+    serialized = json.dumps(public, sort_keys=True)
+    leaked = [
+        identity
+        for identity in identities
+        if _repository_pattern(identity).search(serialized)
+    ]
+    if leaked:
+        raise ValueError(
+            "public intelligence projection leaked exact private repository "
+            f"identities: {sorted(leaked)}"
+        )
 
 
 def public_intelligence_projection(
     bundle: Mapping[str, Any],
 ) -> dict[str, Any]:
-    public = public_safe_projection(bundle)
+    prepared, private_identities = _prepare_public_boundary_bundle(bundle)
+    public = public_safe_projection(prepared)
     internal = {
         row["company_id"]: row
-        for row in bundle["company_projection_registry"]["projections"]
+        for row in prepared["company_projection_registry"]["projections"]
     }
     for projection in public["company_projections"]:
         source = internal[str(projection["company_id"])]
@@ -64,7 +183,7 @@ def public_intelligence_projection(
             source,
         )
         projection["capability_proofs"] = _public_capability_proofs(
-            bundle,
+            prepared,
             projection,
             safe_ids,
         )
@@ -72,6 +191,8 @@ def public_intelligence_projection(
     public["schema"] = "glaciereq.estate-public-projection.v2"
     public["boundary"] = {
         "private_repository_identities_omitted": True,
+        "private_repository_text_redacted": True,
+        "private_repository_prefix_collisions_are_not_leaks": True,
         "legal_private_records_omitted": True,
         "support_only_systems_omitted_from_accomplishment_projection": True,
         "experiment_systems_omitted_from_accomplishment_projection": True,
@@ -81,6 +202,7 @@ def public_intelligence_projection(
         "role_projection_is_capability_fit_not_employer_endorsement": True,
         "semantic_capability_proof_is_exact_head_and_public_only": True,
     }
+    _assert_no_private_repository_identity(public, private_identities)
     return public
 
 
