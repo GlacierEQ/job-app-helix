@@ -1,0 +1,77 @@
+name: Repair Anthropic public evidence once
+
+on:
+  push:
+    branches:
+      - fix/anthropic-public-evidence-integrity-20260907
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/anthropic-public-evidence-integrity-20260907
+          fetch-depth: 0
+      - name: Remove unresolved public evidence references at Helix source
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          missing_short = {
+              "anthropic-constitutional-automation",
+              "anthropic-interpretability-engine",
+              "anthropic-containment-verifier",
+              "anthropic-eval-hardener",
+              "anthropic-agent-skills-runtime",
+          }
+          missing_full = {f"GlacierEQ/{name}" for name in missing_short}
+
+          dossier_path = Path("manifests/company_dossiers/frontier_ai.json")
+          dossier = json.loads(dossier_path.read_text())
+          anthropic = next(row for row in dossier["companies"] if row["company_id"] == "anthropic")
+          anthropic["recruiter_admitted_repositories"] = [
+              repo for repo in anthropic.get("recruiter_admitted_repositories", [])
+              if repo not in missing_full
+          ]
+          anthropic["repositories"] = [
+              row for row in anthropic.get("repositories", [])
+              if not row or row[0] not in missing_full
+          ]
+          anthropic["gap_or_next_gate"] = (
+              "Current official Applied AI roles are source-verified. Public recruiter evidence is now limited "
+              "to provider-resolvable Anthropic-oriented systems; build the next Forward Deployed Engineer / "
+              "Applied AI Architect proof by integrating customer-system delivery, evaluation, reliability, "
+              "reusable deployment patterns, and explicit safety boundaries without claiming Anthropic affiliation "
+              "or production use."
+          )
+          dossier_path.write_text(json.dumps(dossier, indent=2) + "\n")
+
+          def prune(value):
+              if isinstance(value, list):
+                  return [prune(item) for item in value if item not in missing_short and item not in missing_full]
+              if isinstance(value, dict):
+                  return {key: prune(item) for key, item in value.items()}
+              return value
+
+          for path in [Path("manifests/live_repository_links.json"), Path("manifests/portfolio_repositories.json")]:
+              data = json.loads(path.read_text())
+              path.write_text(json.dumps(prune(data), indent=2) + "\n")
+
+          # Self-delete: this workflow is an execution mechanism, not durable project architecture.
+          Path(".github/workflows/repair-anthropic-public-evidence-once.yml").unlink()
+      - name: Commit repaired source state
+        run: |
+          git config user.name "GlacierEQ Helix Repair"
+          git config user.email "glacier.equilibrium@gmail.com"
+          git add manifests/company_dossiers/frontier_ai.json manifests/live_repository_links.json manifests/portfolio_repositories.json .github/workflows/repair-anthropic-public-evidence-once.yml
+          if git diff --cached --quiet; then
+            echo "No source changes required"
+            exit 0
+          fi
+          git commit -m "fix: remove unresolved Anthropic public evidence references"
+          git push origin HEAD:fix/anthropic-public-evidence-integrity-20260907
