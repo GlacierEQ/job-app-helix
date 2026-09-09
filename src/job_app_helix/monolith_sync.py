@@ -7,13 +7,14 @@ L3 Backend Awareness: Deep substrate comprehension — SQLite indices, event loo
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import json
 import sys
-from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 JOB_APP_HELIX_ROOT = Path("/data/data/com.termux/files/home/job-app-helix")
 MONOLITH_ROOT = Path("/data/data/com.termux/files/home/monolith")
@@ -45,10 +46,8 @@ def load_solidify_records() -> dict[str, Any]:
     records = {}
     if solidify_dir.exists():
         for f in solidify_dir.glob("*.json"):
-            try:
+            with contextlib.suppress(Exception):
                 records[f.stem] = json.loads(f.read_text())
-            except Exception:
-                pass
     return records
 
 
@@ -90,7 +89,7 @@ def sync_capabilities_3layer(portfolio: dict[str, Any], solidify: dict[str, Any]
             "worthy": repo_data.get("worthy", 0),
             "source_state": repo_data.get("source_state", "unknown"),
             "evidence_hash": solidify_record.get("evidence_hash", ""),
-            "last_synced": datetime.now(timezone.utc).isoformat(),
+            "last_synced": datetime.now(UTC).isoformat(),
         }
 
         if mode == "incremental" and repo_name in existing_repos:
@@ -104,14 +103,16 @@ def sync_capabilities_3layer(portfolio: dict[str, Any], solidify: dict[str, Any]
     return {"layers": layers}
 
 
-def sync_runtime_power_spine(portfolio: dict[str, Any], mode: str) -> dict[str, Any]:
+def sync_runtime_power_spine(
+    portfolio: dict[str, Any], solidify: dict[str, Any], mode: str
+) -> dict[str, Any]:
     existing = load_monolith_catalog("runtime_power_spine.json")
 
     verified_anchors = [r for r in portfolio.get("deserving", []) if r.get("worthy", 0) >= 8]
 
     spine_entry = {
         "source": "job-app-helix",
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "verified_anchors": len(verified_anchors),
         "total_repos": len(portfolio.get("deserving", [])),
         "anchor_details": [
@@ -166,7 +167,7 @@ def sync_repo_excellence_state_machine(portfolio: dict[str, Any], mode: str) -> 
         existing["portfolio_state"] = {}
 
     existing["portfolio_state"]["job-app-helix"] = {
-        "last_sync": datetime.now(timezone.utc).isoformat(),
+        "last_sync": datetime.now(UTC).isoformat(),
         "total_deserving": len(portfolio.get("deserving", [])),
         "verified_anchors": len([r for r in portfolio.get("deserving", []) if r.get("worthy", 0) >= 8]),
         "mode": mode,
@@ -199,7 +200,7 @@ def main() -> int:
         write_monolith_catalog("capabilities_3layer.json", caps_3layer)
         updated.append("capabilities_3layer.json")
 
-        spine = sync_runtime_power_spine(portfolio, args.mode)
+        spine = sync_runtime_power_spine(portfolio, solidify, args.mode)
         write_monolith_catalog("runtime_power_spine.json", spine)
         updated.append("runtime_power_spine.json")
 
@@ -211,11 +212,11 @@ def main() -> int:
         write_monolith_catalog("repo_excellence_state_machine.json", state_machine)
         updated.append("repo_excellence_state_machine.json")
 
-    receipt_data = f"{args.mode}:{len(updated)}:{datetime.now(timezone.utc).isoformat()}"
+    receipt_data = f"{args.mode}:{len(updated)}:{datetime.now(UTC).isoformat()}"
     receipt_hash = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
 
     receipt = SyncReceipt(
-        timestamp=datetime.now(timezone.utc).isoformat(),
+        timestamp=datetime.now(UTC).isoformat(),
         mode=args.mode,
         updated_catalogs=updated,
         conflicts=conflicts,

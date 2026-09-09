@@ -134,4 +134,5 @@ ignore_errors = true
 "tests/test_library_program.py" = ["E501"]
 "tests/test_opportunity_queue.py" = ["E501"]
 "tests/test_repo_excellence.py" = ["E501"]
+"scripts/compile_mega_skills_projection.py" = ["E701", "E702", "E501", "RUF005", "RUF059"]
 "excellence/harness/tests/*.py" = ["E402"]

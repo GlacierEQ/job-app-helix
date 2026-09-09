@@ -4,8 +4,25 @@ Capability-focused portfolio control plane — executes evidence-led hiring auto
 federates capabilities via monolith catalog, resolves multi-language placement via Tower of Babel.
 """
 
+from .agent_cli import main as agent_main
+from .automation_engine import AutomationResult, run_automation, run_proof
 from .campaign import CampaignPolicy, LaunchScenario, run_campaign
+from .capability_federation import (
+    CapabilityQuery,
+    FederatedCapability,
+    ResolutionReceipt,
+    federate_capabilities,
+)
+from .evidence_bridge import (
+    BridgeReceipt,
+    EvidenceItem,
+    SpineEntry,
+    bridge_evidence,
+    bridge_from_ledger,
+)
+from .evidence_ledger import EvidenceEntry, Ledger, build_ledger, write_ledger
 from .models import CampaignDecision, CampaignReport, StageResult, StageStatus
+from .monolith_sync import main as sync_monolith
 from .readme_mesh import (
     MeshArtifacts,
     ReadmeMeshError,
@@ -15,52 +32,46 @@ from .readme_mesh import (
     validate_mesh,
 )
 from .readme_mesh_manifest import load_mesh
-
-from .evidence_ledger import build_ledger, EvidenceEntry, Ledger, write_ledger
-from .capability_federation import federate_capabilities, CapabilityQuery, FederatedCapability, ResolutionReceipt
-from .monolith_sync import main as sync_monolith
-from .tower_resolution import resolve_placement, CapabilityRequirement, PlacementDecision, ResolutionReceipt as TowerResolutionReceipt
-from .automation_engine import run_automation, run_proof, AutomationResult
-from .evidence_bridge import bridge_evidence, bridge_from_ledger, EvidenceItem, SpineEntry, BridgeReceipt
-from .agent_cli import main as agent_main
+from .tower_resolution import CapabilityRequirement, PlacementDecision, resolve_placement
+from .tower_resolution import ResolutionReceipt as TowerResolutionReceipt
 
 __all__ = [
+    "AutomationResult",
+    "BridgeReceipt",
     "CampaignDecision",
     "CampaignPolicy",
     "CampaignReport",
+    "CapabilityQuery",
+    "CapabilityRequirement",
+    "EvidenceEntry",
+    "EvidenceItem",
+    "FederatedCapability",
     "LaunchScenario",
+    "Ledger",
     "MeshArtifacts",
+    "PlacementDecision",
     "ReadmeMeshError",
+    "ResolutionReceipt",
+    "SpineEntry",
     "StageResult",
     "StageStatus",
-    "apply_block",
-    "build_artifacts",
-    "load_mesh",
-    "render_repository_block",
-    "run_campaign",
-    "validate_mesh",
-    "build_ledger",
-    "EvidenceEntry",
-    "Ledger",
-    "write_ledger",
-    "federate_capabilities",
-    "CapabilityQuery",
-    "FederatedCapability",
-    "ResolutionReceipt",
-    "sync_monolith",
-    "resolve_placement",
-    "CapabilityRequirement",
-    "PlacementDecision",
     "TowerResolutionReceipt",
-    "run_automation",
-    "run_proof",
-    "AutomationResult",
+    "agent_main",
+    "apply_block",
     "bridge_evidence",
     "bridge_from_ledger",
-    "EvidenceItem",
-    "SpineEntry",
-    "BridgeReceipt",
-    "agent_main",
+    "build_artifacts",
+    "build_ledger",
+    "federate_capabilities",
+    "load_mesh",
+    "render_repository_block",
+    "resolve_placement",
+    "run_automation",
+    "run_campaign",
+    "run_proof",
+    "sync_monolith",
+    "validate_mesh",
+    "write_ledger",
 ]
 
 __version__ = "1.0.0-capability"

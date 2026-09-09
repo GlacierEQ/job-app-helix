@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from job_app_helix.innovation_engine import load_policy  # noqa: E402
+
 SCHEMA_DIR = ROOT / "schemas" / "estate"
 REQUIRED_SCHEMAS = {
     "estate",

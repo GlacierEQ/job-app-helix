@@ -8,10 +8,9 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import sys
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 REPO_ROOT = Path("/data/data/com.termux/files/home/job-app-helix")
 AGENTS_DIR = REPO_ROOT / ".agents"
@@ -92,8 +91,9 @@ def run_capability(capability: str, action: str, inputs: dict[str, Any]) -> dict
         return {"ledger": {"total_repos": ledger.total_repos, "verified_anchors": ledger.verified_anchors, "merkle_root": ledger.merkle_root}}
 
     if capability == "portfolio.capability_federation":
-        from job_app_helix.capability_federation import federate_capabilities, CapabilityQuery
         from pathlib import Path
+
+        from job_app_helix.capability_federation import CapabilityQuery, federate_capabilities
         query = CapabilityQuery(
             domain=inputs.get("domain", "legal_evidence"),
             requirement=inputs.get("requirement", "ledger"),
@@ -103,8 +103,9 @@ def run_capability(capability: str, action: str, inputs: dict[str, Any]) -> dict
         return {"capabilities": len(caps), "receipt": receipt.receipt_hash}
 
     if capability == "monolith.catalog_sync":
-        from job_app_helix.monolith_sync import main as sync_monolith
         import sys
+
+        from job_app_helix.monolith_sync import main as sync_monolith
         old_argv = sys.argv
         sys.argv = ["monolith_sync", "--mode", inputs.get("mode", "incremental")]
         try:
@@ -118,14 +119,14 @@ def run_capability(capability: str, action: str, inputs: dict[str, Any]) -> dict
             sys.argv = old_argv
 
     if capability == "tower.capability_resolution":
-        from job_app_helix.tower_resolution import resolve_placement, CapabilityRequirement
+        from job_app_helix.tower_resolution import CapabilityRequirement, resolve_placement
         req = CapabilityRequirement(
             name=inputs.get("requirement", "evidence_graph"),
             domain=inputs.get("domain", "legal_evidence"),
             performance_requirements=inputs.get("performance_requirements", {}),
             constraints=inputs.get("constraints", {}),
         )
-        placement, candidates = resolve_placement(req)
+        placement, _ = resolve_placement(req)
         return {"technology": placement.technology, "fitness": placement.fitness_scores}
 
     if capability == "helix.automation_engine":
@@ -134,8 +135,9 @@ def run_capability(capability: str, action: str, inputs: dict[str, Any]) -> dict
         return {"success": result.success, "receipt": result.receipt_hash, "duration_ms": result.duration_ms}
 
     if capability == "evidence.bridge":
-        from job_app_helix.evidence_bridge import bridge_from_ledger
         from pathlib import Path
+
+        from job_app_helix.evidence_bridge import bridge_from_ledger
         receipts = bridge_from_ledger(inputs.get("target_spine", "test"), Path(inputs.get("monolith_legal_path", "/tmp/legal_spines")))
         return {"bridged": len(receipts), "receipts": [r.receipt_hash for r in receipts]}
 

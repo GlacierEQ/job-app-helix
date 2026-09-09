@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 """Compile Mega-Skills public manifest and 29 inspectable static pyramid routes from pinned source."""
 from __future__ import annotations
-import argparse, hashlib, html, json, subprocess, sys
+
+import argparse
+import hashlib
+import html
+import json
+import subprocess
+import sys
 from pathlib import Path
 
 SOURCE_COMMIT='4166e09b86c257ba02e32fc20a65b0f63b8e46f7'

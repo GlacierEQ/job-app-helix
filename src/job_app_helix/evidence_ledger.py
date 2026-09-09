@@ -7,15 +7,15 @@ L0 Reference: Immutable byte/SHA/commit/docket provenance. Never assert unverifi
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import json
-import os
 import subprocess
 import sys
-from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 REPO_ROOT = Path("/data/data/com.termux/files/home/job-app-helix")
 MONOLITH_ROOT = Path("/data/data/com.termux/files/home/monolith")
@@ -90,10 +90,8 @@ def load_solidify_records() -> dict[str, Any]:
     records = {}
     if solidify_dir.exists():
         for f in solidify_dir.glob("*.json"):
-            try:
+            with contextlib.suppress(Exception):
                 records[f.stem] = json.loads(f.read_text())
-            except Exception:
-                pass
     return records
 
 
@@ -123,7 +121,7 @@ def build_ledger(anchor_threshold: int = 8) -> Ledger:
         solidify_record = solidify.get(repo_name, {})
         evidence_hash = solidify_record.get("evidence_hash", sha256_bytes(repo_name.encode())[:16])
 
-        receipt_id = sha256_bytes(f"{repo_name}:{evidence_hash}:{datetime.now(timezone.utc).isoformat()}".encode())[:16]
+        receipt_id = sha256_bytes(f"{repo_name}:{evidence_hash}:{datetime.now(UTC).isoformat()}".encode())[:16]
 
         entries.append(EvidenceEntry(
             repo=repo_name,
@@ -133,7 +131,7 @@ def build_ledger(anchor_threshold: int = 8) -> Ledger:
             evidence_hash=evidence_hash,
             gate_status=gate_status,
             verified=verified,
-            timestamp=datetime.now(timezone.utc).isoformat(),
+            timestamp=datetime.now(UTC).isoformat(),
             receipt_id=receipt_id,
         ))
 
@@ -141,7 +139,7 @@ def build_ledger(anchor_threshold: int = 8) -> Ledger:
     merkle_root = sha256_bytes(merkle_data)
 
     return Ledger(
-        generated_at=datetime.now(timezone.utc).isoformat(),
+        generated_at=datetime.now(UTC).isoformat(),
         total_repos=len(entries),
         verified_anchors=verified_count,
         entries=entries,

@@ -5,8 +5,7 @@ import json
 import subprocess
 import sys
 from collections.abc import Sequence
-from datetime import timezone, datetime
-UTC = timezone.utc
+from datetime import UTC, datetime
 from pathlib import Path
 
 from .branch_steward import BranchStewardError, assess_repository, write_receipt
