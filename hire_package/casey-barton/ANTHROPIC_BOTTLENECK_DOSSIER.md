@@ -12,7 +12,7 @@
 Anthropic's frontier systems (Claude 3.5 Sonnet, Claude 3.7 Sonnet with Hybrid Reasoning) represent world-class reasoning capabilities. However, enterprise adoption and autonomous swarm deployment face critical operational bottlenecks:
 
 1. **Autonomous Tool Action Escape & Boundary Drift:** Models executing nested tool calls (bash, file writes, API dispatch) can hallucinate valid permission envelopes or execute dangerous lateral movements when operating in long-horizon autonomous loops.
-2. **Multi-Agent DAG Contention & Non-Deterministic Deadlock:** In multi-agent pipelines (planner $\to$ executor $\to$ reviewer), dependencies easily deadlock, lose state across task handoffs, or experience Byzantine divergence when models disagree on architectural decisions.
+2. **Multi-Agent DAG Contention & Non-Deterministic Deadlock:** In multi-agent pipelines (planner → executor → reviewer), dependencies easily deadlock, lose state across task handoffs, or experience Byzantine divergence when models disagree on architectural decisions.
 3. **Prompt Injection & Indirect Context Poisoning:** RAG pipelines and web-fetching subagents are vulnerable to prompt injection buried in retrieved content, escaping naive regex sanitization.
 
 Rather than proposing speculative paper frameworks, the **GlacierEQ Anthropic Constellation** implements two production-grade, mathematically verified systems that solve these bottlenecks:
@@ -42,7 +42,7 @@ Rather than proposing speculative paper frameworks, the **GlacierEQ Anthropic Co
 ## 🛠️ Subsystem I: `anthropic-safety-monitor` (Fail-Closed Sandbox)
 
 ### 1. Architectural Blueprint
-- **Location:** [`/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/anthropic-safety-monitor`](file:///Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/anthropic-safety-monitor)
+- **Location:** [`GlacierEQ/anthropic-safety-monitor`](https://github.com/GlacierEQ/anthropic-safety-monitor)
 - **Engine:** Python 3.14 + strict cryptographic AST parse + defused validation
 - **Verified Suite:** **62/62 Unit & Invariant Tests Passing**
 - **Core Mechanism:**
@@ -62,7 +62,7 @@ pytest tests/ -q
 ## 🐝 Subsystem II: `anthropic-agent-coordinator` (Deterministic Swarm)
 
 ### 1. Architectural Blueprint
-- **Location:** [`/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/anthropic-agent-coordinator`](file:///Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/anthropic-agent-coordinator)
+- **Location:** [`GlacierEQ/anthropic-agent-coordinator`](https://github.com/GlacierEQ/anthropic-agent-coordinator)
 - **Engine:** Deterministic DAG Task Scheduler + Resource Isolation + Quorum Resolver
 - **Verified Suite:** **77/77 Tests Passing** (including adversarial race condition testing)
 - **Core Mechanism:**

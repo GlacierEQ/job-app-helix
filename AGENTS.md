@@ -733,7 +733,7 @@ Do not create decision records for trivial choices.
 
 ### 8.6 The L0–L5 Epistemic Ladder (Load-Bearing Doctrine)
 
-Agents MUST operate according to the explicit 6-level epistemic standard defined in [EPISTEMOLOGY.md](file:///root/.agents/skills/apex-command-core/EPISTEMOLOGY.md), the unbending estate laws in [CONSTANTS.md](file:///root/CONSTANTS.md), and the 12-gate machine contract in [EXCELLENCE.md](file:///root/EXCELLENCE.md):
+Agents MUST operate according to the explicit 6-level epistemic standard defined in [EPISTEMOLOGY.md] (external governance reference; machine-local path intentionally omitted), the unbending estate laws in [CONSTANTS.md] (external governance reference; machine-local path intentionally omitted), and the 12-gate machine contract in [EXCELLENCE.md] (external governance reference; machine-local path intentionally omitted):
 
 - **L0 (Reference & Ground-Truth):** Immutable byte/SHA/commit/docket provenance. Never assert unverified state without tool readback.
 - **L1 (Component & Unit):** Atomic interface boundaries and deterministic input/output validation.
@@ -744,7 +744,7 @@ Agents MUST operate according to the explicit 6-level epistemic standard defined
 
 ---
 
-## 9. Engineering Standard: Pro-Code (See [EXCELLENCE.md](file:///root/EXCELLENCE.md))
+## 9. Engineering Standard: Pro-Code (See [EXCELLENCE.md] (external governance reference; machine-local path intentionally omitted))
 
 Code MUST be engineered, not merely generated.
 

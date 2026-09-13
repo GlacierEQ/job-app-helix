@@ -72,14 +72,24 @@ def test_public_census_contains_only_governed_public_repositories() -> None:
     assert payload["boundary"]["raw_owned_estate_cardinality_not_inferred"] is True
 
 
-def test_public_census_rejects_missing_governed_repository() -> None:
+def test_public_census_preserves_unresolved_governed_identity_without_metadata() -> None:
     module = _module()
-    with pytest.raises(module.PublicPortfolioCensusError, match="incomplete"):
-        module.build_census(
-            manifest=_manifest(),
-            owner="GlacierEQ",
-            repositories=[_repo("AKOS", 1), _repo("job-app-helix", 3)],
-        )
+    payload = module.build_census(
+        manifest=_manifest(),
+        owner="GlacierEQ",
+        repositories=[_repo("AKOS", 1), _repo("job-app-helix", 3)],
+    )
+
+    assert payload["resolution_state"] == "PARTIAL_WITH_UNRESOLVED_IDENTITIES"
+    assert payload["governed_repository_count"] == 3
+    assert payload["repository_count"] == 2
+    assert payload["unresolved_repository_count"] == 1
+    assert payload["unresolved_repositories"] == ["GlacierEQ/job-application"]
+    assert payload["boundary"]["unresolved_identities_preserved_without_metadata"] is True
+    assert payload["boundary"]["unresolved_identities_excluded_from_public_projection"] is True
+    assert {row["repository"] for row in payload["governed_repository_identities"]} == {
+        "GlacierEQ/AKOS", "GlacierEQ/job-app-helix", "GlacierEQ/job-application"
+    }
 
 
 def test_public_census_rejects_non_public_governed_repository() -> None:

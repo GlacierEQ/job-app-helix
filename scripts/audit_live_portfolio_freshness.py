@@ -68,7 +68,7 @@ def reference_bytes(value: Any) -> bytes:
             separators=(",", ":"),
             ensure_ascii=False,
         )
-        + "\n"
+        + chr(10)
     ).encode("utf-8")
 
 
@@ -489,11 +489,62 @@ def audit(
             )
 
     flagship_results: list[dict[str, Any]] = []
-    for row in flagships:
+    for index, row in enumerate(flagships):
         if not isinstance(row, dict):
+            findings.append(
+                finding(
+                    "INVALID_FLAGSHIP_ROW",
+                    "ERROR",
+                    None,
+                    "Flagship registry row is not an object.",
+                    index=index,
+                )
+            )
+            flagship_results.append(
+                {
+                    "system_id": None,
+                    "repository": None,
+                    "state": "INVALID",
+                    "presentation_surface": "EXCLUDED",
+                    "source_visibility": None,
+                    "metadata_observable": False,
+                    "live_evidence_state": "INVALID",
+                    "evidence_head": None,
+                    "current_head": None,
+                    "head_matches": None,
+                }
+            )
             continue
         repository = row.get("repository")
-        if not isinstance(repository, str):
+        if not isinstance(repository, str) or not repository:
+            findings.append(
+                finding(
+                    "UNRESOLVED_FLAGSHIP_IDENTITY",
+                    "ERROR",
+                    None,
+                    (
+                        "Flagship row is retained in the receipt but has no "
+                        "observable repository identity."
+                    ),
+                    index=index,
+                    system_id=row.get("system_id"),
+                    state=row.get("state"),
+                )
+            )
+            flagship_results.append(
+                {
+                    "system_id": row.get("system_id"),
+                    "repository": None,
+                    "state": str(row.get("state")),
+                    "presentation_surface": str(row.get("public_surface")),
+                    "source_visibility": None,
+                    "metadata_observable": False,
+                    "live_evidence_state": "UNRESOLVED_IDENTITY",
+                    "evidence_head": None,
+                    "current_head": None,
+                    "head_matches": None,
+                }
+            )
             continue
         meta = metadata.get(repository, {})
         actual_visibility = meta.get("visibility")

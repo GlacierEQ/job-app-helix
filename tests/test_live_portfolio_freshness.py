@@ -192,3 +192,22 @@ def test_current_evidence_and_public_visibility_can_be_clean():
     assert not errors
     assert receipt["freshness"]["all_source_admitted_system_evidence_current"] is True
     assert receipt["freshness"]["declared_visibility_matches_live"] is True
+
+
+def test_unresolved_flagship_identity_is_retained_and_reported():
+    unresolved = portfolio(evidence_head="abc")
+    unresolved["flagships"].append(
+        {
+            "system_id": "unresolved",
+            "repository": None,
+            "state": "UNRESOLVED_IDENTITY",
+            "public_surface": "EXCLUDED_UNTIL_RESOLVED",
+        }
+    )
+    with patch.object(module, "compile_portfolio", return_value=unresolved):
+        receipt = module.audit(getter(), "FIXTURE")
+    assert "UNRESOLVED_FLAGSHIP_IDENTITY" in finding_codes(receipt)
+    assert len(receipt["flagships"]) == receipt["portfolio"]["source_admitted_systems"]
+    row = next(item for item in receipt["flagships"] if item["system_id"] == "unresolved")
+    assert row["repository"] is None
+    assert row["live_evidence_state"] == "UNRESOLVED_IDENTITY"

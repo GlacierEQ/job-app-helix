@@ -6,8 +6,8 @@
 - **Craft:** ENGINEERED, PRO_ELITE_HUMANIZED_ENGINEERED_CODE, CONTINUOUSLY_IMPRESSIVE_TO_MASTERS, COMPLETE, BORN_TO_RUN, FIRST_PASS_IS_LAST_PASS, GOVERNANCE_BALANCED_WITH_BRAVERY
 - **Subject:** `GlacierEQ/glaciereq-mcp-stack`
 - **Research signals:** neutralization, paper_recovery, no_test_mention, mcp_tools, governance, hire_surface, has_prior_knowledge, prior_mechanism_known
-- **Knowledge:** `/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge/GlacierEQ__glaciereq-mcp-stack.json`
-- **Library link:** `/Users/kcbflux/.grok/work/library-of-links/domains/genius/GlacierEQ__glaciereq-mcp-stack.json`
+- **Knowledge:** `public-source-omitted: genius_knowledge/GlacierEQ__glaciereq-mcp-stack.json`
+- **Library link:** `public-source-omitted: library-of-links/domains/genius/GlacierEQ__glaciereq-mcp-stack.json`
 - **Receipt:** `0a2307b5530ff64a0e0b97e7b73bd9286fa47b12a5eb9f2e5675732622114142`
 
 ## Advanced knowledge (Library of Links impact)

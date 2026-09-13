@@ -103,32 +103,50 @@ def build_census(
             )
         rows_by_name[str(repository)] = _normalize_repository(raw, owner)
 
-    missing = sorted(governed - set(rows_by_name))
-    if missing:
-        raise PublicPortfolioCensusError(
-            "Governed public portfolio is incomplete: " + ", ".join(missing)
-        )
-
+    unresolved = sorted(governed - set(rows_by_name))
     rows = [rows_by_name[name] for name in sorted(rows_by_name)]
     native_count = sum(not row["fork"] for row in rows)
     fork_count = len(rows) - native_count
+    # Preserve every manifest identity without fabricating public metadata.
+    identity_ledger = [
+        {
+            "repository": name,
+            "resolution": "VERIFIED_PUBLIC" if name in rows_by_name else "UNRESOLVED_PUBLIC_IDENTITY",
+            "public_projection_allowed": name in rows_by_name,
+            "evidence": (
+                "github_public_repository_metadata"
+                if name in rows_by_name
+                else "github_public_repository_listing_did_not_return_identity"
+            ),
+        }
+        for name in sorted(governed)
+    ]
     return {
         "schema": "glaciereq.public-portfolio-census.v1",
         "state": "VERIFIED_INVENTORY",
+        "resolution_state": (
+            "COMPLETE_PUBLIC_RESOLUTION" if not unresolved else "PARTIAL_WITH_UNRESOLVED_IDENTITIES"
+        ),
         "scope": "PUBLIC_ADMITTED_PORTFOLIO_ONLY",
         "authority": "manifests/portfolio_repositories.json + GitHub public metadata",
         "owner": owner,
         "generated_at": generated_at
         or datetime.now(UTC).isoformat(timespec="seconds"),
+        "governed_repository_count": len(governed),
         "repository_count": len(rows),
         "native_repository_count": native_count,
         "fork_repository_count": fork_count,
         "public_repository_count": len(rows),
+        "unresolved_repository_count": len(unresolved),
         "private_repository_count": 0,
         "repositories": rows,
+        "unresolved_repositories": unresolved,
+        "governed_repository_identities": identity_ledger,
         "boundary": {
             "authenticated_private_estate_not_queried": True,
             "private_repository_identities_omitted": True,
+            "unresolved_identities_preserved_without_metadata": True,
+            "unresolved_identities_excluded_from_public_projection": True,
             "legal_private_records_omitted": True,
             "raw_owned_estate_cardinality_not_inferred": True,
         },
@@ -236,7 +254,7 @@ def _atomic_write(path: Path, payload: dict[str, Any]) -> None:
     ) as stream:
         temporary = Path(stream.name)
         json.dump(payload, stream, indent=2, sort_keys=True)
-        stream.write("\n")
+        stream.write(chr(10))
         stream.flush()
         os.fsync(stream.fileno())
     os.replace(temporary, path)
