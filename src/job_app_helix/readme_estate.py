@@ -10,12 +10,17 @@ from typing import Any
 
 import yaml
 
+from .readme_license import human_notice, infer_license_contract
+
 START_MARKER = "<!-- glacier-eq-protocol:start -->"
 END_MARKER = "<!-- glacier-eq-protocol:end -->"
 SCHEMA = "glacier-eq.readme.machine-mesh/v1"
 GENERATOR = "GlacierEQ/job-app-helix"
 GENERATOR_CONTRACT = "estate-machine-v1"
 MONOLITH = "GlacierEQ/monolith"
+PSYSOC_REPOSITORY = "GlacierEQ/AKOS"
+PSYSOC_MANIFEST = "stones/psysoc-x/stone.json"
+PSYSOC_ENGINE = "infinity_stones/psysoc_x.py"
 
 
 class EstateReadmeError(ValueError):
@@ -177,6 +182,7 @@ def build_generated_contract(
     repository_url: str | None = None,
     fork: bool = False,
 ) -> dict[str, Any]:
+    root_paths = tuple(root_paths)
     branch, subcategory = mesh_coordinates(classification.primary_home)
     repository_url = repository_url or f"https://github.com/{repository}"
     contract: dict[str, Any] = {
@@ -197,6 +203,20 @@ def build_generated_contract(
             "protocol_files": [],
             "entrypoints": infer_entrypoints(root_paths),
         },
+        "presentation": {
+            "architecture": ["recruiter", "master", "machine", "mesh"],
+            "authority": {
+                "capability": "stone-psysoc-x",
+                "repository": PSYSOC_REPOSITORY,
+                "manifest": PSYSOC_MANIFEST,
+                "engine": PSYSOC_ENGINE,
+            },
+            "truth_invariant": (
+                "presentation-may-change-sequence-density-tone-and-style; "
+                "facts-evidence-uncertainty-provenance-dignity-and-reader-agency-may-not"
+            ),
+        },
+        "license": infer_license_contract(root_paths, fork=fork),
         "mesh": {
             "primary_home": classification.primary_home,
             "branch": branch,
@@ -212,6 +232,8 @@ def build_generated_contract(
                 "routing-does-not-transfer-source-code-evidence-deployment-or-lifecycle-authority",
                 "generated-contract-is-a-source-index-not-a-runtime-or-provider-receipt",
                 "implementation-and-provider-state-require-independent-evidence",
+                "presentation-calibration-cannot-promote-claim-or-evidence-state",
+                "license-automation-cannot-relicense-unresolved-upstream-or-third-party-rights",
             ],
         },
         "provenance": {
@@ -256,14 +278,82 @@ def append_missing_block(readme: str, block: str) -> str:
     return f"{base}\n\n{block.rstrip()}\n"
 
 
-def minimal_readme(repository: str, block: str) -> str:
+def _minimal_entrypoint_lines(contract: Mapping[str, Any]) -> list[str]:
+    machine = contract.get("machine")
+    if not isinstance(machine, Mapping):
+        return []
+    entrypoints = machine.get("entrypoints")
+    if not isinstance(entrypoints, list):
+        return []
+    return [
+        f"- `{item['path']}` — {item['kind']} ({item['policy']})"
+        for item in entrypoints[:8]
+        if isinstance(item, Mapping)
+        and isinstance(item.get("path"), str)
+        and isinstance(item.get("kind"), str)
+        and isinstance(item.get("policy"), str)
+    ]
+
+
+def minimal_readme(repository: str, contract: Mapping[str, Any], block: str) -> str:
+    """Create a truthful four-depth scaffold without inventing project claims."""
+
     slug = repository.rsplit("/", 1)[-1]
-    return (
-        f"# {slug}\n\n"
-        "Repository-local source remains authoritative. The machine contract below is an "
-        "estate routing/index surface and does not promote runtime or provider state.\n\n"
-        f"{block.rstrip()}\n"
+    mesh = contract.get("mesh") if isinstance(contract.get("mesh"), Mapping) else {}
+    primary_home = mesh.get("primary_home") if isinstance(mesh, Mapping) else None
+    kind = (
+        contract.get("machine", {}).get("repository_kind")
+        if isinstance(contract.get("machine"), Mapping)
+        else "repository"
     )
+    entrypoints = _minimal_entrypoint_lines(contract)
+
+    recruiter_lines = [
+        f"# {slug}",
+        "",
+        "## 01 · RECRUITER — Start With What We Can Prove",
+        "",
+        "*Human orientation · a safe first read while project-native prose is still being recovered*",
+        "",
+        (
+            f"`{repository}` is currently indexed as **{kind}**. This generated README "
+            "deliberately avoids guessing at product claims from the repository name alone."
+        ),
+    ]
+    if primary_home:
+        recruiter_lines.extend(["", f"**Current Monolith placement:** `{primary_home}`"])
+
+    master_lines = [
+        "",
+        "## 02 · MASTER — Let the Source Speak Before the Story Does",
+        "",
+        "*Technical orientation · decisive checked-in surfaces, boundaries, and next inspection points*",
+        "",
+    ]
+    master_lines.extend(entrypoints or ["- No decisive entrypoint has been asserted yet."])
+
+    machine_lines = [
+        "",
+        "## 03 · MACHINE — Plug In Without Guessing",
+        "",
+        "*Machine orientation · deterministic identity, routing, license posture, and provenance*",
+        "",
+        block.rstrip(),
+    ]
+
+    mesh_lines = [
+        "",
+        "## 04 · MESH — Context Without Identity Collapse",
+        "",
+        "*Mesh orientation · this repository remains its own source while Monolith maps its estate relationships*",
+        "",
+        f"- Estate map: `{MONOLITH}`",
+        "- Typed relationships should be added only when source evidence establishes them.",
+        "",
+        human_notice(),
+        "",
+    ]
+    return "\n".join(recruiter_lines + master_lines + machine_lines + mesh_lines)
 
 
 def plan_readme(
@@ -277,6 +367,7 @@ def plan_readme(
     archived: bool = False,
     fork: bool = False,
 ) -> ReadmePlan:
+    root_paths = tuple(root_paths)
     if current_readme is not None:
         try:
             existing = parse_machine_contract(
@@ -318,14 +409,20 @@ def plan_readme(
         return ReadmePlan(
             repository=repository,
             action=ReadmeAction.CREATE_README,
-            reason="README missing; create minimal source-preserving README",
-            readme=minimal_readme(repository, block),
+            reason=(
+                "README missing; create a truthful four-depth scaffold and machine contract "
+                "without inventing source-specific human claims"
+            ),
+            readme=minimal_readme(repository, contract, block),
             contract=contract,
         )
     return ReadmePlan(
         repository=repository,
         action=ReadmeAction.INSERT_BLOCK,
-        reason="README exists without universal machine contract",
+        reason=(
+            "README exists without universal machine contract; preserve human prose and append "
+            "machine state before any PSYSOC-X restructuring pass"
+        ),
         readme=append_missing_block(current_readme, block),
         contract=contract,
     )
