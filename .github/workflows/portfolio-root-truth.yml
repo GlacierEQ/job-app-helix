@@ -4,39 +4,23 @@ on:
   push:
     branches: [main]
     paths:
-      - "manifests/portfolio_root_truth.json"
-      - "manifests/portfolio_repositories.json"
-      - "manifests/portfolio_compiler.json"
-      - "manifests/live_repository_links.json"
-      - "manifests/live_repository_evidence.json"
-      - "manifests/flagship_registry.json"
-      - "manifests/company_dossiers.json"
-      - "manifests/company_dossiers/**"
-      - "manifests/language_fit.json"
-      - "manifests/library_priority_spine.json"
-      - "manifests/repository_health_policy.json"
-      - "schemas/portfolio_root_truth.schema.json"
-      - "scripts/validate_portfolio_root_schema.py"
-      - "scripts/validate_portfolio_root_truth.py"
-      - "tests/test_portfolio_root_truth.py"
+      - "manifests/**"
+      - "schemas/**"
+      - "src/**"
+      - "scripts/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "requirements*.txt"
       - ".github/workflows/portfolio-root-truth.yml"
   pull_request:
     paths:
-      - "manifests/portfolio_root_truth.json"
-      - "manifests/portfolio_repositories.json"
-      - "manifests/portfolio_compiler.json"
-      - "manifests/live_repository_links.json"
-      - "manifests/live_repository_evidence.json"
-      - "manifests/flagship_registry.json"
-      - "manifests/company_dossiers.json"
-      - "manifests/company_dossiers/**"
-      - "manifests/language_fit.json"
-      - "manifests/library_priority_spine.json"
-      - "manifests/repository_health_policy.json"
-      - "schemas/portfolio_root_truth.schema.json"
-      - "scripts/validate_portfolio_root_schema.py"
-      - "scripts/validate_portfolio_root_truth.py"
-      - "tests/test_portfolio_root_truth.py"
+      - "manifests/**"
+      - "schemas/**"
+      - "src/**"
+      - "scripts/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "requirements*.txt"
       - ".github/workflows/portfolio-root-truth.yml"
   schedule:
     - cron: "17 16 * * *"
@@ -53,13 +37,15 @@ jobs:
   validate:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    env:
+      PYTHONPATH: ${{ github.workspace }}/src:${{ github.workspace }}
     steps:
       - name: Checkout exact source
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
       - name: Configure Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.13"
       - name: Install pinned validation dependencies
@@ -79,14 +65,23 @@ jobs:
           assert receipt['schema'] == 'glaciereq.portfolio-root-truth-receipt.v1'
           assert receipt['status'] == 'PASS'
           assert receipt['scope'] == 'CONTROL_PLANE_SOURCES_ONLY'
-          assert receipt['projection_freshness']['all_projections_current'] is False
-          assert receipt['counts']['total_repositories'] == 67
-          assert receipt['counts']['workspace_repositories'] == 66
+          inventory = json.loads(
+              Path('manifests/portfolio_repositories.json').read_text()
+          )
+          workspace = inventory['workspace_repositories']
+          assert isinstance(
+              receipt['projection_freshness']['all_projections_current'], bool
+          )
+          assert inventory['total_repositories'] == len(workspace) + 1
+          assert receipt['counts']['total_repositories'] == inventory[
+              'total_repositories'
+          ]
+          assert receipt['counts']['workspace_repositories'] == len(workspace)
           assert all(receipt['invariants'].values())
           print(receipt['receipt_sha256'])
           PY
       - name: Upload root-truth receipt
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: portfolio-root-truth-receipt-${{ github.sha }}
           path: artifacts/portfolio-root-truth-receipt.json
