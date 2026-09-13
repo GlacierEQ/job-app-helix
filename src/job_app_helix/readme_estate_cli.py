@@ -108,7 +108,6 @@ class GitHubApi:
         return repositories
 
     def list_authenticated_owned_repositories(self, owner: str) -> list[dict[str, Any]]:
-        """Best-effort private discovery for user tokens; installation tokens may reject it."""
         repositories: list[dict[str, Any]] = []
         page = 1
         try:
@@ -125,14 +124,13 @@ class GitHubApi:
                 rows = self.get(f"{API}/user/repos?{query}")
                 if not isinstance(rows, list):
                     return repositories
-                owned = [
+                repositories.extend(
                     row
                     for row in rows
                     if isinstance(row, dict)
                     and isinstance(row.get("owner"), dict)
                     and row["owner"].get("login") == owner
-                ]
-                repositories.extend(owned)
+                )
                 if len(rows) < 100:
                     break
                 page += 1
@@ -141,7 +139,6 @@ class GitHubApi:
         return repositories
 
     def list_installation_repositories(self, owner: str) -> list[dict[str, Any]]:
-        """Best-effort private discovery for GitHub App installation tokens."""
         repositories: list[dict[str, Any]] = []
         page = 1
         try:
@@ -153,14 +150,13 @@ class GitHubApi:
                 rows = payload.get("repositories")
                 if not isinstance(rows, list):
                     return repositories
-                owned = [
+                repositories.extend(
                     row
                     for row in rows
                     if isinstance(row, dict)
                     and isinstance(row.get("owner"), dict)
                     and row["owner"].get("login") == owner
-                ]
-                repositories.extend(owned)
+                )
                 if len(rows) < 100:
                     break
                 page += 1
@@ -172,14 +168,6 @@ class GitHubApi:
         encoded_path = "/".join(urllib.parse.quote(part, safe="") for part in path.split("/"))
         suffix = f"/contents/{encoded_path}" if encoded_path else "/contents"
         return self.get(f"{API}/repos/{repository}{suffix}")
-
-    def optional_contents(self, repository: str, path: str) -> Any | None:
-        try:
-            return self.contents(repository, path)
-        except GitHubApiError as exc:
-            if "-> 404:" in str(exc):
-                return None
-            raise
 
     def decode_content(self, repository: str, record: dict[str, Any]) -> str:
         encoded = record.get("content")
@@ -244,26 +232,31 @@ def _qualified(owner: str, repository: str) -> str:
     return repository if "/" in repository else f"{owner}/{repository}"
 
 
-def _collect_string_leaves(value: Any) -> Iterable[str]:
-    if isinstance(value, str):
-        yield value
-    elif isinstance(value, list):
-        for item in value:
-            yield from _collect_string_leaves(item)
-    elif isinstance(value, dict):
-        for item in value.values():
-            yield from _collect_string_leaves(item)
-
-
 def extract_legacy_repository_ids(payload: Mapping[str, Any], owner: str) -> set[str]:
+    """Read only repository arrays from functional_heads.*.subcategories.*.domains.*."""
     heads = payload.get("functional_heads")
     if not isinstance(heads, dict):
         return set()
-    return {
-        _qualified(owner, value)
-        for value in _collect_string_leaves(heads)
-        if value and not value.startswith(("http://", "https://"))
-    }
+    repositories: set[str] = set()
+    for head in heads.values():
+        if not isinstance(head, dict):
+            continue
+        subcategories = head.get("subcategories")
+        if not isinstance(subcategories, dict):
+            continue
+        for subcategory in subcategories.values():
+            if not isinstance(subcategory, dict):
+                continue
+            domains = subcategory.get("domains")
+            if not isinstance(domains, dict):
+                continue
+            for values in domains.values():
+                if not isinstance(values, list):
+                    continue
+                for value in values:
+                    if isinstance(value, str) and value:
+                        repositories.add(_qualified(owner, value))
+    return repositories
 
 
 def extract_library_repository_ids(payload: Mapping[str, Any], owner: str) -> set[str]:
@@ -287,18 +280,18 @@ def load_monolith_estate(
     owner: str,
     workers: int,
 ) -> tuple[dict[str, ClassificationEvidence], set[str]]:
-    paths = ["catalog/RECLASSIFICATION_LEDGER.jsonl"]
+    ledger_paths = ["catalog/RECLASSIFICATION_LEDGER.jsonl"]
     directory = api.contents(monolith, "catalog/reclassification-ledger")
     if isinstance(directory, list):
-        paths.extend(
+        ledger_paths.extend(
             str(item["path"])
             for item in directory
             if isinstance(item, dict)
             and item.get("type") == "file"
             and str(item.get("name", "")).endswith(".jsonl")
         )
-    paths = sorted(set(paths), key=str.casefold)
-    source_paths = paths + ["catalog/HIERARCHICAL_MESH_MAP.json", "catalog/library.json"]
+    ledger_paths = sorted(set(ledger_paths), key=str.casefold)
+    source_paths = ledger_paths + ["catalog/HIERARCHICAL_MESH_MAP.json", "catalog/library.json"]
 
     def fetch(path: str) -> tuple[str, str]:
         record = api.contents(monolith, path)
@@ -315,7 +308,7 @@ def load_monolith_estate(
 
     classifications: dict[str, ClassificationEvidence] = {}
     repositories: set[str] = set()
-    for path in paths:
+    for path in ledger_paths:
         for row in _load_jsonl(texts[path]):
             repository = row.get("repository")
             if not isinstance(repository, str) or not repository:
@@ -471,17 +464,21 @@ def main(argv: Sequence[str] | None = None) -> int:
     universe = set(monolith_repositories) | set(provider_repositories)
     if args.repo:
         requested = {_qualified(args.owner, value) for value in args.repo}
-        universe &= requested
-        missing = sorted(requested - universe)
-        if missing:
-            print("requested repositories not found in estate/provider universe: " + ", ".join(missing), file=sys.stderr)
+        unknown = requested - universe
+        if unknown:
+            print(
+                "requested repositories not found in estate/provider universe: "
+                + ", ".join(sorted(unknown)),
+                file=sys.stderr,
+            )
             return 2
+        universe &= requested
     ordered_universe = sorted(universe, key=str.casefold)
     if args.limit is not None:
         ordered_universe = ordered_universe[: max(0, args.limit)]
 
     metadata: dict[str, dict[str, Any]] = dict(provider_repositories)
-    metadata_errors: list[dict[str, Any]] = []
+    errors: list[dict[str, Any]] = []
     missing_metadata = [repository for repository in ordered_universe if repository not in metadata]
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as executor:
         futures = {executor.submit(api.repository, repository): repository for repository in missing_metadata}
@@ -489,8 +486,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             repository = futures[future]
             try:
                 metadata[repository] = future.result()
-            except Exception as exc:  # noqa: BLE001
-                metadata_errors.append(
+            except Exception as exc:  # noqa: BLE001 - preserve inaccessible source state
+                errors.append(
                     {
                         "repository": repository,
                         "action": "METADATA_UNAVAILABLE",
@@ -502,7 +499,6 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     inspectable = [metadata[name] for name in ordered_universe if name in metadata]
     inspections: list[tuple[dict[str, Any], str | None, str | None, str, list[str]]] = []
-    errors: list[dict[str, Any]] = list(metadata_errors)
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as executor:
         futures = {executor.submit(_inspect_repository, api, repo): repo for repo in inspectable}
         for future in as_completed(futures):
