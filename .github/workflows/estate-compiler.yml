@@ -135,23 +135,24 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          printf '%s\n' '{"namespaces":[],"relationships":[]}' \\
+          printf '%s
+' '{"namespaces":[],"relationships":[]}' \
             > /tmp/estate-facts.json
 
       - name: Compile reference estate bundle
         run: |
-          python scripts/compile_estate_graph.py \\
-            --census /tmp/estate-census.json \\
-            --estate-facts /tmp/estate-facts.json \\
+          python scripts/compile_estate_graph.py \
+            --census /tmp/estate-census.json \
+            --estate-facts /tmp/estate-facts.json \
             --output-dir /tmp/estate-compiler
 
       - name: Project role fit and company intelligence
         run: |
-          python scripts/project_estate_intelligence.py \\
-            --bundle /tmp/estate-compiler/estate-compiler-bundle.json \\
-            --census /tmp/estate-census.json \\
-            --estate-facts /tmp/estate-facts.json \\
-            --output /tmp/estate-compiler/estate-intelligence-bundle.json \\
+          python scripts/project_estate_intelligence.py \
+            --bundle /tmp/estate-compiler/estate-compiler-bundle.json \
+            --census /tmp/estate-census.json \
+            --estate-facts /tmp/estate-facts.json \
+            --output /tmp/estate-compiler/estate-intelligence-bundle.json \
             --public-output /tmp/estate-compiler/public-safe-company-projection-v2.json
 
       - name: Verify public projection with canonical recruiter validator
@@ -229,7 +230,7 @@ jobs:
               "reference_accomplishments",
           }
 
-          def walk(value, path="$" ):
+          def walk(value, path="$"):
               if isinstance(value, dict):
                   for key, child in value.items():
                       if key in forbidden:
@@ -251,7 +252,7 @@ jobs:
           stage_dir="${RUNNER_TEMP}/estate-compiler-public"
           rm -rf "${stage_dir}"
           mkdir -p "${stage_dir}"
-          cp /tmp/estate-compiler/public-safe-company-projection-v2.json \\
+          cp /tmp/estate-compiler/public-safe-company-projection-v2.json \
             "${stage_dir}/public-safe-company-projection-v2.json"
 
           # Stage from an isolated temporary directory. The repository contains
@@ -269,10 +270,11 @@ jobs:
           done
 
           mapfile -t staged_files < <(
-            find "${stage_dir}" -type f -printf '%P\n' | sort
+            find "${stage_dir}" -type f -printf '%P
+' | sort
           )
           test "${#staged_files[@]}" -eq 1
-          test "${staged_files[0]}" = \\
+          test "${staged_files[0]}" = \
             "public-safe-company-projection-v2.json"
           echo "directory=${stage_dir}" >> "${GITHUB_OUTPUT}"
 
