@@ -1,27 +1,44 @@
 {
   "schema": "glaciereq.license-policy.v1",
-  "policy_id": "glaciereq-proprietary-v1",
-  "display_name": "GlacierEQ Proprietary License v1.0",
-  "spdx_expression": "LicenseRef-GlacierEQ-Proprietary-1.0",
+  "policy_id": "glaciereq-proprietary-copyright-v1.1",
+  "display_name": "GlacierEQ Proprietary Copyright License and Enforcement Notice v1.1",
+  "spdx_expression": "LicenseRef-GlacierEQ-Proprietary-Copyright-1.1",
   "copyright_holder": "Casey Del Carpio Barton / GlacierEQ",
   "default_posture": "ALL_RIGHTS_RESERVED",
-  "rule": "Protect GlacierEQ-owned work. No rights are granted except by prior express written permission from the rights holder.",
-  "reserved_uses": [
-    "copy",
-    "modify",
-    "reproduce",
-    "redistribute",
-    "sublicense",
-    "sell",
-    "publish",
-    "deploy",
-    "host",
-    "commercialize",
-    "train or fine-tune models",
-    "include in datasets",
-    "create derivative works",
-    "otherwise use protected GlacierEQ-owned materials"
+  "rule": "Protect GlacierEQ-owned copyrightable expression by reserving all exclusive rights under Title 17 except rights independently required by law or already granted through controlling platform terms.",
+  "federal_authority": {
+    "copyrightable_subject_matter": "17 U.S.C. § 102",
+    "exclusive_rights": "17 U.S.C. § 106",
+    "infringement": "17 U.S.C. § 501",
+    "injunctions": "17 U.S.C. § 502",
+    "impoundment": "17 U.S.C. § 503",
+    "damages_and_profits": "17 U.S.C. § 504",
+    "fees_and_costs": "17 U.S.C. § 505",
+    "registration_prerequisite": "17 U.S.C. § 411",
+    "timely_registration_remedies": "17 U.S.C. § 412",
+    "notice_evidentiary_weight": "17 U.S.C. § 401(d)",
+    "online_notice_and_takedown": "17 U.S.C. § 512"
+  },
+  "reserved_exclusive_rights": [
+    "reproduction",
+    "preparation of derivative works",
+    "distribution of copies",
+    "public display where applicable",
+    "public performance where applicable"
   ],
-  "readme_notice": "Copyright (c) 2026 Casey Del Carpio Barton / GlacierEQ. All rights reserved. See LICENSE.",
-  "boundary": "Do not claim rights GlacierEQ does not own or revoke rights already validly granted for earlier versions."
+  "enforcement": {
+    "actual_damages_and_infringer_profits": true,
+    "injunctive_relief": true,
+    "impoundment": true,
+    "statutory_damages_when_legally_available": "$750-$30,000 per infringed work; up to $150,000 for willful infringement when proven under 17 U.S.C. § 504(c)",
+    "attorney_fees_when_legally_available": "17 U.S.C. § 505, subject to 17 U.S.C. § 412 and judicial discretion",
+    "dmca_notice_and_takedown": true
+  },
+  "registration": {
+    "required_for_us_civil_infringement_action_subject_to_statutory_exceptions": "17 U.S.C. § 411",
+    "timely_registration_material_to_statutory_damages_and_fees": "17 U.S.C. § 412"
+  },
+  "github_platform_carveout": "Public GitHub repositories are subject to the limited rights granted under GitHub's controlling Terms of Service for service operation, viewing, and platform-native forking. No additional GlacierEQ license is granted by repository visibility.",
+  "readme_notice": "Copyright © 2026 Casey Del Carpio Barton / GlacierEQ. All rights reserved under U.S. copyright law. See LICENSE.",
+  "boundary": "This policy protects only rights actually owned by GlacierEQ and does not override statutory exceptions, applicable defenses, pre-existing third-party rights, or prior valid grants."
 }
