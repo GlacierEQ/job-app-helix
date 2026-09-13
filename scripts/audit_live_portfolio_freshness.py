@@ -68,8 +68,7 @@ def reference_bytes(value: Any) -> bytes:
             separators=(",", ":"),
             ensure_ascii=False,
         )
-        + "
-"
+        + chr(10)
     ).encode("utf-8")
 
 
