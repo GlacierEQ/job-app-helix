@@ -4,25 +4,23 @@ on:
   push:
     branches: [main]
     paths:
-      - "manifests/portfolio_repositories.json"
-      - "manifests/live_repository_evidence.json"
-      - "manifests/flagship_registry.json"
-      - "manifests/flagship_external_repositories.json"
-      - "manifests/company_dossiers.json"
-      - "manifests/company_dossiers/**"
-      - "scripts/audit_live_portfolio_freshness.py"
-      - "tests/test_live_portfolio_freshness.py"
+      - "manifests/**"
+      - "schemas/**"
+      - "src/**"
+      - "scripts/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "requirements*.txt"
       - ".github/workflows/portfolio-live-freshness.yml"
   pull_request:
     paths:
-      - "manifests/portfolio_repositories.json"
-      - "manifests/live_repository_evidence.json"
-      - "manifests/flagship_registry.json"
-      - "manifests/flagship_external_repositories.json"
-      - "manifests/company_dossiers.json"
-      - "manifests/company_dossiers/**"
-      - "scripts/audit_live_portfolio_freshness.py"
-      - "tests/test_live_portfolio_freshness.py"
+      - "manifests/**"
+      - "schemas/**"
+      - "src/**"
+      - "scripts/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "requirements*.txt"
       - ".github/workflows/portfolio-live-freshness.yml"
   schedule:
     - cron: "43 16 * * *"
@@ -39,6 +37,8 @@ jobs:
   verify-auditor:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    env:
+      PYTHONPATH: ${{ github.workspace }}/src:${{ github.workspace }}
     steps:
       - name: Checkout exact source
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -59,6 +59,8 @@ jobs:
     needs: verify-auditor
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    env:
+      PYTHONPATH: ${{ github.workspace }}/src:${{ github.workspace }}
     steps:
       - name: Checkout exact source
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -70,10 +72,9 @@ jobs:
           python-version: "3.13"
       - name: Audit live portfolio metadata and evidence freshness
         id: live-audit
-        continue-on-error: ${{ github.event_name == 'pull_request' }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          PORTFOLIO_AUDIT_GITHUB_TOKEN: ${{ secrets.PORTFOLIO_AUDIT_GITHUB_TOKEN }}
+          PORTFOLIO_AUDIT_GITHUB_TOKEN: ${{ github.event_name != 'pull_request' && secrets.PORTFOLIO_AUDIT_GITHUB_TOKEN || '' }}
         run: |
           python scripts/audit_live_portfolio_freshness.py \
             --write-receipt artifacts/portfolio-live-freshness.json
@@ -91,7 +92,12 @@ jobs:
               'glaciereq.portfolio-live-freshness-receipt.v1'
           )
           assert receipt['mutation'] == 'NONE'
-          assert receipt['portfolio']['flagships'] > 0
+          flagship_rows = receipt.get('flagships')
+          assert isinstance(flagship_rows, list)
+          assert receipt['portfolio']['source_admitted_systems'] == len(
+              flagship_rows
+          )
+          assert receipt['portfolio']['source_admitted_systems'] > 0
           assert 'findings' in receipt
           assert receipt['receipt_sha256']
           print(json.dumps(receipt['freshness'], indent=2, sort_keys=True))
