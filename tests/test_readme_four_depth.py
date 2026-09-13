@@ -47,16 +47,20 @@ def test_visible_titles_are_not_generic_audience_headers() -> None:
         }
 
 
-def test_machine_layer_carries_psysoc_and_license_contract() -> None:
+def test_machine_layer_carries_psysoc_and_statute_backed_license_contract() -> None:
     mesh = load_mesh(MANIFEST)
     block = render_four_depth_block(mesh, "GlacierEQ/job-app-helix")
     assert "schema: glaciereq.readme.four-depth/v1" in block
     assert "capability: stone-psysoc-x" in block
     assert "repository: GlacierEQ/AKOS" in block
     assert "presentation_may_change_truth_may_not" in block
-    assert "GlacierEQ Proprietary License v1.0" in block
-    assert "status: ALL_RIGHTS_RESERVED" in block
-    assert "All rights reserved" in block
+    assert "GlacierEQ Proprietary Copyright License and Enforcement Notice v1.1" in block
+    assert "status: ALL_RIGHTS_RESERVED_TITLE_17" in block
+    assert "17 U.S.C. § 106" in block
+    assert "17 U.S.C. §§ 501-505" in block
+    assert "17 U.S.C. § 401(d)" in block
+    assert "All rights reserved under U.S. copyright law" in block
+    assert "17 U.S.C. § 501" in block
 
 
 def test_recruiter_is_compact_while_master_keeps_deeper_evidence() -> None:
