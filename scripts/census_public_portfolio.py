@@ -254,8 +254,7 @@ def _atomic_write(path: Path, payload: dict[str, Any]) -> None:
     ) as stream:
         temporary = Path(stream.name)
         json.dump(payload, stream, indent=2, sort_keys=True)
-        stream.write("
-")
+        stream.write(chr(10))
         stream.flush()
         os.fsync(stream.fileno())
     os.replace(temporary, path)
