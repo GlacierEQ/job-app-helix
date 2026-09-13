@@ -54,8 +54,9 @@ def test_machine_layer_carries_psysoc_and_license_contract() -> None:
     assert "capability: stone-psysoc-x" in block
     assert "repository: GlacierEQ/AKOS" in block
     assert "presentation_may_change_truth_may_not" in block
-    assert "GlacierEQ Proprietary Evaluation and Partnership License v1.0" in block
-    assert "Open door, not open source" in block
+    assert "GlacierEQ Proprietary License v1.0" in block
+    assert "status: ALL_RIGHTS_RESERVED" in block
+    assert "All rights reserved" in block
 
 
 def test_recruiter_is_compact_while_master_keeps_deeper_evidence() -> None:
