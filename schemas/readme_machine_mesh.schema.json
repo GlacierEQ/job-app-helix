@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.dev/schemas/readme_machine_mesh.schema.json",
+  "title": "GlacierEQ README Machine Mesh Contract",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema", "repository", "machine"],
+  "properties": {
+    "schema": {"const": "glacier-eq.readme.machine-mesh/v1"},
+    "repository": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "url"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+        "url": {"type": "string", "format": "uri"},
+        "readme_contract": {"type": "string", "minLength": 1},
+        "default_branch": {"type": "string", "minLength": 1}
+      }
+    },
+    "machine": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["repository_kind"],
+      "properties": {
+        "repository_kind": {"type": "string", "minLength": 1},
+        "public_api": {"type": ["string", "null"]},
+        "protocol_files": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "entrypoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["kind", "path", "policy"],
+            "properties": {
+              "kind": {"type": "string", "minLength": 1},
+              "path": {"type": "string", "minLength": 1},
+              "policy": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "mesh": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "primary_home": {"type": ["string", "null"]},
+        "branch": {"type": ["string", "null"]},
+        "subcategory": {"type": ["string", "null"]},
+        "routing": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["relation", "target"],
+            "properties": {
+              "relation": {"type": "string", "minLength": 1},
+              "target": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+              "url": {"type": "string", "format": "uri"}
+            }
+          }
+        },
+        "boundaries": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "generated_by": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+        "generator_contract": {"type": "string", "minLength": 1},
+        "classification_source": {"type": ["string", "null"]},
+        "classification_evidence_path": {"type": ["string", "null"]},
+        "classification_evidence_blob_sha": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "contract_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
