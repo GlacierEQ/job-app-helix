@@ -1,0 +1,11 @@
+schema_version: 1
+id: job_app_helix_stack
+purpose: Job application helix orchestration
+objective:
+  desired_reality: job_app_helix fully validated and APEX‑verified
+layers:
+  execution: heavy
+  verification: epistemic
+mission_impact: 5
+verification:
+  acceptance: true
