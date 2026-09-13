@@ -51,7 +51,7 @@ def build_parser() -> argparse.ArgumentParser:
     four.add_argument("--license-path", default="LICENSE")
     four.add_argument(
         "--license-name",
-        default="GlacierEQ Proprietary Evaluation and Partnership License v1.0",
+        default="GlacierEQ Proprietary License v1.0",
     )
 
     render_all = subparsers.add_parser(
