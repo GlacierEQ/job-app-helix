@@ -31,13 +31,7 @@ def _capability_text(node: readme_mesh_pb2.RepositoryNode) -> str:
 
 
 def choose_titles(node: readme_mesh_pb2.RepositoryNode) -> LayerTitles:
-    """Choose informative, project-native headings without altering source facts.
-
-    This is intentionally a bounded title layer, not a claim generator. It uses
-    repository identity and declared capability vocabulary only. Human-authored
-    headings may supersede these defaults when they are stronger and equally
-    evidence-bound.
-    """
+    """Choose informative, project-native headings without altering source facts."""
 
     name = node.display_name.strip() or node.repository.rsplit("/", 1)[-1]
     caps = _capability_text(node)
@@ -79,11 +73,7 @@ def choose_titles(node: readme_mesh_pb2.RepositoryNode) -> LayerTitles:
 
 
 def choose_weight(node: readme_mesh_pb2.RepositoryNode) -> PresentationWeight:
-    """Approximate PSYSOC-X progressive disclosure from evidence density.
-
-    The full PSYSOC-X engine remains canonical in GlacierEQ/AKOS. This renderer
-    only chooses how much already-declared material to expose at each depth.
-    """
+    """Approximate PSYSOC-X progressive disclosure from evidence density."""
 
     evidence_count = max((len(section.evidence) for section in node.sections), default=0)
     capability_count = len(node.capabilities)
@@ -132,7 +122,7 @@ def render_four_depth_block(
     repository: str,
     *,
     license_path: str = "LICENSE",
-    license_name: str = "GlacierEQ Proprietary License v1.0",
+    license_name: str = "GlacierEQ Proprietary Copyright License and Enforcement Notice v1.1",
 ) -> str:
     """Render Recruiter -> Master -> Machine -> Mesh from one validated graph."""
 
@@ -212,7 +202,13 @@ def render_four_depth_block(
             "license:",
             f"  name: {license_name}",
             f"  path: {license_path}",
-            "  status: ALL_RIGHTS_RESERVED",
+            "  status: ALL_RIGHTS_RESERVED_TITLE_17",
+            "  federal_basis:",
+            "    - 17 U.S.C. § 102",
+            "    - 17 U.S.C. § 106",
+            "    - 17 U.S.C. §§ 501-505",
+            "    - 17 U.S.C. §§ 411-412",
+            "    - 17 U.S.C. § 401(d)",
             "presentation_authority:",
             "  capability: stone-psysoc-x",
             "  repository: GlacierEQ/AKOS",
@@ -257,8 +253,10 @@ def render_four_depth_block(
     lines.extend(
         [
             "",
-            "Copyright (c) 2026 Casey Del Carpio Barton / GlacierEQ. "
-            "**All rights reserved.** See "
+            "Copyright © 2026 Casey Del Carpio Barton / GlacierEQ. "
+            "**All rights reserved under U.S. copyright law.** Unauthorized exercise "
+            "of GlacierEQ's exclusive rights may constitute infringement under "
+            "17 U.S.C. § 501. See "
             f"[`{license_path}`]({license_path}).",
             "",
             END_MARKER,
