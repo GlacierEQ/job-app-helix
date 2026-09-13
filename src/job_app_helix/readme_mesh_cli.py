@@ -5,6 +5,7 @@ import json
 from collections.abc import Sequence
 from pathlib import Path
 
+from .readme_four_depth import render_four_depth_block
 from .readme_mesh import (
     apply_block,
     render_all_blocks,
@@ -19,7 +20,10 @@ DEFAULT_MANIFEST = Path("manifests/readme_mesh.json")
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="job-app-helix-readme",
-        description="Validate, serialize, and render the evidence-bound README intelligence mesh.",
+        description=(
+            "Validate, serialize, and render the evidence-bound README intelligence mesh "
+            "and the PSYSOC-X four-depth human/machine projection."
+        ),
     )
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -31,17 +35,51 @@ def build_parser() -> argparse.ArgumentParser:
     )
     build.add_argument("--output-dir", type=Path, default=Path("artifacts/readme-mesh"))
 
-    render = subparsers.add_parser("render", help="Render one repository's generated README block.")
+    render = subparsers.add_parser(
+        "render", help="Render one repository's legacy compatibility README block."
+    )
     render.add_argument("repository")
     render.add_argument("--readme", type=Path)
     render.add_argument("--output", type=Path)
 
-    render_all = subparsers.add_parser("render-all", help="Render blocks for every repository.")
-    render_all.add_argument("--output-dir", type=Path, default=Path("artifacts/readme-mesh/blocks"))
+    four = subparsers.add_parser(
+        "render-four-depth",
+        help="Render the Recruiter -> Master -> Machine -> Mesh PSYSOC-X projection.",
+    )
+    four.add_argument("repository")
+    four.add_argument("--output", type=Path)
+    four.add_argument("--license-path", default="LICENSE")
+    four.add_argument(
+        "--license-name",
+        default="GlacierEQ Proprietary Evaluation and Partnership License v1.0",
+    )
+
+    render_all = subparsers.add_parser(
+        "render-all", help="Render legacy compatibility blocks for every repository."
+    )
+    render_all.add_argument(
+        "--output-dir", type=Path, default=Path("artifacts/readme-mesh/blocks")
+    )
+
+    four_all = subparsers.add_parser(
+        "render-four-depth-all",
+        help="Render four-depth PSYSOC-X blocks for every repository in the current mesh.",
+    )
+    four_all.add_argument(
+        "--output-dir", type=Path, default=Path("artifacts/readme-four-depth/blocks")
+    )
 
     inventory = subparsers.add_parser("inventory", help="Emit a compact repository/edge inventory.")
     inventory.add_argument("--json", action="store_true")
     return parser
+
+
+def _emit(rendered: str, output: Path | None) -> None:
+    if output:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(rendered, encoding="utf-8")
+    else:
+        print(rendered)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -68,11 +106,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         rendered = block
         if args.readme:
             rendered = apply_block(args.readme.read_text(encoding="utf-8"), block)
-        if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered, encoding="utf-8")
-        else:
-            print(rendered)
+        _emit(rendered, args.output)
+        return 0
+
+    if args.command == "render-four-depth":
+        rendered = render_four_depth_block(
+            mesh,
+            args.repository,
+            license_path=args.license_path,
+            license_name=args.license_name,
+        )
+        _emit(rendered, args.output)
         return 0
 
     if args.command == "render-all":
@@ -80,7 +124,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         for repository, block in render_all_blocks(mesh):
             filename = repository.replace("/", "__") + ".md"
             (args.output_dir / filename).write_text(block + "\n", encoding="utf-8")
-        print(f"Rendered {len(mesh.repositories)} README blocks to {args.output_dir}")
+        print(f"Rendered {len(mesh.repositories)} legacy README blocks to {args.output_dir}")
+        return 0
+
+    if args.command == "render-four-depth-all":
+        args.output_dir.mkdir(parents=True, exist_ok=True)
+        for node in mesh.repositories:
+            filename = node.repository.replace("/", "__") + ".md"
+            block = render_four_depth_block(mesh, node.repository)
+            (args.output_dir / filename).write_text(block, encoding="utf-8")
+        print(
+            f"Rendered {len(mesh.repositories)} four-depth README blocks to {args.output_dir}"
+        )
         return 0
 
     inventory = {
