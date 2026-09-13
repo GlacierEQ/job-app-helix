@@ -23,6 +23,7 @@ classifiers = [
 dependencies = [
   "jsonschema>=4.23,<5",
   "protobuf>=6.31,<8",
+  "PyYAML>=6.0,<7",
 ]
 
 [project.optional-dependencies]
@@ -36,6 +37,7 @@ dev = [
 [project.scripts]
 job-app-helix = "job_app_helix.cli:main"
 job-app-helix-readme = "job_app_helix.readme_mesh_cli:main"
+job-app-helix-readme-estate = "job_app_helix.readme_estate_cli:main"
 job-app-helix-portfolio = "job_app_helix.portfolio_cli:main"
 job-app-helix-productize = "job_app_helix.productization_cli:main"
 job-app-helix-library = "job_app_helix.library_cli:main"
