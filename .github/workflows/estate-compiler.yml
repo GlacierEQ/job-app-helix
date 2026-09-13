@@ -135,8 +135,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          printf '%s
-' '{"namespaces":[],"relationships":[]}' \
+          printf '%s' '{"namespaces":[],"relationships":[]}' \
             > /tmp/estate-facts.json
 
       - name: Compile reference estate bundle
@@ -230,7 +229,7 @@ jobs:
               "reference_accomplishments",
           }
 
-          def walk(value, path="$"):
+          def walk(value, path="$" ):
               if isinstance(value, dict):
                   for key, child in value.items():
                       if key in forbidden:
@@ -270,8 +269,8 @@ jobs:
           done
 
           mapfile -t staged_files < <(
-            find "${stage_dir}" -type f -printf '%P
-' | sort
+            find "${stage_dir}" -type f -print \
+              | sed "s#^${stage_dir}/##" | sort
           )
           test "${#staged_files[@]}" -eq 1
           test "${staged_files[0]}" = \
