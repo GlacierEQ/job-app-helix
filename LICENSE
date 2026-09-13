@@ -1,29 +1,129 @@
-GLACIEREQ PROPRIETARY LICENSE v1.0
+GLACIEREQ PROPRIETARY COPYRIGHT LICENSE AND ENFORCEMENT NOTICE v1.1
 
-Copyright (c) 2026 Casey Del Carpio Barton / GlacierEQ.
+Copyright © 2026 Casey Del Carpio Barton / GlacierEQ.
 All rights reserved.
 
-The software, source code, documentation, architecture, schemas, workflows,
-designs, data, examples, generated artifacts, and other original materials in
-this repository that are owned by Casey Del Carpio Barton / GlacierEQ
-(collectively, the "Materials") are proprietary.
+1. COPYRIGHT OWNERSHIP AND STATUTORY BASIS
 
-No license or permission is granted to copy, modify, reproduce, redistribute,
-sublicense, sell, publish, deploy, host, commercialize, train or fine-tune
-models on, include in datasets, create derivative works from, or otherwise use
-the Materials except with prior express written permission from the rights
-holder.
+To the extent owned by Casey Del Carpio Barton / GlacierEQ, the original source
+code, object code, documentation, architecture documentation, schemas, workflows,
+written specifications, graphics, generated artifacts, and other original works
+of authorship contained in this repository (collectively, the "Protected
+Materials") are protected by United States copyright law, including Title 17 of
+the United States Code.
 
-Public availability, repository access, source visibility, discussion, or
-receipt of a copy does not grant or imply any additional rights.
+Copyright protection attaches to original works of authorship fixed in a tangible
+medium of expression under 17 U.S.C. § 102, subject to the statutory limitations
+and exclusions in Title 17.
 
-Third-party materials remain subject to their own rights and licenses. This
-license does not claim rights that GlacierEQ does not own and does not revoke
-rights validly granted under earlier licenses for earlier versions.
+Under 17 U.S.C. § 106, the copyright owner holds the exclusive rights, subject to
+applicable statutory limitations and exceptions, to reproduce copyrighted works,
+prepare derivative works, distribute copies, and, where applicable, publicly
+display or perform copyrighted works.
 
-THE MATERIALS ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM
-EXTENT PERMITTED BY LAW, THE RIGHTS HOLDER WILL NOT BE LIABLE FOR CLAIMS OR
-DAMAGES ARISING FROM ACCESS TO OR USE OF THE MATERIALS.
+2. NO COPYRIGHT LICENSE GRANTED
 
-Any permission to use GlacierEQ-owned Materials must be granted expressly in
-writing by Casey Del Carpio Barton / GlacierEQ.
+Except for rights that must be granted to GitHub and GitHub users solely through
+GitHub's controlling Terms of Service for operation of the GitHub service,
+platform-native viewing, and platform-native forking, no copyright license is
+granted by this repository.
+
+Without prior express written permission from Casey Del Carpio Barton / GlacierEQ,
+you may not exercise any exclusive right reserved to the copyright owner under
+17 U.S.C. § 106 with respect to the Protected Materials, except to the extent a
+specific act is independently authorized by applicable law.
+
+This includes, where the act implicates one or more exclusive rights under
+17 U.S.C. § 106, unauthorized reproduction, creation of derivative works,
+redistribution, republication, incorporation into another codebase or dataset,
+hosting or deployment of copied Protected Materials, commercial distribution,
+or copying Protected Materials for model-training or fine-tuning purposes.
+
+Public visibility, repository access, discussion, or receipt of a copy does not
+create any additional license or permission from GlacierEQ.
+
+3. INFRINGEMENT AND CIVIL ENFORCEMENT
+
+A person who violates an exclusive right of the copyright owner is an infringer
+under 17 U.S.C. § 501, subject to all applicable defenses, limitations, and
+exceptions in Title 17.
+
+GlacierEQ expressly reserves every remedy available under law, including, where
+applicable:
+
+- temporary and permanent injunctive relief under 17 U.S.C. § 502;
+- impoundment and disposition of infringing articles under 17 U.S.C. § 503;
+- actual damages and infringer's profits under 17 U.S.C. § 504(a)-(b);
+- statutory damages under 17 U.S.C. § 504(c) when legally available, including
+  enhanced statutory damages for willful infringement where proven; and
+- costs and reasonable attorney's fees under 17 U.S.C. § 505 when legally
+  available and awarded by the court.
+
+Nothing in this notice guarantees any particular remedy or outcome. Availability
+of statutory damages and attorney's fees depends on the registration and timing
+requirements of 17 U.S.C. § 412 and other applicable law.
+
+4. REGISTRATION AND ENFORCEMENT PRESERVATION
+
+For United States works, 17 U.S.C. § 411 governs registration prerequisites for
+civil infringement actions. GlacierEQ reserves the right to register protected
+works with the United States Copyright Office and to supplement, update, or
+record ownership information as appropriate.
+
+Where timely registration requirements are satisfied, 17 U.S.C. §§ 412, 504,
+and 505 may permit statutory damages and attorney's fees. Under 17 U.S.C.
+§ 504(c), statutory damages may range from $750 to $30,000 per infringed work as
+the court considers just, and may be increased up to $150,000 per work where
+willful infringement is proven, subject to the statute and the facts of the case.
+
+5. COPYRIGHT NOTICE AND KNOWLEDGE
+
+This copyright notice is intended to provide clear notice of GlacierEQ's claim of
+copyright. Under 17 U.S.C. § 401(d), where a compliant copyright notice appears
+on a published copy to which an infringement defendant had access, an innocent-
+infringement argument receives no weight in mitigation of actual or statutory
+damages except as otherwise provided by law.
+
+Removal, concealment, or alteration of this notice does not grant permission to
+use the Protected Materials and does not waive GlacierEQ's copyright.
+
+6. ONLINE INFRINGEMENT
+
+GlacierEQ reserves the right to pursue lawful notice-and-takedown procedures for
+unauthorized online copies, including procedures available under 17 U.S.C. § 512,
+and to pursue other available remedies directly against infringers.
+
+7. THIRD-PARTY MATERIALS AND PRIOR GRANTS
+
+This notice governs only rights actually owned by Casey Del Carpio Barton /
+GlacierEQ. Third-party components remain subject to their controlling rights and
+licenses. Nothing here claims ownership of third-party material.
+
+This notice also does not retroactively revoke rights that were validly and
+irrevocably granted under an earlier license for an earlier distributed version.
+
+8. IDEAS, METHODS, AND OTHER INTELLECTUAL PROPERTY
+
+Copyright protects copyrightable expression; it does not by itself grant
+exclusive rights in ideas, procedures, processes, systems, methods of operation,
+concepts, principles, or discoveries excluded by 17 U.S.C. § 102(b). Nothing in
+this notice waives any separate rights that may exist under patent, trademark,
+contract, trade-secret, unfair-competition, or other applicable law.
+
+9. NO WAIVER
+
+Failure to enforce any right immediately does not constitute a waiver. No waiver,
+license, assignment, or permission concerning GlacierEQ-owned Protected Materials
+is effective unless expressly granted by the rights holder in a legally effective
+form.
+
+10. NO WARRANTY
+
+THE PROTECTED MATERIALS ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. TO
+THE MAXIMUM EXTENT PERMITTED BY LAW, THE RIGHTS HOLDER DISCLAIMS LIABILITY FOR
+CLAIMS OR DAMAGES ARISING FROM ACCESS TO OR USE OF THE MATERIALS.
+
+11. RIGHTS HOLDER
+
+Casey Del Carpio Barton / GlacierEQ
+Copyright © 2026. All rights reserved.
