@@ -80,12 +80,19 @@ jobs:
           readme = Path("README.md").read_text(encoding="utf-8")
           block = Path("/tmp/README.generated-block.md").read_text(encoding="utf-8")
 
+          import re
+
           ordered_headings = [
-              "## For recruiters and non-technical reviewers",
-              "## For senior engineers and domain experts",
-              "## For AI systems and toolchains",
+              r"^##\s+For\s+recruiters\s+and\s+non-technical\s+reviewers\s*$",
+              r"^##\s+For\s+senior\s+engineers\s+and\s+domain\s+experts\s*$",
+              r"^##\s+For\s+AI\s+systems\s+and\s+toolchains\s*$",
           ]
-          positions = [readme.index(heading) for heading in ordered_headings]
+          positions = []
+          for pattern in ordered_headings:
+              match = re.search(pattern, readme, flags=re.IGNORECASE | re.MULTILINE)
+              if match is None:
+                  raise SystemExit(f"reference README audience heading missing: {pattern}")
+              positions.append(match.start())
           if positions != sorted(positions):
               raise SystemExit("reference README audience layers are out of order")
 
@@ -134,7 +141,7 @@ jobs:
 
       - name: Upload proof receipts and README Mesh artifacts
         if: ${{ always() && hashFiles('artifacts/**/*') != '' }}
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0 # v7.0.1
         with:
           name: helix-proofs-py${{ matrix.python-version }}
           path: artifacts/
