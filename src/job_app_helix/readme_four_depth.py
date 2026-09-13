@@ -132,7 +132,7 @@ def render_four_depth_block(
     repository: str,
     *,
     license_path: str = "LICENSE",
-    license_name: str = "GlacierEQ Proprietary Evaluation and Partnership License v1.0",
+    license_name: str = "GlacierEQ Proprietary License v1.0",
 ) -> str:
     """Render Recruiter -> Master -> Machine -> Mesh from one validated graph."""
 
@@ -212,6 +212,7 @@ def render_four_depth_block(
             "license:",
             f"  name: {license_name}",
             f"  path: {license_path}",
+            "  status: ALL_RIGHTS_RESERVED",
             "presentation_authority:",
             "  capability: stone-psysoc-x",
             "  repository: GlacierEQ/AKOS",
@@ -256,10 +257,8 @@ def render_four_depth_block(
     lines.extend(
         [
             "",
-            "**Open door, not open source.** You are welcome to inspect this work for "
-            "hiring, partnership, research, procurement, investment, collaboration, or "
-            "licensing evaluation. Public visibility is not permission to copy, redistribute, "
-            "deploy, train on, commercialize, or create derivative works. See "
+            "Copyright (c) 2026 Casey Del Carpio Barton / GlacierEQ. "
+            "**All rights reserved.** See "
             f"[`{license_path}`]({license_path}).",
             "",
             END_MARKER,
