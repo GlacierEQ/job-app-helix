@@ -1,95 +1,27 @@
 {
   "schema": "glaciereq.license-policy.v1",
-  "policy_id": "glaciereq-proprietary-evaluation-partnership-v1",
-  "display_name": "GlacierEQ Proprietary Evaluation and Partnership License v1.0",
-  "spdx_expression": "LicenseRef-GlacierEQ-Proprietary-Evaluation-Partnership-1.0",
+  "policy_id": "glaciereq-proprietary-v1",
+  "display_name": "GlacierEQ Proprietary License v1.0",
+  "spdx_expression": "LicenseRef-GlacierEQ-Proprietary-1.0",
   "copyright_holder": "Casey Del Carpio Barton / GlacierEQ",
-  "default_posture": "SOURCE_VISIBLE_RIGHTS_RESERVED",
-  "human_summary": "Open door, not open source: inspection and good-faith evaluation are welcome; copying, redistribution, deployment, model training, derivative works, sublicensing, and commercial use require separate permission unless another license controls the material.",
-  "permissions": {
-    "view_public_materials": true,
-    "internal_evaluation": true,
-    "employment_evaluation": true,
-    "recruiting_evaluation": true,
-    "partnership_evaluation": true,
-    "investment_evaluation": true,
-    "procurement_evaluation": true,
-    "research_discussion": true,
-    "collaboration_discussion": true,
-    "licensing_discussion": true
-  },
-  "reserved_without_separate_written_agreement": [
-    "copy beyond ordinary technical viewing",
+  "default_posture": "ALL_RIGHTS_RESERVED",
+  "rule": "Protect GlacierEQ-owned work. No rights are granted except by prior express written permission from the rights holder.",
+  "reserved_uses": [
+    "copy",
     "modify",
+    "reproduce",
     "redistribute",
     "sublicense",
     "sell",
-    "production deploy",
-    "host as a service",
-    "commercial use",
-    "competitive benchmarking for publication or product marketing",
-    "train or fine-tune models on protected original materials",
-    "create derivative works from protected original materials"
+    "publish",
+    "deploy",
+    "host",
+    "commercialize",
+    "train or fine-tune models",
+    "include in datasets",
+    "create derivative works",
+    "otherwise use protected GlacierEQ-owned materials"
   ],
-  "good_faith_paths": [
-    "employment",
-    "commercial licensing",
-    "non-commercial licensing",
-    "customer deployment",
-    "systems integration",
-    "joint development",
-    "investment",
-    "research collaboration",
-    "acquisition",
-    "source-available agreement",
-    "separately negotiated open-source release"
-  ],
-  "classification_rules": {
-    "original_glaciereq": {
-      "default_license": "LICENSE",
-      "license_name": "GlacierEQ Proprietary Evaluation and Partnership License v1.0",
-      "may_generate_missing_license": true
-    },
-    "fork_or_upstream_derived": {
-      "may_overwrite_upstream_license": false,
-      "preserve_upstream_license": true,
-      "require_upstream_provenance": true,
-      "glaciereq_terms_apply_only_to": "clearly separable original GlacierEQ additions where legally permitted"
-    },
-    "third_party_or_vendored": {
-      "may_relabel_as_glaciereq_proprietary": false,
-      "preserve_copyright": true,
-      "preserve_attribution": true,
-      "preserve_source_offer_requirements": true,
-      "preserve_license_notices": true
-    },
-    "historical_license": {
-      "retroactive_revocation": false,
-      "rule": "Previously distributed versions remain governed by the valid license attached to those specific versions. New distributions may use the current GlacierEQ license only where rights permit."
-    }
-  },
-  "required_repository_surfaces": [
-    "LICENSE",
-    "LICENSE_POLICY.json",
-    "THIRD_PARTY_NOTICES.md when third-party material is present",
-    "UPSTREAM.md for material forks/adaptations where provenance is not otherwise explicit"
-  ],
-  "readme_notice": {
-    "short": "Open door, not open source. Inspection for hiring, partnership, research, procurement, investment, collaboration, or licensing evaluation is welcome. Reuse beyond the controlling license requires permission.",
-    "full": "You are welcome to inspect this work for hiring, partnership, research, procurement, investment, collaboration, or licensing evaluation. Public visibility is not permission to copy, redistribute, deploy, train on, commercialize, or create derivative works. If you want to build with it, talk to GlacierEQ — there is a path for that."
-  },
-  "consistency_requirements": [
-    "README license wording must not grant broader rights than the controlling LICENSE",
-    "package metadata and source headers must not contradict the controlling LICENSE",
-    "forks and imported source must retain upstream license and attribution",
-    "machine README contract must expose license class and controlling path",
-    "license automation must fail closed when provenance or controlling rights are unresolved"
-  ],
-  "forbidden_claims": [
-    "ironclad protection",
-    "guaranteed trade-secret status for publicly disclosed material",
-    "automatic statutory damages",
-    "patent ownership not established by source records",
-    "ownership of third-party code merely because it is hosted under GlacierEQ"
-  ]
+  "readme_notice": "Copyright (c) 2026 Casey Del Carpio Barton / GlacierEQ. All rights reserved. See LICENSE.",
+  "boundary": "Do not claim rights GlacierEQ does not own or revoke rights already validly granted for earlier versions."
 }
