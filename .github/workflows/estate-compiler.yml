@@ -229,7 +229,7 @@ jobs:
               "reference_accomplishments",
           }
 
-          def walk(value, path="$" ):
+          def walk(value, path="$"):
               if isinstance(value, dict):
                   for key, child in value.items():
                       if key in forbidden:
