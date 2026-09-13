@@ -5,9 +5,9 @@ from typing import Any
 
 POLICY_REPOSITORY = "GlacierEQ/job-app-helix"
 POLICY_PATH = "LICENSE_POLICY.json"
-POLICY_ID = "glaciereq-proprietary-v1"
-LICENSE_NAME = "GlacierEQ Proprietary License v1.0"
-LICENSE_REF = "LicenseRef-GlacierEQ-Proprietary-1.0"
+POLICY_ID = "glaciereq-proprietary-copyright-v1.1"
+LICENSE_NAME = "GlacierEQ Proprietary Copyright License and Enforcement Notice v1.1"
+LICENSE_REF = "LicenseRef-GlacierEQ-Proprietary-Copyright-1.1"
 
 _LICENSE_NAMES = (
     "LICENSE",
@@ -44,26 +44,42 @@ def infer_license_contract(
         }
 
     return {
-        "status": "ALL_RIGHTS_RESERVED",
+        "status": "ALL_RIGHTS_RESERVED_TITLE_17",
         "controlling_path": controlling or "LICENSE",
         "policy": f"{POLICY_REPOSITORY}/{POLICY_PATH}",
+        "federal_basis": [
+            "17 U.S.C. § 102",
+            "17 U.S.C. § 106",
+            "17 U.S.C. §§ 501-505",
+            "17 U.S.C. §§ 411-412",
+            "17 U.S.C. § 401(d)",
+        ],
         "permission_required": True,
     }
 
 
 def proprietary_contract() -> dict[str, Any]:
     return {
-        "status": "ALL_RIGHTS_RESERVED",
+        "status": "ALL_RIGHTS_RESERVED_TITLE_17",
         "controlling_path": "LICENSE",
         "policy": f"{POLICY_REPOSITORY}/{POLICY_PATH}",
         "license_name": LICENSE_NAME,
         "spdx_expression": LICENSE_REF,
+        "federal_basis": [
+            "17 U.S.C. § 102",
+            "17 U.S.C. § 106",
+            "17 U.S.C. §§ 501-505",
+            "17 U.S.C. §§ 411-412",
+            "17 U.S.C. § 401(d)",
+        ],
         "permission_required": True,
     }
 
 
 def human_notice() -> str:
     return (
-        "Copyright (c) 2026 Casey Del Carpio Barton / GlacierEQ. "
-        "**All rights reserved.** See [`LICENSE`](LICENSE)."
+        "Copyright © 2026 Casey Del Carpio Barton / GlacierEQ. "
+        "**All rights reserved under U.S. copyright law.** "
+        "Unauthorized exercise of GlacierEQ's exclusive rights may constitute "
+        "copyright infringement under 17 U.S.C. § 501. See [`LICENSE`](LICENSE)."
     )
