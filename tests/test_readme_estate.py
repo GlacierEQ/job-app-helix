@@ -48,7 +48,9 @@ def test_generated_contract_round_trip_and_identity() -> None:
     ]
     assert parsed["presentation"]["authority"]["capability"] == "stone-psysoc-x"
     assert parsed["presentation"]["authority"]["repository"] == "GlacierEQ/AKOS"
-    assert parsed["license"]["status"] == "ALL_RIGHTS_RESERVED"
+    assert parsed["license"]["status"] == "ALL_RIGHTS_RESERVED_TITLE_17"
+    assert "17 U.S.C. § 106" in parsed["license"]["federal_basis"]
+    assert "17 U.S.C. §§ 501-505" in parsed["license"]["federal_basis"]
     assert parsed["license"]["permission_required"] is True
     assert re.fullmatch(r"[0-9a-f]{64}", parsed["provenance"]["contract_digest"])
 
@@ -99,7 +101,8 @@ def test_missing_readme_gets_truthful_four_depth_scaffold() -> None:
     assert "## 03 · MACHINE" in plan.readme
     assert "## 04 · MESH" in plan.readme
     assert "deliberately avoids guessing" in plan.readme
-    assert "All rights reserved" in plan.readme
+    assert "All rights reserved under U.S. copyright law" in plan.readme
+    assert "17 U.S.C. § 501" in plan.readme
 
 
 def test_existing_license_is_detected_without_adding_permissions() -> None:
@@ -109,9 +112,16 @@ def test_existing_license_is_detected_without_adding_permissions() -> None:
         root_paths=["LICENSE", "src"],
     )
     assert contract["license"] == {
-        "status": "ALL_RIGHTS_RESERVED",
+        "status": "ALL_RIGHTS_RESERVED_TITLE_17",
         "controlling_path": "LICENSE",
         "policy": "GlacierEQ/job-app-helix/LICENSE_POLICY.json",
+        "federal_basis": [
+            "17 U.S.C. § 102",
+            "17 U.S.C. § 106",
+            "17 U.S.C. §§ 501-505",
+            "17 U.S.C. §§ 411-412",
+            "17 U.S.C. § 401(d)",
+        ],
         "permission_required": True,
     }
 
