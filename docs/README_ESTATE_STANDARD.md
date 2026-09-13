@@ -1,144 +1,307 @@
 # GlacierEQ Estate README Standard
 
-## Purpose
+## One README, Four Depths
 
-The GlacierEQ README system has two distinct jobs that must not be collapsed into one template:
+A GlacierEQ README is not a flat project description. It is **one factual system projected at four useful depths**:
 
-1. **Estate machine contract — universal.** Every repository that can carry a README should expose a compact, versioned machine-readable contract describing repository identity, source kind, entrypoints, topology/routing, boundaries, and provenance. This layer is valid for public, private, legal, evidence, archived, research, infrastructure, agent, and portfolio repositories.
-2. **Audience projection — selective.** Public portfolio-eligible repositories may additionally carry the existing Recruiter / Expert / AI projection generated from `glaciereq.readme.v1`. Sensitive legal/case repositories, private evidence repositories, and unqualified forks are not forced into recruiter-facing portfolio prose.
+1. **01 · RECRUITER** — the complete human overview for recruiters, collaborators, hiring managers, and normal people.
+2. **02 · MASTER** — the full technical account for masters of the trade.
+3. **03 · MACHINE** — the deterministic contract for agents, retrieval systems, compilers, and future automated operators.
+4. **04 · MESH** — the typed relationships that show how the repository becomes more valuable in the wider GlacierEQ estate.
 
-`GlacierEQ/job-app-helix` owns README compilation and projection mechanics. It does **not** become source authority for the repositories it documents. `GlacierEQ/monolith` supplies estate topology/classification. `GlacierEQ/mega-skills` supplies identity, ownership, provenance, composition, and progressive-disclosure law. Each repository remains authoritative for its own implementation and local source history.
+The topology is stable. **The weight is not.** A tiny utility may need only a few lines in Recruiter and a compact Master section. A flagship may justify serious depth. Machine is structured rather than ornamental. Mesh contains only relationships that add real understanding or capability.
 
-## Universal machine layer
+Every depth is a valid stopping point. A reader who stops after Recruiter should understand the project. A technical reviewer who stops after Master should be able to evaluate it seriously. A machine should not need to scrape prose to locate the contract. A reader entering Mesh should see additional value, not link clutter.
 
-The universal contract lives between exactly one marker pair:
+## PSYSOC-X Is the Presentation Engine
+
+The presentation law is owned by the verified PSYSOC-X Infinity Stone in `GlacierEQ/AKOS`, not reimplemented here.
+
+Canonical sources:
+
+- Contract: `GlacierEQ/AKOS/stones/psysoc-x/STONE.md`
+- Manifest: `GlacierEQ/AKOS/stones/psysoc-x/stone.json`
+- Engine: `GlacierEQ/AKOS/infinity_stones/psysoc_x.py`
+- Verification: `GlacierEQ/AKOS/receipts/2026-08-02_psysoc-x_v0.1.0_promotion.json`
+- Four-depth presentation profile: `GlacierEQ/job-application/site-v15/data/psysoc-x-profiles.json`
+
+PSYSOC-X controls **attention strategy, tone, density, logic order, skepticism response, humor fit, emotional-weight handling, memory anchors, dignity controls, and warnings** from explicit context. It may change how truth arrives. It may not change truth.
+
+Core rule:
+
+> **Fixed truth. Adaptive expression.**
+
+The sequence, density, framing, title, warmth, and amount of explanation may change with the audience and stakes. Facts, evidence state, uncertainty, provenance, dignity, authority, and reader agency may not.
+
+### Dynamic judgment
+
+Do not optimize for uniform README length.
+
+Use the **shortest form that preserves the reader's needed understanding** and the **longest form justified by technical or evidentiary value**.
+
+As cognitive load rises, use progressive disclosure. As skepticism rises, move limits and reproducible proof earlier. As stakes or privacy rise, remove humor and reduce ornamental language. As evidence weakens, make uncertainty more visible. As technical depth becomes useful, expand Master rather than forcing complexity into Recruiter.
+
+### Titles must carry weight
+
+Stable layer identifiers stay machine-recognizable:
+
+- `01 · RECRUITER`
+- `02 · MASTER`
+- `03 · MACHINE`
+- `04 · MESH`
+
+The subtitle after the identifier is **project-native and dynamic**. It should be clever enough to reward attention and concrete enough to carry information.
+
+Good title behavior:
+
+- names the real problem, mechanism, transformation, or tension;
+- uses vocabulary native to the project;
+- creates curiosity without hiding meaning;
+- can be serious, warm, dry, or lightly playful when context permits;
+- never uses hype as a substitute for evidence.
+
+Bad title behavior:
+
+- generic `Overview`, `Technical Details`, `Architecture`, `Links` when something more specific is available;
+- marketing slogans with no factual payload;
+- jokes in sensitive or high-stakes repositories;
+- cleverness that makes the section harder to understand.
+
+## 01 · RECRUITER — Earn the Next Minute
+
+This is the overview. It answers quickly:
+
+- **What is this?**
+- **What problem does it solve?**
+- **What does it actually do?**
+- **Why does that matter?**
+- **What is the strongest observable proof?**
+- **Where should I go if I want more?**
+
+The Recruiter layer must feel complete rather than teaser-like. It should be low-to-medium density, translate jargon, and lead with decision-relevant consequence or one concrete outcome when possible.
+
+A strong Recruiter section normally uses:
+
+- one human hook or project-native tension;
+- one concise explanation of mechanism;
+- up to three memorable capabilities/outcomes;
+- one or two strong proof links;
+- a clean handoff to Master.
+
+Do not dump every feature here. Do not withhold the point merely to force scrolling.
+
+For sensitive/private/legal repositories, use the same cognitive role — immediate human orientation — but do not turn sensitive facts into recruiter copy or leak private evidence.
+
+## 02 · MASTER — Show the Work
+
+This is for senior engineers, domain specialists, principal-level reviewers, and anyone doing real diligence.
+
+Master may cover, as justified by the repository:
+
+- architecture and decomposition;
+- mechanism and algorithms;
+- important implementation choices;
+- interfaces and data contracts;
+- tradeoffs and rejected alternatives;
+- reliability and recovery behavior;
+- security and authority boundaries;
+- performance characteristics where measured;
+- tests and verification;
+- failure domains and known limits;
+- historical evolution when it explains the current design;
+- why the technical choices matter.
+
+This is where jargon is allowed when it is native and defined. It should be precise, engineering-led, and evidence-bound — not merely longer marketing prose.
+
+Depth is earned. A five-file utility should not receive an artificial dissertation. A complicated control plane should not be compressed into six bullets merely for visual symmetry.
+
+## 03 · MACHINE — Plug In Without Guessing
+
+Every writable repository should expose exactly one versioned machine contract between:
 
 ```text
 <!-- glacier-eq-protocol:start -->
-```yaml
-schema: glacier-eq.readme.machine-mesh/v1
-...
 ```
+
+and:
+
+```text
 <!-- glacier-eq-protocol:end -->
 ```
 
-The block is a **source index**, not a runtime receipt. It may establish:
+Current schema:
+
+```yaml
+schema: glacier-eq.readme.machine-mesh/v1
+```
+
+The machine layer is a **source index and integration contract**, not a runtime receipt. It may establish:
 
 - exact `owner/repository` identity and repository URL;
-- README contract/profile;
+- README/profile contract;
 - repository kind;
-- default/source branch when known;
-- declared protocol files and decisive entrypoints;
+- source/default branch when known;
+- protocol files and decisive entrypoints;
 - current Monolith primary placement or migration-residue state;
-- typed routes to Monolith and other peers;
-- evidence pointers used to derive the contract;
-- security/privacy/authority boundaries;
+- typed routes to Monolith and peer systems;
+- evidence pointers;
+- lifecycle and authority boundaries;
+- licensing class and license path;
 - generator identity and deterministic contract digest.
 
-The block must never independently promote a repository to deployed, production-ready, externally verified, provider-connected, safe, complete, or authoritative. Those states require their own evidence.
+It must never independently promote a repository to deployed, production-ready, provider-connected, externally verified, safe, complete, or authoritative. Those states require their own evidence.
 
-## Progressive disclosure
+Estate tools consume a repository in this order:
 
-Estate tools consume repositories in this order:
+1. identity + current default branch;
+2. machine contract;
+3. entrypoints/protocol files named by the contract;
+4. smallest decisive implementation/test surface needed for unresolved questions;
+5. provider-native receipts for deployment or external-action claims.
 
-1. repository identity + current default branch;
-2. current `glacier-eq.readme.machine-mesh/v1` block, when present;
-3. entrypoints/protocol files named by that block;
-4. the smallest decisive implementation/test surface needed to resolve remaining questions;
-5. provider-native receipts for deployment/external-action claims.
+Absence of a block is `MISSING_CONTRACT`, not evidence of missing capability. Malformed, contradictory, unsupported-schema, or identity-mismatched contracts fail closed into repair.
 
-Absence of a machine block is `MISSING_CONTRACT`, not evidence that a repository lacks capability. A malformed, contradictory, unsupported-schema, or identity-mismatched block fails closed into a repair queue.
+## 04 · MESH — Show What Becomes Possible Together
 
-## Adoption rule
+Mesh answers a different question from Master:
 
-Bulk automation is **adopt-first**:
+> **What becomes stronger, possible, safer, faster, or more intelligible when this repository connects to the rest of the estate?**
 
-- A valid existing machine block is preserved verbatim by default and indexed as locally owned contract state.
-- A missing block receives a deterministic generated minimum contract.
-- A malformed or identity-mismatched block is never silently overwritten; it is reported for targeted repair.
-- A block marked as generated by the estate compiler may be regenerated only from a newer explicit source state.
-- Human-authored README content outside machine markers is byte-preserved except for the newline required to insert a missing generated block.
+Use typed relationships, not a random related-links list.
 
-This prevents a central documentation job from becoming a destructive topology/authority channel.
+Useful relationships include:
 
-## README profiles
+- provides capability to;
+- consumes;
+- verifies;
+- executes through;
+- persists receipts to;
+- derives from;
+- composes with;
+- routes to;
+- maps;
+- supersedes / migrated from;
+- supports a named Matter/Mission while preserving source identity.
+
+Mesh should preserve lineage, boundaries, and current-vs-aspirational state. It may expose blockers, missing pieces, next promotions, or future composition when labeled honestly.
+
+Do not flatten connected repositories into one identity. Connection is not ownership. Routing is not evidence transfer. A richer graph should make each source easier to understand without erasing where it came from.
+
+## Licensing — Open Door, Not Open Source
+
+GlacierEQ original work is generally **source-visible, rights-reserved** rather than open source.
+
+The default human notice is intentionally plain:
+
+> **You are welcome to inspect this work for hiring, partnership, research, procurement, investment, collaboration, or licensing evaluation. Public visibility is not permission to copy, redistribute, deploy, train on, commercialize, or create derivative works. If you want to build with it, talk to GlacierEQ — there is a path for that.**
+
+The controlling root license for qualifying original GlacierEQ repositories is the **GlacierEQ Proprietary Evaluation and Partnership License v1.0**.
+
+The posture is firm without being adversarial:
+
+- make evaluation easy;
+- reserve commercial, production, redistribution, derivative, model-training, and sublicensing rights;
+- explicitly invite good-faith employment, partnership, customer deployment, integration, research, investment, acquisition, source-available, or separately negotiated open-source discussions;
+- make third-party rights obvious;
+- do not imply rights that do not exist;
+- do not use aggressive legal claims as branding.
+
+### Provenance beats relabeling
+
+Never relabel third-party source as proprietary GlacierEQ work.
+
+For forks, vendored code, adapted projects, or repositories containing third-party material:
+
+- preserve every upstream license and notice;
+- preserve copyright and attribution;
+- record source URL and base commit/tag when known;
+- identify GlacierEQ modifications separately;
+- apply GlacierEQ proprietary terms only to original separable additions where legally appropriate.
+
+A fleet rollout must classify license posture before mutation. Existing upstream licenses are evidence and may not be overwritten merely for uniformity.
+
+## Repository Profiles
+
+The four depths remain stable across profiles. The profile changes exposure, weight, and licensing behavior.
 
 ### `estate-core`
 
-Default for the whole codebase. Preserve existing human README content and ensure the universal machine contract exists.
+Default. Four-depth structure + machine contract + license classification. Existing strong human prose should be adopted and reorganized rather than erased.
 
 ### `portfolio`
 
-For public portfolio-eligible repositories. Apply `estate-core` plus the existing `README-MESH:BEGIN/END` three-audience projection from the Protobuf README Mesh.
+Public portfolio-eligible repository. Uses full PSYSOC-X Recruiter/Master/Machine/Mesh projection with source-bound proof and no private legal/case material.
 
 ### `flagship`
 
-For deliberately curated primary projects. Recommended human presentation:
-
-1. **Human / impact** — purpose, problem, users, value, fast proof.
-2. **Master / engineering** — architecture, mechanism, constraints, failure modes, evolution, evidence.
-3. **Machine** — universal machine-mesh contract and exact entrypoints.
-4. **Mesh** — typed relationships, combined value, boundaries, lineage.
-
-The four-layer presentation is a human view over source-bound contracts; it is not required to force every small repository into long prose.
+A deliberately curated primary system. Same four depths, with greater Master and Mesh depth justified by source complexity and evidence.
 
 ### `sensitive`
 
-For legal, evidence, family, private records, or other high-sensitivity repositories. Preserve useful human navigation, add the universal machine contract, and prohibit automatic recruiter/public-promotion copy. Routing does not transfer evidence, matter, privacy, or procedural authority.
+Legal, evidence, family, private-record, or other high-sensitivity repository. Same four-depth topology, but Recruiter means **safe human orientation**, not public promotion. Private facts stay private; humor normally disappears; evidence links respect access and disclosure boundaries.
 
 ### `fork-archive`
 
-Preserve upstream/origin/lineage and local modifications. Do not manufacture original-work claims. Archived GitHub repositories may be read-only; the estate manifest must still represent them even when README mutation is impossible.
+Preserve origin, upstream license, lineage, and local modifications. Never manufacture original-work claims. Archived GitHub repositories remain represented in the estate manifest even when README mutation is impossible.
 
-## Generated minimum contract
+## Adoption Before Regeneration
 
-A generated block must contain no invented capability prose. Its allowed inputs are:
+Bulk automation is adopt-first.
 
-- GitHub repository metadata;
-- current root tree names;
-- current README state;
-- current Monolith logical reclassification ledger and source evidence pointers;
-- explicit repository-local machine contracts;
-- exact typed relationships supplied by source-bearing manifests.
+- Strong existing human prose is evidence of project identity and should be preserved or reorganized, not flattened into generated boilerplate.
+- A valid existing machine block remains authoritative local contract state unless newer source evidence requires regeneration.
+- Missing human layers may be filled from repository evidence.
+- Missing machine blocks receive deterministic minimum contracts.
+- Malformed or identity-mismatched machine blocks are repaired explicitly, never silently overwritten.
+- Generated content must state only what source evidence supports.
 
-Generated `repository_kind` may be derived from a current Monolith primary home. When no current placement exists, the contract must say `migration-residue` rather than guessing.
+The compiler is a **projection system**, not a new source authority.
 
-Entrypoints are detected conservatively from checked-in paths such as `src/`, `scripts/`, `tests/`, `machine/`, `docs/`, `pyproject.toml`, `package.json`, `Cargo.toml`, `go.mod`, Docker/Compose files, and repository-declared protocol files. Presence is evidence only of a surface, not of behavior.
+## Whole-Estate Rollout
 
-## Whole-estate rollout
+The rollout is source-exhaustive, resumable, bounded, and idempotent.
 
-The rollout engine must be source-exhaustive, resumable, bounded, and idempotent.
+For each live GlacierEQ repository:
 
-For each GlacierEQ repository:
+1. resolve stable repository identity from the live GitHub App installation;
+2. read current default branch, root tree, README, license, and decisive source surfaces;
+3. reconcile current Monolith classification/evidence when present;
+4. classify repository profile and license posture;
+5. recover/adopt existing human language worth preserving;
+6. derive explicit audience context for PSYSOC-X;
+7. produce the four-depth projection at the amount of detail justified by source and audience;
+8. validate the machine contract and license consistency;
+9. compare-before-write using the current README/license blob SHA;
+10. mutate only authorized paths;
+11. reread provider state and verify exact content/digest;
+12. append an immutable receipt/checkpoint so interrupted runs resume without redoing verified work.
 
-1. fetch repository metadata and current README/root surface;
-2. reconcile Monolith classification/evidence if present;
-3. inspect/adopt an existing machine block or generate the minimum block;
-4. validate repository identity and schema;
-5. calculate a deterministic contract digest;
-6. produce a plan record: `ADOPT`, `CREATE_README`, `INSERT_BLOCK`, `NO_CHANGE`, `REPAIR_REQUIRED`, or `ARCHIVED_READ_ONLY`;
-7. only in explicit write mode, mutate the README using its current blob SHA;
-8. read the provider state back and re-validate the exact written block;
-9. append a receipt/checkpoint so interrupted runs resume without redoing verified work.
+No visibility changes. No repository deletion, archival, or unarchival. No credential collection. No private evidence copied into Helix. No runtime claim inferred from documentation.
 
-No visibility changes. No repository deletion/archival/unarchival. No credential collection. No private evidence copied into Helix. No deployment or operational claim inferred from documentation.
+## Relationship to the Existing README Mesh
 
-## Relationship to the existing README Mesh
+The existing `proto/readme_mesh.proto`, README Mesh manifests, deterministic artifacts, and renderer remain useful evidence/projection infrastructure. They are not the final human architecture by themselves.
 
-The existing `docs/README_MESH_STANDARD.md`, `proto/readme_mesh.proto`, `manifests/readme_mesh.json`, renderer, and deterministic Protobuf artifacts remain canonical for the **portfolio projection**. They are not discarded or stretched until they misrepresent legal/private repositories.
+Their semantic mapping is now explicit:
 
-The universal machine contract and portfolio projection may coexist in one README because they answer different questions:
+- legacy `RECRUITER` → `01 · RECRUITER`;
+- legacy `EXPERT` → `02 · MASTER`;
+- legacy `AI_AGENT` + machine-mesh contract → `03 · MACHINE`;
+- typed repository edges → `04 · MESH`.
 
-- machine-mesh: **what is this repository, where are its decisive source surfaces, and how does it route?**
-- portfolio mesh: **how should an external reviewer understand verified value and evidence?**
+One factual graph can therefore feed all four surfaces without contradictory hand-authored versions.
 
 ## Acceptance
 
 The estate README program is successful when:
 
-- every writable GlacierEQ repository has exactly one valid universal machine contract or an explicit repair receipt;
-- every archived/read-only repository is still represented in the estate rollout manifest;
-- generated updates are idempotent and preserve human content;
-- current Monolith placement/provenance can be recovered without broad repository crawling where a sufficient machine block exists;
-- portfolio projections remain evidence-bound and exclude sensitive/private material;
-- no contract claims more authority or runtime state than its evidence establishes.
+- every writable live GlacierEQ repository has the four-depth structure at an appropriate weight;
+- every writable repository has exactly one valid machine contract or an explicit repair receipt;
+- every original-work repository has an explicit, internally consistent license posture;
+- every fork/third-party repository preserves upstream rights and provenance;
+- every archived/read-only repository remains represented in the rollout manifest;
+- PSYSOC-X changes presentation without changing factual or evidentiary state;
+- every depth works as a truthful stopping point;
+- generated updates are idempotent and preserve project-native human value;
+- Monolith placement/provenance can be recovered without broad crawling when a sufficient machine block exists;
+- no README claims more authority or runtime state than its evidence establishes.
