@@ -40,6 +40,15 @@ def test_generated_contract_round_trip_and_identity() -> None:
         "pyproject.toml",
         "GENIUS.yaml",
     }
+    assert parsed["presentation"]["architecture"] == [
+        "recruiter",
+        "master",
+        "machine",
+        "mesh",
+    ]
+    assert parsed["presentation"]["authority"]["capability"] == "stone-psysoc-x"
+    assert parsed["presentation"]["authority"]["repository"] == "GlacierEQ/AKOS"
+    assert parsed["license"]["status"] == "ORIGINALITY_AND_PROVENANCE_REVIEW_REQUIRED"
     assert re.fullmatch(r"[0-9a-f]{64}", parsed["provenance"]["contract_digest"])
 
 
@@ -74,7 +83,7 @@ def test_missing_block_is_appended_without_changing_human_prefix() -> None:
     assert plan.readme.count(START_MARKER) == 1
 
 
-def test_missing_readme_gets_minimal_noninflated_readme() -> None:
+def test_missing_readme_gets_truthful_four_depth_scaffold() -> None:
     plan = plan_readme(
         repository="GlacierEQ/no-readme",
         current_readme=None,
@@ -84,7 +93,28 @@ def test_missing_readme_gets_minimal_noninflated_readme() -> None:
     assert plan.action == ReadmeAction.CREATE_README
     assert plan.readme is not None
     assert plan.readme.startswith("# no-readme")
-    assert "does not promote runtime or provider state" in plan.readme
+    assert "## 01 · RECRUITER" in plan.readme
+    assert "## 02 · MASTER" in plan.readme
+    assert "## 03 · MACHINE" in plan.readme
+    assert "## 04 · MESH" in plan.readme
+    assert "deliberately avoids guessing" in plan.readme
+    assert "Open door, not open source" in plan.readme
+
+
+def test_existing_license_is_detected_without_relicensing_claim() -> None:
+    contract = build_generated_contract(
+        repository="GlacierEQ/licensed",
+        default_branch="main",
+        root_paths=["LICENSE", "src"],
+    )
+    assert contract["license"] == {
+        "class": "EXISTING_LICENSE",
+        "status": "CONTROLLING_LICENSE_CONTENT_REVIEW_REQUIRED",
+        "controlling_path": "LICENSE",
+        "policy": "GlacierEQ/job-app-helix/LICENSE_POLICY.json",
+        "may_relicense_automatically": False,
+        "upstream_rights_must_be_preserved": False,
+    }
 
 
 def test_identity_mismatch_fails_into_repair_queue() -> None:
@@ -122,14 +152,17 @@ def test_append_refuses_existing_marker_even_if_malformed() -> None:
         append_missing_block("# X\n\n" + START_MARKER, "block")
 
 
-def test_fork_is_not_promoted_to_original_capability_kind() -> None:
+def test_fork_is_not_promoted_or_relicensed_as_original() -> None:
     contract = build_generated_contract(
         repository="GlacierEQ/fork",
         default_branch="main",
-        root_paths=["src"],
+        root_paths=["LICENSE", "src"],
         classification=ClassificationEvidence(
             primary_home="MIND_CAPABILITY.SOMETHING",
         ),
         fork=True,
     )
     assert contract["machine"]["repository_kind"] == "fork-or-derived-source"
+    assert contract["license"]["class"] == "FORK_OR_UPSTREAM_DERIVED"
+    assert contract["license"]["may_relicense_automatically"] is False
+    assert contract["license"]["upstream_rights_must_be_preserved"] is True
