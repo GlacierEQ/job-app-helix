@@ -146,7 +146,7 @@ The machine layer is a **source index and integration contract**, not a runtime 
 - typed routes to Monolith and peer systems;
 - evidence pointers;
 - lifecycle and authority boundaries;
-- licensing class and license path;
+- license path and rights status;
 - generator identity and deterministic contract digest.
 
 It must never independently promote a repository to deployed, production-ready, provider-connected, externally verified, safe, complete, or authoritative. Those states require their own evidence.
@@ -187,46 +187,27 @@ Mesh should preserve lineage, boundaries, and current-vs-aspirational state. It 
 
 Do not flatten connected repositories into one identity. Connection is not ownership. Routing is not evidence transfer. A richer graph should make each source easier to understand without erasing where it came from.
 
-## Licensing — Open Door, Not Open Source
+## Licensing — Protect GlacierEQ Work
 
-GlacierEQ original work is generally **source-visible, rights-reserved** rather than open source.
+The rule is simple:
 
-The default human notice is intentionally plain:
+> **Copyright (c) 2026 Casey Del Carpio Barton / GlacierEQ. All rights reserved.**
 
-> **You are welcome to inspect this work for hiring, partnership, research, procurement, investment, collaboration, or licensing evaluation. Public visibility is not permission to copy, redistribute, deploy, train on, commercialize, or create derivative works. If you want to build with it, talk to GlacierEQ — there is a path for that.**
+For GlacierEQ-owned material, no copying, modification, reproduction, redistribution, sublicensing, sale, publication, deployment, hosting, commercialization, model training, dataset inclusion, derivative work, or other use is permitted without prior express written permission from the rights holder.
 
-The controlling root license for qualifying original GlacierEQ repositories is the **GlacierEQ Proprietary Evaluation and Partnership License v1.0**.
+Public visibility does not grant additional rights.
 
-The posture is firm without being adversarial:
+The controlling license is the **GlacierEQ Proprietary License v1.0** in `LICENSE`.
 
-- make evaluation easy;
-- reserve commercial, production, redistribution, derivative, model-training, and sublicensing rights;
-- explicitly invite good-faith employment, partnership, customer deployment, integration, research, investment, acquisition, source-available, or separately negotiated open-source discussions;
-- make third-party rights obvious;
-- do not imply rights that do not exist;
-- do not use aggressive legal claims as branding.
-
-### Provenance beats relabeling
-
-Never relabel third-party source as proprietary GlacierEQ work.
-
-For forks, vendored code, adapted projects, or repositories containing third-party material:
-
-- preserve every upstream license and notice;
-- preserve copyright and attribution;
-- record source URL and base commit/tag when known;
-- identify GlacierEQ modifications separately;
-- apply GlacierEQ proprietary terms only to original separable additions where legally appropriate.
-
-A fleet rollout must classify license posture before mutation. Existing upstream licenses are evidence and may not be overwritten merely for uniformity.
+Do not claim rights GlacierEQ does not own and do not overwrite rights already validly granted for earlier versions. That is a legal boundary, not a separate licensing program.
 
 ## Repository Profiles
 
-The four depths remain stable across profiles. The profile changes exposure, weight, and licensing behavior.
+The four depths remain stable across profiles. The profile changes exposure and weight.
 
 ### `estate-core`
 
-Default. Four-depth structure + machine contract + license classification. Existing strong human prose should be adopted and reorganized rather than erased.
+Default. Four-depth structure + machine contract. Existing strong human prose should be adopted and reorganized rather than erased.
 
 ### `portfolio`
 
@@ -242,7 +223,7 @@ Legal, evidence, family, private-record, or other high-sensitivity repository. S
 
 ### `fork-archive`
 
-Preserve origin, upstream license, lineage, and local modifications. Never manufacture original-work claims. Archived GitHub repositories remain represented in the estate manifest even when README mutation is impossible.
+Preserve origin, upstream license, lineage, and local modifications. Archived GitHub repositories remain represented in the estate manifest even when README mutation is impossible.
 
 ## Adoption Before Regeneration
 
@@ -266,15 +247,14 @@ For each live GlacierEQ repository:
 1. resolve stable repository identity from the live GitHub App installation;
 2. read current default branch, root tree, README, license, and decisive source surfaces;
 3. reconcile current Monolith classification/evidence when present;
-4. classify repository profile and license posture;
-5. recover/adopt existing human language worth preserving;
-6. derive explicit audience context for PSYSOC-X;
-7. produce the four-depth projection at the amount of detail justified by source and audience;
-8. validate the machine contract and license consistency;
-9. compare-before-write using the current README/license blob SHA;
-10. mutate only authorized paths;
-11. reread provider state and verify exact content/digest;
-12. append an immutable receipt/checkpoint so interrupted runs resume without redoing verified work.
+4. recover/adopt existing human language worth preserving;
+5. derive explicit audience context for PSYSOC-X;
+6. produce the four-depth projection at the amount of detail justified by source and audience;
+7. validate the machine contract and rights notice;
+8. compare-before-write using the current README blob SHA;
+9. mutate only authorized paths;
+10. reread provider state and verify exact content/digest;
+11. append an immutable receipt/checkpoint so interrupted runs resume without redoing verified work.
 
 No visibility changes. No repository deletion, archival, or unarchival. No credential collection. No private evidence copied into Helix. No runtime claim inferred from documentation.
 
@@ -297,8 +277,8 @@ The estate README program is successful when:
 
 - every writable live GlacierEQ repository has the four-depth structure at an appropriate weight;
 - every writable repository has exactly one valid machine contract or an explicit repair receipt;
-- every original-work repository has an explicit, internally consistent license posture;
-- every fork/third-party repository preserves upstream rights and provenance;
+- GlacierEQ-owned work carries the intended all-rights-reserved protection;
+- existing rights not owned by GlacierEQ are not overwritten;
 - every archived/read-only repository remains represented in the rollout manifest;
 - PSYSOC-X changes presentation without changing factual or evidentiary state;
 - every depth works as a truthful stopping point;
