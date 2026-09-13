@@ -45,6 +45,42 @@
         }
       }
     },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "architecture": {
+          "type": "array",
+          "items": {"enum": ["recruiter", "master", "machine", "mesh"]},
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "authority": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "capability": {"const": "stone-psysoc-x"},
+            "repository": {"const": "GlacierEQ/AKOS"},
+            "manifest": {"type": "string", "minLength": 1},
+            "engine": {"type": "string", "minLength": 1}
+          }
+        },
+        "truth_invariant": {"type": "string", "minLength": 1}
+      }
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "class": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1},
+        "controlling_path": {"type": ["string", "null"]},
+        "policy": {"type": "string", "minLength": 1},
+        "may_relicense_automatically": {"type": "boolean"},
+        "upstream_rights_must_be_preserved": {"type": "boolean"}
+      }
+    },
     "mesh": {
       "type": "object",
       "additionalProperties": true,
