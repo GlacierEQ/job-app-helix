@@ -19,56 +19,59 @@
         "role": "Apex Kernel Operating System",
         "level": "L5",
         "state": "PROMOTED",
-        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/AKOS"
+        "path": null,
+        "path_status": "NOT_CURRENTLY_VERIFIED_PUBLIC_OR_PRIVATE_REFERENCE"
       },
       {
         "id": "the-tower-of-babel",
         "role": "Polyglot Systems Verification (51 Languages)",
         "level": "L4",
         "state": "REFERENCE_ONLY",
-        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/the-tower-of-babel"
+        "path": "https://github.com/GlacierEQ/the-tower-of-babel"
       },
       {
         "id": "monolith",
         "role": "Estate Cartography Head",
         "level": "L5",
         "state": "ACTIVE",
-        "path": "/Users/kcbflux/monolith"
+        "path": null,
+        "path_status": "NOT_CURRENTLY_VERIFIED_PUBLIC_OR_PRIVATE_REFERENCE"
       },
       {
         "id": "job-app-helix",
         "role": "Build & Verify Campaign Engine",
         "level": "L4",
         "state": "PROMOTED",
-        "path": "/Users/kcbflux/.grok/work/job-app-helix"
+        "path": "https://github.com/GlacierEQ/job-app-helix"
       },
       {
         "id": "JOB-RESUME-BUILDER-",
         "role": "Resume Shapeshifter Next.js Application",
         "level": "L4",
         "state": "VERIFIED",
-        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/JOB-RESUME-BUILDER-"
+        "path": "https://github.com/GlacierEQ/JOB-RESUME-BUILDER-"
       },
       {
         "id": "pro-code",
         "role": "Engineering Standards & Invariants",
         "level": "L4",
         "state": "REFERENCE_ONLY",
-        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/pro-code"
+        "path": "https://github.com/GlacierEQ/pro-code"
       },
       {
         "id": "apex-fs",
         "role": "Multimodal Perception & Filesystem MCP",
         "level": "L4",
         "state": "VERIFIED",
-        "path": "/Users/kcbflux/apex-fs"
+        "path": null,
+        "path_status": "NOT_CURRENTLY_VERIFIED_PUBLIC_OR_PRIVATE_REFERENCE"
       },
       {
         "id": "antigravity-cli",
         "role": "Multi-Model Swarm Runtime",
         "level": "L4",
         "state": "ACTIVE",
-        "path": "/Users/kcbflux/antigravity-cli"
+        "path": "https://github.com/GlacierEQ/antigravity-cli"
       }
     ]
   },
