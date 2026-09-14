@@ -81,7 +81,7 @@ def _projection() -> dict:
         "inference_boundary": "Facts and inferences remain distinct.",
         "reference_systems": ["sys-helix"],
         "capabilities": capabilities,
-        "minimal_proof_surface": ["sys-helix"],
+        "strongest_proof_surface": ["sys-helix"],
         "audience_projection": {
             "recruiter": ["sys-helix"],
             "company_reviewer": ["sys-helix"],
