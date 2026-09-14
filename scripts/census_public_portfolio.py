@@ -103,24 +103,33 @@ def build_census(
             )
         rows_by_name[str(repository)] = _normalize_repository(raw, owner)
 
-    missing = sorted(governed - set(rows_by_name))
-    if missing:
-        raise PublicPortfolioCensusError(
-            "Governed public portfolio is incomplete: " + ", ".join(missing)
-        )
-
+    unresolved = [
+        {
+            "repository": name,
+            "state": "UNRESOLVED_PUBLIC_IDENTITY",
+            "reason": (
+                "Declared public identity was not observable to the current "
+                "census token; omitted from recruiter-facing projection."
+            ),
+        }
+        for name in sorted(governed - set(rows_by_name))
+    ]
     rows = [rows_by_name[name] for name in sorted(rows_by_name)]
     native_count = sum(not row["fork"] for row in rows)
     fork_count = len(rows) - native_count
     return {
         "schema": "glaciereq.public-portfolio-census.v1",
-        "state": "VERIFIED_INVENTORY",
+        "state": (
+            "VERIFIED_INVENTORY" if not unresolved else "VERIFIED_WITH_UNRESOLVED_IDENTITIES"
+        ),
         "scope": "PUBLIC_ADMITTED_PORTFOLIO_ONLY",
         "authority": "manifests/portfolio_repositories.json + GitHub public metadata",
         "owner": owner,
         "generated_at": generated_at
         or datetime.now(UTC).isoformat(timespec="seconds"),
         "repository_count": len(rows),
+        "unresolved_repository_count": len(unresolved),
+        "unresolved_repositories": unresolved,
         "native_repository_count": native_count,
         "fork_repository_count": fork_count,
         "public_repository_count": len(rows),
@@ -131,6 +140,7 @@ def build_census(
             "private_repository_identities_omitted": True,
             "legal_private_records_omitted": True,
             "raw_owned_estate_cardinality_not_inferred": True,
+            "unresolved_identities_excluded_from_public_projection": True,
         },
     }
 
@@ -276,6 +286,7 @@ def main() -> int:
                 "state": payload["state"],
                 "scope": payload["scope"],
                 "repository_count": payload["repository_count"],
+                "unresolved_repository_count": payload["unresolved_repository_count"],
                 "output": str(args.output),
             },
             sort_keys=True,

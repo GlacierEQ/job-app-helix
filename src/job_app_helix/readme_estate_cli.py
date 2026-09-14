@@ -291,7 +291,11 @@ def load_monolith_estate(
             and str(item.get("name", "")).endswith(".jsonl")
         )
     ledger_paths = sorted(set(ledger_paths), key=str.casefold)
-    source_paths = ledger_paths + ["catalog/HIERARCHICAL_MESH_MAP.json", "catalog/library.json"]
+    source_paths = [
+        *ledger_paths,
+        "catalog/HIERARCHICAL_MESH_MAP.json",
+        "catalog/library.json",
+    ]
 
     def fetch(path: str) -> tuple[str, str]:
         record = api.contents(monolith, path)

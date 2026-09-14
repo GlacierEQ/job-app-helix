@@ -494,6 +494,20 @@ def audit(
             continue
         repository = row.get("repository")
         if not isinstance(repository, str):
+            flagship_results.append(
+                {
+                    "system_id": row.get("system_id"),
+                    "repository": None,
+                    "state": str(row.get("state")),
+                    "presentation_surface": str(row.get("public_surface")),
+                    "source_visibility": None,
+                    "metadata_observable": False,
+                    "live_evidence_state": "UNRESOLVED_IDENTITY",
+                    "evidence_head": None,
+                    "current_head": None,
+                    "head_matches": None,
+                }
+            )
             continue
         meta = metadata.get(repository, {})
         actual_visibility = meta.get("visibility")
