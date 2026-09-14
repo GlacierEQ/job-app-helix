@@ -36,14 +36,13 @@ def test_checked_in_origin_receipt_is_mesh_safe() -> None:
     program = validate_library_program(PROGRAM)
     receipt = validate_latest_execution_receipt(PROGRAM, program)
 
-    assert receipt["policy"]["holographic_mesh_anti_replacement"] is True
-    assert receipt["policy"]["zero_unique_contribution_required_for_retirement"] is True
-    assert receipt["policy"]["latest_is_routing_cursor_only"] is True
-    assert receipt["summary"]["remote_branch_refs_requiring_later_deletion"] is False
-    assert (
-        receipt["summary"]["remote_branch_refs_pending_zero_unique_contribution_proof"]
-        is True
-    )
+    assert receipt["policy"]["holographic_mesh_anti_replacement"]
+    assert receipt["policy"]["zero_unique_contribution_required_for_retirement"]
+    assert receipt["policy"]["latest_is_routing_cursor_only"]
+    assert not receipt["summary"]["remote_branch_refs_requiring_later_deletion"]
+    assert receipt["summary"][
+        "remote_branch_refs_pending_zero_unique_contribution_proof"
+    ]
 
 
 def test_receipt_rejects_declarative_delete_without_zero_unique_proof(
@@ -86,6 +85,7 @@ def test_receipt_rejects_delete_even_with_zero_proof_and_operator_authority(
             "github://compare/main...feature/reference-language-manifest"
         ],
         "operator_authorized_retirement": True,
+        "lineage_preserved": True,
     }
 
     program_path = _write_program_with_receipt(
@@ -100,7 +100,7 @@ def test_receipt_rejects_delete_even_with_zero_proof_and_operator_authority(
         validate_latest_execution_receipt(program_path, program)
 
 
-def test_receipt_accepts_drained_retirement_with_zero_proof_and_preserved_ref(
+def test_receipt_rejects_drained_retirement_without_lineage_proof(
     tmp_path: Path,
 ) -> None:
     program_payload = json.loads(PROGRAM.read_text(encoding="utf-8"))
@@ -122,8 +122,40 @@ def test_receipt_accepts_drained_retirement_with_zero_proof_and_preserved_ref(
         tmp_path, program_payload, receipt_payload
     )
     program = validate_library_program(program_path)
+
+    with pytest.raises(
+        LibraryProgramError,
+        match="verified durable lineage preservation",
+    ):
+        validate_latest_execution_receipt(program_path, program)
+
+
+def test_receipt_accepts_drained_retirement_with_zero_proof_and_preserved_ref(
+    tmp_path: Path,
+) -> None:
+    program_payload = json.loads(PROGRAM.read_text(encoding="utf-8"))
+    receipt_payload = copy.deepcopy(
+        json.loads(RECEIPT.read_text(encoding="utf-8"))
+    )
+    branch = receipt_payload["outcomes"][0]["branch_dispositions"][0]
+    branch["unique_value"] = "NONE"
+    branch["remote_ref_disposition"] = "PRESERVE_DRAINED_LINEAGE"
+    branch["unique_contribution_verification"] = {
+        "verdict": "ZERO",
+        "provider_readback_refs": [
+            "github://compare/main...feature/reference-language-manifest"
+        ],
+        "operator_authorized_retirement": True,
+        "lineage_preserved": True,
+    }
+
+    program_path = _write_program_with_receipt(
+        tmp_path, program_payload, receipt_payload
+    )
+    program = validate_library_program(program_path)
     receipt = validate_latest_execution_receipt(program_path, program)
 
     retired = receipt["outcomes"][0]["branch_dispositions"][0]
     assert retired["unique_contribution_verification"]["verdict"] == "ZERO"
+    assert retired["unique_contribution_verification"]["lineage_preserved"]
     assert retired["remote_ref_disposition"] == "PRESERVE_DRAINED_LINEAGE"
