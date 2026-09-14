@@ -63,7 +63,7 @@
         "impact_class": "MEDIUM_HIGH",
         "mechanism": "Use health-driven scheduling, dependency graphs, checkpoint receipts, and failure-injection review."
       },
-      "next_deep_dive": "Create a simulated cluster failure benchmark with clearly bounded claims.",
+      "next_deep_dive": "Create a simulated cluster failure benchmark with clearly evidence-scoped claims.",
       "observed_current_pressure": "AI clouds must operate mega-clusters across training, inference, observability, and rapidly expanding data-center capacity.",
       "official_sources": [
         {
