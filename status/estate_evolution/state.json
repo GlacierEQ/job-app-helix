@@ -1,6 +1,6 @@
 {
   "schema": "glaciereq.estate-evolution.state.v1",
-  "updated_at": "2026-08-08T16:15:15Z",
+  "updated_at": "2026-09-14T13:31:48Z",
   "control_plane": "GlacierEQ/job-app-helix",
   "phase": "HELIX_SOURCE_BOUND_CLEAN_MONOLITH_EXACT_HEAD_PROOF_BLOCKED",
   "cursor": {
@@ -109,5 +109,39 @@
     "monolith_private_github_hosted_actions": "WORKFLOW_RUNS_CREATED_BUT_FAILURE_OCCURRED_BEFORE_JOB_STEPS_EXECUTED",
     "public_fixed_command_runner": "AVAILABLE_IN_ESTATE; MONOLITH_a93c3f79_EXACT_HEAD_SUCCESS_NOT_OBSERVED"
   },
-  "next_run_contract": "Begin from Helix reference 17c666190d84b1f8b49a3e377808a23011bd63a8 with zero open Helix PRs, dynamic company-analysis topology reference, and worker-science bridge reference. Preserve Monolith PR #54 at a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03; do not merge until exact-head legal/catalog proof executes. Treat pre-step workflow failure as an execution blocker, not a validator failure."
+  "mesh_continuity": {
+    "classification": "VERIFIED_REGRESSION_REPAIRED",
+    "controlling_invariant": "MERGE_TRANSCRIBE_COMPOUND; NEVER_REPLACE_BY_NEWNESS",
+    "latest_semantics": "ROUTING_CURSOR_ONLY",
+    "retirement_requirement": "VERIFIED_UNIQUE_CONTRIBUTION_ZERO_PLUS_EXPLICIT_OPERATOR_AUTHORIZATION_PLUS_DURABLE_LINEAGE_POINTERS",
+    "remote_ref_deletion": "FORBIDDEN_AS_RETIREMENT_SEMANTICS",
+    "historical_snapshot_authority": "HISTORICAL_SOURCE_AND_LINEAGE_ONLY; NOT CURRENT_RETIREMENT_AUTHORITY",
+    "historical_conflicts": [
+      {
+        "pattern": "DELETE_REF_REQUIRED",
+        "relationship": "CONTRADICTS",
+        "status": "HISTORICAL_REGRESSION_EVIDENCE_ONLY"
+      },
+      {
+        "pattern": "RETIREMENT_READY",
+        "relationship": "CONTRADICTS_UNLESS_ZERO_UNIQUE_CONTRIBUTION_IS_PROVIDER_VERIFIED",
+        "status": "CANDIDATE_UNVERIFIED_BY_DEFAULT"
+      },
+      {
+        "pattern": "current canonical supersedes/replaces older donor",
+        "relationship": "CONTRADICTS",
+        "status": "NEWNESS_OR_MAIN_STATUS_CANNOT_ESTABLISH_REPLACEMENT"
+      }
+    ],
+    "partial_overlap_relationships": [
+      "MERGED_WITH",
+      "SUPERSEDES_ONLY",
+      "CONTRADICTS",
+      "DUPLICATE_OF",
+      "DERIVED_FROM"
+    ],
+    "source_enforcement": "src/job_app_helix/library_program.py",
+    "source_enforcement_state": "FAIL_CLOSED_ON_DESTRUCTIVE_REMOTE_REF_DISPOSITION_AND_REQUIRE_ZERO_CONTRIBUTION_PROOF_WITH_LINEAGE_FOR_RETIREMENT"
+  },
+  "next_run_contract": "Begin from current provider main and recover source-bearing state before acting. Treat historical Estate Evolution snapshots as lineage/source evidence, never as current retirement authority. Preserve every donor ACTIVE_IN_MESH until provider-read-back UNIQUE_CONTRIBUTION=0, explicit Operator retirement authorization, and durable lineage/source pointers are all present. Remote-ref deletion is not retirement. For Monolith PR #54, preserve the candidate until exact-head legal/catalog proof executes; treat pre-step workflow failure as an execution blocker, not a validator failure."
 }
