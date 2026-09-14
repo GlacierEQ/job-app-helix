@@ -2,7 +2,7 @@
 """Turn a raw crystallization crawl receipt into a compact code-uplift routing digest.
 
 The crawler is an observation engine. This module keeps that strength and changes
-what gets promoted into Monolith: compact, evidence-bounded lift signals instead
+what gets promoted into Monolith: compact, evidence-scoped lift signals instead
 of the entire per-file crawl body.
 """
 from __future__ import annotations

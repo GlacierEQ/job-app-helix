@@ -73,7 +73,7 @@ ROLE_COPY = {
     },
     "Forward-Deployed AI Engineer": {
         "summary": (
-            "Translates ambiguous operator needs into bounded implementations, "
+            "Translates ambiguous operator needs into evidence-scoped implementations, "
             "measurable acceptance criteria, and resumable delivery paths."
         ),
         "signals": [

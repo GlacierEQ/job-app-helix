@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a deterministic, truth-bounded company analysis plan from reference tracks."""
+"""Build a deterministic, truth-grounded company analysis plan from reference tracks."""
 
 from __future__ import annotations
 
