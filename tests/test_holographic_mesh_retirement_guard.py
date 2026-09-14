@@ -40,21 +40,33 @@ def test_checked_in_origin_receipt_is_mesh_safe() -> None:
     assert receipt["policy"]["zero_unique_contribution_required_for_retirement"] is True
     assert receipt["policy"]["latest_is_routing_cursor_only"] is True
     assert receipt["summary"]["remote_branch_refs_requiring_later_deletion"] is False
-    assert receipt["summary"]["remote_branch_refs_pending_zero_unique_contribution_proof"] is True
+    assert (
+        receipt["summary"]["remote_branch_refs_pending_zero_unique_contribution_proof"]
+        is True
+    )
 
 
-def test_receipt_rejects_declarative_delete_without_zero_unique_proof(tmp_path: Path) -> None:
+def test_receipt_rejects_declarative_delete_without_zero_unique_proof(
+    tmp_path: Path,
+) -> None:
     program_payload = json.loads(PROGRAM.read_text(encoding="utf-8"))
-    receipt_payload = copy.deepcopy(json.loads(RECEIPT.read_text(encoding="utf-8")))
+    receipt_payload = copy.deepcopy(
+        json.loads(RECEIPT.read_text(encoding="utf-8"))
+    )
     branch = receipt_payload["outcomes"][0]["branch_dispositions"][0]
     branch["unique_value"] = "NONE"
     branch["remote_ref_disposition"] = "DELETE_REF_REQUIRED"
     branch.pop("unique_contribution_verification", None)
 
-    program_path = _write_program_with_receipt(tmp_path, program_payload, receipt_payload)
+    program_path = _write_program_with_receipt(
+        tmp_path, program_payload, receipt_payload
+    )
     program = validate_library_program(program_path)
 
-    with pytest.raises(LibraryProgramError, match="destructive remote-ref disposition is forbidden"):
+    with pytest.raises(
+        LibraryProgramError,
+        match="destructive remote-ref disposition is forbidden",
+    ):
         validate_latest_execution_receipt(program_path, program)
 
 
@@ -62,20 +74,29 @@ def test_receipt_rejects_delete_even_with_zero_proof_and_operator_authority(
     tmp_path: Path,
 ) -> None:
     program_payload = json.loads(PROGRAM.read_text(encoding="utf-8"))
-    receipt_payload = copy.deepcopy(json.loads(RECEIPT.read_text(encoding="utf-8")))
+    receipt_payload = copy.deepcopy(
+        json.loads(RECEIPT.read_text(encoding="utf-8"))
+    )
     branch = receipt_payload["outcomes"][0]["branch_dispositions"][0]
     branch["unique_value"] = "NONE"
     branch["remote_ref_disposition"] = "DELETE_REF_REQUIRED"
     branch["unique_contribution_verification"] = {
         "verdict": "ZERO",
-        "provider_readback_refs": ["github://compare/main...feature/reference-language-manifest"],
+        "provider_readback_refs": [
+            "github://compare/main...feature/reference-language-manifest"
+        ],
         "operator_authorized_retirement": True,
     }
 
-    program_path = _write_program_with_receipt(tmp_path, program_payload, receipt_payload)
+    program_path = _write_program_with_receipt(
+        tmp_path, program_payload, receipt_payload
+    )
     program = validate_library_program(program_path)
 
-    with pytest.raises(LibraryProgramError, match="destructive remote-ref disposition is forbidden"):
+    with pytest.raises(
+        LibraryProgramError,
+        match="destructive remote-ref disposition is forbidden",
+    ):
         validate_latest_execution_receipt(program_path, program)
 
 
@@ -83,17 +104,23 @@ def test_receipt_accepts_drained_retirement_with_zero_proof_and_preserved_ref(
     tmp_path: Path,
 ) -> None:
     program_payload = json.loads(PROGRAM.read_text(encoding="utf-8"))
-    receipt_payload = copy.deepcopy(json.loads(RECEIPT.read_text(encoding="utf-8")))
+    receipt_payload = copy.deepcopy(
+        json.loads(RECEIPT.read_text(encoding="utf-8"))
+    )
     branch = receipt_payload["outcomes"][0]["branch_dispositions"][0]
     branch["unique_value"] = "NONE"
     branch["remote_ref_disposition"] = "PRESERVE_DRAINED_LINEAGE"
     branch["unique_contribution_verification"] = {
         "verdict": "ZERO",
-        "provider_readback_refs": ["github://compare/main...feature/reference-language-manifest"],
+        "provider_readback_refs": [
+            "github://compare/main...feature/reference-language-manifest"
+        ],
         "operator_authorized_retirement": True,
     }
 
-    program_path = _write_program_with_receipt(tmp_path, program_payload, receipt_payload)
+    program_path = _write_program_with_receipt(
+        tmp_path, program_payload, receipt_payload
+    )
     program = validate_library_program(program_path)
     receipt = validate_latest_execution_receipt(program_path, program)
 
