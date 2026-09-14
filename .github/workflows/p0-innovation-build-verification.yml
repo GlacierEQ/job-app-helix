@@ -43,7 +43,7 @@ jobs:
           python-version: "3.13"
       - name: Install Helix
         run: python -m pip install -e ".[dev]"
-      - name: Verify all 25 bounded reference builds
+      - name: Verify all 25 reference builds with explicit scope
         run: python scripts/verify_p0_innovation_builds.py --output p0-build-verification-receipt.json
       - name: Exercise reference-build failure paths
         run: python -m pytest tests/test_p0_innovation_builds.py

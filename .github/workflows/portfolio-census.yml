@@ -109,7 +109,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install bounded census dependency
+      - name: Install the census dependency
         run: python -m pip install --upgrade pytest
 
       - name: Run proof-weighted census

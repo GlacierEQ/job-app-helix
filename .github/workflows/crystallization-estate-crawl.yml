@@ -207,7 +207,7 @@ jobs:
           print(f"- Raw evidence artifact: private-crystallization-raw-${{ github.run_id }}")
           print()
           print('Raw per-file evidence is preserved as a private workflow artifact.')
-          print('Monolith receives compact evidence-bounded code-uplift routing intelligence.')
+          print('Monolith receives compact evidence-scoped code-uplift routing intelligence.')
           PY
 
       - name: Fail closed after evidence preservation and uplift publication
