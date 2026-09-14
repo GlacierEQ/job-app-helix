@@ -8,7 +8,7 @@ from .estate_intelligence_support import (
     capabilities_by_system,
     company_intelligence_fields,
     dynamic_score,
-    minimal_surface,
+    strongest_proof_surface,
 )
 
 
@@ -114,7 +114,7 @@ def enrich_company_registry(
                 for capability in row["capabilities"]
             }
         )
-        projection["minimal_proof_surface"] = minimal_surface(ranked)
+        projection["strongest_proof_surface"] = strongest_proof_surface(ranked)
         projection["projection_innovation"] = (
             "complete_ranked_relation_graph_with_role_relevance"
         )
@@ -124,7 +124,7 @@ def enrich_company_registry(
             fits_by_system,
             policy,
         )
-        proof_ids = projection["minimal_proof_surface"]
+        proof_ids = projection["strongest_proof_surface"]
         all_ids = [row["system_id"] for row in ranked]
         proof_first = proof_ids + [
             system_id for system_id in all_ids if system_id not in set(proof_ids)

@@ -158,9 +158,9 @@ def public_intelligence_projection(
         }
         for key in PUBLIC_FIELDS:
             projection[key] = source.get(key)
-        projection["minimal_proof_surface"] = [
+        projection["strongest_proof_surface"] = [
             system_id
-            for system_id in source.get("minimal_proof_surface", [])
+            for system_id in source.get("strongest_proof_surface", [])
             if system_id in safe_ids
         ]
         projection["audience_projection"] = {

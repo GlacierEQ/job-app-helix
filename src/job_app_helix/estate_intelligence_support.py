@@ -229,7 +229,7 @@ def dynamic_score(
     return round(sum(dynamic.values()) / 5.0, 2), dynamic
 
 
-def minimal_surface(
+def strongest_proof_surface(
     rows: Sequence[Mapping[str, Any]],
     limit: int | None = None,
 ) -> list[str]:
