@@ -49,6 +49,14 @@ FORBIDDEN_ACTIVE_ACTION_FRAGMENTS = (
     "CONSOLIDATE",
     "SUPERSEDE",
 )
+DESTRUCTIVE_DISPOSITION_FRAGMENTS = (
+    "DELETE",
+    "RETIRE",
+    "ARCHIVE",
+    "SUPERSEDE",
+    "DISCARD",
+    "REMOVE_REF",
+)
 
 
 class LibraryProgramError(ValueError):
@@ -103,6 +111,48 @@ def _assert_upward_policy(policy: Mapping[str, Any]) -> None:
     boundary = _require_nonempty_text(policy.get("retirement_boundary"), "retirement_boundary")
     if "operator" not in boundary.casefold() or "not authorized" not in boundary.casefold():
         raise LibraryProgramError("retirement boundary must reserve destructive lifecycle decisions to operator authority")
+
+
+def _assert_zero_unique_contribution_proof(
+    branch: Mapping[str, Any], *, label: str
+) -> None:
+    proof = branch.get("unique_contribution_verification")
+    if not isinstance(proof, Mapping):
+        raise LibraryProgramError(
+            f"{label}: destructive retirement requires unique_contribution_verification"
+        )
+    if proof.get("verdict") != "ZERO":
+        raise LibraryProgramError(
+            f"{label}: destructive retirement requires UNIQUE_CONTRIBUTION=0"
+        )
+    refs = proof.get("provider_readback_refs")
+    if not isinstance(refs, list) or not refs or not all(
+        isinstance(ref, str) and ref.strip() for ref in refs
+    ):
+        raise LibraryProgramError(
+            f"{label}: zero-unique-contribution proof requires provider readback refs"
+        )
+    if proof.get("operator_authorized_retirement") is not True:
+        raise LibraryProgramError(
+            f"{label}: destructive retirement requires explicit operator authorization"
+        )
+
+
+def _assert_mesh_safe_branch_disposition(
+    branch: Mapping[str, Any], *, label: str
+) -> None:
+    unique_value = branch.get("unique_value")
+    disposition = branch.get("remote_ref_disposition")
+    destructive = isinstance(disposition, str) and any(
+        fragment in disposition.upper() for fragment in DESTRUCTIVE_DISPOSITION_FRAGMENTS
+    )
+    declares_zero = isinstance(unique_value, str) and unique_value.strip().upper() in {
+        "NONE",
+        "ZERO",
+        "NO_UNIQUE_VALUE",
+    }
+    if destructive or declares_zero:
+        _assert_zero_unique_contribution_proof(branch, label=label)
 
 
 def validate_library_program(path: Path) -> dict[str, Any]:
@@ -215,17 +265,39 @@ def validate_latest_execution_receipt(
     if scope.get("whole_library_completion_claimed") is not False:
         raise LibraryProgramError("execution receipt must not claim whole-library completion")
 
+    policy = _require_mapping(receipt.get("policy"), "execution receipt policy")
+    if policy.get("preserve_unique_value_before_closure") is not True:
+        raise LibraryProgramError("execution receipt must preserve unique value before closure")
+    if policy.get("holographic_mesh_anti_replacement") is not True:
+        raise LibraryProgramError("execution receipt must enforce holographic mesh anti-replacement")
+    if policy.get("zero_unique_contribution_required_for_retirement") is not True:
+        raise LibraryProgramError("execution receipt must require zero unique contribution for retirement")
+    if policy.get("latest_is_routing_cursor_only") is not True:
+        raise LibraryProgramError("execution receipt must treat latest as routing cursor only")
+
     outcomes = receipt.get("outcomes")
     if not isinstance(outcomes, list):
         raise LibraryProgramError("execution receipt outcomes must be a list")
-    observed = tuple(
-        _require_nonempty_text(
-            _require_mapping(item, f"outcomes[{index}]").get("repository"),
-            f"outcomes[{index}].repository",
+    observed: list[str] = []
+    for index, raw_item in enumerate(outcomes):
+        item = _require_mapping(raw_item, f"outcomes[{index}]")
+        observed.append(
+            _require_nonempty_text(item.get("repository"), f"outcomes[{index}].repository")
         )
-        for index, item in enumerate(outcomes)
-    )
-    if observed != EXPECTED_REPOSITORIES:
+        _assert_mesh_safe_branch_disposition(item, label=f"outcomes[{index}]")
+        branches = item.get("branch_dispositions", [])
+        if not isinstance(branches, list):
+            raise LibraryProgramError(f"outcomes[{index}].branch_dispositions must be a list")
+        for branch_index, raw_branch in enumerate(branches):
+            branch = _require_mapping(
+                raw_branch, f"outcomes[{index}].branch_dispositions[{branch_index}]"
+            )
+            _assert_mesh_safe_branch_disposition(
+                branch,
+                label=f"outcomes[{index}].branch_dispositions[{branch_index}]",
+            )
+
+    if tuple(observed) != EXPECTED_REPOSITORIES:
         raise LibraryProgramError("execution receipt outcomes must match the exact priority spine order")
 
     summary = _require_mapping(receipt.get("summary"), "execution receipt summary")
@@ -257,7 +329,7 @@ def render_library_program(payload: Mapping[str, Any]) -> str:
             "",
             "`DISCOVER -> RECONSTRUCT_PURPOSE -> COMPARE_LINEAGE -> EXTRACT_UNIQUE_VALUE -> RESTORE_LOST_CAPABILITY -> COMPOSE_GAINS -> IMPLEMENT -> VERIFY -> INTEGRATE -> DEPLOY_OR_PACKAGE -> RECEIPT`",
             "",
-            "Retirement, archival, merge-away, close-as-duplicate, and ref deletion are outside this automated lifecycle and require explicit operator authorization after verified capability preservation.",
+            "Retirement, archival, merge-away, close-as-duplicate, and ref deletion are outside this automated lifecycle and require explicit operator authorization after verified capability preservation and provider-read-back UNIQUE_CONTRIBUTION=0.",
         )
     )
     return "\n".join(lines) + "\n"

@@ -15,7 +15,17 @@
     "preserve_unique_value_before_closure": true,
     "require_repository_native_proof": true,
     "pr_closure_is_branch_deletion": false,
-    "remote_ref_deletion_capability_available": false
+    "remote_ref_deletion_capability_available": false,
+    "holographic_mesh_anti_replacement": true,
+    "zero_unique_contribution_required_for_retirement": true,
+    "latest_is_routing_cursor_only": true
+  },
+  "historical_regression_repair": {
+    "classification": "VERIFIED_REGRESSION",
+    "origin": "This receipt previously allowed declarative unique_value=NONE and DELETE_REF_REQUIRED without provider-read-back UNIQUE_CONTRIBUTION=0 evidence.",
+    "failed_assumption": "main/reference status, merge completion, similarity, or a value-transplant assertion could stand in for exhaustive unique-contribution proof.",
+    "repair": "All formerly destructive branch/ref dispositions are preserved as historical observations only and converted to ACTIVE_IN_MESH or PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF until a separate provider-read-back proof establishes UNIQUE_CONTRIBUTION=0 and explicit Operator retirement authorization.",
+    "lineage_preserved": true
   },
   "outcomes": [
     {
@@ -27,9 +37,10 @@
       "branch_dispositions": [
         {
           "branch": "feature/reference-language-manifest",
-          "unique_value": "NONE",
+          "unique_value": "CANDIDATE_UNVERIFIED_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF",
+          "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
           "pull_request_disposition": "NO_OPEN_PR",
-          "remote_ref_disposition": "DELETE_REF_REQUIRED"
+          "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
         },
         {
           "branch": "feature/reference-language-manifest-v2",
@@ -56,10 +67,13 @@
       "superseded_pull_requests": [
         {
           "pull_request": 2,
-          "disposition": "CLOSED_WITH_UNIQUE_VALUE_PRESERVED_IN_PR_4"
+          "historical_disposition": "CLOSED_WITH_UNIQUE_VALUE_PRESERVED_IN_PR_4",
+          "mesh_relationship": "MERGED_WITH",
+          "retirement_authority": "UNVERIFIED"
         }
       ],
-      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/job-app-helix",
@@ -75,7 +89,8 @@
         "library CLI and renderer tests passed",
         "Python 3.11, 3.12, and 3.13 CI passed"
       ],
-      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/monolith",
@@ -102,7 +117,8 @@
           "branch": "wave-1/native-ci-readme-evidence-2026-07-29",
           "pull_request": 9,
           "merge_state": "MERGED_BY_SQUASH",
-          "remote_ref_disposition": "DELETE_REF_REQUIRED"
+          "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
+          "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
         }
       ],
       "remaining_branch_audit": "REQUIRED"
@@ -128,10 +144,13 @@
       "superseded_pull_requests": [
         {
           "pull_request": 4,
-          "disposition": "CLOSED_AFTER_VALUE_TRANSPLANT_TO_CURRENT_MAIN_ANCESTRY"
+          "historical_disposition": "CLOSED_AFTER_VALUE_TRANSPLANT_TO_CURRENT_MAIN_ANCESTRY",
+          "mesh_relationship": "MERGED_WITH",
+          "retirement_authority": "UNVERIFIED"
         }
       ],
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_TWO_HARDENING_BRANCHES"
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_TWO_HARDENING_BRANCHES",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/Pro_Code",
@@ -184,7 +203,8 @@
         "legitimate future targets preserved in docs/LEGACY_WORKFLOW_BACKLOG.md"
       ],
       "scope_boundary": "FRONT_DOOR_AND_GOVERNANCE_MERGED_BRANCH_FAMILY_BACKLOG_NOT_COMPLETE",
-      "remote_ref_disposition": "DELETE_REF_REQUIRED"
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/megaminds-pdf",
@@ -229,7 +249,8 @@
     "superseded_pull_requests_closed": 2,
     "credential_bearing_pull_request_descriptions_redacted": 4,
     "remote_branch_refs_deleted": 0,
-    "remote_branch_refs_requiring_later_deletion": true,
+    "remote_branch_refs_requiring_later_deletion": false,
+    "remote_branch_refs_pending_zero_unique_contribution_proof": true,
     "whole_library_complete": false
   }
 }
