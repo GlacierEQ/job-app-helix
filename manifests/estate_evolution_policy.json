@@ -33,9 +33,16 @@
     "inspect_unique_files_and_commits": true,
     "require_repository_native_verification": true,
     "require_expected_head_guard": true,
+    "holographic_mesh_anti_replacement": true,
+    "latest_is_routing_cursor_only": true,
+    "old_nodes_remain_active_while_unique_contribution_exists": true,
     "delete_only_after_zero_unique_value": true,
+    "retirement_requires_provider_readback_unique_contribution_zero": true,
+    "retirement_requires_explicit_operator_authorization": true,
     "delete_only_after_reference_contains_preserved_value": true,
-    "delete_truth_boundary": "remote ref deletion must have a deletion receipt; PR closure is not deletion",
+    "partial_overlap_relationships": ["MERGED_WITH", "SUPERSEDES_ONLY", "CONTRADICTS", "DUPLICATE_OF", "DERIVED_FROM"],
+    "historical_retirement_claims_without_zero_proof_are_non_authoritative": true,
+    "delete_truth_boundary": "remote ref deletion requires provider-read-back UNIQUE_CONTRIBUTION=0, explicit Operator retirement authorization, preserved lineage pointers, and a deletion receipt; PR closure, newer main, patch similarity, merge completion, or prior retirement language are not deletion or retirement authority",
     "no_fixed_one_branch_limit": true
   },
   "fork_policy": {
@@ -68,11 +75,19 @@
   "mutation_gates": {
     "direct_main_update": "only_after_verified_synthesis_and_expected-head-check",
     "pull_request": "preferred_for_nontrivial_or_cross-cutting changes",
-    "branch_deletion": "only_after exhausted-value proof and deletion capability",
+    "branch_deletion": "only after provider-read-back UNIQUE_CONTRIBUTION=0, explicit Operator retirement authorization, lineage preservation, and deletion capability",
     "fork_upstream_branch": "never receives custom overlay commits"
   },
   "receipt": {
     "path": "status/estate_evolution/",
+    "retirement_claim_default": "CANDIDATE_UNVERIFIED",
+    "destructive_disposition_requires": [
+      "unique_contribution_verification.verdict=ZERO",
+      "unique_contribution_verification.provider_readback_refs",
+      "operator_authorized_retirement=true",
+      "lineage_preserved=true"
+    ],
+    "legacy_destructive_dispositions_without_required_proof": "HISTORICAL_REGRESSION_EVIDENCE_ONLY",
     "required_fields": [
       "timestamp",
       "repository",
