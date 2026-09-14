@@ -14,11 +14,12 @@
     "historical_destructive_dispositions": "HISTORICAL_REGRESSION_EVIDENCE_ONLY",
     "default_live_state_for_unproved_donors": "ACTIVE_IN_MESH_OR_PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF",
     "latest_semantics": "ROUTING_CURSOR_ONLY",
+    "destructive_mutation_authority": "NONE",
     "retirement_requires": [
       "provider-read-back UNIQUE_CONTRIBUTION=0",
       "explicit Operator retirement authorization",
       "lineage preservation",
-      "provider receipt for destructive mutation"
+      "provider readback confirming the preserved lineage state"
     ]
   },
   "relationship_semantics": ["MERGED_WITH", "SUPERSEDES_ONLY", "CONTRADICTS", "DUPLICATE_OF", "DERIVED_FROM"],
