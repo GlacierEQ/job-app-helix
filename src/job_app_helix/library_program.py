@@ -144,6 +144,10 @@ def _assert_zero_unique_contribution_proof(
         raise LibraryProgramError(
             f"{label}: retirement requires explicit operator authorization"
         )
+    if proof.get("lineage_preserved") is not True:
+        raise LibraryProgramError(
+            f"{label}: retirement requires verified durable lineage preservation"
+        )
 
 
 def _assert_mesh_safe_branch_disposition(
