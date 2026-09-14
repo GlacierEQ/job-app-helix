@@ -15,6 +15,10 @@ from job_app_helix.library_program import (
 ROOT = Path(__file__).resolve().parents[1]
 PROGRAM = ROOT / "manifests" / "library_priority_spine.json"
 RECEIPT = ROOT / "status" / "priority-spine-wave-1-2026-07-30.json"
+REPAIR_RECEIPT = (
+    ROOT / "status" / "estate_evolution" / "2026-09-14-continuity-regression-repair.json"
+)
+POLICY = ROOT / "manifests" / "estate_evolution_policy.json"
 
 
 def _write_program_with_receipt(
@@ -43,6 +47,23 @@ def test_checked_in_origin_receipt_is_mesh_safe() -> None:
     assert receipt["summary"][
         "remote_branch_refs_pending_zero_unique_contribution_proof"
     ]
+
+
+def test_continuity_repair_receipt_cannot_reintroduce_destructive_authority() -> None:
+    repair = json.loads(REPAIR_RECEIPT.read_text(encoding="utf-8"))
+    policy = json.loads(POLICY.read_text(encoding="utf-8"))
+
+    assert repair["repair"]["destructive_mutation_authority"] == "NONE"
+    requirements = " ".join(repair["repair"]["retirement_requires"]).lower()
+    assert "destructive mutation" not in requirements
+    assert "preserved lineage" in requirements
+    assert repair["deletion_performed"] is False
+    assert policy["branch_policy"]["remote_ref_deletion_is_not_retirement"] is True
+    assert (
+        policy["branch_policy"]["remote_ref_deletion_forbidden_in_automated_retirement"]
+        is True
+    )
+    assert policy["receipt"]["destructive_remote_ref_disposition_allowed"] is False
 
 
 def test_receipt_rejects_declarative_delete_without_zero_unique_proof(
