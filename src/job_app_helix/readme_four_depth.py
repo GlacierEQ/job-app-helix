@@ -6,6 +6,8 @@ from typing import Iterable
 from . import readme_mesh_pb2
 from .readme_mesh import RELATION_LABELS, ReadmeMeshError, repository_index, validate_mesh
 
+# Legacy marker names are intentionally preserved so existing README blocks can be
+# updated in place without duplicating generated sections.
 BEGIN_MARKER = "<!-- README-FOUR-DEPTH:BEGIN -->"
 END_MARKER = "<!-- README-FOUR-DEPTH:END -->"
 
@@ -13,7 +15,8 @@ END_MARKER = "<!-- README-FOUR-DEPTH:END -->"
 @dataclass(frozen=True, slots=True)
 class LayerTitles:
     recruiter: str
-    master: str
+    expert: str
+    genius: str
     machine: str
     mesh: str
 
@@ -22,8 +25,8 @@ class LayerTitles:
 class PresentationWeight:
     recruiter_highlights: int
     recruiter_evidence: int
-    master_highlights: int | None
-    master_evidence: int | None
+    expert_highlights: int | None
+    expert_evidence: int | None
 
 
 def _capability_text(node: readme_mesh_pb2.RepositoryNode) -> str:
@@ -31,42 +34,52 @@ def _capability_text(node: readme_mesh_pb2.RepositoryNode) -> str:
 
 
 def choose_titles(node: readme_mesh_pb2.RepositoryNode) -> LayerTitles:
-    """Choose informative, project-native headings without altering source facts."""
+    """Choose project-native headings without altering source facts."""
 
     name = node.display_name.strip() or node.repository.rsplit("/", 1)[-1]
     caps = _capability_text(node)
 
     if any(term in caps for term in ("verification", "evidence", "proof", "receipt")):
         recruiter = "Proof You Can Actually Open"
-        master = "Where the Claim Meets the Workbench"
+        expert = "Where the Claim Meets the Workbench"
+        genius = "From Evidence to Assurance"
     elif any(term in caps for term in ("orchestration", "control plane", "control", "workflow")):
         recruiter = "Make the Moving Parts Behave"
-        master = "Inside the Control Loop"
+        expert = "Inside the Control Loop"
+        genius = "When Control Becomes Composition"
     elif any(term in caps for term in ("memory", "continuity", "persistence")):
         recruiter = "Remember Without Rewriting History"
-        master = "What Persistence Has to Prove"
+        expert = "What Persistence Has to Prove"
+        genius = "From Persistence to Continuity Intelligence"
     elif any(term in caps for term in ("governance", "policy", "authority")):
         recruiter = "Rules That Actually Run"
-        master = "Where Policy Becomes Execution"
+        expert = "Where Policy Becomes Execution"
+        genius = "Authority Without Architecture Drift"
     elif any(term in caps for term in ("agent", "assistant", "autonomy")):
         recruiter = "An Agent With a Job, Not a Costume"
-        master = "Inside the Decision Loop"
+        expert = "Inside the Decision Loop"
+        genius = "From Agent Behavior to System Capability"
     elif any(term in caps for term in ("data", "source", "dataset", "record")):
         recruiter = "The Source Beneath the System"
-        master = "How the Record Stays Trustworthy"
+        expert = "How the Record Stays Trustworthy"
+        genius = "When Provenance Becomes a Design Primitive"
     elif any(term in caps for term in ("browser", "web", "navigation")):
         recruiter = "From Page to Proof"
-        master = "What the Browser Is Allowed to Do"
+        expert = "What the Browser Is Allowed to Do"
+        genius = "From Navigation to Verifiable Action"
     elif any(term in caps for term in ("security", "auth", "identity", "provenance")):
         recruiter = "Trust Has to Come From Somewhere"
-        master = "The Boundary Is the Architecture"
+        expert = "The Boundary Is the Architecture"
+        genius = "Trust as a Composable System Property"
     else:
         recruiter = f"{name}: What Changes When It Works"
-        master = f"Inside {name}: The Decisions That Matter"
+        expert = f"Inside {name}: The Decisions That Matter"
+        genius = f"{name}: How the Pieces Compound"
 
     return LayerTitles(
         recruiter=recruiter,
-        master=master,
+        expert=expert,
+        genius=genius,
         machine=f"{name}, Without the Guesswork",
         mesh=f"Where {name} Compounds",
     )
@@ -89,7 +102,7 @@ def choose_weight(node: readme_mesh_pb2.RepositoryNode) -> PresentationWeight:
 def _section(
     node: readme_mesh_pb2.RepositoryNode,
     audience: int,
-) -> readme_mesh_pb2.AudienceSection:
+):
     for section in node.sections:
         if section.audience == audience:
             return section
@@ -99,7 +112,7 @@ def _section(
 
 
 def _render_evidence(
-    evidence: Iterable[readme_mesh_pb2.EvidenceReference],
+    evidence: Iterable,
 ) -> list[str]:
     rows = list(evidence)
     if not rows:
@@ -117,14 +130,28 @@ def _slice(values: Iterable, limit: int | None):
     return rows if limit is None else rows[:limit]
 
 
-def render_four_depth_block(
+def _genius_highlights(node: readme_mesh_pb2.RepositoryNode) -> list[str]:
+    capabilities = ", ".join(node.capabilities)
+    rows = [
+        f"Innovation: {node.innovation}",
+        f"Evolution: {node.evolution}",
+        f"Capability composition: {capabilities}.",
+        (
+            "The synthesis is bounded by the same source, evidence, and typed relationships "
+            "used by the Expert, Machine, and Mesh layers; it does not manufacture new facts."
+        ),
+    ]
+    return [row for row in rows if row.strip()]
+
+
+def render_five_depth_block(
     mesh: readme_mesh_pb2.ReadmeMesh,
     repository: str,
     *,
     license_path: str = "LICENSE",
     license_name: str = "GlacierEQ Proprietary Copyright License and Enforcement Notice v1.1",
 ) -> str:
-    """Render Recruiter -> Master -> Machine -> Mesh from one validated graph."""
+    """Render Recruiter -> Expert -> Genius -> Machine -> Mesh from one validated graph."""
 
     validate_mesh(mesh)
     nodes = repository_index(mesh)
@@ -134,17 +161,17 @@ def render_four_depth_block(
         raise ReadmeMeshError(f"repository is not present in mesh: {repository}") from exc
 
     recruiter = _section(node, readme_mesh_pb2.RECRUITER)
-    master = _section(node, readme_mesh_pb2.EXPERT)
+    expert = _section(node, readme_mesh_pb2.EXPERT)
     machine = _section(node, readme_mesh_pb2.AI_AGENT)
     titles = choose_titles(node)
     weight = choose_weight(node)
 
     lines: list[str] = [
         BEGIN_MARKER,
-        f"## Four Ways Into {node.display_name}",
+        f"## Five Ways Into {node.display_name}",
         "",
         (
-            "One factual system, four useful depths. Read until you have what you need; "
+            "One factual system, five useful depths. Read until you have what you need; "
             "every layer is designed to be a truthful stopping point."
         ),
         "",
@@ -161,21 +188,38 @@ def render_four_depth_block(
     lines.extend(
         [
             "",
-            f"## 02 · MASTER — {titles.master}",
+            f"## 02 · EXPERT — {titles.expert}",
             "",
-            "*Masters-of-the-trade lens · architecture, mechanism, tradeoffs, failure behavior, and proof*",
+            "*Senior-engineer / domain-expert lens · architecture, mechanism, tradeoffs, failure behavior, and proof*",
             "",
-            master.summary,
+            expert.summary,
             "",
         ]
     )
-    lines.extend(f"- {item}" for item in _slice(master.highlights, weight.master_highlights))
-    lines.extend(_render_evidence(_slice(master.evidence, weight.master_evidence)))
+    lines.extend(f"- {item}" for item in _slice(expert.highlights, weight.expert_highlights))
+    lines.extend(_render_evidence(_slice(expert.evidence, weight.expert_evidence)))
 
     lines.extend(
         [
             "",
-            f"## 03 · MACHINE — {titles.machine}",
+            f"## 03 · GENIUS — {titles.genius}",
+            "",
+            "*Synthesis / mastery lens · what compounds, what transfers, what was learned, and where the limits remain*",
+            "",
+            (
+                "This layer synthesizes the repository's verified innovation, evolution, capabilities, "
+                "and evidence into higher-order engineering meaning without creating a second truth source."
+            ),
+            "",
+        ]
+    )
+    lines.extend(f"- {item}" for item in _genius_highlights(node))
+    lines.extend(_render_evidence(expert.evidence))
+
+    lines.extend(
+        [
+            "",
+            f"## 04 · MACHINE — {titles.machine}",
             "",
             "*Machine lens · deterministic identity, entrypoints, evidence, authority, and integration*",
             "",
@@ -189,16 +233,21 @@ def render_four_depth_block(
         [
             "",
             "```yaml",
-            "schema: glaciereq.readme.four-depth/v1",
+            "schema: glaciereq.readme.five-depth/v1",
             f"repository: {node.repository}",
             f"display_name: {node.display_name}",
             f"default_branch: {node.default_branch}",
             f"legacy_mesh_schema: {mesh.schema_version}",
             "layers:",
             "  - recruiter",
-            "  - master",
+            "  - expert",
+            "  - genius",
             "  - machine",
             "  - mesh",
+            "genius_semantics:",
+            "  role: evidence_bound_synthesis",
+            "  owns_new_facts: false",
+            "  replaces_expert_or_machine: false",
             "license:",
             f"  name: {license_name}",
             f"  path: {license_path}",
@@ -221,7 +270,7 @@ def render_four_depth_block(
     lines.extend(
         [
             "",
-            f"## 04 · MESH — {titles.mesh}",
+            f"## 05 · MESH — {titles.mesh}",
             "",
             "*Mesh lens · typed relationships, combined value, lineage, and boundaries*",
             "",
@@ -263,3 +312,20 @@ def render_four_depth_block(
         ]
     )
     return "\n".join(lines).rstrip() + "\n"
+
+
+def render_four_depth_block(
+    mesh: readme_mesh_pb2.ReadmeMesh,
+    repository: str,
+    *,
+    license_path: str = "LICENSE",
+    license_name: str = "GlacierEQ Proprietary Copyright License and Enforcement Notice v1.1",
+) -> str:
+    """Backward-compatible alias for the five-depth renderer."""
+
+    return render_five_depth_block(
+        mesh,
+        repository,
+        license_path=license_path,
+        license_name=license_name,
+    )
