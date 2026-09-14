@@ -1,0 +1,27 @@
+{
+  "schema": "glaciereq.estate-evolution.continuity-repair.v1",
+  "classification": "VERIFIED_REGRESSION",
+  "repository": "GlacierEQ/job-app-helix",
+  "triggering_provider_evidence": [
+    "status/estate_evolution/2026-08-06_2050-pro-code.json: decision=RETIREMENT_READY; remote_ref_disposition=DELETE_REF_REQUIRED",
+    "status/estate_evolution/2026-08-07T1533Z-high-power-pass.json: RETIREMENT_READY_PER_PRIOR_PRESERVATION_RECEIPTS; remote_ref_disposition=DELETE_REF_REQUIRED",
+    "status/estate_evolution/2026-08-07T1628Z-high-power-pass.json: unique_remaining_patch_value=ZERO_MATERIAL_VALUE_IDENTIFIED; disposition=RETIREMENT_READY_DELETE_REF_REQUIRED",
+    "status/estate_evolution/2026-08-07_1118Z.json: DELETE_REF_REQUIRED_FOR_ALREADY_EXHAUSTED_MASTERMIND_FAMILIES"
+  ],
+  "failed_assumption": "A prior preservation receipt, main/reference status, patch similarity, merge completion, or a declarative zero-value label could substitute for provider-read-back proof that the entire donor has UNIQUE_CONTRIBUTION=0.",
+  "repair": {
+    "policy": "manifests/estate_evolution_policy.json",
+    "historical_destructive_dispositions": "HISTORICAL_REGRESSION_EVIDENCE_ONLY",
+    "default_live_state_for_unproved_donors": "ACTIVE_IN_MESH_OR_PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF",
+    "latest_semantics": "ROUTING_CURSOR_ONLY",
+    "retirement_requires": [
+      "provider-read-back UNIQUE_CONTRIBUTION=0",
+      "explicit Operator retirement authorization",
+      "lineage preservation",
+      "provider receipt for destructive mutation"
+    ]
+  },
+  "relationship_semantics": ["MERGED_WITH", "SUPERSEDES_ONLY", "CONTRADICTS", "DUPLICATE_OF", "DERIVED_FROM"],
+  "lineage_preserved": true,
+  "deletion_performed": false
+}
