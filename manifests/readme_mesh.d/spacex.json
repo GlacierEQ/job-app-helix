@@ -88,7 +88,7 @@
     {
       "repository": "GlacierEQ/spacex-autonomy",
       "display_name": "SpaceX Autonomy",
-      "one_line_purpose": "A hybrid-autonomy model that coordinates automated decisions with bounded human oversight.",
+      "one_line_purpose": "A hybrid-autonomy model that coordinates automated decisions with controlled human oversight.",
       "innovation": "It makes authority and handoff boundaries explicit instead of presenting autonomy as an all-or-nothing switch.",
       "evolution": "It evolved into a reusable decision layer that can consume verified telemetry and mission state.",
       "capabilities": ["hybrid autonomy", "human oversight", "decision policy"],
