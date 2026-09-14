@@ -5,7 +5,7 @@ import json
 from collections.abc import Sequence
 from pathlib import Path
 
-from .readme_four_depth import render_four_depth_block
+from .readme_four_depth import render_five_depth_block
 from .readme_mesh import (
     apply_block,
     render_all_blocks,
@@ -22,7 +22,7 @@ def build_parser() -> argparse.ArgumentParser:
         prog="job-app-helix-readme",
         description=(
             "Validate, serialize, and render the evidence-bound README intelligence mesh "
-            "and the PSYSOC-X four-depth human/machine projection."
+            "and the Recruiter -> Expert -> Genius -> Machine -> Mesh projection."
         ),
     )
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
@@ -42,14 +42,18 @@ def build_parser() -> argparse.ArgumentParser:
     render.add_argument("--readme", type=Path)
     render.add_argument("--output", type=Path)
 
-    four = subparsers.add_parser(
-        "render-four-depth",
-        help="Render the Recruiter -> Master -> Machine -> Mesh PSYSOC-X projection.",
+    five = subparsers.add_parser(
+        "render-five-depth",
+        aliases=["render-four-depth"],
+        help=(
+            "Render the Recruiter -> Expert -> Genius -> Machine -> Mesh projection. "
+            "The render-four-depth alias remains for compatibility."
+        ),
     )
-    four.add_argument("repository")
-    four.add_argument("--output", type=Path)
-    four.add_argument("--license-path", default="LICENSE")
-    four.add_argument(
+    five.add_argument("repository")
+    five.add_argument("--output", type=Path)
+    five.add_argument("--license-path", default="LICENSE")
+    five.add_argument(
         "--license-name",
         default="GlacierEQ Proprietary Copyright License and Enforcement Notice v1.1",
     )
@@ -61,12 +65,16 @@ def build_parser() -> argparse.ArgumentParser:
         "--output-dir", type=Path, default=Path("artifacts/readme-mesh/blocks")
     )
 
-    four_all = subparsers.add_parser(
-        "render-four-depth-all",
-        help="Render four-depth PSYSOC-X blocks for every repository in the current mesh.",
+    five_all = subparsers.add_parser(
+        "render-five-depth-all",
+        aliases=["render-four-depth-all"],
+        help=(
+            "Render five-depth README blocks for every repository in the current mesh. "
+            "The render-four-depth-all alias remains for compatibility."
+        ),
     )
-    four_all.add_argument(
-        "--output-dir", type=Path, default=Path("artifacts/readme-four-depth/blocks")
+    five_all.add_argument(
+        "--output-dir", type=Path, default=Path("artifacts/readme-five-depth/blocks")
     )
 
     inventory = subparsers.add_parser("inventory", help="Emit a compact repository/edge inventory.")
@@ -109,8 +117,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         _emit(rendered, args.output)
         return 0
 
-    if args.command == "render-four-depth":
-        rendered = render_four_depth_block(
+    if args.command in {"render-five-depth", "render-four-depth"}:
+        rendered = render_five_depth_block(
             mesh,
             args.repository,
             license_path=args.license_path,
@@ -127,14 +135,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"Rendered {len(mesh.repositories)} legacy README blocks to {args.output_dir}")
         return 0
 
-    if args.command == "render-four-depth-all":
+    if args.command in {"render-five-depth-all", "render-four-depth-all"}:
         args.output_dir.mkdir(parents=True, exist_ok=True)
         for node in mesh.repositories:
             filename = node.repository.replace("/", "__") + ".md"
-            block = render_four_depth_block(mesh, node.repository)
+            block = render_five_depth_block(mesh, node.repository)
             (args.output_dir / filename).write_text(block, encoding="utf-8")
         print(
-            f"Rendered {len(mesh.repositories)} four-depth README blocks to {args.output_dir}"
+            f"Rendered {len(mesh.repositories)} five-depth README blocks to {args.output_dir}"
         )
         return 0
 
