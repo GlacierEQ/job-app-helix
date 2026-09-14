@@ -22,7 +22,7 @@ These counts describe different boundaries and must not be substituted for one a
 2. **Native estate** — owned repositories with `fork == false`. This is the engineering-estate denominator for estate governance. It does not by itself establish authorship, originality, maturity, deployment, or business impact.
 3. **Fork layer** — repositories with `fork == true`. These remain useful as reference, upstream, study, or customized-delta candidates, but they are not counted as native projects.
 4. **Recruiter portfolio** — the separately governed hiring surface. Its repository count is intentionally smaller than the native estate and should not be presented as the total GlacierEQ repository count.
-5. **Priority spine** — the smallest explicitly prioritized subset used for focused verification and promotion work.
+5. **Priority spine** — the highest-leverage explicitly prioritized set used for focused verification and promotion work.
 
 ## Census contract
 

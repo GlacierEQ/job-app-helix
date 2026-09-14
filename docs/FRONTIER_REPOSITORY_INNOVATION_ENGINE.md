@@ -38,7 +38,7 @@ Design for real machines, software, organizations, economics, humans, and scale.
 
 ## IV. Invent from the bottleneck
 
-Search the solution space aggressively only after the bottleneck is established. New mechanisms may include adaptive control, self-healing infrastructure, deterministic replay, failure-aware scheduling, topology-aware placement, semantic caching, workload prediction, resource arbitration, distributed provenance, autonomous verification, confidence-aware routing, evidence-backed agent execution, state reconciliation, causal observability, policy compilation, rollback, anomaly remediation, incremental recomputation, capability negotiation, cross-system consistency, batching, hierarchical memory, graph reasoning, bounded repair where correctness requires it, and adaptive optimization.
+Search the solution space aggressively only after the bottleneck is established. New mechanisms may include adaptive control, self-healing infrastructure, deterministic replay, failure-aware scheduling, topology-aware placement, semantic caching, workload prediction, resource arbitration, distributed provenance, autonomous verification, confidence-aware routing, evidence-backed agent execution, state reconciliation, causal observability, policy compilation, rollback, anomaly remediation, incremental recomputation, capability negotiation, cross-system consistency, batching, hierarchical memory, graph reasoning, controlled repair where correctness requires it, and adaptive optimization.
 
 For every innovation establish: **PROBLEM, CAUSE, MECHANISM, IMPLEMENTATION, MEASUREMENT, FAILURE MODE, BOUNDARY, VALUE.**
 
@@ -48,7 +48,7 @@ Ask whether the work is merely a wrapper, standard functionality renamed, inferi
 
 ## VI. Build the deepest coherent system justified by the target
 
-**Do not minimize the architecture merely to prove an idea quickly. Maximize coherent leverage.**
+**Build the strongest coherent architecture that proves the idea and creates reusable leverage.**
 
 Choose an executable tranche large enough to demonstrate the real mechanism, its material interfaces, its failure behavior, and its compounding value. A narrow prototype is allowed only when it answers a named uncertainty; it may not silently become the product definition or ceiling.
 
@@ -66,14 +66,14 @@ high-leverage mechanism
 over:
 
 ```text
-smallest possible implementation
+strongest sufficient implementation
 → easy receipt
 → weakened target
 ```
 
 Production-quality implementation should consider clear interfaces, deterministic behavior where appropriate, resource discipline, structured errors, retries, idempotency, concurrency safety, persistence, migration, compatibility, telemetry, configuration validation, security, containment, degradation, recovery, testability, deployment, and operability.
 
-The checkpoint should be the **strongest coherent executable advance**, not the smallest architecture capable of producing a demo.
+The checkpoint should be the **strongest coherent executable advance**, not an architecture reduced merely to produce a demo.
 
 ## VII. Design for failure first
 
@@ -150,7 +150,7 @@ After each pass ask which constraint now dominates and what stronger capability 
 
 ## XVIII. Stop conditions
 
-Do not stop merely because a minimal demo works, CI is green, a single mechanism passes, or governance is satisfied.
+Do not stop merely because a basic demonstration works, CI is green, a single mechanism passes, or governance is satisfied.
 
 A run may stop at a coherent checkpoint when:
 
@@ -175,16 +175,16 @@ Every run must emit: **SYSTEM, BOTTLENECK, ROOT CAUSE, INVENTION, IMPLEMENTATION
 
 Never fabricate implementation, benchmarks, scale, adoption, users, or production deployment. Never call aspiration a current capability. Never introduce complexity merely to appear advanced. Never rewrite functioning systems without measurable justification. Never substitute documentation for implementation, implementation for verification, a passing test for meaningful engineering value, or repository quantity for engineering depth.
 
-Never default to:
+Default to:
 
-- smallest change;
-- smallest safe move;
-- smallest useful artifact;
-- minimum viable architecture;
-- least ambitious implementation;
-- freeze architecture;
-- freeze capability growth;
-- shrink the task because execution is difficult;
+- the strongest coherent change;
+- the highest-leverage safe move;
+- a complete useful artifact;
+- the intended architecture at its current verified level;
+- an ambitious executable implementation;
+- continued architecture growth;
+- continued capability growth;
+- solving the real task rather than shrinking it because execution is difficult;
 - collapse similar systems without behavior-level proof;
 - treat governance success as product success.
 

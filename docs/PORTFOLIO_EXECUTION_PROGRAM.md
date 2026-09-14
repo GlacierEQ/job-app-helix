@@ -5,7 +5,7 @@ Job-App Helix manages the recruiter portfolio as a set of distinct systems that 
 The execution program has two coordinated layers:
 
 1. **High-level capability evolution** decides what purpose should be fulfilled, what missing or buried capability must be restored, what complementary systems should be composed, and what stronger operable form should exist.
-2. **Low-level proof execution** discovers each repository's actual stack, chooses repository-native command vectors, executes bounded checks, and emits atomic receipts.
+2. **Low-level proof execution** discovers each repository's actual stack, chooses repository-native command vectors, executes controlled checks, and emits atomic receipts.
 
 Proof serves capability. Proof does not decide whether a repository deserves to exist.
 
@@ -64,7 +64,7 @@ portfolio_discovery.py
           │ README contract + stack detection + command planning
           ▼
 portfolio_execution.py
-          │ bounded execution + proof extraction
+          │ controlled execution + proof extraction
           ▼
 portfolio_productization.py
           │ strongest useful delivery form
@@ -111,7 +111,7 @@ No automated path may retire the repository.
 - **A successor does not automatically supersede predecessor capability.**
 - **A projection does not replace the source system.**
 - **A public portfolio boundary does not define the full engineering estate.**
-- **Local bounded-execution rules may not become global minimalism.**
+- **Local controlled-execution rules may not become global scope reduction.**
 - **No assistant-generated hierarchy outranks the repository's purpose or OPERATOR direction.**
 - **Retirement requires explicit OPERATOR authorization plus verified preservation of valuable capability and lineage.**
 
@@ -134,7 +134,7 @@ Polyglot breadth is valuable when languages own real technical responsibilities.
 
 ## Execution receipts
 
-Each command records repository identity, exact argument vector, evidence level, required/optional status, return code, elapsed time, timeout state, observed proof count, bounded output tails, blockers, and final state.
+Each command records repository identity, exact argument vector, evidence level, required/optional status, return code, elapsed time, timeout state, observed proof count, controlled output tails, blockers, and final state.
 
 Commands execute without shell interpolation. Timeouts and required failures do not become green evidence. Receipts replace stale state atomically.
 

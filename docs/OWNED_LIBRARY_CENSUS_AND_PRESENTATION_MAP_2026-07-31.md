@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This program reconciles the complete GlacierEQ-owned GitHub library with the bounded recruiter portfolio without blindly modifying child repositories or converting repository ownership into unsupported authorship claims.
+This program reconciles the complete GlacierEQ-owned GitHub library with the evidence-scoped recruiter portfolio without blindly modifying child repositories or converting repository ownership into unsupported authorship claims.
 
 ## Current boundaries
 

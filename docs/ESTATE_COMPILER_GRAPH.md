@@ -13,7 +13,7 @@ owned GitHub estate
   -> proof binding
   -> company operating problems
   -> target roles
-  -> bounded application projections
+  -> controlled application projections
 ```
 
 The full native estate sits upstream of the existing governed recruiter portfolio. The smaller portfolio remains a projection; it is no longer the ceiling on what Helix can discover or prove.
@@ -24,7 +24,7 @@ A successful compile emits three primary registries:
 
 1. **APEX System Registry** - one engineering-system identity per reconciled lineage root, with backups and archives retained as historical members and forks retained outside the accomplishment count.
 2. **Capability Donor Registry** - reusable capabilities linked to one or more APEX systems and their proof references. Repeated implementation across independent systems is represented explicitly.
-3. **Company Projection Registry** - company track -> operating problem -> target roles -> APEX systems -> capabilities -> ranked evidence -> bounded proof surface.
+3. **Company Projection Registry** - company track -> operating problem -> target roles -> APEX systems -> capabilities -> ranked evidence -> strongest relevant proof surface.
 
 Generated full registries remain internal because the authenticated census can contain private repository identities. Only the compiler receipt and separately generated public-safe projection are publication-eligible.
 
@@ -69,11 +69,11 @@ Every APEX system receives five equal-weight dimensions:
 
 ## Bounded proof-surface compiler
 
-Company projection uses a bounded greedy capability set-cover. For each target, Helix chooses at most five APEX systems that maximize distinct capability coverage and proof strength. This minimizes redundant repository exposure while preserving the full ranked evidence graph internally.
+Company projection uses an evidence-weighted capability set-cover. For each target, Helix selects the strongest coverage-complete proof set while preserving the full ranked evidence graph and estate membership internally.
 
 The public-safe pass is stricter than the internal graph: a repository must be public **and** its company-level promotion state must be recruiter-eligible (`PROMOTED` or `REFERENCE_ONLY`). Public experiments, blocked candidates, private systems, and legal-private records are excluded.
 
-This is the key transformation from catalog to compiler: repository volume becomes a hidden search space, while each reviewer receives the smallest high-signal proof surface relevant to them.
+This is the key transformation from catalog to compiler: repository volume becomes a hidden search space, while each reviewer receives the strongest high-signal proof surface relevant to them.
 
 ## Experiments
 
