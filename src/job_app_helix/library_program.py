@@ -51,9 +51,7 @@ FORBIDDEN_ACTIVE_ACTION_FRAGMENTS = (
 )
 DESTRUCTIVE_DISPOSITION_FRAGMENTS = (
     "DELETE",
-    "RETIRE",
     "ARCHIVE",
-    "SUPERSEDE",
     "DISCARD",
     "REMOVE_REF",
 )
@@ -119,11 +117,11 @@ def _assert_zero_unique_contribution_proof(
     proof = branch.get("unique_contribution_verification")
     if not isinstance(proof, Mapping):
         raise LibraryProgramError(
-            f"{label}: destructive retirement requires unique_contribution_verification"
+            f"{label}: zero-contribution retirement requires unique_contribution_verification"
         )
     if proof.get("verdict") != "ZERO":
         raise LibraryProgramError(
-            f"{label}: destructive retirement requires UNIQUE_CONTRIBUTION=0"
+            f"{label}: retirement requires UNIQUE_CONTRIBUTION=0"
         )
     refs = proof.get("provider_readback_refs")
     if not isinstance(refs, list) or not refs or not all(
@@ -134,7 +132,7 @@ def _assert_zero_unique_contribution_proof(
         )
     if proof.get("operator_authorized_retirement") is not True:
         raise LibraryProgramError(
-            f"{label}: destructive retirement requires explicit operator authorization"
+            f"{label}: retirement requires explicit operator authorization"
         )
 
 
@@ -146,12 +144,17 @@ def _assert_mesh_safe_branch_disposition(
     destructive = isinstance(disposition, str) and any(
         fragment in disposition.upper() for fragment in DESTRUCTIVE_DISPOSITION_FRAGMENTS
     )
+    if destructive:
+        raise LibraryProgramError(
+            f"{label}: retirement must preserve lineage pointers; destructive remote-ref disposition is forbidden"
+        )
+
     declares_zero = isinstance(unique_value, str) and unique_value.strip().upper() in {
         "NONE",
         "ZERO",
         "NO_UNIQUE_VALUE",
     }
-    if destructive or declares_zero:
+    if declares_zero:
         _assert_zero_unique_contribution_proof(branch, label=label)
 
 
@@ -329,7 +332,7 @@ def render_library_program(payload: Mapping[str, Any]) -> str:
             "",
             "`DISCOVER -> RECONSTRUCT_PURPOSE -> COMPARE_LINEAGE -> EXTRACT_UNIQUE_VALUE -> RESTORE_LOST_CAPABILITY -> COMPOSE_GAINS -> IMPLEMENT -> VERIFY -> INTEGRATE -> DEPLOY_OR_PACKAGE -> RECEIPT`",
             "",
-            "Retirement, archival, merge-away, close-as-duplicate, and ref deletion are outside this automated lifecycle and require explicit operator authorization after verified capability preservation and provider-read-back UNIQUE_CONTRIBUTION=0.",
+            "Retirement requires verified UNIQUE_CONTRIBUTION=0 and explicit Operator authorization, but retirement preserves lineage/source pointers. Remote-ref deletion is not a retirement action and is forbidden in this automated lifecycle.",
         )
     )
     return "\n".join(lines) + "\n"
