@@ -412,9 +412,9 @@ def audit(
                 findings.append(
                     finding(
                         "DECLARED_PUBLIC_REPOSITORY_UNOBSERVABLE",
-                        "ERROR",
+                        "WARNING",
                         repository,
-                        "Declared public repository was not observable.",
+                        "Declared public repository was not observable to this token; identity and lineage are retained as unresolved evidence rather than inferred absent.",
                     )
                 )
             else:
