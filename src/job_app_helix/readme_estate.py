@@ -178,11 +178,12 @@ def build_generated_contract(
     repository: str,
     default_branch: str,
     root_paths: Iterable[str],
-    classification: ClassificationEvidence = ClassificationEvidence(),
+    classification: ClassificationEvidence | None = None,
     repository_url: str | None = None,
     fork: bool = False,
 ) -> dict[str, Any]:
     root_paths = tuple(root_paths)
+    classification = classification or ClassificationEvidence()
     branch, subcategory = mesh_coordinates(classification.primary_home)
     repository_url = repository_url or f"https://github.com/{repository}"
     contract: dict[str, Any] = {
@@ -258,7 +259,7 @@ def render_machine_block(contract: Mapping[str, Any]) -> str:
     ).rstrip()
     return "\n".join(
         [
-            "### Machine–Mesh Protocol Manifest",
+            "### Machine-Mesh Protocol Manifest",
             "",
             START_MARKER,
             "```yaml",
@@ -362,12 +363,13 @@ def plan_readme(
     current_readme: str | None,
     default_branch: str,
     root_paths: Iterable[str],
-    classification: ClassificationEvidence = ClassificationEvidence(),
+    classification: ClassificationEvidence | None = None,
     repository_url: str | None = None,
     archived: bool = False,
     fork: bool = False,
 ) -> ReadmePlan:
     root_paths = tuple(root_paths)
+    classification = classification or ClassificationEvidence()
     if current_readme is not None:
         try:
             existing = parse_machine_contract(

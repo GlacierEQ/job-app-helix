@@ -12,6 +12,7 @@ on:
       - "manifests/company_dossiers/**"
       - "scripts/audit_live_portfolio_freshness.py"
       - "tests/test_live_portfolio_freshness.py"
+      - "uv.lock"
       - ".github/workflows/portfolio-live-freshness.yml"
   pull_request:
     paths:
@@ -23,6 +24,7 @@ on:
       - "manifests/company_dossiers/**"
       - "scripts/audit_live_portfolio_freshness.py"
       - "tests/test_live_portfolio_freshness.py"
+      - "uv.lock"
       - ".github/workflows/portfolio-live-freshness.yml"
   schedule:
     - cron: "43 16 * * *"
@@ -76,7 +78,8 @@ jobs:
           PORTFOLIO_AUDIT_GITHUB_TOKEN: ${{ secrets.PORTFOLIO_AUDIT_GITHUB_TOKEN }}
         run: |
           python scripts/audit_live_portfolio_freshness.py \
-            --write-receipt artifacts/portfolio-live-freshness.json
+            --write-receipt artifacts/portfolio-live-freshness.json \
+            --strict
       - name: Verify receipt structure
         if: steps.live-audit.outcome == 'success'
         run: |
@@ -91,7 +94,11 @@ jobs:
               'glaciereq.portfolio-live-freshness-receipt.v1'
           )
           assert receipt['mutation'] == 'NONE'
-          assert receipt['portfolio']['flagships'] > 0
+          assert isinstance(receipt['flagships'], list)
+          assert receipt['portfolio']['source_admitted_systems'] == len(
+              receipt['flagships']
+          )
+          assert receipt['portfolio']['source_admitted_systems'] > 0
           assert 'findings' in receipt
           assert receipt['receipt_sha256']
           print(json.dumps(receipt['freshness'], indent=2, sort_keys=True))

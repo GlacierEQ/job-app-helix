@@ -72,14 +72,31 @@ def test_public_census_contains_only_governed_public_repositories() -> None:
     assert payload["boundary"]["raw_owned_estate_cardinality_not_inferred"] is True
 
 
-def test_public_census_rejects_missing_governed_repository() -> None:
+def test_public_census_preserves_unobservable_identity_without_public_projection() -> None:
     module = _module()
-    with pytest.raises(module.PublicPortfolioCensusError, match="incomplete"):
-        module.build_census(
-            manifest=_manifest(),
-            owner="GlacierEQ",
-            repositories=[_repo("AKOS", 1), _repo("job-app-helix", 3)],
-        )
+    payload = module.build_census(
+        manifest=_manifest(),
+        owner="GlacierEQ",
+        repositories=[_repo("AKOS", 1), _repo("job-app-helix", 3)],
+    )
+
+    assert payload["state"] == "VERIFIED_WITH_UNRESOLVED_IDENTITIES"
+    assert payload["repository_count"] == 2
+    assert payload["unresolved_repository_count"] == 1
+    assert payload["unresolved_repositories"] == [
+        {
+            "repository": "GlacierEQ/job-application",
+            "state": "UNRESOLVED_PUBLIC_IDENTITY",
+            "reason": (
+                "Declared public identity was not observable to the current "
+                "census token; omitted from recruiter-facing projection."
+            ),
+        }
+    ]
+    assert all(
+        row["repository"] != "GlacierEQ/job-application"
+        for row in payload["repositories"]
+    )
 
 
 def test_public_census_rejects_non_public_governed_repository() -> None:

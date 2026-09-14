@@ -121,7 +121,7 @@
     {
       "advance_brief": {
         "failure_mode": "If `src/glaciereq_mcp_stack/mcp_package_restore.py` silent-fails, forges authority, or ships without `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
-        "measurement": "1) `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` \u2014 unit tests for happy path + refuse path for mcp_package_restore.\n2) Exact-head proof receipt at `receipts/mcp_package_restore_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/mcp_package_restore.py` and exercise one real bottleneck case from `glaciereq-mcp-stack`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+        "measurement": "1) `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` — unit tests for happy path + refuse path for mcp_package_restore.\n2) Exact-head proof receipt at `receipts/mcp_package_restore_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/mcp_package_restore.py` and exercise one real bottleneck case from `glaciereq-mcp-stack`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
         "mechanism_id": "mcp_package_restore",
         "mechanism_title": "Provider Surface Restore for GlacierEQ/glaciereq-mcp-stack",
         "paths": [
@@ -161,9 +161,9 @@
       ],
       "engine_id": "glaciereq.genius-engine.v4",
       "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
-      "knowledge_path": "/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge/GlacierEQ__glaciereq-mcp-stack.json",
+      "knowledge_path": "GlacierEQ/job-app-helix/machine/genius_knowledge/GlacierEQ__glaciereq-mcp-stack.json",
       "law": "MAXIMUM_COHERENT_ADVANCE",
-      "library_link_path": "/Users/kcbflux/.grok/work/library-of-links/domains/genius/GlacierEQ__glaciereq-mcp-stack.json",
+      "library_link_path": "GlacierEQ/library-of-links/domains/genius/GlacierEQ__glaciereq-mcp-stack.json",
       "primary": {
         "apex_aligned": true,
         "boundary": "Leaf=GlacierEQ/glaciereq-mcp-stack; domain=mcp; language=unknown. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
@@ -173,8 +173,8 @@
         "domain": "mcp",
         "failure_mode": "If `src/glaciereq_mcp_stack/mcp_package_restore.py` silent-fails, forges authority, or ships without `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
         "genius_score": 1.0,
-        "implementation": "ENGINEER `mcp_package_restore` into `glaciereq-mcp-stack` as first-pass-is-last-pass code.\n- Module: `src/glaciereq_mcp_stack/mcp_package_restore.py` \u2014 typed API for Provider Surface Restore; named invariants; no magic.\n- Config: `src/glaciereq_mcp_stack/mcp_package_restore_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, mcp_tools, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/mcp_package_restore_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
-        "measurement": "1) `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` \u2014 unit tests for happy path + refuse path for mcp_package_restore.\n2) Exact-head proof receipt at `receipts/mcp_package_restore_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/mcp_package_restore.py` and exercise one real bottleneck case from `glaciereq-mcp-stack`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+        "implementation": "ENGINEER `mcp_package_restore` into `glaciereq-mcp-stack` as first-pass-is-last-pass code.\n- Module: `src/glaciereq_mcp_stack/mcp_package_restore.py` — typed API for Provider Surface Restore; named invariants; no magic.\n- Config: `src/glaciereq_mcp_stack/mcp_package_restore_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, mcp_tools, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/mcp_package_restore_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
+        "measurement": "1) `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` — unit tests for happy path + refuse path for mcp_package_restore.\n2) Exact-head proof receipt at `receipts/mcp_package_restore_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/mcp_package_restore.py` and exercise one real bottleneck case from `glaciereq-mcp-stack`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
         "mechanism": "Provider Surface Restore: Restore credential-gated stdio/MCP packages beside local allowlist routers; dual-plane proof.",
         "novelty_score": 1.0,
         "plane": "IMPLEMENTED",
@@ -189,17 +189,17 @@
           "ENGINEERED"
         ],
         "title": "Provider Surface Restore for GlacierEQ/glaciereq-mcp-stack",
-        "value": "Removes the named bottleneck on `glaciereq-mcp-stack` with ENGINEERED executable power: Restore credential-gated stdio/MCP packages beside local allowlist routers; dual-plane proof. \u2014 complete mechanism masters can review in `src/glaciereq_mcp_stack/mcp_package_restore.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
+        "value": "Removes the named bottleneck on `glaciereq-mcp-stack` with ENGINEERED executable power: Restore credential-gated stdio/MCP packages beside local allowlist routers; dual-plane proof. — complete mechanism masters can review in `src/glaciereq_mcp_stack/mcp_package_restore.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
       },
       "receipt_sha256": "275f80cef1917a714e44f7d5b9032c9a10a644da1a992db617e014df2b524e4b",
       "rejected": [],
       "research": {
         "advanced_context": [
-          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness \u2014 calibrates dual-plane claims and ref",
-          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
-          "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth \u2014 not chatbot wrappers. Directly informs m",
-          "Agentic Artificial Intelligence in Finance: A Comprehensive Survey | https://arxiv.org/abs/2604.21672 | Maps agentic systems onto high-stakes domains with architecture + regulatory surfaces \u2014 useful pattern language for authority half-life, receipt buses, and non-affiliation claim fe",
-          "HTTP Semantics (RFC 9110) | https://www.rfc-editor.org/rfc/rfc9110.html | Durable systems law for every control-plane and MCP HTTP surface \u2014 masters still mis-implement idempotency and cache semantics; primary standard beats blog folklore."
+          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness — calibrates dual-plane claims and ref",
+          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces — maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
+          "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth — not chatbot wrappers. Directly informs m",
+          "Agentic Artificial Intelligence in Finance: A Comprehensive Survey | https://arxiv.org/abs/2604.21672 | Maps agentic systems onto high-stakes domains with architecture + regulatory surfaces — useful pattern language for authority half-life, receipt buses, and non-affiliation claim fe",
+          "HTTP Semantics (RFC 9110) | https://www.rfc-editor.org/rfc/rfc9110.html | Durable systems law for every control-plane and MCP HTTP surface — masters still mis-implement idempotency and cache semantics; primary standard beats blog folklore."
         ],
         "default_branch": "main",
         "description": "",
@@ -221,7 +221,7 @@
           "signal:has_prior_knowledge",
           "signal:prior_mechanism_known",
           "advanced:International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution ",
-          "advanced:Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surf",
+          "advanced:Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces — maps directly to provider-surf",
           "advanced:The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primit"
         ],
         "primary_language": "unknown",
@@ -256,8 +256,8 @@
           "domain": "mcp",
           "failure_mode": "If `src/glaciereq_mcp_stack/mcp_package_restore.py` silent-fails, forges authority, or ships without `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
           "genius_score": 1.0,
-          "implementation": "ENGINEER `mcp_package_restore` into `glaciereq-mcp-stack` as first-pass-is-last-pass code.\n- Module: `src/glaciereq_mcp_stack/mcp_package_restore.py` \u2014 typed API for Provider Surface Restore; named invariants; no magic.\n- Config: `src/glaciereq_mcp_stack/mcp_package_restore_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, mcp_tools, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/mcp_package_restore_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
-          "measurement": "1) `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` \u2014 unit tests for happy path + refuse path for mcp_package_restore.\n2) Exact-head proof receipt at `receipts/mcp_package_restore_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/mcp_package_restore.py` and exercise one real bottleneck case from `glaciereq-mcp-stack`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+          "implementation": "ENGINEER `mcp_package_restore` into `glaciereq-mcp-stack` as first-pass-is-last-pass code.\n- Module: `src/glaciereq_mcp_stack/mcp_package_restore.py` — typed API for Provider Surface Restore; named invariants; no magic.\n- Config: `src/glaciereq_mcp_stack/mcp_package_restore_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, mcp_tools, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/mcp_package_restore_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
+          "measurement": "1) `tests/test_glaciereq_mcp_stack_mcp_package_restore.py` — unit tests for happy path + refuse path for mcp_package_restore.\n2) Exact-head proof receipt at `receipts/mcp_package_restore_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/mcp_package_restore.py` and exercise one real bottleneck case from `glaciereq-mcp-stack`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
           "mechanism": "Provider Surface Restore: Restore credential-gated stdio/MCP packages beside local allowlist routers; dual-plane proof.",
           "novelty_score": 1.0,
           "plane": "IMPLEMENTED",
@@ -272,7 +272,7 @@
             "ENGINEERED"
           ],
           "title": "Provider Surface Restore for GlacierEQ/glaciereq-mcp-stack",
-          "value": "Removes the named bottleneck on `glaciereq-mcp-stack` with ENGINEERED executable power: Restore credential-gated stdio/MCP packages beside local allowlist routers; dual-plane proof. \u2014 complete mechanism masters can review in `src/glaciereq_mcp_stack/mcp_package_restore.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
+          "value": "Removes the named bottleneck on `glaciereq-mcp-stack` with ENGINEERED executable power: Restore credential-gated stdio/MCP packages beside local allowlist routers; dual-plane proof. — complete mechanism masters can review in `src/glaciereq_mcp_stack/mcp_package_restore.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
         }
       ],
       "subject": {
@@ -295,7 +295,7 @@
     {
       "advance_brief": {
         "failure_mode": "If `src/grokodile/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_grokodile_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
-        "measurement": "1) `tests/test_grokodile_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/grokodile/first_pass_last_pass.py` and exercise one real bottleneck case from `grokodile`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: The Lean 4 Manual",
+        "measurement": "1) `tests/test_grokodile_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/grokodile/first_pass_last_pass.py` and exercise one real bottleneck case from `grokodile`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: The Lean 4 Manual",
         "mechanism_id": "first_pass_last_pass",
         "mechanism_title": "First Pass Is Last Pass for GlacierEQ/grokodile",
         "paths": [
@@ -304,7 +304,7 @@
           "receipts/first_pass_last_pass_proof.json"
         ],
         "plane": "IMPLEMENTED",
-        "problem": "grokodile: no reliable leaf signals yet \u2014 research found no description, domain, or live surface; cannot honestly claim a specialized bottleneck.",
+        "problem": "grokodile: no reliable leaf signals yet — research found no description, domain, or live surface; cannot honestly claim a specialized bottleneck.",
         "receipt_sha256": "9fa4fe6be98fd8cde0245aa80b963ad8c2aa8a7644fd288e4917201a9b0069bf",
         "repository": "GlacierEQ/grokodile",
         "research_signals": [
@@ -332,9 +332,9 @@
       ],
       "engine_id": "glaciereq.genius-engine.v4",
       "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
-      "knowledge_path": "/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge/GlacierEQ__grokodile.json",
+      "knowledge_path": "GlacierEQ/job-app-helix/machine/genius_knowledge/GlacierEQ__grokodile.json",
       "law": "MAXIMUM_COHERENT_ADVANCE",
-      "library_link_path": "/Users/kcbflux/.grok/work/library-of-links/domains/genius/GlacierEQ__grokodile.json",
+      "library_link_path": "GlacierEQ/library-of-links/domains/genius/GlacierEQ__grokodile.json",
       "primary": {
         "apex_aligned": true,
         "boundary": "Leaf=GlacierEQ/grokodile; domain=general; language=unknown. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
@@ -344,12 +344,12 @@
         "domain": "general",
         "failure_mode": "If `src/grokodile/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_grokodile_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
         "genius_score": 1.0,
-        "implementation": "ENGINEER `first_pass_last_pass` into `grokodile` as first-pass-is-last-pass code.\n- Module: `src/grokodile/first_pass_last_pass.py` \u2014 typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/grokodile/first_pass_last_pass_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `The Lean 4 Manual` (Library of Links impact shelf) without false affiliation claims.",
-        "measurement": "1) `tests/test_grokodile_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/grokodile/first_pass_last_pass.py` and exercise one real bottleneck case from `grokodile`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: The Lean 4 Manual",
+        "implementation": "ENGINEER `first_pass_last_pass` into `grokodile` as first-pass-is-last-pass code.\n- Module: `src/grokodile/first_pass_last_pass.py` — typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/grokodile/first_pass_last_pass_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `The Lean 4 Manual` (Library of Links impact shelf) without false affiliation claims.",
+        "measurement": "1) `tests/test_grokodile_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/grokodile/first_pass_last_pass.py` and exercise one real bottleneck case from `grokodile`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: The Lean 4 Manual",
         "mechanism": "First Pass Is Last Pass: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review.",
         "novelty_score": 0.85,
         "plane": "IMPLEMENTED",
-        "problem": "grokodile: no reliable leaf signals yet \u2014 research found no description, domain, or live surface; cannot honestly claim a specialized bottleneck.",
+        "problem": "grokodile: no reliable leaf signals yet — research found no description, domain, or live surface; cannot honestly claim a specialized bottleneck.",
         "repository": "GlacierEQ/grokodile",
         "solution_id": "genius-ec9b30fc23b7",
         "tags": [
@@ -360,17 +360,17 @@
           "ENGINEERED"
         ],
         "title": "First Pass Is Last Pass for GlacierEQ/grokodile",
-        "value": "Removes the named bottleneck on `grokodile` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. \u2014 complete mechanism masters can review in `src/grokodile/first_pass_last_pass.py`. Grounded in advanced library knowledge: The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) \u2014 proofs that com"
+        "value": "Removes the named bottleneck on `grokodile` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. — complete mechanism masters can review in `src/grokodile/first_pass_last_pass.py`. Grounded in advanced library knowledge: The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) — proofs that com"
       },
       "receipt_sha256": "9fa4fe6be98fd8cde0245aa80b963ad8c2aa8a7644fd288e4917201a9b0069bf",
       "rejected": [],
       "research": {
         "advanced_context": [
-          "The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) \u2014 proofs that compile beat prose VERIFIED labels.",
-          "Formal Verification in the Age of AI | https://verse.systems/blog/post/2026-03-05-formal-verification-ai/ | Connects AI theorem-proving scale (e.g. large formalizations) to practical verification architecture \u2014 invariant proposal, falsify/refine loops, tactic scripts \u2014 usable for fail-cl",
-          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness \u2014 calibrates dual-plane claims and ref",
-          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
-          "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth \u2014 not chatbot wrappers. Directly informs m"
+          "The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) — proofs that compile beat prose VERIFIED labels.",
+          "Formal Verification in the Age of AI | https://verse.systems/blog/post/2026-03-05-formal-verification-ai/ | Connects AI theorem-proving scale (e.g. large formalizations) to practical verification architecture — invariant proposal, falsify/refine loops, tactic scripts — usable for fail-cl",
+          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness — calibrates dual-plane claims and ref",
+          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces — maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
+          "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth — not chatbot wrappers. Directly informs m"
         ],
         "default_branch": "main",
         "description": "",
@@ -388,7 +388,7 @@
           "repo:GlacierEQ/grokodile",
           "signal:unknown_or_offline",
           "signal:no_test_mention",
-          "advanced:The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) \u2014 proofs that com",
+          "advanced:The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) — proofs that com",
           "advanced:Formal Verification in the Age of AI | https://verse.systems/blog/post/2026-03-05-formal-verification-ai/ | Connects AI theorem-proving scale (e.g. large formal",
           "advanced:International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
         ],
@@ -421,12 +421,12 @@
           "domain": "general",
           "failure_mode": "If `src/grokodile/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_grokodile_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
           "genius_score": 1.0,
-          "implementation": "ENGINEER `first_pass_last_pass` into `grokodile` as first-pass-is-last-pass code.\n- Module: `src/grokodile/first_pass_last_pass.py` \u2014 typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/grokodile/first_pass_last_pass_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `The Lean 4 Manual` (Library of Links impact shelf) without false affiliation claims.",
-          "measurement": "1) `tests/test_grokodile_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/grokodile/first_pass_last_pass.py` and exercise one real bottleneck case from `grokodile`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: The Lean 4 Manual",
+          "implementation": "ENGINEER `first_pass_last_pass` into `grokodile` as first-pass-is-last-pass code.\n- Module: `src/grokodile/first_pass_last_pass.py` — typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/grokodile/first_pass_last_pass_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `The Lean 4 Manual` (Library of Links impact shelf) without false affiliation claims.",
+          "measurement": "1) `tests/test_grokodile_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/grokodile/first_pass_last_pass.py` and exercise one real bottleneck case from `grokodile`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: The Lean 4 Manual",
           "mechanism": "First Pass Is Last Pass: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review.",
           "novelty_score": 0.85,
           "plane": "IMPLEMENTED",
-          "problem": "grokodile: no reliable leaf signals yet \u2014 research found no description, domain, or live surface; cannot honestly claim a specialized bottleneck.",
+          "problem": "grokodile: no reliable leaf signals yet — research found no description, domain, or live surface; cannot honestly claim a specialized bottleneck.",
           "repository": "GlacierEQ/grokodile",
           "solution_id": "genius-ec9b30fc23b7",
           "tags": [
@@ -437,7 +437,7 @@
             "ENGINEERED"
           ],
           "title": "First Pass Is Last Pass for GlacierEQ/grokodile",
-          "value": "Removes the named bottleneck on `grokodile` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. \u2014 complete mechanism masters can review in `src/grokodile/first_pass_last_pass.py`. Grounded in advanced library knowledge: The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) \u2014 proofs that com"
+          "value": "Removes the named bottleneck on `grokodile` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. — complete mechanism masters can review in `src/grokodile/first_pass_last_pass.py`. Grounded in advanced library knowledge: The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) — proofs that com"
         }
       ],
       "subject": {
@@ -446,7 +446,7 @@
         "domain": "general",
         "neutralization_stamps": null,
         "paper_recovery_only": null,
-        "problem": "grokodile: no reliable leaf signals yet \u2014 research found no description, domain, or live surface; cannot honestly claim a specialized bottleneck.",
+        "problem": "grokodile: no reliable leaf signals yet — research found no description, domain, or live surface; cannot honestly claim a specialized bottleneck.",
         "repository": "GlacierEQ/grokodile",
         "research_signals": [
           "unknown_or_offline",
@@ -457,7 +457,7 @@
     {
       "advance_brief": {
         "failure_mode": "If `src/megamind/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_megamind_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
-        "measurement": "1) `tests/test_megamind_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/megamind/first_pass_last_pass.py` and exercise one real bottleneck case from `megamind`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+        "measurement": "1) `tests/test_megamind_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/megamind/first_pass_last_pass.py` and exercise one real bottleneck case from `megamind`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
         "mechanism_id": "first_pass_last_pass",
         "mechanism_title": "First Pass Is Last Pass for GlacierEQ/megamind",
         "paths": [
@@ -496,9 +496,9 @@
       ],
       "engine_id": "glaciereq.genius-engine.v4",
       "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
-      "knowledge_path": "/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge/GlacierEQ__megamind.json",
+      "knowledge_path": "GlacierEQ/job-app-helix/machine/genius_knowledge/GlacierEQ__megamind.json",
       "law": "MAXIMUM_COHERENT_ADVANCE",
-      "library_link_path": "/Users/kcbflux/.grok/work/library-of-links/domains/genius/GlacierEQ__megamind.json",
+      "library_link_path": "GlacierEQ/library-of-links/domains/genius/GlacierEQ__megamind.json",
       "primary": {
         "apex_aligned": true,
         "boundary": "Leaf=GlacierEQ/megamind; domain=agent; language=unknown. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
@@ -508,8 +508,8 @@
         "domain": "agent",
         "failure_mode": "If `src/megamind/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_megamind_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
         "genius_score": 1.0,
-        "implementation": "ENGINEER `first_pass_last_pass` into `megamind` as first-pass-is-last-pass code.\n- Module: `src/megamind/first_pass_last_pass.py` \u2014 typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/megamind/first_pass_last_pass_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
-        "measurement": "1) `tests/test_megamind_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/megamind/first_pass_last_pass.py` and exercise one real bottleneck case from `megamind`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+        "implementation": "ENGINEER `first_pass_last_pass` into `megamind` as first-pass-is-last-pass code.\n- Module: `src/megamind/first_pass_last_pass.py` — typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/megamind/first_pass_last_pass_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
+        "measurement": "1) `tests/test_megamind_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/megamind/first_pass_last_pass.py` and exercise one real bottleneck case from `megamind`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
         "mechanism": "First Pass Is Last Pass: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review.",
         "novelty_score": 0.7999999999999999,
         "plane": "IMPLEMENTED",
@@ -524,16 +524,16 @@
           "ENGINEERED"
         ],
         "title": "First Pass Is Last Pass for GlacierEQ/megamind",
-        "value": "Removes the named bottleneck on `megamind` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. \u2014 complete mechanism masters can review in `src/megamind/first_pass_last_pass.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
+        "value": "Removes the named bottleneck on `megamind` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. — complete mechanism masters can review in `src/megamind/first_pass_last_pass.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
       },
       "receipt_sha256": "fd3961809bd1181d343192f4480b0bdd3427cd0ed8da8c37f3c501cb656e5f47",
       "rejected": [],
       "research": {
         "advanced_context": [
-          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness \u2014 calibrates dual-plane claims and ref",
-          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
-          "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth \u2014 not chatbot wrappers. Directly informs m",
-          "Agentic Artificial Intelligence in Finance: A Comprehensive Survey | https://arxiv.org/abs/2604.21672 | Maps agentic systems onto high-stakes domains with architecture + regulatory surfaces \u2014 useful pattern language for authority half-life, receipt buses, and non-affiliation claim fe",
+          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness — calibrates dual-plane claims and ref",
+          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces — maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
+          "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth — not chatbot wrappers. Directly informs m",
+          "Agentic Artificial Intelligence in Finance: A Comprehensive Survey | https://arxiv.org/abs/2604.21672 | Maps agentic systems onto high-stakes domains with architecture + regulatory surfaces — useful pattern language for authority half-life, receipt buses, and non-affiliation claim fe",
           "Raft: In Search of an Understandable Consensus Algorithm | https://raft.github.io/raft.pdf | Canonical distributed coordination mechanism; still the right mental model for mission-thread quorum and freeze/hold codes under dissent."
         ],
         "default_branch": "main",
@@ -555,7 +555,7 @@
           "signal:has_prior_knowledge",
           "signal:prior_mechanism_known",
           "advanced:International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution ",
-          "advanced:Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surf",
+          "advanced:Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces — maps directly to provider-surf",
           "advanced:The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primit"
         ],
         "primary_language": "unknown",
@@ -589,8 +589,8 @@
           "domain": "agent",
           "failure_mode": "If `src/megamind/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_megamind_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
           "genius_score": 1.0,
-          "implementation": "ENGINEER `first_pass_last_pass` into `megamind` as first-pass-is-last-pass code.\n- Module: `src/megamind/first_pass_last_pass.py` \u2014 typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/megamind/first_pass_last_pass_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
-          "measurement": "1) `tests/test_megamind_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/megamind/first_pass_last_pass.py` and exercise one real bottleneck case from `megamind`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+          "implementation": "ENGINEER `first_pass_last_pass` into `megamind` as first-pass-is-last-pass code.\n- Module: `src/megamind/first_pass_last_pass.py` — typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/megamind/first_pass_last_pass_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `International AI Safety Report 2026` (Library of Links impact shelf) without false affiliation claims.",
+          "measurement": "1) `tests/test_megamind_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/megamind/first_pass_last_pass.py` and exercise one real bottleneck case from `megamind`.\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
           "mechanism": "First Pass Is Last Pass: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review.",
           "novelty_score": 0.7999999999999999,
           "plane": "IMPLEMENTED",
@@ -605,7 +605,7 @@
             "ENGINEERED"
           ],
           "title": "First Pass Is Last Pass for GlacierEQ/megamind",
-          "value": "Removes the named bottleneck on `megamind` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. \u2014 complete mechanism masters can review in `src/megamind/first_pass_last_pass.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
+          "value": "Removes the named bottleneck on `megamind` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. — complete mechanism masters can review in `src/megamind/first_pass_last_pass.py`. Grounded in advanced library knowledge: International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
         }
       ],
       "subject": {
@@ -627,7 +627,7 @@
     {
       "advance_brief": {
         "failure_mode": "If `src/spacex_mission_control/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_spacex_mission_control_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
-        "measurement": "1) `tests/test_spacex_mission_control_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/spacex_mission_control/first_pass_last_pass.py` and exercise one real bottleneck case from `spacex-mission-control`.\n4) Impact check: Invent/advance `thread_quorum` on GlacierEQ/megamind using knowledge: Raft: In Search of an Understandable Consensus Algorithm",
+        "measurement": "1) `tests/test_spacex_mission_control_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/spacex_mission_control/first_pass_last_pass.py` and exercise one real bottleneck case from `spacex-mission-control`.\n4) Impact check: Invent/advance `thread_quorum` on GlacierEQ/megamind using knowledge: Raft: In Search of an Understandable Consensus Algorithm",
         "mechanism_id": "first_pass_last_pass",
         "mechanism_title": "First Pass Is Last Pass for GlacierEQ/spacex-mission-control",
         "paths": [
@@ -666,9 +666,9 @@
       ],
       "engine_id": "glaciereq.genius-engine.v4",
       "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
-      "knowledge_path": "/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge/GlacierEQ__spacex-mission-control.json",
+      "knowledge_path": "GlacierEQ/job-app-helix/machine/genius_knowledge/GlacierEQ__spacex-mission-control.json",
       "law": "MAXIMUM_COHERENT_ADVANCE",
-      "library_link_path": "/Users/kcbflux/.grok/work/library-of-links/domains/genius/GlacierEQ__spacex-mission-control.json",
+      "library_link_path": "GlacierEQ/library-of-links/domains/genius/GlacierEQ__spacex-mission-control.json",
       "primary": {
         "apex_aligned": true,
         "boundary": "Leaf=GlacierEQ/spacex-mission-control; domain=spacex; language=unknown. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
@@ -678,8 +678,8 @@
         "domain": "spacex",
         "failure_mode": "If `src/spacex_mission_control/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_spacex_mission_control_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
         "genius_score": 1.0,
-        "implementation": "ENGINEER `first_pass_last_pass` into `spacex-mission-control` as first-pass-is-last-pass code.\n- Module: `src/spacex_mission_control/first_pass_last_pass.py` \u2014 typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/spacex_mission_control/first_pass_last_pass_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `Raft: In Search of an Understandable Consensus Algorithm` (Library of Links impact shelf) without false affiliation claims.",
-        "measurement": "1) `tests/test_spacex_mission_control_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/spacex_mission_control/first_pass_last_pass.py` and exercise one real bottleneck case from `spacex-mission-control`.\n4) Impact check: Invent/advance `thread_quorum` on GlacierEQ/megamind using knowledge: Raft: In Search of an Understandable Consensus Algorithm",
+        "implementation": "ENGINEER `first_pass_last_pass` into `spacex-mission-control` as first-pass-is-last-pass code.\n- Module: `src/spacex_mission_control/first_pass_last_pass.py` — typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/spacex_mission_control/first_pass_last_pass_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `Raft: In Search of an Understandable Consensus Algorithm` (Library of Links impact shelf) without false affiliation claims.",
+        "measurement": "1) `tests/test_spacex_mission_control_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/spacex_mission_control/first_pass_last_pass.py` and exercise one real bottleneck case from `spacex-mission-control`.\n4) Impact check: Invent/advance `thread_quorum` on GlacierEQ/megamind using knowledge: Raft: In Search of an Understandable Consensus Algorithm",
         "mechanism": "First Pass Is Last Pass: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review.",
         "novelty_score": 0.7999999999999999,
         "plane": "IMPLEMENTED",
@@ -694,17 +694,17 @@
           "ENGINEERED"
         ],
         "title": "First Pass Is Last Pass for GlacierEQ/spacex-mission-control",
-        "value": "Removes the named bottleneck on `spacex-mission-control` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. \u2014 complete mechanism masters can review in `src/spacex_mission_control/first_pass_last_pass.py`. Grounded in advanced library knowledge: Raft: In Search of an Understandable Consensus Algorithm | https://raft.github.io/raft.pdf | Canonical distributed coordination mechanism; still the right menta"
+        "value": "Removes the named bottleneck on `spacex-mission-control` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. — complete mechanism masters can review in `src/spacex_mission_control/first_pass_last_pass.py`. Grounded in advanced library knowledge: Raft: In Search of an Understandable Consensus Algorithm | https://raft.github.io/raft.pdf | Canonical distributed coordination mechanism; still the right menta"
       },
       "receipt_sha256": "05b6487b6b91d00cf09d012f4a0a187b49a05bfea2a9fd99930b6d215f0e71cc",
       "rejected": [],
       "research": {
         "advanced_context": [
           "Raft: In Search of an Understandable Consensus Algorithm | https://raft.github.io/raft.pdf | Canonical distributed coordination mechanism; still the right mental model for mission-thread quorum and freeze/hold codes under dissent.",
-          "Protocol Buffers Language Guide (proto3) | https://protobuf.dev/programming-guides/proto3/ | Cross-language wire contract law used by helix README mesh \u2014 schema evolution without silent breakage is estate-critical ENGINEERED craft.",
-          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness \u2014 calibrates dual-plane claims and ref",
-          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
-          "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth \u2014 not chatbot wrappers. Directly informs m"
+          "Protocol Buffers Language Guide (proto3) | https://protobuf.dev/programming-guides/proto3/ | Cross-language wire contract law used by helix README mesh — schema evolution without silent breakage is estate-critical ENGINEERED craft.",
+          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness — calibrates dual-plane claims and ref",
+          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces — maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t",
+          "The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale | https://arxiv.org/abs/2606.12835 | Defines agent-internet primitives (discovery, responsibility negotiation, context exchange, tool invocation) at distributed-systems depth — not chatbot wrappers. Directly informs m"
         ],
         "default_branch": "main",
         "description": "",
@@ -725,7 +725,7 @@
           "signal:has_prior_knowledge",
           "signal:prior_mechanism_known",
           "advanced:Raft: In Search of an Understandable Consensus Algorithm | https://raft.github.io/raft.pdf | Canonical distributed coordination mechanism; still the right menta",
-          "advanced:Protocol Buffers Language Guide (proto3) | https://protobuf.dev/programming-guides/proto3/ | Cross-language wire contract law used by helix README mesh \u2014 schema",
+          "advanced:Protocol Buffers Language Guide (proto3) | https://protobuf.dev/programming-guides/proto3/ | Cross-language wire contract law used by helix README mesh — schema",
           "advanced:International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution "
         ],
         "primary_language": "unknown",
@@ -759,8 +759,8 @@
           "domain": "spacex",
           "failure_mode": "If `src/spacex_mission_control/first_pass_last_pass.py` silent-fails, forges authority, or ships without `tests/test_spacex_mission_control_first_pass_last_pass.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
           "genius_score": 1.0,
-          "implementation": "ENGINEER `first_pass_last_pass` into `spacex-mission-control` as first-pass-is-last-pass code.\n- Module: `src/spacex_mission_control/first_pass_last_pass.py` \u2014 typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/spacex_mission_control/first_pass_last_pass_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `Raft: In Search of an Understandable Consensus Algorithm` (Library of Links impact shelf) without false affiliation claims.",
-          "measurement": "1) `tests/test_spacex_mission_control_first_pass_last_pass.py` \u2014 unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/spacex_mission_control/first_pass_last_pass.py` and exercise one real bottleneck case from `spacex-mission-control`.\n4) Impact check: Invent/advance `thread_quorum` on GlacierEQ/megamind using knowledge: Raft: In Search of an Understandable Consensus Algorithm",
+          "implementation": "ENGINEER `first_pass_last_pass` into `spacex-mission-control` as first-pass-is-last-pass code.\n- Module: `src/spacex_mission_control/first_pass_last_pass.py` — typed API for First Pass Is Last Pass; named invariants; no magic.\n- Config: `src/spacex_mission_control/first_pass_last_pass_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/first_pass_last_pass_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `Raft: In Search of an Understandable Consensus Algorithm` (Library of Links impact shelf) without false affiliation claims.",
+          "measurement": "1) `tests/test_spacex_mission_control_first_pass_last_pass.py` — unit tests for happy path + refuse path for first_pass_last_pass.\n2) Exact-head proof receipt at `receipts/first_pass_last_pass_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/spacex_mission_control/first_pass_last_pass.py` and exercise one real bottleneck case from `spacex-mission-control`.\n4) Impact check: Invent/advance `thread_quorum` on GlacierEQ/megamind using knowledge: Raft: In Search of an Understandable Consensus Algorithm",
           "mechanism": "First Pass Is Last Pass: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review.",
           "novelty_score": 0.7999999999999999,
           "plane": "IMPLEMENTED",
@@ -775,7 +775,7 @@
             "ENGINEERED"
           ],
           "title": "First Pass Is Last Pass for GlacierEQ/spacex-mission-control",
-          "value": "Removes the named bottleneck on `spacex-mission-control` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. \u2014 complete mechanism masters can review in `src/spacex_mission_control/first_pass_last_pass.py`. Grounded in advanced library knowledge: Raft: In Search of an Understandable Consensus Algorithm | https://raft.github.io/raft.pdf | Canonical distributed coordination mechanism; still the right menta"
+          "value": "Removes the named bottleneck on `spacex-mission-control` with ENGINEERED executable power: Ship master-grade complete mechanisms on the first land: no scaffold-to-fix later, no stub that needs a second personality. Born to run under load and review. — complete mechanism masters can review in `src/spacex_mission_control/first_pass_last_pass.py`. Grounded in advanced library knowledge: Raft: In Search of an Understandable Consensus Algorithm | https://raft.github.io/raft.pdf | Canonical distributed coordination mechanism; still the right menta"
         }
       ],
       "subject": {
@@ -797,7 +797,7 @@
     {
       "advance_brief": {
         "failure_mode": "If `src/the_tower_of_babel/claim_fence.py` silent-fails, forges authority, or ships without `tests/test_the_tower_of_babel_claim_fence.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
-        "measurement": "1) `tests/test_the_tower_of_babel_claim_fence.py` \u2014 unit tests for happy path + refuse path for claim_fence.\n2) Exact-head proof receipt at `receipts/claim_fence_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/the_tower_of_babel/claim_fence.py` and exercise one real bottleneck case from `the-tower-of-babel`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: WebAssembly Core Specification",
+        "measurement": "1) `tests/test_the_tower_of_babel_claim_fence.py` — unit tests for happy path + refuse path for claim_fence.\n2) Exact-head proof receipt at `receipts/claim_fence_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/the_tower_of_babel/claim_fence.py` and exercise one real bottleneck case from `the-tower-of-babel`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: WebAssembly Core Specification",
         "mechanism_id": "claim_fence",
         "mechanism_title": "Claim Fence for GlacierEQ/the-tower-of-babel",
         "paths": [
@@ -837,20 +837,20 @@
       ],
       "engine_id": "glaciereq.genius-engine.v4",
       "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
-      "knowledge_path": "/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge/GlacierEQ__the-tower-of-babel.json",
+      "knowledge_path": "GlacierEQ/job-app-helix/machine/genius_knowledge/GlacierEQ__the-tower-of-babel.json",
       "law": "MAXIMUM_COHERENT_ADVANCE",
-      "library_link_path": "/Users/kcbflux/.grok/work/library-of-links/domains/genius/GlacierEQ__the-tower-of-babel.json",
+      "library_link_path": "GlacierEQ/library-of-links/domains/genius/GlacierEQ__the-tower-of-babel.json",
       "primary": {
         "apex_aligned": true,
         "boundary": "Leaf=GlacierEQ/the-tower-of-babel; domain=polyglot; language=unknown. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
-        "cause": "Polyglot theater risk \u2014 languages present without W4H lane contracts.",
+        "cause": "Polyglot theater risk — languages present without W4H lane contracts.",
         "coherence_score": 1.0,
         "company_track": null,
         "domain": "polyglot",
         "failure_mode": "If `src/the_tower_of_babel/claim_fence.py` silent-fails, forges authority, or ships without `tests/test_the_tower_of_babel_claim_fence.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
         "genius_score": 1.0,
-        "implementation": "ENGINEER `claim_fence` into `the-tower-of-babel` as first-pass-is-last-pass code.\n- Module: `src/the_tower_of_babel/claim_fence.py` \u2014 typed API for Claim Fence; named invariants; no magic.\n- Config: `src/the_tower_of_babel/claim_fence_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, polyglot, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/claim_fence_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `WebAssembly Core Specification` (Library of Links impact shelf) without false affiliation claims.",
-        "measurement": "1) `tests/test_the_tower_of_babel_claim_fence.py` \u2014 unit tests for happy path + refuse path for claim_fence.\n2) Exact-head proof receipt at `receipts/claim_fence_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/the_tower_of_babel/claim_fence.py` and exercise one real bottleneck case from `the-tower-of-babel`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: WebAssembly Core Specification",
+        "implementation": "ENGINEER `claim_fence` into `the-tower-of-babel` as first-pass-is-last-pass code.\n- Module: `src/the_tower_of_babel/claim_fence.py` — typed API for Claim Fence; named invariants; no magic.\n- Config: `src/the_tower_of_babel/claim_fence_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, polyglot, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/claim_fence_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `WebAssembly Core Specification` (Library of Links impact shelf) without false affiliation claims.",
+        "measurement": "1) `tests/test_the_tower_of_babel_claim_fence.py` — unit tests for happy path + refuse path for claim_fence.\n2) Exact-head proof receipt at `receipts/claim_fence_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/the_tower_of_babel/claim_fence.py` and exercise one real bottleneck case from `the-tower-of-babel`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: WebAssembly Core Specification",
         "mechanism": "Claim Fence: Marketing/public claims compile only from proof receipts; unproven language auto-downgrades.",
         "novelty_score": 1.0,
         "plane": "IMPLEMENTED",
@@ -865,16 +865,16 @@
           "ENGINEERED"
         ],
         "title": "Claim Fence for GlacierEQ/the-tower-of-babel",
-        "value": "Removes the named bottleneck on `the-tower-of-babel` with ENGINEERED executable power: Marketing/public claims compile only from proof receipts; unproven language auto-downgrades. \u2014 complete mechanism masters can review in `src/the_tower_of_babel/claim_fence.py`. Grounded in advanced library knowledge: WebAssembly Core Specification | https://webassembly.github.io/spec/core/ | Sandboxed portable execution law for polyglot boundaries (Babel W4H) \u2014 validation + "
+        "value": "Removes the named bottleneck on `the-tower-of-babel` with ENGINEERED executable power: Marketing/public claims compile only from proof receipts; unproven language auto-downgrades. — complete mechanism masters can review in `src/the_tower_of_babel/claim_fence.py`. Grounded in advanced library knowledge: WebAssembly Core Specification | https://webassembly.github.io/spec/core/ | Sandboxed portable execution law for polyglot boundaries (Babel W4H) — validation + "
       },
       "receipt_sha256": "cc8bc38a91c8f818d9ad57ac1933a60e134d27d7e1857700273df5a15962394e",
       "rejected": [],
       "research": {
         "advanced_context": [
-          "WebAssembly Core Specification | https://webassembly.github.io/spec/core/ | Sandboxed portable execution law for polyglot boundaries (Babel W4H) \u2014 validation + deterministic execution beats ad-hoc plugin loaders.",
-          "The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) \u2014 proofs that compile beat prose VERIFIED labels.",
-          "Formal Verification in the Age of AI | https://verse.systems/blog/post/2026-03-05-formal-verification-ai/ | Connects AI theorem-proving scale (e.g. large formalizations) to practical verification architecture \u2014 invariant proposal, falsify/refine loops, tactic scripts \u2014 usable for fail-cl",
-          "Protocol Buffers Language Guide (proto3) | https://protobuf.dev/programming-guides/proto3/ | Cross-language wire contract law used by helix README mesh \u2014 schema evolution without silent breakage is estate-critical ENGINEERED craft.",
+          "WebAssembly Core Specification | https://webassembly.github.io/spec/core/ | Sandboxed portable execution law for polyglot boundaries (Babel W4H) — validation + deterministic execution beats ad-hoc plugin loaders.",
+          "The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) — proofs that compile beat prose VERIFIED labels.",
+          "Formal Verification in the Age of AI | https://verse.systems/blog/post/2026-03-05-formal-verification-ai/ | Connects AI theorem-proving scale (e.g. large formalizations) to practical verification architecture — invariant proposal, falsify/refine loops, tactic scripts — usable for fail-cl",
+          "Protocol Buffers Language Guide (proto3) | https://protobuf.dev/programming-guides/proto3/ | Cross-language wire contract law used by helix README mesh — schema evolution without silent breakage is estate-critical ENGINEERED craft.",
           "GlacierEQ/the-tower-of-babel | https://github.com/GlacierEQ/the-tower-of-babel | Genius Engine research leaf for GlacierEQ/the-tower-of-babel: accumulates lite signals, mechanism primaries, and dual-plane restore context for estate advance. Not a substitute for"
         ],
         "default_branch": "main",
@@ -896,8 +896,8 @@
           "signal:polyglot",
           "signal:has_prior_knowledge",
           "signal:prior_mechanism_known",
-          "advanced:WebAssembly Core Specification | https://webassembly.github.io/spec/core/ | Sandboxed portable execution law for polyglot boundaries (Babel W4H) \u2014 validation + ",
-          "advanced:The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) \u2014 proofs that com",
+          "advanced:WebAssembly Core Specification | https://webassembly.github.io/spec/core/ | Sandboxed portable execution law for polyglot boundaries (Babel W4H) — validation + ",
+          "advanced:The Lean 4 Manual | https://lean-lang.org/lean4/doc/ | Primary surface for machine-checked invariants in polyglot estates (Babel formal floor) — proofs that com",
           "advanced:Formal Verification in the Age of AI | https://verse.systems/blog/post/2026-03-05-formal-verification-ai/ | Connects AI theorem-proving scale (e.g. large formal"
         ],
         "primary_language": "unknown",
@@ -926,14 +926,14 @@
         {
           "apex_aligned": true,
           "boundary": "Leaf=GlacierEQ/the-tower-of-babel; domain=polyglot; language=unknown. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
-          "cause": "Polyglot theater risk \u2014 languages present without W4H lane contracts.",
+          "cause": "Polyglot theater risk — languages present without W4H lane contracts.",
           "coherence_score": 1.0,
           "company_track": null,
           "domain": "polyglot",
           "failure_mode": "If `src/the_tower_of_babel/claim_fence.py` silent-fails, forges authority, or ships without `tests/test_the_tower_of_babel_claim_fence.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
           "genius_score": 1.0,
-          "implementation": "ENGINEER `claim_fence` into `the-tower-of-babel` as first-pass-is-last-pass code.\n- Module: `src/the_tower_of_babel/claim_fence.py` \u2014 typed API for Claim Fence; named invariants; no magic.\n- Config: `src/the_tower_of_babel/claim_fence_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, polyglot, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/claim_fence_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `WebAssembly Core Specification` (Library of Links impact shelf) without false affiliation claims.",
-          "measurement": "1) `tests/test_the_tower_of_babel_claim_fence.py` \u2014 unit tests for happy path + refuse path for claim_fence.\n2) Exact-head proof receipt at `receipts/claim_fence_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/the_tower_of_babel/claim_fence.py` and exercise one real bottleneck case from `the-tower-of-babel`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: WebAssembly Core Specification",
+          "implementation": "ENGINEER `claim_fence` into `the-tower-of-babel` as first-pass-is-last-pass code.\n- Module: `src/the_tower_of_babel/claim_fence.py` — typed API for Claim Fence; named invariants; no magic.\n- Config: `src/the_tower_of_babel/claim_fence_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, polyglot, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/claim_fence_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `WebAssembly Core Specification` (Library of Links impact shelf) without false affiliation claims.",
+          "measurement": "1) `tests/test_the_tower_of_babel_claim_fence.py` — unit tests for happy path + refuse path for claim_fence.\n2) Exact-head proof receipt at `receipts/claim_fence_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/the_tower_of_babel/claim_fence.py` and exercise one real bottleneck case from `the-tower-of-babel`.\n4) Impact check: Invent/advance `engineered_first_class` on GlacierEQ/the-tower-of-babel using knowledge: WebAssembly Core Specification",
           "mechanism": "Claim Fence: Marketing/public claims compile only from proof receipts; unproven language auto-downgrades.",
           "novelty_score": 1.0,
           "plane": "IMPLEMENTED",
@@ -948,11 +948,11 @@
             "ENGINEERED"
           ],
           "title": "Claim Fence for GlacierEQ/the-tower-of-babel",
-          "value": "Removes the named bottleneck on `the-tower-of-babel` with ENGINEERED executable power: Marketing/public claims compile only from proof receipts; unproven language auto-downgrades. \u2014 complete mechanism masters can review in `src/the_tower_of_babel/claim_fence.py`. Grounded in advanced library knowledge: WebAssembly Core Specification | https://webassembly.github.io/spec/core/ | Sandboxed portable execution law for polyglot boundaries (Babel W4H) \u2014 validation + "
+          "value": "Removes the named bottleneck on `the-tower-of-babel` with ENGINEERED executable power: Marketing/public claims compile only from proof receipts; unproven language auto-downgrades. — complete mechanism masters can review in `src/the_tower_of_babel/claim_fence.py`. Grounded in advanced library knowledge: WebAssembly Core Specification | https://webassembly.github.io/spec/core/ | Sandboxed portable execution law for polyglot boundaries (Babel W4H) — validation + "
         }
       ],
       "subject": {
-        "cause": "Polyglot theater risk \u2014 languages present without W4H lane contracts.",
+        "cause": "Polyglot theater risk — languages present without W4H lane contracts.",
         "company": null,
         "domain": "polyglot",
         "neutralization_stamps": null,
@@ -971,7 +971,7 @@
     {
       "advance_brief": {
         "failure_mode": "If `src/xai_colossus_cooling/receipt_bus.py` silent-fails, forges authority, or ships without `tests/test_xai_colossus_cooling_receipt_bus.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
-        "measurement": "1) `tests/test_xai_colossus_cooling_receipt_bus.py` \u2014 unit tests for happy path + refuse path for receipt_bus.\n2) Exact-head proof receipt at `receipts/receipt_bus_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/xai_colossus_cooling/receipt_bus.py` and exercise one real bottleneck case from `xai-colossus-cooling`.\n4) Impact check: Invent/advance `receipt_bus` on GlacierEQ/xai-colossus-cooling using knowledge: The Datacenter as a Computer (3rd ed. overview)",
+        "measurement": "1) `tests/test_xai_colossus_cooling_receipt_bus.py` — unit tests for happy path + refuse path for receipt_bus.\n2) Exact-head proof receipt at `receipts/receipt_bus_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/xai_colossus_cooling/receipt_bus.py` and exercise one real bottleneck case from `xai-colossus-cooling`.\n4) Impact check: Invent/advance `receipt_bus` on GlacierEQ/xai-colossus-cooling using knowledge: The Datacenter as a Computer (3rd ed. overview)",
         "mechanism_id": "receipt_bus",
         "mechanism_title": "Actuation Receipt Bus for GlacierEQ/xai-colossus-cooling",
         "paths": [
@@ -1011,9 +1011,9 @@
       ],
       "engine_id": "glaciereq.genius-engine.v4",
       "identity": "APEX_IS_THE_COUNTER_TO_CANONICAL_DESTRUCTION",
-      "knowledge_path": "/Users/kcbflux/.grok/work/job-app-helix/machine/genius_knowledge/GlacierEQ__xai-colossus-cooling.json",
+      "knowledge_path": "GlacierEQ/job-app-helix/machine/genius_knowledge/GlacierEQ__xai-colossus-cooling.json",
       "law": "MAXIMUM_COHERENT_ADVANCE",
-      "library_link_path": "/Users/kcbflux/.grok/work/library-of-links/domains/genius/GlacierEQ__xai-colossus-cooling.json",
+      "library_link_path": "GlacierEQ/library-of-links/domains/genius/GlacierEQ__xai-colossus-cooling.json",
       "primary": {
         "apex_aligned": true,
         "boundary": "Leaf=GlacierEQ/xai-colossus-cooling; domain=colossus; language=unknown. No false company affiliation; no flight/production authority without proof; no legal/private data on public hire surface; no capability deletion to green CI; no governance paralysis blocking a complete born-to-run land.",
@@ -1023,8 +1023,8 @@
         "domain": "colossus",
         "failure_mode": "If `src/xai_colossus_cooling/receipt_bus.py` silent-fails, forges authority, or ships without `tests/test_xai_colossus_cooling_receipt_bus.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
         "genius_score": 1.0,
-        "implementation": "ENGINEER `receipt_bus` into `xai-colossus-cooling` as first-pass-is-last-pass code.\n- Module: `src/xai_colossus_cooling/receipt_bus.py` \u2014 typed API for Actuation Receipt Bus; named invariants; no magic.\n- Config: `src/xai_colossus_cooling/receipt_bus_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, thermal_energy, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/receipt_bus_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `The Datacenter as a Computer (3rd ed. overview)` (Library of Links impact shelf) without false affiliation claims.",
-        "measurement": "1) `tests/test_xai_colossus_cooling_receipt_bus.py` \u2014 unit tests for happy path + refuse path for receipt_bus.\n2) Exact-head proof receipt at `receipts/receipt_bus_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/xai_colossus_cooling/receipt_bus.py` and exercise one real bottleneck case from `xai-colossus-cooling`.\n4) Impact check: Invent/advance `receipt_bus` on GlacierEQ/xai-colossus-cooling using knowledge: The Datacenter as a Computer (3rd ed. overview)",
+        "implementation": "ENGINEER `receipt_bus` into `xai-colossus-cooling` as first-pass-is-last-pass code.\n- Module: `src/xai_colossus_cooling/receipt_bus.py` — typed API for Actuation Receipt Bus; named invariants; no magic.\n- Config: `src/xai_colossus_cooling/receipt_bus_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, thermal_energy, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/receipt_bus_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `The Datacenter as a Computer (3rd ed. overview)` (Library of Links impact shelf) without false affiliation claims.",
+        "measurement": "1) `tests/test_xai_colossus_cooling_receipt_bus.py` — unit tests for happy path + refuse path for receipt_bus.\n2) Exact-head proof receipt at `receipts/receipt_bus_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/xai_colossus_cooling/receipt_bus.py` and exercise one real bottleneck case from `xai-colossus-cooling`.\n4) Impact check: Invent/advance `receipt_bus` on GlacierEQ/xai-colossus-cooling using knowledge: The Datacenter as a Computer (3rd ed. overview)",
         "mechanism": "Actuation Receipt Bus: Every command is signed intent with preconditions, abort predicates, and post-condition evidence.",
         "novelty_score": 1.0,
         "plane": "IMPLEMENTED",
@@ -1039,17 +1039,17 @@
           "ENGINEERED"
         ],
         "title": "Actuation Receipt Bus for GlacierEQ/xai-colossus-cooling",
-        "value": "Removes the named bottleneck on `xai-colossus-cooling` with ENGINEERED executable power: Every command is signed intent with preconditions, abort predicates, and post-condition evidence. \u2014 complete mechanism masters can review in `src/xai_colossus_cooling/receipt_bus.py`. Grounded in advanced library knowledge: The Datacenter as a Computer (3rd ed. overview) | https://www.morganclaypool.com/doi/10.2200/S00516ED2V01Y201306CAC024 | Colossus-scale framing: energy/thermal/"
+        "value": "Removes the named bottleneck on `xai-colossus-cooling` with ENGINEERED executable power: Every command is signed intent with preconditions, abort predicates, and post-condition evidence. — complete mechanism masters can review in `src/xai_colossus_cooling/receipt_bus.py`. Grounded in advanced library knowledge: The Datacenter as a Computer (3rd ed. overview) | https://www.morganclaypool.com/doi/10.2200/S00516ED2V01Y201306CAC024 | Colossus-scale framing: energy/thermal/"
       },
       "receipt_sha256": "6b0f0b3e5f57edc6e9723939ac4b3cff767e3be6d19a3a702b4291beca6937c3",
       "rejected": [],
       "research": {
         "advanced_context": [
-          "The Datacenter as a Computer (3rd ed. overview) | https://www.morganclaypool.com/doi/10.2200/S00516ED2V01Y201306CAC024 | Colossus-scale framing: energy/thermal/ops are first-class computer architecture \u2014 directly informs cooling/energy actuation receipt design.",
+          "The Datacenter as a Computer (3rd ed. overview) | https://www.morganclaypool.com/doi/10.2200/S00516ED2V01Y201306CAC024 | Colossus-scale framing: energy/thermal/ops are first-class computer architecture — directly informs cooling/energy actuation receipt design.",
           "The Google File System | https://research.google/pubs/pub51/ | Foundational large-system design tradeoffs (chunkservers, master, failure as normal) that still structure colossus-scale storage and ops receipt thinking.",
           "GlacierEQ/xai-colossus-cooling | https://github.com/GlacierEQ/xai-colossus-cooling | Genius Engine research leaf for GlacierEQ/xai-colossus-cooling: accumulates lite signals, mechanism primaries, and dual-plane restore context for estate advance. Not a substitute f",
-          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness \u2014 calibrates dual-plane claims and ref",
-          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces \u2014 maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t"
+          "International AI Safety Report 2026 | https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026 | Authoritative multi-institution synthesis of frontier capability evidence (IMO-level math, coding agent task horizons) with honest jaggedness — calibrates dual-plane claims and ref",
+          "Model Context Protocol (MCP) Specification | https://modelcontextprotocol.io/ | Primary protocol for credentialed tool surfaces — maps directly to provider-surface restore, stdio/MCP package authority, and fail-closed host policy. Estate MCP leaves implement t"
         ],
         "default_branch": "main",
         "description": "",
@@ -1106,8 +1106,8 @@
           "domain": "colossus",
           "failure_mode": "If `src/xai_colossus_cooling/receipt_bus.py` silent-fails, forges authority, or ships without `tests/test_xai_colossus_cooling_receipt_bus.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
           "genius_score": 1.0,
-          "implementation": "ENGINEER `receipt_bus` into `xai-colossus-cooling` as first-pass-is-last-pass code.\n- Module: `src/xai_colossus_cooling/receipt_bus.py` \u2014 typed API for Actuation Receipt Bus; named invariants; no magic.\n- Config: `src/xai_colossus_cooling/receipt_bus_config.py` \u2014 leaf boundaries from research signals [unknown_or_offline, no_test_mention, thermal_energy, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/receipt_bus_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now \u2014 not a stub.\n- Knowledge: apply insights from `The Datacenter as a Computer (3rd ed. overview)` (Library of Links impact shelf) without false affiliation claims.",
-          "measurement": "1) `tests/test_xai_colossus_cooling_receipt_bus.py` \u2014 unit tests for happy path + refuse path for receipt_bus.\n2) Exact-head proof receipt at `receipts/receipt_bus_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/xai_colossus_cooling/receipt_bus.py` and exercise one real bottleneck case from `xai-colossus-cooling`.\n4) Impact check: Invent/advance `receipt_bus` on GlacierEQ/xai-colossus-cooling using knowledge: The Datacenter as a Computer (3rd ed. overview)",
+          "implementation": "ENGINEER `receipt_bus` into `xai-colossus-cooling` as first-pass-is-last-pass code.\n- Module: `src/xai_colossus_cooling/receipt_bus.py` — typed API for Actuation Receipt Bus; named invariants; no magic.\n- Config: `src/xai_colossus_cooling/receipt_bus_config.py` — leaf boundaries from research signals [unknown_or_offline, no_test_mention, thermal_energy, has_prior_knowledge, prior_mechanism_known]; language=unknown.\n- Wire: call sites that currently embody the bottleneck must route through the mechanism (refuse path if preconditions fail).\n- Dual-plane: IMPLEMENTED when tests green; VERIFIED only with proof receipt `receipts/receipt_bus_proof.json`; keep TARGET north-star.\n- MAXIMUM_COHERENT_ADVANCE: land the full coherent tranche now — not a stub.\n- Knowledge: apply insights from `The Datacenter as a Computer (3rd ed. overview)` (Library of Links impact shelf) without false affiliation claims.",
+          "measurement": "1) `tests/test_xai_colossus_cooling_receipt_bus.py` — unit tests for happy path + refuse path for receipt_bus.\n2) Exact-head proof receipt at `receipts/receipt_bus_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/xai_colossus_cooling/receipt_bus.py` and exercise one real bottleneck case from `xai-colossus-cooling`.\n4) Impact check: Invent/advance `receipt_bus` on GlacierEQ/xai-colossus-cooling using knowledge: The Datacenter as a Computer (3rd ed. overview)",
           "mechanism": "Actuation Receipt Bus: Every command is signed intent with preconditions, abort predicates, and post-condition evidence.",
           "novelty_score": 1.0,
           "plane": "IMPLEMENTED",
@@ -1122,7 +1122,7 @@
             "ENGINEERED"
           ],
           "title": "Actuation Receipt Bus for GlacierEQ/xai-colossus-cooling",
-          "value": "Removes the named bottleneck on `xai-colossus-cooling` with ENGINEERED executable power: Every command is signed intent with preconditions, abort predicates, and post-condition evidence. \u2014 complete mechanism masters can review in `src/xai_colossus_cooling/receipt_bus.py`. Grounded in advanced library knowledge: The Datacenter as a Computer (3rd ed. overview) | https://www.morganclaypool.com/doi/10.2200/S00516ED2V01Y201306CAC024 | Colossus-scale framing: energy/thermal/"
+          "value": "Removes the named bottleneck on `xai-colossus-cooling` with ENGINEERED executable power: Every command is signed intent with preconditions, abort predicates, and post-condition evidence. — complete mechanism masters can review in `src/xai_colossus_cooling/receipt_bus.py`. Grounded in advanced library knowledge: The Datacenter as a Computer (3rd ed. overview) | https://www.morganclaypool.com/doi/10.2200/S00516ED2V01Y201306CAC024 | Colossus-scale framing: energy/thermal/"
         }
       ],
       "subject": {
