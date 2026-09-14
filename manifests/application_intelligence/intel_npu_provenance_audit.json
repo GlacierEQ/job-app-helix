@@ -102,9 +102,9 @@
     "imported feature-branch merges"
   ],
   "promotion_gate": {
-    "next_action": "Extract the candidate Casey-authored SDPA robustness delta as a minimal patch against the archived Intel base and verify it independently.",
+    "next_action": "Extract the candidate Casey-authored SDPA robustness delta as a strong provenance-clean patch against the archived Intel base and verify it independently.",
     "requires": [
-      "minimal provenance-clean patch",
+      "strong provenance-clean patch",
       "active tests rather than .history snapshots",
       "positive deterministic test receipt",
       "hardware or explicitly labeled simulation boundary",
