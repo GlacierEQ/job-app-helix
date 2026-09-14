@@ -204,7 +204,7 @@ def build_generated_contract(
             "entrypoints": infer_entrypoints(root_paths),
         },
         "presentation": {
-            "architecture": ["recruiter", "master", "machine", "mesh"],
+            "architecture": ["recruiter", "expert", "genius", "machine", "mesh"],
             "authority": {
                 "capability": "stone-psysoc-x",
                 "repository": PSYSOC_REPOSITORY,
@@ -296,7 +296,7 @@ def _baseline_entrypoint_lines(contract: Mapping[str, Any]) -> list[str]:
 
 
 def evidence_readme(repository: str, contract: Mapping[str, Any], block: str) -> str:
-    """Create a truthful four-depth scaffold without inventing project claims."""
+    """Create a truthful five-depth scaffold without inventing project claims."""
 
     slug = repository.rsplit("/", 1)[-1]
     mesh = contract.get("mesh") if isinstance(contract.get("mesh"), Mapping) else {}
@@ -323,18 +323,31 @@ def evidence_readme(repository: str, contract: Mapping[str, Any], block: str) ->
     if primary_home:
         recruiter_lines.extend(["", f"**Current Monolith placement:** `{primary_home}`"])
 
-    master_lines = [
+    expert_lines = [
         "",
-        "## 02 · MASTER — Let the Source Speak Before the Story Does",
+        "## 02 · EXPERT — Let the Source Speak Before the Story Does",
         "",
         "*Technical orientation · decisive checked-in surfaces, boundaries, and next inspection points*",
         "",
     ]
-    master_lines.extend(entrypoints or ["- No decisive entrypoint has been asserted yet."])
+    expert_lines.extend(entrypoints or ["- No decisive entrypoint has been asserted yet."])
+
+    genius_lines = [
+        "",
+        "## 03 · GENIUS — Compound Only What the Evidence Supports",
+        "",
+        "*Synthesis orientation · reusable design intelligence without a second truth source*",
+        "",
+        "- This baseline scaffold does not infer mastery, novelty, or higher-order capability from the repository name alone.",
+        "- Promote synthesis only when source, tests, receipts, typed relationships, or a project-native Genius contract establish it.",
+        "- Transfer claims must preserve assumptions, limits, provenance, and the repository's own identity.",
+    ]
+    if any("GENIUS.yaml" in line for line in entrypoints):
+        genius_lines.append("- `GENIUS.yaml` is present as a declared capability/synthesis entrypoint; inspect it before asserting Genius-level claims.")
 
     machine_lines = [
         "",
-        "## 03 · MACHINE — Plug In Without Guessing",
+        "## 04 · MACHINE — Plug In Without Guessing",
         "",
         "*Machine orientation · deterministic identity, routing, license posture, and provenance*",
         "",
@@ -343,7 +356,7 @@ def evidence_readme(repository: str, contract: Mapping[str, Any], block: str) ->
 
     mesh_lines = [
         "",
-        "## 04 · MESH — Context Without Identity Collapse",
+        "## 05 · MESH — Context Without Identity Collapse",
         "",
         "*Mesh orientation · this repository remains its own source while Monolith maps its estate relationships*",
         "",
@@ -353,7 +366,7 @@ def evidence_readme(repository: str, contract: Mapping[str, Any], block: str) ->
         human_notice(),
         "",
     ]
-    return "\n".join(recruiter_lines + master_lines + machine_lines + mesh_lines)
+    return "\n".join(recruiter_lines + expert_lines + genius_lines + machine_lines + mesh_lines)
 
 
 def plan_readme(
@@ -410,7 +423,7 @@ def plan_readme(
             repository=repository,
             action=ReadmeAction.CREATE_README,
             reason=(
-                "README missing; create a truthful four-depth scaffold and machine contract "
+                "README missing; create a truthful five-depth scaffold and machine contract "
                 "without inventing source-specific human claims"
             ),
             readme=evidence_readme(repository, contract, block),
