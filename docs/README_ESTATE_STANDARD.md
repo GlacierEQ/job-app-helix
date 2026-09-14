@@ -1,17 +1,18 @@
 # GlacierEQ Estate README Standard
 
-## One README, Four Depths
+## One README, Five Depths
 
-A GlacierEQ README is not a flat project description. It is **one factual system projected at four useful depths**:
+A GlacierEQ README is not a flat project description. It is **one factual system projected at five useful depths**:
 
 1. **01 · RECRUITER** — the complete human overview for recruiters, collaborators, hiring managers, and normal people.
-2. **02 · MASTER** — the full technical account for masters of the trade.
-3. **03 · MACHINE** — the deterministic contract for agents, retrieval systems, compilers, and future automated operators.
-4. **04 · MESH** — the typed relationships that show how the repository becomes more valuable in the wider GlacierEQ estate.
+2. **02 · EXPERT** — the full technical account for senior engineers and domain experts.
+3. **03 · GENIUS** — evidence-bound synthesis: what mechanisms compound, what design intelligence emerged, what transfers, and what remains bounded.
+4. **04 · MACHINE** — the deterministic contract for agents, retrieval systems, compilers, and future automated operators.
+5. **05 · MESH** — the typed relationships that show how the repository becomes more valuable in the wider GlacierEQ estate without collapsing identity or ownership.
 
-The topology is stable. **The weight is not.** A tiny utility may need only a few lines in Recruiter and a compact Master section. A flagship may justify serious depth. Machine is structured rather than ornamental. Mesh contains only relationships that add real understanding or capability.
+The topology is stable. **The weight is not.** A tiny utility may need only a few lines in Recruiter, a compact Expert section, and a very small Genius synthesis. A flagship may justify serious depth. Machine is structured rather than ornamental. Mesh contains only relationships that add real understanding or capability.
 
-Every depth is a valid stopping point. A reader who stops after Recruiter should understand the project. A technical reviewer who stops after Master should be able to evaluate it seriously. A machine should not need to scrape prose to locate the contract. A reader entering Mesh should see additional value, not link clutter.
+Every depth is a valid stopping point. A reader who stops after Recruiter should understand the project. A technical reviewer who stops after Expert should be able to evaluate it seriously. Genius should reveal higher-order engineering meaning without inventing facts. A machine should not need to scrape prose to locate the contract. A reader entering Mesh should see additional value, not link clutter.
 
 ## PSYSOC-X Is the Presentation Engine
 
@@ -23,7 +24,7 @@ Canonical sources:
 - Manifest: `GlacierEQ/AKOS/stones/psysoc-x/stone.json`
 - Engine: `GlacierEQ/AKOS/infinity_stones/psysoc_x.py`
 - Verification: `GlacierEQ/AKOS/receipts/2026-08-02_psysoc-x_v0.1.0_promotion.json`
-- Four-depth presentation profile: `GlacierEQ/job-application/site-v15/data/psysoc-x-profiles.json`
+- Presentation profile: `GlacierEQ/job-application/site-v15/data/psysoc-x-profiles.json`
 
 PSYSOC-X controls **attention strategy, tone, density, logic order, skepticism response, humor fit, emotional-weight handling, memory anchors, dignity controls, and warnings** from explicit context. It may change how truth arrives. It may not change truth.
 
@@ -39,16 +40,17 @@ Do not optimize for uniform README length.
 
 Use the **shortest form that preserves the reader's needed understanding** and the **longest form justified by technical or evidentiary value**.
 
-As cognitive load rises, use progressive disclosure. As skepticism rises, move limits and reproducible proof earlier. As stakes or privacy rise, remove humor and reduce ornamental language. As evidence weakens, make uncertainty more visible. As technical depth becomes useful, expand Master rather than forcing complexity into Recruiter.
+As cognitive load rises, use progressive disclosure. As skepticism rises, move limits and reproducible proof earlier. As stakes or privacy rise, remove humor and reduce ornamental language. As evidence weakens, make uncertainty more visible. As technical depth becomes useful, expand Expert rather than forcing complexity into Recruiter. Expand Genius only when there is real synthesis to expose.
 
 ### Titles must carry weight
 
 Stable layer identifiers stay machine-recognizable:
 
 - `01 · RECRUITER`
-- `02 · MASTER`
-- `03 · MACHINE`
-- `04 · MESH`
+- `02 · EXPERT`
+- `03 · GENIUS`
+- `04 · MACHINE`
+- `05 · MESH`
 
 The subtitle after the identifier is **project-native and dynamic**. It should be clever enough to reward attention and concrete enough to carry information.
 
@@ -86,17 +88,17 @@ A strong Recruiter section normally uses:
 - one concise explanation of mechanism;
 - up to three memorable capabilities/outcomes;
 - one or two strong proof links;
-- a clean handoff to Master.
+- a clean handoff to Expert.
 
 Do not dump every feature here. Do not withhold the point merely to force scrolling.
 
 For sensitive/private/legal repositories, use the same cognitive role — immediate human orientation — but do not turn sensitive facts into recruiter copy or leak private evidence.
 
-## 02 · MASTER — Show the Work
+## 02 · EXPERT — Show the Work
 
 This is for senior engineers, domain specialists, principal-level reviewers, and anyone doing real diligence.
 
-Master may cover, as justified by the repository:
+Expert may cover, as justified by the repository:
 
 - architecture and decomposition;
 - mechanism and algorithms;
@@ -115,7 +117,24 @@ This is where jargon is allowed when it is native and defined. It should be prec
 
 Depth is earned. A five-file utility should not receive an artificial dissertation. A complicated control plane should not be compressed into six bullets merely for visual symmetry.
 
-## 03 · MACHINE — Plug In Without Guessing
+## 03 · GENIUS — Show What Compounds
+
+Genius is not a superlative badge and it is not a second truth source. It is the **synthesis layer**.
+
+It answers:
+
+- What mechanisms become more powerful together than they are separately?
+- What reusable design principle or abstraction emerged from the work?
+- What did iteration teach that is not obvious from a component list?
+- What can transfer to another system, and under what assumptions?
+- What cannot transfer safely?
+- What unresolved question, falsifiable claim, or boundary still matters?
+
+A strong Genius section links implementation, evidence, verification, and evolution into a mastery loop. It may reference the repository's `GENIUS.yaml`, Genius Engine receipts, or Genius-family repositories when those sources actually apply.
+
+Genius must never manufacture capability, deployment state, endorsement, scale, safety, authority, or proof. If the higher-order claim cannot be traced back to source/evidence, it does not belong here.
+
+## 04 · MACHINE — Plug In Without Guessing
 
 Every writable repository should expose exactly one versioned machine contract between:
 
@@ -161,9 +180,9 @@ Estate tools consume a repository in this order:
 
 Absence of a block is `MISSING_CONTRACT`, not evidence of missing capability. Malformed, contradictory, unsupported-schema, or identity-mismatched contracts fail closed into repair.
 
-## 04 · MESH — Show What Becomes Possible Together
+## 05 · MESH — Show What Becomes Possible Together
 
-Mesh answers a different question from Master:
+Mesh answers a different question from Expert or Genius:
 
 > **What becomes stronger, possible, safer, faster, or more intelligible when this repository connects to the rest of the estate?**
 
@@ -203,23 +222,23 @@ Do not claim rights GlacierEQ does not own and do not overwrite rights already v
 
 ## Repository Profiles
 
-The four depths remain stable across profiles. The profile changes exposure and weight.
+The five depths remain stable across profiles. The profile changes exposure and weight.
 
 ### `estate-core`
 
-Default. Four-depth structure + machine contract. Existing strong human prose should be adopted and reorganized rather than erased.
+Default. Five-depth structure + machine contract. Existing strong human prose should be adopted and reorganized rather than erased.
 
 ### `portfolio`
 
-Public portfolio-eligible repository. Uses full PSYSOC-X Recruiter/Master/Machine/Mesh projection with source-bound proof and no private legal/case material.
+Public portfolio-eligible repository. Uses full PSYSOC-X Recruiter/Expert/Genius/Machine/Mesh projection with source-bound proof and no private legal/case material.
 
 ### `flagship`
 
-A deliberately curated primary system. Same four depths, with greater Master and Mesh depth justified by source complexity and evidence.
+A deliberately curated primary system. Same five depths, with greater Expert, Genius, and Mesh depth justified by source complexity and evidence.
 
 ### `sensitive`
 
-Legal, evidence, family, private-record, or other high-sensitivity repository. Same four-depth topology, but Recruiter means **safe human orientation**, not public promotion. Private facts stay private; humor normally disappears; evidence links respect access and disclosure boundaries.
+Legal, evidence, family, private-record, or other high-sensitivity repository. Same five-depth topology, but Recruiter means **safe human orientation**, not public promotion. Private facts stay private; humor normally disappears; evidence links respect access and disclosure boundaries.
 
 ### `fork-archive`
 
@@ -249,7 +268,7 @@ For each live GlacierEQ repository:
 3. reconcile current Monolith classification/evidence when present;
 4. recover/adopt existing human language worth preserving;
 5. derive explicit audience context for PSYSOC-X;
-6. produce the four-depth projection at the amount of detail justified by source and audience;
+6. produce the five-depth projection at the amount of detail justified by source and audience;
 7. validate the machine contract and rights notice;
 8. compare-before-write using the current README blob SHA;
 9. mutate only authorized paths;
@@ -260,27 +279,29 @@ No visibility changes. No repository deletion, archival, or unarchival. No crede
 
 ## Relationship to the Existing README Mesh
 
-The existing `proto/readme_mesh.proto`, README Mesh manifests, deterministic artifacts, and renderer remain useful evidence/projection infrastructure. They are not the final human architecture by themselves.
+The existing `proto/readme_mesh.proto`, README Mesh manifests, deterministic artifacts, Genius Engine sources, and renderer remain useful evidence/projection infrastructure. They are not separate competing architectures.
 
 Their semantic mapping is now explicit:
 
 - legacy `RECRUITER` → `01 · RECRUITER`;
-- legacy `EXPERT` → `02 · MASTER`;
-- legacy `AI_AGENT` + machine-mesh contract → `03 · MACHINE`;
-- typed repository edges → `04 · MESH`.
+- legacy `EXPERT` → `02 · EXPERT`;
+- Genius Engine / `GENIUS.yaml` / evidence-bound synthesis → `03 · GENIUS` where applicable;
+- legacy `AI_AGENT` + machine-mesh contract → `04 · MACHINE`;
+- typed repository edges → `05 · MESH`.
 
-One factual graph can therefore feed all four surfaces without contradictory hand-authored versions.
+One factual graph can therefore feed all five surfaces without contradictory hand-authored versions.
 
 ## Acceptance
 
 The estate README program is successful when:
 
-- every writable live GlacierEQ repository has the four-depth structure at an appropriate weight;
+- every writable live GlacierEQ repository has the five-depth structure at an appropriate weight;
 - every writable repository has exactly one valid machine contract or an explicit repair receipt;
 - GlacierEQ-owned work carries the intended all-rights-reserved protection;
 - existing rights not owned by GlacierEQ are not overwritten;
 - every archived/read-only repository remains represented in the rollout manifest;
 - PSYSOC-X changes presentation without changing factual or evidentiary state;
+- Genius synthesizes without creating new truth or authority;
 - every depth works as a truthful stopping point;
 - generated updates are idempotent and preserve project-native human value;
 - Monolith placement/provenance can be recovered without broad crawling when a sufficient machine block exists;
