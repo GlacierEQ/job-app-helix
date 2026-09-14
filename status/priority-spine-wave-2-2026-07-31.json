@@ -15,7 +15,18 @@
     "preserve_unique_value_before_closure": true,
     "require_repository_native_proof": true,
     "pr_closure_is_branch_deletion": false,
-    "remote_ref_deletion_capability_available": false
+    "remote_ref_deletion_capability_available": false,
+    "holographic_mesh_anti_replacement": true,
+    "zero_unique_contribution_required_for_retirement": true,
+    "latest_is_routing_cursor_only": true
+  },
+  "historical_regression_repair": {
+    "classification": "VERIFIED_REGRESSION",
+    "origin_chain": "Wave 2 propagated the Wave 1 branch-consolidation assumption by treating merge/reference status, obsolete labels, or family classification as sufficient retirement/delete authority.",
+    "failed_assumption": "A newer reference branch, completed merge, family classification, or implementation replacement could stand in for exhaustive unique-contribution proof across source, event, edge, contradiction, provenance, mechanism, unresolved dependency, receipt, and authority-domain state.",
+    "repair": "Destructive or global retirement language below is preserved only as historical evidence. Every affected donor/ref remains ACTIVE_IN_MESH or PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF unless a separate provider-read-back comparison establishes UNIQUE_CONTRIBUTION=0 and explicit retirement authority.",
+    "relationship_rule": "Use MERGED_WITH, SUPERSEDES_ONLY, CONTRADICTS, DUPLICATE_OF, and DERIVED_FROM for partial overlap; latest/reference is routing metadata, not replacement authority.",
+    "lineage_preserved": true
   },
   "outcomes": [
     {
@@ -35,17 +46,20 @@
         "job-application integration registered"
       ],
       "branch_state": {
-        "hardening_advanced_exhibits": "MERGED_AND_RETIRED",
-        "native_hygiene_removed": [
+        "historical_hardening_advanced_exhibits": "MERGED_AND_RETIRED",
+        "hardening_advanced_exhibits": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF",
+        "historical_native_hygiene_removed": [
           "release/recruiter-package-mainline-2026-07-30",
           "tmp/tree-api-probe-2026-07-30",
           "tmp/unused-should-not-have-created"
         ],
-        "obsolete_refs_remaining": [
+        "native_hygiene_mesh_state": "LINEAGE_PRESERVED; REMOVAL_IS_HISTORICAL_EVENT_NOT_PROOF_OF_ZERO_UNIQUE_CONTRIBUTION",
+        "historical_obsolete_refs_remaining": [
           "release/recruiter-package-hardening-2026-07-30",
           "release/recruiter-package-hardening-verified-2026-07-30",
           "tmp/tree-api-probe-2-2026-07-30"
-        ]
+        ],
+        "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
       }
     },
     {
@@ -62,7 +76,8 @@
         "generated showcase drift repaired",
         "public recruiter distribution remains evidence-bound"
       ],
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_SUPERSEDED_REFS"
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_SUPERSEDED_REFS",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/job-app-helix",
@@ -76,7 +91,8 @@
         "branch retirement receipt persisted",
         "Tower authority synchronization receipt integrated"
       ],
-      "branch_state": "RETIREMENT_RECEIPT_COMPLETE_WITH_EXACT_DELETE_BLOCKERS"
+      "historical_branch_state": "RETIREMENT_RECEIPT_COMPLETE_WITH_EXACT_DELETE_BLOCKERS",
+      "branch_state": "ACTIVE_IN_MESH_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/monolith",
@@ -106,11 +122,13 @@
         "branch classification recorded in issue 11"
       ],
       "branch_classification": {
-        "obsolete": 9,
+        "historical_obsolete": 9,
         "preserve_unique_high_value": 2,
-        "quarantine_extract": 1
+        "quarantine_extract": 1,
+        "mesh_rule": "Historical obsolete labels do not authorize retirement without UNIQUE_CONTRIBUTION=0"
       },
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_NINE_OBSOLETE_REFS"
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_NINE_OBSOLETE_REFS",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/pro-code",
@@ -125,7 +143,8 @@
         "native Rust tests passed",
         "native Haskell invariants passed"
       ],
-      "remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_SUPERSEDED_REFS"
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED_FOR_SUPERSEDED_REFS",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/Pro_Code",
@@ -143,7 +162,8 @@
         "automatic inheritance and runtime claims rejected"
       ],
       "execution_boundary": "GITHUB_ACTIONS_BLOCKED_NOT_COUNTED_AS_PASSING",
-      "branch_state": "FOUR_OBSOLETE_REFS_CLASSIFIED_DELETE_BLOCKED_TOOLING"
+      "historical_branch_state": "FOUR_OBSOLETE_REFS_CLASSIFIED_DELETE_BLOCKED_TOOLING",
+      "branch_state": "ACTIVE_IN_MESH_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF"
     },
     {
       "repository": "GlacierEQ/mastermind",
@@ -195,7 +215,8 @@
     "active_blocked_repositories_preserved_open": 1,
     "branch_families_classified": true,
     "remote_branch_refs_deleted": 0,
-    "remote_branch_refs_requiring_later_deletion": true,
+    "remote_branch_refs_requiring_later_deletion": false,
+    "remote_branch_refs_pending_zero_unique_contribution_proof": true,
     "whole_library_complete": false
   }
 }
