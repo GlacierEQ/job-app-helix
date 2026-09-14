@@ -33,7 +33,7 @@ class BranchResult:
 
 
 class GitHubAPI:
-    """Read-only GitHub adapter for historical branch-lineage inspection."""
+    """Provider-preserving GitHub adapter for historical branch-lineage inspection."""
 
     def __init__(self, repository: str, token: str | None) -> None:
         self.repository = repository
@@ -48,7 +48,7 @@ class GitHubAPI:
     ) -> tuple[int, Any | None]:
         if method != "GET":
             raise CleanupError(
-                "Branch-lineage audit is permanently read-only; mutation methods are forbidden"
+                "Branch-lineage audit preserves provider refs; mutation methods are forbidden"
             )
         headers = {
             "Accept": "application/vnd.github+json",
@@ -252,7 +252,9 @@ def _classify_entry(
         if not isinstance(files, list):
             raise CleanupError(f"Dependency comparison returned no files for {branch}")
         actual_files = sorted(
-            file.get("filename") for file in files if isinstance(file, dict) and file.get("filename")
+            file.get("filename")
+            for file in files
+            if isinstance(file, dict) and file.get("filename")
         )
         expected_files = sorted(entry.get("expected_files", []))
         if actual_files != expected_files:
@@ -280,7 +282,10 @@ def _classify_entry(
 
 def _write_receipt(output: Path, payload: dict[str, Any]) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    output.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 def audit(
@@ -358,13 +363,13 @@ def audit(
         "schema": "glaciereq.branch-lineage-audit-receipt.v2",
         "repository": repository,
         "default_branch": default_branch,
-        "mode": "READ_ONLY_LINEAGE_AUDIT",
+        "mode": "LINEAGE_PRESERVATION_AUDIT",
         "holographic_mesh_anti_replacement": True,
         "remote_ref_deletion_authorized": False,
         "unique_contribution_zero_proven": False,
         "results": [asdict(result) for result in results],
         "failures": failures,
-        "conclusion": "READBACK_UNRESOLVED" if failures else "VERIFIED_READ_ONLY",
+        "conclusion": "READBACK_UNRESOLVED" if failures else "VERIFIED_PRESERVATION",
     }
     _write_receipt(output, payload)
     if failures:
@@ -383,14 +388,14 @@ def cleanup(
     """Compatibility entrypoint retained for callers; destructive apply is forbidden."""
     if apply:
         raise CleanupError(
-            "--apply is retired: branch/ref deletion is forbidden; use read-only lineage audit"
+            "--apply is retired: branch/ref deletion is forbidden; use lineage preservation audit"
         )
     return audit(manifest_path, repository=repository, token=token, output=output)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Audit historical branch classifications without mutating refs"
+        description="Audit historical branch classifications while preserving refs"
     )
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     parser.add_argument("--repository", default=os.environ.get("GITHUB_REPOSITORY", ""))
