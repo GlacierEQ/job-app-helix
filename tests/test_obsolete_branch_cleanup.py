@@ -144,7 +144,7 @@ def test_reference_manifest_remains_historical_input_only() -> None:
     assert len(names) == len(set(names))
 
 
-def test_read_only_audit_preserves_all_existing_donors(
+def test_preservation_audit_keeps_all_existing_donors(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
@@ -165,13 +165,13 @@ def test_read_only_audit_preserves_all_existing_donors(
     assert fake.mutations == []
     assert {result.outcome for result in results} == {"PRESERVE_ACTIVE_IN_MESH"}
     payload = json.loads(receipt.read_text(encoding="utf-8"))
-    assert payload["mode"] == "READ_ONLY_LINEAGE_AUDIT"
+    assert payload["mode"] == "LINEAGE_PRESERVATION_AUDIT"
     assert payload["remote_ref_deletion_authorized"] is False
     assert payload["unique_contribution_zero_proven"] is False
-    assert payload["conclusion"] == "VERIFIED_READ_ONLY"
+    assert payload["conclusion"] == "VERIFIED_PRESERVATION"
 
 
-def test_compatibility_cleanup_rejects_apply_before_any_provider_mutation(
+def test_compatibility_cleanup_rejects_apply_before_provider_mutation(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
@@ -195,7 +195,9 @@ def test_compatibility_cleanup_rejects_apply_before_any_provider_mutation(
     assert not receipt.exists()
 
 
-def test_api_rejects_non_get_methods_without_network_call(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_api_rejects_non_get_methods_without_network_call(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     module = _load_module()
     api = module.GitHubAPI("GlacierEQ/job-app-helix", "token")
     called = False
@@ -206,7 +208,7 @@ def test_api_rejects_non_get_methods_without_network_call(monkeypatch: pytest.Mo
         raise AssertionError("network mutation must never be reached")
 
     monkeypatch.setattr(module.urllib.request, "urlopen", _urlopen)
-    with pytest.raises(module.CleanupError, match="permanently read-only"):
+    with pytest.raises(module.CleanupError, match="mutation methods are forbidden"):
         api.request("DELETE", "/repos/GlacierEQ/job-app-helix/git/refs/heads/donor")
     assert called is False
 
