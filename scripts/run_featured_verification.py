@@ -317,7 +317,7 @@ def main() -> int:
     elif not commands:
         status = "INVALID_CONTRACT"
         exit_code = 2
-        log = f"No bounded execution contract for {args.name}.\n"
+        log = f"No controlled execution contract for {args.name}.\n"
         test_count = None
     elif tool and shutil.which(tool) is None:
         status = "BLOCKED_TOOLCHAIN"

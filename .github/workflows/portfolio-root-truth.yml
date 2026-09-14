@@ -79,9 +79,14 @@ jobs:
           assert receipt['schema'] == 'glaciereq.portfolio-root-truth-receipt.v1'
           assert receipt['status'] == 'PASS'
           assert receipt['scope'] == 'CONTROL_PLANE_SOURCES_ONLY'
+          inventory = json.loads(
+              Path('manifests/portfolio_repositories.json').read_text()
+          )
+          workspace = inventory['workspace_repositories']
           assert receipt['projection_freshness']['all_projections_current'] is False
-          assert receipt['counts']['total_repositories'] == 67
-          assert receipt['counts']['workspace_repositories'] == 66
+          assert inventory['total_repositories'] == len(workspace) + 1
+          assert receipt['counts']['total_repositories'] == inventory['total_repositories']
+          assert receipt['counts']['workspace_repositories'] == len(workspace)
           assert all(receipt['invariants'].values())
           print(receipt['receipt_sha256'])
           PY

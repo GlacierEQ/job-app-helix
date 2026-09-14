@@ -498,7 +498,7 @@ def rebuild_index(
 
     project = (existing or {}).get("project") or {}
     if not project and memory:
-        # minimal project block from first entry path
+        # baseline project block from first entry path
         project = {
             "key": "",
             "name": REPO_ROOT.name,

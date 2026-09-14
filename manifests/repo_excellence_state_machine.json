@@ -94,7 +94,7 @@
   "score_axes": {
     "target_architecture": {"range": [0, 10], "meaning": "quality and ambition of intended architecture independent of implementation maturity"},
     "current_proof": {"values": ["A", "B", "C", "D", "Q"], "meaning": "strength of exact-source executable evidence; never a worth score"},
-    "company_fit": {"range": [0, 10], "nullable": true, "meaning": "relevance to a bounded current company bottleneck"},
+    "company_fit": {"range": [0, 10], "nullable": true, "meaning": "relevance to a evidence-scoped current company bottleneck"},
     "reference_confidence": {"range": [0, 1], "meaning": "confidence in exact source identity for the named capability, not authority over sibling repositories"}
   },
   "active_roles": [

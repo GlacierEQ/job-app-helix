@@ -245,9 +245,9 @@ def _section() -> str:
             <div class="eyebrow">Application intelligence compiler</div>
             <h2 id="compiler-title">Start with the company problem. Compile the proof.</h2>
           </div>
-          <p>Helix projects one reference evidence graph into the smallest proof
-          surface that matters for a specific company, role, and reviewer—without
-          exposing private identities or raw estate cardinality.</p>
+          <p>Helix projects one reference evidence graph into the strongest relevant proof
+          surface for a specific company, role, and reviewer—without exposing
+          private identities or raw estate cardinality.</p>
         </div>
 
         <div class="compiler-workbench" aria-label="Application compiler controls">

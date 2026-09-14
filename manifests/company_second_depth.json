@@ -283,7 +283,7 @@
     "CLAIM_PROMOTED requires an explicit claim receipt and may not exceed the strongest reproducible evidence state.",
     "Company affiliation, endorsement, employment, proprietary access, contract relationship, clearance, adoption, production use, and measured business impact remain nonclaims unless independently evidenced."
   ],
-  "purpose": "Govern progression from company mapping to company-specific, reproducible, truth-bounded technical claims without allowing portfolio presence or company naming to masquerade as second-depth proof.",
+  "purpose": "Govern progression from company mapping to company-specific, reproducible, truth-evidence-scoped technical claims without allowing portfolio presence or company naming to masquerade as second-depth proof.",
   "schema": "glaciereq.company-second-depth.v1",
   "stage_order": [
     {

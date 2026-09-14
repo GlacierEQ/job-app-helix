@@ -278,7 +278,7 @@ def append_missing_block(readme: str, block: str) -> str:
     return f"{base}\n\n{block.rstrip()}\n"
 
 
-def _minimal_entrypoint_lines(contract: Mapping[str, Any]) -> list[str]:
+def _baseline_entrypoint_lines(contract: Mapping[str, Any]) -> list[str]:
     machine = contract.get("machine")
     if not isinstance(machine, Mapping):
         return []
@@ -295,7 +295,7 @@ def _minimal_entrypoint_lines(contract: Mapping[str, Any]) -> list[str]:
     ]
 
 
-def minimal_readme(repository: str, contract: Mapping[str, Any], block: str) -> str:
+def evidence_readme(repository: str, contract: Mapping[str, Any], block: str) -> str:
     """Create a truthful four-depth scaffold without inventing project claims."""
 
     slug = repository.rsplit("/", 1)[-1]
@@ -306,7 +306,7 @@ def minimal_readme(repository: str, contract: Mapping[str, Any], block: str) -> 
         if isinstance(contract.get("machine"), Mapping)
         else "repository"
     )
-    entrypoints = _minimal_entrypoint_lines(contract)
+    entrypoints = _baseline_entrypoint_lines(contract)
 
     recruiter_lines = [
         f"# {slug}",
@@ -413,7 +413,7 @@ def plan_readme(
                 "README missing; create a truthful four-depth scaffold and machine contract "
                 "without inventing source-specific human claims"
             ),
-            readme=minimal_readme(repository, contract, block),
+            readme=evidence_readme(repository, contract, block),
             contract=contract,
         )
     return ReadmePlan(

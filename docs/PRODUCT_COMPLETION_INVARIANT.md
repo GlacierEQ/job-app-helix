@@ -8,7 +8,7 @@ If a discovered next gate is executable under existing authorization, execute it
 
 ## Completion chain
 
-Diagnose → bounded repair → deterministic verification → adversarial verification → review closure for addressed findings → exact-head integrity check → authorized merge → APEX readback → post-merge verification where applicable → final SHA-bound receipt → outcome closure.
+Diagnose → controlled repair → deterministic verification → adversarial verification → review closure for addressed findings → exact-head integrity check → authorized merge → APEX readback → post-merge verification where applicable → final SHA-bound receipt → outcome closure.
 
 ## Non-stopping checkpoints
 

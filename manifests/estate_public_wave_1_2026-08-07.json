@@ -38,7 +38,7 @@
       ],
       "supported_findings": ["Current repository surface contains a Python application/package, API surface, tests, CI, container configuration, manifests, and documentation.","The CI contract includes compilation, Ruff correctness lint, dependency audit, pytest, and CLI verification.","The current exact head has successful ECHO CI and AI Autonomous Deploy workflow runs."],
       "boundaries": ["Current head commit signature is not verified.","Successful repository workflows do not by themselves establish customer production use, business impact, or unrestricted deployment authority.","Recruiter promotion remains a separate governance decision from exact-head technical verification."],
-      "next_action": "Reconcile README claims to the current expanded test surface and evaluate promotion into the bounded recruiter portfolio."
+      "next_action": "Reconcile README claims to the current expanded test surface and evaluate promotion into the evidence-scoped recruiter portfolio."
     },
     {
       "repository": "GlacierEQ/ai-auto-driller-unified",

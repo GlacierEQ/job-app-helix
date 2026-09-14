@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the bounded portfolio hero demonstrations and emit per-demo evidence."""
+"""Run the controlled portfolio hero demonstrations and emit per-demo evidence."""
 
 from __future__ import annotations
 

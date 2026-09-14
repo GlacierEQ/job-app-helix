@@ -60,7 +60,7 @@ Before any lifecycle conclusion, inspect the total evidence available:
 - cross-repository integrations and consumers;
 - user project context and corrections.
 
-A repository is judged against the **strongest coherent interpretation of its intended purpose**, not only the smallest behavior currently compiling.
+A repository is judged against the **strongest coherent interpretation of its intended purpose**, not only the strongest coherent behavior currently supported.
 
 ## Capability inventory
 

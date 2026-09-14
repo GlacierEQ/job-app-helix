@@ -40,7 +40,7 @@ from job_app_helix import <capability_function>
 # Registered in apex.capabilities.yaml
 ```
 
-### 4. Verification Gates (Minimal, Enforced)
+### 4. Verification Gates (Meaningful, Enforced)
 | Gate | Command | Pass Criteria |
 |------|---------|---------------|
 | G1 | `python3 -m py_compile src/job_app_helix/*.py` | 0 syntax errors |

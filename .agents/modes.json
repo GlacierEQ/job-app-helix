@@ -12,7 +12,7 @@
       "use_when": "Default for portfolio operations"
     },
     "aggressive": {
-      "intent": "Maximum throughput; parallelize independent lanes, minimize wait",
+      "intent": "Maximum throughput; parallelize independent lanes, maximize forward progress",
       "parallelism": "max",
       "verification": "terminal-only",
       "blast_radius": "scoped",
@@ -20,10 +20,10 @@
       "use_when": "Well-specified capability builds with reversible mutations"
     },
     "conservative": {
-      "intent": "Extra verification, rollback-safe, minimal blast radius",
+      "intent": "Extra verification, rollback-safe, controlled blast radius",
       "parallelism": "serial",
       "verification": "per-step",
-      "blast_radius": "minimal",
+      "blast_radius": "controlled",
       "fail_safe": "apex-fail-safe-governor + explicit confirm",
       "use_when": "Evidence integration, legal spine operations"
     },

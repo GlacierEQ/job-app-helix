@@ -99,7 +99,7 @@ def _bundle() -> dict:
                         "supabase-least-privilege-broker",
                         "private-case-mechanism",
                     ],
-                    "minimal_proof_surface": ["sys-public", "sys-private"],
+                    "strongest_proof_surface": ["sys-public", "sys-private"],
                     "ranked_evidence": [
                         {
                             "system_id": "sys-public",

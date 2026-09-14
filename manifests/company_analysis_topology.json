@@ -30,7 +30,7 @@
     {
       "id": "D2",
       "role": "Application Domain Lead",
-      "responsibility": "Supervise repository mapping, leverage, impact, role fit, and bounded presentation."
+      "responsibility": "Supervise repository mapping, leverage, impact, role fit, and evidence-scoped presentation."
     }
   ],
   "specialists": [
@@ -38,7 +38,7 @@
     {"id": "S2", "role": "Systems Bottleneck Analyst", "responsibility": "Infer the constraining system while preserving uncertainty."},
     {"id": "S3", "role": "Failure and Counterevidence Analyst", "responsibility": "Identify brick walls, failure modes, limiting evidence, and contradictions."},
     {"id": "S4", "role": "Repository Evidence Mapper", "responsibility": "Map current reference systems, capability donors, and evidence states."},
-    {"id": "S5", "role": "Leverage Architect", "responsibility": "Design the smallest high-leverage technical contribution consistent with the evidence ceiling."},
+    {"id": "S5", "role": "Leverage Architect", "responsibility": "Design the strongest high-leverage technical contribution consistent with the evidence ceiling."},
     {"id": "S6", "role": "Impact Analyst", "responsibility": "Estimate operational and reviewer impact without inventing metrics."},
     {"id": "S7", "role": "Application Strategist", "responsibility": "Convert verified findings into a role-specific application move and next gate."},
     {"id": "S8", "role": "Truth and Presentation Auditor", "responsibility": "Enforce non-affiliation, privacy, provenance, claim ceilings, and concise projection."

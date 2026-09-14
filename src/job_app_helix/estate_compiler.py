@@ -883,7 +883,7 @@ def _score(
     }
 
 
-def _minimal_surface(
+def _strongest_proof_surface(
     rows: Sequence[Mapping[str, Any]],
     capabilities: Mapping[str, Sequence[str] | set[str]],
     scores: Mapping[str, Mapping[str, Any]],
@@ -1043,12 +1043,12 @@ def build_company_projections(
                         for capability in scoped_capabilities[system_id]
                     }
                 ),
-                "minimal_proof_surface": _minimal_surface(
+                "strongest_proof_surface": _strongest_proof_surface(
                     ranked,
                     scoped_capabilities,
                     scores,
                 ),
-                "projection_innovation": "complete_ranked_relation_graph_with_minimal_proof_view",
+                "projection_innovation": "complete_ranked_relation_graph_with_strongest_proof_view",
                 "ranked_evidence": [
                     {
                         **row,
@@ -1080,7 +1080,7 @@ def build_company_projections(
             "company_projection_cannot_publish_legal_private_namespace": True,
             "company_surface_max_systems": None,
             "company_relation_membership": "complete_ranked_relation_graph",
-            "minimal_proof_surface_is_non_authoritative": True,
+            "strongest_proof_surface_is_non_authoritative": True,
             "presentation_pagination_changes_membership": False,
             "semantic_capability_donors_are_company_scoped": True,
         },
@@ -1283,7 +1283,7 @@ def public_safe_projection(bundle: Mapping[str, Any]) -> dict[str, Any]:
             }
         )
         safe_surface = (
-            _minimal_surface(evidence, safe_capabilities_by_system, scores)
+            _strongest_proof_surface(evidence, safe_capabilities_by_system, scores)
             if evidence
             else []
         )
@@ -1296,7 +1296,7 @@ def public_safe_projection(bundle: Mapping[str, Any]) -> dict[str, Any]:
                     not in {
                         "ranked_evidence",
                         "reference_systems",
-                        "minimal_proof_surface",
+                        "strongest_proof_surface",
                         "capabilities",
                     }
                 },
@@ -1306,7 +1306,7 @@ def public_safe_projection(bundle: Mapping[str, Any]) -> dict[str, Any]:
                     if system_id in safe_ids
                 ],
                 "capabilities": safe_capabilities,
-                "minimal_proof_surface": safe_surface,
+                "strongest_proof_surface": safe_surface,
                 "ranked_evidence": evidence,
             }
         )

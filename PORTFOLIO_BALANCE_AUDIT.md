@@ -73,7 +73,7 @@ All spacex-* repos follow the same template:
 - `.integrity/watchdog_daemon.py`
 - Standard docs (README, AKOS.md, HELIX.md, SECURITY_AND_FLEET_OPS.md)
 
-**Differentiation is minimal.** The innovation lives in the domain concept, not the implementation depth.
+**Differentiation is underdeveloped.** The innovation lives in the domain concept, not the implementation depth.
 
 ---
 

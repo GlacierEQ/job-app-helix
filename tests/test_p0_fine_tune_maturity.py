@@ -92,7 +92,7 @@ def test_remaining_builds_are_real_specific_and_donor_bound() -> None:
         assert item["next_action"] == "BUILD_DEDICATED_MECHANISM"
         assert item["target_repository"].startswith("GlacierEQ/")
         assert item["donors"]
-        assert item["smallest_real_slice"]
+        assert item["strongest_coherent_slice"]
         assert item["proof_gate"]
 
 

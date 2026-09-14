@@ -39,11 +39,11 @@ The review found a useful structural pattern across the family: every thread has
 
 ## Complete 16-thread register
 
-Every thread is retained as its own artifact. **Five source-reviewed threads** now have bounded technical claims; the other **11 threads** remain conservative inventory cards until their individual implementation, tests, and limits are reviewed. The full machine-readable card set is under [`../evidence_cards/`](../evidence_cards/).
+Every thread is retained as its own artifact. **Five source-reviewed threads** now have evidence-scoped technical claims; the other **11 threads** remain conservative inventory cards until their individual implementation, tests, and limits are reviewed. The full machine-readable card set is under [`../evidence_cards/`](../evidence_cards/).
 
 | Family or lens | Preserved discrete threads | Current review posture |
 |---|---|---|
-| Source-reviewed local mechanisms | `spacex-launch-sequencer`; `spacex-hold-reason-compiler`; `spacex-mission-thread-quorum`; `spacex-pad-weather-gate`; `spacex-telemetry` | **Source reviewed**; each has an exact-commit card, bounded local claim, and explicit non-authority limit. |
+| Source-reviewed local mechanisms | `spacex-launch-sequencer`; `spacex-hold-reason-compiler`; `spacex-mission-thread-quorum`; `spacex-pad-weather-gate`; `spacex-telemetry` | **Source reviewed**; each has an exact-commit card, evidence-scoped local claim, and explicit non-authority limit. |
 | Other decision and coordination | `spacex-autonomy`; `spacex-conjunction-sentinel`; `spacex-mission-control` | **Inventory only**; preserved for role-specific source review. |
 | Physical and trajectory systems | `spacex-cryogenics`; `spacex-orbital-assembly`; `spacex-orbital-mechanics`; `spacex-propulsion-monitor`; `spacex-recovery-dynamics`; `spacex-thermal-protection` | **Inventory only**; preserved for role-specific source review. The orbital-assembly and recovery-dynamics threads remain private archival work, not silent omissions. |
 | Other environment, network, and observation | `spacex-ground-network`; `spacex-satellite-mesh` | **Inventory only**; preserved for role-specific source review. |

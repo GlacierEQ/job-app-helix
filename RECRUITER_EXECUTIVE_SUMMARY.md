@@ -61,7 +61,7 @@ The current estate is the 225-repository source-exhaustive mesh recorded in `man
 
 **Role:** reference architecture for choosing the right language for the right workload.  
 **Signal:** polyglot design with languages assigned to performance, safety, proof, hardware, interoperability, or deployment boundaries.  
-**Status:** later repository-native TEST promotion exists in the rollout manifest; claims remain bounded to the recorded proof.
+**Status:** later repository-native TEST promotion exists in the rollout manifest; claims remain evidence-scoped to the recorded proof.
 
 ## Engineering qualities demonstrated
 
@@ -119,4 +119,4 @@ The multi-repository audit additionally requires the APEX local `repos/` workspa
 python ci_audit_portfolio.py
 ```
 
-That command validates the exact live inventory before executing its bounded runtime sample and demo suite. Its receipt names every repository process that actually ran.
+That command validates the exact live inventory before executing its controlled runtime sample and demo suite. Its receipt names every repository process that actually ran.

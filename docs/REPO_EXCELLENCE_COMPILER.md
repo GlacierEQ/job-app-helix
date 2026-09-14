@@ -8,7 +8,7 @@ A repository advances because its real capability frontier advances and the adva
 
 `Discover → identity + lineage → reconstruct purpose → map capability → recover lost gains → donor/technology synthesis → strongest coherent implementation → deterministic proof → adversarial destruction → runtime observation → operational hardening → boundary/security proof → SHA-bound receipt → capability harvest → composition → integration → deployment/package → frontier scan → stronger next turn`
 
-A bounded experiment may be used when it is the best technical probe for a hypothesis. **Smallest scope is not a lifecycle objective.**
+A controlled experiment may be used when it is the best technical probe for a hypothesis. Scope is a test variable, not a lifecycle objective.
 
 ## Principal state machine
 
@@ -52,7 +52,7 @@ Never collapse these into one vanity score. Never delete a dimension because it 
 1. **Target frontier** — capability, intelligence, reach, composition, reliability, leverage, and technical ambition of the intended architecture.
 2. **Current proof** — strength of exact-source executable evidence. This is not a worth score.
 3. **Boundary fitness** — how well each language/runtime/database/toolchain matches its engineering responsibility.
-4. **Company fit** — relevance to an externally bounded company or role bottleneck when applicable.
+4. **Company fit** — relevance to an externally defined company or role bottleneck when applicable.
 5. **Lineage confidence** — confidence in exact source identity for a capability, not authority to erase siblings.
 6. **Frontier pressure** — credible technology or architecture that can move the system forward now.
 7. **Recovery leverage** — value available in historical branches, predecessors, backups, archives, and sibling donors.
@@ -106,7 +106,7 @@ Current implementation must never be laundered into the target merely because it
 
 The compiler rejects these transformations:
 
-- ambitious system → smallest governable subset → subset declared complete;
+- ambitious system → strongest governable increment → increment declared complete at a meaningful quality level;
 - multi-language boundary architecture → monoculture for convenience;
 - verified prior capability → refactor → capability silently disappears;
 - source intent → sanitized projection → projection treated as source;

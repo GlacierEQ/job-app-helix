@@ -77,7 +77,7 @@ proof binding
         ↓
 company + role projections
         ↓
-public-safe bounded proof surfaces
+public-safe controlled proof surfaces
 ```
 
 The hard boundaries are intentional:

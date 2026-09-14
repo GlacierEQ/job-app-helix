@@ -114,11 +114,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install bounded audit dependency
+      - name: Install the audit dependency
         if: steps.checkout.outcome == 'success'
         run: python -m pip install --upgrade pip pytest
 
-      - name: Execute bounded Python verification contract
+      - name: Execute the evidence-scoped Python verification contract
         if: steps.checkout.outcome == 'success'
         run: |
           python audit/scripts/run_featured_verification.py \
@@ -231,7 +231,7 @@ jobs:
         with:
           go-version: "1.23.x"
 
-      - name: Execute bounded native verification contract
+      - name: Execute the evidence-scoped native verification contract
         run: |
           python audit/scripts/run_featured_verification.py \
             --name '${{ matrix.name }}' \

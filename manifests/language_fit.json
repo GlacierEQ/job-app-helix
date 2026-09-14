@@ -5,7 +5,7 @@
     {
       "name": "Python",
       "kind": "programming_language",
-      "responsibility": "Campaign decisions, manifest validation, CLI surfaces, README rendering, and bounded audit orchestration.",
+      "responsibility": "Campaign decisions, manifest validation, CLI surfaces, README rendering, and controlled audit orchestration.",
       "boundary": "Executable control-plane logic under src/job_app_helix and the repository-local audit scripts.",
       "interface_contract": "Console entry points, typed Python models, JSON receipts, and Protobuf-backed repository records.",
       "build_command": "python -m pip install -e \".[dev]\"",

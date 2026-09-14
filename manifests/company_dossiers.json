@@ -87,7 +87,7 @@
   "level_definitions": {
     "L5": "FLAGSHIP_AUTHORITY: original reusable system with current executable proof and senior-level depth.",
     "L4": "ADVANCED_SYSTEM: substantial original system or suite with strong architecture and meaningful verification; some gates remain.",
-    "L3": "FOCUSED_PROTOTYPE: distinct bounded exhibit needing stronger current tests, hardware, provider, or deployment evidence.",
+    "L3": "FOCUSED_PROTOTYPE: distinct focused exhibit needing stronger current tests, hardware, provider, or deployment evidence.",
     "L2": "REFERENCE_ARCHITECTURE: doctrine, concept, private architecture, or integration candidate; not executable recruiter proof.",
     "L1": "STUDY_OR_UPSTREAM: upstream/sample/mirror/fork/study or unverified owner-estate experiment; never recruiter authorship proof without promotion evidence.",
     "L0": "QUARANTINED: unsafe, sensitive, misleading, duplicate-unresolved, or materially failing."

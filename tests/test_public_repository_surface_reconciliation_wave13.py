@@ -106,7 +106,7 @@ def test_weather_admission_is_scope_and_receipt_bound() -> None:
     assert all(receipt["head_sha"] == HEAD for receipt in receipts)
     assert all(receipt["conclusion"] == "success" for receipt in receipts)
     scope = evidence["proof_scope"]
-    assert "bounded margin score" in scope
+    assert "evidence-scoped margin score" in scope
     assert "does not establish SpaceX affiliation" in scope
     assert "controlling README" in evidence["metadata_readback"]["assessment"]
 

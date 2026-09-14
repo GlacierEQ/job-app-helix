@@ -150,7 +150,7 @@ Not LOC inflation — **registry links + integrity gates + one verified mission 
 
 ---
 
-## Automation hooks (minimal)
+## Automation hooks (essential)
 
 ### Make-it-heavy REALITY wave (zero LLM)
 
@@ -169,7 +169,7 @@ python3 ~/GlacierEQ_Swarm/automations/make-heavy-bodybuilder-wave-flipper.py \
 
 Steel workers (make-it-heavy *code*) still deepen leaves; this flipper is the **proof lane**.
 
-## Automation hooks (minimal)
+## Automation hooks (essential)
 
 ```bash
 # 1) Board (orchestrator or cron)

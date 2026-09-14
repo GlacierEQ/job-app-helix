@@ -190,7 +190,7 @@ def build_summary(receipts_dir: Path, inventory: dict[str, Any]) -> dict[str, An
         "nonclaims": [
             "Census inclusion does not establish recruiter eligibility.",
             "Public and non-fork metadata does not establish authorship or originality.",
-            "Verification state is bounded to the recorded test surface and exact receipt.",
+            "Verification state is evidence-scoped to the recorded test surface and exact receipt.",
         ],
     }
 

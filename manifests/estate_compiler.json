@@ -67,7 +67,7 @@
       "REFERENCE_ONLY"
     ],
     "goal": "Preserve every evidence-eligible company/system relation, rank all evidence, and provide compact optional views without deleting graph membership.",
-    "minimal_proof_surface": "non-authoritative capability-cover convenience view",
+    "strongest_proof_surface": "non-authoritative capability-cover convenience view",
     "presentation_pagination_changes_membership": false
   },
   "experiment_pipeline": [
