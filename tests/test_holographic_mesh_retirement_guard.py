@@ -45,8 +45,7 @@ def test_checked_in_origin_receipt_is_mesh_safe() -> None:
 
 def test_receipt_rejects_declarative_delete_without_zero_unique_proof(tmp_path: Path) -> None:
     program_payload = json.loads(PROGRAM.read_text(encoding="utf-8"))
-    receipt_payload = json.loads(RECEIPT.read_text(encoding="utf-8"))
-    receipt_payload = copy.deepcopy(receipt_payload)
+    receipt_payload = copy.deepcopy(json.loads(RECEIPT.read_text(encoding="utf-8")))
     branch = receipt_payload["outcomes"][0]["branch_dispositions"][0]
     branch["unique_value"] = "NONE"
     branch["remote_ref_disposition"] = "DELETE_REF_REQUIRED"
@@ -55,16 +54,15 @@ def test_receipt_rejects_declarative_delete_without_zero_unique_proof(tmp_path: 
     program_path = _write_program_with_receipt(tmp_path, program_payload, receipt_payload)
     program = validate_library_program(program_path)
 
-    with pytest.raises(LibraryProgramError, match="unique_contribution_verification"):
+    with pytest.raises(LibraryProgramError, match="destructive remote-ref disposition is forbidden"):
         validate_latest_execution_receipt(program_path, program)
 
 
-def test_receipt_accepts_retirement_only_with_zero_proof_and_operator_authority(
+def test_receipt_rejects_delete_even_with_zero_proof_and_operator_authority(
     tmp_path: Path,
 ) -> None:
     program_payload = json.loads(PROGRAM.read_text(encoding="utf-8"))
-    receipt_payload = json.loads(RECEIPT.read_text(encoding="utf-8"))
-    receipt_payload = copy.deepcopy(receipt_payload)
+    receipt_payload = copy.deepcopy(json.loads(RECEIPT.read_text(encoding="utf-8")))
     branch = receipt_payload["outcomes"][0]["branch_dispositions"][0]
     branch["unique_value"] = "NONE"
     branch["remote_ref_disposition"] = "DELETE_REF_REQUIRED"
@@ -76,8 +74,29 @@ def test_receipt_accepts_retirement_only_with_zero_proof_and_operator_authority(
 
     program_path = _write_program_with_receipt(tmp_path, program_payload, receipt_payload)
     program = validate_library_program(program_path)
+
+    with pytest.raises(LibraryProgramError, match="destructive remote-ref disposition is forbidden"):
+        validate_latest_execution_receipt(program_path, program)
+
+
+def test_receipt_accepts_drained_retirement_with_zero_proof_and_preserved_ref(
+    tmp_path: Path,
+) -> None:
+    program_payload = json.loads(PROGRAM.read_text(encoding="utf-8"))
+    receipt_payload = copy.deepcopy(json.loads(RECEIPT.read_text(encoding="utf-8")))
+    branch = receipt_payload["outcomes"][0]["branch_dispositions"][0]
+    branch["unique_value"] = "NONE"
+    branch["remote_ref_disposition"] = "PRESERVE_DRAINED_LINEAGE"
+    branch["unique_contribution_verification"] = {
+        "verdict": "ZERO",
+        "provider_readback_refs": ["github://compare/main...feature/reference-language-manifest"],
+        "operator_authorized_retirement": True,
+    }
+
+    program_path = _write_program_with_receipt(tmp_path, program_payload, receipt_payload)
+    program = validate_library_program(program_path)
     receipt = validate_latest_execution_receipt(program_path, program)
 
-    assert receipt["outcomes"][0]["branch_dispositions"][0][
-        "unique_contribution_verification"
-    ]["verdict"] == "ZERO"
+    retired = receipt["outcomes"][0]["branch_dispositions"][0]
+    assert retired["unique_contribution_verification"]["verdict"] == "ZERO"
+    assert retired["remote_ref_disposition"] == "PRESERVE_DRAINED_LINEAGE"
