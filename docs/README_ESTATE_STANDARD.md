@@ -156,7 +156,7 @@ Estate tools consume a repository in this order:
 1. identity + current default branch;
 2. machine contract;
 3. entrypoints/protocol files named by the contract;
-4. smallest decisive implementation/test surface needed for unresolved questions;
+4. strongest decisive implementation/test surface needed for unresolved questions;
 5. provider-native receipts for deployment or external-action claims.
 
 Absence of a block is `MISSING_CONTRACT`, not evidence of missing capability. Malformed, contradictory, unsupported-schema, or identity-mismatched contracts fail closed into repair.
@@ -240,7 +240,7 @@ The compiler is a **projection system**, not a new source authority.
 
 ## Whole-Estate Rollout
 
-The rollout is source-exhaustive, resumable, bounded, and idempotent.
+The rollout is source-exhaustive, resumable, controlled, and idempotent.
 
 For each live GlacierEQ repository:
 

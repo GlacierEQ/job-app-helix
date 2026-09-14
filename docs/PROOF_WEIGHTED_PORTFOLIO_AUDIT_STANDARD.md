@@ -89,7 +89,7 @@ The machine section may be compact, but it must be precise enough for an agent t
 Use verbs according to proof:
 
 - **implements / verifies / passes** — current evidence directly supports the statement;
-- **models / demonstrates / prototypes** — a bounded implementation exists;
+- **models / demonstrates / prototypes** — an evidence-backed implementation exists;
 - **is designed to / could extend to** — architectural intent only;
 - **does not yet** — an explicit limitation.
 

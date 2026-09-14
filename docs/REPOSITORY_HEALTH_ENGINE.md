@@ -41,7 +41,7 @@ points = weight × raw_score/100 × confidence × state_cap
 | State | Cap | Meaning |
 |---|---:|---|
 | `VERIFIED` | 1.00 | current receipt is bound to the observed head SHA |
-| `PARTIALLY_VERIFIED` | 0.70 | bounded proof exists, but named scope remains unverified |
+| `PARTIALLY_VERIFIED` | 0.70 | evidence-scoped proof exists, but named scope remains unverified |
 | `STALE` | 0.40 | prior proof exists for an older SHA or is explicitly stale |
 | `UNVERIFIED` | 0.00 | no adequate evidence exists |
 | `BLOCKED` | 0.00 | verification cannot proceed and the blocker is preserved |
