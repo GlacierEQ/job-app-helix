@@ -4,6 +4,7 @@ import argparse
 import base64
 import json
 import os
+import sys
 import tomllib
 import urllib.error
 import urllib.parse
@@ -14,7 +15,14 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "manifests" / "obsolete_branches.json"
+DEFAULT_OUTPUT = ROOT / "artifacts" / "obsolete-branch-cleanup.json"
 API_ROOT = "https://api.github.com"
+PRESERVATION_BUCKETS = (
+    "blocked_refs",
+    "restored_refs_after_failed_transaction",
+    "preserved_active_refs",
+    "retired_refs",
+)
 
 
 class CleanupError(RuntimeError):
@@ -48,7 +56,7 @@ class GitHubAPI:
     ) -> tuple[int, Any | None]:
         if method != "GET":
             raise CleanupError(
-                "Holographic mesh hard lock: this adapter is read-only and may not mutate refs"
+                "Read-only lineage audit: provider mutation methods are prohibited"
             )
         headers = {
             "Accept": "application/vnd.github+json",
@@ -147,12 +155,6 @@ def _load_manifest(path: Path) -> dict[str, Any]:
         raise CleanupError("Branch manifest must be a JSON object")
     if payload.get("schema") != "glaciereq.obsolete-branches.v1":
         raise CleanupError("Unsupported historical branch manifest schema")
-    branches = payload.get("branches")
-    if not isinstance(branches, list) or not branches:
-        raise CleanupError("Branch manifest must declare branches")
-    names = [entry.get("name") for entry in branches if isinstance(entry, dict)]
-    if len(names) != len(set(names)):
-        raise CleanupError("Branch manifest contains duplicate names")
     return payload
 
 
@@ -196,6 +198,68 @@ def _validate_pull_branch(
         raise CleanupError(f"PR #{pull.get('number')} is not closed")
 
 
+def _normalize_entry(raw: dict[str, Any], bucket: str) -> dict[str, Any]:
+    entry = dict(raw)
+    if bucket != "branches":
+        entry["policy"] = f"manifest_{bucket.removesuffix('_refs')}"
+        entry["reason"] = (
+            entry.get("reason") or entry.get("blocker") or entry.get("state") or bucket
+        )
+    return entry
+
+
+def _audit_entries(manifest: dict[str, Any]) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    by_name: dict[str, int] = {}
+
+    def add_bucket(bucket: str) -> None:
+        raw_entries = manifest.get(bucket, [])
+        if not isinstance(raw_entries, list):
+            raise CleanupError(f"Manifest field {bucket} must be a list")
+        for raw in raw_entries:
+            if not isinstance(raw, dict):
+                raise CleanupError(f"Manifest field {bucket} contains a non-object entry")
+            name = raw.get("name")
+            if not isinstance(name, str) or not name:
+                raise CleanupError(f"Manifest field {bucket} contains an entry without a name")
+            entry = _normalize_entry(raw, bucket)
+            if name in by_name:
+                existing = entries[by_name[name]]
+                existing_expected = existing.get("expected_head_sha")
+                candidate_expected = entry.get("expected_head_sha")
+                if (
+                    isinstance(existing_expected, str)
+                    and isinstance(candidate_expected, str)
+                    and existing_expected != candidate_expected
+                ):
+                    raise CleanupError(
+                        f"Manifest carries conflicting expected SHAs for {name}: "
+                        f"{existing_expected} != {candidate_expected}"
+                    )
+                # Keep the first semantic policy but enrich missing immutable identity/reason.
+                if "expected_head_sha" not in existing and "expected_head_sha" in entry:
+                    existing["expected_head_sha"] = entry["expected_head_sha"]
+                if not existing.get("reason") and entry.get("reason"):
+                    existing["reason"] = entry["reason"]
+                continue
+            by_name[name] = len(entries)
+            entries.append(entry)
+
+    # Active/preservation buckets control current audit scope. Historical branches and
+    # retired refs are then merged in as lineage pointers without duplicating identities.
+    for bucket in (
+        "preserved_active_refs",
+        "restored_refs_after_failed_transaction",
+        "blocked_refs",
+        "branches",
+        "retired_refs",
+    ):
+        add_bucket(bucket)
+    if not entries:
+        raise CleanupError("Historical branch manifest declares no auditable lineage entries")
+    return entries
+
+
 def _preflight_entry(
     api: GitHubAPI,
     entry: dict[str, Any],
@@ -214,6 +278,19 @@ def _preflight_entry(
     if not isinstance(policy, str):
         raise CleanupError(f"Missing historical policy for {branch}")
 
+    if policy.startswith("manifest_"):
+        expected = entry.get("expected_head_sha")
+        if expected is not None:
+            _require_ref_sha(ref_sha, _expected_sha(entry), branch)
+            return (
+                "LIVE_LINEAGE_CONFIRMED",
+                f"Current ref matches manifest lineage SHA {expected}",
+            )
+        return (
+            "LIVE_LINEAGE_OBSERVED_UNPINNED",
+            f"Current ref observed at {ref_sha}; manifest carries no immutable expected SHA",
+        )
+
     if policy == "merged_pr":
         expected_sha = _expected_sha(entry)
         _require_ref_sha(ref_sha, expected_sha, branch)
@@ -231,7 +308,7 @@ def _preflight_entry(
             raise CleanupError(f"PR #{pull_number} head does not match manifest")
         return (
             "VERIFIED_OVERLAP",
-            f"PR #{pull_number} merged at {pull['merged_at']}; merge status is not donor-exhaustion proof",
+            f"PR #{pull_number} merged at {pull['merged_at']}; merge status is overlap evidence",
         )
 
     if policy == "merge_candidate":
@@ -284,7 +361,7 @@ def _preflight_entry(
             raise CleanupError(f"Replacement PR #{replacement_number} head does not match manifest")
         return (
             "VERIFIED_OVERLAP",
-            f"PR #{closed_number} closed and replacement PR #{replacement_number} merged; replacement is partial-overlap evidence only",
+            f"PR #{closed_number} closed and replacement PR #{replacement_number} merged",
         )
 
     if policy == "stale_dependency":
@@ -301,12 +378,17 @@ def _preflight_entry(
         actual_files = sorted(
             file.get("filename")
             for file in files
-            if isinstance(file, dict) and file.get("filename")
+            if isinstance(file, dict) and isinstance(file.get("filename"), str)
         )
-        expected_files = sorted(entry.get("expected_files", []))
-        if actual_files != expected_files:
+        expected_files = entry.get("expected_files")
+        if not isinstance(expected_files, list) or not all(
+            isinstance(item, str) for item in expected_files
+        ):
+            raise CleanupError(f"Historical dependency {branch} has malformed expected_files")
+        if actual_files != sorted(expected_files):
             raise CleanupError(
-                f"Historical dependency file set changed for {branch}: {actual_files} != {expected_files}"
+                f"Historical dependency file set changed for {branch}: "
+                f"{actual_files} != {sorted(expected_files)}"
             )
         pyproject_text = api.read_text_file("pyproject.toml", expected_sha)
         try:
@@ -319,9 +401,14 @@ def _preflight_entry(
             raise CleanupError(
                 f"Historical dependency version {actual_version} != {expected_version}"
             )
+        scripts = pyproject.get("project", {}).get("scripts", {})
+        if isinstance(scripts, dict) and "job-app-helix-portfolio" in scripts:
+            raise CleanupError(
+                "Historical dependency branch unexpectedly contains the current portfolio CLI"
+            )
         return (
             "VERIFIED_OVERLAP",
-            "Historical patch shape verified; staleness/file equivalence is not donor-exhaustion proof",
+            "Historical patch shape verified; staleness/file equivalence is overlap evidence only",
         )
 
     raise CleanupError(f"Unsupported historical policy {policy!r} for {branch}")
@@ -362,6 +449,13 @@ def _ref_sha(payload: dict[str, Any] | None) -> str | None:
     return sha if isinstance(sha, str) else None
 
 
+def _write_receipt(output: Path | None, payload: dict[str, Any]) -> None:
+    if output is None:
+        return
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+
 def audit(
     manifest_path: Path,
     *,
@@ -370,41 +464,62 @@ def audit(
     output: Path | None,
 ) -> list[BranchResult]:
     manifest = _load_manifest(manifest_path)
-    repo = repository or manifest.get("repository")
+    manifest_repository = manifest.get("repository")
     default_branch = manifest.get("default_branch")
-    if not isinstance(repo, str) or not repo:
-        raise CleanupError("Repository must be provided by argument or manifest")
+    if not isinstance(manifest_repository, str) or not manifest_repository:
+        raise CleanupError("Manifest requires repository")
+    if repository is not None and repository != manifest_repository:
+        raise CleanupError(
+            f"Manifest repository {manifest_repository} does not match {repository}"
+        )
     if not isinstance(default_branch, str) or not default_branch:
         raise CleanupError("Manifest requires default_branch")
 
-    api = GitHubAPI(repo, token)
+    entries = _audit_entries(manifest)
+    api = GitHubAPI(manifest_repository, token)
     results: list[BranchResult] = []
     failures: list[str] = []
 
-    for raw_entry in manifest["branches"]:
-        if not isinstance(raw_entry, dict):
-            failures.append(f"Invalid branch entry: {raw_entry!r}")
-            continue
-        branch = raw_entry.get("name")
-        policy = raw_entry.get("policy")
-        reason = raw_entry.get("reason", "")
-        if not isinstance(branch, str) or not isinstance(policy, str):
-            failures.append(f"Invalid branch entry: {raw_entry!r}")
-            continue
-
-        status, ref_payload = api.get_ref(branch)
-        if status == 404:
+    for raw_entry in entries:
+        branch = raw_entry["name"]
+        policy = raw_entry["policy"]
+        reason = str(raw_entry.get("reason", ""))
+        try:
+            status, ref_payload = api.get_ref(branch)
+        except CleanupError as exc:
+            failures.append(f"{branch}: provider ref read failed: {exc}")
             results.append(
                 BranchResult(
                     branch=branch,
                     policy=policy,
-                    reason=str(reason),
+                    reason=reason,
+                    ref_sha=None,
+                    preflight="READBACK_UNRESOLVED",
+                    outcome="ACTIVE_IN_MESH",
+                    detail=f"Provider ref read failed; no absence inference permitted: {exc}",
+                )
+            )
+            continue
+
+        if status == 404:
+            expected_live = policy in {
+                "manifest_preserved_active",
+                "manifest_restored_refs_after_failed_transaction",
+                "manifest_blocked",
+            }
+            if expected_live:
+                failures.append(f"{branch}: expected preserved ref is absent")
+            results.append(
+                BranchResult(
+                    branch=branch,
+                    policy=policy,
+                    reason=reason,
                     ref_sha=None,
                     preflight="REF_ABSENT",
                     outcome="PRESERVE_HISTORICAL_LINEAGE_POINTER",
                     detail=(
-                        "Remote ref is absent at readback. Absence is recorded as historical state; "
-                        "it does not prove prior retirement was semantically valid."
+                        "Remote ref is absent at provider readback. Historical lineage is preserved; "
+                        "absence does not validate prior retirement."
                     ),
                 )
             )
@@ -412,7 +527,18 @@ def audit(
 
         ref_sha = _ref_sha(ref_payload)
         if ref_sha is None:
-            failures.append(f"Branch {branch} returned no SHA")
+            failures.append(f"{branch}: branch returned no SHA")
+            results.append(
+                BranchResult(
+                    branch=branch,
+                    policy=policy,
+                    reason=reason,
+                    ref_sha=None,
+                    preflight="FAILED",
+                    outcome="ACTIVE_IN_MESH",
+                    detail="Historical classification could not be verified: branch returned no SHA",
+                )
+            )
             continue
 
         try:
@@ -422,13 +548,13 @@ def audit(
                 default_branch=default_branch,
                 ref_sha=ref_sha,
             )
-        except CleanupError as exc:
+        except (CleanupError, TypeError, ValueError) as exc:
             failures.append(f"{branch}: {exc}")
             results.append(
                 BranchResult(
                     branch=branch,
                     policy=policy,
-                    reason=str(reason),
+                    reason=reason,
                     ref_sha=ref_sha,
                     preflight="FAILED",
                     outcome="ACTIVE_IN_MESH",
@@ -441,7 +567,7 @@ def audit(
             BranchResult(
                 branch=branch,
                 policy=policy,
-                reason=str(reason),
+                reason=reason,
                 ref_sha=ref_sha,
                 preflight=preflight,
                 outcome="ACTIVE_IN_MESH",
@@ -454,34 +580,46 @@ def audit(
 
     conclusion = "VERIFIED_READ_ONLY" if not failures else "READ_ONLY_WITH_FINDINGS"
     payload = _receipt(
-        repository=repo,
+        repository=manifest_repository,
         default_branch=default_branch,
         conclusion=conclusion,
         results=results,
         failures=failures,
     )
-    if output is not None:
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    _write_receipt(output, payload)
+    if failures:
+        raise CleanupError(
+            f"Lineage audit completed with {len(failures)} finding(s); receipt was preserved"
+        )
     return results
 
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Read-only historical branch-lineage audit. This command cannot delete, restore, "
-            "archive, close, merge, or otherwise mutate branch refs."
+            "Read-only historical branch-lineage audit. Ref deletion authority has been retired."
         )
     )
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
-    parser.add_argument("--repository")
-    parser.add_argument("--output", type=Path)
+    parser.add_argument("--repository", default=os.environ.get("GITHUB_REPOSITORY"))
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--token", help="GitHub token for read-only provider queries")
+    parser.add_argument(
+        "--apply",
+        action="store_true",
+        help="Deprecated compatibility flag; accepted but never enables mutation",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = _parse_args()
-    token = os.environ.get("GITHUB_TOKEN")
+    if args.apply:
+        print(
+            "--apply is deprecated: branch-ref mutation authority is retired; running read-only audit",
+            file=sys.stderr,
+        )
+    token = args.token or os.environ.get("GITHUB_TOKEN")
     try:
         audit(
             args.manifest,
@@ -490,7 +628,8 @@ def main() -> int:
             output=args.output,
         )
     except CleanupError as exc:
-        raise SystemExit(str(exc)) from exc
+        print(str(exc), file=sys.stderr)
+        return 2
     return 0
 
 
