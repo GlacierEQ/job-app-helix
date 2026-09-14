@@ -41,7 +41,7 @@ The constellation has a **shared problem space**, not one product claim. The fiv
 
 ## Complete 52-thread register
 
-Every row below represents retained repositories, not a recommended submission bundle. **Five source-reviewed threads** now have bounded technical claims; the other **47 threads** remain conservative inventory or lineage records until reviewed. The full machine-readable card set is under [`../evidence_cards/`](../evidence_cards/).
+Every row below represents retained repositories, not a recommended submission bundle. **Five source-reviewed threads** now have evidence-scoped technical claims; the other **47 threads** remain conservative inventory or lineage records until reviewed. The full machine-readable card set is under [`../evidence_cards/`](../evidence_cards/).
 
 | Family or lens | Preserved discrete threads | Current review posture |
 |---|---|---|
