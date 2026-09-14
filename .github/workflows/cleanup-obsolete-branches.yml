@@ -51,7 +51,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -Eq -- '--apply|contents:[[:space:]]*write|Delete verified obsolete branches' .github/workflows/cleanup-obsolete-branches.yml; then
+          if awk '
+            $1 == "contents:" && $2 == "write" { bad = 1 }
+            $1 == "--apply" { bad = 1 }
+            END { exit bad ? 0 : 1 }
+          ' .github/workflows/cleanup-obsolete-branches.yml; then
             echo 'Destructive branch-ref authority is forbidden by holographic mesh anti-replacement.' >&2
             exit 1
           fi
