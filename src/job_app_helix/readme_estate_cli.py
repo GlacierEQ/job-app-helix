@@ -486,7 +486,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             repository = futures[future]
             try:
                 metadata[repository] = future.result()
-            except Exception as exc:  # noqa: BLE001 - preserve inaccessible source state
+            except Exception as exc:
                 errors.append(
                     {
                         "repository": repository,
@@ -505,7 +505,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             repo = futures[future]
             try:
                 inspections.append(future.result())
-            except Exception as exc:  # noqa: BLE001 - provider failures become durable rows
+            except Exception as exc:
                 errors.append(
                     {
                         "repository": str(repo.get("full_name")),

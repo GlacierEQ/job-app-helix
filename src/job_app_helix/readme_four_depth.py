@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
 
 from . import readme_mesh_pb2
 from .readme_mesh import RELATION_LABELS, ReadmeMeshError, repository_index, validate_mesh
