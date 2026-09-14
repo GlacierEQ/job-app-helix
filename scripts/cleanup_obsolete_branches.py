@@ -32,17 +32,9 @@ class BranchResult:
     detail: str
 
 
-@dataclass(frozen=True)
-class DeletionCandidate:
-    branch: str
-    policy: str
-    reason: str
-    ref_sha: str
-    preflight: str
-    detail: str
-
-
 class GitHubAPI:
+    """Read-only provider adapter used for historical lineage classification."""
+
     def __init__(self, repository: str, token: str | None) -> None:
         self.repository = repository
         self.token = token
@@ -53,23 +45,21 @@ class GitHubAPI:
         path: str,
         *,
         expected: tuple[int, ...] = (200,),
-        payload: dict[str, Any] | None = None,
     ) -> tuple[int, Any | None]:
+        if method != "GET":
+            raise CleanupError(
+                "Holographic mesh hard lock: this adapter is read-only and may not mutate refs"
+            )
         headers = {
             "Accept": "application/vnd.github+json",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "job-app-helix-branch-cleaner",
+            "User-Agent": "job-app-helix-branch-lineage-auditor",
         }
         if self.token:
             headers["Authorization"] = f"Bearer {self.token}"
-        body = None
-        if payload is not None:
-            headers["Content-Type"] = "application/json"
-            body = json.dumps(payload).encode("utf-8")
         request = urllib.request.Request(
             f"{API_ROOT}{path}",
             headers=headers,
-            data=body,
             method=method,
         )
         try:
@@ -106,30 +96,10 @@ class GitHubAPI:
         )
         return status, payload if isinstance(payload, dict) else None
 
-    def delete_ref(self, branch: str) -> None:
-        if not self.token:
-            raise CleanupError("A GitHub token is required to delete branches")
-        encoded = urllib.parse.quote(branch, safe="")
-        self.request(
-            "DELETE",
-            f"/repos/{self.repository}/git/refs/heads/{encoded}",
-            expected=(204,),
-        )
-
-    def create_ref(self, branch: str, sha: str) -> None:
-        if not self.token:
-            raise CleanupError("A GitHub token is required to restore branches")
-        self.request(
-            "POST",
-            f"/repos/{self.repository}/git/refs",
-            expected=(201,),
-            payload={"ref": f"refs/heads/{branch}", "sha": sha},
-        )
-
     def get_pull(self, number: int) -> dict[str, Any]:
         _, payload = self.request("GET", f"/repos/{self.repository}/pulls/{number}")
         if not isinstance(payload, dict):
-            raise CleanupError(f"Pull request #{number} returned no object")
+            raise CleanupError(f"PR #{number} returned no object")
         return payload
 
     def compare(self, base: str, head: str) -> dict[str, Any]:
@@ -172,18 +142,17 @@ def _load_manifest(path: Path) -> dict[str, Any]:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
-        message = f"Unable to load obsolete branch manifest {path}: {exc}"
-        raise CleanupError(message) from exc
+        raise CleanupError(f"Unable to load branch manifest {path}: {exc}") from exc
     if not isinstance(payload, dict):
-        raise CleanupError("Obsolete branch manifest must be a JSON object")
+        raise CleanupError("Branch manifest must be a JSON object")
     if payload.get("schema") != "glaciereq.obsolete-branches.v1":
-        raise CleanupError("Unsupported obsolete branch manifest schema")
+        raise CleanupError("Unsupported historical branch manifest schema")
     branches = payload.get("branches")
     if not isinstance(branches, list) or not branches:
-        raise CleanupError("Obsolete branch manifest must declare branches")
+        raise CleanupError("Branch manifest must declare branches")
     names = [entry.get("name") for entry in branches if isinstance(entry, dict)]
     if len(names) != len(set(names)):
-        raise CleanupError("Obsolete branch manifest contains duplicate names")
+        raise CleanupError("Branch manifest contains duplicate names")
     return payload
 
 
@@ -218,11 +187,9 @@ def _validate_pull_branch(
     head = pull.get("head")
     base = pull.get("base")
     if not isinstance(head, dict) or head.get("ref") != branch:
-        number = pull.get("number")
-        raise CleanupError(f"PR #{number} does not belong to branch {branch}")
+        raise CleanupError(f"PR #{pull.get('number')} does not belong to {branch}")
     if not isinstance(base, dict) or base.get("ref") != default_branch:
-        number = pull.get("number")
-        raise CleanupError(f"PR #{number} does not target {default_branch}")
+        raise CleanupError(f"PR #{pull.get('number')} does not target {default_branch}")
     if merged and not pull.get("merged_at"):
         raise CleanupError(f"PR #{pull.get('number')} is not merged")
     if not merged and pull.get("state") != "closed":
@@ -235,23 +202,24 @@ def _preflight_entry(
     *,
     default_branch: str,
     ref_sha: str,
-    apply: bool,
 ) -> tuple[str, str]:
+    """Verify historical overlap evidence without inferring donor exhaustion."""
+
     branch = entry.get("name")
     policy = entry.get("policy")
     if not isinstance(branch, str) or not branch:
         raise CleanupError(f"Invalid branch entry: {entry}")
     if branch == default_branch:
-        raise CleanupError("Default branch may never appear in the cleanup manifest")
+        raise CleanupError("Default branch may never appear in the historical audit manifest")
     if not isinstance(policy, str):
-        raise CleanupError(f"Missing cleanup policy for {branch}")
+        raise CleanupError(f"Missing historical policy for {branch}")
 
     if policy == "merged_pr":
         expected_sha = _expected_sha(entry)
         _require_ref_sha(ref_sha, expected_sha, branch)
         pull_number = entry.get("pull_request")
         if not isinstance(pull_number, int):
-            raise CleanupError(f"merged_pr policy requires pull_request for {branch}")
+            raise CleanupError(f"merged_pr requires pull_request for {branch}")
         pull = api.get_pull(pull_number)
         _validate_pull_branch(
             pull,
@@ -261,14 +229,15 @@ def _preflight_entry(
         )
         if _pull_head_sha(pull) != expected_sha:
             raise CleanupError(f"PR #{pull_number} head does not match manifest")
-        return "VERIFIED", f"PR #{pull_number} merged at {pull['merged_at']}"
+        return (
+            "VERIFIED_OVERLAP",
+            f"PR #{pull_number} merged at {pull['merged_at']}; merge status is not donor-exhaustion proof",
+        )
 
     if policy == "merge_candidate":
         pull_number = entry.get("pull_request")
         if not isinstance(pull_number, int):
-            raise CleanupError(
-                f"merge_candidate policy requires pull_request for {branch}"
-            )
+            raise CleanupError(f"merge_candidate requires pull_request for {branch}")
         pull = api.get_pull(pull_number)
         head = pull.get("head")
         base = pull.get("base")
@@ -276,15 +245,15 @@ def _preflight_entry(
             raise CleanupError(f"PR #{pull_number} does not belong to {branch}")
         if not isinstance(base, dict) or base.get("ref") != default_branch:
             raise CleanupError(f"PR #{pull_number} does not target {default_branch}")
-        pull_head_sha = _pull_head_sha(pull)
-        _require_ref_sha(ref_sha, pull_head_sha, branch)
+        _require_ref_sha(ref_sha, _pull_head_sha(pull), branch)
         if pull.get("merged_at"):
-            return "VERIFIED", f"PR #{pull_number} merged at {pull['merged_at']}"
-        if apply:
-            raise CleanupError(f"PR #{pull_number} is not merged")
+            return (
+                "VERIFIED_OVERLAP",
+                f"PR #{pull_number} merged at {pull['merged_at']}; branch remains lineage-bearing",
+            )
         if pull.get("state") != "open":
             raise CleanupError(f"PR #{pull_number} is neither open nor merged")
-        return "PENDING_MERGE", f"PR #{pull_number} is the current merge candidate"
+        return "PENDING_MERGE", f"PR #{pull_number} is an open merge candidate"
 
     if policy == "superseded_pr":
         expected_sha = _expected_sha(entry)
@@ -292,12 +261,8 @@ def _preflight_entry(
         _require_ref_sha(ref_sha, expected_sha, branch)
         closed_number = entry.get("closed_pull_request")
         replacement_number = entry.get("replacement_pull_request")
-        if not isinstance(closed_number, int) or not isinstance(
-            replacement_number, int
-        ):
-            raise CleanupError(
-                f"superseded_pr policy requires two PR numbers for {branch}"
-            )
+        if not isinstance(closed_number, int) or not isinstance(replacement_number, int):
+            raise CleanupError(f"superseded_pr requires two PR numbers for {branch}")
         closed = api.get_pull(closed_number)
         replacement = api.get_pull(replacement_number)
         _validate_pull_branch(
@@ -313,21 +278,14 @@ def _preflight_entry(
         replacement_base = replacement.get("base")
         if not replacement.get("merged_at"):
             raise CleanupError(f"Replacement PR #{replacement_number} is not merged")
-        if not isinstance(replacement_base, dict):
-            raise CleanupError(f"Replacement PR #{replacement_number} has no base")
-        if replacement_base.get("ref") != default_branch:
-            raise CleanupError(
-                f"Replacement PR #{replacement_number} does not target {default_branch}"
-            )
+        if not isinstance(replacement_base, dict) or replacement_base.get("ref") != default_branch:
+            raise CleanupError(f"Replacement PR #{replacement_number} does not target {default_branch}")
         if _pull_head_sha(replacement) != replacement_sha:
-            raise CleanupError(
-                f"Replacement PR #{replacement_number} head does not match manifest"
-            )
-        detail = (
-            f"PR #{closed_number} closed at {expected_sha}; replacement "
-            f"PR #{replacement_number} merged from {replacement_sha}"
+            raise CleanupError(f"Replacement PR #{replacement_number} head does not match manifest")
+        return (
+            "VERIFIED_OVERLAP",
+            f"PR #{closed_number} closed and replacement PR #{replacement_number} merged; replacement is partial-overlap evidence only",
         )
-        return "VERIFIED", detail
 
     if policy == "stale_dependency":
         expected_sha = _expected_sha(entry)
@@ -335,7 +293,7 @@ def _preflight_entry(
         open_pulls = api.open_pulls_for_branch(branch)
         if open_pulls:
             numbers = [pull.get("number") for pull in open_pulls]
-            raise CleanupError(f"Stale dependency branch still has open PRs: {numbers}")
+            raise CleanupError(f"Historical dependency branch still has open PRs: {numbers}")
         comparison = api.compare(default_branch, expected_sha)
         files = comparison.get("files")
         if not isinstance(files, list):
@@ -347,317 +305,192 @@ def _preflight_entry(
         )
         expected_files = sorted(entry.get("expected_files", []))
         if actual_files != expected_files:
-            message = (
-                f"Stale dependency file set changed for {branch}: "
-                f"{actual_files} != {expected_files}"
+            raise CleanupError(
+                f"Historical dependency file set changed for {branch}: {actual_files} != {expected_files}"
             )
-            raise CleanupError(message)
         pyproject_text = api.read_text_file("pyproject.toml", expected_sha)
         try:
             pyproject = tomllib.loads(pyproject_text)
         except tomllib.TOMLDecodeError as exc:
-            raise CleanupError("Stale dependency pyproject is malformed") from exc
+            raise CleanupError("Historical dependency pyproject is malformed") from exc
         expected_version = entry.get("expected_version")
         actual_version = pyproject.get("project", {}).get("version")
         if actual_version != expected_version:
             raise CleanupError(
-                f"Stale dependency version {actual_version} != {expected_version}"
-            )
-        scripts = pyproject.get("project", {}).get("scripts", {})
-        if "job-app-helix-portfolio" in scripts:
-            raise CleanupError(
-                "Stale dependency branch unexpectedly contains the current portfolio CLI"
+                f"Historical dependency version {actual_version} != {expected_version}"
             )
         return (
-            "VERIFIED",
-            "No open PR; immutable patch is limited to pyproject.toml and uv.lock",
+            "VERIFIED_OVERLAP",
+            "Historical patch shape verified; staleness/file equivalence is not donor-exhaustion proof",
         )
 
-    raise CleanupError(f"Unsupported cleanup policy {policy!r} for {branch}")
+    raise CleanupError(f"Unsupported historical policy {policy!r} for {branch}")
 
 
 def _receipt(
     *,
     repository: str,
     default_branch: str,
-    apply: bool,
     conclusion: str,
     results: list[BranchResult],
     failures: list[str],
 ) -> dict[str, Any]:
     return {
-        "schema": "glaciereq.obsolete-branch-cleanup-receipt.v1",
+        "schema": "glaciereq.branch-lineage-audit-receipt.v2",
         "repository": repository,
         "default_branch": default_branch,
-        "mode": "APPLY" if apply else "DRY_RUN",
+        "mode": "READ_ONLY_LINEAGE_AUDIT",
+        "anti_replacement": {
+            "latest_is_routing_cursor_only": True,
+            "overlap_is_not_zero_unique_contribution": True,
+            "remote_ref_deletion_authority": False,
+            "drained_terminal_state": "PRESERVE_DRAINED_LINEAGE",
+        },
         "conclusion": conclusion,
         "results": [asdict(result) for result in results],
         "failures": failures,
     }
 
 
-def _write_receipt(output: Path, payload: dict[str, Any]) -> None:
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+def _ref_sha(payload: dict[str, Any] | None) -> str | None:
+    if not isinstance(payload, dict):
+        return None
+    obj = payload.get("object")
+    if not isinstance(obj, dict):
+        return None
+    sha = obj.get("sha")
+    return sha if isinstance(sha, str) else None
 
 
-def _ref_sha(api: GitHubAPI, branch: str) -> str:
-    status, ref = api.get_ref(branch)
-    if status != 200 or not isinstance(ref, dict):
-        raise CleanupError(f"Branch {branch} is absent or malformed")
-    obj = ref.get("object")
-    sha = obj.get("sha") if isinstance(obj, dict) else None
-    if not isinstance(sha, str):
-        raise CleanupError(f"Branch {branch} has no commit SHA")
-    return sha
-
-
-def cleanup(
+def audit(
     manifest_path: Path,
     *,
-    repository: str,
+    repository: str | None,
     token: str | None,
-    apply: bool,
-    output: Path,
+    output: Path | None,
 ) -> list[BranchResult]:
     manifest = _load_manifest(manifest_path)
-    if manifest.get("repository") != repository:
-        message = f"Manifest repository {manifest.get('repository')} does not match {repository}"
-        raise CleanupError(message)
+    repo = repository or manifest.get("repository")
     default_branch = manifest.get("default_branch")
+    if not isinstance(repo, str) or not repo:
+        raise CleanupError("Repository must be provided by argument or manifest")
     if not isinstance(default_branch, str) or not default_branch:
-        raise CleanupError("Manifest default_branch is missing")
+        raise CleanupError("Manifest requires default_branch")
 
-    api = GitHubAPI(repository, token)
-    preflight_results: list[BranchResult] = []
-    candidates: list[DeletionCandidate] = []
+    api = GitHubAPI(repo, token)
+    results: list[BranchResult] = []
     failures: list[str] = []
 
     for raw_entry in manifest["branches"]:
         if not isinstance(raw_entry, dict):
-            failures.append(f"Invalid manifest entry: {raw_entry}")
+            failures.append(f"Invalid branch entry: {raw_entry!r}")
             continue
-        branch = str(raw_entry.get("name", ""))
-        policy = str(raw_entry.get("policy", ""))
-        reason = str(raw_entry.get("reason", ""))
-        try:
-            status, _ = api.get_ref(branch)
-            if status == 404:
-                preflight_results.append(
-                    BranchResult(
-                        branch=branch,
-                        policy=policy,
-                        reason=reason,
-                        ref_sha=None,
-                        preflight="ALREADY_ABSENT",
-                        outcome="NO_ACTION",
-                        detail="Branch reference does not exist",
-                    )
+        branch = raw_entry.get("name")
+        policy = raw_entry.get("policy")
+        reason = raw_entry.get("reason", "")
+        if not isinstance(branch, str) or not isinstance(policy, str):
+            failures.append(f"Invalid branch entry: {raw_entry!r}")
+            continue
+
+        status, ref_payload = api.get_ref(branch)
+        if status == 404:
+            results.append(
+                BranchResult(
+                    branch=branch,
+                    policy=policy,
+                    reason=str(reason),
+                    ref_sha=None,
+                    preflight="REF_ABSENT",
+                    outcome="PRESERVE_HISTORICAL_LINEAGE_POINTER",
+                    detail=(
+                        "Remote ref is absent at readback. Absence is recorded as historical state; "
+                        "it does not prove prior retirement was semantically valid."
+                    ),
                 )
-                continue
-            ref_sha = _ref_sha(api, branch)
+            )
+            continue
+
+        ref_sha = _ref_sha(ref_payload)
+        if ref_sha is None:
+            failures.append(f"Branch {branch} returned no SHA")
+            continue
+
+        try:
             preflight, detail = _preflight_entry(
                 api,
                 raw_entry,
                 default_branch=default_branch,
                 ref_sha=ref_sha,
-                apply=apply,
-            )
-            candidates.append(
-                DeletionCandidate(
-                    branch=branch,
-                    policy=policy,
-                    reason=reason,
-                    ref_sha=ref_sha,
-                    preflight=preflight,
-                    detail=detail,
-                )
-            )
-            preflight_results.append(
-                BranchResult(
-                    branch=branch,
-                    policy=policy,
-                    reason=reason,
-                    ref_sha=ref_sha,
-                    preflight=preflight,
-                    outcome="READY" if apply else "DRY_RUN",
-                    detail=detail,
-                )
             )
         except CleanupError as exc:
             failures.append(f"{branch}: {exc}")
-            preflight_results.append(
+            results.append(
                 BranchResult(
                     branch=branch,
                     policy=policy,
-                    reason=reason,
-                    ref_sha=None,
+                    reason=str(reason),
+                    ref_sha=ref_sha,
                     preflight="FAILED",
-                    outcome="PRESERVED",
-                    detail=str(exc),
+                    outcome="ACTIVE_IN_MESH",
+                    detail=f"Historical classification could not be verified: {exc}",
                 )
             )
+            continue
 
-    if failures:
-        payload = _receipt(
-            repository=repository,
-            default_branch=default_branch,
-            apply=apply,
-            conclusion="FAILED_PREFLIGHT",
-            results=preflight_results,
-            failures=failures,
+        results.append(
+            BranchResult(
+                branch=branch,
+                policy=policy,
+                reason=str(reason),
+                ref_sha=ref_sha,
+                preflight=preflight,
+                outcome="ACTIVE_IN_MESH",
+                detail=(
+                    f"{detail}. No whole-donor UNIQUE_CONTRIBUTION=0 proof is established; "
+                    "the ref remains preserved."
+                ),
+            )
         )
-        _write_receipt(output, payload)
-        raise CleanupError("; ".join(failures))
 
-    if not apply:
-        payload = _receipt(
-            repository=repository,
-            default_branch=default_branch,
-            apply=False,
-            conclusion="VERIFIED",
-            results=preflight_results,
-            failures=[],
-        )
-        _write_receipt(output, payload)
-        return preflight_results
-
-    final_results: list[BranchResult] = [
-        result for result in preflight_results if result.preflight == "ALREADY_ABSENT"
-    ]
-    deletion_failures: list[str] = []
-    rollback_failures: list[str] = []
-
-    for candidate in candidates:
-        attempted = False
-        try:
-            current_sha = _ref_sha(api, candidate.branch)
-            if current_sha != candidate.ref_sha:
-                raise CleanupError(
-                    f"Branch changed after preflight: {candidate.ref_sha} -> {current_sha}"
-                )
-            api.delete_ref(candidate.branch)
-            attempted = True
-            after_status, _ = api.get_ref(candidate.branch)
-            if after_status != 404:
-                raise CleanupError(
-                    f"Branch {candidate.branch} still exists after delete"
-                )
-            final_results.append(
-                BranchResult(
-                    branch=candidate.branch,
-                    policy=candidate.policy,
-                    reason=candidate.reason,
-                    ref_sha=candidate.ref_sha,
-                    preflight=candidate.preflight,
-                    outcome="DELETED",
-                    detail=candidate.detail,
-                )
-            )
-        except CleanupError as exc:
-            deletion_failures.append(f"{candidate.branch}: {exc}")
-            outcome = "DELETE_BLOCKED_PRESERVED"
-            detail = f"Deletion was blocked before mutation: {exc}"
-
-            if attempted:
-                try:
-                    status, _ = api.get_ref(candidate.branch)
-                    if status == 404:
-                        api.create_ref(candidate.branch, candidate.ref_sha)
-                    restored_sha = _ref_sha(api, candidate.branch)
-                    if restored_sha != candidate.ref_sha:
-                        raise CleanupError(
-                            f"Branch {candidate.branch} did not restore to "
-                            f"{candidate.ref_sha}"
-                        )
-                    outcome = "DELETE_BLOCKED_ROLLED_BACK"
-                    detail = f"Deletion attempt was restored after failure: {exc}"
-                except CleanupError as rollback_exc:
-                    rollback_failures.append(
-                        f"{candidate.branch}: rollback failed: {rollback_exc}"
-                    )
-                    outcome = "DELETE_BLOCKED_ROLLBACK_FAILED"
-                    detail = (
-                        "Deletion failed and restoration was not verified: "
-                        f"{exc}; {rollback_exc}"
-                    )
-
-            final_results.append(
-                BranchResult(
-                    branch=candidate.branch,
-                    policy=candidate.policy,
-                    reason=candidate.reason,
-                    ref_sha=candidate.ref_sha,
-                    preflight=candidate.preflight,
-                    outcome=outcome,
-                    detail=detail,
-                )
-            )
-
-    if rollback_failures:
-        conclusion = "FAILED_ROLLBACK"
-    elif deletion_failures:
-        conclusion = "VERIFIED_WITH_BLOCKED_REFS"
-    else:
-        conclusion = "VERIFIED"
-
-    all_failures = [*deletion_failures, *rollback_failures]
+    conclusion = "VERIFIED_READ_ONLY" if not failures else "READ_ONLY_WITH_FINDINGS"
     payload = _receipt(
-        repository=repository,
+        repository=repo,
         default_branch=default_branch,
-        apply=True,
         conclusion=conclusion,
-        results=final_results,
-        failures=all_failures,
+        results=results,
+        failures=failures,
     )
-    _write_receipt(output, payload)
+    if output is not None:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    return results
 
-    if rollback_failures:
-        raise CleanupError("; ".join(all_failures))
-    return final_results
 
-
-def parse_args() -> argparse.Namespace:
+def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Verify and remove explicitly obsolete branches"
+        description=(
+            "Read-only historical branch-lineage audit. This command cannot delete, restore, "
+            "archive, close, merge, or otherwise mutate branch refs."
+        )
     )
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
-    parser.add_argument("--repository", default=os.environ.get("GITHUB_REPOSITORY", ""))
-    parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN"))
-    parser.add_argument("--apply", action="store_true")
-    parser.add_argument(
-        "--output",
-        type=Path,
-        default=ROOT / "artifacts" / "obsolete-branch-cleanup.json",
-    )
+    parser.add_argument("--repository")
+    parser.add_argument("--output", type=Path)
     return parser.parse_args()
 
 
 def main() -> int:
-    args = parse_args()
-    if not args.repository:
-        raise SystemExit("--repository or GITHUB_REPOSITORY is required")
+    args = _parse_args()
+    token = os.environ.get("GITHUB_TOKEN")
     try:
-        results = cleanup(
-            args.manifest.resolve(),
+        audit(
+            args.manifest,
             repository=args.repository,
-            token=args.token,
-            apply=args.apply,
-            output=args.output.resolve(),
+            token=token,
+            output=args.output,
         )
     except CleanupError as exc:
-        print(f"Branch cleanup failed closed: {exc}")
-        return 1
-    deleted = sum(result.outcome == "DELETED" for result in results)
-    dry_run = sum(result.outcome == "DRY_RUN" for result in results)
-    absent = sum(result.preflight == "ALREADY_ABSENT" for result in results)
-    print(
-        "Branch cleanup verified: "
-        f"deleted={deleted} dry_run={dry_run} already_absent={absent}"
-    )
+        raise SystemExit(str(exc)) from exc
     return 0
 
 
