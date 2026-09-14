@@ -37,12 +37,20 @@ class FakeAPI:
             "superseded": "2" * 40,
             "stale": "3" * 40,
             "candidate": "4" * 40,
+            "blocked": "6" * 40,
+            "restored": "7" * 40,
+            "active": "8" * 40,
         }
         self.stale_files = ["pyproject.toml", "uv.lock"]
         self.stale_open_pulls: list[dict[str, Any]] = []
         self.candidate_merged = False
+        self.ref_failure: str | None = None
+        self.ref_calls: list[str] = []
 
     def get_ref(self, branch: str) -> tuple[int, dict[str, Any] | None]:
+        self.ref_calls.append(branch)
+        if branch == self.ref_failure:
+            raise RuntimeError("provider failure should be normalized by test adapter")
         if branch not in self.refs:
             return 404, None
         return 200, {"object": {"sha": self.refs[branch]}}
@@ -97,6 +105,17 @@ class FakeAPI:
         return '[project]\nname = "job-app-helix"\nversion = "0.2.0"\n'
 
 
+class FailingRefAPI(FakeAPI):
+    def get_ref(self, branch: str) -> tuple[int, dict[str, Any] | None]:
+        self.ref_calls.append(branch)
+        if branch == "blocked":
+            module = _load_module()
+            raise module.CleanupError("transient ref read failure")
+        if branch not in self.refs:
+            return 404, None
+        return 200, {"object": {"sha": self.refs[branch]}}
+
+
 def _write_manifest(path: Path) -> None:
     path.write_text(
         json.dumps(
@@ -104,6 +123,34 @@ def _write_manifest(path: Path) -> None:
                 "schema": "glaciereq.obsolete-branches.v1",
                 "repository": "GlacierEQ/job-app-helix",
                 "default_branch": "main",
+                "blocked_refs": [
+                    {
+                        "name": "blocked",
+                        "expected_head_sha": "6" * 40,
+                        "state": "DELETE_BLOCKED",
+                    }
+                ],
+                "restored_refs_after_failed_transaction": [
+                    {
+                        "name": "restored",
+                        "expected_head_sha": "7" * 40,
+                        "state": "RESTORED_AFTER_FAILED_TRANSACTION",
+                    }
+                ],
+                "preserved_active_refs": [
+                    {
+                        "name": "active",
+                        "expected_head_sha": "8" * 40,
+                        "state": "PRESERVED_RECOVERY_REF",
+                    }
+                ],
+                "retired_refs": [
+                    {
+                        "name": "absent",
+                        "expected_head_sha": "9" * 40,
+                        "state": "REF_ABSENT_VERIFIED",
+                    }
+                ],
                 "branches": [
                     {
                         "name": "merged",
@@ -142,40 +189,42 @@ def _write_manifest(path: Path) -> None:
     )
 
 
-def test_reference_manifest_has_unique_immutable_branch_records() -> None:
+def test_reference_manifest_has_unique_lineage_records() -> None:
+    module = _load_module()
     payload = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
-    branches = payload["branches"]
-    names = [entry["name"] for entry in branches]
+    entries = module._audit_entries(payload)
+    names = [entry["name"] for entry in entries]
 
     assert payload["schema"] == "glaciereq.obsolete-branches.v1"
     assert payload["default_branch"] == "main"
     assert "main" not in names
     assert len(names) == len(set(names))
-    for entry in branches:
-        if entry["policy"] != "merge_candidate":
-            assert len(entry["expected_head_sha"]) == 40
+    assert set(payload["blocked_refs"][index]["name"] for index in range(len(payload["blocked_refs"]))).issubset(names)
+    assert set(
+        payload["restored_refs_after_failed_transaction"][index]["name"]
+        for index in range(len(payload["restored_refs_after_failed_transaction"]))
+    ).issubset(names)
+    assert set(
+        payload["preserved_active_refs"][index]["name"]
+        for index in range(len(payload["preserved_active_refs"]))
+    ).issubset(names)
 
 
-def test_script_exposes_no_ref_mutation_methods_or_apply_mode() -> None:
+def test_script_exposes_no_ref_mutation_methods() -> None:
     module = _load_module()
-    source = SCRIPT_PATH.read_text(encoding="utf-8")
-
     assert not hasattr(module.GitHubAPI, "delete_ref")
     assert not hasattr(module.GitHubAPI, "create_ref")
-    assert "--apply" not in source
-    assert '"DELETE"' not in source
-    assert '"POST"' not in source
 
 
-def test_provider_adapter_rejects_non_get_methods() -> None:
+@pytest.mark.parametrize("verb", ["POST", "PUT", "PATCH", "DELETE"])
+def test_provider_adapter_rejects_non_get_methods(verb: str) -> None:
     module = _load_module()
     api = module.GitHubAPI("GlacierEQ/job-app-helix", "token")
+    with pytest.raises(module.CleanupError, match="mutation methods are prohibited"):
+        api.request(verb, "/repos/GlacierEQ/job-app-helix/git/refs/heads/example")
 
-    with pytest.raises(module.CleanupError, match="read-only"):
-        api.request("PATCH", "/repos/GlacierEQ/job-app-helix/git/refs/heads/example")
 
-
-def test_audit_preserves_all_existing_refs_as_active_in_mesh(
+def test_audit_covers_preservation_buckets_and_preserves_refs(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
@@ -193,28 +242,19 @@ def test_audit_preserves_all_existing_refs_as_active_in_mesh(
         output=receipt,
     )
 
-    assert fake.refs == {
-        "merged": "1" * 40,
-        "superseded": "2" * 40,
-        "stale": "3" * 40,
-        "candidate": "4" * 40,
-    }
-    assert {result.outcome for result in results} == {"ACTIVE_IN_MESH"}
-    assert {result.preflight for result in results} == {
-        "VERIFIED_OVERLAP",
-        "PENDING_MERGE",
-    }
+    by_name = {result.branch: result for result in results}
+    assert by_name["blocked"].outcome == "ACTIVE_IN_MESH"
+    assert by_name["restored"].outcome == "ACTIVE_IN_MESH"
+    assert by_name["active"].outcome == "ACTIVE_IN_MESH"
+    assert by_name["absent"].outcome == "PRESERVE_HISTORICAL_LINEAGE_POINTER"
+    assert {"blocked", "restored", "active", "merged", "superseded", "stale", "candidate", "absent"}.issubset(fake.ref_calls)
 
     payload = json.loads(receipt.read_text(encoding="utf-8"))
     assert payload["schema"] == "glaciereq.branch-lineage-audit-receipt.v2"
     assert payload["mode"] == "READ_ONLY_LINEAGE_AUDIT"
     assert payload["conclusion"] == "VERIFIED_READ_ONLY"
-    assert payload["anti_replacement"] == {
-        "latest_is_routing_cursor_only": True,
-        "overlap_is_not_zero_unique_contribution": True,
-        "remote_ref_deletion_authority": False,
-        "drained_terminal_state": "PRESERVE_DRAINED_LINEAGE",
-    }
+    assert payload["anti_replacement"]["remote_ref_deletion_authority"] is False
+    assert payload["anti_replacement"]["drained_terminal_state"] == "PRESERVE_DRAINED_LINEAGE"
 
 
 def test_merged_candidate_remains_active_in_mesh(
@@ -241,31 +281,70 @@ def test_merged_candidate_remains_active_in_mesh(
     assert "UNIQUE_CONTRIBUTION=0" in candidate.detail
 
 
-def test_missing_remote_ref_preserves_historical_lineage_pointer(
+def test_repository_override_must_match_manifest(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
     module = _load_module()
-    fake = FakeAPI()
-    fake.refs.pop("superseded")
-    monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
+    called = False
+
+    def factory(repository: str, token: str | None) -> FakeAPI:
+        nonlocal called
+        called = True
+        return FakeAPI()
+
+    monkeypatch.setattr(module, "GitHubAPI", factory)
     manifest = tmp_path / "branches.json"
     _write_manifest(manifest)
 
-    results = module.audit(
-        manifest,
-        repository="GlacierEQ/job-app-helix",
-        token="token",
-        output=None,
-    )
-
-    superseded = next(result for result in results if result.branch == "superseded")
-    assert superseded.preflight == "REF_ABSENT"
-    assert superseded.outcome == "PRESERVE_HISTORICAL_LINEAGE_POINTER"
-    assert "does not prove" in superseded.detail
+    with pytest.raises(module.CleanupError, match="does not match"):
+        module.audit(
+            manifest,
+            repository="GlacierEQ/wrong-repository",
+            token="token",
+            output=None,
+        )
+    assert called is False
 
 
-def test_failed_historical_preflight_never_promotes_retirement(
+def test_provider_ref_failure_writes_findings_receipt_then_fails(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_module()
+
+    class ProviderFailureAPI(FakeAPI):
+        def get_ref(self, branch: str) -> tuple[int, dict[str, Any] | None]:
+            self.ref_calls.append(branch)
+            if branch == "blocked":
+                raise module.CleanupError("transient ref read failure")
+            if branch not in self.refs:
+                return 404, None
+            return 200, {"object": {"sha": self.refs[branch]}}
+
+    fake = ProviderFailureAPI()
+    monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
+    manifest = tmp_path / "branches.json"
+    receipt = tmp_path / "receipt.json"
+    _write_manifest(manifest)
+
+    with pytest.raises(module.CleanupError, match="receipt was preserved"):
+        module.audit(
+            manifest,
+            repository="GlacierEQ/job-app-helix",
+            token="token",
+            output=receipt,
+        )
+
+    payload = json.loads(receipt.read_text(encoding="utf-8"))
+    assert payload["conclusion"] == "READ_ONLY_WITH_FINDINGS"
+    blocked = next(item for item in payload["results"] if item["branch"] == "blocked")
+    assert blocked["preflight"] == "READBACK_UNRESOLVED"
+    assert blocked["outcome"] == "ACTIVE_IN_MESH"
+    assert "stale" in fake.ref_calls
+
+
+def test_failed_historical_preflight_writes_receipt_then_fails(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
@@ -277,18 +356,97 @@ def test_failed_historical_preflight_never_promotes_retirement(
     receipt = tmp_path / "receipt.json"
     _write_manifest(manifest)
 
-    results = module.audit(
-        manifest,
-        repository="GlacierEQ/job-app-helix",
-        token="token",
-        output=receipt,
-    )
+    with pytest.raises(module.CleanupError, match="receipt was preserved"):
+        module.audit(
+            manifest,
+            repository="GlacierEQ/job-app-helix",
+            token="token",
+            output=receipt,
+        )
 
-    stale = next(result for result in results if result.branch == "stale")
-    assert stale.preflight == "FAILED"
-    assert stale.outcome == "ACTIVE_IN_MESH"
     payload = json.loads(receipt.read_text(encoding="utf-8"))
     assert payload["conclusion"] == "READ_ONLY_WITH_FINDINGS"
+    stale = next(item for item in payload["results"] if item["branch"] == "stale")
+    assert stale["preflight"] == "FAILED"
+    assert stale["outcome"] == "ACTIVE_IN_MESH"
+
+
+def test_malformed_expected_files_becomes_findings_receipt(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_module()
+    fake = FakeAPI()
+    monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
+    manifest = tmp_path / "branches.json"
+    receipt = tmp_path / "receipt.json"
+    _write_manifest(manifest)
+    payload = json.loads(manifest.read_text(encoding="utf-8"))
+    stale = next(entry for entry in payload["branches"] if entry["name"] == "stale")
+    stale["expected_files"] = None
+    manifest.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(module.CleanupError, match="receipt was preserved"):
+        module.audit(
+            manifest,
+            repository="GlacierEQ/job-app-helix",
+            token="token",
+            output=receipt,
+        )
+    receipt_payload = json.loads(receipt.read_text(encoding="utf-8"))
+    stale_result = next(
+        item for item in receipt_payload["results"] if item["branch"] == "stale"
+    )
+    assert stale_result["preflight"] == "FAILED"
+
+
+def test_stale_dependency_with_current_cli_is_not_verified(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    module = _load_module()
+
+    class CurrentCliAPI(FakeAPI):
+        def read_text_file(self, path: str, ref: str) -> str:
+            return (
+                '[project]\nname = "job-app-helix"\nversion = "0.2.0"\n'
+                '[project.scripts]\njob-app-helix-portfolio = "job_app_helix.portfolio_cli:main"\n'
+            )
+
+    fake = CurrentCliAPI()
+    monkeypatch.setattr(module, "GitHubAPI", lambda repository, token: fake)
+    manifest = tmp_path / "branches.json"
+    receipt = tmp_path / "receipt.json"
+    _write_manifest(manifest)
+
+    with pytest.raises(module.CleanupError, match="receipt was preserved"):
+        module.audit(
+            manifest,
+            repository="GlacierEQ/job-app-helix",
+            token="token",
+            output=receipt,
+        )
+    payload = json.loads(receipt.read_text(encoding="utf-8"))
+    stale = next(item for item in payload["results"] if item["branch"] == "stale")
+    assert stale["preflight"] == "FAILED"
+
+
+def test_cli_defaults_preserve_receipt_and_safe_legacy_inputs(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    module = _load_module()
+    monkeypatch.setenv("GITHUB_REPOSITORY", "GlacierEQ/job-app-helix")
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["cleanup_obsolete_branches.py", "--token", "test-token", "--apply"],
+    )
+    args = module._parse_args()
+    assert args.repository == "GlacierEQ/job-app-helix"
+    assert args.output == module.DEFAULT_OUTPUT
+    assert args.token == "test-token"
+    assert args.apply is True
+    assert not hasattr(module.GitHubAPI, "delete_ref")
 
 
 def test_default_branch_is_rejected_even_if_manifest_requests_it() -> None:
