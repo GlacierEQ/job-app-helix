@@ -103,12 +103,21 @@ def _assert_upward_policy(policy: Mapping[str, Any]) -> None:
     lifecycle = tuple(policy.get("branch_lifecycle", ()))
     if lifecycle != BRANCH_LIFECYCLE:
         raise LibraryProgramError("branch lifecycle does not match upward capability evolution")
-    if any(fragment in step for step in lifecycle for fragment in FORBIDDEN_ACTIVE_ACTION_FRAGMENTS):
+    if any(
+        fragment in step
+        for step in lifecycle
+        for fragment in FORBIDDEN_ACTIVE_ACTION_FRAGMENTS
+    ):
         raise LibraryProgramError("active lifecycle contains a retirement/contraction action")
 
-    boundary = _require_nonempty_text(policy.get("retirement_boundary"), "retirement_boundary")
+    boundary = _require_nonempty_text(
+        policy.get("retirement_boundary"), "retirement_boundary"
+    )
     if "operator" not in boundary.casefold() or "not authorized" not in boundary.casefold():
-        raise LibraryProgramError("retirement boundary must reserve destructive lifecycle decisions to operator authority")
+        raise LibraryProgramError(
+            "retirement boundary must reserve destructive lifecycle decisions to "
+            "operator authority"
+        )
 
 
 def _assert_zero_unique_contribution_proof(
@@ -117,7 +126,8 @@ def _assert_zero_unique_contribution_proof(
     proof = branch.get("unique_contribution_verification")
     if not isinstance(proof, Mapping):
         raise LibraryProgramError(
-            f"{label}: zero-contribution retirement requires unique_contribution_verification"
+            f"{label}: zero-contribution retirement requires "
+            "unique_contribution_verification"
         )
     if proof.get("verdict") != "ZERO":
         raise LibraryProgramError(
@@ -142,11 +152,13 @@ def _assert_mesh_safe_branch_disposition(
     unique_value = branch.get("unique_value")
     disposition = branch.get("remote_ref_disposition")
     destructive = isinstance(disposition, str) and any(
-        fragment in disposition.upper() for fragment in DESTRUCTIVE_DISPOSITION_FRAGMENTS
+        fragment in disposition.upper()
+        for fragment in DESTRUCTIVE_DISPOSITION_FRAGMENTS
     )
     if destructive:
         raise LibraryProgramError(
-            f"{label}: retirement must preserve lineage pointers; destructive remote-ref disposition is forbidden"
+            f"{label}: retirement must preserve lineage pointers; destructive "
+            "remote-ref disposition is forbidden"
         )
 
     declares_zero = isinstance(unique_value, str) and unique_value.strip().upper() in {
@@ -213,7 +225,13 @@ def validate_library_program(path: Path) -> dict[str, Any]:
         if repository.get("visibility") not in {"public", "private"}:
             raise LibraryProgramError(f"{name}: visibility must be public or private")
 
-        for field in ("role", "readme_state", "proof_state", "branch_state", "identity_state"):
+        for field in (
+            "role",
+            "readme_state",
+            "proof_state",
+            "branch_state",
+            "identity_state",
+        ):
             _require_nonempty_text(repository.get(field), f"{name}.{field}")
 
         aliases = repository.get("aliases")
@@ -272,11 +290,17 @@ def validate_latest_execution_receipt(
     if policy.get("preserve_unique_value_before_closure") is not True:
         raise LibraryProgramError("execution receipt must preserve unique value before closure")
     if policy.get("holographic_mesh_anti_replacement") is not True:
-        raise LibraryProgramError("execution receipt must enforce holographic mesh anti-replacement")
+        raise LibraryProgramError(
+            "execution receipt must enforce holographic mesh anti-replacement"
+        )
     if policy.get("zero_unique_contribution_required_for_retirement") is not True:
-        raise LibraryProgramError("execution receipt must require zero unique contribution for retirement")
+        raise LibraryProgramError(
+            "execution receipt must require zero unique contribution for retirement"
+        )
     if policy.get("latest_is_routing_cursor_only") is not True:
-        raise LibraryProgramError("execution receipt must treat latest as routing cursor only")
+        raise LibraryProgramError(
+            "execution receipt must treat latest as routing cursor only"
+        )
 
     outcomes = receipt.get("outcomes")
     if not isinstance(outcomes, list):
@@ -285,15 +309,20 @@ def validate_latest_execution_receipt(
     for index, raw_item in enumerate(outcomes):
         item = _require_mapping(raw_item, f"outcomes[{index}]")
         observed.append(
-            _require_nonempty_text(item.get("repository"), f"outcomes[{index}].repository")
+            _require_nonempty_text(
+                item.get("repository"), f"outcomes[{index}].repository"
+            )
         )
         _assert_mesh_safe_branch_disposition(item, label=f"outcomes[{index}]")
         branches = item.get("branch_dispositions", [])
         if not isinstance(branches, list):
-            raise LibraryProgramError(f"outcomes[{index}].branch_dispositions must be a list")
+            raise LibraryProgramError(
+                f"outcomes[{index}].branch_dispositions must be a list"
+            )
         for branch_index, raw_branch in enumerate(branches):
             branch = _require_mapping(
-                raw_branch, f"outcomes[{index}].branch_dispositions[{branch_index}]"
+                raw_branch,
+                f"outcomes[{index}].branch_dispositions[{branch_index}]",
             )
             _assert_mesh_safe_branch_disposition(
                 branch,
@@ -301,7 +330,9 @@ def validate_latest_execution_receipt(
             )
 
     if tuple(observed) != EXPECTED_REPOSITORIES:
-        raise LibraryProgramError("execution receipt outcomes must match the exact priority spine order")
+        raise LibraryProgramError(
+            "execution receipt outcomes must match the exact priority spine order"
+        )
 
     summary = _require_mapping(receipt.get("summary"), "execution receipt summary")
     if summary.get("whole_library_complete") is not False:
@@ -315,7 +346,12 @@ def render_library_program(payload: Mapping[str, Any]) -> str:
     lines = [
         "# Library Capability Elevation Program",
         "",
-        "The estate moves upward: reconstruct purpose, recover lost capability, preserve unique value, compose complementary gains, implement, verify, integrate, and deploy or package. Inventory, similarity, proof gaps, or assistant-generated classifications cannot authorize retirement.",
+        (
+            "The estate moves upward: reconstruct purpose, recover lost capability, "
+            "preserve unique value, compose complementary gains, implement, verify, "
+            "integrate, and deploy or package. Inventory, similarity, proof gaps, or "
+            "assistant-generated classifications cannot authorize retirement."
+        ),
         "",
         "| Priority | Repository | Role | Upward action | README | Proof | Branch |",
         "|---:|---|---|---|---|---|---|",
@@ -330,9 +366,18 @@ def render_library_program(payload: Mapping[str, Any]) -> str:
             "",
             "## Capability evolution",
             "",
-            "`DISCOVER -> RECONSTRUCT_PURPOSE -> COMPARE_LINEAGE -> EXTRACT_UNIQUE_VALUE -> RESTORE_LOST_CAPABILITY -> COMPOSE_GAINS -> IMPLEMENT -> VERIFY -> INTEGRATE -> DEPLOY_OR_PACKAGE -> RECEIPT`",
+            (
+                "`DISCOVER -> RECONSTRUCT_PURPOSE -> COMPARE_LINEAGE -> "
+                "EXTRACT_UNIQUE_VALUE -> RESTORE_LOST_CAPABILITY -> COMPOSE_GAINS -> "
+                "IMPLEMENT -> VERIFY -> INTEGRATE -> DEPLOY_OR_PACKAGE -> RECEIPT`"
+            ),
             "",
-            "Retirement requires verified UNIQUE_CONTRIBUTION=0 and explicit Operator authorization, but retirement preserves lineage/source pointers. Remote-ref deletion is not a retirement action and is forbidden in this automated lifecycle.",
+            (
+                "Retirement requires verified UNIQUE_CONTRIBUTION=0 and explicit "
+                "Operator authorization, but retirement preserves lineage/source "
+                "pointers. Remote-ref deletion is not a retirement action and is "
+                "forbidden in this automated lifecycle."
+            ),
         )
     )
     return "\n".join(lines) + "\n"
