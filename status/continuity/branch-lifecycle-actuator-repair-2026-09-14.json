@@ -1,0 +1,33 @@
+{
+  "schema": "glaciereq.continuity-regression-repair.v1",
+  "classification": "VERIFIED_REGRESSION",
+  "source": {
+    "path": ".github/workflows/branch-lifecycle-intelligence.yml",
+    "main_head_before_repair": "b2b25c7841d74847b0a8d91ca484c729be68434e",
+    "historical_blob_sha": "4772d535cde5086db6389f009447a6f4262cd80a"
+  },
+  "triggering_evidence": [
+    "workflow_dispatch and workflow_call exposed apply mode",
+    "merged pull_request events defaulted MODE to apply",
+    "workflow permissions granted contents: write",
+    "dynamic assessment mapped MERGED_REDUNDANT/REACHABLE_REDUNDANT to REMOVE_REDUNDANT",
+    "execution path called github.rest.git.deleteRef"
+  ],
+  "failed_assumption": "Merged/reachable/current-main overlap plus confidence scoring could stand in for exhaustive donor UNIQUE_CONTRIBUTION=0 and authorize deletion.",
+  "operator_condition_vs_invented_predicate": {
+    "operator_condition": "close branches upon genuine obsoletion",
+    "assistant_invented_predicate": "merged, reachable, stale, redundant, or high-confidence classification implies obsolete/disposable"
+  },
+  "repair": {
+    "live_workflow": "converted to read-only branch lifecycle intelligence",
+    "destructive_authority": "NONE",
+    "remote_ref_deletion": "PROHIBITED",
+    "terminal_drained_state": "PRESERVE_DRAINED_LINEAGE",
+    "historical_source_preserved_by": [
+      "git commit b2b25c7841d74847b0a8d91ca484c729be68434e",
+      "blob 4772d535cde5086db6389f009447a6f4262cd80a",
+      "this lineage receipt"
+    ]
+  },
+  "controlling_rule": "Branch lifecycle analysis may inventory, compare, classify overlap, and recommend harvesting, but may not delete refs or infer whole-donor exhaustion from merge/reachability/staleness/confidence evidence. UNIQUE_CONTRIBUTION=0 requires exhaustive provider-read-back accounting; even then lineage is preserved rather than deleted."
+}
