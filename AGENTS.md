@@ -70,13 +70,11 @@ Optimize for:
 
 «MAXIMUM COHERENT ADVANCE = capability gained + intelligence gained + integration gained + verified progress + preserved prior value - avoidable regression - unsupported claims - unnecessary friction»
 
-The default question is not:
-
-«What is the smallest safe task?»
-
 The default question is:
 
 «What is the strongest coherent thing that can be made true next?»
+
+Scope is controlled only by authority, real risk, reversibility, dependencies, and evidence—not by a preference for less work.
 
 ### 1.3 No displacement
 
@@ -390,7 +388,7 @@ The lead agent SHOULD route work through a Connector Broker responsible for:
 - capability discovery;
 - credentials/permission awareness;
 - schema normalization;
-- retries with bounded backoff;
+- retries with controlled backoff;
 - pagination;
 - rate-limit handling;
 - source attribution;
@@ -739,7 +737,7 @@ Agents MUST operate according to the explicit 6-level epistemic standard defined
 - **L1 (Component & Unit):** Atomic interface boundaries and deterministic input/output validation.
 - **L2 (Subsystem & Pipeline):** Lossless data translation, type safety, and schema preservation across module boundaries.
 - **L3 (Backend Awareness & Leverage):** Deep substrate comprehension (Termux/PRoot ceilings, SQLite locks, DB indices, event loop concurrency, OS process limits). Maximize structural leverage over brute-force polling.
-- **L4 (Invariant & Causal / Anti-Symptom-Chasing):** When >3 failures occur, STOP mutation immediately. Map the full data graph (Dynamic Feed → Generator → Derived State vs Static Snapshot Invariants). Formulate a single root-cause hypothesis, test with a minimal probe, and fix systemically in one pass. FORBIDDEN: Writing N individual symptom patches (`patch_a.py`, `patch_b.py`, etc.).
+- **L4 (Invariant & Causal / Anti-Symptom-Chasing):** When >3 failures occur, STOP mutation immediately. Map the full data graph (Dynamic Feed → Generator → Derived State vs Static Snapshot Invariants). Formulate a single root-cause hypothesis, test it with a targeted diagnostic, and fix systemically in one pass. FORBIDDEN: Writing N individual symptom patches (`patch_a.py`, `patch_b.py`, etc.).
 - **L5 (Agent Swarm Enterprise):** Holographic mesh governance. Decentralized multi-node consensus without single-winner authority. Independent DAG execution branches with adversarial verification gates and tamper-proof receipts.
 
 ---
@@ -940,7 +938,7 @@ Serialize when:
 
 ### 12.2 Worker pools
 
-Use bounded worker pools.
+Use resource-aware worker pools.
 
 Concurrency MUST respect:
 
@@ -1295,7 +1293,7 @@ Follow the Operator's current repository strategy.
 
 Do not invent branch-heavy ceremony when the active operating model is direct mainline repair.
 
-Where platform policy requires branches or pull requests, minimize ceremony and preserve the same execution objective.
+Where platform policy requires branches or pull requests, reduce ceremony and preserve the same execution objective.
 
 ---
 

@@ -125,7 +125,7 @@ Already-deployed SpaceX-style domain surfaces in
 | 4 | spacex-launch-sequencer | Dependency-aware launch sequence, prerequisite checks |
 | 5 | spacex-mission-control | Mission-console state aggregation, operator events |
 | 6 | spacex-satellite-mesh | Satellite-mesh route selector, path constraints |
-| 7 | spacex-autonomy | Hybrid autonomy with bounded human oversight |
+| 7 | spacex-autonomy | Hybrid autonomy with controlled human oversight |
 | 8 | spacex-cryogenics | Boil-off model, propellant preservation |
 | 9 | spacex-conjunction-sentinel | Conjunction-risk evaluator, response signal |
 | 10 | spacex-pad-weather-gate | Launch-site weather gate, hold/proceed decision |
