@@ -42,7 +42,8 @@ def test_generated_contract_round_trip_and_identity() -> None:
     }
     assert parsed["presentation"]["architecture"] == [
         "recruiter",
-        "master",
+        "expert",
+        "genius",
         "machine",
         "mesh",
     ]
@@ -86,21 +87,23 @@ def test_missing_block_is_appended_without_changing_human_prefix() -> None:
     assert plan.readme.count(START_MARKER) == 1
 
 
-def test_missing_readme_gets_truthful_four_depth_scaffold() -> None:
+def test_missing_readme_gets_truthful_five_depth_scaffold() -> None:
     plan = plan_readme(
         repository="GlacierEQ/no-readme",
         current_readme=None,
         default_branch="master",
-        root_paths=["scripts"],
+        root_paths=["scripts", "GENIUS.yaml"],
     )
     assert plan.action == ReadmeAction.CREATE_README
     assert plan.readme is not None
     assert plan.readme.startswith("# no-readme")
     assert "## 01 · RECRUITER" in plan.readme
-    assert "## 02 · MASTER" in plan.readme
-    assert "## 03 · MACHINE" in plan.readme
-    assert "## 04 · MESH" in plan.readme
+    assert "## 02 · EXPERT" in plan.readme
+    assert "## 03 · GENIUS" in plan.readme
+    assert "## 04 · MACHINE" in plan.readme
+    assert "## 05 · MESH" in plan.readme
     assert "deliberately avoids guessing" in plan.readme
+    assert "GENIUS.yaml" in plan.readme
     assert "All rights reserved under U.S. copyright law" in plan.readme
     assert "17 U.S.C. § 501" in plan.readme
 
