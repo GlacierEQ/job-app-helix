@@ -577,6 +577,8 @@ def validate_repo_excellence_record(
     # Explicit anti-contraction metadata is synthesized on every validated record.
     result_payload["direction"] = "MAXIMUM_COHERENT_ADVANCE"
     result_payload["retirement_authorized"] = False
-    result_payload["retirement_requires_operator_authorization"] = True
+    result_payload["retirement_requires_provider_readback_unique_contribution_zero"] = True
+    result_payload["retirement_terminal_disposition"] = "PRESERVE_DRAINED_LINEAGE"
+    result_payload["remote_ref_deletion_allowed"] = False
     result_payload["similarity_establishes_redundancy"] = False
     return result_payload

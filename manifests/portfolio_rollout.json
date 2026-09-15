@@ -26,9 +26,11 @@
     "presume_capability_value_until_inspected": true,
     "inventory_cannot_authorize_retirement": true,
     "similarity_cannot_establish_redundancy": true,
-    "retirement_requires_operator_authorization": true,
     "retirement_requires_verified_capability_preservation": true,
-    "local_constraints_may_not_become_global_doctrine": true
+    "local_constraints_may_not_become_global_doctrine": true,
+    "retirement_requires_provider_readback_unique_contribution_zero": true,
+    "retirement_terminal_disposition": "PRESERVE_DRAINED_LINEAGE",
+    "remote_ref_deletion_allowed": false
   },
   "waves": [
     {
@@ -221,7 +223,7 @@
       "id": "wave-4-capability-elevation",
       "priority": 4,
       "mode": "PRODUCTIZE",
-      "objective": "Elevate every previously labeled thin, overlapping, consolidation, or archive candidate into its strongest justified form. Reconstruct full purpose and lineage first; identify unique and complementary mechanisms; restore buried capability; complete the central mechanism; compose with sibling systems without flattening specialization; prove behavior; package, integrate, operate, and deploy where useful. No retirement, archival, merge-away, branch deletion, or successor substitution may be inferred from inventory, naming similarity, documentation state, failed proof, or assistant-generated classification. Any retirement requires explicit operator authorization after verified capability preservation and a demonstrated stronger resulting system.",
+      "objective": "Elevate every previously labeled thin, overlapping, consolidation, or archive candidate into its strongest justified form. Reconstruct full purpose and lineage first; identify unique and complementary mechanisms; restore buried capability; complete the central mechanism; compose with sibling systems without flattening specialization; prove behavior; package, integrate, operate, and deploy where useful. No retirement, archival, merge-away, branch deletion, or successor substitution may be inferred from inventory, naming similarity, documentation state, failed proof, or assistant-generated classification. Retirement requires provider-read-back UNIQUE_CONTRIBUTION=0 across all source-bearing value plus verified durable lineage preservation; a fully drained donor becomes PRESERVE_DRAINED_LINEAGE and remote-ref deletion is forbidden.",
       "current_state": "UNVERIFIED",
       "current_evidence": "INVENTORY",
       "target_evidence": "TEST",
