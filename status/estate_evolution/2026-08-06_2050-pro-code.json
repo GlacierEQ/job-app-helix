@@ -18,10 +18,10 @@
     "drained_terminal_state": "PRESERVE_DRAINED_LINEAGE",
     "retirement_requires": [
       "provider-read-back UNIQUE_CONTRIBUTION=0 across source, event, edge, contradiction, provenance, mechanism, unresolved dependency, receipt, and authority-domain fact",
-      "explicit Operator retirement authorization",
       "durable lineage/source pointer preservation",
       "provider readback confirming preserved lineage"
     ],
+    "authorization_semantics": "The zero-unique-contribution proof boundary does not create an additional per-retirement approval requirement where controlling Operator instructions already govern.",
     "lineage_preserved": true
   },
   "branches": [
