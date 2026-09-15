@@ -22,8 +22,10 @@ PRODUCTIZE_OBJECTIVE: Final = (
     "with stronger estate capabilities where that increases value, and deliver it in the "
     "most useful operable form the repository can support. Prefer a real deployment, "
     "installable package, runnable service, or directly usable tool over documentation-only "
-    "completion. Retirement or archival requires explicit operator authorization and a "
-    "verified stronger successor that preserves the repository's valuable capabilities."
+    "completion. Retirement or archival requires provider-read-back UNIQUE_CONTRIBUTION=0 "
+    "across all source-bearing value plus verified preservation of durable lineage/source "
+    "pointers; this proof boundary does not create an additional per-retirement approval "
+    "requirement where controlling Operator instructions already govern."
 )
 
 MODE_MINIMUM_EVIDENCE: Final[dict[ExecutionMode, EvidenceLevel]] = {
