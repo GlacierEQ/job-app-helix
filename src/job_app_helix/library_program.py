@@ -216,20 +216,171 @@ def validate_library_program(path: Path) -> dict[str, Any]:
         name = _require_nonempty_text(repository.get("repository"), "repository")
         priority = repository.get("priority")
         if not isinstance(priority, int) or priority < 0:
-            raise LibraryProgramError(f"repositories[{index}].priority must be a non-negative integer")
-        observed_repositories.append(name)
-        observed_priorities.append(priority)
-        for alias in repository.get("aliases", []):
-            alias_text = _require_nonempty_text(alias, f"repositories[{index}].aliases")
+            raise LibraryProgramError(f"{name}: priority must be a non-negative integer")
+        action = _require_nonempty_text(repository.get("action"), f"{name}.action")
+        if action not in VALID_ACTIONS:
+            raise LibraryProgramError(f"{name}: unsupported action {action!r}")
+        if any(fragment in action for fragment in FORBIDDEN_ACTIVE_ACTION_FRAGMENTS):
+            raise LibraryProgramError(f"{name}: contraction action is not permitted")
+        if repository.get("default_branch") not in {"main", "master"}:
+            raise LibraryProgramError(f"{name}: unsupported default branch")
+        if repository.get("visibility") not in {"public", "private"}:
+            raise LibraryProgramError(f"{name}: visibility must be public or private")
+
+        for field in (
+            "role",
+            "readme_state",
+            "proof_state",
+            "branch_state",
+            "identity_state",
+        ):
+            _require_nonempty_text(repository.get(field), f"{name}.{field}")
+
+        aliases = repository.get("aliases")
+        if not isinstance(aliases, list) or not aliases:
+            raise LibraryProgramError(f"{name}: aliases must be a non-empty list")
+        for alias in aliases:
+            alias_text = _require_nonempty_text(alias, f"{name}.alias")
             normalized = _normalized_alias(alias_text)
-            existing = observed_aliases.get(normalized)
-            if existing and existing != name:
-                raise LibraryProgramError(f"alias collision: {alias_text}")
+            prior_owner = observed_aliases.get(normalized)
+            if prior_owner and prior_owner != name:
+                raise LibraryProgramError(
+                    f"alias {alias_text!r} is shared by {prior_owner} and {name}"
+                )
             observed_aliases[normalized] = name
 
-    if tuple(observed_repositories) != EXPECTED_REPOSITORIES:
-        raise LibraryProgramError("priority spine repository order changed unexpectedly")
-    if observed_priorities != list(range(len(observed_priorities))):
-        raise LibraryProgramError("priority spine priorities must be contiguous from zero")
+        observed_repositories.append(name)
+        observed_priorities.append(priority)
 
-    return payload
+    if tuple(observed_repositories) != EXPECTED_REPOSITORIES:
+        raise LibraryProgramError(
+            "priority repositories must remain exact and ordered: "
+            f"observed={tuple(observed_repositories)!r}"
+        )
+    if observed_priorities != list(range(len(repositories))):
+        raise LibraryProgramError("priorities must be unique and contiguous from zero")
+
+    megamind = repositories[-1]
+    if megamind.get("identity_state") != "PENDING_USER_INTENT_CONFIRMATION":
+        raise LibraryProgramError("the megamind alias must remain explicitly unresolved")
+
+    return dict(payload)
+
+
+def validate_latest_execution_receipt(
+    program_path: Path, program_payload: Mapping[str, Any]
+) -> dict[str, Any]:
+    receipt_reference = _require_nonempty_text(
+        program_payload.get("latest_execution_receipt"), "latest_execution_receipt"
+    )
+    receipt_path = _repository_root(program_path) / receipt_reference
+    receipt_payload = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt = _require_mapping(receipt_payload, "execution receipt")
+
+    if receipt.get("schema") != RECEIPT_SCHEMA:
+        raise LibraryProgramError(f"execution receipt schema must be {RECEIPT_SCHEMA}")
+
+    scope = _require_mapping(receipt.get("scope"), "execution receipt scope")
+    if scope.get("kind") != "priority_spine_wave":
+        raise LibraryProgramError("execution receipt must describe a priority_spine_wave")
+    if scope.get("repositories") != len(EXPECTED_REPOSITORIES):
+        raise LibraryProgramError("execution receipt repository count is not exact")
+    if scope.get("whole_library_completion_claimed") is not False:
+        raise LibraryProgramError("execution receipt must not claim whole-library completion")
+
+    policy = _require_mapping(receipt.get("policy"), "execution receipt policy")
+    if policy.get("preserve_unique_value_before_closure") is not True:
+        raise LibraryProgramError("execution receipt must preserve unique value before closure")
+    if policy.get("holographic_mesh_anti_replacement") is not True:
+        raise LibraryProgramError(
+            "execution receipt must enforce holographic mesh anti-replacement"
+        )
+    if policy.get("zero_unique_contribution_required_for_retirement") is not True:
+        raise LibraryProgramError(
+            "execution receipt must require zero unique contribution for retirement"
+        )
+    if policy.get("latest_is_routing_cursor_only") is not True:
+        raise LibraryProgramError(
+            "execution receipt must treat latest as routing cursor only"
+        )
+
+    outcomes = receipt.get("outcomes")
+    if not isinstance(outcomes, list):
+        raise LibraryProgramError("execution receipt outcomes must be a list")
+    observed: list[str] = []
+    for index, raw_item in enumerate(outcomes):
+        item = _require_mapping(raw_item, f"outcomes[{index}]")
+        observed.append(
+            _require_nonempty_text(
+                item.get("repository"), f"outcomes[{index}].repository"
+            )
+        )
+        _assert_mesh_safe_branch_disposition(item, label=f"outcomes[{index}]")
+        branches = item.get("branch_dispositions", [])
+        if not isinstance(branches, list):
+            raise LibraryProgramError(
+                f"outcomes[{index}].branch_dispositions must be a list"
+            )
+        for branch_index, raw_branch in enumerate(branches):
+            branch = _require_mapping(
+                raw_branch,
+                f"outcomes[{index}].branch_dispositions[{branch_index}]",
+            )
+            _assert_mesh_safe_branch_disposition(
+                branch,
+                label=f"outcomes[{index}].branch_dispositions[{branch_index}]",
+            )
+
+    if tuple(observed) != EXPECTED_REPOSITORIES:
+        raise LibraryProgramError(
+            "execution receipt outcomes must match the exact priority spine order"
+        )
+
+    summary = _require_mapping(receipt.get("summary"), "execution receipt summary")
+    if summary.get("whole_library_complete") is not False:
+        raise LibraryProgramError("execution receipt overstates whole-library completion")
+
+    return dict(receipt_payload)
+
+
+def render_library_program(payload: Mapping[str, Any]) -> str:
+    repositories = payload["repositories"]
+    lines = [
+        "# Library Capability Elevation Program",
+        "",
+        (
+            "The estate moves upward: reconstruct purpose, recover lost capability, "
+            "preserve unique value, compose complementary gains, implement, verify, "
+            "integrate, and deploy or package. Inventory, similarity, proof gaps, or "
+            "assistant-generated classifications cannot authorize retirement."
+        ),
+        "",
+        "| Priority | Repository | Role | Upward action | README | Proof | Branch |",
+        "|---:|---|---|---|---|---|---|",
+    ]
+    for repository in repositories:
+        lines.append(
+            "| {priority} | `{repository}` | {role} | `{action}` | `{readme_state}` | "
+            "`{proof_state}` | `{branch_state}` |".format(**repository)
+        )
+    lines.extend(
+        (
+            "",
+            "## Capability evolution",
+            "",
+            (
+                "`DISCOVER -> RECONSTRUCT_PURPOSE -> COMPARE_LINEAGE -> "
+                "EXTRACT_UNIQUE_VALUE -> RESTORE_LOST_CAPABILITY -> COMPOSE_GAINS -> "
+                "IMPLEMENT -> VERIFY -> INTEGRATE -> DEPLOY_OR_PACKAGE -> RECEIPT`"
+            ),
+            "",
+            (
+                "Retirement requires provider-read-back UNIQUE_CONTRIBUTION=0 and "
+                "verified lineage/source-pointer preservation. A fully drained donor "
+                "becomes PRESERVE_DRAINED_LINEAGE; remote-ref deletion is forbidden. "
+                "This proof boundary does not create an additional per-retirement "
+                "approval requirement where controlling Operator instructions already govern."
+            ),
+        )
+    )
+    return "\n".join(lines) + "\n"
