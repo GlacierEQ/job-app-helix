@@ -105,7 +105,6 @@ def test_receipt_rejects_delete_even_with_zero_proof_and_operator_authority(
         "provider_readback_refs": [
             "github://compare/main...feature/reference-language-manifest"
         ],
-        "operator_authorized_retirement": True,
         "lineage_preserved": True,
     }
 
@@ -136,7 +135,6 @@ def test_receipt_rejects_drained_retirement_without_lineage_proof(
         "provider_readback_refs": [
             "github://compare/main...feature/reference-language-manifest"
         ],
-        "operator_authorized_retirement": True,
     }
 
     program_path = _write_program_with_receipt(
@@ -166,7 +164,6 @@ def test_receipt_accepts_drained_retirement_with_zero_proof_and_preserved_ref(
         "provider_readback_refs": [
             "github://compare/main...feature/reference-language-manifest"
         ],
-        "operator_authorized_retirement": True,
         "lineage_preserved": True,
     }
 

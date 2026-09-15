@@ -59,7 +59,7 @@ def test_checked_in_library_program_is_valid_and_points_up() -> None:
     assert payload["policy"]["direction"] == "MAXIMUM_COHERENT_ADVANCE"
     assert payload["policy"]["inventory_cannot_authorize_retirement"] is True
     assert payload["policy"]["similarity_cannot_establish_redundancy"] is True
-    assert payload["policy"]["operator_authorization_required_for_retirement"] is True
+    assert "provider-read-back UNIQUE_CONTRIBUTION=0" in payload["policy"]["retirement_boundary"]
 
 
 def test_checked_in_latest_execution_receipt_is_valid() -> None:
@@ -155,6 +155,6 @@ def test_render_is_deterministic_and_points_up() -> None:
     assert "MAXIMUM" not in first or "capability" in first.casefold()
     assert "RESTORE_LOST_CAPABILITY" in first
     assert "DEPLOY_OR_PACKAGE" in first
-    assert "Retirement, archival, merge-away" in first
+    assert "provider-read-back UNIQUE_CONTRIBUTION=0" in first
     assert "GlacierEQ/pro-code" in first
     assert "PENDING_USER_INTENT_CONFIRMATION" not in first

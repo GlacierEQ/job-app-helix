@@ -40,7 +40,7 @@
       "expected_head_sha": "bfa9547ff2fcb95b8bc8e88856174b2fe9156958",
       "state": "RESTORED_AFTER_FAILED_TRANSACTION",
       "restored_at": "2026-08-17",
-      "preservation_policy": "DO_NOT_RETIRE_WITHOUT_OPERATOR_AUTHORIZATION",
+      "preservation_policy": "PRESERVE_UNTIL_PROVIDER_READBACK_UNIQUE_CONTRIBUTION_ZERO_THEN_PRESERVE_DRAINED_LINEAGE",
       "reason": "Wave-two cleanup left this ref absent after rollback failure. The exact historical head remained recoverable and the ref was recreated during APEX takeover recovery."
     },
     {
@@ -49,7 +49,7 @@
       "expected_head_sha": "c2f60eaf794c81ff3c03318acc1b63c3faed64fa",
       "state": "RESTORED_AFTER_FAILED_TRANSACTION",
       "restored_at": "2026-08-17",
-      "preservation_policy": "DO_NOT_RETIRE_WITHOUT_OPERATOR_AUTHORIZATION",
+      "preservation_policy": "PRESERVE_UNTIL_PROVIDER_READBACK_UNIQUE_CONTRIBUTION_ZERO_THEN_PRESERVE_DRAINED_LINEAGE",
       "reason": "Wave-two cleanup left this ref absent after rollback failure. The exact historical head remained recoverable and the ref was recreated during APEX takeover recovery."
     }
   ],

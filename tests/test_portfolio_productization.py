@@ -111,7 +111,7 @@ def test_current_wave_four_is_upward_productization() -> None:
     assert wave.target_evidence >= EvidenceLevel.TEST
     assert wave.require_positive_test_count is True
     assert "strongest justified form" in wave.objective
-    assert "explicit operator authorization" in wave.objective
+    assert "provider-read-back UNIQUE_CONTRIBUTION=0" in wave.objective
     assert "inventory" in wave.objective.casefold()
     assert "similarity" in wave.objective.casefold()
 
@@ -125,7 +125,7 @@ def test_legacy_archive_mode_is_readable_but_cannot_drive_active_execution(tmp_p
     assert wave.historical_mode == ExecutionMode.CONSOLIDATE_OR_ARCHIVE.value
     assert wave.target_evidence is EvidenceLevel.TEST
     assert wave.require_positive_test_count is True
-    assert "Retirement or archival requires explicit operator authorization" in wave.objective
+    assert "UNIQUE_CONTRIBUTION=0" in wave.objective
 
 
 def test_productize_requires_native_static_and_test_checks(tmp_path: Path) -> None:
@@ -194,7 +194,7 @@ def test_productization_compiler_detects_cli_package_and_forbids_archive(tmp_pat
     assert targets[0].blockers == ()
     assert "clean environment" in targets[0].next_checkpoint
     assert payload["targets"][0]["archive_allowed"] is False
-    assert payload["retirement_policy"] == "OPERATOR_AUTHORIZATION_REQUIRED"
+    assert payload["retirement_policy"] == "PROVIDER_READBACK_UNIQUE_CONTRIBUTION_ZERO_AND_PRESERVE_DRAINED_LINEAGE"
 
 
 def test_commented_project_scripts_do_not_create_false_cli_signal(tmp_path: Path) -> None:

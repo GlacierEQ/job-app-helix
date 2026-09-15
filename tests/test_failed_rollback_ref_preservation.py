@@ -28,7 +28,7 @@ def test_failed_rollback_refs_are_preserved_at_exact_heads() -> None:
         assert restored[name]["state"] == "RESTORED_AFTER_FAILED_TRANSACTION"
         assert (
             restored[name]["preservation_policy"]
-            == "DO_NOT_RETIRE_WITHOUT_OPERATOR_AUTHORIZATION"
+            == "PRESERVE_UNTIL_PROVIDER_READBACK_UNIQUE_CONTRIBUTION_ZERO_THEN_PRESERVE_DRAINED_LINEAGE"
         )
 
 
