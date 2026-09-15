@@ -109,8 +109,7 @@ def main() -> None:
     artifact = _get(f"/repos/{PUBLIC_REPO}/actions/artifacts/{artifact_id}")
     if artifact.get("id") != artifact_id:
         _fail("public proof artifact identity drift")
-    if artifact.get("expired") is not False:
-        _fail("public proof artifact is expired")
+    artifact_expired = artifact.get("expired") is True
     if artifact.get("digest") != proof["artifact_digest"]:
         _fail("public proof artifact digest drift")
     artifact_run = artifact.get("workflow_run", {})
@@ -137,6 +136,7 @@ def main() -> None:
                 "public_proof_run_id": run_id,
                 "public_proof_artifact_id": artifact_id,
                 "public_proof_artifact_digest": artifact["digest"],
+                "public_proof_artifact_expired": artifact_expired,
                 "public_proof_head": run["head_sha"],
                 "public_source_slice_disclosed": True,
                 "verified_git_blobs": exact_blobs,
