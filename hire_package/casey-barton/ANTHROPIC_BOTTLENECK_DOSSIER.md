@@ -42,7 +42,7 @@ Rather than proposing speculative paper frameworks, the **GlacierEQ Anthropic Co
 ## 🛠️ Subsystem I: `anthropic-safety-monitor` (Fail-Closed Sandbox)
 
 ### 1. Architectural Blueprint
-- **Location:** [`/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/anthropic-safety-monitor`](file:///Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/anthropic-safety-monitor)
+- **Location:** [GlacierEQ/anthropic-safety-monitor](https://github.com/GlacierEQ/anthropic-safety-monitor)
 - **Engine:** Python 3.14 + strict cryptographic AST parse + defused validation
 - **Verified Suite:** **62/62 Unit & Invariant Tests Passing**
 - **Core Mechanism:**
@@ -62,7 +62,7 @@ pytest tests/ -q
 ## 🐝 Subsystem II: `anthropic-agent-coordinator` (Deterministic Swarm)
 
 ### 1. Architectural Blueprint
-- **Location:** [`/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/anthropic-agent-coordinator`](file:///Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/anthropic-agent-coordinator)
+- **Location:** [GlacierEQ/anthropic-agent-coordinator](https://github.com/GlacierEQ/anthropic-agent-coordinator)
 - **Engine:** Deterministic DAG Task Scheduler + Resource Isolation + Quorum Resolver
 - **Verified Suite:** **77/77 Tests Passing** (including adversarial race condition testing)
 - **Core Mechanism:**

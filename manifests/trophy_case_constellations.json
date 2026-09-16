@@ -19,56 +19,56 @@
         "role": "Apex Kernel Operating System",
         "level": "L5",
         "state": "PROMOTED",
-        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/AKOS"
+        "path": "$APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/AKOS"
       },
       {
         "id": "the-tower-of-babel",
         "role": "Polyglot Systems Verification (51 Languages)",
         "level": "L4",
         "state": "REFERENCE_ONLY",
-        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/the-tower-of-babel"
+        "path": "$APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/the-tower-of-babel"
       },
       {
         "id": "monolith",
         "role": "Estate Cartography Head",
         "level": "L5",
         "state": "ACTIVE",
-        "path": "/Users/kcbflux/monolith"
+        "path": "$HOME/monolith"
       },
       {
         "id": "job-app-helix",
         "role": "Build & Verify Campaign Engine",
         "level": "L4",
         "state": "PROMOTED",
-        "path": "/Users/kcbflux/.grok/work/job-app-helix"
+        "path": "$GROK_WORK/job-app-helix"
       },
       {
         "id": "JOB-RESUME-BUILDER-",
         "role": "Resume Shapeshifter Next.js Application",
         "level": "L4",
         "state": "VERIFIED",
-        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/JOB-RESUME-BUILDER-"
+        "path": "$APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/JOB-RESUME-BUILDER-"
       },
       {
         "id": "pro-code",
         "role": "Engineering Standards & Invariants",
         "level": "L4",
         "state": "REFERENCE_ONLY",
-        "path": "/Users/kcbflux/APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/pro-code"
+        "path": "$APEX_SYSTEM/DOMAINS/PORTFOLIO_ESTATE/pro-code"
       },
       {
         "id": "apex-fs",
         "role": "Multimodal Perception & Filesystem MCP",
         "level": "L4",
         "state": "VERIFIED",
-        "path": "/Users/kcbflux/apex-fs"
+        "path": "$HOME/apex-fs"
       },
       {
         "id": "antigravity-cli",
         "role": "Multi-Model Swarm Runtime",
         "level": "L4",
         "state": "ACTIVE",
-        "path": "/Users/kcbflux/antigravity-cli"
+        "path": "$HOME/antigravity-cli"
       }
     ]
   },

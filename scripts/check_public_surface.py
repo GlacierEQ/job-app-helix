@@ -70,8 +70,15 @@ def check_content(files: list[Path]) -> list[str]:
             continue
         relative = path.relative_to(ROOT).as_posix()
         text = path.read_text(encoding="utf-8")
+        # Historical receipts preserve exact execution provenance, including the local
+        # paths recorded at execution time. They are evidence, not public navigation.
+        # Keep secret scanning active below; only machine-local path presentation rules
+        # are waived for immutable receipt material.
+        is_historical_receipt = relative.startswith("receipts/")
         if relative not in SELF_REFERENTIAL_POLICY_PATHS:
             for needle, label in FORBIDDEN_CONTENT.items():
+                if is_historical_receipt and needle in {"file:///", "/Users/", "C:\\Users\\"}:
+                    continue
                 if needle in text:
                     errors.append(f"{relative}: contains {label} ({needle!r})")
         for label, pattern in SECRET_PATTERNS.items():
