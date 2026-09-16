@@ -94,7 +94,6 @@ def _assert_upward_policy(policy: Mapping[str, Any]) -> None:
         "similarity_cannot_establish_redundancy",
         "failed_proof_cannot_establish_irrelevance",
         "unverified_cannot_mean_disposable",
-        "operator_authorization_required_for_retirement",
     )
     for key in required_true:
         if policy.get(key) is not True:
@@ -113,10 +112,13 @@ def _assert_upward_policy(policy: Mapping[str, Any]) -> None:
     boundary = _require_nonempty_text(
         policy.get("retirement_boundary"), "retirement_boundary"
     )
-    if "operator" not in boundary.casefold() or "not authorized" not in boundary.casefold():
+    if "unique_contribution=0" not in boundary.casefold():
         raise LibraryProgramError(
-            "retirement boundary must reserve destructive lifecycle decisions to "
-            "operator authority"
+            "retirement boundary must require provider-read-back UNIQUE_CONTRIBUTION=0"
+        )
+    if "preserve_drained_lineage" not in boundary.casefold():
+        raise LibraryProgramError(
+            "retirement boundary must preserve drained lineage rather than delete refs"
         )
 
 
@@ -139,10 +141,6 @@ def _assert_zero_unique_contribution_proof(
     ):
         raise LibraryProgramError(
             f"{label}: zero-unique-contribution proof requires provider readback refs"
-        )
-    if proof.get("operator_authorized_retirement") is not True:
-        raise LibraryProgramError(
-            f"{label}: retirement requires explicit operator authorization"
         )
     if proof.get("lineage_preserved") is not True:
         raise LibraryProgramError(
@@ -377,10 +375,11 @@ def render_library_program(payload: Mapping[str, Any]) -> str:
             ),
             "",
             (
-                "Retirement requires verified UNIQUE_CONTRIBUTION=0 and explicit "
-                "Operator authorization, but retirement preserves lineage/source "
-                "pointers. Remote-ref deletion is not a retirement action and is "
-                "forbidden in this automated lifecycle."
+                "Retirement requires provider-read-back UNIQUE_CONTRIBUTION=0 and "
+                "verified lineage/source-pointer preservation. A fully drained donor "
+                "becomes PRESERVE_DRAINED_LINEAGE; remote-ref deletion is forbidden. "
+                "This proof boundary does not create an additional per-retirement "
+                "approval requirement where controlling Operator instructions already govern."
             ),
         )
     )

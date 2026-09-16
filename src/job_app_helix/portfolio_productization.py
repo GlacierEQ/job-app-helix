@@ -185,81 +185,33 @@ def _checkpoint(plan: RepositoryPlan, form: DeliveryForm, signals: tuple[str, ..
     if plan.blockers:
         return f"repair execution blocker: {plan.blockers[0]}"
     if plan.target_evidence < EvidenceLevel.TEST:
-        return (
-            "finish central mechanism and reach positive-count deterministic "
-            "test proof"
-        )
+        return "finish central mechanism and reach positive-count deterministic test proof"
     if form is DeliveryForm.STATIC_SITE:
-        return (
-            "build, deploy, smoke-test, and bind the live site receipt to the "
-            "exact source head"
-        )
+        return "build, deploy, smoke-test, and bind the live site receipt to the exact source head"
     if form is DeliveryForm.CONTAINER_SERVICE:
-        return (
-            "build the container, run an isolated smoke test, deploy it, and "
-            "capture health receipts"
-        )
+        return "build the container, run an isolated smoke test, deploy it, and capture health receipts"
     if form is DeliveryForm.SERVICE:
-        return (
-            "make the service cold-start cleanly, add health checks, deploy it, "
-            "and observe runtime behavior"
-        )
+        return "make the service cold-start cleanly, add health checks, deploy it, and observe runtime behavior"
     if form is DeliveryForm.CLI_PACKAGE:
-        return (
-            "install from a clean environment, run an end-to-end command, "
-            "package/release it, and bind receipts"
-        )
+        return "install from a clean environment, run an end-to-end command, package/release it, and bind receipts"
     if form is DeliveryForm.PACKAGE:
-        return (
-            "make clean installation and public API smoke tests pass, then "
-            "publish or integrate the package"
-        )
+        return "make clean installation and public API smoke tests pass, then publish or integrate the package"
     if form is DeliveryForm.MULTI_RUNTIME_TOOL:
-        return (
-            "prove each runtime boundary, expose one coherent entrypoint, "
-            "package it, and run an end-to-end flow"
-        )
+        return "prove each runtime boundary, expose one coherent entrypoint, package it, and run an end-to-end flow"
     if signals:
-        return (
-            "execute the strongest existing delivery path and bind runtime "
-            "proof to the exact source head"
-        )
-    return (
-        "create a real runnable entrypoint, package the product, then advance "
-        "to an appropriate deployment surface"
-    )
+        return "execute the strongest existing delivery path and bind runtime proof to the exact source head"
+    return "create a real runnable entrypoint, package the product, then advance to an appropriate deployment surface"
 
 
 def compile_productization_targets(
-    *,
-    workspace: Path,
-    inventory_path: Path,
-    rollout_path: Path,
-    wave_ids: set[str] | None = None,
+    *, workspace: Path, inventory_path: Path, rollout_path: Path, wave_ids: set[str] | None = None,
 ) -> tuple[ProductizationTarget, ...]:
-    plans = build_plan(
-        workspace=workspace,
-        inventory_path=inventory_path,
-        rollout_path=rollout_path,
-        wave_ids=wave_ids,
-    )
+    plans = build_plan(workspace=workspace, inventory_path=inventory_path, rollout_path=rollout_path, wave_ids=wave_ids)
     targets: list[ProductizationTarget] = []
     for plan in plans:
         form = infer_delivery_form(plan)
         signals = deployment_signals(plan.path) if plan.path.is_dir() else ()
-        targets.append(
-            ProductizationTarget(
-                repository=plan.repository,
-                wave_id=plan.wave_id,
-                priority=plan.priority,
-                delivery_form=form,
-                stacks=plan.stacks,
-                deployment_signals=signals,
-                blockers=plan.blockers,
-                target_evidence=max(plan.target_evidence, EvidenceLevel.TEST),
-                next_checkpoint=_checkpoint(plan, form, signals),
-            )
-        )
+        targets.append(ProductizationTarget(repository=plan.repository, wave_id=plan.wave_id, priority=plan.priority, delivery_form=form, stacks=plan.stacks, deployment_signals=signals, blockers=plan.blockers, target_evidence=max(plan.target_evidence, EvidenceLevel.TEST), next_checkpoint=_checkpoint(plan, form, signals)))
     return tuple(targets)
 
 
@@ -269,16 +221,9 @@ def productization_payload(targets: tuple[ProductizationTarget, ...]) -> dict[st
         forms[target.delivery_form.value] += 1
     return {
         "schema": "glaciereq.portfolio-productization.v1",
-        "mission": (
-            "Rewrite every admitted job-engineering repository into its strongest useful, "
-            "functional, operable, and appropriately deployed form while preserving prior gains."
-        ),
+        "mission": "Rewrite every admitted job-engineering repository into its strongest useful, functional, operable, and appropriately deployed form while preserving prior gains.",
         "default_action": "PRODUCTIZE",
-        "retirement_policy": "OPERATOR_AUTHORIZATION_REQUIRED",
+        "retirement_policy": "PROVIDER_READBACK_UNIQUE_CONTRIBUTION_ZERO_AND_PRESERVE_DRAINED_LINEAGE",
         "targets": [target.to_dict() for target in targets],
-        "summary": {
-            "repositories": len(targets),
-            "blocked": sum(bool(target.blockers) for target in targets),
-            "delivery_forms": forms,
-        },
+        "summary": {"repositories": len(targets), "blocked": sum(bool(target.blockers) for target in targets), "delivery_forms": forms},
     }

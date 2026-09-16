@@ -44,6 +44,9 @@ class ClassificationEvidence:
     status: str | None = None
 
 
+DEFAULT_CLASSIFICATION_EVIDENCE = ClassificationEvidence()
+
+
 @dataclass(frozen=True, slots=True)
 class ReadmePlan:
     repository: str
@@ -178,7 +181,7 @@ def build_generated_contract(
     repository: str,
     default_branch: str,
     root_paths: Iterable[str],
-    classification: ClassificationEvidence = ClassificationEvidence(),
+    classification: ClassificationEvidence = DEFAULT_CLASSIFICATION_EVIDENCE,
     repository_url: str | None = None,
     fork: bool = False,
 ) -> dict[str, Any]:
@@ -258,7 +261,7 @@ def render_machine_block(contract: Mapping[str, Any]) -> str:
     ).rstrip()
     return "\n".join(
         [
-            "### Machine–Mesh Protocol Manifest",
+            "### Machine-Mesh Protocol Manifest",
             "",
             START_MARKER,
             "```yaml",
@@ -375,7 +378,7 @@ def plan_readme(
     current_readme: str | None,
     default_branch: str,
     root_paths: Iterable[str],
-    classification: ClassificationEvidence = ClassificationEvidence(),
+    classification: ClassificationEvidence = DEFAULT_CLASSIFICATION_EVIDENCE,
     repository_url: str | None = None,
     archived: bool = False,
     fork: bool = False,

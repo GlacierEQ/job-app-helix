@@ -81,9 +81,9 @@ jobs:
           block = Path("/tmp/README.generated-block.md").read_text(encoding="utf-8")
 
           ordered_headings = [
-              "## For recruiters and non-technical reviewers",
-              "## For senior engineers and domain experts",
-              "## For AI systems and toolchains",
+              "## For Recruiters and Non-Technical Reviewers",
+              "## For Senior Engineers and Domain Experts",
+              "## For AI Systems and Toolchains",
           ]
           positions = [readme.index(heading) for heading in ordered_headings]
           if positions != sorted(positions):
