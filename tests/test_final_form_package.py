@@ -127,8 +127,8 @@ def test_current_distribution_is_explicitly_proprietary() -> None:
     classifiers = project["project"]["classifiers"]
 
     assert "PROPRIETARY" in license_text
-    assert "LIMITED EVALUATION PERMISSION" in license_text
-    assert "previously granted rights are not retroactively revoked" in normalized_license
+    assert "NO COPYRIGHT LICENSE GRANTED" in license_text
+    assert "does not retroactively revoke rights" in normalized_license
     assert "License :: Other/Proprietary License" in classifiers
     assert "License :: OSI Approved :: MIT License" not in classifiers
 
