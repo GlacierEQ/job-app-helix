@@ -2,9 +2,17 @@
 """
 Unit tests for APEX External Compute Delegation Engine.
 """
+import importlib.util
 import unittest
+from pathlib import Path
 
-from scripts.legacy.apex_distributed_compute import ExternalComputeDelegator
+_MODULE_PATH = Path(__file__).resolve().parents[1] / "scripts" / "legacy" / "apex_distributed_compute.py"
+_SPEC = importlib.util.spec_from_file_location("apex_distributed_compute", _MODULE_PATH)
+if _SPEC is None or _SPEC.loader is None:
+    raise ImportError(f"Unable to load APEX distributed compute module from {_MODULE_PATH}")
+_MODULE = importlib.util.module_from_spec(_SPEC)
+_SPEC.loader.exec_module(_MODULE)
+ExternalComputeDelegator = _MODULE.ExternalComputeDelegator
 
 
 class TestExternalComputeDelegator(unittest.TestCase):
