@@ -148,12 +148,37 @@
     "An explicit APPROVE decision was recorded before the bounded provider action executed.",
     "The provider mutation was limited to the dedicated Supabase sandbox receipt ledger; no email, CRM, seller, customer, or third-party contact occurred.",
     "Provider readback verified the same motion ID and durable provider reference.",
-    "The runtime produced a SHA-256 provider receipt and completed the behavior evaluation with SHIP_DEMO."
+    "The runtime produced a SHA-256 provider receipt and completed the behavior evaluation with SHIP_DEMO.",
+    "The deployed Claudification Edge Function source is now preserved in GlacierEQ/command-center, and the subsequent Command Center verification run passed both static data-boundary behavior and live Supabase ops-plane readback."
   ],
   "claim_boundaries": [
     "This receipt proves the governed motion architecture in a provider-backed sandbox, not Anthropic production deployment.",
     "This receipt does not claim real seller, CRM, customer, pipeline, revenue, or ROI impact.",
     "This receipt does not prove production Claude Agent SDK use.",
     "The previous 2026-09-21 runtime-readback artifact remains historically valid for its earlier observation; this file is the later delta that closes the provider-native runtime-proof gap."
-  ]
+  ],
+  "repository_hardening": {
+    "observed_at": "2026-09-21T23:38:55Z",
+    "command_center": {
+      "deployed_runtime_source_preserved": {
+        "path": "supabase/functions/claudification-runtime/index.ts",
+        "commit": "35dc02cabdf7a09bad9beedb6d1f4d3a5cef7117",
+        "provider_source_sha256": "d57b4bbdab1a040c89911219172eda224c0c12c118437ef59f5191c7d6fd8205"
+      },
+      "ops_plane_public_readback_repair": {
+        "path": "supabase/migrations/20260921234500_ops_plane_public_projection_repair.sql",
+        "commit": "449e4bdfe59fa7fef5092b55a09527357cfdbbfc",
+        "database_migration_applied": true,
+        "security_model": "security_invoker views + RLS + anon exact-column SELECT grants"
+      },
+      "github_actions": {
+        "workflow": "Command Center Verification",
+        "run_id": 35668496621,
+        "job_id": 106559443859,
+        "conclusion": "success",
+        "static_data_boundary_behavior": "success",
+        "live_supabase_ops_plane_readback": "success"
+      }
+    }
+  }
 }
