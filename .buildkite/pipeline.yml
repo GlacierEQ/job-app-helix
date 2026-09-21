@@ -1,0 +1,35 @@
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  PYTHONUNBUFFERED: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+
+steps:
+  - label: ":python: Python 3.11"
+    key: py311
+    timeout_in_minutes: 20
+    agents:
+      queue: linux-small
+    command: |
+      set -euo pipefail
+      actual="$(git rev-parse HEAD)"
+      test "$actual" = "$BUILDKITE_COMMIT"
+      python3.11 -m venv .buildkite-venv
+      .buildkite-venv/bin/python -m pip install --upgrade pip
+      .buildkite-venv/bin/python -m pip install -e ".[dev]"
+      .buildkite-venv/bin/ruff check src tests scripts showcase/demo_15min_run.py
+      .buildkite-venv/bin/pytest -q
+
+  - label: ":python: Python 3.12"
+    key: py312
+    timeout_in_minutes: 20
+    agents:
+      queue: linux-small
+    command: |
+      set -euo pipefail
+      actual="$(git rev-parse HEAD)"
+      test "$actual" = "$BUILDKITE_COMMIT"
+      python3.12 -m venv .buildkite-venv
+      .buildkite-venv/bin/python -m pip install --upgrade pip
+      .buildkite-venv/bin/python -m pip install -e ".[dev]"
+      .buildkite-venv/bin/ruff check src tests scripts showcase/demo_15min_run.py
+      .buildkite-venv/bin/pytest -q
