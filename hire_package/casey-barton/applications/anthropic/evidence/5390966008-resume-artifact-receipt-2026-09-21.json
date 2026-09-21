@@ -1,0 +1,42 @@
+{
+  "schema": "glaciereq.application-artifact-receipt.v1",
+  "candidate": "Casey Del Carpio Barton",
+  "company": "Anthropic",
+  "role": "Staff Software Engineer, GTM AI Engineering (Claudification)",
+  "provider_job_id": "5390966008",
+  "generated_at": "2026-09-21",
+  "source": {
+    "repository": "GlacierEQ/job-app-helix",
+    "path": "hire_package/casey-barton/applications/anthropic/5390966008_GTM_CLAUDIFICATION_RESUME.md",
+    "blob_sha": "d0c5372244851199879c4608baf08b242de28b38"
+  },
+  "artifacts": [
+    {
+      "filename": "Casey_Barton_Anthropic_GTM_Claudification_Resume_FINAL.docx",
+      "sha256": "5217b8e0f0bc5c7d44e37efca59e4618883108b9db0153cbe18cb0739772b3bc",
+      "bytes_generated_in_chat_runtime": 41861,
+      "visual_qa": {
+        "rendered_pages": 2,
+        "renderer": "LibreOffice via /home/oai/skills/docx/render_docx.py",
+        "status": "PASS",
+        "notes": "Both pages visually inspected; no clipping, overlap, broken glyphs, or table overflow observed."
+      }
+    },
+    {
+      "filename": "Casey_Barton_Anthropic_GTM_Claudification_Resume_FINAL.pdf",
+      "sha256": "d4893d77074342c841a6769b392e8bf36102712455de0c0536db2bf162ea6031",
+      "bytes_generated_in_chat_runtime": 59059,
+      "visual_qa": {
+        "rendered_pages": 2,
+        "status": "PASS",
+        "notes": "PDF is the verified export of the visually inspected DOCX layout."
+      }
+    }
+  ],
+  "evidence_boundary": [
+    "Artifact hashes prove the bytes generated in the ChatGPT working runtime on this date.",
+    "This receipt does not claim the artifacts have been uploaded to Greenhouse or any external provider.",
+    "Submission remains a separate provider action requiring explicit completion and receipt capture."
+  ],
+  "next_gate": "Upload verified PDF to Anthropic Greenhouse job 5390966008 after operator-only form decisions are resolved."
+}
