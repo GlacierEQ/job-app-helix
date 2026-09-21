@@ -65,3 +65,54 @@ The GTM Claudification translation is therefore organizational-domain transfer, 
 ## Success state
 
 The campaign is not complete at “resume generated.” It is complete only when the role-specific package is live, evidence-bound, submitted through the correct provider path, receipt-tracked, and the interview/demo path is prepared to prove the same architecture interactively.
+
+
+## Canonical live demo — Operator-observed
+
+**Operator source:** current conversation, 2026-09-21. This is the controlling demonstration path for the Anthropic GTM Claudification campaign. It is preserved as firsthand Operator-observed product state; exact UI/runtime behavior should be provider-read back separately when needed for an external runtime claim.
+
+### Product framing
+
+**Claudification is live — a GTM agent desk that is the Anthropic job, run on the GlacierEQ estate already built.**
+
+The posting calls for autonomous **inbound / outbound / pipeline** motions, **approval gates**, **MCP**, **evals in production**, and a **shared platform**. Claudification is the role-shaped operating surface that composes those existing estate capabilities.
+
+| Surface | What it is |
+|---|---|
+| **Command** | Pipeline board. Hire motion is a deal. ROI on the right. |
+| **Motions** | Start inbound, outbound, or pipeline. MCP → agent → **gate**. Approve, escalate, or reject. Nothing sends unsupervised. |
+| **Estate** | Flagship repositories clustered to the JD: control plane, 12 MCP connectors, inbound, outbound, evals, inner-source. |
+| **Evals** | Behavior benches with ship/hold gates, tool-call telemetry, ROI. |
+| **Packet** | Cover letter + requirement → evidence map. Copy it. Open the posting. |
+
+### Reviewer interaction
+
+**Run this first:** `Motions → Outbound → Anthropic · Claudification → Start motion`.
+
+Expected demonstration sequence:
+
+```text
+start outbound motion
+→ MCP/tool plan
+→ agent execution
+→ send gate
+→ human approval / escalation / rejection
+→ approved bounded action
+→ receipt/readback
+→ eval / telemetry / ROI surface
+```
+
+The central proof is not a slide or résumé sentence. It is one interaction showing the operating pattern the job asks for.
+
+**Draft with model** should generate a real sequence from the desk while preserving the gate. **Packet** is the role-specific application/evidence artifact. `github.com/GlacierEQ` is the underlying source-proof estate.
+
+### Campaign articulation
+
+> The job description asks someone to build autonomous GTM motions with MCP/tool use, human approval boundaries, production evaluation, observability, and a reusable shared platform. I already built that class of system. Claudification is the role-specific GTM desk running on the same GlacierEQ estate: start a motion, watch the agent/tool path hit the send gate, approve it, read back the action, and inspect the evaluation and business-measurement surfaces. The application package is generated from the same evidence graph behind the runtime.
+
+### Evidence boundary
+
+- Do not claim Anthropic internal deployment or affiliation.
+- Do not claim unsupervised sending; the gate is part of the proof.
+- Treat exact live UI/runtime state as Operator-observed until separately read back from the deployed provider/runtime.
+- Keep the system claim stronger than a generic “fit” claim: the estate already implements the required system class; Claudification is the GTM composition.
