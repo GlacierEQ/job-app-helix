@@ -116,3 +116,37 @@ The central proof is not a slide or résumé sentence. It is one interaction sho
 - Do not claim unsupervised sending; the gate is part of the proof.
 - Treat exact live UI/runtime state as Operator-observed until separately read back from the deployed provider/runtime.
 - Keep the system claim stronger than a generic “fit” claim: the estate already implements the required system class; Claudification is the GTM composition.
+
+
+## Current 5390966008 execution artifacts — 2026-09-21
+
+The active role-specific package now has dedicated source artifacts. Use these before older generalized Anthropic/FDE material:
+
+- `5390966008_GTM_CLAUDIFICATION_REQUIREMENT_EVIDENCE_MATRIX.json` — exact current-role requirement → implementation → evidence → claim-boundary map.
+- `5390966008_GTM_CLAUDIFICATION_RESUME.md` — role-specific résumé source derived from existing GlacierEQ/FDE evidence rather than a generic restart.
+- `5390966008_GTM_CLAUDIFICATION_DEMO_RUNBOOK.md` — first-interaction live-demo path centered on one governed GTM motion.
+- `GlacierEQ/job-application:applications/anthropic-gtm-ai-engineering/CLAUDIFICATION_SYSTEM_MAP.md` — public-application source map.
+- `GlacierEQ/job-application:/roles/anthropic-gtm-ai-engineering/` — deployed recruiter-facing proof route.
+
+### Current official-role binding
+
+At the 2026-09-21 public-source check, Greenhouse job `5390966008` is titled **Staff Software Engineer, GTM AI Engineering**. The source explicitly calls the team **GTM AI Engineering (Claudification)** and names end-to-end inbound/outbound/pipeline agents, human approval/handoff/escalation design, development and production evals, tool/model observability tied to pipeline and revenue, MCP servers/agent skills/web apps, shared GTM codebases, seller workflow grounding, and repeatable pattern extraction.
+
+### Historical-asset safety
+
+`ANTHROPIC_BOTTLENECK_DOSSIER.md` is **historical context, not authoritative proof for 5390966008**. It contains older model references, old repository/test-count framing, and stronger language than the current repository-native evidence ceilings permit. Do not copy its “production-grade,” Anthropic-system, model-version, or test-count claims into the GTM Claudification application without fresh source verification.
+
+`EXECUTIVE_RESUME.md` remains a donor for identity, experience, and architecture framing, but the dedicated `5390966008_GTM_CLAUDIFICATION_RESUME.md` controls this campaign.
+
+### Current next frontier
+
+The application package is now past generic fit analysis. Remaining work is:
+
+1. lock application-form answers using Casey-authored first-draft material and exact personal form decisions;
+2. produce the final uploadable résumé artifact from the role-specific source and verify its visual/text extraction;
+3. verify the live Claudification runtime path separately from the Operator-observed product record when a provider/native runtime readback path is available;
+4. submit job `5390966008` through the correct Greenhouse provider path;
+5. capture the submission receipt;
+6. immediately continue into recruiter outreach and live-demo/interview preparation.
+
+Package completion is not campaign completion.
