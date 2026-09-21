@@ -125,6 +125,7 @@ The active role-specific package now has dedicated source artifacts. Use these b
 - `5390966008_GTM_CLAUDIFICATION_REQUIREMENT_EVIDENCE_MATRIX.json` — exact current-role requirement → implementation → evidence → claim-boundary map.
 - `5390966008_GTM_CLAUDIFICATION_RESUME.md` — role-specific résumé source derived from existing GlacierEQ/FDE evidence rather than a generic restart.
 - `5390966008_GTM_CLAUDIFICATION_DEMO_RUNBOOK.md` — first-interaction live-demo path centered on one governed GTM motion.
+- `5390966008_GTM_CLAUDIFICATION_SUBMISSION_PACKET.md` — assembled current application packet, verified resume hashes, Greenhouse field state, release gate, and post-submit continuation.
 - `GlacierEQ/job-application:applications/anthropic-gtm-ai-engineering/CLAUDIFICATION_SYSTEM_MAP.md` — public-application source map.
 - `GlacierEQ/job-application:/roles/anthropic-gtm-ai-engineering/` — deployed recruiter-facing proof route.
 
