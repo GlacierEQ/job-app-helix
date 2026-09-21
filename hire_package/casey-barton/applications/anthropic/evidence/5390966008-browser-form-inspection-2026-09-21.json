@@ -1,0 +1,67 @@
+{
+  "schema": "glaciereq.browser-application-inspection.v1",
+  "candidate": "Casey Del Carpio Barton",
+  "company": "Anthropic",
+  "role": "Staff Software Engineer, GTM AI Engineering (Claudification)",
+  "provider_job_id": "5390966008",
+  "inspected_at": "2026-09-21T19:58:00Z",
+  "browser_agent": "TinyFish Agent",
+  "run_id": "5556514b-6218-48e3-a3b7-b456ae2554c1",
+  "source_url": "https://job-boards.greenhouse.io/anthropic/jobs/5390966008",
+  "result": {
+    "accepting_applications": true,
+    "submit_button_present": true,
+    "personal_data_entered": false,
+    "legal_acknowledgements_selected": false,
+    "submitted": false,
+    "required_fields": [
+      "First Name",
+      "Last Name",
+      "Email",
+      "Country",
+      "Phone",
+      "Resume/CV",
+      "Why Anthropic?",
+      "Are you open to working in-person in one of our offices 25% of the time?",
+      "AI Policy for Application",
+      "Do you require visa sponsorship?",
+      "Will you now or will you in the future require employment visa sponsorship to work in the country in which the job you're applying for is located?",
+      "Are you open to relocation for this role?",
+      "Have you ever interviewed at Anthropic before?",
+      "Please read the arbitration agreement below",
+      "Agreement to Arbitrate"
+    ],
+    "optional_fields": [
+      "Name pronunciation",
+      "Website",
+      "Earliest start",
+      "Timeline considerations",
+      "Additional Information",
+      "LinkedIn Profile",
+      "Working address or relocate",
+      "Gender",
+      "Hispanic/Latino",
+      "Veteran Status"
+    ],
+    "resume_upload_types": [
+      "pdf",
+      "doc",
+      "docx",
+      "txt",
+      "rtf"
+    ],
+    "upload_methods": [
+      "Attach",
+      "Dropbox",
+      "Google Drive",
+      "Enter manually"
+    ]
+  },
+  "boundary": [
+    "Inspection-only browser run",
+    "No submit action taken",
+    "No legal or policy acknowledgements accepted",
+    "No personal data entered or altered"
+  ],
+  "next_gate": "Resolve operator-only form decisions, then use an agentic browser for final form preparation and explicit submission authorization."
+}
