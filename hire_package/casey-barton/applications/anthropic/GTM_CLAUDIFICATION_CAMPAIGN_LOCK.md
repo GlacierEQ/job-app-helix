@@ -120,9 +120,9 @@ The central proof is not a slide or résumé sentence. It is one interaction sho
 
 ## Current 5390966008 execution artifacts — 2026-09-21
 
-The active role-specific package now has dedicated source artifacts. Use these before older generalized Anthropic/FDE material:
+The active role-specific package now has dedicated source artifacts. Start at `5390966008_INDEX.md`, then use these before older generalized Anthropic/FDE material:
 
-- `5390966008_GTM_CLAUDIFICATION_REQUIREMENT_EVIDENCE_MATRIX.json` — exact current-role requirement → implementation → evidence → claim-boundary map.
+- `5390966008_INDEX.md` — canonical current campaign entry point, status, artifact order, provider gate, and post-submit continuation.\n- `5390966008_GTM_CLAUDIFICATION_REQUIREMENT_EVIDENCE_MATRIX.json` — exact current-role requirement → implementation → evidence → claim-boundary map.
 - `5390966008_GTM_CLAUDIFICATION_RESUME.md` — role-specific résumé source derived from existing GlacierEQ/FDE evidence rather than a generic restart.
 - `5390966008_GTM_CLAUDIFICATION_DEMO_RUNBOOK.md` — first-interaction live-demo path centered on one governed GTM motion.
 - `5390966008_GTM_CLAUDIFICATION_SUBMISSION_PACKET.md` — assembled current application packet, verified resume hashes, Greenhouse field state, release gate, and post-submit continuation.
