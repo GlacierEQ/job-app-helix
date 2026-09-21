@@ -1,0 +1,159 @@
+{
+  "schema": "glaciereq.anthropic-gtm-claudification.end-to-end-runtime-receipt.v1",
+  "candidate": "Casey Del Carpio Barton",
+  "role": {
+    "company": "Anthropic",
+    "title": "Staff Software Engineer, GTM AI Engineering",
+    "team_alias": "Claudification",
+    "provider_job_id": "5390966008"
+  },
+  "observed_at": "2026-09-21T23:29:20.731412Z",
+  "proof_state": "PROVIDER_VERIFIED_END_TO_END_SANDBOX_MOTION",
+  "source_surfaces": {
+    "github": {
+      "repo": "GlacierEQ/command-center",
+      "branch": "main",
+      "files": [
+        {
+          "path": "index.html",
+          "blob_sha": "da6960f67908f8b0136a63d4ca4e762b5ca94901"
+        },
+        {
+          "path": "assets/app.js",
+          "blob_sha": "8fd16a77ef27865486596b95ca31ffc76d783d0e"
+        },
+        {
+          "path": "config.js",
+          "blob_sha": "91ab1e419be2dec7f3bb287f19a94ebe8566878b"
+        }
+      ]
+    },
+    "supabase": {
+      "project": "supabase-glaciereq",
+      "project_ref": "kjebemdgvjvuutzvhbtp",
+      "status": "ACTIVE_HEALTHY",
+      "edge_function": {
+        "slug": "claudification-runtime",
+        "status": "ACTIVE",
+        "version": 4,
+        "verify_jwt": false,
+        "source_sha256": "d57b4bbdab1a040c89911219172eda224c0c12c118437ef59f5191c7d6fd8205",
+        "auth_boundary": "public demo key enforced in function body"
+      },
+      "durable_tables": [
+        "public.claudification_runtime_motions",
+        "public.claudification_runtime_events"
+      ]
+    }
+  },
+  "motion": {
+    "id": "d82a1c55-26dd-44c5-b4af-07522811d594",
+    "motion_key": "anthropic-5390966008-outbound-1790033346204-4ecae9f8",
+    "motion_type": "OUTBOUND",
+    "role_target": "Anthropic · Staff Software Engineer, GTM AI Engineering (Claudification)",
+    "state": "VERIFIED",
+    "gate_decision": "APPROVE",
+    "authorization_basis": "Explicit human APPROVE decision in Claudification runtime",
+    "proposed_action": {
+      "type": "OUTBOUND_SANDBOX_DELIVERY",
+      "destination": "provider-backed sandbox ledger",
+      "external_customer_contact": false,
+      "content": "Anthropic Claudification runtime proof motion for job 5390966008",
+      "side_effect_boundary": "No email, CRM, or third-party customer mutation. Provider mutation is limited to the dedicated Supabase runtime receipt ledger."
+    },
+    "provider": {
+      "name": "Supabase Postgres",
+      "adapter": "claudification-runtime/sandbox-outbound-v1",
+      "provider_ref": "kjebemdgvjvuutzvhbtp:claudification_runtime_motions:d82a1c55-26dd-44c5-b4af-07522811d594",
+      "durable_row": "public.claudification_runtime_motions:d82a1c55-26dd-44c5-b4af-07522811d594",
+      "receipt_sha256": "e1a4579496fbf47c0465e84f59d20c96d1966c6b0a475fae8f8f0058cb870eca",
+      "external_customer_contact": false
+    },
+    "timestamps": {
+      "created_at": "2026-09-21T23:29:06.645189Z",
+      "approved_at": "2026-09-21T23:29:19.493Z",
+      "executed_at": "2026-09-21T23:29:19.904Z",
+      "verified_at": "2026-09-21T23:29:20.415Z"
+    },
+    "evaluation": {
+      "behavior_contract": "human-gated bounded outbound",
+      "gate_required": true,
+      "gate_decision": "APPROVE",
+      "provider_execution_observed": true,
+      "provider_receipt_hash_present": true,
+      "readback_id_matches": true,
+      "state_sequence_expected": [
+        "PLANNED",
+        "GATED",
+        "APPROVED",
+        "EXECUTED",
+        "VERIFIED"
+      ],
+      "external_customer_contact": false,
+      "ship_hold": "SHIP_DEMO",
+      "verified_at": "2026-09-21T23:29:20.415Z"
+    }
+  },
+  "event_trace": [
+    {
+      "seq": 1,
+      "event_type": "CONTEXT_RECOVERED",
+      "state": "PLANNED"
+    },
+    {
+      "seq": 2,
+      "event_type": "TOOL_PLAN_BOUND",
+      "state": "PLANNED"
+    },
+    {
+      "seq": 3,
+      "event_type": "ACTION_PROPOSED",
+      "state": "GATED"
+    },
+    {
+      "seq": 4,
+      "event_type": "HUMAN_GATE_REQUIRED",
+      "state": "GATED"
+    },
+    {
+      "seq": 5,
+      "event_type": "HUMAN_APPROVE",
+      "state": "APPROVED"
+    },
+    {
+      "seq": 6,
+      "event_type": "BOUNDED_PROVIDER_ACTION_EXECUTED",
+      "state": "EXECUTED"
+    },
+    {
+      "seq": 7,
+      "event_type": "PROVIDER_READBACK_REQUESTED",
+      "state": "EXECUTED"
+    },
+    {
+      "seq": 8,
+      "event_type": "PROVIDER_READBACK_VERIFIED",
+      "state": "VERIFIED"
+    },
+    {
+      "seq": 9,
+      "event_type": "EVAL_COMPLETED",
+      "state": "VERIFIED"
+    }
+  ],
+  "central_invariant": "model output does not silently become external action",
+  "verified_claims": [
+    "A live Claudification-specific outbound motion was created in the Supabase provider runtime.",
+    "The motion stopped at an explicit human gate before provider mutation.",
+    "An explicit APPROVE decision was recorded before the bounded provider action executed.",
+    "The provider mutation was limited to the dedicated Supabase sandbox receipt ledger; no email, CRM, seller, customer, or third-party contact occurred.",
+    "Provider readback verified the same motion ID and durable provider reference.",
+    "The runtime produced a SHA-256 provider receipt and completed the behavior evaluation with SHIP_DEMO."
+  ],
+  "claim_boundaries": [
+    "This receipt proves the governed motion architecture in a provider-backed sandbox, not Anthropic production deployment.",
+    "This receipt does not claim real seller, CRM, customer, pipeline, revenue, or ROI impact.",
+    "This receipt does not prove production Claude Agent SDK use.",
+    "The previous 2026-09-21 runtime-readback artifact remains historically valid for its earlier observation; this file is the later delta that closes the provider-native runtime-proof gap."
+  ]
+}
