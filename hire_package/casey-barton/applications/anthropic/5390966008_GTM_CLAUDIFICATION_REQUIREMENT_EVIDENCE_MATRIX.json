@@ -1,0 +1,237 @@
+{
+  "schema": "glaciereq.anthropic-gtm-claudification.requirement-evidence.v1",
+  "candidate": "Casey Del Carpio Barton",
+  "company": "Anthropic",
+  "role": "Staff Software Engineer, GTM AI Engineering",
+  "team_alias": "Claudification",
+  "provider_job_id": "5390966008",
+  "source": {
+    "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390966008",
+    "observed_date": "2026-09-21",
+    "status_at_observation": "OPEN"
+  },
+  "campaign_state": "PRIMARY_ACQUISITION_TARGET",
+  "thesis": "GlacierEQ already contains the GTM workflow, agent orchestration, governed MCP/tool, human-approval, bounded-action, evaluation, observability, continuity, and shared-capability layers. Claudification is the role-specific composition of those existing systems.",
+  "operating_motion": [
+    "signal_or_account_context",
+    "sales_workflow_and_context_recovery",
+    "agent_plan_and_dependency_coordination",
+    "governed_tool_or_mcp_proposal",
+    "policy_review_allow_confirm_deny",
+    "human_authority_boundary",
+    "bounded_external_action",
+    "provider_receipt_and_readback",
+    "eval_regression_telemetry_and_business_measurement",
+    "reusable_shared_capability"
+  ],
+  "requirements": [
+    {
+      "id": "end_to_end_gtm_agents",
+      "role_need": "Build and operate autonomous agents across inbound, outbound, pipeline management, and customer engagement.",
+      "evidence": [
+        "GlacierEQ/monolith:skills/mega-sales/SKILL.md",
+        "GlacierEQ/mega-skills:skills/sales/SKILL.md",
+        "GlacierEQ/mega-skills:skills/lead-research-assistant/SKILL.md",
+        "GlacierEQ/mega-skills:skills/analyze-account-signals/SKILL.md",
+        "GlacierEQ/mega-skills:skills/prioritize-accounts/SKILL.md",
+        "GlacierEQ/mega-skills:skills/plan-deal-strategy/SKILL.md",
+        "GlacierEQ/mega-skills:skills/review-forecast/SKILL.md",
+        "GlacierEQ/anthropic-agent-coordinator"
+      ],
+      "claim": "Existing GTM workflow primitives plus deterministic orchestration form the implementation substrate for end-to-end motions.",
+      "boundary": "Do not claim these systems have operated Anthropic seller or RevOps production traffic."
+    },
+    {
+      "id": "human_oversight",
+      "role_need": "Design approval gates, handoffs, and escalation paths that keep sellers in control.",
+      "evidence": [
+        "GlacierEQ/anthropic-safety-monitor",
+        "GlacierEQ/operator-administration:administration/responsibilities/email_outbound.json",
+        "GlacierEQ/mega-skills:skills/salesforce/SKILL.md"
+      ],
+      "claim": "Safety Monitor emits explicit ALLOW / CONFIRM / DENY decisions; Operator Administration preserves reviewed outbound authority; sales write workflows require explicit approval.",
+      "proof": "Anthropic Safety Monitor canonical promotion c7ab52e0e70a5cd449f9335f90030059d254325f records 153 test executions across Python 3.11, 3.12, and 3.13 with zero reported failures, errors, or skips.",
+      "boundary": "Confirmation is not authorization and autonomous scheduled sends remain disabled in the inspected Operator Administration responsibility."
+    },
+    {
+      "id": "eval_frameworks",
+      "role_need": "Develop agent-behavior eval frameworks and run them in development and production.",
+      "evidence": [
+        "GlacierEQ/mega-skills:skills/agent-evaluation/SKILL.md",
+        "GlacierEQ/mega-skills:skills/mega-agent-evaluation/SKILL.md",
+        "GlacierEQ/anthropic-safety-monitor",
+        "GlacierEQ/mega-pipeline-production",
+        "GlacierEQ/job-app-helix"
+      ],
+      "claim": "The estate contains behavioral contract testing, adversarial/regression patterns, production-trace replay guidance, deterministic safety tests, and release/evidence gates.",
+      "boundary": "Do not claim Anthropic production eval traffic or that every skill test currently passes without an exact-revision receipt."
+    },
+    {
+      "id": "observability_roi",
+      "role_need": "Instrument model/tool calls and connect agent actions to pipeline and revenue.",
+      "evidence": [
+        "GlacierEQ/apex-control-plane",
+        "GlacierEQ/mega-skills:skills/analytics-tracking/SKILL.md",
+        "GlacierEQ/mega-skills:skills/review-forecast/SKILL.md"
+      ],
+      "claim": "APEX carries explicit execution states, immutable receipts, retries, circuit breakers, dead-letter capture, and provider readback; the GTM layer contains pipeline/forecast and analytics primitives.",
+      "boundary": "Do not claim measured revenue lift, pipeline attribution, or ROI until bound to authoritative revenue-system data."
+    },
+    {
+      "id": "mcp_skills_web_apps",
+      "role_need": "Ship MCP servers, agent skills, and web applications connected to CRM, communication, and warehouse systems.",
+      "evidence": [
+        "GlacierEQ/glaciereq-mcp-stack",
+        "GlacierEQ/mega-skills:skills/salesforce/SKILL.md",
+        "GlacierEQ/mega-skills:skills/hubspot/SKILL.md",
+        "GlacierEQ/mega-skills:skills/hubspot-integration/SKILL.md",
+        "GlacierEQ/job-application:site-v15/roles/anthropic-gtm-ai-engineering/index.html"
+      ],
+      "claim": "MCP Stack separates registration from execution authority and preserves credential-gated stdio packages; the skill estate contains CRM-specific operating contracts; a role-specific web surface is deployed.",
+      "boundary": "The MCP Stack README explicitly does not claim an estate-wide deployed multi-tenant MCP cloud."
+    },
+    {
+      "id": "technical_direction",
+      "role_need": "Set technical direction for how agents are built, evaluated, and operated across the team.",
+      "evidence": [
+        "GlacierEQ/apex-control-plane",
+        "GlacierEQ/mega-skills",
+        "GlacierEQ/mega-pipeline-production",
+        "GlacierEQ/job-app-helix"
+      ],
+      "claim": "The estate encodes reusable architecture, capability contracts, evidence-state promotion, execution gates, and common operating patterns across many repositories.",
+      "boundary": "Present this as independent technical leadership across GlacierEQ, not prior leadership of Anthropic GTM."
+    },
+    {
+      "id": "shared_codebase_inner_source",
+      "role_need": "Architect shared codebases and conventions for GTM builders.",
+      "evidence": [
+        "GlacierEQ/mega-skills",
+        "GlacierEQ/monolith",
+        "GlacierEQ/mega-pipeline-production",
+        "GlacierEQ/job-app-helix"
+      ],
+      "claim": "The estate already uses shared skills, pipeline contracts, common verification rules, and evidence promotion across a federated codebase.",
+      "boundary": "Do not lead with raw repository count; show the shared interfaces and reuse pattern."
+    },
+    {
+      "id": "seller_workflow_grounding",
+      "role_need": "Work directly with sellers, observe real workflows, and iterate.",
+      "evidence": [
+        "GlacierEQ/mega-skills:skills/prepare-for-meeting/SKILL.md",
+        "GlacierEQ/mega-skills:skills/get-rep-call-feedback/SKILL.md",
+        "GlacierEQ/mega-skills:skills/meeting-insights-analyzer/SKILL.md",
+        "GlacierEQ/mega-skills:skills/plan-deal-strategy/SKILL.md"
+      ],
+      "claim": "The software contracts are designed around live seller evidence such as CRM records, email, transcripts, meetings, and internal messaging.",
+      "boundary": "The dedicated Anthropic customer-discovery packet remains BLOCKED_ON_RETRIEVAL; do not manufacture prior seller discovery that did not occur."
+    },
+    {
+      "id": "repeatable_patterns",
+      "role_need": "Identify repeatable patterns and feed insights back to Product and Engineering.",
+      "evidence": [
+        "GlacierEQ/mega-skills",
+        "GlacierEQ/mega-pipeline-production",
+        "GlacierEQ/job-app-helix",
+        "GlacierEQ/apex-control-plane"
+      ],
+      "claim": "The core estate pattern turns one successful workflow into a reusable skill, contract, pipeline stage, or shared control-plane capability.",
+      "boundary": "Keep product-feedback claims prospective unless a specific historical feedback artifact is source-backed."
+    },
+    {
+      "id": "python_typescript_sql",
+      "role_need": "Strong Python or TypeScript, production application experience, and SQL fluency.",
+      "evidence": [
+        "GlacierEQ/anthropic-agent-coordinator",
+        "GlacierEQ/anthropic-safety-monitor",
+        "GlacierEQ/glaciereq-mcp-stack",
+        "GlacierEQ/apex-control-plane"
+      ],
+      "claim": "Public and private estate surfaces contain Python, TypeScript/Node.js, SQL, Bash, FastAPI, React/Next.js, REST, JSON-RPC, and database/control-plane work.",
+      "boundary": "Individual implementation claims remain repository/source-bound."
+    },
+    {
+      "id": "llm_context_agent_mcp_tool_evals",
+      "role_need": "Production LLM experience across context engineering, agents, MCP, tool use, and evals.",
+      "evidence": [
+        "GlacierEQ/apex-control-plane",
+        "GlacierEQ/anthropic-agent-coordinator",
+        "GlacierEQ/anthropic-safety-monitor",
+        "GlacierEQ/glaciereq-mcp-stack",
+        "GlacierEQ/mega-skills:skills/agent-evaluation/SKILL.md"
+      ],
+      "claim": "These are recurring first-class architecture concerns in GlacierEQ rather than isolated prompt demos.",
+      "boundary": "Do not claim production Claude Agent SDK deployment without a native implementation and receipt."
+    },
+    {
+      "id": "transcript_analysis",
+      "role_need": "Use evals and transcript analysis to find and fix real LLM-system problems.",
+      "evidence": [
+        "GlacierEQ/mega-skills:skills/get-rep-call-feedback/SKILL.md",
+        "GlacierEQ/mega-skills:skills/meeting-insights-analyzer/SKILL.md",
+        "GlacierEQ/anthropic-safety-monitor"
+      ],
+      "claim": "The estate contains transcript-grounded analysis patterns plus deterministic tool-call review and regression verification.",
+      "boundary": "Live transcript coverage depends on the connected authoritative transcript source."
+    },
+    {
+      "id": "ambiguity_simple_solutions",
+      "role_need": "Navigate ambiguity and ship without a spec, finding simple solutions to complex problems.",
+      "evidence": [
+        "GlacierEQ/apex-control-plane",
+        "GlacierEQ/mega-pipeline-production",
+        "GlacierEQ/job-app-helix"
+      ],
+      "claim": "APEX formalizes context recovery, current-state inspection, bounded action, verification, repair, and continuation so ambiguous work can move without silently changing the objective.",
+      "boundary": "Avoid governance jargon when the functional mechanism can be shown directly."
+    },
+    {
+      "id": "preferred_gtm_systems",
+      "role_need": "Experience with CRM, sales engagement, enrichment, conversation intelligence, or close revenue-team work.",
+      "evidence": [
+        "GlacierEQ/mega-skills:skills/salesforce/SKILL.md",
+        "GlacierEQ/mega-skills:skills/hubspot/SKILL.md",
+        "GlacierEQ/mega-skills:skills/enrich-company-and-contact-data/SKILL.md",
+        "GlacierEQ/mega-skills:skills/email-sequence/SKILL.md",
+        "GlacierEQ/mega-skills:skills/get-rep-call-feedback/SKILL.md"
+      ],
+      "claim": "The estate contains first-class GTM-system integration contracts across CRM, enrichment, outreach preparation, and conversation intelligence.",
+      "boundary": "This is implementation evidence, not a claim of prior employment inside a revenue organization."
+    },
+    {
+      "id": "preferred_experimentation",
+      "role_need": "Applied ML / experimentation background such as A/B testing, recommendations, or causal analysis.",
+      "evidence": [
+        "GlacierEQ/job-app-helix:hire_package/casey-barton/AI_ARCHITECT_PROOF_MATRIX.json",
+        "GlacierEQ/mega-skills:skills/ab-test-setup/SKILL.md",
+        "GlacierEQ/mega-skills:skills/analytics-tracking/SKILL.md"
+      ],
+      "claim": "The estate contains an evidence-bound longitudinal worker experiment substrate plus experimentation and analytics capabilities.",
+      "boundary": "Current proof matrix explicitly caps causal claims: baseline is verified, causal worker improvement remains pending."
+    }
+  ],
+  "demo": {
+    "source_state": "OPERATOR_OBSERVED_PRODUCT_STATE",
+    "first_run": "Motions → Outbound → Anthropic · Claudification → Start motion",
+    "expected_sequence": [
+      "start_outbound_motion",
+      "mcp_tool_plan",
+      "agent_execution",
+      "send_gate",
+      "human_approve_escalate_or_reject",
+      "approved_bounded_action",
+      "receipt_readback",
+      "eval_telemetry_roi_surface"
+    ],
+    "central_invariant": "model output does not silently become external action"
+  },
+  "prohibited_claims": [
+    "Anthropic employment, affiliation, endorsement, proprietary access, or internal deployment",
+    "Prior ownership of Anthropic seller or RevOps production workflows",
+    "Unsupervised autonomous sending",
+    "Unsupported revenue, pipeline, or ROI attribution",
+    "Production Claude Agent SDK deployment without native proof",
+    "Real customer discovery where the dedicated packet remains retrieval-blocked",
+    "Current test success inherited from historical receipts"
+  ]
+}
