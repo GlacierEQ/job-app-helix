@@ -18,6 +18,7 @@ def _repo(name: str, position: int, **overrides):
         "fork": False,
         "archived": False,
         "file_count": 10,
+        "all_files_accounted": True,
         "text_inspected_count": 5,
         "unresolved_content_count": 0,
         "text_fetch_failure_count": 0,
@@ -25,9 +26,21 @@ def _repo(name: str, position: int, **overrides):
         "surface_counts": {},
         "scaffold_findings": [],
         "incomplete_findings": [],
+        "files": [],
     }
     value.update(overrides)
     return value
+
+
+def _file(path: str, flags: list[str] | None = None):
+    return {
+        "path": path,
+        "blob_sha": "f" * 40,
+        "size": 42,
+        "likely_text": True,
+        "surface_flags": flags or [],
+        "content_state": "ACCOUNTED_NOT_REQUESTED",
+    }
 
 
 def test_digest_routes_implementation_gaps_before_cleaner_repositories():
@@ -62,6 +75,7 @@ def test_digest_routes_implementation_gaps_before_cleaner_repositories():
     assert digest["queue"][0]["lane"] == "LIFT_IMPLEMENTATION_GAPS"
     assert digest["raw_receipt_policy"]["promotion_to_monolith_main"] is False
     assert "files" not in digest["queue"][0]
+    assert "internal_discovery" in digest["queue"][0]
 
 
 def test_forks_and_archives_are_preserved_as_lineage_work_not_code_rewrites():
@@ -90,3 +104,42 @@ def test_digest_never_promotes_source_observation_to_runtime_proof():
 
     assert digest["queue"][0]["lane"] == "VERIFY_RUNTIME_AND_LIFT"
     assert digest["proof_boundary"]["source_observation_is_not_runtime_proof"] is True
+    assert digest["proof_boundary"]["path_classification_is_discovery_not_behavior_proof"] is True
+
+
+def test_hidden_harness_and_unusual_internal_raise_discovery_signal():
+    repo = _repo(
+        "GlacierEQ/hidden-gems",
+        9,
+        file_count=4,
+        files=[
+            _file("README.md", ["readme"]),
+            _file("src/ordinary.py", ["source"]),
+            _file("weird/deep/red_team_harness/replay.py", ["source"]),
+            _file("packages/agent/tools/mcp_adapter.py", ["source"]),
+        ],
+    )
+    digest = MODULE.build_digest(
+        {
+            "schema": MODULE.SOURCE_SCHEMA,
+            "receipt_digest": "discovery",
+            "accessible_repository_count": 1290,
+            "selected_repository_count": 1,
+            "repository_crawled_count": 1,
+            "repository_failure_count": 0,
+            "repositories": [repo],
+        }
+    )
+
+    item = digest["queue"][0]
+    internal = item["internal_discovery"]
+    assert "HARNESS_DISCOVERED" in item["signals"]
+    assert "UNUSUAL_HIGH_VALUE_LOCATION" in item["signals"]
+    assert internal["harness_count"] == 1
+    assert internal["structural_discovery_complete"] is True
+    assert any(
+        path["path"] == "weird/deep/red_team_harness/replay.py"
+        for path in internal["high_value_internal_paths"]
+    )
+    assert digest["internal_discovery_coverage"]["harness_count"] == 1
+    assert digest["internal_discovery_coverage"]["repository_count"] == 1
