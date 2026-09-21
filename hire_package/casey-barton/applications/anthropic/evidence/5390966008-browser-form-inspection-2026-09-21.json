@@ -63,5 +63,48 @@
     "No legal or policy acknowledgements accepted",
     "No personal data entered or altered"
   ],
-  "next_gate": "Resolve operator-only form decisions, then use an agentic browser for final form preparation and explicit submission authorization."
+  "next_gate": "Operator supplies the eight Yes/No decisions (plus optional start/address/timeline choices); then agentic browser can prepare the final form without submitting until explicit authorization.",
+  "followup_run": {
+    "browser_agent": "TinyFish Agent",
+    "run_id": "f7465bb2-669c-4574-970b-1879c8f3fb72",
+    "purpose": "Inspect exact option labels for required dropdown/select decisions without choosing any value",
+    "status": "COMPLETED",
+    "option_labels": {
+      "in_office_25_percent": [
+        "Yes",
+        "No"
+      ],
+      "ai_policy_for_application": [
+        "Yes",
+        "No"
+      ],
+      "current_visa_sponsorship": [
+        "Yes",
+        "No"
+      ],
+      "future_visa_sponsorship": [
+        "Yes",
+        "No"
+      ],
+      "relocation": [
+        "Yes",
+        "No"
+      ],
+      "prior_anthropic_interview": [
+        "Yes",
+        "No"
+      ],
+      "arbitration_read_acknowledgement": [
+        "Yes",
+        "No"
+      ],
+      "agreement_to_arbitrate": [
+        "Yes",
+        "No"
+      ]
+    },
+    "personal_data_entered": false,
+    "legal_acknowledgements_selected": false,
+    "submitted": false
+  }
 }
