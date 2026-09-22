@@ -1,0 +1,73 @@
+{
+  "schema": "glaciereq.anthropic-5390966008.operator-form-decisions.v1",
+  "recorded_at": "2026-09-21",
+  "candidate": "Casey Del Carpio Barton",
+  "role": "Anthropic · Staff Software Engineer, GTM AI Engineering (Claudification)",
+  "provider_job_id": "5390966008",
+  "source": "operator_current_conversation",
+  "decisions": {
+    "office_25_percent": {
+      "form_question": "Are you open to working in-person in one of our offices 25% of the time?",
+      "value": "YES",
+      "operator_note": "Acceptable for this role; keep an open mind for later adjustments."
+    },
+    "ai_policy": {
+      "form_question": "AI Policy for Application",
+      "value": "YES",
+      "operator_note": "Operator explicitly answered yes."
+    },
+    "visa_sponsorship_current": {
+      "form_question": "Do you require visa sponsorship?",
+      "value": "NO_TENTATIVE",
+      "operator_note": "Operator answered 'no I dint have a visa sponsor'. This was given in sequence as the response to the current-sponsorship field, but 'have' and 'require' are not identical; confirm before provider submission if needed."
+    },
+    "visa_sponsorship_now_or_future": {
+      "form_question": "Will you now or will you in the future require employment visa sponsorship to work in the country in which the job you're applying for is located?",
+      "value": "YES_TENTATIVE",
+      "operator_note": "Operator said 'yes I'd be open to one in future'. Openness is not identical to requiring sponsorship, so preserve as tentative until final form review."
+    },
+    "relocation": {
+      "form_question": "Are you open to relocation for this role?",
+      "value": "UNRESOLVED",
+      "operator_note": "Relocation is possible, but Operator explicitly does not want to agree now. Do not select Yes or No without another explicit instruction."
+    },
+    "prior_anthropic_interview": {
+      "form_question": "Have you ever interviewed at Anthropic before?",
+      "value": "NO",
+      "operator_note": "Operator said no and stated they have never applied with Anthropic before."
+    },
+    "arbitration_read": {
+      "form_question": "Please read the arbitration agreement below",
+      "value": "NO",
+      "operator_note": "Operator explicitly said arbitration read: no."
+    },
+    "agreement_to_arbitrate": {
+      "form_question": "Agreement to Arbitrate",
+      "value": "UNRESOLVED",
+      "operator_note": "Operator said 'agree probably'. This is not treated as an explicit legal agreement."
+    },
+    "earliest_start": {
+      "value": "UNRESOLVED"
+    },
+    "timeline_considerations": {
+      "value": "UNRESOLVED"
+    },
+    "working_address_or_relocating": {
+      "value": "UNRESOLVED"
+    },
+    "voluntary_demographics": {
+      "value": "USER_OPTIONAL"
+    }
+  },
+  "provider_submission_authority": {
+    "fill_unambiguous_fields": true,
+    "submit_application": false,
+    "legal_agreement_selection": false
+  },
+  "notes": [
+    "Do not convert tentative visa wording into a definitive provider answer without final review.",
+    "Do not select relocation because possibility was stated without present agreement.",
+    "Do not select Agreement to Arbitrate because 'probably' is not an explicit yes.",
+    "Arbitration agreement must be read before the form's read acknowledgement can truthfully change to Yes."
+  ]
+}
