@@ -18,13 +18,13 @@
     },
     "visa_sponsorship_current": {
       "form_question": "Do you require visa sponsorship?",
-      "value": "NO_TENTATIVE",
-      "operator_note": "Operator answered 'no I dint have a visa sponsor'. This was given in sequence as the response to the current-sponsorship field, but 'have' and 'require' are not identical; confirm before provider submission if needed."
+      "value": "NO",
+      "operator_note": "Operator clarified they are a U.S. citizen; no current employment visa sponsorship is required for this U.S. role."
     },
     "visa_sponsorship_now_or_future": {
       "form_question": "Will you now or will you in the future require employment visa sponsorship to work in the country in which the job you're applying for is located?",
-      "value": "YES_TENTATIVE",
-      "operator_note": "Operator said 'yes I'd be open to one in future'. Openness is not identical to requiring sponsorship, so preserve as tentative until final form review."
+      "value": "NO",
+      "operator_note": "Operator clarified they are a U.S. citizen; no future employment visa sponsorship is required for this U.S. role."
     },
     "relocation": {
       "form_question": "Are you open to relocation for this role?",
@@ -65,9 +65,13 @@
     "legal_agreement_selection": false
   },
   "notes": [
-    "Do not convert tentative visa wording into a definitive provider answer without final review.",
+    "Visa sponsorship answers are resolved as NO / NO based on the Operator's explicit clarification that they are a U.S. citizen.",
     "Do not select relocation because possibility was stated without present agreement.",
     "Do not select Agreement to Arbitrate because 'probably' is not an explicit yes.",
     "Arbitration agreement must be read before the form's read acknowledgement can truthfully change to Yes."
-  ]
+  ],
+  "operator_identity_basis": {
+    "us_citizen": true,
+    "purpose": "Resolve employment-authorization / sponsorship questions for this U.S. application only."
+  }
 }
