@@ -1,0 +1,80 @@
+{
+  "schema": "glaciereq.anthropic-5390966008.greenhouse-form-preparation.v1",
+  "recorded_at": "2026-09-21T21:58:00-10:00",
+  "candidate": "Casey Del Carpio Barton",
+  "role": "Anthropic · Staff Software Engineer, GTM AI Engineering (Claudification)",
+  "provider_job_id": "5390966008",
+  "provider": "Greenhouse",
+  "state": "PREPARED_NOT_SUBMITTED",
+  "role_open_observed": true,
+  "source_url": "https://job-boards.greenhouse.io/anthropic/jobs/5390966008",
+  "browser_runs": [
+    {
+      "run_id": "292a687b-4361-4938-981e-f22777f437ea",
+      "purpose": "form discovery and source-decided field fill",
+      "terminal_state": "completed",
+      "submission": false,
+      "note": "Automation incorrectly selected unresolved relocation/arbitration fields during a dry run. No application was submitted; those selections are non-authoritative and discarded."
+    },
+    {
+      "run_id": "79103c7a-4654-43b8-9d9f-8818d5a8ed89",
+      "purpose": "fresh non-submitting preparation with arbitration blocked and approved resume text entered manually",
+      "terminal_state": "completed",
+      "submission": false,
+      "resume_manual_entry_verified": true,
+      "note": "Automation again selected relocation No and a generic Honolulu working location despite operator state marking those choices unresolved. No application was submitted; those selections are non-authoritative and must be resolved before final submission."
+    }
+  ],
+  "verified_preparation": {
+    "identity_contact_fields": "FILLED_IN_DRY_RUN",
+    "office_25_percent": "YES",
+    "ai_policy": "YES",
+    "visa_current": "NO",
+    "visa_future": "NO",
+    "prior_anthropic_interview": "NO",
+    "why_anthropic": "FILLED_FROM_COMMITTED_CANDIDATE_FIRST_DRAFT_REFINEMENT",
+    "additional_information": "FILLED_FROM_COMMITTED_RESPONSE",
+    "resume": {
+      "method": "GREENHOUSE_MANUAL_ENTRY",
+      "result": "SUCCESS",
+      "source_artifact": "Casey_Barton_Anthropic_GTM_Claudification_Resume_FINAL.pdf",
+      "source_sha256": "d4893d77074342c841a6769b392e8bf36102712455de0c0536db2bf162ea6031",
+      "provider_file_upload": false,
+      "manual_entry_text_matches_approved_resume_content": true
+    }
+  },
+  "unresolved_required_operator_decisions": {
+    "relocation": {
+      "question": "Are you open to relocation for this role?",
+      "state": "UNRESOLVED",
+      "note": "Prior operator state: relocation is possible, but operator does not want to agree now. Dry-run No selection is not authoritative."
+    },
+    "arbitration_read": {
+      "question": "Please read the arbitration agreement below",
+      "state": "OPERATOR_NOT_YET_ACKNOWLEDGED_READ"
+    },
+    "arbitration_agreement": {
+      "question": "Agreement to Arbitrate",
+      "state": "UNRESOLVED",
+      "observed_effect": "Binding arbitration; jury-trial and class-action waiver language is presented by the form."
+    }
+  },
+  "optional_or_nonblocking_unresolved": [
+    "earliest_start",
+    "timeline_considerations",
+    "linkedin_url",
+    "voluntary_demographics"
+  ],
+  "email_verification": {
+    "observed": true,
+    "provider_message_found_in_connected_gmail": true,
+    "security_code_stored": false,
+    "note": "Security code intentionally not persisted in repository evidence."
+  },
+  "submission": {
+    "status": "NOT_SUBMITTED",
+    "submit_clicked": false,
+    "provider_confirmation_receipt": null
+  },
+  "next_transition": "Resolve relocation and arbitration choices explicitly, then execute one fresh Greenhouse run, obtain a fresh provider security code, submit, and capture provider confirmation."
+}
