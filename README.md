@@ -1,6 +1,59 @@
-\n> **Estate-size contract (2026-08-29):** numeric repository/family counts below are materialized snapshot observations, **not admission caps**. The live estate model is source-exhaustive; newly discovered repositories and companies remain in inventory even when unverified, unassigned, archived, or outside recruiter-focused views. See [docs/UNBOUNDED_ESTATE_CONTRACT.md](docs/UNBOUNDED_ESTATE_CONTRACT.md).\n# GlacierEQ/job-app-helix
+# Job-App Helix
 
-> The hard, evidence-bound public face of the GlacierEQ portfolio. Every claim in this README is anchored to a machine artifact. No prose inflation. No single-authority framing — this is a holographic mesh of 225 repositories across 21 families, with 8 VERIFIED anchors and one open gate.
+**The control plane behind Casey Barton's hiring system: 110 Python modules and 38,281 lines that turn a 1,300-repository engineering estate into evidence-bound, company-specific applications. They fail closed when the proof isn't there.**
+
+[![CI](https://github.com/GlacierEQ/job-app-helix/actions/workflows/ci.yml/badge.svg)](https://github.com/GlacierEQ/job-app-helix/actions/workflows/ci.yml)
+![tests](https://img.shields.io/badge/tests-961%20passing-2ea44f)
+![python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-3776ab)
+![workflows](https://img.shields.io/badge/GitHub%20Actions-55%20workflows-24292f)
+
+**Live output:** [casey-barton-glaciereq.vercel.app](https://casey-barton-glaciereq.vercel.app), a 441-page recruiter site compiled from this repo's projections · **Site source:** [GlacierEQ/job-application](https://github.com/GlacierEQ/job-application) · **Operator runtime:** [GlacierEQ/pro-code](https://github.com/GlacierEQ/pro-code)
+
+## What this proves
+
+- **Real agent-system engineering at scale.** 110 modules and 38,281 lines of typed Python cover opening discovery (Greenhouse, Ashby, SmartRecruiters), company intelligence, candidate-profile compilation, application execution queues, outcome calibration, and estate recovery.
+- **Verification is part of the product.** 961 tests run on every push across Python 3.11, 3.12 and 3.13, along with ruff, a compiled Protobuf contract check, README-mesh validation, and a public-boundary scan.
+- **Hard safety, not hope.** Campaigns run as a state machine with three proven outcomes: `nominal`, `recoverable`, and `hard-no-go`. The hard-failure path exits non-zero, and CI asserts that it stays that way.
+- **Recover, continue, compound.** Federated recovery, cross-file restoration and capability-archaeology modules rebuild prior state before anything is recreated, so work compounds instead of restarting.
+- **One fact graph, many audiences.** A single evidence ledger projects into a recruiter site, résumé artifacts, machine-readable JSON, and per-company dossiers. Nothing is hand-copied.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph Estate["Engineering estate"]
+        R["1,300+ GlacierEQ repositories<br/>code · tests · CI receipts"]
+    end
+    subgraph Helix["job-app-helix (this repo)"]
+        D["Opening discovery<br/>Greenhouse · Ashby · SmartRecruiters"]
+        L["Evidence ledger<br/>+ portfolio contract"]
+        C["Company intelligence<br/>+ candidate profile compiler"]
+        F["Campaign state machine<br/>nominal · recoverable · hard-no-go"]
+        P["Projections<br/>Protobuf README mesh · public snapshot"]
+    end
+    subgraph Surface["Public surface"]
+        J["job-application build<br/>validators + dead-link guard"]
+        V["casey-barton-glaciereq.vercel.app<br/>441 pages"]
+    end
+    R --> L
+    D --> C
+    L --> C --> F
+    F --> P --> J --> V
+```
+
+## Run it
+
+```bash
+python -m pip install -e ".[dev]"
+pytest                                                   # 961 tests
+python -m job_app_helix.portfolio_cli validate           # portfolio rollout contract
+python -m job_app_helix nominal --output /tmp/nominal.json
+python -m job_app_helix recoverable --output /tmp/recoverable.json
+python -m job_app_helix hard-no-go --json; echo "exit=$?"  # fail-closed: exits 1
+python scripts/check_public_surface.py                   # public-boundary scan
+```
+
+## Machine contract
 
 schema: glaciereq.readme.v1
 profile: glaciereq.readme-impact.v2-draft
