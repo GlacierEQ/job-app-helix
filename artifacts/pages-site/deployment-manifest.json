@@ -1,0 +1,65 @@
+{
+  "candidate_surface": "hire_package/casey-barton",
+  "entrypoint": "index.html",
+  "files": [
+    {
+      "bytes": 0,
+      "path": ".nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1261,
+      "path": "app.js",
+      "sha256": "83d4b945be8fb828175164d29cf0bd8c845ed7e49e3412bd5437ff4a79a059f1"
+    },
+    {
+      "bytes": 1132,
+      "path": "application-spiral.json",
+      "sha256": "8300b4001f1a6ec351d5c2948c91bdac00ac35a2d9b2b4613f9aedac3f53fb39"
+    },
+    {
+      "bytes": 2681,
+      "path": "candidate-node.json",
+      "sha256": "d431f1678e5b92b8e626e2be333d854234980c31223668e9ecfcb803e2ba67f8"
+    },
+    {
+      "bytes": 1013,
+      "path": "coordinator-candidate-receipt.json",
+      "sha256": "1dcb16f94e44a10b65a4c1b21ec1a30e29eef55447a366d8428d273824b5bbd6"
+    },
+    {
+      "bytes": 2345,
+      "path": "evidence-ledger.json",
+      "sha256": "de9c85abbd707b67a304607169c1be6f9e8a98d9d36b0418aad87e66be51e052"
+    },
+    {
+      "bytes": 18585,
+      "path": "index.html",
+      "sha256": "571264ee890b663fbcae139eed7b8089d1570fbde539ee00f289fdfc278f54e3"
+    },
+    {
+      "bytes": 1498,
+      "path": "package-mesh.json",
+      "sha256": "16258c3caabe6e8cb397e9426d59f70c1387cac37cc21abe9a595ada370ba2ef"
+    },
+    {
+      "bytes": 8136,
+      "path": "site.innovations.css",
+      "sha256": "f118640e7ba2633c20b68597043a1edba6631fb3b2bfa781bb4fab79aa5d3e56"
+    },
+    {
+      "bytes": 646,
+      "path": "source-urls.json",
+      "sha256": "89bced9a778fbb7a9da860bbea4e4b6e4842870eca0e16a88177b0629a2562bf"
+    },
+    {
+      "bytes": 9208,
+      "path": "styles.css",
+      "sha256": "31c4cc93e19589dd405d284f0617f4111616700443713acc0be17b4063985bf7"
+    }
+  ],
+  "schema": "glaciereq.recruiter-pages-deployment.v1",
+  "source_branch": "main",
+  "source_commit": "local-uncommitted",
+  "source_repository": "GlacierEQ/job-app-helix"
+}

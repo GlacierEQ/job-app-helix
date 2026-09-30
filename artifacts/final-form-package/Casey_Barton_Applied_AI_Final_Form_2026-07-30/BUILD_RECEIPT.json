@@ -1,0 +1,13 @@
+{
+  "integrity_manifest_sha256": "06d8ef7854f8d406cf08c09685e1aeea07611080fdc39ca0ea62496500ecefed",
+  "license": "PROPRIETARY_SOURCE_VISIBLE",
+  "package": "Casey_Barton_Applied_AI_Final_Form_2026-07-30",
+  "payload_file_count": 32,
+  "payload_total_bytes": 122106,
+  "private_contact_included": false,
+  "public_contact_scan": "PASSED",
+  "schema": "glaciereq.final-form-build-receipt.v1",
+  "source_commit": "local-uncommitted",
+  "state": "VERIFIED",
+  "static_snapshot_included": false
+}

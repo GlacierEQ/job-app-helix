@@ -1,0 +1,170 @@
+{
+  "file_count": 32,
+  "files": [
+    {
+      "bytes": 2332,
+      "path": "00_START_HERE/SEND_THIS.md",
+      "sha256": "ff1747b3e9370dba4514c150ddeeac304d0a79066007ebebf1bd3f6b32ef08f0"
+    },
+    {
+      "bytes": 6156,
+      "path": "01_RESUME/Casey_Barton_Executive_Resume.md",
+      "sha256": "a458965da036e35b6f6742374889987cfb5637d9ec0746317986a5015fc83b24"
+    },
+    {
+      "bytes": 9659,
+      "path": "02_ROADMAP/Casey_Barton_Deployment_and_Growth_Roadmap.md",
+      "sha256": "ffa8ecb0f51647c283957c674788edb422dfd9d6cbb32be25026ea0e40f24b20"
+    },
+    {
+      "bytes": 8769,
+      "path": "03_THREE_LAYER_PRESENTATION/FINAL_FORM_README.md",
+      "sha256": "2ce0c15a0e05af57d8e6d998be8dc8eb1a0b908bbc46cb93f07b6419b6a7cc41"
+    },
+    {
+      "bytes": 10979,
+      "path": "03_THREE_LAYER_PRESENTATION/ROLE_POWER_MATRIX.md",
+      "sha256": "cdc670e6738b15b81c50c72f300592636eaf1b350aff339698fc42216595abb0"
+    },
+    {
+      "bytes": 2816,
+      "path": "04_TECHNICAL_DILIGENCE/CLAIM_REGISTER.md",
+      "sha256": "c2c902fd570796532ecc770f821c4a91cc8df4b7f01dc72aea9bbf34463497b9"
+    },
+    {
+      "bytes": 1354,
+      "path": "04_TECHNICAL_DILIGENCE/TECHNICAL_PORTFOLIO_BRIEF.md",
+      "sha256": "1be3fd29cb9b8b15575aed3e1b0fdc339711c6f15f6b62d5580a9d2bfe491a12"
+    },
+    {
+      "bytes": 4626,
+      "path": "05_MACHINE_CONTRACTS/FINAL_FORM_MANIFEST.json",
+      "sha256": "94509c96f08ccc85f39b4c0006aa73738d3b789d36c7064a0bf305e4719033a1"
+    },
+    {
+      "bytes": 1132,
+      "path": "05_MACHINE_CONTRACTS/application_spiral.json",
+      "sha256": "8300b4001f1a6ec351d5c2948c91bdac00ac35a2d9b2b4613f9aedac3f53fb39"
+    },
+    {
+      "bytes": 2681,
+      "path": "05_MACHINE_CONTRACTS/candidate_node.json",
+      "sha256": "d431f1678e5b92b8e626e2be333d854234980c31223668e9ecfcb803e2ba67f8"
+    },
+    {
+      "bytes": 1013,
+      "path": "05_MACHINE_CONTRACTS/coordinator_candidate_receipt.json",
+      "sha256": "1dcb16f94e44a10b65a4c1b21ec1a30e29eef55447a366d8428d273824b5bbd6"
+    },
+    {
+      "bytes": 2345,
+      "path": "05_MACHINE_CONTRACTS/evidence_ledger.json",
+      "sha256": "de9c85abbd707b67a304607169c1be6f9e8a98d9d36b0418aad87e66be51e052"
+    },
+    {
+      "bytes": 1498,
+      "path": "05_MACHINE_CONTRACTS/package_mesh.json",
+      "sha256": "16258c3caabe6e8cb397e9426d59f70c1387cac37cc21abe9a595ada370ba2ef"
+    },
+    {
+      "bytes": 3364,
+      "path": "06_LICENSING/LICENSE",
+      "sha256": "32ac23de6d45ca07d85c795a7ef3b0d6f7e360ff82398143ddae87271a4524ae"
+    },
+    {
+      "bytes": 2016,
+      "path": "06_LICENSING/LICENSE_SUMMARY.md",
+      "sha256": "2429cf43ac4350e3d4c07b8a764b2b0e8c550a3edd7a33ccdabe16bfe76a947d"
+    },
+    {
+      "bytes": 427,
+      "path": "07_LIVE_PRESENTATION/OPEN_LIVE_PRESENTATION.html",
+      "sha256": "d81526d29a91f91a8d4b862a40788593baba80a15f9071b7d7449d3670e4d2ab"
+    },
+    {
+      "bytes": 199,
+      "path": "07_LIVE_PRESENTATION/README.md",
+      "sha256": "1136dad6a76d27e6638fadf9f6c84ae5cecc6d28d16cf5e4918877c864bd9116"
+    },
+    {
+      "bytes": 2816,
+      "path": "CLAIM_REGISTER.md",
+      "sha256": "c2c902fd570796532ecc770f821c4a91cc8df4b7f01dc72aea9bbf34463497b9"
+    },
+    {
+      "bytes": 6156,
+      "path": "EXECUTIVE_RESUME.md",
+      "sha256": "a458965da036e35b6f6742374889987cfb5637d9ec0746317986a5015fc83b24"
+    },
+    {
+      "bytes": 4626,
+      "path": "FINAL_FORM_MANIFEST.json",
+      "sha256": "94509c96f08ccc85f39b4c0006aa73738d3b789d36c7064a0bf305e4719033a1"
+    },
+    {
+      "bytes": 8769,
+      "path": "FINAL_FORM_README.md",
+      "sha256": "2ce0c15a0e05af57d8e6d998be8dc8eb1a0b908bbc46cb93f07b6419b6a7cc41"
+    },
+    {
+      "bytes": 3364,
+      "path": "LICENSE",
+      "sha256": "32ac23de6d45ca07d85c795a7ef3b0d6f7e360ff82398143ddae87271a4524ae"
+    },
+    {
+      "bytes": 2016,
+      "path": "LICENSE_SUMMARY.md",
+      "sha256": "2429cf43ac4350e3d4c07b8a764b2b0e8c550a3edd7a33ccdabe16bfe76a947d"
+    },
+    {
+      "bytes": 9659,
+      "path": "ROADMAP.md",
+      "sha256": "ffa8ecb0f51647c283957c674788edb422dfd9d6cbb32be25026ea0e40f24b20"
+    },
+    {
+      "bytes": 10979,
+      "path": "ROLE_POWER_MATRIX.md",
+      "sha256": "cdc670e6738b15b81c50c72f300592636eaf1b350aff339698fc42216595abb0"
+    },
+    {
+      "bytes": 2332,
+      "path": "SEND_THIS.md",
+      "sha256": "ff1747b3e9370dba4514c150ddeeac304d0a79066007ebebf1bd3f6b32ef08f0"
+    },
+    {
+      "bytes": 1354,
+      "path": "TECHNICAL_PORTFOLIO_BRIEF.md",
+      "sha256": "1be3fd29cb9b8b15575aed3e1b0fdc339711c6f15f6b62d5580a9d2bfe491a12"
+    },
+    {
+      "bytes": 1132,
+      "path": "application_spiral.json",
+      "sha256": "8300b4001f1a6ec351d5c2948c91bdac00ac35a2d9b2b4613f9aedac3f53fb39"
+    },
+    {
+      "bytes": 2681,
+      "path": "candidate_node.json",
+      "sha256": "d431f1678e5b92b8e626e2be333d854234980c31223668e9ecfcb803e2ba67f8"
+    },
+    {
+      "bytes": 1013,
+      "path": "coordinator_candidate_receipt.json",
+      "sha256": "1dcb16f94e44a10b65a4c1b21ec1a30e29eef55447a366d8428d273824b5bbd6"
+    },
+    {
+      "bytes": 2345,
+      "path": "evidence_ledger.json",
+      "sha256": "de9c85abbd707b67a304607169c1be6f9e8a98d9d36b0418aad87e66be51e052"
+    },
+    {
+      "bytes": 1498,
+      "path": "package_mesh.json",
+      "sha256": "16258c3caabe6e8cb397e9426d59f70c1387cac37cc21abe9a595ada370ba2ef"
+    }
+  ],
+  "package": "Casey_Barton_Applied_AI_Final_Form_2026-07-30",
+  "schema": "glaciereq.final-form-integrity.v1",
+  "source_commit": "local-uncommitted",
+  "source_repository": "GlacierEQ/job-app-helix",
+  "total_bytes": 122106
+}
