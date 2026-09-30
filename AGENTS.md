@@ -278,7 +278,7 @@ The agent MUST use the known estate map as continuity state and refresh the **ma
 - "Yin_The_Legal_Visionary"
 - "LEGAL-AI-NEXUS"
 - "nexus-legal-grid"
-- "xai-legal-intelligence"
+- "xai-document-intelligence"
 - "aspen-grove-legal"
 - "apex-law-library"
 - "legal-motion-automation"

@@ -184,7 +184,7 @@
     { "repo": "xai-colossus-community", "in_helix_66": false, "in_expanded_217": true, "has_solidify_record": true, "family": "xAI / Colossus", "source_state": "needs_work" },
     { "repo": "xai-colossus-microcode", "in_helix_66": false, "in_expanded_217": true, "has_solidify_record": true, "family": "xAI / Colossus", "source_state": "needs_work" },
     { "repo": "xai-colossus-waterplant", "in_helix_66": false, "in_expanded_217": true, "has_solidify_record": true, "family": "xAI / Colossus", "source_state": "needs_work" },
-    { "repo": "xai-legal-intelligence", "in_helix_66": false, "in_expanded_217": true, "has_solidify_record": true, "family": "xAI / Colossus", "source_state": "needs_work" },
+    { "repo": "xai-document-intelligence", "in_helix_66": false, "in_expanded_217": true, "has_solidify_record": true, "family": "xAI / Colossus", "source_state": "needs_work" },
     { "repo": "Pro-xAI", "in_helix_66": false, "in_expanded_217": true, "has_solidify_record": true, "family": "xAI / Colossus", "source_state": "needs_work" },
     { "repo": "vscode-grok", "in_helix_66": false, "in_expanded_217": true, "has_solidify_record": true, "family": "xAI / Colossus", "source_state": "needs_work" },
     { "repo": "grok-build-nix", "in_helix_66": false, "in_expanded_217": true, "has_solidify_record": true, "family": "xAI / Colossus", "source_state": "needs_work" },

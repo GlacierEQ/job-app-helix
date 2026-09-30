@@ -195,10 +195,10 @@
       "aspen-grove-supabase", "supabase-mcp", "supabase-grafana", "supabase", "cli", "dashboard",
       "ai-sdk-provider", "sdk",
       "xai-colossal-cooling", "xai-colossus-build", "xai-colossus-community",
-      "xai-colossus-microcode", "xai-colossus-waterplant", "xai-legal-intelligence",
+      "xai-colossus-microcode", "xai-colossus-waterplant", "xai-document-intelligence",
       "Pro-Colossus", "colossus-build-blueprint", "colossus-realignment", "colossus2-realignment",
       "godmind-colossus-gateway", "xai-colossal-cooling", "xai-colossus-build", "xai-colossus-community",
-      "xai-colossus-microcode", "xai-colossus-waterplant", "xai-legal-intelligence",
+      "xai-colossus-microcode", "xai-colossus-waterplant", "xai-document-intelligence",
       "Pro-xAI", "vscode-grok", "grok-build-nix",
       "Z-BACKUP-mastermind-colossus",
       "xai-colossus-energy-alpha", "xai-colossus-energy-omega", "xai-colossus-cooling-alpha", "xai-colossus-cooling-omega",
@@ -307,7 +307,7 @@
       "xai-colossus-security", "xai-colossus-servers", "xai-colossal-cooling", "xai-colossus-community",
       "xai-colossus-microcode", "xai-colossus-waterplant", "colossus-training-flux", "grokodile",
       "Pro-Colossus", "colossus-build-blueprint", "colossus-realignment", "colossus2-realignment",
-      "godmind-colossus-gateway", "xai-legal-intelligence", "Pro-xAI", "vscode-grok", "grok-build-nix",
+      "godmind-colossus-gateway", "xai-document-intelligence", "Pro-xAI", "vscode-grok", "grok-build-nix",
       "Z-BACKUP-mastermind-colossus",
       "xai-colossus-energy-alpha", "xai-colossus-energy-omega", "xai-colossus-cooling-alpha",
       "xai-colossus-cooling-omega", "xai-colossus-community-alpha", "xai-colossus-community-omega",
@@ -369,7 +369,7 @@
       "ai-sdk-provider", "xai-colossal-cooling", "xai-colossus-build", "xai-colossus-community",
       "xai-colossus-microcode", "xai-colossus-waterplant", "Pro-Colossus", "colossus-build-blueprint",
       "colossus-realignment", "colossus2-realignment", "godmind-colossus-gateway",
-      "xai-legal-intelligence", "Pro-xAI", "vscode-grok", "grok-build-nix"
+      "xai-document-intelligence", "Pro-xAI", "vscode-grok", "grok-build-nix"
     ],
     "reference": [
       "claude-code", "claude-setup", "claude-explorer__public_fork_archive", "aws-toolkit-vscode",

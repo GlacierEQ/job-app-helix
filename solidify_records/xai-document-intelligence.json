@@ -1,0 +1,28 @@
+{
+  "repo": "xai-document-intelligence",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Private Python repository framed as a real-time document- and news-intelligence engine for tracking and mapping public developments around xAI. Two independent monolith registries flag it rather than endorse it: the xAI canonicalization pass dispositions it REASSIGN_AWAY_FROM_COLOSSUS_INFRASTRUCTURE (it does not belong in the compute-infrastructure story), and the source-inspection registry lists it as name-only backlog with no source-level inspection. Catalog-only; no capability claim is promoted.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 18380 (domain=colossus_xai, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, updatedAt 2026-06-24T08:08:22Z)",
+    "/tmp/monolith/catalog source-inspection registry lines 226-231: name_only_backlog includes 'GlacierEQ/xai-document-intelligence' - explicit record that no source-level inspection exists",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (disposition REASSIGN_AWAY_FROM_COLOSSUS_INFRASTRUCTURE, alongside grokodile)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md line 120 (proposed destination: research / company-risk intelligence)",
+    "/tmp/monolith/catalog/capabilities_3layer.json lines 2478-2504 (document-intelligence pipeline category, impact_score P1, launch_cmd 'git clone ...', templated elevator pitch - registry metadata, not capability proof)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 58 (security and document intelligence; accuracy requires source review; confidence medium)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 62 truth boundary (the term 'real-time' is a catalog signal only)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 154 (unprocessed)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)",
+    "/tmp/monolith/domains/colossus_xai.md line 48",
+    "/tmp/monolith/receipts/company_families/ (no receipt for this thread)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 4,
+  "makes_worthy": "Move it out of the Colossus infrastructure family as already directed, then apply the same discipline used for peer repos: commit-level source inspection, official-source provenance and effective-date metadata for every cited item, exact-quotation control, and an explicit capability boundary. Remove 'real-time' framing until a live ingestion path is demonstrated with tests.",
+  "last_verified": "2026-08-29T08:47:16.929393",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=4"
+}

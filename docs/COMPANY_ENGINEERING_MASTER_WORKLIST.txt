@@ -214,7 +214,7 @@
 [ ] GlacierEQ/xai-colossus-community | xAI / Colossus | LIVE
 [ ] GlacierEQ/xai-colossus-microcode | xAI / Colossus | LIVE
 [ ] GlacierEQ/xai-colossus-waterplant | xAI / Colossus | LIVE
-[ ] GlacierEQ/xai-legal-intelligence | xAI / Colossus | LIVE
+[ ] GlacierEQ/xai-document-intelligence | xAI / Colossus | LIVE
 
 ## CORE_REVIEW
 [ ] GlacierEQ/AEON-777 | GlacierEQ-core | LIVE

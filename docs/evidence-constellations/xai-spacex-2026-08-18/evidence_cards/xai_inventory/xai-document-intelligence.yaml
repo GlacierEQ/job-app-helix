@@ -1,14 +1,14 @@
-repository: GlacierEQ/xai-legal-intelligence
+repository: GlacierEQ/xai-document-intelligence
 commit: 046b599afe2e555de679fba48993f8fa1b4f5bb5
 reviewed_at: 2026-08-18
 visibility: private
 review_status: inventory_only
 claim_support: exploratory
 problem_lens: >-
-  Preserved legal-intelligence thread in the wider xAI-targeted compute-infrastructure
+  Preserved document-intelligence thread in the wider xAI-targeted compute-infrastructure
   constellation, kept available for role-specific source review.
 artifact:
-  repository_url: https://github.com/GlacierEQ/xai-legal-intelligence
+  repository_url: https://github.com/GlacierEQ/xai-document-intelligence
   recorded_surface: >-
     Repository identity, current recorded revision, visibility, and
     archival_thread classification from the rescue-wave inventory.

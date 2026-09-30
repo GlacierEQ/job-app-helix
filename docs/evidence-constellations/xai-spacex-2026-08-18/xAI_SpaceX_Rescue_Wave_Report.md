@@ -128,7 +128,7 @@ The following table is a complete, non-ranking register. The card path resolves 
 | xAI | `xai-colossus-waterplant` | private | ARCHIVAL_THREAD | [inventory_only; exploratory](evidence_cards/xai_inventory/xai-colossus-waterplant.yaml) |
 | xAI | `xai-colossus-waterplant-alpha` | private | LINEAGE_THREAD | [inventory_only; exploratory](evidence_cards/xai_lineage/xai-colossus-waterplant-alpha.yaml) |
 | xAI | `xai-colossus-waterplant-omega` | private | LINEAGE_THREAD | [inventory_only; exploratory](evidence_cards/xai_lineage/xai-colossus-waterplant-omega.yaml) |
-| xAI | `xai-legal-intelligence` | private | ARCHIVAL_THREAD | [inventory_only; exploratory](evidence_cards/xai_inventory/xai-legal-intelligence.yaml) |
+| xAI | `xai-document-intelligence` | private | ARCHIVAL_THREAD | [inventory_only; exploratory](evidence_cards/xai_inventory/xai-document-intelligence.yaml) |
 
 ## Recovery sequence after this wave
 

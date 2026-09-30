@@ -545,7 +545,7 @@ This is the deduplicated union of the 225-repository unified deserving estate, t
 - [ ] GlacierEQ/xai-colossus-community — LIVE — private, unprocessed, needs_work
 - [ ] GlacierEQ/xai-colossus-microcode — LIVE — private, unprocessed, needs_work
 - [ ] GlacierEQ/xai-colossus-waterplant — LIVE — private, unprocessed, needs_work
-- [ ] GlacierEQ/xai-legal-intelligence — LIVE — private, unprocessed, needs_work
+- [ ] GlacierEQ/xai-document-intelligence — LIVE — private, unprocessed, needs_work
 
 ## CORE_REVIEW — 25
 
