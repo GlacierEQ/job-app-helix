@@ -7,10 +7,10 @@ have passing CI/CD (GitHub Actions). Generates an artifact
 for the recruiter site.
 """
 import json
-import urllib.request
 import urllib.error
-import os
+import urllib.request
 from pathlib import Path
+
 
 def get_latest_workflow_status(repo_full_name: str, token: str) -> str:
     url = f"https://api.github.com/repos/{repo_full_name}/actions/runs?per_page=1"

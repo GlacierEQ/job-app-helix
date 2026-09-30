@@ -2,9 +2,7 @@
 """
 Unit tests for APEX External Compute Delegation Engine.
 """
-import importlib.util
 import unittest
-from pathlib import Path
 
 from src.job_app_helix.apex_distributed_compute import ExternalComputeDelegator
 

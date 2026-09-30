@@ -9,6 +9,7 @@ wire together across the enterprise.
 import json
 from pathlib import Path
 
+
 def generate_mermaid(repos: list[dict]) -> str:
     lines = ["graph TD", "  %% Enterprise Architecture Graph"]
     
@@ -25,17 +26,25 @@ def generate_mermaid(repos: list[dict]) -> str:
     
     for r in repos:
         name = r["repository"].split("/")[-1].lower()
-        if "spacex" in name: clusters["SpaceX / Orbital"].append(name)
-        elif "xai" in name or "colossus" in name: clusters["xAI / Compute"].append(name)
-        elif "openai" in name: clusters["OpenAI / Inference"].append(name)
-        elif any(c in name for c in ["waymo", "zoox", "tesla"]): clusters["Autonomous Vehicles"].append(name)
-        elif any(c in name for c in ["palantir", "databricks", "snowflake"]): clusters["Enterprise SaaS"].append(name)
-        elif any(c in name for c in ["nasa", "lockheed", "anduril"]): clusters["Defense / Assured"].append(name)
-        elif any(f in name for f in ["mastermind", "monolith", "genius", "nexus"]): clusters["Core Flagships"].append(name)
+        if "spacex" in name:
+            clusters["SpaceX / Orbital"].append(name)
+        elif "xai" in name or "colossus" in name:
+            clusters["xAI / Compute"].append(name)
+        elif "openai" in name:
+            clusters["OpenAI / Inference"].append(name)
+        elif any(c in name for c in ["waymo", "zoox", "tesla"]):
+            clusters["Autonomous Vehicles"].append(name)
+        elif any(c in name for c in ["palantir", "databricks", "snowflake"]):
+            clusters["Enterprise SaaS"].append(name)
+        elif any(c in name for c in ["nasa", "lockheed", "anduril"]):
+            clusters["Defense / Assured"].append(name)
+        elif any(f in name for f in ["mastermind", "monolith", "genius", "nexus"]):
+            clusters["Core Flagships"].append(name)
 
     # Output subgraphs
     for cluster_name, nodes in clusters.items():
-        if not nodes: continue
+        if not nodes:
+            continue
         safe_cluster = cluster_name.replace(" / ", "_").replace(" ", "")
         lines.append(f"\n  subgraph {safe_cluster}[\"{cluster_name}\"]")
         for node in nodes[:20]:  # limit to 20 per cluster to avoid massive rendering issues
