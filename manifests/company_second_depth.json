@@ -33,7 +33,7 @@
         {
           "id": "anthropic_problem_ai_reliability_serving_path",
           "kind": "problem",
-          "source_identity": "https://github.com/GlacierEQ/job-application/blob/440e353a6eb6073aaca724a6402ae5329d0e9be6/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
           "source_ref": "commit:440e353a6eb6073aaca724a6402ae5329d0e9be6",
           "verification_state": "VERIFIED",
           "visibility": "public"
@@ -43,7 +43,7 @@
         {
           "id": "anthropic_role_staff_software_engineer_ai_reliability_5113224008",
           "kind": "role",
-          "source_identity": "https://github.com/GlacierEQ/job-application/blob/440e353a6eb6073aaca724a6402ae5329d0e9be6/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
           "source_ref": "commit:440e353a6eb6073aaca724a6402ae5329d0e9be6",
           "verification_state": "VERIFIED",
           "visibility": "public"
@@ -82,7 +82,7 @@
         {
           "id": "lockheed_claim_mission_agentic_ai_assurance",
           "kind": "claim_receipt",
-          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/claim_receipt.json",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/mission-agentic-ai-assurance/proof/claim_receipt.json",
           "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
           "verification_state": "VERIFIED",
           "visibility": "public"
@@ -92,7 +92,7 @@
         {
           "id": "lockheed_remedy_mission_agentic_ai_assurance",
           "kind": "bounded_gap",
-          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/machine/remedy.json",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/mission-agentic-ai-assurance/machine/remedy.json",
           "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
           "verification_state": "VERIFIED",
           "visibility": "public"
@@ -102,7 +102,7 @@
         {
           "id": "lockheed_implementation_mission_agentic_ai_assurance",
           "kind": "implementation_receipt",
-          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/implementation_receipt.json",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/mission-agentic-ai-assurance/proof/implementation_receipt.json",
           "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
           "verification_state": "VERIFIED",
           "visibility": "public"
@@ -157,7 +157,7 @@
         {
           "id": "lockheed_proof_mission_agentic_ai_assurance",
           "kind": "proof_artifact",
-          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/reproduced_receipt.json",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/mission-agentic-ai-assurance/proof/reproduced_receipt.json",
           "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
           "verification_state": "REPRODUCED",
           "visibility": "public"

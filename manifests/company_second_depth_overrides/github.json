@@ -8,7 +8,7 @@
       {
         "id": "github_role_mission_control_5611",
         "kind": "role",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/evidence/github-role-5611.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/github-merge-authority-proof/evidence/github-role-5611.json",
         "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
         "verification_state": "VERIFIED",
         "visibility": "public"
@@ -18,7 +18,7 @@
       {
         "id": "github_problem_agentic_repository_promotion",
         "kind": "problem",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/evidence/github-problem.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/github-merge-authority-proof/evidence/github-problem.json",
         "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
         "verification_state": "VERIFIED",
         "visibility": "public"
@@ -28,7 +28,7 @@
       {
         "id": "github_inspection_merge_authority_private_hash_boundary",
         "kind": "repository_inspection",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/machine/implementation-inspection.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/github-merge-authority-proof/machine/implementation-inspection.json",
         "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
         "verification_state": "VERIFIED",
         "visibility": "public"
@@ -38,7 +38,7 @@
       {
         "id": "github_remedy_merge_authority_contract",
         "kind": "bounded_gap",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/machine/remedy-contract.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/github-merge-authority-proof/machine/remedy-contract.json",
         "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
         "verification_state": "VERIFIED",
         "visibility": "public"
@@ -48,7 +48,7 @@
       {
         "id": "github_implementation_merge_authority",
         "kind": "implementation_receipt",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/proof/implementation-receipt.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/github-merge-authority-proof/proof/implementation-receipt.json",
         "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
         "verification_state": "VERIFIED",
         "visibility": "public"
@@ -58,7 +58,7 @@
       {
         "id": "github_proof_merge_authority_reference_reproduction",
         "kind": "proof_artifact",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13/projects/github-merge-authority-proof/proof/reference-reproduction.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/github-merge-authority-proof/proof/canonical-reproduction.json",
         "source_ref": "commit:7d41cfd84eb9e98fbdeb9fd7ca5be10515397c13",
         "verification_state": "REPRODUCED",
         "visibility": "public"
@@ -68,7 +68,7 @@
       {
         "id": "github_claim_bounded_public_claim",
         "kind": "claim_receipt",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/577f63c506c6c4df9c1751a0ff5b8fa07822e491/projects/github-merge-authority-proof/proof/claim-receipt.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/github-merge-authority-proof/proof/claim-receipt.json",
         "source_ref": "commit:577f63c506c6c4df9c1751a0ff5b8fa07822e491",
         "verification_state": "VERIFIED",
         "visibility": "public"
@@ -76,7 +76,7 @@
       {
         "id": "github_claim_production_projection_closure",
         "kind": "claim_receipt",
-        "source_identity": "https://github.com/GlacierEQ/job-application/blob/577f63c506c6c4df9c1751a0ff5b8fa07822e491/projects/github-merge-authority-proof/proof/production-projection-closure.json",
+        "source_identity": "https://github.com/GlacierEQ/job-application/blob/main/projects/github-merge-authority-proof/proof/production-projection-closure.json",
         "source_ref": "commit:577f63c506c6c4df9c1751a0ff5b8fa07822e491",
         "verification_state": "VERIFIED",
         "visibility": "public"

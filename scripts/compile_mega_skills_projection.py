@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile Mega-Skills public manifest and 29 inspectable static pyramid routes from pinned source."""
+"""Compile Mega-Skills public manifest and inspectable static pyramid routes from pinned source."""
 from __future__ import annotations
 
 import argparse
@@ -14,6 +14,10 @@ SOURCE_COMMIT='4166e09b86c257ba02e32fc20a65b0f63b8e46f7'
 GRAPH_SHA256='0dcb93440657c27233121ca78a916463a8f4f9796f87c4a9ff1cb388d6966e84'
 PUBLIC_SCHEMA='glaciereq.public-mega-skills.v2'
 BASE='https://casey-barton-glaciereq.vercel.app'
+# Apexes outside the public engineering portfolio are compiled privately but never projected to the hire surface.
+PUBLIC_EXCLUDED_APEXES=frozenset({'apex-legal-warfare','apex-forensic-litigation-sentinel','apex-legal-forensic-powerhouse','apex-casebuild-mesh','apex-voice-forensics'})
+
+def public_ids(M): return [rid for rid in sorted(M) if rid not in PUBLIC_EXCLUDED_APEXES]
 
 def load(p): return json.loads(Path(p).read_text(encoding='utf-8'))
 def digest(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -62,7 +66,7 @@ def expand_compound(cid,S,C,X,cnodes,stack=()):
 
 def root_manifest(graph,M):
     rows=[]
-    for rid in sorted(M):
+    for rid in public_ids(M):
         m=M[rid]; rows.append({'id':rid,'name':m.get('display_name',rid),'maturity':m.get('maturity'),'mission_output':m.get('mission_output'),'route':f'/mega-skills/{rid}/','required_compounds':len(m.get('required_combos',[])),'conditional_compounds':len(m.get('conditional_combos',[]))})
     return {'schema':PUBLIC_SCHEMA,'source':{'repository':'GlacierEQ/mega-skills','commit':SOURCE_COMMIT,'graph_sha256':GRAPH_SHA256},'counts':graph['counts'],'claim_boundary':'Repository-declared Skill composition and validation contracts; not runtime execution, production adoption, deployment success, or external endorsement.','mega_skills':rows}
 
@@ -88,11 +92,11 @@ def css_text():
 def compile_all(source:Path,out_root:Path):
     graph,S,C,M,X,roots,cnodes=build_model(source); site=out_root/'site-v15'; (site/'data').mkdir(parents=True,exist_ok=True); (site/'assets').mkdir(parents=True,exist_ok=True)
     manifest=root_manifest(graph,M); manifest_bytes=(json.dumps(manifest,ensure_ascii=False,separators=(',',':'))+'\n').encode(); (site/'data/mega-skills.json').write_bytes(manifest_bytes); (site/'assets/mega-skills.css').write_text(css_text(),encoding='utf-8'); routes=[]
-    for rid in sorted(M):
+    for rid in public_ids(M):
         m=M[rid]; required=[expand_compound(cid,S,C,X,cnodes) for cid in m.get('required_combos',[])]; conditional=[expand_compound(cid,S,C,X,cnodes) for cid in m.get('conditional_combos',[])]; p=site/'mega-skills'/rid/'index.html'; p.parent.mkdir(parents=True,exist_ok=True); p.write_text(render_page(m,required,conditional),encoding='utf-8'); routes.append('/mega-skills/'+rid+'/')
     h=hashlib.sha256()
-    for rel in ['data/mega-skills.json','assets/mega-skills.css']+[f'mega-skills/{rid}/index.html' for rid in sorted(M)]: h.update(rel.encode()+b'\0'+(site/rel).read_bytes()+b'\0')
-    return {'schema':'job-app-helix.mega-skills-projection-receipt.v2','source_commit':SOURCE_COMMIT,'source_graph_sha256':GRAPH_SHA256,'public_schema':PUBLIC_SCHEMA,'route_count':29,'routes':routes,'root_manifest_sha256':hashlib.sha256(manifest_bytes).hexdigest(),'aggregate_projection_sha256':h.hexdigest()}
+    for rel in ['data/mega-skills.json','assets/mega-skills.css']+[f'mega-skills/{rid}/index.html' for rid in public_ids(M)]: h.update(rel.encode()+b'\0'+(site/rel).read_bytes()+b'\0')
+    return {'schema':'job-app-helix.mega-skills-projection-receipt.v2','source_commit':SOURCE_COMMIT,'source_graph_sha256':GRAPH_SHA256,'public_schema':PUBLIC_SCHEMA,'route_count':len(routes),'routes':routes,'root_manifest_sha256':hashlib.sha256(manifest_bytes).hexdigest(),'aggregate_projection_sha256':h.hexdigest()}
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--mega-skills-root',type=Path,required=True); ap.add_argument('--job-application-root',type=Path,required=True); ap.add_argument('--receipt',type=Path); args=ap.parse_args()
