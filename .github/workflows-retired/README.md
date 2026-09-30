@@ -9,4 +9,8 @@ kept for reference and do not run.
   a private-estate crawl from a public repository would also expose its logs
   and artifacts publicly.
 
+- `crystallization-estate-push-smoke.yml` (retired 2026-09-30): the push-time
+  smoke test for the same crawl; it also requires `GLACIEREQ_ESTATE_TOKEN` and
+  failed on every matching push.
+
 To restore one, move it back: `git mv .github/workflows-retired/<name>.yml .github/workflows/`.
