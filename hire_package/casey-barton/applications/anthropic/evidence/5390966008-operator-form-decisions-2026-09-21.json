@@ -1,0 +1,77 @@
+{
+  "schema": "glaciereq.anthropic-5390966008.operator-form-decisions.v1",
+  "recorded_at": "2026-09-21",
+  "candidate": "Casey Del Carpio Barton",
+  "role": "Anthropic · Staff Software Engineer, GTM AI Engineering (Claudification)",
+  "provider_job_id": "5390966008",
+  "source": "operator_current_conversation",
+  "decisions": {
+    "office_25_percent": {
+      "form_question": "Are you open to working in-person in one of our offices 25% of the time?",
+      "value": "YES",
+      "operator_note": "Acceptable for this role; keep an open mind for later adjustments."
+    },
+    "ai_policy": {
+      "form_question": "AI Policy for Application",
+      "value": "YES",
+      "operator_note": "Operator explicitly answered yes."
+    },
+    "visa_sponsorship_current": {
+      "form_question": "Do you require visa sponsorship?",
+      "value": "NO",
+      "operator_note": "Operator clarified they are a U.S. citizen; no current employment visa sponsorship is required for this U.S. role."
+    },
+    "visa_sponsorship_now_or_future": {
+      "form_question": "Will you now or will you in the future require employment visa sponsorship to work in the country in which the job you're applying for is located?",
+      "value": "NO",
+      "operator_note": "Operator clarified they are a U.S. citizen; no future employment visa sponsorship is required for this U.S. role."
+    },
+    "relocation": {
+      "form_question": "Are you open to relocation for this role?",
+      "value": "UNRESOLVED",
+      "operator_note": "Relocation is possible, but Operator explicitly does not want to agree now. Do not select Yes or No without another explicit instruction."
+    },
+    "prior_anthropic_interview": {
+      "form_question": "Have you ever interviewed at Anthropic before?",
+      "value": "NO",
+      "operator_note": "Operator said no and stated they have never applied with Anthropic before."
+    },
+    "arbitration_read": {
+      "form_question": "Please read the arbitration agreement below",
+      "value": "NO",
+      "operator_note": "Operator explicitly said arbitration read: no."
+    },
+    "agreement_to_arbitrate": {
+      "form_question": "Agreement to Arbitrate",
+      "value": "UNRESOLVED",
+      "operator_note": "Operator said 'agree probably'. This is not treated as an explicit legal agreement."
+    },
+    "earliest_start": {
+      "value": "UNRESOLVED"
+    },
+    "timeline_considerations": {
+      "value": "UNRESOLVED"
+    },
+    "working_address_or_relocating": {
+      "value": "UNRESOLVED"
+    },
+    "voluntary_demographics": {
+      "value": "USER_OPTIONAL"
+    }
+  },
+  "provider_submission_authority": {
+    "fill_unambiguous_fields": true,
+    "submit_application": false,
+    "legal_agreement_selection": false
+  },
+  "notes": [
+    "Visa sponsorship answers are resolved as NO / NO based on the Operator's explicit clarification that they are a U.S. citizen.",
+    "Do not select relocation because possibility was stated without present agreement.",
+    "Do not select Agreement to Arbitrate because 'probably' is not an explicit yes.",
+    "Arbitration agreement must be read before the form's read acknowledgement can truthfully change to Yes."
+  ],
+  "operator_identity_basis": {
+    "us_citizen": true,
+    "purpose": "Resolve employment-authorization / sponsorship questions for this U.S. application only."
+  }
+}

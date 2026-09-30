@@ -1,0 +1,23 @@
+{
+  "repo": "comet-agent",
+  "family": "Comet / Perplexity Browser",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Node/TypeScript agent server for Comet browser automation exposing an Express API with tool adapters and a browser-control bridge \u2014 a building block for autonomous web-agent control in the Perplexity Comet family. Concrete multi-source evidence: library.json (TypeScript, private, lab_hire_stamps domain, desc present), capabilities_3layer (launch_cmd git clone, contract_proof DONE, mesh_uri), company_engineered_repositories.json (Comet/Perplexity Browser family, unprocessed), and HIERARCHICAL_FUNCTION_MAP cross-reference. The sibling comet-browser-agent-bridge is the canonical P1_BROWSER_AGENT_SUITE candidate with current_preparation status; comet-agent is the underlying agent kernel feeding the bridge. Honest limitation: still no local source inspection, build/test artifact, or run receipt in hand \u2014 claims stop at catalog + contract_proof.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4348 (name=comet-agent; TypeScript, private, domain lab_hire_stamps, desc present)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:46",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:86-95 (Comet / Perplexity Browser family; unprocessed; canonical_candidate=comet-browser-agent-bridge; P1_BROWSER_AGENT_SUITE focus; 5 repository_memberships)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=comet-agent; launch_cmd git clone, contract_proof DONE, mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/comet-agent)",
+    "/tmp/monolith/domains/memory_aspen.md:43 (cross-family link: comet-memory-integration shares the mesh-linking role that comet-agent consumes)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json:helix_inventory (66-boundary Helix governs family taxonomy that comet-agent sits under)",
+    "Contradiction preserved: catalog states 'needs_work' (unprocessed) while capabilities_3layer asserts contract_proof=DONE \u2014 DONE here means contract_template wired, not test-verified; therefore no >5 promotion without receipt"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Promoted 4->5: catalog presence (library.json + capabilities_3layer) + family taxonomy (Comet P1_BROWSER_AGENT_SUITE, 5 memberships) + cross-link to canonical comet-browser-agent-bridge. To reach >=7: produce an Express server build receipt (npm install + start log), a tool-adapter smoke test (curl /tool/<name>), and a fact card. To reach >=9: add a real browser-control invocation receipt with screenshot artifact. Capped at 5: no local source, test, or run receipt inspected.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.960806",
+  "notes": "local;0files | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "glaciereq.company-solidification-receipt.v1",
+  "at": "2026-08-30T18:45:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "control_plane_head_before_receipt": "30c37d348901cfcaa456f4af77caada8a16380c4",
+  "tranche": "spacex-anthropic-coordinator-nvidia-reasoning-deepen",
+  "selection_basis": "existing high-impact company families with explicit estate bottlenecks; deepen mechanisms before adding new repositories",
+  "repositories": [
+    {
+      "repository": "GlacierEQ/spacex-autonomy",
+      "branch": "main",
+      "head": "4d3c5bf80490f7392563da848535a6ef8c7ffc4a",
+      "mechanisms": [
+        "simulated mission-thread GO/HOLD quorum",
+        "high-confidence HOLD veto preservation",
+        "insufficient/zero-confidence quorum refusal",
+        "hash-bound conflict and hold-reason receipt"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    },
+    {
+      "repository": "GlacierEQ/anthropic-agent-coordinator",
+      "branch": "master",
+      "head": "21d118ef14577dcdb56c77cf61738c5c9e0ff590",
+      "mechanisms": [
+        "assignment-bound tool-proposal batching",
+        "deferred/unknown proposal refusal",
+        "plan SHA-256 binding",
+        "Anthropic Safety Monitor ToolCall-compatible review handoff"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    },
+    {
+      "repository": "GlacierEQ/nvidia-deep-reasoning",
+      "branch": "master",
+      "head": "7aa6808ca6a6f6e0f93ca2e6ce77c480d07e10ac",
+      "mechanisms": [
+        "validated exact token/FLOP budget accounting",
+        "stable full/partial/deferred admission",
+        "synthetic confidence floor removed",
+        "zero-floor health-gated reasoning refusal"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    }
+  ],
+  "helix_records": [
+    "solidify_records/spacex-autonomy.json",
+    "solidify_records/anthropic-agent-coordinator.json",
+    "solidify_records/nvidia-deep-reasoning.json"
+  ],
+  "next_tranche": [
+    "GlacierEQ/apple-ane-kv-quantizer",
+    "GlacierEQ/aws-trainium-neuron-sentinel",
+    "GlacierEQ/deepmind-tpu-mesh-optimizer"
+  ],
+  "invariant": "mechanism -> tests -> truth contract -> exact source head -> estate solidify record"
+}

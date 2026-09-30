@@ -1,0 +1,21 @@
+{
+  "repo": "comet-extension",
+  "family": "Comet / Perplexity Browser",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Cataloged as a Comet/Perplexity browser-extension component (role: part) but the library record carries no description and no fact card, test, or receipt exists in the monolith. A capabilities_3layer stub (launch_cmd git clone, contract_proof DONE, mesh_uri) exists but no functional summary. Family context: part of the Comet/Perplexity Browser 5-repo family (current_preparation: comet-browser-agent-bridge; unprocessed: comet-agent, comet-extension, comet-voice-module-tests, comet-memory-integration) under P1_BROWSER_AGENT_SUITE focus. Honest limitation: cannot infer what the extension does from name alone; absent a description, the only evidence is catalog presence and family membership. Rating capped at 4: a name-only entry inside a worked family is not the same as a described/built capability.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:4380 (name=comet-extension; TypeScript, private, domain lab_hire_stamps, desc empty)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:47 (no description)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:86-95 (Comet / Perplexity Browser family; unprocessed; 5 repository_memberships)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=comet-extension; launch_cmd git clone, contract_proof DONE, mesh_uri \u2014 no functional summary)",
+    "Contradiction: name implies a browser extension (manifest.json, content scripts), but library.json + lab_hire_stamps.md carry no description \u2014 purpose must be inferred; treat as unclassified until source confirms."
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Promoted 2->4: family-membership evidence (Comet P1_BROWSER_AGENT_SUITE 5-repo set) + capabilities_3layer contract_proof=DONE. To reach >=6: add a description, manifest.json inspection, and a build receipt (npm run build + dist/ artifact). To reach >=8: add a screenshot/sandbox load receipt. Capped at 4 honestly: no description and no source \u2014 only catalog presence.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.961732",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

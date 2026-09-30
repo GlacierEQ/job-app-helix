@@ -1,0 +1,139 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "source_sha_before": "fbeaba4afa77516f64baa18a6a2c01ec3d4c121b",
+  "current_source_sha_before_handoff": "b50a70bb651773be31b68394194d7e1d0e35c5a3",
+  "donor_shas": [
+    "1af3f99c4f6168a1606dda78c59227d49e7ff745",
+    "30539e1c36e6634911aa83ae9dca48f4ca26e3d3",
+    "997d6a5ac828ab23f0c2b28967de6772cbf5f236"
+  ],
+  "selected_priority": "Close the remaining P1 internal application gap by binding real attachment files to exact live Greenhouse file-field identities and gating final review readiness on complete resolution of every required user-authored field.",
+  "priority_tier": "P1",
+  "blocked_higher_candidates": [],
+  "mechanisms_compared": [
+    {
+      "mechanism": "historical_recovery_or_composition",
+      "assessment": "Continue visually comparing preparation output and attaching files by hand. Rejected because attachment identity, integrity, and required-field completeness would remain unverifiable."
+    },
+    {
+      "mechanism": "modern_upgrade",
+      "assessment": "Build a generic provider submission payload directly from prepared values. Rejected because it could silently promote review drafts or stale field state without applicant confirmation."
+    },
+    {
+      "mechanism": "nonlinear_combination",
+      "assessment": "Selected: exact preparation receipt + exact Greenhouse field-bundle receipt + applicant-confirmed answer states + hash-bound attachment sources + required-field completeness gating, producing a deterministic final review packet without external submission."
+    }
+  ],
+  "selected_mechanism": "nonlinear_combination",
+  "implemented_delta": {
+    "pull_request": 256,
+    "proof_head": "997d6a5ac828ab23f0c2b28967de6772cbf5f236",
+    "runtime_merge_sha": "b50a70bb651773be31b68394194d7e1d0e35c5a3",
+    "runtime_blob_sha": "33514388a2388eeadbe6981c668dbac125028357",
+    "module": "src/job_app_helix/greenhouse_application_finalization.py",
+    "executable": "job-app-helix-greenhouse-finalize",
+    "capabilities": [
+      "consume the existing source-bound Greenhouse preparation artifact without rewriting APPLICATION_READY or preparation state",
+      "verify exact preparation-to-field-bundle receipt lineage and opening identity before finalization",
+      "bind explicit local attachment files only to exact current live Greenhouse input_file field identities",
+      "hash every bound attachment with SHA-256 and preserve byte size and provenance",
+      "reject missing, empty, conflicting, unknown, or non-file attachment bindings before final artifact mutation",
+      "count provider-managed hidden fields outside user-authored completeness gating",
+      "treat AUTO_FILL_VERIFIED and APPLICANT_CONFIRMED values as final source-bound answers",
+      "refuse to promote DRAFT_REVIEW_REQUIRED, REVIEW_REQUIRED, or undecided values into final answers",
+      "emit GREENHOUSE_APPLICATION_FINAL.json with exact unresolved required fields and ready_for_human_submission",
+      "return non-zero when required applicant-authored state remains unresolved"
+    ]
+  },
+  "preserved_gains": [
+    "existing APPLICATION_READY and Greenhouse preparation receipts remain unchanged",
+    "applicant-confirmed answer binding and live provider option normalization remain intact",
+    "source-reviewed exceptional-work drafts remain review-only until explicitly applicant-confirmed",
+    "sensitive/compliance decisions are not inferred",
+    "provider-managed hidden fields are not treated as applicant-authored requirements",
+    "no external application submission or recruiter contact was added"
+  ],
+  "tests_runtime_proof": {
+    "focused_workflow": {
+      "run_id": 32212844402,
+      "result": "PASS",
+      "python": ["3.11", "3.12", "3.13"],
+      "checks": [
+        "strict Ruff",
+        "5 adversarial finalization tests",
+        "required attachment hash binding",
+        "required-field completeness gating",
+        "draft-review non-promotion",
+        "preparation/field-bundle lineage drift rejection before write",
+        "non-file attachment binding rejection before write",
+        "installed job-app-helix-greenhouse-finalize executable"
+      ]
+    },
+    "post_merge_readback": {
+      "main_merge_sha": "b50a70bb651773be31b68394194d7e1d0e35c5a3",
+      "runtime_blob_sha": "33514388a2388eeadbe6981c668dbac125028357",
+      "result": "PASS"
+    }
+  },
+  "blockers_pivots": [
+    "Initial focused proof run 32212710931 exposed four strict Ruff E501 defects. They were corrected without weakening the finalization gate; replacement run 32212844402 passed the complete Python 3.11/3.12/3.13 matrix."
+  ],
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P1",
+      "priority": "Execute the merged preparation + finalization chain against the preserved production xAI CandidateProfile, actual APPLICATION_READY packet, applicant-confirmed answers, and real resume attachment, then preserve the resulting GREENHOUSE_APPLICATION_FINAL review artifact without submitting externally.",
+      "target_files_functions": [
+        "src/job_app_helix/greenhouse_application_preparation.py::prepare_greenhouse_application_release",
+        "src/job_app_helix/greenhouse_application_finalization.py::finalize_greenhouse_application"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Execute the first real stranded repository-family restoration through manifestless exact-SHA federated restoration and prove recovered behavior in that repository's native runtime.",
+      "target_files_functions": [
+        "src/job_app_helix/estate_federated_restoration.py::execute_auto_estate_federated_restoration",
+        "src/job_app_helix/recovery_ref_graph.py::build_ref_graph",
+        "src/job_app_helix/federated_restoration.py"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Extend exact application-field preparation and completeness semantics to the next attributable ATS provider only where provider-native field identity and attachment requirements can be verified.",
+      "target_files_functions": [
+        "src/job_app_helix/target_opening_discovery.py",
+        "src/job_app_helix/greenhouse_application_fields.py",
+        "src/job_app_helix/greenhouse_application_finalization.py"
+      ]
+    }
+  ],
+  "exact_target_files_functions": [
+    "src/job_app_helix/greenhouse_application_finalization.py::_load_attachments",
+    "src/job_app_helix/greenhouse_application_finalization.py::_index_live_fields",
+    "src/job_app_helix/greenhouse_application_finalization.py::_resolve_field",
+    "src/job_app_helix/greenhouse_application_finalization.py::finalize_greenhouse_application",
+    "tests/test_greenhouse_application_finalization.py"
+  ],
+  "next_sequence": [
+    "load the preserved production xAI Greenhouse preparation artifact and exact packet-local field bundle",
+    "bind the real production resume to the exact live resume input_file field with an explicit attachment-source record",
+    "run job-app-helix-greenhouse-finalize",
+    "inspect unresolved_required_fields and applicant-confirm only remaining required review decisions",
+    "rerun preparation then finalization until ready_for_human_submission is true",
+    "preserve GREENHOUSE_APPLICATION_FINAL.json and do not submit externally without separate explicit instruction"
+  ],
+  "merge_deploy_gate": "PR 256 merged at exact proven head 997d6a5ac828ab23f0c2b28967de6772cbf5f236 as b50a70bb651773be31b68394194d7e1d0e35c5a3. Focused workflow 32212844402 passed Python 3.11/3.12/3.13. Main readback returned runtime blob 33514388a2388eeadbe6981c668dbac125028357.",
+  "rollback": "Revert merge b50a70bb651773be31b68394194d7e1d0e35c5a3. Prior main fbeaba4afa77516f64baa18a6a2c01ec3d4c121b preserves all PR 255 applicant-confirmed Greenhouse preparation capability.",
+  "no_loss_invariants": [
+    "never treat a draft or undecided field as a final answer",
+    "never fabricate or infer an attachment path",
+    "never bind an attachment to a field absent from the exact live provider field bundle",
+    "never bind an attachment to a non-file provider field",
+    "never mark ready_for_human_submission while a required user-authored field is unresolved",
+    "preserve exact preparation, field-bundle, opening, answer, attachment, and file-hash provenance",
+    "do not mutate existing APPLICATION_READY or Greenhouse preparation receipts during finalization",
+    "do not submit externally or contact a recruiter without explicit operator instruction"
+  ],
+  "verified_delta_state": "GREENHOUSE_PREPARATION_NOW_ADVANCES_TO_HASH_BOUND_REQUIRED_FIELD_COMPLETE_FINAL_REVIEW_PACKETS",
+  "verified_executable_capability_delta": true
+}

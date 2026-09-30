@@ -1,0 +1,22 @@
+{
+  "repo": "apex-github-worker",
+  "family": "GitHub",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "GlacierEQ's private GitHub connector + super-intelligent worker chains (AEON-777 hardened, memory connectors, forensic logging), the canonical GitHub-family candidate. It has a real description, a HIERARCHICAL_FUNCTION_MAP filesystem path (/data/data/com.termux/files/home/apex-github-worker), a 3-layer capability record (sha256 c1960d98..., category LEGAL_FORENSIC_PIPELINES), and a merge-authority-graph note confirming it is an independent pure implementation. Its catalog status is catalogued_unclassified and local_job_app false, with no test inspected locally.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:1676 (name; domain apex_cognitive_os; desc 'Notion Workers GitHub connector + super intelligent worker chains (AEON-777 hardened, memory connectors, forensic logging)'; private true; JavaScript; local_job_app false; status_detail catalogued_unclassified)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:1891 (layers 1-3; sha256_binding c1960d988dcb20cb040e665549f0116d37b1899ab6642ca10f1fcf1575021bf5; category LEGAL_FORENSIC_PIPELINES; contract_proof DONE; launch git clone)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json:904 & 2840 (path /data/data/com.termux/files/home/apex-github-worker; relative_path apex-github-worker)",
+    "/tmp/monolith/catalog/capabilities/merge_authority_graph.json:32,46,63 (repository GlacierEQ/apex-github-worker; note 'Independent pure implementation; not a wrapper of private apex-github-worker bytes')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:129-133 (family GitHub; unprocessed; canonical_candidate)",
+    "/tmp/monolith/catalog/repo_excellence_projection.json:56 (private_impl GlacierEQ/apex-github-worker)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Produce a fact card with the worker-chain architecture and a test exercising the GitHub connector against a recorded fixture; reconcile the 'legal forensic' vs 'Notion worker' catalog framing; lift from catalogued_unclassified to worked via a hosted gate.",
+  "repo_excellence_overlap": "Strongest overlap of the wave: forensic logging + worker chains map directly to the repo_excellence VERIFIED anchor's hash-bound action receipts, live AKOS verification, and restart-safe execution (GlacierEQ/computer-user, 203 tests PASS, proof_receipt schema v1). Apply the same receipt-provenance + post-action readback invariants.",
+  "last_verified": "2026-08-29T08:47:16.843179",
+  "notes": "local;0files | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=7"
+}

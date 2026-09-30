@@ -1,0 +1,80 @@
+{
+  "acceptance_contract": [
+    "valid_evidence_can_allow",
+    "missing_evidence_fails_closed",
+    "content_hash_mismatch_rejected",
+    "non_finite_metrics_rejected",
+    "concurrent_identical_calls_execute_once",
+    "conflicting_replay_rejected",
+    "executor_failures_receipted",
+    "exact_demo_reproduction",
+    "fixed_set_proof_manifest_verifies"
+  ],
+  "boundary": "Independent public candidate architecture derived from public requirements and inspected GlacierEQ mechanisms; no Lockheed Martin adoption, deployment, affiliation, proprietary access, contract, clearance, certification, or measured impact is claimed.",
+  "company_id": "lockheed_martin",
+  "failure_domains": [
+    "evidence_integrity",
+    "policy_failure",
+    "replay_conflict",
+    "executor_failure",
+    "monitoring_limit",
+    "state_durability",
+    "scale"
+  ],
+  "proposed_architecture": [
+    "agent_or_orchestrator",
+    "mission_assurance_gateway",
+    "policy_gate",
+    "evidence_validator",
+    "drift_gate",
+    "idempotency_boundary",
+    "circuit_breaker",
+    "executor_boundary",
+    "deterministic_receipt"
+  ],
+  "public_problem": "Integrate and operationalize agentic AI/ML across disparate mission software while preserving traceability, reliability, explainability, monitoring, testability, and CI/CD discipline.",
+  "remedy_id": "mission_agentic_ai_assurance",
+  "requirements_to_capabilities": {
+    "ci_cd_discipline": [
+      "Python matrix",
+      "fixed-set proof manifest",
+      "exact demo reproduction"
+    ],
+    "explainability": [
+      "explicit decisions",
+      "reason codes",
+      "hash-bound outcomes"
+    ],
+    "monitoring": [
+      "finite-metric drift gate"
+    ],
+    "reliability": [
+      "single-process idempotency",
+      "conflicting replay rejection",
+      "circuit breaker"
+    ],
+    "testability": [
+      "deterministic standard-library core",
+      "17 adversarial/unit tests"
+    ],
+    "traceability": [
+      "content-bound evidence snapshots",
+      "request/evidence/policy/outcome hashes",
+      "deterministic receipts"
+    ]
+  },
+  "schema": "glaciereq.bounded-remedy-evidence.v1",
+  "source_commit": "4328fa7078e6e4125f895768142c6af0c5ec1234",
+  "source_path": "projects/mission-agentic-ai-assurance/machine/remedy.json",
+  "source_repository": "GlacierEQ/job-application",
+  "unresolved_gaps": [
+    "durable_distributed_state",
+    "authenticated_workload_identity",
+    "tamper_evident_external_store",
+    "real_telemetry_adapters",
+    "sandboxed_executor",
+    "cross_language_conformance",
+    "signed_release_attestations",
+    "load_chaos_recovery_benchmarks"
+  ]
+}

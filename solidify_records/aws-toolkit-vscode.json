@@ -1,0 +1,19 @@
+{
+  "repo": "aws-toolkit-vscode",
+  "family": "AWS",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "AWS Toolkit for VS Code wrapper/mirror (LAB_BENCHMARKS_AND_STAMPS category, lab_hire_stamps domain) \u2014 unmodified external tooling preserved as a GlacierEQ study/integration reference. Catalog evidence: library.json (name aws-toolkit-vscode, url https://github.com/GlacierEQ/aws-toolkit-vscode), company_engineered_repositories.json:80 (aws.reference_or_upstream \u2014 'Preserve as study, integration, or upstream reference. Do not present as original GlacierEQ work unless a contribution delta is isolated and verified.'), capabilities_3layer.json:24441 (LAB_BENCHMARKS_AND_STAMPS, impact_score=P1, executive_summary='Amazon Q, CodeCatalyst, Local Lambda debug, SAM/CFN syntax, ECS Terminal, AWS resources' (verbatim upstream feature list, not a GlacierEQ contribution), contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=bcd02166c63fc098f556fc35d8da39bab1e422642510a364004ba2300722b108, agent_tool_registration=tool_aws_toolkit_vscode, git-clone launch_cmd). The capabilities_3layer.json file classifies this under lab_hire_stamps (NOT aws domain) which is a notable re-categorization signal \u2014 it is preserved as a benchmark/stamp source, not as a primary AWS deliverable. No local modifications, test, or fact card exist; the company_engineered_repositories.json policy forbids presenting reference_or_upstream as original work.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:2700 (name=aws-toolkit-vscode, url=https://github.com/GlacierEQ/aws-toolkit-vscode)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:80 (aws.reference_or_upstream \u2014 explicit policy: 'Do not present as original GlacierEQ work unless a contribution delta is isolated and verified.')",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24441 (LAB_BENCHMARKS_AND_STAMPS, impact_score=P1, executive_summary='Amazon Q, CodeCatalyst, Local Lambda debug, SAM/CFN syntax, ECS Terminal, AWS resources', launch_cmd='git clone https://github.com/GlacierEQ/aws-toolkit-vscode', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=bcd02166c63fc098f556fc35d8da39bab1e422642510a364004ba2300722b108, mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/aws-toolkit-vscode, agent_tool_registration.name=tool_aws_toolkit_vscode)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Bumps 3->5 with mesh registration. The executive_summary is verbatim upstream feature list (Amazon Q, CodeCatalyst, Local Lambda debug, SAM/CFN syntax, ECS Terminal, AWS resources) \u2014 it documents the upstream product, not a GlacierEQ contribution. Cannot exceed 5 (honest cap) until: (1) a GlacierEQ-specific contribution delta is isolated (e.g., custom tool, extension hook, integration adapter) and diffed against the upstream SHA, (2) a run receipt from the modified toolkit is captured, (3) the policy restriction in company_engineered_repositories.json:80 is satisfied. Note: capabilities_3layer.json places this under lab_hire_stamps (NOT aws) \u2014 reconcile this domain mismatch with company_engineered_repositories.json:80 which puts it under aws.reference_or_upstream.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.817283",
+  "notes": " | NEEDS_REPAIR"
+}

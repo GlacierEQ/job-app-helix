@@ -1,0 +1,213 @@
+.capability-proof-lens {
+  margin-top: 1rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(110, 231, 231, 0.2);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(110, 231, 231, 0.055), transparent 55%),
+    rgba(10, 20, 37, 0.68);
+}
+
+.capability-proof-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.capability-proof-heading h3 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.2rem, 2.3vw, 1.85rem);
+  letter-spacing: -0.03em;
+}
+
+.capability-proof-heading > p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+.capability-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.capability-proof-card {
+  position: relative;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(19, 31, 52, 0.78);
+}
+
+.capability-proof-card h4 {
+  margin: 0.55rem 0 0.8rem;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.capability-proof-match {
+  color: var(--green);
+}
+
+.capability-proof-donor,
+.capability-proof-trust {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.capability-proof-donor {
+  margin-bottom: 0.7rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.capability-proof-donor strong {
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+.capability-proof-donor span {
+  padding: 0.18rem 0.42rem;
+  color: var(--cyan);
+  border: 1px solid rgba(110, 231, 231, 0.24);
+  border-radius: 999px;
+  background: rgba(110, 231, 231, 0.05);
+  font-size: 0.6rem;
+  font-weight: 760;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.capability-proof-trust {
+  justify-content: flex-start;
+  margin-bottom: 0.8rem;
+}
+
+.capability-proof-trust span {
+  padding: 0.28rem 0.48rem;
+  color: var(--green);
+  border: 1px solid rgba(126, 226, 168, 0.2);
+  border-radius: 10px;
+  background: rgba(126, 226, 168, 0.05);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.capability-proof-state {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.32rem 0.6rem;
+  margin: 0.75rem 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.68rem;
+}
+
+.capability-proof-state dt {
+  color: var(--muted);
+}
+
+.capability-proof-state dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.capability-proof-detail {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+}
+
+.capability-proof-label {
+  color: var(--muted);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.capability-proof-links {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.capability-proof-link {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--cyan);
+  font-size: 0.68rem;
+  text-underline-offset: 0.18em;
+}
+
+.capability-proof-checks {
+  display: grid;
+  gap: 0.28rem;
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--muted);
+  font-size: 0.67rem;
+}
+
+.capability-proof-head-link {
+  display: inline-flex;
+  margin-top: 0.7rem;
+  font-size: 0.72rem;
+}
+
+.capability-proof-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.capability-proof-empty {
+  grid-column: 1 / -1;
+  min-height: auto;
+}
+
+@media (max-width: 1040px) {
+  .capability-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .capability-proof-heading {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .capability-proof-heading > p {
+    text-align: left;
+  }
+
+  .capability-proof-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .capability-proof-lens,
+  .capability-proof-card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .capability-proof-card[data-proof-depth="recruiter"] .capability-proof-detail {
+    display: none;
+  }
+}

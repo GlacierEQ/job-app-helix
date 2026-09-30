@@ -1,0 +1,19 @@
+{
+  "repo": "supabase-grafana",
+  "family": "Supabase",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Observability for your Supabase project, using Prometheus/Grafana (catalog exec summary). Catalog classifies it as an Extended Utilities And Experiments engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/supabase-grafana). Honest limitation: listed in company_engineered_repositories 'unprocessed' (supabase family); no tests, build, or fact card found locally, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 15948: entry supabase-grafana; exec summary='Observability for your Supabase project, using Prometheus/Grafana'; url=https://github.com/GlacierEQ/supabase-grafana)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 47005: name=supabase-grafana; classifier=extended_utilities_and_experiments; executive_summary='Observability for your Supabase project, using Prometheus/Grafana'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/supabase-grafana; launch_cmd='git clone https://github.com/GlacierEQ/supabase-grafana')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 269: supabase unprocessed includes supabase-grafana)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Add a runnable observability demo, a test, and a fact card with a live dashboard receipt to reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.910736",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,70 @@
+repository: GlacierEQ/xai-colossus-cooling
+commit: 108470f62a85dac71313cdc92a8d805d87c4511e
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: strongly_supported
+problem_lens: >-
+  Simulated thermal decision logic for hardware-constrained compute systems:
+  classifying node temperatures, aggregating zones, identifying anomalies,
+  and selecting bounded cooling responses.
+artifact:
+  repository_url: https://github.com/GlacierEQ/xai-colossus-cooling
+  inspected_paths:
+    - README.md
+    - apex_core/thermal_orchestrator.py
+    - tests/test_thermal_core.py
+    - cells/rack_cell.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit;
+    this review does not assert that the complete test suite was executed
+    during recovery or that any adapter connected to an external system.
+claim: >-
+  At the reviewed commit, the repository contains a simulated thermal
+  decision kernel that classifies alert levels, aggregates zone averages and
+  peaks, models threshold-bounded CRAC and liquid-flow adjustments, generates
+  emergency action records for critical nodes, detects deviations from an EMA
+  baseline, and returns local tick summaries. Repository-owned tests encode
+  expected behavior for those local models.
+known_limit: >-
+  The artifact does not establish xAI affiliation, access to Colossus systems,
+  facility telemetry, hardware actuation, hyperscale capacity, production PUE,
+  reliability, latency, safety, or cost outcomes. The broad orchestrator is
+  not self-contained: construction imports and starts Aspen/logger and router
+  surfaces, conditionally initializes adapters, and may load sibling-project
+  modules. Those integration paths should remain presentation-adjacent lineage
+  until independently bounded and verified.
+evidence_boundary: >-
+  Local simulation and test-harness behavior only; no claim of live-facility
+  connection or production deployment.
+thread_relationships:
+  - type: experimental_variation
+    repository: GlacierEQ/xai-colossus-cooling-alpha
+    note: >-
+      Curator-defined lineage connection based on shared cooling focus and the
+      explicit alpha designation. The relationship does not assert shared code
+      or a ranking between the two threads.
+  - type: experimental_variation
+    repository: GlacierEQ/xai-colossus-cooling-omega
+    note: >-
+      Curator-defined lineage connection based on shared cooling focus and the
+      explicit omega designation. The relationship does not assert shared code
+      or a ranking between the two threads.
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-energy
+    note: >-
+      Curator-defined systems connection: thermal decisions and energy context
+      are adjacent concerns in the broader compute-infrastructure constellation.
+      This is not a source-code dependency or facility-integration claim.
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-nanosphere
+    note: >-
+      Curator-defined systems connection: the reviewed orchestrator contains a
+      local nanosphere-ingest integration attempt. This does not establish that
+      the separate repository is mounted, exercised, or connected in operation.
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-servers
+    note: >-
+      Curator-defined systems connection: the reviewed source optionally imports
+      a sibling server/fabric surface. This does not establish shared execution,
+      deployment, or infrastructure access.

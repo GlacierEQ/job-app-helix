@@ -1,0 +1,21 @@
+{
+  "repo": "groqchat",
+  "family": "Groq",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "A cross-platform terminal chatbot powered by the Groq Cloud API (Windows/macOS/Linux/Android/iOS). Multi-source presence: library.json:7596 (desc 'A terminal chatbot, powered by Groq Cloud API'; Python; private=false), capabilities_3layer:37681 (entry: elevator_pitch 'Extended Utilities And Experiments engine', tool_groqchat, mesh_uri glaciereq://mesh/extended_utilities_and_experiments/groqchat, contract_proof template only), domains/long_tail.md:398, company_engineered_repositories.json:139 (unprocessed: groqchat), and LONG_TAIL_ATLAS_BATCH_08.md:55 (preserved_upstream/cli with explicit honest limitation: catalog 'establishes interface scope but not credentials, model access, privacy controls, or working execution', confidence=high). Rating held at 5: the LONG_TAIL_ATLAS honest-limitation explicitly downgrades runtime proof; strong catalog but no execution artifact.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:7596 (name groqchat; desc 'A terminal chatbot, powered by Groq Cloud API'; Python; private=false)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:37681 (entry: elevator_pitch 'Extended Utilities And Experiments engine', tool_groqchat, mesh_uri glaciereq://mesh/extended_utilities_and_experiments/groqchat, contract_proof template only)",
+    "/tmp/monolith/domains/long_tail.md:398 (portfolio row: terminal chatbot powered by Groq Cloud API, cross-platform)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:136-141 (Groq family; unprocessed: groqchat; historical_or_cross_company: claude-code-kimi-groq)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_08.md:55 (preserved_upstream/cli; honest limitation: no credentials/model access/privacy/working execution proof, confidence=high)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "wave3": true,
+  "makes_worthy": "Held at 5: catalog + cross-source domain + family taxonomy + tool_groqchat capability entry = solid catalog floor; LONG_TAIL_ATLAS_BATCH_08 honest-limitation explicitly caps at catalog-scope. To reach >=7: a recorded session against the Groq API (model name, prompt, response excerpt, hashed run id) + smoke test. Capped at 5: catalog + status cross-reference only, no runtime/API proof.",
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.871191",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,21 @@
+{
+  "repo": "awscloud",
+  "family": "Amazon Web Services",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Repository holding CloudFormation configurations and Lambda code (long_tail domain, EXTENDED_UTILITIES_AND_EXPERIMENTS category). Catalog evidence: library.json (catalogued, desc present, language=Python), company_engineered_repositories.json (aws.unprocessed), capabilities_3layer.json (EXTENDED_UTILITIES_AND_EXPERIMENTS, impact_score=P1, executive_summary='Cloudformation configs, lambda code, etc.', contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=812d4d132439c28e052ec4cbb7a007d950d9d02186f68774a3819f483268ed69, agent_tool_registration=tool_awscloud, multi-stack tech_stack, git-clone launch_cmd). The multi-language tech_stack on capabilities_3layer (Python+TypeScript+Rust+Go+Docker+MCP) is the standard EXTENDED_UTILITIES template and does NOT prove CFN/Lambda coverage specifically; the executive_summary 'Cloudformation configs, lambda code, etc.' is short but concrete. LONG_TAIL_ATLAS flags 'infrastructure_component, no deployment proof'.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:2732 (name=awscloud, catalogued, desc present, language=Python, url=https://github.com/GlacierEQ/awscloud)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:79 (aws.unprocessed; aws-trainium-neuron-sentinel is the canonical_candidate; awscloud is unprocessed)",
+    "/tmp/monolith/domains/long_tail.md (description)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_05.md (infrastructure_component, no deployment proof)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:31507 (EXTENDED_UTILITIES_AND_EXPERIMENTS, impact_score=P1, executive_summary='Cloudformation configs, lambda code, etc.', tech_stack=[Python, TypeScript, Rust, Go, Docker, MCP], launch_cmd='git clone https://github.com/GlacierEQ/awscloud', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=812d4d132439c28e052ec4cbb7a007d950d9d02186f68774a3819f483268ed69, mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/awscloud, agent_tool_registration.name=tool_awscloud)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Bumps 4->5 with mesh registration; the short executive_summary is concrete but unverified (no actual stack files enumerated, no deployment proof). Cannot exceed 6 until: (1) a CFN/Lambda file inventory is captured with file count + types, (2) a stack-apply or invoke receipt is captured (cloudformation deploy OR sam deploy OR aws lambda invoke, hash-bound), (3) the work is differentiated from aws-trainium-neuron-sentinel (canonical_candidate). Honest cap at 6 without an actual AWS-side deployment receipt.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.810459",
+  "notes": " | NEEDS_REPAIR"
+}

@@ -1,0 +1,20 @@
+{
+  "repo": "DeepSeek-Coder-V2",
+  "family": "DeepSeek",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Upstream DeepSeek-Coder-V2 mirror ('Breaking the Barrier of Closed-Source Models in Code Intelligence'), cataloged as reference (public, unmodified). Multi-source evidence: library.json (private=false; upstream paper tagline), capabilities_3layer:24777 (name, launch_cmd git clone, contract_proof DONE, mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/DeepSeek-Coder-V2 \u2014 explicit 'no local modifications'), and company_engineered_repositories.json:117-120 (DeepSeek family, reference_or_upstream). Honest limitation: explicitly unmodified upstream mirror. Do not present as a portfolio contribution; the rating ceiling is the catalog-evidence floor for unmodified references.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:5388 (name DeepSeek-Coder-V2; desc from upstream paper tagline; private=false; url https://github.com/GlacierEQ/DeepSeek-Coder-V2)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:117-120 (family DeepSeek; reference_or_upstream)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24777 (name, launch_cmd git clone, contract_proof DONE, mesh_uri \u2014 no local modifications)",
+    "Contradiction preserved: capabilities_3layer contract_proof=DONE is misleading for an unmodified upstream mirror \u2014 DONE here means catalog wiring, not GlacierEQ authorship."
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Promoted 3->4: catalog presence (library.json + capabilities_3layer + family taxonomy) is real. To reach >=6: produce a pinned upstream commit SHA, a GlacierEQ-authored fact card stating upstream version + access date, and a doc explaining the reference role. Capped at 4: unmodified upstream reference; no GlacierEQ contribution can be claimed.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.830326",
+  "notes": "catalog_only | VERIFIED_EXTERNAL_REFERENCE",
+  "classification_reason": "classified_as_reference"
+}

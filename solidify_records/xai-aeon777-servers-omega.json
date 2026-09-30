@@ -1,0 +1,27 @@
+{
+  "repo": "xai-aeon777-servers-omega",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Wave-3 mining of local sources confirms this is an alpha/omega variant of the xAI/Colossus portfolio listed under xai_colossus.historical_or_cross_company (canonical candidate xai-colossus-cooling). The monolith catalog (library.json) records it as a Python 'part' with domain=memory_aspen, activity=catalogued, status_detail=catalogued_unclassified, private=true, desc='' (EMPTY), local_job_app=false, issue_contract=false. No local clone, README, code, tests, fact card, or CI receipt was found. The xai_colossus_servers_hardening.json receipt verifies the canonical xai-colossus-servers lineage (20/20 tests, run_id 30897116390, scenario_sha256=9917ef6cbc25f9a842206b097e9e7194866040b5d3a727ed50f274a82f3f7617, artifact 8887480269 digest sha256:c9dd3f0da5fd37a4e792728bee2228066ddd25bc7f7a475a913809044b70612f) but NOT this aeon777-named variant. Name collision risk: do not attribute the verified 20/20 lineage to this catalog stub. Capped honestly at 3.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry xai-aeon777-servers-omega: domain=memory_aspen, role=part, activity=catalogued, status_detail=catalogued_unclassified, language=Python, desc='' (EMPTY), private=true, local_job_app=false, issue_contract=false)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company includes 'xai-aeon777-servers-omega')",
+    "xai_colossus_servers_hardening.json verifies the canonical xai-colossus-servers lineage (NOT this aeon777 variant \u2014 confirmed absence)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_5": "(1) Clone the repository; (2) confirm whether implementation exists; (3) extract a README and any tests into a fact card; (4) add a runnable test suite plus a CI truth gate; (5) emit a hardening receipt with a pinned commit and artifact digest, mirroring xai_colossus_servers_hardening.json structure (rack-planner, first-fit-decreasing-with-preference, scenario + SHA-256).",
+  "makes_worthy_7": "After worthy_5 steps, also: (a) demonstrate rack/MW/thermal logic with a typed, versioned scenario; (b) add boundary tests for failure domains, redundancy, and maintenance state; (c) obtain independent infrastructure review. Until then, this remains a name-only catalog stub.",
+  "honest_limits": [
+    "catalog desc field is EMPTY; no mechanism evidence beyond the family grouping",
+    "no local clone, source inspection, test, CI run id, artifact, or receipt found locally",
+    "name collision risk: the verified 20/20 xai-colossus-servers lineage is distinct; this aeon777 variant is not covered by that receipt"
+  ],
+  "last_verified": "2026-08-29T08:47:16.860144",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

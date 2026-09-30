@@ -1,0 +1,35 @@
+name: External Application Receipt Integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "evidence/applications/**"
+      - "hire_package/casey-barton/applications/**"
+      - "hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md"
+      - "scripts/validate_external_application_receipts.py"
+      - ".github/workflows/external-application-receipt-integrity.yml"
+  pull_request:
+    paths:
+      - "evidence/applications/**"
+      - "hire_package/casey-barton/applications/**"
+      - "hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md"
+      - "scripts/validate_external_application_receipts.py"
+      - ".github/workflows/external-application-receipt-integrity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Fail closed on duplicate-submission regressions
+        run: python scripts/validate_external_application_receipts.py

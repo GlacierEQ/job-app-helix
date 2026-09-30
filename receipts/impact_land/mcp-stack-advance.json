@@ -1,0 +1,32 @@
+{
+  "failure_mode": "If `src/glaciereq_mcp_stack/claim_fence.py` silent-fails, forges authority, or ships without `tests/test_glaciereq_mcp_stack_claim_fence.py` refuse-path coverage, fail closed. Do not amputate sibling capability to green CI.",
+  "measurement": "1) `tests/test_glaciereq_mcp_stack_claim_fence.py` \u2014 unit tests for happy path + refuse path for claim_fence.\n2) Exact-head proof receipt at `receipts/claim_fence_proof.json` binding mechanism id + commit.\n3) Born-to-run smoke: import/load `src/glaciereq_mcp_stack/claim_fence.py` and exercise one real bottleneck case from `glaciereq-mcp-stack` (desc: MCP tool router with allow-list (portfolio) \u00b7 AKOS P0).\n4) Impact check: Invent/advance `entropy_budget_futures` on GlacierEQ/megamind using knowledge: International AI Safety Report 2026",
+  "mechanism_id": "claim_fence",
+  "mechanism_title": "Claim Fence for GlacierEQ/glaciereq-mcp-stack",
+  "paths": [
+    "src/glaciereq_mcp_stack/claim_fence.py",
+    "src/glaciereq_mcp_stack/claim_fence_config.py",
+    "receipts/claim_fence_proof.json"
+  ],
+  "plane": "IMPLEMENTED",
+  "problem": "glaciereq-mcp-stack: tool execution authority is either absent or unbounded relative to host policy.",
+  "receipt_sha256": "35ec96fa5995ab25c6d58ccb4e9a1ee51353c9dd7ece6b041cb74368861ec432",
+  "repository": "GlacierEQ/glaciereq-mcp-stack",
+  "research_signals": [
+    "no_test_mention",
+    "mcp_tools",
+    "governance",
+    "hire_surface",
+    "has_prior_knowledge",
+    "prior_mechanism_known"
+  ],
+  "schema": "glaciereq.genius-advance-brief.v1",
+  "status": "READY",
+  "steps": [
+    "Create module path from brief with typed public API.",
+    "Add refuse-path unit tests before happy path.",
+    "Wire bottleneck call sites through the mechanism.",
+    "Emit proof receipt JSON bound to commit SHA.",
+    "Keep dual-plane labels honest (no false VERIFIED)."
+  ]
+}

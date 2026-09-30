@@ -1,0 +1,19 @@
+{
+  "repo": "spacex-launch-sequencer",
+  "family": "SpaceX",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "Launch stage machine with holds (portfolio) on AKOS P1 (catalog exec summary). Catalog classifies it as an Aerospace And Control Systems engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, and a public GitHub source (GlacierEQ/spacex-launch-sequencer); the catalog marks it worked_on with impact P0 and it is in the spacex family's current_preparation. Honest limitation: no independent test/receipt/fact card found locally, so capability is catalog-proven (worked_on), not independently runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 15532: entry spacex-launch-sequencer; exec summary='Launch stage machine with holds (portfolio) \u00b7 AKOS P1'; url=https://github.com/GlacierEQ/spacex-launch-sequencer)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 23809: name=spacex-launch-sequencer; classifier=aerospace_and_control_systems; worked_on; impact P0; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/aerospace_and_control_systems/spacex-launch-sequencer; launch_cmd='git clone https://github.com/GlacierEQ/spacex-launch-sequencer')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 258: spacex current_preparation includes spacex-launch-sequencer)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt to independently confirm the state machine and reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.839537",
+  "notes": " | NEEDS_REPAIR"
+}

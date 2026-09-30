@@ -1,0 +1,48 @@
+{
+  "schema": "glaciereq.cursor-lineage-audit.v1",
+  "observed_at": "2026-08-08T13:31:00-10:00",
+  "company_id": "cursor",
+  "decision": "DIRECT_NAME_EVIDENCE_EXISTS_BUT_NO_GLACIEREQ_ORIGINAL_PROOF",
+  "repositories": [
+    {
+      "repository": "GlacierEQ/cursor",
+      "repository_id": 1040582511,
+      "visibility": "public",
+      "github_fork": true,
+      "parent": "cursor/cursor",
+      "source": "cursor/cursor",
+      "classification": "UPSTREAM",
+      "recruiter_admission": false,
+      "evidence": "GitHub repository metadata reports fork=true and parent/source cursor/cursor."
+    },
+    {
+      "repository": "GlacierEQ/cursor-vip",
+      "repository_id": 1038352604,
+      "visibility": "public",
+      "github_fork": true,
+      "parent": "kingparks/cursor-vip",
+      "source": "kingparks/cursor-vip",
+      "classification": "UPSTREAM",
+      "recruiter_admission": false,
+      "evidence": "GitHub repository metadata reports fork=true and parent/source kingparks/cursor-vip."
+    },
+    {
+      "repository": "GlacierEQ/awesome-cursorrules",
+      "repository_id": 1034505728,
+      "visibility": "private",
+      "github_fork": false,
+      "homepage": "https://github.com/PatrickJS/awesome-cursorrules",
+      "classification": "UPSTREAM_SHAPED_PROVENANCE_UNRESOLVED",
+      "recruiter_admission": false,
+      "evidence": "GitHub metadata points homepage at PatrickJS/awesome-cursorrules and the README presents the Awesome Cursor Rules corpus; non-fork status alone is not authorship proof."
+    }
+  ],
+  "truth_boundary": {
+    "direct_name_match_is_not_authorship": true,
+    "github_fork_is_excluded_from_original_authorship": true,
+    "non_fork_copy_is_not_originality_proof": true,
+    "cursor_affiliation_claimed": false,
+    "current_recruiter_ready_direct_repositories": 0
+  },
+  "next_gate": "Compare GlacierEQ/awesome-cursorrules against PatrickJS/awesome-cursorrules using commit/tree ancestry and unique patch analysis. Preserve only demonstrably unique GlacierEQ delta as a candidate capability donor."
+}

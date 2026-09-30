@@ -1,0 +1,41 @@
+{
+  "schema": "glaciereq.p0-innovation-build-contract.v1",
+  "authority": "GlacierEQ/job-app-helix",
+  "queue": "manifests/application_intelligence/company_innovation_execution_queue.v1.json",
+  "implementation": "src/job_app_helix/p0_builds.py",
+  "verifier": "scripts/verify_p0_innovation_builds.py",
+  "count": 25,
+  "success_contract": {
+    "all_queue_ids_have_reference_implementation": true,
+    "all_reference_build_checks_must_pass": true,
+    "exact_head_ci_receipt_required_for_verified_state": true,
+    "reference_build_does_not_claim_company_deployment": true
+  },
+  "builds": [
+    {"rank": 1, "company_id": "cursor", "innovation": "Patch Intent Twin", "symbol": "patch_intent_twin", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 2, "company_id": "apptronik", "innovation": "Deployment Interface Standardizer", "symbol": "deployment_interface_standardizer", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 3, "company_id": "arm", "innovation": "Cross-ISA AI Placement Contract", "symbol": "cross_isa_ai_placement_contract", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 4, "company_id": "astera_labs", "innovation": "Fabric Congestion Autopilot", "symbol": "fabric_congestion_autopilot", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 5, "company_id": "braintrust", "innovation": "Eval Portfolio Optimizer", "symbol": "eval_portfolio_optimizer", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 6, "company_id": "clickhouse", "innovation": "Trajectory-Native Storage Layout", "symbol": "trajectory_native_storage_layout", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 7, "company_id": "cognition", "innovation": "Execution Checkpoint Lattice", "symbol": "execution_checkpoint_lattice", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 8, "company_id": "crusoe", "innovation": "Rack-to-Token Autopilot", "symbol": "rack_to_token_autopilot", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 9, "company_id": "etched", "innovation": "Architecture Exposure Hedge", "symbol": "architecture_exposure_hedge", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 10, "company_id": "figure_ai", "innovation": "Fleet Skill Compounding Engine", "symbol": "fleet_skill_compounding_engine", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 11, "company_id": "fireworks_ai", "innovation": "Optimization Safety Envelope", "symbol": "optimization_safety_envelope", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 12, "company_id": "lambda", "innovation": "Useful-GPU-Minute Contract", "symbol": "useful_gpu_minute_contract", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 13, "company_id": "langchain", "innovation": "Typed Agent Capability Graph", "symbol": "typed_agent_capability_graph", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 14, "company_id": "mongodb", "innovation": "Operational-Semantic Twin Index", "symbol": "operational_semantic_twin_index", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 15, "company_id": "obsidian_security", "innovation": "Agent Relationship Graph Firewall", "symbol": "agent_relationship_graph_firewall", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 16, "company_id": "pinecone", "innovation": "Retrieval Outcome Optimizer", "symbol": "retrieval_outcome_optimizer", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 17, "company_id": "safe_superintelligence_ssi", "innovation": "Capability–Safety Pareto Observatory", "symbol": "capability_safety_pareto_observatory", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 18, "company_id": "shield_ai", "innovation": "Mission Autonomy Evidence Graph", "symbol": "mission_autonomy_evidence_graph", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 19, "company_id": "skild_ai", "innovation": "Embodiment Latent Adapter", "symbol": "embodiment_latent_adapter", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 20, "company_id": "supabase", "innovation": "Policy-Carrying AI Data Plane", "symbol": "policy_carrying_ai_data_plane", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 21, "company_id": "tsmc", "innovation": "Yield-to-Workload Feedback Loop", "symbol": "yield_to_workload_feedback_loop", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 22, "company_id": "temporal", "innovation": "Nondeterminism Envelope", "symbol": "nondeterminism_envelope", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 23, "company_id": "thinking_machines_lab", "innovation": "Judgment Replication Fabric", "symbol": "judgment_replication_fabric", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 24, "company_id": "together_ai", "innovation": "Open-Model Fidelity Passport", "symbol": "open_model_fidelity_passport", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"},
+    {"rank": 25, "company_id": "world_labs", "innovation": "Persistent World-State Compiler", "symbol": "persistent_world_state_compiler", "state": "REFERENCE_BUILD_IMPLEMENTED_REQUIRES_EXACT_HEAD_CI"}
+  ]
+}

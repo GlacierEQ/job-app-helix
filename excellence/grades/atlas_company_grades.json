@@ -1,0 +1,837 @@
+{
+  "generated_at": "2026-08-09T04:25Z",
+  "scale": {
+    "estate_grade": "Depth/quality of existing public proof repos",
+    "opportunity_grade": "Hire leverage if excellence achieved",
+    "priority": "Composite for work order (zeros boosted)"
+  },
+  "companies": [
+    {
+      "slug": "lockheed-martin",
+      "name": "Lockheed Martin",
+      "tier": "mission-assurance",
+      "local_repos": 0,
+      "estate_grade": "B+",
+      "opportunity_grade": "A+",
+      "atlas_status": "SCAFFOLD\u2192PROMOTED_ON_SITE",
+      "bottleneck": "Site claims REPRODUCED mission-agentic proof but local multi-repo estate thin/missing; single flagship risk.",
+      "genius_solution": "Mission Assurance Split Brain (safe): separate policy-decider from actuator with dual-key receipts; neither alone can complete a side effect. Independent reference only \u2014 no LM affiliation claim.",
+      "wave": 1,
+      "planned_repos": [
+        "mission-agentic-ai-assurance (sync)",
+        "lockheed-dual-key-actuator-fence",
+        "lockheed-mission-thread-isolator"
+      ],
+      "priority": 7.5
+    },
+    {
+      "slug": "xai",
+      "name": "xAI",
+      "tier": "frontier-infra",
+      "local_repos": 13,
+      "estate_grade": "A-",
+      "opportunity_grade": "A+",
+      "atlas_status": "REPOSITORY-RICH",
+      "bottleneck": "Cooling/energy/security pillars exist but few end-to-end REPRODUCED claim chains from training job \u2192 facility actuate \u2192 receipt.",
+      "genius_solution": "Colossus Actuation Receipt Bus: every cooling/energy command is a signed intent with preconditions, abort predicates, and post-condition evidence; refuse actuation if receipt graph incomplete.",
+      "wave": 0,
+      "planned_repos": [
+        "xai-colossus-cooling (deepen)",
+        "xai-actuation-receipt-bus (new)",
+        "grokodile-truth-gate (promote)"
+      ],
+      "priority": 6.2
+    },
+    {
+      "slug": "spacex",
+      "name": "SpaceX",
+      "tier": "mission-systems",
+      "local_repos": 12,
+      "estate_grade": "B+",
+      "opportunity_grade": "A+",
+      "atlas_status": "REPOSITORY-RICH",
+      "bottleneck": "Many domain modules but shallow coupling; no single mission thread proving GO/NO-GO under conflicting sensors.",
+      "genius_solution": "Mission Thread Quorum: pad weather + propulsion + conjunction + sequencer vote with half-life authority tokens; any dissent freezes stack with deterministic hold reason codes.",
+      "wave": 1,
+      "planned_repos": [
+        "spacex-mission-thread-quorum",
+        "spacex-hold-reason-compiler",
+        "spacex-autonomy (deepen)"
+      ],
+      "priority": 6
+    },
+    {
+      "slug": "anduril",
+      "name": "Anduril",
+      "tier": "defense-autonomy",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "A",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero exhibits. Defense autonomy needs fail-closed track fusion without LARPing classified systems.",
+      "genius_solution": "Lattice Dissent Freeze: multi-sensor tracks require signed agreement envelope; single high-severity dissent freezes engagement recommendation (never weaponize; pure software sim).",
+      "wave": 1,
+      "planned_repos": [
+        "anduril-lattice-dissent-freeze",
+        "anduril-track-envelope-compiler"
+      ],
+      "priority": 5.7
+    },
+    {
+      "slug": "palantir",
+      "name": "Palantir",
+      "tier": "ontology-ops",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "A",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero exhibits. Ontology/writeback is the real FDE pain.",
+      "genius_solution": "Ontology Writeback Diff Ledger: every proposed object mutation is a typed diff with authority, lineage, and refuse-if-schema-drift; apply only after dual human/agent sign-off modes.",
+      "wave": 1,
+      "planned_repos": [
+        "palantir-ontology-writeback-ledger",
+        "palantir-action-lineage-graph"
+      ],
+      "priority": 5.7
+    },
+    {
+      "slug": "glaciereq-core",
+      "name": "GlacierEQ Core",
+      "tier": "identity-os",
+      "local_repos": 21,
+      "estate_grade": "A",
+      "opportunity_grade": "A",
+      "atlas_status": "REPOSITORY-RICH",
+      "bottleneck": "Deep estate; risk is sprawl without promotion discipline.",
+      "genius_solution": "Estate Promotion Highway: only proof-bound systems reach recruiter surface; everything else stays PARTIALLY_VERIFIED.",
+      "wave": 0,
+      "planned_repos": [
+        "job-application",
+        "aspen-grove-core",
+        "AKOS",
+        "pro-code"
+      ],
+      "priority": 5.5
+    },
+    {
+      "slug": "databricks",
+      "name": "Databricks",
+      "tier": "lakehouse-ai",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "A-",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Notebook\u2192production promotion is the enterprise fire.",
+      "genius_solution": "Notebook Claim Fence: cell outputs are provisional; only receipt-promoted artifacts become production features/models.",
+      "wave": 1,
+      "planned_repos": [
+        "databricks-notebook-claim-fence",
+        "databricks-feature-lineage-passport"
+      ],
+      "priority": 5.2
+    },
+    {
+      "slug": "nasa",
+      "name": "NASA",
+      "tier": "space-systems",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "A-",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Flight/ops software needs command authority discipline.",
+      "genius_solution": "Command Authority Half-life: telecommand tokens expire cryptographically; stale ops physically cannot fire after TTL.",
+      "wave": 1,
+      "planned_repos": [
+        "nasa-command-authority-half-life",
+        "nasa-telemetry-anomaly-receipt"
+      ],
+      "priority": 5.2
+    },
+    {
+      "slug": "scale-ai",
+      "name": "Scale AI",
+      "tier": "data-eval",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "A-",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero exhibits. Data quality / eval integrity is the moat.",
+      "genius_solution": "Label Collusion Bound: information-theoretic agreement ceilings detect copy-paste annotator rings; budget adversarial labels before model train.",
+      "wave": 1,
+      "planned_repos": [
+        "scale-label-collusion-bound",
+        "scale-eval-poison-sentinel"
+      ],
+      "priority": 5.2
+    },
+    {
+      "slug": "snowflake",
+      "name": "Snowflake",
+      "tier": "data-cloud",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "A-",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Query purpose vs result misuse.",
+      "genius_solution": "Query Intent Ledger: every query tagged with purpose hash; downstream use of result columns must match declared purpose or alert.",
+      "wave": 1,
+      "planned_repos": [
+        "snowflake-query-intent-ledger",
+        "snowflake-cortex-claim-bound"
+      ],
+      "priority": 5.2
+    },
+    {
+      "slug": "waymo",
+      "name": "Waymo",
+      "tier": "av-perception",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "A-",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. AV safety communication without road testing claims.",
+      "genius_solution": "Phantom Free-Space Certificate: system must prove free space occupancy, not only detect objects \u2014 inverse perception with explicit unknown.",
+      "wave": 1,
+      "planned_repos": [
+        "waymo-phantom-freespace-certificate",
+        "waymo-uncertainty-lane-graph"
+      ],
+      "priority": 5.2
+    },
+    {
+      "slug": "vercel",
+      "name": "Vercel",
+      "tier": "edge-ai-platform",
+      "local_repos": 0,
+      "estate_grade": "D",
+      "opportunity_grade": "A-",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Site lives on Vercel but zero company-named proof repos.",
+      "genius_solution": "Deploy Claim Compiler: maps CI receipts \u2192 allowed marketing claims; website/text cannot assert 'production verified' without deploy+test receipt graph.",
+      "wave": 1,
+      "planned_repos": [
+        "vercel-deploy-claim-compiler",
+        "vercel-edge-agent-cap-token"
+      ],
+      "priority": 5.1
+    },
+    {
+      "slug": "anthropic",
+      "name": "Anthropic",
+      "tier": "agent-safety",
+      "local_repos": 2,
+      "estate_grade": "B",
+      "opportunity_grade": "A",
+      "atlas_status": "REPOSITORY-RICH",
+      "bottleneck": "Coordinator/safety exist but lack constitutional refusal proofs and tool-use transcript binding.",
+      "genius_solution": "Constitutional Tool Transcript: every tool call bound to policy hash + red-line set; post-hoc replay must reproduce refuse/allow with bit-identical decision.",
+      "wave": 1,
+      "planned_repos": [
+        "anthropic-constitutional-tool-transcript",
+        "anthropic-agent-coordinator (deepen)",
+        "anthropic-safety-monitor (deepen)"
+      ],
+      "priority": 4.8
+    },
+    {
+      "slug": "cerebras",
+      "name": "Cerebras",
+      "tier": "wafer-scale",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B+",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Wafer-scale needs compile/placement honesty.",
+      "genius_solution": "Wafer Placement Receipt: model graph partition fingerprints; refuse silent recompile that changes numeric contract.",
+      "wave": 2,
+      "planned_repos": [
+        "cerebras-wafer-placement-receipt"
+      ],
+      "priority": 4.7
+    },
+    {
+      "slug": "cloudflare",
+      "name": "Cloudflare",
+      "tier": "edge-network",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B+",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Edge agent capabilities need hard caps.",
+      "genius_solution": "Workers Agent CAP: capability tokens scoped per request; mid-request escalation impossible without new token mint.",
+      "wave": 1,
+      "planned_repos": [
+        "cloudflare-workers-agent-cap",
+        "cloudflare-bot-intent-receipt"
+      ],
+      "priority": 4.7
+    },
+    {
+      "slug": "coreweave",
+      "name": "CoreWeave",
+      "tier": "gpu-cloud",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B+",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. K8s GPU multi-tenant fairness + eviction honesty.",
+      "genius_solution": "GPU Lease Honesty Ledger: preemption events emit customer-visible receipts with exact lost work quanta.",
+      "wave": 2,
+      "planned_repos": [
+        "coreweave-gpu-lease-honesty-ledger"
+      ],
+      "priority": 4.7
+    },
+    {
+      "slug": "hugging-face",
+      "name": "Hugging Face",
+      "tier": "open-ecosystem",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B+",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Hub model card claims vs actual weights/evals mismatch.",
+      "genius_solution": "Model Card Claim Fence: card metrics must cite runnable eval harness receipt or auto-downgrade language to 'reported'.",
+      "wave": 2,
+      "planned_repos": [
+        "hf-model-card-claim-fence"
+      ],
+      "priority": 4.7
+    },
+    {
+      "slug": "mistral",
+      "name": "Mistral AI",
+      "tier": "efficient-models",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B+",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. European open-weight serving efficiency + tool use.",
+      "genius_solution": "Sparse Expert Admission: MoE routing under latency/energy caps with refuse-when-expert-unavailable (no silent quality cliff).",
+      "wave": 2,
+      "planned_repos": [
+        "mistral-sparse-expert-admission"
+      ],
+      "priority": 4.7
+    },
+    {
+      "slug": "perplexity",
+      "name": "Perplexity",
+      "tier": "answer-engine",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B+",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Answer engines hallucinate citations.",
+      "genius_solution": "Answer Span Provenance: each sentence maps to source offsets; missing map \u2192 sentence withheld (fail closed).",
+      "wave": 2,
+      "planned_repos": [
+        "perplexity-answer-span-provenance"
+      ],
+      "priority": 4.7
+    },
+    {
+      "slug": "groq",
+      "name": "Groq",
+      "tier": "lpu-inference",
+      "local_repos": 0,
+      "estate_grade": "D",
+      "opportunity_grade": "B+",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Estate discovered not recruiter-ready; need deterministic latency story.",
+      "genius_solution": "Jitter Envelope Contract: not p99 alone \u2014 allowed latency *shape* (burst, plateau, tail) with hard abort if envelope violated.",
+      "wave": 1,
+      "planned_repos": [
+        "groq-jitter-envelope-contract",
+        "groq-batch-admission-gate"
+      ],
+      "priority": 4.6
+    },
+    {
+      "slug": "nvidia",
+      "name": "NVIDIA",
+      "tier": "gpu-infra",
+      "local_repos": 2,
+      "estate_grade": "B-",
+      "opportunity_grade": "A",
+      "atlas_status": "REPOSITORY-RICH",
+      "bottleneck": "GPU health + reasoning budget exist; missing multi-GPU consensus on gradient/NaN protection as first-class.",
+      "genius_solution": "Gradient Integrity Quorum: NCCL-rank votes on finite metrics before allreduce commit; poison rank isolates without job death theater.",
+      "wave": 1,
+      "planned_repos": [
+        "nvidia-gradient-integrity-quorum",
+        "nvidia-gpu-health (deepen)",
+        "nvidia-deep-reasoning (deepen)"
+      ],
+      "priority": 4.6
+    },
+    {
+      "slug": "openai",
+      "name": "OpenAI",
+      "tier": "provider-agents",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "A",
+      "atlas_status": "SEEDED",
+      "bottleneck": "KV sentinel is thin; missing eval/regression and agent handoff contracts for Realtime/Assistants-class systems.",
+      "genius_solution": "Reasoning Budget Futures: pre-purchase compute/token envelopes with circuit-break on entropy spike; never silently spend past contract.",
+      "wave": 1,
+      "planned_repos": [
+        "openai-reasoning-budget-futures",
+        "openai-tool-authority-matrix",
+        "openai-reasoning-kv-sentinel (deepen)"
+      ],
+      "priority": 4.4
+    },
+    {
+      "slug": "adobe",
+      "name": "Adobe",
+      "tier": "creative-ai",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Provenance of generative content.",
+      "genius_solution": "Creative Provenance Chain: C2PA-style content credentials simulated with edit graph + model ID receipts.",
+      "wave": 3,
+      "planned_repos": [
+        "adobe-creative-provenance-chain"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "amd",
+      "name": "AMD",
+      "tier": "gpu-silicon",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. ROCm reliability story.",
+      "genius_solution": "ROCm Job Health Envelope: thermal/power/ECC envelope with predictive drain before hard failure.",
+      "wave": 3,
+      "planned_repos": [
+        "amd-rocm-health-envelope"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "blue-origin",
+      "name": "Blue Origin",
+      "tier": "launch-space",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Launch/ops software.",
+      "genius_solution": "Propellant Accounting Twin: mass/energy balance with refuse-to-launch on unreconciled deltas.",
+      "wave": 3,
+      "planned_repos": [
+        "blue-origin-propellant-accounting-twin"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "cohere",
+      "name": "Cohere",
+      "tier": "enterprise-nlp",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. RAG enterprise grounding pain.",
+      "genius_solution": "Citation Compulsory Decode: generation tokens gated on retrieved span IDs; uncited claims redacted at stream time.",
+      "wave": 2,
+      "planned_repos": [
+        "cohere-citation-compulsory-decode"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "ibm",
+      "name": "IBM",
+      "tier": "enterprise-ai",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Governance theater vs real policy.",
+      "genius_solution": "Policy Runtime Witness: watsonx-style policy checks emit witness tokens consumable by auditors without model weights.",
+      "wave": 3,
+      "planned_repos": [
+        "ibm-policy-runtime-witness"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "qualcomm",
+      "name": "Qualcomm",
+      "tier": "edge-silicon",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. On-device NPU.",
+      "genius_solution": "Hexagon Power-Quality Pareto: runtime chooses quality tier under battery envelope with user-visible tier receipts.",
+      "wave": 3,
+      "planned_repos": [
+        "qualcomm-hexagon-power-quality-pareto"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "rocket-lab",
+      "name": "Rocket Lab",
+      "tier": "small-launch",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Rapid launch cadence ops.",
+      "genius_solution": "Range Window Compiler: weather+range+vehicle constraints compile to GO binary with human-readable residual risks.",
+      "wave": 3,
+      "planned_repos": [
+        "rocket-lab-range-window-compiler"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "salesforce",
+      "name": "Salesforce",
+      "tier": "crm-ai",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. CRM agent write hazards.",
+      "genius_solution": "CRM Mutation Sandbox: agent-proposed field writes simulate impact graph before commit; PII fields dual-control.",
+      "wave": 3,
+      "planned_repos": [
+        "salesforce-crm-mutation-sandbox"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "zoox",
+      "name": "Zoox",
+      "tier": "robotaxi",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero. Purpose-built AV fleet ops.",
+      "genius_solution": "Cabin Mission Mode FSM: rider mission states with operator override receipts and geo-fenced mode transitions.",
+      "wave": 3,
+      "planned_repos": [
+        "zoox-cabin-mission-mode-fsm"
+      ],
+      "priority": 4.2
+    },
+    {
+      "slug": "intel",
+      "name": "Intel",
+      "tier": "silicon-ai",
+      "local_repos": 0,
+      "estate_grade": "D",
+      "opportunity_grade": "B",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Mis-tagged coverage only.",
+      "genius_solution": "OpenVINO Graph Fingerprint: IR compile receipt; reject silent graph rewrites that change numerics.",
+      "wave": 3,
+      "planned_repos": [
+        "intel-openvino-graph-fingerprint"
+      ],
+      "priority": 4.1
+    },
+    {
+      "slug": "apple",
+      "name": "Apple",
+      "tier": "on-device-ai",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "A-",
+      "atlas_status": "SEEDED",
+      "bottleneck": "ANE quantizer thin; privacy + on-device fail-closed story incomplete.",
+      "genius_solution": "On-Device Authority Capsule: model+policy sealed; network tools denied unless capsule grants explicit capability with user-visible receipt.",
+      "wave": 2,
+      "planned_repos": [
+        "apple-on-device-authority-capsule",
+        "apple-ane-kv-quantizer (deepen)"
+      ],
+      "priority": 3.9
+    },
+    {
+      "slug": "aws",
+      "name": "AWS",
+      "tier": "accelerator-cloud",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "A-",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Trainium sentinel only; no multi-account guardrails or Bedrock agent evidence chain.",
+      "genius_solution": "Neuron Job Provenance Passport: every Trainium/Inferentia job carries immutable cost+data residency+model hash passport checked at launch.",
+      "wave": 2,
+      "planned_repos": [
+        "aws-neuron-provenance-passport",
+        "aws-trainium-neuron-sentinel (deepen)"
+      ],
+      "priority": 3.9
+    },
+    {
+      "slug": "google-deepmind",
+      "name": "Google DeepMind",
+      "tier": "tpu-research",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "A-",
+      "atlas_status": "SEEDED",
+      "bottleneck": "TPU mesh optimizer thin; no JAX/XLA compile receipt or experiment promotion fence.",
+      "genius_solution": "Experiment Promotion Fence: train run artifacts cannot become 'SOTA claim' without eval suite receipt + seed lock + hardware fingerprint.",
+      "wave": 2,
+      "planned_repos": [
+        "deepmind-experiment-promotion-fence",
+        "deepmind-tpu-mesh-optimizer (deepen)"
+      ],
+      "priority": 3.9
+    },
+    {
+      "slug": "microsoft",
+      "name": "Microsoft",
+      "tier": "cloud-identity",
+      "local_repos": 2,
+      "estate_grade": "C+",
+      "opportunity_grade": "A-",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Azure ops + ZT identity partial; missing agent identity federation with Entra-style least privilege demos.",
+      "genius_solution": "Agent Workload Identity Graph: short-lived SPIFFE-like IDs for agents with purpose-bound scopes and automatic expiry on task complete.",
+      "wave": 2,
+      "planned_repos": [
+        "microsoft-agent-workload-identity",
+        "microsoft-identity-zero-trust (deepen)"
+      ],
+      "priority": 3.9
+    },
+    {
+      "slug": "tesla",
+      "name": "Tesla",
+      "tier": "autonomy-energy",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "A-",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Occupancy stream thin; FSD claims must stay simulation-bound.",
+      "genius_solution": "Occupancy Stream Budget: voxel updates under fixed compute; degrade gracefully with explicit uncertainty inflation.",
+      "wave": 2,
+      "planned_repos": [
+        "tesla-fsd-occupancy-stream (deepen)",
+        "tesla-energy-dispatch-receipt"
+      ],
+      "priority": 3.9
+    },
+    {
+      "slug": "oracle",
+      "name": "Oracle",
+      "tier": "enterprise-data",
+      "local_repos": 0,
+      "estate_grade": "F",
+      "opportunity_grade": "B-",
+      "atlas_status": "SCAFFOLD",
+      "bottleneck": "Zero.",
+      "genius_solution": "Autonomous DB Action Fence: auto-index/tune suggestions cannot apply without dual receipt (perf proof + rollback plan).",
+      "wave": 3,
+      "planned_repos": [
+        "oracle-autonomous-action-fence"
+      ],
+      "priority": 3.7
+    },
+    {
+      "slug": "notion",
+      "name": "Notion",
+      "tier": "workspace-ai",
+      "local_repos": 3,
+      "estate_grade": "B-",
+      "opportunity_grade": "B+",
+      "atlas_status": "REPOSITORY-RICH",
+      "bottleneck": "Three repos but product-adjacent thin; no truth-sync between DB properties and agent writes.",
+      "genius_solution": "Workspace Fact Quorum: page properties are typed facts; agent edits require dual write of content + fact receipt or roll back.",
+      "wave": 1,
+      "planned_repos": [
+        "notion-workspace-fact-quorum",
+        "notion-mcp-empowerment-engine (deepen)"
+      ],
+      "priority": 3.6
+    },
+    {
+      "slug": "deepseek",
+      "name": "DeepSeek",
+      "tier": "efficient-frontier",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "B+",
+      "atlas_status": "SEEDED",
+      "bottleneck": "MLA/MoE sentinel thin.",
+      "genius_solution": "Latent Cache Honesty: MLA cache hits/misses reported; refuse quality claims when cache cold rate exceeds bound.",
+      "wave": 2,
+      "planned_repos": [
+        "deepseek-mla-moe-sentinel (deepen)",
+        "deepseek-latent-cache-honesty"
+      ],
+      "priority": 3.4
+    },
+    {
+      "slug": "kimi",
+      "name": "Moonshot / Kimi",
+      "tier": "long-context",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "B+",
+      "atlas_status": "SEEDED",
+      "bottleneck": "KV stream thin but good theme.",
+      "genius_solution": "Mooncake Lease Protocol: disaggregated KV leases with expiry and reclamation receipts for long sessions.",
+      "wave": 2,
+      "planned_repos": [
+        "kimi-mooncake-kv-stream (deepen)",
+        "kimi-session-lease-reaper"
+      ],
+      "priority": 3.4
+    },
+    {
+      "slug": "meta",
+      "name": "Meta",
+      "tier": "open-models",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "B+",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Collective sentinel thin; missing Llama serving reliability + multi-agent honesty about uncertainty.",
+      "genius_solution": "Collective Uncertainty Broadcast: ranks publish calibrated confidence; downstream agents must consume uncertainty not point estimates only.",
+      "wave": 2,
+      "planned_repos": [
+        "meta-uncertainty-broadcast",
+        "meta-llama-collective-sentinel (deepen)"
+      ],
+      "priority": 3.4
+    },
+    {
+      "slug": "robotics",
+      "name": "Robotics (generic)",
+      "tier": "embodied",
+      "local_repos": 1,
+      "estate_grade": "C",
+      "opportunity_grade": "B+",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Torque sentinel thin.",
+      "genius_solution": "Force Envelope Guardian: ISO-inspired torque limits with soft/hard stop receipts (sim only).",
+      "wave": 2,
+      "planned_repos": [
+        "robotics-vla-torque-sentinel (deepen)",
+        "robotics-force-envelope-guardian"
+      ],
+      "priority": 3.3
+    },
+    {
+      "slug": "opera",
+      "name": "Opera",
+      "tier": "browser-agents",
+      "local_repos": 3,
+      "estate_grade": "C+",
+      "opportunity_grade": "B",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Browser agent repos exist; need safety for page actions.",
+      "genius_solution": "Browser Action Dual Control: DOM mutations require intent receipt + domain allowlist; no silent form fill outside policy.",
+      "wave": 2,
+      "planned_repos": [
+        "opera-browser-action-dual-control",
+        "opera-neon-spatial-workspace (deepen)"
+      ],
+      "priority": 2.9
+    },
+    {
+      "slug": "qwen",
+      "name": "Alibaba / Qwen",
+      "tier": "multimodal",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "B",
+      "atlas_status": "SEEDED",
+      "bottleneck": "VL flash router thin.",
+      "genius_solution": "Modality Admission Router: vision/text experts under latency budget; drop modality with explicit degrade receipt not silent fail.",
+      "wave": 2,
+      "planned_repos": [
+        "qwen-vl-flash-router (deepen)"
+      ],
+      "priority": 2.9
+    },
+    {
+      "slug": "tasklet",
+      "name": "Tasklet",
+      "tier": "micro-agents",
+      "local_repos": 1,
+      "estate_grade": "C+",
+      "opportunity_grade": "B",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Micro agent engine partial.",
+      "genius_solution": "Micro-Agent Sandbox Receipts: each tasklet runs with capability set snapshot in receipt.",
+      "wave": 2,
+      "planned_repos": [
+        "tasklet-micro-agent-engine (deepen)"
+      ],
+      "priority": 2.9
+    },
+    {
+      "slug": "lovable",
+      "name": "Lovable",
+      "tier": "codegen-apps",
+      "local_repos": 1,
+      "estate_grade": "C",
+      "opportunity_grade": "B",
+      "atlas_status": "SEEDED",
+      "bottleneck": "UI synth thin.",
+      "genius_solution": "Generated App Claim Fence: codegen output cannot claim security/auth without static analysis receipt.",
+      "wave": 2,
+      "planned_repos": [
+        "lovable-app-claim-fence",
+        "lovable-design-app-synth (deepen)"
+      ],
+      "priority": 2.8
+    },
+    {
+      "slug": "manus",
+      "name": "Manus",
+      "tier": "autonomous-agents",
+      "local_repos": 1,
+      "estate_grade": "C",
+      "opportunity_grade": "B",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Web agent thin.",
+      "genius_solution": "Task Budget Autopilot: wall-clock+tool-call budgets with forced summarize-and-stop (no infinite browse loops).",
+      "wave": 2,
+      "planned_repos": [
+        "manus-task-budget-autopilot",
+        "manus-autonomous-web-agent (deepen)"
+      ],
+      "priority": 2.8
+    },
+    {
+      "slug": "openclaw",
+      "name": "OpenClaw",
+      "tier": "agent-tooling",
+      "local_repos": 1,
+      "estate_grade": "C",
+      "opportunity_grade": "B-",
+      "atlas_status": "SEEDED",
+      "bottleneck": "Integrity watchdog thin.",
+      "genius_solution": "Tool Integrity Merkle: tool binaries/scripts hashed; agent refuses tools with dirty tree.",
+      "wave": 3,
+      "planned_repos": [
+        "openclaw (deepen)"
+      ],
+      "priority": 2.3
+    }
+  ],
+  "counts": {
+    "total": 49,
+    "zero_local": 27,
+    "wave1": 16
+  }
+}

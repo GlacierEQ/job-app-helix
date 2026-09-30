@@ -1,0 +1,215 @@
+name: Admitted job rollout projection census
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/portfolio-census.yml"
+      - "scripts/proof_weighted_repo_census.py"
+      - "scripts/aggregate_portfolio_census.py"
+      - "manifests/portfolio_repositories.json"
+      - "manifests/estate_scope_receipt_2026-08-17.json"
+      - "tests/test_portfolio_census_aggregate.py"
+      - "tests/test_estate_visibility.py"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 18 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      repositories: ${{ steps.matrix.outputs.repositories }}
+    steps:
+      - name: Check out current control plane
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Build exact matrix from admitted rollout projection
+        id: matrix
+        shell: bash
+        run: |
+          test "$(jq -r '.is_full_estate_inventory' manifests/portfolio_repositories.json)" = "false"
+          test "$(jq -r '.scope' manifests/portfolio_repositories.json)" = "ADMITTED_JOB_ENGINEERING_ROLLOUT_PROJECTION"
+          repositories="$(
+            jq -c \
+              '["GlacierEQ/job-app-helix"] +
+               [.workspace_repositories[] | "GlacierEQ/" + .]' \
+              manifests/portfolio_repositories.json
+          )"
+          echo "repositories=${repositories}" >> "${GITHUB_OUTPUT}"
+
+  census:
+    needs: prepare
+    name: "Projection census · ${{ matrix.repository }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        repository: ${{ fromJSON(needs.prepare.outputs.repositories) }}
+    steps:
+      - name: Check out current audit engine
+        uses: actions/checkout@v4
+        with:
+          path: audit
+          persist-credentials: false
+
+      - name: Capture repository metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_REPOSITORY: ${{ matrix.repository }}
+        shell: bash
+        run: |
+          set +e
+          gh api "repos/${TARGET_REPOSITORY}" \
+            --jq '{
+              fork,
+              archived,
+              private,
+              visibility,
+              default_branch,
+              size,
+              language,
+              created_at,
+              pushed_at,
+              html_url,
+              parent: (.parent.full_name // null),
+              source: (.source.full_name // null)
+            }' > repo-metadata.json
+          code=$?
+          if [[ "${code}" -ne 0 ]]; then
+            printf '%s\n' \
+              '{"metadata_error":"GitHub metadata unavailable","private":true}' \
+              > repo-metadata.json
+          fi
+
+      - name: Check out target repository
+        id: checkout
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          path: target
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the census dependency
+        run: python -m pip install --upgrade pytest
+
+      - name: Run proof-weighted census
+        if: steps.checkout.outcome == 'success'
+        env:
+          TARGET_REPOSITORY: ${{ matrix.repository }}
+        shell: bash
+        run: |
+          slug="${TARGET_REPOSITORY#*/}"
+          python audit/scripts/proof_weighted_repo_census.py \
+            --repo "${TARGET_REPOSITORY}" \
+            --path target \
+            --metadata repo-metadata.json \
+            --output "census-${slug}.json"
+
+      - name: Record inaccessible repository
+        if: steps.checkout.outcome != 'success'
+        env:
+          TARGET_REPOSITORY: ${{ matrix.repository }}
+        shell: bash
+        run: |
+          slug="${TARGET_REPOSITORY#*/}"
+          python - "${TARGET_REPOSITORY}" "census-${slug}.json" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          payload = {
+              "schema": "glaciereq.portfolio.audit.v2",
+              "repository": sys.argv[1],
+              "metadata": {"access": "unavailable"},
+              "provenance": {
+                  "state": "BLOCKED_ACCESS",
+                  "markers": [],
+              },
+              "admission_class": "private_or_inaccessible_excluded",
+              "structure": None,
+              "readme": None,
+              "verification": {
+                  "python": {
+                      "status": "BLOCKED_ACCESS",
+                      "observed_count": 0,
+                  }
+              },
+              "nonclaims": [
+                  "Repository checkout was unavailable to this public projection census run.",
+                  "No authorship, originality, verification, or recruiter claim is inferred.",
+                  "This projection census is not the full owner estate census.",
+              ],
+          }
+          Path(sys.argv[2]).write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload census receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: census-${{ strategy.job-index }}
+          path: |
+            census-*.json
+            repo-metadata.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: [prepare, census]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out current control plane
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Download all census receipts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: census-*
+          path: census-artifacts
+          merge-multiple: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Reconcile admitted rollout projection census
+        run: |
+          python scripts/aggregate_portfolio_census.py \
+            --receipts-dir census-artifacts \
+            --inventory manifests/portfolio_repositories.json \
+            --output portfolio-census-summary.json
+
+      - name: Upload reconciled projection census summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-census-summary
+          path: portfolio-census-summary.json
+          if-no-files-found: error
+          retention-days: 30

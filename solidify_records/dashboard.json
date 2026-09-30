@@ -1,0 +1,20 @@
+{
+  "repo": "dashboard",
+  "family": "GlacierEQ / internal",
+  "kind": "company",
+  "source_state": "unprocessed",
+  "innovation_summary": "Generic operational dashboard repo. Catalog carries only a library entry (name=dashboard) and a capabilities_3layer stub (launch_cmd git clone, contract_proof, mesh_uri) \u2014 both at line numbers library.json:5132, capabilities_3layer.json:34489 and a duplicate stub at 62674 \u2014 with no descriptive summary, implementation detail, test, or fact card found. Multi-source: company_engineered_repositories.json:270 (reference_or_upstream: supabase, cli, dashboard) \u2014 which suggests this may be the Supabase dashboard reference, not a GlacierEQ-authored dashboard. Honest limitation: dual presence of 'dashboard' as a name (could be Supabase reference vs. internal) is unverified. Promoted 2->3: the Supabase reference_or_upstream co-membership is a real catalog signal (3-entry reference set), but the name-only nature prevents higher.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:5132 (name dashboard; no desc beyond name)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:34489 (stub: name, launch_cmd git clone, contract_proof DONE, mesh_uri)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:62674 (duplicate stub entry)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:270 (Supabase family; reference_or_upstream: supabase, cli, dashboard \u2014 3-entry reference set)",
+    "Contradiction preserved: 'dashboard' as a name is ambiguous \u2014 capabilities_3layer line 34489 vs. 62674 (duplicate stubs) plus the Supabase family co-membership suggest the repo is most likely the Supabase dashboard reference rather than an internal GlacierEQ dashboard, but this is not verified."
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 4,
+  "makes_worthy": "Promoted 2->3: Supabase reference_or_upstream co-membership (3-entry set: supabase, cli, dashboard) is a real catalog signal. To reach >=5: identify the dashboard source, add a description, and produce a build/receipt. Capped at 3: name-only catalog presence + duplicate stubs + ambiguous source.",
+  "last_verified": "2026-08-29T08:47:16.914867",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=4"
+}

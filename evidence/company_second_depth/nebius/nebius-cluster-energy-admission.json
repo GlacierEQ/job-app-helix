@@ -1,0 +1,10 @@
+{
+  "company": "Nebius",
+  "repository": "nebius-cluster-energy-admission",
+  "innovation": "Cluster Energy Admission",
+  "implementation_path": "src/nebius_cluster_energy_admission.py",
+  "test_path": "tests/test_nebius_cluster_energy_admission.py",
+  "discovered_in": "audits/INNOVATION_SCAFFOLD_BATCH_LATEST.md",
+  "notes": "Scaffold generated 2026-08-25. Independent design.",
+  "job_app_helix_repo": "repos/nebius-cluster-energy-admission"
+}

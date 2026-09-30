@@ -1,0 +1,96 @@
+{
+  "schema": "glaciereq.estate-evolution.pass-receipt.v1",
+  "timestamp": "2026-08-06T20:50:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "repository": "GlacierEQ/Pro_Code",
+  "reference_branch": "main",
+  "source_head_before": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
+  "source_head_after": "d4e15e42172de9ded3641dc7229df3d61aea36f7",
+  "decision": "HISTORICAL_REGRESSION_EVIDENCE_ONLY",
+  "historical_decision": "NO_SOURCE_BOUND_MUTATION_REQUIRED_BRANCH_FAMILY_EXHAUSTED",
+  "historical_regression_repair": {
+    "classification": "VERIFIED_REGRESSION_REPAIRED",
+    "failed_assumption": "Patch equality, current-main superiority, later verified doctrine, or a zero patch delta could establish whole-donor obsolescence and authorize destructive branch retirement.",
+    "controlling_rule": "MERGE_TRANSCRIBE_COMPOUND; NEVER_REPLACE_BY_NEWNESS",
+    "latest_semantics": "ROUTING_CURSOR_ONLY",
+    "destructive_remote_ref_disposition_allowed": false,
+    "default_live_state": "ACTIVE_IN_MESH",
+    "drained_terminal_state": "PRESERVE_DRAINED_LINEAGE",
+    "retirement_requires": [
+      "provider-read-back UNIQUE_CONTRIBUTION=0 across source, event, edge, contradiction, provenance, mechanism, unresolved dependency, receipt, and authority-domain fact",
+      "durable lineage/source pointer preservation",
+      "provider readback confirming preserved lineage"
+    ],
+    "authorization_semantics": "The zero-unique-contribution proof boundary does not create an additional per-retirement approval requirement where controlling Operator instructions already govern.",
+    "lineage_preserved": true
+  },
+  "branches": [
+    {
+      "branch": "helix-phase-1a",
+      "merge_base": "d31e5ba9d468f6150b0bd0b7bede9dbf7a884bd4",
+      "ahead": 0,
+      "behind": 20,
+      "files_changed": 0,
+      "historical_unique_patch_value": "ZERO",
+      "historical_decision": "RETIREMENT_READY",
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "unique_contribution_state": "CANDIDATE_UNVERIFIED",
+      "decision": "ACTIVE_IN_MESH",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF",
+      "relationship_to_current_main": "MERGED_WITH"
+    },
+    {
+      "branch": "helix-phase-1b",
+      "merge_base": "d7f1ffd06964cc082817ab61b8f24f7b9f88a9a5",
+      "ahead": 0,
+      "behind": 11,
+      "files_changed": 0,
+      "historical_unique_patch_value": "ZERO",
+      "historical_decision": "RETIREMENT_READY",
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "unique_contribution_state": "CANDIDATE_UNVERIFIED",
+      "decision": "ACTIVE_IN_MESH",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF",
+      "relationship_to_current_main": "MERGED_WITH"
+    },
+    {
+      "branch": "hardening/doctrine-verified-2026-07-31",
+      "merge_base": "0b8f7484a181e35ef1d6f019d488e2c348a98c49",
+      "ahead": 10,
+      "behind": 6,
+      "files_changed": 16,
+      "historical_unique_patch_value": "NO_SUPERIOR_VALUE_IDENTIFIED_AFTER_PATCH_INSPECTION",
+      "preservation": "Source-bound main is byte-identical for README.md, .github/workflows/ci.yml, scripts/verify_doctrine.py, and LINK-LIBRARY.md, while main has subsequently evolved PLAYBOOK.md beyond the branch.",
+      "historical_decision": "RETIREMENT_READY_DO_NOT_MERGE",
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "unique_contribution_state": "CANDIDATE_UNVERIFIED",
+      "decision": "ACTIVE_IN_MESH",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF",
+      "relationship_to_current_main": "MERGED_WITH"
+    },
+    {
+      "branch": "hardening/doctrine-truth-boundary-2026-07-30",
+      "merge_base": "c345e87db439e4a84ae28faa0271afede2a238b0",
+      "ahead": 15,
+      "behind": 10,
+      "files_changed": 12,
+      "historical_unique_patch_value": "SUPERSEDED_BY_LATER_VERIFIED_DOCTRINE_AND_SOURCE_BOUND_MAIN",
+      "preservation": "Later doctrine-verified branch added nervous-system verification and reference main contains the verified doctrine corpus plus newer aspiration/deployment calibration.",
+      "historical_decision": "RETIREMENT_READY_DO_NOT_MERGE",
+      "historical_remote_ref_disposition": "DELETE_REF_REQUIRED",
+      "unique_contribution_state": "CANDIDATE_UNVERIFIED",
+      "decision": "ACTIVE_IN_MESH",
+      "remote_ref_disposition": "PRESERVE_PENDING_ZERO_UNIQUE_CONTRIBUTION_PROOF",
+      "relationship_to_current_main": "MERGED_WITH"
+    }
+  ],
+  "verification": {
+    "historical_method": "Git ancestry plus reference blob equality plus semantic successor inspection",
+    "historical_main_unchanged": true,
+    "historical_stale_tip_merged": false,
+    "current_interpretation": "These observations establish overlap only and do not establish whole-donor UNIQUE_CONTRIBUTION=0."
+  },
+  "historical_blocker": "Remote branch deletion could not be performed because the connector exposed no proven delete-ref action.",
+  "current_mutation_authority": "NONE",
+  "next_cursor": "GlacierEQ/mastermind"
+}

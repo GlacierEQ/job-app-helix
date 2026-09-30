@@ -1,0 +1,18 @@
+{
+  "allowed_claim": "Built and reproducibly tested an independent mission-agent assurance gateway combining content-bound public provenance snapshots, deterministic receipts, thread-safe single-process idempotency, finite-metric drift gating, policy decisions, and circuit breaking, using public mission-AI requirements as a bounded design lens.",
+  "boundary": "Claim promotion means the public application wording is now proof-bound to the immutable reference implementation; it does not change company relationship or production-use facts.",
+  "claim_id": "mission_agentic_ai_assurance",
+  "claim_receipt": "projects/mission-agentic-ai-assurance/proof/claim_receipt.json",
+  "commit": "4328fa7078e6e4125f895768142c6af0c5ec1234",
+  "company_id": "lockheed_martin",
+  "prohibited_claims": [
+    "Lockheed Martin deployment or adoption",
+    "Lockheed Martin affiliation, employment, endorsement, contract, clearance, or proprietary access",
+    "distributed exactly-once semantics",
+    "production-scale distributed assurance",
+    "aerospace or defense certification",
+    "validation on classified or proprietary systems"
+  ],
+  "repository": "GlacierEQ/job-application",
+  "schema": "glaciereq.claim-promotion-evidence.v1"
+}

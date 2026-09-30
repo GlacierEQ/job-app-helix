@@ -1,0 +1,20 @@
+{
+  "repo": "notion-workflow-intelligence",
+  "family": "Notion",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "Workflow engine for ops craft (engineering-only) in the Notion family (AKOS). Catalog classifies it as an Extended Utilities And Experiments engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI, a runnable launch command (python3 ~/job-app/apex_highway.py --target notion-workflow-intelligence), and library.json marks it worked_solidified / local_job_app (Python). Honest limitation: not present in application_estate_registry.json; no independent runtime receipt, test, or fact card was found, so capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=notion-workflow-intelligence: domain=notion_ops, status_detail=worked_solidified, local_job_app=true, language=Python, desc='Workflow engine for ops craft (engineering only) \u00b7 AKOS')",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=notion-workflow-intelligence; classifier=extended_utilities_and_experiments; elevator_pitch='High-performance Extended Utilities And Experiments engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/notion-workflow-intelligence; launch_cmd='python3 ~/job-app/apex_highway.py --target notion-workflow-intelligence')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family 'notion': current_preparation includes notion-workflow-intelligence, focus P1_WORKSPACE_INTELLIGENCE_SUITE)",
+    "/tmp/monolith/domains/notion_ops.md (row: worked_on, no contract)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt; publish a README documenting the workflow DSL and an executable example to reach worthy>=8.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:17.017933",
+  "notes": " | NEEDS_REPAIR"
+}

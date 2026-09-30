@@ -1,0 +1,21 @@
+{
+  "repo": "chatgpt-vercel",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "Historical fork of a ChatGPT web UI (TypeScript, private). Catalog record has no description, fact card, or source evidence locally. A capabilities_3layer stub (launch_cmd git clone, contract_proof DONE) exists but no functional summary. Multi-source presence: library.json:3292 (no desc), company_engineered_repositories.json:221 (historical_or_cross_company: chatgpt-vercel, chatgpt_infinity, gpt-ai-assistant \u2014 a 3-repo cross-company historical set) and :299 (unprocessed cross-company: chatgpt-vercel, ai-sdk-provider), capabilities_3layer (stub). Honest limitation: actual contents/working state unverified. Promoted 2->4: the cross-company historical membership (3-entry set) and the dual historical+unprocessed placement add real catalog depth beyond name-only.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:3292 (name chatgpt-vercel; no desc)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:221 (historical_or_cross_company: chatgpt-vercel, chatgpt_infinity, gpt-ai-assistant)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:299 (cross_company_duplicate_memberships: chatgpt-vercel, claude-code-kimi-groq)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:298-300 (openai family unprocessed: ai-sdk-provider, chatgpt-vercel)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=chatgpt-vercel; launch_cmd git clone, contract_proof DONE, mesh_uri \u2014 no functional summary)",
+    "Contradiction preserved: capabilities_3layer claims contract_proof=DONE but no implementation description exists; contract_proof is template-only here."
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Promoted 2->4: cross-company historical membership (chatgpt-vercel/chatgpt_infinity/gpt-ai-assistant trio) + dual historical+unprocessed placement. To reach >=6: add a description, a README, and a build/test receipt. To reach >=8: a Next.js dev-server run receipt + a screenshot. Capped at 4: empty-description catalog record + stub; no source, no fact card.",
+  "last_verified": "2026-08-29T08:47:16.958309",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

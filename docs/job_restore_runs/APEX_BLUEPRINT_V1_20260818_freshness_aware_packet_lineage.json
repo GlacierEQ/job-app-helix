@@ -1,0 +1,93 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "current_source_sha": "ab3fd9062597b87e4800aaefd0d27f0a20e6fc78",
+  "donor_shas": [
+    "bb74c24fb6db63e3a49fcdc01c6ad5d5ea023ce3"
+  ],
+  "selected_priority": "Make recruiter-packet reuse content-aware so live opening changes cannot leave superseded recruiter materials active.",
+  "priority_tier": "P1",
+  "blocked_higher_candidates": [],
+  "displaced_capability": "The prior batch runtime deduplicated complete packets correctly, but active output directories could retain older packet lineage after a live opening digest rotated the application identity.",
+  "implemented_delta": {
+    "module": "src/job_app_helix/freshness_aware_batch.py",
+    "entrypoint": "compile_freshness_aware_batch",
+    "cli": "python -m job_app_helix.freshness_aware_batch",
+    "behavior": [
+      "bind each active recruiter packet to the exact JobOpening.digest that produced it",
+      "reuse complete packet state only when the opening digest is current",
+      "detect prior packet directories for the same opening_id when a changed digest rotates application_id",
+      "quarantine superseded or unbound packet state under output/.stale instead of deleting it",
+      "compile fresh recruiter materials through the existing proven ranked batch runtime",
+      "persist OPENING_INPUT_RECEIPT.json with content-addressed provenance"
+    ]
+  },
+  "preserved_gains": [
+    "existing ranking and calibration behavior",
+    "existing application identity projection",
+    "existing lifecycle database and packet compiler",
+    "complete-packet deduplication for unchanged openings",
+    "rollback access to superseded recruiter materials"
+  ],
+  "tests_runtime_proof": {
+    "pull_request": 237,
+    "exact_head_sha": "4dd89a8f517c95e526b164857c620278a074b8b2",
+    "merge_sha": "ab3fd9062597b87e4800aaefd0d27f0a20e6fc78",
+    "workflow_run": 32160168791,
+    "python_versions": ["3.11", "3.12", "3.13"],
+    "proofs": [
+      "Ruff focused runtime passed",
+      "same-digest packet reuse passed",
+      "changed-digest superseded-lineage quarantine and fresh compilation passed",
+      "legacy unbound packet one-time refresh and preservation passed",
+      "existing batch application execution regression suite passed",
+      "executable CLI module resolution passed"
+    ],
+    "post_merge_readback": "src/job_app_helix/freshness_aware_batch.py observed on main"
+  },
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P1",
+      "priority": "Compose compile_freshness_aware_batch directly into intelligence_cycle so live opening refresh, company intelligence, ranking, stale-lineage quarantine, and recruiter-packet regeneration run as one executable path.",
+      "targets": [
+        "src/job_app_helix/intelligence_cycle.py",
+        "tests/test_intelligence_cycle.py"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Use opening-watch CHANGED events to trigger only affected company/application cycles while unchanged openings stay on the deduplicated fast path.",
+      "targets": [
+        "src/job_app_helix/opening_watch.py",
+        "src/job_app_helix/intelligence_cycle.py"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Resume stranded-capability recovery from stale branches and donor job repositories, recovering only mechanisms that exceed current main.",
+      "targets": [
+        "GlacierEQ/job-app-helix branches",
+        "GlacierEQ/job-application",
+        "GlacierEQ/pro-code",
+        "GlacierEQ/Pro_Code"
+      ]
+    }
+  ],
+  "next_sequence": [
+    "replace intelligence_cycle direct compile_ranked_application_batch call with freshness-aware composition",
+    "extend cycle result/receipt with refreshed_count reused_count and quarantine provenance",
+    "prove live CHANGED opening causes fresh packet while UNCHANGED deduplicates",
+    "merge exact tested head",
+    "read back main and update this blueprint"
+  ],
+  "merge_deploy_gate": "Focused freshness proof green on Python 3.11/3.12/3.13 and exact-head PR merged; next integration must preserve current cycle tests and focused freshness tests.",
+  "rollback": "Revert merge ab3fd9062597b87e4800aaefd0d27f0a20e6fc78. Superseded runtime packets are preserved under output/.stale and are not destructively deleted by the new compiler.",
+  "no_loss_invariants": [
+    "never delete prior recruiter packet state during freshness invalidation",
+    "never reuse a packet whose bound opening digest differs from the current opening",
+    "never bypass ranking/calibration/lifecycle behavior when compiling fresh packets",
+    "never claim external submission from packet compilation",
+    "preserve stable application identity semantics owned by the existing projection engine"
+  ],
+  "verified_delta_state": "VERIFIED_EXECUTABLE_CAPABILITY_DELTA: YES"
+}

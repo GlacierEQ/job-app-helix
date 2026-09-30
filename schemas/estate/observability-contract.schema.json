@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/observability-contract.schema.json",
+  "title": "Observability Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "observability_contract_id", "system_id", "applicable", "rationale", "questions", "signals"],
+  "properties": {
+    "schema": {"const": "glaciereq.observability-contract.v1"},
+    "observability_contract_id": {"type": "string", "minLength": 1},
+    "system_id": {"type": "string", "minLength": 1},
+    "applicable": {"type": "boolean"},
+    "rationale": {"type": "string", "minLength": 1},
+    "questions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["what_happened", "when", "why", "target", "dependency", "configuration", "resource_impact", "attempt", "recovery_success"],
+      "properties": {
+        "what_happened": {"type": "string", "minLength": 1},
+        "when": {"type": "string", "minLength": 1},
+        "why": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1},
+        "dependency": {"type": "string", "minLength": 1},
+        "configuration": {"type": "string", "minLength": 1},
+        "resource_impact": {"type": "string", "minLength": 1},
+        "attempt": {"type": "string", "minLength": 1},
+        "recovery_success": {"type": "string", "minLength": 1}
+      }
+    },
+    "signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["structured_logs", "metrics", "traces", "events", "provenance", "health_checks", "diagnostics", "receipts"],
+      "properties": {
+        "structured_logs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "metrics": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "traces": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "events": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "provenance": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "health_checks": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "diagnostics": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "receipts": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

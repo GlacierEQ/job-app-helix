@@ -1,0 +1,344 @@
+{
+  "schema": "glaciereq.babel-w4h-excellence.v1",
+  "generated_at": "2026-08-09T05:21Z",
+  "principle": "Language follows problem physics. Never polyglot for show.",
+  "available_toolchains": [
+    "python3",
+    "go",
+    "clang",
+    "node"
+  ],
+  "packs": {
+    "anduril-lattice-dissent-freeze": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Concurrent multi-sensor fusion vote",
+        "where": "track decision path",
+        "when": "many sensors stream opinions concurrently",
+        "why": "Go CSP models sensor fan-in cleanly",
+        "how": "goroutines per sensor \u2192 channel fold \u2192 freeze on HIGH dissent"
+      }
+    },
+    "anduril-sensor-health-quorum": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Peer health scoring",
+        "where": "sensor mesh",
+        "when": "continuous peer reports",
+        "why": "Go handles concurrent reporters without races",
+        "how": "mutex map + suspend set"
+      }
+    },
+    "anduril-track-envelope-compiler": {
+      "primary": "python",
+      "companion": "c",
+      "w4h": {
+        "what": "Spatiotemporal envelope bounds",
+        "where": "hot geometry path",
+        "when": "tight detection loops",
+        "why": "C for zero-alloc min/max over detection arrays",
+        "how": "plain C struct + bounds compute"
+      }
+    },
+    "anthropic-constitutional-tool-transcript": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Policy-bound tool decisions",
+        "where": "agent tool gateway",
+        "when": "every tool call",
+        "why": "TS is native to agent/MCP gateway stacks",
+        "how": "typed Policy + decide() parity"
+      }
+    },
+    "anthropic-refusal-replay-harness": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Golden refuse suite runner",
+        "where": "CI safety gate",
+        "when": "regression runs",
+        "why": "Go parallelizes case matrix fast",
+        "how": "worker pool over refuse cases"
+      }
+    },
+    "cloudflare-workers-agent-cap": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Per-request capability tokens",
+        "where": "edge Workers",
+        "when": "each request",
+        "why": "Workers runtime is JS/TS-native",
+        "how": "HMAC mint/verify in TS"
+      }
+    },
+    "cloudflare-bot-intent-receipt": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Bot intent gate",
+        "where": "edge ingress",
+        "when": "high RPS automated traffic",
+        "why": "Go for concurrent admit decisions",
+        "how": "intent struct + RPS check"
+      }
+    },
+    "databricks-notebook-claim-fence": {
+      "primary": "python",
+      "companion": "sql",
+      "w4h": {
+        "what": "Promotion state of artifacts",
+        "where": "lakehouse catalog",
+        "when": "notebook\u2192prod",
+        "why": "SQL is source of truth for table state",
+        "how": "artifacts table + promote guard"
+      }
+    },
+    "databricks-feature-lineage-passport": {
+      "primary": "python",
+      "companion": "sql",
+      "w4h": {
+        "what": "Feature provenance",
+        "where": "feature store",
+        "when": "train admit",
+        "why": "SQL lineage tables are durable authority",
+        "how": "passport table FK enforce"
+      }
+    },
+    "groq-jitter-envelope-contract": {
+      "primary": "python",
+      "companion": "c",
+      "w4h": {
+        "what": "Latency shape stats",
+        "where": "serving hot path",
+        "when": "each window of samples",
+        "why": "C for tight percentile over arrays",
+        "how": "qsort + p95/median"
+      }
+    },
+    "groq-batch-admission-gate": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Batch admit under load",
+        "where": "request front door",
+        "when": "burst arrivals",
+        "why": "Go concurrency models admission races",
+        "how": "atomic inflight + predict p95"
+      }
+    },
+    "nasa-command-authority-half-life": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Expiring telecommand tokens",
+        "where": "ops uplink sim",
+        "when": "command fire",
+        "why": "Go for concurrent command channels",
+        "how": "HMAC token + fire gate"
+      }
+    },
+    "nasa-telemetry-anomaly-receipt": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Telemetry threshold receipts",
+        "where": "stream decoder",
+        "when": "each sample",
+        "why": "Go telemetry decoder domain (Babel)",
+        "how": "channel observe \u2192 receipt"
+      }
+    },
+    "nvidia-gradient-integrity-quorum": {
+      "primary": "python",
+      "companion": "c",
+      "w4h": {
+        "what": "Finite gradient vote",
+        "where": "allreduce pre-commit",
+        "when": "each step",
+        "why": "C finite-check is branch-predictable hot path",
+        "how": "isfinite loop + isolate ranks"
+      }
+    },
+    "nvidia-nan-circuit-breaker": {
+      "primary": "python",
+      "companion": "c",
+      "w4h": {
+        "what": "NaN trip counter",
+        "where": "training step loop",
+        "when": "consecutive bad steps",
+        "why": "C zero-overhead trip in inner loop",
+        "how": "struct breaker + observe"
+      }
+    },
+    "openai-reasoning-budget-futures": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Token budget futures",
+        "where": "agent runtime",
+        "when": "spend events",
+        "why": "TS agent runtimes meter tools/tokens",
+        "how": "BudgetLedger class parity"
+      }
+    },
+    "openai-tool-authority-matrix": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Default-deny tool matrix",
+        "where": "tool dispatcher",
+        "when": "each tool call",
+        "why": "TS MCP/tool gateways",
+        "how": "typed grants + schema required"
+      }
+    },
+    "palantir-object-authority-matrix": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Object\u00d7verb allow matrix",
+        "where": "ontology API edge",
+        "when": "mutation requests",
+        "why": "TS service edge for FDE tools",
+        "how": "Map grants default deny"
+      }
+    },
+    "scale-label-collusion-bound": {
+      "primary": "python",
+      "companion": "c",
+      "w4h": {
+        "what": "Pairwise agreement stats",
+        "where": "label QA",
+        "when": "overlap windows",
+        "why": "C for dense pairwise loops",
+        "how": "agreement + chance lift"
+      }
+    },
+    "scale-eval-poison-sentinel": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Train/eval contamination",
+        "where": "dataset gate",
+        "when": "before train",
+        "why": "Go set ops over large ID spaces",
+        "how": "map sets id/feature overlap"
+      }
+    },
+    "scale-agreement-budget-allocator": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Label budget allocation",
+        "where": "annotation ops",
+        "when": "batch schedule",
+        "why": "Go for concurrent allocation jobs",
+        "how": "priority by uncertainty"
+      }
+    },
+    "snowflake-query-intent-ledger": {
+      "primary": "python",
+      "companion": "sql",
+      "w4h": {
+        "what": "Purpose-tagged queries",
+        "where": "data cloud",
+        "when": "query + downstream use",
+        "why": "SQL is native governance surface",
+        "how": "intents + uses tables"
+      }
+    },
+    "snowflake-cortex-claim-bound": {
+      "primary": "python",
+      "companion": "sql",
+      "w4h": {
+        "what": "Cited query claims",
+        "where": "NL over data",
+        "when": "assistant answer",
+        "why": "SQL validates citation FK",
+        "how": "claims must reference intent ids"
+      }
+    },
+    "vercel-deploy-claim-compiler": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Claim vs deploy receipts",
+        "where": "CI/CD + site",
+        "when": "pre-publish",
+        "why": "TS is Vercel/site-native",
+        "how": "compileClaims(receipts, claims)"
+      }
+    },
+    "vercel-edge-agent-cap-token": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Body-bound edge CAPs",
+        "where": "edge functions",
+        "when": "each invoke",
+        "why": "Edge runtime is TS",
+        "how": "HMAC path+body digest"
+      }
+    },
+    "vercel-preview-truth-gate": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Preview vs prod claim bound",
+        "where": "deploy target gate",
+        "when": "marketing copy",
+        "why": "TS next to deploy tooling",
+        "how": "maxClaim(target)"
+      }
+    },
+    "waymo-phantom-freespace-certificate": {
+      "primary": "python",
+      "companion": "c",
+      "w4h": {
+        "what": "Grid FREE/UNKNOWN classify",
+        "where": "perception sim",
+        "when": "each frame grid",
+        "why": "C for dense cell loops",
+        "how": "cell classify + unknown ratio"
+      }
+    },
+    "waymo-uncertainty-lane-graph": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Graph search under unknown edges",
+        "where": "planner interface",
+        "when": "route query",
+        "why": "Go graph services common in maps stacks",
+        "how": "BFS skip UNKNOWN"
+      }
+    },
+    "xai-actuation-receipt-bus": {
+      "primary": "python",
+      "companion": "go",
+      "w4h": {
+        "what": "Intent\u2192postcondition bus",
+        "where": "facility/training control",
+        "when": "actuation",
+        "why": "Go services for control planes",
+        "how": "phase machine + receipt"
+      },
+      "idl": "protobuf"
+    },
+    "xai-claim-promotion-fence": {
+      "primary": "python",
+      "companion": "typescript",
+      "w4h": {
+        "what": "Evidence-stage claim fence",
+        "where": "portfolio/public claims",
+        "when": "promotion",
+        "why": "TS for public site claim gates",
+        "how": "stage rank vs evidence kinds"
+      }
+    }
+  }
+}

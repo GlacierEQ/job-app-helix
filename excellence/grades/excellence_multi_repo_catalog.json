@@ -1,0 +1,221 @@
+{
+  "schema": "glaciereq.excellence-multi-repo-catalog.v1",
+  "generated_at": "2026-08-09T04:51Z",
+  "packs": {
+    "lockheed-martin": [
+      "GlacierEQ/lockheed-dual-key-actuator-fence",
+      "GlacierEQ/lockheed-mission-thread-isolator",
+      "GlacierEQ/lockheed-evidence-binding-gateway"
+    ],
+    "palantir": [
+      "GlacierEQ/palantir-ontology-writeback-ledger",
+      "GlacierEQ/palantir-action-lineage-graph",
+      "GlacierEQ/palantir-object-authority-matrix"
+    ],
+    "anduril": [
+      "GlacierEQ/anduril-lattice-dissent-freeze",
+      "GlacierEQ/anduril-track-envelope-compiler",
+      "GlacierEQ/anduril-sensor-health-quorum"
+    ],
+    "vercel": [
+      "GlacierEQ/vercel-deploy-claim-compiler",
+      "GlacierEQ/vercel-edge-agent-cap-token",
+      "GlacierEQ/vercel-preview-truth-gate"
+    ],
+    "scale-ai": [
+      "GlacierEQ/scale-label-collusion-bound",
+      "GlacierEQ/scale-eval-poison-sentinel",
+      "GlacierEQ/scale-agreement-budget-allocator"
+    ],
+    "groq": [
+      "GlacierEQ/groq-jitter-envelope-contract",
+      "GlacierEQ/groq-batch-admission-gate"
+    ],
+    "nasa": [
+      "GlacierEQ/nasa-command-authority-half-life",
+      "GlacierEQ/nasa-telemetry-anomaly-receipt"
+    ],
+    "waymo": [
+      "GlacierEQ/waymo-phantom-freespace-certificate",
+      "GlacierEQ/waymo-uncertainty-lane-graph"
+    ],
+    "databricks": [
+      "GlacierEQ/databricks-notebook-claim-fence",
+      "GlacierEQ/databricks-feature-lineage-passport"
+    ],
+    "snowflake": [
+      "GlacierEQ/snowflake-query-intent-ledger",
+      "GlacierEQ/snowflake-cortex-claim-bound"
+    ],
+    "cloudflare": [
+      "GlacierEQ/cloudflare-workers-agent-cap",
+      "GlacierEQ/cloudflare-bot-intent-receipt"
+    ],
+    "spacex": [
+      "GlacierEQ/spacex-mission-thread-quorum",
+      "GlacierEQ/spacex-hold-reason-compiler"
+    ],
+    "openai": [
+      "GlacierEQ/openai-reasoning-kv-sentinel",
+      "GlacierEQ/openai-reasoning-budget-futures",
+      "GlacierEQ/openai-tool-authority-matrix"
+    ],
+    "anthropic": [
+      "GlacierEQ/anthropic-agent-coordinator",
+      "GlacierEQ/anthropic-safety-monitor",
+      "GlacierEQ/anthropic-constitutional-tool-transcript",
+      "GlacierEQ/anthropic-refusal-replay-harness"
+    ],
+    "nvidia": [
+      "GlacierEQ/nvidia-gpu-health",
+      "GlacierEQ/nvidia-deep-reasoning",
+      "GlacierEQ/nvidia-gradient-integrity-quorum",
+      "GlacierEQ/nvidia-nan-circuit-breaker"
+    ],
+    "xai": [
+      "GlacierEQ/xai-actuation-receipt-bus",
+      "GlacierEQ/xai-claim-promotion-fence"
+    ]
+  },
+  "github_org": "GlacierEQ",
+  "created_public_repos": 37,
+  "harness": {
+    "path": "job-app/excellence/harness",
+    "tests": 8
+  },
+  "updates": [
+    {
+      "slug": "lockheed-martin",
+      "added": [
+        "lockheed-dual-key-actuator-fence",
+        "lockheed-mission-thread-isolator",
+        "lockheed-evidence-binding-gateway"
+      ],
+      "total": 3
+    },
+    {
+      "slug": "palantir",
+      "added": [
+        "palantir-ontology-writeback-ledger",
+        "palantir-action-lineage-graph",
+        "palantir-object-authority-matrix"
+      ],
+      "total": 3
+    },
+    {
+      "slug": "anduril",
+      "added": [
+        "anduril-lattice-dissent-freeze",
+        "anduril-track-envelope-compiler",
+        "anduril-sensor-health-quorum"
+      ],
+      "total": 3
+    },
+    {
+      "slug": "vercel",
+      "added": [
+        "vercel-deploy-claim-compiler",
+        "vercel-edge-agent-cap-token",
+        "vercel-preview-truth-gate"
+      ],
+      "total": 3
+    },
+    {
+      "slug": "scale-ai",
+      "added": [
+        "scale-label-collusion-bound",
+        "scale-eval-poison-sentinel",
+        "scale-agreement-budget-allocator"
+      ],
+      "total": 3
+    },
+    {
+      "slug": "groq",
+      "added": [
+        "groq-jitter-envelope-contract",
+        "groq-batch-admission-gate"
+      ],
+      "total": 2
+    },
+    {
+      "slug": "nasa",
+      "added": [
+        "nasa-command-authority-half-life",
+        "nasa-telemetry-anomaly-receipt"
+      ],
+      "total": 2
+    },
+    {
+      "slug": "waymo",
+      "added": [
+        "waymo-phantom-freespace-certificate",
+        "waymo-uncertainty-lane-graph"
+      ],
+      "total": 2
+    },
+    {
+      "slug": "databricks",
+      "added": [
+        "databricks-notebook-claim-fence",
+        "databricks-feature-lineage-passport"
+      ],
+      "total": 2
+    },
+    {
+      "slug": "snowflake",
+      "added": [
+        "snowflake-query-intent-ledger",
+        "snowflake-cortex-claim-bound"
+      ],
+      "total": 2
+    },
+    {
+      "slug": "cloudflare",
+      "added": [
+        "cloudflare-workers-agent-cap",
+        "cloudflare-bot-intent-receipt"
+      ],
+      "total": 2
+    },
+    {
+      "slug": "spacex",
+      "added": [
+        "spacex-mission-thread-quorum",
+        "spacex-hold-reason-compiler"
+      ],
+      "total": 14
+    },
+    {
+      "slug": "openai",
+      "added": [
+        "openai-reasoning-budget-futures",
+        "openai-tool-authority-matrix"
+      ],
+      "total": 3
+    },
+    {
+      "slug": "anthropic",
+      "added": [
+        "anthropic-constitutional-tool-transcript",
+        "anthropic-refusal-replay-harness"
+      ],
+      "total": 4
+    },
+    {
+      "slug": "nvidia",
+      "added": [
+        "nvidia-gradient-integrity-quorum",
+        "nvidia-nan-circuit-breaker"
+      ],
+      "total": 4
+    },
+    {
+      "slug": "xai",
+      "added": [
+        "xai-actuation-receipt-bus",
+        "xai-claim-promotion-fence"
+      ],
+      "total": 9
+    }
+  ]
+}

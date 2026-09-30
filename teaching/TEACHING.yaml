@@ -1,0 +1,6 @@
+schema_version: 1
+teacher: job_app_helix_maintainer
+subject: job_app_helix_upgrade
+method: sequential-thinking
+verification:
+  acceptance: required

@@ -1,0 +1,19 @@
+{
+  "repo": "token_saver",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "Pure-pointer token externalization (measured), part of AKOS and carrying an issue contract \u2014 the context-discipline foundation that compresses working context into pointers to keep the APEX cognitive OS within token budgets. The deeper catalog confirms it is a worked_solidified local job-app whole with an issue contract flag and a completed issue-contract proof, grounding the measured-compression claim as a tracked capability.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=token_saver; domain=apex_cognitive_os; role=whole; status_detail=worked_solidified; desc='pure_pointer token externalization (measured) \u00b7 AKOS'; local_job_app=true; issue_contract=true)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (token_saver capability layer references MICROWAVE flippers + token-saver discipline; issue-contract proof(pain) registered)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (token_saver tied to GlacierEQ_Swarm runtime layer)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "repo_excellence_anchor": "Indirect \u2014 context-discipline layer, not a governed-run surface; AKOS-linked runtime dependency.",
+  "makes_worthy": "Publish a measured-benchmark README and a local fact card with a reproducible token-savings metric (before/after run) to demonstrate the 'measured' claim and reach >=8.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.844491",
+  "notes": " | NEEDS_REPAIR"
+}

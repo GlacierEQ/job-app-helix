@@ -1,0 +1,21 @@
+{
+  "repo": "job-app-helix",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "Job-app double helix control plane \u2014 pistons, spirals, and a multi-star launch campaign; the orchestrating repository for the operator's job-application helix. It is VERIFIED by concrete release artifacts: a public GitHub Pages deployment, remote push/pull release receipts, a FINAL_FORM_MANIFEST naming the public site, and an INTEGRITY_MANIFEST binding the canonical source repository \u2014 concrete proof the control plane was built, released, and deployed, not merely described.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=job-app-helix; domain=apex_cognitive_os; role=whole; status_detail=foundation_whole; desc='Job-app double helix control plane \u2014 pistons, spirals, multi-star launch campaign')",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/10_RELEASE_RECEIPTS/REMOTE_REPOSITORY_PUSH_RECEIPT.json (repository GlacierEQ/job-app-helix)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/10_RELEASE_RECEIPTS/REMOTE_REPOSITORY_PULL_RECEIPT.json (GlacierEQ/job-app-helix)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/03_JOB_APP_HELIX/03_MACHINE_CONTRACTS/FINAL_FORM_MANIFEST.json (repository GlacierEQ/job-app-helix; public site https://glaciereq.github.io/job-app-helix/)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/03_JOB_APP_HELIX/06_CANONICAL_REPOSITORY_ARTIFACT/INTEGRITY_MANIFEST.json (source_repository GlacierEQ/job-app-helix)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (name=job-app-helix; path=/data/data/com.termux/files/home/job-app-helix)"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 8,
+  "repo_excellence_anchor": "Yes \u2014 control plane orchestrates pistons under AKOS; shares governance lineage with the computer-user governed kernel (203 tests, live AKOS, restart-safe). The 203-test kernel is the same authority pattern this helix dispatches through.",
+  "makes_worthy": "Embed the pinned commit SHA from source-urls.json into a local fact card and add one repo-level CI receipt (build/lint of the helix control plane) so deployment is independently re-verifiable to reach 10.",
+  "last_verified": "2026-08-29T04:30:00-10:00",
+  "notes": "local;tests;ci;readme;1086files"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/bottleneck.schema.json",
+  "title": "Consequential Engineering Bottleneck",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "bottleneck_id", "system_id", "problem", "root_cause", "scale_trigger", "current_response", "failure_consequence", "opportunity", "evidence_refs"],
+  "properties": {
+    "schema": {"const": "glaciereq.bottleneck.v1"},
+    "bottleneck_id": {"type": "string", "minLength": 1},
+    "system_id": {"type": "string", "minLength": 1},
+    "problem": {"type": "string", "minLength": 1},
+    "root_cause": {"type": "string", "minLength": 1},
+    "scale_trigger": {"type": "string", "minLength": 1},
+    "current_response": {"type": "string", "minLength": 1},
+    "failure_consequence": {"type": "string", "minLength": 1},
+    "opportunity": {"type": "string", "minLength": 1},
+    "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  }
+}

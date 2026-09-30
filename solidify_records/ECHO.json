@@ -1,0 +1,21 @@
+{
+  "repo": "ECHO",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "admitted_boundary",
+  "from_helix_66": true,
+  "innovation_summary": "The Piston to AKOS's Pillar \u2014 engines continuity, history, and orchestration so the right work happens in the right place, time, and context within the GlacierEQ cognitive-OS stack. Local evidence is catalog/contract only; no executed test or receipt was found in the inspected sources, so capability is asserted by description, not verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (name=ECHO; domain=apex_cognitive_os; role=part; activity=catalogued; status_detail=catalogued_unclassified; desc 'The Piston to AKOS's Pillar. Engine for Continuity, History, and Orchestration.'; Python)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=ECHO; executive_summary same; contract_proof='DONE <=> issue-contract proof(pain) for ECHO'; mesh_uri=glaciereq://mesh/cognitive_os_agent_kernels/ECHO)",
+    "/tmp/monolith/domains/apex_cognitive_os.md line 25 (catalogued entry)",
+    "/tmp/monolith/status/APEX_COGNITIVE_OS_ATLAS.md (ECHO member)",
+    "/tmp/monolith/status/APPLICATION_ESTATE_ZERO_OMISSION.md line 42 ('ECHO candidate')"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Clone the repository and add a runnable test suite plus a CI truth gate; produce a hardening receipt with a pinned commit and a hashed artifact. The issue-contract proof alone is not an execution receipt.",
+  "last_verified": "2026-08-29T08:47:16.937357",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=5"
+}

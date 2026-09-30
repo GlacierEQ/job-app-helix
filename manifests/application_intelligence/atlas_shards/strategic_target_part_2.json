@@ -1,0 +1,377 @@
+{
+  "category_id": "strategic_target_part_2",
+  "schema": "glaciereq.job-app-helix.company-bottleneck-atlas-shard.v1",
+  "records": [
+    {
+      "application_move": "Present a vendor-neutral workload and topology analysis rather than brand-specific claims.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "amd",
+      "display_name": "AMD",
+      "how_learned": "AMD AI systems materials emphasize open full-stack compute and identify networking and data movement as growing bottlenecks.",
+      "inferred_bottleneck": "Data movement, network synchronization, memory hierarchy, and software integration.",
+      "inferred_brick_wall": "Supporting synchronized training, low-latency inference, and persistent agent workloads without utilization or power collapse.",
+      "leverage": {
+        "expected_impact": "Improves utilization and cross-vendor infrastructure reasoning.",
+        "glaciereq_systems": [
+          "Colossus Gateway",
+          "Token Saver",
+          "GPU Health",
+          "Job-App Helix"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Model workload phases, compress context, monitor health, and route work around topology bottlenecks."
+      },
+      "next_deep_dive": "Create reproducible performance tests on available hardware or clearly simulated models.",
+      "observed_current_pressure": "AI workloads require coordinated CPU, GPU, networking, memory, and open software across training and inference.",
+      "official_sources": [
+        {
+          "observed_signal": "Open CPU and GPU AI platform with networking, memory, and software integration pressure.",
+          "publisher": "AMD",
+          "source_id": "SRC-32",
+          "source_sha256": "841dca689bc4817990c9d91b8607a139b34e34ca53a04afd192ca0960c6ab5e4",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "AMD AI Solutions",
+          "url": "https://www.amd.com/en/solutions/ai.html"
+        }
+      ],
+      "record_sha256": "b8713e506e60f734c4513b8711bca9a8de07a96f9293db9decb32d249350f623",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 32
+    },
+    {
+      "application_move": "Create a measured edge-agent context budget demonstration.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "qualcomm",
+      "display_name": "Qualcomm",
+      "how_learned": "Qualcomm AI materials emphasize on-device agents, heterogeneous acceleration, performance per watt, and memory constraints.",
+      "inferred_bottleneck": "Memory bandwidth, energy efficiency, model portability, and on-device agent context.",
+      "inferred_brick_wall": "Delivering useful local agents without exhausting memory, battery, thermals, or software compatibility.",
+      "leverage": {
+        "expected_impact": "Extends useful on-device context within energy and memory limits.",
+        "glaciereq_systems": [
+          "Token Saver",
+          "apple-ane-kv-quantizer",
+          "Unified Memory MCP",
+          "Job-App Helix"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use compact memory packets, quantized state, device-tier routing, and privacy-aware cloud fallback."
+      },
+      "next_deep_dive": "Run on available mobile hardware or emulator and clearly label the hardware boundary.",
+      "observed_current_pressure": "Inference is spreading from phones and PCs to edge devices and data centers under strict performance-per-watt constraints.",
+      "official_sources": [
+        {
+          "observed_signal": "On-device and edge AI optimized for power, memory, and heterogeneous compute.",
+          "publisher": "Qualcomm",
+          "source_id": "SRC-33",
+          "source_sha256": "f9508a9375090ac5bbf036d121e4b1d71e74a8fc9e5b88782f0c57bed900728c",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Qualcomm AI",
+          "url": "https://www.qualcomm.com/research/artificial-intelligence"
+        }
+      ],
+      "record_sha256": "d761faee6910f93e4ac5476d40f15c1b6d66997ced15a760ae1b7ae24dff7faa",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 33
+    },
+    {
+      "application_move": "Demonstrate database-grounded application intelligence with immutable source and decision hashes.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "oracle",
+      "display_name": "Oracle",
+      "how_learned": "Oracle AI Database materials emphasize private agents, converged data, vector search, transactions, and unified memory.",
+      "inferred_bottleneck": "Unified semantics, transactions, security, retrieval, and agent memory directly over enterprise data.",
+      "inferred_brick_wall": "Allowing real-time agent action without breaking data consistency, access controls, or cross-cloud portability.",
+      "leverage": {
+        "expected_impact": "Reduces data movement and improves action traceability.",
+        "glaciereq_systems": [
+          "Unified Memory MCP",
+          "Sigma Federation",
+          "Job-App Helix",
+          "Token Saver"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Attach transactional source identity, permission, freshness, and compact context to every decision."
+      },
+      "next_deep_dive": "Prototype against an accessible SQL system and test concurrency and stale-context behavior.",
+      "observed_current_pressure": "Enterprise agents are moving closer to transactional databases and mixed data types to avoid data movement.",
+      "official_sources": [
+        {
+          "observed_signal": "Agentic AI operating over converged enterprise data with security and transaction requirements.",
+          "publisher": "Oracle",
+          "source_id": "SRC-34",
+          "source_sha256": "b771d78be3eadaf584f983b1e486d2bdfdb1c5e7ded1b4c36b06518f205f6144",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Oracle AI Database",
+          "url": "https://www.oracle.com/database/ai/"
+        }
+      ],
+      "record_sha256": "c07cd1a5d86c346803d29c7c1036a035ae787a98d8ec6e5dcf96340af0bee365",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 34
+    },
+    {
+      "application_move": "Model the application campaign itself as a CRM agent workflow with no-send default and approval gates.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "salesforce",
+      "display_name": "Salesforce",
+      "how_learned": "Agentforce materials emphasize autonomous agents grounded in CRM data with controls and integration.",
+      "inferred_bottleneck": "Trusted autonomous action over CRM context and enterprise integration layers.",
+      "inferred_brick_wall": "Preventing incorrect or irreversible actions while maintaining identity, consent, observability, and business semantics.",
+      "leverage": {
+        "expected_impact": "Improves trust and auditability for business agents.",
+        "glaciereq_systems": [
+          "Job-App Helix",
+          "Sigma Federation",
+          "Unified Memory MCP",
+          "Pro-DOCTOR-STRANGE"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use action policies, identity-aware memory, approval thresholds, and post-action receipts."
+      },
+      "next_deep_dive": "Implement a sandbox campaign flow and verify no external message is sent without authority.",
+      "observed_current_pressure": "CRM agents are expected to reason and act across customer data, workflows, integrations, and business permissions.",
+      "official_sources": [
+        {
+          "observed_signal": "Enterprise agents grounded in CRM data and connected business actions.",
+          "publisher": "Salesforce",
+          "source_id": "SRC-35",
+          "source_sha256": "4847780b61198fc6dc02572ce6e3d5681228ec60089eb35ef24bb96f094d5c05",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Salesforce Agentforce",
+          "url": "https://www.salesforce.com/agentforce/"
+        }
+      ],
+      "record_sha256": "2e98da580f0be7bb40ead3feb35a7a6de95fff5862958fe677137da1348fc73d",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 35
+    },
+    {
+      "application_move": "Build a recruiter-package creative pipeline with editable artifacts and provenance.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "adobe",
+      "display_name": "Adobe",
+      "how_learned": "Adobe AI materials describe cross-application creative assistants and workflow fragmentation.",
+      "inferred_bottleneck": "Orchestrating workflows across creative applications and models while retaining editable structure, provenance, and brand control.",
+      "inferred_brick_wall": "Scaling automation without flattening human judgment, losing asset lineage, or creating unauthorized transformations.",
+      "leverage": {
+        "expected_impact": "Improves creative workflow continuity and artifact trust.",
+        "glaciereq_systems": [
+          "MegaPDF",
+          "Job-App Helix",
+          "Make-It-Heavy",
+          "Unified Memory MCP"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Preserve source-to-artifact lineage, editable intermediate states, specialized review lanes, and release receipts."
+      },
+      "next_deep_dive": "Generate one controlled multi-format package and validate every source and transformation.",
+      "observed_current_pressure": "Creative work is becoming agentic across ideation, generation, editing, collaboration, and production tools.",
+      "official_sources": [
+        {
+          "observed_signal": "Agentic orchestration across creative applications, models, and production workflows.",
+          "publisher": "Adobe",
+          "source_id": "SRC-36",
+          "source_sha256": "4a1d8ef090b31940a5d757ece84b511a07ffaf4f2917dc3d9d68e9d2aa1c2e69",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Adobe AI",
+          "url": "https://www.adobe.com/ai/overview.html"
+        }
+      ],
+      "record_sha256": "dabb65e97bfe082f683f10f79719918950be10cf29b8cb309b67653aa0617518",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 36
+    },
+    {
+      "application_move": "Package Gatling Tsunami as a durable, bounded dispatch reference architecture.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "cloudflare",
+      "display_name": "Cloudflare",
+      "how_learned": "Cloudflare Agents materials emphasize durable workflows, edge execution, state, networking, and agent security.",
+      "inferred_bottleneck": "Durable low-latency agent runtime and secure state across the edge.",
+      "inferred_brick_wall": "Isolating long-running agents and credentials while maintaining global availability, cost, and content and tool safety.",
+      "leverage": {
+        "expected_impact": "Improves agent availability and containment at high concurrency.",
+        "glaciereq_systems": [
+          "Colossus Gateway",
+          "Unified Memory MCP",
+          "Job-App Helix",
+          "Make-It-Heavy"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use state-machine receipts, scoped credentials, durable memory packets, and edge-safe tool dispatch."
+      },
+      "next_deep_dive": "Deploy a small Workers and Durable Objects proof when credentials and scope are available.",
+      "observed_current_pressure": "Millions of agents need globally distributed compute, durable state, identity, networking, and security.",
+      "official_sources": [
+        {
+          "observed_signal": "Global durable runtime, workflows, state, and security for production agents.",
+          "publisher": "Cloudflare",
+          "source_id": "SRC-37",
+          "source_sha256": "9d94cc28d6b176af852e904853d10e13122fae2427ff3824cd9d493afac8a108",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Cloudflare Agents",
+          "url": "https://developers.cloudflare.com/agents/"
+        }
+      ],
+      "record_sha256": "1f3a8f4f551391f8c50d9576bd92eed6c23ef62c66ccc5f108aba912193ae837",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 37
+    },
+    {
+      "application_move": "Deploy the Helix intelligence UI as a concrete Vercel production-agent case study.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "vercel",
+      "display_name": "Vercel",
+      "how_learned": "Vercel AI materials describe durable agents, code execution, runtime credentials, observability, and production deployment.",
+      "inferred_bottleneck": "Durable workflows, safe code execution, least-privilege tool access, and full-stack observability.",
+      "inferred_brick_wall": "Turning fast prototypes into recoverable, secure production agents without provider lock-in or hidden runtime state.",
+      "leverage": {
+        "expected_impact": "Shortens prototype-to-production while retaining evidence and security boundaries.",
+        "glaciereq_systems": [
+          "Job-App Helix",
+          "Colossus Gateway",
+          "Pro-DOCTOR-STRANGE",
+          "Unified Memory MCP"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Add provider-neutral convergence, exact deployment receipts, scoped credential exchange, and recoverable state."
+      },
+      "next_deep_dive": "Finish preview deployment and record commit-to-deployment parity.",
+      "observed_current_pressure": "Developers need a complete production stack for AI applications: models, workflows, sandboxes, auth, observability, and deployment.",
+      "official_sources": [
+        {
+          "observed_signal": "Production AI application stack with agents, workflows, sandboxes, credentials, and observability.",
+          "publisher": "Vercel",
+          "source_id": "SRC-38",
+          "source_sha256": "68387b02aeb66a7aa5224b8c29e9484dd95e56fec69b58c167631ea50e98a1c2",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Vercel AI",
+          "url": "https://vercel.com/ai"
+        }
+      ],
+      "record_sha256": "19ee98a4a68fa4c9bdc111c4315cf21e0d7643b8ce39330b500508777d2e2896",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 38
+    },
+    {
+      "application_move": "Create an agent-ready portfolio index modeled on compact Hub metadata.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "hugging_face",
+      "display_name": "Hugging Face",
+      "how_learned": "Hugging Face Hub and agent-oriented tooling emphasize efficient programmatic access to open models and datasets.",
+      "inferred_bottleneck": "Efficient, predictable, safe discovery and use of open AI artifacts.",
+      "inferred_brick_wall": "Controlling token overhead, provenance, compatibility, and security while ecosystem content changes continuously.",
+      "leverage": {
+        "expected_impact": "Reduces discovery context and lowers open-ecosystem integration risk.",
+        "glaciereq_systems": [
+          "Token Saver",
+          "Job-App Helix",
+          "Unified Memory MCP",
+          "Tower of Babel"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Use compact artifact descriptors, provenance hashes, compatibility metadata, and safe execution boundaries."
+      },
+      "next_deep_dive": "Measure token savings and provenance accuracy against raw repository descriptions.",
+      "observed_current_pressure": "Humans and agents must navigate an enormous, fast-changing open ecosystem of models, datasets, spaces, and tools.",
+      "official_sources": [
+        {
+          "observed_signal": "Large open model and data ecosystem increasingly accessed by automated agents.",
+          "publisher": "Hugging Face",
+          "source_id": "SRC-39",
+          "source_sha256": "ae3d46a96f7df65adf7626a675872feea81601f3d9e09fdf3f64828062e5681a",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "Hugging Face Hub",
+          "url": "https://huggingface.co/docs/hub/index"
+        }
+      ],
+      "record_sha256": "edb07e98683a782adda2c7ff0d6afb5ece35ba2939bdc9b537a7d78a103e93a1",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 39
+    },
+    {
+      "application_move": "Add Groq to a provider-neutral latency, cost, and quality convergence benchmark.",
+      "category": "Additional Strategic Targets",
+      "category_id": "strategic_target",
+      "company_id": "groq",
+      "display_name": "Groq",
+      "how_learned": "GroqCloud materials emphasize global capacity growth and very high token throughput.",
+      "inferred_bottleneck": "Capacity, model coverage, reliability, and economics for globally low-latency inference.",
+      "inferred_brick_wall": "Maintaining deterministic low latency and availability as traffic, models, and regions scale.",
+      "leverage": {
+        "expected_impact": "Improves inference economics and makes routing decisions auditable.",
+        "glaciereq_systems": [
+          "Token Saver",
+          "Pro-DOCTOR-STRANGE",
+          "Colossus Gateway",
+          "Job-App Helix"
+        ],
+        "impact_class": "MEDIUM_HIGH",
+        "mechanism": "Route by measured latency and cost, compress repeated context, and retain provider receipts for every result."
+      },
+      "next_deep_dive": "Run real provider tests when credentials are available; do not substitute synthetic latency.",
+      "observed_current_pressure": "Inference demand is expanding geographically and by token volume, with latency central to user experience.",
+      "official_sources": [
+        {
+          "observed_signal": "High-throughput low-latency inference cloud scaling across models and regions.",
+          "publisher": "Groq",
+          "source_id": "SRC-40",
+          "source_sha256": "ab1323339a057d635ec68c7c63d3ba79248bdf483766cb36602022e122e2efc5",
+          "source_type": "OFFICIAL_PRODUCT_OR_CAREERS",
+          "title": "GroqCloud",
+          "url": "https://groq.com/groqcloud"
+        }
+      ],
+      "record_sha256": "5fbfeadd4dc095c3c0d12525c690e1079747a83122174c3feadbde8581adf0d8",
+      "target_roles": [
+        "Applied AI Systems Architect",
+        "Forward-Deployed Engineer",
+        "AI Infrastructure / Governance Engineer"
+      ],
+      "track_number": 40
+    }
+  ],
+  "record_count": 9,
+  "shard_sha256": "264203af915240e176efcd187c2626bc98c8bb408996094c42c49e03d3a8c9ce"
+}

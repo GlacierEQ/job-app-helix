@@ -1,0 +1,26 @@
+{
+  "repo": "xai-aeon777-security-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "canonical": "xai-colossus-cooling",
+  "wave3": true,
+  "innovation_summary": "Wave-3 deeper mining of local sources confirms this is an alpha/omega variant of the xAI/Colossus portfolio listed under xai_colossus.historical_or_cross_company (canonical candidate xai-colossus-cooling). The monolith catalog (library.json) records it as a Python 'part' with domain=memory_aspen, activity=catalogued, status_detail=catalogued_unclassified, private=true, desc='' (EMPTY), local_job_app=false, issue_contract=false, updatedAt 2026-06-25T06:18:49Z. No local clone, README, code, tests, fact card, or CI receipt was found in /tmp/helix/ extraction or /tmp/monolith/evidence. The xai_colossus_security_hardening.json receipt verifies the canonical xai-colossus-security lineage, NOT this aeon777-named variant. Its specific security function therefore remains unconfirmed; rating cannot be raised on catalog metadata alone.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry xai-aeon777-security-alpha: domain=memory_aspen, role=part, activity=catalogued, status_detail=catalogued_unclassified, language=Python, desc='' (EMPTY), private=true, local_job_app=false, issue_contract=false, updatedAt 2026-06-25T06:18:49Z)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (xai_colossus.historical_or_cross_company includes 'xai-aeon777-security-alpha')",
+    "/tmp/monolith/catalog/library.json:17578-17897 (the 20 xai-aeon777-* entries are uniformly empty-desc catalogued_unclassified parts with no local_job_app/issue_contract/test/fact-card lineage)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json (verifies canonical xai-colossus-security lineage, not this aeon777 variant \u2014 confirmed absence)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Clone GlacierEQ/xai-aeon777-security-alpha and verify actual contents; extract README/tests into a fact card. If empty, consolidate into canonical xai-colossus-cooling per catalog historical-consolidation guidance before claiming portfolio value.",
+  "honest_limits": [
+    "catalog desc field is EMPTY; no mechanism evidence beyond the family grouping",
+    "no local clone, source inspection, test, CI run id, artifact, or receipt found locally",
+    "name collision risk: the verified xai-colossus-security lineage is distinct; this aeon777 variant is not covered by that receipt"
+  ],
+  "last_verified": "2026-08-29T08:47:16.872705",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

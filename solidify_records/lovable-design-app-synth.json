@@ -1,0 +1,24 @@
+{
+  "repo": "lovable-design-app-synth",
+  "family": "Lovable / Lab",
+  "kind": "company",
+  "source_state": "worked_on",
+  "innovation_summary": "An application-design synthesizer focused on converting product intent into coherent UI, workflow, and implementation structures (lab_hire_stamps). Unlike most of the G-M batch, this repo has real worked-state evidence: status/WORKED_ON.md marks it 'worked_solidified', status/functions/delivery.md records it as an 'active_specialist' in lab_hire_stamps (high confidence), and company_engineered_repositories.json lists it as 'current_preparation' with 'canonical_candidate'. It also appears in validate_lab_hire_atlas.py, previous_application_baseline.json, and company_engineered_portfolio.md (Lovable: 1 repo, P2 product proof). capabilities_3layer tags it 'Lab Benchmarks And Stamps engine' with a real launch_cmd (python3 ~/job-app/apex_highway.py --target lovable-design-app-synth).",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:9868 (name lovable-design-app-synth; application-design synthesizer)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:25029 (entry: elevator_pitch 'Lab Benchmarks And Stamps engine', launch_cmd python3 ~/job-app/apex_highway.py --target lovable-design-app-synth, mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/lovable-design-app-synth)",
+    "/tmp/monolith/status/WORKED_ON.md:51 (lovable-design-app-synth | lab_hire_stamps | part | worked_solidified)",
+    "/tmp/monolith/status/functions/delivery.md:11 (active_specialist | lab_hire_stamps; application-design synthesizer; high confidence)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:158,163 (current_preparation + canonical_candidate: lovable-design-app-synth)",
+    "/tmp/monolith/domains/company_engineered_portfolio.md:46 (Lovable | 1 | 1 | 0 | 0 | 0 | P2 product proof)",
+    "/tmp/monolith/scripts/validate_lab_hire_atlas.py:65 (listed as validated atlas record)",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md:37 (in lab_hire domain set)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "wave3": true,
+  "makes_worthy": "Add a build/receipt artifact from a real synthesis run to reach VERIFIED and worthy>=8. Highest-tier lab candidate due to worked_solidified + active_specialist + canonical_candidate cross-reference; still PARTIAL because no run/build receipt yet.",
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.884390",
+  "notes": " | NEEDS_REPAIR"
+}

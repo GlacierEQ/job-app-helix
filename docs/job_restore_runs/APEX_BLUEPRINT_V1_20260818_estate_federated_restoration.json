@@ -1,0 +1,121 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "current_source_sha": "eca0f9d980a1009c1d4d928ee84877265230fd9d",
+  "donor_shas": [
+    "060eb250eea32ed654c0a33286d9dc940e17d303",
+    "3f24f429eeac89d317c22a6235753cb712d8ec47"
+  ],
+  "selected_priority": "Compose estate recovery census priority directly into exact-source federated restoration packet build/apply execution.",
+  "priority_tier": "P2",
+  "blocked_higher_candidates": [],
+  "displaced_capability": "Estate recovery census could rank repository-level recovery need, while federated restoration could import and compose an exact donor revision, but no executable bridge turned the ranked estate observation into a SHA-bound restoration packet.",
+  "mechanisms_compared": [
+    {
+      "mechanism": "historical_recovery_or_composition",
+      "assessment": "Manually feed census output into existing federated restoration calls. Preserves mechanisms but leaves the critical selection-to-execution bridge manual."
+    },
+    {
+      "mechanism": "modern_upgrade",
+      "assessment": "Replace both engines with a new unified recovery service. Rejected because it would duplicate strong exact-source and census mechanisms and increase regression risk."
+    },
+    {
+      "mechanism": "nonlinear_combination",
+      "assessment": "Selected: preserve both proven engines and add deterministic estate qualification, target selection, exact packet construction, optional application, CLI execution, and fail-closed behavior."
+    }
+  ],
+  "implemented_delta": {
+    "pull_request": 240,
+    "proof_head": "b16861638403ef167070e97035f9462ba4138947",
+    "merge_sha": "eca0f9d980a1009c1d4d928ee84877265230fd9d",
+    "files": [
+      "src/job_app_helix/estate_federated_restoration.py",
+      "tests/test_estate_federated_restoration.py",
+      ".github/workflows/estate-federated-restoration-proof.yml",
+      "pyproject.toml"
+    ],
+    "executable": "job-app-helix-estate-restore",
+    "capabilities": [
+      "qualify repository recovery candidates from live estate census state",
+      "reject missing, inaccessible, archived, disabled, and healthy repositories from automatic packet selection",
+      "rank surviving executable restoration targets deterministically by census priority",
+      "bind the selected target to an exact federated donor source/ref and semantic symbol closure",
+      "build SHA-bound federated restoration packets using the existing exact-source import and cross-file semantic engine",
+      "optionally apply the selected restoration packet through the existing drift-guarded federated applier",
+      "emit structured execution results for downstream recovery automation"
+    ]
+  },
+  "preserved_gains": [
+    "estate census remains read-only and does not mutate donor repositories",
+    "federated donor import remains exact-source and credentials-safe",
+    "cross-file semantic restoration drift guards remain intact",
+    "missing or inaccessible repositories are not promoted into deletion claims",
+    "historical donor code is not blindly reverted wholesale",
+    "existing restoration engines remain independently usable"
+  ],
+  "tests_runtime_proof": {
+    "workflow_run_id": 32165516179,
+    "result": "PASS",
+    "matrix": ["3.11", "3.12", "3.13"],
+    "checks": [
+      "strict Ruff over executable orchestration and adversarial tests",
+      "highest-priority recoverable census target selection",
+      "fail-closed filtering for missing and healthy targets",
+      "duplicate target rejection",
+      "ranked target binding into packet builder",
+      "optional packet application execution",
+      "installed job-app-helix-estate-restore CLI"
+    ],
+    "initial_failure_and_refinement": "Workflow 32165357206 failed only on one E501 test line; the test was corrected without weakening lint, and exact-head proof 32165516179 then passed on all supported Python versions.",
+    "post_merge_readback": {
+      "result": "PASS",
+      "main_module_blob_sha": "01cb3f1c7f53177be85df85129bc8de99d3e7769",
+      "observed": "main contains deterministic census qualification, exact federated packet construction, optional application, manifest loading, and installed CLI entrypoint"
+    }
+  },
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P2",
+      "priority": "Generate restoration target candidates automatically from recovery_ref_graph and repository metadata so selected_symbols and donor refs no longer require a hand-authored target manifest.",
+      "target_files_functions": [
+        "src/job_app_helix/estate_federated_restoration.py",
+        "src/job_app_helix/recovery_ref_graph.py",
+        "src/job_app_helix/recovery_reconnaissance.py"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Persist longitudinal opening-change telemetry and classify recruiter-material field changes before recruiter packet invalidation.",
+      "target_files_functions": [
+        "src/job_app_helix/opening_watch.py",
+        "src/job_app_helix/freshness_aware_batch.py",
+        "src/job_app_helix/intelligence_cycle.py"
+      ]
+    },
+    {
+      "tier": "P2",
+      "priority": "Add maintained target-company opening discovery so Opening Watch refreshes discovered company opening inventories rather than only supplied URLs.",
+      "target_files_functions": [
+        "src/job_app_helix/opening_watch_cycle.py",
+        "src/job_app_helix/opening_acquisition.py",
+        "src/job_app_helix/company_intelligence_acquisition.py"
+      ]
+    }
+  ],
+  "next_sequence": [
+    "auto-derive exact donor/ref/symbol target candidates from ref-graph reconnaissance",
+    "execute the first real repository-family restoration through the new estate-to-federated bridge",
+    "add field-sensitive opening invalidation telemetry",
+    "expand live opening monitoring into maintained company inventories"
+  ],
+  "merge_deploy_gate": "PR 240 merged only after Estate Federated Restoration Proof run 32165516179 passed strict lint, adversarial orchestration tests, and installed CLI checks on Python 3.11, 3.12, and 3.13.",
+  "rollback": "Revert merge eca0f9d980a1009c1d4d928ee84877265230fd9d. Existing estate_recovery_census and federated_restoration engines remain independently available and unchanged.",
+  "no_loss_invariants": [
+    "never select missing or inaccessible repositories for automatic restoration",
+    "never mutate archived or disabled repositories through census-driven execution",
+    "never apply a donor revision without exact-source SHA binding",
+    "never replace stronger current code merely because an older donor exists",
+    "never let recovery reporting substitute for executable restoration progress"
+  ],
+  "verified_delta_state": "ESTATE_PRIORITY_TO_EXACT_FEDERATED_RESTORATION_EXECUTABLE_BRIDGE_MERGED_PROVEN_AND_READ_BACK_ON_MAIN"
+}

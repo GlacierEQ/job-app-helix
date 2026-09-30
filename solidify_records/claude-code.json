@@ -1,0 +1,22 @@
+{
+  "repo": "claude-code",
+  "family": "Anthropic",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Upstream reference mirror of Anthropic's terminal-based agentic coding tool (preserved as study, NOT original GlacierEQ work). Catalog evidence: library.json (catalogued, reference, language=Python), company_engineered_repositories.json (anthropic.reference_or_upstream), capabilities_3layer.json (EXTENDED_UTILITIES_AND_EXPERIMENTS, impact_score=P1, rich executive_summary, contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=80826e8888ee05b426567bb1bc9159f2b849d34941fdb3908f45b466b4582178, agent_tool_registration=tool_claude_code, git-clone launch_cmd). Catalog presence does not prove credentials, local configuration, or autonomous correctness; the company_engineered_repositories.json file explicitly forbids presenting reference_or_upstream as original work unless a contribution delta is isolated and verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:3564 (name=claude-code, catalogued, reference, url=https://github.com/GlacierEQ/claude-code)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:60 (anthropic.reference_or_upstream \u2014 'Preserve as study, integration, or upstream reference. Do not present as original GlacierEQ work unless a contribution delta is isolated and verified.')",
+    "/tmp/monolith/domains/long_tail.md (description)",
+    "/tmp/monolith/audits/P0_PUBLIC_REPOSITORY_SWEEP_2026-07-30.md",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_05.md (preserved_upstream)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:32473 (EXTENDED_UTILITIES_AND_EXPERIMENTS, impact_score=P1, executive_summary='Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.', launch_cmd='git clone https://github.com/GlacierEQ/claude-code', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=80826e8888ee05b426567bb1bc9159f2b849d34941fdb3908f45b466b4582178, mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/claude-code, agent_tool_registration.name=tool_claude_code)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Reference_or_upstream: strong catalog (contract_proof + mesh_uri + sha256 + rich exec summary) but the policy rule forbids claiming authorship. Bumps 3->5 honestly. Cannot exceed 6 unless: (1) a GlacierEQ contribution delta is isolated, diffed against upstream SHA, and recorded, OR (2) a per-repo extension layer is documented with a run receipt. Honest cap at 6 for reference; do not push to 7+ without contribution-delta proof.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.744936",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

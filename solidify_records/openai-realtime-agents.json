@@ -1,0 +1,21 @@
+{
+  "repo": "openai-realtime-agents",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Demonstration of more advanced, agentic patterns built on top of OpenAI's Realtime API (TypeScript). Triple-cataloged: (a) library.json entry + url; (b) capabilities_3layer.json classifier lab_benchmarks_and_stamps with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/lab_benchmarks_and_stamps/openai-realtime-agents; (c) company_engineered_repositories.json family openai/reference_or_upstream (verbatim upstream mirror, no local edits). The expanded_job_app_helix_manifest.json (line 758) explicitly assigns it as a job-app-helix mesh leaf, family OpenAI / Codex, canonical openai-reasoning-kv-sentinel, state reference. Cataloged reference for voice/real-time multi-agent orchestration patterns the job-app-helix mesh can study. Honest limitation: reference/upstream means zero local GlacierEQ modifications; without a voice-agent demo run against a mock Realtime endpoint, integration test, or fact card, capability is contract-catalog + helix-membership proven, not runtime-verified \u2014 so 7 is the honest ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 12556: entry openai-realtime-agents; url=https://github.com/GlacierEQ/openai-realtime-agents)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 25449: name=openai-realtime-agents; classifier=lab_benchmarks_and_stamps; elevator_pitch='High-performance Lab Benchmarks And Stamps engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/openai-realtime-agents; launch_cmd='git clone https://github.com/GlacierEQ/openai-realtime-agents')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 220: reference_or_upstream list \u2014 verbatim upstream mirror, no local mods)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 758: kind=company, state=reference, family='OpenAI / Codex', canonical=openai-reasoning-kv-sentinel \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 124: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Produce a repository_fact_card with implementation evidence (running Realtime API demo against a mock endpoint, passing tests, build receipt), document the agentic patterns in a GlacierEQ README, and update company_engineered_repositories.json from reference_or_upstream to in_preparation \u2014 would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.885365",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

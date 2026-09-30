@@ -1,0 +1,26 @@
+{
+  "identity": {
+    "repository_id": "job-app-helix",
+    "display_name": "Job App Helix Career Automation",
+    "owner": "glaciereq",
+    "lane": "career",
+    "visibility": "private",
+    "status": "foundation"
+  },
+  "current": {
+    "state": "SEEDED",
+    "implemented": true,
+    "tested": true,
+    "deployed": false
+  },
+  "target": {
+    "purpose": "Job App Helix Career Automation",
+    "central_bottleneck": "Sovereign intelligence execution"
+  },
+  "invariants": [],
+  "promotion": {
+    "required_tests": ["unit", "adversarial"],
+    "require_exact_source_sha": true,
+    "require_receipt": true
+  }
+}

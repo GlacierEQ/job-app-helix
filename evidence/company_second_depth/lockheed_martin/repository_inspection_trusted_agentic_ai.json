@@ -1,0 +1,47 @@
+{
+  "boundary": "Inspection establishes reusable implementation capabilities in public GlacierEQ code. It does not assert that Lockheed Martin uses, requested, reviewed, adopted, or endorsed these implementations.",
+  "bounded_problem_id": "trusted_agentic_ai_integration",
+  "captured_at": "2026-08-07T13:18:00-10:00",
+  "company_id": "lockheed_martin",
+  "inspections": [
+    {
+      "commit": "89403272a76dda8e1f9f317e16bfce5b60c1a3f5",
+      "observed": [
+        "active verification-and-provenance piston",
+        "evidence-manifest generation",
+        "health-and-audit piston",
+        "bounded execute endpoint with structured errors and payload limit",
+        "artifact twin generation after non-quarantine processing"
+      ],
+      "paths": ["runtime/src/index.ts"],
+      "relevance": "transferable provenance, evidence, health/audit, and bounded agent-runtime execution",
+      "repository": "GlacierEQ/AKOS"
+    },
+    {
+      "commit": "340834cf8d6c65832196b6cc0b6df281574842f8",
+      "observed": [
+        "source pointers with SHA-256 validation",
+        "transport envelopes with idempotency keys and payload hash verification",
+        "immutable audit receipt structure",
+        "capacity-aware worker routing",
+        "circuit breaker with closed/open/half-open states"
+      ],
+      "paths": ["src/control_plane_runtime.py"],
+      "relevance": "transferable deterministic integration, provenance, idempotency, auditability, and resilience",
+      "repository": "GlacierEQ/apex-control-plane"
+    },
+    {
+      "commit": "e3778353e92b404de43f41963a0c7bffb84897ac",
+      "observed": [
+        "streaming SHA-256 file hashing",
+        "deterministic governed-file integrity manifest",
+        "missing/changed/unexpected drift detection",
+        "release receipt binding registry, integrity manifest, and build report digests"
+      ],
+      "paths": ["src/tower/integrity.py", "src/tower/receipt.py"],
+      "relevance": "transferable integrity verification and reproducible release receipts",
+      "repository": "GlacierEQ/the-tower-of-babel"
+    }
+  ],
+  "schema": "glaciereq.repository-inspection.v1"
+}

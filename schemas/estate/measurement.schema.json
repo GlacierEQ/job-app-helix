@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/measurement.schema.json",
+  "title": "Substantive Measurement Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metric", "unit", "methodology_ref", "evidence_ref"],
+  "properties": {
+    "metric": {"type": "string", "minLength": 1},
+    "unit": {"type": "string", "minLength": 1},
+    "value": {"type": "number"},
+    "before": {"type": "number"},
+    "after": {"type": "number"},
+    "sample_size": {"type": "integer", "minimum": 1},
+    "methodology_ref": {"type": "string", "minLength": 1},
+    "evidence_ref": {"type": "string", "minLength": 1}
+  },
+  "anyOf": [
+    {"required": ["value"]},
+    {"required": ["before", "after"]}
+  ]
+}

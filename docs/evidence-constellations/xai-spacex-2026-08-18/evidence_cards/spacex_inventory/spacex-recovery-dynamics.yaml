@@ -1,0 +1,35 @@
+repository: GlacierEQ/spacex-recovery-dynamics
+commit: b53869f0d5eaad4069c31ffd065435b6c078c2d6
+reviewed_at: 2026-08-18
+visibility: private
+review_status: inventory_only
+claim_support: exploratory
+problem_lens: >-
+  Preserved recovery-dynamics thread within a broader mission-systems constellation of
+  bounded decisions under physical and operational uncertainty.
+artifact:
+  repository_url: https://github.com/GlacierEQ/spacex-recovery-dynamics
+  recorded_surface: >-
+    Repository identity, current recorded revision, visibility, and
+    archival_thread classification from the rescue-wave inventory.
+  review_method: >-
+    Non-executing static inventory only. Source-level behavior has not yet been
+    reviewed for claim elevation in this rescue wave.
+claim: >-
+  This card preserves the repository's distinct identity and recorded revision
+  within the SpaceX-targeted mission-systems constellation. It does not elevate
+  a technical implementation or performance claim.
+known_limit: >-
+  Inventory status does not establish SpaceX affiliation, proprietary access,
+  production deployment, operational authority, test results, system behavior,
+  or a source-code relationship to other threads.
+evidence_boundary: >-
+  Repository lineage and metadata only; no source-level capability claim is
+  promoted until a thread-specific review is complete.
+thread_relationships:
+  - type: constellation_neighbor
+    repository: GlacierEQ/spacex-launch-sequencer
+    note: >-
+      Curator-defined mission-systems connection. This card remains independent
+      and the relationship does not assert shared implementation, deployment,
+      or a ranking between the threads.

@@ -1,0 +1,35 @@
+repository: GlacierEQ/xai-colossus-build
+commit: e60e1cd2908aed2c3ec2bd51ad799215a97aff53
+reviewed_at: 2026-08-18
+visibility: private
+review_status: inventory_only
+claim_support: exploratory
+problem_lens: >-
+  Preserved colossus-build thread in the wider xAI-targeted compute-infrastructure
+  constellation, kept available for role-specific source review.
+artifact:
+  repository_url: https://github.com/GlacierEQ/xai-colossus-build
+  recorded_surface: >-
+    Repository identity, current recorded revision, visibility, and
+    archival_thread classification from the rescue-wave inventory.
+  review_method: >-
+    Non-executing static inventory only. This thread has not undergone a
+    source-level review for claim elevation in the first rescue wave.
+claim: >-
+  This card preserves the repository's distinct identity and recorded revision
+  within the xAI-targeted infrastructure constellation. It does not elevate a
+  technical implementation or performance claim.
+known_limit: >-
+  Inventory status does not establish xAI affiliation, private-system access,
+  production deployment, test results, hardware or facility operation,
+  system behavior, or a source-code dependency on any other thread.
+evidence_boundary: >-
+  Repository lineage and metadata only; no source-level capability claim is
+  promoted until a thread-specific review is complete.
+thread_relationships:
+  - type: constellation_neighbor
+    repository: GlacierEQ/xai-colossus-cooling
+    note: >-
+      Curator-defined compute-infrastructure connection. This card remains
+      independent, and the relationship does not assert shared implementation,
+      deployment, or a ranking between the threads.

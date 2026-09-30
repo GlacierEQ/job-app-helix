@@ -1,0 +1,31 @@
+=== run1 rc=0 ===
+test_central_mechanism_refuse_or_edge (test_adversarial.AdversarialEliteTests.test_central_mechanism_refuse_or_edge)
+Exercise shipped refuse/edge paths when present; never crash open. ... ok
+test_module_importable (test_adversarial.AdversarialEliteTests.test_module_importable) ... ok
+test_refuse_bad_import_path_does_not_shadow (test_adversarial.AdversarialEliteTests.test_refuse_bad_import_path_does_not_shadow) ... ok
+test_expired (test_promotion_authority.PromotionAuthTests.test_expired) ... ok
+test_issue_verify (test_promotion_authority.PromotionAuthTests.test_issue_verify) ... ok
+test_real_machine_grant_verifies_against_proof_receipt (test_promotion_authority.PromotionAuthTests.test_real_machine_grant_verifies_against_proof_receipt) ... skipped 'receipts not yet bound'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.075s
+
+OK (skipped=1)
+
+=== run2 rc=0 ===
+test_central_mechanism_refuse_or_edge (test_adversarial.AdversarialEliteTests.test_central_mechanism_refuse_or_edge)
+Exercise shipped refuse/edge paths when present; never crash open. ... ok
+test_module_importable (test_adversarial.AdversarialEliteTests.test_module_importable) ... ok
+test_refuse_bad_import_path_does_not_shadow (test_adversarial.AdversarialEliteTests.test_refuse_bad_import_path_does_not_shadow) ... ok
+test_expired (test_promotion_authority.PromotionAuthTests.test_expired) ... ok
+test_issue_verify (test_promotion_authority.PromotionAuthTests.test_issue_verify) ... ok
+test_real_machine_grant_verifies_against_proof_receipt (test_promotion_authority.PromotionAuthTests.test_real_machine_grant_verifies_against_proof_receipt) ... skipped 'receipts not yet bound'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.017s
+
+OK (skipped=1)
+
+dual_run_ok=True
+entry=unittest cmd=/Users/kcbflux/.local/bin/python3.11 -m unittest discover -s tests -v
+PYTHONPATH=/Users/kcbflux/GlacierEQ_Swarm/job-app/repos/runpod-pod-preempt-receipt:/Users/kcbflux/GlacierEQ_Swarm/job-app/repos/runpod-pod-preempt-receipt/src

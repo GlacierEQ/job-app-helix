@@ -1,0 +1,17 @@
+{
+  "repo": "microsoft-azure-ops",
+  "family": "Microsoft",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "GlacierEQ's canonical Microsoft-family multi-region Azure-class ops-health monitor (focus P0_ENTERPRISE_CLOUD_SUITE), cataloged in lab_hire_stamps as worked_solidified with a real description and a SHA-bound 3-layer record (sha256 aa0c19a4..., AKOS portfolio, P0). Description and catalog are concrete but no fact card or runtime receipt exists locally, so capability is catalog-asserted.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:10940 (name; domain lab_hire_stamps; desc 'Multi-region Azure-class ops health (portfolio) · AKOS portfolio'; local_job_app true; Python; updatedAt 2026-08-10)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:25113 (layers 1-3; sha256_binding aa0c19a49cbff3d1802347d9ae33f3d5508645c44ea74e8cb0830f275823bec0; AKOS portfolio; category LAB_BENCHMARKS_AND_STAMPS; contract_proof DONE)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:188-193 (family Microsoft; canonical_candidate; current_preparation; focus P0_ENTERPRISE_CLOUD_SUITE)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json claim akos_tests (AKOS 94/94 VERIFIED, run 30532339028, commit d00eb4a9...) + claim helix_inventory (66-repo boundary VERIFIED)"
+  ],
+  "verification_status": "PARTIAL",
+  "worthy_rating": 8,
+  "makes_worthy": "Add a fact card with implementation/runtime detail and a passing test or build receipt (ideally under AKOS CI like the 94/94 run); publish a README documenting the health checks and a live demo to reach worthy>=9.",
+  "repo_excellence_overlap": "As an 'AKOS portfolio' asset it inherits the AKOS VERIFIED test anchor (94/94, run 30532339028) and the computer-user governed-execution receipt discipline (203 tests, hash-bound action receipts, restart-safe)."
+}

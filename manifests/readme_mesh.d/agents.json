@@ -1,0 +1,60 @@
+{
+  "repositories": [
+    {
+      "repository": "GlacierEQ/anthropic-agent-coordinator",
+      "display_name": "Agent Coordinator",
+      "one_line_purpose": "A dependency-aware task coordinator that allocates specialist work under global and per-role token budgets.",
+      "innovation": "The coordinator makes sequencing, dependency readiness, resource caps, and deferred work explicit in a deterministic result.",
+      "evolution": "It evolved from a simple multi-agent example into a mesh capability for bounded portfolio-wide work planning.",
+      "capabilities": [
+        "multi-agent coordination",
+        "dependency scheduling",
+        "token budgeting"
+      ],
+      "evidence": [
+        {
+          "label": "Coordinator",
+          "path": "https://github.com/GlacierEQ/anthropic-agent-coordinator/blob/master/src/coordinator.py",
+          "claim": "Assigns ready tasks while enforcing global and role-specific budgets."
+        },
+        {
+          "label": "Tests",
+          "path": "https://github.com/GlacierEQ/anthropic-agent-coordinator/blob/master/tests/test_coordinator.py",
+          "claim": "Verifies assignment, dependencies, and deferral behavior."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "master"
+    },
+    {
+      "repository": "GlacierEQ/anthropic-safety-monitor",
+      "display_name": "Safety Monitor",
+      "one_line_purpose": "A compact monitor for detecting and surfacing unsafe or anomalous agent behavior.",
+      "innovation": "It separates observed signals from the action taken, supporting reviewable safety decisions rather than silent suppression.",
+      "evolution": "It evolved into a verification companion for agent coordination and automated work execution.",
+      "capabilities": [
+        "agent monitoring",
+        "safety signals",
+        "review boundaries"
+      ],
+      "evidence": [
+        {
+          "label": "Safety monitor",
+          "path": "https://github.com/GlacierEQ/anthropic-safety-monitor/blob/master/src/safety_monitor.py",
+          "claim": "Implements the monitor and its decision rules."
+        },
+        {
+          "label": "Tests",
+          "path": "https://github.com/GlacierEQ/anthropic-safety-monitor/blob/master/tests/test_safety_monitor.py",
+          "claim": "Verifies safe and flagged behavior."
+        }
+      ],
+      "run_commands": [
+        "python -m pytest -q"
+      ],
+      "default_branch": "master"
+    }
+  ]
+}

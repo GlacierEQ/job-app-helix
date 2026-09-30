@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/engineering-ledger.schema.json",
+  "title": "End-of-Run Engineering Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["system", "bottleneck", "root_cause", "invention", "implementation", "verification", "measured_results", "enterprise_consequence", "failure_boundaries", "evidence", "next_constraint"],
+  "properties": {
+    "system": {"type": "string", "minLength": 1},
+    "bottleneck": {"type": "string", "minLength": 1},
+    "root_cause": {"type": "string", "minLength": 1},
+    "invention": {"type": "string", "minLength": 1},
+    "implementation": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "verification": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "measured_results": {"type": "array", "items": {"type": "object"}},
+    "enterprise_consequence": {"type": "string", "minLength": 1},
+    "failure_boundaries": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "evidence": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "next_constraint": {"type": "string", "minLength": 1}
+  }
+}

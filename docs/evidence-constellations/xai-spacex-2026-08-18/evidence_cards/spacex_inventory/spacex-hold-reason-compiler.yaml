@@ -1,0 +1,50 @@
+repository: GlacierEQ/spacex-hold-reason-compiler
+commit: e7b928f9b713ac6e7652ac3b3b12df84e8880ec1
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Deterministic explanation of supplied operational residuals, where ordered,
+  stable human and machine outputs must remain separate from the authority to
+  make a real decision.
+artifact:
+  repository_url: https://github.com/GlacierEQ/spacex-hold-reason-compiler
+  inspected_paths:
+    - README.md
+    - src/hold_compiler.py
+    - tests/test_hold_compiler.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit; this
+    review does not assert that repository tests were executed during recovery.
+claim: >-
+  At the reviewed commit, the repository implements a local deterministic
+  compiler for caller-supplied hold residuals. It validates residual fields,
+  retains the highest severity for matching subsystem/code pairs, merges tied
+  details in sorted order, applies a local severity/priority order, and emits
+  structured brief fields with policy and result fingerprints. Repository-owned
+  tests encode these local ordering, validation, and stability expectations.
+known_limit: >-
+  The artifact does not authenticate residual sources, determine real safety,
+  clear a hold, issue go/no-go authority, command hardware, describe an
+  external operating procedure, or establish any relationship with SpaceX.
+  Owner labels and priorities are local policy fixtures.
+evidence_boundary: >-
+  Local explanation of supplied residuals only; no authority over an
+  operational hold or flight decision.
+thread_relationships:
+  - type: conceptual_neighbor
+    repository: GlacierEQ/spacex-mission-thread-quorum
+    note: >-
+      The README identifies a complementary decision-layer relationship, but
+      no exercised integration is claimed or assumed by this card.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-launch-sequencer
+    note: >-
+      Curator-defined operational-decision connection. This does not assert
+      shared code, real operational use, or a dependency between repositories.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-pad-weather-gate
+    note: >-
+      Curator-defined input/explanation connection: local weather outcomes can
+      be one kind of supplied residual. This does not assert live data flow.

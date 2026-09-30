@@ -1,0 +1,22 @@
+[
+  {
+    "repository": "GlacierEQ/spacex-telemetry",
+    "paper_recovery_only": true,
+    "neutralization_stamps": 2
+  },
+  {
+    "repository": "GlacierEQ/spacex-mission-control",
+    "paper_recovery_only": true
+  },
+  {
+    "repository": "GlacierEQ/apex-control-plane",
+    "neutralization_stamps": 3
+  },
+  {
+    "repository": "GlacierEQ/xai-colossus-cooling"
+  },
+  {
+    "repository": "GlacierEQ/job-application",
+    "domain": "hire"
+  }
+]

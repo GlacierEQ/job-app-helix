@@ -1,0 +1,59 @@
+{
+  "ts": "2026-08-09T05:05Z",
+  "wave": "L1-quality-hammer",
+  "philosophy": "raise depth+tests on flagships only; no overclaim",
+  "flagships": {
+    "lockheed-dual-key-actuator-fence": {
+      "loc": 486,
+      "tests": 14,
+      "ci": true,
+      "url": "https://github.com/GlacierEQ/lockheed-dual-key-actuator-fence"
+    },
+    "lockheed-mission-thread-isolator": {
+      "loc": 266,
+      "tests": 8,
+      "ci": true,
+      "url": "https://github.com/GlacierEQ/lockheed-mission-thread-isolator"
+    },
+    "lockheed-evidence-binding-gateway": {
+      "loc": 180,
+      "tests": 6,
+      "ci": true,
+      "url": "https://github.com/GlacierEQ/lockheed-evidence-binding-gateway"
+    },
+    "spacex-mission-thread-quorum": {
+      "loc": 291,
+      "tests": 11,
+      "ci": true,
+      "url": "https://github.com/GlacierEQ/spacex-mission-thread-quorum"
+    },
+    "spacex-hold-reason-compiler": {
+      "loc": 158,
+      "tests": 5,
+      "ci": true,
+      "url": "https://github.com/GlacierEQ/spacex-hold-reason-compiler"
+    },
+    "palantir-ontology-writeback-ledger": {
+      "loc": 393,
+      "tests": 9,
+      "ci": true,
+      "url": "https://github.com/GlacierEQ/palantir-ontology-writeback-ledger"
+    },
+    "palantir-action-lineage-graph": {
+      "loc": 194,
+      "tests": 7,
+      "ci": true,
+      "url": "https://github.com/GlacierEQ/palantir-action-lineage-graph"
+    }
+  },
+  "harness_tests": 12,
+  "flagship_repos_green": "7/7",
+  "dimensions": {
+    "architecture_discipline": "high (held)",
+    "implementation_depth": "raised medium-low \u2192 medium/medium-high on flagships",
+    "test_maturity": "raised medium-low \u2192 medium-high on flagships",
+    "ship_hygiene": "high (CI added)",
+    "claim_hygiene": "strict (QUALITY.md + ceilings)"
+  },
+  "still_not": "colossus-cooling scale; REPRODUCED promotion; company affiliation"
+}

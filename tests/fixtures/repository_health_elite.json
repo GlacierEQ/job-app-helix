@@ -1,0 +1,21 @@
+{
+  "repository": "GlacierEQ/synthetic-health-fixture",
+  "observed_head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "observed_at": "2026-08-01T19:38:00-10:00",
+  "dimensions": {
+    "reality": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/reality.json"], "findings": [], "blockers": []},
+    "build": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/build.json"], "findings": [], "blockers": []},
+    "tests": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/tests.json"], "findings": [], "blockers": []},
+    "documentation": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/documentation.json"], "findings": [], "blockers": []},
+    "architecture": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/architecture.json"], "findings": [], "blockers": []},
+    "security": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/security.json"], "findings": [], "blockers": []},
+    "integration": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/integration.json"], "findings": [], "blockers": []},
+    "recruiter_impact": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/recruiter-impact.json"], "findings": [], "blockers": []},
+    "ai_readiness": {"state": "VERIFIED", "raw_score": 96, "confidence": 1.0, "verified_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipts": ["tests/fixtures/receipts/ai-readiness.json"], "findings": [], "blockers": []}
+  },
+  "quality_context": {
+    "connector_quality_score": 95,
+    "data_quality_score": 96
+  },
+  "blockers": []
+}

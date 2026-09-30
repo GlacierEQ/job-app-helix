@@ -1,0 +1,32 @@
+{
+  "repo": "tesla-fsd-occupancy-stream",
+  "family": "Tesla",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "innovation_summary": "tesla-fsd-occupancy-stream is an autonomy-perception specialist for streaming occupancy representations used in Tesla-style full-self-driving scene understanding \u2014 occupancy as a continuously updated volumetric stream rather than per-frame inference. Its portfolio thesis is throughput under a hard real-time budget: the interesting engineering is the streaming update and eviction of voxel state, which is why the recorded family priority is 'P1 simulation and CUDA proof' rather than model accuracy. It is the sole repository in the Tesla family, so it carries that company track alone and there is no sibling to fall back on. Active-work signals are real (worked_solidified, local_job_app) but the catalog description is empty and no implementation artifact was located.",
+  "evidence": [
+    "/tmp/monolith/status/functions/research.md:19 (tesla-fsd-occupancy-stream | active_specialist | lab_hire_stamps | 'Autonomy-perception specialist for streaming occupancy representations used in Tesla-style full-self-driving scene understanding' | basis: name + domain; confidence: high)",
+    "/tmp/monolith/catalog/library.json:16348 (domain=lab_hire_stamps, role=part, activity=worked_on, status_detail=worked_solidified, desc='' (EMPTY), language=Python, local_job_app=true, issue_contract=false, private=false, updatedAt 2026-08-10T06:17:35Z)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:10933-10965 (impact P0; launch_cmd 'python3 ~/job-app/apex_highway.py --target tesla-fsd-occupancy-stream'; contract_proof 'DONE <=> issue-contract proof(pain)'; sha256_binding 491f4c0977e551196e69a2c5134132ed9305a91f72447bf8b418028ff2c33606; mesh_uri glaciereq://mesh/filesystem_fileboss_and_search/tesla-fsd-occupancy-stream)",
+    "/tmp/monolith/domains/lab_hire_stamps.md:33 (portfolio row: part | worked_on | '\u2014' | 'P1 simulation and CUDA proof')",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md:41 (grouped with microsoft-azure-ops, nvidia-deep-reasoning and the deepmind router cluster)",
+    "/tmp/monolith/status/WORKED_ON.md:99 (tesla-fsd-occupancy-stream | lab_hire_stamps | part | worked_solidified)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:288,293 (tesla.current_preparation=[tesla-fsd-occupancy-stream]; canonical_candidate=tesla-fsd-occupancy-stream)",
+    "/tmp/monolith/domains/company_engineered_portfolio.md:59 (Tesla | 1 repo | 1 in preparation | 0 unprocessed | 0 reference | canonical tesla-fsd-occupancy-stream | priority 'P1 simulation and CUDA proof')",
+    "/tmp/monolith/catalog/application_estate_registry.json:37-50 (tesla included in the completed direct-name estate searches, so the single-repo family count is a verified boundary rather than an oversight)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json:1073-1078 (sole Tesla-family entry, state=in_preparation)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "One concrete step to 8+: commit a CPU-only pytest that drives the occupancy stream with a synthetic sequence of sensor frames and asserts voxel state converges to the expected grid, that stale voxels are evicted after the configured horizon, and that out-of-order or dropped frames do not corrupt state \u2014 then add a separate, clearly-labelled CUDA benchmark that reports frames/sec on the same fixture. Publish both in a BUILD_RECEIPT with the run id and file a repository_fact_card at R3+; that discharges the recorded 'simulation and CUDA proof' gate while keeping the deterministic proof runnable without a GPU.",
+  "repo_excellence_anchor": "Overlaps the VERIFIED anchor GlacierEQ/computer-user (203 tests PASS, live AKOS, restart-safe) on restart-safe state, which is the anchor's hardest-won property (container browser.navigate plus restart persistence verified inside a hardened container, /tmp/helix_patch/repo_excellence_evidence_addendum.json:30-40). A streaming occupancy grid is exactly a stateful process whose correctness after interruption is the real question; reusing the anchor's restart-and-readback test shape converts 'it streams' into 'it streams and recovers', which is the claim an autonomy reviewer actually cares about.",
+  "honest_limits": [
+    "catalog desc field is EMPTY; mechanism inferred from the function atlas, whose basis is 'name + domain'",
+    "no source inspection, local clone, test, CI run id, artifact, or receipt found locally",
+    "the capabilities_3layer record misroutes this repo to mesh category FILESYSTEM_FILEBOSS_AND_SEARCH with elevator pitch 'High-performance Filesystem Fileboss And Search engine' (capabilities_3layer.json:10947,10965) \u2014 a recorded classifier contradiction against the perception classification, preserved rather than silently corrected",
+    "simulation only: no vehicle, sensor hardware, CUDA execution, or FSD deployment verified; no Tesla affiliation claimed"
+  ],
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.927565",
+  "notes": " | NEEDS_REPAIR"
+}

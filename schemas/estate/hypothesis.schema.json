@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/hypothesis.schema.json",
+  "title": "Falsifiable Engineering Hypothesis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "hypothesis_id", "bottleneck_id", "if", "then", "because", "measured_by", "alternatives", "status", "evidence_refs"],
+  "properties": {
+    "schema": {"const": "glaciereq.hypothesis.v1"},
+    "hypothesis_id": {"type": "string", "minLength": 1},
+    "bottleneck_id": {"type": "string", "minLength": 1},
+    "if": {"type": "string", "minLength": 1},
+    "then": {"type": "string", "minLength": 1},
+    "because": {"type": "string", "minLength": 1},
+    "measured_by": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "alternatives": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "status": {"enum": ["CANDIDATE", "SELECTED", "REJECTED", "FALSIFIED", "SUPPORTED"]},
+    "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "repo": "xai-colossus-energy-omega",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "canonical": "xai-colossus-cooling",
+  "innovation_summary": "Omega-side load-shed controller in the Colossus energy pair: given an oversubscribed power budget from the Alpha budget model, it selects and sheds prioritized workloads until the megawatt deficit is met. Unlike most historical variants in this family, its behavior was actually executed - the energy family truth gate pinned this repository at an exact commit and ran a cross-repository scenario in which a 3.6 MW deficit was met by shedding a 20.0 MW batch-training job (priority 9), producing a hashed CI artifact. It remains classified historical and its parent receipt flags synthetic confidence fields in the child repositories that still need quarantine.",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json pinned_children.omega: GlacierEQ/xai-colossus-energy-omega pinned at commit 7919943e0b73f2ca8784e417ff9efb0cf8c37a86",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json test_counts: pinned_omega=1 of total_bounded_tests=16 (native_rust 6, local_python 7, pinned_alpha 2)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json cross_repository_scenario: PINNED_CROSS_REPOSITORY_SCENARIO_VERIFIED, alpha_status=OVERSUBSCRIBED, used_mw 68.0, reserve_mw 5.6, headroom_mw -3.6, omega_need_mw 3.6, first_action {shed: batch-training, mw: 20.0, priority: 9}, freed_mw 20.0, met=true, historical_answer_or_confidence_fields_used_as_evidence=false",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json direct_family_gate: workflow 'Energy Family Truth Gate', run_id 30896081128, conclusion=success, python 3.11.15 / rustc 1.97.1; artifact id 8887063327 'energy-family-verification' digest sha256:37a068f81a37abbb1e31d6801a4834f9bb14b7839a102ee1e7e3ab1f1f8ef9c3",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md lines 12, 60 (Energy BOUNDED_ENERGY_FAMILY_TEST_VERIFIED; 'pinned Omega load-shed tests' listed under Verified)",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md line 140 (Energy Alpha/Omega: 'Pinned and executed as a bounded analytical/response pair; child theatrical fields remain excluded')",
+    "/tmp/monolith/receipts/company_families/xai_colossus_energy_hardening.json next_gate item 1: 'remove or quarantine historical answer and synthetic confidence fields in child repositories'",
+    "/tmp/monolith/catalog/library.json (role=part, activity=worked_on, status_detail=worked_solidified, public, local_job_app=true, Python, desc 'Colossus energy Omega - load shed controller - AKOS P0')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (xai_colossus.historical_or_cross_company)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (SUPPORTING_HELIX_MODULE_PENDING_BEHAVIORAL_AUDIT)",
+    "/tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md line 39 (placed under xai-colossus-energy umbrella in canonical tree)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 29 (paired_module, confidence high)",
+    "/tmp/monolith/status/functions/infrastructure.md line 33",
+    "/tmp/monolith/status/WORKED_ON.md line 115",
+    "/tmp/monolith/domains/colossus_xai.md line 19"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 8,
+  "makes_worthy": "Give this repository its own CI truth gate instead of borrowing the parent's: add a repo-local test suite with more than the single pinned assertion, quarantine the synthetic confidence / historical answer fields the parent receipt flags, and publish a standalone hardening receipt with typed load, unit, timestamp, and authority schemas plus failure-injection fixtures. That converts it from 'verified inside the family gate' to an independently defensible controller."
+}

@@ -1,0 +1,98 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "source_sha": "a074b651fb86094ca65a9124f0a35bc8b28a673a",
+  "donor_shas": [],
+  "selected_priority": "Calibration drift, sparse-feature blind-spot, learned-weight-drift, and ranking-instability diagnostics before learned outcome signals influence high-volume application execution.",
+  "priority_tier": "P2",
+  "blocked_higher_candidates": [{
+    "priority": "Execute recovery ref-graph against the next genuinely stranded executable family.",
+    "state": "BLOCKED_FOR_THIS_CYCLE",
+    "reason": "Available GitHub connector rejected the branches collection endpoint, so no concrete non-superseded stranded family could be verified without turning the run into archaeology-only work."
+  }],
+  "displaced_capability": "Outcome calibration could change within-lane ordering but had no executable health verdict for optional-feature sparsity, temporal signal reversal, learned-weight drift, or pairwise ranking instability.",
+  "implemented_delta": {
+    "pull_request": 232,
+    "proven_code_head": "df87bbded09e363f5bb2a51acde69d52005eaaa9",
+    "exact_merge_head": "b052ec562cb99b0795c0f145e6e19030ff356c8e",
+    "merge_commit": "a286f3379b1de7c7ff8c5521df5f2f819bc5efb1",
+    "main_blob": "66f950ba3ec7b3b3be9b770d66c44a78993e2d2a",
+    "files": [
+      "src/job_app_helix/calibration_diagnostics.py",
+      "tests/test_calibration_diagnostics.py",
+      ".github/workflows/calibration-diagnostics-proof.yml"
+    ],
+    "executable": "python -m job_app_helix.calibration_diagnostics --database <applications.sqlite>",
+    "capabilities": [
+      "optional-feature coverage and sparse blind-spot detection",
+      "recent-versus-reference outcome-signal drift",
+      "learned-weight L1 drift",
+      "deterministic pairwise rank-flip instability",
+      "PASS/WARN/BLOCK_LEARNED_RANKING verdict with explicit thresholds and reasons",
+      "blocking exit code 3 for downstream fail-closed composition"
+    ]
+  },
+  "preserved_gains": [
+    "bounded OutcomeCalibration fitting remains unchanged",
+    "queue safety lanes and hard-gap caps remain unchanged",
+    "candidate factual evidence remains isolated from learned outcome signals",
+    "integrated intelligence cycle and recruiter packet compilation remain intact",
+    "no database migration or external application/recruiter side effect"
+  ],
+  "tests_runtime_proof": {
+    "focused_workflow_run": 32142730466,
+    "result": "PASS",
+    "python_matrix": ["3.11", "3.12", "3.13"],
+    "proof": [
+      "ruff passes on delta source and adversarial tests",
+      "sparse-feature blind spots detected",
+      "temporal signal reversal blocks learned ranking",
+      "pairwise ranking instability measured",
+      "stable complete history passes",
+      "module executable resolves"
+    ],
+    "application_registry_run": 32142730342,
+    "application_registry_result": "PASS",
+    "broad_ci_run": 32142730301,
+    "broad_ci_result": "FAILURE_OUTSIDE_FOCUSED_DELTA_PROOF",
+    "estate_non_regression_run": 32142731259,
+    "estate_non_regression_result": "FAILURE_OUTSIDE_FOCUSED_DELTA_PROOF",
+    "post_merge_readback": {
+      "main_commit": "a286f3379b1de7c7ff8c5521df5f2f819bc5efb1",
+      "module_blob": "66f950ba3ec7b3b3be9b770d66c44a78993e2d2a",
+      "observed_on_main": true
+    }
+  },
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P2",
+      "priority": "Wire BLOCK_LEARNED_RANKING into intelligence_cycle with deterministic baseline fallback and diagnostic receipt.",
+      "target_files_functions": ["src/job_app_helix/intelligence_cycle.py", "src/job_app_helix/outcome_calibration.py", "src/job_app_helix/calibration_diagnostics.py"]
+    },
+    {
+      "tier": "P2",
+      "priority": "Add attributable live job-opening acquisition and opening-change detection before ranking and recruiter-packet compilation.",
+      "target_files_functions": ["src/job_app_helix/application_operations.py", "src/job_app_helix/opportunity_intelligence.py", "src/job_app_helix/intelligence_cycle.py"]
+    },
+    {
+      "tier": "P2",
+      "priority": "Resume recovery ref-graph execution through an alternate observable ref surface and compose only non-superseded executable capability exceeding main.",
+      "target_files_functions": ["src/job_app_helix/recovery_ref_graph.py", "src/job_app_helix/recovery_reconnaissance.py", "src/job_app_helix/intelligent_recovery.py"]
+    }
+  ],
+  "next_sequence": [
+    "integrate diagnostics into intelligence_cycle as an automatic learned-ranking gate",
+    "prove unhealthy calibration falls back to baseline without changing safety lanes",
+    "extend attributable acquisition to live openings and opening-change detection",
+    "resume stranded-family recovery through an alternate ref-observation path"
+  ],
+  "merge_deploy_gate": "PR 232 squash-merged only at expected head b052ec562cb99b0795c0f145e6e19030ff356c8e after focused workflow 32142730466 passed the code head on Python 3.11/3.12/3.13; post-merge main readback observed calibration_diagnostics.py blob 66f950ba3ec7b3b3be9b770d66c44a78993e2d2a.",
+  "rollback": "Revert merge commit a286f3379b1de7c7ff8c5521df5f2f819bc5efb1. Delta is additive and read-only, with no database or external side effects.",
+  "no_loss_invariants": [
+    "diagnostics never bypass queue safety lanes, hard-gap caps, or public-proof blocks",
+    "learned signals never become unsupported candidate factual claims",
+    "missing optional features remain explicitly missing rather than silently observed zero evidence",
+    "baseline weights remain the deterministic rollback path"
+  ],
+  "verified_delta_state": "VERIFIED_EXECUTABLE_CAPABILITY_DELTA_MERGED_AND_READ_BACK_ON_MAIN"
+}

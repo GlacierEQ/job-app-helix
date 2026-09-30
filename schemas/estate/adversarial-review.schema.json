@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/adversarial-review.schema.json",
+  "title": "Adversarial Engineering Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "review_id", "repository", "source_head", "criticisms", "remaining_limitations", "decision"],
+  "properties": {
+    "schema": {"const": "glaciereq.adversarial-review.v1"},
+    "review_id": {"type": "string", "minLength": 1},
+    "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "source_head": {"type": "string", "minLength": 6},
+    "criticisms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["attack", "evidence_refs", "disposition", "resolution"],
+        "properties": {
+          "attack": {"type": "string", "minLength": 1},
+          "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "disposition": {"enum": ["REPAIRED", "LIMITATION", "INVALIDATED_CANDIDATE", "REJECTED_WITH_EVIDENCE"]},
+          "resolution": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "remaining_limitations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "decision": {"enum": ["SURVIVES", "REWORK", "INVALIDATED"]}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "criticisms": {
+            "contains": {
+              "type": "object",
+              "properties": {"disposition": {"const": "INVALIDATED_CANDIDATE"}},
+              "required": ["disposition"]
+            }
+          }
+        },
+        "required": ["criticisms"]
+      },
+      "then": {"properties": {"decision": {"const": "INVALIDATED"}}}
+    }
+  ]
+}

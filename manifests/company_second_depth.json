@@ -1,0 +1,373 @@
+{
+  "authority": "GlacierEQ/job-app-helix",
+  "company_index": "manifests/company_dossiers.json",
+  "company_overrides": {
+    "anthropic": {
+      "blockers": [
+        "company_specific_remedy_not_bounded",
+        "implementation_receipt_not_bound_to_anthropic_problem",
+        "proof_not_reproduced",
+        "claim_not_promoted"
+      ],
+      "claim_ceiling": "inspected_implementation_alignment",
+      "inspected_repositories": [
+        {
+          "id": "anthropic_inspection_agent_coordinator",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/anthropic-agent-coordinator/blob/ac977563cfd59deb8e87177f53082184f6468aa8/src/anthropic_agent_coordinator/coordinator.py",
+          "source_ref": "commit:ac977563cfd59deb8e87177f53082184f6468aa8",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "anthropic_inspection_safety_monitor",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/anthropic-safety-monitor/blob/a5c21172e32ce6054994402c38d86f7ef94bc56b/src/anthropic_safety_monitor/policy.py",
+          "source_ref": "commit:a5c21172e32ce6054994402c38d86f7ef94bc56b",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "next_gate": "Bound and implement one current Anthropic Applied AI remedy that directly demonstrates the live Forward Deployed Engineer / Applied AI Architect requirements: customer-system integration, Claude/agent deployment architecture, MCP or agent-skill delivery, evaluation, reliability, reusable deployment patterns, and explicit safety boundaries. Preserve the historical AI Reliability evidence as lineage rather than treating it as the current role target.",
+      "problem_evidence": [
+        {
+          "id": "anthropic_problem_ai_reliability_serving_path",
+          "kind": "problem",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/440e353a6eb6073aaca724a6402ae5329d0e9be6/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
+          "source_ref": "commit:440e353a6eb6073aaca724a6402ae5329d0e9be6",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "role_evidence": [
+        {
+          "id": "anthropic_role_staff_software_engineer_ai_reliability_5113224008",
+          "kind": "role",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/440e353a6eb6073aaca724a6402ae5329d0e9be6/portfolio-proof/receipts/ANTHROPIC_AI_RELIABILITY_RECONCILIATION__2026-08-09.json",
+          "source_ref": "commit:440e353a6eb6073aaca724a6402ae5329d0e9be6",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "anthropic_role_forward_deployed_engineer_5302966008",
+          "kind": "role",
+          "source_identity": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008",
+          "source_ref": "sha256:21f1c0938619e8b536d0e0e7102c3be480143d9420eb9e30d77b8d1ea1e0264f",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "anthropic_role_applied_ai_architect_strategic_enterprise_5409008008",
+          "kind": "role",
+          "source_identity": "https://job-boards.greenhouse.io/anthropic/jobs/5409008008",
+          "source_ref": "sha256:7590c48e40e3b692c887ab8c49125dd139b55eff20f7fa5b532c283203dfebd4",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "stage": "CODE_INSPECTED"
+    },
+    "lockheed_martin": {
+      "blockers": [
+        "distributed_state_not_implemented",
+        "workload_identity_not_implemented",
+        "durable_tamper_evident_store_not_implemented",
+        "real_telemetry_adapters_not_implemented",
+        "sandboxed_executor_not_implemented",
+        "production_scale_not_demonstrated",
+        "aerospace_defense_certification_not_claimed"
+      ],
+      "claim_ceiling": "proof_bound_company_specific",
+      "claim_receipts": [
+        {
+          "id": "lockheed_claim_mission_agentic_ai_assurance",
+          "kind": "claim_receipt",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/claim_receipt.json",
+          "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "gap_queue": [
+        {
+          "id": "lockheed_remedy_mission_agentic_ai_assurance",
+          "kind": "bounded_gap",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/machine/remedy.json",
+          "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "implementation_receipts": [
+        {
+          "id": "lockheed_implementation_mission_agentic_ai_assurance",
+          "kind": "implementation_receipt",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/implementation_receipt.json",
+          "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "inspected_repositories": [
+        {
+          "id": "lockheed_inspection_akos_runtime",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/AKOS/blob/89403272a76dda8e1f9f317e16bfce5b60c1a3f5/runtime/src/index.ts",
+          "source_ref": "commit:89403272a76dda8e1f9f317e16bfce5b60c1a3f5",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "lockheed_inspection_apex_control_plane",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/apex-control-plane/blob/340834cf8d6c65832196b6cc0b6df281574842f8/src/control_plane_runtime.py",
+          "source_ref": "commit:340834cf8d6c65832196b6cc0b6df281574842f8",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "lockheed_inspection_tower_integrity",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/the-tower-of-babel/blob/e3778353e92b404de43f41963a0c7bffb84897ac/src/tower/integrity.py",
+          "source_ref": "commit:e3778353e92b404de43f41963a0c7bffb84897ac",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        },
+        {
+          "id": "lockheed_inspection_tower_receipt",
+          "kind": "repository_inspection",
+          "source_identity": "https://github.com/GlacierEQ/the-tower-of-babel/blob/e3778353e92b404de43f41963a0c7bffb84897ac/src/tower/receipt.py",
+          "source_ref": "commit:e3778353e92b404de43f41963a0c7bffb84897ac",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "next_gate": "Preserve this proof-bound claim while evolving the Mesh aspiration gaps through separately tested adapters; do not raise production-scale, certification, adoption, or company-deployment claims without new independent evidence.",
+      "problem_evidence": [
+        {
+          "id": "lockheed_problem_trusted_agentic_ai_integration",
+          "kind": "problem",
+          "source_identity": "https://www.lockheedmartin.com/en-us/capabilities/artificial-intelligence-machine-learning.html",
+          "source_ref": "sha256:87cc52bdc656fd2348ae30ec9a9bbfc3cb5b47927147f2cb2557062fa48ecd75",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "proof_artifacts": [
+        {
+          "id": "lockheed_proof_mission_agentic_ai_assurance",
+          "kind": "proof_artifact",
+          "source_identity": "https://github.com/GlacierEQ/job-application/blob/4328fa7078e6e4125f895768142c6af0c5ec1234/projects/mission-agentic-ai-assurance/proof/reproduced_receipt.json",
+          "source_ref": "commit:4328fa7078e6e4125f895768142c6af0c5ec1234",
+          "verification_state": "REPRODUCED",
+          "visibility": "public"
+        }
+      ],
+      "role_evidence": [
+        {
+          "id": "lockheed_role_734997br",
+          "kind": "role",
+          "source_identity": "https://www.lockheedmartinjobs.com/job/sunnyvale/architecture-and-algorithms-agentic-ai-ml-engineer-level-2-3/694/97838518096",
+          "source_ref": "sha256:e3a0306982ef5f73f81107bbf9197c0c3a949909103fb4ac0b47e530fd4c3d01",
+          "verification_state": "VERIFIED",
+          "visibility": "public"
+        }
+      ],
+      "stage": "CLAIM_PROMOTED"
+    },
+    "microsoft": {
+      "next_gate": "Verify a current public Microsoft role/team and inspect relevant source-admitted Microsoft-aligned records before promoting beyond general systems alignment."
+    },
+    "notion": {
+      "next_gate": "Verify a current public Notion role/team and inspect relevant source-admitted Notion-aligned records before promoting beyond general platform alignment."
+    },
+    "nvidia": {
+      "next_gate": "Verify a current public NVIDIA role/team, identify one externally supportable infrastructure problem, then inspect the relevant source-bound NVIDIA-aligned records that could materially address it."
+    },
+    "openai": {
+      "next_gate": "Verify a current public OpenAI role/team and inspect the source-admitted KV-sentinel implementation before connecting it to any company-specific engineering problem."
+    },
+    "spacex": {
+      "next_gate": "Verify a current public SpaceX role/team and operating problem, then reconcile it against the governed SpaceX repository family and existing README Mesh before any implementation claim."
+    },
+    "xai": {
+      "next_gate": "Verify a current public xAI role/team, select one bounded infrastructure problem, then reconcile successor/unique-value status across the Colossus repository family before any company-specific claim."
+    }
+  },
+  "consumer_contract": {
+    "merge_rule": "Resolve default_company_state first, then overlay a company_overrides entry by company_id if present.",
+    "missing_override_behavior": "Use the default MAPPED_ONLY state; absence of an override is never interpreted as completion.",
+    "promotion_writer": "Any future writer must preserve previous evidence references, append receipts rather than overwrite them, and fail closed on missing source identities, immutable source references, public-safety fields, or stage prerequisites.",
+    "public_projection": "Public consumers may expose stage, claim ceiling, blockers, next gate, and validated public-safe evidence references only. Private, malformed, unpinned, or unsupported evidence must not be surfaced or counted toward a stage."
+  },
+  "default_company_state": {
+    "blockers": [
+      "current_role_not_verified",
+      "company_problem_not_bounded",
+      "repository_code_not_inspected",
+      "proof_not_reproduced"
+    ],
+    "claim_ceiling": "company_alignment_only",
+    "claim_receipts": [],
+    "gap_queue": [],
+    "implementation_receipts": [],
+    "inspected_repositories": [],
+    "next_gate": "Verify a current public role or operating context before making any company-specific problem or implementation claim.",
+    "problem_evidence": [],
+    "proof_artifacts": [],
+    "role_evidence": [],
+    "stage": "MAPPED_ONLY"
+  },
+  "evidence_reference_contract": {
+    "field_kinds": {
+      "claim_receipts": "claim_receipt",
+      "gap_queue": "bounded_gap",
+      "implementation_receipts": "implementation_receipt",
+      "inspected_repositories": "repository_inspection",
+      "problem_evidence": "problem",
+      "proof_artifacts": "proof_artifact",
+      "role_evidence": "role"
+    },
+    "minimum_verification_state": {
+      "claim_receipts": "VERIFIED",
+      "gap_queue": "VERIFIED",
+      "implementation_receipts": "VERIFIED",
+      "inspected_repositories": "VERIFIED",
+      "problem_evidence": "VERIFIED",
+      "proof_artifacts": "REPRODUCED",
+      "role_evidence": "VERIFIED"
+    },
+    "public_safety_rule": "Only the six declared fields may appear in a public second-depth evidence reference. Source identity and immutable source_ref are mandatory; private metadata belongs outside the public projection.",
+    "required_fields": [
+      "id",
+      "kind",
+      "source_identity",
+      "source_ref",
+      "visibility",
+      "verification_state"
+    ],
+    "source_identity_prefixes": [
+      "https://",
+      "GlacierEQ/"
+    ],
+    "source_ref_formats": [
+      "commit:<40-lowercase-hex>",
+      "sha256:<64-lowercase-hex>"
+    ],
+    "verification_states": [
+      "VERIFIED",
+      "REPRODUCED"
+    ],
+    "visibility": "public"
+  },
+  "generated_at": "2026-08-09T15:16:00-10:00",
+  "priority_wave": [
+    "lockheed_martin",
+    "openai",
+    "anthropic",
+    "nvidia",
+    "spacex",
+    "xai",
+    "microsoft",
+    "notion"
+  ],
+  "promotion_invariants": [
+    "Stages are monotonic and may not be skipped merely because a repository is public, named for a company, or recruiter-admitted.",
+    "Every later stage retains the complete minimum-evidence prerequisite set of every earlier stage.",
+    "Every evidence reference is a public-safe six-field record with a named evidence kind, public source identity, immutable commit or SHA-256 source reference, and sufficient verification state.",
+    "ROLE_VERIFIED requires preserved public role evidence; a target-role label in a dossier is not role verification.",
+    "PROBLEM_BOUNDED requires an externally supportable problem statement; speculation about proprietary bottlenecks does not qualify.",
+    "CODE_INSPECTED requires exact repository identities and inspected code paths, not README-only inference.",
+    "IMPLEMENTED requires implementation receipts tied to exact source heads.",
+    "PROOF_REPRODUCED requires a reproducible proof artifact; structural presence, test files, or prior narrative claims are insufficient by themselves.",
+    "CLAIM_PROMOTED requires an explicit claim receipt and may not exceed the strongest reproducible evidence state.",
+    "Company affiliation, endorsement, employment, proprietary access, contract relationship, clearance, adoption, production use, and measured business impact remain nonclaims unless independently evidenced."
+  ],
+  "purpose": "Govern progression from company mapping to company-specific, reproducible, truth-evidence-scoped technical claims without allowing portfolio presence or company naming to masquerade as second-depth proof.",
+  "schema": "glaciereq.company-second-depth.v1",
+  "stage_order": [
+    {
+      "id": "MAPPED_ONLY",
+      "minimum_evidence": [],
+      "ordinal": 0,
+      "public_claim_ceiling": "company_alignment_only"
+    },
+    {
+      "id": "ROLE_VERIFIED",
+      "minimum_evidence": [
+        "role_evidence"
+      ],
+      "ordinal": 1,
+      "public_claim_ceiling": "verified_role_alignment"
+    },
+    {
+      "id": "PROBLEM_BOUNDED",
+      "minimum_evidence": [
+        "role_evidence",
+        "problem_evidence"
+      ],
+      "ordinal": 2,
+      "public_claim_ceiling": "externally_bounded_problem_alignment"
+    },
+    {
+      "id": "CODE_INSPECTED",
+      "minimum_evidence": [
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories"
+      ],
+      "ordinal": 3,
+      "public_claim_ceiling": "inspected_implementation_alignment"
+    },
+    {
+      "id": "REMEDY_BOUNDED",
+      "minimum_evidence": [
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+        "gap_queue"
+      ],
+      "ordinal": 4,
+      "public_claim_ceiling": "bounded_remedy_design"
+    },
+    {
+      "id": "IMPLEMENTED",
+      "minimum_evidence": [
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+        "gap_queue",
+        "implementation_receipts"
+      ],
+      "ordinal": 5,
+      "public_claim_ceiling": "implemented_candidate_capability"
+    },
+    {
+      "id": "PROOF_REPRODUCED",
+      "minimum_evidence": [
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+        "gap_queue",
+        "implementation_receipts",
+        "proof_artifacts"
+      ],
+      "ordinal": 6,
+      "public_claim_ceiling": "reproducible_company_specific_proof"
+    },
+    {
+      "id": "CLAIM_PROMOTED",
+      "minimum_evidence": [
+        "role_evidence",
+        "problem_evidence",
+        "inspected_repositories",
+        "gap_queue",
+        "implementation_receipts",
+        "proof_artifacts",
+        "claim_receipts"
+      ],
+      "ordinal": 7,
+      "public_claim_ceiling": "proof_bound_company_specific"
+    }
+  ]
+}

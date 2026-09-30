@@ -1,0 +1,20 @@
+{
+  "repo": "deepmind-core-think",
+  "family": "Google / DeepMind",
+  "kind": "company",
+  "source_state": "unprocessed",
+  "innovation_summary": "Core reasoning ('think') layer under the DeepMind problem space. Triple-cataloged: (a) library.json:5260 (entry name=deepmind-core-think; url=https://github.com/GlacierEQ/deepmind-core-think); (b) capabilities_3layer.json:24525 stub with launch_cmd git clone, contract_proof 'DONE \u21d4 issue-contract proof(pain)', mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/deepmind-core-think; (c) company_engineered_repositories.json:109 unprocessed backlog (Google/DeepMind family). The expanded_job_app_helix_manifest.json (line 324) assigns it as a job-app-helix mesh leaf, family Google/DeepMind, state needs_work. Honest limitation: the unprocessed backlog placement means zero local code inspection, zero tests, zero fact card \u2014 only catalog metadata. The lab_benchmarks_and_stamps classifier is generic; the 'core reasoning' narrative is unverified. Without an implemented reasoning kernel + run/receipt, the rating cannot rise above 2 on the strict evidence ladder. Promotion to 7+ requires: (1) inspecting the repo, (2) writing a minimal 'think' test, (3) producing a fact card with a recorded run, and (4) moving it from unprocessed to in_preparation in company_engineered_repositories.json.",
+  "evidence": [
+    "/tmp/monolith/catalog/company_engineered_repositories.json:109 (Google / DeepMind 'unprocessed' backlog \u2014 no local code, tests, or fact card)",
+    "/tmp/monolith/catalog/library.json:5260 (name deepmind-core-think; url https://github.com/GlacierEQ/deepmind-core-think)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24525 (stub: name, launch_cmd git clone, contract_proof DONE, mesh_uri glaciereq://mesh/lab_benchmarks_and_stamps/deepmind-core-think)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 324: kind=company, state=needs_work, family='Google / DeepMind' \u2014 helix membership confirms estate relevance, not local readiness)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 3,
+  "makes_worthy": "Raised 1->2 on catalog presence and helix-membership relevance. Cannot exceed 5 without (1) cloning the repo, (2) implementing a minimal 'think' reasoning kernel, (3) writing a test that exercises it, (4) emitting a fact card with a recorded execution receipt, and (5) moving it from unprocessed to in_preparation in company_engineered_repositories.json. Worthy>=7 requires all of the above plus a benchmark stamp against a held-out reasoning task.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.926600",
+  "notes": "catalog_only | NEEDS_REPAIR",
+  "classification_reason": "needs_repair: worthy=3"
+}

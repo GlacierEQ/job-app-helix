@@ -1,0 +1,19 @@
+{
+  "repo": "xai-colossus-security-omega",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "Private historical experiment companion (omega) of xai-colossus-security (proposal/response engine). The family hardening receipt inspected its commit (6e3b976...) and documented a simulated mantrap state machine and weight-variance policy, an audit signature derived from caller text and wall-clock time rather than verified identity, biometric represented by weight proximity, and door control as in-memory/printed state rather than hardware integration; it is explicitly not counted as a public verified component.",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 100 (repository GlacierEQ/xai-colossus-security-omega; visibility private; inspected_commit 6e3b97637dec2c15a32eb87248f272ee4cd8e6bd; state PRIVATE_PHYSICAL_ACCESS_EXPERIMENT_BLOCKED_HARDWARE_AND_SAFETY_REVIEW; not_counted_as_public_verified_component=true)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json lines 106-112 (findings: simulated mantrap, wall-clock audit, printed door control)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 73 (listed xAI-Colossus family companion)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Replace simulated/printed control with asserted, hardware-backed logic; authenticate audit identity; obtain independent security and physical-safety review; run an independent CI truth gate with an artifact digest; harden separately.",
+  "from_unified_fill": true,
+  "last_verified": "2026-08-29T08:47:16.951790",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

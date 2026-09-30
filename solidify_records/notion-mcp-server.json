@@ -1,0 +1,20 @@
+{
+  "repo": "notion-mcp-server",
+  "family": "Notion",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Official Notion MCP Server (Notion reference upstream). Catalog classifies it as a Mcp Core Servers engine within the GlacierEQ ecosystem (capabilities_3layer.json) with a recorded issue-contract proof (contract_proof='DONE \u21d4 issue-contract proof(pain)'), a mesh URI (glaciereq://mesh/mcp_core_servers/notion-mcp-server), and library.json lists it as TypeScript 'Official Notion MCP Server'. Honest limitation: classified as reference_or_upstream (not a portfolio build); not present in application_estate_registry.json; no local fact card or tests were found, so capability is catalog-proven only.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=notion-mcp-server: domain=notion_ops, status_detail=catalogued_unclassified, language=TypeScript, desc='Official Notion MCP Server'; url=https://github.com/GlacierEQ/notion-mcp-server)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=notion-mcp-server; classifier=mcp_core_servers; elevator_pitch='High-performance Mcp Core Servers engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/mcp_core_servers/notion-mcp-server; launch_cmd='git clone https://github.com/GlacierEQ/notion-mcp-server')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (family 'notion': reference_or_upstream includes notion-mcp-server)",
+    "/tmp/monolith/domains/notion_ops.md (row: catalogued, no contract)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Add a live runnable MCP server entrypoint, a test/build receipt, and a fact card with a live tool-call demo to lift it from reference to portfolio-ready (worthy>=8).",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.912775",
+  "notes": " | NEEDS_REPAIR"
+}

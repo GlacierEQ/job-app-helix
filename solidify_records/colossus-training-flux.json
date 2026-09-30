@@ -1,0 +1,27 @@
+{
+  "repo": "colossus-training-flux",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "wave3": true,
+  "innovation_summary": "Training-job flux controller under MW/thermal caps for Colossus-class compute (model_inference_and_sentinels domain). Wave-3 mining confirms it is in the active 'current_preparation' backlog and has a concrete capability entry in capabilities_3layer.json (launch_cmd 'python3 ~/job-app/apex_highway.py --target colossus-training-flux', contract_proof DONE, mesh_uri glaciereq://mesh/model_inference_and_sentinels/colossus-training-flux), a library.json row, family canonicalization cross-reference, and a previous_application_baseline listing. Still no executed run receipt, test, or fact card. Held at 6 (catalog + active preparation + concrete capability entry with executable launch_cmd; no successful run receipt yet).",
+  "evidence": [
+    "/tmp/monolith/catalog/company_engineered_repositories.json:308 (current_preparation backlog: colossus-training-flux)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json:38,63 (colossus family canonicalization)",
+    "/tmp/monolith/catalog/library.json:4316 (name colossus-training-flux; url https://github.com/GlacierEQ/colossus-training-flux)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:21917 (name, launch_cmd 'python3 ~/job-app/apex_highway.py --target colossus-training-flux', contract_proof DONE, mesh_uri glaciereq://mesh/model_inference_and_sentinels/colossus-training-flux)",
+    "/tmp/monolith/config/previous_application_baseline.json:19 (baseline listing)",
+    "Absence: no entry under /tmp/monolith/receipts/company_families/* pins colossus-training-flux"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy_7": "(1) Add a runnable test suite covering MW/thermal cap enforcement, job priority, and shedding scenarios; (2) add a CI truth gate that exercises apex_highway.py against a fixture; (3) emit a hardening receipt with a pinned commit, scenario_sha256, and artifact digest mirroring xai_colossus_energy_hardening.json structure; (4) move from needs_work to PARTIAL_TEST_VERIFIED. Until then, capability_3layer contract_proof is a declaration.",
+  "honest_limits": [
+    "no hardening receipt, no test run, no artifact digest, no fact card",
+    "launch_cmd resolves to a path outside this repo (apex_highway.py) \u2014 surface depends on job-app integration",
+    "not yet moved from needs_work to a verified state in any monolith receipt"
+  ],
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.954084",
+  "notes": " | NEEDS_REPAIR"
+}

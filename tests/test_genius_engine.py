@@ -1,0 +1,404 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+
+from job_app_helix.genius_engine import (
+    APEX_IDENTITY,
+    CRAFT_STANDARD,
+    CRAFT_VERB,
+    ENGINE_ID,
+    EXECUTION_LAW,
+    MASTER_GRADE_FLOOR,
+    GeniusEngineError,
+    GeniusSolution,
+    attack_solution,
+    compose_advance_brief,
+    invent,
+    invent_estate,
+    invent_restoration,
+    novelty_score,
+    render_markdown,
+    select_mechanisms,
+)
+from job_app_helix.genius_research import (
+    ResearchDossier,
+    accumulate_knowledge,
+    publish_library_link,
+    research_subject,
+)
+
+
+def _offline_invent(repo: str, tmp_path: Path, **extra):
+    subject = {"repository": repo, **extra}
+    return invent(
+        subject,
+        limit=3,
+        include_atlas_seeds=False,
+        root=tmp_path,
+        live_research=False,
+        accumulate=True,
+        publish_links=False,
+    )
+
+
+def test_invent_produces_scored_primary(tmp_path: Path) -> None:
+    run = _offline_invent(
+        "GlacierEQ/spacex-telemetry",
+        tmp_path,
+        neutralization_stamps=2,
+        paper_recovery_only=True,
+        description="SpaceX-style telemetry plane",
+        language="Go",
+    )
+    assert run.engine_id == ENGINE_ID
+    assert ENGINE_ID.endswith("v4")
+    assert run.identity == APEX_IDENTITY
+    assert run.law == EXECUTION_LAW
+    assert run.craft == CRAFT_STANDARD
+    assert CRAFT_VERB == "ENGINEERED"
+    assert run.research
+    assert "signals" in run.research
+    assert run.primary is not None
+    assert run.primary.genius_score >= MASTER_GRADE_FLOOR
+    assert not run.primary.missing_fields()
+    assert run.primary.is_engineered()
+    assert run.receipt_sha256
+    problem_l = run.primary.problem.lower()
+    assert "spacex-telemetry" in problem_l or "telemetry" in problem_l
+    assert "Module:" in run.primary.implementation
+    meas = run.primary.measurement.lower()
+    assert "tests/" in run.primary.measurement or "test" in meas
+    assert run.advance_brief and run.advance_brief.get("status") == "READY"
+    assert run.knowledge_path
+    ok, blockers = attack_solution(run.primary)
+    assert ok, blockers
+
+
+def test_restore_mode_flags_neutralization_problem(tmp_path: Path) -> None:
+    run = invent_restoration(
+        {"repository": "GlacierEQ/glaciereq-mcp-stack", "description": "MCP provider stack"},
+        limit=2,
+        root=tmp_path,
+        live_research=False,
+        publish_links=False,
+    )
+    assert run.primary is not None
+    assert "reduced" in run.primary.problem.lower() or "capability" in run.primary.problem.lower()
+    md = render_markdown(run)
+    assert "Genius Engine Run" in md
+    assert "Research signals" in md
+
+
+def test_estate_ranks_multiple(tmp_path: Path) -> None:
+    out = invent_estate(
+        [
+            {
+                "repository": "GlacierEQ/spacex-mission-control",
+                "paper_recovery_only": True,
+                "description": "mission control",
+            },
+            {
+                "repository": "GlacierEQ/xai-colossus-cooling",
+                "description": "thermal cooling control",
+                "language": "Python",
+            },
+        ],
+        limit_per=1,
+        live_research=False,
+        accumulate=False,
+        publish_links=False,
+    )
+    # accumulate=False keeps source tree immutable for CI/Buildkite
+    assert out["count"] == 2
+    assert out["runs"][0]["primary"] is not None
+    assert out["engine_id"].endswith("v4")
+
+
+def test_empty_subject_refuses() -> None:
+    try:
+        invent({})
+    except GeniusEngineError:
+        return
+    raise AssertionError("expected GeniusEngineError")
+
+
+def test_attack_rejects_theater() -> None:
+    sol = GeniusSolution(
+        solution_id="x",
+        title="bad",
+        problem="todo later",
+        cause="tbd",
+        mechanism="coming soon wrapper only rename only",
+        implementation="as needed",
+        measurement="tbd",
+        failure_mode="tbd",
+        boundary="tbd",
+        value="tbd",
+        genius_score=0.9,
+    )
+    ok, blockers = attack_solution(sol)
+    assert not ok
+    assert any("theater" in b or "shallow" in b or "incomplete" in b for b in blockers)
+
+
+def test_attack_rejects_paralysis() -> None:
+    sol = GeniusSolution(
+        solution_id="y",
+        title="freeze",
+        problem="real bottleneck at scale needs a mechanism",
+        cause="governance freeze treated unfinished ambition as defect permanently",
+        mechanism="Wait for approval before implementing full restore path with receipts",
+        implementation="defer implement until cannot ship until fully verified forever",
+        measurement="paper only forever checklist",
+        failure_mode="shrink product until green",
+        boundary="mvp amputation allowed",
+        value="reports over power",
+        genius_score=0.9,
+    )
+    ok, blockers = attack_solution(sol)
+    assert not ok
+    assert any("paralysis" in b for b in blockers)
+
+
+def test_unknown_leaf_not_anti_neutralization(tmp_path: Path) -> None:
+    run = _offline_invent("GlacierEQ/unknown-random-leaf-xyz", tmp_path)
+    assert run.primary is not None
+    mech_id = run.primary.tags[0] if run.primary.tags else ""
+    assert mech_id != "anti_neutralization_gate"
+    assert mech_id in {
+        "engineered_first_class",
+        "first_pass_last_pass",
+        "bravery_with_governance",
+    }
+    assert "unknown" in " ".join(run.research.get("signals") or [])
+
+
+def test_leaf_native_paths_differ(tmp_path: Path) -> None:
+    a = _offline_invent(
+        "GlacierEQ/spacex-telemetry",
+        tmp_path,
+        description="telemetry stream",
+        language="Go",
+    )
+    b = _offline_invent(
+        "GlacierEQ/xai-colossus-cooling",
+        tmp_path,
+        description="thermal cooling plant",
+        language="Python",
+    )
+    assert a.primary and b.primary
+    assert a.primary.implementation != b.primary.implementation
+    impl_a = a.primary.implementation
+    impl_b = b.primary.implementation.lower()
+    assert "spacex_telemetry" in impl_a or "spacex-telemetry" in impl_a
+    assert "colossus" in impl_b or "cooling" in impl_b
+
+
+def test_score_does_not_self_bonus_template_adjectives() -> None:
+    weak = GeniusSolution(
+        solution_id="w",
+        title="weak",
+        problem="generic issue",
+        cause="generic cause",
+        mechanism="Something vague without domain pattern words here at all",
+        implementation=(
+            "ENGINEERED complete born-to-run first-pass pro elite "
+            "humanized dual-plane MAXIMUM_COHERENT_ADVANCE"
+        ),
+        measurement="tests",
+        failure_mode="fail closed",
+        boundary="no false affiliation",
+        value="power",
+        repository="GlacierEQ/x",
+        domain="general",
+    )
+    n = novelty_score(weak, {"repository": "GlacierEQ/x"})
+    # implementation craft adjectives must not dominate novelty
+    assert n < 0.7
+
+
+def test_receipt_deterministic(tmp_path: Path) -> None:
+    kwargs = dict(
+        limit=2,
+        include_atlas_seeds=False,
+        root=tmp_path,
+        live_research=False,
+        accumulate=False,
+        publish_links=False,
+    )
+    s = {
+        "repository": "GlacierEQ/spacex-telemetry",
+        "description": "telemetry",
+        "paper_recovery_only": True,
+        "neutralization_stamps": 2,
+    }
+    r1 = invent(s, **kwargs)
+    r2 = invent(s, **kwargs)
+    assert r1.receipt_sha256 == r2.receipt_sha256
+
+
+def test_research_accumulates_knowledge(tmp_path: Path) -> None:
+    dossier = research_subject(
+        {
+            "repository": "GlacierEQ/megamind",
+            "description": "agent registry mesh",
+            "language": "Python",
+            "offline": True,
+        },
+        helix_root=tmp_path,
+        live=False,
+    )
+    assert dossier.schema.startswith("glaciereq.genius-research")
+    assert dossier.lite_facts
+    path = accumulate_knowledge(
+        dossier,
+        helix_root=tmp_path,
+        primary={"title": "t", "tags": ["authority_half_life"], "genius_score": 0.8},
+        receipt_sha256="abc",
+    )
+    assert path.is_file()
+    index = tmp_path / "machine" / "genius_knowledge" / "index.json"
+    assert index.is_file()
+
+
+def test_publish_library_link(tmp_path: Path) -> None:
+    dossier = research_subject(
+        {
+            "repository": "GlacierEQ/the-tower-of-babel",
+            "description": "polyglot tower",
+            "topics": ["polyglot"],
+            "offline": True,
+        },
+        helix_root=tmp_path,
+        live=False,
+    )
+    out = publish_library_link(
+        dossier,
+        primary={"title": "First Pass", "tags": ["first_pass_last_pass"]},
+        receipt_sha256="deadbeef",
+        library_root=tmp_path / "library-of-links",
+    )
+    assert out is not None and out.is_file()
+    assert (tmp_path / "library-of-links" / "registry" / "index.json").is_file()
+    assert (tmp_path / "library-of-links" / "README.md").is_file()
+
+
+def test_select_mechanisms_signal_bias() -> None:
+    dossier = ResearchDossier(
+        schema="glaciereq.genius-research.v1",
+        repository="GlacierEQ/xai-colossus-cooling",
+        full_name="GlacierEQ/xai-colossus-cooling",
+        description="cooling",
+        primary_language="Python",
+        languages={},
+        topics=(),
+        readme_excerpt="",
+        default_branch="main",
+        exists=True,
+        signals=("thermal_energy",),
+        lite_facts=("signal:thermal_energy",),
+        prior_run_count=0,
+        prior_primary_mechanism="",
+        sources=("test",),
+        researched_at="2026-01-01T00:00:00+00:00",
+    )
+    mechs = select_mechanisms("colossus", limit=3, research=dossier)
+    ids = [m.id for m in mechs]
+    assert "receipt_bus" in ids or "split_brain_actuation" in ids
+
+
+def test_advance_brief_paths(tmp_path: Path) -> None:
+    run = _offline_invent(
+        "GlacierEQ/orbital-mechanics",
+        tmp_path,
+        description="lambert solver",
+        language="Python",
+        domain="orbital",
+    )
+    brief = compose_advance_brief(run)
+    assert brief["status"] == "READY"
+    assert brief["paths"]
+
+
+def test_engine_id_is_v4() -> None:
+    assert ENGINE_ID.endswith("v4")
+
+
+def test_build_doctor_and_landed() -> None:
+    from job_app_helix.genius_build import build_receipt, doctor, landed_index, status_summary
+
+    lands = landed_index()
+    assert lands["count"] >= 4
+    assert lands["all_merged"] is True
+    assert "authority_half_life" in lands["mechanism_ids"]
+    st = status_summary()
+    assert st["engine_id"] == ENGINE_ID
+    assert st["landed"] >= 4
+    doc = doctor()
+    assert doc["ok"] is True, doc["checks"]
+    rec = build_receipt(write=False)
+    assert rec["build_status"] == "COMPLETE"
+    assert rec["mechanism_library_count"] >= 12
+
+
+def test_impact_estate_offline(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    from job_app_helix.genius_build import invent_impact_estate, subjects_from_impact
+
+    subjects = subjects_from_impact(limit=8)
+    assert any("glaciereq-mcp-stack" in s["repository"] for s in subjects)
+    assert any("megamind" in s["repository"] for s in subjects)
+    # force no library publish side effects in estate
+    out = invent_impact_estate(
+        limit_per=1,
+        limit_subjects=4,
+        live_research=False,
+        accumulate=False,
+        publish_links=False,
+        root=tmp_path,
+    )
+    assert out["count"] == 4
+    assert out["build_status"] == "COMPLETE"
+    assert out["runs"][0].get("primary") is not None
+
+
+def test_research_loads_impact_when_library_present(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    lib = tmp_path / "library-of-links"
+    (lib / "registry").mkdir(parents=True)
+    queue = {
+        "schema": "glaciereq.library-of-links.impact-queue.v1",
+        "queue": [
+            {
+                "impact_score": 0.95,
+                "title": "Model Context Protocol",
+                "url": "https://modelcontextprotocol.io/",
+                "why_advanced": "Primary protocol for credentialed tool surfaces and host policy.",
+                "domain": "agents",
+                "suggested_leaves": ["GlacierEQ/glaciereq-mcp-stack"],
+                "suggested_mechanisms": ["mcp_package_restore"],
+                "action": "Invent/advance mcp_package_restore on glaciereq-mcp-stack",
+                "tags": ["mcp", "tools"],
+            }
+        ],
+    }
+    (lib / "registry" / "impact_queue.json").write_text(
+        __import__("json").dumps(queue), encoding="utf-8"
+    )
+    monkeypatch.setenv("GENIUS_LIBRARY_OF_LINKS_ROOT", str(lib))
+    from job_app_helix.genius_research import research_subject
+
+    d = research_subject(
+        {
+            "repository": "GlacierEQ/glaciereq-mcp-stack",
+            "description": "MCP stack",
+            "offline": True,
+        },
+        helix_root=tmp_path,
+        live=False,
+    )
+    assert d.advanced_context
+    assert "Model Context Protocol" in d.advanced_context[0]
+    assert d.impact_actions

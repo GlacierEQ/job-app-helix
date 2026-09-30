@@ -1,0 +1,74 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "checkpoint": "SELECTIVE_FRESHNESS_AND_ESTATE_RECOVERY",
+  "source_sha_before": "ad3bfde63ee6c0f67579f253f4d00c9a4a136123",
+  "runtime_merge_shas": [
+    "a917a2c14fbf51e15526b93f2884d051680e6977",
+    "060eb250eea32ed654c0a33286d9dc940e17d303"
+  ],
+  "completed_priorities": [
+    {
+      "tier": "P1",
+      "priority": "Compose freshness-aware packet regeneration directly into intelligence_cycle.",
+      "result": "MERGED",
+      "pull_request": 238,
+      "proof_run": 32162339719,
+      "capability": "Live opening refresh now flows through company intelligence, guarded ranking, stale-lineage quarantine, and recruiter packet regeneration in one executable cycle."
+    },
+    {
+      "tier": "P2",
+      "priority": "Use Opening Watch material-change events to invoke only affected cycles while unchanged openings stay on the fast path.",
+      "result": "MERGED",
+      "pull_request": 238,
+      "proof_run": 32162339719,
+      "capability": "job-app-helix-watch-cycle selects only NEW/CHANGED openings, skips full intelligence for UNCHANGED openings, and caches one fetch per URL per run."
+    },
+    {
+      "tier": "P2",
+      "priority": "Resume stranded-capability recovery across job-app branches and donor repos, restoring only mechanisms that exceed current main.",
+      "result": "MERGED_FIRST_RECOVERY_FAMILY",
+      "pull_request": 239,
+      "proof_run": 32162714957,
+      "donor": "apex/mass-job-repo-recovery",
+      "capability": "Recovered and strengthened an estate-wide repository recovery census that complements the in-repository ref graph with deterministic repository-level recovery classification and prioritization."
+    }
+  ],
+  "proof": {
+    "intelligence_cycle_matrix": ["3.11", "3.12", "3.13"],
+    "intelligence_cycle_result": "PASS",
+    "estate_recovery_matrix": ["3.11", "3.12", "3.13"],
+    "estate_recovery_result": "PASS"
+  },
+  "preserved_gains": [
+    "company intelligence provenance and refresh semantics remain intact",
+    "outcome calibration guard and queue safety lanes remain authoritative",
+    "hard-gap caps and recruiter evidence boundaries remain intact",
+    "unchanged application packets retain the deduplicated fast path",
+    "superseded recruiter packet lineage is quarantined rather than destroyed",
+    "static opening manifests remain supported",
+    "estate recovery census is read-only and does not mutate donor repositories"
+  ],
+  "top_3_remaining_priorities": [
+    {
+      "tier": "P2",
+      "priority": "Feed estate recovery census priority classes into recovery_ref_graph and federated restoration so cross-repository recovery moves from census to exact-source composition automatically."
+    },
+    {
+      "tier": "P2",
+      "priority": "Persist longitudinal opening-change telemetry and use changed-field semantics to avoid rebuilding when non-material posting metadata changes."
+    },
+    {
+      "tier": "P2",
+      "priority": "Add maintained multi-opening discovery per target company so Opening Watch owns the live opening set instead of requiring supplied URLs."
+    }
+  ],
+  "no_loss_invariants": [
+    "never treat job or company source text as candidate evidence",
+    "never overwrite valid current packet lineage without preserving stale rollback state",
+    "never promote a missing or inaccessible repository into a deletion claim",
+    "never recover historical code wholesale when current main already supersedes the mechanism",
+    "never let recovery process displace executable application progress"
+  ],
+  "verified_delta_state": "TOP_3_EXECUTED_WITH_P1_AND_P2_SELECTIVE_FRESHNESS_MERGED_AND_FIRST_STRANDED_CROSS_REPO_RECOVERY_MECHANISM_MERGED"
+}

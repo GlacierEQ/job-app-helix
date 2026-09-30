@@ -1,0 +1,21 @@
+{
+  "repo": "Qwen3-Coder",
+  "family": "Qwen / Alibaba",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Qwen3-Coder: the code-specialized version of the Qwen3 LLM series developed by the Qwen team at Alibaba Cloud. Triple-cataloged: (a) library.json:14380 (exec summary 'Qwen3-Coder is the code version of Qwen3... Qwen team, Alibaba Cloud.'; url=https://github.com/GlacierEQ/Qwen3-Coder); (b) capabilities_3layer.json:25617 classifier lab_benchmarks_and_stamps with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/lab_benchmarks_and_stamps/Qwen3-Coder; (c) company_engineered_repositories.json:250 reference_or_upstream includes Qwen3-Coder. The expanded_job_app_helix_manifest.json (line 898) assigns it as a job-app-helix mesh leaf, family Alibaba / Qwen, state reference. Honest limitation: reference/upstream with no local GlacierEQ modification; this is a vendored upstream model. Catalog + helix membership justify 6, but lack of any local GlacierEQ differentiation, fine-tune, or evaluation test keeps it from 7.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 14380: entry Qwen3-Coder; exec summary='Qwen3-Coder is the code version of Qwen3... Qwen team, Alibaba Cloud.'; url=https://github.com/GlacierEQ/Qwen3-Coder)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 25617: name=Qwen3-Coder; classifier=lab_benchmarks_and_stamps; executive_summary='Qwen3-Coder is the code version of Qwen3...'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/Qwen3-Coder; launch_cmd='git clone https://github.com/GlacierEQ/Qwen3-Coder')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 250: reference_or_upstream includes Qwen3-Coder)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 898: kind=company, state=reference, family='Alibaba / Qwen' \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 144: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Honest cap at 6 \u2014 strong catalog + helix membership, but no local modification/eval/receipt. To reach 7+ requires: (1) add a GlacierEQ-specific evaluation suite (e.g. HumanEval pass@k on a held-out task), (2) run the eval to produce a benchmark stamp, (3) emit a fact card with the recorded run, and (4) update company_engineered_repositories.json from reference_or_upstream to in_preparation.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.813644",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

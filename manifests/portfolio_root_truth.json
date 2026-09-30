@@ -1,0 +1,282 @@
+{
+  "schema": "glaciereq.portfolio-root-truth.v1",
+  "version": "1.2.0",
+  "authority": {
+    "repository": "GlacierEQ/job-app-helix",
+    "branch": "main",
+    "path": "manifests/portfolio_root_truth.json",
+    "raw_url": "https://raw.githubusercontent.com/GlacierEQ/job-app-helix/main/manifests/portfolio_root_truth.json"
+  },
+  "purpose": "Keep the job-application ecosystem current from one governed source while separating the admitted public portfolio subset from the authenticated owned-estate intelligence substrate, without copying child repository source or maintaining competing inventories.",
+  "truth_model": {
+    "control_plane": "GlacierEQ/job-app-helix",
+    "child_source_authority": "Each reference child repository owns its code, README, tests, releases, and repository-native receipts.",
+    "portfolio_authority": "Helix owns admitted-portfolio classification, authenticated-estate compiler policy, evidence-bound lineage and support assertions, capability projection, company alignment, second-depth progression, and public/private projection boundaries.",
+    "projection_rule": "Downstream systems consume links, public-safe policies, and generated snapshots only. They do not become independent sources of portfolio truth, and public consumers never require the authenticated census or private estate identities.",
+    "stale_on_source_head_change": true,
+    "fail_closed_on_missing_or_unsupported_evidence": true
+  },
+  "sources": [
+    {
+      "id": "inventory",
+      "path": "manifests/portfolio_repositories.json",
+      "role": "Source-bound current public recruiter inventory snapshot; count is derived from the inventory manifest and is not the full authenticated owned estate",
+      "required": true
+    },
+    {
+      "id": "compiler",
+      "path": "manifests/portfolio_compiler.json",
+      "role": "Projection, provenance, and no-copy policy for the admitted portfolio",
+      "required": true
+    },
+    {
+      "id": "live_links",
+      "path": "manifests/live_repository_links.json",
+      "role": "Source-bound repository URLs and live-link contract",
+      "required": true
+    },
+    {
+      "id": "live_evidence",
+      "path": "manifests/live_repository_evidence.json",
+      "role": "SHA-bound repository observations and evidence state",
+      "required": true
+    },
+    {
+      "id": "flagships",
+      "path": "manifests/flagship_registry.json",
+      "role": "Crown-jewel hierarchy, public boundary, and next gates",
+      "required": true
+    },
+    {
+      "id": "companies",
+      "path": "manifests/company_dossiers.json",
+      "role": "Company-track index and dossier shard contract",
+      "required": true
+    },
+    {
+      "id": "company_second_depth",
+      "path": "manifests/company_second_depth.json",
+      "role": "Company-specific evidence progression, stage prerequisites, blockers, next gates, and public claim ceilings",
+      "required": true
+    },
+    {
+      "id": "language_fit",
+      "path": "manifests/language_fit.json",
+      "role": "Intentional language-boundary projection",
+      "required": true
+    },
+    {
+      "id": "priority_spine",
+      "path": "manifests/library_priority_spine.json",
+      "role": "Execution and promotion priority",
+      "required": true
+    },
+    {
+      "id": "repository_health_policy",
+      "path": "manifests/repository_health_policy.json",
+      "role": "Fail-closed repository-quality scoring policy",
+      "required": true
+    },
+    {
+      "id": "estate_compiler_policy",
+      "path": "manifests/estate_compiler.json",
+      "role": "Authenticated owned-estate compiler policy for namespace isolation, lineage collapse, reference systems, capability donors, company projection, and public-safe output",
+      "required": true
+    },
+    {
+      "id": "estate_projection_policy",
+      "path": "manifests/estate_projection_policy.json",
+      "role": "Public-safe role-capability rules, complete ranked audience projections, non-authoritative presentation defaults, support ancestry semantics, and truth boundaries",
+      "required": true
+    },
+    {
+      "id": "estate_facts",
+      "path": "manifests/estate_facts.json",
+      "role": "Evidence-bound namespace, lineage, and support assertions for private estate compilation; unsupported relations remain unpromoted",
+      "required": true
+    },
+    {
+      "id": "external_company_intelligence",
+      "path": "manifests/application_intelligence/company_bottleneck_atlas.external.json",
+      "role": "Dated external company operating-pressure snapshot with official-source observations separated from GlacierEQ inference and explicit refresh requirements",
+      "required": true
+    }
+  ],
+  "projections": [
+    {
+      "id": "public_portal",
+      "repository": "GlacierEQ/job-application",
+      "consumer_pointer": "portfolio-source.json",
+      "mode": "build_time_pull",
+      "required_sources": [
+        "inventory",
+        "flagships",
+        "companies",
+        "company_second_depth",
+        "language_fit",
+        "live_evidence",
+        "estate_compiler_policy",
+        "estate_projection_policy",
+        "external_company_intelligence"
+      ],
+      "outputs": [
+        "recruiter presentation",
+        "master technical atlas",
+        "machine contracts",
+        "public evidence mesh",
+        "public-safe estate intelligence contract"
+      ],
+      "may_publish_private_records": false,
+      "boundary": "The public portal may consume only public-safe estate policy and external-intelligence metadata. It must not consume estate_facts, the authenticated census, private repository identities, legal-private records, or raw owned-estate cardinality."
+    },
+    {
+      "id": "resume_shapeshifter",
+      "repository": "GlacierEQ/JOB-RESUME-BUILDER-",
+      "consumer_pointer": "portfolio-source.json",
+      "mode": "build_time_pull",
+      "required_sources": [
+        "flagships",
+        "companies",
+        "company_second_depth",
+        "language_fit",
+        "live_evidence",
+        "estate_compiler_policy",
+        "estate_projection_policy",
+        "external_company_intelligence"
+      ],
+      "outputs": [
+        "human resume",
+        "ATS resume",
+        "machine resume",
+        "role-calibrated evidence selection"
+      ],
+      "may_publish_private_records": false,
+      "boundary": "Résumé projections may use public-safe role and company intelligence policy but may not consume estate_facts, authenticated census records, or private repository identities."
+    },
+    {
+      "id": "company_application_packets",
+      "repository": "GlacierEQ/job-app-helix",
+      "mode": "generated_projection",
+      "required_sources": [
+        "companies",
+        "company_second_depth",
+        "flagships",
+        "live_evidence",
+        "priority_spine",
+        "estate_compiler_policy",
+        "estate_projection_policy",
+        "estate_facts",
+        "external_company_intelligence"
+      ],
+      "outputs": [
+        "company dossiers",
+        "role-fit packets",
+        "promotion queues",
+        "reference-system proof surfaces"
+      ],
+      "may_publish_private_records": false,
+      "boundary": "Private estate facts may inform internal compilation, but generated company packets must pass the estate public-safe projection boundary before publication."
+    },
+    {
+      "id": "machine_runtime",
+      "repository": "GlacierEQ/job-application",
+      "mode": "generated_projection",
+      "required_sources": [
+        "inventory",
+        "flagships",
+        "companies",
+        "company_second_depth",
+        "live_links",
+        "live_evidence",
+        "estate_compiler_policy",
+        "estate_projection_policy",
+        "external_company_intelligence"
+      ],
+      "outputs": [
+        "JSON",
+        "ProtoJSON",
+        "Protocol Buffers",
+        "llms.txt",
+        "public-safe estate intelligence metadata"
+      ],
+      "may_publish_private_records": false,
+      "boundary": "Machine-public surfaces inherit the same hard exclusion of authenticated census rows, estate_facts, legal-private identities, and raw owned-estate cardinality."
+    },
+    {
+      "id": "cloud_indexes",
+      "repository": "GlacierEQ/job-app-helix",
+      "mode": "link_only",
+      "required_sources": [
+        "inventory",
+        "flagships",
+        "companies",
+        "company_second_depth",
+        "estate_compiler_policy",
+        "estate_projection_policy",
+        "estate_facts"
+      ],
+      "outputs": [
+        "Google Drive index",
+        "Dropbox index",
+        "Box index",
+        "Notion operations projection"
+      ],
+      "may_publish_private_records": true,
+      "boundary": "Cloud projections may hold private operational metadata, including evidence-bound estate assertions, but public projections must consume only public-safe fields."
+    }
+  ],
+  "update_contract": {
+    "reference_schedule": "daily",
+    "event_triggers": [
+      "portfolio source change",
+      "child default-branch head change",
+      "repository visibility or archive change",
+      "verification receipt change",
+      "company or flagship classification change",
+      "company second-depth stage or evidence change",
+      "estate compiler or projection policy change",
+      "evidence-bound estate namespace lineage or support assertion change",
+      "external company intelligence snapshot change"
+    ],
+    "required_sequence": [
+      "load root manifest",
+      "validate all required control-plane source files",
+      "reconcile the current public-portfolio inventory from its source manifest without assuming a fixed repository count",
+      "resolve company-shard defaults",
+      "validate company second-depth stages, prerequisites, blockers, and claim ceilings",
+      "verify every HELIX_ADMITTED repository maps to admitted inventory",
+      "verify every admitted inventory child maps to at least one governed track",
+      "when authenticated estate authority is available, census the full owned estate without committing private census rows",
+      "apply evidence-bound namespace lineage and support assertions fail closed",
+      "compile reference systems capability donors company projections and experiment state",
+      "compile public-safe and private projections separately",
+      "write deterministic receipts",
+      "publish projections only after validation"
+    ],
+    "consumer_behavior": "Consumers must reject missing required sources, schema drift, duplicate identities, private-record leakage, unsupported claims, stale source receipts, second-depth stage claims that lack their declared prerequisites, and any public surface that exposes authenticated-estate identities or cardinality."
+  },
+  "invariants": [
+    "The admitted inventory root plus workspace repository count equals its total_repositories field.",
+    "The current inventory is a public-portfolio snapshot whose count is derived from source; it is not a fixed estate ceiling.",
+    "Authenticated owned-estate cardinality and private repository identities remain runtime-private and absent from downstream public bundles.",
+    "Workspace repository identities in the admitted inventory are unique.",
+    "Every HELIX_ADMITTED dossier repository exists in the admitted reference inventory.",
+    "Every admitted reference inventory child appears in at least one company or GlacierEQ Core dossier.",
+    "Every required company track resolves to a fail-closed second-depth state; missing overrides never imply completion.",
+    "Second-depth stages are monotonic and public claim ceilings may not exceed the strongest satisfied stage prerequisites.",
+    "Evidence-bound dependency and reference support never collapses lineage or counts as an independent accomplishment.",
+    "Legal-private estate material is hard-isolated from company, recruiter, resume, and machine-public projections.",
+    "Flagship system IDs are unique.",
+    "L0, QUARANTINED, EXCLUDED, and private-only records never enter public recruiter projections.",
+    "Company naming never implies affiliation, endorsement, employment, proprietary access, contract relationship, clearance, or production deployment.",
+    "Repository ownership does not by itself establish authorship, originality, security, runtime success, or recruiter readiness.",
+    "Downstream projections may change presentation but may not change factual IDs, evidence states, second-depth stages, claim ceilings, test counts, blockers, or authority boundaries.",
+    "Company and audience projections preserve complete eligible relation membership; ranking, compact proof views, and pagination never define what exists."
+  ],
+  "receipt": {
+    "schema": "glaciereq.portfolio-root-truth-receipt.v1",
+    "generator": "scripts/validate_portfolio_root_truth.py",
+    "default_output": "artifacts/portfolio-root-truth-receipt.json",
+    "hash_algorithm": "sha256"
+  }
+}

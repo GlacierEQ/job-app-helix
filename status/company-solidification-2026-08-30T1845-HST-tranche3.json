@@ -1,0 +1,51 @@
+{
+  "schema": "glaciereq.company-solidification-receipt.v1",
+  "at": "2026-08-30T18:45:00-10:00",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "control_plane_head_before_receipt": "61d0749fe785b3de7ec2e42b3863ceeaf4fa8ef4",
+  "tranche": "apple-aws-deepmind-deepen",
+  "repositories": [
+    {
+      "repository": "GlacierEQ/apple-ane-kv-quantizer",
+      "branch": "main",
+      "head": "d0c151d233e0447e4f5435ffc22ac6586d25ebd0",
+      "mechanisms": [
+        "local data-class authority policy",
+        "sensitive network-egress denial",
+        "explicit user confirmation for non-sensitive network egress",
+        "hash-bound authority receipt"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    },
+    {
+      "repository": "GlacierEQ/aws-trainium-neuron-sentinel",
+      "branch": "main",
+      "head": "0ec117ccb0c95e084e9a68e888b27a73e456722d",
+      "mechanisms": [
+        "hash-bound modeled workload passport",
+        "account-alias and region scope binding",
+        "cross-scope replay refusal",
+        "optional parent-receipt provenance"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    },
+    {
+      "repository": "GlacierEQ/deepmind-tpu-mesh-optimizer",
+      "branch": "main",
+      "head": "85a646c4d8f01597e74b2dca83c95efecac2fb09",
+      "mechanisms": [
+        "receipt-class experiment promotion fence",
+        "modeled/local-tested/compiled/hardware evidence separation",
+        "compile requires test receipt",
+        "hardware promotion requires compiled evidence chain"
+      ],
+      "exact_head_workflow": "NOT_OBSERVED_AFTER_CONNECTOR_AUTHORED_PUSH"
+    }
+  ],
+  "helix_records": [
+    "solidify_records/apple-ane-kv-quantizer.json",
+    "solidify_records/aws-trainium-neuron-sentinel.json",
+    "solidify_records/deepmind-tpu-mesh-optimizer.json"
+  ],
+  "invariant": "mechanism -> tests -> truth contract -> exact source head -> estate solidify record"
+}

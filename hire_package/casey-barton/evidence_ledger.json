@@ -1,0 +1,101 @@
+{
+  "schema": "glaciereq.candidate-evidence-ledger.v1",
+  "generated_at": "2026-07-30T17:12:00-10:00",
+  "claims": [
+    {
+      "id": "helix_inventory",
+      "claim": "Job-App Helix governs an exact 63-repository application boundary",
+      "state": "VERIFIED_BOUNDARY",
+      "evidence": "../../manifests/portfolio_repositories.json",
+      "presentation": {
+        "metric": "63",
+        "label": "Exact portfolio boundary",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "current_estate",
+      "claim": "Current source-exhaustive Job-App Helix estate contains 225 deserving repositories across 21 families",
+      "state": "MATERIALIZED_CURRENT_ESTATE",
+      "evidence": "../../manifests/unified_deserving_manifest.json",
+      "presentation": {
+        "metric": "225",
+        "label": "Current source-exhaustive estate",
+        "display_state": "CURRENT"
+      }
+    },
+    {
+      "id": "verified_trust_anchors",
+      "claim": "Current estate evidence surface records 8 repository-level verified trust anchors",
+      "state": "VERIFIED_ANCHOR_REGISTER",
+      "evidence": "../../README.md",
+      "presentation": {
+        "metric": "8",
+        "label": "Verified trust anchors",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "historical_helix_boundary",
+      "claim": "Historical governed Job-App Helix boundary contains exactly 63 repositories: one control-plane root plus 62 children",
+      "state": "VERIFIED_HISTORICAL_BOUNDARY",
+      "evidence": "../../manifests/portfolio_repositories.json",
+      "presentation": {
+        "metric": "63",
+        "label": "Historical governed Helix boundary",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "akos_tests",
+      "claim": "AKOS passed 94/94 tests across 12 modules on Python 3.11-3.13",
+      "state": "VERIFIED_TEST",
+      "evidence": "https://github.com/GlacierEQ/AKOS/actions/runs/30532339028",
+      "source_commit": "d00eb4a9889fb4b78621d422a70c2677e12a467d",
+      "promotion_merge": "b4b9ecba71f41bf9e3ddffa1f6c2c34c6a9b7192",
+      "presentation": {
+        "metric": "94/94",
+        "label": "AKOS tests passed",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "mesh_rollout",
+      "claim": "README Mesh rollout verified for 21 nodes",
+      "state": "VERIFIED_DOCUMENTATION",
+      "evidence": "../../docs/README_MESH_ROLLOUT_2026-07-28.md",
+      "presentation": {
+        "metric": "21",
+        "label": "README Mesh nodes",
+        "display_state": "VERIFIED"
+      }
+    },
+    {
+      "id": "coordinator_tests",
+      "claim": "Agent coordinator passed 62/62 independent Python 3.13 tests",
+      "state": "CANDIDATE_TEST_PROOF",
+      "evidence": "coordinator_candidate_receipt.json",
+      "presentation": {
+        "metric": "62/62",
+        "label": "Coordinator candidate tests",
+        "display_state": "CANDIDATE"
+      }
+    },
+    {
+      "id": "runner_activation",
+      "claim": "Coordinator route is registered through the public runner architecture",
+      "state": "IMPLEMENTED_ACTIVATION_BLOCKED",
+      "evidence": "https://github.com/GlacierEQ/public-actions-runner-host/actions/runs/30573535595",
+      "catalog_merge": "570021d36e7cc0b39305522de167680cad837869",
+      "activation_issue": "https://github.com/GlacierEQ/public-actions-runner-host/issues/58"
+    }
+  ],
+  "excluded": [
+    "400,000 agents",
+    "1,200 files/hour",
+    "production-grade across 1,104 repositories",
+    "top-percentile ranking",
+    "legal compliance conclusion",
+    "AWS master's degree"
+  ]
+}

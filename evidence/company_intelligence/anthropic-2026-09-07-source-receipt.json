@@ -1,0 +1,31 @@
+{
+  "company": "Anthropic",
+  "company_id": "anthropic",
+  "observed_at": "2026-09-07T09:23:49.358619Z",
+  "receipt_sha256": "69801326d60f6a803f9b9024190da927465f9a01a097eb8e531a418e10742e8a",
+  "schema": "glaciereq.company-intelligence-source-receipt.v1",
+  "sources": [
+    {
+      "content_sha256": "a28f1434bb04e2e797e079cc8bd52a909fa6a6f7d82ce987b71a8d6748e45139",
+      "http_status": 200,
+      "purpose": "Current Applied AI role-family inventory",
+      "source_identity": "https://www.anthropic.com/careers/jobs",
+      "source_ref": "sha256:a28f1434bb04e2e797e079cc8bd52a909fa6a6f7d82ce987b71a8d6748e45139"
+    },
+    {
+      "content_sha256": "21f1c0938619e8b536d0e0e7102c3be480143d9420eb9e30d77b8d1ea1e0264f",
+      "http_status": 200,
+      "purpose": "Current US Forward Deployed Engineer role",
+      "source_identity": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008",
+      "source_ref": "sha256:21f1c0938619e8b536d0e0e7102c3be480143d9420eb9e30d77b8d1ea1e0264f"
+    },
+    {
+      "content_sha256": "7590c48e40e3b692c887ab8c49125dd139b55eff20f7fa5b532c283203dfebd4",
+      "http_status": 200,
+      "purpose": "Current US Applied AI Architect, Strategic Enterprise Tech role",
+      "source_identity": "https://job-boards.greenhouse.io/anthropic/jobs/5409008008",
+      "source_ref": "sha256:7590c48e40e3b692c887ab8c49125dd139b55eff20f7fa5b532c283203dfebd4"
+    }
+  ],
+  "truth_boundary": "Provider pages establish current public role/opening content only; GlacierEQ role fit, bottlenecks, remedies, and hiring outcomes remain independent inferences/nonclaims."
+}

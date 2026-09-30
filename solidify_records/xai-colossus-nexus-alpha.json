@@ -1,0 +1,26 @@
+{
+  "repo": "xai-colossus-nexus-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "wave3": true,
+  "innovation_summary": "Private historical companion (alpha split) of the xAI-Colossus nexus stack. Wave-3 mining confirms the capability index provides only a generic 'Model Inference And Sentinels engine' elevator pitch plus an issue-contract proof. There is no family hardening receipt that pins this repo, no test run, no artifact digest, and no fact card. Capped honestly at 3 (catalog + family grouping + capability stub only; the underlying capability has not been verified by any monolith receipt).",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry xai-colossus-nexus-alpha; url=github.com/GlacierEQ/xai-colossus-nexus-alpha)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (generic elevator_pitch; contract_proof issue-contract only)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 82 (listed xAI-Colossus family companion)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 311 (historical_or_cross_company)",
+    "Absence: no entry under /tmp/monolith/receipts/company_families/* pins this repo"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy_7": "(1) Clone the repository and confirm whether implementation exists at all; (2) extract a README and any tests into a fact card; (3) add a runnable test suite plus a CI truth gate; (4) emit a hardening receipt with a pinned commit and artifact digest; (5) if the repo is empty, formally retire it. Until at least steps 1-3 are done, this remains catalog-only.",
+  "honest_limits": [
+    "no local clone, source inspection, test, CI run id, artifact, or receipt",
+    "issue-contract proof is not a runtime verification",
+    "absent from all 5 family hardening receipts (lineage unverified)"
+  ],
+  "last_verified": "2026-08-29T08:47:17.036523",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}

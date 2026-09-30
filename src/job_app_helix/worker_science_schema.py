@@ -1,0 +1,132 @@
+from __future__ import annotations
+
+from typing import Any
+
+WORKER_SCIENCE_EXPERIMENT_SCHEMA: dict[str, Any] = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://glaciereq.local/schemas/estate/worker-science-experiment.schema.json",
+    "title": "Longitudinal Worker Science Experiment",
+    "type": "object",
+    "additionalProperties": False,
+    "required": [
+        "schema",
+        "experiment_id",
+        "source_repository",
+        "source_ref",
+        "mission_family",
+        "comparison_key",
+        "turn_index",
+        "experiment_type",
+        "performance_valid",
+        "health_class",
+        "topology",
+        "workers",
+        "truth_boundary",
+    ],
+    "properties": {
+        "schema": {"const": "glaciereq.worker-science-experiment.v1"},
+        "experiment_id": {"type": "string", "minLength": 1},
+        "source_repository": {"type": "string", "minLength": 1},
+        "source_ref": {
+            "type": "string",
+            "pattern": "^[^@]+@[0-9a-f]{40}$",
+        },
+        "mission_family": {"type": "string", "minLength": 1},
+        "comparison_key": {"type": "string", "minLength": 1},
+        "turn_index": {"type": "integer", "minimum": 0},
+        "experiment_type": {
+            "enum": ["BASELINE", "TEMPLATE_DELTA", "ABLATION", "OBSERVATION"]
+        },
+        "parent_experiment_ref": {
+            "type": ["string", "null"],
+            "pattern": "^[^@]+@[0-9a-f]{40}$",
+        },
+        "attempt": {"type": ["string", "null"]},
+        "performance_valid": {"type": "boolean"},
+        "health_class": {
+            "enum": ["HEALTHY", "MIXED", "INFRA_FAILURE", "INVALID"]
+        },
+        "provider": {"type": ["string", "null"]},
+        "provider_diversity": {
+            "type": ["integer", "null"],
+            "minimum": 0,
+        },
+        "scoring_rubric_ref": {
+            "type": ["string", "null"],
+            "pattern": "^[^@]+@[0-9a-f]{40}$",
+        },
+        "topology": {
+            "type": "object",
+            "additionalProperties": False,
+            "required": ["frozen", "roles"],
+            "properties": {
+                "frozen": {"type": "boolean"},
+                "roles": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": True,
+                    "items": {"type": "string", "minLength": 1},
+                },
+            },
+        },
+        "template_changes": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": ["role", "change_axis"],
+                "properties": {
+                    "role": {"type": "string", "minLength": 1},
+                    "change_axis": {"type": "string", "minLength": 1},
+                    "change_id": {"type": ["string", "null"]},
+                    "hypothesis": {"type": ["string", "null"]},
+                },
+            },
+        },
+        "ablated_role": {"type": ["string", "null"]},
+        "full_outcome_score": {"type": ["number", "null"]},
+        "ablated_outcome_score": {"type": ["number", "null"]},
+        "workers": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": [
+                    "role",
+                    "quality",
+                    "marginal_system_value",
+                    "outcome_leverage",
+                ],
+                "properties": {
+                    "role": {"type": "string", "minLength": 1},
+                    "quality": {
+                        "type": ["number", "null"],
+                        "minimum": 0,
+                        "maximum": 100,
+                    },
+                    "marginal_system_value": {
+                        "type": ["number", "null"]
+                    },
+                    "outcome_leverage": {
+                        "type": ["number", "null"],
+                        "minimum": 0,
+                        "maximum": 1,
+                    },
+                    "execution_time_seconds": {
+                        "type": ["number", "null"],
+                        "minimum": 0,
+                    },
+                    "overlap": {
+                        "type": ["number", "null"],
+                        "minimum": 0,
+                        "maximum": 1,
+                    },
+                    "failure": {"type": ["string", "null"]},
+                    "next_action": {"type": ["string", "null"]},
+                },
+            },
+        },
+        "truth_boundary": {"type": "string", "minLength": 1},
+    },
+}

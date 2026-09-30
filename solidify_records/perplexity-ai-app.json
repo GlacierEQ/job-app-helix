@@ -1,0 +1,20 @@
+{
+  "repo": "perplexity-ai-app",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "The Perplexity AI desktop app, built with Electron to bring AI language processing to the desktop (JavaScript). Triple-cataloged: (a) library.json:13068 (executive_summary 'The Perplexity AI Desktop App, powered by Electron which brings the magic of AI language processing to your desktop.'; url=https://github.com/GlacierEQ/perplexity-ai-app); (b) capabilities_3layer.json:43729 classifier extended_utilities_and_experiments with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/extended_utilities_and_experiments/perplexity-ai-app; (c) company_engineered_repositories.json:239 unprocessed (Perplexity family). The expanded_job_app_helix_manifest.json (line 870) assigns it as a job-app-helix mesh leaf, family Perplexity, state needs_work. Electron + Perplexity Pro integration is a clean fit for the human_ui_pro_control_surfaces whole, but the unprocessed backlog placement means no local build/test/fact card. Cap honestly at 6.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry perplexity-ai-app, line 13068; executive_summary='The Perplexity AI Desktop App, powered by Electron which brings the magic of AI language processing to your desktop.'; url=https://github.com/GlacierEQ/perplexity-ai-app)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 43729: name=perplexity-ai-app; classifier=extended_utilities_and_experiments; executive_summary='The Perplexity AI Desktop App, powered by Electron...'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/perplexity-ai-app; launch_cmd='git clone https://github.com/GlacierEQ/perplexity-ai-app')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 239: unprocessed)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 870: kind=company, state=needs_work, family='Perplexity' \u2014 confirmed job-app-helix mesh membership)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Honest cap at 6 \u2014 strong catalog + helix membership, but no Electron build/test/fact card. To reach 7+ requires: (1) clone the repo, (2) produce a successful Electron build (npm run build/package), (3) write an integration test that launches the app and verifies a Perplexity Pro API call, (4) emit a fact card with build receipt, and (5) update company_engineered_repositories.json from unprocessed to in_preparation.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.924189",
+  "notes": " | NEEDS_REPAIR"
+}

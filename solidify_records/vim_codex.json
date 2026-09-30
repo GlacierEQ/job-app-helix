@@ -1,0 +1,22 @@
+{
+  "repo": "vim_codex",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "needs_work",
+  "wave3": true,
+  "innovation_summary": "Supercharges the Vim editor with AI-powered code completion using OpenAI Codex (library.json desc), placed in the apex_cognitive_os domain. Multi-source: library.json (entry name=vim_codex; desc='Supercharge your Vim editor with AI-powered code completion using OpenAI Codex...'; domain=apex_cognitive_os), capabilities_3layer (name=vim_codex; elevator_pitch present; contract_proof claim='DONE' \u2014 UNVERIFIED), company_engineered_repositories.json:218-222 (OpenAI family; unprocessed: ... vim_codex ... 8-entry unprocessed co-set with jupyterlab-codex, zsh_codex, codex_py2cpp, etc.). Rating held at 5: 8-entry unprocessed co-set + cognitive-OS domain + capabilities_3layer = catalog ceiling. The contract_proof claim remains UNVERIFIED \u2014 no artifact/receipt located.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=vim_codex; desc='Supercharge your Vim editor with AI-powered code completion using OpenAI Codex...'; domain=apex_cognitive_os)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=vim_codex; elevator_pitch present; contract_proof claim='DONE' \u2014 UNVERIFIED, no artifact/receipt located)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:218-222 (OpenAI family; unprocessed: openai-codex-mcp, project_openai_codex, MCP-Bridge, openai-assistant-swarm, codex_py2cpp, jupyterlab-codex, vim_codex, zsh_codex \u2014 8-entry unprocessed co-set)",
+    "/tmp/monolith/evidence/repository_fact_cards/ (no vim_codex fact card)",
+    "/tmp/monolith/receipts/company_families/ (no openai receipt for vim_codex)",
+    "Contradiction preserved: capabilities_3layer contract_proof='DONE' is a template-wired claim, not a test-verified claim; no artifact or receipt located."
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Held at 5: 8-entry unprocessed co-set + cognitive-OS domain + capabilities_3layer entry = catalog ceiling. To reach >=8: plugin load/smoke test + fact card with a real completion execution receipt (artifact id + run id). Capped at 5: no test/fact card/receipt artifact substantiating the contract_proof DONE claim.",
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.781491",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

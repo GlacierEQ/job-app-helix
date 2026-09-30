@@ -1,0 +1,21 @@
+{
+  "repo": "openai-codex-mcp",
+  "family": "OpenAI / Codex",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "MCP server that communicates with, wraps, and uses the API of the OpenAI Codex CLI tool. Triple-cataloged as a GlacierEQ ecosystem engine: (a) library.json entry with desc + url; (b) capabilities_3layer.json classifier mcp_community_utilities with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/mcp_community_utilities/openai-codex-mcp; (c) company_engineered_repositories.json family openai/unprocessed. Additionally, the expanded_job_app_helix_manifest.json (line 667) explicitly assigns it as a job-app-helix mesh leaf with family OpenAI / Codex, canonical openai-reasoning-kv-sentinel, and state needs_work \u2014 establishing it as a contract-pending member of the helix estate, not just a long-tail catalog entry. Honest limitation: no GlacierEQ test, build receipt, or fact card was found; capability is contract-catalog + helix-membership proven, not runtime-verified, so 7 (not 8) is the honest ceiling.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (line 12508: entry name=openai-codex-mcp; desc='An MCP server to communicated with, use, and wrap the API for the OpenAI Codex CLI tool.'; url=https://github.com/GlacierEQ/openai-codex-mcp)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 9041: name=openai-codex-mcp; classifier=mcp_community_utilities; elevator_pitch='High-performance Mcp Community Utilities engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/mcp_community_utilities/openai-codex-mcp; launch_cmd='git clone https://github.com/GlacierEQ/openai-codex-mcp')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 219: family openai; unprocessed list)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 667: kind=company, state=needs_work, family='OpenAI / Codex', canonical=openai-reasoning-kv-sentinel \u2014 confirmed job-app-helix mesh membership)",
+    "/tmp/helix_patch/unified_deserving_manifest.json (line 111: in_helix_66=false, in_expanded_217=true, has_solidify_record=true)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Move from 'needs_work' to 'in_preparation' by (1) cloning the repo, (2) writing a minimal MCP integration test that wraps one Codex CLI call, (3) producing a repository_fact_card with a real execution receipt, and (4) promoting state to 'in_preparation' in expanded_job_app_helix_manifest.json \u2014 would justify worthy>=8.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.741843",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

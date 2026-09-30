@@ -1,0 +1,70 @@
+{
+  "ts": "2026-08-09T07:40Z",
+  "run": "GO-RESIDUAL-CLOSED",
+  "schema": "glaciereq.go-residual-receipt.v1",
+  "p0": {
+    "capability": "merge_authority_graph",
+    "harvest": "monolith/catalog/capabilities/merge_authority_graph.json",
+    "principal_state": "PROOF_REPRODUCED",
+    "second_consumer": {
+      "id": "monolith_integrity_release_dual_key",
+      "repository": "GlacierEQ/monolith",
+      "surface": ".integrity/engines/expected_head_mutation_guard.py + release_dual_key.py",
+      "tests": "tests/test_expected_head_mutation_guard.py",
+      "status": "EARNED",
+      "independent": true,
+      "shared_extract": false
+    },
+    "consumers_count": 2,
+    "next": "optional shared expected-head extract unblocked; not required for residual close",
+    "scratch_log": "p0/expected_head_second_consumer.log"
+  },
+  "wave_a": {
+    "leaves": [
+      "anduril-sensor-health-quorum",
+      "anthropic-refusal-replay-harness",
+      "cloudflare-bot-intent-receipt",
+      "nvidia-nan-circuit-breaker",
+      "palantir-object-authority-matrix",
+      "vercel-preview-truth-gate",
+      "waymo-uncertainty-lane-graph",
+      "xai-claim-promotion-fence"
+    ],
+    "proof": "8/8",
+    "operable": "8/8",
+    "promoted": "8/8",
+    "principal_state": "PROMOTED",
+    "not_yet": [],
+    "cleared": [
+      "OPERABLE",
+      "PROOF_REPRODUCED",
+      "PROMOTED"
+    ],
+    "law": "gate state changed; prose did not",
+    "scratch": {
+      "proof_logs": [
+        "wave_a/anduril-sensor-health-quorum/proof.log",
+        "wave_a/anthropic-refusal-replay-harness/proof.log",
+        "wave_a/cloudflare-bot-intent-receipt/proof.log",
+        "wave_a/nvidia-nan-circuit-breaker/proof.log",
+        "wave_a/palantir-object-authority-matrix/proof.log",
+        "wave_a/vercel-preview-truth-gate/proof.log",
+        "wave_a/waymo-uncertainty-lane-graph/proof.log",
+        "wave_a/xai-claim-promotion-fence/proof.log"
+      ],
+      "launch_logs": [
+        "wave_a/anduril-sensor-health-quorum/launch.log",
+        "wave_a/anthropic-refusal-replay-harness/launch.log",
+        "wave_a/cloudflare-bot-intent-receipt/launch.log",
+        "wave_a/nvidia-nan-circuit-breaker/launch.log",
+        "wave_a/palantir-object-authority-matrix/launch.log",
+        "wave_a/vercel-preview-truth-gate/launch.log",
+        "wave_a/waymo-uncertainty-lane-graph/launch.log",
+        "wave_a/xai-claim-promotion-fence/launch.log"
+      ],
+      "validator_all": "wave_a/validator_all.log"
+    }
+  },
+  "result": "PASS",
+  "evidence_bound": true
+}

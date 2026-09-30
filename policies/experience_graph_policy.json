@@ -1,0 +1,31 @@
+{
+  "schema": "glaciereq.experience-graph-policy.v1",
+  "minimum_family_size": 2,
+  "generic_prefixes": ["ai", "agent", "agents", "app", "awesome", "demo", "example", "main", "open", "pro", "project", "sample", "template", "test", "the"],
+  "company_alias_overrides": {
+    "aws": ["aws", "amazon-web-services"],
+    "google_deepmind": ["deepmind", "google-deepmind"],
+    "hugging_face": ["huggingface", "hugging-face"],
+    "microsoft": ["microsoft", "azure"],
+    "nvidia": ["nvidia", "cuda"],
+    "openai": ["openai"],
+    "spacex": ["spacex", "starlink"],
+    "xai": ["xai", "grok", "colossus"]
+  },
+  "personal_paradigm_overrides": {
+    "aeon": {"display_name": "AEON", "aliases": ["aeon", "aeon-777"]},
+    "aios": {"display_name": "AIOS", "aliases": ["aios"]},
+    "akos": {"display_name": "AKOS", "aliases": ["akos"]},
+    "apex": {"display_name": "APEX", "aliases": ["apex"]},
+    "auto_driller": {"display_name": "AI Auto-Driller", "aliases": ["ai-auto-driller", "auto-driller"]},
+    "doctor_strange": {"display_name": "Doctor Strange", "aliases": ["pro-doctor-strange", "doctor-strange"]},
+    "echo": {"display_name": "ECHO", "aliases": ["echo"]},
+    "helix": {"display_name": "Job-App Helix", "aliases": ["job-app-helix", "helix"]},
+    "infinity": {"display_name": "Infinity Systems", "aliases": ["ai-infinity", "infinity"]},
+    "pro_code": {"display_name": "Pro-Code", "aliases": ["pro-code"]},
+    "tower_of_babel": {"display_name": "Tower of Babel", "aliases": ["the-tower-of-babel", "tower-of-babel"]}
+  },
+  "public_repository_states": ["PROMOTED", "REFERENCE_ONLY"],
+  "private_repository_policy": "OMIT_FROM_PUBLIC_GRAPH",
+  "unknown_family_policy": "DISCOVERED_UNCLASSIFIED_REVIEW_REQUIRED"
+}

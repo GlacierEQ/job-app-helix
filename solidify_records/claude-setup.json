@@ -1,0 +1,21 @@
+{
+  "repo": "claude-setup",
+  "family": "Anthropic",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Anthropic-family reference repository for setup automation; catalogued but with empty description, so setup target, supported OS, credentials, and installation behavior remain unresolved. Catalog evidence: library.json (catalogued, empty desc, language=Python), company_engineered_repositories.json (anthropic.reference_or_upstream), capabilities_3layer.json (EXTENDED_UTILITIES_AND_EXPERIMENTS, impact_score=P1, generic 'Production-grade Extended Utilities And Experiments asset' executive_summary with empty tool description, contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=74dc795e84a9494c397d3a0df34b0b1277618e0966a0f272e0c3584a1c31f875, agent_tool_registration=tool_claude_setup with empty description, git-clone launch_cmd). The empty description field at both library.json and capabilities_3layer.json (description: '') is a hard honesty signal: setup target/OS/credentials are not documented in the catalog.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:3692 (name=claude-setup, catalogued, reference, empty desc, url=https://github.com/GlacierEQ/claude-setup)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:60 (anthropic.reference_or_upstream)",
+    "/tmp/monolith/audits/P0_PUBLIC_REPOSITORY_SWEEP_2026-07-30.md",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_05.md (unresolved_component, no useful description)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:32725 (EXTENDED_UTILITIES_AND_EXPERIMENTS, impact_score=P1, executive_summary='Production-grade Extended Utilities And Experiments asset.' (generic template), launch_cmd='git clone https://github.com/GlacierEQ/claude-setup', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=74dc795e84a9494c397d3a0df34b0b1277618e0966a0f272e0c3584a1c31f875, mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/claude-setup, agent_tool_registration.description='' (empty))"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Bumps 2->4 with mesh registration; stays below 5 because the empty library.json desc + empty agent_tool_registration description leave the setup target/OS/credentials genuinely unresolved. Cannot exceed 5 until: (1) the empty desc field is populated with the actual setup target, supported OS, and credential model, (2) a README is authored, (3) a per-repo configuration/install receipt is captured. Honest cap at 5 until documentation is real.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.748821",
+  "notes": "catalog_only | VERIFIED_EXTERNAL_REFERENCE",
+  "classification_reason": "classified_as_reference"
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "glaciereq.deployment-surfaces.v1",
+  "observed_at": "2026-08-17T12:32:00Z",
+  "authority": "OBSERVED_EXTERNAL_STATE",
+  "surfaces": [
+    {
+      "id": "candidate_public_portfolio",
+      "purpose": "Public recruiter and candidate-facing GlacierEQ portfolio surface",
+      "provider": "vercel",
+      "project": {
+        "id": "prj_5i9v2K5MyET7Yi7JwN2PCIj1AGZ1",
+        "name": "casey-barton-glaciereq"
+      },
+      "production": {
+        "deployment_id": "dpl_CSJrDfdYfiXYY7aWeQ8AwJ2v4KcQ",
+        "ready_state": "READY",
+        "created_at": "2026-08-12T20:45:07.109Z",
+        "ready_at": "2026-08-12T20:45:16.592Z",
+        "aliases": [
+          "casey-barton-glaciereq.vercel.app",
+          "casey-barton-glaciereq-caseys-projects-d714883e.vercel.app"
+        ]
+      },
+      "runtime_health": {
+        "window": "24h",
+        "error_clusters": 0,
+        "state": "NO_RUNTIME_ERRORS_OBSERVED"
+      },
+      "claim_boundary": {
+        "this_receipt_proves": [
+          "a production portfolio deployment exists",
+          "the observed deployment was READY",
+          "no Vercel runtime error clusters were returned for the observed 24h window"
+        ],
+        "this_receipt_does_not_prove": [
+          "every job-engineering repository is deployed",
+          "the production surface contains the current unmerged productization branch",
+          "provider availability or zero errors outside the observed window"
+        ]
+      }
+    }
+  ]
+}

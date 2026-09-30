@@ -1,0 +1,74 @@
+{
+  "schema": "glaciereq.repo-reference-position-receipt.v1",
+  "status": "PASS",
+  "transition": "PROMOTED -> SOURCE_BOUND",
+  "repository": {
+    "full_name": "GlacierEQ/apex-github-worker",
+    "repository_id": "1260799790",
+    "source_head": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "default_branch": "main",
+    "reference_role": "SPECIALIST_COMPONENT",
+    "capability_id": "merge_authority_graph",
+    "family": "GitHub / developer-platform automation"
+  },
+  "lineage": {
+    "action": "EXTEND_SOURCE_BOUND",
+    "decision": "Extend the existing apex-github-worker GitHub automation authority instead of opening a duplicate Merge Authority repository.",
+    "source_repository": "GlacierEQ/apex-github-worker",
+    "source_commit": "f791c85a81768e72446619b39b5312ef1c768a02",
+    "source_path": "machine/lineage.json",
+    "source_blob_sha": "dd0b1c601a273923d22f837af3a63579ef9a7c8f",
+    "excluded_actions": [
+      "NEW_REPO",
+      "SUPERSEDE",
+      "RETIRE",
+      "QUARANTINE"
+    ],
+    "next_review": "Re-evaluate only if another implementation proves broader reusable authority semantics that justify a separate cross-estate family head."
+  },
+  "helix_authority": {
+    "evaluated_base_commit": "9f9d95400001bd032d5d33f5a6fb708dfbcbbe41",
+    "record_path": "manifests/repo_excellence/apex-github-worker.json",
+    "company_projection_path": "manifests/company_projections/github_merge_authority.json",
+    "repo_excellence_registry_entries_observed": 1,
+    "competing_reference_authority_admitted": false
+  },
+  "proof": {
+    "grade": "A",
+    "reference_confidence": 0.99,
+    "reference_reproduction": "GlacierEQ/apex-github-worker@f791c85a81768e72446619b39b5312ef1c768a02:proof/merge-authority-reference-reproduction-2026-08-09.json",
+    "deterministic_and_adversarial_tests": "26/26",
+    "gateway_host_tests": "38/38",
+    "provider_mutation_sha": "1ec5b60e46c1e5e706838d6291ac6523fdc18a5a",
+    "replay_result": "DUPLICATE_ALREADY_COMPLETED",
+    "target_main_mutated": false,
+    "token_revoked": true
+  },
+  "decision": {
+    "reference_position_resolved": true,
+    "lineage_conflict_absent": true,
+    "duplicate_repository_rejected": true,
+    "proof_sha_bound": true,
+    "projection_truth_closed": true,
+    "authority_bounded": true,
+    "evolution_cursor_defined": true,
+    "company_claim_separate": true,
+    "source_binding_blockers": [],
+    "retained_nonsource_binding_blockers": [
+      "github_actions_budget"
+    ]
+  },
+  "claim_boundary": {
+    "company": "GitHub",
+    "company_stage_unchanged": "CLAIM_PROMOTED",
+    "company_claim_ceiling_unchanged": "proof_bound_company_specific",
+    "github_adoption_claimed": false,
+    "github_capability_production_deployment_claimed": false,
+    "production_scale_reliability_claimed": false
+  },
+  "result": {
+    "repository_state": "SOURCE_BOUND",
+    "next_gate": "EVOLVING",
+    "meaning": "apex-github-worker is the reference specialist repository for the merge_authority_graph capability within its admitted GitHub/developer-platform automation lineage. This does not source_bind unrelated legacy surfaces in the repository."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "role": {
+    "company": "Anthropic",
+    "title": "Staff Software Engineer, GTM AI Engineering (Claudification)",
+    "provider_job_id": "5390966008",
+    "checked_at_local": "2026-09-21T11:18:00-10:00"
+  },
+  "provider_readback": {
+    "vercel_project": {
+      "name": "casey-barton-glaciereq",
+      "project_id": "prj_5i9v2K5MyET7Yi7JwN2PCIj1AGZ1",
+      "latest_production_deployment": {
+        "deployment_id": "dpl_4h37XVHJPhxfv2d8XgfP222oD9Up",
+        "state": "READY",
+        "git_repo": "GlacierEQ/job-application",
+        "git_ref": "main",
+        "git_commit_sha": "c9ebfaa52ae3bc908037a86186b41e73430a003e",
+        "git_commit_message": "evidence(anthropic): advance verified resume upload gate"
+      }
+    },
+    "public_role_route": {
+      "url": "https://casey-barton-glaciereq.vercel.app/roles/anthropic-gtm-ai-engineering/",
+      "http_status": 200,
+      "observed_surface": "Static evidence-bound role dossier",
+      "observed_claim_path": "workflow → agents → tools → gate → action → receipt → eval"
+    },
+    "production_agent_runs_last_7d": {
+      "vercel_agent_run_projects": [],
+      "interpretation": "No Vercel Agent Runs observability records were returned for production in the previous 7 days. This does not prove no agent execution exists outside Vercel Agent Runs; it only bounds this provider-native observability check."
+    }
+  },
+  "source_recovery": {
+    "github_search_findings": {
+      "claudification_code_matches": "Campaign/application artifacts and static role page were found.",
+      "exact_runtime_ui_strings": {
+        "Pipeline board": "Found in GTM_CLAUDIFICATION_CAMPAIGN_LOCK.md, not in deployed role-page implementation.",
+        "Draft with model": "Found in GTM_CLAUDIFICATION_CAMPAIGN_LOCK.md, not in deployed role-page implementation.",
+        "Start motion": "Found in campaign/demo artifacts, not in deployed role-page implementation."
+      }
+    },
+    "command_center": {
+      "vercel_project": "glaciereq-command-center",
+      "production_deployment_id": "dpl_2RsxQ9g6z8yx5Q76SVmoxuUnjCtX",
+      "state": "READY",
+      "observed_surface": "Generic GlacierEQ operational command center with Supabase connector fleet/gaps, not the Anthropic-specific Claudification desk."
+    }
+  },
+  "epistemic_state": {
+    "verified": [
+      "Anthropic role-specific public dossier is deployed and provider-read back HTTP 200.",
+      "Current Vercel production deployment for casey-barton-glaciereq is READY at commit c9ebfaa52ae3bc908037a86186b41e73430a003e.",
+      "Role dossier contains the composition and evidence spine matching GTM agents, approval boundaries, MCP/tools, evals, receipts, and shared platform concerns."
+    ],
+    "operator_observed_not_provider_verified_here": [
+      "Distinct live Claudification desk with Command / Motions / Estate / Evals / Packet.",
+      "Motions → Outbound → Anthropic · Claudification → Start motion → SEND GATE runtime sequence.",
+      "Draft with model producing a real gated sequence."
+    ],
+    "current_frontier": "Locate or expose the actual Claudification runtime behind the documented interaction, then capture provider-native execution receipts for one complete outbound motion through proposal, human gate, bounded action, readback, eval/telemetry, and business-metric surface."
+  }
+}

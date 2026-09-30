@@ -1,0 +1,49 @@
+{
+  "schema": "glaciereq.external-application-receipt.v1",
+  "company_id": "anthropic",
+  "company": "Anthropic",
+  "role": "Forward Deployed Engineer",
+  "provider": "Greenhouse / Anthropic Careers",
+  "provider_job_id": "5302966008",
+  "role_source": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008",
+  "application_state": "APPLICATION_RECEIVED",
+  "lifecycle_state": "SUBMITTED",
+  "provider_acknowledgement": true,
+  "duplicate_submission_guard": true,
+  "resubmission_permitted": false,
+  "receipt_observation": {
+    "source_type": "PRIOR_CONVERSATION_USER_SUPPLIED_SCREENSHOT",
+    "source_state": "SOURCE_BEARING_PRIOR_CONVERSATION_RECEIPT",
+    "displayed_sender": "Anthropic Careers <jobs-noreply@anthropic.com>",
+    "displayed_recipient": "Casey Barton <caseybarton.ab@gmail.com>",
+    "displayed_date": "Tue, Sep 1, 2026 at 12:47 AM",
+    "displayed_subject": "Application received: Forward Deployed Engineer – 5302966008",
+    "displayed_confirmation": "Thank you for applying to the Forward Deployed Engineer position at Anthropic. We have received your application.",
+    "displayed_role": "Forward Deployed Engineer",
+    "displayed_job_id": "5302966008"
+  },
+  "current_turn_verification": {
+    "independently_retrieved_from_provider": false,
+    "connected_gmail_accounts_searched": [
+      "glacier.equilibrium@gmail.com",
+      "casey.barton92@gmail.com"
+    ],
+    "connected_gmail_match_found": false,
+    "gmail_scope_note": "The prior screenshot displayed delivery to caseybarton.ab@gmail.com, which is not one of the Gmail accounts connected in this runtime.",
+    "library_receipt_image_recovered": false,
+    "truth_boundary": "The application-received state is grounded in the prior user-supplied screenshot. This artifact does not claim that the provider email was independently fetched through a connected account in this turn."
+  },
+  "continuation": {
+    "forbidden_action": "DO_NOT_RESUBMIT_JOB_5302966008",
+    "next_state": "POST_SUBMISSION_RESPONSE_TRACKING",
+    "next_evidence": [
+      "provider status update",
+      "recruiter communication",
+      "interview invitation",
+      "rejection or closure notice",
+      "other provider-side lifecycle receipt"
+    ]
+  },
+  "recorded_on": "2026-09-07",
+  "recorded_by": "GlacierEQ/job-app-helix"
+}

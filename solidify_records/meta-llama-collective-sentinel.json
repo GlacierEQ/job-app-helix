@@ -1,0 +1,11 @@
+{
+  "repo": "meta-llama-collective-sentinel",
+  "family": "Meta",
+  "source_state": "in_preparation",
+  "worthy_rating": 7,
+  "verification_status": "NEEDS_REPAIR",
+  "description": "Meta Llama collective sentinel",
+  "notes": "fixed | NEEDS_REPAIR",
+  "last_verified": "2026-08-29T08:47:16.953009",
+  "classification_reason": "needs_repair: worthy=7"
+}

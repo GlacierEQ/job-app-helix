@@ -1,0 +1,33 @@
+schema_version: "1.0"
+
+id: job-app-helix
+display_name: Job App Helix Career Automation
+owner: GlacierEQ
+lane: career
+visibility: private
+status: foundation
+
+purpose:
+  problem: GlacierEQ Innovation Engine Job App Helix Career Automation
+  audience:
+    - GlacierEQ
+    - portfolio reviewers
+
+shared_services:
+  boot: apex-bootup-supreme
+  memory: apex-memory-substrate
+  token_efficiency: token-optimizer
+  graphics: frontend-ui-toolkit
+  connectors: apex-connector-mesh
+
+privacy:
+  public:
+    - templates
+    - sanitized_case_studies
+  private:
+    - credentials
+    - unpublished_source
+
+first_proof:
+  artifact: job-helix-v1
+  status: planned

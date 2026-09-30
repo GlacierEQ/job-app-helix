@@ -1,0 +1,21 @@
+{
+  "repo": "Pro-iOS",
+  "family": "Apple",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Pro-tier Apple-native sovereign operator layer integrating mobile tools and connected-agent capabilities for iOS (pro_control_surfaces domain, HUMAN_UI_PRO_CONTROL_SURFACES category). Catalog evidence is the strongest in the entire 13-repo set for a non-anchor apple repo: library.json (catalogued, desc='[mobile] Pro-tier Apple-native sovereign layer -- apple-mcp native tools, Comet browser automation agent + extension, iOS/macOS bridge, MCP connector for iPhone 16 Pro Max | GlacierEQ APEX', domain=pro_control_surfaces, role=part, language=Python, url=https://github.com/GlacierEQ/Pro-iOS), company_engineered_repositories.json:69 (apple.unprocessed), capabilities_3layer.json:19265 (HUMAN_UI_PRO_CONTROL_SURFACES, impact_score=P1, full executive_summary, multi-language tech_stack, contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri=glaciereq://mesh/human_ui_pro_control_surfaces/Pro-iOS, sha256_binding=10194fbdd15e60bb3b9d56b7475e61076ca70c0dae05f86b47cea2f341556954, agent_tool_registration.name=tool_pro_ios, git-clone launch_cmd). The cataloged value statement explicitly integrates apple-mcp + Comet browser automation + iOS/macOS bridge + MCP connector, so the catalog is unusually concrete. Honest limitation: catalogued/unprocessed; no runnable receipt or test on actual iPhone 16 Pro Max hardware found locally. Capability is catalog-proven, not runtime-verified.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:13804-13812 (name=Pro-iOS, desc='[mobile] Pro-tier Apple-native sovereign layer -- apple-mcp native tools, Comet browser automation agent + extension, iOS/macOS bridge, MCP connector for iPhone 16 Pro Max | GlacierEQ APEX', domain=pro_control_surfaces, role=part, language=Python, url=https://github.com/GlacierEQ/Pro-iOS)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:69 (apple.unprocessed; apple-ane-kv-quantizer is the current_preparation/canonical_candidate; Pro-iOS is unprocessed)",
+    "/tmp/monolith/domains/pro_control_surfaces.md (description)",
+    "/tmp/monolith/status/PRO_CONTROL_SURFACE_ATLAS.md",
+    "/tmp/monolith/catalog/capabilities_3layer.json:19265 (HUMAN_UI_PRO_CONTROL_SURFACES, impact_score=P1, executive_summary='[mobile] Pro-tier Apple-native sovereign layer -- apple-mcp native tools, Comet browser automation agent + extension, iOS/macOS bridge, MCP connector for iPhone 16 Pro Max | GlacierEQ APEX', tech_stack=[Python, TypeScript, Rust, Go, Docker, MCP], launch_cmd='git clone https://github.com/GlacierEQ/Pro-iOS', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=10194fbdd15e60bb3b9d56b7475e61076ca70c0dae05f86b47cea2f341556954, mesh_uri=glaciereq://mesh/human_ui_pro_control_surfaces/Pro-iOS, agent_tool_registration.name=tool_pro_ios)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 7,
+  "makes_worthy": "Bumps 6->7: the catalog is the most concrete in the apple group (full executive_summary, explicit cross-component integration statement, multi-stack, sha256, mesh_uri, agent_tool_registration). Cannot exceed 8 until: (1) the Pro-iOS surface is built and tested with a hash-bound receipt (glaciereq.proof-receipt.v1), (2) scope is reconciled with apple-mcp to avoid duplication (Pro-iOS uses apple-mcp, they are NOT duplicate work), (3) at least one tool call against a real iOS/macOS bridge or MCP connector is captured. Per the evidence_ledger, AKOS 94/94 and computer-user 203 tests prove harness authority but do not constitute Pro-iOS runtime proof.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=7",
+  "last_verified": "2026-08-29T08:47:16.782431",
+  "notes": " | NEEDS_REPAIR"
+}

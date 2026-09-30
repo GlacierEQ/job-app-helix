@@ -1,0 +1,147 @@
+{
+  "schema": "glaciereq.estate-evolution.state.v1",
+  "updated_at": "2026-09-14T13:31:48Z",
+  "control_plane": "GlacierEQ/job-app-helix",
+  "phase": "HELIX_SOURCE_BOUND_CLEAN_MONOLITH_EXACT_HEAD_PROOF_BLOCKED",
+  "cursor": {
+    "repository": "GlacierEQ/monolith",
+    "reference_branch": "main",
+    "source_head": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "pull_request": 54,
+    "branch": "synthesize/legal-live-reconciliation-20260808",
+    "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
+    "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "ahead": 7,
+    "behind": 0,
+    "files_changed": 10,
+    "draft": true,
+    "mergeable": true,
+    "action": "PRESERVE_FRESH_7_AHEAD_0_BEHIND_CANDIDATE; DO_NOT_MERGE_UNTIL_NATIVE_OR_EQUIVALENT_EXACT_HEAD_PROOF_EXECUTES"
+  },
+  "completed_this_pass": [
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "pull_request": 80,
+      "decision": "VERIFIED_CURRENT_HEAD_SYNTHESIS_PROMOTED",
+      "verified_head": "f37d801625571ed56f3b67c3fe9f8c9d2fe59d78",
+      "source_head_after": "ae9027b23fe3ef0741cad10c891c3445bbcfd1a5",
+      "preservation": "Diamond/Gatling planning mechanics rebuilt on the reference company registry with dynamic cardinality, exact v2 topology identity, nine truth/integrity gates, deterministic digesting, and PLANNED_ONLY execution boundaries.",
+      "verification": [
+        "CI:success:python-3.11",
+        "CI:success:python-3.12",
+        "CI:success:python-3.13",
+        "Portfolio Compiler Integrity:success",
+        "Application Registry Validation:success"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "pull_request": 79,
+      "decision": "VERIFIED_FRESH_HEAD_SYNTHESIS_PROMOTED_CONCURRENTLY",
+      "verified_head": "628e192380a4c2a5d91793d660b7883a56ce920b",
+      "source_head_after": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "preservation": "Longitudinal worker-science bridge with packaged schema identity, matched controls, infrastructure-invalid exclusion, complete worker roster, ablation-gated causal attribution, and mission-family learned-topology gating.",
+      "verification": [
+        "CI:success:python-3.11",
+        "CI:success:python-3.12",
+        "CI:success:python-3.13",
+        "Portfolio Compiler Integrity:success",
+        "Application Registry Validation:success",
+        "Frontier Innovation Engine:success"
+      ]
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "decision": "OPEN_PR_SURFACE_CLEAN",
+      "open_pull_request_count": 0,
+      "retired_unmerged": [58, 42, 40, 39, 34, 37],
+      "remote_ref_disposition": "BRANCH_HISTORY_PRESERVED; REF_DELETION_NOT_REQUIRED_FOR_SOURCE_BOUND_TRUTH"
+    },
+    {
+      "repository": "GlacierEQ/job-app-helix",
+      "source_head": "17c666190d84b1f8b49a3e377808a23011bd63a8",
+      "post_merge_verification": [
+        "CI:success",
+        "Portfolio Compiler Integrity:success"
+      ]
+    }
+  ],
+  "pending": [
+    {
+      "repository": "GlacierEQ/monolith",
+      "pull_request": 54,
+      "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
+      "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+      "ahead": 7,
+      "behind": 0,
+      "files_changed": 10,
+      "decision": "EXACT_HEAD_PROOF_NOT_EXECUTED",
+      "verification_observations": [
+        "Legal Live Reconciliation Verification job concluded failure with zero executed steps",
+        "Monolith Catalog Evolution Gate validate-catalog job concluded failure with zero executed steps",
+        "Catalog dependent regeneration job skipped",
+        "No validator assertion failure was observed"
+      ],
+      "verification_blocker": "PRE_STEP_NATIVE_JOB_FAILURE; PR_BODY_CONTINUES_TO_REPORT_PRIVATE_ACTIONS_BUDGET_BLOCK_BEFORE_RUNNER_ALLOCATION",
+      "alternate_proof_state": "NO_EQUIVALENT_EXACT_HEAD_PUBLIC_VALIDATOR_SUCCESS_OBSERVED"
+    }
+  ],
+  "intelligence": {
+    "reference_company_registry": "manifests/company_dossiers.json",
+    "company_analysis_topology": "manifests/company_analysis_topology.json",
+    "company_analysis_planner": "scripts/build_company_analysis_plan.py",
+    "worker_science_bridge": "src/job_app_helix/worker_science.py",
+    "changed_this_pass": true,
+    "decision": "CURRENT_HELIX_CANON_NOW_INCLUDES_DYNAMIC_COMPANY_ANALYSIS_TOPOLOGY_AND_ABLATION_GATED_WORKER_SCIENCE"
+  },
+  "legal_spine": {
+    "drift_detected": false,
+    "contract_preserved": true,
+    "monolith_candidate_changed_files_touch_generated_legal_spine_artifacts": false,
+    "source_head_observed": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "candidate_head": "a93c3f79f8d72d8a3f8fa0166fd2cadd48b88c03",
+    "merge_base": "3718eb3214b6d9bf70f175af3f6e1a918d647fdd",
+    "ahead": 7,
+    "behind": 0
+  },
+  "tooling": {
+    "helix_post_merge_native_ci": "GREEN_ON_17c666190d84b1f8b49a3e377808a23011bd63a8",
+    "monolith_private_github_hosted_actions": "WORKFLOW_RUNS_CREATED_BUT_FAILURE_OCCURRED_BEFORE_JOB_STEPS_EXECUTED",
+    "public_fixed_command_runner": "AVAILABLE_IN_ESTATE; MONOLITH_a93c3f79_EXACT_HEAD_SUCCESS_NOT_OBSERVED"
+  },
+  "mesh_continuity": {
+    "classification": "VERIFIED_REGRESSION_REPAIRED",
+    "controlling_invariant": "MERGE_TRANSCRIBE_COMPOUND; NEVER_REPLACE_BY_NEWNESS",
+    "latest_semantics": "ROUTING_CURSOR_ONLY",
+    "retirement_requirement": "VERIFIED_UNIQUE_CONTRIBUTION_ZERO_PLUS_EXPLICIT_OPERATOR_AUTHORIZATION_PLUS_DURABLE_LINEAGE_POINTERS",
+    "remote_ref_deletion": "FORBIDDEN_AS_RETIREMENT_SEMANTICS",
+    "historical_snapshot_authority": "HISTORICAL_SOURCE_AND_LINEAGE_ONLY; NOT CURRENT_RETIREMENT_AUTHORITY",
+    "historical_conflicts": [
+      {
+        "pattern": "DELETE_REF_REQUIRED",
+        "relationship": "CONTRADICTS",
+        "status": "HISTORICAL_REGRESSION_EVIDENCE_ONLY"
+      },
+      {
+        "pattern": "RETIREMENT_READY",
+        "relationship": "CONTRADICTS_UNLESS_ZERO_UNIQUE_CONTRIBUTION_IS_PROVIDER_VERIFIED",
+        "status": "CANDIDATE_UNVERIFIED_BY_DEFAULT"
+      },
+      {
+        "pattern": "current canonical supersedes/replaces older donor",
+        "relationship": "CONTRADICTS",
+        "status": "NEWNESS_OR_MAIN_STATUS_CANNOT_ESTABLISH_REPLACEMENT"
+      }
+    ],
+    "partial_overlap_relationships": [
+      "MERGED_WITH",
+      "SUPERSEDES_ONLY",
+      "CONTRADICTS",
+      "DUPLICATE_OF",
+      "DERIVED_FROM"
+    ],
+    "source_enforcement": "src/job_app_helix/library_program.py",
+    "source_enforcement_state": "FAIL_CLOSED_ON_DESTRUCTIVE_REMOTE_REF_DISPOSITION_AND_REQUIRE_ZERO_CONTRIBUTION_PROOF_WITH_LINEAGE_FOR_RETIREMENT"
+  },
+  "next_run_contract": "Begin from current provider main and recover source-bearing state before acting. Treat historical Estate Evolution snapshots as lineage/source evidence, never as current retirement authority. Preserve every donor ACTIVE_IN_MESH until provider-read-back UNIQUE_CONTRIBUTION=0, explicit Operator retirement authorization, and durable lineage/source pointers are all present. Remote-ref deletion is not retirement. For Monolith PR #54, preserve the candidate until exact-head legal/catalog proof executes; treat pre-step workflow failure as an execution blocker, not a validator failure."
+}

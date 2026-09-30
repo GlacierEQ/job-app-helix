@@ -1,0 +1,32 @@
+{
+  "boundary": "This is an externally bounded synthesis of public requirements and published AI-development principles, not a claim about a proprietary Lockheed Martin defect, bottleneck, architecture, or internal deployment.",
+  "bounded_problem_id": "trusted_agentic_ai_integration",
+  "captured_at": "2026-08-07T13:18:00-10:00",
+  "company_id": "lockheed_martin",
+  "official_sources": [
+    {
+      "supports": [
+        "Space AI Talent Center context",
+        "Agentic AI priority",
+        "integration of disparate software systems",
+        "MLOps/DevOps/CI/CD",
+        "unit testing and debugging",
+        "cloud-native technologies"
+      ],
+      "url": "https://www.lockheedmartinjobs.com/job/sunnyvale/architecture-and-algorithms-agentic-ai-ml-engineer-level-2-3/694/97838518096"
+    },
+    {
+      "supports": [
+        "AI Factory repeatable process",
+        "traceability",
+        "reliability",
+        "explainability",
+        "model monitoring",
+        "robust trusted AI development processes"
+      ],
+      "url": "https://www.lockheedmartin.com/en-us/capabilities/artificial-intelligence-machine-learning.html"
+    }
+  ],
+  "schema": "glaciereq.public-problem-evidence.v1",
+  "statement": "A publicly supportable engineering problem is integrating and operationalizing agentic AI/ML across disparate Space software systems while preserving repeatable traceability, reliability, explainability, model monitoring, testability, and CI/CD discipline."
+}

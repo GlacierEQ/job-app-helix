@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/capability.schema.json",
+  "title": "Evidence-Bound Capability",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "capability_id", "name", "status", "system_ids", "evidence_ids"],
+  "properties": {
+    "schema": {"const": "glaciereq.capability.v1"},
+    "capability_id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "status": {"enum": ["VERIFIED", "DEMONSTRATED", "EXPERIMENTAL", "PARTIALLY_VERIFIED", "UNMEASURED", "BLOCKED", "INVALIDATED"]},
+    "system_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "evidence_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "next_gate": {"type": ["string", "null"]}
+  }
+}

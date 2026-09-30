@@ -1,0 +1,22 @@
+{
+  "repo": "Pro-xAI",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "needs_work",
+  "canonical": "xai-colossus-cooling",
+  "innovation_summary": "Private 'Pro-tier' xAI umbrella in the pro_control_surfaces domain, indexing the Colossus infrastructure suite plus Grok agent architecture, legal intelligence, thermal, energy, waterplant, microcode, security, and community ops. Its README was inspected and the recorded finding is that it is a strategy/registry surface rather than verified runtime proof, with copy asserting command-center status and Director/VP-level engineering not established by source evidence. The capabilities catalog now records a classifier (human_ui_pro_control_surfaces), a recorded issue-contract proof, and a mesh URI \u2014 but that is a catalog assertion, not runtime verification. A P0 rewrite is on record.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json line 13964 (domain=pro_control_surfaces, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, Python, desc 'Pro-tier xAI sovereign flagship - Colossus infrastructure suite, Grok agent architecture, legal intelligence, thermal engineering, energy systems, waterplant, microcode, security, and community ops', updatedAt 2026-06-24T08:07:22Z)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:19475 (name=Pro-xAI; classifier=human_ui_pro_control_surfaces; elevator_pitch='High-performance Human Ui Pro Control Surfaces engine within the GlacierEQ ecosystem'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/human_ui_pro_control_surfaces/Pro-xAI)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (disposition PRIVATE_STRATEGY_OR_REGISTRY_HUB_REWRITE_REQUIRED; finding XAI-004 - state VERIFIED_FROM_CURRENT_READMES; next_actions P0 rewrite with no operational/affiliation/Director-VP claims)",
+    "/tmp/monolith/status/PRO_CONTROL_SURFACE_ATLAS.md line 30 (basis: catalog description; confidence medium); /tmp/monolith/status/XAI_COLOSSUS_CANONICALIZATION.md finding 4 (line 78); /tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md line 155 (unprocessed)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json line 309 (xai_colossus.unprocessed)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 5,
+  "makes_worthy": "Perform the on-record P0 rewrite into a truthful private control surface: replace sovereign-flagship framing with a receipt-linked index, mark every unreceipted subsystem UNVERIFIED, add explicit non-affiliation language, and split Colossus-infra concerns from legal tooling.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=5",
+  "last_verified": "2026-08-29T08:47:16.933465",
+  "notes": " | NEEDS_REPAIR"
+}

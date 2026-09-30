@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/target-assessment.schema.json",
+  "title": "Estate Target Assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "repository", "system_id", "bottleneck_importance", "repository_fit", "proofability", "cross_repo_compounding", "enterprise_relevance", "expected_value", "implementation_cost", "regression_risk", "uncertainty", "rationale_refs"],
+  "properties": {
+    "schema": {"const": "glaciereq.target-assessment.v1"},
+    "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
+    "system_id": {"type": "string", "minLength": 1},
+    "bottleneck_importance": {"type": "number", "minimum": 0, "maximum": 1},
+    "repository_fit": {"type": "number", "minimum": 0, "maximum": 1},
+    "proofability": {"type": "number", "minimum": 0, "maximum": 1},
+    "cross_repo_compounding": {"type": "number", "minimum": 0, "maximum": 1},
+    "enterprise_relevance": {"type": "number", "minimum": 0, "maximum": 1},
+    "expected_value": {"type": "number", "minimum": 0, "maximum": 1},
+    "implementation_cost": {"type": "number", "minimum": 0, "maximum": 1},
+    "regression_risk": {"type": "number", "minimum": 0, "maximum": 1},
+    "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+    "rationale_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}

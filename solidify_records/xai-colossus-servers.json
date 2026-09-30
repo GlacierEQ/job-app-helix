@@ -1,0 +1,28 @@
+{
+  "repo": "xai-colossus-servers",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "in_preparation",
+  "canonical": "xai-colossus-cooling",
+  "innovation_summary": "Bounded rack-placement planner for Colossus-class GPU fleets: it takes validated node and rack declarations, sorts by descending requested kW then stable node id, applies first-fit-decreasing placement with preferred-rack handling and fallback, and returns explicit rack usage, headroom, and per-node unplaced reasons without mutating caller objects or any external system. It is the strongest-evidenced repo in this slice: a monolith promotion receipt records 20 passing planner and truth-surface tests at an exact source head with a hashed CI artifact. Overstated claims (100k+ GPU operation, live topology discovery, GPU telemetry, 99.9% availability) were explicitly removed from the public surface rather than defended.",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json (evidence_state=BOUNDED_RACK_PLANNER_TEST_VERIFIED; source_head_commit 4f3bbdc0396b75188dcb88ce81938fee5d1451e6; PR #11 branch portfolio-truth-hardening-v1, merged=false)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json direct_gate: workflow 'Servers Placement Truth Gate', run_id 30897116390, job_id 91952549493, conclusion=success, python 3.11.15, tests_passed=20",
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json deterministic_scenario: DETERMINISTIC_SCENARIO_VERIFIED, algorithm=first_fit_decreasing_with_preference, rack-1 14.0/15.0 kW (1.0 headroom), rack-2 10.0/20.0 kW (10.0 headroom), unplaced=['overflow'], scenario_sha256 9917ef6cbc25f9a842206b097e9e7194866040b5d3a727ed50f274a82f3f7617, external_mutation=false",
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json artifact: id 8887480269 'servers-placement-verification', 1776 bytes, digest sha256:c9dd3f0da5fd37a4e792728bee2228066ddd25bc7f7a475a913809044b70612f",
+    "/tmp/monolith/receipts/company_families/xai_colossus_servers_hardening.json reusable_gate: workflow 'CI' run_id 30897118050 success via repository-owned scripts/ci/verify_portfolio_core.sh",
+    "Named source artifacts listed in receipt source_changes: src/rack_planner.py, tests/test_rack_planner.py, tests/test_portfolio_truth_surface.py, scripts/ci/verify_portfolio_core.sh, .github/workflows/servers-core-truth.yml, .github/workflows/ci.yml, README.md",
+    "/tmp/monolith/status/XAI_COLOSSUS_SERVERS_PROMOTION.md (full promotion writeup, verified public contract diagram, removed-claims list, 7 remaining gates)",
+    "/tmp/monolith/status/XAI_COLOSSUS_PROMOTION_INDEX.md line 13 (Servers | xai-colossus-servers#11 | BOUNDED_RACK_PLANNER_TEST_VERIFIED | 20 passing | artifact 8887480269 | not merged)",
+    "/tmp/monolith/catalog/library.json (role=part, activity=worked_on, status_detail=worked_solidified, public, local_job_app=true, Python, desc 'Rack placement under power + affinity (portfolio) - AKOS P1')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (xai_colossus.current_preparation)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json (domain_umbrellas; readme_inspected)",
+    "/tmp/monolith/status/COLOSSUS_XAI_ATLAS.md line 32 (system level: controller, confidence high)",
+    "/tmp/monolith/status/functions/infrastructure.md line 36",
+    "/tmp/monolith/status/WORKED_ON.md line 118",
+    "/tmp/monolith/domains/colossus_xai.md line 22"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 8,
+  "makes_worthy": "Already portfolio-ready at 8 on executed evidence. To push to 9-10: land draft PR #11 so the verified truth surface is the default branch, then close the receipt's stated next gates - typed versioned node/rack schemas with units and provenance, cooling/network-affinity/failure-domain modelling, property tests plus a documented optimization-baseline comparison, and deterministic fixture replay receipts. Keep the private Alpha/Omega experiments (blocked for calibration and state isolation) excluded from the public claim."
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "glaciereq.live-evidence-adapter-bootstrap-receipt.v1",
+  "date": "2026-08-02",
+  "state": "HOSTED_VERIFIED_AND_MERGED",
+  "pull_request": 33,
+  "verified_head_sha": "a72078ac6f0ac297737e67ed525dfe9cf123a768",
+  "merge_sha": "b3ab885da7a0f63e6f620c9ed5dc44e33f1be377",
+  "verification": {
+    "focused_adapter": {
+      "run_id": 30748505426,
+      "conclusion": "success",
+      "compile": "success",
+      "lint": "success",
+      "adapter_cli_registry_and_health_regressions": "success",
+      "generated_persisted_registry_parity": "success",
+      "installed_wheel_outside_checkout": "success",
+      "assessment_artifact_id": 8833658687,
+      "assessment_artifact_digest": "sha256:b94a2f337c13ef442170cc75f83864b0193dfbbcb043672340459beef4aa8092"
+    },
+    "exact_uv_lock": {
+      "run_id": 30748505404,
+      "conclusion": "success",
+      "lock_current": "success",
+      "exact_install": "success",
+      "full_suite": "success",
+      "strict_lint": "success"
+    },
+    "repository_health_engine": {
+      "run_id": 30748505403,
+      "conclusion": "success",
+      "health_regressions": "success",
+      "deterministic_cli_gate": "success"
+    },
+    "repository_ci": {
+      "run_id": 30748505416,
+      "conclusion": "success",
+      "python_versions": ["3.11", "3.12", "3.13"],
+      "lint": "success",
+      "full_tests": "success",
+      "portfolio_contract": "success",
+      "protobuf_contract": "success",
+      "readme_mesh": "success",
+      "campaign_proofs": "success",
+      "public_boundary": "success"
+    },
+    "recruiter_package": {
+      "run_id": 30748505408,
+      "conclusion": "success",
+      "final_form_verification": "success"
+    },
+    "review_threads": {
+      "unresolved": 0,
+      "resolution_basis": "code, regression tests, installed-wheel execution, exact lock verification, and final hosted gates"
+    }
+  },
+  "first_observation": {
+    "repository": "GlacierEQ/AKOS",
+    "observed_head_sha": "1607c0d27897ea963eb572062300342f1922b84c",
+    "state": "PARTIALLY_VERIFIED",
+    "health_score": 30.76,
+    "evidence_coverage": 55.0,
+    "confidence_score": 48.75,
+    "connector_quality_score": 75.0,
+    "data_quality_score": 80.0,
+    "observation_id": "49daddbd413db11746942adf5321707d4039d922ae335a7be2eb4f5136d0d1c3",
+    "assessment_id": "5280c451d0ddedd1fcbbf5308ee6598dcbc96eb9a3a2fc25e2d706a6244ae866",
+    "persisted_assessment": "status/repository-assessments/GlacierEQ__AKOS__1607c0d27897ea963eb572062300342f1922b84c.json",
+    "blockers": [
+      "Current build and test workflow invocation state is ambiguous for the observed direct-main SHA.",
+      "No current security verification receipt is available for the observed SHA."
+    ]
+  },
+  "guarantees": [
+    "child repository source bytes are not copied into Helix",
+    "the complete observation is validated against the packaged Draft 2020-12 schema",
+    "artifact and execution receipts require reference repository, exact path, trusted provider, and current SHA binding",
+    "unverified execution dimensions receive no fallback execution coverage",
+    "current trusted failures remain failures even when stale receipts are mixed in",
+    "connector quality and data quality remain independent",
+    "default policies and schema work from an installed wheel outside the source checkout",
+    "assessment writes use atomic replacement",
+    "the exact uv lock, focused adapter, health engine, full repository matrix, recruiter package, and review closure passed before merge",
+    "the persisted assessment, generated assessment, and live registry are identical"
+  ],
+  "not_claimed": [
+    "AKOS currently passes its configured workflow at the observed SHA",
+    "AKOS is recruiter ready or elite verified",
+    "README claims establish current provider execution",
+    "all portfolio repositories have live observations"
+  ]
+}

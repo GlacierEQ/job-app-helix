@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glaciereq.local/schemas/estate/mechanism.schema.json",
+  "title": "Engineering Mechanism",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "mechanism_id", "problem", "cause", "mechanism", "implementation_refs", "measurement_refs", "failure_modes", "boundaries", "enterprise_value"],
+  "properties": {
+    "schema": {"const": "glaciereq.mechanism.v1"},
+    "mechanism_id": {"type": "string", "minLength": 1},
+    "problem": {"type": "string", "minLength": 1},
+    "cause": {"type": "string", "minLength": 1},
+    "mechanism": {"type": "string", "minLength": 1},
+    "implementation_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "measurement_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "failure_modes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "boundaries": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "enterprise_value": {"type": "string", "minLength": 1}
+  }
+}

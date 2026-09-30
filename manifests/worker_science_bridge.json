@@ -1,0 +1,60 @@
+{
+  "schema": "glaciereq.worker-science-bridge.v1",
+  "version": "1.0.0",
+  "authority": {
+    "consumer_repository": "GlacierEQ/job-app-helix",
+    "consumer_module": "src/job_app_helix/worker_science.py",
+    "source_repository": "GlacierEQ/make-it-heavy",
+    "source_branch": "main"
+  },
+  "purpose": "Import longitudinal worker-performance evidence into Helix without turning worker count, self-scoring, provider failures, or prompt changes into unsupported hiring or innovation claims.",
+  "accepted_source_families": [
+    "glaciereq.make-it-heavy.worker-baseline-zero.v2",
+    "glaciereq.make-it-heavy.external-worker-turn.v1",
+    "glaciereq.make-it-heavy.worker-turn-report.v2",
+    "glaciereq.make-it-heavy.external-worker-experiment.v1"
+  ],
+  "normalization_target": "glaciereq.worker-science-experiment.v1",
+  "required_invariants": {
+    "immutable_source_ref": true,
+    "exactly_one_baseline_per_comparison_key": true,
+    "baseline_turn_index": 0,
+    "freeze_topology_for_matched_template_comparison": true,
+    "freeze_provider_for_matched_template_comparison": true,
+    "freeze_scoring_rubric_for_matched_template_comparison": true,
+    "one_changed_axis_per_changed_worker": true,
+    "infrastructure_invalid_turns_excluded_from_learning": true,
+    "quality_is_observational": true,
+    "marginal_system_value_requires_ablation": true,
+    "outcome_leverage_requires_ablation": true,
+    "topology_preset_requires_ablation_for_every_baseline_worker": true
+  },
+  "score_semantics": {
+    "quality": "How well the worker performed its assigned contract under the fixed review rubric. This is not causal system value.",
+    "marginal_system_value": "Signed full-system outcome minus matched full-minus-worker outcome. Null until a performance-valid ablation.",
+    "outcome_leverage": "Normalized decision/artifact impact attributable to the worker under the matched ablation contract. Null until a performance-valid ablation.",
+    "legacy_benefit": "May be retained as source telemetry but must not be relabeled as marginal system value."
+  },
+  "state_projection": {
+    "BASELINE_READY": "Run a matched template delta with frozen topology/provider/rubric.",
+    "PROVIDER_BLOCKED": "Repeat the exact matched turn only after a healthy provider probe; do not mutate worker templates.",
+    "DELTA_MEASURED": "Run worker ablations before topology compression or specialization.",
+    "CAUSAL_TOPOLOGY_READY": "Derive a mission-family-specific learned topology preset from completed ablations."
+  },
+  "initial_series": {
+    "mission_family": "flagship_employer_bottleneck",
+    "comparison_key": "anthropic_agent_reliability_v1",
+    "baseline_source": "GlacierEQ/make-it-heavy:receipts/anthropic-worker-baseline-zero-2026-08-07.json",
+    "matched_delta_spec": "GlacierEQ/make-it-heavy:experiments/anthropic-turn1-template-delta-external-spec.json",
+    "latest_known_invalid_attempt": "GlacierEQ/make-it-heavy:receipts/anthropic-turn1-attempt-a-infra-failure-2026-08-07.json",
+    "expected_state_before_valid_rerun": "PROVIDER_BLOCKED"
+  },
+  "projection_boundaries": {
+    "raw_worker_responses_public": false,
+    "private_provider_diagnostics_public": false,
+    "causal_claim_without_ablation_public": false,
+    "learned_topology_may_inform_company_missions": true,
+    "company_projection_must_preserve_source_truth_boundary": true
+  },
+  "truth_boundary": "Helix consumes worker-science receipts as experimental control evidence. A worker-quality improvement does not prove causal system value; a topology is not learned until matched ablations support it; a topology learned for one mission family is not presumed optimal for another."
+}

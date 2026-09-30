@@ -1,0 +1,48 @@
+repository: GlacierEQ/spacex-telemetry
+commit: 87857ceca59201aa0da668395f226be77cde75db
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Deterministic local telemetry-codec and controller behavior, including
+  integrity rejection, sequence accounting, local alerting, and serialization
+  receipts without external input or actions.
+artifact:
+  repository_url: https://github.com/GlacierEQ/spacex-telemetry
+  inspected_paths:
+    - README.md
+    - src/telemetry_lab_cli.py
+    - tests/test_installable_telemetry_lab.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit; this
+    review does not assert that repository tests were executed during recovery.
+claim: >-
+  At the reviewed commit, the repository builds a deterministic local demo
+  receipt that decodes synthetic binary frames, accounts for an intentional
+  sequence gap and dropped frame, rejects a corrupted CRC frame, creates a
+  local threshold alert, performs a local Protobuf round trip, records zero
+  external inputs and actions, and hashes the receipt. Repository-owned tests
+  encode the expected local receipt values.
+known_limit: >-
+  The artifact does not establish SpaceX affiliation, private telemetry or wire
+  format provenance, live ingestion, protocol compatibility, measured
+  throughput or latency, operational timestamp fidelity, deployment, safety,
+  or mission authority.
+evidence_boundary: LOCAL_SYNTHETIC_TELEMETRY_CODEC_NOT_SPACEX_DATA
+thread_relationships:
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-mission-thread-quorum
+    note: >-
+      Curator-defined observation/decision connection. This does not assert a
+      live data feed, shared runtime, or external integration.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-mission-control
+    note: >-
+      Curator-defined mission-systems connection. This does not assert an
+      operational interface or implementation dependency.
+  - type: contextual_neighbor
+    repository: GlacierEQ/spacex-launch-sequencer
+    note: >-
+      Curator-defined event-context connection. This does not assert telemetry
+      use in a countdown or any real mission procedure.

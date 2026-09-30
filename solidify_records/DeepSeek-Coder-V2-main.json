@@ -1,0 +1,20 @@
+{
+  "repo": "DeepSeek-Coder-V2-main",
+  "family": "DeepSeek",
+  "kind": "company",
+  "source_state": "reference",
+  "innovation_summary": "Private GlacierEQ copy of the DeepSeek-Coder-V2 'main' branch. Catalog carries only an empty description and a capabilities_3layer stub (elevator_pitch + launch_cmd git clone, contract_proof DONE, mesh_uri) with no inspected local code, test, or fact card. Multi-source evidence: library.json:5404 (desc empty; private=true; language Python; url https://github.com/GlacierEQ/DeepSeek-Coder-V2-main), capabilities_3layer:63304 (stub), company_engineered_repositories.json:120 (DeepSeek family, reference_or_upstream). Treated as an upstream reference snapshot, NOT a portfolio contribution. It is unclear how this differs from DeepSeek-Coder-V2; the relationship must be verified before featuring.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:5404 (name DeepSeek-Coder-V2-main; desc empty; private=true; language Python; url https://github.com/GlacierEQ/DeepSeek-Coder-V2-main)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:117-120 (family DeepSeek; reference_or_upstream)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:63304 (stub: name, launch_cmd git clone, contract_proof DONE, mesh_uri \u2014 no functional summary)",
+    "Contradiction preserved: this repo and DeepSeek-Coder-V2 share the same upstream name and 'reference_or_upstream' status but are listed as separate entries with no documented relationship \u2014 they may be a 'main branch' snapshot vs. a release-tag mirror, but that distinction is unverified."
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Promoted 3->4: catalog presence + private+Python signal + family taxonomy. To reach >=6: verify the pinned upstream commit, document the difference vs. DeepSeek-Coder-V2, and add a fact card. Capped at 4: empty description + stub capability only; no code/test/fact card; relationship to sibling DeepSeek-Coder-V2 repo unverified.",
+  "wave3": true,
+  "last_verified": "2026-08-29T08:47:16.836370",
+  "notes": "catalog_only | VERIFIED_EXTERNAL_REFERENCE",
+  "classification_reason": "classified_as_reference"
+}

@@ -1,0 +1,20 @@
+{
+  "repo": "perplexity-extension",
+  "family": "Perplexity",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "An AI-powered coding assistant that uses a Perplexity Pro account (TypeScript). Triple-cataloged: (a) library.json:13132 (entry perplexity-extension; url=https://github.com/GlacierEQ/perplexity-extension); (b) capabilities_3layer.json:43813 classifier extended_utilities_and_experiments with contract_proof 'DONE \u21d4 issue-contract proof(pain)' and mesh URI glaciereq://mesh/extended_utilities_and_experiments/perplexity-extension; (c) company_engineered_repositories.json:239 unprocessed (Perplexity family). The expanded_job_app_helix_manifest.json (line 821) assigns it as a job-app-helix mesh leaf, family Perplexity, state needs_work. The 'coding assistant via Perplexity Pro' concept is a clean cross-cutting candidate that could be wired into the openai-agents-js / openai-agents-python leaves, but the unprocessed backlog placement means no local build/test/fact card. Cap honestly at 6.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry perplexity-extension, line 13132; url=https://github.com/GlacierEQ/perplexity-extension)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (line 43813: name=perplexity-extension; classifier=extended_utilities_and_experiments; executive_summary='AI-powered coding assistant, using your Perplexity Pro account.'; contract_proof='DONE \u21d4 issue-contract proof(pain)'; mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/perplexity-extension; launch_cmd='git clone https://github.com/GlacierEQ/perplexity-extension')",
+    "/tmp/monolith/catalog/company_engineered_repositories.json (line 239: unprocessed)",
+    "/tmp/helix_patch/expanded_job_app_helix_manifest.json (line 821: kind=company, state=needs_work, family='Perplexity' \u2014 confirmed job-app-helix mesh membership)"
+  ],
+  "verification_status": "NEEDS_REPAIR",
+  "worthy_rating": 6,
+  "makes_worthy": "Honest cap at 6 \u2014 strong catalog + helix membership, but no working extension build/fact card. To reach 7+ requires: (1) clone the repo, (2) produce a working browser-extension build, (3) write an integration test that exercises a Perplexity Pro API call through the extension surface, (4) emit a fact card with build receipt, and (5) update company_engineered_repositories.json from unprocessed to in_preparation.",
+  "wave3": true,
+  "classification_reason": "needs_repair: worthy=6",
+  "last_verified": "2026-08-29T08:47:16.901389",
+  "notes": " | NEEDS_REPAIR"
+}

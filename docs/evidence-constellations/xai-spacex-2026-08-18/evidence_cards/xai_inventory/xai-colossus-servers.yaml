@@ -1,0 +1,58 @@
+repository: GlacierEQ/xai-colossus-servers
+commit: cbc4bc6ff04aca545793dbc002aaaf773434f24d
+reviewed_at: 2026-08-18
+visibility: public
+review_status: source_reviewed
+claim_support: directly_supported
+problem_lens: >-
+  Deterministic placement of caller-declared compute-node demand into
+  caller-declared rack power-capacity scenarios, with explicit validation,
+  preference handling, and unplaced-node outcomes.
+artifact:
+  repository_url: https://github.com/GlacierEQ/xai-colossus-servers
+  inspected_paths:
+    - README.md
+    - src/rack_planner.py
+    - tests/test_rack_planner.py
+    - tests/test_portfolio_truth_surface.py
+  review_method: >-
+    Static source and behavioral-contract review at the recorded commit; this
+    review does not assert that repository tests were executed during recovery.
+claim: >-
+  At the reviewed commit, the repository implements a deterministic first-fit-
+  decreasing scenario heuristic over supplied nodes and racks. It validates
+  identifiers and finite declared power values, rejects ambiguous inputs, tries
+  a preferred rack before caller-ordered alternatives, records explicit
+  unplaced reasons, reports per-rack headroom, and preserves caller-owned rack
+  state. Repository-owned tests encode placement, fallback, ordering, capacity,
+  validation, and non-mutation expectations.
+known_limit: >-
+  The artifact is not a global optimizer and does not discover hardware,
+  measure power, inspect topology, collect telemetry, issue installation or
+  workload-movement commands, establish availability, operate a datacenter, or
+  establish any relationship with xAI. Private Alpha/Omega experiments remain
+  separate and are excluded from this public-planner claim.
+evidence_boundary: >-
+  Deterministic local scenario planning over caller-declared inputs only; no
+  live inventory, topology, telemetry, or infrastructure authority.
+thread_relationships:
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-energy
+    note: >-
+      Curator-defined capacity-scenario connection. This does not assert a
+      shared runtime, telemetry feed, facility access, or power authority.
+  - type: contextual_neighbor
+    repository: GlacierEQ/xai-colossus-cooling
+    note: >-
+      Curator-defined rack/thermal-scenario connection. This does not assert
+      live cooling awareness, hardware control, or a deployed integration.
+  - type: experimental_variation
+    repository: GlacierEQ/xai-colossus-servers-alpha
+    note: >-
+      Preserved private Alpha research lineage, explicitly excluded from this
+      public-planner claim.
+  - type: experimental_variation
+    repository: GlacierEQ/xai-colossus-servers-omega
+    note: >-
+      Preserved private Omega research lineage, explicitly excluded from this
+      public-planner claim.

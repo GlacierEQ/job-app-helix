@@ -1,0 +1,460 @@
+{
+  "schema": "glaciereq.excellence-wave-plan.v1",
+  "wave": "WAVE-C-2026-08-10",
+  "group": "C",
+  "label": "Wave C \u2014 Innovation scaffold excellence group",
+  "generated_at": "2026-08-10T1002Z",
+  "supersedes_closed": [
+    "WAVE-A",
+    "WAVE-B"
+  ],
+  "intent": "Start all company innovation scaffolds under the next excellence group after Wave B closed. Leaves remain DISCOVERED with gap-receipt until real mechanism implementation + proof. Other AIs fill code via DEV_UP_INSTRUCTIONS.md.",
+  "count": 47,
+  "leaves": [
+    {
+      "leaf": "adobe-creative-provenance-gate",
+      "company_lens": "adobe",
+      "innovation": "Creative Provenance Gate",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/adobe-creative-provenance-gate"
+    },
+    {
+      "leaf": "amd-hetero-placement-contract",
+      "company_lens": "amd",
+      "innovation": "Heterogeneous Placement Contract",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/amd-hetero-placement-contract"
+    },
+    {
+      "leaf": "atlassian-workgraph-intent-twin",
+      "company_lens": "atlassian",
+      "innovation": "Workgraph Intent Twin",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/atlassian-workgraph-intent-twin"
+    },
+    {
+      "leaf": "baseten-serving-slo-circuit",
+      "company_lens": "baseten",
+      "innovation": "Serving SLO Circuit",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/baseten-serving-slo-circuit"
+    },
+    {
+      "leaf": "blue-origin-cryo-telemetry-half-life",
+      "company_lens": "blue_origin",
+      "innovation": "Cryo Telemetry Half-Life",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/blue-origin-cryo-telemetry-half-life"
+    },
+    {
+      "leaf": "cerebras-wafer-batch-admission-gate",
+      "company_lens": "cerebras",
+      "innovation": "Wafer Batch Admission Gate",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/cerebras-wafer-batch-admission-gate"
+    },
+    {
+      "leaf": "cloudflare-edge-cap-mint",
+      "company_lens": "cloudflare",
+      "innovation": "Edge Cap Mint",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/cloudflare-edge-cap-mint"
+    },
+    {
+      "leaf": "cognition-execution-checkpoint-lattice",
+      "company_lens": "cognition",
+      "innovation": "Execution Checkpoint Lattice",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/cognition-execution-checkpoint-lattice"
+    },
+    {
+      "leaf": "cohere-retrieval-claim-fence",
+      "company_lens": "cohere",
+      "innovation": "Retrieval Claim Fence",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/cohere-retrieval-claim-fence"
+    },
+    {
+      "leaf": "coreweave-rack-power-autopilot",
+      "company_lens": "coreweave",
+      "innovation": "Rack Power Autopilot",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/coreweave-rack-power-autopilot"
+    },
+    {
+      "leaf": "crusoe-rack-to-token-autopilot",
+      "company_lens": "crusoe",
+      "innovation": "Rack-to-Token Autopilot",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/crusoe-rack-to-token-autopilot"
+    },
+    {
+      "leaf": "cursor-patch-intent-twin",
+      "company_lens": "cursor",
+      "innovation": "Patch Intent Twin",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/cursor-patch-intent-twin"
+    },
+    {
+      "leaf": "elastic-trajectory-index-layout",
+      "company_lens": "elastic",
+      "innovation": "Trajectory Index Layout",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/elastic-trajectory-index-layout"
+    },
+    {
+      "leaf": "fireworks-ai-optimization-safety-envelope",
+      "company_lens": "fireworks_ai",
+      "innovation": "Optimization Safety Envelope",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/fireworks-ai-optimization-safety-envelope"
+    },
+    {
+      "leaf": "github-pr-authority-matrix",
+      "company_lens": "github",
+      "innovation": "PR Authority Matrix",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/github-pr-authority-matrix"
+    },
+    {
+      "leaf": "gitlab-pipeline-intent-contract",
+      "company_lens": "gitlab",
+      "innovation": "Pipeline Intent Contract",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/gitlab-pipeline-intent-contract"
+    },
+    {
+      "leaf": "glean-enterprise-search-claim-fence",
+      "company_lens": "glean",
+      "innovation": "Enterprise Search Claim Fence",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/glean-enterprise-search-claim-fence"
+    },
+    {
+      "leaf": "hugging-face-model-card-provenance-seal",
+      "company_lens": "hugging_face",
+      "innovation": "Model Card Provenance Seal",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/hugging-face-model-card-provenance-seal"
+    },
+    {
+      "leaf": "ibm-governed-tool-catalog",
+      "company_lens": "ibm",
+      "innovation": "Governed Tool Catalog",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/ibm-governed-tool-catalog"
+    },
+    {
+      "leaf": "intel-npu-placement-passport",
+      "company_lens": "intel",
+      "innovation": "NPU Placement Passport",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/intel-npu-placement-passport"
+    },
+    {
+      "leaf": "lambda-useful-gpu-minute-contract",
+      "company_lens": "lambda",
+      "innovation": "Useful-GPU-Minute Contract",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/lambda-useful-gpu-minute-contract"
+    },
+    {
+      "leaf": "linear-issue-intent-twin",
+      "company_lens": "linear",
+      "innovation": "Issue Intent Twin",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/linear-issue-intent-twin"
+    },
+    {
+      "leaf": "lockheed-martin-mission-assurance-gateway",
+      "company_lens": "lockheed_martin",
+      "innovation": "Mission Assurance Gateway",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/lockheed-martin-mission-assurance-gateway"
+    },
+    {
+      "leaf": "mistral-open-weight-eval-fence",
+      "company_lens": "mistral",
+      "innovation": "Open Weight Eval Fence",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/mistral-open-weight-eval-fence"
+    },
+    {
+      "leaf": "modal-ephemeral-sandbox-receipt",
+      "company_lens": "modal",
+      "innovation": "Ephemeral Sandbox Receipt",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/modal-ephemeral-sandbox-receipt"
+    },
+    {
+      "leaf": "mongodb-operational-semantic-twin-index",
+      "company_lens": "mongodb",
+      "innovation": "Operational-Semantic Twin Index",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/mongodb-operational-semantic-twin-index"
+    },
+    {
+      "leaf": "motherduck-local-cloud-query-passport",
+      "company_lens": "motherduck",
+      "innovation": "Local-Cloud Query Passport",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/motherduck-local-cloud-query-passport"
+    },
+    {
+      "leaf": "nebius-cluster-energy-admission",
+      "company_lens": "nebius",
+      "innovation": "Cluster Energy Admission",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/nebius-cluster-energy-admission"
+    },
+    {
+      "leaf": "oracle-sovereign-data-boundary-gate",
+      "company_lens": "oracle",
+      "innovation": "Sovereign Data Boundary Gate",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/oracle-sovereign-data-boundary-gate"
+    },
+    {
+      "leaf": "pinecone-retrieval-outcome-optimizer",
+      "company_lens": "pinecone",
+      "innovation": "Retrieval Outcome Optimizer",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/pinecone-retrieval-outcome-optimizer"
+    },
+    {
+      "leaf": "qdrant-collection-quorum-guard",
+      "company_lens": "qdrant",
+      "innovation": "Collection Quorum Guard",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/qdrant-collection-quorum-guard"
+    },
+    {
+      "leaf": "qualcomm-on-device-budget-futures",
+      "company_lens": "qualcomm",
+      "innovation": "On-Device Budget Futures",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/qualcomm-on-device-budget-futures"
+    },
+    {
+      "leaf": "redis-stream-claim-cursor-fence",
+      "company_lens": "redis",
+      "innovation": "Stream Claim Cursor Fence",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/redis-stream-claim-cursor-fence"
+    },
+    {
+      "leaf": "replicate-model-version-pin-gate",
+      "company_lens": "replicate",
+      "innovation": "Model Version Pin Gate",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/replicate-model-version-pin-gate"
+    },
+    {
+      "leaf": "replit-workspace-cap-matrix",
+      "company_lens": "replit",
+      "innovation": "Workspace Cap Matrix",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/replit-workspace-cap-matrix"
+    },
+    {
+      "leaf": "rocket-lab-launch-hold-receipt",
+      "company_lens": "rocket_lab",
+      "innovation": "Launch Hold Receipt",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/rocket-lab-launch-hold-receipt"
+    },
+    {
+      "leaf": "runpod-pod-preempt-receipt",
+      "company_lens": "runpod",
+      "innovation": "Pod Preempt Receipt",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/runpod-pod-preempt-receipt"
+    },
+    {
+      "leaf": "salesforce-crm-action-authority",
+      "company_lens": "salesforce",
+      "innovation": "CRM Action Authority",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/salesforce-crm-action-authority"
+    },
+    {
+      "leaf": "scale-ai-label-consensus-fence",
+      "company_lens": "scale_ai",
+      "innovation": "Label Consensus Fence",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/scale-ai-label-consensus-fence"
+    },
+    {
+      "leaf": "snowflake-warehouse-spend-circuit",
+      "company_lens": "snowflake",
+      "innovation": "Warehouse Spend Circuit",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/snowflake-warehouse-spend-circuit"
+    },
+    {
+      "leaf": "sourcegraph-code-nav-intent-gate",
+      "company_lens": "sourcegraph",
+      "innovation": "Code Nav Intent Gate",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/sourcegraph-code-nav-intent-gate"
+    },
+    {
+      "leaf": "supabase-policy-carrying-ai-data-plane",
+      "company_lens": "supabase",
+      "innovation": "Policy-Carrying AI Data Plane",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/supabase-policy-carrying-ai-data-plane"
+    },
+    {
+      "leaf": "together-ai-open-model-fidelity-passport",
+      "company_lens": "together_ai",
+      "innovation": "Open-Model Fidelity Passport",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/together-ai-open-model-fidelity-passport"
+    },
+    {
+      "leaf": "vercel-deploy-preview-authority",
+      "company_lens": "vercel",
+      "innovation": "Deploy Preview Authority",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/vercel-deploy-preview-authority"
+    },
+    {
+      "leaf": "weaviate-hybrid-search-claim-fence",
+      "company_lens": "weaviate",
+      "innovation": "Hybrid Search Claim Fence",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/weaviate-hybrid-search-claim-fence"
+    },
+    {
+      "leaf": "windsurf-cascade-intent-twin",
+      "company_lens": "windsurf",
+      "innovation": "Cascade Intent Twin",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/windsurf-cascade-intent-twin"
+    },
+    {
+      "leaf": "zoox-fleet-skill-promotion-gate",
+      "company_lens": "zoox",
+      "innovation": "Fleet Skill Promotion Gate",
+      "state": "DISCOVERED",
+      "wave": "WAVE-C-2026-08-10",
+      "phase": "SCAFFOLD_ENROLLED",
+      "path": "repos/zoox-fleet-skill-promotion-gate"
+    }
+  ],
+  "gates": {
+    "G0_CONTRACT": "ISSUE_CONTRACT.md present",
+    "G1_CORE": "real mechanism (not scaffold stub)",
+    "G2_TESTS": ">=8 behavioral methods preferred for bodybuilder",
+    "G3_RECEIPT": "deterministic digests",
+    "G4_REFUSE": "explicit refuse paths",
+    "G5_CEILING": "non-affiliation preserved",
+    "PROMOTE": "AUTHORITY_BOUND + PROJECTION_TRUTH_CLOSED; PROMOTED XOR gap-receipt"
+  },
+  "protected_not_enrolled": [
+    "anduril-sensor-health-quorum",
+    "databricks-notebook-claim-fence",
+    "groq-jitter-envelope-contract",
+    "nasa-command-authority-half-life",
+    "palantir-object-authority-matrix",
+    "waymo-uncertainty-lane-graph"
+  ],
+  "note": "Protected leaves were prior-wave exhibits restored after name collision with scaffold batch.",
+  "closed_at": "2026-08-10T1011Z",
+  "close_result": "PASS",
+  "promoted_count": 47,
+  "gapped_count": 0
+}

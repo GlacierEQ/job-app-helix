@@ -1,0 +1,22 @@
+{
+  "repo": "AKOS",
+  "family": "GlacierEQ-core",
+  "kind": "core",
+  "source_state": "core_wholes",
+  "innovation_summary": "Apex Knowledge OS providing identity, sessions, governance, and a swarm bridge; the authority/completion-semantics core the portfolio builds on. It is independently VERIFIED by a 94/94 test run on GitHub Actions (run 30532339028) at source commit d00eb4a, with promotion merge b4b9ecba, and it is the authority under which the computer-user governed execution kernel (203 tests) executes.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json (entry name=AKOS; domain=apex_cognitive_os; role=whole; status_detail=worked_solidified; desc='Apex Knowledge OS \u2014 identity, sessions, governance, swarm bridge. Live job application.'; local_job_app=true)",
+    "/tmp/helix_patch/evidence_ledger_UPDATED.json (claim akos_tests: 'AKOS passed 94/94 tests across 12 modules on Python 3.11-3.13'; evidence='https://github.com/GlacierEQ/AKOS/actions/runs/30532339028'; source_commit=d00eb4a9889fb4b78621d422a70c2677e12a467d; promotion_merge=b4b9ecba71f41bf9e3ddffa1f6c2c34c6a9b7192)",
+    "/tmp/helix/Casey_Barton_JOB_APPLICATION_HELIX_TOWER_HARDENED_MASTERCLASS_2026-07-30/06_EVIDENCE_AND_QA/evidence_ledger.json (same 94/94 run proof)",
+    "/tmp/monolith/catalog/capabilities_3layer.json (name=AKOS; contract_proof='DONE <=> issue-contract proof(pain) for AKOS'; mesh_uri=glaciereq://mesh/cognitive_os_agent_kernels/AKOS)",
+    "/tmp/monolith/catalog/HIERARCHICAL_FUNCTION_MAP.json (name=AKOS; path=~/AKOS; primary_function='AKOS Identity, Hireability & Portfolio Governance')"
+  ],
+  "verification_status": "VERIFIED",
+  "worthy_rating": 9,
+  "repo_excellence_anchor": "Direct \u2014 computer-user governed kernel (203 tests PASS, live AKOS, restart-safe) executes UNDER AKOS authority; AKOS itself holds a concrete 94/94 test run receipt, making it the strongest proof anchor in the estate.",
+  "makes_worthy": "Embed the pinned source_commit d00eb4a + run 30532339028 locally as a fact card so the passing-test claim is re-verifiable without the remote URL; then promote to 10.",
+  "last_verified": "2026-08-29T04:40:00-10:00",
+  "notes": "local;2files",
+  "test_result": true,
+  "test_output": "============================= test session starts ==============================\nplatform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0\nrootdir: /data/data/com.termux/files/home/AKOS\nplugins: any"
+}

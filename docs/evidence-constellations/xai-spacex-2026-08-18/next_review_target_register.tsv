@@ -1,0 +1,9 @@
+repository	family	commit	readme_title	test_files	workflow_files	source_roots
+GlacierEQ/spacex-hold-reason-compiler	SpaceX	e7b928f9b713ac6e7652ac3b3b12df84e8880ec1	Hold Reason Compiler	5	2	src
+GlacierEQ/spacex-mission-thread-quorum	SpaceX	705d19b886be694d4a2b362abe246b932d88d9f7	Mission Thread Quorum	5	2	src
+GlacierEQ/spacex-pad-weather-gate	SpaceX	74e6e69d1e3c61b284b0b6917ba2b7a14a148f41	Environmental Constraint Gate	4	2	src
+GlacierEQ/spacex-telemetry	SpaceX	87857ceca59201aa0da668395f226be77cde75db	SpaceX Telemetry — Synthetic Telemetry Codec Laboratory	10	2	src
+GlacierEQ/xai-actuation-receipt-bus	xAI	bba0df2f3b75377fe98be47556214276681cbb9c	Actuation Receipt Bus	4	1	src
+GlacierEQ/xai-colossus-energy	xAI	3c919e96772f15fe6ab286d4c68284e4586c9813	Colossus Energy Scenario Model and Control-Family Gate	27	4	src
+GlacierEQ/xai-colossus-nanosphere	xAI	57e98af25e3172510c61c64d3b037949c68299f5	Nanofluid Conductivity, Stability, and Pump-Penalty Scenario Models	9	3	src
+GlacierEQ/xai-colossus-servers	xAI	cbc4bc6ff04aca545793dbc002aaaf773434f24d	Colossus Rack Placement Scenario Planner	8	3	src

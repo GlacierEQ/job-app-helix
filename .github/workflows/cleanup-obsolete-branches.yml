@@ -1,0 +1,78 @@
+name: Audit branch lineage preservation
+
+on:
+  pull_request:
+    paths:
+      - "manifests/obsolete_branches.json"
+      - "scripts/cleanup_obsolete_branches.py"
+      - "tests/test_obsolete_branch_cleanup.py"
+      - ".github/workflows/cleanup-obsolete-branches.yml"
+  push:
+    branches: [main]
+    paths:
+      - "manifests/obsolete_branches.json"
+      - "scripts/cleanup_obsolete_branches.py"
+      - "tests/test_obsolete_branch_cleanup.py"
+      - ".github/workflows/cleanup-obsolete-branches.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: obsolete-branch-lineage-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    name: Audit historical cleanup classifications without mutation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run read-only historical classification audit
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/cleanup_obsolete_branches.py
+          --repository "${{ github.repository }}"
+          --output artifacts/obsolete-branch-cleanup.json
+
+      - name: Assert holographic anti-replacement boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          if awk '
+            $1 == "contents:" && $2 == "write" { bad = 1 }
+            $1 == "--apply" { bad = 1 }
+            END { exit bad ? 0 : 1 }
+          ' .github/workflows/cleanup-obsolete-branches.yml; then
+            echo 'Destructive branch-ref authority is forbidden by holographic mesh anti-replacement.' >&2
+            exit 1
+          fi
+
+      - name: Upload read-only lineage audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: obsolete-branch-lineage-audit-${{ github.sha }}
+          path: artifacts/obsolete-branch-cleanup.json
+          if-no-files-found: error
+
+# HOLOGRAPHIC MESH ANTI-REPLACEMENT HARD LOCK
+# This workflow is intentionally read-only. Historical merged/superseded/stale
+# classifications are comparison evidence only. They never establish
+# UNIQUE_CONTRIBUTION=0 and never authorize ref deletion. A donor remains
+# ACTIVE_IN_MESH while any unique source, event, edge, contradiction,
+# provenance, mechanism, unresolved dependency, receipt, or authority-domain
+# fact remains. A fully drained donor is preserved as lineage/pointer state;
+# the remote ref is not deleted by this workflow.

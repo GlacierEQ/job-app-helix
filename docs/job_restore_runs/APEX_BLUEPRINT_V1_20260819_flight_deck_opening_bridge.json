@@ -1,0 +1,90 @@
+{
+  "schema": "APEX_BLUEPRINT_V1",
+  "lane": "JOB_RESTORE",
+  "verified_executable_capability_delta": "YES",
+  "owning_repo": "GlacierEQ/job-app-helix",
+  "source_sha_before_handoff": "e528106cbb7c520e29d66c115dfcb7ba01be00c7",
+  "source_sha_base": "725e785453ab01350d7b273c94ddb4dac70501af",
+  "donor_shas": [
+    "3d25961d64bd0368f54dc1eddb1c89b9ba842d85",
+    "43b11eb8055909ea54edb6c78574d79cedf567b9"
+  ],
+  "selected_priority": "Bridge exact Helix opening-watch/acquisition state into private job-app flight-deck opening identity with recruiter-material digest semantics and provenance checks.",
+  "priority_tier": "P2",
+  "blocked_higher_candidates": [
+    "P1 xAI ready_for_human_submission=true remains dependent on explicit applicant-controlled values that were not available as confirmed source data.",
+    "GlacierEQ/job-app private runner proof path failed before exposing executable steps, so that proof lane was isolated rather than treated as code failure."
+  ],
+  "displaced_capability": "Helix maintained live opening state and recruiter-material classification, while the restored private job-app flight deck required an opening identity/digest contract. Without a source-bound bridge, handoff required manually shaped JSON and risked using provider-wide digest churn that could invalidate reviewed packages on metadata-only changes.",
+  "mechanisms_compared": [
+    "Pass the provider-wide JobOpening.digest directly into the private flight deck. Rejected because metadata-only provider churn can rotate that digest without changing recruiter-facing content.",
+    "Treat failed opening acquisitions as MISSING/CLOSED observations. Rejected because transient provider/network failure is not evidence that a posting disappeared.",
+    "Selected nonlinear composition: join opening-watch telemetry back to exact acquisition snapshots, verify watch/snapshot/opening identities and receipts, hash only recruiter-material fields, emit flight-deck-compatible ACTIVE observations, and isolate failures without inventing disappearance."
+  ],
+  "implemented_delta": [
+    "Added src/job_app_helix/flight_deck_opening_bridge.py as an executable module.",
+    "Emits ACTIVE observations containing source_url, opening_id, recruiter-material opening_digest, watch_change_class, watch receipt SHA, and acquisition receipt SHA.",
+    "Recruiter-material digest uses the same field set as opening-watch materiality classification, so provider metadata-only churn does not invalidate reviewed application state.",
+    "Recruiter-facing field changes rotate the digest and can therefore invalidate a bound private application package.",
+    "Failed acquisitions remain isolated_failures and are never translated into false CLOSED/MISSING state.",
+    "Fails closed on watch schema drift, duplicate URLs, unsafe state keys, source URL mismatch, opening identity mismatch, snapshot schema mismatch, or receipt mismatch.",
+    "Provides python -m job_app_helix.flight_deck_opening_bridge --state-dir <dir> [--output <file>] execution."
+  ],
+  "preserved_gains": [
+    "Existing glaciereq.opening-watch.v2 semantics remain unchanged.",
+    "Existing opening acquisition snapshots and receipt lineage remain authoritative inputs.",
+    "No applicant-controlled value was inferred.",
+    "No application, recruiter message, email, or external submission was performed.",
+    "Transient acquisition failure remains uncertainty, not fabricated opening disappearance."
+  ],
+  "tests_runtime_proof": {
+    "pr": 257,
+    "exact_head_sha": "de2fcc81fcc58bef0486640ccdf6f8a718cbc45f",
+    "merge_sha": "e528106cbb7c520e29d66c115dfcb7ba01be00c7",
+    "runtime_blob": "4f7c77921395c8c7eb495ed7a17a6dba5da26a1e",
+    "workflow_run": 32243292639,
+    "python_3_11_job": 96038334677,
+    "python_3_12_job": 96038334428,
+    "python_3_13_job": 96038334753,
+    "proof": [
+      "strict Ruff passed on all three Python lanes",
+      "adversarial bridge tests plus existing opening-watch tests passed on all three lanes",
+      "python -m executable proof passed on all three lanes",
+      "metadata-only provider churn preserves recruiter-material digest",
+      "recruiter-material change rotates the digest",
+      "failed acquisitions remain isolated rather than becoming missing",
+      "watch/snapshot identity and receipt mismatches fail closed"
+    ],
+    "initial_failed_run": 32243160825,
+    "initial_failure": "two E501 test-line lint defects; repaired without weakening behavior"
+  },
+  "exact_target_files_functions": [
+    "src/job_app_helix/flight_deck_opening_bridge.py::_material_opening_digest",
+    "src/job_app_helix/flight_deck_opening_bridge.py::compile_flight_deck_opening_bridge",
+    "src/job_app_helix/flight_deck_opening_bridge.py::compile_bridge_from_state",
+    "src/job_app_helix/flight_deck_opening_bridge.py::main",
+    "tests/test_flight_deck_opening_bridge.py",
+    ".github/workflows/flight-deck-opening-bridge-proof.yml"
+  ],
+  "top_3_remaining_priorities": [
+    "P1: bind explicit applicant-confirmed xAI values and produce ready_for_human_submission=true without external submission.",
+    "P2: consume this Helix bridge output directly inside GlacierEQ/job-app ApplicationFlightDeck so live watch receipts can update/invalidate bound packages without a manual JSON-shaping step, then prove the composition on an executable surface.",
+    "P2: execute the next independently provable stranded job-ecosystem repository-family restoration through exact-SHA recovery in its native runtime."
+  ],
+  "next_sequence": [
+    "Use compile_bridge_from_state against a real Helix opening-watch state directory.",
+    "Feed each emitted observation directly into the private flight deck observe-opening path.",
+    "Preserve ACTIVE identity/digest binding at package review and demote readiness only on recruiter-material identity drift or verified disappearance.",
+    "Keep acquisition failures isolated until a separate authoritative disappearance signal exists."
+  ],
+  "merge_deploy_gate": "PR #257 exact head passed dedicated Python 3.11/3.12/3.13 executable proof and was exact-head squash merged. Runtime was read back from main. No external application submission occurred.",
+  "rollback": "Revert merge e528106cbb7c520e29d66c115dfcb7ba01be00c7 to remove the bridge, tests, and proof workflow while preserving pre-existing opening-watch and application-finalization behavior.",
+  "no_loss_invariants": [
+    "Never infer applicant-controlled answers.",
+    "Never classify transient acquisition failure as proof an opening is missing or closed.",
+    "Never allow watch aggregate telemetry to override mismatched acquisition-source identity.",
+    "Never let metadata-only provider churn invalidate recruiter-reviewed package identity.",
+    "Recruiter-material changes must rotate the application opening digest.",
+    "No external submission or employer-state claim without directly observed evidence."
+  ]
+}

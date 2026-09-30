@@ -1,0 +1,10 @@
+{
+  "company": "Databricks",
+  "repository": "databricks-notebook-claim-fence",
+  "innovation": "Notebook Claim Fence",
+  "implementation_path": "src/databricks_notebook_claim_fence.py",
+  "test_path": "tests/test_databricks_notebook_claim_fence.py",
+  "discovered_in": "audits/INNOVATION_SCAFFOLD_BATCH_LATEST.md",
+  "notes": "Scaffold generated 2026-08-25. Independent design.",
+  "job_app_helix_repo": "repos/databricks-notebook-claim-fence"
+}

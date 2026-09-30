@@ -1,0 +1,11 @@
+{
+  "repo": "manus-autonomous-web-agent",
+  "family": "Manus",
+  "source_state": "in_preparation",
+  "worthy_rating": 7,
+  "verification_status": "NEEDS_REPAIR",
+  "description": "Manus autonomous web agent",
+  "notes": "fixed | NEEDS_REPAIR",
+  "last_verified": "2026-08-29T08:47:16.880980",
+  "classification_reason": "needs_repair: worthy=7"
+}

@@ -1,0 +1,21 @@
+{
+  "repo": "anthropic-alignment-drift",
+  "family": "Anthropic",
+  "kind": "company",
+  "source_state": "needs_work",
+  "innovation_summary": "Anthropic-family lab_hire_stamps repository targeting alignment-drift study. Catalog evidence: library.json (activity=catalogued, status_detail=catalogued_unclassified, role=part, issue_contract=false, language=Python), company_engineered_repositories.json (anthropic group, unprocessed), capabilities_3layer.json (LAB_BENCHMARKS_AND_STAMPS, impact_score=P1, contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding=0e75dd144c04616e3a626b2071d779135bb4ad46619702812fda25c920909597, agent_tool_registration=tool_anthropic_alignment_drift, git-clone launch_cmd). The contract_proof DONE, mesh_uri, and sha256_binding establish catalog-grade mesh registration; the empty desc and unprocessed status establish that no functional summary, README scope, or executed test exists locally. Purpose inferred only from name and group placement.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:1324 (name=anthropic-alignment-drift, domain=lab_hire_stamps, role=part, activity=catalogued, status_detail=catalogued_unclassified, private=true, desc='', issue_contract=false, local_job_app=false, language=Python, updatedAt=2026-07-19T19:57:03Z)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:59 (anthropic.unprocessed)",
+    "/tmp/monolith/status/LAB_HIRE_DOMAIN_ATLAS.md (name listed)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md (name listed)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:24273 (LAB_BENCHMARKS_AND_STAMPS, impact_score=P1, executive_summary absent, launch_cmd='git clone https://github.com/GlacierEQ/anthropic-alignment-drift', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding=0e75dd144c04616e3a626b2071d779135bb4ad46619702812fda25c920909597, mesh_uri=glaciereq://mesh/lab_benchmarks_and_stamps/anthropic-alignment-drift, agent_tool_registration.name=tool_anthropic_alignment_drift, description empty)"
+  ],
+  "verification_status": "VERIFIED_EXTERNAL_REFERENCE",
+  "worthy_rating": 6,
+  "makes_worthy": "Catalog-only with mesh registration (contract_proof + mesh_uri + sha256) bumps 2->5 honestly. Cannot exceed 7 without: (1) a README defining alignment-drift scope/methodology, (2) a fact card with a runnable example, (3) a per-repo executed test producing a glaciereq.proof-receipt.v1 receipt. Promotion to 8+ requires a reproducible drift-detection run with hash-bound output.",
+  "wave3": true,
+  "classification_reason": "classified_as_reference",
+  "last_verified": "2026-08-29T08:47:16.733662",
+  "notes": " | VERIFIED_EXTERNAL_REFERENCE"
+}

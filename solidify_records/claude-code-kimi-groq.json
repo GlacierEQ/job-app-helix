@@ -1,0 +1,22 @@
+{
+  "repo": "claude-code-kimi-groq",
+  "family": "Anthropic",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "Cross-company historical gateway proxy: routes Kimi K2 through Groq for use with Claude Code (three-company membership: anthropic, groq, kimi_moonshot). Catalog evidence: library.json (catalogued, description present, language=Python), company_engineered_repositories.json (anthropic.historical_or_cross_company + groq.historical_or_cross_company + kimi_moonshot.historical_or_cross_company \u2014 listed as cross_company_duplicate_memberships), capabilities_3layer.json (EXTENDED_UTILITIES_AND_EXPERIMENTS, impact_score=P1, executive_summary='A basic proxy to use Kimi K2 on Claude Code through Groq', contract_proof='DONE <-> issue-contract proof(pain)', mesh_uri, sha256_binding in the extended-utilities slot, agent_tool_registration, git-clone launch_cmd). The intent is catalogued across all three companies but no provider authorization, protocol compatibility test, or successful-request proof was found locally; LONG_TAIL_ATLAS flags it as a gateway with no provider-auth receipt.",
+  "evidence": [
+    "/tmp/monolith/catalog/library.json:3580 (name=claude-code-kimi-groq, catalogued, description present, url=https://github.com/GlacierEQ/claude-code-kimi-groq)",
+    "/tmp/monolith/catalog/company_engineered_repositories.json:16 (cross_company_duplicate_memberships list), 61 (anthropic.historical_or_cross_company), 141 (groq.historical_or_cross_company), 151 (kimi_moonshot.historical_or_cross_company)",
+    "/tmp/monolith/domains/long_tail.md (description)",
+    "/tmp/monolith/status/COMPANY_ENGINEERED_PROCESSING.md (keep one repo with three typed relationships)",
+    "/tmp/monolith/status/LONG_TAIL_ATLAS_BATCH_05.md (gateway, no provider-auth proof)",
+    "/tmp/monolith/catalog/capabilities_3layer.json:32515 (EXTENDED_UTILITIES_AND_EXPERIMENTS, impact_score=P1, executive_summary='A basic proxy to use Kimi K2 on Claude Code through Groq', launch_cmd='git clone https://github.com/GlacierEQ/claude-code-kimi-groq', contract_proof='DONE <-> issue-contract proof(pain)', sha256_binding present, mesh_uri=glaciereq://mesh/extended_utilities_and_experiments/claude-code-kimi-groq, agent_tool_registration present)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Bumps 3->5 with cross-company mesh registration; the three-company provenance is a strength (intentional cross-company gateway, not a duplicate accident). Cannot exceed 6 until: (1) a successful Kimi-K2-through-Groq request is captured (HTTP 200 + response hash), (2) provider-auth proof from Groq + Kimi is recorded, (3) Claude Code client compatibility is tested end-to-end. Honest cap at 6 without that request receipt.",
+  "wave3": true,
+  "classification_reason": "classified_as_historical",
+  "last_verified": "2026-08-29T08:47:16.762094",
+  "notes": " | ARCHIVED_HISTORICAL"
+}

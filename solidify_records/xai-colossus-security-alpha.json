@@ -1,0 +1,19 @@
+{
+  "repo": "xai-colossus-security-alpha",
+  "family": "xAI / Colossus",
+  "kind": "company",
+  "source_state": "historical",
+  "innovation_summary": "Private historical experiment companion (alpha) of xai-colossus-security (proposal/response engine). The family hardening receipt inspected its commit (a38d6b7...) and documented implemented skin-depth/shielding formulas, a fixed-string material-seal allowlist, a fixed-gain breach mitigation that only prints a control claim, and physical-security validity that is not independently established; it is explicitly not counted as a public verified component.",
+  "evidence": [
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json line 85 (repository GlacierEQ/xai-colossus-security-alpha; visibility private; inspected_commit a38d6b705b7e11ac6ecee927fce9ba884cb3723e; state PRIVATE_PHYSICS_EXPERIMENT_BLOCKED_VALIDATION_AND_SAFETY_REVIEW; not_counted_as_public_verified_component=true)",
+    "/tmp/monolith/receipts/company_families/xai_colossus_security_hardening.json lines 91-97 (findings: fixed allowlist, fixed gain print, TEMPEST/SCIF not established)",
+    "/tmp/monolith/catalog/company_families/xai_colossus_canonicalization.json line 72 (listed xAI-Colossus family companion)"
+  ],
+  "verification_status": "ARCHIVED_HISTORICAL",
+  "worthy_rating": 5,
+  "makes_worthy": "Replace fixed allowlists/printed control claims with asserted, unit-tested logic; obtain independent physical-security and safety review; run an independent CI truth gate with an artifact digest; harden separately.",
+  "from_unified_fill": true,
+  "last_verified": "2026-08-29T08:47:16.949949",
+  "notes": "catalog_only | ARCHIVED_HISTORICAL",
+  "classification_reason": "classified_as_historical"
+}
