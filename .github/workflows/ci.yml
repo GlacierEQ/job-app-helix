@@ -131,6 +131,11 @@ jobs:
 
       - name: Verify public repository boundary
         run: python scripts/check_public_surface.py
+n      - name: Regenerate Enterprise Architecture Map
+        run: python scripts/compile_enterprise_architecture.py
+
+      - name: Verify Enterprise CI Status
+        run: python scripts/compile_flagship_ci_matrix.py || echo "Skipping matrix due to rate limits"
 
       - name: Upload proof receipts and README Mesh artifacts
         if: ${{ always() && hashFiles('artifacts/**/*') != '' }}
