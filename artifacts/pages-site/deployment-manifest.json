@@ -18,24 +18,24 @@
       "sha256": "8300b4001f1a6ec351d5c2948c91bdac00ac35a2d9b2b4613f9aedac3f53fb39"
     },
     {
-      "bytes": 2874,
+      "bytes": 2681,
       "path": "candidate-node.json",
-      "sha256": "f1cd3f8931b94bf510c393a58172f48ee1708ce58fa3127a3016041f18653139"
+      "sha256": "d431f1678e5b92b8e626e2be333d854234980c31223668e9ecfcb803e2ba67f8"
     },
     {
       "bytes": 1013,
       "path": "coordinator-candidate-receipt.json",
-      "sha256": "cb99fec37c9fe651b4b8131cbab22ede9a7146779efbdb27ac9e870010f4ffb2"
+      "sha256": "1dcb16f94e44a10b65a4c1b21ec1a30e29eef55447a366d8428d273824b5bbd6"
     },
     {
-      "bytes": 3581,
+      "bytes": 2345,
       "path": "evidence-ledger.json",
-      "sha256": "3a6e7ed9fe1383ea0aba9a2c3674e244e3764b2893f96edc3fb08858ba675662"
+      "sha256": "de9c85abbd707b67a304607169c1be6f9e8a98d9d36b0418aad87e66be51e052"
     },
     {
-      "bytes": 22256,
+      "bytes": 18585,
       "path": "index.html",
-      "sha256": "09185dfcd9d07a89fa096b615d1055beb4b4722134cfc355d4705314ac3d4668"
+      "sha256": "571264ee890b663fbcae139eed7b8089d1570fbde539ee00f289fdfc278f54e3"
     },
     {
       "bytes": 1498,

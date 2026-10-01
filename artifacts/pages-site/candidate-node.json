@@ -4,15 +4,13 @@
   "node_kind": "candidate_application_surface",
   "candidate": "Casey Del Carpio Barton",
   "repository": "GlacierEQ/job-app-helix",
-  "reference_branch": "main",
+  "canonical_branch": "main",
   "purpose": "Unify recruiter impact, expert diligence, and AI ingestion around one evidence-bound candidate representation.",
   "status": {
     "state": "PARTIALLY_VERIFIED",
     "verified_at": "2026-07-30T17:12:00-10:00",
     "verified_scope": [
-      "materialized current estate inventory: 225 deserving repositories across 21 families",
-      "current verified trust surface: 8 repository-level anchors",
-      "historical governed Helix boundary: exact 67 repositories (one root plus 66 children)",
+      "exact 66-repository boundary",
       "AKOS 94/94 tests on Python 3.11-3.13",
       "21-node README Mesh rollout"
     ],
@@ -21,7 +19,7 @@
     ],
     "unverified_scope": [
       "agent coordinator hosted multi-version promotion",
-      "current 225-repository estate-wide runtime, deployment, scale, performance, and customer impact"
+      "portfolio-wide runtime, deployment, scale, performance, and customer impact"
     ]
   },
   "primary_role_variants": [
@@ -53,8 +51,8 @@
   "relationships": [
     {
       "target": "GlacierEQ/AKOS",
-      "relation": "GOVERNED_BY",
-      "combined_value": "AKOS supplies authority and completion semantics; the candidate package supplies human and machine presentation."
+      "relation": "CONSUMES",
+      "combined_value": "The candidate package consumes AKOS evidence, provenance, and completion-state conventions as capability input; AKOS receives no project-direction authority."
     },
     {
       "target": "GlacierEQ/job-app-helix",
@@ -64,7 +62,7 @@
     {
       "target": "GlacierEQ/public-actions-runner-host",
       "relation": "EXECUTES_THROUGH",
-      "combined_value": "Public runner architecture supplies the governed execution model used as portfolio evidence."
+      "combined_value": "Public runner architecture supplies the evidence-bound execution model used as portfolio evidence."
     },
     {
       "target": "GlacierEQ/anthropic-agent-coordinator",
@@ -75,6 +73,6 @@
   "limits": [
     "No unsupported scale or throughput claims.",
     "README/hash coverage is not runtime proof.",
-    "Candidate/local evidence is not reference hosted evidence."
+    "Candidate/local evidence is not current hosted evidence."
   ]
 }
