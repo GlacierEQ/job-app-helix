@@ -5,7 +5,7 @@
 [![CI](https://github.com/GlacierEQ/job-app-helix/actions/workflows/ci.yml/badge.svg)](https://github.com/GlacierEQ/job-app-helix/actions/workflows/ci.yml)
 ![tests](https://img.shields.io/badge/tests-961%20passing-2ea44f)
 ![python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-3776ab)
-![workflows](https://img.shields.io/badge/GitHub%20Actions-55%20workflows-24292f)
+![workflows](https://img.shields.io/badge/GitHub%20Actions-54%20workflows-24292f)
 
 **Live output:** [casey-barton-glaciereq.vercel.app](https://casey-barton-glaciereq.vercel.app), a 441-page recruiter site compiled from this repo's projections · **Site source:** [GlacierEQ/job-application](https://github.com/GlacierEQ/job-application) · **Operator runtime:** [GlacierEQ/pro-code](https://github.com/GlacierEQ/pro-code)
 
