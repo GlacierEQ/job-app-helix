@@ -2,13 +2,37 @@
   "wave_id": "2026-10-02-tier1",
   "store": "supabase-backend-ops",
   "project_ref": "dyhprklicgewmrimecey",
-  "tables": ["public.outreach_targets_v1", "public.outreach_messages_v1"],
+  "method": "distill: known / unknown / next_move. A block is not a state.",
   "numbers": {"repos": 1313, "shipped_90d": 862, "mcp": 65, "control_plane_tests": 961, "coordinator_tests": "62/62"},
   "not_sent": true,
   "targets": [
-    {"id": "supabase-staff-ai-platform", "state": "ready", "send_order": 1},
-    {"id": "clickup-staff-ai-multi-agent", "state": "ready", "send_order": 2},
-    {"id": "harvey-sr-swe-ai-platform", "state": "ready", "blocker": "no relocation; do not send to CEO as eng lead", "send_order": 3},
-    {"id": "scale-mission-swe-honolulu", "state": "blocked", "blocker": "confirm req still open; no active clearance", "send_order": 4}
+    {
+      "id": "supabase-staff-ai-platform",
+      "state": "distilled",
+      "known": "Execution-layer role. Turso post 2026-10-02. Both named projects PG17 us-east-1 healthy.",
+      "unknown": "Infra hiring manager. HNSW tuning not evidenced.",
+      "next_move": "Send to @kiwicopple today."
+    },
+    {
+      "id": "clickup-staff-ai-multi-agent",
+      "state": "distilled",
+      "known": "Jay Hack Head of AI. Brain2 post 2026-06-22. Remote US.",
+      "unknown": "Whether he reads hiring DMs.",
+      "next_move": "Cite the Brain2 post, then send the full note."
+    },
+    {
+      "id": "harvey-sr-swe-ai-platform",
+      "state": "distilled",
+      "known": "Guardrails acquired 2026-09-09. Hybrid SF/NY. Operator is not relocating.",
+      "unknown": "AI Platform hiring manager. Remote-first exception.",
+      "next_move": "Send to the platform lead with the no-relocation line in."
+    },
+    {
+      "id": "scale-mission-swe-honolulu",
+      "state": "distilled",
+      "known": "Honolulu is a Public Sector hub. Req asks for ability to obtain TS/SCI, not a clearance already held. Travel over 50 percent is on the mirrors.",
+      "unknown": "Whether the exact Honolulu req is open on scale.com/careers today.",
+      "next_move": "Open the board. If live, apply with the distilled note. If closed, send the same note as an introduction, not as an application claim."
+    }
   ]
 }
