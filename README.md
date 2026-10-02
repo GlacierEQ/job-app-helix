@@ -1,6 +1,6 @@
 # Job-App Helix
 
-**The control plane behind Casey Barton's hiring system: 110 Python modules and 38,281 lines that turn a 1,300-repository engineering estate into evidence-bound, company-specific applications. They fail closed when the proof isn't there.**
+**The public evidence and role-intelligence control plane behind Casey Barton's engineering portfolio: it maps repositories, experience, capabilities, verification receipts, and company/role fit without owning private recruiter communications or application execution.**
 
 [![CI](https://github.com/GlacierEQ/job-app-helix/actions/workflows/ci.yml/badge.svg)](https://github.com/GlacierEQ/job-app-helix/actions/workflows/ci.yml)
 ![tests](https://img.shields.io/badge/tests-961%20passing-2ea44f)
@@ -11,11 +11,17 @@
 
 ## What this proves
 
-- **Real agent-system engineering at scale.** 110 modules and 38,281 lines of typed Python cover opening discovery (Greenhouse, Ashby, SmartRecruiters), company intelligence, candidate-profile compilation, application execution queues, outcome calibration, and estate recovery.
+- **Real agent-system engineering at scale.** Typed Python covers opening discovery (Greenhouse, Ashby, SmartRecruiters), company/role intelligence, candidate-profile compilation, evidence ranking, outcome calibration, and estate recovery.
 - **Verification is part of the product.** 961 tests run on every push across Python 3.11, 3.12 and 3.13, along with ruff, a compiled Protobuf contract check, README-mesh validation, and a public-boundary scan.
 - **Hard safety, not hope.** Campaigns run as a state machine with three proven outcomes: `nominal`, `recoverable`, and `hard-no-go`. The hard-failure path exits non-zero, and CI asserts that it stays that way.
 - **Recover, continue, compound.** Federated recovery, cross-file restoration and capability-archaeology modules rebuild prior state before anything is recreated, so work compounds instead of restarting.
-- **One fact graph, many audiences.** A single evidence ledger projects into a recruiter site, résumé artifacts, machine-readable JSON, and per-company dossiers. Nothing is hand-copied.
+- **One fact graph, many audiences.** A single evidence ledger projects public-safe capability evidence into the recruiter site, machine-readable JSON, and per-company/role dossiers. Private application operations are not part of this graph.
+
+## Privacy boundary
+
+`job-app-helix` is public. It may contain public-safe repository evidence, experience/capability mappings, role and company intelligence, verification receipts, claim ceilings, and recruiter-safe fit projections.
+
+It must **not** contain recruiter/contact identities or coordinates, verbatim private messages, draft replies, application/submission state, interview tracking, private external receipts, or other person-specific operational records. Those belong only in the private `GlacierEQ/job-app` workspace. The public `GlacierEQ/job-application` repository renders disclosure-approved recruiter proof from Helix-approved data.
 
 ## Architecture
 

@@ -83,8 +83,8 @@ def main() -> int:
         "required_company_tracks",
     )
     require(
-        len(tracks) == 166,
-        f"expected 166 governed tracks, observed {len(tracks)}",
+        len(tracks) == 168,
+        f"expected 168 governed tracks, observed {len(tracks)}",
     )
     require(
         "manifests/company_dossiers/innovation_expansion_2026_08_09.json"
@@ -102,22 +102,30 @@ def main() -> int:
         for item in companies
         if isinstance(item, dict)
     ]
-    require(
-        len(companies) == 90,
-        f"expected 90 net-new company records, observed {len(companies)}",
+    promoted_elsewhere = unique_strings(
+        shard.get("promoted_elsewhere", []),
+        "promoted_elsewhere",
     )
     require(
-        len(new_ids) == 90
-        and all(isinstance(item, str) and item for item in new_ids),
-        "invalid net-new company ids",
+        len(companies) + len(promoted_elsewhere) == 90,
+        "innovation expansion lineage must preserve exactly 90 net-new targets",
     )
+    require(
+        all(isinstance(item, str) and item for item in new_ids),
+        "invalid active net-new company ids",
+    )
+    require(
+        set(new_ids).isdisjoint(promoted_elsewhere),
+        "promoted targets must not retain active dossier ownership in expansion shard",
+    )
+    all_net_new_ids = [*new_ids, *promoted_elsewhere]
     require(
         len(new_ids) == len(set(new_ids)),
         "innovation expansion contains duplicate company ids",
     )
     require(
-        set(new_ids) <= set(tracks),
-        "net-new expansion contains a company absent from governed tracks",
+        set(all_net_new_ids) <= set(tracks),
+        "net-new expansion lineage contains a company absent from governed tracks",
     )
     require(
         shard.get("defaults", {}).get("track_state")
@@ -149,8 +157,8 @@ def main() -> int:
         "existing and net-new track sets overlap",
     )
     require(
-        set(net_new) == set(new_ids),
-        "master net-new set differs from dossier expansion shard",
+        set(net_new) == set(all_net_new_ids),
+        "master net-new set differs from active + promoted expansion lineage",
     )
 
     families = master.get("families", {})

@@ -35,7 +35,39 @@
     {
       "company_id": "scale_ai",
       "display_name": "Scale AI",
-      "repositories": []
+      "track_state": "LIVE_ROLE_TRANSFERABLE_PROOF_BOUND",
+      "target_roles": [
+        "Forward Deployed Software Engineer, Public Sector",
+        "Forward-Deployed Engineer"
+      ],
+      "recruiter_thesis": "I turn ambiguous mission requirements into deployed, observable software across heterogeneous tools, cloud/runtime boundaries, and real failure modes.",
+      "gap_or_next_gate": "Keep the Honolulu public-sector role mapped to transferable proof; clearance eligibility and any application execution belong exclusively to private operations.",
+      "repositories": [
+        [
+          "GlacierEQ/job-application",
+          "L4",
+          "PROMOTED",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/colossus-gateway",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/apex-control-plane",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
     },
     {
       "company_id": "mistral",
@@ -120,7 +152,127 @@
     {
       "company_id": "vercel",
       "display_name": "Vercel",
-      "repositories": []
+      "track_state": "PRODUCTION_PROOF_READY",
+      "target_roles": [
+        "Forward-Deployed Engineer",
+        "Software Engineer, Agent"
+      ],
+      "recruiter_thesis": "I turn AI requirements into production agent systems, MCP integrations, and reusable deployment patterns with observable provider-level execution.",
+      "gap_or_next_gate": "Keep the current READY Vercel production deployment bound as transferable role-fit proof; application execution belongs exclusively to private operations.",
+      "repositories": [
+        [
+          "GlacierEQ/colossus-gateway",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/job-application",
+          "L4",
+          "PROMOTED",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/glaciereq-mcp-stack",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
+    },
+    {
+      "company_id": "clickup",
+      "display_name": "ClickUp",
+      "track_state": "LIVE_ROLE_TRANSFERABLE_PROOF_BOUND",
+      "target_roles": [
+        "Staff AI Engineer, Multi-Agent Frameworks"
+      ],
+      "recruiter_thesis": "I build multi-agent control planes with explicit tool authority, persistent context, evaluation, recovery, and reusable integration surfaces.",
+      "gap_or_next_gate": "Keep the Staff multi-agent role mapped to the shared proof graph and deepen inspectable Agent Coordinator, evaluation, memory, and tool-authority evidence.",
+      "repositories": [
+        [
+          "GlacierEQ/job-application",
+          "L4",
+          "PROMOTED",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/pro-code",
+          "L4",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/apex-control-plane",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/glaciereq-mcp-stack",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
+    },
+    {
+      "company_id": "harvey",
+      "display_name": "Harvey",
+      "track_state": "LIVE_ROLE_TRANSFERABLE_PROOF_BOUND",
+      "target_roles": [
+        "Senior Software Engineer, AI Platform"
+      ],
+      "recruiter_thesis": "I build shared AI platform primitives for context, memory, model routing, evaluation, recovery, and reliable high-stakes agent workflows.",
+      "gap_or_next_gate": "Keep the AI Platform role mapped to sanitized high-stakes workflow and platform proof; private legal material and application execution remain outside the public Helix.",
+      "repositories": [
+        [
+          "GlacierEQ/job-application",
+          "L4",
+          "PROMOTED",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/pro-code",
+          "L4",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/apex-control-plane",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ],
+        [
+          "GlacierEQ/glaciereq-mcp-stack",
+          "L3",
+          "REFERENCE_ONLY",
+          "public",
+          "DYNAMIC_EVIDENCE_MATCH",
+          "ORIGINAL_CANDIDATE"
+        ]
+      ]
     },
     {
       "company_id": "hugging_face",
