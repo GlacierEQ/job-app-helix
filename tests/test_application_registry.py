@@ -11,8 +11,6 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any
 
-from job_app_helix.application_engine import load_targets
-
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = ROOT / "scripts" / "validate_application_registry.py"
 
@@ -53,6 +51,22 @@ class ApplicationRegistryTests(unittest.TestCase):
         )
         return len(payload["required_company_tracks"])
 
+    def inherited_company_dossier_count(self) -> int:
+        index = json.loads(
+            (ROOT / "manifests" / "company_dossiers.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        count = 0
+        for relative_path in index["dossier_files"]:
+            shard = json.loads((ROOT / relative_path).read_text(encoding="utf-8"))
+            defaults = shard.get("defaults", {})
+            for company in shard["companies"]:
+                track_state = company.get("track_state", defaults.get("track_state"))
+                if track_state == "NO_DIRECT_EXHIBIT_VERIFIED":
+                    count += 1
+        return count
+
     def test_zero_omission_registry_gate(self) -> None:
         completed = subprocess.run(
             [sys.executable, str(VALIDATOR_PATH)],
@@ -87,11 +101,10 @@ class ApplicationRegistryTests(unittest.TestCase):
         self.assertEqual(result["named_systems"], len(catalog["flagships"]))
         self.assertGreater(result["external_flagship_repositories"], 0)
         self.assertGreaterEqual(result["unresolved_flagships"], 0)
-        inherited = sum(
-            target.track_state == "NO_DIRECT_EXHIBIT_VERIFIED"
-            for target in load_targets(ROOT / "manifests")
+        self.assertEqual(
+            result["inherited_company_dossiers"],
+            self.inherited_company_dossier_count(),
         )
-        self.assertEqual(result["inherited_company_dossiers"], inherited)
         self.assertGreater(result["l1_private_experiments_documented"], 0)
         self.assertEqual(result["normalized_legacy_promotion_aliases"], 1)
         self.assertTrue(result["zero_direct_omission_gate"])
