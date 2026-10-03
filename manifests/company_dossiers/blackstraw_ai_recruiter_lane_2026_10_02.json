@@ -14,39 +14,12 @@
       "recruiter_thesis": "I translate complex AI and platform problems into understandable architecture, then stay embedded through implementation until the system works in production.",
       "gap_or_next_gate": "Confirm the exact client engagement through the private recruiting channel before binding any fintech, banking, Tampa, or other public posting to this role; do not infer client identity from public postings.",
       "non_affiliation": "Independent GlacierEQ work; no Blackstraw.AI client affiliation, customer relationship, employment, proprietary access, or production deployment is claimed.",
-      "repositories": [
-        [
-          "GlacierEQ/job-application",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/pro-code",
-          "L4",
-          "REFERENCE_ONLY",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/apex-control-plane",
-          "L3",
-          "REFERENCE_ONLY",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/glaciereq-mcp-stack",
-          "L3",
-          "REFERENCE_ONLY",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ]
+      "repositories": [],
+      "transferable_proof_refs": [
+        "GlacierEQ/job-application",
+        "GlacierEQ/pro-code",
+        "GlacierEQ/apex-control-plane",
+        "GlacierEQ/glaciereq-mcp-stack"
       ]
     }
   ]
