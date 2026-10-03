@@ -77,9 +77,9 @@
     {
       "company_id": "supabase",
       "display_name": "Supabase",
-      "track_state": "CONTRIBUTION_LED_TRANSFERABLE_PROOF_READY",
-      "recruiter_thesis": "I build reliable developer-agent infrastructure around MCP, governed tool execution, persistent state, connector health, reusable skills, and evaluation.",
-      "gap_or_next_gate": "Use the admitted public Supabase capability donors to produce contribution-grade MCP/Agent Skills/eval work and technical outreach while a matching AI tooling opening is not currently listed.",
+      "track_state": "SEMANTIC_CAPABILITY_DONORS_ADMITTED",
+      "recruiter_thesis": "Public non-fork GlacierEQ systems provide independently evidenced, transferable Supabase mechanisms: server-side least-privilege Edge Function brokerage, idempotent state/audit persistence, and connector health-state classification. Recruiter projection is capability- and proof-led rather than repository-name-led.",
+      "gap_or_next_gate": "Compile the admitted public semantic donor relationships and their exact-head proof into Supabase role projections. Expand the public claim surface only when additional public donor mechanisms satisfy the same provenance and verification gates.",
       "repositories": [
         [
           "GlacierEQ/supabase",
@@ -135,11 +135,6 @@
         ]
       ],
       "capability_map": "manifests/application_intelligence/supabase_motherduck_capability_donors.json",
-      "target_roles": [
-        "AI Tooling / Agent Infrastructure",
-        "Agent Infrastructure Engineer",
-        "Platform / Reliability Engineer"
-      ],
       "transferable_proof_refs": [
         "GlacierEQ/colossus-gateway",
         "GlacierEQ/apex-control-plane"
