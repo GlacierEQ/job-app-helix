@@ -9,6 +9,17 @@ from job_app_helix.role_proof_contracts import build_role_proof_contract, role_c
 ROOT = Path(__file__).resolve().parents[1]
 EMAIL = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
 PHONE = re.compile(r"(?<!\d)(?:\+?1[-.\s]?)?(?:\(?\d{3}\)?[-.\s]?){2}\d{4}(?!\d)")
+PRIVATE_OPERATIONAL_STATES = {
+    "DRAFTED",
+    "SOURCE_CHECKED",
+    "READY_TO_SEND",
+    "SENT",
+    "ACKNOWLEDGED",
+    "INTERVIEW",
+    "CLOSED",
+    "NO_RESPONSE",
+    "SUBMITTED_AWAITING_REVIEW",
+}
 
 
 def test_role_proof_contracts_never_carry_private_application_operations() -> None:
@@ -23,6 +34,12 @@ def test_role_proof_contracts_never_carry_private_application_operations() -> No
         "provider_receipts",
         "submission_receipt",
         "application_state",
+        "submission_state",
+        "workflow_state",
+        "approval_required",
+        "external_receipt",
+        "received_at_local",
+        "sent",
     }
 
     for role_id in role_contract_ids():
@@ -39,6 +56,8 @@ def test_role_proof_contracts_never_carry_private_application_operations() -> No
             elif isinstance(value, list):
                 for child in value:
                     walk(child)
+            elif isinstance(value, str):
+                assert value not in PRIVATE_OPERATIONAL_STATES
 
         walk(contract)
 
@@ -55,6 +74,12 @@ def test_public_company_dossiers_are_intelligence_only_without_person_pii() -> N
         "submission_receipt",
         "application_state",
         "interview_state",
+        "submission_state",
+        "workflow_state",
+        "approval_required",
+        "external_receipt",
+        "received_at_local",
+        "sent",
     }
     dossier_dir = ROOT / "manifests" / "company_dossiers"
 
@@ -81,7 +106,7 @@ def test_blackstraw_public_dossier_is_role_intelligence_only() -> None:
         ROOT
         / "manifests"
         / "company_dossiers"
-        / "blackstraw_ai_recruiter_lane_2026_10_02.json"
+        / "blackstraw_ai_role_intelligence_2026_10_02.json"
     )
     text = path.read_text(encoding="utf-8")
     payload = json.loads(text)
