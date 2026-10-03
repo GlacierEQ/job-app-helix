@@ -1,0 +1,26 @@
+{
+  "schema": "glaciereq.company-dossiers-shard.v2",
+  "group_id": "blackstraw_ai_role_intelligence_2026_10_02",
+  "generated_at": "2026-10-02T13:41:00-10:00",
+  "defaults_apply_to_all_companies": false,
+  "companies": [
+    {
+      "company_id": "blackstraw_ai",
+      "display_name": "Blackstraw.AI",
+      "track_state": "LIVE_ROLE_INTELLIGENCE_TRANSFERABLE_PROOF",
+      "target_roles": [
+        "Forward Deployed AI Engineer"
+      ],
+      "recruiter_thesis": "I translate complex AI and platform problems into understandable architecture, then stay embedded through implementation until the system works in production.",
+      "gap_or_next_gate": "Confirm the exact client engagement through the private recruiting channel before binding any fintech, banking, Tampa, or other public posting to this role; do not infer client identity from public postings.",
+      "non_affiliation": "Independent GlacierEQ work; no Blackstraw.AI client affiliation, customer relationship, employment, proprietary access, or production deployment is claimed.",
+      "repositories": [],
+      "transferable_proof_refs": [
+        "GlacierEQ/job-application",
+        "GlacierEQ/pro-code",
+        "GlacierEQ/apex-control-plane",
+        "GlacierEQ/glaciereq-mcp-stack"
+      ]
+    }
+  ]
+}
