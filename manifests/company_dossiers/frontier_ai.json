@@ -3,9 +3,9 @@
     {
       "company_id": "openai",
       "display_name": "OpenAI",
-      "gap_or_next_gate": "KV sentinel is admitted; Codex/MCP candidates need provenance/runtime audit; upstream SDK/framework repos are excluded.",
+      "gap_or_next_gate": "Keep Legal FDE alignment mapped to admitted public proof and sanitized legal-workflow evidence; applicant-controlled location decisions and application execution remain private.",
       "non_affiliation": "Independent GlacierEQ work; no OpenAI affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
-      "recruiter_thesis": "Evidence-bound agents, tool authority, evaluation, context integrity, and inspectable provider convergence.",
+      "recruiter_thesis": "I build evidence-bound agent systems with explicit tool authority, evaluation, context integrity, retrieval, human verification, and inspectable execution.",
       "repositories": [
         [
           "GlacierEQ/openai-reasoning-kv-sentinel",
@@ -89,6 +89,7 @@
         ]
       ],
       "target_roles": [
+        "Forward Deployed Engineer (FDE), Legal",
         "Applied AI Engineer",
         "Agents Infrastructure Engineer",
         "Solutions Architect"
@@ -98,13 +99,13 @@
     {
       "company_id": "anthropic",
       "display_name": "Anthropic",
-      "gap_or_next_gate": "Current official Applied AI roles are source-verified. Public recruiter evidence is now limited to provider-resolvable Anthropic-oriented systems; build the next Forward Deployed Engineer / Applied AI Architect proof by integrating customer-system delivery, evaluation, reliability, reusable deployment patterns, and explicit safety boundaries without claiming Anthropic affiliation or production use.",
+      "gap_or_next_gate": "Keep GTM AI Engineering alignment mapped to public technical proof and interview/demo-ready evidence; application state and recruiter operations remain private.",
       "non_affiliation": "Independent GlacierEQ work; no Anthropic affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
       "recruiter_admitted_repositories": [
         "GlacierEQ/anthropic-agent-coordinator",
         "GlacierEQ/anthropic-safety-monitor"
       ],
-      "recruiter_thesis": "Forward-deployed AI architecture and engineering: build inside ambiguous customer environments, integrate models/tools into real systems, preserve reliability and safety boundaries, and turn repeatable deployment patterns into reusable capability.",
+      "recruiter_thesis": "I build governed agent systems inside ambiguous workflows, integrate models and tools into real systems, preserve reliability and approval boundaries, and turn repeatable patterns into reusable capability.",
       "repositories": [
         [
           "GlacierEQ/anthropic-agent-coordinator",
@@ -148,6 +149,7 @@
         ]
       ],
       "target_roles": [
+        "Staff Software Engineer, GTM AI Engineering",
         "Forward Deployed Engineer",
         "Applied AI Architect",
         "Applied AI Engineer"

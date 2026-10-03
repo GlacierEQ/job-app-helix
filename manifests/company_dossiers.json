@@ -258,7 +258,9 @@
     "servicenow",
     "sierra",
     "tencent",
-    "zhipu_ai_z_ai"
+    "zhipu_ai_z_ai",
+    "clickup",
+    "blackstraw_ai"
   ],
   "dossier_files": [
     "manifests/company_dossiers/frontier_ai.json",
@@ -267,6 +269,7 @@
     "manifests/company_dossiers/additional_targets.json",
     "manifests/company_dossiers/expansion_targets.json",
     "manifests/company_dossiers/innovation_expansion_2026_08_09.json",
-    "manifests/company_dossiers/glaciereq_core.json"
+    "manifests/company_dossiers/glaciereq_core.json",
+    "manifests/company_dossiers/blackstraw_ai_role_intelligence_2026_10_02.json"
   ]
 }
