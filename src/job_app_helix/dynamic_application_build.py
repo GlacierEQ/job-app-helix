@@ -17,7 +17,6 @@ from .application_operations import (
     ingest_job_opening_url,
     load_candidate_profile,
     load_job_opening,
-    project_application,
 )
 from .application_strategy import (
     project_requirement_aware_application,
