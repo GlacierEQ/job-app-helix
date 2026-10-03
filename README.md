@@ -13,7 +13,7 @@
 
 - **Real agent-system engineering at scale.** Typed Python covers opening discovery (Greenhouse, Ashby, SmartRecruiters), company/role intelligence, candidate-profile compilation, evidence ranking, outcome calibration, and estate recovery.
 - **Verification is part of the product.** 961 tests run on every push across Python 3.11, 3.12 and 3.13, along with ruff, a compiled Protobuf contract check, README-mesh validation, and a public-boundary scan.
-- **Hard safety, not hope.** Campaigns run as a state machine with three proven outcomes: `nominal`, `recoverable`, and `hard-no-go`. The hard-failure path exits non-zero, and CI asserts that it stays that way.
+- **Hard safety, not hope.** Public proof evaluation runs as a state machine with three proven outcomes: `nominal`, `recoverable`, and `hard-no-go`. The hard-failure path exits non-zero, and CI asserts that it stays that way.
 - **Recover, continue, compound.** Federated recovery, cross-file restoration and capability-archaeology modules rebuild prior state before anything is recreated, so work compounds instead of restarting.
 - **One fact graph, many audiences.** A single evidence ledger projects public-safe capability evidence into the recruiter site, machine-readable JSON, and per-company/role dossiers. Private application operations are not part of this graph.
 
@@ -34,7 +34,7 @@ flowchart LR
         D["Opening discovery<br/>Greenhouse · Ashby · SmartRecruiters"]
         L["Evidence ledger<br/>+ portfolio contract"]
         C["Company intelligence<br/>+ candidate profile compiler"]
-        F["Campaign state machine<br/>nominal · recoverable · hard-no-go"]
+        F["Evidence state machine<br/>nominal · recoverable · hard-no-go"]
         P["Projections<br/>Protobuf README mesh · public snapshot"]
     end
     subgraph Surface["Public surface"]
