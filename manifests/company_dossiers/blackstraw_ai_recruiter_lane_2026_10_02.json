@@ -20,7 +20,7 @@
           "L4",
           "PROMOTED",
           "public",
-          "DYNAMIC_EVIDENCE_MATCH",
+          "HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ],
         [
@@ -28,7 +28,7 @@
           "L4",
           "REFERENCE_ONLY",
           "public",
-          "DYNAMIC_EVIDENCE_MATCH",
+          "HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ],
         [
@@ -36,7 +36,7 @@
           "L3",
           "REFERENCE_ONLY",
           "public",
-          "DYNAMIC_EVIDENCE_MATCH",
+          "HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ],
         [
@@ -44,7 +44,7 @@
           "L3",
           "REFERENCE_ONLY",
           "public",
-          "DYNAMIC_EVIDENCE_MATCH",
+          "HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ]
       ]
