@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -45,8 +46,21 @@ def test_blackstraw_target_resolves_exact_recruiter_role_with_public_proof() -> 
         resolve_role(target, "Forward Deployed AI Engineer")
         == "Forward Deployed AI Engineer"
     )
-    assert target.recruiter_proofs
-    assert all(proof.visibility == "public" for proof in target.recruiter_proofs)
+    assert target.recruiter_proofs == ()
+    contract = build_role_proof_contract("blackstraw-forward-deployed-ai-engineer")
+    assert contract["proof_claims"]
+
+    dossier = json.loads(
+        (
+            ROOT
+            / "manifests"
+            / "company_dossiers"
+            / "blackstraw_ai_recruiter_lane_2026_10_02.json"
+        ).read_text(encoding="utf-8")
+    )
+    refs = dossier["companies"][0]["transferable_proof_refs"]
+    assert "GlacierEQ/apex-control-plane" in refs
+    assert "GlacierEQ/glaciereq-mcp-stack" in refs
 
 
 def test_blackstraw_copy_rejects_inflated_calendar_tenure_but_allows_gap_framing() -> None:
