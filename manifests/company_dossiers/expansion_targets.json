@@ -82,19 +82,35 @@
       "gap_or_next_gate": "Use the admitted public Supabase capability donors to produce contribution-grade MCP/Agent Skills/eval work and technical outreach while a matching AI tooling opening is not currently listed.",
       "repositories": [
         [
-          "GlacierEQ/colossus-gateway",
-          "L3",
-          "REFERENCE_ONLY",
+          "GlacierEQ/supabase",
+          "L1",
+          "EXCLUDED_AUTHORSHIP",
           "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM"
         ],
         [
-          "GlacierEQ/apex-control-plane",
-          "L3",
-          "REFERENCE_ONLY",
+          "GlacierEQ/supabase-mcp",
+          "L1",
+          "EXCLUDED_AUTHORSHIP",
           "public",
-          "HELIX_ADMITTED",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM"
+        ],
+        [
+          "GlacierEQ/supabase-grafana",
+          "L1",
+          "EXCLUDED_AUTHORSHIP",
+          "public",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
+          "UPSTREAM"
+        ],
+        [
+          "GlacierEQ/aspen-grove-supabase",
+          "L2",
+          "PRIVATE_REFERENCE",
+          "private",
+          "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ]
       ],
@@ -123,6 +139,10 @@
         "AI Tooling / Agent Infrastructure",
         "Agent Infrastructure Engineer",
         "Platform / Reliability Engineer"
+      ],
+      "transferable_proof_refs": [
+        "GlacierEQ/colossus-gateway",
+        "GlacierEQ/apex-control-plane"
       ]
     },
     {
