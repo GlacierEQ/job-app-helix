@@ -227,4 +227,3 @@ def test_resolve_role_contract_id_matches_live_title_and_rejects_unrelated_role(
     )
     assert resolve_role_contract_id("Vercel", "Enterprise Account Executive") is None
     assert resolve_role_contract_id("Unknown Co", "Forward Deployed Engineer") is None
-
