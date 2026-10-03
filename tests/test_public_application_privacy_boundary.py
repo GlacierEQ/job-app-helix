@@ -97,6 +97,8 @@ def test_public_company_dossiers_are_intelligence_only_without_person_pii() -> N
             elif isinstance(value, list):
                 for child in value:
                     walk(child, source)
+            elif isinstance(value, str):
+                assert value not in PRIVATE_OPERATIONAL_STATES, source
 
         walk(payload, path)
 
