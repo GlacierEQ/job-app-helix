@@ -7,6 +7,7 @@ import pytest
 from job_app_helix.role_proof_contracts import (
     RoleProofContractError,
     build_role_proof_contract,
+    resolve_role_contract_id,
     role_contract_ids,
     validate_outreach_copy,
 )
@@ -214,3 +215,15 @@ def test_rolling_campaign_claims_are_dated_and_test_count_is_a_verified_lower_bo
     assert claims["control_plane_tests"]["statement"] == "900+ test control-plane corpus"
     assert claims["control_plane_tests"]["value"] == "900+"
     assert claims["control_plane_tests"]["verification_state"] == "VERIFIED_LOWER_BOUND"
+
+def test_resolve_role_contract_id_matches_live_title_and_rejects_unrelated_role() -> None:
+    assert (
+        resolve_role_contract_id("Vercel", "Forward-Deployed Engineer")
+        == "vercel-forward-deployed-engineer"
+    )
+    assert (
+        resolve_role_contract_id("ClickUp", "Staff AI Engineer - Multi-Agent Frameworks")
+        == "clickup-multi-agent-frameworks"
+    )
+    assert resolve_role_contract_id("Vercel", "Enterprise Account Executive") is None
+    assert resolve_role_contract_id("Unknown Co", "Forward Deployed Engineer") is None

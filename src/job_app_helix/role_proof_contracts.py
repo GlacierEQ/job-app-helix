@@ -421,6 +421,49 @@ def _digest(payload: dict[str, Any]) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+_COMPANY_NOISE = frozenset({"ai", "llc", "inc", "corp", "corporation", "company", "co"})
+_ROLE_NOISE = frozenset({"staff", "senior", "software", "engineer", "engineering", "ai"})
+
+
+def _identity_tokens(value: str, *, noise: frozenset[str]) -> set[str]:
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]+", value.casefold())
+        if token and token not in noise
+    }
+
+
+def resolve_role_contract_id(company: str, role: str) -> str | None:
+    """Resolve a live opening to one public role contract without company leakage."""
+
+    company_tokens = _identity_tokens(company, noise=_COMPANY_NOISE)
+    role_tokens = _identity_tokens(role, noise=_ROLE_NOISE)
+    if not company_tokens or not role_tokens:
+        return None
+
+    ranked: list[tuple[float, float, str]] = []
+    for role_id, profile in ROLES.items():
+        profile_company = _identity_tokens(profile.company, noise=_COMPANY_NOISE)
+        if profile_company != company_tokens:
+            continue
+        profile_role = _identity_tokens(profile.role, noise=_ROLE_NOISE)
+        if not profile_role:
+            continue
+        intersection = role_tokens & profile_role
+        containment = len(intersection) / min(len(role_tokens), len(profile_role))
+        jaccard = len(intersection) / len(role_tokens | profile_role)
+        if containment >= 0.6:
+            ranked.append((containment, jaccard, role_id))
+
+    if not ranked:
+        return None
+    ranked.sort(reverse=True)
+    best = ranked[0]
+    if len(ranked) > 1 and ranked[1][:2] == best[:2]:
+        return None
+    return best[2]
+
+
 def role_contract_ids() -> tuple[str, ...]:
     """Return the authoritative role-contract IDs for downstream consumers."""
 

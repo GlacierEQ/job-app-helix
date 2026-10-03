@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from dataclasses import replace
 from pathlib import Path
 
@@ -37,6 +37,11 @@ from .company_fit import (
 )
 from .company_intelligence import CompanyIntelligence, load_company_intelligence
 from .opportunity_intelligence import OpportunityAssessment, assess_opportunity
+from .role_proof_contracts import (
+    build_role_proof_contract,
+    resolve_role_contract_id,
+    validate_outreach_copy,
+)
 
 
 def _evidence_candidates(profile: CandidateProfile) -> tuple[str, ...]:
@@ -178,6 +183,130 @@ def _augment_company_outreach(
     return "\n\n".join(paragraphs).rstrip() + "\n"
 
 
+def _strip_internal_recruiter_scaffolding(markdown: str, non_affiliation: str) -> str:
+    """Keep verification scaffolding in receipts instead of recruiter-facing prose."""
+
+    cleaned: list[str] = []
+    for paragraph in markdown.rstrip().split("\n\n"):
+        stripped = paragraph.strip()
+        lowered = stripped.casefold()
+        if not stripped or stripped == non_affiliation:
+            continue
+        if lowered == "## truth boundary" or lowered.startswith("truth boundary:"):
+            continue
+        if lowered.startswith("application priority assessment:"):
+            continue
+        paragraph = paragraph.replace(
+            "My strongest evidence for this application is concrete work rather than unsupported claims. ",
+            "My strongest evidence for this application is the systems I have built and verified. ",
+        )
+        paragraph = paragraph.replace(
+            " This mapping is based only on the candidate profile supplied to Helix.",
+            "",
+        )
+        cleaned.append(paragraph)
+    return "\n\n".join(cleaned).rstrip() + "\n"
+
+
+def _role_contract_proof_statements(role_contract: Mapping[str, object]) -> tuple[str, ...]:
+    claims = role_contract.get("proof_claims", [])
+    if not isinstance(claims, list):
+        return ()
+    statements: list[str] = []
+    for claim in claims[:3]:
+        if isinstance(claim, Mapping):
+            statement = claim.get("statement")
+            if isinstance(statement, str) and statement.strip():
+                statements.append(statement.strip())
+    return tuple(statements)
+
+
+def _apply_role_contract_projection(
+    projection: Projection,
+    role_contract: Mapping[str, object],
+    *,
+    non_affiliation: str,
+) -> Projection:
+    thesis = str(role_contract["lead_thesis"]).strip()
+    proof_statements = _role_contract_proof_statements(role_contract)
+    proof_bullets = "\n".join(f"- {statement}" for statement in proof_statements)
+
+    resume = _strip_internal_recruiter_scaffolding(
+        projection.resume_markdown,
+        non_affiliation,
+    )
+    resume = (
+        resume.rstrip()
+        + "\n\n## Role focus\n\n"
+        + thesis
+        + "\n\n## Selected proof\n\n"
+        + proof_bullets
+        + "\n"
+    )
+
+    cover = _strip_internal_recruiter_scaffolding(
+        projection.cover_letter_markdown,
+        non_affiliation,
+    )
+    cover_parts = cover.rstrip().split("\n\n")
+    cover_parts.insert(2 if len(cover_parts) >= 2 else len(cover_parts), thesis)
+    if proof_statements:
+        cover_parts.insert(
+            3 if len(cover_parts) >= 3 else len(cover_parts),
+            "Selected evidence: " + "; ".join(proof_statements) + ".",
+        )
+    cover = "\n\n".join(cover_parts).rstrip() + "\n"
+
+    outreach = _strip_internal_recruiter_scaffolding(
+        projection.outreach_markdown,
+        non_affiliation,
+    )
+    outreach_parts = outreach.rstrip().split("\n\n")
+    outreach_parts.insert(1 if outreach_parts else 0, thesis)
+    if proof_statements:
+        outreach_parts.insert(
+            2 if len(outreach_parts) >= 2 else len(outreach_parts),
+            "Selected proof: " + "; ".join(proof_statements) + ".",
+        )
+    outreach = "\n\n".join(outreach_parts).rstrip() + "\n"
+
+    proof_sources: list[str] = []
+    for claim in role_contract.get("proof_claims", []):
+        if not isinstance(claim, Mapping):
+            continue
+        refs = claim.get("source_refs", [])
+        if isinstance(refs, (list, tuple)):
+            proof_sources.extend(str(ref) for ref in refs if ref)
+
+    claim_sources = tuple(
+        dict.fromkeys(
+            (
+                *projection.claim_sources,
+                f"role-contract:{role_contract['digest']}",
+                *proof_sources,
+            )
+        )
+    )
+    body = {
+        "base_projection": projection.digest,
+        "role_contract_digest": role_contract["digest"],
+        "resume": resume,
+        "cover": cover,
+        "outreach": outreach,
+        "claim_sources": claim_sources,
+    }
+    digest = _reference_digest(body)
+    return replace(
+        projection,
+        application_id=f"app-{digest[:16]}",
+        resume_markdown=resume,
+        cover_letter_markdown=cover,
+        outreach_markdown=outreach,
+        claim_sources=claim_sources,
+        digest=digest,
+    )
+
+
 def project_requirement_aware_application(
     opening: JobOpening,
     target: CompanyTarget,
@@ -231,6 +360,48 @@ def project_requirement_aware_application(
         digest=digest,
     )
     return kit, match, assessment, projection
+
+
+def project_role_contract_aware_application(
+    opening: JobOpening,
+    target: CompanyTarget,
+    profile: CandidateProfile,
+    role_contract_id: str,
+    *,
+    role: str | None = None,
+) -> tuple[
+    ApplicationKit,
+    MatchResult,
+    OpportunityAssessment,
+    dict[str, object],
+    Projection,
+]:
+    """Project a live opening through its public role-proof contract."""
+
+    kit, match, assessment, base_projection = project_requirement_aware_application(
+        opening,
+        target,
+        profile,
+        role=role,
+    )
+    resolved = resolve_role_contract_id(opening.company, opening.title)
+    if resolved != role_contract_id:
+        raise ValueError(
+            "role proof contract does not match live opening identity: "
+            f"{role_contract_id!r} != {resolved!r}"
+        )
+    role_contract = build_role_proof_contract(role_contract_id)
+    projection = _apply_role_contract_projection(
+        base_projection,
+        role_contract,
+        non_affiliation=kit.non_affiliation,
+    )
+    validate_outreach_copy(
+        role_contract_id,
+        projection.outreach_markdown,
+        evidence_refs=projection.claim_sources,
+    )
+    return kit, match, assessment, role_contract, projection
 
 
 def project_company_aware_application(

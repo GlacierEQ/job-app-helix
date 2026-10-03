@@ -17,10 +17,14 @@ from .application_operations import (
     ingest_job_opening_url,
     load_candidate_profile,
     load_job_opening,
-    project_application,
+)
+from .application_strategy import (
+    project_requirement_aware_application,
+    project_role_contract_aware_application,
 )
 from .candidate_profile_compiler import CandidateProfileCompileError, write_candidate_profile
 from .genius_engine import GeniusRun, invent
+from .role_proof_contracts import resolve_role_contract_id
 
 STOPWORDS = frozenset(
     {
@@ -108,6 +112,8 @@ class DynamicBuildResult:
     uncovered_signals: tuple[str, ...]
     build_actions: tuple[Mapping[str, object], ...]
     application_id: str | None
+    role_contract_id: str | None
+    role_contract_digest: str | None
     genius_receipt_sha256: str | None
     receipt_sha256: str
 
@@ -125,6 +131,8 @@ class DynamicBuildResult:
             "uncovered_signals": list(self.uncovered_signals),
             "build_actions": [dict(row) for row in self.build_actions],
             "application_id": self.application_id,
+            "role_contract_id": self.role_contract_id,
+            "role_contract_digest": self.role_contract_digest,
             "genius_receipt_sha256": self.genius_receipt_sha256,
             "receipt_sha256": self.receipt_sha256,
         }
@@ -464,9 +472,26 @@ def execute_dynamic_build(
     build_dir.mkdir(parents=True, exist_ok=True)
 
     application_id: str | None = None
+    role_contract_id = resolve_role_contract_id(opening.company, opening.title)
+    role_contract_digest: str | None = None
     public_proofs = tuple(row.repository for row in evidence if row.public_proof)
     if public_proofs:
-        _, match, projection = project_application(opening, target, profile, role=opening.title)
+        if role_contract_id is None:
+            _, match, _, projection = project_requirement_aware_application(
+                opening,
+                target,
+                profile,
+                role=opening.title,
+            )
+        else:
+            _, match, _, role_contract, projection = project_role_contract_aware_application(
+                opening,
+                target,
+                profile,
+                role_contract_id,
+                role=opening.title,
+            )
+            role_contract_digest = str(role_contract["digest"])
         application_id = projection.application_id
         (build_dir / "RESUME.md").write_text(projection.resume_markdown, encoding="utf-8")
         (build_dir / "COVER_LETTER.md").write_text(
@@ -497,6 +522,8 @@ def execute_dynamic_build(
         "uncovered_signals": list(uncovered),
         "build_actions": [dict(row) for row in actions],
         "application_id": application_id,
+        "role_contract_id": role_contract_id,
+        "role_contract_digest": role_contract_digest,
         "genius_receipt_sha256": genius.receipt_sha256 if genius else None,
     }
     receipt_sha = _digest(receipt_body)
@@ -513,6 +540,8 @@ def execute_dynamic_build(
         uncovered_signals=uncovered,
         build_actions=actions,
         application_id=application_id,
+        role_contract_id=role_contract_id,
+        role_contract_digest=role_contract_digest,
         genius_receipt_sha256=genius.receipt_sha256 if genius else None,
         receipt_sha256=receipt_sha,
     )
