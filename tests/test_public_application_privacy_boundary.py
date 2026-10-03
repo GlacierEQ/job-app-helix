@@ -64,16 +64,16 @@ def test_public_company_dossiers_are_intelligence_only_without_person_pii() -> N
         assert not EMAIL.search(text), path
         assert not PHONE.search(text), path
 
-        def walk(value: object) -> None:
+        def walk(value: object, source: Path) -> None:
             if isinstance(value, dict):
-                assert forbidden_keys.isdisjoint(value), path
+                assert forbidden_keys.isdisjoint(value), source
                 for child in value.values():
-                    walk(child)
+                    walk(child, source)
             elif isinstance(value, list):
                 for child in value:
-                    walk(child)
+                    walk(child, source)
 
-        walk(payload)
+        walk(payload, path)
 
 
 def test_blackstraw_public_dossier_is_role_intelligence_only() -> None:
