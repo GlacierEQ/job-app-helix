@@ -11,6 +11,8 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any
 
+from job_app_helix.application_engine import load_targets
+
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = ROOT / "scripts" / "validate_application_registry.py"
 
@@ -85,10 +87,11 @@ class ApplicationRegistryTests(unittest.TestCase):
         self.assertEqual(result["named_systems"], len(catalog["flagships"]))
         self.assertGreater(result["external_flagship_repositories"], 0)
         self.assertGreaterEqual(result["unresolved_flagships"], 0)
-        # Intel, Groq, and CoreWeave carry explicit discovered-candidate
-        # records. Lockheed Martin is intentionally an inherited Scaffold
-        # until role/problem/code evidence clears the second-depth gates.
-        self.assertEqual(result["inherited_company_dossiers"], 23)
+        inherited = sum(
+            target.track_state == "NO_DIRECT_EXHIBIT_VERIFIED"
+            for target in load_targets(ROOT / "manifests")
+        )
+        self.assertEqual(result["inherited_company_dossiers"], inherited)
         self.assertGreater(result["l1_private_experiments_documented"], 0)
         self.assertEqual(result["normalized_legacy_promotion_aliases"], 1)
         self.assertTrue(result["zero_direct_omission_gate"])
