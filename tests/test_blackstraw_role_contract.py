@@ -38,7 +38,7 @@ def test_blackstraw_is_first_class_client_embedded_fde_lane() -> None:
     assert contract["guardrails"]["engagement_identity"] == "confirm_with_recruiter_do_not_infer"
 
 
-def test_blackstraw_target_resolves_exact_recruiter_role_with_public_proof() -> None:
+def test_blackstraw_target_resolves_exact_role_with_public_proof() -> None:
     target = find_target("blackstraw_ai", load_targets(ROOT / "manifests"))
 
     assert target.display_name == "Blackstraw.AI"
@@ -55,7 +55,7 @@ def test_blackstraw_target_resolves_exact_recruiter_role_with_public_proof() -> 
             ROOT
             / "manifests"
             / "company_dossiers"
-            / "blackstraw_ai_recruiter_lane_2026_10_02.json"
+            / "blackstraw_ai_role_intelligence_2026_10_02.json"
         ).read_text(encoding="utf-8")
     )
     refs = dossier["companies"][0]["transferable_proof_refs"]
