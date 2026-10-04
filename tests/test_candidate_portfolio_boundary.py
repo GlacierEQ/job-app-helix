@@ -24,8 +24,8 @@ def test_candidate_surfaces_match_live_portfolio_boundary() -> None:
     portfolio = json.loads(PORTFOLIO.read_text(encoding="utf-8"))
     children = portfolio["workspace_repositories"]
 
-    assert portfolio["total_repositories"] == 77
-    assert len(children) == 76
+    assert portfolio["total_repositories"] == 63
+    assert len(children) == 62
     assert len(children) == len(set(children))
 
     # Only check for factually incorrect claims about CURRENT portfolio

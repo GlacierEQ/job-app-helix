@@ -253,62 +253,6 @@
           "private",
           "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/spacex-starship-flight-software",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/spacex-ai-flight-controller",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/spacex-engine-out-compensator",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/spacex-stage-separation-optimizer",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/spacex-flight-termination-hardener",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/spacex-hitl-testbed-automation",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/spacex-in-space-refueling-planner",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
         ]
       ]
     },
@@ -363,62 +307,6 @@
           "PRIVATE_CANDIDATE",
           "private",
           "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/nvidia-blackwell-fp4-optimizer",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/nvidia-cuda-graphs-conditional",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/nvidia-moe-grouped-gemm",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/nvidia-nvlink-scaler",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/nvidia-tensorrt-llm-tuner",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/nvidia-kernel-autotuner",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/nvidia-power-perf-profiler",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
         ]
       ]
