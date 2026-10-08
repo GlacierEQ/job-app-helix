@@ -88,6 +88,14 @@ def test_proof_reproduced_to_promoted_requires_security_boundary_and_projection_
     assert allowed_transition("PROOF_REPRODUCED", "PROMOTED", gates)
 
 
+def test_direct_transition_check_accepts_legacy_security_gate_as_technical_alias():
+    gates = {name: False for name in REQUIRED_EXCELLENT_GATES}
+    gates.pop("security_boundary_verified")
+    gates["security_authority_bounded"] = True
+    gates["projections_truth_consistent"] = True
+    assert allowed_transition("PROOF_REPRODUCED", "PROMOTED", gates)
+
+
 def test_promoted_to_reference_requires_every_excellence_gate():
     assert transition_gate_requirements("PROMOTED", "SOURCE_BOUND") == REQUIRED_EXCELLENT_GATES
     assert not allowed_transition("PROMOTED", "SOURCE_BOUND")
