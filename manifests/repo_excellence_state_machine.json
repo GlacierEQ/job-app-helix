@@ -33,10 +33,10 @@
     "RETIREMENT_READY",
     "QUARANTINE"
   ],
-  "transition_rule": "Principal-state promotion moves upward through purpose reconstruction, capability mapping, recovery/composition, implementation, proof, operation, and evolution. Active facets describe work without demoting repository worth. Historical contraction states are parse-only evidence and cannot authorize archive, deletion, merge-away, close-as-duplicate, branch deletion, or successor substitution.",
+  "transition_rule": "Principal-state promotion moves upward through purpose reconstruction, capability mapping, recovery/composition, implementation, proof, operation, and evolution. Active facets describe work without demoting repository worth. Historical contraction states are parse-only evidence and cannot authorize archive, deletion, merge-away, close-as-duplicate, branch deletion, or successor substitution. PROMOTED is retained as a compatibility label for evidence-bounded outward-claim readiness and never confers project direction, lifecycle authority, release permission, or cross-repository authority.",
   "transition_gate_requirements": {
     "PROOF_REPRODUCED->PROMOTED": [
-      "security_authority_bounded",
+      "security_boundary_verified",
       "projections_truth_consistent"
     ],
     "PROMOTED->SOURCE_BOUND": [
@@ -47,7 +47,7 @@
       "deterministic_tests_pass",
       "adversarial_tests_pass",
       "runtime_behavior_observed",
-      "security_authority_bounded",
+      "security_boundary_verified",
       "proof_receipt_bound_to_sha",
       "reusable_capabilities_extracted",
       "projections_truth_consistent",
@@ -65,7 +65,8 @@
       "sibling demotion",
       "successor substitution"
     ],
-    "sibling_rule": "A reference anchor for one capability does not make neighboring repositories redundant; sibling systems remain independent capability donors until provider-read-back proves whole-donor UNIQUE_CONTRIBUTION=0 across source-bearing value and durable lineage preservation is verified."
+    "sibling_rule": "A reference anchor for one capability does not make neighboring repositories redundant; sibling systems remain independent capability donors until provider-read-back proves whole-donor UNIQUE_CONTRIBUTION=0 across source-bearing value and durable lineage preservation is verified.",
+    "legacy_scope_flag": "authority_bounded is accepted only as a historical alias for scope_boundary_verified"
   },
   "projection_truth_closure": {
     "purpose": "Prevent outward projections from outrunning implementation evidence without allowing evidence gates to reduce underlying engineering ambition.",
@@ -85,7 +86,7 @@
     "deterministic_tests_pass",
     "adversarial_tests_pass",
     "runtime_behavior_observed",
-    "security_authority_bounded",
+    "security_boundary_verified",
     "proof_receipt_bound_to_sha",
     "reusable_capabilities_extracted",
     "projections_truth_consistent",
@@ -157,5 +158,13 @@
     "retirement_terminal_disposition": "PRESERVE_DRAINED_LINEAGE",
     "remote_ref_deletion_allowed": false
   },
-  "governing_rule": "A repository advances by recovering and building capability. Evidence controls what may be claimed, not whether the repository deserves to exist. The default next state is upward evolution, not contraction."
+  "governing_rule": "A repository advances by recovering and building capability. Evidence controls what may be claimed, not whether the repository deserves to exist. The default next state is upward evolution, not contraction.",
+  "project_direction_authority": "OPERATOR",
+  "machine_project_direction_authority": false,
+  "compatibility_semantics": {
+    "PROMOTED": "evidence_bounded_outward_claim_readiness_only",
+    "SOURCE_BOUND": "exact_source_identity_and_integration_anchor_only",
+    "security_authority_bounded": "legacy alias for security_boundary_verified; never project authority",
+    "authority_bounded": "legacy source-receipt alias for scope_boundary_verified; never project authority"
+  }
 }
