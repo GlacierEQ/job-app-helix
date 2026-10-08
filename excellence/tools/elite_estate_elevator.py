@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import hashlib
-import hmac
 import json
 import os
 import re
@@ -21,7 +20,6 @@ SCRATCH = Path(os.environ.get(
     "ELITE_SCRATCH",
     "/var/folders/w3/hldw78112gzbvgd2_pj1bg3h0000gn/T/grok-goal-71072d58ed24/implementer",
 ))
-SECRET = b"glaciereq-local-operator-promotion-authority-v1"
 TS = datetime.now(UTC).strftime("%Y-%m-%dT%H:%MZ")
 NOW = time.time()
 
@@ -49,58 +47,27 @@ def _pick_python() -> str:
 
 PYTHON = _pick_python()
 
-# Complete authority donor (includes LOCAL_OPERATOR_SECRET + verify_bound_grant)
-def _load_promo_auth() -> str:
-    donors = (
-        REPOS / "anduril-lattice-dissent-freeze" / "src" / "promotion_authority.py",
-        REPOS / "groq-batch-admission-gate" / "src" / "promotion_authority.py",
-        REPOS / "anduril-sensor-health-quorum" / "src" / "promotion_authority.py",
-    )
-    for p in donors:
-        if p.is_file():
-            text = p.read_text(encoding="utf-8")
-            if "LOCAL_OPERATOR_SECRET" in text and "verify_bound_grant" in text:
-                return text
-    raise RuntimeError("no complete promotion_authority donor found")
-
-
-PROMO_AUTH = _load_promo_auth()
-PROMO_TEST = textwrap.dedent('''\
-from __future__ import annotations
-import hashlib, json, unittest
-from pathlib import Path
-from src.promotion_authority import (
-    LOCAL_OPERATOR_SECRET, PromotionAuthority, verify_bound_grant,
-)
-ROOT = Path(__file__).resolve().parents[1]
-class PromotionAuthTests(unittest.TestCase):
-    def test_issue_verify(self):
-        a = PromotionAuthority(b"test-secret", ttl_s=60)
-        g = a.issue("GlacierEQ/x", "abc", "def", now=1000.0)
-        ok, r = a.verify(g, now=1001.0)
-        self.assertTrue(ok)
-    def test_expired(self):
-        a = PromotionAuthority(b"test-secret", ttl_s=10)
-        g = a.issue("GlacierEQ/x", "abc", "def", now=1000.0)
-        ok, r = a.verify(g, now=2000.0)
-        self.assertFalse(ok)
-        self.assertEqual(r, "GRANT_EXPIRED")
-    def test_real_machine_grant_verifies_against_proof_receipt(self):
-        grant_path = ROOT / "machine" / "promotion_authority.json"
-        proof_path = ROOT / "machine" / "proof_receipt.json"
-        if not grant_path.is_file() or not proof_path.is_file():
-            self.skipTest("receipts not yet bound")
-        grant = json.loads(grant_path.read_text())
-        proof = json.loads(proof_path.read_text())
-        file_digest = hashlib.sha256(proof_path.read_bytes()).hexdigest()
-        self.assertEqual(grant["proof_receipt_digest"], file_digest)
-        self.assertEqual(grant["source_sha"], proof["source_sha"])
-        ok, reason = verify_bound_grant(grant, proof_path, secret=LOCAL_OPERATOR_SECRET)
-        self.assertTrue(ok, reason)
-if __name__ == "__main__":
-    unittest.main()
-''')
-
+def proof_compatibility_record(
+    repository: str,
+    source_sha: str,
+    proof_digest: str,
+) -> dict[str, object]:
+    """Bind proof metadata without creating project or lifecycle authority."""
+    return {
+        "schema": "glaciereq.promotion-proof-compatibility.v2",
+        "status": "EVIDENCE_BOUND_NON_AUTHORITATIVE",
+        "repository": repository,
+        "source_sha": source_sha,
+        "proof_receipt_digest": proof_digest,
+        "project_direction_authority": False,
+        "repository_lifecycle_authority": False,
+        "cross_repository_authority": False,
+        "technical_meaning": (
+            "Exact-source proof binding and compatibility metadata only; "
+            "this record cannot authorize promotion, merge, release, retirement, "
+            "repository disposition, or cross-repository action."
+        ),
+    }
 
 def write(path: Path, content: str, mode: int = 0o644) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -453,13 +420,18 @@ def continuous_history(repo_id: str, evidence: dict) -> dict:
         ("TESTED", "ADVERSARIAL_VERIFIED", "ADVERSARIAL_SURVIVAL", "tests/test_adversarial.py"),
         ("ADVERSARIAL_VERIFIED", "OPERABLE", "OPERABLE_AND_OBSERVABLE", evidence["operable"]),
         ("OPERABLE", "PROOF_REPRODUCED", "PROOF_RECEIPT_BOUND", evidence["proof"]),
-        ("PROOF_REPRODUCED", "PROMOTED", "AUTHORITY_BOUND", evidence["authority"]),
+        (
+            "PROOF_REPRODUCED",
+            "PROMOTED",
+            "PROJECTION_TRUTH_CLOSED",
+            evidence["projection_truth"],
+        ),
     ]
     gates = {g: {"status": "PENDING"} for g in (
         "IDENTITY_RESOLVED", "PROBLEM_VERIFIED", "TARGET_CONTRACT_FROZEN", "DONOR_PLAN_RESOLVED",
         "VERTICAL_SLICE_ALIVE", "CENTRAL_MECHANISM_PRESENT", "DETERMINISTIC_PROOF_GREEN",
         "ADVERSARIAL_SURVIVAL", "OPERABLE_AND_OBSERVABLE", "PROOF_RECEIPT_BOUND",
-        "AUTHORITY_BOUND", "PROJECTION_TRUTH_CLOSED", "SOURCE_BOUND_POSITION_RESOLVED",
+        "PROJECTION_TRUTH_CLOSED", "SOURCE_BOUND_POSITION_RESOLVED",
     )}
     gates["EVOLUTION_CURSOR_DEFINED"] = {
         "status": "PASS", "at": TS, "evidence": "elite estate elevator"}
@@ -471,35 +443,29 @@ def continuous_history(repo_id: str, evidence: dict) -> dict:
         history.append({
             "at": TS, "from": frm, "to": to, "gate": gate, "result": "PASS", "note": note})
         principal = to
-    # Compound promotion policy (monolith promotion-policy.v1 / #95):
-    # PROOF_REPRODUCED → PROMOTED requires AUTHORITY_BOUND + PROJECTION_TRUTH_CLOSED.
-    gates["PROJECTION_TRUTH_CLOSED"] = {
-        "status": "PASS",
-        "at": TS,
-        "evidence": (
-            f"operable={evidence.get('operable')}; proof={evidence.get('proof')}; "
-            f"authority={evidence.get('authority')}; claim_ceiling=leaf-native; "
-            "projection_role=monolith_projection_only"
-        ),
-    }
     return {
         "schema": "glaciereq.repo-excellence-state.v1",
         "repository": repo_id,
         "principal_state": "PROMOTED",
+        "project_direction_authority": "OPERATOR",
+        "machine_state_creates_project_authority": False,
+        "compatibility_semantics": {
+            "PROMOTED": "evidence_bounded_outward_claim_readiness_only",
+        },
         "gates": gates,
         "history": history,
         "contract_ref": "machine/target-contract.json",
         "scores_ref": "machine/excellence-scores.json",
-        "evolution_cursor": "next:reference_position_only_if_estate_role_resolved",
+        "evolution_cursor": "next:source_binding_challenger_comparison_and_verified_improvement",
         "wave": {
             "id": "ELITE-ESTATE-2026-08-10",
             "proof_ok": True,
             "operable_ok": True,
             "promoted_at": TS,
             "policy": "glaciereq.repo-excellence.promotion-policy.v1",
+            "promotion_semantics": "evidence_readiness_not_project_authority",
         },
     }
-
 
 def continuous_ok(history: list) -> bool:
     if not history or history[0].get("from") != "DISCOVERED":
@@ -510,23 +476,6 @@ def continuous_ok(history: list) -> bool:
             return False
         cur = h["to"]
     return cur == "PROMOTED"
-
-
-def issue_grant(repository: str, source_sha: str, proof_digest: str, ttl: float = 86400.0 * 30):
-    na = NOW + ttl
-    body = f"{repository}|{source_sha}|{proof_digest}|{na}"
-    mac = hmac.new(SECRET, body.encode(), hashlib.sha256).hexdigest()
-    return {
-        "schema": "glaciereq.promotion-authority-grant.v1",
-        "repository": repository,
-        "source_sha": source_sha,
-        "proof_receipt_digest": proof_digest,
-        "not_after": na,
-        "mac": mac,
-        "issuer": "local_operator_promotion_authority",
-        "verified": True,
-        "secret_ref": "src/promotion_authority.py::LOCAL_OPERATOR_SECRET",
-    }
 
 
 def write_gap(leaf: Path, blocker: str, evidence: str, reason: str) -> None:
@@ -593,15 +542,9 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
     cmd, kind = discover_entry(leaf)
     entry["test_entry"] = kind
 
-    # Ensure excellence pack files (complete authority; do not clobber richer donor)
+    # Preserve leaf implementation and strengthen adversarial proof without
+    # copying any authority token, secret-shaped fixture, or project-permission module.
     mod = primary_src_module(leaf) or name.replace("-", "_")
-    auth_path = leaf / "src" / "promotion_authority.py"
-    auth_content = (
-        auth_path.read_text(encoding="utf-8", errors="replace") if auth_path.is_file() else ""
-    )
-    if not auth_path.is_file() or "LOCAL_OPERATOR_SECRET" not in auth_content:
-        write(auth_path, PROMO_AUTH)
-    write(leaf / "tests" / "test_promotion_authority.py", PROMO_TEST)
     write(leaf / "tests" / "test_adversarial.py", generate_adversarial(mod))
     # Regenerate generic elite operate; preserve hand-written operates
     op_path = leaf / "scripts" / "operate.py"
@@ -765,10 +708,11 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
     }
     write(mid / "proof_receipt.json", json.dumps(proof, indent=2))
     proof_digest = sha256_file(mid / "proof_receipt.json")
-    grant = issue_grant(repo_id, src_sha, proof_digest)
-    write(mid / "promotion_authority.json", json.dumps(grant, indent=2))
+    compatibility = proof_compatibility_record(repo_id, src_sha, proof_digest)
+    write(mid / "promotion_authority.json", json.dumps(compatibility, indent=2))
 
-    # Re-proof after grant bind so test_real_machine_grant exercises shipped path
+    # Re-proof after compatibility metadata bind; this validates that the
+    # non-authoritative receipt does not perturb the shipped leaf path
     pr2_ok, pr2a, pr2b = dual_run(cmd, leaf, env, timeout=180)
     (out_dir / "proof_after_bind.log").write_text(
         f"dual={pr2_ok}\n===1===\n{pr2a[1]}{pr2a[2]}\n===2===\n{pr2b[1]}{pr2b[2]}\n",
@@ -787,7 +731,10 @@ def elevate_leaf(leaf: Path, out_dir: Path) -> dict:
     st = continuous_history(repo_id, {
         "operable": "scripts/operate.py dual-run PASS; primary ok",
         "proof": f"proof_receipt digest={proof_digest[:16]}… entry={kind}",
-        "authority": "promotion_authority.json local HMAC grant",
+        "projection_truth": (
+            "exact-source proof receipt bound; nonclaims preserved; "
+            "promotion compatibility record explicitly non-authoritative"
+        ),
     })
     write(st_path, json.dumps(st, indent=2))
     (out_dir / "state_after.json").write_text(json.dumps(st, indent=2) + "\n")
@@ -832,7 +779,7 @@ def main() -> int:
     2. **Proof:** dual-run unit tests on real entry (`unittest discover` or
        documented `pytest`) with `PYTHONPATH` including leaf/`src`.
     3. **Adversarial:** `tests/test_adversarial.py` exercises refuse/import edges on shipped path.
-    4. **Authority:** `machine/promotion_authority.json` HMAC-bound to proof receipt + source_sha.
+    4. **Evidence binding:** exact-source proof receipt + explicit non-authoritative compatibility metadata.
     5. **State:** `machine/excellence-state.json` continuous DISCOVERED→PROMOTED
        **or** honest `machine/gap-receipt.json`.
 
