@@ -452,7 +452,11 @@ def transition_gates_satisfied(
         return True
     if not isinstance(gates, Mapping):
         return False
-    return all(gates.get(name) is True for name in requirements)
+    try:
+        normalized, _ = _normalize_excellence_gates(gates)
+    except ExcellenceContractError:
+        return False
+    return all(normalized.get(name) is True for name in requirements)
 
 
 def allowed_transition(
