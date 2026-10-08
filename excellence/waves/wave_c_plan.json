@@ -2,7 +2,7 @@
   "schema": "glaciereq.excellence-wave-plan.v1",
   "wave": "WAVE-C-2026-08-10",
   "group": "C",
-  "label": "Wave C \u2014 Innovation scaffold excellence group",
+  "label": "Wave C — Innovation scaffold excellence group",
   "generated_at": "2026-08-10T1002Z",
   "supersedes_closed": [
     "WAVE-A",
@@ -442,7 +442,7 @@
     "G3_RECEIPT": "deterministic digests",
     "G4_REFUSE": "explicit refuse paths",
     "G5_CEILING": "non-affiliation preserved",
-    "PROMOTE": "AUTHORITY_BOUND + PROJECTION_TRUTH_CLOSED; PROMOTED XOR gap-receipt"
+    "PROMOTE": "exact-source implementation proof + EVIDENCE_BINDING + PROJECTION_TRUTH_CLOSED; PROMOTED is evidence/readiness metadata only"
   },
   "protected_not_enrolled": [
     "anduril-sensor-health-quorum",
@@ -452,9 +452,15 @@
     "palantir-object-authority-matrix",
     "waymo-uncertainty-lane-graph"
   ],
-  "note": "Protected leaves were prior-wave exhibits restored after name collision with scaffold batch.",
+  "note": "Protected leaves were prior-wave exhibits restored after name collision with scaffold batch. Current interpretation: prior AUTHORITY_BOUND language is historical technical-boundary evidence only and grants no project authority.",
   "closed_at": "2026-08-10T1011Z",
   "close_result": "PASS",
   "promoted_count": 47,
-  "gapped_count": 0
+  "gapped_count": 0,
+  "project_direction_authority": "OPERATOR",
+  "machine_project_direction_authority": false,
+  "compatibility_semantics": {
+    "PROMOTED": "evidence_bounded_outward_claim_readiness_only",
+    "note": "PROMOTED is evidence/readiness metadata only and does not confer project or repository lifecycle authority"
+  }
 }
