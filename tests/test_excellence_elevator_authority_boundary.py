@@ -58,3 +58,17 @@ def test_compatibility_receipt_is_explicitly_non_authoritative() -> None:
     assert receipt["proof_receipt_digest"] == "b" * 64
     assert "mac" not in receipt
     assert "secret_ref" not in receipt
+
+
+def test_wave_c_active_generator_and_plan_do_not_reintroduce_authority_gate() -> None:
+    runner = (ROOT / "excellence" / "tools" / "run_wave_c_elevate.py").read_text(
+        encoding="utf-8"
+    )
+    plan = (ROOT / "excellence" / "waves" / "wave_c_plan.json").read_text(
+        encoding="utf-8"
+    )
+    assert "AUTHORITY_BOUND" not in runner
+    assert "AUTHORITY_BOUND" not in plan
+    assert "PROJECTION_TRUTH_CLOSED" in runner
+    assert "EVIDENCE_BINDING" in runner
+    assert "PROMOTED is evidence/readiness metadata only" in plan
