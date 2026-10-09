@@ -9,6 +9,7 @@ public proof; company signals never become candidate claims by themselves.
 from __future__ import annotations
 
 import argparse
+from datetime import datetime
 import json
 from collections.abc import Sequence
 from dataclasses import replace
@@ -240,6 +241,7 @@ def project_company_aware_application(
     intelligence: CompanyIntelligence,
     *,
     role: str | None = None,
+    now: datetime | None = None,
 ) -> tuple[
     ApplicationKit,
     MatchResult,
@@ -259,7 +261,7 @@ def project_company_aware_application(
             "company intelligence does not match target: "
             f"{intelligence.company_id!r} != {target.company_id!r}"
         )
-    company_fit = assess_company_fit(profile, intelligence)
+    company_fit = assess_company_fit(profile, intelligence, now=now)
     company_rows = _company_alignment_rows(company_fit, profile)
     resume = _inject_before_truth_boundary(
         base_projection.resume_markdown,
@@ -304,6 +306,7 @@ def compile_requirement_aware_lifecycle(
     role: str | None = None,
     adapter: ApplicationAdapter | None = None,
     company_intelligence: CompanyIntelligence | None = None,
+    now: datetime | None = None,
 ) -> dict[str, object]:
     """Compile a tracked recruiter packet from explicit evidence and fresh direction."""
     store.save_opening(opening)
@@ -322,6 +325,7 @@ def compile_requirement_aware_lifecycle(
             profile,
             company_intelligence,
             role=role,
+            now=now,
         )
 
     artifacts = dict(write_projection(projection, match, output_dir))
