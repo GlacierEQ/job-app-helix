@@ -1,0 +1,74 @@
+{
+  "system_prompt": "You are a LinkedIn outreach execution agent operating on behalf of Casey Del Carpio Barton, a Staff-level AI Architect based in Honolulu, Hawaii. Your job is to find, connect with, and message specific engineering leaders at target companies using pre-approved messages.\n\nRULES:\n- Never improvise message content. Use only the approved message templates provided.\n- Never connect AND message in the same session. Connect first, wait for acceptance, then message.\n- If a profile has an Open To Messages / Open Link badge, send InMail directly — skip connection step.\n- Log every action taken with: target_name, company, action_type, timestamp, status.\n- If a profile is not found via primary search, try secondary search before marking as not found.\n- Never message recruiters or HR. Engineering leadership and founders only.\n- Rate limit: max 5 connection requests per day, max 3 direct messages per day.",
+  "rate_limits": {
+    "max_connection_requests_per_day": 5,
+    "max_direct_messages_per_day": 3
+  },
+  "notion_master_page_url": "https://app.notion.com/p/3f4b1e4f322381408dc2da3735a3d0ba",
+  "targets": {
+    "supabase": {
+      "target_id": "target-supabase",
+      "company": "Supabase",
+      "role": "Staff AI Platform Engineer",
+      "primary_contact": "Paul Copplestone",
+      "fallback_platform": "X (@kiwicopple)",
+      "primary_search": "LinkedIn search: \"Supabase\" + \"AI\" + \"Engineer\" OR \"Infrastructure\" + filter: Current company = Supabase",
+      "secondary_search": "LinkedIn search: \"Paul Copplestone\" — if no DM available, use X @kiwicopple instead",
+      "connection_note": "Paul — I run supabase-backend-ops and supabase-glaciereq on PG17. Built 65 MCP connectors over your stack. Would love to connect about the Staff AI Platform role.",
+      "approved_message": "Paul — I'm an ex-founder and forward-deployed AI architect currently running supabase-backend-ops and supabase-glaciereq (PG17 on us-east-1) to power a sovereign AI infrastructure. Built a 1,313-repo platform and 65 MCP connectors natively over your stack. I've been heavily leveraging the new AND filters in Postgres Changes to drop websocket payload sizes for agentic swarms, and utilizing pgvector HNSW indexing for a 4-tier memory constellation. My APEX stack is your stack. I specialize in deterministic multi-agent orchestration and MCP governance, and I'd love to bring this velocity to the Staff AI Platform Engineer role. No resume attached, just the work. Let me know who on the infra team I should sync with.",
+      "notion_url": "https://app.notion.com/p/3f4b1e4f32238116a89fd5aefd596f59",
+      "status": "pending"
+    },
+    "harvey_ai": {
+      "target_id": "target-harvey-ai",
+      "company": "Harvey AI",
+      "role": "Sr SWE AI Platform",
+      "primary_contact": "Head of Engineering / VP Engineering",
+      "secondary_contact": "Staff / Principal Engineer (AI Platform)",
+      "primary_search": "LinkedIn search: \"Harvey AI\" + \"Head of Engineering\" OR \"VP Engineering\" OR \"Engineering Manager\"",
+      "secondary_search": "LinkedIn search: \"Harvey AI\" + \"Staff Engineer\" OR \"Principal Engineer\" + \"AI Platform\"",
+      "connection_note": "I've built a 961-test deterministic agent control plane for evidence-locked legal workflows. Wanted to connect about the Sr SWE AI Platform role.",
+      "approved_message": "I am likely the only AI Platform Architect in your applicant pool who has engineered a 961-test deterministic agent control plane specifically to survive navigating federal civil rights and family court litigation pro se. I understand the legal hallucination and warrant problem natively. To manage my case, I built an evidence-locked, drop-only verification framework across 860 repositories with SHA-256 hash chains, driving hallucination risk to zero by separating LLM generation from deterministic proof verification. I specialize in orchestrating 1000+ step planning agents using explicit proposed/executed/verified state transitions — the exact architecture required for Harvey's enterprise legal products following the Guardrails AI acquisition. I've submitted my application for the Sr SWE AI Platform role, but wanted to reach out directly to discuss how my forensic-grade MCP architecture maps to Harvey's 10k+ leaf taxonomy requirements.",
+      "notion_url": "https://app.notion.com/p/3f4b1e4f32238170954fc73af3029dd0",
+      "status": "pending"
+    },
+    "scale_ai": {
+      "target_id": "target-scale-ai",
+      "company": "Scale AI",
+      "role": "Mission Software Engineer (Public Sector)",
+      "primary_contact": "Public Sector Engineering Director / Engineering Lead",
+      "primary_search": "LinkedIn search: \"Scale AI\" + \"Public Sector\" + \"Engineering Director\" OR \"Engineering Lead\"",
+      "secondary_search": "LinkedIn search: \"Scale AI\" + \"Mission Software\" OR \"Forward Deployed\" + Engineer",
+      "portal_url": "scale.com/careers",
+      "connection_note": "Honolulu-based AI architect, just applied for the Mission Software Engineer role. Building multi-layered agentic guardrails is my core work. Wanted to connect.",
+      "approved_message": "I'm a Honolulu-based Forward-Deployed AI Architect who just applied for the Mission Software Engineer role, and I build the exact multi-layered guardrails your team requires for contested environments. I've orchestrated a 1,313-repository platform with 65 MCP tool connectors using a 961-test control plane. My architectures enforce deterministic multi-agent scheduling with explicit proposed/executed/verified/blocked states, ensuring agentic fleets operate safely under strict token budgets and zero-trust permissions. I specialize in embedding with complex systems and engineering sovereign, forensic-grade execution infrastructure. I understand the rigor required for TS/SCI environments and the necessity of evidence-bound execution. I'd welcome a brief sync to discuss how my architecture maps to Scale's Public Sector mission.",
+      "notion_url": "https://app.notion.com/p/3f4b1e4f32238160a637e1033ace79fc",
+      "status": "pending"
+    },
+    "clickup": {
+      "target_id": "target-clickup",
+      "company": "ClickUp",
+      "role": "Staff AI Engineer Multi-Agent (Brain 2 & Super Agents)",
+      "primary_contact": "Jay Hack",
+      "primary_platforms": ["LinkedIn", "X (@mathemagic1an)"],
+      "primary_search": "LinkedIn search: \"Jay Hack\" ClickUp | X search: @mathemagic1an",
+      "secondary_search": "LinkedIn search: \"ClickUp\" + \"Head of AI\" OR \"Staff AI Engineer\" OR \"Brain\"",
+      "connection_note": "Jay — built a deterministic agent coordinator that enforces proposed/executed/verified/blocked states. Read your verifiability gap thesis. Wanted to connect.",
+      "approved_message": "Jay — I read your recent thesis on the verifiability gap and the danger of AI agents executing unverified code paths in production. I've built the architectural solution for this. To govern a 1,313-repository platform with 65 MCP connectors, I engineered a deterministic Agent Coordinator that completely separates capability from authority. It enforces human-in-the-loop verification by construction, utilizing explicit proposed / executed / verified / blocked state transitions before any action is committed. My background is in forward-deployed AI architecture for highly constrained, forensic-grade environments. I build the control planes that make positive transfer and episodic memory accountable in production, entirely bypassing the hallucination risks of standard agentic frameworks. I've applied for the Staff AI Engineer Multi-Agent role, but wanted to connect directly. I'd love to share how my state-machine approach to multi-agent orchestration maps to the future of Brain 2 and Super Agents.",
+      "notion_url": "https://app.notion.com/p/3f4b1e4f32238102b3aafcd45c5eab1e",
+      "status": "pending"
+    }
+  },
+  "cadence": {
+    "day_0": "Initial send (connection request OR direct message / InMail)",
+    "day_3": "IF no response to connection request -> send follow-up nudge: \"Hey [name] — just wanted to make sure this landed. Happy to share a quick technical overview of my MCP architecture if useful.\"",
+    "day_7": "IF still no response -> try alternate channel (LinkedIn -> X, or X -> LinkedIn)",
+    "day_14": "IF still no response -> mark as COLD, advance to Upgrade Path"
+  },
+  "upgrade_paths": {
+    "supabase": "Find a different team member (infra engineer, DevRel) and engage on a specific GitHub PR or issue first, then message",
+    "harvey_ai": "Post a short public LinkedIn article on legal hallucination + your solution, tag Harvey AI, engage whoever comments",
+    "scale_ai": "Reapply to a second role in their public sector division",
+    "clickup": "Comment substantively on a Jay Hack X post about verifiability, then DM referencing the comment thread"
+  }
+}
