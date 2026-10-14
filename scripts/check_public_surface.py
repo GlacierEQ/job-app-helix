@@ -52,6 +52,20 @@ def tracked_files() -> list[Path]:
     return [ROOT / item.decode() for item in completed.stdout.split(b"\0") if item]
 
 
+def check_application_disclosure(files: list[Path]) -> list[str]:
+    """Reject operational application receipts from the public evidence tree.
+
+    Portfolio proof belongs here; private application lifecycle, provider receipts,
+    contact information and submission records belong to the private job-app plane.
+    """
+    errors: list[str] = []
+    for path in files:
+        relative = path.as_posix()
+        if relative.startswith("evidence/applications/"):
+            errors.append(f"private application evidence in public repository: {relative}")
+    return errors
+
+
 def check_paths(files: list[Path]) -> list[str]:
     errors: list[str] = []
     for path in files:
