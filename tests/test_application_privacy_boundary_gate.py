@@ -45,6 +45,11 @@ class ApplicationPrivacyBoundaryGateTests(unittest.TestCase):
         }))
         self.assertTrue(any("index.json" in error for error in violations(self.root)))
 
+    def test_public_promotion_queue_rejects_recipient_address_and_application_state(self):
+        self.write("hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md",
+                   "Application received — applicant@example.test\nAPPLICATION_RECEIVED")
+        self.assertTrue(any("AI_ARCHITECT_PROMOTION_QUEUE.md" in error for error in violations(self.root)))
+
     def test_private_receipt_detection_does_not_reject_generic_technical_schema(self):
         self.write("evidence/architecture/proof.json", json.dumps({
             "schema": "glaciereq.architecture-proof.v1", "receipt_sha256": "a" * 64,

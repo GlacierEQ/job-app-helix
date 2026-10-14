@@ -7,6 +7,7 @@ submission state; those are exclusively private job-app runtime responsibilities
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -23,6 +24,14 @@ PUBLIC_JSON_ROOTS = (
     "solidify_records",
 )
 PRIVATE_RECEIPT_SCHEMA = "glaciereq.external-application-receipt.v1"
+PUBLIC_QUEUE = "hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md"
+PRIVATE_QUEUE_MARKERS = re.compile(
+    r"\b(?:post[- ]submission|application_received|submitted_received|"
+    r"duplicate[- ]submission|do[- _]?not[- _]?resubmit|provider_acknowledgement|"
+    r"receipt_displayed_recipient)\b|"
+    r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b",
+    flags=re.IGNORECASE,
+)
 
 
 def _contains_provider_operations(value: Any) -> bool:
@@ -54,6 +63,15 @@ def violations(root: Path = ROOT) -> list[str]:
             for path in sorted(p for p in protected.rglob("*") if p.is_file()):
                 failures.append(f"private application path committed publicly: {path.relative_to(root).as_posix()}")
                 seen.add(path)
+    public_queue = root / PUBLIC_QUEUE
+    if public_queue.is_file():
+        try:
+            queue_text = public_queue.read_text(encoding="utf-8")
+        except (UnicodeError, OSError):
+            failures.append(f"public promotion queue could not be verified: {PUBLIC_QUEUE}")
+        else:
+            if PRIVATE_QUEUE_MARKERS.search(queue_text):
+                failures.append(f"private applicant tracking inside public promotion queue: {PUBLIC_QUEUE}")
     for relative in PUBLIC_JSON_ROOTS:
         directory = root / relative
         if not directory.exists():
