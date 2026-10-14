@@ -133,7 +133,7 @@ def check_markdown_links(files: list[Path]) -> list[str]:
 
 def main() -> int:
     files = tracked_files()
-    errors = check_paths(files) + check_content(files) + check_markdown_links(files)
+    errors = (check_paths(files) + check_application_disclosure([p.relative_to(ROOT) for p in files]) + check_content(files) + check_markdown_links(files))
     if errors:
         print("Public-surface check failed:", file=sys.stderr)
         for error in errors:
