@@ -1,6 +1,6 @@
 """Regression: public evidence must not publish private application lifecycle records."""
-from pathlib import Path
 import unittest
+from pathlib import Path
 
 from scripts.check_public_surface import check_application_disclosure
 
