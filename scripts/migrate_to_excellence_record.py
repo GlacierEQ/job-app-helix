@@ -99,7 +99,7 @@ def migrate() -> None:
                     "deterministic_tests_pass": old_gates.get("DETERMINISTIC_PROOF_GREEN", {}).get("status") == "PASS",
                     "adversarial_tests_pass": old_gates.get("ADVERSARIAL_SURVIVAL", {}).get("status") == "PASS",
                     "runtime_behavior_observed": old_gates.get("OPERABLE_AND_OBSERVABLE", {}).get("status") == "PASS",
-                    "security_authority_bounded": old_gates.get("AUTHORITY_BOUND", {}).get("status") == "PASS",
+                    "security_boundary_verified": old_gates.get("AUTHORITY_BOUND", {}).get("status") == "PASS",
                     "proof_receipt_bound_to_sha": old_gates.get("PROOF_RECEIPT_BOUND", {}).get("status") == "PASS",
                     "reusable_capabilities_extracted": old_gates.get("DONOR_PLAN_RESOLVED", {}).get("status") == "PASS",
                     "projections_truth_consistent": False,
@@ -114,7 +114,13 @@ def migrate() -> None:
                     "source": str(state_path),
                     "retirement_authority_preserved": False,
                     "proof_state_promoted_by_migration": False,
+                    "legacy_authority_gate_semantics": (
+                        "AUTHORITY_BOUND is translated only as historical technical "
+                        "security/scope-boundary evidence; it grants no project authority"
+                    ),
                 },
+                "project_direction_authority": "OPERATOR",
+                "machine_project_direction_authority": False,
             }
 
             validated = validate_repo_excellence_record(record)
