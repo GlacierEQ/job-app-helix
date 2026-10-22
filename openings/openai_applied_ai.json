@@ -1,0 +1,15 @@
+{
+  "company": "OpenAI",
+  "title": "Applied AI Engineer",
+  "location": "San Francisco, CA / Remote",
+  "description": "Applied AI Engineers bridge frontier research and real-world deployment. You will design agent infrastructure, optimize context and retrieval pipelines, build reliable tool interfaces, evaluate reasoning traces, and engineer resilient systems that operate autonomously under strict reliability boundaries.",
+  "requirements": [
+    "Python",
+    "Agent infrastructure",
+    "Tool authority and API boundaries",
+    "Context optimization and retrieval",
+    "Evaluation and testing",
+    "Distributed systems",
+    "Concurrency and performance"
+  ]
+}

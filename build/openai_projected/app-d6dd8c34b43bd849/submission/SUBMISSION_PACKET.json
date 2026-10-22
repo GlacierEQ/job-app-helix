@@ -1,0 +1,114 @@
+{
+  "adapter": "manual",
+  "packet": {
+    "application_id": "app-d6dd8c34b43bd849",
+    "artifacts": {
+      "cover_letter": "/root/job-app-helix/build/openai_projected/app-d6dd8c34b43bd849/COVER_LETTER.md",
+      "match": "/root/job-app-helix/build/openai_projected/app-d6dd8c34b43bd849/MATCH.json",
+      "outreach": "/root/job-app-helix/build/openai_projected/app-d6dd8c34b43bd849/OUTREACH.md",
+      "receipt": "/root/job-app-helix/build/openai_projected/app-d6dd8c34b43bd849/PROJECTION_RECEIPT.json",
+      "resume": "/root/job-app-helix/build/openai_projected/app-d6dd8c34b43bd849/RESUME.md"
+    },
+    "kit": {
+      "company": "OpenAI",
+      "company_id": "openai",
+      "known_gap": "KV sentinel is admitted; Codex/MCP candidates need provenance/runtime audit; upstream SDK/framework repos are excluded.",
+      "non_affiliation": "Independent GlacierEQ work; no OpenAI affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "proof_repositories": [
+        {
+          "level": "L3",
+          "repository": "GlacierEQ/openai-reasoning-kv-sentinel",
+          "role": "public technical proof",
+          "state": "REFERENCE_ONLY"
+        }
+      ],
+      "readiness": "READY_WITH_PUBLIC_PROOF",
+      "recruiter_thesis": "Evidence-bound agents, tool authority, evaluation, context integrity, and inspectable provider convergence.",
+      "role": "Applied AI Engineer",
+      "schema": "glaciereq.job-application-kit.v1",
+      "track_state": "MAPPED_NOT_RECRUITER_READY"
+    },
+    "match": {
+      "company_id": "openai",
+      "digest": "533352ad7144fcd60f1429b053b35681449199664d8299239c70837ad27aee07",
+      "mapped_role": "Applied AI Engineer",
+      "matched_terms": [
+        "agent",
+        "ai",
+        "applied",
+        "authority",
+        "boundaries",
+        "concurrency",
+        "context",
+        "engineer",
+        "evaluation",
+        "infrastructure",
+        "optimization",
+        "python",
+        "systems",
+        "tool"
+      ],
+      "missing_terms": [
+        "api",
+        "autonomously",
+        "boundaries.",
+        "bridge",
+        "build",
+        "deployment.",
+        "design",
+        "distributed",
+        "engineers",
+        "evaluate",
+        "frontier",
+        "interfaces",
+        "operate",
+        "optimize",
+        "performance",
+        "pipelines",
+        "real-world",
+        "reasoning",
+        "reliability",
+        "reliable",
+        "research",
+        "resilient",
+        "retrieval",
+        "strict",
+        "testing",
+        "traces",
+        "under"
+      ],
+      "opening_id": "job-2c5c1755d96b0a69",
+      "overall_score": 0.570732,
+      "proof_score": 0.333333,
+      "recommendation": "STRONG_MATCH",
+      "role_score": 1.0,
+      "skill_score": 0.341463
+    },
+    "opening": {
+      "company": "OpenAI",
+      "description": "Applied AI Engineers bridge frontier research and real-world deployment. You will design agent infrastructure, optimize context and retrieval pipelines, build reliable tool interfaces, evaluate reasoning traces, and engineer resilient systems that operate autonomously under strict reliability boundaries.",
+      "digest": "2c5c1755d96b0a6942950476ca96bc9458ae1ff2df774eb6362c8e04d5c3b3d4",
+      "location": "San Francisco, CA / Remote",
+      "metadata": {},
+      "opening_id": "job-2c5c1755d96b0a69",
+      "preferred": [],
+      "requirements": [
+        "Python",
+        "Agent infrastructure",
+        "Tool authority and API boundaries",
+        "Context optimization and retrieval",
+        "Evaluation and testing",
+        "Distributed systems",
+        "Concurrency and performance"
+      ],
+      "source": "file",
+      "source_url": "/root/job-app-helix/openings/openai_applied_ai.json",
+      "title": "Applied AI Engineer"
+    },
+    "projection_receipt": "d6dd8c34b43bd849258d8f7162822c3009931fb0cf7c85013a0012696ab350a8",
+    "schema": "glaciereq.application-packet.v1"
+  },
+  "schema": "glaciereq.manual-application-adapter.v1",
+  "status": "READY_FOR_MANUAL_SUBMISSION",
+  "submission_performed": false
+}

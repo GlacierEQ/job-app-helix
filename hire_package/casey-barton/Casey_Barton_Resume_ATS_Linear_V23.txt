@@ -1,0 +1,126 @@
+CASEY DEL CARPIO BARTON
+APPLIED AI SYSTEMS ARCHITECT | FORWARD-DEPLOYED AI ENGINEER | AGENT INFRASTRUCTURE ENGINEER
+Honolulu, Hawaiʻi | 808-936-5654 | glacier.equilibrium@gmail.com | casey-barton-glaciereq.vercel.app | github.com/GlacierEQ
+SYSTEMS ATLAS MASTER | HUMAN → MASTER → MACHINE → MESH | ONE FACTUAL GRAPH, FOUR RESOLUTIONS
+01 / HUMAN / RECRUITER fast signal, real experience, strongest current proof
+I build the control layer between powerful models and dependable real-world outcomes. My systems bind identity and authority before execution, carry evidence through the operation, make failure states explicit, reconcile canonical state afterward, and refuse to call work complete when the receipt does not match what actually ran.
+The method comes from studying and diagnosing systems in different forms: biological systems taught me boundaries, signals, feedback, adaptation, and structure/function; compressed-gas and building systems taught me failure consequences and safety; software became the place where I could turn that systems reasoning into executable contracts.
+FRONTIER ENGINEERING SIGNAL
+• Evidence-carrying execution: bind operation identity/input/authority before action, preserve that context through execution, and reject terminal promotion when the receipt or verification no longer matches the bound operation.
+• Fail-closed execution envelopes: validate preconditions, constrain authority/resources, execute or refuse deterministically, reconcile canonical state, and leave durable evidence.
+• Bounded state transitions: make defer / confirm / deny / invalidate states machine-visible rather than converting non-admission into silent success.
+• Idempotent recovery + provenance-bound state: stable identity, replay boundaries, integrity checks, and durable receipts so retries do not silently change meaning.
+• Truth-preserving public projections: project public-safe facts from canonical/private authority without widening proof, leaking source boundaries, or letting presentation become truth.
+• Reversible verified change: preserve known-good state, gate mutation, verify post-change behavior, and restore when verification fails.
+CURRENT PROOF SIGNAL
+• AKOS current canonical head eac3cab001306225b99da41c37370528331966dd is verified across Python 3.11, 3.12, and 3.13; the Python 3.12 receipt records 200 collected, 199 passed, 1 skipped, 0 failures, and 0 errors. The same evidence preserves 160 broader preexisting Ruff findings as visible quality debt.
+• ECHO current head 6acdb3be1739f1659f3cec9f4b7d39d5799cd476 hardens the public/private admission boundary; the canonical hiring source binds its merged repair to compile, correctness lint, dependency audit, 48/48 tests, and CLI verification.
+• The Tower of Babel governs 40 technology floors and 80 easy/advanced exhibits, with 17 behavioral-proof floors, 3 formal-proof floors, and 9 explicitly gated floors; technologies earn placement through a named boundary and proof gate rather than decorative language count.
+• Pinned behavioral evidence also includes 62/62 Agent Coordinator tests and a 153-execution, three-version Safety Monitor matrix; those receipts prove their bounded mechanisms, not production deployment.
+PROFESSIONAL EXPERIENCE
+GlacierEQ | Founder / Applied AI Systems Builder | Honolulu, Hawaiʻi | January 2025–Present
+• Design and implement interconnected AI, agent, document, memory, evidence, infrastructure, and hiring systems, with explicit control-plane, execution-plane, receipt-plane, source-authority, and projection boundaries.
+• Convert ambiguous missions into typed contracts, runnable vertical slices, deterministic tests, refusal behavior, recovery paths, machine interfaces, and reviewable completion receipts.
+• Build repeated reliability mechanisms across independent systems rather than counting repositories as accomplishments: evidence-carrying execution, fail-closed envelopes, bounded transitions, idempotent recovery, truth-preserving projections, and reversible verified change.
+• Maintain explicit public/private, original/upstream, simulation/hardware, proposal/execution, current-head/historical-proof, and source/presentation boundaries across the engineering estate.
+• Use AI-assisted development as an inspectable workflow combining source review, bounded generation, deterministic validation, exact-revision proof, and human judgment.
+Diamond Head Home Inspections | Certified Home Inspector | Honolulu, Hawaiʻi | 2020–2024
+• Diagnosed interconnected structural, roofing, electrical, plumbing, HVAC, moisture, and safety conditions under time pressure, often from incomplete or contradictory field evidence.
+• Translated observations into prioritized risk, uncertainty, and practical next actions for clients; developed the habit of separating symptom, cause, evidence strength, and consequence before recommending action.
+• Carried that field discipline directly into software: observe first, preserve evidence, test the boundary, explain uncertainty, and never let presentation outrun proof.
+Hi-Class Home Services / Hi Class Maintenance Oahu LLC | Owner-Operator, Building Systems & Field Services | Honolulu, Hawaiʻi | 2017–Present
+• Scope residential repair and service work, prepare estimates, coordinate execution, and translate incomplete real-world requirements into bounded work packages and usable closeout artifacts.
+• Work across interacting building systems and practical failure modes, balancing safety, client priorities, sequencing, uncertainty, and completion under real resource constraints.
+02 / MASTER / ARCHITECTURE invention, systems lineage, tradeoffs, and the mechanisms behind the proof
+PAIRED OPERATING ARCHITECTURE
+AKOS + ECHO | governance pillar + continuity/orchestration piston
+• AKOS answers what is authorized, evidenced, mature, and complete; ECHO keeps identity, continuity, idempotent work, recovery, and receipts moving through that governed boundary.
+• Together they separate human objective, truth/authority classification, operational flow, and receipt-backed verification instead of collapsing those concerns into one agent loop.
+EVIDENCE AKOS exact current head eac3cab… has current-head multi-version executed CI; ECHO exact current head 6acdb3be… is the merged privacy-boundary repair.
+BOUNDARY Repository-local verification is not production-scale proof; external-provider connectivity, traffic, SLOs, and adoption remain separately evidenced states.
+Job Application Helix + Hiring System | portfolio authority + commit-pinned public projection
+• Child repositories own their code, tests, releases, and native receipts; Job-App Helix owns portfolio admission, evidence state, company/role alignment, flagship hierarchy, and public-safe projection policy.
+• The public hiring repo renders recruiter, résumé, technical-master, evidence-mesh, systems-atlas, and machine surfaces from commit-pinned Helix truth and fails closed on stale, private, inconsistent, or over-promoted source state.
+EVIDENCE Job-App Helix v0.3.0 defines an exact root + child boundary, monotonic evidence ladder, stack-native proof planning, bounded execution, atomic receipts, and typed README Mesh contracts.
+BOUNDARY Repository count is not an accomplishment metric; presentation authority cannot independently promote source evidence.
+The Tower of Babel | executable technology placement and interoperability
+• Assigns each language, format, compiler layer, HDL, or proof system a unique responsibility, interface, proof gate, activation condition, and blocker.
+• Its flagship path composes TypeScript ingress, Python planning, Rust authority, Go telemetry, SQL canonical state, WebAssembly sandboxing, Lean proof, and a deterministic receipt rather than collecting languages for display.
+EVIDENCE 40 governed technology floors; 80 easy/advanced exhibits; explicit build, benchmark, formal-proof, and blocker states.
+BOUNDARY A floor remains illustrative/gated/runnable/tested/benchmarked/integrated only at the strongest evidence actually reproduced.
+Colossal Agent + Spiral Engine / Double Helix | biologically inspired systems architecture
+• Colossal Agent decomposes an AI system using nucleus/DNA/RNA/chromatin, organ systems, cells, receptors, membrane, and tissues; the DNA layer uses paired strands joined by shared rungs.
+• Spiral Engine carries state forward across iterative revolutions rather than returning to the same plane; Pillars & Pistons separate stable domain principle from specialized execution mechanism.
+• The same connected-system logic reappears in Job Application Helix: related strands share structure and evidence without collapsing provenance into a monolith.
+EVIDENCE Public Spiral Engine and Pillars/Pistons artifacts are timestamped in GlacierEQ Git history; Colossal Agent remains a private/reference architecture and is described here only at a sanitized systems level.
+BOUNDARY No private case-specific content is projected into the public hiring surface.
+BIOLOGICAL SYSTEMS → ENGINEERED SYSTEMS
+Nested biological organization → system / subsystem / component ownership
+Membranes + selective permeability → tool, data, privacy, and authority admission boundaries
+Receptors + signal response → connectors, events, typed inputs, observability
+Homeostasis → health checks, bounded recovery, known-good state, rollback
+Adaptation → correction → policy → regression test → next operating cycle
+Structure / function → technology placement: every component earns a boundary
+Morphometric classification → observable features → measurable signals → defensible state
+DNA / double helix → shared invariants across coordinated strands without collapsing identity
+ARCHITECTURE CHRONOLOGY — TIMESTAMPED, BOUNDED
+Public GlacierEQ anchors: Pillars & Pistons (March 16, 2026) and Spiral Engine public artifact (March 24, 2026). A later May 27 OpenAI public three-pillar/self-improvement comparator falls 72 and 64 days later, respectively. This is presented only as dated semantic convergence; no access, copying, transmission, causation, or ownership of ordinary terminology is claimed.
+03 / MACHINE / PROOF exact revisions, evidence states, failure semantics, technical surface
+CURRENT AND PINNED EVIDENCE
+AKOS | current-head tested execution authority
+EVIDENCE Head eac3cab001306225b99da41c37370528331966dd; GitHub Actions across Python 3.11/3.12/3.13. Python 3.12: 200 collected, 199 passed, 1 skipped, 0 failures/errors. Delegated caller, task, trace, executor, terminal state, verification result, and receipt hash are checked before acceptance.
+BOUNDARY 160 broader preexisting Ruff findings remain explicit quality debt; no repository-wide lint-clean, production, scale, or third-party-adoption claim.
+ECHO | continuity, idempotency, recovery, provenance, receipts
+EVIDENCE Current head 6acdb3be1739f1659f3cec9f4b7d39d5799cd476. Canonical hiring proof binds the merged privacy-boundary repair to compile, correctness lint, dependency audit, 48/48 tests, and CLI VERIFIED; earlier exact-revision hardening proof establishes stable identity, integrity recomputation, idempotency keys, fail-closed unsupported capabilities, and chained receipts.
+BOUNDARY No production traffic/scale claim; private/domain systems cross the public mesh only as separately sanitized, admitted capabilities.
+Evidence-Carrying Execution capability cluster | three independent implementations, one exact-head executed CI anchor
+EVIDENCE public-actions-runner-host + Tower of Babel + current-head AKOS independently bind operation identity/input/authority, carry hashes or typed identity through execution, and reject terminal promotion on receipt publication/hash/caller/executor/verification mismatch.
+BOUNDARY One repeated capability, not three accomplishments; donors are not claimed to be integrated.
+Bounded State Transitions | behavior-tested multi-repository pattern
+EVIDENCE Agent Coordinator: 62/62 at pinned executable revision. Safety Monitor: 51 tests × Python 3.11/3.12/3.13 = 153 executions with zero failures/errors/skips. Helix worker-science keeps provider-blocked or infrastructure-invalid evidence from becoming performance-valid.
+BOUNDARY No generalized distributed execution, production safety coverage, or provider reliability claim.
+Real-provider guarded mutation | expected-head + canonical readback + replay suppression
+EVIDENCE Merge Authority proof: 26/26 mechanism tests + 38/38 gateway tests; exact patch/check preconditions, expected-head guard, real GitHub-provider mutation, canonical post-mutation readback, and replay returning DUPLICATE_ALREADY_COMPLETED without a second mutation.
+BOUNDARY This is a bounded reproduced provider path, not universal exactly-once semantics.
+Truth-Preserving Public Projection Boundaries | multi-repository verified pattern
+EVIDENCE AKOS, ECHO, and Job-App Helix independently preserve upstream/private authority while emitting source-bound public-safe projections with immutable refs, explicit evidence states, negative leakage tests, claim ceilings, and next gates.
+BOUNDARY No formal privacy certification, universal zero-leak guarantee, or automatic sanitization of arbitrary private data.
+TECHNICAL PROFILE
+Primary implementation: Python • TypeScript • JavaScript • SQL • Bash • Node.js • React • Next.js • FastAPI
+Interfaces + architecture: REST • JSON-RPC • MCP • JSON Schema • Protocol Buffers • events • state machines • idempotency • authority models • evidence models
+Data + documents: SQLite • PostgreSQL concepts • structured extraction • document generation • provenance • SHA-256 integrity • machine-readable receipts
+Delivery + verification: Git • GitHub Actions • Docker • Vercel • automated testing • static analysis • dependency auditing • deterministic release gates
+Evidence-bounded exposure: Go • Rust • C • C++ • CUDA • Swift/Metal • Julia • R • Verilog/SystemVerilog • WebAssembly • Lean 4
+MACHINE-READABLE OPERATING PRINCIPLES
+• Capability ≠ authority.
+• Source presence ≠ behavioral proof.
+• Provider/task success ≠ verified completion.
+• A successful build ≠ production deployment.
+• Current head cannot inherit historical proof without exact-revision evidence.
+• A language earns its boundary through measurable responsibility, not novelty.
+• Completion requires usable artifact + verification + persistence + honest boundary.
+04 / MESH / SYSTEMS LINEAGE education, physical systems, authority map, and how the pieces connect
+EDUCATION — SYSTEMS SCIENCE, NOT A CHECKBOX
+University of Hawaiʻi at Mānoa | B.S., Marine Biology | 2016
+• Research-intensive scientific training in interacting biological systems, ecology, physiology, scientific method, experimental design, quantitative reasoning, field/laboratory investigation, evidence evaluation, and professional communication.
+• Morphometric research, 2016–2017: processed physical measurements of sea-urchin gill structures to support visual species identification — early training in turning complex real-world observations into measurable features and defensible classifications.
+• Systems reasoning from biology now appears directly in computational architecture: nested organization, selective boundaries, signal-response, homeostasis, adaptation, feedback, structure/function, and emergent behavior.
+AWS Cloud Institute | Cloud Application Developer program | 2025–2026, in progress
+• Structured hands-on cloud-development training spanning application development, architecture, security, DevOps, data, labs, capstone work, and certification preparation.
+• Extends the earlier systems-science foundation into modern cloud execution, infrastructure boundaries, deployment, and operational verification.
+SAFETY-CRITICAL AND FIELD SYSTEMS FOUNDATION
+Scuba Tank Technician | Hawaiian Diving Adventures + UH Dive Office | 2016–2017
+• Tank filling, transport, inspection and repair support, and gas mixing under safety-critical procedures where process discipline and state verification matter.
+• Historical technical certifications recorded in prior resumes include PSI Visual Cylinder Inspector, Eddy Current Technician, Valve Repair Technician, Oxygen Cleaning Cylinder Technician, NAUI Rescue and Master Diver, and PADI Enriched Air Diver; current status is not represented as active without updated documentation.
+Civil Air Patrol | Cadet leadership + Search-and-Rescue context | 2007–2011
+• Historical leadership includes Cadet Commander and Search-and-Rescue Ground Team Leader; an official 2009 certificate documents appointment as a Cadet Officer.
+• Included as earlier leadership and mission-discipline context, not represented as formal professional people-management experience.
+HIRING-SYSTEM AUTHORITY MAP
+Child repositories → source authority — own implementation, native tests, release state, security/failure behavior, and repository receipts
+Job-App Helix → portfolio authority — admission, evidence state, company/role alignment, flagship hierarchy, freshness, projection policy
+job-application → presentation authority — recruiter, résumé, master, mesh, atlas, machine surfaces; may change presentation, not facts
+Public runtime → casey-barton-glaciereq.vercel.app — commit-pinned projection of public-safe governed truth
+EVALUATOR PATHS
+Recruiter: casey-barton-glaciereq.vercel.app | Résumé: casey-barton-glaciereq.vercel.app/resume/ | Master: casey-barton-glaciereq.vercel.app/master/ | Mesh: casey-barton-glaciereq.vercel.app/mesh/ | Atlas: casey-barton-glaciereq.vercel.app/atlas/ | Machine: casey-barton-glaciereq.vercel.app/machine/ | Source: github.com/GlacierEQ
+EVIDENCE BOUNDARY
+Independent GlacierEQ work and bounded technical exhibits. Exact test totals and revision claims apply only to the stated repository, SHA, workflow, or receipt. No company affiliation, proprietary access, production scale, customer adoption, formal people-management experience, current certification status, hardware equivalence, or measured business outcome is claimed unless a direct current source establishes it.

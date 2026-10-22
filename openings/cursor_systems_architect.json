@@ -1,0 +1,15 @@
+{
+  "company": "Cursor / Anysphere",
+  "title": "Principal AI Systems Architect",
+  "location": "San Francisco, CA / Remote",
+  "description": "Cursor is building the next-generation AI-first code editor. As a Principal AI Systems Architect, you will design low-latency agent orchestration engines, engineer AST and semantic diff patch synthesis, build reliable tool-use and LSP integrations, and optimize model context boundaries for instantaneous code generation and multi-file reasoning.",
+  "requirements": [
+    "Python",
+    "TypeScript",
+    "Agent orchestration and tool authority",
+    "Semantic diff and patch intent verification",
+    "Context window optimization",
+    "Low-latency streaming architecture",
+    "Deterministic state machines and fail-closed testing"
+  ]
+}

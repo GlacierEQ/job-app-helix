@@ -1,0 +1,19 @@
+{
+  "company": "OpenAI",
+  "company_id": "openai",
+  "known_gap": "KV sentinel is admitted; Codex/MCP candidates need provenance/runtime audit; upstream SDK/framework repos are excluded.",
+  "non_affiliation": "Independent GlacierEQ work; no OpenAI affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+  "proof_repositories": [
+    {
+      "level": "L3",
+      "repository": "GlacierEQ/openai-reasoning-kv-sentinel",
+      "role": "public technical proof",
+      "state": "REFERENCE_ONLY"
+    }
+  ],
+  "readiness": "READY_WITH_PUBLIC_PROOF",
+  "recruiter_thesis": "Evidence-bound agents, tool authority, evaluation, context integrity, and inspectable provider convergence.",
+  "role": "Applied AI Engineer",
+  "schema": "glaciereq.job-application-kit.v1",
+  "track_state": "MAPPED_NOT_RECRUITER_READY"
+}

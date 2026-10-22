@@ -1,0 +1,12 @@
+{
+  "application_id": "app-d6dd8c34b43bd849",
+  "claim_sources": [
+    "candidate-profile:c03b848889eae691b6eb866bf627b28654011e0be1ccbc14f22522b44f77cd22",
+    "GlacierEQ/openai-reasoning-kv-sentinel"
+  ],
+  "company_id": "openai",
+  "opening_id": "job-2c5c1755d96b0a69",
+  "projection_digest": "d6dd8c34b43bd849258d8f7162822c3009931fb0cf7c85013a0012696ab350a8",
+  "schema": "glaciereq.application-projection-receipt.v1",
+  "status": "READY"
+}

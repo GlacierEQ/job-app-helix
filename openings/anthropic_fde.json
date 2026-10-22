@@ -1,0 +1,15 @@
+{
+  "company": "Anthropic",
+  "title": "Forward Deployed Engineer",
+  "location": "San Francisco, CA / Remote",
+  "description": "Forward Deployed Engineers work directly with high-impact customers to build, deploy, and scale complex AI systems using Claude and frontier models. You will design agentic architectures, build reliable tool-use pipelines, enforce safety and evaluation boundaries, and turn ambiguous client requirements into robust, production-grade software.",
+  "requirements": [
+    "Python",
+    "Systems architecture",
+    "Agent orchestration",
+    "Model Context Protocol (MCP)",
+    "Evaluation and safety guardrails",
+    "Distributed systems",
+    "Observability and failure recovery"
+  ]
+}

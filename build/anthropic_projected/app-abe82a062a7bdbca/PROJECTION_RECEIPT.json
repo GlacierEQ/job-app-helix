@@ -1,0 +1,13 @@
+{
+  "application_id": "app-abe82a062a7bdbca",
+  "claim_sources": [
+    "candidate-profile:c03b848889eae691b6eb866bf627b28654011e0be1ccbc14f22522b44f77cd22",
+    "GlacierEQ/anthropic-safety-monitor",
+    "GlacierEQ/anthropic-agent-coordinator"
+  ],
+  "company_id": "anthropic",
+  "opening_id": "job-c5eb19a7d4fe342c",
+  "projection_digest": "abe82a062a7bdbcac681c23cf42be61bf8d82e7f1f7cf447e926f8ee64783a9f",
+  "schema": "glaciereq.application-projection-receipt.v1",
+  "status": "READY"
+}

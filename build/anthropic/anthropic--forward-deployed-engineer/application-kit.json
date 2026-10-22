@@ -1,0 +1,25 @@
+{
+  "company": "Anthropic",
+  "company_id": "anthropic",
+  "known_gap": "Current official Applied AI roles are source-verified. Public recruiter evidence is now limited to provider-resolvable Anthropic-oriented systems; build the next Forward Deployed Engineer / Applied AI Architect proof by integrating customer-system delivery, evaluation, reliability, reusable deployment patterns, and explicit safety boundaries without claiming Anthropic affiliation or production use.",
+  "non_affiliation": "Independent GlacierEQ work; no Anthropic affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+  "proof_repositories": [
+    {
+      "level": "L4",
+      "repository": "GlacierEQ/anthropic-safety-monitor",
+      "role": "public technical proof",
+      "state": "PROMOTED"
+    },
+    {
+      "level": "L4",
+      "repository": "GlacierEQ/anthropic-agent-coordinator",
+      "role": "public technical proof",
+      "state": "PROMOTED"
+    }
+  ],
+  "readiness": "READY_WITH_PUBLIC_PROOF",
+  "recruiter_thesis": "Forward-deployed AI architecture and engineering: build inside ambiguous customer environments, integrate models/tools into real systems, preserve reliability and safety boundaries, and turn repeatable deployment patterns into reusable capability.",
+  "role": "Forward Deployed Engineer",
+  "schema": "glaciereq.job-application-kit.v1",
+  "track_state": "MAPPED_WITH_RECRUITER_READY_PUBLIC_SUBSET"
+}

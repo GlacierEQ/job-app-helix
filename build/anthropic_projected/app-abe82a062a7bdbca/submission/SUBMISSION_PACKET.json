@@ -1,0 +1,125 @@
+{
+  "adapter": "manual",
+  "packet": {
+    "application_id": "app-abe82a062a7bdbca",
+    "artifacts": {
+      "cover_letter": "/root/job-app-helix/build/anthropic_projected/app-abe82a062a7bdbca/COVER_LETTER.md",
+      "match": "/root/job-app-helix/build/anthropic_projected/app-abe82a062a7bdbca/MATCH.json",
+      "outreach": "/root/job-app-helix/build/anthropic_projected/app-abe82a062a7bdbca/OUTREACH.md",
+      "receipt": "/root/job-app-helix/build/anthropic_projected/app-abe82a062a7bdbca/PROJECTION_RECEIPT.json",
+      "resume": "/root/job-app-helix/build/anthropic_projected/app-abe82a062a7bdbca/RESUME.md"
+    },
+    "kit": {
+      "company": "Anthropic",
+      "company_id": "anthropic",
+      "known_gap": "Current official Applied AI roles are source-verified. Public recruiter evidence is now limited to provider-resolvable Anthropic-oriented systems; build the next Forward Deployed Engineer / Applied AI Architect proof by integrating customer-system delivery, evaluation, reliability, reusable deployment patterns, and explicit safety boundaries without claiming Anthropic affiliation or production use.",
+      "non_affiliation": "Independent GlacierEQ work; no Anthropic affiliation, endorsement, employment, proprietary access, or production deployment is claimed.",
+      "proof_repositories": [
+        {
+          "level": "L4",
+          "repository": "GlacierEQ/anthropic-safety-monitor",
+          "role": "public technical proof",
+          "state": "PROMOTED"
+        },
+        {
+          "level": "L4",
+          "repository": "GlacierEQ/anthropic-agent-coordinator",
+          "role": "public technical proof",
+          "state": "PROMOTED"
+        }
+      ],
+      "readiness": "READY_WITH_PUBLIC_PROOF",
+      "recruiter_thesis": "Forward-deployed AI architecture and engineering: build inside ambiguous customer environments, integrate models/tools into real systems, preserve reliability and safety boundaries, and turn repeatable deployment patterns into reusable capability.",
+      "role": "Forward Deployed Engineer",
+      "schema": "glaciereq.job-application-kit.v1",
+      "track_state": "MAPPED_WITH_RECRUITER_READY_PUBLIC_SUBSET"
+    },
+    "match": {
+      "company_id": "anthropic",
+      "digest": "7da2106d3b9bd1dc914b6e95e86d5cae98d5c9b1129187f114593d9b22876e55",
+      "mapped_role": "Forward Deployed Engineer",
+      "matched_terms": [
+        "agent",
+        "ai",
+        "architecture",
+        "boundaries",
+        "context",
+        "evaluation",
+        "mcp",
+        "model",
+        "orchestration",
+        "protocol",
+        "python",
+        "systems"
+      ],
+      "missing_terms": [
+        "agentic",
+        "ambiguous",
+        "architectures",
+        "build",
+        "claude",
+        "client",
+        "complex",
+        "customers",
+        "deploy",
+        "deployed",
+        "design",
+        "directly",
+        "distributed",
+        "enforce",
+        "engineers",
+        "failure",
+        "forward",
+        "frontier",
+        "guardrails",
+        "high-impact",
+        "into",
+        "models.",
+        "observability",
+        "pipelines",
+        "production-grade",
+        "recovery",
+        "reliable",
+        "requirements",
+        "robust",
+        "safety",
+        "scale",
+        "software.",
+        "tool-use",
+        "turn"
+      ],
+      "opening_id": "job-c5eb19a7d4fe342c",
+      "overall_score": 0.580435,
+      "proof_score": 0.666667,
+      "recommendation": "STRONG_MATCH",
+      "role_score": 1.0,
+      "skill_score": 0.26087
+    },
+    "opening": {
+      "company": "Anthropic",
+      "description": "Forward Deployed Engineers work directly with high-impact customers to build, deploy, and scale complex AI systems using Claude and frontier models. You will design agentic architectures, build reliable tool-use pipelines, enforce safety and evaluation boundaries, and turn ambiguous client requirements into robust, production-grade software.",
+      "digest": "c5eb19a7d4fe342c92c46d4065695bc17b0eda63205ce789c18096cd115202c6",
+      "location": "San Francisco, CA / Remote",
+      "metadata": {},
+      "opening_id": "job-c5eb19a7d4fe342c",
+      "preferred": [],
+      "requirements": [
+        "Python",
+        "Systems architecture",
+        "Agent orchestration",
+        "Model Context Protocol (MCP)",
+        "Evaluation and safety guardrails",
+        "Distributed systems",
+        "Observability and failure recovery"
+      ],
+      "source": "file",
+      "source_url": "/root/job-app-helix/openings/anthropic_fde.json",
+      "title": "Forward Deployed Engineer"
+    },
+    "projection_receipt": "abe82a062a7bdbcac681c23cf42be61bf8d82e7f1f7cf447e926f8ee64783a9f",
+    "schema": "glaciereq.application-packet.v1"
+  },
+  "schema": "glaciereq.manual-application-adapter.v1",
+  "status": "READY_FOR_MANUAL_SUBMISSION",
+  "submission_performed": false
+}
