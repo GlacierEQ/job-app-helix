@@ -126,16 +126,18 @@ def test_company_direction_changes_recruiter_copy_only_when_evidence_exists(
     tmp_path: Path,
 ) -> None:
     profile = load_candidate_profile(_profile(tmp_path))
+    intelligence = _intelligence()
+    expected_fresh = intelligence.fresh_signals()
     _, _, opportunity, company_fit, projection = project_company_aware_application(
         _opening(),
         _target(),
         profile,
-        _intelligence(),
+        intelligence,
         role="Forward Deployed Engineer",
     )
 
     assert opportunity.recommendation == "APPLY_PRIORITY"
-    assert company_fit.fresh_signal_count == 8
+    assert company_fit.fresh_signal_count == len(expected_fresh)
     assert company_fit.matched_signals
     assert "## Current company-direction alignment" in projection.resume_markdown
     assert "containment" in projection.resume_markdown.lower()
@@ -167,6 +169,8 @@ def test_company_intelligence_must_match_application_target(tmp_path: Path) -> N
 
 def test_compile_lifecycle_persists_company_strategy_receipts(tmp_path: Path) -> None:
     profile = load_candidate_profile(_profile(tmp_path))
+    intelligence = _intelligence()
+    expected_fresh = intelligence.fresh_signals()
     output_dir = tmp_path / "output"
     with ApplicationStore(tmp_path / "applications.sqlite3") as store:
         packet = compile_requirement_aware_lifecycle(
@@ -176,7 +180,7 @@ def test_compile_lifecycle_persists_company_strategy_receipts(tmp_path: Path) ->
             output_dir=output_dir,
             store=store,
             role="Forward Deployed Engineer",
-            company_intelligence=_intelligence(),
+            company_intelligence=intelligence,
         )
         application = store.get_application(str(packet["application_id"]))
 
@@ -195,7 +199,8 @@ def test_compile_lifecycle_persists_company_strategy_receipts(tmp_path: Path) ->
         "observability",
         "AI safety evaluation",
     ]
-    assert receipt["company_fresh_signal_count"] == 8
-    assert len(receipt["company_source_urls"]) == 7
+    assert receipt["company_fresh_signal_count"] == len(expected_fresh)
+    expected_urls = tuple(dict.fromkeys(signal.source_url for signal in expected_fresh))
+    assert len(receipt["company_source_urls"]) == len(expected_urls)
     assert packet["schema"] == "glaciereq.company-aware-application-packet.v1"
     assert application["status"] == "READY"

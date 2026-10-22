@@ -91,7 +91,7 @@ jobs:
               'glaciereq.portfolio-live-freshness-receipt.v1'
           )
           assert receipt['mutation'] == 'NONE'
-          assert receipt['portfolio']['flagships'] > 0
+          assert receipt['portfolio']['source_admitted_systems'] > 0
           assert 'findings' in receipt
           assert receipt['receipt_sha256']
           print(json.dumps(receipt['freshness'], indent=2, sort_keys=True))

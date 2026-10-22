@@ -243,3 +243,63 @@ def test_dynamic_evidence_graph_has_no_fixed_repository_ceiling() -> None:
         row for row in evidence if row.system_id.startswith("agent-donor-")
     ]
     assert len(generated_matches) == 80
+
+
+def test_dynamic_build_uses_role_contract_when_live_opening_matches(tmp_path: Path) -> None:
+    opening = JobOpening(
+        opening_id="vercel-fde-1",
+        company="Vercel",
+        title="Forward-Deployed Engineer",
+        description="Build production AI systems, MCP integrations, and agentic workflows.",
+        location="Remote",
+        source="fixture",
+        source_url="https://example.test/vercel/fde",
+        requirements=("agent orchestration", "distributed systems", "Python"),
+        preferred=("recovery systems",),
+        metadata={},
+        digest="d" * 64,
+    )
+
+    result = execute_dynamic_build(
+        opening,
+        _profile(),
+        _estate(),
+        output_dir=tmp_path,
+        run_genius=False,
+    )
+
+    assert result.application_id is not None
+    assert result.role_contract_id == "vercel-forward-deployed-engineer"
+    assert result.role_contract_digest is not None
+
+    build_dir = next(path for path in tmp_path.iterdir() if path.is_dir())
+    resume = (build_dir / "RESUME.md").read_text(encoding="utf-8")
+    cover = (build_dir / "COVER_LETTER.md").read_text(encoding="utf-8")
+    outreach = (build_dir / "OUTREACH.md").read_text(encoding="utf-8")
+    receipt = json.loads((build_dir / "DYNAMIC_BUILD.json").read_text(encoding="utf-8"))
+
+    for document in (resume, cover, outreach):
+        assert "production agent systems" in document.lower()
+        assert "truth boundary" not in document.lower()
+        assert "application priority assessment" not in document.lower()
+
+    assert receipt["role_contract_id"] == "vercel-forward-deployed-engineer"
+    assert receipt["role_contract_digest"] == result.role_contract_digest
+
+
+def test_dynamic_build_without_known_role_contract_still_uses_requirement_aware_projection(
+    tmp_path: Path,
+) -> None:
+    result = execute_dynamic_build(
+        _opening("NeverPredeclaredCo"),
+        _profile(),
+        _estate(),
+        output_dir=tmp_path,
+        run_genius=False,
+    )
+
+    assert result.role_contract_id is None
+    assert result.role_contract_digest is None
+    build_dir = next(path for path in tmp_path.iterdir() if path.is_dir())
+    resume = (build_dir / "RESUME.md").read_text(encoding="utf-8")
+    assert "## Role-aligned evidence" in resume
