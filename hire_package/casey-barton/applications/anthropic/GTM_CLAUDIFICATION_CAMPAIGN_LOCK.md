@@ -18,7 +18,7 @@ The objective is not to invent a fit narrative. It is to articulate and prove th
 
 - `hire_package/fde-powerhouse/FDE_POWERHOUSE_PIPELINE.md`
 - `hire_package/fde-powerhouse/OUTREACH_FDE_MASTER.md`
-- `hire_package/casey-barton/ANTHROPIC_BOTTLENECK_DOSSIER.md`
+- `hire_package/casey-barton/dossiers/ANTHROPIC_BOTTLENECK_DOSSIER.md`
 - `hire_package/casey-barton/EXECUTIVE_RESUME.md`
 - `hire_package/casey-barton/AI_ARCHITECT_PROOF_MATRIX.json`
 - `hire_package/casey-barton/applications/anthropic/5302966008_FORWARD_DEPLOYED_ENGINEER_SUBMISSION_PACKET.md`

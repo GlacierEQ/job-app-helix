@@ -1,0 +1,59 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for Future Applied AI Engineer (full-time remote USA; future.co/careers; full JD text from jobicy.com/jobs/156098-applied-ai-engineer-2, posted 2026-10-20)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build the systems underneath agent deployments: the tool-calling runtimes, API integrations, structured-output contracts, evaluation harnesses, and trace observability that turn one-off field wins into reusable product. I own the full loop — prototype, validate with evals, deploy to staging and production, monitor traces, and iterate on production evidence. Every agent I ship runs under an eval discipline first: golden sets, behavioral assertions, LLM-as-a-judge with written rubrics for safety, effectiveness, and task quality — and every production failure mode I have found has something built to catch it. Fail-closed by default."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: hand-rolled multi-agent loops, retrieval, memory, guardrails, and typed schema validation on every tool contract; **65** MCP connectors exposing governed context to any MCP-compatible system; full run traces so any execution can be reconstructed; per-task latency and token-cost instrumentation that drives prompt and configuration optimization."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python (primary) · TypeScript · Node.js · SQL · Bash · REST APIs · concurrent Python I/O · HTTP APIs · webhooks · streaming workflows · containers · GitHub Actions (CI/CD) · Postgres · event-driven systems"
+  - "category": "AI & Evaluation"
+    "items": "agent runtimes · hand-rolled multi-agent frameworks · MCP servers & connectors · LLM evaluation harnesses · quality scoring · LLM-as-a-judge with written rubrics (safety, effectiveness, quality) · golden datasets · behavioral assertions · trace intelligence · parallel tool orchestration · failure-mode instrumentation · benchmarking · function calling · structured outputs · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "prototype → evals → staging/prod deploy → trace monitoring → iterate · JSON Schema / Pydantic-style validation · token budgets · retry logic · observability & run logging · latency & token-cost benchmarks · CI regression gates · documentation engineers actually read"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Own the full agent lifecycle: prototype → evals → staging/prod deploy → trace monitoring → iterate on production evidence. Prompt and configuration changes are validated by eval harnesses before they touch production."
+      - "Design evaluation harnesses and quality scoring: golden datasets, behavioral assertions, and LLM-as-a-judge scoring with written rubrics covering safety, effectiveness, and task quality — with CI regression gates that block a regression from shipping."
+      - "Build and ship tool-calling LLM systems: structured outputs, parallel API orchestration, typed schema validation on every tool contract (JSON Schema / Pydantic-style), bounded retries, and token budgets."
+      - "Author **65** MCP connectors and integrations — the tools agents use: API integrations with strict validation, structured resource submission, and evidence boundaries with audit receipts."
+      - "Design agent systems for failure: instrument the failure modes found in production — stuck loops, bad retrievals, tool misuse, context blowouts — and build the catchers: replay loops, fail-closed gates, behavioral assertions, and recovery restricted to evidence declared before reassessment."
+      - "Drive quality / latency / cost tradeoffs with data: per-task latency and token-cost instrumentation on every run; model selection per task complexity."
+      - "Run an evidence-grade agent control plane across a **1,395-repository** estate: guardrails, typed handoff contracts, human approval gates on consequential actions — backed by a **989-test** suite, **62/62** verification checks green."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models and fail-closed **GO / NO-GO** decisions; recovery restricted to evidence declared before reassessment."
+      - "Verification gates on every agent action: no agent completion claim without independent provider readback — the eval gate decides, not the agent."
+  - "title": "GlacierEQ estate — production agent systems"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Per-task latency instrumentation and decision audit logs across agent runs — the tracing practice that makes benchmarking honest."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Evaluation"
+    "items": "agent runtimes · hand-rolled multi-agent frameworks · MCP servers & connectors · eval harnesses · quality scoring · LLM-as-a-judge · golden datasets · trace intelligence · parallel tool orchestration · function calling · structured outputs · memory systems · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "full lifecycle ownership · JSON Schema / Pydantic-style validation · HTTP APIs & webhooks · token budgets · retry logic · CI regression gates · observability & run logging · latency/cost tradeoff analysis · cross-layer debugging · documentation & handover"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

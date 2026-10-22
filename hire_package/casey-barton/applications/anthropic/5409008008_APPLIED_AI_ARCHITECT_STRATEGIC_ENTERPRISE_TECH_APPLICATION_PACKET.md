@@ -98,5 +98,5 @@ Promote to `SUBMITTED` only when Greenhouse accepts the form. Promote to `RECEIV
 - `evidence/company_intelligence/anthropic-2026-09-07-source-receipt.json`
 - `manifests/application_intelligence/atlas_shards/frontier_ai.json`
 - `hire_package/casey-barton/EXECUTIVE_RESUME.md`
-- `hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md`
+- `hire_package/casey-barton/proof/AI_ARCHITECT_PROMOTION_QUEUE.md`
 - `hire_package/casey-barton/applications/anthropic/5302966008_FORWARD_DEPLOYED_ENGINEER_SUBMISSION_PACKET.md` for duplicate-submission isolation only

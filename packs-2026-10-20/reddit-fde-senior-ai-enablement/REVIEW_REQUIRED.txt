@@ -1,0 +1,9 @@
+REVIEW_REQUIRED.txt — Reddit Senior FDE (AI Enablement), req 8301784
+DRAFT pack — nothing submitted, nothing sent. His word required on EVERY item below before any application.
+
+[ ] Req live: confirm req 8301784 is still open on Reddit's Greenhouse before submit (primary-verified 2026-10-20 ~06:00 HST; re-check at apply time).
+[ ] Seniority call: posting asks 5+ years building software; he has ~3 years intensive applied-AI systems (2023–present), NOT rounded up. Confirm he's comfortable with density-over-duration positioning.
+[ ] Estate numbers: 1,395 repos / 65 MCP connectors / 989-test / 62/62 carried from prior FDE variant lineage — re-verify against live estate before submit (estate drifts).
+[ ] Boundary: no Reddit-platform production claims anywhere; no internal-enterprise FDE track record claimed; boundary_note present on resume.
+[ ] Submit decision: SUBMIT or SKIP is his call. No application fires without his explicit yes (pipeline hard rule).
+[ ] Outreach: DRAFT only — personalize recipient; do NOT send without his word.

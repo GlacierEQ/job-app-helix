@@ -1,0 +1,60 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Sticker Mule SI Agent Engineer (remote, $150K–$250K + $20K signing)."
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Agent-team operator based in Honolulu. For three years I've built, run, and managed a fleet of AI agents that do real work — identifying where agents pay off, wiring them to the right tools, measuring what they deliver, and removing what doesn't. New models and tools get evaluated against representative tasks before they're adopted, never on hype."
+  - "I run autonomous agents in production today: multi-agent orchestration with typed state transitions, human approval gates on consequential actions, fail-closed recovery, and audit receipts on every run. I advise operators and stakeholders on what agents can actually do — in writing that holds up."
+"competencies":
+  - "category": "Engineering"
+    "items": "TypeScript · Python · Node.js · SQL · Postgres · Supabase · REST APIs · webhooks · MCP protocol · Bash · containers · GitHub Actions (CI/CD)"
+  - "category": "AI & Agents"
+    "items": "LLM agent frameworks · function calling · RAG · multi-agent orchestration · LLM evaluation harnesses · A/B testing · prompt & context engineering · human-in-the-loop control · multi-model routing (Claude, OpenAI, open-source)"
+  - "category": "Agent Operations"
+    "items": "agent fleet scoping · tool integration · outcome measurement · agent retirement (kill what doesn't deliver) · model/tool adoption testing · verification gates · audit receipts · idempotent automation · fail-closed recovery"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Build, run, and manage a working fleet of autonomous agents across a **1,395-repository** platform: job-discovery pipeline, cross-inbox triage, multi-day file-migration workers, memory and continuity systems — agents that run on their own and do meaningful work."
+      - "Measure results and remove agents that don't deliver: **62/62** verification checks green, per-run receipts and scoreboards, fail-closed gates — no agent completion claim without independent readback. Underperforming designs get pruned, not patched."
+      - "Connect agents to third-party and internal tools: **65 MCP connectors** plus REST APIs, webhooks, and data pipelines wired into one governed control plane — the exact integration surface this role owns."
+      - "Test new models and tools as they ship and adopt what works: LLM evaluation harnesses, A/B testing, 20-pair RED/GREEN adversarial cases per build — model choice is a benchmarked decision with quality, latency, cost, and reliability measured."
+      - "Work with operators to assess where agents help: embedded scoping, end-to-end proof, demos, requirements gathering, milestone planning — then advise clearly in writing on what the agent fleet can and cannot do."
+      - "Run a **989-test** control plane with typed state transitions and human approval gates on every consequential action — governed agents that hold up in production, not just the demo."
+"proof":
+  - "title": "Job-discovery hourly pipeline — agents measured, pruned, run autonomously"
+    "bullets":
+      - "Hourly worker: role discovery, evidence-based pack building, live application-status tracking — composed into GO / NO-GO decisions with immutable evidence models."
+      - "Agents report receipts only; quiet runs stay silent. Broken designs are retired outright."
+  - "title": "GlacierEQ estate — agent fleet under governance"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Multiple agents coordinate over agents, APIs, and databases as one verifiable working system."
+"skills":
+  - "category": "Languages"
+    "items": "TypeScript · Python · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "LLM agent frameworks · function calling · RAG · MCP protocol · multi-agent orchestration · LLM evaluation harnesses · multi-model routing"
+  - "category": "Data & Infra"
+    "items": "Postgres · Supabase · Vercel · REST APIs · webhooks · containers · GitHub Actions"
+  - "category": "Practice"
+    "items": "outcome measurement · agent retirement · A/B testing · verification gates · audit receipts · idempotent automation · clear technical writing"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

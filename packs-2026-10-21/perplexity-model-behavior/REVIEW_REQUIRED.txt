@@ -1,0 +1,19 @@
+PARKED — Perplexity Member of Technical Staff (Model Behavior)
+Built 2026-10-21 ~01:00 HST. PARKED 2026-10-21 ~02:00 HST — NOT submitted, will not submit without his explicit word.
+
+1. ROLE IS HYBRID SF/PALO ALTO, 4 DAYS/WEEK IN OFFICE — off-lane geo for the remote-first/Honolulu target set. The Ashby API isRemote=True flag was CONTRADICTED by the application form itself (discovered during the submission attempt ~02:00 HST). This is the firecrawl/sierra lesson again: the API flag is not JD truth. Never resubmit this pack without his explicit word.
+
+2. TWO REQUIRED FIELDS NEED HIM PERSONALLY (agent must never touch):
+   - "How do you use AI in your day-to-day work?" — the form demands his own original unassisted writing; submitting AI-drafted text = permanent disqualification from employment at Perplexity.
+   - "Exercise Submission (Shared URL)" — requires him to create and share a Perplexity thread himself on perplexity.ai.
+
+3. WHAT WAS DONE: form filled (name/email/phone/Honolulu/sponsorship-No/why-this-role/resume PDF uploaded), duplicate guard passed (no prior submission), then STOPPED at the three unanswerable fields. Nothing was submitted; tab left as-is. Ledger claim closed as stopped.
+
+4. HONESTY CONSTRAINTS (held in resume + PROOFS, preserved for the record):
+   - NO weight fine-tuning claimed — behavior shaping = eval-driven prompt/context/tool/memory design.
+   - No Perplexity-internal claims — transferable behavior/eval engineering only.
+   - Three years, never rounded. No Go / GCP / GraphQL / K8s / Terraform / DS-statistics depth.
+
+5. OUTREACH TEXT IS A DRAFT — nothing sends without his explicit word.
+
+6. BOARD-WIDE WARNING: the entire Perplexity remote-flagged batch (including the Answer Quality & Evals DRAFT pack) carries the same flag-vs-truth risk — verify the form's location truth before any submit.

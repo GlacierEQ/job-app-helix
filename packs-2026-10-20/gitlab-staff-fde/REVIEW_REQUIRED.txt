@@ -1,0 +1,14 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: GitLab — Staff Forward Deployed Engineer, Agentic SDLC, Remote US. Req 8512432002 (Greenhouse), verified live 2026-10-20 ~20:20 HST. Base $220K–$270K (JD-stated US range) + equity + benefits.
+Apply route: GitLab Greenhouse req 8512432002 (no application deadline stated).
+Built 2026-10-20 by the resume-forge gitlab-staff-fde variant (content/gitlab-staff-fde.yaml, registered in forge.py VARIANT_FILES). Resume rendered: Casey_Barton_Resume_GitLab_StaffFDE.docx (39,741 B) + .pdf (45,369 B), 2 pages, honesty gate clean (all bold numbers allowlisted).
+
+REVIEW:
+1. REQ LIVE RE-CHECK: confirm req 8512432002 is still live on job-boards.greenhouse.io at apply time.
+2. HONESTY GAP: GitLab-product experience NOT claimed (JD strongly preferred — stated as a gap, not papered). Ruby on Rails production depth NOT claimed. Git internals / Runner / Sidekiq / Vue / Terraform / Kubernetes NOT claimed by name. No enterprise-customer FDE track record — boundary note, not papered.
+3. COMP: $220K–$270K base is JD-stated (US range). Above his ~$170K floor; Honolulu-eligible (all-remote company).
+4. NUMBERS: bold 65 / 989 / 62/62 / 1,395 carried from kit lineage. LIVE READ 2026-10-20 via GitHub GraphQL: 1,399 repos (drift +4 from allowlisted 1,395 — update the allowlist ONLY with his approval; resume carries the allowlisted figure).
+5. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. NOT sent. Ledger untouched. SUBMIT is a pipeline/his call.

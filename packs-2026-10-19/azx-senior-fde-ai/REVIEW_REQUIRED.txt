@@ -1,0 +1,18 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: AZX — Senior Forward Deployed AI Engineer, job 5edb9cbb-945f-4489-a790-b4ae0f79206e (Provn).
+Built 2026-10-19 by the resume-forge AZX variant (content/azx-fde-ai.yaml).
+
+REVIEW:
+1. INTERVIEW FORMAT: the posting includes a written take-home assignment followed by a LIVE TWO-HOUR technical session — and explicitly says if that format isn't a fit, don't apply. Confirm he's IN for both before any submit.
+2. Confirm remote-from-Honolulu is acceptable at first contact (Remote US; cluster in Seattle).
+3. TRAVEL: final interview must be in the Seattle area; 2x/year company summits. Confirm he's willing (Honolulu <-> Seattle).
+4. Hand-rolled vs LangGraph: the pack claims hand-rolled multi-agent loops ONLY — no production LangGraph/AutoGen/CrewAI experience claimed. Keep it that way on every form and in every answer.
+5. 5+ YEARS: posting requires 5+ years full-stack delivery. Resume shows Founder 2023–Present (~3 years); no earlier delivery history claimed. His to answer on the form — do not invent it.
+6. Enterprise integrations: pack does NOT name SharePoint/Salesforce/SAP. Claims are APIs/webhooks/data pipelines + 65 MCP connectors, general. Keep it that way.
+7. Client-cloud deployments: pack claims evidence boundaries, audit receipts, compliance-aware posture — NOT past enterprise client-cloud deployments. Keep it that way.
+8. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Scale AI FDE variant (2026-10-08) — re-verify before a live submit if the estate counts moved.
+9. outreach-text.md and any LinkedIn DM are DRAFTS. Nothing sends without his explicit word.
+10. Application deadline: November 12, 2026.
+
+NOT submitted. Application needs his yes.

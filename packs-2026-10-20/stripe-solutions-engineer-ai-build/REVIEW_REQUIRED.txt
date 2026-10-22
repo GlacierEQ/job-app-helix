@@ -1,0 +1,15 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Stripe — Solutions Engineer, AI Build Team, US-Remote. Req 8198323, verified live 2026-10-20 ~20:25 HST (published 2026-10-16 — fresh, 4 days old). Base $239.9K–$359.9K (JD-stated US range) + equity + bonus.
+Apply route: stripe.com/jobs/search?gh_jid=8198323. Application window: 100 days from publish — act within 2 weeks while fresh.
+Built 2026-10-20 by the resume-forge stripe-solutions-engineer-ai-build variant (content/stripe-solutions-engineer-ai-build.yaml, registered in forge.py VARIANT_FILES). Resume rendered: Casey_Barton_Resume_Stripe_SolutionsEngineer_AIBuild.docx (39,619 B) + .pdf (51,566 B), 2 pages, honesty gate clean (all bold numbers allowlisted).
+
+REVIEW:
+1. SENIORITY STRETCH — FLAGGED, NOT PAPERED: JD requires "7+ years of relevant experience in customer-facing technical delivery." His honest bridge is founder/operator customer-facing delivery (2023–present, three years) plus client-facing home-inspection work (no invented dates/tenure). His judgment call whether Stripe's "extraordinary career twists are welcome" line covers it. Keep the claim exactly as written at interview — do NOT round anything up.
+2. REQ LIVE RE-CHECK: req 8198323 is fresh; re-confirm live at submit time.
+3. HONESTY: no named AI-coding-harness endorsements (pack claims AI coding harnesses / agentic coding loops generically); no enterprise logos; no payments-domain production claims; no Stripe-internal claims.
+4. COMP: $239.9K–$359.9K base is JD-stated (spans several levels — narrowed at interview). Above his ~$170K floor.
+5. NUMBERS: bold 65 / 989 / 62/62 / 1,395 carried from kit lineage. LIVE READ 2026-10-20 via GitHub GraphQL: 1,399 repos (drift +4 — update the allowlist ONLY with his approval).
+6. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. NOT sent. Ledger untouched. SUBMIT is a pipeline/his call.

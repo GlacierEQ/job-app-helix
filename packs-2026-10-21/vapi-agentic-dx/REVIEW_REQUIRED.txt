@@ -1,0 +1,17 @@
+REVIEW REQUIRED — Vapi Member of Technical Staff, Agentic Developer Experience, Remote
+Built 2026-10-21 ~01:10 HST. DRAFT only — not submitted, ledger untouched.
+
+1. DISTRIBUTED-SYSTEMS DEPTH (his verdict needed): JD wants "strong software fundamentals across distributed systems, platform architecture, API design, CI/CD." Pack claims the agent-harness/CI/verification core honestly and does NOT claim hyperscale distributed-systems depth (Vapi: 1B calls). Submit with the honest boundary, or drop — his call.
+
+2. VOICE AI (honest posture): no real-time voice-AI production claims; agentic-DX machinery stated as domain-transferable. Keep it there at interview.
+
+3. POSTING AGE: published 2026-08-25 (~8 weeks). Re-confirm live at submit time; region verified remote 2026-10-21.
+
+4. COMP: not stated — salary 220000 per standing rule if the form requires a number.
+
+5. HONESTY CONSTRAINTS (held in resume + PROOFS):
+   - No Vapi-internal claims.
+   - Three years, never rounded.
+   - No Go / GCP / GraphQL / K8s / Terraform depth.
+
+6. OUTREACH TEXT IS A DRAFT — nothing sends without his explicit word.

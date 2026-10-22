@@ -1,0 +1,16 @@
+REVIEW REQUIRED — Nebius Senior Customer AI Engineer, Token Factory (Remote US)
+Built 2026-10-20 ~21:05 HST. DRAFT only — not submitted, ledger untouched.
+
+1. INFERENCE-FRAMEWORK STRETCH (his verdict needed): JD expects "practical knowledge of inference frameworks (e.g. vLLM, TensorRT, or similar)" and solid cloud/distributed-systems understanding. The pack claims transferable eval/trace engineering + integration-side inference-pipeline experience (fal.ai + Whisper, estate-verified) ONLY — explicitly no GPU-infra/neocloud/vLLM-TensorRT-production or Kubernetes depth. Does he want this submitted with the honest transferable framing, or is the bar a drop call?
+
+2. SENIOR TITLE: JD is Senior; the pack bridges via Founder / Applied AI Systems Architect with three years of ownership — flagged, not papered. His call whether the bridge reads senior-level.
+
+3. CUSTOMER-FACING DEPTH: stated as founder/operator (three years), not enterprise accounts. Keep it there at interview.
+
+4. REQ LIVE RE-CHECK: full JD captured live 2026-10-20 (updated 2026-10-14, 6 days); re-confirm live at submit time.
+
+5. COMP: undisclosed. Salary default 220000 applies only if the form requires a number.
+
+6. NUMBERS: 65 / 989 / 62/62 / 1,395 are kit-allowlisted. Live GraphQL showed 1,399 repos on 2026-10-20 — kit update needs his approval, not applied.
+
+7. fal.ai + Whisper pipeline is integration-side, estate-verified — not infra-side. Keep that boundary verbally.

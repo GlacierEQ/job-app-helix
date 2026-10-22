@@ -1,0 +1,24 @@
+# BMC Software — Principal AI Engineer, req 47640 — Remote, USA
+**Pack built:** 2026-10-20 ~15:05 HST · **Status:** DRAFT — ready for his word. NOT submitted. NOT sent. Ledger untouched.
+**Company:** BMC Software (6,000+ employees; enterprise software for the Forbes Global 100) — AI teams building agentic AI for mission-critical enterprise systems.
+**Posting (primary verified 2026-10-20 14:56 HST):** https://jobs.bmc.com/Careers/JobDetail/Principal-AI-Engineer-USA-B/47640 — "Principal AI Engineer - USA (B)", published 2026-10-05 (~15d old), Job ID 47640, #LI-Remote. Additional locations listed (Santa Clara CA, Detroit MI, Houston TX, San Francisco CA, New York NY, Washington DC) but primary is Remote - United States.
+**Comp:** $197,850–$329,750 base posted on primary (mid $263,800). Clears his floor. BMC notes hiring rarely happens at/near the top.
+**Remote:** Remote-US confirmed on the primary board. Confirm Honolulu eligibility at first contact (HST timezone + remote payroll state).
+
+## The role in their words (from the primary JD)
+"Build autonomous and semi-autonomous AI agents that plan, reason, make decisions, and execute tasks, and orchestrate multi-agent systems that integrate with tools, APIs, and enterprise applications. Everything you build must meet enterprise standards: secure, reliable, scalable, observable, and governed." Responsibilities: enterprise-grade agentic AI apps with modern LLMs; multi-agent orchestration; integration via APIs, databases, messaging, workflow engines; RAG over vector databases + enterprise knowledge; workflow optimization (performance, scalability, reliability, cost); "implement observability, monitoring, guardrails, and governance mechanisms for production AI systems"; "build and run agent evaluations — define eval sets, test behaviour, iterate on prompts, tools, and workflows"; production deployment + stack-wide diagnostics; product/architect/stakeholder collaboration; set applied-AI architecture and investment priorities; consequential model/platform/build-vs-buy/risk tradeoffs; drive org-wide AI adoption with measurable outcomes. 12+ years typical bar; agentic frameworks (LangGraph/LangChain/CrewAI) familiarity; prompt engineering, tool/function calling, planning, orchestration; Python, REST, microservices, cloud, containers, CI/CD, testing; evals for LLM/RAG/Agent use cases; observability (Langfuse, OpenSearch, OpenTelemetry).
+
+## Why this is strong (Tier-1)
+Exact-lane match on the three anchor disciplines: (1) multi-agent orchestration integrating tools/APIs — his governed multi-agent systems with typed handoff contracts + **65** MCP connectors; (2) build-and-run agent evaluations — eval sets, behavioral assertions, LLM-as-judge with rubrics, CI regression gates, release thresholds; (3) observability + monitoring + guardrails + governance — trace intelligence, decision audit logs, human-in-the-loop gates, fail-closed recovery, audit receipts. Plus RAG over federated vector/knowledge stores, production packaging with rollback-as-default, and the architecture/investment-priority judgment exercised daily as founder. Comp clears the floor; remote-US; live on primary this week.
+
+## Fit notes (honest — gaps never papered over)
+- **OPEN SENIORITY CALL (flagged):** the req is Principal, typically 12+ years; he is an independent builder with ~3 years of intensive applied-AI systems work (2023–present), never rounded up. Density-over-duration positioning only — the pack evidences staff+/principal-scope judgment (architecture priorities, model/platform/build-vs-buy tradeoffs, measurable outcomes) from his actual operation, but does NOT claim years he doesn't have. This is his call before any submit.
+- **Not claimed:** LangGraph/LangChain/CrewAI (hand-rolled deterministic DAG scheduler, **62/62** green, stated instead); Langfuse/OpenSearch/OpenTelemetry by name (trace intelligence + decision audit logs stated instead); Go/GCP/GraphQL/K8s/Terraform; crypto/onchain; no BMC-internal production; no enterprise-customer deployment track record (boundary note on resume).
+- **Remote caveat:** #LI-Remote confirmed on primary; confirm Honolulu (HST) eligibility at first contact.
+- **Freshness:** published 2026-10-05 (~15d old) — act this week; no deadline listed, so no 7-day-deadline priority applies.
+
+## Contents
+- `Casey_Barton_Resume_BMC_PrincipalAI.docx` (39,903 bytes) / `.pdf` (51,363 bytes) — tailored resume (forge variant `bmc-principal-ai`; estate lineage live-verified 2026-10-20: 1,398 owned repos via GraphQL totalCount; 65 MCP / 989-test / 988-test / 62/62 from kit allowlist — no new numbers added)
+- `PROOFS.md` — career proofs keyed to the JD keywords in Claim / Evidence / Verified-date convention
+- `outreach-text.md` — DRAFT outreach (never sent without his word)
+- `REVIEW_REQUIRED.txt` — what he must confirm before any submit

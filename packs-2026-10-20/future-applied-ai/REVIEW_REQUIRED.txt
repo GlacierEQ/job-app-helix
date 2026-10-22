@@ -1,0 +1,14 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Future — Applied AI Engineer, Remote USA. Posted 2026-10-20 (fresh — act this week). Base $215K–$250K + equity (third-party source — verify vs his ~$170K floor at first contact). Experience: Open level.
+Apply route: future.co/careers (Applied AI Engineer — Remote; listed live 2026-10-20 ~19:00 HST; JD mirror jobicy.com/jobs/156098-applied-ai-engineer-2, apply before 2026-11-20).
+Built 2026-10-20 by the resume-forge future-applied-ai variant (content/future-applied-ai.yaml, registered in forge.py VARIANT_FILES). Resume rendered: Casey_Barton_Resume_Future_AppliedAI.docx (39,522 B) + .pdf (52,050 B), 2 pages, forge honesty gate clean (all bold numbers allowlisted).
+
+REVIEW:
+1. REQ LIVE RE-CHECK: confirm the posting is still live on future.co/careers at apply time.
+2. COMP: $215K–$250K is third-party-sourced (Jobicy mirror of the posting). Above his ~$170K floor on paper — confirm the real band at first contact.
+3. NUMBERS: bold 65 / 989 / 62/62 / 1,395 carried from kit lineage (estate drifts — re-verify before a live submit if counts moved).
+4. HONESTY: no Langfuse-by-name, no LangChain/LangGraph-by-name, no prompt caching claims, no SSE-by-name, no Terraform/CDK, no AWS production ops, no Go/GCP/GraphQL/K8s, no data-science depth, no production-at-Future claims, no customer logos. Three years stated as "Three years" — never rounded up. Portfolio repos are independent work (boundary note on the resume). Interview line: trace intelligence, not Langfuse; hand-rolled frameworks, "or similar" per JD.
+5. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. NOT sent. Ledger untouched. SUBMIT/SKIP is his call.

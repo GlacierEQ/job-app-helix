@@ -1,0 +1,68 @@
+=== GREENHOUSE board delta (10:42 -> 12:42 HST) ===
+affirm: 226
+afresh: 12
+airtable: 4
+anthropic: 674
+asana: 104
+assemblyai: 15
+boxinc: 117
+coinbase: 227  *** CHANGED 228->227
+comet: 3
+coreweave: 321  *** CHANGED 323->321
+cribl: 81  *** CHANGED 80->81
+databricks: 897
+datadog: 439  *** CHANGED 440->439
+dropbox: 22
+duolingo: 61
+elastic: 373  *** CHANGED 372->373
+fieldwire: 29
+figma: 139
+gitlab: 229
+instacart: 124
+intercom: 106
+labelbox: 7
+lightmatter: 62
+lightningai: 51
+magic: 0
+mongodb: 393
+nebius: 383
+openspace: 6
+reddit: 155  *** CHANGED 154->155
+robinhood: 152  *** CHANGED 154->152
+scaleai: 175
+stripe: 726  *** CHANGED 727->726
+tavily: 13
+togetherai: 79
+vercel: 95  *** CHANGED 96->95
+warp: 4
+xai: 300
+
+=== GH new postings since 11:42 HST (first_published > cutoff) ===
+coinbase: 227 total, 0 new since cutoff
+coreweave: 321 total, 0 new since cutoff
+cribl: 81 total, 1 new since cutoff
+      id=6226641004 | Software Engineer, Stream Integrations | Remote - Canada | first_published=2026-10-21T18:35:34-04:00
+datadog: 439 total, 0 new since cutoff
+elastic: 373 total, 2 new since cutoff
+      id=8249255 | Senior Software Engineer - Platform Billing Core | United States | first_published=2026-10-21T17:44:39-04:00
+      id=8249252 | Senior Software Engineer - Platform Billing Experience | United States | first_published=2026-10-21T18:07:23-04:00
+reddit: 155 total, 1 new since cutoff
+      id=8311209 | Staff Software Engineer, iOS Platform | Remote - United States | first_published=2026-10-21T18:00:43-04:00
+robinhood: 152 total, 0 new since cutoff
+stripe: 726 total, 0 new since cutoff
+vercel: 95 total, 0 new since cutoff
+
+=== ASHBY resweep vs ashby_snap_1142.json ===
+runpod: 28 jobs (0 new, 0 removed)
+crusoe: 344 jobs (4 new, 1 removed)
+  [NEW] id=679035bb-1787-4f1e-a942-b3a28a23626e | Account Executive, Emerging AI
+  [NEW] id=c48758cc-79a0-468d-9a8c-b50abc88c324 | Strategic Sourcing Specialist, Compute
+  [NEW] id=b66ec19f-c7eb-463d-b4c5-42fbd8d5666b | Strategic Sourcing Specialist, Compute
+  [NEW] id=7548e8b7-d8d3-4bd6-885a-91ad604ee179 | Senior General Ledger Accountant
+  [GONE] id=30de742e-f38f-4f14-ba6b-bf0578031e4f | Revenue Operations Manager, Deal Desk and Pricing Strategy
+browserbase: 9 jobs (0 new, 0 removed)
+firecrawl: 32 jobs (0 new, 0 removed)
+steel: 3 jobs (0 new, 0 removed)
+openrouter: 27 jobs (0 new, 0 removed)
+
+snapshot saved: ashby_snap_1242.json

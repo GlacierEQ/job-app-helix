@@ -1,0 +1,50 @@
+# _candidate.yaml — shared candidate truth for the document forge.
+# Single source of truth: resumes, cover letters, and future packet documents
+# pull from here. Edit once, render everywhere.
+#
+# HONESTY CONTRACT: kit_numbers is the allowlist. The cover engine FAILS CLOSED —
+# any **bold** number in a letter that isn't on this list refuses to render.
+# Add a number here only when he has approved it.
+
+"name": "Casey Barton"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+
+"kit_numbers":
+  - "62/62"      # Agent Coordinator behavioral suite — deterministic tests green
+  - "989"        # job-app-helix test functions — verified 2026-10-13 via fresh clone
+  - "988"        # apex-control-plane test functions — verified 2026-10-13 (+91 in 6 days)
+  - "65"         # MCP connectors integrated (his approved number; re-verification pending)
+  - "1,395"      # estate repos — verified 2026-10-13 via GraphQL census
+  - "20+"        # production repositories maintained
+  - "4"          # ATS providers in the job-intelligence pipeline
+  - "3"          # years running the agent control plane
+
+"clearance": "No active clearance; eligible for sponsorship."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""
+
+"proof_bank":
+  - "id": "control-plane"
+    "text": "evidence-grade agent control plane — typed state transitions, bounded tool actions, approval gates, recoverable runs"
+  - "id": "estate"
+    "text": "1,395-repository applied-AI platform — agent governance, MCP integrations, context externalization, document workflows"
+  - "id": "fde-motion"
+    "text": "embed on ambiguous workflows, ship end to end — scope with operators, build the narrow proof, harden what carries load"
+  - "id": "helix"
+    "text": "attributable campaign engine — immutable evidence models, fail-closed GO/NO-GO, JSON proof receipts"
+
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."

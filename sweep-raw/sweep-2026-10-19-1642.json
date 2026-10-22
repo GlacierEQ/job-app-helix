@@ -1,0 +1,76 @@
+{
+  "run_id": "sweep-2026-10-19-1642",
+  "run_hst": "2026-10-19 16:42",
+  "delta_window": "postings published/updated on 2026-10-18 or 2026-10-19, not previously surfaced (prior sweeps ~13:55, ~14:10, ~15:50, ~16:10 HST)",
+  "new_candidates": [
+    {
+      "company": "Topsail",
+      "title": "Applied AI Engineer",
+      "location": "Full-time Remote (US); occasional travel; reports to founders",
+      "comp": "Above-market salary and bonus, plus meaningful equity (band undisclosed)",
+      "posted": "date unconfirmed — no pub date on page; first seen in this sweep, treated as fresh",
+      "apply_url": "https://topsail.partners/careers/applied-ai-engineer",
+      "tier": 1,
+      "fit": "Closest match to his domain edge in this sweep: builds 'agent runtimes, tool and MCP integrations, evals, and observability' as the shared platform under forward deployments; 'Own the harness. Evals, traces, and the judge-in-the-loop patterns'; posting screens for production failure-mode literacy ('We will ask about the failure modes you found in production and what you built to catch them'). IC platform role, not client-facing by default.",
+      "gaps": ["Comp is a prose claim, not a band — verify against $160K bar", "Small consultancy, reports to founders (high-leverage, high-scrutiny)", "Equity/benefits stability unknown"]
+    }
+  ],
+  "tier2_notes": [
+    {"company": "Snorkel AI", "title": "Staff Applied AI Engineer, Enterprise AI Solutions", "location": "NYC Hybrid / SF Hybrid / US Remote", "comp": "$230K-$360K", "posted": "~Oct 5-7 (outside delta window; likely prior-sweep miss)", "url": "https://fdenotes.com/jobs/", "fit": "RAG, fine-tuning, agentic workflows, evals, customer deployments; data-centric AI. 25% travel.", "gaps": ["Off-window but absent from all known lists"]},
+    {"company": "Stacksync (YC)", "title": "Forward Deployed Engineer + Product Engineer", "location": "Fully remote, US customer travel", "comp": "undisclosed", "posted": "unconfirmed", "url": "https://www.ycombinator.com/companies/stacksync/jobs/2I6rI5E-forward-deployed-engineer-product-engineer", "fit": "Enterprise AI agents, real-time sync, ship production integrations and AI workflows.", "gaps": ["Comp undisclosed"]},
+    {"company": "AIOS (YC W20)", "title": "AI Engineering Lead", "location": "Remote (US)", "comp": "$200K-$400K + equity", "posted": "unknown", "url": "https://www.ycombinator.com/companies/aios/jobs", "fit": "AI-native infra for care.", "gaps": ["Leadership tilt risk by title"]}
+  ],
+  "watchlist_adds": [],
+  "kills": [
+    {"company": "Govini (aggregator labeled 'Air')", "title": "Senior AI Engineer", "reason": "US citizenship + security clearance required", "url": "https://workpivot.online/job/remote-senior-ai-engineer-143"},
+    {"company": "monday.com", "title": "Forward Deployed Engineer, Strategic Deployments", "reason": "3 days/week NYC office hybrid — geo", "url": "https://builtin.com/job/forward-deployed-engineer-strategic-deployments/8500479"},
+    {"company": "Nexla", "title": "Forward Deployed Engineer - AI", "reason": "San Mateo hybrid + $130-160K band — geo and below bar", "url": "https://www.jobleads.com/us/job/forward-deployed-engineer-ai--san-mateo--e750fbd911714826ca62f74cdcde15cc1"},
+    {"company": "Guidehouse", "title": "[Remote] AI Engineer", "reason": "ACTIVE Secret clearance required", "url": "https://remotenex.us/job/remote-ai-engineer-170"},
+    {"company": "Databricks", "title": "AI Engineer - FDE, U.S. Federal Sector", "reason": "Secret clearance mandatory + DMV on-site", "url": "https://jobicy.com/jobs/152699-ai-engineer-fde-forward-deployed-engineer-u-s-federal-sector"},
+    {"company": "Statecraft", "title": "Forward Deployed Engineer", "reason": "citizenship + clearance required", "url": "https://careers.statecraft.ai/jobs/forward-deployed-engineer"},
+    {"company": "LTS", "title": "Senior Front-End Agentic AI Engineer", "reason": "Public Trust clearance + front-end focus", "url": "https://job-boards.greenhouse.io/lts/jobs/4340405009"},
+    {"company": "Anthropic", "title": "Applied AI Demo Engineer", "reason": "SF/NYC hybrid — geo"},
+    {"company": "Databricks", "title": "FDE (L4)", "reason": "Remote India — geo"},
+    {"company": "Cursor", "title": "FDE", "reason": "AU/SG — geo"},
+    {"company": "ElevenLabs", "title": "Deployment Strategist", "reason": "Italy/Korea — geo"},
+    {"company": "DevRev", "title": "Software Engineer, Applied AI", "reason": "Remote Philippines — geo", "url": "https://jobicy.com/jobs/155671-software-engineer-applied-ai"},
+    {"company": "Oddball", "title": "Applied AI/ML Engineer", "reason": "DMV-area residency required — geo", "url": "https://jobicy.com/jobs/153362-applied-ai-ml-engineer-2"},
+    {"company": "Tailscale", "title": "Forward Deployed Engineer", "reason": "Remote Canada — geo", "url": "https://jobicy.com/jobs/152680-forward-deployed-engineer-2"},
+    {"company": "Axiom", "title": "Forward Deployed Engineer", "reason": "crypto domain + outside window", "url": "https://jobicy.com/jobs/152244-forward-deployed-engineer"},
+    {"company": "WordPress VIP", "title": "Forward Deployed Engineer", "reason": "PHP/WordPress/CDN domain mismatch"},
+    {"company": "Eigen Labs", "title": "Agentic AI Engineer", "reason": "crypto-native domain mismatch, Seattle-anchored"},
+    {"company": "Revion", "title": "Founding FDE", "reason": "$100-200K, new-grads-ok tilt — below bar"},
+    {"company": "Solum Health", "title": "FDE", "reason": "$54-90K — below bar"},
+    {"company": "Typify.dev", "title": "AI Application Engineer", "reason": "$80-120K — below bar"},
+    {"company": "Ohm (YC W23)", "title": "FDE, Test & Validation", "reason": "hardware test/validation domain mismatch"},
+    {"company": "Coderoad", "title": "Agentic AI Engineer", "reason": "USA contractor — contract-only"},
+    {"company": "H Company", "title": "FDE", "reason": "stale (May) + $150-180K below bar"},
+    {"company": "Moment", "title": "FDE", "reason": "stale (Mar) + NYC 5-day on-site"},
+    {"company": "Socket", "title": "FDE", "reason": "stale (~Aug)"}
+  ],
+  "sources_checked": [
+    "deployedjobs.com (517-role FDE board, 'New' block)",
+    "ctaio.dev HN Who-Is-Hiring October index (twice-daily; nothing new since ~Oct 13)",
+    "joinplank.com FDE census + fde-job-market (updated Oct 18)",
+    "fdenotes.com (5,027 lines scanned)",
+    "techstrong.ai weekly AI-job roundups (#23, #20)",
+    "YC jobs board",
+    "Greenhouse/Ashby board searches via web",
+    "jobicy.com (pub-date-checked)",
+    "builtin.com",
+    "workpivot.online / remotenex.us / cryptojobslist / skipthedrive / jobleads",
+    "LinkedIn: BLOCKED — no login available to subagent; not swept"
+  ],
+  "notes": [
+    "Govini/'Air' aggregator confusion on workpivot.online: header says Air Enterprise Readiness, company overview says Govini. Either way clearance-gated kill; do not cite as an 'Air' sighting.",
+    "HN October thread genuinely quiet last week — delta thin rather than under-swept.",
+    "Doximity Staff Applied AI reposted Oct 19 on jobicy but already in today's draft packs — repost, not delta."
+  ],
+  "live_posting_verification": [
+    {"company": "Scale AI", "title": "Forward Deployed Software Engineer, Public Sector", "posting_id": "4481921005", "status": "live", "changed": false, "checked_at_hst": "2026-10-19 16:47", "source": "boards-api.greenhouse.io", "location": "Austin TX; Colorado Springs CO; Honolulu HI; Omaha NE; St. Louis MO; Washington DC", "comp_hawaii": "$165,600 - $263,304 base (HI listed)", "note": "updated_at 2026-10-12; requisition GH-1327; unchanged"},
+    {"company": "ClickUp", "title": "Senior AI Engineer - Multi-Agent Frameworks", "posting_id": "b8ff5d05-8158-42bb-8d87-296848a0e99f", "status": "live", "changed": false, "checked_at_hst": "2026-10-19 16:48", "source": "jobs.ashbyhq.com public board page (posting-api endpoint 401s unauthenticated; public page used)", "location": "#LI-REMOTE", "comp": "$220K base (submitted application record)", "note": "published 2026-06-17; eval frameworks content unchanged"},
+    {"company": "Supabase", "title": "AI Platform Engineer", "posting_id": "3b5d54ca-741b-45ac-bd3f-31605a0d3541", "status": "live", "changed": false, "checked_at_hst": "2026-10-19 16:48", "source": "jobs.ashbyhq.com public board page (posting-api endpoint 401s unauthenticated; public page used)", "location": "Fully remote (global)", "comp": "undisclosed (ESOP, fully remote)", "note": "published 2026-07-31; eval-layer/golden-suites/governance content unchanged"},
+    {"company": "Buildertrend", "title": "Principal Cloud Engineer - AI Platform", "posting_id": "JR-000486", "status": "live", "changed": false, "checked_at_hst": "2026-10-19 16:49", "source": "builtin.com (job 11624341, crawled <1h ago) + lensa.com; direct buildertrend.wd1.myworkdayjobs.com/External fetch failed (500, JS app — not evidence of dead posting)", "location": "United States - Remote or Omaha, NE - Hybrid", "comp": "$175,000 - $250,000/yr", "note": "aggregator evidence; application STILL BLOCKED on Address Line 1 + ZIP (his input, asked this morning)", "application_note": "Still blocked on Address Line 1 + ZIP (his input, asked this morning); NOT submitted"},
+    {"company": "Harvey", "title": "(LinkedIn jobs posting)", "posting_id": "4441123772", "status": "live (last-verified 14:48 HST)", "checked_at_hst": "2026-10-19 16:49", "source": "last verified by parent live-browser check 2026-10-19 14:46-14:48 HST", "location": "NY, Hybrid", "comp": "undisclosed (InMail sent)", "reply_status": "NO REPLY (InMail to Claire Kaiser sent 09:42 HST; last checked 14:46-14:48 HST)", "note": "no InMail reply; zero unread messages; no bot-check; subagent cannot run live-browser tasks - parent to re-verify with browser task if needed"}
+  ]
+}

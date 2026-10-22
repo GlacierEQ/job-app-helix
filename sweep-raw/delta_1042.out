@@ -1,0 +1,71 @@
+=== GREENHOUSE board delta (09:42 -> 10:42 HST) ===
+affirm: 224
+afresh: 12
+airtable: 4
+anthropic: 674
+asana: 104  *** CHANGED 105->104
+assemblyai: 15
+boxinc: 117
+coinbase: 228
+comet: 3
+coreweave: 322
+cribl: 80
+databricks: 897  *** CHANGED 896->897
+datadog: 440  *** CHANGED 438->440
+dropbox: 22  *** CHANGED 21->22
+duolingo: 61
+elastic: 371
+fieldwire: 29  *** CHANGED 28->29
+figma: 139
+gitlab: 229  *** CHANGED 230->229
+instacart: 125  *** CHANGED 124->125
+intercom: 106
+labelbox: 7
+lightmatter: 62
+lightningai: 51
+magic: 0
+mongodb: 393  *** CHANGED 395->393
+nebius: 383  *** CHANGED 382->383
+openspace: 6
+reddit: 154  *** CHANGED 153->154
+robinhood: 154
+scaleai: 175
+stripe: 728  *** CHANGED 729->728
+tavily: 13
+togetherai: 79
+vercel: 95
+warp: 4
+xai: 299
+
+=== GH new postings since 09:42 HST (first_published > cutoff) ===
+asana: 104 total, 0 new since cutoff
+databricks: 897 total, 1 new since cutoff
+      id=8821955002 | Genie Global Sales Leader | United States | first_published=2026-10-21T16:35:43-04:00
+datadog: 440 total, 2 new since cutoff
+      id=8301102 | Associate Customer Success Manager - Boston | Boston, Massachusetts, USA | first_published=2026-10-21T15:59:05-04:00
+      id=8285495 | Manager, Global Entity Management | New York, New York, USA | first_published=2026-10-21T16:33:59-04:00
+dropbox: 22 total, 1 new since cutoff
+      id=8296377 | Learning Experience Designer | Remote - Ireland | first_published=2026-10-21T16:20:37-04:00
+fieldwire: 29 total, 1 new since cutoff
+      id=8881877002 | Revenue Operations Process Manager | San Francisco, CA (Hybrid) | first_published=2026-10-21T16:02:17-04:00
+gitlab: 229 total, 0 new since cutoff
+instacart: 125 total, 3 new since cutoff
+      id=8304521 | Associate Manager, Cross-Functional Influencer Campaigns | United States - Remote | first_published=2026-10-21T16:37:52-04:00
+      id=8304802 | Associate Manager, Influencer Marketing | United States - Remote | first_published=2026-10-21T16:38:12-04:00
+      id=8304832 | Social Content Producer | United States - Remote | first_published=2026-10-21T16:38:36-04:00
+mongodb: 393 total, 0 new since cutoff
+nebius: 383 total, 0 new since cutoff
+reddit: 154 total, 1 new since cutoff
+      id=8204924 | Staff Backend Engineer, User Safety | Remote - United States | first_published=2026-10-21T16:01:38-04:00
+stripe: 728 total, 0 new since cutoff
+
+=== ASHBY resweep vs ashby_snap_0942.json ===
+runpod: 28 jobs (0 new, 0 removed)
+crusoe: 341 jobs (0 new, 1 removed)
+  [GONE] id=19c8722a-51cb-4f5e-a3b9-4096527d42d5 | Senior Staff Quality Control Engineer
+browserbase: 9 jobs (0 new, 0 removed)
+firecrawl: 32 jobs (0 new, 0 removed)
+steel: 3 jobs (0 new, 0 removed)
+openrouter: 27 jobs (0 new, 0 removed)
+
+snapshot saved: ashby_snap_1042.json

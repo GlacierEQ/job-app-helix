@@ -47,11 +47,11 @@ def test_candidate_surfaces_match_live_portfolio_boundary() -> None:
 
 def test_primary_candidate_surfaces_state_67_total_and_66_children() -> None:
     required = {
-        "SEND_THIS.md",
-        "EXECUTIVE_RESUME.md",
-        "FINAL_FORM_README.md",
-        "CLAIM_REGISTER.md",
-        "TECHNICAL_PORTFOLIO_BRIEF.md",
+        "package/SEND_THIS.md",
+        "package/EXECUTIVE_RESUME.md",
+        "package/FINAL_FORM_README.md",
+        "proof/CLAIM_REGISTER.md",
+        "package/TECHNICAL_PORTFOLIO_BRIEF.md",
     }
 
     for name in required:

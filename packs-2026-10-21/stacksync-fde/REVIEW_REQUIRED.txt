@@ -1,0 +1,10 @@
+REVIEW REQUIRED — Stacksync Forward Deployed Engineer + Product Engineer (Remote)
+Built 2026-10-21 ~05:20 HST. DRAFT FOR HIS WORD — NOT submitted, ledger untouched.
+
+1. TRAVEL (his judgment call — the blocking item): JD: "travel across the United States to work in person with customers, plus travel to our San Francisco office whenever needed… In-person collaboration is a core part of the role." Honolulu-based — heavy travel. Verdict needed: submit with the travel reality stated, or drop?
+2. STALENESS: published 2026-09-16 (35 days). Re-verify the YC posting is still live at submit time before any submit.
+3. ENTERPRISE DEPTH HONESTY: no enterprise customer logos, no enterprise-account track record claimed anywhere. Demos/POCs are founder-scale, honestly stated. No specific CRM/ERP integration depth invented ("a plus" in JD — pack claims integration patterns only). Keep those lines exact at interview.
+4. COMP: unstated. Post 220000 if a salary field is forced.
+5. REQ LIVE: verified LIVE 2026-10-21 ~04:56 HST via full YC page readback (posting id 2I6rI5E; remote quote + travel quote read back verbatim).
+6. NUMBERS: 65 / 989 / 62-62 / 1398 are kit-allowlisted. No weight fine-tuning claimed. No Go/GCP/GraphQL/K8s/Terraform/DS depth claimed. Portfolio repos are independent work.
+7. OUTREACH TEXT IS A DRAFT — nothing sends without his explicit word.

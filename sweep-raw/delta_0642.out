@@ -1,0 +1,74 @@
+=== GREENHOUSE board delta (05:42 -> 06:42 HST) ===
+affirm: 221
+afresh: 12
+airtable: 4
+anthropic: 674  *** CHANGED 675->674
+asana: 105
+assemblyai: 15
+boxinc: 116  *** CHANGED 118->116
+coinbase: 228  *** CHANGED 230->228
+comet: 3
+coreweave: 322
+cribl: 79  *** CHANGED 73->79
+databricks: 898
+datadog: 438  *** CHANGED 439->438
+dropbox: 21
+duolingo: 62
+elastic: 368
+fieldwire: 28  *** CHANGED 27->28
+figma: 139  *** CHANGED 140->139
+gitlab: 229  *** CHANGED 230->229
+instacart: 125
+intercom: 107
+labelbox: 7
+lightmatter: 63
+lightningai: 52  *** CHANGED 51->52
+magic: 0
+mongodb: 397
+nebius: 382  *** CHANGED 381->382
+openspace: 6
+reddit: 155
+robinhood: 153  *** CHANGED 156->153
+scaleai: 175
+stripe: 730  *** CHANGED 731->730
+tavily: 13
+togetherai: 79
+vercel: 94
+warp: 4
+xai: 300  *** CHANGED 302->300
+
+=== GH new postings since 05:42 HST (first_published > cutoff) ===
+anthropic: 674 total, 1 new since cutoff
+      id=5459422008 | Workplace Coordinator | Zürich, CH | first_published=2026-10-21T12:04:48-04:00
+boxinc: 116 total, 0 new since cutoff
+coinbase: 228 total, 0 new since cutoff
+cribl: 79 total, 5 new since cutoff
+      id=6231051004 | Product Sales Specialist, EMEA | Remote - Spain | first_published=2026-10-21T12:00:37-04:00
+      id=6231043004 | Product Sales Specialist, EMEA | Remote - Netherlands | first_published=2026-10-21T11:57:23-04:00
+      id=6231042004 | Product Sales Specialist, EMEA | Remote - Germany | first_published=2026-10-21T11:57:21-04:00
+      id=6225090004 | Sr. Staff Engineer, Security AI-SOC | Remote - United States | first_published=2026-10-21T12:22:51-04:00
+      id=6230554004 | Staff GTM AI Product Manager | Remote - United States | first_published=2026-10-21T12:34:17-04:00
+datadog: 438 total, 0 new since cutoff
+fieldwire: 28 total, 1 new since cutoff
+      id=8906495002 | Mid-Market Sales Manager | Manchester, England (Hybrid) | first_published=2026-10-21T12:14:06-04:00
+figma: 139 total, 1 new since cutoff
+      id=6228774004 | Product Manager, Figma Pattern Library  | San Francisco, CA • New York, NY • United States | first_published=2026-10-21T12:20:35-04:00
+gitlab: 229 total, 0 new since cutoff
+lightningai: 52 total, 0 new since cutoff
+nebius: 382 total, 0 new since cutoff
+robinhood: 153 total, 0 new since cutoff
+stripe: 730 total, 1 new since cutoff
+      id=8204649 | Head of Product Sales, Payouts | SF, NYC | first_published=2026-10-21T12:33:12-04:00
+xai: 300 total, 0 new since cutoff
+
+=== ASHBY resweep vs ashby_snap_0542.json ===
+runpod: 28 jobs (0 new, 0 removed)
+crusoe: 345 jobs (0 new, 0 removed)
+browserbase: 9 jobs (0 new, 0 removed)
+firecrawl: 32 jobs (0 new, 2 removed)
+  [GONE] id=72f9dc1d-65db-48c9-b3d9-c6ccdb997006 | Machine Learning Engineer
+  [GONE] id=4e19ece9-6a33-4ff0-bf02-f846eb910c0c | Support Engineer
+steel: 3 jobs (0 new, 0 removed)
+openrouter: 27 jobs (0 new, 0 removed)
+
+snapshot saved: ashby_snap_0642.json

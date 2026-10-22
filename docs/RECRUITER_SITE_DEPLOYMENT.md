@@ -21,7 +21,7 @@ The website is not a free-floating marketing project. Public HTML is compiled fr
 
 ```text
 job-app-helix/
-  hire_package/casey-barton/   ← candidate package (resume, claims, machine JSON)
+  hire_package/casey-barton/   ← candidate package: package/ (resume, claims), proof/, strategy/, dossiers/, records/ (machine JSON)
   manifests/*                  ← portfolio / flagship / excellence authority
         │
         ▼ (projection + sync)

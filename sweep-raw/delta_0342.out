@@ -1,0 +1,70 @@
+=== GREENHOUSE board delta (02:42 -> 03:42 HST) ===
+affirm: 221  *** CHANGED 219->221
+afresh: 12
+airtable: 4
+anthropic: 675
+asana: 105
+assemblyai: 15
+boxinc: 119
+coinbase: 228  *** CHANGED 229->228
+comet: 3
+coreweave: 322
+cribl: 74
+databricks: 898  *** CHANGED 899->898
+datadog: 437  *** CHANGED 436->437
+dropbox: 21
+duolingo: 62
+elastic: 365  *** CHANGED 369->365
+fieldwire: 27
+figma: 140  *** CHANGED 141->140
+gitlab: 231  *** CHANGED 232->231
+instacart: 125
+intercom: 107
+labelbox: 7
+lightmatter: 63
+lightningai: 51
+magic: 0
+mongodb: 397  *** CHANGED 398->397
+nebius: 380  *** CHANGED 378->380
+openspace: 6
+reddit: 154
+robinhood: 156
+scaleai: 175  *** CHANGED 176->175
+stripe: 730
+tavily: 13
+togetherai: 79
+vercel: 94
+warp: 4
+xai: 302
+
+=== GH new postings since 02:42 HST (first_published > cutoff) ===
+affirm: 221 total, 2 new since cutoff
+  NEW: Platform Marketing Lead | Remote US | first_pub=2026-10-21T09:20:50-04:00 | https://job-boards.greenhouse.io/affirm/jobs/8012914003
+  NEW: Platform Marketing Lead | Remote Canada | first_pub=2026-10-21T09:20:52-04:00 | https://job-boards.greenhouse.io/affirm/jobs/8012916003
+coinbase: 228 total, 0 new since cutoff
+databricks: 898 total, 0 new since cutoff
+datadog: 437 total, 1 new since cutoff
+  NEW: Senior Software Engineer - Distributed Systems (ODP Governance) | Paris, France | first_pub=2026-10-21T09:03:21-04:00 | https://careers.datadoghq.com/detail/8305790/?gh_jid=8305790
+elastic: 365 total, 0 new since cutoff
+figma: 140 total, 0 new since cutoff
+gitlab: 231 total, 0 new since cutoff
+mongodb: 397 total, 0 new since cutoff
+nebius: 380 total, 1 new since cutoff
+  NEW: Senior Corporate Paralegal  | Amsterdam, Netherlands | first_pub=2026-10-21T08:45:06-04:00 | https://careers.nebius.com/?gh_jid=5008472101
+scaleai: 175 total, 0 new since cutoff
+
+=== ASHBY board resweep (vs ashby_snap_0242.json) ===
+runpod: 28 (prev 28) added=0 removed=0
+crusoe: 345 (prev 347) added=0 removed=2
+browserbase: 9 (prev 9) added=0 removed=0
+firecrawl: 34 (prev 34) added=0 removed=0
+steel: 3 (prev 3) added=0 removed=0
+openrouter: 27 (prev 28) added=0 removed=1
+
+=== his-word queue liveness re-check ===
+Drata Senior Applied AI Eng 2 : NOT FOUND
+GH honeycomb/5373987008: LIVE - Senior Software Engineer II - Agentic Intelligence
+GH honeycomb/5452445008: LIVE - Senior Software Engineer II - Agent Observability
+GH honeycomb/5452584008: LIVE - Software Engineer I -Agent Observability
+GH samsara/8024110: LIVE - AI Engineer, Customer Success
+GH samsara/7858719: LIVE - People Analytics AI Engineer

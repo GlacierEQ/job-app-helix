@@ -1,0 +1,16 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: JetBrains — Lead/Senior Forward Deployed Engineer, AI-Native Software Development (remote US), Built In mirror 11072632, originally published ~2026-09-14.
+Posting (mirror — DISCOVERY ONLY): https://builtin.com/job/lead-forward-deployed-engineer-ai-native-software-development/11072632
+Built 2026-10-20 ~00:55 HST by the pipeline from the resume-forge JetBrains variant (content/jetbrains-fde.yaml).
+
+REVIEW:
+1. MIRROR-ONLY US VARIANT — the US-remote req has NOT yet been seen on the JetBrains primary board. Verify the primary listing exists and is live before ANY submit. APPLY ONLY via JetBrains official careers — never via the Built In mirror or any aggregator.
+2. SENIORITY SKEW — the JD says "often a strong fit for engineers who have previously served as Principal or Staff Engineers, Heads of Engineering, CTOs, or Solutions Architects." He is a builder, not ex-CTO class. The pack positions his systems/governance/evidence discipline as the counter-position — honestly, no corporate history invented. Keep it that way on every form; if asked, answer straight.
+3. STALENESS — originally published ~9/14 (5+ weeks). May be near-filled. Confirm the req is live before any submit.
+4. COMP — posted band $172K–$306K base + bonus is ABOVE his ~$160K floor. No comp blocker.
+5. REMOTE — remote-US per mirror. Confirm Honolulu specifically at first contact.
+6. "Three years" of intensive applied-AI systems work (independent, 2023–present). Do NOT let any form round this up.
+7. NOTHING SUBMITTED, NOTHING SENT. Application needs his explicit yes. outreach-text.md and any LinkedIn DM are DRAFTS — nothing sends without his word.
+
+Kit numbers: 1,398-repo live-verified 2026-10-19 ~23:47 HST via `gh api /user` (695 public + 703 private). 989-test / 62/62 / 65 MCP carried from the Scale AI FDE variant lineage (2026-10-08, same as the Amgen pack). Re-verify before any live submit — the estate is actively written to and counts drift.

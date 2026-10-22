@@ -1,0 +1,59 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-08 for ClickUp Senior AI Engineer – Multi-Agent Frameworks (Ashby b8ff5d05). Note: Staff-level variant of this role already applied 2026-10-03."
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Senior AI engineer building multi-agent frameworks for production: deterministic orchestration with explicit scheduling semantics, specialized-agent delegation, governed tool use, and evaluation infrastructure that gates what is allowed to run. Remote US — based in Honolulu."
+  - "Three years of intensive work on heavily constrained forensic-grade agent systems — adversarial conditions, evidence-grade accountability, zero margin for a wrong output. **62/62** on the Agent Coordinator's exact-revision test suite; **989-test** control plane with evals in dev and production; **65** governed MCP connectors, fail-closed."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · SQL · Bash · REST APIs · Supabase · Postgres · GitHub Actions (CI/CD)"
+  - "category": "AI & Agents"
+    "items": "multi-model LLM integration · multi-agent orchestration · agent workflow design · LLM evaluation frameworks · prompt & context engineering · RAG / search integration"
+  - "category": "Platform"
+    "items": "privacy & secure data handling by construction · fail-closed tool authorization · audit receipts · idempotent automation"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI — Remote"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Design and operate a composable agent execution architecture: **1,395-repository** platform, agent governance, MCP integrations, context externalization, document workflows."
+      - "Agent Coordinator — **62/62** recorded tests: deterministic multi-agent scheduling with ownership, dependencies, capacity, priority, shared budgets — human oversight as a state (proposed / executed / verified / blocked), not a policy doc."
+      - "Evals as the floor: **989-test** control plane; behavior benchmarks in development and production, regression on every change — evals used to find and fix real failures before users do."
+      - "Multi-model orchestration: integrate and route across models with capability, authentication, and authorization checks on **65** governed connectors — fail-closed by default, with audit receipts on every action."
+      - "Ship MCP servers and agent skills connecting agents to real systems; partner-facing delivery — turn hard system behavior into decisions non-technical stakeholders use the same day."
+"proof":
+  - "title": "Agent Coordinator — deterministic multi-agent scheduling"
+    "bullets":
+      - "**62/62** exact-revision tests: ownership, dependencies, capacity, priority, shared budgets, structured deferrals."
+      - "Proposed / executed / verified / blocked states — the oversight semantics a multi-agent platform needs."
+  - "title": "Eval & control plane — evaluation infrastructure"
+    "bullets":
+      - "**989-test** control plane with behavior benchmarks in dev and production and regression on every change."
+      - "Evaluation harnesses that gate execution — evals used to find and fix real problems, not to decorate releases."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "multi-agent orchestration · LLM evaluation frameworks · multi-model integration · prompt & context engineering · RAG / search integration"
+  - "category": "Data & Infra"
+    "items": "Supabase · Postgres · Vercel · GitHub Actions · REST APIs · MCP protocol"
+  - "category": "Practice"
+    "items": "privacy & secure data handling · fail-closed authorization · audit receipts · verification gates"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Orchestration and evaluation claims describe systems I designed and operate; they are not claims of employment, production deployment at another company, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

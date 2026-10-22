@@ -1,0 +1,10 @@
+REVIEW REQUIRED — Fredrin Forward Deployed Engineer (Remote)
+Built 2026-10-21 ~05:15 HST. DRAFT — NOT submitted, ledger untouched.
+
+1. TRY THE PRODUCT (pre-application open call — the blocking item): JD: "You already use Fredrin. Every applicant should arrive knowing how the board, worktrees, and review flow work. You'll be teaching it on day one." He does NOT use Fredrin. Action he must take FIRST: use the product (board + worktrees + review flow) before any submit. Do NOT submit before this.
+2. NO USAGE CLAIMS ANYWHERE: the pack explicitly states his parallel-agent orchestration is his OWN toolchain, not Fredrin experience. No Fredrin-internal claims of any kind. Keep that line exact at interview — the outreach draft discloses non-usage up front by design.
+3. REQ LIVE: verified LIVE 2026-10-21 ~04:56 HST via full JD page readback. Published Oct 2026 — re-confirm live at submit time.
+4. COMP: unstated on the posting; HN post lists $150k–$250k. Post 220000 if a salary field is forced — inside the HN-posted band.
+5. EXPERIENCE HONESTY: "substantial experience shipping production software" — his is founder/operator, three years, 2023–present; stated exactly, never rounded.
+6. NUMBERS: 65 / 989 / 62-62 / 1398 are kit-allowlisted. No weight fine-tuning claimed. No Go/GCP/GraphQL/K8s/Terraform/DS depth claimed. No enterprise logos; portfolio repos are independent work.
+7. OUTREACH TEXT IS A DRAFT — nothing sends without his explicit word.

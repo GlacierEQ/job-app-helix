@@ -1,51 +1,21 @@
-# Casey Del Carpio Barton - Applied AI Candidate Surface
+# casey-barton/ — candidate data lanes
 
-**Outcome:** One evidence-bound application surface connects recruiter value, senior-engineer proof, and AI/ATS ingestion.
+Reorganized 2026-10-13 (his order). `git mv` — history preserved, nothing deleted.
 
-**Current status:** `PARTIALLY VERIFIED` - the source-exhaustive estate now contains 225 deserving repositories across 21 families with 8 verified trust anchors. The earlier exact 67-repository governed boundary (one Helix root plus 66 children) remains preserved as a dated recruiter/audit scope. Repository-native component receipts and a 21-node README Mesh rollout are recorded. APEX runner activation remains `BLOCKED`; coordinator hosted promotion remains `UNVERIFIED`. The July 29 audit remains a historical 66-child snapshot. Estate-wide runtime, deployment, scale, and performance are tracked separately from inventory breadth.
+| lane | what lives here |
+|---|---|
+| `package/` | Shippable surfaces: READMEs, executive resume, portfolio brief, SEND_THIS, licensing, Tower of Babel integration |
+| `proof/` | Proof surfaces: proof matrix (+JSON), claim register, role power matrix, promotion queue |
+| `strategy/` | Strategy: expansion mandate, portfolio map, roadmap |
+| `dossiers/` | Target dossiers: Anthropic, SpaceX, xAI Colossus bottleneck dossiers |
+| `records/` | Machine JSONs: ledgers, receipts, manifests, censuses, package mesh, application spiral |
+| `applications/` | Per-target outreach packets (INDEX.md each) — untouched by the reorg |
 
-## For recruiters
+## Path contract (read before moving anything)
 
-Casey builds the execution and trust layer around intelligent systems: context, tools, orchestration, permissions, verification, provenance, and resumption. Role-specific variants cover Applied AI Architect, Forward-Deployed AI Engineer, and Agent Infrastructure Engineer. The broader positioning also supports Applied AI Systems Architect, AI Deployment Engineer, and AI Solutions Architect searches through evidence-preserving tailoring.
-
-## Proof in 60 seconds
-
-- [Job-App Helix](../../README.md) - current 225-repository source-exhaustive estate, 8 verified trust anchors, and evidence control plane.
-- [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) - public product flagship with deterministic truthfulness checks and executable TypeScript tests.
-- [AKOS immutable verification run](https://github.com/GlacierEQ/AKOS/actions/runs/30532339028) - named repository-native test evidence.
-- [Coordinator candidate receipt](coordinator_candidate_receipt.json) - 62 independent Python 3.13 tests with explicit hosted limitations.
-- [Historical portfolio evidence audit](../../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) - individual grades and proof states for the original 66-repository boundary.
-- [GitHub curation ledger](../../manifests/github_repository_curation_2026-07-31.json) - admission, deferral, duplicate, private, backup, archive, and external-source decisions.
-- [README impact frame](../../docs/README_OPTIMAL_IMPACT_FRAME.md) - recruiter -> expert -> AI presentation contract.
-- [Executive resume](EXECUTIVE_RESUME.md) - ATS-safe one-page source.
-- [Technical portfolio brief](TECHNICAL_PORTFOLIO_BRIEF.md) - system boundary and proof summary.
-- [Tower of Babel integration](TOWER_OF_BABEL_INTEGRATION.md) - governed technology placement, interoperability, proof classes, and explicit blockers.
-- [Public package sync receipt](PUBLIC_PACKAGE_SYNC_RECEIPT.json) - repository anchors, front surfaces, interoperability formats, and truth policy.
-
-## Hardened package structure
-
-The distributable package places the executive resume and recruiter decision brief first, followed by three purpose-built README depths:
-
-1. recruiter value and role fit;
-2. senior-engineer architecture, invariants, and failure behavior;
-3. AI/ATS machine entrypoints, typed relationships, and non-inference rules.
-
-It provides role-specific resume paths for Applied AI Architect, Forward-Deployed AI Engineer, and Agent Infrastructure Engineer. Human and machine surfaces are intentionally diversified across PDF, DOCX, Markdown, plain text, offline HTML, JSON, JSON-LD, YAML, CSV, and Mermaid.
-
-## For senior engineers
-
-System model: `OBSERVE -> RECOVER -> PLAN -> ROUTE -> ACT -> VERIFY -> PERSIST -> RESUME`. Each revolution accumulates verified state; blocked and unverified states remain explicit.
-
-The Tower of Babel remains a separate authority boundary: Helix governs candidate and evidence state; Tower governs technology responsibility, activation conditions, interfaces, proof gates, and exact blockers.
-
-Resume Shapeshifter enters the public system through `job-application`, but its build, tests, and production gaps remain repository-native and are promoted through Helix Wave 3 rather than inherited from portal prose.
-
-## For AI systems
-
-Machine metadata lives in `candidate_node.json`, `application_spiral.json`, `evidence_ledger.json`, `coordinator_candidate_receipt.json`, `package_mesh.json`, and `PUBLIC_PACKAGE_SYNC_RECEIPT.json`. Typed relationships use only the compiled `glaciereq.readme.v1` enum.
-
-The current source-exhaustive estate is `../../manifests/unified_deserving_manifest.json`; the historical 67-repository governed recruiter boundary remains in `../../manifests/portfolio_repositories.json`; the dated GitHub admission and exclusion decisions are `../../manifests/github_repository_curation_2026-07-31.json`.
-
-## Claim boundary
-
-See [`CLAIM_REGISTER.md`](CLAIM_REGISTER.md). Candidate, hosted, reference, blocked, unverified, and failed evidence remain distinct; no presentation layer may silently promote a claim. Repository source is not deployment proof, and the hardened package does not claim portfolio-wide scale, reliability, performance, or customer impact without separate receipts.
+- `records/*.json` embed paths **relative to `casey-barton/`** (package_mesh audiences, FINAL_FORM_MANIFEST reading_order/machine_entrypoints, evidence_ledger coordinator evidence). Move a file → update the JSON.
+- `evidence_ledger.json` `../../` evidence paths are relative to `records/` (one deeper than before).
+- Builders keep the **artifact flat**: `scripts/build_final_form_package.py` reads from lanes but stages bare filenames into the package; `_rebase_staged_manifest` rewrites the staged manifest to flat names.
+- `site/template.html` and `scripts/build_recruiter_site.py` hardcode `hire_package/casey-barton/<lane>/<file>` blob URLs — update on moves.
+- Tests pin all of the above. Run the affected suites after any move:
+  `test_final_form_package.py test_candidate_application_surface.py test_candidate_portfolio_boundary.py test_complete_delivery_package.py test_owned_library_census.py test_recruiter_site_deployment.py test_final_form_package_builder.py`

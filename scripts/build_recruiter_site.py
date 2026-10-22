@@ -352,11 +352,11 @@ def _copy_public_sources(output: Path) -> None:
         SITE_SOURCE / "styles.css": output / "styles.css",
         SITE_SOURCE / "site.innovations.css": output / "site.innovations.css",
         SITE_SOURCE / "app.js": output / "app.js",
-        CANDIDATE_ROOT / "candidate_node.json": output / "candidate-node.json",
-        CANDIDATE_ROOT / "application_spiral.json": output / "application-spiral.json",
-        CANDIDATE_ROOT / "evidence_ledger.json": output / "evidence-ledger.json",
-        CANDIDATE_ROOT / "package_mesh.json": output / "package-mesh.json",
-        CANDIDATE_ROOT / "coordinator_candidate_receipt.json": (
+        CANDIDATE_ROOT / "records/candidate_node.json": output / "candidate-node.json",
+        CANDIDATE_ROOT / "records/application_spiral.json": output / "application-spiral.json",
+        CANDIDATE_ROOT / "records/evidence_ledger.json": output / "evidence-ledger.json",
+        CANDIDATE_ROOT / "records/package_mesh.json": output / "package-mesh.json",
+        CANDIDATE_ROOT / "records/coordinator_candidate_receipt.json": (
             output / "coordinator-candidate-receipt.json"
         ),
     }
@@ -374,15 +374,15 @@ def _write_source_urls(output: Path, source_commit: str) -> None:
         "source_commit": source_commit,
         "executive_resume": _source_url(
             source_commit,
-            "hire_package/casey-barton/EXECUTIVE_RESUME.md",
+            "hire_package/casey-barton/package/EXECUTIVE_RESUME.md",
         ),
         "technical_portfolio_brief": _source_url(
             source_commit,
-            "hire_package/casey-barton/TECHNICAL_PORTFOLIO_BRIEF.md",
+            "hire_package/casey-barton/package/TECHNICAL_PORTFOLIO_BRIEF.md",
         ),
         "claim_register": _source_url(
             source_commit,
-            "hire_package/casey-barton/CLAIM_REGISTER.md",
+            "hire_package/casey-barton/proof/CLAIM_REGISTER.md",
         ),
         "deployment_contract": _source_url(
             source_commit,
@@ -482,9 +482,9 @@ def build(output: Path, source_commit: str) -> None:
     ):
         raise SystemExit("source commit must be a 40-character lowercase SHA")
 
-    candidate = _load_json(CANDIDATE_ROOT / "candidate_node.json")
-    ledger = _load_json(CANDIDATE_ROOT / "evidence_ledger.json")
-    spiral = _load_json(CANDIDATE_ROOT / "application_spiral.json")
+    candidate = _load_json(CANDIDATE_ROOT / "records/candidate_node.json")
+    ledger = _load_json(CANDIDATE_ROOT / "records/evidence_ledger.json")
+    spiral = _load_json(CANDIDATE_ROOT / "records/application_spiral.json")
     claims = _validate_contracts(candidate, ledger, spiral)
 
     if output.exists():
@@ -496,11 +496,11 @@ def build(output: Path, source_commit: str) -> None:
     template = (SITE_SOURCE / "template.html").read_text(encoding="utf-8")
     resume_url = _source_url(
         source_commit,
-        "hire_package/casey-barton/EXECUTIVE_RESUME.md",
+        "hire_package/casey-barton/package/EXECUTIVE_RESUME.md",
     )
     brief_url = _source_url(
         source_commit,
-        "hire_package/casey-barton/TECHNICAL_PORTFOLIO_BRIEF.md",
+        "hire_package/casey-barton/package/TECHNICAL_PORTFOLIO_BRIEF.md",
     )
     replacements = {
         "{{CANDIDATE}}": _escape(candidate["candidate"]),

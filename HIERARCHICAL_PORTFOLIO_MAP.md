@@ -28,7 +28,7 @@ The wider GlacierEQ portfolio explores agent operating systems, context discipli
 ## Tier 4 — Human hiring surface
 
 - [`README.md`](README.md) — first-click explanation and runnable proof
-- [`hire_package/RESUME_CASEY_GLACIEREQ.md`](hire_package/RESUME_CASEY_GLACIEREQ.md) — concise resume grounded in demonstrable work
+- [`hire_package/casey-barton/package/RESUME_CASEY_GLACIEREQ.md`](hire_package/casey-barton/package/RESUME_CASEY_GLACIEREQ.md) — concise resume grounded in demonstrable work
 - [`docs/CLAIMS_AND_LIMITS.md`](docs/CLAIMS_AND_LIMITS.md) — credibility boundary
 - [GlacierEQ on GitHub](https://github.com/GlacierEQ) — broader public account
 

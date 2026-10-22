@@ -1,0 +1,62 @@
+=== GREENHOUSE board delta (10:42 -> 11:42 HST) ===
+affirm: 226  *** CHANGED 224->226
+afresh: 12
+airtable: 4
+anthropic: 674
+asana: 104
+assemblyai: 15
+boxinc: 117
+coinbase: 228
+comet: 3
+coreweave: 323  *** CHANGED 322->323
+cribl: 80
+databricks: 897
+datadog: 440
+dropbox: 22
+duolingo: 61
+elastic: 372  *** CHANGED 371->372
+fieldwire: 29
+figma: 139
+gitlab: 229
+instacart: 124  *** CHANGED 125->124
+intercom: 106
+labelbox: 7
+lightmatter: 62
+lightningai: 51
+magic: 0
+mongodb: 393
+nebius: 383
+openspace: 6
+reddit: 154
+robinhood: 154
+scaleai: 175
+stripe: 727  *** CHANGED 728->727
+tavily: 13
+togetherai: 79
+vercel: 96  *** CHANGED 95->96
+warp: 4
+xai: 300  *** CHANGED 299->300
+
+=== GH new postings since 10:42 HST (first_published > cutoff) ===
+affirm: 226 total, 2 new since cutoff
+      id=8039471003 | Analyst, Early Career (Full Stack) | New York, New York, United States; San Francisco, California, United States | first_published=2026-10-21T17:16:19-04:00
+      id=8037635003 | Contract Management Specialist II | Remote US | first_published=2026-10-21T17:34:07-04:00
+coreweave: 323 total, 0 new since cutoff
+elastic: 372 total, 1 new since cutoff
+      id=8249255 | Senior Software Engineer - Platform Billing Core | United States | first_published=2026-10-21T17:44:39-04:00
+instacart: 124 total, 0 new since cutoff
+stripe: 727 total, 0 new since cutoff
+vercel: 96 total, 1 new since cutoff
+      id=6231047004 | Internal Comms | Hybrid - San Francisco | first_published=2026-10-21T17:23:25-04:00
+xai: 300 total, 1 new since cutoff
+      id=5271634007 | Security Engineer - GRC Federal Frameworks |  Palo Alto, CA; Austin, TX; New York, NY; Washington, DC | first_published=2026-10-21T17:08:57-04:00
+
+=== ASHBY resweep vs ashby_snap_1042.json ===
+runpod: 28 jobs (0 new, 0 removed)
+crusoe: 341 jobs (0 new, 0 removed)
+browserbase: 9 jobs (0 new, 0 removed)
+firecrawl: 32 jobs (0 new, 0 removed)
+steel: 3 jobs (0 new, 0 removed)
+openrouter: 27 jobs (0 new, 0 removed)
+
+snapshot saved: ashby_snap_1142.json

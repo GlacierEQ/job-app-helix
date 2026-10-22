@@ -1,0 +1,69 @@
+=== GREENHOUSE board delta (07:42 -> 08:42 HST) ===
+affirm: 224  *** CHANGED 221->224
+afresh: 12
+airtable: 4
+anthropic: 674  *** CHANGED 673->674
+asana: 105
+assemblyai: 15
+boxinc: 116
+coinbase: 228  *** CHANGED 229->228
+comet: 3
+coreweave: 322  *** CHANGED 323->322
+cribl: 79
+databricks: 898  *** CHANGED 896->898
+datadog: 437
+dropbox: 23
+duolingo: 61  *** CHANGED 60->61
+elastic: 371
+fieldwire: 28
+figma: 139
+gitlab: 230  *** CHANGED 229->230
+instacart: 125
+intercom: 106
+labelbox: 7
+lightmatter: 62
+lightningai: 51
+magic: 0
+mongodb: 397  *** CHANGED 396->397
+nebius: 382
+openspace: 6
+reddit: 153  *** CHANGED 154->153
+robinhood: 153
+scaleai: 175
+stripe: 728
+tavily: 13
+togetherai: 79
+vercel: 95
+warp: 4
+xai: 300
+
+=== GH new postings since 07:42 HST (first_published > cutoff) ===
+affirm: 224 total, 3 new since cutoff
+      id=8033589003 | Senior Software Engineer, Backend (Cost Engineering) | Remote Canada | first_published=2026-10-21T14:00:26-04:00
+      id=8017286003 | Senior Software Engineer, Backend (Workload Safety) | Remote Canada | first_published=2026-10-21T14:00:04-04:00
+      id=8017284003 | Senior Software Engineer, Backend (Workload Safety) | Remote US | first_published=2026-10-21T14:00:02-04:00
+anthropic: 674 total, 1 new since cutoff
+      id=5459290008 | Audit Operations Lead | San Francisco, CA | first_published=2026-10-21T13:47:08-04:00
+coinbase: 228 total, 0 new since cutoff
+coreweave: 322 total, 0 new since cutoff
+databricks: 898 total, 2 new since cutoff
+      id=8723918002 | Director, Americas Sales Finance | San Francisco, California | first_published=2026-10-21T13:48:35-04:00
+  FIT id=8780675002 | Solutions Architect - Consumer Packaged Goods (CPG) | Connecticut; Delaware; Florida; Maryland; New Jersey; Northeast - United States; Remote - Georgia; Remote - New York; Remote - North Carolina; Remote - Pennsylvania; Remote - Virginia; Remote - Washington D.C.; South Carolina; Southeast - United States | first_published=2026-10-21T14:33:19-04:00
+duolingo: 61 total, 1 new since cutoff
+      id=8906062002 | Social Media Content Creator | New York, NY | first_published=2026-10-21T14:35:39-04:00
+gitlab: 230 total, 0 new since cutoff
+mongodb: 397 total, 1 new since cutoff
+      id=7027834 | Enterprise Account Executive, Growth | Boston | first_published=2026-10-21T14:09:40-04:00
+reddit: 153 total, 0 new since cutoff
+
+=== ASHBY resweep vs ashby_snap_0742.json ===
+runpod: 28 jobs (0 new, 0 removed)
+crusoe: 342 jobs (0 new, 2 removed)
+  [GONE] id=6349786b-420d-4352-a3c7-03e1a3d7e5b0 | CNC Operator
+  [GONE] id=7a937d37-80f8-4ec5-b0d1-181414a474e7 | Material Handler
+browserbase: 9 jobs (0 new, 0 removed)
+firecrawl: 32 jobs (0 new, 0 removed)
+steel: 3 jobs (0 new, 0 removed)
+openrouter: 27 jobs (0 new, 0 removed)
+
+snapshot saved: ashby_snap_0842.json

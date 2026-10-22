@@ -1,0 +1,63 @@
+=== GREENHOUSE board delta (13:42 -> 14:42 HST) ===
+affirm: 226
+afresh: 12
+airtable: 4
+anthropic: 677  *** CHANGED 675->677
+asana: 104
+assemblyai: 15
+boxinc: 119  *** CHANGED 117->119
+coinbase: 228  *** CHANGED 227->228
+comet: 3
+coreweave: 321
+cribl: 81
+databricks: 897
+datadog: 439
+dropbox: 22
+duolingo: 61
+elastic: 379  *** CHANGED 378->379
+fieldwire: 29
+figma: 139  *** CHANGED 140->139
+gitlab: 229  *** CHANGED 230->229
+instacart: 124
+intercom: 106
+labelbox: 7
+lightmatter: 61  *** CHANGED 62->61
+lightningai: 51
+magic: 0
+mongodb: 390  *** CHANGED 393->390
+nebius: 383
+openspace: 6
+reddit: 156
+robinhood: 153  *** CHANGED 152->153
+scaleai: 174  *** CHANGED 175->174
+stripe: 727
+tavily: 13
+togetherai: 79
+vercel: 95
+warp: 4
+xai: 300
+
+=== GH new postings since 12:42 HST (first_published > cutoff) ===
+anthropic: 677 total, 2 new since cutoff
+      id=5457708008 | Engineering Manager, Finance Engineering | San Francisco, CA | Seattle, WA | first_published=2026-10-21T20:28:41-04:00
+      id=5457716008 | Staff Software Engineer, Finance Engineering | San Francisco, CA | Seattle, WA | first_published=2026-10-21T20:29:11-04:00
+boxinc: 119 total, 1 new since cutoff
+      id=8229375 | Partner Account Manager | Japan | first_published=2026-10-21T19:57:01-04:00
+coinbase: 228 total, 1 new since cutoff
+      id=8311335 | Sr Manager, Infrastructure Sales | Remote - USA | first_published=2026-10-21T20:27:21-04:00
+elastic: 379 total, 1 new since cutoff
+      id=8274383 | Software Engineer II - Control Plane (Hosted Foundations / Applications) | United States | first_published=2026-10-21T20:05:16-04:00
+figma: 139 total, 0 new since cutoff
+gitlab: 229 total, 1 new since cutoff
+      id=8907028002 | Partner Program Manager | Remote, United States | first_published=2026-10-21T19:46:48-04:00
+lightmatter: 61 total, 0 new since cutoff
+mongodb: 390 total, 0 new since cutoff
+robinhood: 153 total, 0 new since cutoff
+scaleai: 174 total, 0 new since cutoff
+
+=== ASHBY resweep vs ashby_snap_1342.json ===
+Traceback (most recent call last):
+  File "/home/hatch/workspace/job-app-helix/sweep-raw/delta_1442.py", line 46, in <module>
+    prior = json.load(open("ashby_snap_1442.json")) if os.path.exists("ashby_snap_1342.json") else {}
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'ashby_snap_1442.json'

@@ -37,7 +37,7 @@ def _load_builder() -> ModuleType:
 
 def test_final_form_manifest_routes_every_declared_asset() -> None:
     manifest = json.loads(
-        (PACKAGE / "FINAL_FORM_MANIFEST.json").read_text(encoding="utf-8")
+        (PACKAGE / "records/FINAL_FORM_MANIFEST.json").read_text(encoding="utf-8")
     )
 
     assert manifest["schema"] == "glaciereq.candidate-final-form-manifest.v1"
@@ -51,7 +51,7 @@ def test_final_form_manifest_routes_every_declared_asset() -> None:
     )
     assert manifest["license"]["state"] == "PROPRIETARY_SOURCE_VISIBLE"
     assert manifest["truth_policy"]["fail_closed"] is True
-    assert manifest["reading_order"][:2] == ["EXECUTIVE_RESUME.md", "ROADMAP.md"]
+    assert manifest["reading_order"][:2] == ["package/EXECUTIVE_RESUME.md", "strategy/ROADMAP.md"]
 
     declared = [*manifest["reading_order"], *manifest["machine_entrypoints"]]
     missing = [name for name in declared if not (PACKAGE / name).is_file()]
@@ -61,12 +61,12 @@ def test_final_form_manifest_routes_every_declared_asset() -> None:
 def test_public_hire_package_locks_reference_share_url() -> None:
     """Primary share surfaces must use Vercel; dead/wrong URLs only as forbid lists."""
     required = "https://casey-barton-glaciereq.vercel.app/"
-    send_this = (PACKAGE / "SEND_THIS.md").read_text(encoding="utf-8")
-    resume = (PACKAGE / "EXECUTIVE_RESUME.md").read_text(encoding="utf-8")
-    final_readme = (PACKAGE / "FINAL_FORM_README.md").read_text(encoding="utf-8")
-    claim = (PACKAGE / "CLAIM_REGISTER.md").read_text(encoding="utf-8")
+    send_this = (PACKAGE / "package/SEND_THIS.md").read_text(encoding="utf-8")
+    resume = (PACKAGE / "package/EXECUTIVE_RESUME.md").read_text(encoding="utf-8")
+    final_readme = (PACKAGE / "package/FINAL_FORM_README.md").read_text(encoding="utf-8")
+    claim = (PACKAGE / "proof/CLAIM_REGISTER.md").read_text(encoding="utf-8")
     manifest = json.loads(
-        (PACKAGE / "FINAL_FORM_MANIFEST.json").read_text(encoding="utf-8")
+        (PACKAGE / "records/FINAL_FORM_MANIFEST.json").read_text(encoding="utf-8")
     )
 
     # Primary share link is the first bold/URL block in SEND_THIS.
@@ -83,8 +83,8 @@ def test_public_hire_package_locks_reference_share_url() -> None:
 
 
 def test_candidate_and_role_power_surfaces_have_three_distinct_layers() -> None:
-    final_readme = (PACKAGE / "FINAL_FORM_README.md").read_text(encoding="utf-8")
-    role_matrix = (PACKAGE / "ROLE_POWER_MATRIX.md").read_text(encoding="utf-8")
+    final_readme = (PACKAGE / "package/FINAL_FORM_README.md").read_text(encoding="utf-8")
+    role_matrix = (PACKAGE / "proof/ROLE_POWER_MATRIX.md").read_text(encoding="utf-8")
 
     for marker in (
         "## Layer 1 - Recruiters, Hiring Leaders, and Human Decision-Makers",
@@ -107,12 +107,12 @@ def test_candidate_and_role_power_surfaces_have_three_distinct_layers() -> None:
 
 def test_public_final_form_docs_exclude_direct_contact_pii() -> None:
     public_docs = (
-        "EXECUTIVE_RESUME.md",
-        "ROADMAP.md",
-        "FINAL_FORM_README.md",
-        "ROLE_POWER_MATRIX.md",
-        "SEND_THIS.md",
-        "LICENSE_SUMMARY.md",
+        "package/EXECUTIVE_RESUME.md",
+        "strategy/ROADMAP.md",
+        "package/FINAL_FORM_README.md",
+        "proof/ROLE_POWER_MATRIX.md",
+        "package/SEND_THIS.md",
+        "package/LICENSE_SUMMARY.md",
     )
     for name in public_docs:
         text = (PACKAGE / name).read_text(encoding="utf-8")
@@ -145,10 +145,10 @@ def test_final_site_build_exposes_pinned_final_form_paths(tmp_path: Path) -> Non
     assert "Read the three-layer story" in index
     assert "Route by role" in index
     assert "Proprietary licensing" in index
-    assert f"/blob/{SOURCE_COMMIT}/hire_package/casey-barton/ROADMAP.md" in index
-    assert f"/blob/{SOURCE_COMMIT}/hire_package/casey-barton/FINAL_FORM_README.md" in index
-    assert f"/blob/{SOURCE_COMMIT}/hire_package/casey-barton/ROLE_POWER_MATRIX.md" in index
-    assert f"/blob/{SOURCE_COMMIT}/hire_package/casey-barton/FINAL_FORM_MANIFEST.json" in index
+    assert f"/blob/{SOURCE_COMMIT}/hire_package/casey-barton/strategy/ROADMAP.md" in index
+    assert f"/blob/{SOURCE_COMMIT}/hire_package/casey-barton/package/FINAL_FORM_README.md" in index
+    assert f"/blob/{SOURCE_COMMIT}/hire_package/casey-barton/proof/ROLE_POWER_MATRIX.md" in index
+    assert f"/blob/{SOURCE_COMMIT}/hire_package/casey-barton/records/FINAL_FORM_MANIFEST.json" in index
     assert "{{" not in index and "}}" not in index
 
 

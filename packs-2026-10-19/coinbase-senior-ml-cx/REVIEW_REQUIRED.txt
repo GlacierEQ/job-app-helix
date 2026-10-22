@@ -1,0 +1,15 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Coinbase — Senior ML Engineer, CX Intelligence Engineering, remote (#LI-Remote). Posted ~2026-10-16. Senior comp $191.25K–$225K. (Staff variant $218K–$256.5K exists — WATCHLIST, not the target.)
+Apply route: coinbase.com careers — exact requisition URL UNVERIFIED. Confirm the direct SENIOR req URL at submit time.
+Built 2026-10-19 by the resume-forge coinbase-senior-ml-cx variant (content/coinbase-senior-ml-cx.yaml). Resume rendered: Casey_Barton_Resume_Coinbase_SeniorML_CX.docx (39,177 B) + .pdf (44,271 B).
+
+REVIEW:
+1. LEVEL: this pack targets SENIOR, the honest level. Do NOT submit against the Staff req. Staff variant is watchlist only.
+2. DOMAIN GAP: crypto is not his background. No onchain claims anywhere in the pack.
+3. INTERVIEW PREP NOTE (not a disqualifier): the interview reportedly includes onchain questions. He should know before any interview stage — his call whether to invest.
+4. APPLY ROUTE: exact requisition URL unverified. Confirm via coinbase.com careers at submit.
+5. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Scale AI FDE variant (2026-10-08) — re-verify before a live submit if the estate counts moved.
+6. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.

@@ -1,0 +1,18 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Provectus — Senior Forward Deployed AI Engineer (GenAI, AWS), Built In job 11701148.
+Built 2026-10-19 by the resume-forge provectus-fde variant (content/provectus-fde.yaml).
+
+REVIEW:
+1. LOCATION: the posting says only "remote-friendly culture" — no work location listed. Confirm remote-from-Honolulu is acceptable before applying.
+2. OPERATOR-SEAT MODEL: role requires 2–4 weeks doing the operator's job (claims, underwriting, revenue-cycle work) before writing code. Confirm he's IN.
+3. INTERVIEW FORMAT: two live engineering sessions (LLM assistant allowed, agentic-coding tools OFF), then a redesign session with NO LLMs, then team/practice conversation. Confirm he's IN.
+4. 8+ YEARS: posting requires 8+ years building software with a substantial share of accountable production code. Resume shows Founder 2023–Present (~3 years); no earlier delivery history claimed. His to answer — do not invent it.
+5. AWS DEPTH: posting wants cloud-native AWS delivery (containers, K8s/ECS, IaC, CI/CD). Pack claims containers, CI/CD, REST, webhooks, Supabase/Postgres, Vercel — does NOT claim production K8s/ECS or Terraform/CDK operations. Keep it that way.
+6. LangGraph: posting names Claude, MCP, LangGraph in the stack. Pack claims hand-rolled multi-agent loops + MCP ONLY — no production LangGraph experience claimed. Keep it that way.
+7. Client-cloud deployments: pack claims evidence boundaries, audit receipts, compliance-aware posture — NOT past enterprise client-cloud deployments. Keep it that way.
+8. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Scale AI FDE variant (2026-10-08) — re-verify before a live submit if the estate counts moved.
+9. outreach-text.md and any LinkedIn DM are DRAFTS. Nothing sends without his explicit word.
+10. Comp: base up to $200K, OTE up to $250K. Posted 2026-10-15.
+
+NOT submitted. Application needs his yes.

@@ -1,0 +1,5 @@
+BEFORE ANY SUBMIT OR SEND, HE MUST CONFIRM:
+1. SENIORITY CALL (open): BMC lists "typically 12+ years" and the title is Principal. He is an independent builder with ~3 years of intensive applied-AI systems work (2023–present) — never rounded up. The pack positions density-over-duration (principal-scope judgment from his actual operation) but does not claim years he doesn't have. His call whether the stretch is worth the shot before any submit.
+2. REMOTE: primary says #LI-Remote (Remote - United States). Confirm Honolulu/HST eligibility at first contact (payroll state + timezone expectations) before any submit.
+3. Review the tailored resume (Casey_Barton_Resume_BMC_PrincipalAI.pdf): no LangGraph/LangChain/CrewAI claimed (hand-rolled orchestration stated); no Langfuse/OpenSearch/OpenTelemetry claimed by name; no Go/GCP/GraphQL/K8s/Terraform; no BMC-internal production or enterprise-customer track record (boundary note on resume). Estate 1,398 repos live-verified 2026-10-20 via GraphQL totalCount.
+4. Outreach text is a DRAFT — recipient must be personalized; nothing sends without his explicit word.

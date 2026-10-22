@@ -1,0 +1,13 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Sticker Mule — SI Agent Engineer (remote, $150K–$250K + $20K signing).
+Built 2026-10-19 by research stage from the resume-forge stickermule-si-agent variant.
+
+REVIEW:
+1. Close date: VERIFIED — Jobicy's mirror of the same role says "Apply before 21 Oct 2026." Tomorrow is the wall; review tonight if it's going.
+2. Stack: the pack does NOT claim Go, GCP, GraphQL, or Grok. Keep it that way on any form.
+3. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Cresta pack (2026-10-19) — re-verify before a live submit if the estate counts moved.
+4. The application MUST mention the word HUMOUR (posting's anti-spam instruction).
+5. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.

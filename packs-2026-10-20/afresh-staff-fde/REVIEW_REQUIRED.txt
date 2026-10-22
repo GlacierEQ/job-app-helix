@@ -1,0 +1,12 @@
+REVIEW_REQUIRED.txt — Afresh Staff Forward Deployed Engineer, req 6108299004
+DRAFT pack — nothing submitted, nothing sent, ledger untouched. His word required on EVERY item below before any application.
+
+[ ] Req live: confirm req 6108299004 is still open on Afresh's Greenhouse before submit (primary-verified 2026-10-20 ~11:55 HST; re-check at apply time).
+[ ] Comp: NOT posted on primary. $169K–$253K band is third-party (joinplank market table, ~2 days old). Confirm the band / his floor position before submit; Staff title chosen as the comp-safe sibling (Senior FDE req 6108303004 band $156–211K third-party — held out).
+[ ] Remote eligibility: JD says "Remote in approved U.S. states" — board location is "United States - Remote"; confirm Hawaii is an approved state at apply time (apply honestly as Honolulu, HI).
+[ ] Seniority call: posting asks 4+ years building software professionally; he has ~3 years intensive applied-AI systems (2023–present), NOT rounded up. Confirm he's comfortable with density-over-duration positioning for a Staff title.
+[ ] Travel: JD wants ~10–20% customer-site travel; Honolulu-based travel is heavier than mainland. Confirm he accepts this.
+[ ] Estate numbers: 1,395 repos / 65 MCP connectors / 989-test / 62/62 carried from prior FDE variant lineage — re-verify against live estate before submit (estate drifts).
+[ ] Boundary: no grocery/retail domain claims; no Databricks/Azure/PySpark/dbt production claims; no customer-enterprise production claims; boundary_note present on resume.
+[ ] Submit decision: SUBMIT or SKIP is his call. No application fires without his explicit yes (pipeline hard rule).
+[ ] Outreach: DRAFT only — identify recipient; do NOT send without his word.

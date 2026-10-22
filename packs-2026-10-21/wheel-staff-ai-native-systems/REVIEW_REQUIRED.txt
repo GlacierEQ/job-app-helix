@@ -1,0 +1,10 @@
+REVIEW REQUIRED — Wheel Staff Software Engineer, AI-Native Systems (Tech Lead), Remote (US)
+Built 2026-10-21 ~05:10 HST. DRAFT FOR HIS WORD — NOT submitted, ledger untouched.
+
+1. 8+ YEARS (his verdict needed — the blocking item): JD asks "8+ years building and operating production software." His honest record is three years, founder/operator, 2023–present. The pack states exactly that — no rounding, anywhere. Verdict needed: submit with the honest founder-scale counter-position, or drop as a stretch?
+2. TECH-LEAD TITLE STRETCH: no formal multi-engineer tech-lead title claimed; leadership is founder-scale (domain ownership, design docs, inherited patterns, mentorship by review). His verdict whether that counter-position goes with the submit.
+3. REGULATED ENVIRONMENT: JD lists healthcare/HIPAA production as "strongly desired." Pack claims the compliance-as-architecture POSTURE as practice (data minimization, access controls, audit logging, staged releases) — NOT domain experience. Keep that line exact at interview.
+4. ATS URL: official Wheel ATS URL unresolved via text fetch (wheel.com/careers and mirror Apply are JS-gated) — resolve in a live browser at submit time. Re-confirm req live at submit (published 2026-10-16; apply-by 2026-11-16).
+5. COMP: $185,725–$264,500 + stock options; 220000 ask inside the band.
+6. NUMBERS: 65 / 989 / 62-62 / 1398 are kit-allowlisted. No weight fine-tuning claimed. No Go/GCP/GraphQL/K8s/Terraform/DS depth claimed. No enterprise logos.
+7. OUTREACH TEXT IS A DRAFT — nothing sends without his explicit word.

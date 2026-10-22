@@ -1,0 +1,14 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: GC AI — Member of Technical Staff, Applied AI, remote US/Canada. Fresh HN Who's Hiring post. Comp $180K–$430K + equity, 5 openings.
+Apply route: email to mernaahmedemara13@gmail.com subject "GC AI – Applied AI", or gc.ai careers. THE EMAIL-TO-PERSONAL-GMAIL ROUTE IS UNUSUAL — confirm legitimacy against the HN Who's Hiring post before anything goes out.
+Built 2026-10-19 by the resume-forge gc-ai-applied-ai variant (content/gc-ai-applied-ai.yaml). Resume rendered: Casey_Barton_Resume_GCAI_AppliedAI.docx (39,088 B) + .pdf (43,821 B).
+
+REVIEW:
+1. TS/REACT GAP — LOUD: the posting asks for "deep, recent TS/React production experience." He has TypeScript production work across his estate; he does NOT have React-app-scale product experience. THE PACK MAKES NO REACT CLAIMS — competencies and skills list TypeScript/Node only. The draft email discloses this gap up front. His call on (a) whether to apply with the gap open, and (b) whether the in-email disclosure strategy is right or should wait for interview.
+2. STARTUP RISK: ship-quickly startup culture; $180K–$430K + equity band reflects the bet. Risk tolerance is his call.
+3. APPLY ROUTE: confirm mernaahmedemara13@gmail.com is the legitimate route before any email. Nothing sends without his explicit word.
+4. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Scale AI FDE variant (2026-10-08) — re-verify before a live submit if the estate counts moved.
+5. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.

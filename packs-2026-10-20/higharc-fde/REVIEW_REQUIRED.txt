@@ -1,0 +1,14 @@
+REVIEW REQUIRED — Higharc Forward Deployed Engineer (Remote US)
+Built 2026-10-20 ~21:05 HST. DRAFT only — not submitted, ledger untouched.
+
+1. SENIORITY STRETCH (his verdict needed): JD requires "5+ years of engineering experience, including significant time in customer-facing or deployed settings." The pack bridges honestly: founder/operator customer-facing delivery (2023–present, three years) + client-facing home-inspection work. It does NOT paper this into five years. Does he want this submitted with the honest three-year framing, or is the gap a drop call?
+
+2. CONSTRUCTION-EDGE COVERAGE: The pack leads with the home-inspector background per his standing rule and states CAD/BIM as reading-level exposure only. Confirm he's comfortable with the exposure-level framing at interview (no production CAD/BIM authoring claims anywhere in the pack).
+
+3. REQ LIVE RE-CHECK: posting verified live 2026-10-20 via title; re-confirm live at submit time. Published 2026-09-17 (~5 wks).
+
+4. COMP: undisclosed in posting ("competitive salaries with significant equity"). Salary default 220000 applies only if the form requires a number.
+
+5. NUMBERS: 65 / 989 / 62/62 / 1,395 are kit-allowlisted. Live GraphQL showed 1,399 repos on 2026-10-20 — kit update needs his approval, not applied.
+
+6. TRAVEL: posting notes up to 30% travel to client sites. Honolulu-based — confirm acceptable before submit.

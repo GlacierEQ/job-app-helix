@@ -1,0 +1,23 @@
+# Cover letter — Scale AI, Forward Deployed Software Engineer, Public Sector.
+# Every **bold** number below must be in _candidate.yaml kit_numbers or the
+# engine refuses to render. No clearance claims beyond eligibility. No logos.
+
+"base": "_candidate.yaml"
+"output": "Cover_Letter_ScaleAI_FDE"
+"date": "October 13, 2026"
+
+"target":
+  "block":
+    - "Scale AI — Public Sector"
+    - "Forward Deployed Software Engineer (Honolulu, HI)"
+    - "Posting 4481921005"
+
+"salutation": "Dear Scale AI Public Sector team,"
+
+"paragraphs":
+  - "I'm a forward-deployed AI systems builder based in Honolulu, applying for the Forward Deployed Software Engineer role on your Public Sector team. I embed on ambiguous, high-stakes workflows and ship production-grade agent systems end to end — scoping with operators, building the narrow proof, then hardening what carries load."
+  - "For **3** years I've run an evidence-grade agent control plane: typed state transitions, bounded tool actions, approval gates, recoverable runs. The platform spans **1,395** repositories with **65** MCP connectors integrated; the control plane holds **989** tests with **62/62** verification checks green. Every action inspectable, every claim receipted — built like a deployment, not a demo."
+  - "Public sector work is where that discipline matters most: systems that must stay inspectable, bounded, and recoverable under real operational pressure. I hold no active clearance and am eligible for sponsorship. I'm in Honolulu, open to travel, and not relocating off-island."
+  - "I'd welcome the conversation. Portfolio, code, and proof at the links below."
+
+"closing": "Sincerely,"

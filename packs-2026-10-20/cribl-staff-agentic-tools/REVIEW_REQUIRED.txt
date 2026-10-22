@@ -1,0 +1,14 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Cribl — Staff Software Engineer, Agentic Tools, Remote - United States (#LI-Remote). Req 6214825004. Posted 2026-10-05 (~15 days — act this week). Base $210K–$245K + bonus + equity.
+Apply route: Greenhouse job-boards.greenhouse.io/cribl/jobs/6214825004 (live, verified).
+Built 2026-10-20 by the resume-forge cribl-staff-agentic-tools variant (content/cribl-staff-agentic-tools.yaml). Resume rendered: Casey_Barton_Resume_Cribl_AgenticTools.docx (39,346 B) + .pdf (44,034 B).
+
+REVIEW:
+1. SENIORITY STRETCH — FLAG: the posting asks for "Staff-level (or equivalent) professional software engineering experience building and operating production distributed systems." Your track is ~3 years as an independent builder/founder (2023–present), not a staff-engineer career ladder at a scaled company. This pack positions density-over-duration: governed agentic systems at staff-level scope (1,398-repo estate, 989-test suite, 65 MCP connectors) in three intensive years — but it cannot point at a traditional Staff title or large-org distributed-systems tenure. The "or equivalent" language carries the case. This call is yours, not the agent's.
+2. HONESTY: no Go, no GCP, no GraphQL, no K8s/Terraform/Temporal, no data-science/statistics depth, no crypto, no production-at-Cribl claims, no customer logos. Three years stated as "Three years" — never rounded up. Portfolio repos are independent work (boundary note on resume).
+3. EVENT-DRIVEN: pack claims webhook + async fan-out patterns only. Do not claim production queues/streams at interview.
+4. NUMBERS: 1,398-repo rendered UN-BOLDED (allowlist still holds 1,395; live-verified 2026-10-20 via gh api /user: 695 public + 703 private). Bold 65 / 989 / 62/62 carried from kit lineage — re-verify before a live submit if counts moved.
+5. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. NOT sent. Ledger untouched. Application needs his yes.

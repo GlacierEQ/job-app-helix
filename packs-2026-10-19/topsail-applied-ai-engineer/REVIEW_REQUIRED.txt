@@ -1,0 +1,17 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Topsail — Applied AI Engineer, full-time remote (US), occasional travel, reports to founders.
+Posting verified live 2026-10-19: https://topsail.partners/careers/applied-ai-engineer (no pub date on page; first seen in 16:42 HST sweep).
+Built 2026-10-19 by the resume-forge topsail-applied-ai variant (content/topsail-applied-ai.yaml). Resume rendered: Casey_Barton_Resume_Topsail_AppliedAI.docx (39,421 B) + .pdf (44,668 B).
+
+REVIEW:
+1. COMP: prose claim only ("above-market salary and bonus, plus meaningful equity"). Do NOT apply without confirming it clears his ~$160k bar — verify before or at first contact.
+2. STAGE RISK: small consultancy, reports to founders. High-leverage/high-scrutiny; early-stage volatility is his call.
+3. APPLY ASK: the form wants resume + ONE LINK to an agent/LLM system he built that real users depend on (cover letter skipped). Pack proposes github.com/GlacierEQ — confirm that is the right link, or name a different flagship repo.
+4. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Scale AI FDE variant (2026-10-08) — re-verify before a live submit if the estate counts moved.
+5. No Topsail-specific claims beyond estate-verified practice. Pack claims no Topsail/client-affiliated work.
+6. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.
+
+Also note — Tier-2 from this sweep (not packed): Snorkel AI Staff Applied AI Engineer ($230–360K, NYC/SF hybrid or US remote, ~Oct 5–7, prior-sweep miss), Stacksync (YC) FDE + Product Engineer (fully remote, comp undisclosed), AIOS (YC W20) AI Engineering Lead ($200–400K+equity, leadership-tilt risk).

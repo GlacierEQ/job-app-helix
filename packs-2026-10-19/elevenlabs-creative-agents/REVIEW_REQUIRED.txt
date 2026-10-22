@@ -1,0 +1,15 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: ElevenLabs — Full-Stack Engineer, Creative Agents, remote global (#LI-Remote).
+Posting published 2026-10-19, apply before 2026-11-18: https://jobicy.com/jobs/155941-full-stack-engineer-creative-agents (JD text verified live 2026-10-19; application via employer website).
+Built 2026-10-19 by the resume-forge elevenlabs-creative-agents variant (content/elevenlabs-creative-agents.yaml). Resume rendered: Casey_Barton_Resume_ElevenLabs_CreativeAgents.docx (39,616 B) + .pdf (52,069 B), 2 pages, ATS-safe.
+
+REVIEW:
+1. COMP: undisclosed by employer. Jobicy's $220K median is an AI market estimate, NOT a band. Confirm band clears his ~$160k bar before investing.
+2. FRONTEND WEIGHT: JD wants equal comfort in frontend features and backend services. His center of gravity is agent infra/backend; frontend evidence is real (Vercel-deployed surfaces) but secondary. His call on positioning.
+3. MULTIMODAL EVIDENCE: cited from live-verified estate work — fal.ai generative-media integration (skill verified live 2026-09-25), offline Whisper transcription pipeline (built 2026-10-13). Do NOT upgrade this to a shipped consumer creative editor.
+4. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from prior verified variants — re-verify before a live submit if the estate counts moved.
+5. No ElevenLabs-specific claims beyond estate-verified practice. Pack claims no ElevenLabs-company work.
+6. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.

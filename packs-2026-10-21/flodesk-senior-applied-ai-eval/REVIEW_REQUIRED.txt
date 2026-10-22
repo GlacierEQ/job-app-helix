@@ -1,0 +1,11 @@
+REVIEW REQUIRED — Flodesk Senior Applied AI Engineer, Agent Quality & Evaluations
+Built 2026-10-21 ~05:05 HST. SUBMIT-READY — no his-verdict items per the 04:53 sweep spec; comp inside band.
+NOT submitted — pack-building only; ledger untouched (pipeline submits under the standing green light).
+
+1. REQ LIVE: verified LIVE 2026-10-21 ~04:54 HST via full JD page readback (Greenhouse id 5432437008; remote quote + comp bands read back verbatim). Published ~2026-10-14 — re-confirm live at submit time.
+2. COMP: Honolulu = "all other US locations" band $150K–$235K base. Post 220000 — inside the band. (Tier 1 $165K–$250K does not apply.)
+3. REMOTE: JD quote: "We're a remote-first company headquartered in San Francisco with a globally distributed team." Quoted in INDEX.md.
+4. EVAL-PLATFORM HONESTY: Langfuse/Braintrust are JD "bonus points" only. Pack claims self-built harnesses with comparable mechanics — NO depth on those platforms claimed. Keep it there at interview.
+5. NO WEIGHT FINE-TUNING claimed anywhere — model strategy is eval-driven selection/routing only. Keep that line exact at interview.
+6. NUMBERS: 65 / 989 / 62-62 / 1398 are kit-allowlisted (live-verified 2026-10-20 ~23:57 HST). "Three years" never rounded.
+7. OUTREACH TEXT IS A DRAFT — nothing sends without his explicit word.

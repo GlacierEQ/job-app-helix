@@ -42,9 +42,9 @@ def _variant_key(role: str) -> str:
 
 
 def test_candidate_json_contracts_parse_and_use_timezone_aware_provenance() -> None:
-    candidate = _load("candidate_node.json")
-    ledger = _load("evidence_ledger.json")
-    receipt = _load("coordinator_candidate_receipt.json")
+    candidate = _load("records/candidate_node.json")
+    ledger = _load("records/evidence_ledger.json")
+    receipt = _load("records/coordinator_candidate_receipt.json")
 
     for value in (
         candidate["status"]["verified_at"],
@@ -57,29 +57,29 @@ def test_candidate_json_contracts_parse_and_use_timezone_aware_provenance() -> N
 
 
 def test_spiral_sequence_is_reference_across_human_and_machine_views() -> None:
-    spiral = _load("application_spiral.json")
+    spiral = _load("records/application_spiral.json")
     stages = spiral["stages"]
     assert [stage["order"] for stage in stages] == list(range(1, 9))
     assert [stage["name"] for stage in stages] == EXPECTED_STAGES
 
     sequence = " -> ".join(EXPECTED_STAGES)
-    for path in (PACKAGE / "README.md", PACKAGE / "TECHNICAL_PORTFOLIO_BRIEF.md"):
+    for path in (PACKAGE / "package/README.md", PACKAGE / "package/TECHNICAL_PORTFOLIO_BRIEF.md"):
         assert sequence in path.read_text(encoding="utf-8")
 
 
 def test_status_semantics_keep_blocked_and_unverified_scope_distinct() -> None:
-    status = _load("candidate_node.json")["status"]
+    status = _load("records/candidate_node.json")["status"]
     assert status["blocked_scope"] == ["APEX GitHub App bridge activation"]
     assert "agent coordinator hosted multi-version promotion" in status["unverified_scope"]
 
-    readme = (PACKAGE / "README.md").read_text(encoding="utf-8")
+    readme = (PACKAGE / "package/README.md").read_text(encoding="utf-8")
     assert "APEX runner activation remains `BLOCKED`" in readme
     assert "coordinator hosted promotion remains `UNVERIFIED`" in readme
 
 
 def test_primary_role_variants_are_routable() -> None:
-    candidate = _load("candidate_node.json")
-    mesh = _load("package_mesh.json")
+    candidate = _load("records/candidate_node.json")
+    mesh = _load("records/package_mesh.json")
     declared = {_variant_key(role) for role in candidate["primary_role_variants"]}
     routed = set(mesh["role_variants"])
     assert declared == routed
@@ -89,7 +89,7 @@ def test_primary_role_variants_are_routable() -> None:
 
 
 def test_relationships_use_compiled_enum_and_correct_direction() -> None:
-    relationships = _load("candidate_node.json")["relationships"]
+    relationships = _load("records/candidate_node.json")["relationships"]
     assert relationships
     assert {item["relation"] for item in relationships} <= ALLOWED_RELATIONS
 
@@ -103,7 +103,7 @@ def test_relationships_use_compiled_enum_and_correct_direction() -> None:
 
 
 def test_precise_claims_have_immutable_or_local_receipts() -> None:
-    ledger = _load("evidence_ledger.json")
+    ledger = _load("records/evidence_ledger.json")
     claims = {item["id"]: item for item in ledger["claims"]}
 
     akos = claims["akos_tests"]
@@ -135,7 +135,7 @@ def test_precise_claims_have_immutable_or_local_receipts() -> None:
 
 
 def test_repository_mesh_paths_resolve_without_mixed_bases() -> None:
-    mesh = _load("package_mesh.json")
+    mesh = _load("records/package_mesh.json")
     repository = mesh["contexts"]["repository_source"]
     assert repository["base"] == "hire_package/casey-barton"
     assert (PACKAGE / repository["entry"]).is_file()
@@ -153,11 +153,11 @@ def test_repository_mesh_paths_resolve_without_mixed_bases() -> None:
 
 def test_public_entry_point_links_candidate_surface() -> None:
     summary = (ROOT / "RECRUITER_EXECUTIVE_SUMMARY.md").read_text(encoding="utf-8")
-    assert "hire_package/casey-barton/README.md" in summary
+    assert "hire_package/casey-barton/package/README.md" in summary
 
 
 def test_public_source_contains_no_direct_contact_pii_or_unregistered_lint_count() -> None:
-    resume = (PACKAGE / "EXECUTIVE_RESUME.md").read_text(encoding="utf-8")
+    resume = (PACKAGE / "package/EXECUTIVE_RESUME.md").read_text(encoding="utf-8")
     assert EMAIL.search(resume) is None
     assert PHONE.search(resume) is None
     assert "117" not in resume
@@ -165,13 +165,13 @@ def test_public_source_contains_no_direct_contact_pii_or_unregistered_lint_count
 
 
 def test_excluded_claims_do_not_leak_into_recruiter_or_expert_surfaces() -> None:
-    excluded = set(_load("evidence_ledger.json")["excluded"])
+    excluded = set(_load("records/evidence_ledger.json")["excluded"])
     surfaces = "\n".join(
         path.read_text(encoding="utf-8")
         for path in (
-            PACKAGE / "README.md",
-            PACKAGE / "EXECUTIVE_RESUME.md",
-            PACKAGE / "TECHNICAL_PORTFOLIO_BRIEF.md",
+            PACKAGE / "package/README.md",
+            PACKAGE / "package/EXECUTIVE_RESUME.md",
+            PACKAGE / "package/TECHNICAL_PORTFOLIO_BRIEF.md",
         )
     ).lower()
     for claim in excluded:

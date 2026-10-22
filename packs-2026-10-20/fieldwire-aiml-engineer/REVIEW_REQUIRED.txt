@@ -1,0 +1,14 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Fieldwire — AI/ML Engineer, United States Remote. Greenhouse req 8746698002 (req ID + remote line verified live 2026-10-20; JD body is JS-gated on fieldwire.com, full text recovered from Built In + Ladders mirrors crawled 2026-10-19/20). Comp $152K–$220K base + up to 30% bonus (third-party-sourced mirrors).
+Apply route: Fieldwire Greenhouse req 8746698002, United States Remote line (Honolulu-eligible).
+Built 2026-10-20 by the resume-forge fieldwire-aiml-engineer variant (content/fieldwire-aiml-engineer.yaml, registered in forge.py VARIANT_FILES). Resume rendered: Casey_Barton_Resume_Fieldwire_AIMLEngineer.docx (39,574 B) + .pdf (45,339 B), 2 pages, honesty gate clean (all bold numbers allowlisted).
+
+REVIEW:
+1. REQ LIVE RE-CHECK: the JD body is JS-gated — re-confirm req 8746698002 is live (posting page loads an APPLY NOW button) at apply time.
+2. COMP: $152K–$220K + up to 30% bonus is mirror-sourced (Built In / Ladders), NOT from the JD page. Verify the real band vs his ~$170K floor at first contact. Band ceiling ($220K) sits below his $300K re-engagement ask — his judgment call on pursuing.
+3. HONESTY: "ideally MSc/Ph.D." (mirror-sourced) — practitioner counter-position ONLY, no academic claims. VLM depth is estate-verified adaptation/evaluation — no training-from-scratch or research-lab claims. Home-inspection background stated with no invented title/employer/dates.
+4. NUMBERS: bold 65 / 989 / 62/62 / 1,395 carried from kit lineage. LIVE READ 2026-10-20 via GitHub GraphQL: 1,399 repos (drift +4 — update the allowlist ONLY with his approval).
+5. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. NOT sent. Ledger untouched. SUBMIT is a pipeline/his call.

@@ -35,3 +35,8 @@ glacier.equilibrium@gmail.com
 ## Gating
 
 Send only with the no-relocation line intact. Target the AI Platform lead; founder ping (Weinberg) is a separate optional lane.
+
+## Asana tracking
+- Outreach board: "Job Outreach — Oct 2026" (https://app.asana.com/1/1211490156667710/project/1219120163374486)
+- Task GID: 1219120253448217 (subtasks: apply / DM with verbatim note / log-send; dependencies enforce send order)
+- Replies land in "Interview Pipeline" (https://app.asana.com/1/1211490156667710/project/1219142018872587)

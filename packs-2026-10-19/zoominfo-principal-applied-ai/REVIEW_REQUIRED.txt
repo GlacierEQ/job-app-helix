@@ -1,0 +1,14 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: ZoomInfo — Principal Applied AI Engineer, Entity Agents, remote USA. Posted ~2026-10-03. Comp $171.5K–$269.5K base.
+Apply route: zoominfo.com careers — exact requisition URL UNVERIFIED. Confirm the direct posting URL at submit time.
+Built 2026-10-19 by the resume-forge zoominfo-principal-applied-ai variant (content/zoominfo-principal-applied-ai.yaml). Resume rendered: Casey_Barton_Resume_ZoomInfo_PrincipalAppliedAI.docx (39,211 B) + .pdf (44,112 B).
+
+REVIEW:
+1. PRINCIPAL FRAMING: the ask is principal-level. The pack frames 3 years of founder experience as founder-equivalent principal scope (eval, deployment, recovery owned end to end) — NO invented prior Principal title. His word required on this framing.
+2. DOMAIN GAP: GTM/data is not his background. No ZoomInfo-domain claims anywhere in the pack. His call whether to apply.
+3. APPLY ROUTE: exact requisition URL unverified. Confirm via zoominfo.com careers at submit.
+4. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Scale AI FDE variant (2026-10-08) — re-verify before a live submit if the estate counts moved.
+5. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.

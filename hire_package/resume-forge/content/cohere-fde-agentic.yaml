@@ -1,0 +1,62 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for Cohere Forward Deployed Engineer, Agentic Platform (Remote US; Ashby id b0bcef37-1d20-414f-aade-c54942d63df9; published 2026-09-01; comp USA-all-other-states $120K–$275K base + equity)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build agentic workflows the way this posting asks: ambiguous business problem in, well-framed workflow with clear success criteria and evaluation methodology out. Three years as a founder running an evidence-grade agent control plane from Honolulu — prototyping LLM-powered agents that reason, plan, and act across tools, APIs, and sensitive data sources, then hardening them to production with eval gates, typed handoff contracts, and fail-closed recovery. The bridge posture is native: I scope with operators, build the first-of-its-kind workflow, and leave audit receipts behind."
+  - "My integration layer is **65** authored MCP connectors — governed tool/API/data-source connections with typed contracts and structured validation on every boundary — plus evaluation harnesses with written rubrics (LLM-as-a-judge), golden datasets, and behavioral assertions. Agents must be reliable, observable, safe, and auditable from day one: that is my default operating posture, not a compliance add-on. Enterprise-customer depth is founder/operator (three years), honestly stated — no enterprise logos claimed."
+"competencies":
+  - "category": "Deployed delivery"
+    "items": "embedded delivery posture · customer discovery · ambiguous-scope scoping · rapid prototyping → production · field friction → product requirements · technical-consulting posture · trusted builder relationships · handover discipline"
+  - "category": "Agentic AI"
+    "items": "agentic workflows (reason / plan / act) · tool use & function calling · structured outputs · MCP servers & connectors · RAG pipelines · multi-agent loops · guardrails · fail-closed recovery · human-in-the-loop gates"
+  - "category": "Evaluation & quality"
+    "items": "evaluation harnesses · golden datasets · behavioral assertions · LLM-as-a-judge with written rubrics · success-criteria framing · quality scoring · failure analysis · error taxonomies · trace intelligence · observability & run logging"
+  - "category": "Production"
+    "items": "Python (primary) · TypeScript · SQL · Bash · REST APIs · JSON Schema / Pydantic-style validation · GitHub Actions (CI/CD) · Postgres · per-task latency & token-cost instrumentation · retry logic · documentation engineers actually read"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Deliver the FDE motion end to end: translate ambiguous operator problems into well-framed agentic workflows with clear success criteria and written evaluation methodologies — prototype fast, measure honestly, harden what carries load."
+      - "Ship LLM-powered agents that reason, plan, and act across tools, APIs, and data sources: typed handoff contracts govern every agent boundary; structured outputs and validation keep tool calls honest."
+      - "Connect agents to the real world through **65** authored MCP connectors — governed integrations with typed contracts, evidence boundaries, and audit receipts on every tool boundary."
+      - "Gate quality with evaluation harnesses before anything ships: golden datasets, behavioral assertions, LLM-as-a-judge with written rubrics — the eval methodology behind every production agent engagement."
+      - "Design for failure in deployed settings: instrument the failure modes found in production — stuck loops, bad retrievals, tool misuse, context blowouts — and build the catchers: replay loops, fail-closed gates, recovery restricted to evidence declared before reassessment."
+      - "Run an evidence-grade agent control plane across a **1,395-repository** estate: observability, trace intelligence, and recoverable runs — backed by a **989-test** suite, **62/62** verification checks green."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models and fail-closed **GO / NO-GO** decisions — the eval gate decides what carries load."
+      - "Judge criteria with written rubrics behind every automated quality decision — the success-criteria discipline enterprise agent products depend on."
+  - "title": "Governed integration layer — 65 authored MCP connectors"
+    "bullets":
+      - "Governed tool/API/data-source connections with typed contracts and structured validation on every boundary — the reusable integration layer behind every deployed agent engagement."
+      - "Connectors span enterprise-style identity/access patterns: approval gates, access controls, audit receipts."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "Agentic AI"
+    "items": "agent workflows · tool/function calling · MCP · structured outputs · RAG · eval harnesses · LLM-as-a-judge · trace intelligence · guardrails · fail-closed recovery"
+  - "category": "Deployed engineering"
+    "items": "discovery & scoping · rapid prototyping · embedded delivery · field-to-product feedback · handover discipline · technical writing"
+  - "category": "Production"
+    "items": "REST APIs · Postgres · CI/CD (GitHub Actions) · JSON Schema validation · observability · latency & token-cost instrumentation · retry logic"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. No enterprise customer logos claimed; customer-facing delivery is founder/operator (three years), honestly stated. No Cohere-platform (North) internals claimed. No React-app-scale frontend production claims — TypeScript production is real; frontend flex is honest posture, not depth claimed. GitHub is the forge of record."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

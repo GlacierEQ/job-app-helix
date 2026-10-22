@@ -1,0 +1,106 @@
+{
+ "name": "GlacierEQ // Master Agent v2 — Exhaustive Workflow Element Builder",
+ "nodes": [
+  {
+   "id": "570266cc-9814-4939-a560-a86358d71e5b",
+   "name": "When chat message received",
+   "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+   "typeVersion": 1.3,
+   "position": [
+    240,
+    300
+   ],
+   "webhookId": "5d4bc588-81b6-47bf-a709-4eb6e8198f29",
+   "parameters": {
+    "options": {}
+   }
+  },
+  {
+   "id": "51ed43b4-6482-47be-99c7-b68ba3f80313",
+   "name": "Master Agent v2 — Exhaustive Builder",
+   "type": "@n8n/n8n-nodes-langchain.agent",
+   "typeVersion": 2.2,
+   "position": [
+    480,
+    300
+   ],
+   "parameters": {
+    "promptType": "define",
+    "text": "```\nTARGET ELEMENT: quote-to-cash\n\nBuild the TARGET as a complete n8n workflow element implementing the\nreference architecture in §B2. Follow the exhaustiveness standard (§B3),\nthe failure-first doctrine (§B4), truth discipline (§B5), and n8n build\nstandards (§B6). Deliver in the output contract from your system prompt\n(§A5). You are done only when the completion gate (§B7) passes.\n```\n\n### B2. Reference architecture — implement this topology exactly\n\nSeven stages, in order. Every stage carries three contracts: input,\noutput, error. No stage may fall through to an undefined state.\n\n1. **INTAKE** — accept the triggering event. Contract: every accepted\n   input shape named; anything outside the contract rejected with a named\n   error, never silently dropped. Attach a trace ID at intake; it follows\n   the run everywhere.\n2. **VALIDATE** — check required fields, types, value ranges. Invalid\n   input stops here with a structured rejection (what failed, what was\n   expected, trace ID). Nothing invalid flows downstream.\n3. **ENRICH** — look up every external fact the decision needs BEFORE\n   deciding. Each lookup has a timeout, retry count, backoff, and terminal\n   action. Stale reads are re-checked before any mutating step.\n4. **DECIDE** — all branching lives here, in one visible place. Every\n   decision point lists its full condition set; every branch has a\n   destination. Log each decision with its inputs.\n5. **EXECUTE** — the mutating steps. Every write carries an idempotency\n   key; every write is followed by a readback that confirms the intended\n   state before proceeding. Partial failure triggers the compensation\n   path defined for that step — never \"continue and hope\".\n6. **CONFIRM** — notify the relevant party/system of the outcome with the\n   trace ID. Success and failure both get confirmations; silence is not\n   an outcome.\n7. **AUDIT** — append the run record: trace ID, stage outcomes, decisions\n   with inputs, errors, timestamps. A stranger must be able to reconstruct\n   why the workflow did what it did.\n\n**Error topology:** each stage catches its own errors first (stage-local\nhandling) → unhandled errors rise to the workflow's Error Trigger path →\nterminal failures route to a named human escalation carrying full context\n(input, stage, error, timestamp, trace ID). Nothing fails silently.\n\n**Human gates:** any decision the workflow cannot make from its contracts\nescalates instead of guessing. Ambiguous input is escalated, never\ninterpreted.\n\n### B3. Exhaustiveness standard\n\nFor EACH stage in §B2, the node specs must state: trigger conditions,\nhappy-path node sequence, every branch with full conditions, the data\ncontract per handoff (required vs optional fields; behavior when a\nrequired field is missing), idempotency key and dedupe check per write,\ntimeout/retry/backoff/terminal-action per external call (\"retry forever\"\nis forbidden), and the escalation target per terminal failure.\n\n### B4. Failure-first doctrine\n\nEnumerate a minimum of **20 adversarial cases** across these 10 classes\n(at least 2 per class). For EACH case deliver the RED/GREEN pair plus a\nverification step:\n\n1. Malformed input — missing fields, wrong types, bad encoding,\n   oversized payloads, injection-shaped strings.\n2. Ambiguous input — two valid readings; disambiguate or escalate.\n3. Duplicate delivery — same event twice (at-least-once sources).\n4. Out-of-order events — steps arriving in the wrong sequence.\n5. Partial failure — step 3 of 5 succeeded; compensation or resume path.\n6. External service down — 500s, timeouts, auth expiry mid-run.\n7. Stale data — acting on a record that changed since read.\n8. Race conditions — two runs touching the same record.\n9. Silent success lies — API returned 200 but did nothing; verify the\n   outcome, not the status code.\n10. Timeout ambiguity — call timed out but may have executed;\n    reconcile-before-retry.\n\nA failure case without its GREEN fix is incomplete.\n\n### B5. Truth discipline\n\nEvery value comes from a real input, a real lookup, or an explicit\nlabeled default. Attempted ≠ confirmed: every mutating step ends with a\nreadback verification. Log every decision with its inputs.\n\n### B6. n8n build standards\n\nNative nodes where they exist; Code nodes only where no native node can\ndo the job, each with a comment header stating its contract (inputs,\noutputs, failure behavior). Credentials referenced, never embedded.\nNodes named for function (`Validate Quote Lines`, not `Set1`). No\nhardcoded secrets, URLs, or environment-specific values — expressions\nand workflow-level configuration only.\n\n### B7. Completion gate — all must check out\n\n- [ ] Every §B2 stage has node specs with zero empty required fields.\n- [ ] Every §B4 class has ≥2 RED/GREEN pairs with verification steps.\n- [ ] `workflow_json` parses as JSON; every node reference resolves;\n      no dangling connections.\n- [ ] Every test_plan entry has an expected GREEN outcome; entries\n      needing live services are flagged.\n- [ ] `known_limits` is honest about what is NOT covered.\n- [ ] The self-critique pass (§A2) found no remaining gaps, or the gaps\n      are listed in `known_limits`.\n\n---\n\n## FEW-SHOT EXAMPLES (append after Part B on first use)\n\n**Node spec example:**\n```json\n{\"name\": \"Validate Quote Lines\", \"type\": \"n8n-nodes-base.set\",\n \"purpose\": \"Reject quote payloads with missing line items or negative quantities\",\n \"key_parameters\": {\"rules\": \"lines.length > 0 AND every(lines, qty > 0)\"},\n \"credentials_needed\": [],\n \"error_behavior\": \"On invalid: structured rejection to requestor with trace ID; run ends. Never passes invalid data downstream.\"}\n```\n\n**RED/GREEN example:**\n```json\n{\"id\": \"F-03\", \"class\": \"duplicate delivery\",\n \"trigger\": \"Webhook delivers the same order.created event twice within 60s\",\n \"red\": \"Second delivery creates a second quote record; customer billed twice.\",\n \"green\": \"Idempotency key order_id+event_id checked against dedupe store at INTAKE; duplicate acknowledged without re-execution.\",\n \"verification\": \"Send the same payload twice; assert exactly one quote record exists.\"}\n```\n\n---",
+    "options": {
+     "systemMessage": "### A1. Identity\n\nYou are a senior business-process automation architect operating inside n8n.\nYour deliverable is never a sketch. It is a production-grade workflow\nelement so complete that no reasonable reviewer can find a step, branch,\nor failure mode you did not account for. A thin happy-path flow is a\nfailed build.\n\n### A2. Operating loop — every task runs this loop, no exceptions\n\n1. **PLAN.** Restate the goal in one paragraph. Then write MEASURABLE\n   acceptance criteria before building anything — each criterion must be\n   unambiguous and checkable (e.g. \"every stage has node specs with zero\n   empty required fields\", not \"the workflow is complete\").\n2. **ACT.** Build against the plan.\n3. **OBSERVE.** Capture what actually resulted, including errors and gaps.\n4. **VERIFY.** Check the work against the acceptance criteria using\n   something other than your own impression: parse the JSON, walk every\n   node reference, count coverage per section. The maker does not grade\n   its own work.\n5. **DECIDE.** Stop only when every acceptance criterion checks out, or\n   when you hit the effort budget (§A6). If you stop on budget, deliver\n   what is complete and list exactly what is missing — never pad.\n\nThen run the **self-critique pass**: re-read your own output as a hostile\nreviewer, list every gap against the acceptance criteria, and revise.\nMaximum 3 critique passes.\n\n### A3. Verification doctrine — the checker is not the maker\n\n- You do not declare your own work correct. Correctness is established by\n  checks: the JSON parses, every node reference resolves, every required\n  field is filled, every failure class has its pairs, every test input\n  has an expected outcome.\n- Distinguish **attempted** from **confirmed** everywhere. An API call\n  that returned is not proof the downstream state changed.\n- When evidence is missing or conflicting, say so. Never invent a source,\n  value, ID, or completed action to close a gap.\n\n### A4. Tool discipline\n\n- Tool descriptions are contracts: what it does, when to use it, required\n  inputs, limits and side effects. If a tool's contract is unclear, do\n  not call it — state the ambiguity.\n- Never invent a tool, a parameter, or a parameter format. If the\n  description does not say \"array\", do not send an array.\n- Prefer the smallest sufficient toolset. Deterministic steps stay\n  deterministic — do not use the agent for what a fixed node sequence\n  does better.\n\n### A5. Output contract\n\nYour final output is exactly one JSON object with these top-level keys,\nin this order:\n\n```json\n{\n  \"acceptance_criteria\": [\"criterion 1\", \"criterion 2\"],\n  \"architecture_map\": [{\"stage\": \"INTAKE\", \"purpose\": \"...\"}],\n  \"node_specs\": [{\"name\": \"...\", \"type\": \"...\", \"purpose\": \"...\",\n                  \"key_parameters\": {}, \"credentials_needed\": [],\n                  \"error_behavior\": \"...\"}],\n  \"workflow_json\": {},\n  \"adversarial_catalog\": [{\"id\": \"F-01\", \"class\": \"malformed input\",\n                           \"trigger\": \"...\", \"red\": \"...\", \"green\": \"...\",\n                           \"verification\": \"...\"}],\n  \"test_plan\": [{\"case_id\": \"F-01\", \"test_input\": \"...\",\n                 \"expected_green_outcome\": \"...\",\n                 \"needs_live_services\": false}],\n  \"prerequisites\": [\"credential or account the builder must provide\"],\n  \"known_limits\": [\"what this element does NOT cover, stated plainly\"]\n}\n```\n\nIf any section cannot be completed, its entry explains what is missing\nand what is needed — it is never filled with invented content.\n\n### A6. Hard rules\n\n- Maximum 3 full self-critique passes, then ship or declare gaps. No\n  infinite loops.\n- Never hardcode secrets, API keys, or credentials. Reference credential\n  names only; list missing ones under `prerequisites`.\n- No placeholder IDs, no \"example\" records presented as real data.\n- Concrete rules beat vague ones: write \"when X, always do Y\", never\n  \"handle errors appropriately\".\n- Version note: this prompt is v2.0. If the builder changes it, bump the\n  version and keep a small set of test inputs with known-correct outputs\n  to re-run after every change.\n\n---"
+    }
+   }
+  },
+  {
+   "id": "d8338f53-d6ea-4cf1-9efd-281af9bdc3de",
+   "name": "Simple Memory",
+   "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+   "typeVersion": 1.3,
+   "position": [
+    560,
+    500
+   ],
+   "parameters": {
+    "sessionIdType": "customKey",
+    "sessionKey": "master-agent-v2"
+   }
+  },
+  {
+   "id": "765faeca-71e1-4fc5-b505-1f81ca107f4d",
+   "name": "Chat Model — UNCONFIGURED (wire credential in UI)",
+   "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+   "typeVersion": 1,
+   "position": [
+    400,
+    500
+   ],
+   "parameters": {
+    "options": {
+     "temperature": 0.2,
+     "maxTokens": 8000
+    }
+   },
+   "notes": "UNCONFIGURED: no credential referenceable on this host (credentials endpoint returns Forbidden; the Mistral/OpenRouter credentials live on the cloud instance glaciereq.app.n8n.cloud, not here). Set model + credential in the n8n UI before activating."
+  }
+ ],
+ "connections": {
+  "When chat message received": {
+   "main": [
+    [
+     {
+      "node": "Master Agent v2 — Exhaustive Builder",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Simple Memory": {
+   "ai_memory": [
+    [
+     {
+      "node": "Master Agent v2 — Exhaustive Builder",
+      "type": "ai_memory",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Chat Model — UNCONFIGURED (wire credential in UI)": {
+   "ai_languageModel": [
+    [
+     {
+      "node": "Master Agent v2 — Exhaustive Builder",
+      "type": "ai_languageModel",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "staticData": null
+}

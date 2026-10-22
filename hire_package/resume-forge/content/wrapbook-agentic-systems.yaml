@@ -1,0 +1,59 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Wrapbook Senior Software Engineer II, Applied AI — Agentic Systems (remote USA/Canada; https://remoteok.com/remote-jobs/remote-senior-software-engineer-ii-applied-ai-wrapbook-1137527; published 2026-10-15; JSON-LD comp 105,000–160,500 USD)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build production-grade AI agents and the evaluation, observability, and guardrail frameworks that make them trustworthy: eval suites with golden sets and behavioral assertions, full trace logging, judge-in-the-loop rubrics, fail-closed gates, and human-in-the-loop where it matters. Security-first by construction — evidence boundaries, typed handoff contracts, approval gates on consequential actions, audit receipts on every run."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: hand-rolled multi-agent orchestration (planning, tool-use, retrieval, memory, guardrails, human handoffs) across a **1,395-repository** estate; **65** MCP connectors as the governed integration layer; per-task latency and token-cost instrumentation so agent cost is measured, not guessed; a **989-test** suite with **62/62** verification checks green."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript / Node.js · SQL · Bash · REST APIs · containers · GitHub Actions (CI/CD) · Supabase · Postgres · event-driven systems · async job queues"
+  - "category": "Applied AI / Agentic Systems"
+    "items": "LLM-powered agents · multi-agent orchestration · tool use & structured outputs · MCP servers & connectors · RAG & reranking · evaluation frameworks · judge-in-the-loop · observability · guardrails · prompt engineering (Claude, GPT, Llama, Mistral) · model-agnostic benchmarking"
+  - "category": "Production & Security"
+    "items": "end-to-end ownership (prototype → production) · fail-closed recovery · security-first design (permissions, data access, failure modes) · cost tracking & efficiency · CI regression gates · decision audit receipts · documentation & enablement"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Design and build the eval, observability, and guardrail frameworks that decide whether an agent is actually doing the job: golden suites, behavioral assertions, judge rubrics, full trace logging, regression gates — measured against a baseline, every run, before anything touches production."
+      - "Ship agents that take real actions under security-first design: evidence boundaries on every tool, typed handoff contracts between agents, human approval gates on consequential actions, fail-closed on ambiguous state — recovery restricted to contingency evidence declared before reassessment."
+      - "Own multi-agent orchestration end to end: hand-rolled planning and tool-use loops with retrieval, memory, and guardrails; the durable patterns their Agentic Systems team is standardizing — reusable toolkits, shared best practices, and written enablement so every new agent ships on the same spine."
+      - "Instrument agent cost like infrastructure: per-task latency and token-cost tracking across runs, model-agnostic benchmarking on every release — the usage-and-cost visibility the role asks for, built into the platform, not bolted on."
+      - "Work the ambiguity the role describes: scope workflows with non-technical operators, turn loosely defined problems into agent-driven solutions, and state plainly what each agent can and cannot reliably do."
+      - "Author **65** MCP connectors and integrations that expose tools and structured resources to any MCP-compatible system — ERPs, CRMs, data pipelines, webhooks, messaging — the shared, governed integration layer every downstream agent runs on."
+      - "Run the control plane across a **1,395-repository** estate with a **989-test** suite, **62/62** verification checks green — no agent completion claim without independent provider readback."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Immutable evidence models, stable finding codes, and fail-closed **GO / NO-GO** decisions on an hourly production pipeline; no agent completion claim without independent provider readback."
+      - "Reusable-pattern discipline: one-off field wins become shared infrastructure with versioned eval suites and written design docs — the 'reusable patterns, shared tools, best practices' motion."
+  - "title": "GlacierEQ estate — production agent systems"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Per-task latency instrumentation and decision audit logs across agent runs — the tracing practice that makes benchmarking honest."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript / Node.js · SQL · Bash · Java"
+  - "category": "Applied AI"
+    "items": "LLM agents · multi-agent orchestration · tool use & structured outputs · MCP integrations · RAG & reranking · evaluation frameworks · judge-in-the-loop · observability · guardrails · prompt engineering · model-agnostic benchmarking"
+  - "category": "Production & Security"
+    "items": "end-to-end ownership · fail-closed recovery · security-first design · cost tracking & efficiency · CI regression gates · audit receipts · documentation & enablement"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

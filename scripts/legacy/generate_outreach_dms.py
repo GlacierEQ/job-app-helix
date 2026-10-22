@@ -7,7 +7,7 @@ import argparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-STAGING_FILE = ROOT / "hire_package" / "OUTREACH_STAGING.md"
+STAGING_FILE = ROOT / "hire_package" / "casey-barton" / "applications" / "OUTREACH_STAGING.md"
 
 TEMPLATES = {
     "spacex_sp": {

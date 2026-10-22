@@ -1,0 +1,16 @@
+REVIEW REQUIRED — Atomic VC, Founding Forward Deployed Engineer (Remote USA)
+Built 2026-10-20 ~23:55 HST. DRAFT only — not submitted, ledger untouched.
+
+1. FOUNDING/SENIOR BAR (his verdict needed): JD is a founding bar — "the AI engineer," player-coach, 10x culture screen. The pack bridges honestly: founder/operator delivery (2023–present, three years), no client-side enterprise deployments, no enterprise logos, no 10x claims invented. Does he want this submitted with the honest three-year framing, or is the founding-bar gap a drop call?
+
+2. COMP (his call): posted $200K–$250K/yr. His $220K ask sits mid-band — but the $200K low end straddles his floor. Negotiation posture: hold $220K or accept the $200K–$220K slice.
+
+3. REQ LIVE RE-CHECK: JD verified live 2026-10-20 via Built In page readback (id 11198581). Published 2026-09-16 (~5 weeks — aging); re-confirm live at submit time.
+
+4. APPLY ROUTE: Built In is the verified-primary route (https://builtin.com/job/founding-forward-deployed-engineer/11198581). Atomic's own site (atomic.vc) routes co-found roles to Lever — no separate company ATS route found for THIS listing (jobs.lever.co/atomic 404s). Jobicy is an aggregator mirror only.
+
+5. FINE-TUNING BOUNDARY: JD lists fine-tune/distill. Pack claims eval-driven model SELECTION and ROUTING, defended with measured numbers — no weight fine-tuning claimed (stated in the resume's evidence boundary). Keep that line at interview.
+
+6. NUMBERS: 1,398 repos live-verified via gh GraphQL 2026-10-20 ~23:57 HST (`viewer.repositories.totalCount` direct readback, matching tonight's submitted packs; an earlier draft of this pack used 886 from a different query — corrected before any submit). 65 / 989 / 62-62 are kit-allowlisted. No enterprise logos; no Go/GCP/GraphQL/K8s/Terraform/DS-depth claims.
+
+7. OUTREACH TEXT IS A DRAFT — nothing sends without his explicit word.

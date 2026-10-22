@@ -1,0 +1,17 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Wrapbook — Senior Software Engineer II, Applied AI (Agentic Systems team), remote USA/Canada.
+Posting published 2026-10-15: https://remoteok.com/remote-jobs/remote-senior-software-engineer-ii-applied-ai-wrapbook-1137527 (JD text verified live 2026-10-19; JSON-LD comp 105,000–160,500 USD).
+Built 2026-10-19 by the resume-forge wrapbook-agentic-systems variant (content/wrapbook-agentic-systems.yaml). Resume rendered: Casey_Barton_Resume_Wrapbook_AgenticSystems.docx (39,484 B) + .pdf (52,184 B), 2 pages, ATS-safe.
+
+REVIEW:
+1. COMP: band 105,000–160,500 USD — clears his ~$160k bar ONLY at the top of the band (by $500). Confirm landing band at first contact before investing.
+2. LANGGRAPH GAP: JD wants production experience with at least one agent framework ("LangGraph specifically is a plus"). His orchestration is hand-rolled — the pack argues equivalence honestly and does not claim LangGraph. His call on positioning.
+3. BEDROCK GAP: Bedrock AgentCore is nice-to-have in the JD; no production Bedrock in his estate. Real gap, flagged in outreach draft.
+4. 6+ YEARS: JD asks for 6+ years back-end; his approved number is 3 years running the agent control plane. The resume does not inflate. His call whether to pursue.
+5. TITLE: "Senior Software Engineer II" — step-coded title vs his staff/IC-platform positioning in recent packs. Positioning, not a block.
+6. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from prior verified variants — re-verify before a live submit if the estate counts moved.
+7. No Wrapbook-specific claims beyond estate-verified practice. Pack claims no Wrapbook-company work.
+8. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.

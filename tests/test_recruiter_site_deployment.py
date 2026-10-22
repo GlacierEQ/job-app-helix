@@ -146,12 +146,12 @@ def test_local_site_links_resolve_inside_deployment(tmp_path: Path) -> None:
 
 def test_candidate_state_semantics_remain_distinct() -> None:
     candidate = json.loads(
-        (ROOT / "hire_package" / "casey-barton" / "candidate_node.json").read_text(
+        (ROOT / "hire_package" / "casey-barton" / "records" / "candidate_node.json").read_text(
             encoding="utf-8"
         )
     )
     ledger = json.loads(
-        (ROOT / "hire_package" / "casey-barton" / "evidence_ledger.json").read_text(
+        (ROOT / "hire_package" / "casey-barton" / "records" / "evidence_ledger.json").read_text(
             encoding="utf-8"
         )
     )

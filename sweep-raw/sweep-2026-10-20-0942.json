@@ -1,0 +1,205 @@
+{
+  "board_api": "Greenhouse boards-api (scaleai 178, reddit 156, databricks 901, vercel 95, anthropic 670) + Ashby posting API (supabase 54, clickup 44, cursor 134). Web scout: 7 browser.search queries + 4 page verifications (jobicy, remoteok, startup.jobs, builtin, remotenex, hnhiring, dice, GH boards). Email-lead evaluation: 5 LinkedIn-alert leads, posting-level verification.",
+  "delivery": {
+    "chat_delivery": true,
+    "reason": "IN-WINDOW run (09:42 HST). 3 new TIER-1 roles with ready packs (Databricks AI FDE req 8546367002; eMAX Senior AI; Pearson Lead AI Scientist \u2014 all flagged honestly in packs) genuinely need his word. Reddit 8201359 pack RETIRED (req dead, 404). Cursor FDE killed (board gone). No reply arrived on any live target. Nothing sent, nobody contacted, nothing submitted."
+  },
+  "discovery_delta_window": "2026-10-20T08:50-10:00 to 2026-10-20T10:20-10:00",
+  "email_leads_evaluated": {
+    "Booz Allen Hamilton 'AI and ML Engineer, Senior'": "TIER-2 hold - stale ~5.5mo (pub 2026-05-07), McLean VA geo, classical ML not agentic; comp $99K-$225K",
+    "HDR 'Applied Data Scientist - AI Enablement (Transportation)'": "KILL - est. comp below floor (HDR DS bands top ~$143K) + no Honolulu/remote + AEC consulting, not FDE systems",
+    "Hawaiian Electric 'Principal, IT Technical Architect - Oahu'": "KILL - comp $109.9K-$142.6K max below floor; utility enterprise-IT, no AI component evidenced",
+    "Pearson 'Lead Specialist, AI Scientist'": "TIER-1 - fresh (Today on Dice mirrors), Remote US, $150K-$190K (only upper half clears floor); PACK BUILT (primary-unverified caveat)",
+    "Raft 'Software Engineer (AI Focus)'": "KILL - max $160K below floor + posting 13+ months stale (2025-09-07) + Active Secret clearance required"
+  },
+  "followups": {
+    "note": "Follow-up lane belongs to parent worker this run; standing state from 0842 sweep carries: Claire Kaiser 1 day (too early), Murali under pause rule, Sarah Sacco fire-ready nudge awaiting his word."
+  },
+  "kills_this_run": [
+    "Raft 'Software Engineer (AI Focus)' - KILL comp ($130-160K below floor) + stale 13mo + clearance",
+    "Hawaiian Electric 'Principal, IT Technical Architect' - KILL comp ($109.9-142.6K) + weak fit",
+    "HDR 'Applied Data Scientist - AI Enablement' - KILL est. comp below floor + geo + fit",
+    "Scale AI x6 (Frontier Agents Engineer variants, reqs 4720573005/4694861005/4720478005/4694863005/4720487005/4694865005) - GEO kill (NY/SF only)",
+    "Databricks 8760167002 AI FDE U.S. Public Sector - KILL clearance (Secret eligibility) + DC/MD/VA",
+    "Reddit 8157275 Senior Staff ML Systems Engineer Ads ML Platform IC6 - GEO kill (NY only)",
+    "Anthropic x4 (Applied AI Architect Cyber SF, Applied AI Architect Startups NYC/SF, Applied AI Demo Engineer SF, Manager Applied AI Paris) - GEO kill",
+    "Reddit 8074860/8074846 Business Risk & AI Automation - KILL non-eng",
+    "Reddit 8017242 Senior Client Account Manager - KILL sales",
+    "Reddit 7954001 Staff TPM Ads ML Platform - KILL not IC eng",
+    "Databricks 8582276002/8582271002 Senior/Staff SWE AI Runtime - GEO kill (Mountain View)",
+    "Databricks 7897431002/8679982002/8604598002/8876613002/8876680002 - GEO kill (India)",
+    "Databricks 8899736002/8613192002/8849279002/8884904002/8593713002/8854739002/8604577002/8821953002 - KILL manager-level and/or non-US geo / non-eng",
+    "SmarterFI.ai FDE - KILL seniority (2-3yr bar)",
+    "Veeam FDE (Securiti AI) - KILL geo (hybrid San Jose) + sales function",
+    "Humach FDE - KILL geo (excludes HI)",
+    "GitLab Agent Foundations Backend - KILL geo (Canada/Poland/UK)",
+    "Sierra Software Engineer, Agent - KILL geo (Munich in-person)",
+    "Cresta Senior FDE - KILL geo (UK)",
+    "Sticker Mule AI agent engineer - KILL stale (29d)",
+    "J.D. Power Applied AI Engineer P4 - KILL comp ($130-160K) + stale",
+    "Pulley Senior Applied AI Engineer - KILL geo (SF Bay 4d/wk)",
+    "FlexJobs 'Lead AI Integration Engineer' Honolulu - KILL weak fit + paywalled/unverifiable",
+    "BigBear.ai Foundry FDE - KILL stale (238d crawl)",
+    "BigBear.ai Sr AI Engineer Honolulu - KILL clearance (TS/SCI) + onsite",
+    "Reddit 'Senior Staff MLE, Agentic AI Platform' req 8201359 \u2014 KILL: Greenhouse boards API returned 404 'Job not found' 2026-10-20 ~10:07 HST and req absent from the live 155-job board listing. A pack was built against this req and has been RETIRED (not delivered). The run-worker verification claiming 'updated 2026-10-20 GH API verified' is superseded by this direct readback.",
+    "Cursor 'Forward Deployed Engineer' req 44264403 (pub Oct 14) \u2014 KILL: entire Cursor Ashby board 404s live (browser-verified 2026-10-20 ~09:47 HST, 'Page not found' on board + direct posting URL). Ashby posting API still returns 134 cursor jobs \u2014 appears stale-cached; live board state wins. Location check is moot."
+  ],
+  "linkedin_inbox": "Parent lane this run (not checked by this worker); 0842 state: session verified live, 12 threads, 0 unread, no replies.",
+  "live_targets": {
+    "Buildertrend (Workday JR-000486)": "Parent lane; 0842 state: PENDING his address-field inputs (unchanged)",
+    "ClickUp Senior AI Engineer - MAF": "Parent lane; 0842 state: OPEN, applied Oct 19, no reply",
+    "Harvey InMail (Claire Kaiser)": "Parent lane; 0842 state: no reply",
+    "Scale AI FDE Public Sector 4481921005": "Parent lane; 0842 state: OPEN, applied Oct 19, no reply",
+    "Supabase AI Platform Engineer": "Parent lane; 0842 state: OPEN, applied Oct 19, no reply"
+  },
+  "new_candidates": [
+    {
+      "comp": "$182,000-$250,208 local pay range (JD) - CLEARS floor",
+      "flags": [
+        "KNOWN since 2026-10-13 (forge variant existed); refreshed updated_at 2026-10-20 + JD geo language improved to 'Open to remote locations' - prior CA/OH flag resolved",
+        "bar: experienced production GenAI/LLM, no explicit year count"
+      ],
+      "pack": "~/workspace/job-app-helix/packs-2026-10-20/databricks-ai-fde/",
+      "posting": "https://databricks.com/company/careers/open-positions/job?gh_jid=8546367002",
+      "published": "updated 2026-10-20T06:33 ET (GH API verified)",
+      "remote": "United States; JD: 'Open to remote locations'",
+      "role": "Databricks - AI Engineer, Forward Deployed Engineering (AI FDE) [ALL LEVELS]",
+      "tier": "TIER-1",
+      "verdict_note": "Exact-lane fit (customer-facing FDE, RAG, multi-agent, evaluation/optimization, production rollouts). Pack built: resume docx+pdf, PROOFS.md, outreach draft, REVIEW_REQUIRED.txt."
+    },
+    {
+      "comp": "UNLISTED - cannot confirm floor; small-company band risk",
+      "flags": [
+        "aggregator listing (remotenex.us) - confirm req live with eMAX directly before any submit",
+        "11-50 emp pharma company; no healthcare-domain depth claimed"
+      ],
+      "pack": "~/workspace/job-app-helix/packs-2026-10-20/emax-senior-ai/",
+      "posting": "https://remotenex.us/job/remote-senior-ai-engineer-110",
+      "published": "2026-10-20 (page metadata verified)",
+      "remote": "100% remote, USA",
+      "role": "eMAX Health Systems - Senior AI Engineer",
+      "tier": "TIER-1",
+      "verdict_note": "Multi-agent workflows for code gen/testing/review + eval frameworks for non-deterministic systems + observability - direct hit. Pack built with comp-unlisted + aggregator caveats."
+    },
+    {
+      "comp": "$150,000-$190,000 (mirrors) - only upper half clears floor",
+      "flags": [
+        "Pearson careers primary NOT recoverable - Dice mirrors only; apply route via Dice, confirm req live",
+        "comp band straddles floor: $150-170K below-floor, $170-190K clears"
+      ],
+      "pack": "~/workspace/job-app-helix/packs-2026-10-20/pearson-ai-scientist/",
+      "posting": "https://www.dice.com/jobs/q-modeling-l-rhode+island-jobs?page=31 (mirror; primary unverified)",
+      "published": "'Today' on Dice mirrors crawled 2026-10-20",
+      "remote": "Remote, United States",
+      "role": "Pearson - Lead Specialist, AI Scientist (OCTO AI Centre for Enablement)",
+      "tier": "TIER-1",
+      "verdict_note": "Production AI/ML design/build/deploy/scale; knowledge graphs, recommendations, personalization; research-to-production bridge. Pack built with comp + primary caveats."
+    },
+    {
+      "comp": "$150K-$300K (clears floor)",
+      "flags": [
+        "stale: GH API updated_at 2026-09-29 (~3 weeks, outside 72h)",
+        "location 'United States' ambiguous - Appian is McLean VA-based; office requirement unverified",
+        "bar 7+ yrs"
+      ],
+      "posting": "https://job-boards.greenhouse.io/appian/jobs/8204996",
+      "published": "2026-09-29 (GH API verified)",
+      "remote": "United States (unverified remote)",
+      "role": "Appian - Lead Applied AI Engineer",
+      "tier": "TIER-2 hold",
+      "verdict_note": "Strong JD fit (production agents, eval + CI gating, retries/idempotency/partial-failure - his failure-injection specialty) but stale + geo ambiguous. No pack."
+    },
+    {
+      "comp": "$180K-$220K base + 0.25%-0.75% equity (HN post)",
+      "flags": [
+        "email-only application (founders@kaavio.ai); no ATS",
+        "tiny startup (repo: 4 stars, 6 commits); interview includes in-person work day"
+      ],
+      "posting": "https://github.com/KaavioAI/jobs (role: applied-ai-engineer.md)",
+      "published": "HN 'Who is hiring? (October 2026)' thread, crawled ~2d ago",
+      "remote": "Remote US/Canada",
+      "role": "Kaavio - Applied AI Engineer",
+      "tier": "TIER-2 hold",
+      "verdict_note": "Eval work for production AI trustworthiness, research agents, RAG over industrial catalogs - good fit, but email-only + micro-startup risk. Parent may want to verify before pack. No pack this run."
+    },
+    {
+      "comp": "unlisted ('competitive salary + meaningful equity')",
+      "flags": [
+        "no posted date; crawler-fresh ~2d",
+        "construction-tech: permit-data platform + AI harness (139 Claude Code skills, multi-agent workflows) - STRONGEST domain-edge fit (his home-inspector background)",
+        "timezone: engineering EU + business US West Coast, wants overlap with both; Hawaii risk; Asia-Pacific excluded"
+      ],
+      "posting": "https://www.shovels.ai/careers/senior-engineer",
+      "published": "unverified (crawler-fresh ~2d)",
+      "remote": "Remote (Americas & Europe)",
+      "role": "Shovels - Senior Data & Platform Engineer",
+      "tier": "TIER-2 hold",
+      "verdict_note": "Permits = his literal home-inspector domain. Title not AI-engineer; unscoped role. No pack (date/comp unverified)."
+    },
+    {
+      "comp": "unlisted",
+      "flags": [
+        "last updated 4 days ago - just outside 72h window",
+        "Bedrock, multi-agent architectures, MCP servers, RAG, observability - strong fit"
+      ],
+      "posting": "https://remotenex.us/job/remote-senior-ai-engineer-39",
+      "published": "~4 days ago",
+      "remote": "Remote US",
+      "role": "Addition (tech consultancy) - Senior AI Engineer",
+      "tier": "TIER-2 hold",
+      "verdict_note": "Hold on freshness only. No pack."
+    },
+    {
+      "comp": "$99,000-$225,000 (wide band; top half clears)",
+      "flags": [
+        "stale: published 2026-05-07 (~5.5mo); LinkedIn Oct 19 'actively recruiting' alert is a resurface",
+        "McLean VA geo - no remote/Honolulu",
+        "classical ML/MLOps (Databricks, Palantir, Bedrock), no agentic focus"
+      ],
+      "posting": "https://builtin.com/job/artificial-intelligence-and-machine-learning-engineer-senior/8379364",
+      "published": "2026-05-07",
+      "remote": "McLean, VA",
+      "role": "Booz Allen Hamilton - Artificial Intelligence and Machine Learning Engineer, Senior",
+      "tier": "TIER-2 hold",
+      "verdict_note": "Email lead evaluated. No pack."
+    }
+  ],
+  "new_tier1": 3,
+  "new_tier2": 5,
+  "packs_built_this_run": 4,
+  "receipt": "Greenhouse boards API: scaleai 178, reddit 156, databricks 901, vercel 95 (0 fresh matches), anthropic 670 - all 200 OK; sourcegraph/langchain/openai boards 404 (moved off Greenhouse). Ashby posting API: supabase 54, clickup 44, cursor 134 - 0 fresh title matches on all three (cursor locationName now returns normally; prior None-quirk resolved). Web scout: 7 browser.search queries, 4 page opens (remotenex eMAX verified, Kaavio GH repo verified, Dice Pearson mirrors, databricks JD via GH API). Email leads: 5/5 evaluated at posting level. Forge: 4 variants rendered docx+pdf, all PDFs %PDF-1.7 readable. Nothing sent, nobody contacted, nothing submitted.",
+  "run": "job-pipeline-hourly",
+  "scheduled_for": "2026-10-20T09:42:55-10:00",
+  "source_trust_notes": {
+    "ashby_api": "cursor locationName quirk resolved this run - values return normally. Zero fresh AI/FDE title matches across supabase/clickup/cursor.",
+    "corrections_to_standing_state": [
+      "0842 delivery note said reddit-fde-senior-ai-enablement/outreach-text.md MISSING - STALE. All four packs-2026-10-20 dirs have outreach-text.md, including req 8275745 (lives in reddit-agent-optimization-eval/). Nothing was missing.",
+      "ATS scout reported Reddit 8275745 current title as '... (San Francisco)' - WRONG. GH API verified 2026-10-20: title 'Software Engineer, Agent Optimization & Evaluation', location 'Remote - United States', updated 2026-10-18. Pack location stands.",
+      "Web scout flagged Appian 8204996 as fresh via crawler - WRONG on posting freshness. GH API updated_at 2026-09-29 (~3 weeks). Downgraded to TIER-2 hold.",
+      "Web scout flagged GC AI as new TIER-1 - KNOWN. Pack built 2026-10-19 (packs-2026-10-19/gc-ai-applied-ai + forge variant gc-ai-applied-ai). Not new; carry only.",
+      "Databricks 8546367002 was KNOWN since 2026-10-13 (forge variant databricks-fde existed). This run: genuinely refreshed (updated_at 2026-10-20) + JD geo language improved ('Open to remote locations' supersedes old CA/OH flag). First pack built now."
+    ],
+    "greenhouse_boards_api": "scaleai/reddit/databricks/vercel/anthropic live; sourcegraph/langchain/openai 404 - boards moved off Greenhouse, not retried (no alternate authorized for this worker). Reddit board pushed batch metadata sync ~2026-10-20T08:19 ET across ~10 reqs - updated_at timestamps on that board are inflated; genuine-newness plausible but unproven for 8201359."
+  },
+  "sweep_type": "discovery-delta (in-window, read-only + pack builds)",
+  "watchlist_carries": [
+    "Sourcegraph ML & Agentic Systems Engineer IC4 - TIER-2 hold CARRIES but board 404'd on Greenhouse this run; needs alternate route (sourcegraph.com careers or Lever) to stay verifiable",
+    "Reddit 8283770 Senior ML Systems Engineer ML Platform - TIER-2 hold, still live",
+    "Reddit 7980795 Senior SWE Agentic Ads Experience - TIER-2 hold, still live",
+    "GC AI Member of Technical Staff, Applied AI - PACKED 2026-10-19; HN thread still current; carry",
+    "Reddit FDE AI Enablement roles (8275745/8301784/8301736 packs built) still live on board",
+    "Procore AI Deployment Specialist + Solutions Specialist AI (primary ATS unverified)",
+    "Laminar Projects/Shape.Construction AI Engineer (US geo unverified)",
+    "EquipmentShare Senior SWE AI Platform (primary JS Webflow, unverified)",
+    "SecurityScorecard Senior AI Engineer (primary unidentified)",
+    "Mortenson Construction AI Researcher (stale mirrors)",
+    "Smartsheet US-remote FDE (standing override; UK/DE variants only on primary)",
+    "ElevenLabs FDE/SWE USA (elevenlabs.io policy-blocked for text fetch; live-browser route)",
+    "Kaavio Applied AI Engineer - TIER-2 hold (email-only, micro-startup)",
+    "Shovels Senior Data & Platform Engineer - TIER-2 hold (construction-tech domain edge, TZ caveat)",
+    "Addition Senior AI Engineer - TIER-2 hold (4d old)",
+    "Appian Lead Applied AI Engineer - TIER-2 hold (stale 3wk, geo ambiguous)",
+    "Booz Allen AI/ML Engineer Senior - TIER-2 hold (stale, McLean VA)",
+    "Reddit 7980795 Senior SWE Agentic Ads Experience \u2014 TIER-2 hold stands (seniority stretch); refreshed on board 2026-10-20 (updated_at today per GH API readback ~10:07 HST)"
+  ]
+}

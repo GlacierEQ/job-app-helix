@@ -16,7 +16,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT_ROOT = ROOT / "evidence" / "applications"
 PACKAGE_ROOT = ROOT / "hire_package" / "casey-barton" / "applications"
-PROMOTION_QUEUE = ROOT / "hire_package" / "casey-barton" / "AI_ARCHITECT_PROMOTION_QUEUE.md"
+PROMOTION_QUEUE = ROOT / "hire_package" / "casey-barton" / "proof" / "AI_ARCHITECT_PROMOTION_QUEUE.md"
 
 ACKNOWLEDGED_STATES = {"APPLICATION_RECEIVED", "SUBMITTED", "SUBMITTED_RECEIVED"}
 PROHIBITED_READY_PATTERNS = (
@@ -72,7 +72,7 @@ def _candidate_text_files(root: Path, provider_job_id: str) -> list[Path]:
 def validate(root: Path = ROOT) -> dict[str, Any]:
     receipt_root = root / "evidence" / "applications"
     package_root = root / "hire_package" / "casey-barton" / "applications"
-    queue_path = root / "hire_package" / "casey-barton" / "AI_ARCHITECT_PROMOTION_QUEUE.md"
+    queue_path = root / "hire_package" / "casey-barton" / "proof" / "AI_ARCHITECT_PROMOTION_QUEUE.md"
 
     guarded = _guarded_receipts(receipt_root)
     checked_packages = 0

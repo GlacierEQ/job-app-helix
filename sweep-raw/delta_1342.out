@@ -1,0 +1,70 @@
+=== GREENHOUSE board delta (12:42 -> 13:42 HST) ===
+affirm: 226
+afresh: 12
+airtable: 4
+anthropic: 675  *** CHANGED 674->675
+asana: 104
+assemblyai: 15
+boxinc: 117
+coinbase: 227
+comet: 3
+coreweave: 321
+cribl: 81
+databricks: 897
+datadog: 439
+dropbox: 22
+duolingo: 61
+elastic: 378  *** CHANGED 373->378
+fieldwire: 29
+figma: 140  *** CHANGED 139->140
+gitlab: 230  *** CHANGED 229->230
+instacart: 124
+intercom: 106
+labelbox: 7
+lightmatter: 62
+lightningai: 51
+magic: 0
+mongodb: 393
+nebius: 383
+openspace: 6
+reddit: 156  *** CHANGED 155->156
+robinhood: 152
+scaleai: 175
+stripe: 727  *** CHANGED 726->727
+tavily: 13
+togetherai: 79
+vercel: 95
+warp: 4
+xai: 300
+
+=== GH new postings since 12:42 HST (first_published > cutoff) ===
+anthropic: 675 total, 1 new since cutoff
+      id=5415822008 | Product Manager (Technical), Product Support Experience | San Francisco, CA | New York City, NY | first_published=2026-10-21T19:16:00-04:00
+elastic: 378 total, 5 new since cutoff
+      id=8274400 | Senior Software Engineer - Control Plane (Hosted Foundations / Applications)  | Poland | first_published=2026-10-21T19:31:03-04:00
+      id=8311494 | Senior Software Engineer - Control Plane (Hosted Foundations / Applications)  | Spain | first_published=2026-10-21T19:31:09-04:00
+      id=8311493 | Senior Software Engineer - Control Plane (Hosted Foundations / Applications)  | Portugal | first_published=2026-10-21T19:31:07-04:00
+      id=8311491 | Senior Software Engineer - Control Plane (Hosted Foundations / Applications)  | Greece | first_published=2026-10-21T19:31:05-04:00
+      id=8311496 | Senior Software Engineer - Control Plane (Hosted Foundations / Applications)  | Canada | first_published=2026-10-21T19:31:12-04:00
+figma: 140 total, 1 new since cutoff
+      id=6227402004 | Product Builder, AI Insights | San Francisco, CA • New York, NY • United States | first_published=2026-10-21T19:27:20-04:00
+gitlab: 230 total, 2 new since cutoff
+      id=8907028002 | Partner Program Manager | Remote, United States | first_published=2026-10-21T19:46:48-04:00
+  FIT id=8886626002 | Sr. Manager, Solutions Architect - SMB | Remote, United States | first_published=2026-10-21T19:40:27-04:00
+reddit: 156 total, 1 new since cutoff
+      id=8110339 | Senior Data Scientist, Safety Enforcement | Remote - United States | first_published=2026-10-21T19:07:25-04:00
+stripe: 727 total, 0 new since cutoff
+
+=== ASHBY resweep vs ashby_snap_1242.json ===
+runpod: 28 jobs (0 new, 0 removed)
+crusoe: 346 jobs (3 new, 1 removed)
+  [NEW] id=690d374c-c23e-4e91-9c1a-2a675fa37ed0 | Contracts Coordinator
+  [NEW] id=52ebf84d-a113-40c1-9bd3-0a626fbe2efe | Contracts Coordinator
+  [NEW] id=07a8a6a9-975e-471c-ac31-b5aaa97f9af5 | Software Engineering Intern, Summer 2027
+  [GONE] id=9ebd554e-1b99-4870-9ac2-a0f011a43f6d | Senior Manager, Finance - Manufacturing
+browserbase: 9 jobs (0 new, 0 removed)
+firecrawl: 32 jobs (0 new, 0 removed)
+steel: 3 jobs (0 new, 0 removed)
+openrouter: 27 jobs (0 new, 0 removed)
+
+snapshot saved: ashby_snap_1342.json

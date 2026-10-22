@@ -1,0 +1,62 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for AssemblyAI Software Engineer, Agent Experience (North America; GH req 4744387005; updated 2026-10-16; USD $160K–$210K)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Coding agents are first-class users of the infrastructure I build. My agents read and run the surfaces I author: **65** MCP servers / connectors with typed contracts, docs, structured resource submission, evidence boundaries, and audit receipts. I write the prompts, skills, tool definitions, and agent instructions my own fleet runs on — and I measure what makes agents succeed or fail with evals, not vibes. Daily hands-on with agentic coding loops as the core build loop; clear technical writing that both humans and agents can act on."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: build the MCP server and agent integrations behind the product; make docs and code samples agent-ready; tune the prompts and tool definitions agents execute; measure success rate, time-to-first-working-call, and activation with real benchmarks. Speech-to-text pipeline experience through an estate-verified fal.ai + Whisper pipeline — integration-side, honestly bounded. Product sense for developer-facing work: I care whether the agent actually gets to a working integration."
+"competencies":
+  - "category": "Agent experience"
+    "items": "agent-facing API & tool surface design · MCP servers & connectors · agent skills, prompts & instructions · tool definitions agents execute · machine-readable docs · llms.txt-style agent docs · quickstarts & SDK examples · developer-product sense"
+  - "category": "Eval & measurement"
+    "items": "evaluation harnesses · agent benchmarks on real integration tasks · success-rate / time-to-first-call measurement · golden datasets · behavioral assertions · LLM-as-a-judge with written rubrics · trace intelligence · measure it, don't vibe it"
+  - "category": "AI & Voice"
+    "items": "speech-to-text pipeline integration (Whisper-based, estate-verified) · LLM APIs · function calling · structured outputs · RAG · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "JavaScript / TypeScript · Python (primary) · SQL · Bash · REST APIs · JSON Schema / Pydantic-style validation · GitHub Actions (CI/CD) · per-task latency & token-cost instrumentation · observability & run logging · clear technical writing"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Build and maintain agent skills and integrations: author **65** MCP servers / connectors — the agent-readable layer with typed contracts, structured resource submission, and audit receipts — teaching agents how to integrate correctly the first time."
+      - "Tune the prompts, tool definitions, and agent instructions my fleet executes: write the instructions agents run on, then measure them — behavioral assertions and golden datasets judging instruction quality, failure modes turned into better instructions."
+      - "Measure it: eval harnesses that run real agents against real integration tasks; success-rate, time-to-first-working-call, and activation metrics with trace intelligence — evaluation before opinion."
+      - "Make docs agent-ready: machine-readable documentation, quickstarts, and code samples written so an agent picks the right API, parameters, and patterns the first time — docs both audiences can act on."
+      - "Use AI coding loops as a core part of how I work: daily hands-on with agentic coding as the build engine, with the curiosity about what makes agents succeed or fail that the Agent Experience discipline runs on."
+      - "Run an evidence-grade agent control plane across a **1,395-repository** estate: guardrails, typed handoff contracts, fail-closed governance — backed by a **989-test** suite, **62/62** verification checks green."
+"proof":
+  - "title": "MCP constellation — agent-facing infrastructure, 65 deep"
+    "bullets":
+      - "**65** authored MCP servers / connectors: governed API integrations with strict validation, structured resource submission, evidence boundaries, and audit receipts — the agent-facing surface this role builds."
+      - "Direct evidence for the JD's nice-to-haves: working knowledge of MCP and LLM tool calling; shipped MCP servers that agents use in the wild."
+  - "title": "Agent evals and speech pipeline, honestly bounded"
+    "bullets":
+      - "Eval harnesses measuring real agents on real integration tasks — the 'measure it' discipline the role centers on."
+      - "fal.ai + Whisper pipeline (estate-verified) — speech-to-text pipeline experience, integration-side; no AssemblyAI-product, TTS, Realtime, or telephony-stack production claims."
+"skills":
+  - "category": "Languages"
+    "items": "JavaScript / TypeScript · Python · SQL · Bash · Node.js"
+  - "category": "Agent experience"
+    "items": "MCP servers & connectors · agent skills & instructions · tool definitions · llms.txt-style machine-readable docs · quickstarts & code samples · developer-relations sensibility · technical writing"
+  - "category": "Eval & measurement"
+    "items": "eval harnesses · agent benchmarks · golden datasets · behavioral assertions · LLM-as-a-judge · trace intelligence · success-rate & time-to-first-call measurement"
+  - "category": "AI & production"
+    "items": "speech-to-text pipeline integration · LLM APIs · function calling · structured outputs · RAG · guardrails · CI regression gates · observability"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. No AssemblyAI-product, TTS/Realtime, or telephony-stack production claims. Whisper pipeline is integration-side, estate-verified. No named coding-agent endorsements — agentic coding loops, generically. GitHub is the forge of record."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

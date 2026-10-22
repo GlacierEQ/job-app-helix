@@ -1,0 +1,113 @@
+{
+  "run": "job-pipeline-hourly",
+  "scheduled_for": "Tue 2026-10-20 05:42:55 HST (Pacific/Honolulu)",
+  "sweep_type": "hourly-delta",
+  "discovery_delta_window": "2026-10-20T04:50-10:00 to 2026-10-20T05:50-10:00",
+  "new_tier1": 2,
+  "tier1_roles_detail": [
+    {
+      "role": "Senior Forward Deployed Engineer (AI Enablement)",
+      "primary": "https://job-boards.greenhouse.io/reddit/jobs/8301784",
+      "published": "2026-10-19T16:14-04:00",
+      "remote": "Remote - United States (#LI-Remote)",
+      "comp": "$180,200-$252,300 base + RSUs (primary-verified on page)",
+      "fit": "US-remote GEO, comp above ~$178K floor, internal-FDE + AI enablement domain; JD keywords (evals, review gates, HITL, observability, MCP, failure handling, reusable platform patterns) map to his estate operating practice",
+      "seniority": "5+ years building software (his: ~3 years intensive applied-AI - flagged honestly in pack)"
+    },
+    {
+      "role": "Lead Forward Deployed Engineer (AI Enablement)",
+      "primary": "https://job-boards.greenhouse.io/reddit/jobs/8301736",
+      "published": "2026-10-19T15:59-04:00",
+      "remote": "Remote - United States (#LI-Remote)",
+      "comp": "$194,600-$272,400 base + RSUs (primary-verified on page)",
+      "fit": "same domain as Senior; leadership-through-architecture counter-position (1,395-repo estate platform patterns adopted estate-wide, review-gate mentoring, delivery framework as repeatable practice)",
+      "seniority": "8+ years required - STRETCH (his ~3 years); Senior req is the primary target"
+    }
+  ],
+  "new_candidates": [
+    "Procore 'AI Deployment Specialist (Remote)' - deploys agentic AI for construction customers, works with FDEs, regular customer travel; mirror-only (builtin.com). Strong construction-tech + agentic fit; Tier-2 HOLD pending primary verification.",
+    "Procore 'Solutions Specialist - AI (REMOTE)' - architects agentic workflows for construction customers; solutions/advisory track, not platform engineering. Weak-fit hold, mirror-only (startup.jobs).",
+    "VetsEZ 'Applied AI Product Engineer' - Remote Columbus OH; no comp surfaced; gov-contracting firm. Weak hold, mirror-only (tealhq).",
+    "Continuum Resource Network 'Senior Forward Deployed Engineer' - Remote, $170-205K (tealhq mirror, 23h); staffing firm; band straddles floor low end. Weak hold.",
+    "webAI 'Senior Forward Deployed AI Engineer' - Remote, $150-210K, public-sector AI; mirror-only (dice/tealhq, 91-day crawl vs 'Today' label metadata conflict). Weak hold with caveat."
+  ],
+  "kills_this_run": [
+    "Procore 'Staff AI Platform Engineer (Datagrid)' - GEO kill (hybrid Austin) despite strong agentic/construction fit.",
+    "Procore 'Forward Deployed Engineer (Datagrid)' - GEO kill (Carpinteria/Austin + 50%+ customer onsite travel).",
+    "Databricks 'AI Engineer - Forward Deployed Engineering (AI FDE)' - GEO kill (Remote - California only), primary-verified via boards API (gh_jid 8546367002, first_pub May 13).",
+    "Databricks 'AI Engineer - FDE, U.S. Public Sector (Federal Focus)' - GEO kill (Remote - Washington D.C./MD-VA-DC), primary-verified (gh_jid 8760167002).",
+    "Turing 'Forward Deployed AI Engineer' NYC - GEO kill (onsite New York, $170-210K).",
+    "MLabs 'Forward Deployed Engineer' SF/NYC - GEO + COMP kill (hybrid city, $149-185K).",
+    "JumpOff 'Forward Deployed AI Engineer' Sandy Springs GA - GEO kill (onsite).",
+    "Sapience AI 'Forward Deployed AI Sales Engineer' Seattle $180-190K - DOMAIN kill (sales role) + GEO.",
+    "Sapience AI 'Applied AI-Agent Engineer' Seattle $204-216K - GEO kill (no remote flag, Seattle firm).",
+    "Bright Vision Technologies 'Applied AI Engineer' remote $130-180K - COMP kill (floor far below ~$178K) + staffing-firm domain.",
+    "Lilly 'Applied AI Engineer, Clinical Informatics' $166.5-266.2K - COMP + GEO + DOMAIN kill (pharma, not remote-flagged)."
+  ],
+  "packs_built_this_run": 2,
+  "packs_detail": [
+    {
+      "role": "Reddit - Senior Forward Deployed Engineer (AI Enablement)",
+      "dir": "packs-2026-10-20/reddit-fde-senior-ai-enablement/",
+      "posting": "https://job-boards.greenhouse.io/reddit/jobs/8301784 (req 8301784, primary-verified 2026-10-20)",
+      "published": "2026-10-19",
+      "remote": "Remote - United States (#LI-Remote)",
+      "comp": "$180,200-$252,300 base + RSUs (primary-verified on page)",
+      "fit": "closest internal-FDE posting in the estate; JD asks verbatim for evals/review gates/HITL/observability/evidence, MCP integrations (65 connectors), failure handling, reusable platform patterns - all his operating practice",
+      "status": "DRAFT - awaiting his word; NOT submitted"
+    },
+    {
+      "role": "Reddit - Lead Forward Deployed Engineer (AI Enablement)",
+      "dir": "packs-2026-10-20/reddit-fde-lead-ai-enablement/",
+      "posting": "https://job-boards.greenhouse.io/reddit/jobs/8301736 (req 8301736, primary-verified 2026-10-20)",
+      "published": "2026-10-19",
+      "remote": "Remote - United States (#LI-Remote)",
+      "comp": "$194,600-$272,400 base + RSUs (primary-verified on page)",
+      "fit": "lead technical leadership: architecture direction adopted estate-wide, review-gate mentoring, delivery framework as repeatable practice; 8+ year bar is a hard requirement he does not meet (~3 years) - STRETCH, Senior is the primary target",
+      "status": "DRAFT STRETCH - awaiting his word (Senior-first or both is his call); NOT submitted"
+    }
+  ],
+  "unreviewed_pack_count": 20,
+  "followups": {
+    "drafts_built_this_run": 0,
+    "note": "Sacco nudge draft (drafts-2026-10-19/sarah-sacco-nudge.md) still awaiting his word. Harvey InMail to Claire Kaiser sent Oct 19 - day ~1 of the 5-day nudge rule; no nudge drafted. Max-one-post-draft-per-day rule: no post drafted this run (outside window). No nudges drafted or sent; none due."
+  },
+  "live_targets_update": "Gmail reads PERFORMED this run (casey.barton92@gmail.com inbox after:2026/10/19 - 30 msgs scanned; glacier.equilibrium@gmail.com inbox after:2026/10/19 - 30 msgs scanned). NO inbound employer/recruiter replies anywhere: Scale AI FDE Public Sector (Greenhouse 4481921005, submitted Oct 19) - no reply; ClickUp Senior AI Engineer MAF (Ashby, submitted Oct 19) - no reply beyond auto-confirm; Supabase AI Platform Engineer (Ashby, submitted Oct 19) - no reply beyond auto-confirm; Serve direct-email app (Oct 19 18:49 HST) - no reply; Deployment.io correction email (Oct 19 18:21 HST) - no reply; Buildertrend Workday JR-000486 - STILL BLOCKED on his address input (his blocker); Harvey InMail to Claire Kaiser - no email-domain reply (LinkedIn inbox still unread); Sarah Sacco (ALKU) - still silent, nudge draft awaiting his word; Massive - DEAD (Chien declined Oct 19). LinkedIn Job Alerts in casey.barton92 inbox surfaced no new unevaluated roles (Booz Allen x2, Pearson - both already killed). LinkedIn inbox NOT read (sign-in state unresolved/unconfirmed; no LinkedIn browser work attempted this run, no reCAPTCHA encountered).",
+  "watchlist_adds": [
+    "Reddit Senior FDE (AI Enablement) - Tier-1, pack built DRAFT (packs-2026-10-20/reddit-fde-senior-ai-enablement/); needs his word before any submit.",
+    "Reddit Lead FDE (AI Enablement) - Tier-1 stretch, pack built DRAFT (packs-2026-10-20/reddit-fde-lead-ai-enablement/); needs his word (Senior-first or both is his call).",
+    "Procore AI Deployment Specialist (Remote) - Tier-2 hold; primary verification pending (in-window run).",
+    "reddit - standing addition to hourly Greenhouse board set (databricks + vercel + reddit).",
+    "Laminar Projects (Shape.Construction) 'AI Engineer - 4 Day Week + Remote' - CONSTRUCTION-TECH Tier-2 HOLD with home-inspector edge overlap; UK company, remote geo eligibility unverified; PRIMARY VERIFICATION ACTION carried.",
+    "Mortenson Construction 'AI Researcher - Construction' - Tier-2 HOLD continues (mirror-only, stale).",
+    "EquipmentShare Senior Software Engineer (AI Platform) - Tier-2 HOLD CONTINUES (freshest mirror signal yet); live-browser verification action carried to daytime run.",
+    "eMAX Health Systems '[Remote] Senior AI Engineer' - CARRY (mirror-only).",
+    "Kong FDE (Jobicy, Oct 18, $192K-$274K) - CARRY (mirror, slug issue unchanged).",
+    "Cursor 'Software Engineer, Agent Evaluation and Quality' (Ashby, 2026-04-13) - CARRY (stale Tier-2 hold).",
+    "Fredrin FDE (HN Oct 2026) - CARRY (Tier-2, LA/remote ambiguity).",
+    "Smartsheet US-remote FDE - CARRY (his standing override; primary UK/Germany remote-eligible only).",
+    "Booz Allen 'AI Engineer, Senior' (Built In, LangGraph/MCP/A2A, Public Trust, $99K-$225K) - CARRY (8-month stale, location unverified).",
+    "Webflow Senior FDE - CARRY (possible Tier-2, comp Zone B ~$178K at/below floor)."
+  ],
+  "primary_verification_pending": [
+    "Reddit comp bands - CONFIRMED on primary postings this run (greenhouse.io/reddit jobs 8301784/8301736 render the bands on the page; tealhq mirror matched). Resolved.",
+    "Procore AI Deployment Specialist + Solutions Specialist - AI - Procore ATS not identified; needs live-browser check (in-window run).",
+    "Laminar Projects AI Engineer (Oct 17) - remote geography eligibility (US?) still unresolved; Built In shows 2 unnamed locations; weak tryremote mirror evidence (2025-10-06, Portugal, predates posting). Needs primary verification.",
+    "EquipmentShare Senior Software Engineer (AI Platform) - still primary-unverified (JS Webflow board); freshest mirror signal yet: dailyremote.com company page (crawl 14d) lists remote data/AI platform Senior SWE 'a month ago'. Live-browser check when convenient."
+  ],
+  "receipt": "Greenhouse boards API scan (databricks 899 jobs, vercel 94 jobs, NEW: reddit 153 jobs) filtered to first_published after 04:50 HST - 0 new AI/FDE in the strict window; 2 Tier-1 new-to-known-state found on the newly added reddit board (published Oct 19). Ashby posting-API scan (supabase 52, clickup 45, cursor 134) - 0 new AI/FDE postings in window. 3 browser.search runs. Primary-verified both Reddit postings via browser.open (bands on page). Forged 2 resume variants (reddit-fde-senior, reddit-fde-lead) via resume-forge with --pdf; DOCX text spot-checked (41 paras, header + contact render; draft_banner is metadata-only per existing forge design - pack DRAFT status carried by folder/INDEX/REVIEW_REQUIRED). Gmail triage reads on 2 mailboxes (30 msgs each, subjects scanned, no bodies read). Delegated discovery scout handled boards/API/searches; all routes healthy, no logins, no board errors. Nothing sent, nobody contacted, nothing submitted.",
+  "source_trust_notes": {
+    "greenhouse_boards_api": "boards-api.greenhouse.io live; databricks 899, vercel 94, reddit 153 jobs. Zero in-window AI/FDE postings on all three.",
+    "board_coverage_change": "reddit added to the standard hourly Greenhouse board set (was: databricks, vercel). Gap found: reddit board (153 jobs) was never scanned by any prior run. Standing: sweep sources are now databricks + vercel + reddit.",
+    "ashby_api": "Browser-UA route healthy. Counts ~unchanged: supabase 52, clickup 45, cursor 134. No new AI/FDE postings in window.",
+    "reddit_comp_bands": "RESOLVED this run - primary Greenhouse pages render the bands: Senior $180,200-$252,300; Lead $194,600-$272,400.",
+    "equipmentshare_primary": "STILL INCONCLUSIVE - JS-driven Webflow board. Freshest mirror signal yet (dailyremote.com, crawl 14d, remote data/AI platform Senior SWE 'a month ago'). Tier-2 hold continues; live-browser verification action carried to a daytime run.",
+    "laminar_geo": "Unresolved - UK company; US remote eligibility unverified. Tier-2 hold continues.",
+    "linkedin_inbox": "NOT read - sign-in state unresolved (his 'fixed long-term' claim firsthand/unconfirmed). LinkedIn Job Alerts surface via email; no new unevaluated alerts this run."
+  },
+  "outside_window_note": "Run executed 05:42-06:05 HST, outside 09:00-21:30 HST window. No reply arrived on either mailbox; no live-target status changed; LinkedIn inbox unreadable (sign-in state unresolved/unconfirmed). The strict 1h window itself yielded ZERO new roles (5:45 AM HST, quiet as expected) - the 2 Tier-1 roles were published Oct 19 and surfaced because this run added the reddit Greenhouse board to the sweep sources (coverage gap: prior runs only scanned databricks + vercel). Both packs built DRAFT and queued as morning standing items. Nothing sent, nobody contacted, nothing submitted.",
+  "delivery": {
+    "chat_delivery": false,
+    "reason": "Outside 09:00-21:30 HST. No reply arrived on either mailbox; 2 Tier-1 roles found (Reddit Senior + Lead FDE) and 2 draft packs built + queued as morning standing items (presentation to chat is the 06:42+ in-window run's call). File-only run."
+  }
+}

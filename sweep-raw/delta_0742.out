@@ -1,0 +1,76 @@
+=== GREENHOUSE board delta (06:42 -> 07:42 HST) ===
+affirm: 221
+afresh: 12
+airtable: 4
+anthropic: 673  *** CHANGED 674->673
+asana: 105
+assemblyai: 15
+boxinc: 116
+coinbase: 229  *** CHANGED 228->229
+comet: 3
+coreweave: 323  *** CHANGED 322->323
+cribl: 79
+databricks: 896  *** CHANGED 898->896
+datadog: 437  *** CHANGED 438->437
+dropbox: 23  *** CHANGED 21->23
+duolingo: 60  *** CHANGED 62->60
+elastic: 371  *** CHANGED 368->371
+fieldwire: 28
+figma: 139
+gitlab: 229
+instacart: 125
+intercom: 106  *** CHANGED 107->106
+labelbox: 7
+lightmatter: 62  *** CHANGED 63->62
+lightningai: 51  *** CHANGED 52->51
+magic: 0
+mongodb: 396  *** CHANGED 397->396
+nebius: 382
+openspace: 6
+reddit: 154  *** CHANGED 155->154
+robinhood: 153
+scaleai: 175
+stripe: 728  *** CHANGED 730->728
+tavily: 13
+togetherai: 79
+vercel: 95  *** CHANGED 94->95
+warp: 4
+xai: 300
+
+=== GH new postings since 06:42 HST (first_published > cutoff) ===
+anthropic: 673 total, 0 new since cutoff
+coinbase: 229 total, 1 new since cutoff
+      id=8304046 | Data Scientist | Remote - Canada | first_published=2026-10-21T13:35:27-04:00
+coreweave: 323 total, 1 new since cutoff
+      id=4723545006 | Data Center Technician - Chester, VA | Chester, VA | first_published=2026-10-21T13:38:25-04:00
+databricks: 896 total, 0 new since cutoff
+datadog: 437 total, 0 new since cutoff
+dropbox: 23 total, 0 new since cutoff
+duolingo: 60 total, 0 new since cutoff
+elastic: 371 total, 5 new since cutoff
+      id=8306618 | Senior Engineer, Competitive Benchmarking & Performance | Spain | first_published=2026-10-21T13:15:16-04:00
+      id=8274391 | Senior Engineer, Competitive Benchmarking & Performance | United States | first_published=2026-10-21T13:11:42-04:00
+      id=8306622 | Senior Engineer, Competitive Benchmarking & Performance | United Kingdom | first_published=2026-10-21T13:16:48-04:00
+      id=8306619 | Senior Engineer, Competitive Benchmarking & Performance | Poland | first_published=2026-10-21T13:16:11-04:00
+      id=8306617 | Senior Engineer, Competitive Benchmarking & Performance | Canada | first_published=2026-10-21T13:15:13-04:00
+intercom: 106 total, 0 new since cutoff
+lightmatter: 62 total, 0 new since cutoff
+lightningai: 51 total, 0 new since cutoff
+mongodb: 396 total, 0 new since cutoff
+reddit: 154 total, 0 new since cutoff
+stripe: 728 total, 0 new since cutoff
+vercel: 95 total, 1 new since cutoff
+      id=6230763004 | Customer Support Engineer | Remote - Australia | first_published=2026-10-21T13:00:26-04:00
+
+=== ASHBY resweep vs ashby_snap_0642.json ===
+runpod: 28 jobs (0 new, 0 removed)
+crusoe: 344 jobs (1 new, 2 removed)
+  [NEW] id=0dde69d9-38ec-4b3d-a761-a4c5535eb81d | Senior Manager, Protective Operations
+  [GONE] id=564be4e5-5528-495d-aaee-bae4e69d8833 | Manager, Revenue Accounting (DIG)
+  [GONE] id=3f0089ff-ec8b-4650-81e5-5769c6da8b3c | Procurement Operations Analyst
+browserbase: 9 jobs (0 new, 0 removed)
+firecrawl: 32 jobs (0 new, 0 removed)
+steel: 3 jobs (0 new, 0 removed)
+openrouter: 27 jobs (0 new, 0 removed)
+
+snapshot saved: ashby_snap_0742.json

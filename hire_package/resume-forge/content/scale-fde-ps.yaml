@@ -1,0 +1,59 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-08 for Scale AI req 4481921005 (Forward Deployed Software Engineer, Public Sector — Honolulu)."
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Forward-deployed AI systems builder based in Honolulu — already where this posting hires. I embed with the people whose problems I'm solving, own delivery from first prototype to production, and ship software customers adopt and rely on in the field."
+  - "Three years running an evidence-grade agent control plane for constrained state and federal work: inspectable state transitions, bounded tool actions, approval gates, recoverable runs. No active clearance; eligible for sponsorship. Open to 25–50% travel; not relocating off-island."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · Supabase · Postgres · Vercel · GitHub Actions (CI/CD)"
+  - "category": "AI & Agents"
+    "items": "MCP protocol · multi-agent orchestration · LLM evaluation harnesses · prompt & context engineering · human-in-the-loop control"
+  - "category": "Deployment"
+    "items": "end-to-end delivery · operator-embedded scoping · verification gates · audit receipts · idempotent automation · Linux · containers · networking fundamentals"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Ship production-grade agent systems end to end across a **1,395-repository** platform: agent governance, MCP integrations, context externalization, document workflows, infrastructure modeling."
+      - "Operate a **989-test** agent control plane — typed state transitions, approval gates, recoverable runs — with **62/62** verification checks green."
+      - "Embedded-style delivery: map the operator's workflow, build the narrow end-to-end proof, then deepen the components that carry real load — the field pattern this role describes."
+      - "Integrated **65 MCP connectors** with claim tracking, evidence boundaries, and idempotent automation — backend systems and data integrations that connect customer environments to a platform and back."
+      - "Serve as the technical point of contact for operators and stakeholders: turn hard system behavior into decisions non-technical clients use the same day."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+  - "title": "GlacierEQ estate — agent systems portfolio"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Connects multiple technical surfaces — agents, APIs, databases — into one coherent, verifiable working system."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "MCP protocol · multi-agent orchestration · LLM evaluation · prompt & context engineering"
+  - "category": "Data & Infra"
+    "items": "Supabase · Postgres · Vercel · GitHub Actions · REST APIs · Linux · containers"
+  - "category": "Practice"
+    "items": "verification gates · audit receipts · idempotent automation · clear human-facing documentation"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

@@ -1,0 +1,14 @@
+REVIEW REQUIRED — AssemblyAI Software Engineer, Agent Experience (North America)
+Built 2026-10-20 ~21:10 HST. DRAFT only — not submitted, ledger untouched.
+
+1. VOICE-DEPTH BOUNDARY (his verdict needed): the pack claims fal.ai + Whisper pipeline (integration-side, estate-verified 2026-09-25 / 2026-10-13) against the JD's "experience with Voice AI, speech-to-text, or LLM APIs" nice-to-have — explicitly NOT voice-model depth, no AssemblyAI-product claims (STT/Realtime/Dictation/Voice Agents/TTS/LLM Gateway), no telephony-stack claims. Does he want this submitted with the honest pipeline-level framing, or is voice depth a gap the posting needs more of?
+
+2. REMOTE-US: verified — GH location label is "North America" and the JD explicitly provides a USD salary range ($160K–$210K). Honolulu qualifies. This resolves the sweep's open item; re-confirm at submit time anyway.
+
+3. COMP: $160K–$210K USD JD-stated — straddles his ~$170K floor (low end below, midpoint $185K above). Salary default 220000 applies only if the form requires a number. Flag: his floor sits above the range's low end — acceptable risk per his judgment.
+
+4. REQ LIVE RE-CHECK: full JD captured live 2026-10-20 (updated 2026-10-16, 4 days); re-confirm live at submit time.
+
+5. NUMBERS: 65 / 989 / 62/62 / 1,395 are kit-allowlisted. Live GraphQL showed 1,399 repos on 2026-10-20 — kit update needs his approval, not applied.
+
+6. No named coding-agent endorsements anywhere in the pack (agentic coding loops, generically). Keep it there at interview.

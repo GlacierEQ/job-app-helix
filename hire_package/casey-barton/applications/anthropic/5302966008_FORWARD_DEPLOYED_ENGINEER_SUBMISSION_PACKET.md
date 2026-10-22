@@ -138,5 +138,5 @@ Do not create another FDE submission merely because a later internal compiler re
 - `evidence/company_intelligence/anthropic-2026-09-07-source-receipt.json`
 - `hire_package/casey-barton/EXECUTIVE_RESUME.md`
 - `hire_package/casey-barton/FINAL_FORM_MANIFEST.json`
-- `hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md`
+- `hire_package/casey-barton/proof/AI_ARCHITECT_PROMOTION_QUEUE.md`
 - Anthropic Greenhouse role `5302966008`

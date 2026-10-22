@@ -1,0 +1,6 @@
+BEFORE ANY SUBMIT OR SEND, HE MUST CONFIRM:
+1. Req 8546367002 still live on the Databricks careers page (GH API showed it live 2026-10-20; re-check at submit time).
+2. Remote-US eligibility from Honolulu — JD says "Open to remote locations"; no explicit Hawaii exclusion found, but confirm no state restriction at apply time.
+3. Level placement: "ALL LEVELS" banding — his call on which level the application targets; resume is honest about ~3 years intensive applied-AI systems work (no Databricks/Spark depth claimed).
+4. Review the tailored resume (Casey_Barton_Resume_Databricks_FDE.pdf) — estate numbers (1,395 repos / 65 MCP / 989-test / 62/62) re-verified as current before submit; estate drifts.
+5. Outreach text is a DRAFT — recipient must be personalized; nothing sends without his explicit word.

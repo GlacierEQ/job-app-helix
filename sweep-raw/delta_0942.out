@@ -1,0 +1,68 @@
+=== GREENHOUSE board delta (08:42 -> 09:42 HST) ===
+affirm: 224
+afresh: 12
+airtable: 4
+anthropic: 674
+asana: 105
+assemblyai: 15
+boxinc: 117  *** CHANGED 116->117
+coinbase: 228
+comet: 3
+coreweave: 322
+cribl: 80  *** CHANGED 79->80
+databricks: 896  *** CHANGED 898->896
+datadog: 438  *** CHANGED 437->438
+dropbox: 21  *** CHANGED 23->21
+duolingo: 61
+elastic: 371
+fieldwire: 28
+figma: 139
+gitlab: 230
+instacart: 124  *** CHANGED 125->124
+intercom: 106
+labelbox: 7
+lightmatter: 62
+lightningai: 51
+magic: 0
+mongodb: 395  *** CHANGED 397->395
+nebius: 382
+openspace: 6
+reddit: 153
+robinhood: 154  *** CHANGED 153->154
+scaleai: 175
+stripe: 729  *** CHANGED 728->729
+tavily: 13
+togetherai: 79
+vercel: 95
+warp: 4
+xai: 299  *** CHANGED 300->299
+
+=== GH new postings since 08:42 HST (first_published > cutoff) ===
+boxinc: 117 total, 1 new since cutoff
+      id=8302300 | Senior Team Manager, Mid-Market Sales | San Francisco, CA, United States | first_published=2026-10-21T15:34:19-04:00
+cribl: 80 total, 2 new since cutoff
+      id=6231415004 | Partner Business Manager, NYC | Remote - United States | first_published=2026-10-21T15:14:29-04:00
+  FIT id=6227896004 | Sales Engineer, SLED (Midwest/Southeast) | Remote - United States | first_published=2026-10-21T15:21:22-04:00
+databricks: 896 total, 1 new since cutoff
+      id=8855539002 | Manager, Global Pipeline Strategy & Sales Development Planning | San Francisco, California; United States | first_published=2026-10-21T15:30:58-04:00
+datadog: 438 total, 2 new since cutoff
+      id=8306557 | Manager, Business Recruiting - GTM Ecosystems | New York, New York, USA | first_published=2026-10-21T14:56:51-04:00
+      id=8310668 | Manager I, Engineering - Reference Tables Access | New York, New York, USA | first_published=2026-10-21T15:29:45-04:00
+dropbox: 21 total, 0 new since cutoff
+instacart: 124 total, 0 new since cutoff
+mongodb: 395 total, 0 new since cutoff
+robinhood: 154 total, 1 new since cutoff
+      id=8226972 | Fraud Investigations Analyst | Denver, CO; Westlake, TX | first_published=2026-10-21T15:39:48-04:00
+stripe: 729 total, 1 new since cutoff
+      id=8304725 | Product Designer, Risk | US / Canada | first_published=2026-10-21T15:01:54-04:00
+xai: 299 total, 0 new since cutoff
+
+=== ASHBY resweep vs ashby_snap_0842.json ===
+runpod: 28 jobs (0 new, 0 removed)
+crusoe: 342 jobs (0 new, 0 removed)
+browserbase: 9 jobs (0 new, 0 removed)
+firecrawl: 32 jobs (0 new, 0 removed)
+steel: 3 jobs (0 new, 0 removed)
+openrouter: 27 jobs (0 new, 0 removed)
+
+snapshot saved: ashby_snap_0942.json

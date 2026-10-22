@@ -22,7 +22,7 @@ The current estate is the 225-repository source-exhaustive mesh recorded in `man
 |---:|---|---|
 | 1 | [Live recruiter presentation](https://casey-barton-glaciereq.vercel.app/) | Deployed recruiter, engineering, and AI reading paths generated from APEX Helix evidence records. |
 | 2 | [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) | Lead product flagship: source-grounded résumé tailoring with deterministic truthfulness checks and executable TypeScript tests. |
-| 3 | [Casey Barton candidate source](hire_package/casey-barton/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and immutable evidence links. |
+| 3 | [Casey Barton candidate source](hire_package/casey-barton/package/README.md) | Résumé source, technical proof, claim policy, typed candidate metadata, and immutable evidence links. |
 | 4 | [Root README](README.md) | Portfolio control-plane outcome, expert architecture, and machine contract. |
 | 5 | [Historical 66-repository evidence audit](docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) | Individual grades, verification states, and the highest-priority correction for the original audit boundary. |
 | 6 | [Current source-exhaustive estate](manifests/unified_deserving_manifest.json) | Records the current 225-repository deserving estate used by the root portfolio control plane. |

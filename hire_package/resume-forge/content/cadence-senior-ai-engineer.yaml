@@ -1,0 +1,61 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Cadence Solutions (Senior AI Engineer — remote US)."
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "AI systems engineer based in Honolulu, remote-first. I design, ship, and operate production AI agents — retrieval, reasoning, tool use, evaluation, safety guardrails — in domains where reliability directly affects outcomes."
+  - "Three years running a governed agent control plane: multi-step orchestration with error recovery and human-in-the-loop escalation, evaluation frameworks wired into CI/CD (offline benchmarks, regression suites, LLM-as-judge), observability, cost-aware LLM workflows. Approval gates on consequential actions; no completion claim without independent readback."
+  - "Earlier career as a home inspector: translating observed evidence into prioritized, actionable recommendations — the same diagnostic discipline I bring to production agent systems."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · webhooks · Supabase · Postgres · Vercel · GitHub Actions (CI/CD) · containers"
+  - "category": "AI & Agents"
+    "items": "LLM APIs · function calling · structured outputs · RAG · agent frameworks · multi-agent orchestration · LLM-as-judge evaluation · MCP protocol · prompt & context engineering"
+  - "category": "Reliability"
+    "items": "eval harnesses · offline benchmarks · regression suites · safety tests · observability · cost-efficient LLM workflows · typed state transitions · human-in-the-loop escalation · fail-closed recovery"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Design, build, and operate production AI agents across a **1,398-repository** platform — full lifecycle from prototype to production: retrieval, reasoning, tool use, evaluation, and safety guardrails."
+      - "Own reliability, observability, and cost efficiency of LLM workflows at scale — typed state transitions, approval gates on consequential actions, recoverable runs; nothing ships without eval validation."
+      - "Run evaluation frameworks wired into CI/CD: offline benchmarks, regression suites, safety tests, and LLM-as-judge pipelines that gate deployment — failure-injection recovery tested before it is needed."
+      - "Multi-step agent orchestration: planning, memory, tool use, error recovery, and human-in-the-loop escalation for runs that degrade gracefully instead of failing silently."
+      - "Build RAG pipelines over my own knowledge estate — retrieval, re-ranking, and context engineering across the memory mesh and estate map, prompt tuning validated by eval harnesses before anything ships."
+      - "Operate a **989-test** agent control plane with **62/62** verification checks green; integrated **65 MCP connectors** plus APIs, webhooks, and data pipelines into one coherent, verifiable system."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+  - "title": "GlacierEQ estate — agent systems portfolio"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Connects multiple technical surfaces — agents, APIs, databases — into one coherent, verifiable working system."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "LLM APIs · function calling · structured outputs · RAG · agent frameworks · multi-agent orchestration · LLM evaluation · MCP protocol"
+  - "category": "Reliability"
+    "items": "eval harnesses · offline benchmarks · regression suites · LLM-as-judge · observability · verification gates · audit receipts · idempotent automation"
+  - "category": "Practice"
+    "items": "prototype-to-production · human-in-the-loop escalation · error recovery · cost-efficient LLM workflows"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. No healthcare, clinical, or HIPAA experience is claimed; domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

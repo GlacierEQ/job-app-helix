@@ -1,0 +1,16 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Mastra — AI Engineer, fully remote (NA/EU time zones). Posted 2026-10-07.
+Posting verified 2026-10-19 via Built In mirror builtin.com/job/ai-engineer/11549368; apply route mastra.ai/careers (Ashby-backed per HN source; direct board URL unconfirmed).
+Built 2026-10-19 by the resume-forge mastra-ai-engineer variant (content/mastra-ai-engineer.yaml). Resume rendered: Casey_Barton_Resume_Mastra_AIEngineer.docx (39,317 B) + .pdf (44,163 B).
+
+REVIEW:
+1. COMP: undisclosed (startup). Do NOT apply without confirming it clears his ~$160k bar — verify before or at first contact.
+2. STARTUP RISK: $35M raised (YC + Spark Capital), small fast team. Early-stage volatility vs upside — his call.
+3. TS FRAMEWORK: pack claims NO Mastra framework internals experience. It claims transferable eval/trace engineering (golden suites, trace intelligence, benchmarking loops, MCP authoring) — the honest posture.
+4. APPLY ROUTE: mastra.ai/careers, Ashby-backed per HN source. Confirm the direct board URL at submit time.
+5. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Scale AI FDE variant (2026-10-08) — re-verify before a live submit if the estate counts moved.
+6. PAGERDUTY NEAR-MISS (recorded, NOT packed): the sweep's other Tier-1, PagerDuty FDE (SDEV) (careers.pagerduty.com/jobs/forward-deployed-engineer-sdev-new-york-united-states, posted 2026-10-16, $145–218.9k), is KILLED on geography — the posting's location-restrictions list explicitly names Hawaii as a state PagerDuty cannot employ from. He resides in Honolulu. Do not apply.
+7. outreach-text.md is a DRAFT. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.

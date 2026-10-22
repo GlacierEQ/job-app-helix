@@ -1,0 +1,60 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Cresta req 4759347008 (Senior Forward Deployed Engineer, AI Agent — remote)."
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Forward-deployed AI agent builder based in Honolulu. I embed with the people whose problems I'm solving — run the demo, own the integration, tune the agent until it holds up in their production — then feed what the deployment taught me back into the platform."
+  - "Three years running an evidence-grade agent control plane: LLM agent frameworks, function calling, retrieval-augmented generation, prompt and configuration optimization, API/CRM/database integrations, performance monitoring with A/B testing, fail-closed recovery. Remote-first; open to travel for enterprise deployments."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · webhooks · Supabase · Postgres · Vercel · GitHub Actions (CI/CD) · containers"
+  - "category": "AI & Agents"
+    "items": "LLM agent frameworks · function calling · RAG · prompt & context engineering · MCP protocol · multi-agent orchestration · LLM evaluation harnesses · human-in-the-loop control"
+  - "category": "Deployment"
+    "items": "customer-embedded scoping · demos & proof-of-concepts · performance monitoring · A/B testing · verification gates · audit receipts · idempotent automation · fail-closed recovery"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Develop, configure, deploy, and optimize production AI agents across a **1,395-repository** platform: agent governance, MCP integrations, context externalization, document workflows, infrastructure modeling."
+      - "Operate a **989-test** agent control plane — typed state transitions, approval gates, recoverable runs — with **62/62** verification checks green; prompt and configuration tuning validated before anything ships."
+      - "Integrated **65 MCP connectors** plus APIs, webhooks, and data pipelines connecting customer environments to a platform and back — the exact integration surface this role owns."
+      - "Run demos and proof-of-concepts, gather technical requirements, define milestones and implementation plans, and coordinate execution end to end — the field pattern this role describes."
+      - "Feed deployment learnings into the product roadmap: identify gaps, build custom tooling, and turn real-world failure modes into platform capabilities that maximize customer ROI."
+      - "Serve as the trusted technical advisor for operators and stakeholders: architecture design, security considerations, scalability planning — translated into decisions non-technical clients use the same day."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+  - "title": "GlacierEQ estate — agent systems portfolio"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Connects multiple technical surfaces — agents, APIs, databases — into one coherent, verifiable working system."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "LLM agent frameworks · function calling · RAG · MCP protocol · multi-agent orchestration · LLM evaluation · prompt & context engineering"
+  - "category": "Data & Infra"
+    "items": "Supabase · Postgres · Vercel · GitHub Actions · REST APIs · webhooks · containers"
+  - "category": "Practice"
+    "items": "demos & POCs · A/B testing · performance monitoring · verification gates · audit receipts · idempotent automation"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

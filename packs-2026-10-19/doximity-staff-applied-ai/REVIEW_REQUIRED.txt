@@ -1,0 +1,15 @@
+HUMAN REVIEW REQUIRED BEFORE USE
+
+Pack: Doximity — Staff Applied AI Engineer (remote, Data Science & Analytics), $170K–$248K total comp.
+Built 2026-10-19 by the pack pipeline from the resume-forge doximity-staff-ai variant (content/doximity-staff-ai.yaml).
+Posting: https://jobicy.com/jobs/155873-staff-applied-ai-engineer-2 — published 2026-10-19, apply before 2026-11-18.
+
+REVIEW:
+1. SQL / EXPERIMENTATION DEPTH HONESTY: the pack claims A/B testing and performance monitoring (TRUE kit) and does NOT claim advanced statistical concepts, formal DS methodology, deep-learning/RL architecture depth, or SFT/DPO/RFT fine-tuning specifics. Do NOT let any application form over-claim analytical stats work. The "About you" section of the posting asks for 5+ years as a Data Scientist + advanced SQL + advanced statistics — his call whether to engage on that ground.
+2. Confirm remote-from-USA / Honolulu is acceptable (posting says remote from USA; verify at first contact).
+3. Staff-level scope expectation: this is a full-ownership staff role on the Data Science & Analytics team, partnering with PMs and analysts on data strategy. Confirm the analytics-partnership load fits.
+4. No visa sponsorship for this role — US-based, confirm at first contact.
+5. Kit numbers (1,395-repo / 989-test / 62/62 / 65 MCP) carried from the Scale AI FDE variant (2026-10-08) — re-verify before a live submit if the estate counts moved.
+6. outreach-text.md and any LinkedIn DM are DRAFTS. Nothing sends without his explicit word.
+
+NOT submitted. Application needs his yes.

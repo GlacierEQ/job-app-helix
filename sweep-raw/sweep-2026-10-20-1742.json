@@ -1,0 +1,79 @@
+{
+  "afresh_6108299004": "Staff Forward Deployed Engineer, req 6108299004, United States - Remote - SUBMITTED 2026-10-20 ~18:24 HST. Confirmation: 'Thank you for your interest in Afresh! We have received your application' (/confirmation URL). Honesty held: client-facing FDE-experience Q answered No (unclaimed stays unclaimed), travel 10-20% Yes, work auth Yes/sponsorship No.",
+  "ashby_posting_api": "supabase 55, clickup 44, cursor 134, revenuecat 18 - all 200 OK, counts flat vs 1642. 0 fitting jobs published in-window.",
+  "board_api": "Greenhouse boards-api counts: databricks 900 (-1 non-fitting removal), scaleai 178, reddit 155, vercel 94, anthropic 675, afresh 12, coinbase 230, cribl 74. All 12 API routes 200 OK.",
+  "coinbase_8172100": "Senior SWE Core Infra Systems (Remote-USA) - already KILLED 15:42 run (infra lane, non-AI).",
+  "coinbase_submission_failed": "Senior ML Engineer CX 8292793: 16:45 browser-task:0643a1b2 FAILED (status=failed, terminal_reason=browser_owner_interrupted, 2 steps, ~58 min; zero confirmation email on either mailbox). Marked FAILED in ledger. NO more blind re-drives (3 attempts, no evidence, no diagnosis) - pack queued for different route / his word.",
+  "databricks_delta": "901->900: one non-fitting removal. His applied req 8546367002 (AI Engineer-FDE) still live. 8463063002 (Deployment Strategist) already KILLED 15:42.",
+  "delivery": {
+    "chat_delivery": true,
+    "reason": "Afresh + Mastra SUBMITTED (receipts). Topsail still in flight (next run reconciles). Coinbase submission marked FAILED after 3rd failed attempt. 0 new fitting roles, 0 replies, LinkedIn inbox clean."
+  },
+  "discovery_delta_window": "2026-10-20T16:42-10:00 to 2026-10-20T17:42-10:00",
+  "email_leads_evaluated": {
+    "ats_confirmations": "No new ATS confirmations on either mailbox in 2h window. Databricks/Cresta/Sticker Mule/LangChain (10-20) + Supabase/Scale (10-19) confirmations unchanged. No Coinbase confirmation (both mailboxes, 6h).",
+    "employer_domains": "Zero hits newer_than:2h on coinbase/greenhouse/ashby/linkedin/databricks/scale/supabase/clickup/buildertrend/harvey/reddit/cresta/stickermule/doximity/langchain domains (both app mailboxes).",
+    "human_replies": "None."
+  },
+  "followups": {
+    "note": "Nothing due. Sarah Sacco nudge: fire-ready draft exists (2026-10-19), awaiting his word. Claire Kaiser (Harvey InMail): sent 10-19 09:42 HST, ~3.2d silent, 5-day rule not met. Murali: paused. LinkedIn post draft for today exists - 1/day cap met. GC AI email-apply pack held (email route = human-directed message, drafts only)."
+  },
+  "kills_this_run": [
+    "Coinbase 8172100 (Senior SWE Core Infra) - already killed 15:42, re-confirmed non-fitting",
+    "Databricks 8463063002 (Deployment Strategist) - already killed 15:42, re-confirmed non-fitting"
+  ],
+  "linkedin_inbox": {
+    "bot_check": "None encountered.",
+    "detail": "10 threads, 0 unread. Newest: Claire Kaiser (Oct 19, his outbound 09:42, no reply). Sarah Sacco (Oct 7), Murali (Oct 12).",
+    "new_inbound_since_0845_hst": "None.",
+    "verified": "2026-10-20 18:18 HST via browser light read (browser-task:2f31295e, read-only, no sends)."
+  },
+  "live_targets": {
+    "Afresh Staff FDE 6108299004": "SUBMITTED 2026-10-20 ~18:24 HST; confirmation page received",
+    "Buildertrend (Workday JR-000486)": "BLOCKED on his street address + ZIP (unchanged)",
+    "ClickUp Senior AI Engineer - MAF": "OPEN, applied Oct 19, no reply",
+    "Coinbase Senior ML Engineer CX 8292793": "FAILED (3 attempts, no evidence) - queued for different route / his word",
+    "Databricks AI FDE 8546367002": "SUBMITTED 10-20 ~12:10 HST; confirmation email 12:05 HST; req still live on board",
+    "Harvey InMail (Claire Kaiser)": "sent 10-19 09:42 HST; no reply (~3.2d)",
+    "Mastra AI Engineer": "SUBMITTED 2026-10-20 ~18:38 HST; success banner confirmed",
+    "Scale AI FDE Public Sector 4481921005": "OPEN, applied Oct 19, no reply",
+    "Supabase AI Platform Engineer": "OPEN, applied Oct 19, no reply",
+    "Topsail Applied AI Engineer": "SUBMITTING (17:50 HST, outcome pending)"
+  },
+  "mastra_531a3fe8": "AI Engineer, remote - SUBMITTED 2026-10-20 ~18:38 HST. Confirmation: green banner 'Success - Your application was successfully submitted!' (form disabled). Honesty held: NO Mastra framework internals claimed.",
+  "new_candidates": [],
+  "new_tier1": 0,
+  "new_tier2": 0,
+  "packs_built_this_run": [],
+  "receipt": "GH boards API: 12 routes 200 OK. Counts vs 1642: databricks 900 (-1 non-fitting), all others flat. In-window updates: databricks 2 (Comp & Analytics Lead - non-fitting; Deployment Strategist - killed 15:42), coinbase 6 (5 compliance/non-eng + 8172100 killed 15:42), reddit 64 bulk-touched (flat count = metadata refresh). Ashby: flat, 0 fitting published in-window. 0 new fitting roles, 0 packs built. 3 submissions launched (Topsail/Afresh/Mastra), all reqs primary-verified live at launch, outcomes pending. Ledger updated (Coinbase FAILED, 3x SUBMITTING claims with honesty constraints).",
+  "run": "job-pipeline-hourly",
+  "scheduled_for": "2026-10-20T17:42:55-10:00",
+  "source_trust_notes": {
+    "board_counts": "GH from boards-api meta.total (200 OK); Ashby from posting-api job arrays.",
+    "coinbase_failure": "DB-verified: browser_tasks row status=failed, terminal_reason=browser_owner_interrupted, 2 steps, completed 03:55:44 UTC (17:55 HST). No confirmation email on either mailbox."
+  },
+  "submissions_launched": {
+    "afresh": {
+      "browser_task": "browser-task:379f197d-4149-5f24-8fef-b28cf5ba8b2a",
+      "claimed": "17:55 HST",
+      "honesty": "3 yrs NOT rounded up; no grocery/Databricks claims; Honolulu HI; salary 220000 if required",
+      "outcome": "SUBMITTED ~18:24 HST",
+      "req": "6108299004 Greenhouse, live re-verified"
+    },
+    "mastra": {
+      "browser_task": "browser-task:2dc81438-b09e-587f-a46b-3d8504b0fb48",
+      "claimed": "17:55 HST",
+      "honesty": "NO Mastra internals claimed; salary 220000 if required",
+      "outcome": "SUBMITTED ~18:38 HST",
+      "req": "Ashby 531a3fe8, live re-verified"
+    },
+    "topsail": {
+      "browser_task": "browser-task:c1815637-720c-5dae-812d-aa0aaf85b92d",
+      "claimed": "17:50 HST",
+      "honesty": "salary 220000 stated; proof github.com/GlacierEQ; no domain claims; honeypot left empty",
+      "outcome": "PENDING",
+      "req": "native form /api/apply, live re-verified"
+    }
+  },
+  "sweep_type": "discovery-delta + 3 submissions (in-flight)"
+}

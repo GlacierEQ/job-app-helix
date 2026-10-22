@@ -78,7 +78,7 @@ def test_checked_in_snapshot_preserves_historical_scope_boundaries() -> None:
 
 
 def test_expansion_map_is_truth_bounded_and_public_safe() -> None:
-    text = (PACKAGE / "PORTFOLIO_EXPANSION_MAP.md").read_text(encoding="utf-8")
+    text = (PACKAGE / "strategy/PORTFOLIO_EXPANSION_MAP.md").read_text(encoding="utf-8")
 
     assert "1,171 owner-accessible repositories" in text
     assert "Recruiter-readable projection — 67 repositories at the July 31 snapshot" in text
@@ -93,7 +93,7 @@ def test_expansion_map_is_truth_bounded_and_public_safe() -> None:
 def test_public_census_surfaces_withhold_private_candidate_name() -> None:
     snapshot = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
     machine = json.loads(
-        (PACKAGE / "owned_library_census.json").read_text(encoding="utf-8")
+        (PACKAGE / "records/owned_library_census.json").read_text(encoding="utf-8")
     )
     status = json.loads(STATUS.read_text(encoding="utf-8"))
 

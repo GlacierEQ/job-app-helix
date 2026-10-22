@@ -1,0 +1,55 @@
+REVIEW REQUIRED — LangChain Deployed Architect, Professional Services (Remote)
+Pack built 2026-10-19 ~19:55 HST. DRAFT ONLY — nothing submitted, nothing sent.
+Nothing in this pack moves without his explicit word.
+
+=== HONEST GAPS (standing rule: flagged loudly, never papered over) ===
+
+1. PLATFORM/INFRA DEPTH — roughly half the JD is infrastructure/platform engineering:
+   strong Kubernetes (cluster design, autoscaling, multi-zone), Terraform/Helm + GitOps,
+   multi-region HA/DR. His evidenced depth is containers/CI/CD/Linux/observability,
+   NOT K8s cluster design at the depth the JD asks. The resume and outreach state
+   this honestly. If the role's true center of gravity is multi-region HA/DR platform
+   architecture, he is not the candidate — the outreach says so outright. His call.
+
+2. CUSTOMER-FACING TENURE — the JD asks 7+ years in technical, hands-on customer-facing
+   roles (Solutions Architect / FDE). His track is consulting-adjacent and operator-
+   embedded delivery, not enterprise SA tenure at LangChain's scale. Framed honestly
+   in the pack ("consulting-adjacent, operator-embedded delivery practice") — do not
+   inflate to enterprise SA.
+
+3. HONOLULU NOT A LISTED HUB — JD says Remote USA, listed hubs Los Angeles CA, Salt
+   Lake City UT, Seattle WA, Denver CO. Honolulu remote-readiness is UNCONFIRMED.
+   His call whether to apply as a remote-USA candidate or ask first.
+
+4. LANGGRAPH PRODUCTION CLAIM — verified honestly 2026-10-19 (gh API + estate greps):
+   - Portfolio repo GlacierEQ/ai-pdf-chatbot-langchain EXISTS, pushed 2026-09-13,
+     described "built with LangChain & LangGraph". Dependency-level depth NOT read
+     back (no requirements.txt/pyproject.toml at root) — pack states exactly this.
+   - Z-BACKUP-apex-memory-agent described as LangGraph + LangMem + Supabase pgvector
+     (registry description only, not code-readback).
+   - Control-plane docs adopt "selected LangGraph checkpoint concepts" as DESIGN
+     discipline, not a LangGraph production deployment.
+   - His heavyweight verified systems (62/62 coordinator, GO/NO-GO eval engine,
+     989-test helix) are HAND-ROLLED multi-agent loops.
+   The pack says exactly this. If a recruiter asks for production LangGraph at
+   customer scale, the honest answer is: hand-rolled equivalents, not that.
+
+5. KIT NUMBERS — re-verify against the live estate before any submit:
+   62/62 (2026-08-30 receipt, candidate-grade), 989 (2026-10-13), 988 (2026-10-13),
+   65 MCP (his approved number, re-verification pending), 1,395 repos (estate map raw
+   census shows 1,396 — reconcile before submit), 20+.
+
+=== COMP ===
+$170,000–$270,000 base + equity. Clears his ~$160K bar comfortably. The band is wide;
+where he tracks gets decided in the interview process per the JD.
+
+=== OTHER CALLS HE MUST MAKE ===
+- Travel: JD wants up to 20% travel. Resume states "open to 20% travel" — confirm.
+- Application route: Ashby posting (jobs.ashbyhq.com/langchain/0a5dd30c-6da1-4095-bd96-b16f27eeb333).
+  Posting verified LIVE 2026-10-19 (page fetched, published 2026-10-09). The Ashby
+  posting-API GET returned "Unauthorized" without a key — page fetch was the
+  verification route; submit route untested until he says go.
+- Outreach target: which channel (LinkedIn recruiter / hiring manager / direct apply)?
+  Draft outreach is in outreach-text.md — never sends without his word.
+- The 19:42 HST run is within 09:00–21:30 HST; delivery to chat per the pipeline body
+  needs his attention anyway since this pack is genuinely new material.

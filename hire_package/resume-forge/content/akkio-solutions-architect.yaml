@@ -1,0 +1,60 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Akkio Solutions Architect (Customer Engineering — remote, US)."
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Customer-embedded AI systems builder based in Honolulu, remote-first. I earn the technical win the way this role describes it: discovery, POC scoping with named success and exit criteria, demos on real partner data, and deployment architectures that inherit the customer's governance, access controls, and security model."
+  - "Three years running an evidence-grade agent control plane in production: agentic AI workflows with evals, tool use, and agent orchestration; typed state transitions; approval gates; fail-closed recovery. Hands-on data work — SQL, Postgres, ingestion/transformation pipelines — and the habit of productionizing every repeatable win into a module, a rail, or an agent."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · webhooks · Postgres · Supabase · data ingestion & transformation · GitHub Actions (CI/CD) · containers"
+  - "category": "AI & Agents"
+    "items": "evals · tool use · agent orchestration · LLM-powered prototypes · MCP protocol · function calling · RAG · prompt & context engineering · human-in-the-loop control"
+  - "category": "Field Craft"
+    "items": "POC scoping & definition · technical discovery · demos on live data · deployment architecture · governance inheritance · success/exit criteria · warm handoffs · roadmap feedback from the field"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Run the technical win end to end across a **1,395-repository** platform: discovery, scoped proof-of-concept with explicit success criteria, demo on live data, deployment architecture — then hand off warm with full context."
+      - "Operate a **989-test** agent control plane with **62/62** verification checks green: typed state transitions, human approval gates, fail-closed recovery — governed agentic AI the way enterprise security reviews demand."
+      - "Built agentic workflows with **evals, tool use, and agent orchestration** in daily practice; integrated **65 MCP connectors** plus APIs, webhooks, and data pipelines across heterogeneous partner-style environments."
+      - "Productionize the repeatable parts: every second and third repetition becomes a module, a rail, or an agent that makes the next engagement faster — the compound-interest pattern this role runs on."
+      - "Spot patterns across engagements and feed them back into the platform: identify gaps, build custom tooling, and turn deployment learnings into roadmap capabilities."
+      - "Hands-on data work: SQL, Postgres, ingestion and transformation design, and data pipelines that hold up under real measurement — the measurement data is the product."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+  - "title": "GlacierEQ estate — agent systems portfolio"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Connects multiple technical surfaces — agents, APIs, databases — into one coherent, verifiable working system."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "evals · tool use · agent orchestration · LLM prototypes · MCP protocol · function calling · RAG · prompt & context engineering"
+  - "category": "Data & Infra"
+    "items": "Postgres · Supabase · REST APIs · webhooks · data pipelines · GitHub Actions · containers"
+  - "category": "Practice"
+    "items": "POC craft · demos on live data · verification gates · audit receipts · idempotent automation · warm handoffs"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

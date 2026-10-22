@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for Fieldwire AI/ML Engineer (United States Remote / SF Hybrid; Fieldwire by Hilti; Greenhouse req 8746698002; comp per Built In mirror $152–220K base + up to 30% bonus)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I come at this role from both ends of the construction workflow. My working background is home inspection — permits, site walkthroughs, materials, punch lists, and photo documentation on real jobsites — so I have operated the document and jobsite workflows Fieldwire digitizes. My engineering practice is applied AI systems: evaluation harnesses, failure-mode recovery, and trace intelligence across agent and retrieval pipelines, with **65** authored MCP connectors and typed contracts governing every tool boundary."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: adapting and evaluating modern models (VLMs, LLMs, RAG architectures, agents) against production tasks rather than training from scratch; golden datasets and behavioral assertions as the quality discipline; CI regression gates that fail closed; per-task latency and token-cost instrumentation that drives optimization. Python primary, strong APIs, production code discipline."
+"competencies":
+  - "category": "Construction domain"
+    "items": "home-inspection background — permits · site walkthroughs · materials assessment · punch lists · photo / site documentation · plan reading · jobsite coordination workflows"
+  - "category": "AI & Evaluation"
+    "items": "VLM / LLM / RAG / agent pipelines · model adaptation & evaluation for production tasks · evaluation harnesses · LLM-as-a-judge with written rubrics · golden datasets · behavioral assertions · quality scoring · trace intelligence · data curation & quality assessment · failure-mode instrumentation · MCP servers & connectors · structured outputs · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "Python (primary) · TypeScript · SQL · Bash · REST APIs · JSON Schema / Pydantic-style validation · GitHub Actions (CI/CD) · Postgres · high-performance pipeline optimization · token budgets · retry logic · observability & run logging · latency/cost benchmarking · cloud deployment patterns · documentation engineers actually read"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Adapt and evaluate modern models for production tasks — VLM, LLM, RAG, and agent pipelines judged on real site-like task criteria: adapt existing models and architectures to task demands, own components from conception to production deployment."
+      - "Lead data curation and data quality assessment as a standing discipline: golden datasets, behavioral assertions, and judge criteria with written rubrics; quality gates that fail closed before model updates ship."
+      - "Build and optimize high-performance ML/agent pipelines: per-task latency and token-cost instrumentation on every run; model selection per task complexity; trace intelligence naming the slowest calls, redundant tool use, and expensive segments — findings fed back into configuration."
+      - "Design multimodal understanding workflows: image plus document inputs routed through model pipelines with structured outputs and strict schema validation on every tool boundary — **65** MCP connectors exposing governed context with evidence boundaries and audit receipts."
+      - "Design agent systems for failure: instrument the failure modes found in production — stuck loops, bad retrievals, tool misuse, context blowouts — and build the catchers: replay loops, fail-closed gates, behavioral assertions, recovery restricted to evidence declared before reassessment."
+      - "Run an evidence-grade agent control plane across a **1,395-repository** estate: typed handoff contracts, guardrails, recoverable runs — backed by a **989-test** suite, **62/62** verification checks green."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models and fail-closed **GO / NO-GO** decisions; the eval gate decides, not the agent."
+      - "Judge criteria with written rubrics behind every automated quality decision — the quality-scoring discipline Fieldwire's AI role centers on."
+  - "title": "Construction-domain edge"
+    "bullets":
+      - "Home-inspection background: permits, site walkthroughs, materials assessment, punch lists, photo and site documentation on real jobsites — firsthand knowledge of the workflows Fieldwire's AI products serve."
+      - "Models evaluated against task-grounded criteria, not benchmark proxies — the same discipline jobsite AI demands."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Evaluation"
+    "items": "VLM / LLM / RAG / agent pipelines · model adaptation & evaluation · eval harnesses · quality scoring · LLM-as-a-judge · golden datasets · trace intelligence · MCP servers & connectors · function calling · structured outputs · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "conception-to-production ownership · data curation & quality assessment · JSON Schema / Pydantic-style validation · HTTP APIs · CI regression gates · observability & run logging · latency/cost tradeoff analysis · cross-layer debugging · documentation & handover"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. VLM/multimodal depth is estate-verified (adaptation + evaluation pipelines) — no training-from-scratch or research-lab claims. No Fieldwire-internal production claims. GitHub is the forge of record."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

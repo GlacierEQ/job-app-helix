@@ -1,0 +1,15 @@
+REVIEW REQUIRED — Perplexity Member of Technical Staff (Answer Quality & Evals), Remote
+Built 2026-10-21 ~01:05 HST. DRAFT only — not submitted, ledger untouched.
+
+1. SENIORITY (his verdict needed): posting asks 4+ years of software, data, or ML engineering experience shipping and operating production systems. Pack states three years honestly. The eval/production-ownership depth is the case for the stretch — his call: submit with honest three-year framing, or drop.
+
+2. POSTING AGE: published 2026-04-13 (~6 months). Re-confirm live at submit time; region verified remote 2026-10-21.
+
+3. COMP (verify at first contact): not stated — salary 220000 per standing rule if the form requires a number.
+
+4. HONESTY CONSTRAINTS (held in resume + PROOFS):
+   - No weight fine-tuning claimed.
+   - No Perplexity-internal claims — transferable eval/quality engineering only.
+   - No Go / GCP / GraphQL / K8s / Terraform / DS-statistics depth.
+
+5. OUTREACH TEXT IS A DRAFT — nothing sends without his explicit word.

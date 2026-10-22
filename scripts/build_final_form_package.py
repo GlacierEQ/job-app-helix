@@ -27,27 +27,27 @@ PHONE_PATTERN = re.compile(
 )
 TEXT_SUFFIXES = {".md", ".txt", ".html", ".css", ".js", ".json", ""}
 COPY_MAP = {
-    "SEND_THIS.md": "00_START_HERE/SEND_THIS.md",
-    "EXECUTIVE_RESUME.md": "01_RESUME/Casey_Barton_Executive_Resume.md",
-    "ROADMAP.md": "02_ROADMAP/Casey_Barton_Deployment_and_Growth_Roadmap.md",
-    "FINAL_FORM_README.md": "03_THREE_LAYER_PRESENTATION/FINAL_FORM_README.md",
-    "ROLE_POWER_MATRIX.md": "03_THREE_LAYER_PRESENTATION/ROLE_POWER_MATRIX.md",
-    "TECHNICAL_PORTFOLIO_BRIEF.md": (
+    "package/SEND_THIS.md": "00_START_HERE/SEND_THIS.md",
+    "package/EXECUTIVE_RESUME.md": "01_RESUME/Casey_Barton_Executive_Resume.md",
+    "strategy/ROADMAP.md": "02_ROADMAP/Casey_Barton_Deployment_and_Growth_Roadmap.md",
+    "package/FINAL_FORM_README.md": "03_THREE_LAYER_PRESENTATION/FINAL_FORM_README.md",
+    "proof/ROLE_POWER_MATRIX.md": "03_THREE_LAYER_PRESENTATION/ROLE_POWER_MATRIX.md",
+    "package/TECHNICAL_PORTFOLIO_BRIEF.md": (
         "04_TECHNICAL_DILIGENCE/TECHNICAL_PORTFOLIO_BRIEF.md"
     ),
-    "CLAIM_REGISTER.md": "04_TECHNICAL_DILIGENCE/CLAIM_REGISTER.md",
-    "candidate_node.json": "05_MACHINE_CONTRACTS/candidate_node.json",
-    "evidence_ledger.json": "05_MACHINE_CONTRACTS/evidence_ledger.json",
-    "application_spiral.json": "05_MACHINE_CONTRACTS/application_spiral.json",
-    "package_mesh.json": "05_MACHINE_CONTRACTS/package_mesh.json",
-    "coordinator_candidate_receipt.json": (
+    "proof/CLAIM_REGISTER.md": "04_TECHNICAL_DILIGENCE/CLAIM_REGISTER.md",
+    "records/candidate_node.json": "05_MACHINE_CONTRACTS/candidate_node.json",
+    "records/evidence_ledger.json": "05_MACHINE_CONTRACTS/evidence_ledger.json",
+    "records/application_spiral.json": "05_MACHINE_CONTRACTS/application_spiral.json",
+    "records/package_mesh.json": "05_MACHINE_CONTRACTS/package_mesh.json",
+    "records/coordinator_candidate_receipt.json": (
         "05_MACHINE_CONTRACTS/coordinator_candidate_receipt.json"
     ),
-    "FINAL_FORM_MANIFEST.json": "05_MACHINE_CONTRACTS/FINAL_FORM_MANIFEST.json",
-    "LICENSE_SUMMARY.md": "06_LICENSING/LICENSE_SUMMARY.md",
+    "records/FINAL_FORM_MANIFEST.json": "05_MACHINE_CONTRACTS/FINAL_FORM_MANIFEST.json",
+    "package/LICENSE_SUMMARY.md": "06_LICENSING/LICENSE_SUMMARY.md",
 }
 BASE_REQUIRED_PACKAGE_PATHS = {
-    *COPY_MAP.keys(),
+    *[Path(key).name for key in COPY_MAP],
     *COPY_MAP.values(),
     "LICENSE",
     "06_LICENSING/LICENSE",
@@ -119,7 +119,26 @@ def _copy_candidate_assets(package_dir: Path) -> None:
     for source_name, relative_destination in COPY_MAP.items():
         source = CANDIDATE_ROOT / source_name
         _copy(source, package_dir / relative_destination)
-        _copy(source, package_dir / source_name)
+        # Flat artifact layout is pinned: the built package keeps bare filenames
+        # even though sources now live in lane subdirectories.
+        _copy(source, package_dir / Path(source_name).name)
+    _rebase_staged_manifest(package_dir)
+
+
+def _rebase_staged_manifest(package_dir: Path) -> None:
+    """Rewrite the staged manifest's path lists to the package's flat layout.
+
+    The source-tree manifest routes paths relative to hire_package/casey-barton
+    (lane subdirectories); the built artifact is flat, so the copy staged into
+    the package must reference bare filenames.
+    """
+    staged = package_dir / "FINAL_FORM_MANIFEST.json"
+    manifest = json.loads(staged.read_text(encoding="utf-8"))
+    for key in ("reading_order", "machine_entrypoints"):
+        manifest[key] = [Path(path).name for path in manifest[key]]
+    staged.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
     _copy(ROOT / "LICENSE", package_dir / "06_LICENSING" / "LICENSE")
     _copy(ROOT / "LICENSE", package_dir / "LICENSE")
 
