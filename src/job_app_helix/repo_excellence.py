@@ -70,7 +70,7 @@ REQUIRED_EXCELLENT_GATES = (
     "deterministic_tests_pass",
     "adversarial_tests_pass",
     "runtime_behavior_observed",
-    "security_authority_bounded",
+    "security_boundary_verified",
     "proof_receipt_bound_to_sha",
     "reusable_capabilities_extracted",
     "projections_truth_consistent",
@@ -85,14 +85,22 @@ SOURCE_BOUND_RECEIPT_REQUIRED_FLAGS = (
     "lineage_conflict_absent",
     "proof_sha_bound",
     "projection_truth_closed",
-    "authority_bounded",
+    "scope_boundary_verified",
     "evolution_cursor_defined",
     "company_claim_separate",
 )
 
+LEGACY_GATE_UPGRADES = {
+    "security_authority_bounded": "security_boundary_verified",
+}
+
+LEGACY_SOURCE_BOUND_FLAG_UPGRADES = {
+    "authority_bounded": "scope_boundary_verified",
+}
+
 TRANSITION_GATE_REQUIREMENTS = {
     ("PROOF_REPRODUCED", "PROMOTED"): (
-        "security_authority_bounded",
+        "security_boundary_verified",
         "projections_truth_consistent",
     ),
     ("PROMOTED", "SOURCE_BOUND"): REQUIRED_EXCELLENT_GATES,
@@ -169,6 +177,33 @@ def _upgrade_role(role: str) -> tuple[str, str | None]:
     if upgraded is None:
         return role, None
     return upgraded, role
+
+
+def _normalize_excellence_gates(
+    gates: Mapping[str, Any],
+) -> tuple[dict[str, Any], dict[str, str]]:
+    normalized = dict(gates)
+    aliases: dict[str, str] = {}
+    for legacy, current in LEGACY_GATE_UPGRADES.items():
+        if legacy not in normalized:
+            continue
+        legacy_value = normalized.pop(legacy)
+        if current in normalized and normalized[current] != legacy_value:
+            raise ExcellenceContractError(
+                f"conflicting excellence gate alias values for {legacy} and {current}"
+            )
+        normalized.setdefault(current, legacy_value)
+        aliases[legacy] = current
+    return normalized, aliases
+
+
+def _flag_value(record: Mapping[str, Any], flag: str) -> Any:
+    if flag in record:
+        return record.get(flag)
+    for legacy, current in LEGACY_SOURCE_BOUND_FLAG_UPGRADES.items():
+        if current == flag and legacy in record:
+            return record.get(legacy)
+    return None
 
 
 def _require_bound_proof_receipt(
@@ -288,7 +323,7 @@ def _require_reference_position_receipt(
     if not isinstance(decision, Mapping):
         raise ExcellenceContractError("reference position receipt decision must be an object")
     for flag in SOURCE_BOUND_RECEIPT_REQUIRED_FLAGS:
-        if decision.get(flag) is not True or pointer.get(flag) is not True:
+        if _flag_value(decision, flag) is not True or _flag_value(pointer, flag) is not True:
             raise ExcellenceContractError(f"SOURCE_BOUND requires {flag}=true")
     if decision.get("source_binding_blockers") != []:
         raise ExcellenceContractError("SOURCE_BOUND source anchor has unresolved identity blockers")
@@ -417,7 +452,11 @@ def transition_gates_satisfied(
         return True
     if not isinstance(gates, Mapping):
         return False
-    return all(gates.get(name) is True for name in requirements)
+    try:
+        normalized, _ = _normalize_excellence_gates(gates)
+    except ExcellenceContractError:
+        return False
+    return all(normalized.get(name) is True for name in requirements)
 
 
 def allowed_transition(
@@ -495,15 +534,19 @@ def validate_repo_excellence_record(
         raise ExcellenceContractError("scores must be an object")
     validate_score_vector(scores)
 
-    gates = payload.get("gates")
-    if not isinstance(gates, Mapping):
+    raw_gates = payload.get("gates")
+    if not isinstance(raw_gates, Mapping):
         raise ExcellenceContractError("gates must be an object")
+    gates, historical_gate_aliases = _normalize_excellence_gates(raw_gates)
     unknown = set(gates) - set(REQUIRED_EXCELLENT_GATES)
     if unknown:
         raise ExcellenceContractError(f"unknown excellence gates: {sorted(unknown)}")
     for name, value in gates.items():
         if not isinstance(value, bool):
             raise ExcellenceContractError(f"gate {name} must be boolean")
+    result_payload["gates"] = gates
+    if historical_gate_aliases:
+        result_payload["historical_gate_aliases"] = historical_gate_aliases
 
     evolution = payload.get("evolution")
     if not isinstance(evolution, Mapping):
@@ -576,6 +619,9 @@ def validate_repo_excellence_record(
 
     # Explicit anti-contraction metadata is synthesized on every validated record.
     result_payload["direction"] = "MAXIMUM_COHERENT_ADVANCE"
+    result_payload["project_direction_authority"] = "OPERATOR"
+    result_payload["machine_project_direction_authority"] = False
+    result_payload["promotion_semantics"] = "evidence_readiness_not_project_authority"
     result_payload["retirement_authorized"] = False
     result_payload["retirement_requires_provider_readback_unique_contribution_zero"] = True
     result_payload["retirement_terminal_disposition"] = "PRESERVE_DRAINED_LINEAGE"

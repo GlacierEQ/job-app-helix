@@ -55,9 +55,10 @@ def elevate_one(name: str, plan_generated_at: str | None) -> dict:
         rec = elev.elevate_leaf(leaf, scratch)
         st_path = leaf / "machine" / "excellence-state.json"
 
-        # Promotion is derived from implementation truth, never from an elevator
-        # return value alone. Generic dual-run/operate/authority proof may establish
-        # an executable scaffold, but cannot establish implementation completion.
+        # Promotion is compatibility metadata derived from implementation truth,
+        # never project authority and never from an elevator return value alone.
+        # Generic dual-run/operate evidence may establish an executable scaffold,
+        # but cannot establish implementation completion.
         assessment = assess_leaf_promotion(leaf, f"GlacierEQ/{name}")
         rec["promotion_assessment"] = assessment.as_dict()
         if rec.get("grade") == "PROMOTED" and not assessment.eligible:
@@ -189,12 +190,18 @@ def main() -> int:
                 "ENROLLMENT",
                 "STEEL_VIA_ELEVATOR",
                 "DUAL_RUN",
-                "AUTHORITY_BOUND",
+                "EVIDENCE_BINDING",
+                "PROJECTION_TRUTH_CLOSED",
                 "VALIDATOR",
                 "PROMOTION_INVARIANT",
             ],
             "not_yet": [] if result == "PASS" else ["IMPLEMENTATION_PROOF_FOR_UNPROMOTED_LEAVES"],
-            "law": "PROMOTED requires no scaffold evidence plus source-bound implementation proof",
+            "law": (
+                "PROMOTED is evidence/readiness metadata only; it requires no scaffold "
+                "evidence, source-bound implementation proof, and projection truth closure"
+            ),
+            "project_direction_authority": "OPERATOR",
+            "machine_project_direction_authority": False,
         },
         "nonclaims": [
             "no employer affiliation or production deployment",
@@ -276,7 +283,7 @@ def main() -> int:
 
 ## Law
 
-- PROMOTED requires no scaffold evidence + source-bound implementation proof
+- PROMOTED is evidence/readiness metadata only; it requires no scaffold evidence + source-bound implementation proof + projection truth closure
 - SCAFFOLD_PROVEN is executable/tested but not implementation-complete
 - No company affiliation claims
 - Generic elevator proof is necessary but not sufficient for promotion

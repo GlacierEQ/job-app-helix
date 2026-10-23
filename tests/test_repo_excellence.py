@@ -72,18 +72,26 @@ def test_historical_retirement_record_upgrades_to_recovery_required():
     assert validated["retirement_authorized"] is False
 
 
-def test_proof_reproduced_to_promoted_requires_authority_and_projection_closure():
+def test_proof_reproduced_to_promoted_requires_security_boundary_and_projection_closure():
     requirements = transition_gate_requirements("PROOF_REPRODUCED", "PROMOTED")
     assert requirements == (
-        "security_authority_bounded",
+        "security_boundary_verified",
         "projections_truth_consistent",
     )
     assert not allowed_transition("PROOF_REPRODUCED", "PROMOTED")
 
     gates = {name: False for name in REQUIRED_EXCELLENT_GATES}
-    gates["security_authority_bounded"] = True
+    gates["security_boundary_verified"] = True
     assert not allowed_transition("PROOF_REPRODUCED", "PROMOTED", gates)
 
+    gates["projections_truth_consistent"] = True
+    assert allowed_transition("PROOF_REPRODUCED", "PROMOTED", gates)
+
+
+def test_direct_transition_check_accepts_legacy_security_gate_as_technical_alias():
+    gates = {name: False for name in REQUIRED_EXCELLENT_GATES}
+    gates.pop("security_boundary_verified")
+    gates["security_authority_bounded"] = True
     gates["projections_truth_consistent"] = True
     assert allowed_transition("PROOF_REPRODUCED", "PROMOTED", gates)
 
@@ -150,6 +158,36 @@ def test_reference_anchor_rejects_lineage_conflict_but_not_sibling_existence():
     assert validated["state"] == "EVOLVING"
     assert validated["retirement_authorized"] is False
 
+
+
+def test_legacy_security_authority_gate_is_upgraded_without_becoming_project_authority():
+    record = valid_record()
+    legacy = dict(record["gates"])
+    legacy["security_authority_bounded"] = legacy.pop("security_boundary_verified")
+    record["gates"] = legacy
+    validated = validate_repo_excellence_record(record)
+    assert "security_authority_bounded" not in validated["gates"]
+    assert validated["gates"]["security_boundary_verified"] is False
+    assert validated["historical_gate_aliases"]["security_authority_bounded"] == (
+        "security_boundary_verified"
+    )
+    assert validated["project_direction_authority"] == "OPERATOR"
+    assert validated["machine_project_direction_authority"] is False
+
+
+def test_source_bound_legacy_authority_flag_is_accepted_only_as_scope_boundary_alias():
+    record = apex_record()
+    pointer = record["reference_position_receipt"]
+    receipt_path = ROOT / pointer["path"]
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    # Existing source-bound receipts may still use authority_bounded. The validator
+    # may translate that technical boundary, but it must not mint project authority.
+    assert pointer.get("authority_bounded") is True
+    assert receipt["decision"].get("authority_bounded") is True
+    validated = validate_repo_excellence_record(record)
+    assert validated["project_direction_authority"] == "OPERATOR"
+    assert validated["machine_project_direction_authority"] is False
+    assert validated["retirement_authorized"] is False
 
 def test_evolving_requires_company_evidence():
     record = apex_record()
@@ -256,7 +294,7 @@ def test_apex_merge_authority_record_is_machine_valid_evolving_and_bounded():
     assert validated["capability_id"] == "merge_authority_graph"
     assert validated["scores"]["current_proof"] == "A"
     assert validated["gates"]["runtime_behavior_observed"] is True
-    assert validated["gates"]["security_authority_bounded"] is True
+    assert validated["gates"]["security_boundary_verified"] is True
     assert validated["gates"]["projections_truth_consistent"] is True
     assert excellent(validated["gates"])
     assert validated["proof_receipt"]["reference_merge_sha"] == validated["identity"]["source_head"]
