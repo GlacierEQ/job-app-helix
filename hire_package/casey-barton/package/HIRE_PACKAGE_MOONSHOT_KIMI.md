@@ -52,10 +52,10 @@ This framing demonstrates architecture across layers while preserving the indepe
 
 Review the portfolio root first:
 
-- [Executive Portfolio Summary](../RECRUITER_EXECUTIVE_SUMMARY.md)
-- [66-Repository Evidence Audit](../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md)
-- [README Optimal Impact Frame](../docs/README_OPTIMAL_IMPACT_FRAME.md)
-- [Language-Fit Manifest](../manifests/language_fit.json)
+- [Executive Portfolio Summary](../../../RECRUITER_EXECUTIVE_SUMMARY.md)
+- [66-Repository Evidence Audit](../../../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md)
+- [README Optimal Impact Frame](../../../docs/README_OPTIMAL_IMPACT_FRAME.md)
+- [Language-Fit Manifest](../../../manifests/language_fit.json)
 
 From a clean Job-App Helix checkout:
 

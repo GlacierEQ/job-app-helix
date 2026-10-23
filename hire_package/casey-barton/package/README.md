@@ -10,17 +10,17 @@ Casey builds the execution and trust layer around intelligent systems: context, 
 
 ## Proof in 60 seconds
 
-- [Job-App Helix](../../README.md) - current 225-repository source-exhaustive estate, 8 verified trust anchors, and evidence control plane.
+- [Job-App Helix](../../../README.md) - current 225-repository source-exhaustive estate, 8 verified trust anchors, and evidence control plane.
 - [Resume Shapeshifter](https://github.com/GlacierEQ/JOB-RESUME-BUILDER-) - public product flagship with deterministic truthfulness checks and executable TypeScript tests.
 - [AKOS immutable verification run](https://github.com/GlacierEQ/AKOS/actions/runs/30532339028) - named repository-native test evidence.
-- [Coordinator candidate receipt](coordinator_candidate_receipt.json) - 62 independent Python 3.13 tests with explicit hosted limitations.
-- [Historical portfolio evidence audit](../../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) - individual grades and proof states for the original 66-repository boundary.
-- [GitHub curation ledger](../../manifests/github_repository_curation_2026-07-31.json) - admission, deferral, duplicate, private, backup, archive, and external-source decisions.
-- [README impact frame](../../docs/README_OPTIMAL_IMPACT_FRAME.md) - recruiter -> expert -> AI presentation contract.
+- [Coordinator candidate receipt](../records/coordinator_candidate_receipt.json) - 62 independent Python 3.13 tests with explicit hosted limitations.
+- [Historical portfolio evidence audit](../../../docs/PORTFOLIO_EVIDENCE_AUDIT_2026-07-29.md) - individual grades and proof states for the original 66-repository boundary.
+- [GitHub curation ledger](../../../manifests/github_repository_curation_2026-07-31.json) - admission, deferral, duplicate, private, backup, archive, and external-source decisions.
+- [README impact frame](../../../docs/README_OPTIMAL_IMPACT_FRAME.md) - recruiter -> expert -> AI presentation contract.
 - [Executive resume](EXECUTIVE_RESUME.md) - ATS-safe one-page source.
 - [Technical portfolio brief](TECHNICAL_PORTFOLIO_BRIEF.md) - system boundary and proof summary.
 - [Tower of Babel integration](TOWER_OF_BABEL_INTEGRATION.md) - governed technology placement, interoperability, proof classes, and explicit blockers.
-- [Public package sync receipt](PUBLIC_PACKAGE_SYNC_RECEIPT.json) - repository anchors, front surfaces, interoperability formats, and truth policy.
+- [Public package sync receipt](../records/PUBLIC_PACKAGE_SYNC_RECEIPT.json) - repository anchors, front surfaces, interoperability formats, and truth policy.
 
 ## Hardened package structure
 
@@ -48,4 +48,4 @@ The current source-exhaustive estate is `../../manifests/unified_deserving_manif
 
 ## Claim boundary
 
-See [`CLAIM_REGISTER.md`](CLAIM_REGISTER.md). Candidate, hosted, reference, blocked, unverified, and failed evidence remain distinct; no presentation layer may silently promote a claim. Repository source is not deployment proof, and the hardened package does not claim portfolio-wide scale, reliability, performance, or customer impact without separate receipts.
+See [`CLAIM_REGISTER.md`](../proof/CLAIM_REGISTER.md). Candidate, hosted, reference, blocked, unverified, and failed evidence remain distinct; no presentation layer may silently promote a claim. Repository source is not deployment proof, and the hardened package does not claim portfolio-wide scale, reliability, performance, or customer impact without separate receipts.
