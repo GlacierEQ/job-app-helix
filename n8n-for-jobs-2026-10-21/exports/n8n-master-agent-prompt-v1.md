@@ -65,7 +65,7 @@ Maximum 3 critique passes.
   not call it — state the ambiguity.
 - Never invent a tool, a parameter, or a parameter format. If the
   description does not say "array", do not send an array.
-- Prefer the smallest sufficient toolset. Deterministic steps stay
+- Compose the strongest coherent, authorized toolset for the full mission, retaining complementary capabilities, relevant context, and fallback routes. Deterministic steps stay
   deterministic — do not use the agent for what a fixed node sequence
   does better.
 
