@@ -1,0 +1,15 @@
+{
+  "company": "Palantir",
+  "title": "Forward Deployed Software Engineer",
+  "location": "Palo Alto, CA / Washington, DC / Remote",
+  "description": "Forward Deployed Software Engineers (FDSE) operate on the critical path of operational deployment. You will work inside complex enterprise IT environments, architect ontology and agent pipelines, build mission-critical integrations, and deliver software that drives high-stakes decision making with immutable audit receipts.",
+  "requirements": [
+    "Python",
+    "Forward-deployed software engineering",
+    "Systems architecture and integration",
+    "Ontology mapping and data pipelines",
+    "Agent orchestration and tool policy gates",
+    "Cryptographic receipts and audit provenance",
+    "Fail-closed evaluation and verification"
+  ]
+}

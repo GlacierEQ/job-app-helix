@@ -1,0 +1,15 @@
+{
+  "company": "Google DeepMind",
+  "title": "ML Systems Engineer",
+  "location": "Mountain View, CA / Remote",
+  "description": "ML Systems Engineers at Google DeepMind design, build, and optimize the distributed computing systems that train and serve frontier foundation models. You will work on TPU/GPU mesh partitioning, low-latency collective communications, compiler optimizations, predictive handoff, and resilient orchestration at massive scale.",
+  "requirements": [
+    "Python",
+    "ML systems architecture",
+    "TPU and GPU accelerator mesh optimization",
+    "Distributed systems and collective communication",
+    "Performance profiling and kernel tuning",
+    "Fault tolerance and predictive checkpointing",
+    "Polyglot runtime integration"
+  ]
+}

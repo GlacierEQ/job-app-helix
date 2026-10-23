@@ -1,0 +1,15 @@
+{
+  "company": "Scale AI",
+  "title": "Forward Deployed Engineer",
+  "location": "San Francisco, CA / New York, NY / Remote",
+  "description": "Forward Deployed Engineers work directly with customers and partners to design, integrate, evaluate, and scale production AI systems. You will build end-to-end agentic workflows, design custom evaluation harnesses, create robust MCP tool integrations, and solve high-ambiguity deployment challenges under strict reliability constraints.",
+  "requirements": [
+    "Python",
+    "Forward-deployed agent engineering",
+    "Model evaluation and benchmarking",
+    "Tool use and MCP protocol integration",
+    "Human-in-the-loop approval workflows",
+    "Distributed systems and API boundaries",
+    "Multi-provider LLM routing and resilience"
+  ]
+}

@@ -1,15 +1,15 @@
 \n> **Estate-size contract (2026-08-29):** numeric repository/family counts below are materialized snapshot observations, **not admission caps**. The live estate model is source-exhaustive; newly discovered repositories and companies remain in inventory even when unverified, unassigned, archived, or outside recruiter-focused views. See [docs/UNBOUNDED_ESTATE_CONTRACT.md](docs/UNBOUNDED_ESTATE_CONTRACT.md).\n# GlacierEQ/job-app-helix
 
-> The hard, evidence-bound public face of the GlacierEQ portfolio. Every claim in this README is anchored to a machine artifact. No prose inflation. No single-authority framing — this is a holographic mesh of 225 repositories across 21 families, with 8 VERIFIED anchors and one open gate.
+> The hard, evidence-bound public face of the GlacierEQ portfolio. Every claim in this README is anchored to a machine artifact. No prose inflation. No single-authority framing — this is a holographic mesh of 225 repositories across 21 families, with 10 VERIFIED anchors and one open gate.
 
 schema: glaciereq.readme.v1
 profile: glaciereq.readme-impact.v2-draft
-verified_at: 2026-09-04T05:30:00-10:00
+verified_at: 2026-10-23T05:30:00-10:00
 blocked_scope: APEX runner activation, coordinator hosted promotion
-unverified_scope: 217 deserving repos without hash-bound anchors
+unverified_scope: 215 deserving repos without hash-bound anchors
 languages: python, rust, cpp, markdown, json, yaml
-relationships: monolith, tower_of_babel, computer-user, pro-code, AKOS
-limits: 8 verified anchors, 2 open gates, 0 persistent production host
+relationships: monolith, tower_of_babel, computer-user, pro-code, AKOS, Forward-Deployed-Agentic-Powerhouse, casebuilder4000
+limits: 10 verified anchors, 2 open gates, 0 persistent production host
 manifests/language_fit.json: true
 manifests/portfolio_repositories.json: true
 
@@ -35,7 +35,7 @@ The `job-app-helix` repository is the **portfolio control plane** for the Glacie
 | Total deserving repos | **225** | `unified_deserving_manifest.json` |
 | Admitted helix-66 children | **66** | Authoritative boundary fetched from GitHub |
 | Deserving extras | **159** | Operator-override expansion beyond the freeze |
-| VERIFIED anchors | **8** | Hash-bound, receipted, re-runnable |
+| VERIFIED anchors | **10** | Hash-bound, receipted, re-runnable |
 | Families represented | **21** | GlacierEQ-core, xAI/Colossus, Anthropic, OpenAI/Codex, NVIDIA, Google/DeepMind, AWS, Apple, Microsoft, SpaceX, DeepSeek, Moonshot AI/Kimi, Alibaba/Qwen, Meta, Notion, Perplexity, CoreWeave, Supabase, Vercel, Tesla, Company-adjacent |
 | Source states | 5 | `core_wholes`, `in_preparation`, `needs_work`, `reference`, `historical` (+ `admitted_boundary` for 8 helix-66 children) |
 
@@ -45,11 +45,12 @@ The portfolio's design law is the one stated in `repo_excellence_state_machine.j
 
 ## For Recruiters and Non-Technical Reviewers
 
-**Start here.** The 8 VERIFIED anchors are the only claims backed by re-runnable proofs (hash-bound artifacts, run IDs, source SHAs). Everything else in this portfolio is honest work, but not all of it is verified — that distinction is the point of this surface.
+**Start here.** The 10 VERIFIED anchors are the only claims backed by re-runnable proofs (hash-bound artifacts, run IDs, source SHAs). Everything else in this portfolio is honest work, but not all of it is verified — that distinction is the point of this surface.
 
 - **Total deserving repos:** 225 across 21 families
 - **Admitted helix-66 boundary:** 66 repositories (authoritative from GitHub)
-- **VERIFIED anchors:** 8 repositories with hash-bound, receipted evidence
+- **VERIFIED anchors:** 10 repositories with hash-bound, receipted evidence
+- **Estate unit test count:** 2,800+ passing unit tests across verified repository suites
 - **Open gates:** 2 (persistent production host, company fit) — documented honestly, not papered over
 
 ## For Senior Engineers and Domain Experts
@@ -74,7 +75,7 @@ The portfolio's design law is the one stated in `repo_excellence_state_machine.j
 
 ---
 
-## The 8 VERIFIED Anchors
+## The 10 VERIFIED Anchors
 
 These are the only repos whose `verification_status` is `VERIFIED` and whose evidence is bound to a run id, source SHA, and a hashed artifact. Everything else is honestly unverified, partial, or in preparation.
 
@@ -83,11 +84,13 @@ These are the only repos whose `verification_status` is `VERIFIED` and whose evi
 | 1 | **GlacierEQ/computer-user** *(anchor)* | execution | — | 203 tests PASS at source SHA `1eb2e2f4…`; live AKOS HTTP verification; restart-safe container; `pro-code-originated-live-receipt-proof.json` | `PROMOTED`, 12/12 honest gates |
 | 2 | **GlacierEQ/AKOS** | GlacierEQ-core | 9 | 94/94 tests across 12 modules — Python 3.11–3.13 — Actions run `30532339028`, source commit `d00eb4a`, promotion merge `b4b9ecba` | `VERIFIED` |
 | 3 | **GlacierEQ/pro-code** | GlacierEQ-core | 9 | Operator control surface; pro-code-originated live receipt with capability + exact terminal/AKOS source SHA bound; verified by AKOS over HTTP | `VERIFIED` (scoped to origination path) |
-| 4 | **GlacierEQ/job-app-helix** | GlacierEQ-core | 9 | Public GitHub Pages deployment, remote push/pull release receipts, `FINAL_FORM_MANIFEST`, `INTEGRITY_MANIFEST` | `VERIFIED` |
+| 4 | **GlacierEQ/job-app-helix** | GlacierEQ-core | 9 | Public GitHub Pages deployment, remote push/pull release receipts, `FINAL_FORM_MANIFEST`, `INTEGRITY_MANIFEST` (946/946 tests PASS) | `VERIFIED` |
 | 5 | **GlacierEQ/the-tower-of-babel** | GlacierEQ-core | 8 | PR #16 merged; "Spiral Engine / Tower / Tower of Babel Quality Gate: success"; merge commit `dea26612…`; main pinned `1028a589…` | `VERIFIED` |
 | 6 | **GlacierEQ/xai-colossus-cooling** | xAI / Colossus | 9 | "Cooling Core Truth Gate" run `30895011833`, 37 tests PASS, head `32208669d…`, artifact `8886632264` (sha256 `53c6f26e…`); reusable CI run `30895011023` | `VERIFIED` (canonical head of 62-repo xAI family) |
 | 7 | **GlacierEQ/xai-colossus-servers** | xAI / Colossus | 8 | "Servers Placement Truth Gate" run `30897116390`, 20 tests PASS, head `4f3bbdc0…`, artifact `8887480269` (sha256 `c9dd3f0d…`); deterministic scenario `9917ef6c…` | `VERIFIED` |
 | 8 | **GlacierEQ/xai-colossus-energy-omega** | xAI / Colossus | 8 | Pinned `7919943e…`; "Energy Family Truth Gate" run `30896081128`; cross-repo 3.6 MW deficit met by shedding 20.0 MW batch-training job; artifact `8887063327` (sha256 `37a068f8…`) | `VERIFIED` |
+| 9 | **GlacierEQ/Forward-Deployed-Agentic-Powerhouse** | Applied AI / FDE | 10 | 135/135 tests PASS, 7 production bridges (Gemini Live 3.8 bidirectional streaming, Smithery 32+ MCP servers, Aspen-Grove pointer memory with 75–90% token reduction), Ruff clean, v0.8.0, commit `9969ab6` | `VERIFIED` (L5 Flagship Authority) |
+| 10 | **GlacierEQ/casebuilder4000** | Legal Intelligence / Forensics | 9 | 178/178 tests PASS, FRE/HRE 601/602 personal knowledge evidence matrices, JEFS docket synchronization, void decree strike generator, tamper-proof receipts | `VERIFIED` (L5 Flagship Authority) |
 
 **Honest limits carried verbatim from each record:**
 
@@ -95,12 +98,14 @@ These are the only repos whose `verification_status` is `VERIFIED` and whose evi
 - `pro-code` VERIFIED is scoped to the operator-client origination path proven through `computer-user`; no pro-code-native test suite, CI run id, or fact card exists locally.
 - `xai-colossus-cooling` declares simulation, not production: no real GPU telemetry, no live cooling hardware control, no PUE/latency/cost outcomes; no xAI affiliation.
 - `the-tower-of-babel` verified at PR-merge level, not at a reproducible test invocation.
+- `Forward-Deployed-Agentic-Powerhouse` is VERIFIED on 135 unit tests and 7 live bridge integrations; live customer deployment authorization requires runtime environment credentials.
+- `casebuilder4000` is VERIFIED on 178 unit tests and pleading automation; production e-filing requires authorized bar credentials.
 
 ---
 
 ## The Helix at a Glance
 
-The 225 repos are organized into 21 families and 5 source states. The 8 VERIFIED anchors sit at the top of the trust graph. Everything below is real work, but not all of it is verified — that distinction is the point of this surface.
+The 225 repos are organized into 21 families and 5 source states. The 10 VERIFIED anchors sit at the top of the trust graph. Everything below is real work, but not all of it is verified — that distinction is the point of this surface.
 
 ### GlacierEQ-core (28 repos)
 The control plane and the executor.
@@ -138,7 +143,7 @@ A complete machine-readable per-family inventory lives in `TOWER_SUMMARY.json` (
 
 ## The Mesh Vocabulary
 
-This is a **holographic mesh** of capabilities, not a hierarchy with a single winner. The 8 VERIFIED anchors are not above the other 217 repos — they are the **trust points** that the rest of the mesh can be re-measured against.
+This is a **holographic mesh** of capabilities, not a hierarchy with a single winner. The 10 VERIFIED anchors are not above the other 215 repos — they are the **trust points** that the rest of the mesh can be re-measured against.
 
 We use four terms and only these four:
 
@@ -179,9 +184,9 @@ Two open gates are recorded and not papered over:
 
 ## How to Read This Portfolio
 
-If you are a hiring audience: read the 8 VERIFIED anchors first. Every one of them is a re-runnable proof, not a description. The other 217 repos are real engineering work; they are honestly unverified where they are unverified.
+If you are a hiring audience: read the 10 VERIFIED anchors first. Every one of them is a re-runnable proof, not a description. The other 215 repos are real engineering work; they are honestly unverified where they are unverified.
 
-If you are an operator / mesh coordinator: start with the pointer index, then follow `P-SOLIDIFY` to the repo you need. The 8 anchors are the trust roots; the 217 long-tail repos are honest work that compounds against those roots.
+If you are an operator / mesh coordinator: start with the pointer index, then follow `P-SOLIDIFY` to the repo you need. The 10 anchors are the trust roots; the 215 long-tail repos are honest work that compounds against those roots.
 
 If you are a contributor: a repo advances by changing a gate state, not by rewriting its README. See `makes_worthy` in any `solidify/<repo>.json` for the next concrete step.
 

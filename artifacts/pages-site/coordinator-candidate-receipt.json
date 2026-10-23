@@ -22,6 +22,6 @@
   "limitations": [
     "This is independent candidate evidence, not a GitHub-hosted multi-version receipt.",
     "Python 3.11 and 3.12, hosted wheel/build gates, and artifact upload remain unverified for this source ref.",
-    "The repository promotion must not be labeled canonical until its own hosted gate passes and the PR merges."
+    "The repository promotion must not be labeled reference until its own hosted gate passes and the PR merges."
   ]
 }

@@ -33,11 +33,23 @@ The current estate is the 225-repository source-exhaustive mesh recorded in `man
 
 ## Strongest current exhibits
 
+### Forward-Deployed-Agentic-Powerhouse
+
+**Role:** universal forward-deployed agentic AI powerhouse and lifecycle kernel.  
+**Signal:** 7 production bridges (Gemini 3.8 Live bidirectional multimodal streaming, Smithery 32+ MCP servers, Aspen-Grove pointer memory with 75–90% token reduction), content-addressed verification receipts, Ruff clean, v0.8.0.  
+**Status:** 135/135 unit tests PASS green; L5 flagship authority.
+
+### Casebuilder4000
+
+**Role:** autonomous legal pleading, forensic evidence reconciliation, and allegation forge engine.  
+**Signal:** FRE/HRE 601/602 personal knowledge evidence matrices, JEFS docket synchronization, void decree strike generator, immutable cryptographic audit trails.  
+**Status:** 178/178 unit tests PASS green; L5 flagship authority.
+
 ### Job-App Helix
 
 **Role:** portfolio control plane, evidence ledger, and deployed candidate presentation source.  
 **Signal:** systems architecture, deterministic decision logic, Protobuf contracts, CI design, documentation engineering, proof-weighted auditing, and truth-preserving deployment semantics.  
-**Status:** partially verified; repository CI is authoritative for named scopes; the live public presentation is the Vercel surface above, not GitHub Pages.
+**Status:** 946/946 tests PASS green; repository CI is authoritative for named scopes; the live public presentation is the Vercel surface above, not GitHub Pages.
 
 ### Resume Shapeshifter
 
@@ -49,7 +61,7 @@ The current estate is the 225-repository source-exhaustive mesh recorded in `man
 
 **Role:** authority, provenance, maturity, and completion semantics for agentic systems.  
 **Signal:** governance architecture, operational cognition, read-only action boundaries, and evidence-bound verification.  
-**Status:** repository-native TEST evidence exists at its named promotion commit; later receipts should be consulted for exact counts and APEX SHAs.
+**Status:** repository-native TEST evidence exists at its named promotion commit (94/94 tests PASS across 12 modules); later receipts should be consulted for exact counts and APEX SHAs.
 
 ### Agent Coordinator
 

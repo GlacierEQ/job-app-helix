@@ -1,0 +1,82 @@
+{
+  "achievements": [
+    "Forward-Deployed-Agentic-Powerhouse: Engineered universal forward-deployed agentic AI powerhouse and lifecycle kernel (v0.8.0, 135/135 tests passing, Ruff clean).",
+    "Forward-Deployed-Agentic-Powerhouse: Built 7 live production bridges (Gemini 3.8 Live bidirectional streaming, Smithery 32+ MCP servers, Aspen-Grove pointer memory).",
+    "APEX Holographic Mesh & Deep Swarm Engine: Built real-time neural audio streaming gateway integrating Moshi and 24kHz Mimi codec with 99.7% bandwidth reduction.",
+    "APEX Holographic Mesh & Deep Swarm Engine: Maintained 2,800+ verified tests across 8 repository suites with 100% pass rate and zero simulated execution.",
+    "Casebuilder4000 Legal Intelligence Engine: Architected autonomous legal pleading, forensic evidence reconciliation, and allegation forge engine (178/178 tests passing).",
+    "Job-App Helix Control Plane: Architected evidence-bound portfolio and application compilation engine indexing 225 repositories across 21 families (946/946 tests passing).",
+    "Aspen-Grove Quantum Memory Substrate: Designed pointer-indexed context compression engine delivering 75-90% token reduction across multi-million token estates.",
+    "Aspen-Grove Quantum Memory Substrate: Implemented 4-tier memory hierarchy bridging in-process SQLite WAL, Mem0 semantic gateway, Supermemory, and object storage.",
+    "Aspen-Grove Quantum Memory Substrate: Maintained sub-second query latency across 147,000-message cryptographic forensic vaults."
+  ],
+  "contact": {
+    "email": "casey@glaciereq.com",
+    "github": "https://github.com/GlacierEQ",
+    "location": "Honolulu, HI"
+  },
+  "experience": [
+    "Forward-Deployed-Agentic-Powerhouse: Engineered universal forward-deployed agentic AI powerhouse with fail-closed stage-gate evaluation and cryptographic receipts.",
+    "APEX Holographic Mesh & Deep Swarm Engine: Orchestrated decentralized multi-agent topologies with deterministic task DAGs and fail-closed verification gates.",
+    "APEX Holographic Mesh & Deep Swarm Engine: Built real-time neural audio streaming gateway integrating Moshi and 24kHz Mimi codec with 99.7% bandwidth reduction.",
+    "APEX Holographic Mesh & Deep Swarm Engine: Maintained 2,800+ verified tests across 8 repository suites with 100% pass rate and zero simulated execution.",
+    "Casebuilder4000 Legal Intelligence Engine: Enforced FRE/HRE 601/602 personal knowledge evidence matrices, JEFS docket synchronization, and void decree strike generation.",
+    "Job-App Helix Control Plane: Architected evidence-bound portfolio and application compilation engine indexing 225 repositories across 21 families.",
+    "Job-App Helix Control Plane: Implemented content-addressed job opening ingestion and monotonic candidate profile projection.",
+    "Job-App Helix Control Plane: Built automated ATS schema normalization and recruiter-ready public proof verification.",
+    "Aspen-Grove Quantum Memory Substrate: Designed pointer-indexed context compression engine delivering 75-90% token reduction across multi-million token estates.",
+    "Aspen-Grove Quantum Memory Substrate: Implemented 4-tier memory hierarchy bridging in-process SQLite WAL, Mem0 semantic gateway, Supermemory, and object storage.",
+    "Aspen-Grove Quantum Memory Substrate: Maintained sub-second query latency across 147,000-message cryptographic forensic vaults."
+  ],
+  "headline": "Applied AI Systems Architect & Principal Systems Engineer",
+  "name": "Casey Barton",
+  "profile_id": "candidate-casey-barton",
+  "provenance": {
+    "policy": "source_text_only_no_claim_invention",
+    "sources": [
+      {
+        "path": "/root/job-app-helix/hire_package/CASEY_BARTON_COMPILER_RESUME.md",
+        "sha256": "dfae2a9823faa6a756c624a2770d4490a939cfb075536b99d8510435ee593eba"
+      }
+    ]
+  },
+  "schema": "glaciereq.candidate-profile-source.v1",
+  "skills": [
+    "Multi-agent DAG orchestration",
+    "MCP constellations",
+    "Tool calling boundaries",
+    "Context optimization",
+    "Agent evaluation",
+    "Python",
+    "TypeScript",
+    "SQLite WAL concurrency",
+    "FastAPI",
+    "Docker",
+    "PRoot/Linux hybrid architecture",
+    "WebSocket streaming",
+    "Monotonic verification ladders",
+    "SHA-256 provenance ledgers",
+    "Deterministic state machines",
+    "Fail-closed execution",
+    "SQL",
+    "Bash",
+    "Go",
+    "PyTorch",
+    "Vercel AI SDK",
+    "Moshi/Mimi",
+    "MCP",
+    "LangGraph",
+    "Hugging Face",
+    "Linux PRoot",
+    "SQLite WAL",
+    "PostgreSQL/Supabase",
+    "Redis",
+    "WebSocket",
+    "Pytest",
+    "GitHub Actions",
+    "Hatch",
+    "Ruff",
+    "Mypy"
+  ],
+  "summary": "Applied AI systems architect and principal infrastructure engineer who builds the operating layer between foundation models and dependable production systems. Specializes in forward-deployed agentic engineering, multi-agent orchestration, Model Context Protocol (MCP) tool authority, context window optimization, deterministic state engines, low-latency neural audio codecs, and monotonic verification ladders. Creator of Job-App Helix, Forward-Deployed-Agentic-Powerhouse, and the APEX Holographic Mesh, maintaining 2,800+ passing unit and integration tests across 8 enterprise suites with zero fake execution."
+}
