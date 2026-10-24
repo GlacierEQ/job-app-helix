@@ -9,7 +9,7 @@
 "profile":
   - "Senior AI platform engineer building the foundation agent teams build on: agent environments and actions, model selection and routing, context management, tool design, and evaluation infrastructure that drives task-completion quality — evals as the iteration loop, not the afterthought."
   - "Three years of intensive work on a heavily constrained forensic-grade agent system — adversarial conditions, evidence-grade accountability, zero margin for a wrong output. **62/62** exact-revision tests on the Agent Coordinator; **989-test** control plane; **65** governed MCP connectors, fail-closed."
-  - "The domain isn't abstract: three years inside a live family-court matter as the pro se party — long records, zero margin for a wrong citation. I know what legal AI gets wrong from the user's side, and for me reliability is not abstract."
+  - "Reliability is not abstract for me: long records and zero margin for a wrong citation are the working conditions I design for."
 "competencies":
   - "category": "Engineering"
     "items": "Python · TypeScript · SQL · Bash · REST APIs · Supabase · Postgres · GitHub Actions (CI/CD)"
@@ -46,7 +46,7 @@
     "items": "Supabase · Postgres · Vercel · GitHub Actions · REST APIs · MCP protocol"
   - "category": "Practice"
     "items": "evidence-grade accountability · fail-closed authorization · audit receipts · plain-language delivery to non-technical stakeholders"
-"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification. Legal-systems perspective comes from firsthand pro se experience, not legal employment."
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
 
 "education":
   - "school": "University of Hawaii at Manoa"

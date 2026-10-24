@@ -65,7 +65,7 @@ worker_roles:
 
   - id: contradiction-hunter
     skill: apex-legal-intelligence
-    capability: Searches for conflicts across statements, dockets, metadata
+    capability: Searches for conflicts across statements, records, metadata
     trigger: pre-legal-filing
     output: contradiction_matrix.json
 

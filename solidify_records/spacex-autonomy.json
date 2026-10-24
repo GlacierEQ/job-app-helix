@@ -29,7 +29,7 @@
   "honest_limits": [
     "no test, CI run, or receipt was found; the clone was inventoried but never executed",
     "atlas confidence 'high' rests on catalog description, not source inspection",
-    "the hierarchical scanner misfiled this clone under 04_LEGAL_AND_FORENSIC_INTEL/dockets_and_motions with primary_function 'Court Docket Tracker & Motion Generator' (HIERARCHICAL_FUNCTION_MAP.json:790-799) — a recorded classifier contradiction against the aerospace atlas, preserved rather than silently corrected",
+    "the hierarchical scanner misfiled this clone under an unrelated category (HIERARCHICAL_FUNCTION_MAP.json:790-799), a recorded classifier contradiction against the aerospace atlas, preserved rather than silently corrected",
     "simulation only: no flight hardware, vehicle telemetry, or mission deployment; no SpaceX affiliation claimed"
   ],
   "last_verified": "2026-08-30T18:45:00-10:00",

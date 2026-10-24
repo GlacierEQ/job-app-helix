@@ -20,7 +20,7 @@
 - Verdict: **BOTH TRUE at different scopes.** 66 = historically admitted boundary; 225 = operator-directed deserving set. Preserve both; 225 is the working set per override. No suppression.
 
 **C3 — spacex-autonomy / tesla-fsd misclassification**
-- Finding: spacex-autonomy misfiled under legal/dockets; tesla-fsd misrouted to filesystem mesh category.
+- Finding: spacex-autonomy misfiled under an unrelated category; tesla-fsd misrouted to filesystem mesh category.
 - Verdict: **PRESERVE as catalog classification errors.** Flag for correction in repo fact cards. No impact on portfolio claim (rated honestly low already).
 
 **C4 — Pro-Colossus / Pro-xAI status**

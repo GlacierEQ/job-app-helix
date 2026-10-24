@@ -50,7 +50,7 @@ When instructions conflict, agents MUST resolve them in this order:
 1. platform and safety constraints that cannot be overridden;
 2. the Operator's current explicit instruction;
 3. the Operator's durable project instructions and architecture decisions;
-4. verified source state: files, repositories, databases, tool outputs, logs, tests, dockets, and evidence;
+4. verified source state: files, repositories, databases, tool outputs, logs, tests, and evidence;
 5. this "AGENTS.md";
 6. repository-local conventions and subordinate agent instructions;
 7. model preference.
@@ -95,7 +95,7 @@ The following are support mechanisms, never the mission:
 
 They are valuable only when they increase capability, reliability, speed, legal strength, recoverability, or clarity.
 
-An agent MUST NOT spend an execution cycle polishing the gate while the product, case, or capability remains unimproved.
+An agent MUST NOT spend an execution cycle polishing the gate while the product or capability remains unimproved.
 
 ---
 
@@ -119,7 +119,7 @@ Inspect, as applicable and only where materially required:
 - "AGENTS.md", "README", architecture docs, manifests, tests, and configuration;
 - relevant sibling repositories;
 - active issues, pull requests, commits, and deployment state;
-- case files, dockets, evidence registries, timelines, prior briefs, and source records;
+- evidence registries, timelines, prior briefs, and source records;
 - connected storage and knowledge systems;
 - connector/tool availability;
 - prior verified outputs, checkpoints, failures, and blockers;
@@ -129,7 +129,7 @@ Do not re-derive what already exists.
 
 Do not restart a functioning system merely because a fresh implementation is easier for the model.
 
-Rediscovery of already-known Operator facts, architecture, corrections, working method, prior decisions, established scope, case roots, or continuation state is **not progress**.
+Rediscovery of already-known Operator facts, architecture, corrections, working method, prior decisions, established scope, or continuation state is **not progress**.
 
 Re-open live/source-native state when freshness, factual certainty, conflict resolution, exact bytes, current provider/runtime state, legal currency, or mutation safety materially requires it.
 
@@ -266,23 +266,9 @@ The agent MUST use the known estate map as continuity state and refresh the **ma
 - "apex-integrations"
 - "everything-mcp-server"
 - "casey-mcp-constellation-working"
-- "casey-legal-mcp-server"
 - "railway-mcp-remote"
 - "apex-memory-bridge"
 - "Pro-Gateway"
-
-**Legal intelligence and case systems**
-- "apex-legal-case"
-- "legal-powerhouse"
-- "Solomon-Codex-Quantum-Legal-Intelligence-System"
-- "Yin_The_Legal_Visionary"
-- "LEGAL-AI-NEXUS"
-- "nexus-legal-grid"
-- "xai-document-intelligence"
-- "aspen-grove-legal"
-- "apex-law-library"
-- "legal-motion-automation"
-- "ai_legal_assistant_project"
 
 This list is a seed, not a ceiling and not a mandate to re-scan the entire estate every turn.
 
@@ -336,8 +322,6 @@ The control plane SHOULD maintain a graph whose nodes include:
 - agents;
 - connectors;
 - datasets;
-- legal authorities;
-- cases;
 - evidence items;
 - claims;
 - tasks;
@@ -356,7 +340,6 @@ Edges SHOULD include:
 - "PROJECTS"
 - "DERIVED_FROM"
 - "USES_CONNECTOR"
-- "APPLIES_TO_CASE"
 - "IMPLEMENTS_CAPABILITY"
 
 The graph is a routing mechanism, not a new authority layer.
@@ -401,9 +384,8 @@ The lead agent SHOULD route work through a Connector Broker responsible for:
 Examples:
 
 - GitHub: source, commits, branches, PRs, issues, releases, repository topology;
-- file/storage connectors: case files, exports, exhibits, records, archives;
+- file/storage connectors: exports, records, archives;
 - calendars/email: notices, communications, deadlines, meeting history;
-- legal research connectors: statutes, rules, case law, citators;
 - task/project systems: execution state and handoffs;
 - databases: structured truth and queryable provenance.
 
@@ -458,14 +440,8 @@ Activate only roles relevant to the mission.
 - **Implementation Engineer**: Writes production-grade code and closes real execution paths.
 - **Reliability Engineer**: Tests failure modes, observability, recovery, retries, concurrency, and rollback.
 - **Performance Engineer**: Profiles bottlenecks and improves throughput, latency, memory, or token cost with measurements.
-- **Legal Research Agent**: Finds controlling law, procedural rules, cases, standards, and authority hierarchy.
-- **Case Forensics Agent**: Builds timelines, docket maps, claim/evidence links, provenance chains, and contradiction matrices.
 - **Evidence Authenticator**: Separates original evidence, copies, transcriptions, summaries, metadata, and unsupported assertions.
-- **Adversarial Counsel**: Attacks the current legal or technical theory using the strongest plausible opposing position.
-- **Procedural Strategist**: Maps posture, deadlines, available vehicles, burdens, preservation issues, jurisdiction, and remedy sequence.
-- **Brief Architect**: Turns verified facts and authority into persuasive issue structures, argument trees, and filing-ready material.
-- **Citation Verifier**: Checks every legal authority, quote, pin cite, proposition, and procedural rule before finalization.
-- **Contradiction Hunter**: Searches across statements, exhibits, dockets, metadata, orders, commits, and prior analyses for conflicts.
+- **Contradiction Hunter**: Searches across statements, records, metadata, commits, and prior analyses for conflicts.
 - **Red Team**: Attempts to break the proposed solution before deployment or filing.
 - **Verification Agent**: Independently checks that claimed execution actually occurred and that outputs match intent.
 
@@ -508,150 +484,9 @@ Consensus is not truth.
 
 ---
 
-## 7. Legal Intelligence Engine
+## 7. (Reserved)
 
-Legal work MUST be source-driven, adversarial, procedurally aware, and evidence-linked.
-
-### 7.1 Legal reasoning stack
-
-For every substantial legal issue, reason through:
-
-1. objective — what practical result is sought;
-2. posture — where the matter currently sits procedurally;
-3. jurisdiction — which court/body and what authority applies;
-4. vehicle — motion, objection, appeal, writ, discovery request, complaint, response, demand, etc.;
-5. deadline — mandatory, jurisdictional, discretionary, or strategic timing;
-6. burden/standard — who must prove what and by what standard;
-7. elements/test — controlling doctrinal framework;
-8. facts — source-linked facts only;
-9. authority — rule/statute/case hierarchy;
-10. application — fact-to-element mapping;
-11. counterargument — strongest opposing reading;
-12. rebuttal — evidence and law that survive the attack;
-13. remedy — requested relief and legal basis;
-14. proof package — exhibits, declarations, transcripts, docket entries, metadata;
-15. verification — citation, quote, date, and source checks.
-
-### 7.2 Authority hierarchy
-
-Prefer, as applicable:
-
-1. constitution;
-2. statute;
-3. controlling court rule;
-4. binding precedent;
-5. persuasive precedent;
-6. administrative rule/order;
-7. secondary authority.
-
-Never use a lower authority as though it overrides a higher controlling authority.
-
-Current law MUST be checked when the issue is live.
-
-### 7.3 Claim-Evidence-Authority Matrix
-
-Important legal assertions SHOULD be represented as:
-
-`Claim | Fact Source | Evidence ID | Legal Authority | Element/Rule | Confidence | Counterargument | Status`
-
-No material conclusion should float free from both factual and legal support.
-
-### 7.4 Fact discipline
-
-Maintain explicit distinction between:
-
-- verified fact;
-- party assertion;
-- witness statement;
-- inference;
-- legal conclusion;
-- disputed fact;
-- unresolved contradiction;
-- hypothesis for investigation.
-
-The system may reason aggressively. It may not manufacture support.
-
-### 7.5 Citation integrity
-
-Never invent:
-
-- case names;
-- docket numbers;
-- quotations;
-- pin cites;
-- statutory text;
-- rule text;
-- holdings;
-- filing dates;
-- exhibit content.
-
-If an authority cannot be verified, mark it unverified and continue searching through available sources.
-
-### 7.6 Docket intelligence
-
-For active matters, maintain a structured docket model with:
-
-- docket number;
-- filing date/time;
-- filing party;
-- document type;
-- linked PDF/source;
-- service/notice;
-- hearing date;
-- disposition;
-- supersession relationships;
-- inconsistencies;
-- missing documents;
-- relevance to pending issues.
-
-Docket sequencing anomalies MUST be investigated, not smoothed over.
-
-### 7.7 Chronology engine
-
-Every consequential event SHOULD support:
-
-- timestamp/date;
-- source;
-- actor;
-- event;
-- legal significance;
-- contradiction links;
-- exhibit/document links;
-- confidence.
-
-When dates conflict, preserve both until reconciled.
-
-### 7.8 Adversarial legal loop
-
-Before final legal strategy:
-
-1. build strongest current theory;
-2. construct strongest opposing theory;
-3. attack evidence chain;
-4. attack procedural vehicle;
-5. attack jurisdiction/timeliness;
-6. attack remedy;
-7. attack factual assumptions;
-8. identify what survives;
-9. strengthen surviving theory;
-10. identify decisive missing evidence.
-
-The goal is not rhetorical aggression. The goal is a theory that survives contact with a hostile reader.
-
-### 7.9 Filing quality
-
-A filing-ready artifact MUST pass:
-
-- factual source check;
-- citation check;
-- procedural posture check;
-- deadline check;
-- requested-relief check;
-- exhibit-reference check;
-- internal consistency check;
-- adversarial read;
-- formatting requirements;
-- final Operator-intent check.
+Moved to a private archive.
 
 ---
 
@@ -731,7 +566,7 @@ Do not create decision records for trivial choices.
 
 Agents MUST operate according to the explicit 6-level epistemic standard defined in `EPISTEMOLOGY.md` (APEX command-core doctrine), the unbending estate laws in `CONSTANTS.md` (estate laws), and the 12-gate machine contract in `EXCELLENCE.md` (machine contract):
 
-- **L0 (Reference & Ground-Truth):** Immutable byte/SHA/commit/docket provenance. Never assert unverified state without tool readback.
+- **L0 (Reference & Ground-Truth):** Immutable byte/SHA/commit provenance. Never assert unverified state without tool readback.
 - **L1 (Component & Unit):** Atomic interface boundaries and deterministic input/output validation.
 - **L2 (Subsystem & Pipeline):** Lossless data translation, type safety, and schema preservation across module boundaries.
 - **L3 (Backend Awareness & Leverage):** Deep substrate comprehension (Termux/PRoot ceilings, SQLite locks, DB indices, event loop concurrency, OS process limits). Maximize structural leverage over brute-force polling.
@@ -1013,25 +848,17 @@ Contains:
 - object/file metadata;
 - cloud credentials and connector configuration.
 
-### 14.3 Legal lane
-Contains:
-- dockets;
-- filings;
-- exhibits;
-- transcripts;
-- declarations;
-- case correspondence;
-- legal research;
-- evidence indexes;
-- litigation work product.
+### 14.3 (Reserved)
+
+Moved to a private archive.
 
 ### 14.4 Boundary rule
 
-Never place engineering artifacts into a legal evidence corpus merely because both are accessible.
+Never place engineering artifacts into an unrelated records corpus merely because both are accessible.
 
-Never treat a repository README as evidence of a legal fact.
+Never treat a repository README as evidence of an external fact.
 
-Never treat a legal allegation as a system configuration fact.
+Never treat an unverified allegation as a system configuration fact.
 
 Cross-lane references MUST preserve origin and purpose.
 
@@ -1315,124 +1142,21 @@ The goal is mesh capability, not repository homogenization.
 
 ---
 
-## 24. APEX Legal Mesh Protocol
+## 24. (Reserved)
 
-For legal missions, the Lead Agent SHOULD construct a temporary mission mesh.
-
-Example:
-```
-Operator Objective
-      |
-      v
-Lead / Priority Engine
-      |
-      +--> Case Forensics ------> Timeline / Docket / Evidence Graph
-      |
-      +--> Legal Research ------> Rules / Statutes / Cases / Standards
-      |
-      +--> Contradiction Hunter -> Conflict Matrix
-      |
-      +--> Procedural Strategy --> Vehicles / Deadlines / Relief
-      |
-      +--> Adversarial Counsel --> Strongest Opposition Attack
-      |
-      +--> Brief Architect ------> Argument / Filing Structure
-      |
-      +--> Citation Verifier ----> Authority and Quote Validation
-      |
-      +--> Evidence Authenticator-> Provenance / Hash / Source Check
-      |
-      v
-Integrator
-      |
-      v
-Independent Verifier
-      |
-      v
-Operator-Ready Artifact / Executed Action
-```
-
-Each edge MUST pass structured data, not merely prose summaries.
+Moved to a private archive.
 
 ---
 
-## 25. Structured Legal Objects
+## 25. (Reserved)
 
-Where possible, legal systems SHOULD use structured objects.
-
-### 25.1 Claim
-```yaml
-id:
-text:
-type: fact|legal|procedural|remedy
-status: verified|disputed|inferred|unverified
-sources: []
-authorities: []
-supports: []
-contradicts: []
-confidence:
-```
-
-### 25.2 Evidence item
-```yaml
-id:
-title:
-source:
-date:
-hash:
-original_format:
-derived_artifacts: []
-provenance_notes:
-authenticity_status:
-supports_claims: []
-contradicts_claims: []
-```
-
-### 25.3 Authority
-```yaml
-id:
-citation:
-court_or_body:
-date:
-precedential_weight:
-proposition:
-pinpoint:
-source_url_or_id:
-verified:
-```
-
-### 25.4 Procedural event
-```yaml
-id:
-case:
-date:
-docket_number:
-event_type:
-actor:
-source:
-effect:
-supersedes:
-superseded_by:
-issues: []
-```
+Moved to a private archive.
 
 ---
 
-## 26. Legal Research Quality Controls
+## 26. (Reserved)
 
-A legal research worker MUST:
-
-- identify jurisdiction;
-- identify court level;
-- verify currency of authority;
-- distinguish holding from dicta;
-- distinguish binding from persuasive authority;
-- verify quoted text;
-- record pinpoint citations where useful;
-- check whether a case was reversed, superseded, abrogated, or limited when citator data is available;
-- connect each authority to the proposition it actually supports.
-
-Do not pad a brief with citations that merely contain related words.
+Moved to a private archive.
 
 ---
 

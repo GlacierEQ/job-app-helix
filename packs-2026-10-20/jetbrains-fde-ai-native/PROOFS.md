@@ -130,7 +130,7 @@ Embeds with the operators whose workflows he's automating: demos and proof-of-co
 Zero SOC2/FedRAMP/HIPAA or enterprise-scale consulting delivery — claimed nowhere, disclaimed in the resume boundary note.
 
 ## Evidence
-- What transfers: evidence discipline — SHA-256 receipts, provenance envelopes, chain-of-custody practice, audit receipts on every run, fail-closed gates on consequential actions. The governance posture a regulated environment demands, engineered into the tooling rather than asserted on paper.
+- What transfers: evidence discipline — SHA-256 receipts, provenance envelopes, provenance tracking, audit receipts on every run, fail-closed gates on consequential actions. The governance posture a regulated environment demands, engineered into the tooling rather than asserted on paper.
 
 ## Verified
 2026-10-20.

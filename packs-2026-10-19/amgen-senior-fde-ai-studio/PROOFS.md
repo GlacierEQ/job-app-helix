@@ -117,7 +117,7 @@ Built and operate a production-grade agent control plane across a 1,398-reposito
 Zero pharma/biotech/GxP experience — claimed nowhere, disclaimed in the resume boundary note.
 
 ## Evidence
-- What transfers: evidence discipline — SHA-256 receipts, provenance envelopes, chain-of-custody practice, audit receipts on every run, fail-closed gates on consequential actions. The governance posture a regulated environment demands, engineered into the tooling rather than asserted on paper.
+- What transfers: evidence discipline — SHA-256 receipts, provenance envelopes, provenance tracking, audit receipts on every run, fail-closed gates on consequential actions. The governance posture a regulated environment demands, engineered into the tooling rather than asserted on paper.
 
 ## Verified
 2026-10-19.
