@@ -150,56 +150,11 @@
           "private",
           "ESTATE_DISCOVERED_NOT_HELIX_ADMITTED",
           "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-constitutional-automation",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-interpretability-engine",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-containment-verifier",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-eval-hardener",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
-        ],
-        [
-          "GlacierEQ/anthropic-agent-skills-runtime",
-          "L4",
-          "PROMOTED",
-          "public",
-          "HELIX_ADMITTED",
-          "ORIGINAL_CANDIDATE"
         ]
       ],
       "recruiter_admitted_repositories": [
         "GlacierEQ/anthropic-agent-coordinator",
-        "GlacierEQ/anthropic-safety-monitor",
-        "GlacierEQ/anthropic-constitutional-automation",
-        "GlacierEQ/anthropic-interpretability-engine",
-        "GlacierEQ/anthropic-containment-verifier",
-        "GlacierEQ/anthropic-eval-hardener",
-        "GlacierEQ/anthropic-agent-skills-runtime"
+        "GlacierEQ/anthropic-safety-monitor"
       ]
     },
     {

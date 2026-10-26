@@ -27,4 +27,44 @@ permissions:
 
 jobs:
   apex-non-regression:
-    uses: GlacierEQ/apex-control-plane/.github/workflows/estate-non-regression.yml@main
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # The reusable workflow this job used to call
+      # (GlacierEQ/apex-control-plane/.github/workflows/estate-non-regression.yml)
+      # was removed from apex-control-plane by the 2026-10-23 eradication of the
+      # control/audit apparatus, so the call resolved to nothing: zero jobs,
+      # failure in 0s on every run. The enforcement itself survives as the
+      # composite action GlacierEQ/apex-control-plane/.github/actions/apex-non-regression,
+      # so this job runs that action directly against the pushed range.
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Resolve non-regression range
+        id: range
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+            head="${{ github.sha }}"
+          else
+            before="${{ github.event.before }}"
+            if [ -n "${before}" ] && [ "${before}" != "0000000000000000000000000000000000000000" ]; then
+              base="${before}"
+            else
+              base="$(git rev-parse HEAD^)"
+            fi
+            head="${{ github.sha }}"
+          fi
+          echo "base=${base}" >> "${GITHUB_OUTPUT}"
+          echo "head=${head}" >> "${GITHUB_OUTPUT}"
+
+      - name: APEX capability non-regression
+        uses: GlacierEQ/apex-control-plane/.github/actions/apex-non-regression@main
+        with:
+          base: ${{ steps.range.outputs.base }}
+          head: ${{ steps.range.outputs.head }}

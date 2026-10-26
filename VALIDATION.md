@@ -450,7 +450,7 @@ print(f'Chain length: {len(chain)}')
 |-----------|---------|---------|------------|
 | Application Registry | `python3 scripts/validate_application_registry.py` | JSON stdout | 166 tracks, 83 mapped |
 | Portfolio Root Truth | `python3 scripts/validate_portfolio_root_truth.py` | SHA-256 receipt | 84 total, 83 workspace |
-| Live Links | `python3 scripts/validate_live_repository_links.py` | stdout PASS | 83 repos synchronized |
+| Live Links | `python3 scripts/validate_live_repository_links.py` | stdout PASS | 61 repos synchronized |
 
 | Capability | Receipt Field | Verification |
 |------------|---------------|--------------|
