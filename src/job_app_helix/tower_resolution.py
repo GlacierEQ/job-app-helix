@@ -12,9 +12,9 @@ import json
 import subprocess
 import sys
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 TOWER_ROOT = Path("/data/data/com.termux/files/home/the-tower-of-babel")
 
@@ -183,12 +183,12 @@ def main() -> int:
 
     tower_result = invoke_tower_capability_resolution(req)
 
-    receipt_data = f"{req.name}:{req.domain}:{placement.technology}:{datetime.now(timezone.utc).isoformat()}"
+    receipt_data = f"{req.name}:{req.domain}:{placement.technology}:{datetime.now(UTC).isoformat()}"
     receipt_hash = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
 
     receipt = ResolutionReceipt(
         requirement=req,
-        timestamp=datetime.now(timezone.utc).isoformat(),
+        timestamp=datetime.now(UTC).isoformat(),
         candidates_evaluated=len(top_candidates),
         selected=placement,
         receipt_hash=receipt_hash,

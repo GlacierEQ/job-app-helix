@@ -8,12 +8,12 @@ from __future__ import annotations
 
 import hashlib
 import json
-import time
-from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from dataclasses import dataclass
+from datetime import UTC, datetime
 from enum import Enum
+from pathlib import Path
+from typing import Any
+
 
 class SpaceXBottleneck(Enum):
     STARSHIP_FLIGHT_SOFTWARE = "starship_flight_software"
@@ -45,7 +45,7 @@ class FlightSoftwareConfig:
     engine_type: EngineType
     control_frequency_hz: int
     redundancy_level: str  # triplex, duplex, simplex
-    languages: List[str]  # C++, Rust, Python
+    languages: list[str]  # C++, Rust, Python
     safety_class: str  # Class A, B, C
 
 @dataclass
@@ -68,15 +68,15 @@ class EngineOutScenario:
 @dataclass
 class StageSeparationEvent:
     separation_time_sec: float
-    impulse_vector: Tuple[float, float, float]
+    impulse_vector: tuple[float, float, float]
     debris_risk: float
     clean_separation: bool
-    software_adjustments: List[str]
+    software_adjustments: list[str]
 
 @dataclass
 class HITLTestbedConfig:
     vehicle: VehicleStage
-    hardware_components: List[str]
+    hardware_components: list[str]
     simulation_fidelity: str  # high, medium, low
     ci_integration: bool
     automated_regression: bool
@@ -88,16 +88,16 @@ class SpaceXForwardDeployed:
     Each method solves a specific flight software/engineering bottleneck with production-grade engineering.
     """
     
-    def __init__(self, config_path: Optional[Path] = None):
+    def __init__(self, config_path: Path | None = None):
         self.config = self._load_config(config_path)
-        self.flight_software_configs: Dict[str, FlightSoftwareConfig] = {}
-        self.ai_controller_configs: Dict[str, AIFlightControllerConfig] = {}
-        self.engine_out_scenarios: List[EngineOutScenario] = []
-        self.stage_separation_events: List[StageSeparationEvent] = []
-        self.hitl_configs: Dict[str, HITLTestbedConfig] = {}
-        self._receipt_chain: List[str] = []
+        self.flight_software_configs: dict[str, FlightSoftwareConfig] = {}
+        self.ai_controller_configs: dict[str, AIFlightControllerConfig] = {}
+        self.engine_out_scenarios: list[EngineOutScenario] = []
+        self.stage_separation_events: list[StageSeparationEvent] = []
+        self.hitl_configs: dict[str, HITLTestbedConfig] = {}
+        self._receipt_chain: list[str] = []
         
-    def _load_config(self, config_path: Optional[Path]) -> Dict[str, Any]:
+    def _load_config(self, config_path: Path | None) -> dict[str, Any]:
         default = {
             "default_vehicle": "starship",
             "default_engine": "raptor_v3",
@@ -117,7 +117,7 @@ class SpaceXForwardDeployed:
     # BOTTLENECK 1: Starship Flight Software Architecture
     # ============================================================
     
-    def design_flight_software(self, config: FlightSoftwareConfig) -> Dict[str, Any]:
+    def design_flight_software(self, config: FlightSoftwareConfig) -> dict[str, Any]:
         """
         Design flight software architecture for Starship/Super Heavy.
         Triplex redundancy, fault-tolerant, real-time control at 1000Hz.
@@ -169,10 +169,10 @@ class SpaceXForwardDeployed:
             "architecture": architecture,
             "safety_class": config.safety_class,
             "languages": config.languages,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def reuse_falcon_flight_code(self, target_vehicle: VehicleStage) -> Dict[str, Any]:
+    def reuse_falcon_flight_code(self, target_vehicle: VehicleStage) -> dict[str, Any]:
         """
         Reuse Falcon 9 flight code for Starship (SpaceX approach).
         Jump-starts development with baseline maturity.
@@ -198,14 +198,14 @@ class SpaceXForwardDeployed:
                 "in_space_refueling",
             ],
             "maturity_baseline": "Falcon 9: 300+ successful flights",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 2: AI Flight Control (100ms latency)
     # ============================================================
     
-    def design_ai_flight_controller(self, config: AIFlightControllerConfig) -> Dict[str, Any]:
+    def design_ai_flight_controller(self, config: AIFlightControllerConfig) -> dict[str, Any]:
         """
         Design AI flight controller processing thousands of sensor points.
         Decision latency: seconds -> milliseconds (100ms target).
@@ -252,10 +252,10 @@ class SpaceXForwardDeployed:
         return {
             "receipt_id": receipt_id,
             "controller": controller,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def verify_ai_controller_safety(self, controller_id: str) -> Dict[str, Any]:
+    def verify_ai_controller_safety(self, controller_id: str) -> dict[str, Any]:
         """
         Verify AI flight controller safety using formal methods.
         """
@@ -277,14 +277,14 @@ class SpaceXForwardDeployed:
             ],
             "runtime_assurance": "simplex_architecture",
             "certification_target": "Class A flight software",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 3: Engine-Out Compensation
     # ============================================================
     
-    def design_engine_out_compensation(self, scenario: EngineOutScenario) -> Dict[str, Any]:
+    def design_engine_out_compensation(self, scenario: EngineOutScenario) -> dict[str, Any]:
         """
         Design engine-out compensation strategy.
         Falcon 9 heritage: 9 engines, handle 1-2 out.
@@ -329,10 +329,10 @@ class SpaceXForwardDeployed:
                 "mission_success": scenario.mission_success,
             },
             "compensation": compensation,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def simulate_engine_out_scenarios(self, vehicle: VehicleStage, max_out: int) -> List[Dict[str, Any]]:
+    def simulate_engine_out_scenarios(self, vehicle: VehicleStage, max_out: int) -> list[dict[str, Any]]:
         """Simulate all engine-out scenarios up to max_out."""
         receipt_id = self._generate_receipt("engine_out_simulation", {
             "vehicle": vehicle.value,
@@ -358,14 +358,14 @@ class SpaceXForwardDeployed:
             "vehicle": vehicle.value,
             "scenarios_tested": len(results),
             "max_successful_out": max(s["scenario"]["failed"] for s in results if s["scenario"]["mission_success"]),
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 4: Stage Separation Optimization
     # ============================================================
     
-    def optimize_stage_separation(self, event: StageSeparationEvent) -> Dict[str, Any]:
+    def optimize_stage_separation(self, event: StageSeparationEvent) -> dict[str, Any]:
         """
         Optimize stage separation timing and impulse.
         Hot-staging vs cold-staging, debris avoidance, clean separation.
@@ -387,7 +387,8 @@ class SpaceXForwardDeployed:
                 "mitigation": "software_timing_adjustment + physical_deflectors",
                 "pad_damage_prevention": "water_deluge + flame_trench",
             },
-            "software_adjustments": event.software_adjustments + [
+            "software_adjustments": [
+                *event.software_adjustments,
                 "adaptive_separation_timing",
                 "engine_ignition_sequencing",
                 "thrust_vector_control_during_separation",
@@ -410,14 +411,14 @@ class SpaceXForwardDeployed:
                 "debris_risk": event.debris_risk,
             },
             "optimization": optimization,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 5: Flight Termination System Hardening
     # ============================================================
     
-    def harden_flight_termination(self, vehicle: VehicleStage, response_time_ms: int) -> Dict[str, Any]:
+    def harden_flight_termination(self, vehicle: VehicleStage, response_time_ms: int) -> dict[str, Any]:
         """
         Harden Flight Termination System (FTS).
         Faster response, redundant chains, verified logic.
@@ -458,14 +459,14 @@ class SpaceXForwardDeployed:
             "receipt_id": receipt_id,
             "vehicle": vehicle.value,
             "hardening": hardening,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 6: HITL Testbed Automation
     # ============================================================
     
-    def configure_hitl_testbed(self, config: HITLTestbedConfig) -> Dict[str, Any]:
+    def configure_hitl_testbed(self, config: HITLTestbedConfig) -> dict[str, Any]:
         """
         Configure Hardware-in-the-Loop testbed with CI integration.
         Real flight computers, real hardware, automated regression.
@@ -510,10 +511,10 @@ class SpaceXForwardDeployed:
         return {
             "receipt_id": receipt_id,
             "testbed": testbed,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def run_hitl_regression(self, testbed_id: str, commit_sha: str) -> Dict[str, Any]:
+    def run_hitl_regression(self, testbed_id: str, commit_sha: str) -> dict[str, Any]:
         """Run HITL regression test for a specific commit."""
         receipt_id = self._generate_receipt("hitl_regression", {
             "testbed": testbed_id,
@@ -533,14 +534,14 @@ class SpaceXForwardDeployed:
                 "sensor_fusion_covariance_spike",
             ],
             "duration_minutes": 23,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 7: In-Space Refueling Planner
     # ============================================================
     
-    def plan_in_space_refueling(self, mission: str, target_orbit: str, propellant_kg: int) -> Dict[str, Any]:
+    def plan_in_space_refueling(self, mission: str, target_orbit: str, propellant_kg: int) -> dict[str, Any]:
         """
         Plan in-space refueling operations.
         Multiple tanker flights, orbital mechanics, thermal management.
@@ -583,14 +584,14 @@ class SpaceXForwardDeployed:
             "receipt_id": receipt_id,
             "mission": mission,
             "plan": plan,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 8: Rapid Post-Flight Iteration
     # ============================================================
     
-    def rapid_post_flight_iteration(self, flight_number: int, anomalies: List[str]) -> Dict[str, Any]:
+    def rapid_post_flight_iteration(self, flight_number: int, anomalies: list[str]) -> dict[str, Any]:
         """
         Rapid iteration after flight: hundreds of changes, software tweaks.
         SpaceX: 'hundreds of changes' between flights.
@@ -637,14 +638,14 @@ class SpaceXForwardDeployed:
             "receipt_id": receipt_id,
             "flight": flight_number,
             "iteration": iteration,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 9: Triplex Redundancy Architecture
     # ============================================================
     
-    def design_triplex_redundancy(self, subsystem: str, criticality: str) -> Dict[str, Any]:
+    def design_triplex_redundancy(self, subsystem: str, criticality: str) -> dict[str, Any]:
         """
         Design triplex redundancy for critical subsystems.
         Three flight computers, voting, cross-check, recovery.
@@ -680,14 +681,14 @@ class SpaceXForwardDeployed:
             "receipt_id": receipt_id,
             "subsystem": subsystem,
             "redundancy": redundancy,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 10: Methane Header Tank Pressure Management
     # ============================================================
     
-    def solve_methane_header_tank(self, vehicle: VehicleStage) -> Dict[str, Any]:
+    def solve_methane_header_tank(self, vehicle: VehicleStage) -> dict[str, Any]:
         """
         Solve methane header tank pressure issue causing loss of attitude control.
         Replicated failure, re-engineered for 10x service life.
@@ -719,7 +720,7 @@ class SpaceXForwardDeployed:
             "receipt_id": receipt_id,
             "vehicle": vehicle.value,
             "solution": solution,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
@@ -727,19 +728,19 @@ class SpaceXForwardDeployed:
     # ============================================================
     
     def _generate_receipt(self, operation: str, data: Any) -> str:
-        receipt_data = f"{operation}:{json.dumps(data, sort_keys=True)}:{datetime.now(timezone.utc).isoformat()}"
+        receipt_data = f"{operation}:{json.dumps(data, sort_keys=True)}:{datetime.now(UTC).isoformat()}"
         receipt_id = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
         self._receipt_chain.append(receipt_id)
         return receipt_id
     
-    def get_receipt_chain(self) -> List[str]:
+    def get_receipt_chain(self) -> list[str]:
         return self._receipt_chain.copy()
     
     def verify_receipt(self, receipt_id: str) -> bool:
         return receipt_id in self._receipt_chain
 
 
-def create_spacex_architect(config_path: Optional[Path] = None) -> SpaceXForwardDeployed:
+def create_spacex_architect(config_path: Path | None = None) -> SpaceXForwardDeployed:
     return SpaceXForwardDeployed(config_path)
 
 

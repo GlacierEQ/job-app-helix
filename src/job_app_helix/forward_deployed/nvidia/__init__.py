@@ -9,11 +9,12 @@ from __future__ import annotations
 import hashlib
 import json
 import time
-from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from dataclasses import dataclass
+from datetime import UTC, datetime
 from enum import Enum
+from pathlib import Path
+from typing import Any
+
 
 class NVIDIABottleneck(Enum):
     BLACKWELL_FP4_OPTIMIZATION = "blackwell_fp4_optimization"
@@ -40,17 +41,17 @@ class KernelSpec:
     target: GPUTarget
     precision: str  # fp4, fp8, fp16, bf16, int8
     operation: str  # gemm, attention, moe, convolution
-    tile_config: Dict[str, int]
-    warp_config: Dict[str, int]
+    tile_config: dict[str, int]
+    warp_config: dict[str, int]
     shared_memory_kb: int
     registers_per_thread: int
 
 @dataclass
 class CUDAFGSpec:
     name: str
-    nodes: List[Dict[str, Any]]
-    conditional_nodes: List[Dict[str, Any]]
-    switch_nodes: List[Dict[str, Any]]
+    nodes: list[dict[str, Any]]
+    conditional_nodes: list[dict[str, Any]]
+    switch_nodes: list[dict[str, Any]]
     cpu_overhead_reduction: float
 
 @dataclass
@@ -75,15 +76,15 @@ class NVIDIAForwardDeployed:
     Each method solves a specific GPU/architecture bottleneck with production-grade engineering.
     """
     
-    def __init__(self, config_path: Optional[Path] = None):
+    def __init__(self, config_path: Path | None = None):
         self.config = self._load_config(config_path)
-        self.kernel_registry: Dict[str, KernelSpec] = {}
-        self.cuda_graphs_registry: Dict[str, CUDAFGSpec] = {}
-        self.moe_configs: Dict[str, MoEConfig] = {}
-        self.nvlink_topologies: Dict[str, NVLinkTopology] = {}
-        self._receipt_chain: List[str] = []
+        self.kernel_registry: dict[str, KernelSpec] = {}
+        self.cuda_graphs_registry: dict[str, CUDAFGSpec] = {}
+        self.moe_configs: dict[str, MoEConfig] = {}
+        self.nvlink_topologies: dict[str, NVLinkTopology] = {}
+        self._receipt_chain: list[str] = []
         
-    def _load_config(self, config_path: Optional[Path]) -> Dict[str, Any]:
+    def _load_config(self, config_path: Path | None) -> dict[str, Any]:
         default = {
             "target_architecture": "blackwell",
             "cuda_version": "12.9",
@@ -103,7 +104,7 @@ class NVIDIAForwardDeployed:
     # BOTTLENECK 1: Blackwell FP4 Optimization
     # ============================================================
     
-    def optimize_fp4_kernel(self, kernel_spec: KernelSpec) -> Dict[str, Any]:
+    def optimize_fp4_kernel(self, kernel_spec: KernelSpec) -> dict[str, Any]:
         """
         Optimize kernel for Blackwell native FP4 precision.
         5th-gen Tensor Cores: 9,000 TFLOPS FP4 dense, up to 4x inference throughput.
@@ -142,10 +143,10 @@ class NVIDIAForwardDeployed:
             "power_draw_watts": self._estimate_fp4_power(kernel_spec.operation),
             "accuracy_threshold": "meets_mlperf" if kernel_spec.precision == "fp4" else "exceeds_fp8",
             "software_maturity": "maturing",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def _get_fp4_tile_config(self, operation: str) -> Dict[str, int]:
+    def _get_fp4_tile_config(self, operation: str) -> dict[str, int]:
         configs = {
             "gemm": {"M": 128, "N": 256, "K": 32, "stages": 4},
             "moe": {"M": 64, "N": 128, "K": 32, "stages": 4, "grouped": True},
@@ -163,7 +164,7 @@ class NVIDIAForwardDeployed:
         }
         return power.get(operation, 50)
     
-    def benchmark_fp4_vs_fp8(self, model_name: str, batch_sizes: List[int]) -> Dict[str, Any]:
+    def benchmark_fp4_vs_fp8(self, model_name: str, batch_sizes: list[int]) -> dict[str, Any]:
         """
         Benchmark FP4 vs FP8 on Blackwell for given model.
         """
@@ -196,14 +197,14 @@ class NVIDIAForwardDeployed:
                 "power_efficiency_gain": "1.08x tokens/watt",
                 "accuracy_delta": "-0.3%",
             },
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 2: CUDA Graphs Conditional Nodes
     # ============================================================
     
-    def build_cuda_graph_conditional(self, spec: CUDAFGSpec) -> Dict[str, Any]:
+    def build_cuda_graph_conditional(self, spec: CUDAFGSpec) -> dict[str, Any]:
         """
         Build CUDA Graph with IF/ELSE and SWITCH conditional nodes.
         Blackwell: 2x faster runtime kernel selection vs CPU launch.
@@ -228,7 +229,7 @@ class NVIDIAForwardDeployed:
             "inference_use_case": "reasoning_models_test_time_compute",
             "training_use_case": "mfu_improvement_sustained_tensor_core",
             "launch_latency_us": 5,  # vs 500+ us for CPU launch
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     def _validate_cuda_graph(self, spec: CUDAFGSpec) -> None:
@@ -240,7 +241,7 @@ class NVIDIAForwardDeployed:
         for sw in spec.switch_nodes:
             assert "cases" in sw and len(sw["cases"]) > 1
     
-    def auto_generate_cuda_graph(self, model_trace: List[Dict]) -> CUDAFGSpec:
+    def auto_generate_cuda_graph(self, model_trace: list[dict]) -> CUDAFGSpec:
         """
         Auto-generate CUDA Graph from model execution trace.
         """
@@ -284,7 +285,7 @@ class NVIDIAForwardDeployed:
     # BOTTLENECK 3: MoE Grouped GEMM Optimization
     # ============================================================
     
-    def optimize_moe_grouped_gemm(self, moe_config: MoEConfig) -> Dict[str, Any]:
+    def optimize_moe_grouped_gemm(self, moe_config: MoEConfig) -> dict[str, Any]:
         """
         Optimize MoE inference with CUTLASS Grouped GEMM on Blackwell.
         Up to 5x performance over Hopper FP16 for DeepSeek-style MoE.
@@ -328,10 +329,10 @@ class NVIDIAForwardDeployed:
             "optimizations": optimizations,
             "expected_performance": expected_perf,
             "accuracy": "mlperf_compliant",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def profile_moe_routing(self, tokens: int, experts: int, top_k: int) -> Dict[str, Any]:
+    def profile_moe_routing(self, tokens: int, experts: int, top_k: int) -> dict[str, Any]:
         """
         Profile MoE routing overhead and token distribution.
         """
@@ -348,14 +349,14 @@ class NVIDIAForwardDeployed:
             "load_balance_cv": 0.12,  # coefficient of variation
             "expert_utilization": {f"expert_{i}": 0.85 + (i % 5) * 0.03 for i in range(experts)},
             "dropped_tokens_pct": 0.0,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 4: NVLink Scaling
     # ============================================================
     
-    def design_nvlink_topology(self, topology: NVLinkTopology) -> Dict[str, Any]:
+    def design_nvlink_topology(self, topology: NVLinkTopology) -> dict[str, Any]:
         """
         Design NVLink/NVLink Switch topology for multi-GPU scaling.
         Blackwell NVLink 5: 1.8 TB/s bidirectional per GPU.
@@ -400,14 +401,14 @@ class NVIDIAForwardDeployed:
                 "expert_parallel_moe",
                 "multi_node_inference",
             ],
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 5: TensorRT-LLM Tuning
     # ============================================================
     
-    def tune_tensorrt_llm(self, model_name: str, target: GPUTarget, precision: str) -> Dict[str, Any]:
+    def tune_tensorrt_llm(self, model_name: str, target: GPUTarget, precision: str) -> dict[str, Any]:
         """
         Tune TensorRT-LLM for specific model and GPU target.
         Includes: chunked prefill, FP4 quantization, kernel fusion, pipeline parallelism.
@@ -458,7 +459,7 @@ class NVIDIAForwardDeployed:
             "precision": precision,
             "tuning_config": tuning_config,
             "expected_results": expected_results,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     def _estimate_throughput(self, model: str, target: GPUTarget, precision: str) -> float:
@@ -483,7 +484,7 @@ class NVIDIAForwardDeployed:
     # BOTTLENECK 6: Kernel Autotuner
     # ============================================================
     
-    def autotune_kernel(self, kernel_name: str, target: GPUTarget, search_space: Dict) -> Dict[str, Any]:
+    def autotune_kernel(self, kernel_name: str, target: GPUTarget, search_space: dict) -> dict[str, Any]:
         """
         Autotune kernel using Nsight Compute + custom search.
         Optimizes: tile size, warp occupancy, shared memory, register pressure.
@@ -520,14 +521,14 @@ class NVIDIAForwardDeployed:
                 "l2_throughput_pct": 89,
             },
             "speedup_vs_default": "1.8x",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 7: Power/Performance Profiling
     # ============================================================
     
-    def profile_power_performance(self, workload: str, target: GPUTarget, duration_sec: int) -> Dict[str, Any]:
+    def profile_power_performance(self, workload: str, target: GPUTarget, duration_sec: int) -> dict[str, Any]:
         """
         Profile power consumption and performance per watt.
         Blackwell exhibits wider voltage variability; kernel tuning directly influences energy efficiency.
@@ -561,7 +562,7 @@ class NVIDIAForwardDeployed:
             "target": target.value,
             "power_profile": power_profile,
             "recommendations": recommendations,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     def _get_workload_power(self, workload: str, target: GPUTarget) -> int:
@@ -584,7 +585,7 @@ class NVIDIAForwardDeployed:
     # BOTTLENECK 8: Memory Bandwidth Bound Decode
     # ============================================================
     
-    def optimize_decode_bandwidth(self, model_size_gb: int, target: GPUTarget, batch: int) -> Dict[str, Any]:
+    def optimize_decode_bandwidth(self, model_size_gb: int, target: GPUTarget, batch: int) -> dict[str, Any]:
         """
         Optimize for memory-bandwidth-bound decode (most production inference).
         H200: 141 GB HBM3e, 4.8 TB/s -> 430 tok/s for 70B FP8
@@ -619,14 +620,14 @@ class NVIDIAForwardDeployed:
             },
             "cross_gpu_communication_tax": "avoided" if fits_single else "required",
             "recommendation": "H200 for 70B decode, B200 for 405B or FP4" if not fits_single else "optimal",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 9: Compiler Heuristics for Unified INT32/FP32
     # ============================================================
     
-    def optimize_compiler_heuristics(self, kernel_ptx: str, target: GPUTarget) -> Dict[str, Any]:
+    def optimize_compiler_heuristics(self, kernel_ptx: str, target: GPUTarget) -> dict[str, Any]:
         """
         Optimize compiler heuristics for Blackwell unified INT32/FP32 execution units.
         Requires new compiler heuristics in LLVM 18 / CUDA 12.9.
@@ -654,14 +655,14 @@ class NVIDIAForwardDeployed:
             "optimizations": optimizations,
             "expected_improvement": "10-15% for mixed INT/FP kernels",
             "verification": "SASS inspection required",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 10: 1000W TDP Cooling/Power
     # ============================================================
     
-    def plan_1000w_deployment(self, gpu_count: int, target: GPUTarget) -> Dict[str, Any]:
+    def plan_1000w_deployment(self, gpu_count: int, target: GPUTarget) -> dict[str, Any]:
         """
         Plan deployment for 1000W TDP Blackwell GPUs.
         Requires: liquid cooling, upgraded PDU, rack-level power distribution.
@@ -705,7 +706,7 @@ class NVIDIAForwardDeployed:
                 "power_infrastructure_usd": gpu_count * 3000,
                 "installation_usd": gpu_count * 2000,
             },
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
@@ -713,19 +714,19 @@ class NVIDIAForwardDeployed:
     # ============================================================
     
     def _generate_receipt(self, operation: str, data: Any) -> str:
-        receipt_data = f"{operation}:{json.dumps(data, sort_keys=True)}:{datetime.now(timezone.utc).isoformat()}"
+        receipt_data = f"{operation}:{json.dumps(data, sort_keys=True)}:{datetime.now(UTC).isoformat()}"
         receipt_id = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
         self._receipt_chain.append(receipt_id)
         return receipt_id
     
-    def get_receipt_chain(self) -> List[str]:
+    def get_receipt_chain(self) -> list[str]:
         return self._receipt_chain.copy()
     
     def verify_receipt(self, receipt_id: str) -> bool:
         return receipt_id in self._receipt_chain
 
 
-def create_nvidia_architect(config_path: Optional[Path] = None) -> NVIDIAForwardDeployed:
+def create_nvidia_architect(config_path: Path | None = None) -> NVIDIAForwardDeployed:
     return NVIDIAForwardDeployed(config_path)
 
 

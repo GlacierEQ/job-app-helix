@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import asdict, dataclass, field
 from enum import StrEnum
 from pathlib import Path
-from typing import Iterable, Mapping, Sequence
 
 
 class EvidenceLevel(StrEnum):

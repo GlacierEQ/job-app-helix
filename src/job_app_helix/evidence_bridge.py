@@ -11,9 +11,9 @@ import hashlib
 import json
 import sys
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 JOB_APP_HELIX_ROOT = Path("/data/data/com.termux/files/home/job-app-helix")
 MONOLITH_ROOT = Path("/data/data/com.termux/files/home/monolith")
@@ -70,7 +70,7 @@ def compute_content_hash(content: str) -> str:
 def bridge_evidence(evidence: EvidenceItem, target_spine: str, monolith_legal_path: Path) -> BridgeReceipt:
     spines = load_monolith_legal_spines(monolith_legal_path / f"{target_spine}.json")
 
-    bridge_data = f"{evidence.id}:{evidence.content_hash}:{target_spine}:{datetime.now(timezone.utc).isoformat()}"
+    bridge_data = f"{evidence.id}:{evidence.content_hash}:{target_spine}:{datetime.now(UTC).isoformat()}"
     bridge_hash = hashlib.sha256(bridge_data.encode()).hexdigest()
 
     spine_entry = SpineEntry(
@@ -79,7 +79,7 @@ def bridge_evidence(evidence: EvidenceItem, target_spine: str, monolith_legal_pa
         evidence_id=evidence.id,
         content_hash=evidence.content_hash,
         bridge_hash=bridge_hash,
-        timestamp=datetime.now(timezone.utc).isoformat(),
+        timestamp=datetime.now(UTC).isoformat(),
         provenance={
             "source_repo": evidence.source_repo,
             "source_path": evidence.source_path,
@@ -88,19 +88,19 @@ def bridge_evidence(evidence: EvidenceItem, target_spine: str, monolith_legal_pa
         },
     )
 
-    receipt_data = f"{evidence.id}:{target_spine}:{bridge_hash}:{datetime.now(timezone.utc).isoformat()}"
+    receipt_data = f"{evidence.id}:{target_spine}:{bridge_hash}:{datetime.now(UTC).isoformat()}"
     receipt_hash = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
 
     receipt = BridgeReceipt(
         evidence_item=evidence,
         target_spine=target_spine,
         spine_entry=spine_entry,
-        timestamp=datetime.now(timezone.utc).isoformat(),
+        timestamp=datetime.now(UTC).isoformat(),
         receipt_hash=receipt_hash,
     )
 
     spines.setdefault("evidence", []).append(asdict(spine_entry))
-    spines["last_bridged"] = datetime.now(timezone.utc).isoformat()
+    spines["last_bridged"] = datetime.now(UTC).isoformat()
 
     (monolith_legal_path / f"{target_spine}.json").write_text(json.dumps(spines, indent=2))
 
