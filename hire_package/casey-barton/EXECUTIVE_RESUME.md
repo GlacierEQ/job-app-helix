@@ -15,7 +15,7 @@ Built Job-App Helix as the evidence-bound control plane for a current 225-reposi
 - **Job-App Helix:** current 225-repository source-exhaustive estate across 21 families; 8 verified trust anchors; historical exact 67-repository governed boundary preserved for dated audit integrity.
 - **AKOS:** 94/94 tests across 12 modules on Python 3.11-3.13.
 - **README Mesh:** verified 21-node recruiter / expert / AI documentation rollout.
-- **Agent Coordinator:** 62/62 candidate-local Python 3.13 tests; hosted multi-version promotion remains explicitly pending.
+- **Agent Coordinator:** 95/95 candidate-local Python 3.12 tests; hosted multi-version promotion remains explicitly pending.
 - **Public execution architecture:** catalog allowlists, least-privilege credentials, replay protection, immutable receipts, and explicit blocked activation when required infrastructure is absent.
 
 ## Selected Engineering Impact
