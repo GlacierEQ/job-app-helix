@@ -234,3 +234,63 @@ def test_batch_limit_preserves_queue_order_and_never_marks_submission(tmp_path: 
         record = store.get_application(result.packets[0].application_id)
         assert record["status"] == "READY"
         assert record["external_reference"] is None
+
+
+def test_warm_first_lane_compiles_with_warm_route(tmp_path: Path) -> None:
+    profile = _profile()
+    target = _target()
+    strong = _opening("strong", ("Python", "agent systems", "observability"))
+    hard_gap = _opening(
+        "hard-gap",
+        ("Python", "CUDA", "ASIC design", "compiler kernels"),
+    )
+    candidates = (
+        (hard_gap, target, None, None),
+        (strong, target, None, None),
+    )
+
+    with ApplicationStore(tmp_path / "apps.sqlite3") as store:
+        result = compile_ranked_application_batch(
+            candidates,
+            profile,
+            output_dir=tmp_path / "packets",
+            store=store,
+            warm_first_openings=frozenset({"strong"}),
+        )
+
+        assert result.queue.warm_first_count == 1
+        assert result.selected_count == 1
+        assert result.compiled_count == 1
+        assert result.skipped_count == 1
+        packet = result.packets[0]
+        assert packet.opening_id == "strong"
+        assert packet.lane == "WARM_FIRST"
+        assert packet.status == "READY"
+        receipt = _priority_receipt(packet.packet_dir)
+        assert receipt["lane"] == "WARM_FIRST"
+        strategy_receipt = json.loads(
+            (Path(packet.packet_dir) / "STRATEGY_RECEIPT.json").read_text(encoding="utf-8")
+        )
+        assert strategy_receipt["route"] == "WARM_FIRST"
+
+
+def test_calibrated_warm_first_batch_keeps_lane(tmp_path: Path) -> None:
+    profile = _profile()
+    target = _target()
+    opening = _opening("calibrated-warm", ("Python", "agent systems", "observability"))
+
+    with ApplicationStore(tmp_path / "apps.sqlite3") as store:
+        result = compile_ranked_application_batch(
+            ((opening, target, None, None),),
+            profile,
+            output_dir=tmp_path / "packets",
+            store=store,
+            calibration=_calibration(),
+            warm_first_openings=frozenset({"calibrated-warm"}),
+        )
+
+        packet = result.packets[0]
+        assert packet.lane == "WARM_FIRST"
+        receipt = _priority_receipt(packet.packet_dir)
+        assert receipt["lane"] == "WARM_FIRST"
+        assert receipt["score_decomposition"]["mode"] == "OUTCOME_CALIBRATED"

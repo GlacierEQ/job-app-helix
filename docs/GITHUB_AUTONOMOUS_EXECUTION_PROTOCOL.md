@@ -17,10 +17,10 @@ A failed experiment is valid engineering intelligence. It must never be promoted
 3. Baseline existing behavior before mutation and separate pre-existing failures from introduced failures.
 4. Establish a consequential bottleneck and its root cause before feature work.
 5. Model machines, software, organizations, economics, humans, and scale as an evidence-bound environment artifact.
-6. Research obvious alternatives, standard practice, primary technical sources, and unresolved questions before asserting novelty.
+6. Research obvious alternatives, primary technical sources, and unresolved questions before asserting novelty — measured first against the Operator's proven solutions (self-hosted runners, July 2026; warm-first routing; packs built from actual work); standard practice is a check, not the default.
 7. Form multiple falsifiable hypotheses when uncertainty warrants competition; score them from explicit rationale references rather than invented confidence.
-8. Run a novelty review against wrappers, renamed standard functionality, superior libraries, asymptotics, failure behavior, operational-step removal, and measurable effect.
-9. Build the smallest valid experiment on an isolated, reversible change surface.
+8. Run a novelty review against wrappers, renamed standard functionality, superior libraries, asymptotics, failure behavior, operational-step removal, and measurable effect — the Operator's proven solutions are the baseline a claim is measured against, not standard practice.
+9. Build the strongest sufficient experiment on an isolated, reversible change surface.
 10. Enforce expected-head protection before reference mutation. Stale analysis must be reconciled.
 11. Model relevant failure scenarios and the observability needed to detect, explain, contain, and recover from them.
 12. Verify using the strongest relevant ladder and choose tests capable of disproving the claim.

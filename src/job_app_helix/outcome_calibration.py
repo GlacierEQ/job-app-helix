@@ -32,13 +32,15 @@ BASELINE_WEIGHTS = {
     "freshness": 0.05,
 }
 LANE_ORDER = {
-    "APPLY_NOW": 0,
-    "APPLY_NEXT": 1,
-    "PREPARE_GAPS": 2,
-    "DEFER": 3,
-    "BLOCKED_PROOF": 4,
+    "WARM_FIRST": 0,
+    "APPLY_NOW": 1,
+    "APPLY_NEXT": 2,
+    "PREPARE_GAPS": 3,
+    "DEFER": 4,
+    "BLOCKED_PROOF": 5,
 }
 LANE_CAPS = {
+    "WARM_FIRST": 100.0,
     "APPLY_NOW": 100.0,
     "APPLY_NEXT": 100.0,
     "PREPARE_GAPS": 45.0,

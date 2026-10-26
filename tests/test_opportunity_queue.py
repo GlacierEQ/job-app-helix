@@ -181,3 +181,56 @@ def test_wrong_company_intelligence_is_rejected() -> None:
             intelligence=_intelligence(company_id="other"),
             now=NOW,
         )
+
+
+def test_warm_first_lane_sorts_before_portal_lanes() -> None:
+    target = _target()
+    profile = _profile()
+    strong = _opening(
+        "strong",
+        requirements=("Python", "agent systems", "observability"),
+        preferred=("distributed systems",),
+    )
+    viable = _opening(
+        "viable",
+        requirements=("Python", "agent systems", "Kubernetes"),
+    )
+
+    queue = opportunity_queue.build_application_execution_queue(
+        (
+            (viable, target, None, None),
+            (strong, target, None, None),
+        ),
+        profile,
+        now=NOW,
+        warm_first_openings=frozenset({"strong"}),
+    )
+
+    assert queue.candidate_count == 2
+    assert queue.warm_first_count == 1
+    assert queue.apply_now_count == 1
+    assert queue.items[0].opening_id == "strong"
+    assert queue.items[0].lane == "WARM_FIRST"
+    assert queue.items[0].opportunity_recommendation == "APPLY_PRIORITY"
+    assert queue.items[1].opening_id == "viable"
+    assert queue.items[1].lane == "APPLY_NEXT"
+
+
+def test_warm_first_never_rescues_hard_gaps() -> None:
+    target = _target()
+    profile = _profile()
+    opening = _opening(
+        "hard-gap",
+        requirements=("Python", "CUDA", "ASIC design", "compiler kernels"),
+    )
+
+    queue = opportunity_queue.build_application_execution_queue(
+        ((opening, target, None, None),),
+        profile,
+        now=NOW,
+        warm_first_openings=frozenset({"hard-gap"}),
+    )
+
+    assert queue.warm_first_count == 0
+    assert queue.items[0].lane == "PREPARE_GAPS"
+    assert queue.items[0].opportunity_recommendation == "GAPS_TO_CLOSE"

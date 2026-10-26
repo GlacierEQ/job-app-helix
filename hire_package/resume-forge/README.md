@@ -12,7 +12,10 @@ like a tax form. The forge does both:
 
 - **Scrapes:** single column, no text boxes / images / layout tables, standard
   fonts (Calibri), real heading text, chronological order, standard section
-  names. Every glyph the parser reads is a glyph the human reads.
+  names. Every glyph the parser reads is a glyph the human reads. This
+  conformity is portal-imposed — the parsers demand it — not a house preference.
+  The forge styles what is already true; it never invents (the candidate-truth
+  allowlist lives in `content/_candidate.yaml`).
 - **Shines:** glacier-teal identity, letter-spaced small-cap section heads with
   hairline rules, right-aligned dates via tab stops, hanging-indent bullets,
   proof numbers set **bold** inline.

@@ -191,6 +191,7 @@ python3 scripts/validate_live_repository_links.py
 # Run core tests
 PYTHONPATH=src python3 -m pytest tests/test_application_registry.py tests/test_candidate_portfolio_boundary.py tests/test_live_repository_links.py tests/test_portfolio_audit_claims.py tests/test_portfolio_root_truth.py -q
 
+# Full suite: 917 tests (911/911 verified at head b83a1db, main CI run 40269056135, plus 6 new warm-first tests) — run with `pytest`. CI is being retargeted to self-hosted runners (pending; the Operator's July 2026 fix for the GitHub-hosted Actions reliance).
 # Test agent CLI
 python3 -m job_app_helix.agent_cli --help
 

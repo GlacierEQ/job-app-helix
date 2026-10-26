@@ -12,6 +12,7 @@ import argparse
 import json
 from collections.abc import Sequence
 from dataclasses import replace
+from datetime import datetime
 from pathlib import Path
 
 from .application_engine import ApplicationKit, CompanyTarget, find_target, load_targets
@@ -240,6 +241,7 @@ def project_company_aware_application(
     intelligence: CompanyIntelligence,
     *,
     role: str | None = None,
+    now: datetime | None = None,
 ) -> tuple[
     ApplicationKit,
     MatchResult,
@@ -259,7 +261,7 @@ def project_company_aware_application(
             "company intelligence does not match target: "
             f"{intelligence.company_id!r} != {target.company_id!r}"
         )
-    company_fit = assess_company_fit(profile, intelligence)
+    company_fit = assess_company_fit(profile, intelligence, now=now)
     company_rows = _company_alignment_rows(company_fit, profile)
     resume = _inject_before_truth_boundary(
         base_projection.resume_markdown,
@@ -304,6 +306,11 @@ def compile_requirement_aware_lifecycle(
     role: str | None = None,
     adapter: ApplicationAdapter | None = None,
     company_intelligence: CompanyIntelligence | None = None,
+    # Warm-first (referral-first) routing: warm outreach goes before the portal
+    # submission. Only meaningful for an actionable opportunity — a warm contact
+    # never rescues hard gaps or a blocked proof.
+    warm_first: bool = False,
+    now: datetime | None = None,
 ) -> dict[str, object]:
     """Compile a tracked recruiter packet from explicit evidence and fresh direction."""
     store.save_opening(opening)
@@ -322,7 +329,17 @@ def compile_requirement_aware_lifecycle(
             profile,
             company_intelligence,
             role=role,
+            now=now,
         )
+    if warm_first and assessment.recommendation not in {
+        "APPLY_PRIORITY",
+        "APPLY_VIABLE",
+    }:
+        raise ValueError(
+            "warm-first route requires an actionable opportunity recommendation, "
+            f"got {assessment.recommendation!r}"
+        )
+    route = "WARM_FIRST" if warm_first else "PORTAL"
 
     artifacts = dict(write_projection(projection, match, output_dir))
     target_dir = output_dir / projection.application_id
@@ -347,6 +364,7 @@ def compile_requirement_aware_lifecycle(
         "projection_digest": projection.digest,
         "opportunity_recommendation": assessment.recommendation,
         "opportunity_score": assessment.score,
+        "route": route,
         "matched_requirements": list(assessment.matched_requirements),
         "missing_requirements": list(assessment.missing_requirements),
         "claim_sources": list(projection.claim_sources),
@@ -377,6 +395,7 @@ def compile_requirement_aware_lifecycle(
         "kit": kit.as_dict(),
         "match": match.as_dict(),
         "opportunity": assessment.as_dict(),
+        "route": route,
         "projection_receipt": projection.digest,
         "artifacts": artifacts,
     }
@@ -409,6 +428,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--database", type=Path, required=True)
     parser.add_argument("--role")
     parser.add_argument(
+        "--warm-first",
+        action="store_true",
+        help="Route warm-first: warm outreach before the portal submission. "
+        "Requires an actionable opportunity recommendation.",
+    )
+    parser.add_argument(
         "--company-intelligence",
         type=Path,
         help="Optional provenance-bound company intelligence manifest.",
@@ -432,6 +457,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             store=store,
             role=args.role,
             company_intelligence=intelligence,
+            warm_first=args.warm_first,
         )
     print(json.dumps(packet, indent=2, sort_keys=True))
     recommendation = str(packet["application_priority"])

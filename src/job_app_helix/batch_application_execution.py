@@ -38,7 +38,7 @@ from .opportunity_queue import (
 )
 from .outcome_calibration import OutcomeCalibration, calibrate_queue
 
-DEFAULT_ACTIONABLE_LANES = ("APPLY_NOW", "APPLY_NEXT")
+DEFAULT_ACTIONABLE_LANES = ("WARM_FIRST", "APPLY_NOW", "APPLY_NEXT")
 
 
 @dataclass(frozen=True)
@@ -47,6 +47,9 @@ class BatchCandidate:
     opening_path: Path
     intelligence_path: Path | None = None
     role: str | None = None
+    # A referral/warm route exists for this opening: warm outreach goes first,
+    # portal submission second. Set in the batch manifest per candidate.
+    warm_first: bool = False
 
 
 @dataclass(frozen=True)
@@ -241,15 +244,19 @@ def compile_ranked_application_batch(
     actionable_lanes: Sequence[str] = DEFAULT_ACTIONABLE_LANES,
     limit: int | None = None,
     calibration: OutcomeCalibration | None = None,
+    warm_first_openings: frozenset[str] | None = None,
 ) -> BatchExecutionResult:
     """Compile top actionable items with deduplication and ranking provenance.
 
     Calibration is allowed to re-rank only through the existing ``calibrate_queue``
     safety contract. The priority receipt is regenerated even for deduplicated packets,
     so a new model can explain a changed rank without duplicating lifecycle records.
+    ``warm_first_openings`` holds opening_ids with a referral/warm route: those
+    openings take the WARM_FIRST lane and compile with the warm-first route.
     """
     normalized_lanes = tuple(dict.fromkeys(lane.upper() for lane in actionable_lanes))
     invalid = set(normalized_lanes) - {
+        "WARM_FIRST",
         "APPLY_NOW",
         "APPLY_NEXT",
         "PREPARE_GAPS",
@@ -261,7 +268,9 @@ def compile_ranked_application_batch(
     if limit is not None and limit <= 0:
         raise ValueError("limit must be positive when provided")
 
-    queue = build_application_execution_queue(candidates, profile)
+    queue = build_application_execution_queue(
+        candidates, profile, warm_first_openings=warm_first_openings
+    )
     if calibration is not None:
         queue = calibrate_queue(queue, calibration)
     calibration_sha256 = _calibration_sha256(calibration)
@@ -301,6 +310,7 @@ def compile_ranked_application_batch(
                 store=store,
                 role=role,
                 company_intelligence=intelligence,
+                warm_first=(item.lane == "WARM_FIRST"),
             )
             compiled_id = str(packet["application_id"])
             if compiled_id != application_id:
@@ -372,6 +382,7 @@ def load_batch_manifest(path: Path) -> tuple[BatchCandidate, ...]:
                     root / str(intelligence_value) if intelligence_value else None
                 ),
                 role=str(item["role"]) if item.get("role") else None,
+                warm_first=bool(item.get("warm_first", False)),
             )
         )
     return tuple(rows)
@@ -413,7 +424,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     profile = load_candidate_profile(args.profile)
-    candidates = resolve_batch_candidates(load_batch_manifest(args.manifest))
+    manifest = load_batch_manifest(args.manifest)
+    candidates = resolve_batch_candidates(manifest)
     lanes = tuple(args.lane) if args.lane else DEFAULT_ACTIONABLE_LANES
     calibration = (
         load_outcome_calibration(args.calibration) if args.calibration is not None else None
@@ -427,6 +439,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             actionable_lanes=lanes,
             limit=args.limit,
             calibration=calibration,
+            warm_first_openings=frozenset(
+                opening.opening_id
+                for item, (opening, _target, _intelligence, _role) in zip(
+                    manifest, candidates, strict=True
+                )
+                if item.warm_first
+            ),
         )
 
     rendered = json.dumps(result.as_dict(), indent=2, sort_keys=True) + "\n"

@@ -49,6 +49,9 @@ class QueueInput:
     opening_path: Path
     intelligence_path: Path | None = None
     role: str | None = None
+    # A referral/warm route exists for this opening: warm outreach goes first,
+    # portal submission second. Set in the queue manifest per candidate.
+    warm_first: bool = False
 
 
 @dataclass(frozen=True)
@@ -82,6 +85,9 @@ class ApplicationExecutionQueue:
     apply_now_count: int
     gap_work_count: int
     items: tuple[ApplicationQueueItem, ...]
+    # Count of WARM_FIRST-lane items. Defaulted last so existing positional
+    # construction keeps working; the builder always sets it explicitly.
+    warm_first_count: int = 0
 
     def as_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -92,7 +98,12 @@ def _freshness(assessment: CompanyFitAssessment) -> float:
     return assessment.fresh_signal_count / total if total else 0.0
 
 
-def _lane(opportunity: OpportunityAssessment) -> str:
+def _lane(opportunity: OpportunityAssessment, *, warm_first: bool = False) -> str:
+    # Warm-first (referral-first) is the Operator's routing: a warm contact outranks
+    # a cold portal submission for an otherwise actionable opening. It never rescues
+    # hard gaps or a blocked proof — those lanes stand on their own evidence.
+    if warm_first and opportunity.recommendation in {"APPLY_PRIORITY", "APPLY_VIABLE"}:
+        return "WARM_FIRST"
     if opportunity.recommendation == "BLOCKED_NO_PUBLIC_PROOF":
         return "BLOCKED_PROOF"
     if opportunity.recommendation == "GAPS_TO_CLOSE":
@@ -176,8 +187,15 @@ def build_application_execution_queue(
     profile: CandidateProfile,
     *,
     now: datetime | None = None,
+    warm_first_openings: frozenset[str] | None = None,
 ) -> ApplicationExecutionQueue:
-    """Rank a batch while preserving deterministic lane and score ordering."""
+    """Rank a batch while preserving deterministic lane and score ordering.
+
+    ``warm_first_openings`` holds opening_ids with a referral/warm route: those
+    openings take the WARM_FIRST lane (warm outreach before portal submission)
+    when their opportunity recommendation is otherwise actionable.
+    """
+    warm_first = warm_first_openings or frozenset()
     rows: list[RankedCandidate] = []
     for opening, target, intelligence, role in candidates:
         score, opportunity, company_fit, reasons = score_queue_candidate(
@@ -191,7 +209,7 @@ def build_application_execution_queue(
         rows.append(
             (
                 score,
-                _lane(opportunity),
+                _lane(opportunity, warm_first=opening.opening_id in warm_first),
                 opportunity,
                 company_fit,
                 opening,
@@ -201,11 +219,12 @@ def build_application_execution_queue(
         )
 
     lane_order = {
-        "APPLY_NOW": 0,
-        "APPLY_NEXT": 1,
-        "PREPARE_GAPS": 2,
-        "DEFER": 3,
-        "BLOCKED_PROOF": 4,
+        "WARM_FIRST": 0,
+        "APPLY_NOW": 1,
+        "APPLY_NEXT": 2,
+        "PREPARE_GAPS": 3,
+        "DEFER": 4,
+        "BLOCKED_PROOF": 5,
     }
     rows.sort(
         key=lambda row: (
@@ -255,6 +274,7 @@ def build_application_execution_queue(
         generated_at=clock.isoformat().replace("+00:00", "Z"),
         candidate_count=len(items),
         apply_now_count=sum(item.lane in {"APPLY_NOW", "APPLY_NEXT"} for item in items),
+        warm_first_count=sum(item.lane == "WARM_FIRST" for item in items),
         gap_work_count=sum(item.lane == "PREPARE_GAPS" for item in items),
         items=tuple(items),
     )
@@ -283,6 +303,7 @@ def _manifest_inputs(path: Path) -> tuple[QueueInput, ...]:
                 opening_path=opening,
                 intelligence_path=intelligence_path,
                 role=(str(item["role"]) if item.get("role") else None),
+                warm_first=bool(item.get("warm_first", False)),
             )
         )
     return tuple(inputs)
@@ -303,8 +324,9 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     profile = load_candidate_profile(args.profile)
     targets = load_targets()
+    inputs = _manifest_inputs(args.manifest)
     candidates: list[QueueCandidate] = []
-    for item in _manifest_inputs(args.manifest):
+    for item in inputs:
         target = find_target(item.company, targets)
         opening = load_job_opening(item.opening_path)
         intelligence = (
@@ -314,13 +336,23 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         candidates.append((opening, target, intelligence, item.role))
 
-    queue = build_application_execution_queue(candidates, profile)
+    queue = build_application_execution_queue(
+        candidates,
+        profile,
+        warm_first_openings=frozenset(
+            opening.opening_id
+            for (opening, _target, _intelligence, _role), item in zip(
+                candidates, inputs, strict=True
+            )
+            if item.warm_first
+        ),
+    )
     rendered = json.dumps(queue.as_dict(), indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(rendered, encoding="utf-8")
     print(rendered, end="")
-    return 0 if queue.apply_now_count else 2
+    return 0 if (queue.apply_now_count or queue.warm_first_count) else 2
 
 
 if __name__ == "__main__":

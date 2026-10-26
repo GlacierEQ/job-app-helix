@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime as dt
 import json
 from pathlib import Path
 
@@ -19,6 +20,11 @@ from job_app_helix.application_strategy import (
 from job_app_helix.company_intelligence import load_company_intelligence
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# Pinned clock inside the Anthropic manifest's freshness window (collected
+# 2026-09-07, max_age_days 45): company-fit assertions must not depend on the
+# wall clock, or the test goes red the day the manifest ages out.
+NOW = dt.datetime(2026, 9, 20, tzinfo=dt.UTC)
 
 
 def _profile(tmp_path: Path) -> Path:
@@ -132,6 +138,7 @@ def test_company_direction_changes_recruiter_copy_only_when_evidence_exists(
         profile,
         _intelligence(),
         role="Safety Systems Engineer",
+        now=NOW,
     )
 
     assert opportunity.recommendation == "APPLY_PRIORITY"
@@ -199,3 +206,59 @@ def test_compile_lifecycle_persists_company_strategy_receipts(tmp_path: Path) ->
     assert len(receipt["company_source_urls"]) == 5
     assert packet["schema"] == "glaciereq.company-aware-application-packet.v1"
     assert application["status"] == "READY"
+
+
+def test_warm_first_route_recorded_in_strategy_receipt(tmp_path: Path) -> None:
+    profile = load_candidate_profile(_profile(tmp_path))
+    output_dir = tmp_path / "output"
+    with ApplicationStore(tmp_path / "applications.sqlite3") as store:
+        packet = compile_requirement_aware_lifecycle(
+            _opening(),
+            _target(),
+            profile,
+            output_dir=output_dir,
+            store=store,
+            role="Safety Systems Engineer",
+            warm_first=True,
+        )
+        application = store.get_application(str(packet["application_id"]))
+
+    assert packet["route"] == "WARM_FIRST"
+    assert packet["application_priority"] == "APPLY_PRIORITY"
+    assert application["status"] == "READY"
+    receipt = json.loads(
+        Path(str(packet["artifacts"]["strategy_receipt"])).read_text(encoding="utf-8")
+    )
+    assert receipt["route"] == "WARM_FIRST"
+    assert receipt["opportunity_recommendation"] == "APPLY_PRIORITY"
+
+
+def test_warm_first_rejected_for_gap_opening(tmp_path: Path) -> None:
+    profile = load_candidate_profile(_profile(tmp_path))
+    opening = ingest_job_opening(
+        {
+            "company": "Anthropic",
+            "title": "Forward Deployed Engineer",
+            "description": "Python CUDA ASIC compiler role.",
+            "requirements": [
+                "Python",
+                "CUDA kernel optimization",
+                "ASIC verification",
+                "compiler backend development",
+            ],
+        }
+    )
+
+    with (
+        ApplicationStore(tmp_path / "applications.sqlite3") as store,
+        pytest.raises(ValueError, match="warm-first route requires an actionable"),
+    ):
+        compile_requirement_aware_lifecycle(
+            opening,
+            _target(),
+            profile,
+            output_dir=tmp_path / "output",
+            store=store,
+            role="Safety Systems Engineer",
+            warm_first=True,
+        )

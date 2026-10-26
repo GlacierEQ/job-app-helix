@@ -4,7 +4,9 @@ This block is pinned above all doctrine. When it conflicts with any later sectio
 Operator corrections are timestamped and beat older prose. Ranked MUST / NEVER / DEFAULT.
 
 NEVER  One-winner / single-authority framing. "Sovereign" and "Canonical" are authority terms the operator does NOT endorse
-        (Sovereign was only tolerated as the model's default; Canonical is not banned, just not our mesh vocabulary).
+        (Sovereign was only tolerated as the model's default; Canonical is eradicated — his order, Oct 25 19:46 HST:
+        "FINISH IT. ERADICATE CANONICAL FROM EVERYTHING YOU CAN TOUCH." The old "not banned, just not our mesh
+        vocabulary" framing is superseded by that order and is dead text.)
         Use HOLOGRAPHIC MESH framing: decentralized, many nodes, no single winner.
 MUST   Intelligent Behavioral Synthesis over Blind Clobbering: Never discard, clobber, or fast-forward branches based on naming conventions or titles. All divergent trees must be analyzed for their actual functional behavior, AST structures, and test assertions. Reconcile conflicts by preserving verified capabilities and synthesizing the superior, robust implementation.
 
