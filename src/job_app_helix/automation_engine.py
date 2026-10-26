@@ -11,10 +11,10 @@ import hashlib
 import json
 import subprocess
 import sys
-from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 HELIX_ROOT = Path("/data/data/com.termux/files/home/job-app-helix/helix")
 AUTOMATIONS_DIR = HELIX_ROOT / "automations"
@@ -117,7 +117,7 @@ def run_automation(automation: str, target: str, params: dict[str, Any]) -> Auto
         output = {"error": str(e)}
         success = False
 
-    receipt_data = f"{automation}:{target}:{success}:{datetime.now(timezone.utc).isoformat()}"
+    receipt_data = f"{automation}:{target}:{success}:{datetime.now(UTC).isoformat()}"
     receipt_hash = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
 
     return AutomationResult(
@@ -191,7 +191,7 @@ def run_proof(proof: str, target: str, params: dict[str, Any]) -> AutomationResu
         output = {"error": str(e)}
         success = False
 
-    receipt_data = f"{proof}:{target}:{success}:{datetime.now(timezone.utc).isoformat()}"
+    receipt_data = f"{proof}:{target}:{success}:{datetime.now(UTC).isoformat()}"
     receipt_hash = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
 
     return AutomationResult(

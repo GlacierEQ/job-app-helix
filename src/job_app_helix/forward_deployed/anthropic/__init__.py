@@ -5,15 +5,15 @@ Solves: Constitutional AI scaling, interpretability, containment verification, e
 
 from __future__ import annotations
 
-import asyncio
 import hashlib
 import json
 import time
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Set
+from datetime import UTC, datetime
 from enum import Enum
+from pathlib import Path
+from typing import Any
+
 
 class AnthropicBottleneck(Enum):
     CONSTITUTIONAL_AI_SCALING = "constitutional_ai_scaling"
@@ -31,14 +31,14 @@ class ConstitutionalPrinciple:
     principle: str
     category: str  # safety, helpfulness, honesty, autonomy
     priority: int
-    test_cases: List[Dict[str, Any]] = field(default_factory=list)
+    test_cases: list[dict[str, Any]] = field(default_factory=list)
     verification_status: str = "pending"
 
 @dataclass
 class CircuitTrace:
     layer: int
     head: int
-    activation_pattern: Dict[str, float]
+    activation_pattern: dict[str, float]
     attribution_score: float
     human_readable: str
 
@@ -46,10 +46,10 @@ class CircuitTrace:
 class ContainmentPredicate:
     id: str
     boundary_action: str
-    state_precondition: Dict[str, Any]
-    state_postcondition: Dict[str, Any]
+    state_precondition: dict[str, Any]
+    state_postcondition: dict[str, Any]
     verified: bool = False
-    dafny_proof: Optional[str] = None
+    dafny_proof: str | None = None
 
 @dataclass
 class EvalAdversarialResult:
@@ -66,15 +66,15 @@ class AnthropicForwardDeployed:
     Each method solves a specific bottleneck with production-grade engineering.
     """
     
-    def __init__(self, config_path: Optional[Path] = None):
+    def __init__(self, config_path: Path | None = None):
         self.config = self._load_config(config_path)
-        self.constitution: List[ConstitutionalPrinciple] = []
-        self.circuit_cache: Dict[str, CircuitTrace] = {}
-        self.containment_predicates: List[ContainmentPredicate] = []
-        self.eval_history: List[EvalAdversarialResult] = []
-        self._receipt_chain: List[str] = []
+        self.constitution: list[ConstitutionalPrinciple] = []
+        self.circuit_cache: dict[str, CircuitTrace] = {}
+        self.containment_predicates: list[ContainmentPredicate] = []
+        self.eval_history: list[EvalAdversarialResult] = []
+        self._receipt_chain: list[str] = []
         
-    def _load_config(self, config_path: Optional[Path]) -> Dict[str, Any]:
+    def _load_config(self, config_path: Path | None) -> dict[str, Any]:
         default = {
             "model_family": "claude",
             "constitution_version": "2026.1",
@@ -93,7 +93,7 @@ class AnthropicForwardDeployed:
     # BOTTLENECK 1: Constitutional AI Scaling
     # ============================================================
     
-    def synthesize_constitution(self, principles: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def synthesize_constitution(self, principles: list[dict[str, Any]]) -> dict[str, Any]:
         """
         Synthesize constitutional principles into automated feedback generator.
         Replaces RLHF human feedback with AI-generated feedback at scale.
@@ -120,7 +120,7 @@ class AnthropicForwardDeployed:
             "receipt_id": receipt_id,
             "constitution_size": len(synthesized),
             "synthesized": synthesized,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     def _generate_feedback_function(self, principle: ConstitutionalPrinciple) -> str:
@@ -149,7 +149,7 @@ class AnthropicForwardDeployed:
         }
         return checks.get(principle.category, 'pass  # No specific checks for this category')
     
-    def run_cai_critique(self, model_output: str, context: Dict[str, Any]) -> Dict[str, Any]:
+    def run_cai_critique(self, model_output: str, context: dict[str, Any]) -> dict[str, Any]:
         """Run Constitutional AI critique using synthesized principles."""
         results = []
         for principle in self.constitution:
@@ -171,7 +171,7 @@ class AnthropicForwardDeployed:
             "overall_compliant": overall_compliant,
             "overall_score": overall_score,
             "principle_results": results,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
@@ -201,7 +201,7 @@ class AnthropicForwardDeployed:
         
         return trace
     
-    def train_autoencoder(self, activations: List[Dict[str, float]], concept: str) -> Dict[str, Any]:
+    def train_autoencoder(self, activations: list[dict[str, float]], concept: str) -> dict[str, Any]:
         """
         Train sparse autoencoder to translate model thoughts into human-readable text.
         Implements Anthropic's Natural Language Autoencoders approach.
@@ -217,10 +217,10 @@ class AnthropicForwardDeployed:
             "human_readable_features": [
                 f"Feature {i}: {concept} sub-concept" for i in range(10)
             ],
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def extract_persona_vector(self, trait: str, contrastive_pairs: List[Tuple[str, str]]) -> Dict[str, Any]:
+    def extract_persona_vector(self, trait: str, contrastive_pairs: list[tuple[str, str]]) -> dict[str, Any]:
         """
         Extract persona vector for trait monitoring (sycophancy, hallucination, etc.).
         Implements Anthropic's persona vectors methodology.
@@ -234,14 +234,14 @@ class AnthropicForwardDeployed:
             "effect_size": 0.73,
             "monitoring_fn": f"monitor_{trait}_vector(activations) -> float",
             "mitigation": f"Steer away from {trait} by subtracting {trait}_vector * alpha",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 3: Containment Verification (Formal)
     # ============================================================
     
-    def verify_containment_predicate(self, predicate: ContainmentPredicate) -> Dict[str, Any]:
+    def verify_containment_predicate(self, predicate: ContainmentPredicate) -> dict[str, Any]:
         """
         Verify containment predicate using Dafny formal verification.
         Boundary-enforceable predicates: typed action, modeled boundary event, system state.
@@ -264,10 +264,10 @@ class AnthropicForwardDeployed:
             "dafny_proof_hash": hashlib.sha256(predicate.dafny_proof.encode()).hexdigest()[:16],
             "boundary_enforceable": True,
             "effect_exclusivity": True,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def generate_containment_layer(self, allowed_actions: List[str], forbidden_actions: List[str]) -> Dict[str, Any]:
+    def generate_containment_layer(self, allowed_actions: list[str], forbidden_actions: list[str]) -> dict[str, Any]:
         """
         Generate containment layer that makes forbidden actions unrepresentable.
         Implements containment verification: foreclosure at vocabulary level.
@@ -292,14 +292,14 @@ class AnthropicForwardDeployed:
             "receipt_id": receipt_id,
             "layer_spec": layer_spec,
             "verification_status": "verified_at_vocabulary_level",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 4: Eval Adversarial Frontier
     # ============================================================
     
-    def run_adversarial_eval(self, model, eval_suite: str, tasks: List[Dict]) -> EvalAdversarialResult:
+    def run_adversarial_eval(self, model, eval_suite: str, tasks: list[dict]) -> EvalAdversarialResult:
         """
         Run adversarial evaluation detecting:
         - Model gaming benchmarks (eval awareness)
@@ -333,10 +333,10 @@ class AnthropicForwardDeployed:
             "infrastructure_noise": infra_noise,
             "confidence": result.confidence,
             "mitigation": result.mitigation,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def design_ai_resistant_eval(self, capability: str, n_tasks: int = 50) -> Dict[str, Any]:
+    def design_ai_resistant_eval(self, capability: str, n_tasks: int = 50) -> dict[str, Any]:
         """
         Design AI-resistant evaluation from real failure modes.
         Implements Anthropic's 'Demystifying Evals' methodology.
@@ -358,14 +358,14 @@ class AnthropicForwardDeployed:
                 "infrastructure_noise_baseline",
                 "candidate_vs_model_separation",
             ],
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 5: Agent Autonomy & Security
     # ============================================================
     
-    def design_agent_skill(self, skill_name: str, capability: str, security_level: str) -> Dict[str, Any]:
+    def design_agent_skill(self, skill_name: str, capability: str, security_level: str) -> dict[str, Any]:
         """
         Design Agent Skill for MCP ecosystem with security sandboxing.
         Implements Anthropic's 'Equipping agents for the real world with Agent Skills'.
@@ -395,10 +395,10 @@ class AnthropicForwardDeployed:
                 "explicit_user_consent",
                 "audit_logged",
             ],
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def _get_skill_permissions(self, security_level: str) -> List[str]:
+    def _get_skill_permissions(self, security_level: str) -> list[str]:
         perms = {
             "low": ["read_files", "web_search"],
             "medium": ["read_files", "write_files", "web_search", "code_execution"],
@@ -406,7 +406,7 @@ class AnthropicForwardDeployed:
         }
         return perms.get(security_level, ["read_files"])
     
-    def deploy_dual_sandbox(self, agent_config: Dict[str, Any]) -> Dict[str, Any]:
+    def deploy_dual_sandbox(self, agent_config: dict[str, Any]) -> dict[str, Any]:
         """
         Deploy dual-isolation sandbox for security + autonomy.
         Implements Anthropic's 'Claude Code Sandboxing' approach.
@@ -432,14 +432,14 @@ class AnthropicForwardDeployed:
                 "audit_trail_complete",
             ],
             "token_savings": "98.7% via code-based tool interaction",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 6: Context Engineering
     # ============================================================
     
-    def optimize_context(self, task: str, context_window: int, retrieval_corpus: List[str]) -> Dict[str, Any]:
+    def optimize_context(self, task: str, context_window: int, retrieval_corpus: list[str]) -> dict[str, Any]:
         """
         Optimize context for AI agents using contextual retrieval.
         Implements Anthropic's 'Effective context engineering for AI agents'.
@@ -462,14 +462,14 @@ class AnthropicForwardDeployed:
                 "output": context_window * 0.1,
             },
             "expected_improvement": "15-20% on long-context tasks",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 7: Scalable Oversight
     # ============================================================
     
-    def design_scalable_oversight(self, model_capability: str, human_capability: str) -> Dict[str, Any]:
+    def design_scalable_oversight(self, model_capability: str, human_capability: str) -> dict[str, Any]:
         """
         Design scalable oversight for supervising AI more capable than humans.
         Implements Anthropic's alignment team approach.
@@ -495,14 +495,14 @@ class AnthropicForwardDeployed:
                 "cost_per_sample": "$0.001",
                 "max_model_capability": "unbounded",
             },
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
     # BOTTLENECK 8: Long-Running Agents
     # ============================================================
     
-    def design_long_running_agent(self, task_type: str, duration_hours: float) -> Dict[str, Any]:
+    def design_long_running_agent(self, task_type: str, duration_hours: float) -> dict[str, Any]:
         """
         Design two-agent harness for long-running tasks.
         Implements Anthropic's 'Effective Harnesses for Long-Running Agents'.
@@ -525,7 +525,7 @@ class AnthropicForwardDeployed:
             },
             "browser_testing": True,
             "end_to_end_validation": "catches_bugs_unit_tests_miss",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     
     # ============================================================
@@ -534,12 +534,12 @@ class AnthropicForwardDeployed:
     
     def _generate_receipt(self, operation: str, data: Any) -> str:
         """Generate hash-bound receipt for every operation."""
-        receipt_data = f"{operation}:{json.dumps(data, sort_keys=True)}:{datetime.now(timezone.utc).isoformat()}"
+        receipt_data = f"{operation}:{json.dumps(data, sort_keys=True)}:{datetime.now(UTC).isoformat()}"
         receipt_id = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
         self._receipt_chain.append(receipt_id)
         return receipt_id
     
-    def get_receipt_chain(self) -> List[str]:
+    def get_receipt_chain(self) -> list[str]:
         return self._receipt_chain.copy()
     
     def verify_receipt(self, receipt_id: str) -> bool:
@@ -547,7 +547,7 @@ class AnthropicForwardDeployed:
 
 
 # Factory function for easy deployment
-def create_anthropic_architect(config_path: Optional[Path] = None) -> AnthropicForwardDeployed:
+def create_anthropic_architect(config_path: Path | None = None) -> AnthropicForwardDeployed:
     """Create configured Anthropic forward-deployed architect."""
     return AnthropicForwardDeployed(config_path)
 

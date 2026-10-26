@@ -10,9 +10,9 @@ from __future__ import annotations
 import json
 import sys
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 MONOLITH_ROOT = Path("/data/data/com.termux/files/home/monolith")
 TOWER_ROOT = Path("/data/data/com.termux/files/home/the-tower-of-babel")
@@ -36,8 +36,8 @@ class FederatedCapability:
     interface: str
     verified: bool
     confidence: str
-    placement: Optional[dict[str, Any]] = None
-    fitness_scores: Optional[dict[str, float]] = None
+    placement: dict[str, Any] | None = None
+    fitness_scores: dict[str, float] | None = None
 
 
 @dataclass
@@ -125,13 +125,13 @@ def federate_capabilities(query: CapabilityQuery, monolith_catalog: Path, tower_
 
     all_caps = monolith_caps + tower_caps
 
-    receipt_data = f"{query.domain}:{query.requirement}:{len(all_caps)}:{datetime.now(timezone.utc).isoformat()}"
+    receipt_data = f"{query.domain}:{query.requirement}:{len(all_caps)}:{datetime.now(UTC).isoformat()}"
     import hashlib
     receipt_hash = hashlib.sha256(receipt_data.encode()).hexdigest()[:16]
 
     receipt = ResolutionReceipt(
         query=query,
-        timestamp=datetime.now(timezone.utc).isoformat(),
+        timestamp=datetime.now(UTC).isoformat(),
         capabilities_found=len(all_caps),
         monolith_matches=len(monolith_caps),
         tower_resolutions=len(tower_caps),
