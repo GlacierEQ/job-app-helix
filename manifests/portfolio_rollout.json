@@ -79,9 +79,9 @@
       "current_state": "UNVERIFIED",
       "current_evidence": "INVENTORY",
       "target_evidence": "TEST",
-      "progress": {"completed_count":0,"remaining_count":36},
+      "progress": {"completed_count":0,"remaining_count":16},
       "acceptance": {"require_readme_contract":true,"require_positive_test_count":true,"require_build_receipt":false},
-      "repositories": ["JOB-RESUME-BUILDER-","apple-ane-kv-quantizer","colossus-gateway","comet-browser-agent-bridge","deepmind-tpu-mesh-optimizer","deepseek-mla-moe-sentinel","ECHO","glaciereq-mcp-stack","grokodile","kimi-mooncake-kv-stream","nvidia-deep-reasoning","nvidia-gpu-health","openai-reasoning-kv-sentinel","pro-code","spiral-engine","xai-colossus-cooling","xai-colossus-energy","anthropic-agent-skills-runtime","anthropic-constitutional-automation","anthropic-containment-verifier","anthropic-eval-hardener","anthropic-interpretability-engine","nvidia-blackwell-fp4-optimizer","nvidia-cuda-graphs-conditional","nvidia-kernel-autotuner","nvidia-moe-grouped-gemm","nvidia-nvlink-scaler","nvidia-power-perf-profiler","nvidia-tensorrt-llm-tuner","spacex-ai-flight-controller","spacex-engine-out-compensator","spacex-flight-termination-hardener","spacex-hitl-testbed-automation","spacex-in-space-refueling-planner","spacex-stage-separation-optimizer","spacex-starship-flight-software"]
+      "repositories": ["JOB-RESUME-BUILDER-","apple-ane-kv-quantizer","colossus-gateway","comet-browser-agent-bridge","deepmind-tpu-mesh-optimizer","deepseek-mla-moe-sentinel","ECHO","glaciereq-mcp-stack","grokodile","kimi-mooncake-kv-stream","nvidia-deep-reasoning","nvidia-gpu-health","openai-reasoning-kv-sentinel","pro-code","xai-colossus-cooling","xai-colossus-energy"]
     },
     {
       "id": "wave-4-capability-elevation",
@@ -91,9 +91,9 @@
       "current_state": "UNVERIFIED",
       "current_evidence": "INVENTORY",
       "target_evidence": "TEST",
-      "progress": {"completed_count":0,"remaining_count":27},
+      "progress": {"completed_count":0,"remaining_count":25},
       "acceptance": {"require_readme_contract":true,"require_positive_test_count":true,"require_build_receipt":false},
-      "repositories": ["AEON-777","GlacierEQ_Swarm","Pro-comet-agent","apex-cli","apex-control-plane","aws-trainium-neuron-sentinel","colossus-training-flux","job-application","lovable-design-app-synth","manus-autonomous-web-agent","meta-llama-collective-sentinel","microsoft-azure-ops","microsoft-identity-zero-trust","notion-mcp-empowerment-engine","notion-workflow-intelligence","notion-workspace-optimizer","openclaw","opera-neon-spatial-workspace","qwen-vl-flash-router","robotics-vla-torque-sentinel","sigma-glue","tasklet-micro-agent-engine","tesla-fsd-occupancy-stream","token_saver","xai-colossus-2","xai-colossus-nanosphere","xai-colossus-security"]
+      "repositories": ["GlacierEQ_Swarm","Pro-comet-agent","apex-cli","apex-control-plane","aws-trainium-neuron-sentinel","colossus-training-flux","job-application","lovable-design-app-synth","manus-autonomous-web-agent","meta-llama-collective-sentinel","microsoft-azure-ops","microsoft-identity-zero-trust","notion-workflow-intelligence","notion-workspace-optimizer","openclaw","opera-neon-spatial-workspace","qwen-vl-flash-router","robotics-vla-torque-sentinel","sigma-glue","tasklet-micro-agent-engine","tesla-fsd-occupancy-stream","token_saver","xai-colossus-2","xai-colossus-nanosphere","xai-colossus-security"]
     }
   ]
 }
