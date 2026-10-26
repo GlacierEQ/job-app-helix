@@ -46,8 +46,8 @@ jobs:
           ruff check src tests scripts showcase/demo_15min_run.py
           --output-format=github
 
-      - name: Run tests
-        run: pytest
+      - name: Run tests with coverage gate
+        run: pytest --cov=job_app_helix --cov-report=term-missing
 
       - name: Validate exact portfolio rollout contract
         run: python -m job_app_helix.portfolio_cli validate

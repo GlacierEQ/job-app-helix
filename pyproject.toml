@@ -30,6 +30,7 @@ dev = [
   "grpcio-tools>=1.74,<2",
   "mypy>=1.13,<2",
   "pytest>=9.1.1,<10",
+  "pytest-cov>=7.1,<8",
   "ruff>=0.9,<1",
 ]
 
@@ -76,6 +77,17 @@ packages = ["src/job_app_helix"]
 [tool.pytest.ini_options]
 addopts = "-q"
 testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["src/job_app_helix"]
+
+[tool.coverage.report]
+# CI-enforced coverage gate (coverage.py, no external service).
+# Measured 77% on 2026-10-26 (917 tests, all passing); the 80% target
+# is not yet met, so the gate sits at 75% to keep main green. Bump
+# fail_under to 80 once coverage work closes the gap.
+fail_under = 75
+show_missing = true
 
 [tool.ruff]
 target-version = "py311"
