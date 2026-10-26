@@ -116,9 +116,9 @@ def test_precise_claims_have_immutable_or_local_receipts() -> None:
     assert receipt_path.is_file()
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     assert receipt["result"] == {
-        "collected": 62,
-        "executed": 62,
-        "passed": 62,
+        "collected": 95,
+        "executed": 95,
+        "passed": 95,
         "failed": 0,
         "errors": 0,
         "skipped": 0,

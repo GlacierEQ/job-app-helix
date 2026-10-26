@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Topsail Applied AI Engineer (full-time remote US; https://topsail.partners/careers/applied-ai-engineer; date unconfirmed, first seen 2026-10-19)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build the systems underneath agent deployments: the agent runtimes, tool and MCP integrations, eval harnesses, and observability that turn one-off field wins into reusable platform. Every agent I ship runs under an eval discipline first — golden sets, behavioral assertions, trace logging, judge criteria — and every production failure mode I have found has something built to catch it. Fail-closed by default."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: hand-rolled multi-agent loops with planning and tool-use, retrieval, memory, guardrails, and human handoffs; **65** MCP connectors exposing governed context to any MCP-compatible system; full run traces so any execution can be reconstructed; model-agnostic abstractions with benchmark loops that track cost, latency, and accuracy on every release."
+"competencies":
+  - "category": "Engineering"
+    "items": "TypeScript · Python · Node.js · SQL · Bash · REST APIs · containers · GitHub Actions (CI/CD) · Supabase · Postgres · event-driven systems"
+  - "category": "AI & Evaluation"
+    "items": "agent runtimes · MCP servers & connectors · LLM evaluation harnesses · judge-in-the-loop patterns · trace intelligence · failure-mode instrumentation · benchmarking & experiments · memory systems · RAG · function calling · structured outputs · hand-rolled multi-agent loops · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "production platform engineering · observability & run logging · latency & token-cost benchmarks · CI regression gates · decision audit receipts · documentation engineers actually read"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Own the harness: eval suites, traces, and judge-in-the-loop patterns that tell whether an agent is actually doing the job, against a baseline. Prompt and configuration changes are validated by eval harnesses before anything touches production — an agent that cannot be measured cannot be trusted."
+      - "Design agent systems for failure: instrument the failure modes found in production — stuck loops, bad retrievals, tool misuse, context blowouts — and build the catchers: replay loops, fail-closed gates, behavioral assertions, and recovery restricted to evidence declared before reassessment."
+      - "Author **65** MCP connectors and integrations that expose tools and structured resources to any MCP-compatible system — the shared, governed context layer: ERPs, CRMs, data pipelines, webhooks — with evidence boundaries and audit receipts."
+      - "Build model-agnostic: abstract the model layer across providers and benchmark when a new release lands — agent primitives tested against datasets, per-task latency and token-cost instrumentation, findings turned into configuration improvements."
+      - "Run an evidence-grade agent control plane across a **1,413-repository** estate: planning and tool-use loops, retrieval over a domain ontology, memory, guardrails, typed handoff contracts, human approval gates on consequential actions — backed by a **989-test** suite, **95/95** verification checks green."
+      - "Turn field learning into reusable infrastructure: one-off fixes become shared patterns with written design docs, versioned eval suites, and the same governed context for every downstream tool."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models, stable finding codes, and fail-closed **GO / NO-GO** decisions; recovery restricted to contingency evidence declared before reassessment."
+      - "Verification gates on every agent action: no agent completion claim without independent provider readback — the eval gate decides, not the agent."
+  - "title": "GlacierEQ estate — production agent systems"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Per-task latency instrumentation and decision audit logs across agent runs — the tracing practice that makes benchmarking honest."
+"skills":
+  - "category": "Languages"
+    "items": "TypeScript · Python · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Evaluation"
+    "items": "agent runtimes · MCP servers & connectors · eval harnesses · judge-in-the-loop · trace intelligence · failure-mode instrumentation · benchmarking · memory systems · guardrails · typed handoff contracts"
+  - "category": "Production"
+    "items": "platform engineering · observability & run logging · CI regression gates · fail-closed recovery · cost/latency tradeoffs · documentation & handover"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

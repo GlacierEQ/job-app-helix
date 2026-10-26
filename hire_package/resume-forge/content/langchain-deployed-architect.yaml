@@ -1,0 +1,66 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for LangChain (Deployed Architect, Professional Services — Remote)."
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Agent-systems architect based in Honolulu — I govern how multi-agent systems are allowed to ship: deterministic orchestration, fail-closed tool handoffs, and evaluation frameworks that decide GO / NO-GO before production. Three years running evidence-grade agent infrastructure: typed state transitions, approval gates, recoverable runs."
+  - "My production agent code is hand-rolled — I work the patterns the frameworks name (LangGraph checkpoint concepts are adopted as design discipline in my control-plane docs; portfolio repos ai-pdf-chatbot-langchain and apex-memory-agent touch LangChain/LangGraph directly). Embedded delivery: scope with the people whose workflow it is, build the narrow end-to-end proof, harden what carries load. Open to 20% travel; not relocating off-island."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · Supabase · Postgres · Vercel · GitHub Actions (CI/CD)"
+  - "category": "AI & Agents"
+    "items": "multi-agent orchestration (deterministic, hand-rolled) · agent evaluation frameworks · rubric-based scoring · prompt engineering & optimization · short-term / long-term memory patterns · vector stores · RAG · MCP tool integration · error handling"
+  - "category": "Deployment"
+    "items": "Linux · containers · CI/CD pipelines · trace-logging observability · idempotent automation · networking & security fundamentals"
+  - "category": "Practice"
+    "items": "customer-embedded scoping · technical assessments · consultative delivery · audit receipts · human-facing technical documentation"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Design multi-agent system architectures with deterministic coordination: the agent coordinator enforces assignment-bound, fail-closed tool-proposal handoffs bound to plan SHA-256 — **95/95** behavioral checks green (hash-bound candidate receipt)."
+      - "Design and operate comprehensive evaluation frameworks: the campaign engine composes assessments into **GO / NO-GO** with immutable evidence models and stable finding codes; recovery is restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+      - "Ship rubric-based scoring in production code: honesty/novelty scoring that explicitly excludes self-scored boilerplate — evaluation of the evaluator, not just of the agent."
+      - "Integrated **65 MCP connectors** as the governed tool-integration layer — tool integration, API design, and error-handling patterns at the boundary between customer environments and the platform."
+      - "Operate two agent platforms under heavy test: a **989-test** campaign engine and a **988-test** control plane — typed state transitions, approval gates, recoverable runs, full trace logging, regression discipline."
+      - "Portfolio repos reach the LangChain/LangGraph ecosystem directly (ai-pdf-chatbot-langchain, pushed 2026-09-13; LangGraph checkpoint concepts adopted in the control plane's upstream adoption matrix) — framework-adjacent patterns in hand-rolled production code."
+      - "Customer-embedded delivery practice: map the operator's workflow, assess the technical reality, present recommendations non-technical stakeholders act on the same day."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+  - "title": "Anthropic Agent Coordinator — deterministic multi-agent orchestration"
+    "bullets":
+      - "Assignment-bound tool proposals: only fully assigned tasks may emit a proposal; deferred, unknown, duplicate, oversized, or malformed proposals fail closed."
+      - "Hand-rolled orchestration — the LangGraph-named patterns (checkpoints, state transitions) implemented as native code with typed state."
+  - "title": "Genius engine — rubric-based scoring"
+    "bullets":
+      - "Novelty/honesty scoring judges problem/cause/mechanism only, explicitly excluding implementation-boilerplate self-scoring."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "multi-agent orchestration · agent evaluation frameworks · rubric scoring · prompt engineering & optimization · memory patterns · RAG · MCP protocol"
+  - "category": "Data & Infra"
+    "items": "Supabase · Postgres · Vercel · GitHub Actions · REST APIs · Linux · containers · observability discipline"
+  - "category": "Practice"
+    "items": "verification gates · audit receipts · idempotent automation · consultative delivery · technical assessments"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment at customer scale, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

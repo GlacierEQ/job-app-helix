@@ -21,7 +21,7 @@
 
 ## Candidate / partial
 
-- Agent Coordinator: 62/62 independent Python 3.13 tests; hosted build/wheel/matrix promotion pending.
+- Agent Coordinator: 95/95 candidate-local Python 3.12 tests; hosted build/wheel/matrix promotion pending.
 - Public runner coordinator route: registered; do not generalize the verified APEX Public Action Face path into proof that every coordinator route, workload, or lane is operational.
 - Document intelligence: describe architecture and pipeline stages; do not claim unsupported throughput.
 

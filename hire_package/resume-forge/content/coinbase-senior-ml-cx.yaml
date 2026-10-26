@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Coinbase Senior ML Engineer, CX Intelligence Engineering (remote #LI-Remote; Senior $191.25K–$225K; posted ~2026-10-16; apply via coinbase.com careers — exact requisition URL unverified)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build governed multi-agent systems that operate in regulated settings: a unified orchestration layer with typed handoff contracts, agent-assist tooling that keeps a human in the loop, and secure LLM-powered actions gated by evaluation before anything touches a real customer. Compliance isn't a review gate — it's the architecture."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: hand-rolled multi-agent loops with function calling, structured outputs, typed handoff contracts, durable recoverable runs, **65** MCP connectors, and full run logging so every action is reconstructable and auditable. Remote-first; experimentation-to-production fluency."
+"competencies":
+  - "category": "Engineering"
+    "items": "TypeScript · Python · Node.js · SQL · Bash · REST APIs · containers · GitHub Actions (CI/CD) · Supabase · Postgres"
+  - "category": "AI & ML Systems"
+    "items": "multi-agent orchestration · agent-assist systems · LLM-powered actions · eval harnesses & golden suites · trace intelligence · guardrails · fail-closed recovery · human-in-the-loop control · MCP protocol · prompt & context engineering"
+  - "category": "Production"
+    "items": "regulated deployment · audit receipts & decision logs · CI regression gates · rollback as default posture · observability & run logging · experimentation discipline · documentation & handover"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Build the unified orchestration layer for a multi-agent customer-support platform: hand-rolled multi-agent loops with function calling, structured outputs, and typed handoff contracts — every decision receipted, every action reconstructable from its trace."
+      - "Gate LLM-powered actions by evaluation before they touch production: golden suites with behavioral assertions, judge criteria with written rubrics, CI regression gates that block a regression from merging. Fail-closed by default, never guess."
+      - "Keep a human in the loop on consequential actions: approval gates typed into state transitions, recoverable runs with durable state that survives failure, rollback as the default posture — the governance pattern regulated deployments require."
+      - "Run an evidence-grade agent control plane across a **1,413-repository** estate: human approval gates on consequential actions, typed state transitions, durable recoverable runs — backed by a **989-test** suite, **95/95** verification checks green."
+      - "Integrate **65** MCP connectors — authoring MCP integrations that expose tools and structured resources to any MCP-compatible system — plus APIs, webhooks, and data pipelines, with evidence boundaries and audit receipts."
+      - "Instrument quality, latency, and decision correctness across agent runs: per-task latency instrumentation and decision audit logs that make both benchmarking and post-incident forensics honest."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models, stable finding codes, and fail-closed **GO / NO-GO** decisions; recovery restricted to contingency evidence declared before reassessment."
+      - "Verification gates on every agent action: no agent completion claim without independent provider readback — the eval gate decides, not the agent."
+  - "title": "GlacierEQ estate — governed agent systems"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate — the governance primitives a compliant-at-scale multi-agent platform needs."
+      - "Per-task latency instrumentation and decision audit logs across agent runs — full reconstructability of every action."
+"skills":
+  - "category": "Languages"
+    "items": "TypeScript · Python · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / ML Systems"
+    "items": "multi-agent orchestration · agent-assist systems · LLM-powered actions · eval harnesses & golden suites · trace intelligence · guardrails · fail-closed recovery · human-in-the-loop control · MCP protocol"
+  - "category": "Production"
+    "items": "regulated deployment · audit receipts & decision logs · CI regression gates · rollback as default posture · observability & run logging · experimentation discipline · documentation & handover"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

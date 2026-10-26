@@ -1,0 +1,60 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for Nebius Senior Customer AI Engineer, Token Factory (Remote - United States; GH req 5000064101; updated 2026-10-14; comp undisclosed)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I own the production journey: lead AI workloads from proof-of-concept to production — deployed, stable, scalable — and drive time-to-production and time-to-value with customer engineering teams. The Token Factory motion (engineering × delivery × customer success) is my operating pattern: understand the customer's architecture and use cases, monitor and improve latency, throughput, cost, and reliability, resolve bottlenecks before they become incidents, and translate field evidence into structured product feedback."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: per-task latency and token-cost instrumentation on every run; failure-injection recovery and fail-closed gates as production discipline; **65** authored MCP connectors with typed contracts behind every tool boundary; structured feedback loops from field evidence to product iteration. Python primary, pragmatic polyglot, calm under incident pressure."
+"competencies":
+  - "category": "Customer delivery"
+    "items": "PoC → production transition ownership · customer architecture assessment · latency / throughput / cost / reliability optimization · bottleneck identification · incident management posture · technical-customer communication · structured product feedback"
+  - "category": "AI production systems"
+    "items": "inference-pipeline integration (client side) · AI workload evaluation · eval regression gates · behavioral assertions · golden datasets · trace intelligence · MCP servers & connectors · function calling · structured outputs · guardrails · fail-closed recovery · failure-injection testing"
+  - "category": "Production"
+    "items": "Python (primary) · TypeScript / JavaScript · SQL · Bash · REST APIs · GitHub Actions (CI/CD) · Postgres · JSON Schema / Pydantic-style validation · retry logic · observability & run logging · per-task latency & token-cost instrumentation · documentation engineers actually read"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Own the production journey: lead AI workloads from proof-of-concept to production — deployed, stable, scalable — and drive time-to-production and time-to-value with the teams that operate them."
+      - "Ensure technical success in production: per-task latency and token-cost instrumentation on every run; trace intelligence naming the slowest calls, redundant tool use, and expensive segments; bottlenecks identified and resolved before they become incidents."
+      - "Act as a trusted technical partner: work directly with technical counterparts, understand their architectures and use cases, provide guidance on best practices and optimization — and translate technical challenges into actionable solutions, clearly, under pressure."
+      - "Manage risks and incidents like production work: fail-closed gates, behavioral assertions, recovery restricted to evidence declared before reassessment — calm communication and documented resolution paths when it matters."
+      - "Drive continuous improvement: structured feedback from field evidence to product iteration — identify opportunities to optimize and expand usage, shape better solutions from real needs."
+      - "Run an evidence-grade agent control plane across a **1,413-repository** estate: typed handoff contracts, guardrails, human approval gates on consequential actions — backed by a **989-test** suite, **95/95** verification checks green."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models and fail-closed **GO / NO-GO** decisions — the production-journey discipline: prove it works, then ship it."
+      - "Field-to-product feedback loop in practice: trace and run evidence feeding configuration iteration — the structured feedback Token Factory runs on."
+  - "title": "Inference-pipeline integration, honestly bounded"
+    "bullets":
+      - "Integration-side experience with inference pipelines (fal.ai + Whisper pipeline, estate-verified) — client-side integration, eval-gated, not GPU-infrastructure operations."
+      - "Eval/trace engineering is the transferable production muscle: measure latency, cost, quality; gate on evidence; recover by design."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript / JavaScript · SQL · Bash · Node.js"
+  - "category": "AI production"
+    "items": "PoC → production ownership · inference-pipeline integration · eval regression gates · behavioral assertions · trace intelligence · latency/cost optimization · failure-injection recovery"
+  - "category": "Customer engineering"
+    "items": "technical-customer delivery · incident communication · cross-team coordination · structured product feedback · handover discipline · technical writing"
+  - "category": "Integration"
+    "items": "MCP servers & connectors · REST APIs · function calling · structured outputs · JSON Schema validation · guardrails · observability & run logging"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. No GPU-infrastructure, neocloud-operations, vLLM/TensorRT-production, or Kubernetes depth claimed — inference-framework knowledge is transferable (integration-side, eval/trace engineering). Customer-facing depth is founder/operator (three years), not enterprise accounts. No Nebius-internal claims. GitHub is the forge of record."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

@@ -1,0 +1,65 @@
+"name": "Casey Barton"
+"contact":
+  - "Honolulu, HI · Open to remote & on-site"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Applied AI systems architect with 3 years building evidence-grade agent control planes for state and federal work. I design systems where every action is inspectable, bounded, and recoverable — typed state transitions, approval gates, audit receipts."
+  - "Strongest where the problem crosses role boundaries. I map the system, build the narrow end-to-end proof, then deepen the components that carry real load."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · Supabase · Postgres · Vercel · GitHub Actions (CI/CD)"
+  - "category": "AI & Agents"
+    "items": "MCP protocol · multi-agent orchestration · LLM evaluation harnesses · prompt & context engineering · human-in-the-loop control"
+  - "category": "Systems"
+    "items": "verification gates · audit receipts · idempotent automation · document automation · evidence-bound pipelines"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Applied-AI systems across a **1,413-repository** estate: agent governance, MCP integrations, context externalization, document workflows, infrastructure modeling."
+      - "Evidence-grade agent control plane (job-app-helix): **989-test** suite, typed state transitions, approval gates, recoverable runs — **95/95** verification checks green."
+      - "Multi-agent orchestration (anthropic-agent-coordinator): deterministic DAG scheduler; production reliability patterns (apex-control-plane): SHA-256 envelopes, idempotency keys, circuit breakers, fail-closed startup."
+      - "Stateful retrieval (unified-memory-mcp): five memory backends federated behind one MCP interface — parallel fan-out, content-hash dedup, provenance on every retrieval."
+      - "Integrated **65 MCP connectors** with claim tracking, evidence boundaries, and idempotent automation."
+      - "Maintain **20+ production repositories** with tests and GitHub Actions across supported Python versions, plus link-integrity and public-repo hygiene gates."
+  - "title": "Chief Inspector"
+    "org": "Diamond Head Home Inspections"
+    "location": "Honolulu, HI"
+    "dates": "2024"
+    "bullets":
+      - "Led residential inspection operations: field assessments, defect documentation, and client reporting."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+  - "title": "GlacierEQ estate — agent systems portfolio"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Connects multiple technical surfaces — agents, APIs, databases, cloud — into one coherent, verifiable working system."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "MCP protocol · multi-agent orchestration · LLM evaluation · prompt & context engineering"
+  - "category": "Data & Infra"
+    "items": "Supabase · Postgres · Vercel · GitHub Actions · REST APIs"
+  - "category": "Practice"
+    "items": "verification gates · audit receipts · idempotent automation · clear human-facing documentation"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

@@ -36,7 +36,7 @@ Current evidence includes:
 - a complete four-wave program covering that historical 66-child boundary;
 - AKOS at 94/94 tests across Python 3.11, 3.12, and 3.13;
 - a verified 21-node recruiter / expert / AI README Mesh;
-- an Agent Coordinator candidate receipt at 62/62 Python 3.13 tests, with hosted multi-version promotion still clearly pending.
+- an Agent Coordinator candidate receipt at 95/95 Python 3.12 tests, with hosted multi-version promotion still clearly pending.
 
 ### What Casey brings to a team
 
@@ -107,7 +107,7 @@ Recruiter copy, engineering detail, and machine contracts derive from the same c
 |---|---|---|
 | Job-App Helix | Exact portfolio inventory, rollout policy, stack-native discovery, bounded execution, receipts, recruiter/expert/AI rendering | Control plane verified; child repositories keep independent states |
 | AKOS | Authority, completion semantics, operational cognition, repository-native verification | 94/94 tests across Python 3.11-3.13 |
-| Agent Coordinator | Dependency-aware scheduling, role capacities, token budget conservation, cycle detection, structured deferral | 62/62 candidate-local Python 3.13 tests; hosted matrix pending |
+| Agent Coordinator | Dependency-aware scheduling, role capacities, token budget conservation, cycle detection, structured deferral | 95/95 candidate-local Python 3.12 tests; hosted matrix pending |
 | README Mesh | Typed identities, directional relationships, deterministic Protobuf and JSON projections | 21-node rollout verified |
 | Public Actions Runner Host | Public execution / private governance separation, allowlists, replay containment, scoped credentials | Architecture implemented; activation may remain blocked without required infrastructure |
 
@@ -207,7 +207,7 @@ proof:
     claim: 21-node recruiter / expert / AI rollout
     state: VERIFIED_DOCUMENTATION
   coordinator:
-    claim: 62/62 candidate-local Python 3.13 tests
+    claim: 95/95 candidate-local Python 3.12 tests
     state: CANDIDATE_TEST_PROOF
     limitation: hosted multi-version promotion pending
 

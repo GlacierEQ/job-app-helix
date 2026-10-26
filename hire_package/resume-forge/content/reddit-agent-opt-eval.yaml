@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for Reddit Software Engineer, Agent Optimization & Evaluation (Greenhouse req 8275745, published 2026-10-18, Remote - United States). Primary-verified 2026-10-20 via job-boards.greenhouse.io/reddit (comp $109,800–$325,000 base + RSUs — spans multiple levels; low end below his floor). Remote-US (Honolulu) eligibility to confirm at first contact."
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Applied AI engineer based in Honolulu. I build governed agent systems and the evaluation infrastructure that keeps them honest — optimization harnesses, offline replay, automated evaluation, synthetic task generation, regression detection, human-in-the-loop feedback, model routing and orchestration, metrics and experimentation frameworks. Measure-first delivery with explicit release thresholds is my operating standard, not a phase."
+  - "Three years running an evidence-grade agent control plane: typed state transitions, approval gates, audit receipts, recoverable runs, structured observability, failure analysis with root-cause quarantine instead of silent retries. Reports to Kyle Maxwell's AI developer platform team — the domain is the same: measuring and improving agents' impact on engineering velocity."
+"competencies":
+  - "category": "Agent Evaluation & Optimization"
+    "items": "evaluation harnesses · automated evaluation · offline replay · synthetic task generation · regression detection & gating · LLM-as-judge · gold sets & release thresholds · metrics & experimentation frameworks · model routing & orchestration (quality / latency / cost) · agent behavior analysis & failure investigation"
+  - "category": "AI & Agents"
+    "items": "hands-on AI agent development & deployment (tool/API use, orchestration, state, failure handling) · MCP protocol · LLM retrieval & structured outputs · human-in-the-loop controls · multi-agent orchestration"
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · Supabase · Postgres · Vercel · GitHub Actions (CI/CD) · large-scale production software with cross-team integration"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Evaluation-first delivery (job-app-helix): **989-test** agent control plane; evals with explicit release thresholds, gold sets, and LLM-as-judge; evidence state machine (nominal / recoverable / hard-no-go) with the hard-failure path exiting non-zero and CI asserting it — offline regression gating before anything promotes."
+      - "Optimization-harness mechanics (anthropic-agent-coordinator): deterministic DAG scheduler, **95/95** tests green; agent-behavior tooling to investigate failures and accelerate iteration; tool calls proposed for review, never executed blind — human-in-the-loop control built into the orchestration layer."
+      - "Model-agnostic orchestration (unified-memory-mcp, mcp-iceberg-mansion): Mem0, Supermemory, Supabase pgvector, Pinecone, and Neo4j federated behind one MCP interface — routing across models and providers with provenance and structured outputs; parallel fan-out with content-hash dedup."
+      - "Production feedback loops (apex-control-plane): cloud deployment, access controls, SHA-256 transport envelopes, idempotency keys, circuit breakers, dead-letter capture, fail-closed startup; failure analysis with root-cause quarantine instead of silent retries — production usage feeding back into iteration."
+      - "Operate a **1,398-repository** applied-AI estate (live-verified 2026-10-20: 695 public + 703 private) — **65 MCP connectors** integrated with claim tracking and idempotent automation; reusable agents, skills, connectors, and playbooks compiled as the compounding output; **20+ production repositories** maintained under test and CI."
+"proof":
+  - "title": "Job-App Helix — regression-gated agent control plane"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions — automated evaluation with real veto power, review gates that gate."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass; regression detection as an honesty guarantee, not a checkbox."
+  - "title": "Anthropic-agent-coordinator — orchestration with built-in evaluation hooks"
+    "bullets":
+      - "Deterministic DAG scheduling with review-gated tool calls (**95/95** tests green) — the mechanics an agent optimization harness instruments: behavior analysis, failure investigation, iteration speed."
+      - "Metrics and run-state observability structured by design — typed states and receipts that an experimentation framework can measure."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "Evaluation"
+    "items": "evaluation harnesses · automated evaluation · offline replay & synthetic tasks · regression detection & gating · LLM-as-judge · gold sets · release thresholds · metrics & experimentation frameworks"
+  - "category": "AI / Agents"
+    "items": "agents & multi-agent orchestration · MCP tool integration patterns · RAG · model routing & orchestration · prompt & context engineering · human-in-the-loop controls"
+  - "category": "Data & Infra"
+    "items": "Supabase · Postgres · Vercel · GitHub Actions · REST APIs · observability & failure analysis · governance & reversibility"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Evaluation depth comes from my own agent systems estate — no Reddit-platform production depth claimed, no claim of having shipped Reddit-internal platforms. Domain-inspired demonstrations are not company affiliation or certification."
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program (brief attendance)"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

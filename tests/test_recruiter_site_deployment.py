@@ -65,7 +65,7 @@ def test_recruiter_site_builds_from_reference_candidate_records(tmp_path: Path) 
     assert "Forward-Deployed AI Engineer" in index
     assert "Agent Infrastructure Engineer" in index
     assert "94/94" in index
-    assert "62/62" in index
+    assert "95/95" in index
     assert "CANDIDATE" in index
     assert "OBSERVE" in index and "RESUME" in index
     assert SOURCE_COMMIT in index

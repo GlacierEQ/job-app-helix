@@ -1,0 +1,59 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for GitLab Staff Forward Deployed Engineer, Agentic SDLC (remote US, $220–270K base; job-boards.greenhouse.io/gitlab/jobs/8512432002)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I am a Staff-level operator who works where customer urgency, technical ambiguity, and product execution intersect: diagnose the real failure, ship the production fix, and turn the learning into a reusable pattern. My practice is governed agent engineering — fail-closed deploy gates, root-cause quarantine, eval regression gates that block regressions from shipping, and governed multi-agent systems backed by **65** authored MCP connectors with typed contracts and audit receipts. I work in the open, in writing, with production discipline."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: hand-rolled multi-agent loops, retrieval, memory, guardrails, and typed schema validation on every tool contract; full run traces so any execution can be reconstructed; per-task latency and token-cost instrumentation; cross-layer diagnosis across application code, data stores, APIs, infrastructure, and observability. Python primary, strong APIs/automation, production code discipline with review-level standards."
+"competencies":
+  - "category": "Field engineering"
+    "items": "root-cause diagnosis across app / data / API / infra · adoption-blocker resolution · fail-closed deploy gates · eval regression gates · root-cause quarantine · technical stewardship · coordination without formal authority · written technical narratives & reference patterns"
+  - "category": "AI & Evaluation"
+    "items": "agentic workflows · AI governance & auditability · model evaluation · context management · prompt & workflow design · human-in-the-loop delivery · LLM evaluation harnesses · quality scoring · LLM-as-a-judge with written rubrics · golden datasets · behavioral assertions · trace intelligence · parallel tool orchestration · failure-mode instrumentation · MCP servers & connectors · structured outputs · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "Python (primary) · TypeScript · SQL · Bash · REST APIs · JSON Schema / Pydantic-style validation · GitHub Actions (CI/CD) · Postgres · webhooks · streaming workflows · containers · observability & run logging · token budgets · retry logic · latency/cost benchmarking · documentation engineers actually read"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Diagnose and resolve high-impact adoption blockers across complex deployments: systematic root-cause analysis across application code, data stores, APIs, infrastructure, and observability — with root-cause quarantine so fixes address causes, not symptoms."
+      - "Operate fail-closed deploy gates: eval regression gates that block a regression from shipping; CI checks that refuse promotion without evidence; approval gates on every consequential action — governance as the delivery path, not overhead."
+      - "Ship governed AI-adoption patterns: AI governance, auditability, and human-in-the-loop delivery across **65** MCP connector integrations — typed contracts, structured validation on every tool interface, evidence boundaries, and audit receipts on every governed action."
+      - "Turn field learning into durable product: translate failure modes found in production into reusable implementation patterns, reference architectures, runbooks, and documentation — outcomes designed to transfer to long-term owners, not create dependency."
+      - "Design agent systems for failure: instrument stuck loops, bad retrievals, tool misuse, and context blowouts — then build the catchers: replay loops, fail-closed gates, behavioral assertions, and recovery restricted to evidence declared before reassessment."
+      - "Drive reliability, latency, and cost tradeoffs with measured data: per-task latency and token-cost instrumentation on every run; model selection per task complexity; trace intelligence that names the slowest calls and redundant tool use."
+      - "Run an evidence-grade agent control plane across a **1,413-repository** estate: typed handoff contracts, guardrails, recoverable runs — backed by a **989-test** suite, **95/95** verification checks green."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models and fail-closed **GO / NO-GO** decisions; recovery restricted to evidence declared before reassessment."
+      - "Verification gates on every agent action: no completion claim without independent provider readback — the eval gate decides, not the agent."
+  - "title": "GlacierEQ estate — production agent systems"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Per-task latency instrumentation and decision audit logs across agent runs — the tracing practice that makes benchmarking honest."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Field"
+    "items": "agentic workflows · AI governance · model evaluation · context management · MCP servers & connectors · eval harnesses · quality scoring · LLM-as-a-judge · golden datasets · trace intelligence · parallel tool orchestration · function calling · structured outputs · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "full lifecycle ownership · root-cause diagnosis · fail-closed deploy gates · JSON Schema / Pydantic-style validation · HTTP APIs & automation · CI regression gates · observability & run logging · latency/cost tradeoff analysis · cross-layer debugging · documentation & handover"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. No GitLab-product internals, Ruby on Rails production, or Git internals depth claimed. No customer logos, no production-at-GitLab claims. GitHub is the forge of record."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

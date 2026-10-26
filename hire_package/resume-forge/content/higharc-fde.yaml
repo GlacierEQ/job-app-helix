@@ -1,0 +1,62 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for Higharc Forward Deployed Engineer (Remote US; Ashby id 8b550914-c42c-4b32-9f41-9a12a8812264; published 2026-09-17; comp undisclosed)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I come at this role from both ends of the homebuilding workflow. My working background is home inspection — permits, plan sets, elevations, options, site walkthroughs, materials, and punch lists on real jobsites — so I have operated the document and jobsite workflows Higharc turns into actionable data. The posting names residential-construction fluency as a major plus; plan reading is my native language, not a credential I studied."
+  - "My engineering practice is applied AI systems: agent-enabled search and RAG over document libraries, evaluation harnesses, failure-mode recovery, and trace intelligence across agent and retrieval pipelines, with **65** authored MCP connectors and typed contracts governing every tool boundary. Three years as a founder running an evidence-grade agent control plane from Honolulu: embedded with operators, scoping ambiguous work, prototyping rapidly, hardening what carries load. CAD/BIM fluency is reading-level exposure, honestly stated."
+"competencies":
+  - "category": "Construction domain"
+    "items": "home-inspection background — permits · plan sets & elevations · plan options / variation management · site walkthroughs · materials assessment · punch lists · photo / site documentation · jobsite coordination workflows"
+  - "category": "Deployed delivery"
+    "items": "embedded delivery posture · customer discovery · ambiguous-scope scoping · rapid prototyping → production · field friction → product requirements · technical-consulting posture · trusted builder relationships"
+  - "category": "AI & Evaluation"
+    "items": "agent systems · RAG pipelines · agent-enabled natural-language search · evaluation harnesses · golden datasets · behavioral assertions · LLM-as-a-judge with written rubrics · quality scoring · trace intelligence · MCP servers & connectors · function calling · structured outputs · guardrails · fail-closed recovery"
+  - "category": "Production"
+    "items": "Python (primary) · TypeScript · SQL · Bash · REST APIs · JSON Schema / Pydantic-style validation · GitHub Actions (CI/CD) · Postgres · per-task latency & token-cost instrumentation · retry logic · observability & run logging · documentation engineers actually read"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Deliver like a Forward Deployed Engineer: embed on ambiguous workflows, scope the unclear problem with operators, prototype rapidly, harden what carries load — the founding-FDE motion of turning plans and documents into actionable production data."
+      - "Apply construction-domain fluency as a first-order asset: permits, plan sets, elevations, options, punch lists, and site documentation — firsthand knowledge of how builders manage plan variation, brought to data and AI pipelines that serve those workflows."
+      - "Build agent-enabled search and RAG over document libraries: natural-language retrieval over plan-like corpora, retrieval quality gated by eval harnesses with written rubrics — quality measured before it ships, not argued after."
+      - "Design agent systems for failure: instrument the failure modes found in production — stuck loops, bad retrievals, tool misuse, context blowouts — and build the catchers: replay loops, fail-closed gates, behavioral assertions, recovery restricted to evidence declared before reassessment."
+      - "Turn field friction into product direction: trace and run evidence feeding prompt, retrieval, and configuration iteration — embedded-delivery feedback loops, documented and auditable."
+      - "Run an evidence-grade agent control plane across a **1,413-repository** estate: typed handoff contracts, guardrails, recoverable runs — backed by a **989-test** suite, **95/95** verification checks green."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models and fail-closed **GO / NO-GO** decisions — the eval gate decides what carries load."
+      - "Judge criteria with written rubrics behind every automated quality decision — the quality discipline retrieval-heavy AI products depend on."
+  - "title": "Construction-domain edge"
+    "bullets":
+      - "Home-inspection background: permits, plan sets, elevations, options, site walkthroughs, materials, punch lists — the workflows Higharc's product serves, operated firsthand."
+      - "CAD/BIM exposure at the reading level only — no production authoring claims. Plan-set fluency, honestly stated."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "Construction domain"
+    "items": "plan reading · permits · elevations & options · punch lists · site documentation · materials assessment · jobsite coordination"
+  - "category": "Deployed engineering"
+    "items": "discovery & scoping · rapid prototyping · embedded delivery · field-to-product feedback · handover discipline · technical writing"
+  - "category": "AI / Evaluation"
+    "items": "agent systems · RAG · eval harnesses · golden datasets · LLM-as-a-judge · trace intelligence · MCP · structured outputs · fail-closed recovery"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. No enterprise deployment logos claimed; customer-facing delivery is founder/operator plus inspection client work (three years), honestly stated — the 5+ year line is a stretch, flagged. No Higharc-internal production claims. GitHub is the forge of record."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

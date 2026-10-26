@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for Cribl Staff Software Engineer, Agentic Tools (Remote - United States, #LI-Remote; base $210K–$245K + bonus + equity; req 6214825004; posted 2026-10-05; apply via Greenhouse job-boards.greenhouse.io/cribl/jobs/6214825004)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build the platform harnesses production agentic workflows run on: orchestration layers with typed contracts, tool integrations that expose capabilities to any agent, shared context surfaces, and extension points other builders can trust and extend. My systems dogfood themselves — the agent platform I built runs my own operation daily."
+  - "Three years as a founder building governed agentic infrastructure from Honolulu: **65** MCP tool integrations, hand-rolled multi-agent loops with typed handoff contracts, eval gates that block regressions before production, and fail-closed guardrails — tracing, human-in-the-loop controls, safe rollout, rollback as default. TypeScript is my primary stack."
+"competencies":
+  - "category": "Engineering"
+    "items": "TypeScript · Python · Node.js · REST APIs · webhooks & async fan-out · SQL · Bash · GitHub Actions (CI/CD) · containers · Supabase · Postgres"
+  - "category": "Agentic Platform"
+    "items": "platform harnesses for agent builders · orchestration layers · tool-calling systems · MCP protocol · intent engineering · shared context surfaces · agent runtime patterns (job isolation, scheduling, secrets/access) · progressive delivery · safe rollout & rollback"
+  - "category": "Evals & Guardrails"
+    "items": "eval harnesses & golden suites · regression detection gates · trace intelligence · human-in-the-loop control · fail-closed recovery · observability (metrics, logs, traces) · audit receipts & decision logs · telemetry-driven investment decisions"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Design and operate platform harnesses for production agentic workflows: orchestration layers with typed handoff contracts, tool integrations, shared context surfaces, and extension points other teams can build on — every action receipted, every run reconstructable from its trace."
+      - "Build **65** MCP tool integrations — authoring integrations that expose tools and structured resources to any MCP-compatible system, the tool-protocol layer agents and builders consume: evidence boundaries, audit receipts, and typed capability contracts on every connector."
+      - "Gate agent behavior by evaluation: golden suites with behavioral assertions, judge criteria with written rubrics, CI regression gates that block a regression from merging — regression detection as infrastructure, not review. The forge itself fails closed on unapproved claims."
+      - "Run guardrails for agentic systems others depend on: tracing across runs, human-in-the-loop approval gates typed into state transitions, safe rollout with rollback as the default posture, fail-closed recovery — a 1,398-repo estate backed by a **989-test** suite, **95/95** verification checks green."
+      - "Ship TypeScript and Node.js production services with continuous-deployment discipline: automated pipelines, progressive delivery, monitoring and rollback, a bias toward frequent reversible changes — webhooks and async fan-out patterns that keep agent services loosely coupled."
+      - "Dogfood the platform daily: the agent campaign engine I built runs my own operations end to end — success metrics tracked per run (adoption, quality, reliability), sharp edges surfaced from real usage turned into platform improvements."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models, stable finding codes, and fail-closed **GO / NO-GO** decisions; recovery restricted to contingency evidence declared before reassessment."
+      - "Verification gates on every agent action: no agent completion claim without independent provider readback — the eval gate decides, not the agent."
+  - "title": "GlacierEQ estate — governed agentic infrastructure"
+    "bullets":
+      - "Durable patterns for orchestration, tool integrations, claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across a 1,398-repo estate — the harness primitives a trusted production agent platform needs."
+      - "Per-task latency instrumentation and decision audit logs across agent runs — full reconstructability of every action, the observability substrate safe rollout depends on."
+"skills":
+  - "category": "Languages"
+    "items": "TypeScript · Python · SQL · Bash · JavaScript / Node.js"
+  - "category": "Agentic Platform"
+    "items": "platform harnesses · orchestration layers · tool-calling systems · MCP protocol · intent engineering · shared context · progressive delivery · safe rollout & rollback"
+  - "category": "Evals & Guardrails"
+    "items": "eval harnesses & golden suites · regression detection · trace intelligence · human-in-the-loop control · fail-closed recovery · observability · audit receipts"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

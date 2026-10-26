@@ -88,7 +88,7 @@
     },
     "agent_coordinator": {
       "state": "CANDIDATE_TEST_PROOF",
-      "claim": "62/62 candidate-local Python 3.13 tests.",
+      "claim": "95/95 candidate-local Python 3.12 tests.",
       "limitation": "Hosted Python 3.11-3.13 promotion remains pending."
     },
     "portfolio_operations": {

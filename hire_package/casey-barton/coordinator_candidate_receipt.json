@@ -1,27 +1,27 @@
 {
   "schema": "glaciereq.agent-coordinator.candidate-test-receipt.v1",
   "evidence_state": "CANDIDATE_TEST_PROOF",
-  "generated_at": "2026-07-30T17:12:00-10:00",
+  "generated_at": "2026-10-25T14:51:37-10:00",
   "source_repository": "GlacierEQ/anthropic-agent-coordinator",
-  "source_ref": "7595308735044e4a1c54d6d551207663a9d79ace",
+  "source_ref": "bcdaa89b8a76bd1c1690c7a46458af0be0a49e95",
   "runtime": {
-    "python": "3.13.5",
-    "collection_mode": "pytest across four declared test modules"
+    "python": "3.12.3",
+    "collection_mode": "pytest across thirteen declared test modules"
   },
   "result": {
-    "collected": 62,
-    "executed": 62,
-    "passed": 62,
+    "collected": 95,
+    "executed": 95,
+    "passed": 95,
     "failed": 0,
     "errors": 0,
     "skipped": 0,
     "conclusion": "VERIFIED",
     "evidence_level": "TEST"
   },
-  "junit_sha256": "2d0b8ba5cbc14f31bd58297f41f55ef46149f5748fbe89885caefc9c5d4ad340",
+  "junit_sha256": "626a19156104340ac638faf7ae9fa9df7a9d5f7b11e9b4f66f95843fd3c5c742",
   "limitations": [
     "This is independent candidate evidence, not a GitHub-hosted multi-version receipt.",
-    "Python 3.11 and 3.12, hosted wheel/build gates, and artifact upload remain unverified for this source ref.",
-    "The repository promotion must not be labeled reference until its own hosted gate passes and the PR merges."
+    "Python 3.11 and 3.13, hosted wheel/build gates, and artifact upload remain unverified for this source ref.",
+    "Hosted multi-version promotion remains explicitly pending; the repository's verification workflow has no runs."
   ]
 }

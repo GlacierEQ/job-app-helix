@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Provectus Senior Forward Deployed AI Engineer (GenAI, AWS) (remote-friendly, base up to $200K / OTE $250K)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build the evaluation harness before I build the feature — for non-deterministic systems, 'it looked good in testing' is not an answer. I define what working means, instrument it, and let the evals drive the design. Fail-closed by default: guardrails live in the orchestration layer, and the defined 'what happens when it's unsure' path is halt-and-escalate, never guess."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: hand-rolled multi-agent loops with function calling, structured outputs, typed handoff contracts, retrieval over my own estate, and 65 MCP connectors — embedded-style delivery, measured against written outcomes before deployment."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · webhooks · containers · GitHub Actions (CI/CD) · Supabase · Postgres"
+  - "category": "AI & Agents"
+    "items": "LLM evaluation harnesses · replay loops · guardrails · failure-mode analysis · hand-rolled multi-agent loops · function calling · structured outputs · structured extraction · RAG · prompt & context engineering · MCP protocol · human-in-the-loop control"
+  - "category": "Deployment"
+    "items": "embedded delivery (scope with operators, prove end to end, hand over something they can run) · demos & POCs · monitoring & observability · latency & token-cost benchmarks · verification gates · audit receipts · idempotent automation · evidence boundaries"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Build the evaluation harness before the feature: prompt and configuration changes validated by eval harnesses with replay loops before anything touches production — I define what working means, instrument it, and let the evals drive the design."
+      - "Reason about failure modes explicitly: guardrails in the orchestration layer — typed state transitions, approval gates on consequential actions, fail-closed recovery; 'cannot determine' is a first-class answer, not a guess."
+      - "Ship structured extraction and retrieval pipelines across a **1,413-repository** estate — structured facts out of messy documents, deterministic checks gating sensitive operations."
+      - "Ship production GenAI systems with structured outputs, function calling with typed tool schemas, and retrieval-augmented generation, backed by a **989-test** control plane — **95/95** verification checks green."
+      - "Integrate **65 MCP connectors** plus APIs, webhooks, and data pipelines into environments I don't own — evidence boundaries and audit receipts built for client-cloud compliance regimes."
+      - "Own outcomes against a written measurement story: KPIs, baselines, and instrumentation agreed before deployment — then deliver against them."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+  - "title": "GlacierEQ estate — agent systems portfolio"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Connects multiple technical surfaces — agents, APIs, databases — into one coherent, verifiable working system."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Agents"
+    "items": "LLM evaluation harnesses · replay loops · guardrails · hand-rolled multi-agent loops · function calling · structured outputs · structured extraction · RAG · MCP protocol · typed handoff contracts · prompt & context engineering"
+  - "category": "Delivery"
+    "items": "embedded delivery · demos & POCs · monitoring & observability · latency & token-cost benchmarks · verification gates · audit receipts · idempotent automation"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

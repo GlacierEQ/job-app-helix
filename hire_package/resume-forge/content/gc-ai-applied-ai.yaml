@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for GC AI Member of Technical Staff, Applied AI (remote US/Canada; $180K–$430K + equity, 5 openings; fresh HN Who's Hiring post; apply via email to mernaahmedemara13@gmail.com subject 'GC AI – Applied AI' or gc.ai careers)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build applied AI the way an evaluation engineer would: model evaluation harnesses, internal prototyping frameworks, and golden gates that decide whether a system ships. My last three years are spent on the machine that measures the AI — benchmarking, trace intelligence, and replayable eval loops."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: hand-rolled multi-agent loops, **65** MCP connectors, full run logging, a **989-test** suite with **95/95** verification checks green. TypeScript + Python production work across the estate. Remote-first; ships fast, measures everything."
+"competencies":
+  - "category": "Engineering"
+    "items": "TypeScript · Python · Node.js · SQL · Bash · REST APIs · containers · GitHub Actions (CI/CD) · Supabase · Postgres"
+  - "category": "Applied AI"
+    "items": "model evaluation · eval harnesses & golden suites · behavioral assertions · replay loops · trace intelligence · internal prototyping frameworks · prompt & context engineering · MCP protocol · function calling · structured outputs"
+  - "category": "Production"
+    "items": "CI regression gates · fail-closed recovery · observability & run logging · latency & token-cost benchmarks · decision audit receipts · documentation & handover"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Own model evaluation work end to end: golden suites with behavioral assertions, judge criteria with written rubrics, automated benchmarking loops — the harness that decides whether a model or agent change ships."
+      - "Build internal prototyping frameworks: hand-rolled multi-agent loops with function calling, structured outputs, and typed handoff contracts — prototypes that run under the same eval discipline as production."
+      - "Wire trace intelligence into every run: full logging of every prompt, tool call, and decision so any execution is reconstructable and debuggable from its trace; failed evals diagnosed from evidence, not argued about."
+      - "Run an evidence-grade agent control plane across a **1,413-repository** estate: typed state transitions, human approval gates on consequential actions, durable state that survives a failed run, recoverable runs — backed by a **989-test** suite, **95/95** verification checks green."
+      - "Integrate **65** MCP connectors — authoring MCP integrations that expose tools and structured resources to any MCP-compatible system — plus APIs, webhooks, and data pipelines, with evidence boundaries and audit receipts."
+      - "TypeScript + Python production engineering across the estate: REST APIs, containers, Postgres/Supabase, CI/CD — the full stack behind the eval systems, not just the models."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models, stable finding codes, and fail-closed **GO / NO-GO** decisions; recovery restricted to contingency evidence declared before reassessment."
+      - "Verification gates on every agent action: no agent completion claim without independent provider readback — the eval gate decides, not the agent."
+  - "title": "GlacierEQ estate — applied AI systems"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Per-task latency instrumentation and decision audit logs across agent runs — the tracing practice that makes benchmarking honest."
+"skills":
+  - "category": "Languages"
+    "items": "TypeScript · Python · SQL · Bash · JavaScript / Node.js"
+  - "category": "Applied AI"
+    "items": "model evaluation · eval harnesses & golden suites · behavioral assertions · replay loops · trace intelligence · internal prototyping frameworks · prompt & context engineering · MCP protocol · function calling · structured outputs"
+  - "category": "Production"
+    "items": "CI regression gates · fail-closed recovery · observability & run logging · latency & token-cost benchmarks · documentation & handover"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

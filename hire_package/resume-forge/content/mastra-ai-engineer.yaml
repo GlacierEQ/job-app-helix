@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Mastra AI Engineer (fully remote, NA/EU time zones; posted 2026-10-07; Built In mirror builtin.com/job/ai-engineer/11549368; apply via mastra.ai/careers)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build the machine that decides whether an agent is allowed to ship: evaluation harnesses, trace intelligence, and benchmark suites that turn agent behavior into measurable, improvable facts. Every agent I ship runs under an eval discipline first — golden sets, behavioral assertions, replay loops, and regression gates before production. Shipped agents and agentic applications to production, then tuned them for accuracy against real datasets."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: hand-rolled multi-agent loops with function calling, structured outputs, typed handoff contracts, durable recoverable runs, **65** MCP connectors, and full run logging so any execution can be reconstructed. Remote-first; experimentation-to-production fluency."
+"competencies":
+  - "category": "Engineering"
+    "items": "TypeScript · Python · Node.js · SQL · Bash · REST APIs · containers · GitHub Actions (CI/CD) · Supabase · Postgres"
+  - "category": "AI & Evaluation"
+    "items": "LLM evaluation harnesses · trace intelligence · benchmarking & experiments · autoevals · memory systems · RAG pipelines · function calling · structured outputs · hand-rolled multi-agent loops · guardrails · fail-closed recovery · MCP protocol · prompt & context engineering"
+  - "category": "Production"
+    "items": "production framework engineering · observability & run logging · latency & token-cost benchmarks · CI regression gates · decision audit receipts · experimentation discipline · documentation"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Ship agents and agentic applications to production, then tune them for accuracy: prompt and configuration changes validated by eval harnesses with replay loops before anything touches production — an agent that cannot be measured cannot be trusted."
+      - "Build trace intelligence into every system: full logging of every prompt, tool call, and decision, so any run can be reconstructed and debugged from its trace — failed evals are diagnosed, not argued about."
+      - "Benchmark agent primitives against datasets and iterate on the findings: run experiments on memory, retrieval, and orchestration behavior, investigate where they perform well and where they fall short, and turn results into configuration improvements."
+      - "Run an evidence-grade agent control plane across a **1,413-repository** estate: typed state transitions, human approval gates on consequential actions, durable state that survives a failed run, recoverable runs — backed by a **989-test** suite, **95/95** verification checks green."
+      - "Integrate **65** MCP connectors — authoring MCP integrations that expose tools and structured resources to any MCP-compatible system — plus APIs, webhooks, and data pipelines, with evidence boundaries and audit receipts."
+      - "Design evaluations, not spot checks: golden suites with behavioral assertions, judge criteria with written rubrics, and CI gates that block a regression from merging. Fail-closed by default, never guess."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models, stable finding codes, and fail-closed **GO / NO-GO** decisions; recovery restricted to contingency evidence declared before reassessment."
+      - "Verification gates on every agent action: no agent completion claim without independent provider readback — the eval gate decides, not the agent."
+  - "title": "GlacierEQ estate — production agent systems"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Per-task latency instrumentation and decision audit logs across agent runs — the tracing practice that makes benchmarking honest."
+"skills":
+  - "category": "Languages"
+    "items": "TypeScript · Python · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI / Evaluation"
+    "items": "LLM evaluation harnesses · trace intelligence · benchmarking & experiments · autoevals · memory systems · guardrails · MCP protocol · typed handoff contracts · prompt & context engineering"
+  - "category": "Production"
+    "items": "experimentation discipline · observability & run logging · CI regression gates · fail-closed recovery · documentation & handover"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

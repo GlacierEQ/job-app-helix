@@ -1,0 +1,62 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-19 for Doximity Staff Applied AI Engineer (remote, $170K–$248K total comp)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "Applied AI engineer in Honolulu. I build, tune, and evaluate AI products that have to earn trust in production: define what good looks like first, put guardrails and human-in-the-loop control around the risky parts, test the failure modes on purpose, and ship only what the eval harness signs off on."
+  - "Three years running an evidence-grade agent platform: LLM evaluation harnesses and verification gates, safety guardrails, fail-closed recovery, A/B-tested prompt and configuration tuning validated before anything ships, performance monitoring, staff-level platform ownership across integrations and data surfaces. Remote-first."
+"competencies":
+  - "category": "Engineering"
+    "items": "Python · TypeScript · Node.js · SQL · Bash · REST APIs · webhooks · Supabase · Postgres · Vercel · GitHub Actions (CI/CD) · containers"
+  - "category": "AI Eval & Reliability"
+    "items": "LLM evaluation harnesses · offline/online experiment design · A/B testing · safety guardrails · human-in-the-loop control · failure-mode & reliability testing · verification gates · audit receipts · fail-closed recovery"
+  - "category": "AI Build"
+    "items": "LLM agent frameworks · function calling · RAG · prompt & context engineering · MCP protocol · LLM tuning via prompt/config optimization · performance monitoring"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Build, tune, and evaluate AI products across a **1,413-repository** platform: evaluation harnesses and verification gates gate every ship — nothing reaches production without an offline eval pass and a green verification check."
+      - "Safety guardrails and human-in-the-loop control on every consequential agent action: typed state transitions, approval gates, audit receipts, recoverable runs — the guardrail pattern this role's safety questions describe."
+      - "Failure-mode and reliability testing as standing practice: failure-injection recovery drills, idempotent resumable runs, per-failure root-cause quarantine — **fail-closed** behavior verified, not assumed."
+      - "Tune LLM agents via prompt and configuration optimization validated by eval before ship: A/B-tested tuning cycles against held-out checks, configuration deltas tracked with experiment records."
+      - "Performance monitoring with A/B testing across a **989-test** control plane — **95/95** verification checks green; ship/no-ship decisions made from measured outcomes, not instinct."
+      - "Integrate **65 MCP connectors** plus APIs, webhooks, and data pipelines across customer and product surfaces — the integration surface that feeds eval, monitoring, and product analytics."
+"proof":
+  - "title": "Job-App Helix — attributable campaign engine"
+    "bullets":
+      - "Composes assessments into campaign-level **GO / NO-GO** with immutable evidence models, stable finding codes, and fail-closed decisions."
+      - "Recovery restricted to contingency evidence declared before reassessment — the engine never silently tunes values until they pass."
+  - "title": "GlacierEQ estate — agent systems portfolio"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Connects multiple technical surfaces — agents, APIs, databases — into one coherent, verifiable working system."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript · SQL · Bash · JavaScript / Node.js"
+  - "category": "AI Eval & Reliability"
+    "items": "LLM evaluation harnesses · A/B testing · safety guardrails · human-in-the-loop control · failure-mode & reliability testing · verification gates · fail-closed recovery"
+  - "category": "AI Build"
+    "items": "LLM agent frameworks · function calling · RAG · MCP protocol · prompt & context engineering · LLM tuning via prompt/config optimization"
+  - "category": "Data & Infra"
+    "items": "Supabase · Postgres · SQL · REST APIs · webhooks · Vercel · GitHub Actions · containers"
+  - "category": "Practice"
+    "items": "experiment design · performance monitoring · audit receipts · idempotent automation"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""

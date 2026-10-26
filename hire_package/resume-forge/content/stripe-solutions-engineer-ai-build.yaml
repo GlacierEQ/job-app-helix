@@ -1,0 +1,58 @@
+"name": "Casey Barton"
+"draft_banner": "DRAFT — review held, not submitted. Tailored 2026-10-20 for Stripe Solutions Engineer, AI Build Team (US-Remote; stripe.com/jobs/search?gh_jid=8198323; posted 2026-10-16; $239.9–359.9K base + equity/bonus)"
+"contact":
+  - "Honolulu, HI"
+  - "(808) 936-5654"
+  - "glacier.equilibrium@gmail.com"
+  - "github.com/GlacierEQ"
+  - "casey-barton-glaciereq.vercel.app"
+"profile":
+  - "I build with customers: own the ambiguous engagement end to end — discover the unclear problem, design the architecture, prototype rapidly, and turn field friction into product direction. My 0→1 motion is production-grade prototyping with AI coding harnesses: scope a narrow proof, ship it, harden what carries load. The tool layer behind my agents is **65** authored MCP connectors — governed API integrations with typed contracts and audit receipts — the same reusable-solution-building the AI Build team does across POC engagements."
+  - "Three years as a founder running an evidence-grade agent control plane from Honolulu: API and integration design as the product surface; typed handoff contracts and schema validation on every tool boundary; failure-injection recovery in every engagement I ship; full run traces feeding field evidence back into product iteration. Python primary, pragmatic polyglot, fluent in the AI-native build loop — ship, measure, iterate at startup speed."
+"competencies":
+  - "category": "Customer delivery"
+    "items": "customer discovery · ambiguous-scope engagement ownership · rapid solution design & prototyping · POC scoping → activation · field friction → product requirements · reusable reference architectures & playbooks · lead through influence, no formal authority · trusted builder relationships"
+  - "category": "AI & Integration"
+    "items": "0→1 prototyping with AI coding harnesses · agent runtimes · API design & integration · **65** authored MCP connectors · typed handoff contracts · JSON Schema / Pydantic-style validation · function calling · structured outputs · parallel tool orchestration · RAG · evaluation harnesses · failure-injection recovery · fail-closed governance"
+  - "category": "Production"
+    "items": "Python (primary) · TypeScript / JavaScript · SQL · Bash · REST APIs · GitHub Actions (CI/CD) · Postgres · webhooks · streaming workflows · per-task latency & token-cost instrumentation · retry logic · observability & run logging · CI regression gates · documentation engineers actually read"
+"experience":
+  - "title": "Founder / Applied AI Systems Architect"
+    "org": "GlacierEQ"
+    "location": "Honolulu, HI"
+    "dates": "2023 – Present"
+    "bullets":
+      - "Own ambiguous 0→1 engagements end to end: discover the unclear problem, design the architecture, prototype rapidly with AI coding harnesses, and establish credible paths to production — balancing immediate outcomes with reusable solutions."
+      - "Design integrations that span products: distinguish implementation gaps from core product gaps; determine whether a blocker needs configuration, integration work, custom development, or a roadmap change — and feed field evidence back into product iteration."
+      - "Build the tools layer agents and customers consume: author **65** MCP connectors — governed API integrations with strict validation, structured resource submission, evidence boundaries, and audit receipts — the reusable-prototype pattern the AI Build motion requires."
+      - "Turn one engagement into many: convert successful field work into reference architectures, reusable prototypes, implementation playbooks, and solution components with handover discipline — outcomes built to transfer to long-term owners."
+      - "Design for failure in every engagement: failure-injection recovery, fail-closed gates, behavioral assertions, and recovery restricted to evidence declared before reassessment — POCs that behave like production because they are evaluated like production."
+      - "Run an evidence-grade agent control plane across a **1,413-repository** estate: guardrails, typed handoff contracts, human approval gates on consequential actions — backed by a **989-test** suite, **95/95** verification checks green."
+"proof":
+  - "title": "Job-App Helix — evaluation-gated campaign engine"
+    "bullets":
+      - "Attributable campaign engine with immutable evidence models and fail-closed **GO / NO-GO** decisions — the 0→1 POC discipline: scope narrow, ship fast, gate on evidence."
+      - "Field-to-product feedback loop in practice: trace and run evidence feeding prompt and configuration iteration — the same loop the AI Build team runs for Stripe's roadmap."
+  - "title": "GlacierEQ estate — production agent systems"
+    "bullets":
+      - "Durable patterns for claim tracking, evidence boundaries, audit receipts, and human-in-the-loop control across the full estate."
+      - "Per-task latency and token-cost instrumentation driving every configuration tradeoff — measured delivery, not vibes."
+"skills":
+  - "category": "Languages"
+    "items": "Python · TypeScript / JavaScript · SQL · Bash · Node.js"
+  - "category": "Customer delivery"
+    "items": "discovery & scoping · rapid prototyping · POC lifecycle ownership · field-to-roadmap feedback · reusable reference architectures · cross-functional coordination · technical writing & playbooks"
+  - "category": "AI / Integration"
+    "items": "AI-native build loop · agent runtimes · API design & integration · MCP servers & connectors · eval harnesses · failure-injection recovery · function calling · structured outputs · guardrails · fail-closed recovery · trace intelligence"
+"boundary_note": "Evidence boundary: portfolio repositories are independent work. No enterprise customer logos, no payments-domain production claims, no named-AI-coding-tool endorsements. GitHub is the forge of record."
+
+"education":
+  - "school": "University of Hawaii at Manoa"
+    "detail": "Bachelor of Science"
+    "dates": "2016"
+  - "school": "AWS Cloud Institute"
+    "detail": "Cloud Computing program"
+    "dates": "2025"
+  - "school": "Colorado State University"
+    "detail": "Undergraduate coursework"
+    "dates": ""
