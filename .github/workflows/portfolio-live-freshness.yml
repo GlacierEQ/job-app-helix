@@ -91,7 +91,15 @@ jobs:
               'glaciereq.portfolio-live-freshness-receipt.v1'
           )
           assert receipt['mutation'] == 'NONE'
-          assert receipt['portfolio']['flagships'] > 0
+          # The generator never emits portfolio['flagships'] (that key
+          # caused KeyError in run 40771101287). The flagship count is
+          # portfolio['source_admitted_systems'], and the flagship rows
+          # are the top-level 'flagships' list. Check the actual shape.
+          assert receipt['portfolio']['source_admitted_systems'] > 0
+          assert isinstance(receipt['flagships'], list)
+          assert 0 < len(receipt['flagships']) <= (
+              receipt['portfolio']['source_admitted_systems']
+          )
           assert 'findings' in receipt
           assert receipt['receipt_sha256']
           print(json.dumps(receipt['freshness'], indent=2, sort_keys=True))

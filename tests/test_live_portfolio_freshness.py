@@ -179,6 +179,47 @@ def test_stale_live_evidence_is_an_error():
     assert flagship["head_matches"] is False
 
 
+def test_receipt_shape_matches_workflow_verifier():
+    """Regression for run 40771101287: workflow verifier KeyError 'flagships'.
+
+    The generator never emits portfolio['flagships']; the flagship count
+    is portfolio['source_admitted_systems'] and the flagship rows are the
+    top-level 'flagships' list. The workflow verifier was the wrong side,
+    so this test locks the actual receipt shape the verifier must check.
+    """
+    with patch.object(
+        module,
+        "compile_portfolio",
+        return_value=portfolio(evidence_head="abc"),
+    ):
+        receipt = module.audit(getter(public_head="abc"), "FIXTURE")
+    assert receipt["schema"] == (
+        "glaciereq.portfolio-live-freshness-receipt.v1"
+    )
+    assert receipt["mutation"] == "NONE"
+    assert set(receipt["portfolio"]) == {
+        "inventory_total",
+        "inventory_children",
+        "company_tracks",
+        "dossier_repositories",
+        "owner_estate_repositories_audited",
+        "source_admitted_systems",
+        "live_evidence_rows",
+        "recruiter_eligible_dossier_repositories",
+        "recruiter_eligible_missing_live_evidence",
+    }
+    assert receipt["portfolio"]["source_admitted_systems"] > 0
+    assert isinstance(receipt["flagships"], list)
+    assert (
+        len(receipt["flagships"])
+        == receipt["portfolio"]["source_admitted_systems"]
+    )
+    assert "findings" in receipt
+    assert receipt["receipt_sha256"]
+    # The old verifier key; its absence is why the old verifier KeyErrored.
+    assert "flagships" not in receipt["portfolio"]
+
+
 def test_current_evidence_and_public_visibility_can_be_clean():
     with patch.object(
         module,

@@ -64,19 +64,30 @@ jobs:
           tests/test_crystallization_uplift_digest.py
           tests/test_estate_work_queue.py
 
-      - name: Require authenticated private estate authority
+      - name: Check private estate credential availability
+        id: auth
         env:
           ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
         shell: bash
         run: |
           set -euo pipefail
-          if [ -z "${ESTATE_TOKEN:-}" ]; then
+          if [ -n "${ESTATE_TOKEN:-}" ]; then
+            echo "skip=false" >> "${GITHUB_OUTPUT}"
+          elif [ "${EVENT_NAME}" = "schedule" ]; then
+            # Scheduled runs must not fail every hour on a credential
+            # that is not configured in CI. Skip gracefully instead;
+            # a manual workflow_dispatch run below still fails closed.
+            echo "skip=true" >> "${GITHUB_OUTPUT}"
+            echo "Scheduled private crawl skipped: private estate credential is not configured in CI." >&2
+          else
             echo "GLACIEREQ_ESTATE_TOKEN is required for the private crystallization crawl." >&2
             exit 1
           fi
 
       - name: Resolve crawl mode
         id: plan
+        if: steps.auth.outputs.skip != 'true'
         shell: bash
         env:
           EVENT_NAME: ${{ github.event_name }}
@@ -100,6 +111,7 @@ jobs:
 
       - name: Crawl private estate shard without leaking private logs
         id: crawl
+        if: steps.auth.outputs.skip != 'true'
         env:
           GLACIEREQ_ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
           MODE: ${{ steps.plan.outputs.mode }}
@@ -134,12 +146,14 @@ jobs:
           }
 
       - name: Build compact code-uplift routing digest
+        if: steps.auth.outputs.skip != 'true'
         run: >-
           python scripts/build_crystallization_uplift_digest.py
           --input /tmp/crystallization-receipt.json
           --output /tmp/crystallization-uplift.json
 
       - name: Preserve raw crawl evidence privately
+        if: steps.auth.outputs.skip != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: private-crystallization-raw-${{ github.run_id }}
@@ -150,6 +164,7 @@ jobs:
 
       - name: Resolve compact Monolith uplift destination
         id: destination
+        if: steps.auth.outputs.skip != 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -175,6 +190,7 @@ jobs:
           PY
 
       - name: Publish compact uplift intelligence into Monolith
+        if: steps.auth.outputs.skip != 'true'
         env:
           GLACIEREQ_ESTATE_TOKEN: ${{ secrets.GLACIEREQ_ESTATE_TOKEN }}
           DESTINATION: ${{ steps.destination.outputs.destination }}
@@ -185,6 +201,7 @@ jobs:
           --destination "${DESTINATION}"
 
       - name: Emit public-safe uplift summary only
+        if: steps.auth.outputs.skip != 'true'
         shell: bash
         run: |
           python - <<'PY' >> "${GITHUB_STEP_SUMMARY}"
@@ -211,8 +228,22 @@ jobs:
           PY
 
       - name: Fail closed after evidence preservation and uplift publication
-        if: steps.crawl.outputs.exit_code != '0'
+        if: steps.auth.outputs.skip != 'true' && steps.crawl.outputs.exit_code != '0'
         shell: bash
         run: |
           echo "Crystallization crawl reported unresolved repository failures. Raw evidence and compact uplift routing were preserved." >&2
           exit 1
+
+      - name: Emit skipped-crawl summary
+        if: steps.auth.outputs.skip == 'true'
+        shell: bash
+        run: |
+          cat >> "${GITHUB_STEP_SUMMARY}" <<'EOF'
+          ### Crystallization estate crawl skipped
+
+          - Scheduled private crawl did not run: the private estate credential is not configured in CI.
+          - No repositories were crawled in this run.
+          - No uplift was published to Monolith in this run.
+          - This skipped run is not a completed crawl and must not be read as uplift progress.
+          - Owner action needed: configure the private estate credential in CI before scheduled crawls can run. A manual workflow_dispatch run still fails closed without it.
+          EOF
