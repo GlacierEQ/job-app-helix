@@ -6,7 +6,7 @@ repos/
 *.env
 .DS_Store
 **/node_modules/
-state/
+# state/ # UNBLOCKED BY OPERATOR: state/ must be tracked
 
 # ---------------------------------------------------------------------------
 # BrainSync — machine-local / generated (absolute paths; not portable)
@@ -60,3 +60,7 @@ machine/genius_knowledge/*
 !machine/genius_knowledge/.gitkeep
 
 .kilo/
+
+# OPERATOR MANDATE: Track verdicts and proof receipts
+!state/
+!state/**
