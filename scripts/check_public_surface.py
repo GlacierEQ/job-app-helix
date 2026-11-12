@@ -58,6 +58,16 @@ def tracked_files() -> list[Path]:
     return [ROOT / item.decode() for item in completed.stdout.split(b"\0") if item]
 
 
+def check_application_disclosure(files: list[Path]) -> list[str]:
+    """Prevent private application lifecycle receipts from entering public proof."""
+    errors: list[str] = []
+    for path in files:
+        relative = path.as_posix()
+        if relative.startswith("evidence/applications/"):
+            errors.append(f"private application evidence in public repository: {relative}")
+    return errors
+
+
 def check_paths(files: list[Path]) -> list[str]:
     errors: list[str] = []
     for path in files:
@@ -118,7 +128,12 @@ def check_markdown_links(files: list[Path]) -> list[str]:
 
 def main() -> int:
     files = tracked_files()
-    errors = check_paths(files) + check_content(files) + check_markdown_links(files)
+    errors = (
+        check_paths(files)
+        + check_application_disclosure([p.relative_to(ROOT) for p in files])
+        + check_content(files)
+        + check_markdown_links(files)
+    )
     if errors:
         print("Public-surface check failed:", file=sys.stderr)
         for error in errors:
