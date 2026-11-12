@@ -9,6 +9,8 @@ NEVER  One-winner / single-authority framing. "Sovereign" and "Canonical" are au
         vocabulary" framing is superseded by that order and is dead text.)
         Use HOLOGRAPHIC MESH framing: decentralized, many nodes, no single winner.
 MUST   Intelligent Behavioral Synthesis over Blind Clobbering: Never discard, clobber, or fast-forward branches based on naming conventions or titles. All divergent trees must be analyzed for their actual functional behavior, AST structures, and test assertions. Reconcile conflicts by preserving verified capabilities and synthesizing the superior, robust implementation.
+MUST   Reuse relevant known memory/continuity state before broad retrieval or reconstruction. Resolve the nearest valid continuation,
+        hydrate only material unknown/changed/conflicting/source-native delta, and never report rediscovery of already-known state as progress.
 
 
 # AGENTS.md — APEX Holographic Mesh Agent Operating Contract (INNOVATION)
