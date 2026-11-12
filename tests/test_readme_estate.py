@@ -180,3 +180,15 @@ def test_fork_preserves_existing_rights_without_claiming_glaciereq_ownership() -
         "controlling_path": "LICENSE",
         "policy": "GlacierEQ/job-app-helix/LICENSE_POLICY.json",
     }
+
+def test_entrypoint_evidence_preserves_all_source_paths_beyond_eight() -> None:
+    from job_app_helix.readme_estate import _baseline_entrypoint_lines
+
+    entries = [
+        {"path": f"src/capability_{i}.py", "kind": "source", "policy": "read-first"}
+        for i in range(16)
+    ]
+    lines = _baseline_entrypoint_lines({"machine": {"entrypoints": entries}})
+    assert len(lines) == len(entries)
+    for entry in entries:
+        assert any(entry["path"] in line for line in lines)
