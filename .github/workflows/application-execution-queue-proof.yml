@@ -161,7 +161,9 @@ jobs:
           assert first.lane == "APPLY_NOW"
           assert first.priority_score > second.priority_score
           assert second.lane == "PREPARE_GAPS"
-          assert second.priority_score <= 45.0
+          # An incomplete application remains in PREPARE_GAPS, but its fit is
+          # not artificially lowered to the old 45-point ceiling.
+          assert second.priority_score > 45.0
           assert first.fresh_signal_count == 2
           print({
               "schema": queue.schema,

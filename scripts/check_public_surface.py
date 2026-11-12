@@ -17,6 +17,12 @@ FORBIDDEN_PATH_PREFIXES = (
     ".windsurf/",
     "state/",
 )
+# The Operator expressly restored this versioned state receipt. It is not a
+# private machine cache; keep the rest of state/ excluded until individually
+# approved for public tracking. Content/secret/link scanning still applies.
+PUBLIC_TRACKED_STATE_RECEIPTS = frozenset({
+    "state/PRODUCTION_READINESS_VERDICT.md",
+})
 FORBIDDEN_PATH_PARTS = ("__pycache__", "node_modules")
 FORBIDDEN_CONTENT = {
     "file:///": "machine-local file URL",
@@ -56,7 +62,7 @@ def check_paths(files: list[Path]) -> list[str]:
     errors: list[str] = []
     for path in files:
         relative = path.relative_to(ROOT).as_posix()
-        if relative.startswith(FORBIDDEN_PATH_PREFIXES):
+        if relative.startswith(FORBIDDEN_PATH_PREFIXES) and relative not in PUBLIC_TRACKED_STATE_RECEIPTS:
             errors.append(f"forbidden tracked path: {relative}")
         if any(part in relative for part in FORBIDDEN_PATH_PARTS):
             errors.append(f"forbidden tracked path component: {relative}")
