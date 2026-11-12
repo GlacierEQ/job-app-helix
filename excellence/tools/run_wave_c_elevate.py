@@ -48,16 +48,13 @@ def elevate_one(name: str, plan_generated_at: str | None) -> dict:
     try:
         if not leaf.is_dir():
             return {"name": name, "grade": "MISSING", "error": "path missing"}
-        # Drop tests that pin DISCOVERED forever (break post-bind).
-        tpath = leaf / "tests" / "test_excellence_state_contract.py"
-        if tpath.is_file():
-            tpath.unlink()
+        # Existing tests are owned source evidence. Never erase a regression test
+        # to make an elevation pass; repair stale expectations in the owning test.
         rec = elev.elevate_leaf(leaf, scratch)
         st_path = leaf / "machine" / "excellence-state.json"
 
-        # Promotion is derived from implementation truth, never from an elevator
-        # return value alone. Generic dual-run/operate/authority proof may establish
-        # an executable scaffold, but cannot establish implementation completion.
+        # Proof/readiness metadata cannot manufacture project authority. Generic
+        # dual-run/operate evidence cannot replace implementation proof.
         assessment = assess_leaf_promotion(leaf, f"GlacierEQ/{name}")
         rec["promotion_assessment"] = assessment.as_dict()
         if rec.get("grade") == "PROMOTED" and not assessment.eligible:
@@ -99,6 +96,7 @@ def elevate_one(name: str, plan_generated_at: str | None) -> dict:
             st.pop("gap_receipt_ref", None)
             gap = leaf / "machine" / "gap-receipt.json"
             if gap.exists():
+                elev.archive_prior_receipt(gap)
                 gap.unlink()
             st_path.write_text(json.dumps(st, indent=2) + "\n", encoding="utf-8")
             vc, vo, ve = elev.run_cmd(
@@ -134,9 +132,9 @@ def main() -> int:
 
     plan_path = ROOT / "excellence" / "waves" / "wave_c_plan.json"
     plan = json.loads(plan_path.read_text(encoding="utf-8"))
-    leaves = [e["leaf"] for e in plan["leaves"]]
-    if args.limit > 0:
-        leaves = leaves[: args.limit]
+    planned_leaves = [e["leaf"] for e in plan["leaves"]]
+    leaves = planned_leaves[: args.limit] if args.limit > 0 else planned_leaves
+    full_scope = len(leaves) == len(planned_leaves)
 
     print(f"Elevating {len(leaves)} Wave C leaves with workers={args.workers}", flush=True)
     results: list[dict] = []
@@ -162,7 +160,8 @@ def main() -> int:
     scaffold_proven = [r for r in results if r.get("grade") == "SCAFFOLD_PROVEN"]
     gapped = [r for r in results if r.get("grade") not in {"PROMOTED", "SCAFFOLD_PROVEN"}]
     ts = datetime.now(UTC).strftime("%Y-%m-%dT%H%MZ")
-    result = "PASS" if len(promoted) == len(leaves) else "PARTIAL"
+    # A perfect limited sample is NOT evidence that the entire wave is complete.
+    result = "PASS" if full_scope and bool(leaves) and len(promoted) == len(leaves) else "PARTIAL"
 
     summary = {
         "schema": "glaciereq.wave-c-receipt.v2",
@@ -171,11 +170,13 @@ def main() -> int:
         "wave_c": {
             "id": WAVE_ID,
             "label": "Wave C — Innovation scaffold excellence group",
-            "enrolled": len(leaves),
+            "enrolled": len(planned_leaves),
+            "selected": len(leaves),
+            "full_scope": full_scope,
             "promoted": len(promoted),
             "scaffold_proven": len(scaffold_proven),
             "gapped": len(gapped),
-            "phase": "CLOSED" if result == "PASS" else "PARTIAL_CLOSE",
+            "phase": "CLOSED" if result == "PASS" else "IN_PROGRESS",
             "leaves_promoted": [r["name"] for r in promoted],
             "leaves_scaffold_proven": [r["name"] for r in scaffold_proven],
             "leaves_gapped": [
@@ -189,12 +190,18 @@ def main() -> int:
                 "ENROLLMENT",
                 "STEEL_VIA_ELEVATOR",
                 "DUAL_RUN",
-                "AUTHORITY_BOUND",
+                "EVIDENCE_BINDING",
+                "PROJECTION_TRUTH_CLOSED",
                 "VALIDATOR",
                 "PROMOTION_INVARIANT",
             ],
             "not_yet": [] if result == "PASS" else ["IMPLEMENTATION_PROOF_FOR_UNPROMOTED_LEAVES"],
-            "law": "PROMOTED requires no scaffold evidence plus source-bound implementation proof",
+            "law": (
+                "PROMOTED is evidence/readiness metadata only; no scaffold evidence, "
+                "source-bound implementation proof, and projection truth closure required"
+            ),
+            "project_direction_authority": "OPERATOR",
+            "machine_project_direction_authority": False,
         },
         "nonclaims": [
             "no employer affiliation or production deployment",
@@ -225,8 +232,20 @@ def main() -> int:
         json.dumps(summary, indent=2) + "\n", encoding="utf-8"
     )
 
-    plan["closed_at"] = ts
-    plan["close_result"] = result
+    # Preserve previous closure claims as history without treating a failed or
+    # partial rerun as a completed mission. Source and active state stay distinct.
+    old_closed_at = plan.pop("closed_at", None)
+    old_close_result = plan.pop("close_result", None)
+    if old_closed_at is not None:
+        plan.setdefault("historical_closure_records", []).append(
+            {"closed_at": old_closed_at, "result": old_close_result}
+        )
+    plan["last_run_at"] = ts
+    plan["run_result"] = result
+    plan["run_status"] = "CLOSED" if result == "PASS" else "IN_PROGRESS"
+    if result == "PASS":
+        plan["closed_at"] = ts
+        plan["close_result"] = result
     plan["promoted_count"] = len(promoted)
     plan["scaffold_proven_count"] = len(scaffold_proven)
     plan["gapped_count"] = len(gapped)
@@ -242,7 +261,7 @@ def main() -> int:
         f"""# Wave C — Innovation Scaffold Excellence Group
 
 **Wave id:** `{WAVE_ID}`  
-**Closed/updated:** {ts}  
+**Updated:** {ts}
 **Result:** **{result}**  
 **Promoted:** {len(promoted)} / {len(leaves)}  
 **Scaffold-proven:** {len(scaffold_proven)}  
@@ -270,13 +289,13 @@ def main() -> int:
 
 ## Receipts
 
-- `excellence/receipts/wave_c_closed.json`
-- `excellence/receipts/wave_c_latest.json`
+- `excellence/receipts/wave_c_latest.json` (current run truth)
+- `excellence/receipts/wave_c_closed.json` (compatibility filename; inspect phase, not filename)
 - Scratch logs: `excellence/receipts/wave_c_scratch/leaves/<leaf>/`
 
 ## Law
 
-- PROMOTED requires no scaffold evidence + source-bound implementation proof
+- PROMOTED is evidence/readiness metadata only; no scaffold evidence + source-bound implementation proof + projection truth closure
 - SCAFFOLD_PROVEN is executable/tested but not implementation-complete
 - No company affiliation claims
 - Generic elevator proof is necessary but not sufficient for promotion

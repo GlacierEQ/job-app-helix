@@ -109,7 +109,7 @@ def landed_index() -> dict[str, Any]:
     }
 
 
-def subjects_from_impact(*, limit: int = 24) -> list[dict[str, Any]]:
+def subjects_from_impact(*, limit: int | None = None) -> list[dict[str, Any]]:
     """Build invent subjects from Library of Links impact queue + landed leaves."""
     subjects: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -135,18 +135,18 @@ def subjects_from_impact(*, limit: int = 24) -> list[dict[str, Any]]:
             for item in payload.get("queue") or []:
                 for leaf in item.get("suggested_leaves") or []:
                     _add(str(leaf))
-                    if len(subjects) >= limit:
+                    if limit is not None and len(subjects) >= limit:
                         return subjects[:limit]
-    return subjects[:limit]
+    return subjects if limit is None else subjects[:limit]
 
 
 def invent_impact_estate(
     *,
-    limit_per: int = 1,
+    limit_per: int | None = None,
     live_research: bool = False,
     accumulate: bool = True,
     publish_links: bool = True,
-    limit_subjects: int = 24,
+    limit_subjects: int | None = None,
     root: Path | None = None,
 ) -> dict[str, Any]:
     """Invent across impact + landed subjects (estate max-impact tranche)."""

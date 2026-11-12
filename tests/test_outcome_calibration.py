@@ -119,7 +119,9 @@ def test_calibration_never_lets_gap_lane_jump_apply_lane() -> None:
 
     assert calibrated.items[0].opening_id == "apply"
     assert calibrated.items[1].opening_id == "gap"
-    assert calibrated.items[1].priority_score <= 45.0
+    # Calibration cannot erase a capable but not-yet-actionable opportunity.
+    assert calibrated.items[1].priority_score > 45.0
+    assert calibrated.items[1].lane == "PREPARE_GAPS"
     assert calibrated.schema.endswith("+outcome-calibration")
 
 

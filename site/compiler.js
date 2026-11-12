@@ -159,7 +159,7 @@
       );
       return;
     }
-    rows.slice(0, 3).forEach((source) => {
+    rows.forEach((source) => {
       if (!source || typeof source.url !== "string") return;
       const link = document.createElement("a");
       link.href = source.url;
@@ -209,7 +209,7 @@
       return;
     }
 
-    capabilities.slice(0, 10).forEach((capability) => {
+    capabilities.forEach((capability) => {
       const chip = appendText(
         capabilitiesRoot,
         "span",
@@ -221,7 +221,7 @@
       if (matched.has(capability)) chip.title = "Matched by promoted proof";
     });
 
-    const strongest = Array.from(matched).slice(0, 2).map(titleCase);
+    const strongest = Array.from(matched).map(titleCase);
     chainCapability.textContent = strongest.length
       ? strongest.join(" + ")
       : `${capabilities.length} mapped capabilities`;
@@ -319,7 +319,7 @@
             ? row.capabilities
             : [];
       const chips = appendText(card, "div", "", "capability-chips");
-      matched.slice(0, 6).forEach((capability) => {
+      matched.forEach((capability) => {
         if (typeof capability !== "string") return;
         appendText(chips, "span", titleCase(capability), "capability-chip");
       });

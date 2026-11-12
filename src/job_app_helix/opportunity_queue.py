@@ -115,14 +115,8 @@ def _lane(opportunity: OpportunityAssessment, *, warm_first: bool = False) -> st
     return "DEFER"
 
 
-def _hard_cap(opportunity: OpportunityAssessment) -> float:
-    if opportunity.recommendation == "BLOCKED_NO_PUBLIC_PROOF":
-        return 20.0
-    if opportunity.recommendation == "GAPS_TO_CLOSE":
-        return 45.0
-    if opportunity.recommendation == "DEFER":
-        return 59.0
-    return 100.0
+# Readiness is enforced through the independent lane, never by mutating the
+# underlying capability/fit signal into an arbitrary score ceiling.
 
 
 def score_queue_candidate(
@@ -158,7 +152,7 @@ def score_queue_candidate(
             + 0.20 * company_fit.score
             + 5.0 * float(freshness)
         )
-    priority_score = round(min(raw_score, _hard_cap(opportunity)), 2)
+    priority_score = round(raw_score, 2)
 
     reasons = [
         f"opportunity={opportunity.score:.1f}",
@@ -175,9 +169,7 @@ def score_queue_candidate(
                 f"fresh_signals={company_fit.fresh_signal_count}",
             )
         )
-    cap = _hard_cap(opportunity)
-    if raw_score > cap:
-        reasons.append(f"hard_gap_cap={cap:.0f}")
+    reasons.append(f"readiness={opportunity.recommendation}")
 
     return priority_score, opportunity, company_fit, tuple(reasons)
 

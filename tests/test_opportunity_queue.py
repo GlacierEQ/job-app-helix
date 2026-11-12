@@ -128,7 +128,7 @@ def test_queue_puts_strong_fresh_company_aligned_opening_first() -> None:
     assert queue.items[0].priority_score > queue.items[1].priority_score
 
 
-def test_major_hard_gaps_cap_score_even_with_company_alignment() -> None:
+def test_major_hard_gaps_preserve_fit_score_without_unlocking_application() -> None:
     target = _target()
     profile = _profile()
     opening = _opening(
@@ -146,8 +146,14 @@ def test_major_hard_gaps_cap_score_even_with_company_alignment() -> None:
 
     assert opportunity.recommendation == "GAPS_TO_CLOSE"
     assert company_fit is not None and company_fit.score == 100.0
-    assert score <= 45.0
-    assert any(reason == "hard_gap_cap=45" for reason in reasons)
+    # Readiness is represented by the lane, not a permanent synthetic score ceiling.
+    assert score == round(0.75 * opportunity.score + 0.20 * company_fit.score + 5.0, 2)
+    assert all(not reason.startswith("hard_gap_cap=") for reason in reasons)
+    queue = opportunity_queue.build_application_execution_queue(
+        ((opening, target, _intelligence(), None),), profile, now=NOW
+    )
+    assert queue.items[0].lane == "PREPARE_GAPS"
+    assert queue.apply_now_count == 0
 
 
 def test_stale_company_signal_contributes_no_freshness_or_fit() -> None:

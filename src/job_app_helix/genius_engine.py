@@ -554,7 +554,7 @@ SIGNAL_MECHANISM_BONUS: dict[str, tuple[str, ...]] = {
 
 def select_mechanisms(
     domain: str,
-    limit: int = 4,
+    limit: int | None = None,
     research: ResearchDossier | None = None,
 ) -> list[MechanismPrimitive]:
     """Rank mechanisms by domain + research signals — avoid universal anti-neutralization."""
@@ -591,11 +591,12 @@ def select_mechanisms(
         if score > 0:
             scored.append((score, mech))
     scored.sort(key=lambda item: (-item[0], item[1].id))
-    picked = [m for _, m in scored[:limit]]
+    picked = [m for _, m in (scored if limit is None else scored[:limit])]
     if not picked:
         # hard fallback — engineered first class, not anti-neutralization
         by_id = {m.id: m for m in MECHANISM_LIBRARY}
-        return [by_id["engineered_first_class"], by_id["first_pass_last_pass"]][:limit]
+        fallback = [by_id["engineered_first_class"], by_id["first_pass_last_pass"]]
+        return fallback if limit is None else fallback[:limit]
     return picked
 
 
@@ -898,7 +899,7 @@ def compose_advance_brief(run_like: Mapping[str, Any] | GeniusRun) -> dict[str, 
 def invent(
     subject: Mapping[str, Any],
     *,
-    limit: int = 3,
+    limit: int | None = None,
     include_atlas_seeds: bool = True,
     root: Path | None = None,
     live_research: bool = True,
@@ -916,7 +917,11 @@ def invent(
     dossier = research_subject(subject, helix_root=helix_root, live=live_research)
     problem, cause = infer_bottleneck(subject, dossier)
     domain = infer_domain(subject, dossier)
-    mechs = select_mechanisms(domain, limit=max(limit, 3), research=dossier)
+    # Unrestricted discovery is the default. An explicit caller limit is a
+    # presentation/workload choice, never a hidden estate-wide capability cap.
+    mechs = select_mechanisms(
+        domain, limit=max(limit, 3) if limit is not None else None, research=dossier
+    )
     candidates: list[GeniusSolution] = []
     rejected: list[dict[str, Any]] = []
 
@@ -1000,7 +1005,7 @@ def invent(
                 )
 
     candidates.sort(key=lambda s: (-s.genius_score, s.title))
-    top = tuple(candidates[:limit])
+    top = tuple(candidates if limit is None else candidates[:limit])
     primary = top[0] if top else None
     subject_out = {
         "repository": subject.get("repository") or subject.get("name"),
@@ -1100,7 +1105,7 @@ def invent_restoration(subject: Mapping[str, Any], **kwargs: Any) -> GeniusRun:
 def invent_estate(
     subjects: Sequence[Mapping[str, Any]],
     *,
-    limit_per: int = 1,
+    limit_per: int | None = None,
     live_research: bool = True,
     accumulate: bool = True,
     publish_links: bool = True,
@@ -1208,7 +1213,7 @@ def main(argv: list[str] | None = None) -> int:
     inv = sub.add_parser("invent")
     inv.add_argument("--repository", required=True)
     inv.add_argument("--company")
-    inv.add_argument("--limit", type=int, default=3)
+    inv.add_argument("--limit", type=int, default=None)
     inv.add_argument("--paper-recovery", action="store_true")
     inv.add_argument("--neutralization-stamps", type=int, default=0)
     inv.add_argument("--offline", action="store_true")
@@ -1217,7 +1222,7 @@ def main(argv: list[str] | None = None) -> int:
     inv.add_argument("--markdown", action="store_true")
     rest = sub.add_parser("restore")
     rest.add_argument("--repository", required=True)
-    rest.add_argument("--limit", type=int, default=3)
+    rest.add_argument("--limit", type=int, default=None)
     rest.add_argument("--offline", action="store_true")
     rest.add_argument("--markdown", action="store_true")
     adv = sub.add_parser("advance")

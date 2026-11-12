@@ -52,20 +52,20 @@ def main() -> int:
     inv.add_argument("--offline", action="store_true")
     inv.add_argument("--no-accumulate", action="store_true")
     inv.add_argument("--no-publish-links", action="store_true")
-    inv.add_argument("--limit", type=int, default=3)
+    inv.add_argument("--limit", type=int, default=None)
     inv.add_argument("--markdown", action="store_true")
     inv.add_argument("--output", type=Path)
 
     rest = sub.add_parser("restore", help="Restoration invent (neutralization-aware)")
     rest.add_argument("--repository", required=True)
-    rest.add_argument("--limit", type=int, default=3)
+    rest.add_argument("--limit", type=int, default=None)
     rest.add_argument("--offline", action="store_true")
     rest.add_argument("--markdown", action="store_true")
     rest.add_argument("--output", type=Path)
 
     est = sub.add_parser("estate", help="Run genius invent over a JSON list of subjects")
     est.add_argument("subjects", type=Path, help="JSON list of subject objects")
-    est.add_argument("--limit-per", type=int, default=1)
+    est.add_argument("--limit-per", type=int, default=None)
     est.add_argument("--offline", action="store_true")
     est.add_argument("--output", type=Path)
 
@@ -73,8 +73,8 @@ def main() -> int:
         "impact-estate",
         help="Invent across IMPACT queue + landed leaves (max-impact tranche)",
     )
-    imp.add_argument("--limit-per", type=int, default=1)
-    imp.add_argument("--limit-subjects", type=int, default=24)
+    imp.add_argument("--limit-per", type=int, default=None)
+    imp.add_argument("--limit-subjects", type=int, default=None)
     imp.add_argument("--offline", action="store_true")
     imp.add_argument("--live", action="store_true", help="Force live GH research")
     imp.add_argument("--output", type=Path)
