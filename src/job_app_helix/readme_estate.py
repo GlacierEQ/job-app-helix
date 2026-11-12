@@ -290,7 +290,7 @@ def _baseline_entrypoint_lines(contract: Mapping[str, Any]) -> list[str]:
         return []
     return [
         f"- `{item['path']}` — {item['kind']} ({item['policy']})"
-        for item in entrypoints[:8]
+        for item in entrypoints
         if isinstance(item, Mapping)
         and isinstance(item.get("path"), str)
         and isinstance(item.get("kind"), str)
