@@ -1,0 +1,39 @@
+name: Public Application Privacy Boundary
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "evidence/applications/**"
+      - "hire_package/casey-barton/applications/**"
+      - "hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md"
+      - "scripts/check_application_privacy_boundary.py"
+      - "tests/test_application_privacy_boundary_gate.py"
+      - ".github/workflows/external-application-receipt-integrity.yml"
+  pull_request:
+    paths:
+      - "evidence/applications/**"
+      - "hire_package/casey-barton/applications/**"
+      - "hire_package/casey-barton/AI_ARCHITECT_PROMOTION_QUEUE.md"
+      - "scripts/check_application_privacy_boundary.py"
+      - "tests/test_application_privacy_boundary_gate.py"
+      - ".github/workflows/external-application-receipt-integrity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Privacy regression fixtures
+        run: python -m unittest tests.test_application_privacy_boundary_gate -v
+      - name: Public checkout must not contain private application records
+        run: python scripts/check_application_privacy_boundary.py
