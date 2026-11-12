@@ -164,7 +164,7 @@ def render_five_depth_block(
     expert = _section(node, readme_mesh_pb2.EXPERT)
     machine = _section(node, readme_mesh_pb2.AI_AGENT)
     titles = choose_titles(node)
-    weight = choose_weight(node)
+    # Preserve every admitted evidence item across each presentation depth.
 
     lines: list[str] = [
         BEGIN_MARKER,
