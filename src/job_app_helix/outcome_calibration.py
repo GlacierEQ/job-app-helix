@@ -39,14 +39,8 @@ LANE_ORDER = {
     "DEFER": 4,
     "BLOCKED_PROOF": 5,
 }
-LANE_CAPS = {
-    "WARM_FIRST": 100.0,
-    "APPLY_NOW": 100.0,
-    "APPLY_NEXT": 100.0,
-    "PREPARE_GAPS": 45.0,
-    "DEFER": 59.0,
-    "BLOCKED_PROOF": 20.0,
-}
+# Application readiness is a separate ordered lane. Outcome learning may
+# change a candidate's fit within a lane but must not erase its potential.
 
 
 @dataclass(frozen=True)
@@ -227,7 +221,7 @@ def load_outcome_examples(database: Path) -> tuple[OutcomeExample, ...]:
             if opportunity is None:
                 continue
             raw_score = opportunity.get("score")
-            if not isinstance(raw_score, (int, float)):
+            if not isinstance(raw_score, (int | float)):
                 continue
             company_fit = _load_json(root / "COMPANY_FIT_ASSESSMENT.json")
             fit_score: float | None = None
@@ -236,7 +230,7 @@ def load_outcome_examples(database: Path) -> tuple[OutcomeExample, ...]:
                 raw_fit = company_fit.get("score")
                 fresh = company_fit.get("fresh_signal_count")
                 stale = company_fit.get("stale_signal_count")
-                if isinstance(raw_fit, (int, float)):
+                if isinstance(raw_fit, (int | float)):
                     fit_score = float(raw_fit)
                 if (
                     isinstance(fresh, int)
@@ -279,7 +273,7 @@ def calibrate_queue(
             + float(weights["company_fit"]) * fit
             + float(weights["freshness"]) * freshness
         )
-        score = round(min(raw, LANE_CAPS[item.lane]), 2)
+        score = round(raw, 2)
         reasons = (*item.reasons, f"outcome_calibration={calibration.status}")
         adjusted.append(replace(item, priority_score=score, reasons=reasons))
 

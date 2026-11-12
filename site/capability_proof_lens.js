@@ -169,13 +169,13 @@
       const detail = appendText(card, "div", "", "capability-proof-detail");
       appendText(detail, "strong", "Evidence files", "capability-proof-label");
       const files = appendText(detail, "div", "", "capability-proof-links");
-      evidence.slice(0, 4).forEach((ref) => {
+      evidence.forEach((ref) => {
         appendLink(files, ref, evidenceHref(proof, ref), "capability-proof-link");
       });
 
       appendText(detail, "strong", "Successful checks", "capability-proof-label");
       const checks = appendText(detail, "ul", "", "capability-proof-checks");
-      receipts.slice(0, 5).forEach((receipt) => {
+      receipts.forEach((receipt) => {
         if (!receipt || typeof receipt.name !== "string") return;
         const item = document.createElement("li");
         item.textContent = `${receipt.name} · #${receipt.id}`;
@@ -231,9 +231,8 @@
     });
     const receiptCount = distinctReceipts.size;
     proofSummary.textContent = `${proofs.length} capability proof packet${proofs.length === 1 ? "" : "s"} · ${systems.size} public donor system${systems.size === 1 ? "" : "s"} · ${receiptCount} successful exact-head check${receiptCount === 1 ? "" : "s"}.`;
-    proofs.slice(0, depth === "recruiter" ? 3 : 6).forEach((proof) =>
-      renderProof(proof, depth, roleCaps),
-    );
+    // Depth changes the level of detail, never the number of admitted proofs.
+    proofs.forEach((proof) => renderProof(proof, depth, roleCaps));
   };
 
   const observer = new MutationObserver(() => renderCurrent());

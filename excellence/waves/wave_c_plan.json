@@ -442,7 +442,7 @@
     "G3_RECEIPT": "deterministic digests",
     "G4_REFUSE": "explicit refuse paths",
     "G5_CEILING": "non-affiliation preserved",
-    "PROMOTE": "AUTHORITY_BOUND + PROJECTION_TRUTH_CLOSED; PROMOTED XOR gap-receipt"
+    "PROMOTE": "EVIDENCE_BINDING + PROJECTION_TRUTH_CLOSED; PROMOTED is evidence/readiness metadata only, not project authority"
   },
   "protected_not_enrolled": [
     "anduril-sensor-health-quorum",
