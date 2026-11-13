@@ -80,8 +80,12 @@ jobs:
           assert receipt['status'] == 'PASS'
           assert receipt['scope'] == 'CONTROL_PLANE_SOURCES_ONLY'
           assert receipt['projection_freshness']['all_projections_current'] is False
-          assert receipt['counts']['total_repositories'] == 67
-          assert receipt['counts']['workspace_repositories'] == 66
+          admitted = json.loads(Path('manifests/portfolio_repositories.json').read_text())
+          children = admitted['workspace_repositories']
+          assert len(children) == len(set(children))
+          assert receipt['counts']['workspace_repositories'] == len(children)
+          assert receipt['counts']['total_repositories'] == admitted['total_repositories']
+          assert admitted['total_repositories'] == len(children) + 1
           assert all(receipt['invariants'].values())
           print(receipt['receipt_sha256'])
           PY
