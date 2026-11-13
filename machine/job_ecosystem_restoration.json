@@ -17,6 +17,21 @@
     "priority_spine_manifest": "manifests/library_priority_spine.json",
     "flagship_registry": "manifests/flagship_registry.json"
   },
+  "public_projection_bindings": {
+    "mega_skills": {
+      "status": "PUBLIC_HTTP_READBACK_VERIFIED",
+      "receipt": "receipts/MEGA_SKILLS_PUBLIC_READBACK_2026-11-13.json",
+      "historical_binding_receipt": "receipts/MEGA_SKILLS_PROJECTION_BINDING_2026-09-03.json",
+      "observed_at": "2026-11-13T21:03:08.822226+00:00",
+      "public_schema": "glaciereq.public-mega-skills.v2",
+      "counts": {
+        "atomic_skills": 723,
+        "compound_skills": 39,
+        "mega_skills": 34
+      },
+      "claim_boundary": "Verified public HTTP delivery only; not Skill runtime execution, production adoption, or completion of Wave 5 or the restoration program."
+    }
+  },
   "waves": {
     "0_control_identity": "PR_OPEN",
     "1_critical_hire_path": "LEAF_RESTORES_MERGED",

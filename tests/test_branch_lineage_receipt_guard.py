@@ -87,3 +87,165 @@ def test_validator_rejects_tampered_historical_receipt_digest(tmp_path: Path) ->
     receipt["historical_source_receipt"]["sha256"] = "0" * 64
     with pytest.raises(LibraryProgramError, match="historical source receipt digest mismatch"):
         _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize("nested", [False, True])
+@pytest.mark.parametrize(
+    "disposition",
+    [None, [], {}, ["DELETE_REF_REQUIRED"], {"action": "DELETE_REF_REQUIRED"}, "", "  ", 0, False],
+)
+def test_validator_rejects_malformed_dispositions(
+    tmp_path: Path, nested: bool, disposition: object
+) -> None:
+    program, receipt = _state()
+    directive = {"remote_ref_disposition": disposition}
+    if nested:
+        receipt["outcomes"][0]["branch_dispositions"] = [directive]
+    else:
+        receipt["outcomes"][0].update(directive)
+    with pytest.raises(LibraryProgramError, match="remote_ref_disposition must be non-empty text"):
+        _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize("nested", [False, True])
+@pytest.mark.parametrize(
+    "disposition",
+    [
+        "RETIRE_REF_REQUIRED",
+        "KILL_REF",
+        "SUPERSEDE_REF",
+        "CONSOLIDATE_REF",
+        "remove-ref",
+        "remove ref",
+    ],
+)
+def test_validator_rejects_alternate_retirement_dispositions(
+    tmp_path: Path, nested: bool, disposition: str
+) -> None:
+    program, receipt = _state()
+    directive = {"remote_ref_disposition": disposition}
+    if nested:
+        receipt["outcomes"][0]["branch_dispositions"] = [directive]
+    else:
+        receipt["outcomes"][0].update(directive)
+    with pytest.raises(LibraryProgramError, match="destructive remote-ref disposition"):
+        _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize("nested", [False, True])
+@pytest.mark.parametrize(
+    "unique", [0, 0.0, "0", " 0 ", "+0", "-0", "0.00", "0e9", "ZERO", "NONE", "NO_UNIQUE_VALUE"]
+)
+def test_all_zero_spellings_require_preserved_lineage_proof(
+    tmp_path: Path, nested: bool, unique: object
+) -> None:
+    program, receipt = _state()
+    directive = {"unique_value": unique}
+    if nested:
+        receipt["outcomes"][0]["branch_dispositions"] = [directive]
+    else:
+        receipt["outcomes"][0].update(directive)
+    with pytest.raises(LibraryProgramError, match="unique_contribution_verification"):
+        _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize(
+    "unique",
+    [None, False, True, [], {}, "", "  ", -1, "-1", float("nan"), float("inf"), "NaN", "Infinity"],
+)
+def test_validator_rejects_invalid_unique_value_types(tmp_path: Path, unique: object) -> None:
+    program, receipt = _state()
+    receipt["outcomes"][0]["unique_value"] = unique
+    with pytest.raises(LibraryProgramError, match="unique_value"):
+        _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize("nested", [False, True])
+@pytest.mark.parametrize("unique", [0, 0.0, "0", "0.0", "0e9", "NONE"])
+def test_zero_values_with_structural_proof_remain_valid(
+    tmp_path: Path, nested: bool, unique: object
+) -> None:
+    program, receipt = _state()
+    directive = {
+        "unique_value": unique,
+        "remote_ref_disposition": "PRESERVE_DRAINED_LINEAGE",
+        "unique_contribution_verification": {
+            "verdict": "ZERO",
+            "provider_readback_refs": ["synthetic-test://verified-branch-evidence"],
+            "lineage_preserved": True,
+        },
+    }
+    if nested:
+        receipt["outcomes"][0]["branch_dispositions"] = [directive]
+    else:
+        receipt["outcomes"][0].update(directive)
+    _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize(
+    "proof",
+    [
+        {},
+        {"verdict": "PRESENT"},
+        {"verdict": "ZERO", "provider_readback_refs": []},
+        {"verdict": "ZERO", "provider_readback_refs": ["source"], "lineage_preserved": False},
+    ],
+)
+def test_partial_zero_proof_is_rejected(tmp_path: Path, proof: dict) -> None:
+    program, receipt = _state()
+    receipt["outcomes"][0].update({"unique_value": 0, "unique_contribution_verification": proof})
+    with pytest.raises(LibraryProgramError):
+        _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize("nested", [False, True])
+@pytest.mark.parametrize(
+    "unique",
+    [
+        "0e9223372036854775808",
+        "0e-9223372036854775809",
+        "-1e9223372036854775808",
+        "0e9_223372036854775808",
+    ],
+)
+def test_numeric_parse_failures_cannot_be_descriptive_fallback(
+    tmp_path: Path, nested: bool, unique: str
+) -> None:
+    program, receipt = _state()
+    directive = {"unique_value": unique}
+    if nested:
+        receipt["outcomes"][0]["branch_dispositions"] = [directive]
+    else:
+        receipt["outcomes"][0].update(directive)
+    with pytest.raises(LibraryProgramError, match="unsupported numeric encoding"):
+        _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize("nested", [False, True])
+@pytest.mark.parametrize(
+    "disposition",
+    ["REMOVE\tREF", "REMOVE__REF", "REMOVE/REF", "delete.ref", "PURGE_REF", "DESTROY_REF"],
+)
+def test_command_separator_variants_cannot_evade_disposition_guard(
+    tmp_path: Path, nested: bool, disposition: str
+) -> None:
+    program, receipt = _state()
+    directive = {"remote_ref_disposition": disposition}
+    if nested:
+        receipt["outcomes"][0]["branch_dispositions"] = [directive]
+    else:
+        receipt["outcomes"][0].update(directive)
+    with pytest.raises(LibraryProgramError, match="destructive remote-ref disposition"):
+        _validate_modified(tmp_path, program, receipt)
+
+
+@pytest.mark.parametrize(
+    "disposition",
+    ["PRESERVE_RETIRED_LINEAGE", "RETIREMENT_NOT_AUTHORIZED", "PRESERVE_DRAINED_LINEAGE"],
+)
+def test_preservation_only_labels_are_not_destructive_commands(
+    tmp_path: Path, disposition: str
+) -> None:
+    program, receipt = _state()
+    receipt["outcomes"][0]["remote_ref_disposition"] = disposition
+    _validate_modified(tmp_path, program, receipt)

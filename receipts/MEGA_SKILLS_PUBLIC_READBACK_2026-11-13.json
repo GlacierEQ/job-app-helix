@@ -1,0 +1,151 @@
+{
+  "schema": "job-app-helix.public-projection-readback.v1",
+  "binding_id": "mega-skills-public-projection-2026-09-03",
+  "receipt_id": "mega-skills-public-readback-2026-11-13",
+  "state": "PUBLIC_HTTP_READBACK_VERIFIED",
+  "observed_at": "2026-11-13T21:03:08.822226+00:00",
+  "claim": "Fresh public HTTP delivery of the Mega-Skills human route, machine JSON, source lock, and homepage was verified with HTTP 200 and exact byte/hash matches to the pinned job-application source revision.",
+  "claim_boundary": "HTTP delivery and repository-declared Skill composition/validation contracts only. This receipt does not establish Skill runtime execution, production adoption, external endorsement, completion of the full restoration program, or completion of Wave 5.",
+  "historical_binding": {
+    "receipt": "receipts/MEGA_SKILLS_PROJECTION_BINDING_2026-09-03.json",
+    "sha256": "5a20f8933efeaccbd4e6f4aa596c112c66b46916946dc5bbd7849766f4769c9a",
+    "unchanged": true,
+    "recorded_state": "SOURCE_VALIDATED_PUBLIC_READBACK_UNRESOLVED",
+    "recorded_public_schema": "glaciereq.public-mega-skills.v1",
+    "recorded_source_commit": "9b575b8335b56e4eb21903f8780e0545cddd49d0",
+    "recorded_counts": {
+      "atomic_skills": 709,
+      "compound_skills": 33,
+      "mega_skills": 29,
+      "internal_compound_to_atomic_references": 123,
+      "external_skill_references": 10,
+      "unresolved_internal_skill_references": 0,
+      "unresolved_mega_to_compound_references": 0
+    },
+    "relationship": "Append-only readback closure preserving the September binding, source lineage, historical counts, and unresolved-at-that-time evidence. Current public schema/counts below describe a later source revision; 29 Mega Skills is historical, not the current public count."
+  },
+  "parent_evidence": {
+    "artifact": "/home/ubuntu/helix-audit/mega-skills-readback.json",
+    "sha256": "66405dff5b41393267ba0816d5cd1e0051d0c2edd6c4f759ac3b032244fdd25c",
+    "observed_at": "2026-11-13T21:03:08.822226+00:00",
+    "verification_origin": "Parent-verified fresh public HTTP readback artifact; this closure checked its response byte counts and SHA-256 hashes against git objects at the pinned job-application commit.",
+    "source_claim_boundary": "Repository-declared Skill composition and validation contracts; not runtime execution, production adoption, deployment success, or external endorsement."
+  },
+  "projection_source": {
+    "control_repository": "GlacierEQ/job-app-helix",
+    "repository": "GlacierEQ/job-application",
+    "commit": "dbbcde73e370ed442b8366a6964b2dbe85e07be1",
+    "source_root": "site-v15/",
+    "human_route_source": "site-v15/mega-skills/index.html",
+    "machine_projection_source": "site-v15/data/mega-skills.json",
+    "source_lock_source": "site-v15/data/mega-skills-source-lock.json",
+    "homepage_source": "site-v15/index.html"
+  },
+  "deployment_context": {
+    "provider": "Vercel",
+    "project_id": "prj_5i9v2K5MyET7Yi7JwN2PCIj1AGZ1",
+    "deployment_id": "dpl_FsSBVngxeEQuCvHVFnVm6iLEFaxE",
+    "state": "READY",
+    "target": "production",
+    "source_commit": "dbbcde73e370ed442b8366a6964b2dbe85e07be1",
+    "verification_origin": "Parent-verified deployment context supplied with this closure task; READY/production labels are provider metadata, not proof of Skill runtime execution or production adoption."
+  },
+  "current_public_projection": {
+    "schema": "glaciereq.public-mega-skills.v2",
+    "source": {
+      "repository": "GlacierEQ/mega-skills",
+      "commit": "60face3915605909b9c7d3ed05a81dd289be3ba1",
+      "graph_sha256": "c661ead55c7d6d2ad45fec693283102f81b3d46b0d6c0fad4bf9a952a1ba0524"
+    },
+    "counts": {
+      "atomic_skills": 723,
+      "compound_skills": 39,
+      "mega_skills": 34,
+      "external_member_references": 10,
+      "mega_pyramids": 34,
+      "unresolved_owned_references": 0,
+      "compound_cycles": 0
+    },
+    "source_lock_schema": "job-application.mega-skills-source-lock.v1",
+    "source_lock_route_count": 34,
+    "source_lock_manifest_sha256": "f80b15f8e61ae73b618df1416cedad9710c63deb802e38cdaef4a1048ff86969",
+    "source_lock_aggregate_projection_sha256": "c661ead55c7d6d2ad45fec693283102f81b3d46b0d6c0fad4bf9a952a1ba0524"
+  },
+  "public_readback": {
+    "status": "PUBLIC_HTTP_READBACK_VERIFIED",
+    "responses": [
+      {
+        "url": "https://casey-barton-glaciereq.vercel.app/mega-skills/",
+        "source_path": "site-v15/mega-skills/index.html",
+        "http_status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "bytes": 15629,
+        "sha256": "f6a7a424a1fff6eb743ea6ca577ec90a7fbe8d3d4cfa399054fedc5ed6423de7",
+        "matches_site_source": true
+      },
+      {
+        "url": "https://casey-barton-glaciereq.vercel.app/data/mega-skills.json",
+        "source_path": "site-v15/data/mega-skills.json",
+        "http_status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "bytes": 8747,
+        "sha256": "f80b15f8e61ae73b618df1416cedad9710c63deb802e38cdaef4a1048ff86969",
+        "matches_site_source": true
+      },
+      {
+        "url": "https://casey-barton-glaciereq.vercel.app/data/mega-skills-source-lock.json",
+        "source_path": "site-v15/data/mega-skills-source-lock.json",
+        "http_status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "bytes": 617,
+        "sha256": "5e5dd993465591a1d91fa0478b838e7df160b5d612cce1a3b2a4e5f0188caffc",
+        "matches_site_source": true
+      },
+      {
+        "url": "https://casey-barton-glaciereq.vercel.app/",
+        "source_path": "site-v15/index.html",
+        "http_status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "bytes": 53097,
+        "sha256": "37f4facc7abe8b6480e8cfd2b10b5849b76f57aee4848a8cfab848d6281ca6d0",
+        "matches_site_source": true
+      }
+    ],
+    "coverage_boundary": "Four public responses were observed. The 34 individual Mega detail routes were validated locally; this receipt does not claim fresh public HTTP readback for every detail route."
+  },
+  "owning_site_validation": {
+    "status": "PASS",
+    "repository": "GlacierEQ/job-application",
+    "source_commit": "dbbcde73e370ed442b8366a6964b2dbe85e07be1",
+    "validator": "site-v15/scripts/validate-mega-skills.mjs",
+    "command": "node site-v15/scripts/validate-mega-skills.mjs",
+    "verification_origin": "Read-only local execution during receipt closure; current worktree files matched the pinned source git objects.",
+    "output": {
+      "status": "PASS",
+      "schema": "glaciereq.public-mega-skills.v2",
+      "source_commit": "60face3915605909b9c7d3ed05a81dd289be3ba1",
+      "manifest_sha256": "f80b15f8e61ae73b618df1416cedad9710c63deb802e38cdaef4a1048ff86969",
+      "mega_routes": 34,
+      "details": 197,
+      "counts": {
+        "atomic_skills": 723,
+        "compound_skills": 39,
+        "mega_skills": 34,
+        "external_member_references": 10,
+        "mega_pyramids": 34,
+        "unresolved_owned_references": 0,
+        "compound_cycles": 0
+      }
+    }
+  },
+  "continuation": {
+    "resolved_item": "Fresh public HTTP readback for the Mega-Skills binding.",
+    "wave5_finished": false,
+    "remaining_work": [
+      "Keep Mega-Skills pyramid generation synchronized with source Skills, Compound Skills, and Mega registries.",
+      "Re-audit portfolio 66 for missing, neutralized, or thin surfaces.",
+      "Restore Wave-2 physics family under dual-plane truth.",
+      "Continue Atlas closure and site re-projection without overwriting governed public bindings."
+    ]
+  }
+}

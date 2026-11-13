@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from collections.abc import Mapping
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
@@ -108,19 +110,47 @@ def _assert_upward_policy(policy: Mapping[str, Any]) -> None:
 
 def _assert_mesh_safe_disposition(branch: Mapping[str, Any], *, label: str) -> None:
     """No generated receipt may grant destructive ref authority or assume zero loss."""
-    disposition = branch.get("remote_ref_disposition")
-    if isinstance(disposition, str) and any(
-        token in disposition.upper()
-        for token in ("DELETE", "ARCHIVE", "DISCARD", "REMOVE_REF")
-    ):
-        raise LibraryProgramError(
-            f"{label}: destructive remote-ref disposition is forbidden"
+    if "remote_ref_disposition" in branch:
+        disposition = _require_nonempty_text(
+            branch["remote_ref_disposition"], f"{label}.remote_ref_disposition"
         )
+        # Command tokens are forbidden, not preservation-only words such as
+        # RETIRED or RETIREMENT. Normalize separators without inventing authority.
+        tokens = set(re.split(r"[^A-Z0-9]+", disposition.upper()))
+        if tokens & {
+            "DELETE", "ARCHIVE", "DISCARD", "REMOVE", "RETIRE", "KILL",
+            "SUPERSEDE", "CONSOLIDATE", "MERGE", "CLOSE", "DESTROY", "PURGE",
+        }:
+            raise LibraryProgramError(
+                f"{label}: destructive remote-ref disposition is forbidden"
+            )
 
+    if "unique_value" not in branch:
+        return
     unique = branch.get("unique_value")
-    if isinstance(unique, str) and unique.strip().upper() in {
-        "NONE", "ZERO", "NO_UNIQUE_VALUE"
-    }:
+    if isinstance(unique, bool) or not isinstance(unique, (str, int, float)):
+        raise LibraryProgramError(f"{label}.unique_value must be text or a non-negative number")
+    text = (
+        _require_nonempty_text(unique, f"{label}.unique_value")
+        if isinstance(unique, str)
+        else str(unique)
+    )
+    zero_claim = text.upper() in {"NONE", "ZERO", "NO_UNIQUE_VALUE"}
+    try:
+        numeric = Decimal(text)
+    except InvalidOperation:
+        # Existing descriptive values (e.g. PRESENT) remain valid; numeric
+        # spellings must not bypass the same evidence requirement as ZERO.
+        if re.fullmatch(
+            r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?", text.replace("_", "")
+        ):
+            raise LibraryProgramError(f"{label}.unique_value has an unsupported numeric encoding") from None
+        pass
+    else:
+        if not numeric.is_finite() or numeric < 0:
+            raise LibraryProgramError(f"{label}.unique_value must be finite and non-negative")
+        zero_claim = numeric.is_zero()
+    if zero_claim:
         proof = branch.get("unique_contribution_verification")
         if not isinstance(proof, Mapping):
             raise LibraryProgramError(
