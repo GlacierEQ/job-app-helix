@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from collections.abc import Mapping
 from pathlib import Path
@@ -103,6 +104,43 @@ def _assert_upward_policy(policy: Mapping[str, Any]) -> None:
     boundary = _require_nonempty_text(policy.get("retirement_boundary"), "retirement_boundary")
     if "operator" not in boundary.casefold() or "not authorized" not in boundary.casefold():
         raise LibraryProgramError("retirement boundary must reserve destructive lifecycle decisions to operator authority")
+
+
+def _assert_mesh_safe_disposition(branch: Mapping[str, Any], *, label: str) -> None:
+    """No generated receipt may grant destructive ref authority or assume zero loss."""
+    disposition = branch.get("remote_ref_disposition")
+    if isinstance(disposition, str) and any(
+        token in disposition.upper()
+        for token in ("DELETE", "ARCHIVE", "DISCARD", "REMOVE_REF")
+    ):
+        raise LibraryProgramError(
+            f"{label}: destructive remote-ref disposition is forbidden"
+        )
+
+    unique = branch.get("unique_value")
+    if isinstance(unique, str) and unique.strip().upper() in {
+        "NONE", "ZERO", "NO_UNIQUE_VALUE"
+    }:
+        proof = branch.get("unique_contribution_verification")
+        if not isinstance(proof, Mapping):
+            raise LibraryProgramError(
+                f"{label}: zero claim requires unique_contribution_verification"
+            )
+        if proof.get("verdict") != "ZERO":
+            raise LibraryProgramError(
+                f"{label}: UNIQUE_CONTRIBUTION=0 requires a ZERO verdict"
+            )
+        refs = proof.get("provider_readback_refs")
+        if not isinstance(refs, list) or not refs or not all(
+            isinstance(ref, str) and ref.strip() for ref in refs
+        ):
+            raise LibraryProgramError(
+                f"{label}: zero claim requires nonempty provider readback refs"
+            )
+        if proof.get("lineage_preserved") is not True:
+            raise LibraryProgramError(
+                f"{label}: retirement requires verified durable lineage preservation"
+            )
 
 
 def validate_library_program(path: Path) -> dict[str, Any]:
@@ -215,6 +253,31 @@ def validate_latest_execution_receipt(
     if scope.get("whole_library_completion_claimed") is not False:
         raise LibraryProgramError("execution receipt must not claim whole-library completion")
 
+    policy = _require_mapping(receipt.get("policy"), "execution receipt policy")
+    for key in (
+        "preserve_unique_value_before_closure",
+        "holographic_mesh_anti_replacement",
+        "zero_unique_contribution_required_for_retirement",
+        "latest_is_routing_cursor_only",
+    ):
+        if policy.get(key) is not True:
+            raise LibraryProgramError(f"execution receipt must require {key}")
+
+    provenance = receipt.get("historical_source_receipt")
+    if provenance is not None:
+        origin = _require_mapping(provenance, "historical_source_receipt")
+        source_rel = _require_nonempty_text(origin.get("path"), "historical source path")
+        source_path = Path(source_rel)
+        if source_path.is_absolute() or ".." in source_path.parts:
+            raise LibraryProgramError("historical source path must be repository-relative")
+        try:
+            source_bytes = (_repository_root(program_path) / source_path).read_bytes()
+        except OSError as exc:
+            raise LibraryProgramError("historical source receipt is unavailable") from exc
+        observed_sha = hashlib.sha256(source_bytes).hexdigest()
+        if observed_sha != origin.get("sha256"):
+            raise LibraryProgramError("historical source receipt digest mismatch")
+
     outcomes = receipt.get("outcomes")
     if not isinstance(outcomes, list):
         raise LibraryProgramError("execution receipt outcomes must be a list")
@@ -225,6 +288,20 @@ def validate_latest_execution_receipt(
         )
         for index, item in enumerate(outcomes)
     )
+    for index, raw_item in enumerate(outcomes):
+        item = _require_mapping(raw_item, f"outcomes[{index}]")
+        _assert_mesh_safe_disposition(item, label=f"outcomes[{index}]")
+        branches = item.get("branch_dispositions", [])
+        if not isinstance(branches, list):
+            raise LibraryProgramError(
+                f"outcomes[{index}].branch_dispositions must be a list"
+            )
+        for j, branch in enumerate(branches):
+            _assert_mesh_safe_disposition(
+                _require_mapping(branch, f"outcomes[{index}].branch_dispositions[{j}]"),
+                label=f"outcomes[{index}].branch_dispositions[{j}]",
+            )
+
     if observed != EXPECTED_REPOSITORIES:
         raise LibraryProgramError("execution receipt outcomes must match the exact priority spine order")
 
