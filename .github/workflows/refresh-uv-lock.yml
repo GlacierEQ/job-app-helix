@@ -77,7 +77,7 @@ jobs:
       - name: Run strict lint from the lock
         run: >-
           uv run --locked ruff check
-          src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
+          src tests scripts/ci_audit_portfolio.py showcase/demo_15min_run.py
 
       - name: Upload lock verification diagnostics
         if: ${{ always() }}
