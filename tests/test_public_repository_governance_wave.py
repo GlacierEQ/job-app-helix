@@ -94,8 +94,16 @@ def test_priority_spine_points_to_current_pro_code_authority_without_rewriting_h
 ) -> None:
     spine = load(SPINE)
     assert spine["latest_execution_receipt"] == (
+        "status/priority-spine-wave-2-2026-07-31-safe-projection-20261112.json"
+    )
+    active = load(ROOT / spine["latest_execution_receipt"])
+    assert active["historical_source_receipt"]["path"] == (
         "status/priority-spine-wave-2-2026-07-31.json"
     )
+    assert active["projection_kind"] == (
+        "NON_DESTRUCTIVE_LINEAGE_SAFETY_RECONCILIATION_NO_NEW_EXECUTION"
+    )
+    assert active["summary"]["remote_branch_refs_requiring_later_deletion"] is False
     pro_code = next(
         item for item in spine["repositories"] if item["repository"] == "GlacierEQ/pro-code"
     )
