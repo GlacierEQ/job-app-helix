@@ -16,7 +16,7 @@ from job_app_helix.library_program import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PROGRAM = ROOT / "manifests" / "library_priority_spine.json"
-RECEIPT = ROOT / "status" / "priority-spine-wave-1-2026-07-30.json"
+RECEIPT = ROOT / "status" / "priority-spine-wave-2-2026-07-31-safe-projection-20261112.json"
 
 
 def _write_program(tmp_path: Path, payload: dict[str, object]) -> Path:
@@ -40,6 +40,12 @@ def _write_program_with_receipt(
     receipt_path = tmp_path / receipt_reference
     receipt_path.parent.mkdir(parents=True, exist_ok=True)
     receipt_path.write_text(json.dumps(receipt_payload), encoding="utf-8")
+    provenance = receipt_payload.get("historical_source_receipt")
+    if provenance:
+        original = ROOT / provenance["path"]
+        copied = tmp_path / provenance["path"]
+        copied.parent.mkdir(parents=True, exist_ok=True)
+        copied.write_bytes(original.read_bytes())
     return program_path
 
 
