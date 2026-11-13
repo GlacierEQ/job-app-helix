@@ -41,7 +41,7 @@ def _validate_modified(tmp_path: Path, program: dict, receipt: dict) -> dict:
 
 
 def test_active_receipt_never_directs_remote_branch_deletion() -> None:
-    program, receipt = _state()
+    _, receipt = _state()
     validate_latest_execution_receipt(PROGRAM, validate_library_program(PROGRAM))
     for outcome in receipt["outcomes"]:
         for directive in (outcome, *outcome.get("branch_dispositions", [])):
