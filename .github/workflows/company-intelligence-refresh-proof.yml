@@ -53,38 +53,36 @@ jobs:
           set -euo pipefail
           work="${RUNNER_TEMP}/company-refresh"
           mkdir -p "${work}"
-          cat > "${work}/current.json" <<'JSON'
-          {
-            "company_id": "example",
-            "company": "Example",
-            "collected_at": "2026-08-17T00:00:00Z",
-            "max_age_days": 30,
-            "signals": [
-              {
-                "kind": "engineering",
-                "statement": "Build agent systems.",
-                "source_url": "https://example.com/engineering",
-                "observed_at": "2026-08-17T00:00:00Z"
+          # Generate fresh, source-bound observations at execution time.
+          # Static historical timestamps expired the evidence and broke the CLI proof.
+          python - <<'PYDATA' "${work}"
+          import json
+          import pathlib
+          import sys
+          from datetime import UTC, datetime, timedelta
+
+          root = pathlib.Path(sys.argv[1])
+          now = datetime.now(UTC)
+          previous = (now - timedelta(hours=2)).isoformat().replace("+00:00", "Z")
+          incoming = (now - timedelta(hours=1)).isoformat().replace("+00:00", "Z")
+          for name, timestamp, statement in (
+              ("current", previous, "Build agent systems."),
+              ("incoming", incoming, "Build agent systems with production observability."),
+          ):
+              payload = {
+                  "company_id": "example",
+                  "company": "Example",
+                  "collected_at": timestamp,
+                  "max_age_days": 30,
+                  "signals": [{
+                      "kind": "engineering",
+                      "statement": statement,
+                      "source_url": "https://example.com/engineering",
+                      "observed_at": timestamp,
+                  }],
               }
-            ]
-          }
-          JSON
-          cat > "${work}/incoming.json" <<'JSON'
-          {
-            "company_id": "example",
-            "company": "Example",
-            "collected_at": "2026-08-18T00:00:00Z",
-            "max_age_days": 30,
-            "signals": [
-              {
-                "kind": "engineering",
-                "statement": "Build agent systems with production observability.",
-                "source_url": "https://example.com/engineering",
-                "observed_at": "2026-08-18T00:00:00Z"
-              }
-            ]
-          }
-          JSON
+              (root / f"{name}.json").write_text(json.dumps(payload), encoding="utf-8")
+          PYDATA
           job-app-helix-company-refresh \
             --current "${work}/current.json" \
             --incoming "${work}/incoming.json" \

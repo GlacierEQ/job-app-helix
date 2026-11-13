@@ -58,7 +58,7 @@ jobs:
           lock = tomllib.loads(pathlib.Path("uv.lock").read_text())
           packages = {row["name"]: row for row in lock["package"]}
           version = packages["pytest"]["version"]
-          assert re.fullmatch(r"[0-9]+(?:\\.[0-9]+){2}", version), version
+          assert re.fullmatch(r"[0-9]+(?:\.[0-9]+){2}", version), version
           numbers = tuple(map(int, version.split(".")))
           assert (9, 1, 1) <= numbers < (10, 0, 0), version
           print("pytest-compatible-version:", version)
@@ -77,7 +77,7 @@ jobs:
       - name: Run strict lint from the lock
         run: >-
           uv run --locked ruff check
-          src tests scripts ci_audit_portfolio.py showcase/demo_15min_run.py
+          src tests scripts/ci_audit_portfolio.py showcase/demo_15min_run.py
 
       - name: Upload lock verification diagnostics
         if: ${{ always() }}

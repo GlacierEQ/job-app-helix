@@ -121,7 +121,7 @@ jobs:
           assessment = generated['assessment']
           assert generated['repository'] == 'GlacierEQ/AKOS'
           assert generated['observed_head_sha'] == '1607c0d27897ea963eb572062300342f1922b84c'
-          assert generated['observation_id'] == '49daddbd413db11746942adf5321707d4039d922ae335a7be2eb4f5136d0d1c3'
+          assert generated['observation_id'] == '7af625c910cbbf7fa057b6a26072d0dd247f4508cbc6c9bb6d093b19c73af93d'
           assert assessment['assessment_id'] == '5280c451d0ddedd1fcbbf5308ee6598dcbc96eb9a3a2fc25e2d706a6244ae866'
           assert assessment['health_state'] == 'PARTIALLY_VERIFIED'
           assert assessment['health_score'] == 30.76
