@@ -6,6 +6,11 @@
   "github": {
     "enabled": false
   },
+  "buildCommand": "python3 scripts/build_recruiter_site.py --output artifacts/pages-site --source-commit $VERCEL_GIT_COMMIT_SHA",
+  "outputDirectory": "artifacts/pages-site",
+  "installCommand": "pip install --break-system-packages -e .",
+  "devCommand": "python3 -m http.server 8000 -d artifacts/pages-site",
+  "framework": "vite",
   "headers": [
     {
       "source": "/(.*)",
