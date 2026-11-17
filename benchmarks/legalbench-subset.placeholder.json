@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "kind": "helix_benchmark_evidence",
+  "benchmark": "legalbench",
+  "subset_name": "helix-hire-legal-5",
+  "status": "placeholder",
+  "run_at": null,
+  "harness": {
+    "agent": null,
+    "model": null,
+    "skills_loaded": [
+      "helix-legal-ops-apply"
+    ]
+  },
+  "invariants": {
+    "allow_public_evidence_promotion": true,
+    "notes": "Scores only; no proprietary prompts. Replace this file when a private run is promoted."
+  },
+  "tasks": [
+    {
+      "task_id": "hearsay",
+      "n_eval": null,
+      "metric": "exact_match",
+      "accuracy": null,
+      "license_note": "see LegalBench task README"
+    },
+    {
+      "task_id": "rule_qa",
+      "n_eval": null,
+      "metric": "exact_match",
+      "accuracy": null,
+      "license_note": "see LegalBench task README"
+    },
+    {
+      "task_id": "definition_extraction",
+      "n_eval": null,
+      "metric": "exact_match",
+      "accuracy": null,
+      "license_note": "see LegalBench task README"
+    },
+    {
+      "task_id": "privacy_policy_entailment",
+      "n_eval": null,
+      "metric": "exact_match",
+      "accuracy": null,
+      "license_note": "see LegalBench task README"
+    },
+    {
+      "task_id": "contract_nli",
+      "n_eval": null,
+      "metric": "exact_match",
+      "accuracy": null,
+      "license_note": "see LegalBench task README"
+    }
+  ],
+  "aggregate": {
+    "macro_accuracy": null,
+    "n_tasks": 5
+  },
+  "receipt": {
+    "git_sha": null,
+    "legalbench_repo_sha": null,
+    "private_runner": "job_app_helix/scripts/run_legalbench_subset.py"
+  }
+}
