@@ -1,0 +1,6 @@
+{
+  "_comment": "Replace with scored run from run_legalbench_subset.py",
+  "schema": "helix_benchmark_evidence/v1",
+  "tasks": ["consumer_contract_question_answering", "contract_nli_confidentiality", "cuad_category_classification", "privacy_policy_entailment", "hearsay_classification"],
+  "results": []
+}
