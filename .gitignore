@@ -66,3 +66,4 @@ machine/genius_knowledge/*
 !state/**
 .vercel
 .env*
+artifacts/
