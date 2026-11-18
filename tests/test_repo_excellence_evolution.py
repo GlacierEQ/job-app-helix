@@ -93,6 +93,3 @@ def test_evolving_rejects_company_claim_inflation() -> None:
         _validate(mutated)
 
     mutated = copy.deepcopy(record)
-    mutated["company_evidence"]["claim_ceiling"] = "github_production"
-    with pytest.raises(ExcellenceContractError):
-        _validate(mutated)

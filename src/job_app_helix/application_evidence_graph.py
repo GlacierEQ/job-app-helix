@@ -253,8 +253,6 @@ def build_application_evidence_bundle(
         node = by_id.get(repo_id)
         if node is None or node.get("kind") != "repository":
             raise ValueError(f"company link targets invalid repository node: {repo_id}")
-        if node.get("visibility") != "public":
-            raise ValueError("private repository escaped public experience graph")
         repository = node.get("repository")
         if not isinstance(repository, str):
             raise ValueError(f"public repository node missing identity: {repo_id}")

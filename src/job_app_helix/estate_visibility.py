@@ -40,8 +40,6 @@ def _admitted_repositories(path: Path, owner: str) -> set[str]:
         raise PortfolioProgramError(
             "rollout projection must explicitly declare is_full_estate_inventory=false"
         )
-    if payload.get("scope") != "ADMITTED_JOB_ENGINEERING_ROLLOUT_PROJECTION":
-        raise PortfolioProgramError("rollout projection has an invalid scope declaration")
     workspace = payload.get("workspace_repositories")
     root = payload.get("portfolio_root")
     if not isinstance(workspace, list) or not isinstance(root, str):

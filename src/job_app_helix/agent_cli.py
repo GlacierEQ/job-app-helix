@@ -87,7 +87,7 @@ def run_capability(capability: str, action: str, inputs: dict[str, Any]) -> dict
     # Special handling for capabilities that need custom invocation
     if capability == "portfolio.evidence_ledger":
         from job_app_helix.evidence_ledger import build_ledger
-        ledger = build_ledger(inputs.get("anchor_threshold", 8))
+        ledger = build_ledger()
         return {"ledger": {"total_repos": ledger.total_repos, "verified_anchors": ledger.verified_anchors, "merkle_root": ledger.merkle_root}}
 
     if capability == "portfolio.capability_federation":

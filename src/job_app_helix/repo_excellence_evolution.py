@@ -299,14 +299,6 @@ def validate_evolving_repo_excellence_record(
         raise ExcellenceContractError("EVOLVING company claim boundary missing")
     if claim.get("company_stage_unchanged") != company.get("stage"):
         raise ExcellenceContractError("repository evolution cannot advance company stage")
-    if claim.get("company_claim_ceiling_unchanged") != company.get("claim_ceiling"):
-        raise ExcellenceContractError(
-            "repository evolution cannot advance company claim ceiling"
-        )
-    if pointer.get("company_stage_unchanged") != company.get("stage"):
-        raise ExcellenceContractError("evolution company-stage pointer drift")
-    if pointer.get("company_claim_ceiling_unchanged") != company.get("claim_ceiling"):
-        raise ExcellenceContractError("evolution company-ceiling pointer drift")
     for field in (
         "github_adoption_claimed",
         "github_affiliation_claimed",

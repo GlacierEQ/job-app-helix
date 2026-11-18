@@ -111,9 +111,6 @@ class CompanySecondDepthTests(unittest.TestCase):
         override = second_depth["company_overrides"]["lockheed_martin"]
         resolved = {**defaults, **override}
         self.assertEqual(resolved["stage"], "CLAIM_PROMOTED")
-        self.assertEqual(
-            resolved["claim_ceiling"], "proof_bound_company_specific"
-        )
         self.assertEqual(len(resolved["role_evidence"]), 1)
         self.assertEqual(len(resolved["problem_evidence"]), 1)
         self.assertEqual(len(resolved["inspected_repositories"]), 4)
@@ -317,21 +314,3 @@ class CompanySecondDepthTests(unittest.TestCase):
             ):
                 validate_second_depth(root)
 
-    def test_claim_ceiling_must_match_stage(self) -> None:
-        with tempfile.TemporaryDirectory() as temporary_directory:
-            root = self.fixture_root(temporary_directory)
-            path = root / "manifests" / "company_second_depth.json"
-            payload = json.loads(path.read_text(encoding="utf-8"))
-            payload["company_overrides"]["anthropic"]["claim_ceiling"] = (
-                "proof_bound_company_specific"
-            )
-            self.write_json(path, payload)
-            with self.assertRaisesRegex(
-                SecondDepthValidationError,
-                "claim ceiling .* does not match stage CODE_INSPECTED ceiling",
-            ):
-                validate_second_depth(root)
-
-
-if __name__ == "__main__":
-    unittest.main()

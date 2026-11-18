@@ -64,3 +64,5 @@ machine/genius_knowledge/*
 # OPERATOR MANDATE: Track verdicts and proof receipts
 !state/
 !state/**
+.vercel
+.env*

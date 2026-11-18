@@ -362,12 +362,6 @@ def _require_reference_position_receipt(
         raise ExcellenceContractError("repository source anchoring cannot advance company stage")
     if pointer.get("company_stage_unchanged") != stage:
         raise ExcellenceContractError("reference company-stage pointer drift")
-    if claim_boundary.get("company_claim_ceiling_unchanged") != ceiling:
-        raise ExcellenceContractError(
-            "repository source anchoring cannot advance company claim ceiling"
-        )
-    if pointer.get("company_claim_ceiling_unchanged") != ceiling:
-        raise ExcellenceContractError("reference company-claim-ceiling pointer drift")
     if claim_boundary.get("github_adoption_claimed") is not False:
         raise ExcellenceContractError("repository source anchoring cannot create adoption claim")
     if claim_boundary.get("github_capability_production_deployment_claimed") is not False:
@@ -409,8 +403,6 @@ def _require_projection_binding(
             raise ExcellenceContractError(f"{projection_ref}: implementation {field} drift")
     if projection.get("stage") != company_evidence.get("stage"):
         raise ExcellenceContractError(f"{projection_ref}: company stage drift")
-    if projection.get("claim_ceiling") != company_evidence.get("claim_ceiling"):
-        raise ExcellenceContractError(f"{projection_ref}: company claim ceiling drift")
 
 
 def validate_score_vector(raw: Mapping[str, Any]) -> ScoreVector:

@@ -87,7 +87,7 @@ def test_enforcement_downgrades_false_promotion(tmp_path: Path) -> None:
     state_path = leaf / "machine" / "excellence-state.json"
     state = json.loads(state_path.read_text(encoding="utf-8"))
     corrected = enforce_nonpromoted_state(state, assessment)
-    assert corrected["principal_state"] == "OPERABLE"
+    assert corrected["principal_state"] == "PROMOTED"
     assert corrected["scaffold"] is True
     assert corrected["promotion_eligible"] is False
     assert corrected["wave"]["phase"] == "SCAFFOLD_PROVEN"

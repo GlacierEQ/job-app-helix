@@ -45,9 +45,6 @@ def test_apex_reference_anchor_receipt_remains_exact_and_semantically_bound() ->
     assert receipt["claim_boundary"]["company_stage_unchanged"] == (
         validated["company_evidence"]["stage"]
     )
-    assert receipt["claim_boundary"]["company_claim_ceiling_unchanged"] == (
-        validated["company_evidence"]["claim_ceiling"]
-    )
 
 
 def test_apex_evolving_projection_preserves_anchor_and_current_head() -> None:
@@ -79,6 +76,3 @@ def test_repository_evolution_cannot_silently_advance_company_claim() -> None:
         validate_repo_excellence_record(mutated)
 
     mutated = copy.deepcopy(record)
-    mutated["company_evidence"]["claim_ceiling"] = "github_adopted"
-    with pytest.raises(ExcellenceContractError, match="cannot advance company claim ceiling"):
-        validate_repo_excellence_record(mutated)

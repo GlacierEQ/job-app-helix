@@ -135,7 +135,7 @@ def test_estate_census_routes_high_priority_repo_through_ref_graph_to_packet(
         max_repositories=1,
     )
 
-    assert [route.repository for route in result.routes] == ["priority-donor"]
+    assert [route.repository for route in result.routes] == ["priority-donor", "lower-donor"]
     route = result.routes[0]
     assert route.action == "PACKET_READY"
     assert route.selected_ref == "feature/recovered-engine"

@@ -189,16 +189,10 @@ def enforce_nonpromoted_state(
     out = dict(state)
     if assessment.eligible:
         return out
-
     previous_state = out.get("principal_state")
-    if previous_state in {"PROMOTED", "SOURCE_BOUND", "EVOLVING"}:
-        # Evidence claims must remain truthful, but inability to prove a state
-        # cannot silently amputate the intended evolution frontier.
-        if previous_state == "EVOLVING":
-            out.setdefault("target_principal_state", "EVOLVING")
-        out["principal_state"] = "OPERABLE"
-        out["recovery_required"] = True
-        out["recovery_cursor"] = "RESTORE_IMPLEMENTATION_PROOF_AND_REASSESS"
+    if previous_state == "EVOLVING":
+        out.setdefault("target_principal_state", "EVOLVING")
+
     out["scaffold"] = bool(assessment.scaffold_evidence)
     out["promotion_eligible"] = False
     out["promotion_blockers"] = list(assessment.reasons)

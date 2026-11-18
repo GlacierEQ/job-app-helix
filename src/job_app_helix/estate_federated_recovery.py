@@ -206,12 +206,12 @@ def execute_estate_federated_recovery(
     *,
     owner: str,
     repositories: Sequence[str],
-    max_repositories: int = 5,
+    max_repositories: int | None = None,
     min_priority: int = 60,
     apply: bool = False,
 ) -> EstateFederatedRecoveryResult:
     """Detect estate recovery candidates and automatically build semantic donor packets."""
-    if max_repositories <= 0:
+    if max_repositories is not None and max_repositories <= 0:
         raise ValueError("max_repositories must be positive")
     target_repo = target_repo.resolve()
     target_sha_proc = _run(("git", "rev-parse", "HEAD"), cwd=target_repo)
@@ -228,7 +228,7 @@ def execute_estate_federated_recovery(
         and not row.disabled
         and row.recovery_class in ELIGIBLE_CLASSES
         and row.priority_score >= min_priority
-    ][:max_repositories]
+    ]
 
     workspace = Path(tempfile.mkdtemp(prefix="helix-estate-recovery-"))
     routes: list[RepositoryRecoveryRoute] = []

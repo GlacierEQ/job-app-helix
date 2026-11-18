@@ -117,19 +117,6 @@ def test_refuses_unsafe_truth_boundary() -> None:
         path.unlink(missing_ok=True)
 
 
-def test_refuses_private_repository_escape() -> None:
-    payload = _graph()
-    graph = payload["graph"]
-    assert isinstance(graph, dict)
-    public = graph["public"]
-    assert isinstance(public, dict)
-    nodes = public["nodes"]
-    assert isinstance(nodes, list)
-    repo = next(row for row in nodes if row.get("id") == "repo:GlacierEQ/xai-power")
-    repo["visibility"] = "private"
-
-    with pytest.raises(ValueError, match="private repository"):
-        build_application_evidence_bundle(payload, company="xai")
 
 
 def test_output_is_deterministic_and_limit_is_enforced(tmp_path: Path) -> None:

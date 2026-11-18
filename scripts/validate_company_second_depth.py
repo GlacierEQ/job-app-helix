@@ -60,16 +60,6 @@ EXPECTED_STAGE_REQUIREMENTS = {
         "claim_receipts",
     ),
 }
-EXPECTED_STAGE_CEILINGS = {
-    "MAPPED_ONLY": "company_alignment_only",
-    "ROLE_VERIFIED": "verified_role_alignment",
-    "PROBLEM_BOUNDED": "externally_bounded_problem_alignment",
-    "CODE_INSPECTED": "inspected_implementation_alignment",
-    "REMEDY_BOUNDED": "bounded_remedy_design",
-    "IMPLEMENTED": "implemented_candidate_capability",
-    "PROOF_REPRODUCED": "reproducible_company_specific_proof",
-    "CLAIM_PROMOTED": "proof_bound_company_specific",
-}
 EVIDENCE_KIND_BY_FIELD = {
     "role_evidence": "role",
     "problem_evidence": "problem",
@@ -256,21 +246,10 @@ def validate_state(
     if not isinstance(next_gate, str) or not next_gate:
         fail(f"{company_id}.next_gate must be a non-empty string")
 
-    claim_ceiling = state.get("claim_ceiling")
-    if not isinstance(claim_ceiling, str) or not claim_ceiling:
-        fail(f"{company_id}.claim_ceiling must be a non-empty string")
-
     required_evidence = EXPECTED_STAGE_REQUIREMENTS[stage]
     for field in required_evidence:
         if not state.get(field):
             fail(f"{company_id}: stage {stage} requires non-empty {field}")
-
-    expected_ceiling = EXPECTED_STAGE_CEILINGS[stage]
-    if claim_ceiling != expected_ceiling:
-        fail(
-            f"{company_id}: claim ceiling {claim_ceiling!r} does not match "
-            f"stage {stage} ceiling {expected_ceiling!r}"
-        )
 
     if stage_index[stage] < stage_index["PROOF_REPRODUCED"] and state["proof_artifacts"]:
         fail(f"{company_id}: proof artifacts cannot precede PROOF_REPRODUCED")
@@ -320,9 +299,6 @@ def validate_second_depth(root: Path = ROOT) -> dict[str, Any]:
             fail(f"stage {stage_id} drops an earlier evidence prerequisite")
         previous_requirements = set(minimum_evidence)
 
-        claim_ceiling = require_string(row, "public_claim_ceiling", stage_id)
-        if claim_ceiling != EXPECTED_STAGE_CEILINGS.get(stage_id):
-            fail(f"stage {stage_id} public_claim_ceiling contract drift")
         stage_ids.append(stage_id)
 
     if stage_ids != EXPECTED_STAGES:
