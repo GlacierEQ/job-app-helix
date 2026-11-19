@@ -56,7 +56,7 @@ python3 scripts/validate_application_registry.py
   "helix_children_mapped": 61,
   "inherited_company_dossiers": 23,
   "l1_private_experiments_documented": 34,
-  "named_systems": 17,
+  "named_systems": 16,
   "normalized_legacy_promotion_aliases": 1,
   "status": "PASS",
   "total_inventory_repositories": 62,

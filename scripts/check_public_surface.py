@@ -46,6 +46,7 @@ SELF_REFERENTIAL_POLICY_PATHS = {
     "helix/automations/brainsync_path_sanitize.py",
     "scripts/README_BRAINSYNC_PATHS.md",
     "tests/test_portfolio_audit_claims.py",
+    "tests/test_estate_paths.py",
 }
 SECRET_PATTERNS = {
     "GitHub token": re.compile(r"\bgh[oprsu]_[A-Za-z0-9]{20,}\b"),
