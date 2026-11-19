@@ -15,6 +15,7 @@ from .pistons import (
     refine_ground,
     refine_propulsion,
 )
+from .version import __version__
 
 
 @dataclass(frozen=True)
@@ -145,7 +146,7 @@ def run_campaign(
         refinements=refinements,
         metadata={
             "engine": "job-app-helix",
-            "engine_version": "0.2.0",
+            "engine_version": __version__,
             "generated_at": datetime.now(UTC).isoformat(),
         },
     )

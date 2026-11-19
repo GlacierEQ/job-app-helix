@@ -26,12 +26,20 @@ PUBLIC_TRACKED_STATE_RECEIPTS = frozenset({
 FORBIDDEN_PATH_PARTS = ("__pycache__", "node_modules")
 FORBIDDEN_CONTENT = {
     "file:///": "machine-local file URL",
-    "/Users/": "absolute macOS user path",
-    "C:\\Users\\": "absolute Windows user path",
     ".brainsync/backups": "generated IDE-memory backup",
     "PRODUCTION_READINESS_VERDICT": "unpublished local readiness artifact",
     "100% SOLID & DEPLOYABLE": "unqualified readiness claim",
 }
+# Machine-specific absolute paths are forbidden in live configuration and
+# documentation. They are tolerated only in dated provenance records and audit
+# reports, where they are quoted evidence rather than configuration.
+MACHINE_PATH_CONTENT = {
+    "/Users/": "absolute macOS user path",
+    "C:\\Users\\": "absolute Windows user path",
+    "/data/data/": "absolute Android/Termux user path",
+    "com.termux": "Termux environment reference",
+}
+MACHINE_PATH_EXEMPT_PREFIXES = ("solidify_records/", "audits/")
 SELF_REFERENTIAL_POLICY_PATHS = {
     "scripts/check_public_surface.py",
     "scripts/proof_weighted_repo_census.py",
@@ -87,7 +95,13 @@ def check_content(files: list[Path]) -> list[str]:
         relative = path.relative_to(ROOT).as_posix()
         text = path.read_text(encoding="utf-8")
         if relative not in SELF_REFERENTIAL_POLICY_PATHS:
-            for needle, label in FORBIDDEN_CONTENT.items():
+            forbidden = dict(FORBIDDEN_CONTENT)
+            if relative.startswith(MACHINE_PATH_EXEMPT_PREFIXES):
+                for needle in MACHINE_PATH_CONTENT:
+                    forbidden.pop(needle, None)
+            else:
+                forbidden.update(MACHINE_PATH_CONTENT)
+            for needle, label in forbidden.items():
                 if needle in text:
                     errors.append(f"{relative}: contains {label} ({needle!r})")
         for label, pattern in SECRET_PATTERNS.items():

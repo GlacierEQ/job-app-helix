@@ -155,7 +155,7 @@ class AnthropicForwardDeployed:
         for principle in self.constitution:
             # Execute the generated feedback function
             fn_code = self._generate_feedback_function(principle)
-            local_ns = {}
+            local_ns: dict[str, Any] = {}
             exec(fn_code, {}, local_ns)
             feedback_fn = local_ns[f"constitutional_feedback_{principle.id}"]
             result = feedback_fn(model_output, context)
@@ -299,7 +299,7 @@ class AnthropicForwardDeployed:
     # BOTTLENECK 4: Eval Adversarial Frontier
     # ============================================================
     
-    def run_adversarial_eval(self, model, eval_suite: str, tasks: list[dict]) -> EvalAdversarialResult:
+    def run_adversarial_eval(self, model, eval_suite: str, tasks: list[dict]) -> dict[str, Any]:
         """
         Run adversarial evaluation detecting:
         - Model gaming benchmarks (eval awareness)

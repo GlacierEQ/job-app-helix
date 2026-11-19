@@ -121,7 +121,7 @@ jobs:
       - name: Execute bounded Python verification contract
         if: steps.checkout.outcome == 'success'
         run: |
-          python audit/scripts/run_featured_verification.py \
+          python scripts/run_featured_verification.py \
             --name '${{ matrix.name }}' \
             --repository '${{ matrix.repository }}' \
             --ref '${{ matrix.ref }}' \
@@ -233,7 +233,7 @@ jobs:
 
       - name: Execute bounded native verification contract
         run: |
-          python audit/scripts/run_featured_verification.py \
+          python scripts/run_featured_verification.py \
             --name '${{ matrix.name }}' \
             --repository '${{ matrix.repository }}' \
             --ref '${{ matrix.ref }}' \

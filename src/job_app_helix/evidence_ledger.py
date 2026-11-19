@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 """
-Evidence Ledger — Hash-bound evidence ledger for 225-repo portfolio with VERIFIED anchor tracking.
+Evidence Ledger — Hash-bound evidence ledger for the deserving-repo portfolio
+with VERIFIED anchor tracking.
 
-L0 Reference: Immutable byte/SHA/commit/docket provenance. Never assert unverified state without tool readback.
+L0 Reference: Immutable byte/SHA/commit/docket provenance. Never assert
+unverified state without tool readback.
+
+The ledger is fail-closed: it refuses to emit an empty or fabricated ledger
+when the portfolio manifest or the solidify record directory is absent.
 """
 
 from __future__ import annotations
@@ -17,11 +22,12 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path("/data/data/com.termux/files/home/job-app-helix")
-MONOLITH_ROOT = Path("/data/data/com.termux/files/home/monolith")
-TOWER_ROOT = Path("/data/data/com.termux/files/home/the-tower-of-babel")
+from . import estate_paths
+from .errors import PortfolioSourceError
 
-VERIFIED_ANCHORS = {
+REPO_ROOT = estate_paths.helix_root()
+
+VERIFIED_ANCHORS: dict[str, dict[str, Any]] = {
     "computer-user": {"family": "GlacierEQ-core", "worthy": 9, "gates": "12/12"},
     "AKOS": {"family": "GlacierEQ-core", "worthy": 9, "gates": "94/94"},
     "pro-code": {"family": "GlacierEQ-core", "worthy": 9, "gates": "scoped"},
@@ -31,6 +37,12 @@ VERIFIED_ANCHORS = {
     "xai-colossus-servers": {"family": "xAI/Colossus", "worthy": 8, "gates": "20-tests"},
     "xai-colossus-energy-omega": {"family": "xAI/Colossus", "worthy": 8, "gates": "3.6MW-shed"},
 }
+
+EMPTY_MERKLE_ROOT = hashlib.sha256(b"").hexdigest()
+
+
+class LedgerError(PortfolioSourceError):
+    """Raised when the ledger cannot be built from verifiable sources."""
 
 
 @dataclass
@@ -78,39 +90,75 @@ def git_sha(repo_path: Path) -> str:
         return "error"
 
 
+def set_repo_root(path: Path) -> None:
+    """Override the portfolio root (used by the CLI and by tests)."""
+    global REPO_ROOT
+    REPO_ROOT = Path(path).expanduser().resolve()
+
+
 def load_unified_manifest() -> dict[str, Any]:
     manifest_path = REPO_ROOT / "manifests" / "unified_deserving_manifest.json"
-    if manifest_path.exists():
-        return json.loads(manifest_path.read_text())
-    return {}
+    if not manifest_path.is_file():
+        raise LedgerError(f"portfolio manifest not found: {manifest_path}")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if not isinstance(manifest, dict) or not isinstance(manifest.get("repositories"), list):
+        raise LedgerError(f"portfolio manifest has no repositories list: {manifest_path}")
+    if not manifest["repositories"]:
+        raise LedgerError(f"portfolio manifest is empty: {manifest_path}")
+    return manifest
 
 
 def load_solidify_records() -> dict[str, Any]:
     solidify_dir = REPO_ROOT / "solidify_records"
-    records = {}
-    if solidify_dir.exists():
-        for f in solidify_dir.glob("*.json"):
-            with suppress(Exception):
-                records[f.stem] = json.loads(f.read_text())
+    if not solidify_dir.is_dir():
+        raise LedgerError(f"solidify record directory not found: {solidify_dir}")
+    records: dict[str, Any] = {}
+    for f in sorted(solidify_dir.glob("*.json")):
+        with suppress(Exception):
+            records[f.stem] = json.loads(f.read_text(encoding="utf-8"))
     return records
+
+
+def _evidence_hash(repo_name: str, repo_data: dict[str, Any], solidify: dict[str, Any]) -> str:
+    record = solidify.get(repo_name)
+    if isinstance(record, dict):
+        digest = record.get("evidence_hash")
+        if isinstance(digest, str) and digest.strip():
+            return digest.strip()
+    canonical = json.dumps(repo_data, sort_keys=True, separators=(",", ":")).encode()
+    return sha256_bytes(canonical)[:16]
+
+
+def _worthy_rating(
+    repo_name: str,
+    repo_data: dict[str, Any],
+    solidify: dict[str, Any],
+) -> int:
+    record = solidify.get(repo_name)
+    if isinstance(record, dict):
+        rating = record.get("worthy_rating")
+        if isinstance(rating, int):
+            return rating
+    rating = repo_data.get("worthy")
+    return rating if isinstance(rating, int) else 0
 
 
 def build_ledger(anchor_threshold: int = 8) -> Ledger:
     manifest = load_unified_manifest()
     solidify = load_solidify_records()
 
-    deserving = manifest.get("repositories", [])
+    deserving = manifest["repositories"]
     entries = []
     verified_count = 0
 
     for repo_data in deserving:
         repo_name = repo_data.get("repo", "")
         family = repo_data.get("family", "unknown")
-        worthy = repo_data.get("worthy", 0)
         source_state = repo_data.get("source_state", "unknown")
+        worthy = _worthy_rating(repo_name, repo_data, solidify)
 
-        if repo_name in VERIFIED_ANCHORS:
-            anchor = VERIFIED_ANCHORS[repo_name]
+        anchor = VERIFIED_ANCHORS.get(repo_name)
+        if anchor is not None and worthy >= anchor_threshold:
             verified = True
             verified_count += 1
             gate_status = anchor["gates"]
@@ -118,10 +166,10 @@ def build_ledger(anchor_threshold: int = 8) -> Ledger:
             verified = False
             gate_status = "unverified"
 
-        solidify_record = solidify.get(repo_name, {})
-        evidence_hash = solidify_record.get("evidence_hash", sha256_bytes(repo_name.encode())[:16])
-
-        receipt_id = sha256_bytes(f"{repo_name}:{evidence_hash}:{datetime.now(UTC).isoformat()}".encode())[:16]
+        evidence_hash = _evidence_hash(repo_name, repo_data, solidify)
+        receipt_id = sha256_bytes(
+            f"{repo_name}:{evidence_hash}:{datetime.now(UTC).isoformat()}".encode()
+        )[:16]
 
         entries.append(EvidenceEntry(
             repo=repo_name,
@@ -137,6 +185,8 @@ def build_ledger(anchor_threshold: int = 8) -> Ledger:
 
     merkle_data = "".join(e.evidence_hash for e in sorted(entries, key=lambda x: x.repo)).encode()
     merkle_root = sha256_bytes(merkle_data)
+    if merkle_root == EMPTY_MERKLE_ROOT:
+        raise LedgerError("ledger would be empty; refusing to emit an empty Merkle root")
 
     return Ledger(
         generated_at=datetime.now(UTC).isoformat(),
@@ -155,18 +205,16 @@ def main() -> int:
     import argparse
 
     parser = argparse.ArgumentParser(description="Build hash-bound evidence ledger")
-    parser.add_argument("--repo-path", default="/data/data/com.termux/files/home/job-app-helix", help="Portfolio repo root")
+    parser.add_argument(
+        "--repo-path",
+        default=str(estate_paths.helix_root()),
+        help="Portfolio repo root",
+    )
     parser.add_argument("--anchor-threshold", type=int, default=8, help="Worthy threshold for anchors")
     parser.add_argument("--output", default="evidence_ledger.json", help="Output file")
     args = parser.parse_args()
 
-    global REPO_ROOT
-    REPO_ROOT = Path(args.repo_path)
-    return _main_impl(args)
-
-
-def _main_impl(args) -> int:
-
+    set_repo_root(Path(args.repo_path))
     ledger = build_ledger(args.anchor_threshold)
     output_path = Path(args.output)
     write_ledger(ledger, output_path)

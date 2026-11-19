@@ -56,6 +56,7 @@ __all__ = [
     "StageResult",
     "StageStatus",
     "TowerResolutionReceipt",
+    "__version__",
     "agent_main",
     "apply_block",
     "bridge_evidence",
@@ -74,4 +75,4 @@ __all__ = [
     "write_ledger",
 ]
 
-__version__ = "1.0.0-capability"
+from .version import __version__

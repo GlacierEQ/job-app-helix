@@ -50,7 +50,7 @@ capabilities:
     entrypoint: src/job_app_helix/monolith_sync.py
     interface: cli|library|scheduled
     inputs:
-      - monolith_root: {type: string, default: "/data/data/com.termux/files/home/monolith"}
+      - monolith_root: {type: string, default: "${MONOLITH_ROOT}"}
       - portfolio_manifest: {type: string}
       - mode: {type: string, enum: [full, incremental, verify], default: incremental}
     outputs:
@@ -68,7 +68,7 @@ capabilities:
     inputs:
       - capability_requirement: {type: object}
       - constraints: {type: object}
-      - tower_root: {type: string, default: "/data/data/com.termux/files/home/the-tower-of-babel"}
+      - tower_root: {type: string, default: "${TOWER_ROOT}"}
     outputs:
       - placement: {type: object}
       - fitness_scores: {type: object}
@@ -98,7 +98,7 @@ capabilities:
     inputs:
       - evidence_item: {type: object}
       - target_spine: {type: string}
-      - monolith_legal_path: {type: string, default: "/data/data/com.termux/files/home/monolith/catalog/legal_spines"}
+      - monolith_legal_path: {type: string, default: "${MONOLITH_ROOT}/catalog/legal_spines"}
     outputs:
       - bridge_receipt: {type: object}
       - spine_entry: {type: object}

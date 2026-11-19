@@ -16,8 +16,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-JOB_APP_HELIX_ROOT = Path("/data/data/com.termux/files/home/job-app-helix")
-MONOLITH_ROOT = Path("/data/data/com.termux/files/home/monolith")
+from . import estate_paths
+from .errors import PortfolioSourceError
+
+JOB_APP_HELIX_ROOT = estate_paths.helix_root()
+MONOLITH_ROOT = estate_paths.monolith_root()
 
 
 @dataclass
@@ -32,22 +35,25 @@ class SyncReceipt:
 
 def load_portfolio_manifest() -> dict[str, Any]:
     manifest_path = JOB_APP_HELIX_ROOT / "manifests" / "unified_deserving_manifest.json"
-    if manifest_path.exists():
-        data = json.loads(manifest_path.read_text())
-        # Transform 'repositories' to 'deserving' for compatibility
-        if "repositories" in data and "deserving" not in data:
-            data["deserving"] = data["repositories"]
-        return data
-    return {}
+    if not manifest_path.is_file():
+        raise PortfolioSourceError(f"portfolio manifest not found: {manifest_path}")
+    data = json.loads(manifest_path.read_text())
+    # Transform 'repositories' to 'deserving' for compatibility
+    if "repositories" in data and "deserving" not in data:
+        data["deserving"] = data["repositories"]
+    if not data.get("repositories"):
+        raise PortfolioSourceError(f"portfolio manifest is empty: {manifest_path}")
+    return data
 
 
 def load_solidify_records() -> dict[str, Any]:
     solidify_dir = JOB_APP_HELIX_ROOT / "solidify_records"
+    if not solidify_dir.is_dir():
+        raise PortfolioSourceError(f"solidify record directory not found: {solidify_dir}")
     records = {}
-    if solidify_dir.exists():
-        for f in solidify_dir.glob("*.json"):
-            with suppress(Exception):
-                records[f.stem] = json.loads(f.read_text())
+    for f in sorted(solidify_dir.glob("*.json")):
+        with suppress(Exception):
+            records[f.stem] = json.loads(f.read_text())
     return records
 
 
@@ -176,16 +182,17 @@ def sync_repo_excellence_state_machine(portfolio: dict[str, Any], mode: str) -> 
 
 
 def main() -> int:
+    global MONOLITH_ROOT
+
     import argparse
 
     parser = argparse.ArgumentParser(description="Sync portfolio state to monolith catalog")
-    parser.add_argument("--monolith-root", default="/data/data/com.termux/files/home/monolith", help="Monolith root path")
-    parser.add_argument("--portfolio-manifest", default="/data/data/com.termux/files/home/job-app-helix/manifests/unified_deserving_manifest.json", help="Portfolio manifest")
+    parser.add_argument("--monolith-root", default=str(MONOLITH_ROOT), help="Monolith root path")
+    parser.add_argument("--portfolio-manifest", default=str(JOB_APP_HELIX_ROOT / "manifests" / "unified_deserving_manifest.json"), help="Portfolio manifest")
     parser.add_argument("--mode", choices=["full", "incremental", "verify"], default="incremental", help="Sync mode")
     parser.add_argument("--output", default="sync_receipt.json", help="Output receipt file")
     args = parser.parse_args()
 
-    global MONOLITH_ROOT
     MONOLITH_ROOT = Path(args.monolith_root)
 
     portfolio = load_portfolio_manifest()

@@ -40,8 +40,8 @@ workflows:
         inputs:
           domain: "{domain}"
           requirement: "{requirement}"
-          monolith_catalog: "/data/data/com.termux/files/home/monolith/catalog"
-          tower_registry: "/data/data/com.termux/files/home/the-tower-of-babel"
+          monolith_catalog: "${MONOLITH_ROOT}/catalog"
+          tower_registry: "${TOWER_ROOT}"
         outputs:
           - federated_capabilities
           - resolution_receipt
@@ -93,7 +93,7 @@ workflows:
         action: sync_monolith
         inputs:
           mode: "{mode}"
-          monolith_root: "/data/data/com.termux/files/home/monolith"
+          monolith_root: "${MONOLITH_ROOT}"
         outputs:
           - sync_receipt
           - updated_catalogs
@@ -143,7 +143,7 @@ workflows:
         action: bridge_from_ledger
         inputs:
           target_spine: "{target_spine}"
-          monolith_legal_path: "/data/data/com.termux/files/home/monolith/catalog/legal_spines"
+          monolith_legal_path: "${MONOLITH_ROOT}/catalog/legal_spines"
         outputs:
           - bridge_receipts
           - bridged_count

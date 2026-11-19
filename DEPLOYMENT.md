@@ -59,12 +59,15 @@ This guide covers deployment of Job-App Helix forward-deployed capabilities to t
 ### Environment Variables
 
 ```bash
-export MONOLITH_ROOT="/data/data/com.termux/files/home/monolith"
-export TOWER_ROOT="/data/data/com.termux/files/home/the-tower-of-babel"
-export LEGAL_SPINES_PATH="/data/data/com.termux/files/home/monolith/catalog/legal_spines"
-export ASPEN_GROVE_INDEX="/tmp/aspen_grove_pointer_index.json"
-export PYTHONPATH="/data/data/com.termux/files/home/job-app-helix/src"
-export GITHUB_TOKEN="ghp_..."  # For monolith sync
+# All roots auto-detect from the repository location (estate_paths.py).
+# Set these only when the estate lives outside the default layout.
+export JOB_APP_HELIX_ROOT=/path/to/job-app-helix
+export MONOLITH_ROOT=/path/to/monolith
+export TOWER_ROOT=/path/to/the-tower-of-babel
+export LEGAL_SPINES_PATH=/path/to/monolith/catalog/legal_spines
+export ASPEN_GROVE_INDEX=/path/to/aspen_grove_pointer_index.json
+export PYTHONPATH=/path/to/job-app-helix/src
+export GITHUB_TOKEN=<token>  # For monolith sync; never commit it
 ```
 
 ---

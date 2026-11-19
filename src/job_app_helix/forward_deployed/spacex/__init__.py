@@ -332,7 +332,7 @@ class SpaceXForwardDeployed:
             "timestamp": datetime.now(UTC).isoformat(),
         }
     
-    def simulate_engine_out_scenarios(self, vehicle: VehicleStage, max_out: int) -> list[dict[str, Any]]:
+    def simulate_engine_out_scenarios(self, vehicle: VehicleStage, max_out: int) -> dict[str, Any]:
         """Simulate all engine-out scenarios up to max_out."""
         receipt_id = self._generate_receipt("engine_out_simulation", {
             "vehicle": vehicle.value,

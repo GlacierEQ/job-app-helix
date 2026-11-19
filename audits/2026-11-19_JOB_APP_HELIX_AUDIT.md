@@ -182,9 +182,39 @@ The manifest declares `repo_name: job-app-helix-meta` and was last touched in `8
 
 ---
 
-## 5. Limits of this audit
+## 5. Remediation (applied 2026-11-19)
+
+Every P0 and P1 finding above was fixed in the same turn and pushed as a
+follow-up commit. Evidence:
+
+| Fix | Artifact |
+|---|---|
+| Portable roots | new `src/job_app_helix/estate_paths.py`; the seven modules now derive roots from the package location with `JOB_APP_HELIX_ROOT` / `MONOLITH_ROOT` / `TOWER_ROOT` / `LEGAL_SPINES_PATH` overrides |
+| Fail-closed ledger | `evidence_ledger.py` raises `LedgerError` on a missing/empty manifest or missing solidify directory, refuses an empty Merkle root, and honours `--anchor-threshold` |
+| Ledger reproduced | `build_ledger()` → 225 repos, 7 verifiable anchors, Merkle root `2b63d598…` (was 0 / 0 / `e3b0c442…`) |
+| Integrity surface | `helix/.integrity/file_hashes.json` regenerated; new `scripts/verify_helix_integrity.py` fails on mismatch or unlisted files; wired into `ci.yml` |
+| CI path defects | `audit/scripts/…` → `scripts/…` in `portfolio-census.yml` and `proof-weighted-portfolio-audit.yml` |
+| Version single-sourced | new `src/job_app_helix/version.py`; `__version__` and `campaign.engine_version` both resolve to `0.3.0` from `pyproject.toml` |
+| Public-surface gap | `check_public_surface.py` now forbids `/data/data/`, `com.termux`, `/Users/`, `C:\Users\` outside dated provenance (`solidify_records/`, `audits/`) and self-referential policy files |
+| Doc drift | `README.md`, `STATUS.md`, `VALIDATION.md`, `AGENT_ENGINEERING.md`, `API_REFERENCE.md`, `QUICKSTART.md`, `DEPLOYMENT.md`, `CAPABILITY_FIRST_OPS.md`, `CAPABILITY_TRANSFORMATION.md`, `apex.capabilities.yaml`, `.agents/*` updated to the 61/62 boundary and 8-declared/7-verifiable anchors |
+| mypy enforced | `mypy src/job_app_helix` added to `ci.yml`; passes clean (was 89 errors, unenforced). 29 modules carry an explicit dated debt carve-out with instructions to shrink it |
+| Regression tests | `tests/test_estate_paths.py` (10 tests), `tests/test_bound_surface_contract.py` (3 tests) |
+
+**Post-fix verification:** 1120 tests pass, coverage 76.73%; ruff clean; mypy clean;
+all three validators, `portfolio_cli validate`, `check_public_surface`,
+`check_proto_contract`, `readme_mesh validate`, `verify_helix_integrity` PASS.
+
+**Known remaining debt (not blockers):**
+- 88 mypy errors remain inside the 29 carved-out modules; the carve-out is dated and intentional.
+- `computer-user` is declared as an anchor but has no solidify record or manifest entry in this repository, so only 7 of the 8 declared anchors are verifiable here.
+- `manifests/unified_deserving_manifest.json` still carries the historical `helix_admitted: 66` flag; the live boundary is `manifests/portfolio_repositories.json` at 61.
+- Network-dependent workflows and the Vercel deployment path were not exercised.
+
+---
+
+## 6. Limits of this audit
 
 - Remote GitHub CI status was not read (operator-gated). All results are local E0.
 - The audit did not execute the network-dependent workflows (live freshness, estate crawl, census) or the Vercel/Cloudflare deployment paths.
 - Capability-count and "verified anchor" claims were checked against code constants and manifests, not re-derived from upstream repositories.
-- No changes were made to source, tests, manifests, or CI by this audit; this file is the only artifact produced.
+- No source, test, manifest, or CI changes were made by the audit pass itself; the audit report was its only artifact. Remediation was applied afterward and is recorded in section 5.

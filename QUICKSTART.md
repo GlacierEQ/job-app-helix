@@ -13,10 +13,13 @@
 git, python3.11+, pip
 
 # Environment
+# Roots auto-detect from the repository location; override only if the estate
+# lives elsewhere. See src/job_app_helix/estate_paths.py.
 export PYTHONPATH=/path/to/job-app-helix/src
-export MONOLITH_ROOT=/data/data/com.termux/files/home/monolith
-export TOWER_ROOT=/data/data/com.termux/files/home/the-tower-of-babel
-export LEGAL_SPINES_PATH=/data/data/com.termux/files/home/monolith/catalog/legal_spines
+export JOB_APP_HELIX_ROOT=/path/to/job-app-helix
+export MONOLITH_ROOT=/path/to/monolith
+export TOWER_ROOT=/path/to/the-tower-of-babel
+export LEGAL_SPINES_PATH=/path/to/monolith/catalog/legal_spines
 ```
 
 ---

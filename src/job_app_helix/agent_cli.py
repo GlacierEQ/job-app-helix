@@ -12,7 +12,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path("/data/data/com.termux/files/home/job-app-helix")
+from . import estate_paths
+
+REPO_ROOT = estate_paths.helix_root()
 AGENTS_DIR = REPO_ROOT / ".agents"
 
 
@@ -41,10 +43,10 @@ def run_workflow(workflow_id: str, inputs: dict[str, Any]) -> dict[str, Any]:
         "performance_requirements": {"memory_safety": True},
         "constraints": {},
         "target_spine": "case_1FDV",
-        "monolith_catalog": "/data/data/com.termux/files/home/monolith/catalog",
-        "tower_registry": "/data/data/com.termux/files/home/the-tower-of-babel",
-        "monolith_legal_path": "/data/data/com.termux/files/home/monolith/catalog/legal_spines",
-        "monolith_root": "/data/data/com.termux/files/home/monolith",
+        "monolith_catalog": str(estate_paths.monolith_root() / "catalog"),
+        "tower_registry": str(estate_paths.tower_root()),
+        "monolith_legal_path": str(estate_paths.legal_spines_path()),
+        "monolith_root": str(estate_paths.monolith_root()),
     }
     # Merge defaults with provided inputs (inputs override defaults)
     merged_inputs = {**defaults, **inputs}
@@ -93,13 +95,18 @@ def run_capability(capability: str, action: str, inputs: dict[str, Any]) -> dict
     if capability == "portfolio.capability_federation":
         from pathlib import Path
 
+        from job_app_helix import estate_paths
         from job_app_helix.capability_federation import CapabilityQuery, federate_capabilities
         query = CapabilityQuery(
             domain=inputs.get("domain", "legal_evidence"),
             requirement=inputs.get("requirement", "ledger"),
             constraints=inputs.get("constraints", {}),
         )
-        caps, receipt = federate_capabilities(query, Path(inputs.get("monolith_catalog", "/data/data/com.termux/files/home/monolith/catalog")), Path(inputs.get("tower_registry", "/data/data/com.termux/files/home/the-tower-of-babel")))
+        caps, receipt = federate_capabilities(
+            query,
+            Path(inputs.get("monolith_catalog", str(estate_paths.monolith_root() / "catalog"))),
+            Path(inputs.get("tower_registry", str(estate_paths.tower_root()))),
+        )
         return {"capabilities": len(caps), "receipt": receipt.receipt_hash}
 
     if capability == "monolith.catalog_sync":
@@ -137,8 +144,12 @@ def run_capability(capability: str, action: str, inputs: dict[str, Any]) -> dict
     if capability == "evidence.bridge":
         from pathlib import Path
 
+        from job_app_helix import estate_paths
         from job_app_helix.evidence_bridge import bridge_from_ledger
-        receipts = bridge_from_ledger(inputs.get("target_spine", "test"), Path(inputs.get("monolith_legal_path", "/tmp/legal_spines")))
+        receipts = bridge_from_ledger(
+            inputs.get("target_spine", "test"),
+            Path(inputs.get("monolith_legal_path", str(estate_paths.legal_spines_path()))),
+        )
         return {"bridged": len(receipts), "receipts": [r.receipt_hash for r in receipts]}
 
     return {"error": f"Unknown capability: {capability}"}

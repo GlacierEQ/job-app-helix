@@ -46,6 +46,12 @@ jobs:
           ruff check src tests scripts showcase/demo_15min_run.py
           --output-format=github
 
+      - name: Type check public source
+        run: mypy src/job_app_helix
+
+      - name: Verify helix bounded-surface integrity
+        run: python scripts/verify_helix_integrity.py
+
       - name: Run tests with coverage gate
         run: pytest --cov=job_app_helix --cov-report=term-missing
 

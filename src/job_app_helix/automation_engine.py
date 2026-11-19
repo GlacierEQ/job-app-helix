@@ -16,7 +16,9 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-HELIX_ROOT = Path("/data/data/com.termux/files/home/job-app-helix/helix")
+from . import estate_paths
+
+HELIX_ROOT = estate_paths.helix_root() / "helix"
 AUTOMATIONS_DIR = HELIX_ROOT / "automations"
 PROOFS_DIR = HELIX_ROOT / "proofs"
 
