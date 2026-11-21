@@ -357,7 +357,7 @@ def _require_reference_position_receipt(
     if not isinstance(claim_boundary, Mapping):
         raise ExcellenceContractError("reference position receipt claim_boundary must be an object")
     stage = _require_text(company_evidence.get("stage"), "company_evidence.stage")
-    ceiling = _require_text(company_evidence.get("claim_ceiling"), "company_evidence.claim_ceiling")
+    _require_text(company_evidence.get("claim_ceiling"), "company_evidence.claim_ceiling")
     if claim_boundary.get("company_stage_unchanged") != stage:
         raise ExcellenceContractError("repository source anchoring cannot advance company stage")
     if pointer.get("company_stage_unchanged") != stage:

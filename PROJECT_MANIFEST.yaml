@@ -1,0 +1,233 @@
+# Job-App Helix — Portable Project Manifest
+schema: glaciereq.project-manifest.v1
+generated_at: "2026-11-20T06:45:00-10:00"
+source_authority: "estate_owner_graph.json (t_a4098ff2 strategy) + live git readback + ARCHITECTURE.md (v2.0 PRODUCTION)"
+
+project:
+  key: job-app-helix
+  canonical_name: "job-app-helix"
+  canonical_owner: "GlacierEQ/job-app-helix"
+  role: "portfolio_control_plane"
+  tier: "Tier0"
+  purpose: "Portfolio control plane for the GlacierEQ engineering estate. Holographic mesh — no single authority, no artificial limits, every repository a top-tier capability donor."
+  operator_intent: "Unbounded estate control plane with 24 executable capabilities replacing 200+ manifest files. L0-L5 epistemic standard with immutable byte/SHA/commit/docket provenance."
+  runtime_entrypoint: "src/job_app_helix/agent_cli.py (Agent CLI entrypoint), .agents/agent-config.yaml (full agent configuration)"
+  target_output: "Verified portfolio operations with hash-bound receipts on every operation"
+  operational_users:
+    - "Casey (Operator)"
+    - "Portfolio engineers"
+    - "Monolith (catalog federation)"
+    - "The Tower of Babel (capability resolution)"
+    - "Legal mesh (evidence bridge)"
+    - "Anthropic/NVIDIA/SpaceX forward-deployed capabilities"
+
+identity:
+  local_path: "/Users/kcbflux/workspace/job-app-helix"
+  git_origin: "https://github.com/GlacierEQ/job-app-helix.git"
+  head_branch: "main"
+  head_sha: "48625b7"  # from estate_owner_graph.md
+  last_commit: "2026-09-03 (ARCHITECTURE.md version date)"
+  version: "0.3.0"
+  commit_count: "unknown"
+  dirty_files: 0
+  branch_count: 1
+  worktrees: []
+  github:
+    visibility: "PRIVATE"
+    is_fork: false
+    is_archived: false
+    default_branch: "main"
+    updated_at: "2026-11-10T21:29:25Z"  # approximate
+    language: "Python"
+    description: "Portfolio control plane — unbounded estate, holographic mesh"
+  registry:
+    url: "https://github.com/GlacierEQ/job-app-helix"
+    is_private: true
+    is_archived: false
+    primary_role: "control_plane"
+    memberships: []
+
+boundaries:
+  files:
+    - "src/job_app_helix/ (core capabilities + forward-deployed + agent_cli.py)"
+    - ".agents/ (agent-config.yaml, modes.json, workflows.yaml, skills/registry.yaml, receipts/)"
+    - "manifests/ (portfolio_repositories.json, unified_deserving_manifest.json, live_repository_links.json, evidence_ledger_unified.json, company_dossiers/)"
+    - "solidify_records/ (per-repo innovation receipts)"
+    - "tests/ (93 tests)"
+    - "ARCHITECTURE.md (v2.0 PRODUCTION)"
+    - "docs/"
+  languages:
+    - "Python"
+    - "Markdown"
+    - "YAML"
+    - "JSON"
+  packages:
+    - "job_app_helix"
+    - "job_app_helix.evidence_ledger"
+    - "job_app_helix.capability_federation"
+    - "job_app_helix.monolith_sync"
+    - "job_app_helix.tower_resolution"
+    - "job_app_helix.automation_engine"
+    - "job_app_helix.evidence_bridge"
+    - "job_app_helix.forward_deployed.anthropic (10 capabilities)"
+    - "job_app_helix.forward_deployed.nvidia (7 capabilities)"
+    - "job_app_helix.forward_deployed.spacex (7 capabilities)"
+  dependency_interfaces:
+    - "Core capabilities (6): evidence_ledger, capability_federation, monolith_catalog_sync, tower_capability_resolution, helix_automation_engine, evidence_bridge"
+    - "Company forward-deployed capabilities (24): Anthropic (10), NVIDIA (7), SpaceX (7)"
+    - "Monolith integration (4 catalogs): capabilities_3layer.json, runtime_power_spine.json, library.json, repo_excellence_state_machine.json"
+    - "Tower of Babel integration: nextgen-innovations.json (40 floors, 10 fitness dimensions)"
+    - "Legal mesh integration: catalog/legal_spines/*.json (FRE 901/902 provenance)"
+    - "Receipt chain: SHA-256 operation:data:timestamp → hex digest (16-char prefix), each links to prior via hash"
+    - "Agent engineering: 10 worker roles, 5 execution modes, 7 workflows, 6 capabilities, 4 composite modes"
+  services:
+    - "Monolith (catalog sync, incremental 4h)"
+    - "Tower of Babel (capability resolution)"
+    - "Legal evidence spines (Box/Drive/Library)"
+  secrets_references:
+    - ".agents/agent-config.yaml"
+  deploy_targets:
+    - "Development (local iteration, full suite)"
+    - "Staging (pre-deployment, full suite + load test)"
+    - "Production (live portfolio, continuous)"
+  upstream_projects:
+    - "job-application (schema reference)"
+    - "monolith (catalog federation)"
+    - "the-tower-of-babel (capability resolution)"
+  downstream_projects:
+    - "villaiage-workspace (portfolio reference: docs/APEX_SOVEREIGN_MAINFRAME.md:218)"
+
+lineage:
+  root_source_branch: "main"
+  forks: []
+  history_preserving_renames: []
+  archived_generations: []
+  predecessor_projects: []
+  generated_mirrors: []
+  unique_unmerged_work: []
+  all_branches:
+    - "main (HEAD)"
+  remotes:
+    - "origin"
+  ahead_behind: "unknown"
+  unpushed_commits: 0
+  unpulled_commits: 0
+
+state:
+  observed_working_features:
+    - "Evidence Ledger: Merkle root + 83 anchors, CLI/Library interface"
+    - "Capability Federation: Resolution receipt, CLI/Library/MCP interface"
+    - "Monolith Catalog Sync: 4 catalogs, incremental 4h, Sync receipt"
+    - "Tower Capability Resolution: Placement receipt, CLI/Library interface, 40 floors, 10 fitness dimensions"
+    - "Helix Automation Engine: Automation receipt, CLI/Library/MCP interface"
+    - "Evidence Bridge: Bridge receipt, CLI/Library interface, FRE 901/902 provenance"
+    - "Anthropic Forward-Deployed (10 capabilities): Constitutional AI Synthesis, CAI Critique Engine, Mechanistic Interpretability, Persona Vector Extraction, Containment Verification (Dafny), Containment Layer Generation, Adversarial Eval Engine, AI-Resistant Eval Design, Agent Skill Design (MCP), Context Engineering"
+    - "NVIDIA Forward-Deployed (7 capabilities): Blackwell FP4 Optimization, CUDA Graphs Conditional, MoE Grouped GEMM, NVLink Topology Design, TensorRT-LLM Tuning, Kernel Autotuner, Power/Perf Profiling"
+    - "SpaceX Forward-Deployed (7 capabilities): Starship Flight Software, AI Flight Controller, Engine-Out Compensation, Stage Separation, FTS Hardening, HITL Testbed Automation, In-Space Refueling, Rapid Post-Flight Iteration"
+    - "Agent Engineering: 10 worker roles, 5 execution modes, 7 workflows, 6 capabilities, 4 composite modes"
+    - "Receipt chain integrity: SHA-256, each links to prior, verify_receipt() on all classes"
+    - "Security: Zero-fake-truth enforcement (L0-L5), dual isolation for Anthropic/SpaceX"
+    - "Observability: Structured logging (JSON), metrics per capability/workflow/agent, health checks"
+    - "93 tests, 44 core test suite"
+  broken_features:
+    - "Test parallelization needed (93 tests >2min, need --forked)"
+    - "5 projections awaiting downstream receipts"
+    - "Historical 67/66 references in candidate docs"
+    - "Agent CLI RuntimeWarning on import (cosmetic)"
+  missing_dependencies: []
+  current_build_status: "operational (PRODUCTION, L0-L5 epistemic standard)"
+  outstanding_human_decisions: []
+
+separation:
+  case_evidence_excluded: true
+  forensic_records_preserved: true
+  legal_mesh_integration: "catalog/legal_spines/*.json (FRE 901/902)"
+
+architecture_contracts:
+  - "ARCHITECTURE.md (v2.0 PRODUCTION, L0-L5 epistemic standard)"
+  - ".agents/agent-config.yaml (full agent configuration)"
+  - ".agents/modes.json (5 execution modes)"
+  - ".agents/workflows.yaml (7 workflows)"
+  - ".agents/skills/registry.yaml (6 capabilities + compositions)"
+  - ".agents/receipts/ (hash-bound receipts)"
+  - "src/job_app_helix/evidence_ledger.py (Merkle root, 83 anchors)"
+  - "src/job_app_helix/capability_federation.py (resolution receipt)"
+  - "src/job_app_helix/monolith_sync.py (4 catalog sync receipt)"
+  - "src/job_app_helix/tower_resolution.py (placement receipt, 40 floors)"
+  - "src/job_app_helix/automation_engine.py (automation receipt)"
+  - "src/job_app_helix/evidence_bridge.py (bridge receipt, FRE 901/902)"
+  - "src/job_app_helix/forward_deployed/anthropic/__init__.py (10 capabilities)"
+  - "src/job_app_helix/forward_deployed/nvidia/__init__.py (7 capabilities)"
+  - "src/job_app_helix/forward_deployed/spacex/__init__.py (7 capabilities)"
+  - "src/job_app_helix/agent_cli.py (Agent CLI entrypoint)"
+  - "manifests/portfolio_repositories.json (83 workspace + 1 root)"
+  - "manifests/unified_deserving_manifest.json (225 deserving repos)"
+  - "manifests/live_repository_links.json (83 live links)"
+  - "manifests/evidence_ledger_unified.json"
+  - "manifests/company_dossiers/ (166 company tracks)"
+  - "solidify_records/ (per-repo innovation receipts)"
+  - "Aspen-Grove pointer index: /tmp/aspen_grove_pointer_index.json (1,926 files, SHA-256/Blake2b, O(1) lookup)"
+
+handoff:
+  startup_instructions: |
+    1. Validate architecture: `python3 scripts/validate_*.py` (expect all PASS)
+    2. Verify receipt chain: `verify_receipt(<receipt_id>)` (expect True)
+    3. Run monolith sync: `agent_cli workflow monolith-catalog-sync` (expect 4 catalogs updated)
+    4. Run full portfolio cycle: `agent_cli workflow full-portfolio-cycle` (expect all 5 steps complete)
+    5. Run tests: `python -m pytest tests/` (expect 93 tests pass)
+    6. Check core suite: `python -m pytest tests/` (expect 44 core tests pass)
+  operator_instructions: |
+    - Role: Portfolio control plane — holographic mesh, no single authority, no artificial limits
+    - Design laws: Governance serves progress (AGENTS.md §1.3); Zero fake execution (AGENTS.md §17); Capability density over governance (24 executable capabilities replace 200+ manifests); Unbounded estate (no 66-repo boundary, no 3-flagship limit, no public-only visibility cap); L0-L5 epistemic standard (immutable byte/SHA/commit/docket provenance required)
+    - Every operation produces SHA-256 receipt forming immutable chain
+    - Core capabilities (6) + Company forward-deployed (24) = 30 total capabilities
+    - Agent engineering: 10 worker roles, 5 execution modes, 7 workflows, 6 capabilities, 4 composite modes
+    - Monolith sync: 4 catalogs incremental 4h; Tower resolution: 40 floors, 10 fitness dimensions
+    - Legal mesh: FRE 901/902 provenance on evidence bridge
+    - Security: L0 (immutable provenance) → L5 (decentralized consensus); dual isolation for Anthropic/SpaceX
+    - Deployment: Dev → Staging → Production; checklist: 3 validators PASS, core suite PASS, monolith sync receipt verified, receipt chain verified, agent CLI functional, forward-deployed tested
+    - Rollback: identify failed receipt → revert to prior sync_receipt.json → re-run monolith-catalog-sync --mode full → verify 4 catalogs → re-run full portfolio cycle
+  dependency_map:
+    imports:
+      - "monolith catalog sync (capabilities_3layer.json, runtime_power_spine.json, library.json, repo_excellence_state_machine.json)"
+      - "tower capability resolution (nextgen-innovations.json, 40 floors)"
+      - "legal evidence spines (catalog/legal_spines/*.json)"
+      - "job-application schema (library_program.py:15, application_engine.py:350)"
+    contracts:
+      - "ARCHITECTURE.md (v2.0 PRODUCTION)"
+      - ".agents/agent-config.yaml, modes.json, workflows.yaml, skills/registry.yaml"
+      - "manifests/*.json"
+      - "receipt chain (SHA-256)"
+    entrypoints:
+      - "src/job_app_helix/agent_cli.py (Agent CLI)"
+      - "src/job_app_helix/evidence_ledger.py"
+      - "src/job_app_helix/capability_federation.py"
+      - "src/job_app_helix/monolith_sync.py"
+      - "src/job_app_helix/tower_resolution.py"
+      - "src/job_app_helix/automation_engine.py"
+      - "src/job_app_helix/evidence_bridge.py"
+      - "tests/ (run-before-reliance)"
+  handoff_notes: |
+    - PRODUCTION status with L0-L5 epistemic standard
+    - All claims backed by hash-bound receipts in .agents/receipts/
+    - 24 executable capabilities replace 200+ manifest files
+    - Zero fake execution: every claim backed by hash-bound receipt
+    - Unbounded estate: no artificial limits
+    - Current frontier: test parallelization, consumer receipts, documentation sync, agent CLI cleanup
+    - Next wave targets: test parallelization (medium effort, dev velocity), consumer receipts (low effort, projection freshness)
+
+verification_receipts:
+  - "estate_owner_graph.json (t_a4098ff2 strategy) — canonical owner with measured head"
+  - "ARCHITECTURE.md v2.0 — all claims backed by hash-bound receipts"
+  - "93 tests operational"
+  - "Monolith sync receipt verified (4 catalogs)"
+  - "Receipt chain integrity: verify_receipt() on all classes"
+  - "Core test suite: 44 tests PASS"
+  - "Agent CLI functional"
+
+status: "deployed_verified"
+remaining_work:
+  - "Test parallelization (93 tests >2min, need --forked)"
+  - "Consumer receipts for 5 awaiting projections"
+  - "Documentation sync (historical 67/66 references)"
+  - "Agent CLI cleanup (RuntimeWarning on import)"

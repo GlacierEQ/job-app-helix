@@ -15,11 +15,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import sys
 from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
-from enum import Enum
+from enum import StrEnum
 from pathlib import Path
 from typing import Any
 
@@ -56,7 +55,7 @@ TARGET_COMPANIES = (
 )
 
 
-class BridgeStatus(str, Enum):
+class BridgeStatus(StrEnum):
     PACKAGE_BOUND = "PACKAGE_BOUND"
     INTEGRITY_REQUIRED = "INTEGRITY_REQUIRED"
     REJECTED = "REJECTED"
@@ -151,7 +150,7 @@ def _find_target_for_company(
     targets: Sequence[CompanyTarget], company: str
 ) -> CompanyTarget | None:
     for target in targets:
-        if target.company.lower() == company.lower():
+        if target.display_name.lower() == company.lower() or target.company_id.lower() == company.lower():
             return target
     return None
 
