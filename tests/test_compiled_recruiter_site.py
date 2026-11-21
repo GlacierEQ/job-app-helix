@@ -301,3 +301,31 @@ def test_wrapper_without_projection_preserves_static_site(
     index = (output / "index.html").read_text(encoding="utf-8")
     assert 'id="compiler"' not in index
     assert "connect-src 'none'" in index
+
+
+@pytest.mark.parametrize(
+    "overrides",
+    [
+        {"visibility": "private"},
+        {"visibility_decision": "MAPPED_NOT_RECRUITER_READY"},
+        {"promotion_state": "SEEDED"},
+        {"promotion_state": "SCAFFOLD"},
+    ],
+)
+def test_compiled_site_rejects_unadmitted_ranked_evidence(
+    tmp_path: Path, overrides: dict,
+) -> None:
+    builder = _builder()
+    payload = _projection()
+    payload["company_projections"][0]["ranked_evidence"].append(
+        {
+            "system_id": "unadmitted-system",
+            "source_repository": "GlacierEQ/unadmitted",
+            "visibility": "public",
+            "visibility_decision": "PUBLIC_ELIGIBLE",
+            "promotion_state": "PROMOTED",
+            **overrides,
+        }
+    )
+    with pytest.raises(builder.ProjectionError, match="not public-admitted"):
+        builder.build(tmp_path / "site", SOURCE_COMMIT, _write(tmp_path, payload))
