@@ -16,7 +16,9 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-TOWER_ROOT = Path("/data/data/com.termux/files/home/the-tower-of-babel")
+from . import estate_paths
+
+TOWER_ROOT = estate_paths.tower_root()
 
 
 @dataclass
@@ -158,6 +160,8 @@ def invoke_tower_capability_resolution(req: CapabilityRequirement) -> dict[str, 
 
 
 def main() -> int:
+    global TOWER_ROOT
+
     import argparse
 
     parser = argparse.ArgumentParser(description="Resolve optimal language/tech placement via Tower of Babel")
@@ -165,11 +169,10 @@ def main() -> int:
     parser.add_argument("--domain", required=True, help="Capability domain")
     parser.add_argument("--perf", default="{}", help="Performance requirements JSON")
     parser.add_argument("--constraints", default="{}", help="Constraints JSON")
-    parser.add_argument("--tower-root", default="/data/data/com.termux/files/home/the-tower-of-babel", help="Tower of Babel root")
+    parser.add_argument("--tower-root", default=str(TOWER_ROOT), help="Tower of Babel root")
     parser.add_argument("--output", default="tower_resolution.json", help="Output file")
     args = parser.parse_args()
 
-    global TOWER_ROOT
     TOWER_ROOT = Path(args.tower_root)
 
     req = CapabilityRequirement(

@@ -15,8 +15,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-JOB_APP_HELIX_ROOT = Path("/data/data/com.termux/files/home/job-app-helix")
-MONOLITH_ROOT = Path("/data/data/com.termux/files/home/monolith")
+from . import estate_paths
+from .errors import PortfolioSourceError
+
+JOB_APP_HELIX_ROOT = estate_paths.helix_root()
+MONOLITH_ROOT = estate_paths.monolith_root()
 
 
 @dataclass
@@ -52,9 +55,9 @@ class BridgeReceipt:
 
 def load_evidence_ledger() -> dict[str, Any]:
     ledger_path = JOB_APP_HELIX_ROOT / "manifests" / "evidence_ledger_unified.json"
-    if ledger_path.exists():
-        return json.loads(ledger_path.read_text())
-    return {}
+    if not ledger_path.is_file():
+        raise PortfolioSourceError(f"unified evidence ledger not found: {ledger_path}")
+    return json.loads(ledger_path.read_text())
 
 
 def load_monolith_legal_spines(spine_path: Path) -> dict[str, Any]:
@@ -135,7 +138,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Bridge evidence ledger to monolith legal spines")
     parser.add_argument("--evidence-id", help="Specific evidence ID to bridge")
     parser.add_argument("--target-spine", required=True, help="Target legal spine")
-    parser.add_argument("--monolith-legal-path", default="/data/data/com.termux/files/home/monolith/catalog/legal_spines", help="Monolith legal spines path")
+    parser.add_argument("--monolith-legal-path", default=str(estate_paths.legal_spines_path()), help="Monolith legal spines path")
     parser.add_argument("--output", default="bridge_receipt.json", help="Output file")
     parser.add_argument("--all-from-ledger", action="store_true", help="Bridge all evidence from ledger")
     args = parser.parse_args()

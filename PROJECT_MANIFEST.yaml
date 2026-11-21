@@ -22,7 +22,7 @@ project:
     - "Anthropic/NVIDIA/SpaceX forward-deployed capabilities"
 
 identity:
-  local_path: "/Users/kcbflux/workspace/job-app-helix"
+  local_path: "."  # workspace-relative; absolute host paths are barred by the bound-surface contract
   git_origin: "https://github.com/GlacierEQ/job-app-helix.git"
   head_branch: "main"
   head_sha: "48625b7"  # from estate_owner_graph.md

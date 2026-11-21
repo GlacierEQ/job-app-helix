@@ -53,13 +53,13 @@ python3 scripts/validate_application_registry.py
   "company_tracks": 166,
   "external_flagship_repositories": 9,
   "helix_children_exactly_once": true,
-  "helix_children_mapped": 83,
+  "helix_children_mapped": 61,
   "inherited_company_dossiers": 23,
   "l1_private_experiments_documented": 34,
-  "named_systems": 17,
+  "named_systems": 16,
   "normalized_legacy_promotion_aliases": 1,
   "status": "PASS",
-  "total_inventory_repositories": 84,
+  "total_inventory_repositories": 62,
   "unresolved_flagships": 1,
   "zero_direct_omission_gate": true
 }
@@ -119,11 +119,11 @@ python3 scripts/validate_portfolio_root_truth.py
       "resume_shapeshifter": { "contract_state": "DECLARED", "freshness_state": "PENDING_CONSUMER_RECEIPT" }
     }
   },
-  "receipt_sha256": "f6e1f764036c248da1e6084d522e31edfecb737e942b8976639cf306ad1dab9f",
+  "receipt_sha256": "673c8fa80e77631a6bf44de44f8b4562b2d0d56a8185c41f624d133044d11bc6",
   "counts": {
-    "total_repositories": 84,
-    "workspace_repositories": 83,
-    "helix_admitted_memberships": 83,
+    "total_repositories": 62,
+    "workspace_repositories": 61,
+    "helix_admitted_memberships": 61,
     "company_tracks": 166,
     ...
   },
@@ -325,10 +325,10 @@ python3 scripts/validate_application_registry.py
 python3 scripts/validate_portfolio_root_truth.py
 python3 scripts/validate_live_repository_links.py
 
-# Core test suite (44 tests)
+# Core validator tests
 PYTHONPATH=src python3 -m pytest tests/test_application_registry.py tests/test_candidate_portfolio_boundary.py tests/test_live_repository_links.py tests/test_portfolio_audit_claims.py tests/test_portfolio_root_truth.py -q
 
-# Full test suite (93 tests)
+# Full test suite (1107 tests, 2026-11-19)
 PYTHONPATH=src python3 -m pytest tests/ -q
 ```
 
@@ -423,9 +423,10 @@ python3 scripts/validate_application_registry.py 2>&1 | head -50
 
 # Check specific failure
 python3 -c "
+import os
 from scripts.validate_application_registry import validate_registry
 from pathlib import Path
-result = validate_registry(Path('/data/data/com.termux/files/home/job-app-helix'))
+result = validate_registry(Path(os.environ.get('JOB_APP_HELIX_ROOT', '.')))
 "
 ```
 
@@ -448,8 +449,8 @@ print(f'Chain length: {len(chain)}')
 
 | Validator | Command | Receipt | Key Metric |
 |-----------|---------|---------|------------|
-| Application Registry | `python3 scripts/validate_application_registry.py` | JSON stdout | 166 tracks, 83 mapped |
-| Portfolio Root Truth | `python3 scripts/validate_portfolio_root_truth.py` | SHA-256 receipt | 84 total, 83 workspace |
+| Application Registry | `python3 scripts/validate_application_registry.py` | JSON stdout | 166 tracks, 61 mapped |
+| Portfolio Root Truth | `python3 scripts/validate_portfolio_root_truth.py` | SHA-256 receipt | 62 total, 61 workspace |
 | Live Links | `python3 scripts/validate_live_repository_links.py` | stdout PASS | 61 repos synchronized |
 
 | Capability | Receipt Field | Verification |

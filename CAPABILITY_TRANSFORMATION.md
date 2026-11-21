@@ -116,7 +116,7 @@ All capabilities pass the **Engineering Excellence Ladder**:
 
 **Verification Command:**
 ```bash
-cd /data/data/com.termux/files/home/job-app-helix
+cd "$JOB_APP_HELIX_ROOT"
 PYTHONPATH=src python3 -m job_app_helix.evidence_ledger --output /tmp/ledger.json
 PYTHONPATH=src python3 -m job_app_helix.capability_federation --domain legal_evidence --requirement ledger
 PYTHONPATH=src python3 -m job_app_helix.tower_resolution --requirement evidence_graph --domain legal_evidence --perf '{"memory_safety": true}'

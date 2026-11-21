@@ -121,7 +121,7 @@ compositions:
 discovery:
   local_path: .agents/skills/
   remote_sources:
-    - monolith: /data/data/com.termux/files/home/monolith/catalog
-    - tower: /data/data/com.termux/files/home/the-tower-of-babel
+    - monolith: ${MONOLITH_ROOT}/catalog
+    - tower: ${TOWER_ROOT}
   auto_refresh: true
   refresh_interval_hours: 6

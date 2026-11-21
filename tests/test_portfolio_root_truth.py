@@ -54,7 +54,7 @@ def test_root_truth_validation_passes() -> None:
         inventory["workspace_repositories"]
     )
     assert receipt["counts"]["company_tracks"] == len(required_company_tracks)
-    assert receipt["counts"]["flagship_systems"] == 17
+    assert receipt["counts"]["flagship_systems"] == 16
     assert receipt["counts"]["projections"] == len(EXPECTED_PROJECTIONS)
     assert receipt["counts"]["required_sources"] == 14
     assert "manifests/company_second_depth.json" in receipt["source_hashes"]
@@ -132,7 +132,7 @@ def test_flagships_exactly_match_required_named_registry() -> None:
     assert len(required) == len(set(required))
     assert len(actual) == len(set(actual))
     assert set(actual) == set(required)
-    assert len(actual) == 17
+    assert len(actual) == 16
 
 
 def test_root_manifest_forbids_competing_truth() -> None:

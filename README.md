@@ -4,12 +4,12 @@
 
 schema: glaciereq.readme.v1
 profile: glaciereq.readme-impact.v2-draft
-verified_at: 2026-09-04T06:30:00-10:00
+verified_at: 2026-11-19T00:00:00-10:00
 blocked_scope: APEX runner activation, coordinator hosted promotion
 unverified_scope: 217 deserving repos without hash-bound anchors
 languages: python, rust, cpp, markdown, json, yaml
 relationships: monolith, tower_of_babel, computer-user, pro-code, AKOS
-limits: 8 verified anchors, 2 open gates, 0 persistent production host
+limits: 8 declared anchors (7 verifiable from in-repo records), 2 open gates, 0 persistent production host
 manifests/language_fit.json: true
 manifests/portfolio_repositories.json: true
 
@@ -25,16 +25,16 @@ manifests/portfolio_repositories.json: true
 
 ---
 
-## By the Numbers (2026-09-04 Reconciliation)
+## By the Numbers (2026-11-19 Reconciliation)
 
 | Metric | Count | Note |
-|---|---:|---|
+|---|---:|---:|
 | **Total deserving repos** | **225** | `unified_deserving_manifest.json` |
-| **Admitted helix boundary** | **83** workspace + 1 root | Authoritative from GitHub; no artificial caps |
-| **VERIFIED anchors** | **8** | Hash-bound, receipted, re-runnable |
+| **Admitted helix boundary** | **61** workspace + 1 root | `manifests/portfolio_repositories.json` (62 total); the 66-flag in the deserving manifest is the historical 2026-08-28 boundary |
+| **VERIFIED anchors** | **8 declared / 7 verifiable** | 7 resolve to in-repo solidify records; `computer-user` has no record in this repository |
 | **Forward-deployed capabilities** | **24** | 10 Anthropic + 7 NVIDIA + 7 SpaceX |
 | **Company tracks** | **166** | Across 21 families |
-| **Helix children mapped** | **83** | Exactly once each |
+| **Helix children mapped** | **61** | Exactly once each |
 | **Agent worker roles** | **10** | Cartographer, Miner, Broker, Architect, Engineer, Reliability, Performance, Authenticator, Hunter, Verifier |
 | **Execution modes** | **5** | Standard, Aggressive, Conservative, Capability-Build, Portfolio-Sync |
 | **Workflows** | **7** | Full portfolio cycle + 6 atomic |
@@ -105,7 +105,7 @@ A repo earns "Hard" status by changing a gate state and producing a receipt. A r
 
 | Capability | Module | Purpose |
 |---|---|---|
-| `portfolio.evidence_ledger` | `evidence_ledger.py` | Hash-bound ledger: 225 repos, 83 VERIFIED anchors, Merkle root |
+| `portfolio.evidence_ledger` | `evidence_ledger.py` | Hash-bound ledger: 225 repos, 8 declared anchors (7 verifiable in-repo), Merkle root |
 | `portfolio.capability_federation` | `capability_federation.py` | Federate Monolith + Tower; 5 capabilities from catalog |
 | `monolith.catalog_sync` | `monolith_sync.py` | Sync 4 catalogs: capabilities_3layer, runtime_power_spine, library, repo_excellence |
 | `tower.capability_resolution` | `tower_resolution.py` | 10-dimension fitness ranking for tech placement |
@@ -151,9 +151,9 @@ A repo earns "Hard" status by changing a gate state and producing a receipt. A r
 |---|---|
 | `solidify/<repo>.json` | Per-repo innovation summary, evidence list, worthy rating (225 files) |
 | `evidence_ledger_unified.json` | Unified evidence ledger with Merkle root |
-| `manifests/portfolio_repositories.json` | Authoritative 83-child boundary from GitHub |
+| `manifests/portfolio_repositories.json` | Authoritative 61-child boundary |
 | `manifests/unified_deserving_manifest.json` | 225 deserving repos with worthy ratings |
-| `manifests/live_repository_links.json` | 83 live APEX repository links |
+| `manifests/live_repository_links.json` | 61 live APEX repository links |
 | `ASPEN_GROVE_POINTER_INDEX.json` | O(1) pointer lookup across 1,926 files |
 | `.agents/skills/registry.yaml` | 6 capabilities + 24 forward-deployed |
 | `.agents/receipts/` | Hash-bound receipts for every operation |
@@ -177,8 +177,11 @@ cd job-app-helix
 
 # Setup
 export PYTHONPATH=src
-export MONOLITH_ROOT=/data/data/com.termux/files/home/monolith
-export TOWER_ROOT=/data/data/com.termux/files/home/the-tower-of-babel
+# Roots auto-detect from the repository location; override only if the estate
+# lives elsewhere. See src/job_app_helix/estate_paths.py.
+export JOB_APP_HELIX_ROOT=/path/to/job-app-helix
+export MONOLITH_ROOT=/path/to/monolith
+export TOWER_ROOT=/path/to/the-tower-of-babel
 
 # Verify installation
 python3 -c "from job_app_helix import *; print('OK')"
@@ -237,11 +240,11 @@ assert arch.verify_receipt(result['receipt_id'])
 
 ## For Recruiters and Non-Technical Reviewers
 
-**Start here.** The 8 VERIFIED anchors are the only claims backed by re-runnable proofs (hash-bound artifacts, run IDs, source SHAs). Everything else in this portfolio is honest work, but not all of it is verified — that distinction is the point of this surface.
+**Start here.** The VERIFIED anchors are the only claims backed by re-runnable proofs (hash-bound artifacts, run IDs, source SHAs). Everything else in this portfolio is honest work, but not all of it is verified — that distinction is the point of this surface.
 
 - **Total deserving repos:** 225 across 21 families
-- **Admitted helix boundary:** 83 workspace repositories + 1 root (authoritative from GitHub; no artificial caps)
-- **VERIFIED anchors:** 8 repositories with hash-bound, receipted evidence
+- **Admitted helix boundary:** 61 workspace repositories + 1 root (`manifests/portfolio_repositories.json`)
+- **VERIFIED anchors:** 8 declared; 7 resolve to in-repo hash-bound records (`computer-user` is declared but has no record in this repository)
 - **Open gates:** 2 (persistent production host, company fit) — documented honestly, not papered over
 
 ## For Senior Engineers and Domain Experts
@@ -257,7 +260,7 @@ assert arch.verify_receipt(result['receipt_id'])
 
 **Machine-readable contracts.** All surfaces emit structured data:
 
-- `manifests/portfolio_repositories.json` — authoritative 83-workspace boundary
+- `manifests/portfolio_repositories.json` — authoritative 61-workspace boundary
 - `manifests/unified_deserving_manifest.json` — 225 deserving repos with worthy ratings
 - `solidify/<repo>.json` — per-repo innovation summary, evidence list, worthy rating
 - `evidence_ledger_UPDATED.json` — 4 new VERIFIED claims bridging to repo_excellence

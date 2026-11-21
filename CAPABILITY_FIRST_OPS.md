@@ -119,7 +119,7 @@ python3 -m job_app_helix.monolith_sync --mode incremental
 python3 -m job_app_helix.automation_engine --automation brainsync_index --target /path/to/target
 
 # Bridge evidence
-python3 -m job_app_helix.evidence_bridge --all-from-ledger --target-spine case_1FDV --monolith-legal-path /data/data/com.termux/files/home/monolith/catalog/legal_spines
+python3 -m job_app_helix.evidence_bridge --all-from-ledger --target-spine case_1FDV --monolith-legal-path "$MONOLITH_ROOT/catalog/legal_spines"
 ```
 
 ---

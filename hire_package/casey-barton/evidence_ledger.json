@@ -4,11 +4,11 @@
   "claims": [
     {
       "id": "helix_inventory",
-      "claim": "Job-App Helix governs an exact 63-repository application boundary",
+      "claim": "Job-App Helix governs an exact 62-repository application boundary",
       "state": "VERIFIED_BOUNDARY",
       "evidence": "../../manifests/portfolio_repositories.json",
       "presentation": {
-        "metric": "63",
+        "metric": "62",
         "label": "Exact portfolio boundary",
         "display_state": "VERIFIED"
       }
@@ -37,11 +37,11 @@
     },
     {
       "id": "historical_helix_boundary",
-      "claim": "Historical governed Job-App Helix boundary contains exactly 63 repositories: one control-plane root plus 62 children",
+      "claim": "Historical governed Job-App Helix boundary (2026-08-28) contains exactly 66 repositories flagged in the deserving manifest",
       "state": "VERIFIED_HISTORICAL_BOUNDARY",
-      "evidence": "../../manifests/portfolio_repositories.json",
+      "evidence": "../../manifests/unified_deserving_manifest.json",
       "presentation": {
-        "metric": "63",
+        "metric": "66",
         "label": "Historical governed Helix boundary",
         "display_state": "VERIFIED"
       }

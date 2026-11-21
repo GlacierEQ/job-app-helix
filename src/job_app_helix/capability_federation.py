@@ -14,8 +14,10 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-MONOLITH_ROOT = Path("/data/data/com.termux/files/home/monolith")
-TOWER_ROOT = Path("/data/data/com.termux/files/home/the-tower-of-babel")
+from . import estate_paths
+
+MONOLITH_ROOT = estate_paths.monolith_root()
+TOWER_ROOT = estate_paths.tower_root()
 
 
 @dataclass

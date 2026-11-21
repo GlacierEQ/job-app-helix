@@ -1,5 +1,11 @@
 # 🔍 Project Audit Report — job-app-helix
 
+> **Superseded 2026-11-19.** This report describes the repository at commit
+> `1554694` and is retained as history. For the current assessment see
+> [`audits/2026-11-19_JOB_APP_HELIX_AUDIT.md`](audits/2026-11-19_JOB_APP_HELIX_AUDIT.md).
+> Its "12 tests" and version-consistency claims no longer hold: the suite is now
+> 1107 tests and the version is single-sourced from `pyproject.toml`.
+
 **Date:** 2026-07-28 (verified 2026-08-08)  
 **Auditor:** Cline (automated) + GlacierEQ (updated)  
 **Commit:** `1554694`  

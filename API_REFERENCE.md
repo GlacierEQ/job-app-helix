@@ -55,7 +55,7 @@ class Ledger:
 #### CLI Options
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--repo-path` | str | `/data/data/com.termux/files/home/job-app-helix` | Portfolio root |
+| `--repo-path` | str | auto-detected repository root | Portfolio root |
 | `--anchor-threshold` | int | 8 | Worthy threshold for VERIFIED anchors |
 | `--output` | str | `evidence_ledger.json` | Output file |
 
@@ -81,8 +81,8 @@ query = CapabilityQuery(
 
 capabilities, receipt = federate_capabilities(
     query,
-    Path("/data/data/com.termux/files/home/monolith/catalog"),
-    Path("/data/data/com.termux/files/home/the-tower-of-babel")
+    Path(os.environ.get("MONOLITH_ROOT", "/path/to/monolith") / "catalog"),
+    Path(os.environ.get("TOWER_ROOT", "/path/to/the-tower-of-babel"))
 )
 
 print(f"Found {len(capabilities)} capabilities")
@@ -148,7 +148,7 @@ import subprocess, sys
 
 # Uses CLI internally
 cmd = [sys.executable, "-m", "job_app_helix.monolith_sync", "--mode", "incremental"]
-result = subprocess.run(cmd, capture_output=True, text=True, cwd="/data/data/com.termux/files/home/job-app-helix")
+result = subprocess.run(cmd, capture_output=True, text=True, cwd="/path/to/job-app-helix")
 
 if result.returncode == 0:
     print("Sync completed")
@@ -158,7 +158,7 @@ if result.returncode == 0:
 #### CLI Options
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--monolith-root` | str | `/data/data/com.termux/files/home/monolith` | Monolith root |
+| `--monolith-root` | str | auto-detected estate sibling | Monolith root |
 | `--portfolio-manifest` | str | `manifests/unified_deserving_manifest.json` | Portfolio manifest |
 | `--mode` | str | `incremental` | `full` \| `incremental` \| `verify` |
 | `--output` | str | `sync_receipt.json` | Output receipt |
@@ -196,7 +196,7 @@ req = CapabilityRequirement(
     constraints={"latency_ms": 100}
 )
 
-placement, candidates = resolve_placement(req, tower_root=Path("/data/data/com.termux/files/home/the-tower-of-babel"))
+placement, candidates = resolve_placement(req, tower_root=Path(os.environ.get("TOWER_ROOT", "/path/to/the-tower-of-babel")))
 
 print(f"Selected: {placement.technology} (floor {placement.floor})")
 print(f"Fitness: {placement.fitness_scores}")
@@ -336,11 +336,11 @@ evidence = EvidenceItem(
     metadata={"worthy": 9, "verified": True}
 )
 
-receipt = bridge_evidence(evidence, "case_1FDV", Path("/data/data/com.termux/files/home/monolith/catalog/legal_spines"))
+receipt = bridge_evidence(evidence, "case_1FDV", Path(os.environ.get("MONOLITH_ROOT", "/path/to/monolith") / "catalog" / "legal_spines"))
 print(f"Bridge receipt: {receipt.receipt_hash}")
 
 # Bridge all from ledger
-receipts = bridge_from_ledger("case_1FDV", Path("/data/data/com.termux/files/home/monolith/catalog/legal_spines"))
+receipts = bridge_from_ledger("case_1FDV", Path(os.environ.get("MONOLITH_ROOT", "/path/to/monolith") / "catalog" / "legal_spines"))
 print(f"Bridged {len(receipts)} items")
 ```
 

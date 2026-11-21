@@ -38,7 +38,7 @@ Current readback receipt: [receipts/MEGA_SKILLS_PUBLIC_READBACK_2026-11-13.json]
 
 ## Portfolio surface
 
-- 66 live-linked repositories in `manifests/live_repository_links.json`
+- 61 live-linked repositories in `manifests/live_repository_links.json`
 - Priority spine in `manifests/library_priority_spine.json`
 - Flagship registry in `manifests/flagship_registry.json`
 - Current Mega-Skills public HTTP readback in [receipts/MEGA_SKILLS_PUBLIC_READBACK_2026-11-13.json](receipts/MEGA_SKILLS_PUBLIC_READBACK_2026-11-13.json)

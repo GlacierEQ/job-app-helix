@@ -227,8 +227,8 @@ compositions:
 discovery:
   local_path: .agents/skills/
   remote_sources:
-    - monolith: /data/data/com.termux/files/home/monolith/catalog
-    - tower: /data/data/com.termux/files/home/the-tower-of-babel
+    - monolith: ${MONOLITH_ROOT}/catalog
+    - tower: ${TOWER_ROOT}
   auto_refresh: true
   refresh_interval_hours: 6
 ```
@@ -240,7 +240,7 @@ discovery:
 ### Installation
 
 ```bash
-cd /data/data/com.termux/files/home/job-app-helix
+cd /path/to/job-app-helix
 PYTHONPATH=src python3 -m job_app_helix.agent_cli --help
 ```
 
@@ -370,10 +370,14 @@ verify_receipt(<receipt_id>)  # Must return True
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `MONOLITH_ROOT` | `/data/data/com.termux/files/home/monolith` | Monolith catalog root |
-| `TOWER_ROOT` | `/data/data/com.termux/files/home/the-tower-of-babel` | Tower of Babel root |
-| `LEGAL_SPINES_PATH` | `/data/data/com.termux/files/home/monolith/catalog/legal_spines` | Legal spines |
+| `MONOLITH_ROOT` | auto-detected estate sibling | Monolith catalog root |
+| `TOWER_ROOT` | auto-detected estate sibling | Tower of Babel root |
+| `LEGAL_SPINES_PATH` | `$MONOLITH_ROOT/catalog/legal_spines` | Legal spines |
 | `ASPEN_GROVE_INDEX` | `/tmp/aspen_grove_pointer_index.json` | Pointer index |
+
+Roots resolve through `src/job_app_helix/estate_paths.py`: the repository root is
+derived from the package location, sibling estates are resolved from it, and
+every root can be overridden with the environment variable above.
 
 ---
 

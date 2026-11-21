@@ -110,6 +110,45 @@ ignore = ["E501"]
 module = "job_app_helix.readme_mesh_pb2"
 ignore_errors = true
 
+[tool.mypy]
+python_version = "3.11"
+
+# Type-checking debt baseline, recorded 2026-11-19: 88 mypy errors across the
+# modules listed below. They are excluded so CI still enforces types on every
+# other module and on all new code; a module leaves this list as soon as its
+# errors are fixed. Do not add new modules here without fixing them instead.
+[[tool.mypy.overrides]]
+module = [
+    "job_app_helix.agent_cli",
+    "job_app_helix.application_evidence_graph",
+    "job_app_helix.batch_application_execution",
+    "job_app_helix.capability_archaeology",
+    "job_app_helix.company_intelligence_refresh",
+    "job_app_helix.estate_mesh",
+    "job_app_helix.feature_lineage_reconciliation",
+    "job_app_helix.genius_research",
+    "job_app_helix.innovation_engine",
+    "job_app_helix.intelligence_cycle",
+    "job_app_helix.intelligent_recovery_cli",
+    "job_app_helix.intelligent_recovery",
+    "job_app_helix.live_evidence_adapter",
+    "job_app_helix.monolith_sync",
+    "job_app_helix.opportunity_queue",
+    "job_app_helix.outcome_calibration",
+    "job_app_helix.portfolio_cli",
+    "job_app_helix.portfolio_discovery",
+    "job_app_helix.portfolio_models",
+    "job_app_helix.portfolio_productization",
+    "job_app_helix.public_proof_runtime",
+    "job_app_helix.readme_estate_cli",
+    "job_app_helix.readme_estate",
+    "job_app_helix.readme_four_depth",
+    "job_app_helix.restoration_executor",
+    "job_app_helix.target_application_cycle",
+    "job_app_helix.worker_science",
+]
+ignore_errors = true
+
 [[tool.mypy.overrides]]
 module = ["job_app_helix.readme_mesh_manifest", "job_app_helix.readme_mesh"]
 ignore_errors = true

@@ -119,7 +119,7 @@ jobs:
         shell: bash
         run: |
           slug="${TARGET_REPOSITORY#*/}"
-          python audit/scripts/proof_weighted_repo_census.py \
+          python scripts/proof_weighted_repo_census.py \
             --repo "${TARGET_REPOSITORY}" \
             --path target \
             --metadata repo-metadata.json \
