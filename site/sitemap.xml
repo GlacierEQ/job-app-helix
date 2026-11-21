@@ -37,12 +37,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://casey-barton-glaciereq.vercel.app/atlas/</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://casey-barton-glaciereq.vercel.app/compiler/</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
