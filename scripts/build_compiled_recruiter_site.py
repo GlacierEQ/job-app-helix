@@ -210,7 +210,7 @@ def validate_public_projection(value: dict[str, Any]) -> None:
 
 
 def _assert_compiled_surface(output: Path) -> None:
-    allowed_suffixes = {".html", ".css", ".js", ".json", ""}
+    allowed_suffixes = {".html", ".css", ".js", ".json", ".xml", ".txt", ""}
     for path in output.rglob("*"):
         if path.is_symlink():
             raise ProjectionError(

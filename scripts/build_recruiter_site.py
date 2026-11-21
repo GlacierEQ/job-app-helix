@@ -352,6 +352,7 @@ def _copy_public_sources(output: Path) -> None:
         SITE_SOURCE / "styles.css": output / "styles.css",
         SITE_SOURCE / "site.innovations.css": output / "site.innovations.css",
         SITE_SOURCE / "app.js": output / "app.js",
+        SITE_SOURCE / "robots.txt": output / "robots.txt",
         CANDIDATE_ROOT / "candidate_node.json": output / "candidate-node.json",
         CANDIDATE_ROOT / "application_spiral.json": output / "application-spiral.json",
         CANDIDATE_ROOT / "evidence_ledger.json": output / "evidence-ledger.json",
@@ -365,6 +366,15 @@ def _copy_public_sources(output: Path) -> None:
             raise SystemExit(f"Refusing symbolic-link source: {source}")
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, destination)
+    # Publish only the generated public entrypoint. The legacy source sitemap
+    # lists routes that this builder does not generate, including ungated Atlas.
+    (output / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        '  <url><loc>https://casey-barton-glaciereq.vercel.app/</loc></url>\n'
+        '</urlset>\n',
+        encoding="utf-8",
+    )
     (output / ".nojekyll").write_text("", encoding="utf-8")
 
 
@@ -421,7 +431,7 @@ def _validate_local_links(output: Path) -> None:
 
 
 def _assert_public_surface(output: Path) -> None:
-    allowed_suffixes = {".html", ".css", ".js", ".json", ""}
+    allowed_suffixes = {".html", ".css", ".js", ".json", ".xml", ".txt", ""}
     for path in output.rglob("*"):
         if path.is_symlink():
             raise SystemExit(f"Deployed surface contains symbolic link: {path}")
