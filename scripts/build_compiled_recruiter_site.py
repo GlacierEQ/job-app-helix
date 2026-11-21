@@ -113,6 +113,18 @@ def _validate_capability_proofs(company: dict[str, Any], path: str) -> None:
     ranked_evidence = company.get("ranked_evidence", [])
     if not isinstance(ranked_evidence, list):
         raise ProjectionError(f"{path}.ranked_evidence must be a list")
+    # The JSON is deployed verbatim: reject non-public evidence even when it
+    # is not referenced by a capability proof.
+    for index, row in enumerate(ranked_evidence):
+        row_path = f"{path}.ranked_evidence[{index}]"
+        if not isinstance(row, dict):
+            raise ProjectionError(f"{row_path} must be an object")
+        if (
+            row.get("visibility") != "public"
+            or row.get("visibility_decision") != "PUBLIC_ELIGIBLE"
+            or row.get("promotion_state") not in PUBLIC_ADMISSION_STATES
+        ):
+            raise ProjectionError(f"{row_path} is not public-admitted")
     public_evidence_pairs = {
         (row.get("system_id"), row.get("source_repository"))
         for row in ranked_evidence
