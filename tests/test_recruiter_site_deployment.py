@@ -6,6 +6,7 @@ import json
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
+from xml.etree import ElementTree
 from types import ModuleType
 
 import pytest
@@ -197,3 +198,19 @@ def test_site_source_has_accessibility_and_security_baseline() -> None:
     assert "prefers-reduced-motion" in styles
     assert "aria-selected" in script
     assert "ArrowLeft" in script and "ArrowRight" in script
+
+
+def test_generated_sitemap_only_advertises_built_public_entrypoint(tmp_path: Path) -> None:
+    builder = _load_builder()
+    output = tmp_path / "site"
+    builder.build(output, SOURCE_COMMIT)
+
+    sitemap = output / "sitemap.xml"
+    assert sitemap.is_file()
+    root = ElementTree.parse(sitemap).getroot()
+    namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    urls = [node.text for node in root.findall("sm:url/sm:loc", namespace)]
+    assert urls == ["https://casey-barton-glaciereq.vercel.app/"]
+    assert "/atlas/" not in sitemap.read_text(encoding="utf-8")
+    robots = (output / "robots.txt").read_text(encoding="utf-8")
+    assert "Sitemap: https://casey-barton-glaciereq.vercel.app/sitemap.xml" in robots
