@@ -36,18 +36,18 @@
   "transition_rule": "Principal-state promotion moves upward through purpose reconstruction, capability mapping, recovery/composition, implementation, proof, operation, and evolution. Active facets describe work without demoting repository worth. Historical contraction states are parse-only evidence and cannot authorize archive, deletion, merge-away, close-as-duplicate, branch deletion, or successor substitution.",
   "transition_gate_requirements": {
     "PROOF_REPRODUCED->PROMOTED": [
-      "security_authority_bounded",
+      "security_boundary_verified",
       "projections_truth_consistent"
     ],
     "PROMOTED->SOURCE_BOUND": [
       "problem_verified",
       "unique_value_known",
-      "source_identity_known",
+      "canonical_identity_known",
       "central_mechanism_implemented",
       "deterministic_tests_pass",
       "adversarial_tests_pass",
       "runtime_behavior_observed",
-      "security_authority_bounded",
+      "security_boundary_verified",
       "proof_receipt_bound_to_sha",
       "reusable_capabilities_extracted",
       "projections_truth_consistent",
@@ -80,22 +80,50 @@
   "excellent_gate_conjunction": [
     "problem_verified",
     "unique_value_known",
-    "source_identity_known",
+    "canonical_identity_known",
     "central_mechanism_implemented",
     "deterministic_tests_pass",
     "adversarial_tests_pass",
     "runtime_behavior_observed",
-    "security_authority_bounded",
+    "security_boundary_verified",
     "proof_receipt_bound_to_sha",
     "reusable_capabilities_extracted",
     "projections_truth_consistent",
     "evolution_cursor_defined"
   ],
   "score_axes": {
-    "target_architecture": {"range": [0, 10], "meaning": "quality and ambition of intended architecture independent of implementation maturity"},
-    "current_proof": {"values": ["A", "B", "C", "D", "Q"], "meaning": "strength of exact-source executable evidence; never a worth score"},
-    "company_fit": {"range": [0, 10], "nullable": true, "meaning": "relevance to a bounded current company bottleneck"},
-    "reference_confidence": {"range": [0, 1], "meaning": "confidence in exact source identity for the named capability, not authority over sibling repositories"}
+    "target_architecture": {
+      "range": [
+        0,
+        10
+      ],
+      "meaning": "quality and ambition of intended architecture independent of implementation maturity"
+    },
+    "current_proof": {
+      "values": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "Q"
+      ],
+      "meaning": "strength of exact-source executable evidence; never a worth score"
+    },
+    "company_fit": {
+      "range": [
+        0,
+        10
+      ],
+      "nullable": true,
+      "meaning": "relevance to a bounded current company bottleneck"
+    },
+    "reference_confidence": {
+      "range": [
+        0,
+        1
+      ],
+      "meaning": "confidence in exact source identity for the named capability, not authority over sibling repositories"
+    }
   },
   "active_roles": [
     "INDEPENDENT_SYSTEM",
