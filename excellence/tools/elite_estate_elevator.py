@@ -14,11 +14,37 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-REPOS = Path.home() / "job-app" / "repos"
-VALIDATOR = Path.home() / "monolith" / "scripts" / "validate_repo_excellence_transition.py"
+def _resolve(env_name: str, candidates: list[Path]) -> Path:
+    """First existing candidate, else the last (so the failure names a path).
+
+    Historic layout was ``~/job-app/repos`` + ``~/monolith``; the canonical
+    VillAIge root is ``$AGENT_WORKSPACE`` (``~/Workspace``).
+    """
+    override = os.environ.get(env_name)
+    if override:
+        return Path(override).expanduser()
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[-1]
+
+
+WORKSPACE = Path(os.environ.get("AGENT_WORKSPACE", Path.home() / "Workspace")).expanduser()
+
+REPOS = _resolve(
+    "ELITE_REPOS",
+    [WORKSPACE / "job-app" / "repos", WORKSPACE / "projects", WORKSPACE],
+)
+VALIDATOR = _resolve(
+    "ELITE_VALIDATOR",
+    [
+        WORKSPACE / "projects" / "monolith" / "scripts" / "validate_repo_excellence_transition.py",
+        Path.home() / "monolith" / "scripts" / "validate_repo_excellence_transition.py",
+    ],
+)
 SCRATCH = Path(os.environ.get(
     "ELITE_SCRATCH",
-    "/var/folders/w3/hldw78112gzbvgd2_pj1bg3h0000gn/T/grok-goal-71072d58ed24/implementer",
+    str(WORKSPACE / ".local" / "elite-elevator"),
 ))
 TS = datetime.now(UTC).strftime("%Y-%m-%dT%H:%MZ")
 NOW = time.time()
