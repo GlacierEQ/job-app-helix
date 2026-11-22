@@ -22,7 +22,26 @@ from typing import Final
 from urllib.parse import unquote, urlsplit
 
 ROOT: Final = Path(__file__).resolve().parents[1]
-REPOS_DIR: Final = ROOT / "repos"
+WORKSPACE: Final = Path(
+    os.environ.get("AGENT_WORKSPACE", str(Path(__file__).resolve().parents[2]))
+).expanduser()
+
+
+def _resolve_repos_dir() -> Path:
+    """Portfolio repositories live under the canonical estate root.
+
+    The historic in-repo ``repos/`` layout is kept only as the last resort.
+    """
+    override = os.environ.get("ELITE_REPOS")
+    if override:
+        return Path(override).expanduser()
+    for candidate in (WORKSPACE / "job-app" / "repos", WORKSPACE / "projects", ROOT / "repos"):
+        if candidate.is_dir():
+            return candidate
+    return ROOT / "repos"
+
+
+REPOS_DIR: Final = _resolve_repos_dir()
 RECEIPT_PATH = ROOT / "artifacts" / "portfolio_ci_receipt.json"
 LANGUAGE_FIT_PATH: Final = ROOT / "manifests" / "language_fit.json"
 PORTFOLIO_INVENTORY_PATH: Final = ROOT / "manifests" / "portfolio_repositories.json"

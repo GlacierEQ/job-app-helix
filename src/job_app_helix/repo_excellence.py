@@ -65,7 +65,7 @@ PROOF_GRADES = {"A", "B", "C", "D", "Q"}
 REQUIRED_EXCELLENT_GATES = (
     "problem_verified",
     "unique_value_known",
-    "source_identity_known",
+    "canonical_identity_known",
     "central_mechanism_implemented",
     "deterministic_tests_pass",
     "adversarial_tests_pass",
@@ -92,6 +92,9 @@ SOURCE_BOUND_RECEIPT_REQUIRED_FLAGS = (
 
 LEGACY_GATE_UPGRADES = {
     "security_authority_bounded": "security_boundary_verified",
+    # Renamed by the Monolith contract (repo_excellence_state_machine v1.1.0):
+    # the estate's live state records use canonical_identity_known.
+    "source_identity_known": "canonical_identity_known",
 }
 
 LEGACY_SOURCE_BOUND_FLAG_UPGRADES = {

@@ -94,7 +94,7 @@ def migrate() -> None:
                 "gates": {
                     "problem_verified": old_gates.get("PROBLEM_VERIFIED", {}).get("status") == "PASS",
                     "unique_value_known": old_gates.get("TARGET_CONTRACT_FROZEN", {}).get("status") == "PASS",
-                    "source_identity_known": old_gates.get("IDENTITY_RESOLVED", {}).get("status") == "PASS",
+                    "canonical_identity_known": old_gates.get("IDENTITY_RESOLVED", {}).get("status") == "PASS",
                     "central_mechanism_implemented": old_gates.get("CENTRAL_MECHANISM_PRESENT", {}).get("status") == "PASS",
                     "deterministic_tests_pass": old_gates.get("DETERMINISTIC_PROOF_GREEN", {}).get("status") == "PASS",
                     "adversarial_tests_pass": old_gates.get("ADVERSARIAL_SURVIVAL", {}).get("status") == "PASS",
