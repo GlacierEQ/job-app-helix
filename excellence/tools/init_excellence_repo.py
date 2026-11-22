@@ -8,7 +8,21 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
+
+WORKSPACE = Path(os.environ.get("AGENT_WORKSPACE", Path.home() / "Workspace")).expanduser()
+
+
+def resolve_repos() -> Path:
+    """Canonical estate root first; the retired ``~/job-app/repos`` second."""
+    override = os.environ.get("ELITE_REPOS")
+    if override:
+        return Path(override).expanduser()
+    for candidate in (WORKSPACE / "job-app" / "repos", WORKSPACE / "projects", WORKSPACE):
+        if candidate.is_dir():
+            return candidate
+    return WORKSPACE / "job-app" / "repos"
 
 CEILING = """## Claim ceiling (independent reference)
 
@@ -79,7 +93,7 @@ def main() -> int:
     ap.add_argument("--company", required=True)
     ap.add_argument("--title", required=True)
     ap.add_argument("--pain", required=True)
-    ap.add_argument("--root", default=str(Path.home() / "job-app" / "repos"))
+    ap.add_argument("--root", default=str(resolve_repos()))
     args = ap.parse_args()
     root = Path(args.root) / args.name
     if root.exists():
