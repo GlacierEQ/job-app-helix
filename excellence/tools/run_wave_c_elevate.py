@@ -12,13 +12,28 @@ import argparse
 import concurrent.futures
 import importlib.util
 import json
+import os
 import sys
 import traceback
 from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-REPOS = ROOT / "repos"
+WORKSPACE = Path(os.environ.get("AGENT_WORKSPACE", Path.home() / "Workspace")).expanduser()
+
+
+def _resolve_repos() -> Path:
+    """Canonical estate root first; the old in-repo ``repos/`` layout second."""
+    override = os.environ.get("ELITE_REPOS")
+    if override:
+        return Path(override).expanduser()
+    for candidate in (WORKSPACE / "job-app" / "repos", WORKSPACE / "projects", ROOT / "repos"):
+        if candidate.is_dir():
+            return candidate
+    return ROOT / "repos"
+
+
+REPOS = _resolve_repos()
 WAVE_ID = "WAVE-C-2026-08-10"
 sys.path.insert(0, str(ROOT / "src"))
 
