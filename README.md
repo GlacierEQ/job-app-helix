@@ -4,7 +4,10 @@
 
 schema: glaciereq.readme.v1
 profile: glaciereq.readme-impact.v2-draft
-verified_at: 2026-11-19T00:00:00-10:00
+verified_at: 2026-11-23T00:00:00-10:00
+current_head: d97fd75
+latest_ci_head: e7ac35b4 (CI PASS)
+receipt_refresh_due: 2026-12-07
 blocked_scope: APEX runner activation, coordinator hosted promotion
 unverified_scope: 217 deserving repos without hash-bound anchors
 languages: python, rust, cpp, markdown, json, yaml
@@ -15,9 +18,9 @@ manifests/portfolio_repositories.json: true
 
 ---
 
-## What This Is
+## What This Is (Plain English)
 
-**Job-App Helix** is the **portfolio control plane** for the GlacierEQ engineering estate. It operates as a capability-executing system, not a governance artifact generator.
+**Job-App Helix** is a typed control plane that turns engineering evidence into a recruiter-readable portfolio. It tracks source ownership, tests, receipts, privacy boundaries, role fit, and public-safe projections, then compiles that state into the live hiring site and résumé surfaces.
 
 **Architecture:** Double-helix design — a **piston helix** (governed execution kernels) twisted with a **spiral helix** (company-engineered capability work) — coordinated by an **AKOS** authority core and projected outward through **pro-code** and the **Tower of Babel** standards surface.
 
@@ -25,7 +28,19 @@ manifests/portfolio_repositories.json: true
 
 ---
 
-## By the Numbers (2026-11-19 Reconciliation)
+## Three Flagship Engineering Systems
+
+These three systems are the strongest proof of agent-infrastructure capability and map directly to current Agent Runtime, Managed Agents, Frontier Agents, and Applied AI Platform role descriptions.
+
+| System | What It Does | Evidence | Repository |
+|---|---|---|---|
+| **ECHO — Persistent Agent Continuity Service** | FastAPI, durable SQLite/WAL, deterministic identity, idempotent jobs, bounded retries, receipts, operator console | `REPRODUCED` proof state; 48/48 admission tests; live operator endpoints | [GlacierEQ/ECHO](https://github.com/GlacierEQ/ECHO) |
+| **AI Personalization Kernel — Memory-to-Policy Binding** | Typed memory, context-first routing, policy scoring, corrections, replay, drift detection, verified sync | 94/94 matrix tests; boot receipts; verified Supabase write-through | [GlacierEQ/Ai-Personalization_Kernel](https://github.com/GlacierEQ/Ai-Personalization_Kernel) |
+| **APEX Control Plane — Receipt-Bound Orchestration** | Dispatch, connectors, recovery, state transitions, receipts, fail-closed external-action boundaries | 617 tracked files; SQL state schemas; CI workflows; adversarial regression | [GlacierEQ/apex-control-plane](https://github.com/GlacierEQ/apex-control-plane) |
+
+---
+
+## By the Numbers (2026-11-23 Reconciliation)
 
 | Metric | Count | Note |
 |---|---:|---:|
