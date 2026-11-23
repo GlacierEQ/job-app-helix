@@ -1,10 +1,12 @@
 # _candidate.yaml — shared candidate truth for the document forge.
-# Single source of truth: resumes, cover letters, and future packet documents
-# pull from here. Edit once, render everywhere.
+# Shared candidate reference and cover-letter number allowlist.
+# Resume variants in content/*.yaml currently carry their own copy of facts;
+# modifying this file alone does NOT synchronize those variants or the public site.
 #
 # HONESTY CONTRACT: kit_numbers is the allowlist. The cover engine FAILS CLOSED —
 # any **bold** number in a letter that isn't on this list refuses to render.
-# Add a number here only when he has approved it.
+# Add a number here only when he has approved it. Historical approved numbers
+# are NOT automatically current public claims: check CLAIM_REGISTER.md before reuse.
 
 "name": "Casey Barton"
 "contact":
@@ -18,9 +20,9 @@
   - "95/95"      # Agent Coordinator behavioral suite — verified 2026-10-25, 95/95 at head bcdaa89b8a76bd1c1690c7a46458af0be0a49e95 (JUnit SHA-256 626a19156104340ac638faf7ae9fa9df7a9d5f7b11e9b4f66f95843fd3c5c742); supersedes 62/62
   - "989"        # job-app-helix test functions — verified 2026-10-13 via fresh clone
   - "988"        # apex-control-plane test functions — verified 2026-10-13 (+91 in 6 days)
-  - "65"         # MCP connectors integrated (his approved number; re-verification pending)
-  - "1,413"      # estate repos — verified 2026-10-25 via `gh api /user` (703 public + 710 private); supersedes 1,395 (2026-10-13 GraphQL census)
-  - "20+"        # production repositories maintained
+  - "65"         # historically approved MCP count; re-verification pending; do not promote in current resume
+  - "1,413"      # historical authenticated account census; NOT the public source-exhaustive estate; public projection must not expose it
+  - "20+"        # historical approved descriptor; do not claim current production deployment without native receipts
   - "4"          # ATS providers in the job-intelligence pipeline
   - "3"          # years running the agent control plane
 
@@ -31,8 +33,8 @@
     "detail": "Bachelor of Science"
     "dates": "2016"
   - "school": "AWS Cloud Institute"
-    "detail": "Cloud Computing program"
-    "dates": "2025"
+    "detail": "Cloud Application Developer curriculum (non-degree)"
+    "dates": "2025 – 2026"
   - "school": "Colorado State University"
     "detail": "Undergraduate coursework"
     "dates": ""
@@ -41,10 +43,18 @@
   - "id": "control-plane"
     "text": "evidence-grade agent control plane — typed state transitions, bounded tool actions, approval gates, recoverable runs"
   - "id": "estate"
-    "text": "1,413-repository applied-AI platform — agent governance, MCP integrations, context externalization, document workflows"
+    "text": "evidence-governed portfolio control plane — distinct public source scope, commit-bound proof, machine-readable review surfaces"
   - "id": "fde-motion"
     "text": "embed on ambiguous workflows, ship end to end — scope with operators, build the narrow proof, harden what carries load"
   - "id": "helix"
     "text": "attributable campaign engine — immutable evidence models, fail-closed GO/NO-GO, JSON proof receipts"
+  - "id": "sigma-recovery"
+    "text": "merged Sigma Glue PRs #13 and #14 — permit-bound at-most-once transport entry, adversarial concurrency tests, provider readback and ambiguous-outcome reconciliation"
+  - "id": "fileboss-mcp"
+    "text": "merged FileBoss PR #166 — scoped short-lived MCP tool tokens, exact allowlists, durable leases and audit receipts"
+  - "id": "operational-recovery"
+    "text": "verified n8n recovery copies — 18 workflow definitions and 148 table rows preserved with source-native evidence and tracked access exception"
+  - "id": "pro-code"
+    "text": "Pro-Code — restart-aware local dispatch journal, compiler-resolved TypeScript code intelligence, and guarded code-repair operations"
 
-"boundary_note": "Evidence boundary: portfolio repositories are independent work. Domain-inspired demonstrations are not claims of company affiliation, production deployment, or certification."
+"boundary_note": "Candidate claims are promoted from exact-revision code, test and provider receipts in the GitHub evidence register."
