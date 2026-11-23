@@ -8,17 +8,25 @@ Portfolio: https://casey-barton-glaciereq.vercel.app/ | GitHub: https://github.c
 
 Applied AI systems architect who builds the operating layer between powerful models and dependable human outcomes. Specializes in agent orchestration, Model Context Protocol and tool boundaries, context and retrieval systems, deterministic state, permissioned execution, verification, provenance, and evidence-backed release decisions. Turns ambiguous, high-stakes workflows into typed contracts, bounded actions, visible failure semantics, and resumable operating systems.
 
-Built Job-App Helix as the evidence-bound control plane for a current 225-repository engineering estate across 21 families, while preserving the earlier exact 67-repository governed boundary - one control-plane root plus 66 children - as a dated audit and recruiter proof scope. The system presents one consistent candidate record to recruiters, senior engineers, ATS systems, and AI agents. Promoted AKOS through 94/94 tests across Python 3.11, 3.12, and 3.13 while preserving unverified and blocked claims instead of flattening the portfolio into unsupported success language.
+Delivered concrete reliability mechanisms in merged source: Sigma Glue's request-bound dispatch, concurrency fencing and provider-outcome reconciliation (PRs #13 and #14; 109/109 recorded tests on the exact PR #13 head), and FileBoss's lease-gated, capability-scoped MCP execution (PR #166; 16/16 recorded post-review regression assertions). Built source-bound portfolio and applicant-review surfaces with explicit distinctions between implemented, tested and externally proven states. The portfolio control plane currently describes 225 deserving repositories across 21 families; that is an inventory scope, not a claim that every repository runs in production.
 
 ## Evidence Snapshot
 
-- **Job-App Helix:** current 225-repository source-exhaustive estate across 21 families; 8 verified trust anchors; historical exact 67-repository governed boundary preserved for dated audit integrity.
-- **AKOS:** 94/94 tests across 12 modules on Python 3.11-3.13.
-- **README Mesh:** verified 21-node recruiter / expert / AI documentation rollout.
-- **Agent Coordinator:** 95/95 candidate-local Python 3.12 tests; hosted multi-version promotion remains explicitly pending.
-- **Public execution architecture:** catalog allowlists, least-privilege credentials, replay protection, immutable receipts, and explicit blocked activation when required infrastructure is absent.
+- **Sigma Glue:** merged [PR #13](https://github.com/GlacierEQ/sigma-glue/pull/13) and [PR #14](https://github.com/GlacierEQ/sigma-glue/pull/14); recorded exact-head CI for #13 passed **109/109 tests**, including independent-process contention, uncertainty and recovery handling.
+- **FileBoss:** merged [PR #166](https://github.com/GlacierEQ/fileboss-whisperx-processor/pull/166); 16/16 recorded post-review assertions for bounded remote MCP capability execution.
+- **Operational continuity:** [n8n recovery evidence](https://github.com/GlacierEQ/aspen-grove-core/blob/main/ops/n8n-recovery/README.md) records 18 retrieved workflow definitions and 148 rows from 15 tables preserved to private recovery copies with independent readback.
+- **Agent infrastructure:** [APEX session gateway](https://github.com/GlacierEQ/apex-control-plane/blob/main/src/apex_session_gateway.py) implements source-bound continuation and recovery admission; [Pro-Code](https://github.com/GlacierEQ/pro-code) implements restart-aware local dispatch and compiler-backed TypeScript analysis.
+- **Portfolio control:** Job-App Helix holds the current 225-repository inventory and its distinct public evidence scopes; the 21-node README Mesh provides human, technical and machine review surfaces.
+- **Other historical proof:** AKOS has recorded 94/94 tests across 12 modules on Python 3.11-3.13; Agent Coordinator has recorded 95/95 candidate-local Python 3.12 tests, with hosted promotion tracked separately.
 
 ## Selected Engineering Impact
+
+### Recoverable AI and tool execution
+
+- Designed permit-bound and fingerprint-bound execution records in Sigma Glue, with safe refusal of blind retries after ambiguous provider outcomes.
+- Implemented provider readback with distinct applied / not-applied / unknown classifications, protecting against duplicate or conflicting external operations.
+- Added capability-leased MCP execution with per-tool scope, time-limited tokens, plan-hash binding and audit receipts in FileBoss.
+- Preserved operator workflow assets from an expiring cloud environment while retaining the unresolved access exception and source identity.
 
 ### Evidence-bound portfolio control
 
