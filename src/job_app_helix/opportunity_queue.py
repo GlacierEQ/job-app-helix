@@ -1,9 +1,10 @@
 """Batch-rank job openings into an evidence-bound application execution queue.
 
 The queue composes explicit requirement coverage with fresh company intelligence. It is
-an execution surface, not a generic recommendation list: hard requirement gaps cap rank,
-stale company intelligence loses leverage, and missing company intelligence remains
-visible rather than being silently treated as current.
+an execution surface, not a generic recommendation list. Keyword overlap is a lead
+for investigation, not proof that a capable candidate lacks a qualification. Explicit
+operator-selected prime roles can enter an evidence-mapping pursuit lane without
+being misrepresented as application-ready.
 """
 
 from __future__ import annotations
@@ -52,6 +53,9 @@ class QueueInput:
     # A referral/warm route exists for this opening: warm outreach goes first,
     # portal submission second. Set in the queue manifest per candidate.
     warm_first: bool = False
+    # Operator-selected opportunity for capability-first evidence mapping even
+    # when lexical matching is poor; does not waive truthful application gates.
+    prime_pursuit: bool = False
 
 
 @dataclass(frozen=True)
@@ -98,7 +102,12 @@ def _freshness(assessment: CompanyFitAssessment) -> float:
     return assessment.fresh_signal_count / total if total else 0.0
 
 
-def _lane(opportunity: OpportunityAssessment, *, warm_first: bool = False) -> str:
+def _lane(
+    opportunity: OpportunityAssessment,
+    *,
+    warm_first: bool = False,
+    prime_pursuit: bool = False,
+) -> str:
     # Warm-first (referral-first) is the Operator's routing: a warm contact outranks
     # a cold portal submission for an otherwise actionable opening. It never rescues
     # hard gaps or a blocked proof — those lanes stand on their own evidence.
@@ -106,6 +115,10 @@ def _lane(opportunity: OpportunityAssessment, *, warm_first: bool = False) -> st
         return "WARM_FIRST"
     if opportunity.recommendation == "BLOCKED_NO_PUBLIC_PROOF":
         return "BLOCKED_PROOF"
+    if prime_pursuit and opportunity.recommendation in {"GAPS_TO_CLOSE", "DEFER"}:
+        # Review transferability and build a truthful counter-case. Do not imply
+        # that unverified experience or eligibility is already established.
+        return "PRIME_EVIDENCE_REVIEW"
     if opportunity.recommendation == "GAPS_TO_CLOSE":
         return "PREPARE_GAPS"
     if opportunity.recommendation == "APPLY_PRIORITY":
@@ -180,6 +193,7 @@ def build_application_execution_queue(
     *,
     now: datetime | None = None,
     warm_first_openings: frozenset[str] | None = None,
+    prime_pursuit_openings: frozenset[str] | None = None,
 ) -> ApplicationExecutionQueue:
     """Rank a batch while preserving deterministic lane and score ordering.
 
@@ -188,6 +202,7 @@ def build_application_execution_queue(
     when their opportunity recommendation is otherwise actionable.
     """
     warm_first = warm_first_openings or frozenset()
+    prime_pursuit = prime_pursuit_openings or frozenset()
     rows: list[RankedCandidate] = []
     for opening, target, intelligence, role in candidates:
         score, opportunity, company_fit, reasons = score_queue_candidate(
@@ -201,7 +216,11 @@ def build_application_execution_queue(
         rows.append(
             (
                 score,
-                _lane(opportunity, warm_first=opening.opening_id in warm_first),
+                _lane(
+                    opportunity,
+                    warm_first=opening.opening_id in warm_first,
+                    prime_pursuit=opening.opening_id in prime_pursuit,
+                ),
                 opportunity,
                 company_fit,
                 opening,
@@ -214,9 +233,10 @@ def build_application_execution_queue(
         "WARM_FIRST": 0,
         "APPLY_NOW": 1,
         "APPLY_NEXT": 2,
-        "PREPARE_GAPS": 3,
-        "DEFER": 4,
-        "BLOCKED_PROOF": 5,
+        "PRIME_EVIDENCE_REVIEW": 3,
+        "PREPARE_GAPS": 4,
+        "DEFER": 5,
+        "BLOCKED_PROOF": 6,
     }
     rows.sort(
         key=lambda row: (
@@ -296,6 +316,7 @@ def _manifest_inputs(path: Path) -> tuple[QueueInput, ...]:
                 intelligence_path=intelligence_path,
                 role=(str(item["role"]) if item.get("role") else None),
                 warm_first=bool(item.get("warm_first", False)),
+                prime_pursuit=bool(item.get("prime_pursuit", False)),
             )
         )
     return tuple(inputs)
@@ -337,6 +358,13 @@ def main(argv: Sequence[str] | None = None) -> int:
                 candidates, inputs, strict=True
             )
             if item.warm_first
+        ),
+        prime_pursuit_openings=frozenset(
+            opening.opening_id
+            for (opening, _target, _intelligence, _role), item in zip(
+                candidates, inputs, strict=True
+            )
+            if item.prime_pursuit
         ),
     )
     rendered = json.dumps(queue.as_dict(), indent=2, sort_keys=True) + "\n"

@@ -35,9 +35,10 @@ LANE_ORDER = {
     "WARM_FIRST": 0,
     "APPLY_NOW": 1,
     "APPLY_NEXT": 2,
-    "PREPARE_GAPS": 3,
-    "DEFER": 4,
-    "BLOCKED_PROOF": 5,
+    "PRIME_EVIDENCE_REVIEW": 3,
+    "PREPARE_GAPS": 4,
+    "DEFER": 5,
+    "BLOCKED_PROOF": 6,
 }
 # Application readiness is a separate ordered lane. Outcome learning may
 # change a candidate's fit within a lane but must not erase its potential.

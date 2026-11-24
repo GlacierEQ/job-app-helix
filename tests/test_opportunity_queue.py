@@ -240,3 +240,41 @@ def test_warm_first_never_rescues_hard_gaps() -> None:
     assert queue.warm_first_count == 0
     assert queue.items[0].lane == "PREPARE_GAPS"
     assert queue.items[0].opportunity_recommendation == "GAPS_TO_CLOSE"
+
+
+def test_prime_pursuit_keeps_low_lexical_match_in_evidence_review() -> None:
+    target = _target()
+    opening = _opening(
+        "prime",
+        requirements=("Python", "CUDA", "ASIC design", "compiler kernels"),
+    )
+    queue = opportunity_queue.build_application_execution_queue(
+        ((opening, target, None, None),),
+        _profile(),
+        now=NOW,
+        prime_pursuit_openings=frozenset({"prime"}),
+    )
+    assert queue.items[0].lane == "PRIME_EVIDENCE_REVIEW"
+    assert queue.items[0].opportunity_recommendation == "GAPS_TO_CLOSE"
+    assert queue.items[0].hard_gap_count == 3
+    assert queue.apply_now_count == 0
+
+
+def test_prime_pursuit_never_overrides_missing_public_proof() -> None:
+    target = app_engine.CompanyTarget(
+        company_id="no-proof",
+        display_name="No Proof",
+        track_state="ACTIVE",
+        target_roles=("AI Systems Engineer",),
+        recruiter_thesis="agent systems reliability",
+        gap_or_next_gate="evidence",
+        non_affiliation="independent",
+        repositories=(),
+    )
+    queue = opportunity_queue.build_application_execution_queue(
+        ((_opening("prime", requirements=("CUDA",)), target, None, None),),
+        _profile(),
+        now=NOW,
+        prime_pursuit_openings=frozenset({"prime"}),
+    )
+    assert queue.items[0].lane == "BLOCKED_PROOF"

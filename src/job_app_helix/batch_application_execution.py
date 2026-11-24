@@ -50,6 +50,9 @@ class BatchCandidate:
     # A referral/warm route exists for this opening: warm outreach goes first,
     # portal submission second. Set in the batch manifest per candidate.
     warm_first: bool = False
+    # Preserve capability-first pursuit selection in the ranked queue, but keep
+    # it outside DEFAULT_ACTIONABLE_LANES until source evidence is mapped.
+    prime_pursuit: bool = False
 
 
 @dataclass(frozen=True)
@@ -245,6 +248,7 @@ def compile_ranked_application_batch(
     limit: int | None = None,
     calibration: OutcomeCalibration | None = None,
     warm_first_openings: frozenset[str] | None = None,
+    prime_pursuit_openings: frozenset[str] | None = None,
 ) -> BatchExecutionResult:
     """Compile top actionable items with deduplication and ranking provenance.
 
@@ -269,7 +273,10 @@ def compile_ranked_application_batch(
         raise ValueError("limit must be positive when provided")
 
     queue = build_application_execution_queue(
-        candidates, profile, warm_first_openings=warm_first_openings
+        candidates,
+        profile,
+        warm_first_openings=warm_first_openings,
+        prime_pursuit_openings=prime_pursuit_openings,
     )
     if calibration is not None:
         queue = calibrate_queue(queue, calibration)
@@ -383,6 +390,7 @@ def load_batch_manifest(path: Path) -> tuple[BatchCandidate, ...]:
                 ),
                 role=str(item["role"]) if item.get("role") else None,
                 warm_first=bool(item.get("warm_first", False)),
+                prime_pursuit=bool(item.get("prime_pursuit", False)),
             )
         )
     return tuple(rows)
@@ -445,6 +453,13 @@ def main(argv: Sequence[str] | None = None) -> int:
                     manifest, candidates, strict=True
                 )
                 if item.warm_first
+            ),
+            prime_pursuit_openings=frozenset(
+                opening.opening_id
+                for item, (opening, _target, _intelligence, _role) in zip(
+                    manifest, candidates, strict=True
+                )
+                if item.prime_pursuit
             ),
         )
 

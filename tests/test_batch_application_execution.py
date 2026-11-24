@@ -140,6 +140,23 @@ def test_batch_compiles_only_actionable_lanes_and_deduplicates_complete_packets(
         assert len(store.events(packet.application_id)) == 1
 
 
+def test_prime_evidence_review_is_visible_but_not_submittable(tmp_path: Path) -> None:
+    opening = _opening("prime", ("Python", "CUDA", "ASIC design", "compiler kernels"))
+    with ApplicationStore(tmp_path / "apps.sqlite3") as store:
+        result = compile_ranked_application_batch(
+            ((opening, _target(), None, None),),
+            _profile(),
+            output_dir=tmp_path / "packets",
+            store=store,
+            prime_pursuit_openings=frozenset({"prime"}),
+        )
+        assert result.queue.items[0].lane == "PRIME_EVIDENCE_REVIEW"
+        assert result.queue.items[0].hard_gap_count == 3
+        assert result.selected_count == 0
+        assert result.compiled_count == 0
+        assert store.list_applications() == []
+
+
 def test_calibrated_batch_persists_model_identity_and_score_decomposition(
     tmp_path: Path,
 ) -> None:
