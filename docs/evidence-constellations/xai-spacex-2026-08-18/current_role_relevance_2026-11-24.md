@@ -7,13 +7,13 @@
 ## Reconciliation scope
 
 - Historical direct constellation: 52 xAI-targeted and 16 SpaceX-targeted identities, 10 static source-reviewed and 58 inventory/lineage, linked at the source above.
-- Current expanded relevance register: 375 distinct project records (68 historical + 307 additional), retained in the operator's internal project working register with visibility controls.
-- This public annex lists **116 additional projects confirmed public in the current owner inventory** (59 first-wave public additions, 21 focused second-pass public additions, plus 36 broad APEX/systems corrections). It deliberately omits **190 private** and **1 visibility-unconfirmed** supplemental identity. Historic sources remain authoritative for the original 68.
-- Sources: authenticated GitHub 2026-11-24 owner enumeration (1,450 GlacierEQ identities plus six hchscasey organization identities; complete connected-account metadata read), [2026-08-30 estate catalog](https://docs.google.com/document/d/1tCL0digYGbfRDF9elKmZCJI-Rnem0bnD/edit), and [2026-08-28 curated Helix manifest](../../../manifests/unified_deserving_manifest.json). The combined current/historical working scan exposed 1,466 names, **a complete currently accessible repository-metadata enumeration, not** a full source-code audit.
+- Current expanded relevance register: 385 distinct project records (68 historical + 317 additional), retained in the operator's internal project working register with visibility controls.
+- This public annex lists **119 additional projects confirmed public in the current owner inventory** (59 first-wave public additions, 21 focused second-pass public additions, 36 broad APEX/systems corrections, and 3 source-inspected engineering additions). It deliberately omits **197 private** and **1 visibility-unconfirmed** supplemental identity. Historic sources remain authoritative for the original 68.
+- Sources: authenticated GitHub 2026-11-24 owner enumeration (initially 1,450, refreshed to 1,451 GlacierEQ identities; six hchscasey organization identities from the earlier snapshot), [2026-08-30 estate catalog](https://docs.google.com/document/d/1tCL0digYGbfRDF9elKmZCJI-Rnem0bnD/edit), and [2026-08-28 curated Helix manifest](../../../manifests/unified_deserving_manifest.json). The initial combined current/historical working scan exposed 1,466 names (a dated union, not recalculated after the one-repository owner refresh). Metadata enumeration is broad; **source-code audit remains selective**.
 
-## Public additional-project register (116, de-duplicated from the 68)
+## Public additional-project register (119, de-duplicated from the 68)
 
-**Readiness:** Candidates are relevance matches, not technical claims. Six candidate READMEs and selected primary code/test files were inspected in this pass; source/test execution remains unverified. `Live metadata` indicates 2026-11-24 GitHub merged enumeration; `Catalog` is historical August 30 metadata.
+**Readiness:** Candidates are relevance matches, not technical claims. Selected primary code/test files were inspected for six earlier candidates plus three further engineering candidates; no tests were executed in this reconciliation; source/test execution remains unverified. `Live metadata` indicates 2026-11-24 GitHub merged enumeration; `Catalog` is historical August 30 metadata.
 
 | Relevance family | Independent project | Inventory receipt | Review level |
 |---|---|---|---|
@@ -134,6 +134,9 @@
 | enterprise guardrails and provenance | [`ibm-governed-tool-catalog`](https://github.com/GlacierEQ/ibm-governed-tool-catalog) | GitHub head tree `cac7e6a00ae1` | README/tree inspected (13 code paths; tests not run) |
 | enterprise guardrails and provenance | [`oracle-sovereign-data-boundary-gate`](https://github.com/GlacierEQ/oracle-sovereign-data-boundary-gate) | GitHub head tree `027c14dee820` | README/tree inspected (11 code paths; tests not run) |
 | enterprise guardrails and provenance | [`salesforce-crm-action-authority`](https://github.com/GlacierEQ/salesforce-crm-action-authority) | GitHub head tree `a0819bd2a1fb` | README/tree inspected (11 code paths; tests not run) |
+| decision engines and optimization | [`megamind`](https://github.com/GlacierEQ/megamind) | Casey head `ce8f255031` | `decision_intelligence.py`, `test_strategy_tournament.py` inspected; not executed |
+| agent memory and MCP interoperability | [`mega-skills`](https://github.com/GlacierEQ/mega-skills) | Casey/GlacierEQ head `777dd549c` | `mem_archive_mcp.py` and `test_bridge.py` inspected; vendored catalog excluded from original-work claim |
+| cybernetic control and agent continuity | [`genius-technician`](https://github.com/GlacierEQ/genius-technician) | Casey/GlacierEQ head `fa9cccb07` | `feedback.py`, `test_genius.py` inspected; not executed; terminology is metaphorical |
 
 ## Full-estate second-pass scope and source fences
 
@@ -146,7 +149,7 @@
 
 ## Broader APEX, systems, and source-history correction
 
-Casey's direction was to identify **all relevant work**, not merely repositories named for target employers. The 176-project shortlist missed substantial GlacierEQ software engineering. A wider check of named engineering families, selected repository trees, code files, historical backups and fork metadata raised the **private canonical role-relevance register to 375 distinct records** (143 public, 231 private, one historical visibility-unconfirmed). The public table above now holds **116 additional public projects** beyond the original 68 historical cards.
+Casey's direction was to identify **all relevant work**, not merely repositories named for target employers. The 176-project shortlist missed substantial GlacierEQ software engineering. A wider check of named engineering families, selected repository trees, code files, historical backups and fork metadata raised the **private canonical role-relevance register to 375 distinct records** at that stage (143 public, 231 private, one historical visibility-unconfirmed). The subsequent source/ingenuity screen brought it to **385** (146 public, 238 private, one visibility-unconfirmed). The public table above now holds **119 additional public projects** beyond the original 68 historical cards.
 
 - The correction added **199 repository identities**: 118 core APEX/operator/memory/Genius/systems projects; 44 additional connector/engineering/fork/lineage projects; 37 archived APEX source snapshots. **36 are public**, included in this annex; the other **163 are private**, kept off the public surface.
 - Relevant code recovered in private repositories includes `apex-home-base/INFRASTRUCTURE/colossus_twin_composer.py` (modeled xAI Colossus digital-twin telemetry) and `apex-mcp-servers/servers/colossus_gatekeeper_mcp.py` (local configuration/state gate). These are simulations and local tools—not xAI access, live Kafka data, or proof of a working integrated data center.
@@ -172,8 +175,15 @@ Selected repository source and test contracts were read at these current GitHub 
 - **Robotics verification debt:** the README's suggested `tests/test_torque_sentinel.py` was absent from the repository's `tests/` listing. Source inspection also found no `joint_id < 0` guard in the C++ `TorqueSafetyController::apply()` array access path. The README's ISO compliance and real-time safety claims must not be repeated as verified without independent validation.
 - No tests were executed during this cross-repository review; these six are not additions to the historic 10 source-reviewed EvidenceCards.
 
+## Skill and ingenuity source-audit continuation (2026-11-24)
+
+- Screened 1,077 names from the refreshed 1,451-repository GlacierEQ owner inventory that were outside the prior 375 selected records. Reviewed 42 of 46 shortlisted READMEs, source trees of 44 tractable candidates, selected code/test files and recent commit histories. This was **not** a complete 1,077-repository source audit.
+- Added 10 distinctive implementation candidates to the **same** private canonical register. Only the three publicly accessible identities appear above. The other seven are intentionally withheld from recruiter-facing source listings; do not infer the private project names or code from this annex.
+- Strongest public *bounded* technical discussions are Megamind's deterministic priority/tournament code, mega-skills' read-only SQLite/MCP archival bridge, and Genius Technician's circuit-breaker/fallback logic. No test execution occurred in this review, and source presence is not a pass receipt, production performance proof or sole-authorship attestation.
+- Do **not** take credit for large upstream or vendored source trees merely because they sit under GlacierEQ. Recent documentation merges and licensing changes alone were insufficient to classify several other repositories as original engineering work.
+
 ## Next verification
 
-- The full 1,456-identity connected-account enumeration is complete at metadata level. Maintain the 375-project role register and review source/test evidence before claim promotion; the legacy `grok-build` pointer remains visibility-unconfirmed. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
+- The refreshed 1,451-identity GlacierEQ owner enumeration is complete at metadata level; the separately dated six-identity organization snapshot was not refreshed. Maintain the 385-project role register and review source/test evidence before claim promotion; the legacy `grok-build` pointer remains visibility-unconfirmed. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
 - For each candidate promoted into recruiter claims, inspect source/test contracts at exact revision, run safe local tests where practical, and capture runnable receipt + known limit. README text alone is not execution proof.
 - Keep the full private/operator register available for role strategy while exposing only source-supported public evidence in application materials.
