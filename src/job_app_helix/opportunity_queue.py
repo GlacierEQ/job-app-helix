@@ -113,12 +113,16 @@ def _lane(
     # hard gaps or a blocked proof — those lanes stand on their own evidence.
     if warm_first and opportunity.recommendation in {"APPLY_PRIORITY", "APPLY_VIABLE"}:
         return "WARM_FIRST"
+    if prime_pursuit and opportunity.recommendation in {
+        "BLOCKED_NO_PUBLIC_PROOF",
+        "GAPS_TO_CLOSE",
+        "DEFER",
+    }:
+        # Explicitly pursue evidence recovery even without public proof. Do not
+        # imply an unverified claim or eligibility is application-ready.
+        return "PRIME_EVIDENCE_REVIEW"
     if opportunity.recommendation == "BLOCKED_NO_PUBLIC_PROOF":
         return "BLOCKED_PROOF"
-    if prime_pursuit and opportunity.recommendation in {"GAPS_TO_CLOSE", "DEFER"}:
-        # Review transferability and build a truthful counter-case. Do not imply
-        # that unverified experience or eligibility is already established.
-        return "PRIME_EVIDENCE_REVIEW"
     if opportunity.recommendation == "GAPS_TO_CLOSE":
         return "PREPARE_GAPS"
     if opportunity.recommendation == "APPLY_PRIORITY":

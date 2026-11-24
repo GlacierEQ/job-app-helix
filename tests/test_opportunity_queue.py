@@ -260,7 +260,7 @@ def test_prime_pursuit_keeps_low_lexical_match_in_evidence_review() -> None:
     assert queue.apply_now_count == 0
 
 
-def test_prime_pursuit_never_overrides_missing_public_proof() -> None:
+def test_prime_pursuit_seeks_public_proof_without_implying_readiness() -> None:
     target = app_engine.CompanyTarget(
         company_id="no-proof",
         display_name="No Proof",
@@ -277,4 +277,6 @@ def test_prime_pursuit_never_overrides_missing_public_proof() -> None:
         now=NOW,
         prime_pursuit_openings=frozenset({"prime"}),
     )
-    assert queue.items[0].lane == "BLOCKED_PROOF"
+    assert queue.items[0].lane == "PRIME_EVIDENCE_REVIEW"
+    assert queue.items[0].opportunity_recommendation == "BLOCKED_NO_PUBLIC_PROOF"
+    assert queue.apply_now_count == 0
