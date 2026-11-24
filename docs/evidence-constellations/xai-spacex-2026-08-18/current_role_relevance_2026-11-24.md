@@ -7,11 +7,11 @@
 ## Reconciliation scope
 
 - Historical direct constellation: 52 xAI-targeted and 16 SpaceX-targeted identities, 10 static source-reviewed and 58 inventory/lineage, linked at the source above.
-- Current expanded relevance register: 151 distinct project records (68 historical + 83 additional), retained in the operator's internal project working register with visibility controls.
-- This public annex lists **59 additional projects confirmed public in the current owner inventory** (7 Colossus/Grok, 25 AI compute/datacenter, 16 mission/aerospace/robotics, 11 agent/reliability). It deliberately omits **23 private** and **1 visibility-unconfirmed** supplemental identity. Historic sources remain authoritative for the original 68.
+- Current expanded relevance register: 176 distinct project records (68 historical + 108 additional), retained in the operator's internal project working register with visibility controls.
+- This public annex lists **80 additional projects confirmed public in the current owner inventory** (7 Colossus/Grok, 25 AI compute/datacenter, 16 mission/aerospace/robotics, 11 agent/reliability, plus 21 transferable second-pass additions). It deliberately omits **27 private** and **1 visibility-unconfirmed** supplemental identity. Historic sources remain authoritative for the original 68.
 - Sources: authenticated GitHub 2026-11-24 owner enumeration (1,450 GlacierEQ identities plus six hchscasey organization identities; complete connected-account metadata read), [2026-08-30 estate catalog](https://docs.google.com/document/d/1tCL0digYGbfRDF9elKmZCJI-Rnem0bnD/edit), and [2026-08-28 curated Helix manifest](../../../manifests/unified_deserving_manifest.json). The combined current/historical working scan exposed 1,466 names, **a complete currently accessible repository-metadata enumeration, not** a full source-code audit.
 
-## Public additional-project register (59, de-duplicated from the 68)
+## Public additional-project register (80, de-duplicated from the 68)
 
 **Readiness:** Candidates are relevance matches, not technical claims. Six candidate READMEs and selected primary code/test files were inspected in this pass; source/test execution remains unverified. `Live metadata` indicates 2026-11-24 GitHub merged enumeration; `Catalog` is historical August 30 metadata.
 
@@ -77,6 +77,37 @@
 | Mission, aerospace & robotics | [`zoox-fleet-skill-promotion-gate`](https://github.com/GlacierEQ/zoox-fleet-skill-promotion-gate) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`waymo-phantom-freespace-certificate`](https://github.com/GlacierEQ/waymo-phantom-freespace-certificate) | Live metadata | candidate (README checked; simulation grid, no road test claim) |
 
+| Grok tooling | [`grokodile`](https://github.com/GlacierEQ/grokodile) | GitHub owner metadata + selected source | static source inspected — rule-based screening, no Grok runtime |
+| Autonomy / mission integration | [`apex-ros2-autonomy`](https://github.com/GlacierEQ/apex-ros2-autonomy) | GitHub owner metadata + selected source | static source inspected — local mock; real ROS2 transport methods are pass stubs |
+| AI compiler | [`apex-ir-compiler`](https://github.com/GlacierEQ/apex-ir-compiler) | GitHub owner metadata + selected source | static source inspected — MLIR-text emitter; no hardware proof |
+| Distributed autonomy | [`apex-crdt-mesh`](https://github.com/GlacierEQ/apex-crdt-mesh) | GitHub owner metadata + selected source | static source inspected — local CRDT source, no network proof |
+| Agent security / MCP | [`glaciereq-mcp-stack`](https://github.com/GlacierEQ/glaciereq-mcp-stack) | GitHub owner metadata + selected source | static source inspected — local allow-list MCP routing |
+| Agent capability governance | [`replit-workspace-cap-matrix`](https://github.com/GlacierEQ/replit-workspace-cap-matrix) | GitHub owner metadata + selected source | static source inspected — revocable local grants and budgets |
+| Model evaluation / serving | [`together-ai-open-model-fidelity-passport`](https://github.com/GlacierEQ/together-ai-open-model-fidelity-passport) | GitHub owner metadata + selected source | static source inspected — modeled fidelity receipts; no live collector |
+| Agent code navigation | [`sourcegraph-code-nav-intent-gate`](https://github.com/GlacierEQ/sourcegraph-code-nav-intent-gate) | GitHub owner metadata + selected source | static source inspected — bounded local graph navigation |
+| CI reliability | [`gitlab-pipeline-intent-contract`](https://github.com/GlacierEQ/gitlab-pipeline-intent-contract) | GitHub owner metadata + selected source | static source inspected — local intent and drift model |
+| Agent edge security | [`cloudflare-edge-cap-mint`](https://github.com/GlacierEQ/cloudflare-edge-cap-mint) | GitHub owner metadata + selected source | static source inspected — local capability mint |
+| Evaluation integrity | [`scale-eval-poison-sentinel`](https://github.com/GlacierEQ/scale-eval-poison-sentinel) | GitHub owner metadata + selected source | static source inspected — deterministic poisoning checks |
+| Agent delivery | [`Forward-Deployed-Agentic-Powerhouse`](https://github.com/GlacierEQ/Forward-Deployed-Agentic-Powerhouse) | GitHub owner metadata + selected source | static source inspected — approval packet only by default |
+| Pipeline reliability | [`mega-pipeline-production`](https://github.com/GlacierEQ/mega-pipeline-production) | GitHub owner metadata + selected source | static source inspected — local staged audit/runner |
+| Governed coding agent | [`pro-code`](https://github.com/GlacierEQ/pro-code) | GitHub owner metadata + selected README | README inspected — independent execution checks pending |
+| Agent runtime | [`apex-runtime`](https://github.com/GlacierEQ/apex-runtime) | GitHub owner metadata + selected source | static source inspected — local runtime abstractions |
+| SLO and cost guardrails | [`operator-cognition`](https://github.com/GlacierEQ/operator-cognition) | GitHub owner metadata + selected source | static source inspected — local breaker/budget/SLO components |
+| Agent control UI | [`command-center`](https://github.com/GlacierEQ/command-center) | GitHub owner metadata + selected source | static source inspected — static dashboard and intent contracts |
+| Edge agent capabilities | [`cloudflare-workers-agent-cap`](https://github.com/GlacierEQ/cloudflare-workers-agent-cap) | GitHub owner metadata + selected README | README inspected — no Cloudflare deployment proof |
+| Deployment evidence | [`vercel-deploy-claim-compiler`](https://github.com/GlacierEQ/vercel-deploy-claim-compiler) | GitHub owner metadata + selected README | README inspected — claim/receipt design; execution unverified |
+| Preview verification | [`vercel-preview-truth-gate`](https://github.com/GlacierEQ/vercel-preview-truth-gate) | GitHub owner metadata + selected README | README inspected — preview evidence contract; execution unverified |
+| Bot intent receipts | [`cloudflare-bot-intent-receipt`](https://github.com/GlacierEQ/cloudflare-bot-intent-receipt) | GitHub owner metadata + selected README | README inspected — proposed local receipts; execution unverified |
+
+## Full-estate second-pass scope and source fences
+
+- Examined the **1,300** GlacierEQ repository identities outside the previous 151-project shortlist; **1,077** had nonempty description coverage and **223** had no usable description. Read selected READMEs and primary code/tests for higher-scoring candidates; this was **not** a code audit of all 1,300 and **no tests were executed** during this second pass.
+- Added **25** relevant distinct projects to the private register; the **21 confirmed public** names appear in the public table immediately above. The remaining four (`colab-power`, `Pro-Mastermind`, `Pro-Security`, `Pro-CI`) are private and excluded from recruiter-facing public inventory. The historical `grok-build` pointer remains visibility-unconfirmed.
+- **Critical autonomy boundary:** `apex-ros2-autonomy` source contains mission-contract translation and a mock transport, but real `Ros2MissionTransport.publish_goal`, `subscribe_feedback` and `publish_telemetry` methods are empty `pass` bodies. Treat SpaceX-repository links in its README as intended integration, not an established ROS2/SpaceX mission-control interface.
+- **Evaluation boundary:** `grokodile` uses rule/pattern local claim screening rather than semantic model truth; model-fidelity passports and eval-poison checks are bounded local demonstrations, not live frontier-model, datacenter or training attestations. The Rust MLIR/CRDT projects have not been verified on hardware or a deployed mesh.
+- Scaffold-only operator projects and apparent upstream forks were excluded from this shortlist until original implementation ownership and execution evidence can be distinguished. Company/product names indicate the problem space, **not** affiliation, access or deployed integrations.
+
+
 ## Evidence-first recruiter presentation
 
 1. **Mission reliability / deterministic gates:** Start with the existing exact-revision source-review cards for `spacex-launch-sequencer`, `spacex-hold-reason-compiler`, and `spacex-mission-thread-quorum`. Show their local state/receipt behavior and explicit limits.
@@ -96,6 +127,6 @@ Selected repository source and test contracts were read at these current GitHub 
 
 ## Next verification
 
-- The full 1,456-identity connected-account enumeration is complete at metadata level. Maintain the 151-project role register and review source/test evidence before claim promotion; the legacy `grok-build` pointer remains visibility-unconfirmed. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
+- The full 1,456-identity connected-account enumeration is complete at metadata level. Maintain the 176-project role register and review source/test evidence before claim promotion; the legacy `grok-build` pointer remains visibility-unconfirmed. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
 - For each candidate promoted into recruiter claims, inspect source/test contracts at exact revision, run safe local tests where practical, and capture runnable receipt + known limit. README text alone is not execution proof.
 - Keep the full private/operator register available for role strategy while exposing only source-supported public evidence in application materials.
