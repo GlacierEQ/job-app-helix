@@ -13,7 +13,7 @@
 
 ## Public additional-project register (58, de-duplicated from the 68)
 
-**Readiness:** Candidates are relevance matches, not technical claims. Six candidate READMEs were inspected in this pass; source/test execution remains unverified. `Live metadata` indicates current 2026-11-24 GitHub enumeration; `Catalog` is historical August 30 metadata.
+**Readiness:** Candidates are relevance matches, not technical claims. Six candidate READMEs and selected primary code/test files were inspected in this pass; source/test execution remains unverified. `Live metadata` indicates current 2026-11-24 GitHub enumeration; `Catalog` is historical August 30 metadata.
 
 | Relevance family | Independent project | Inventory receipt | Review level |
 |---|---|---|---|
@@ -25,7 +25,7 @@
 | AI compute & datacenter | [`cohere-retrieval-claim-fence`](https://github.com/GlacierEQ/cohere-retrieval-claim-fence) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`coreweave-rack-power-autopilot`](https://github.com/GlacierEQ/coreweave-rack-power-autopilot) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`crusoe-rack-to-token-autopilot`](https://github.com/GlacierEQ/crusoe-rack-to-token-autopilot) | Live metadata | candidate — source review pending |
-| AI compute & datacenter | [`deepmind-tpu-mesh-optimizer`](https://github.com/GlacierEQ/deepmind-tpu-mesh-optimizer) | Live metadata | README inspected |
+| AI compute & datacenter | [`deepmind-tpu-mesh-optimizer`](https://github.com/GlacierEQ/deepmind-tpu-mesh-optimizer) | Live metadata | static source inspected (not executed) |
 | AI compute & datacenter | [`deepseek-mla-moe-sentinel`](https://github.com/GlacierEQ/deepseek-mla-moe-sentinel) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`fireworks-ai-optimization-safety-envelope`](https://github.com/GlacierEQ/fireworks-ai-optimization-safety-envelope) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`groq-batch-admission-gate`](https://github.com/GlacierEQ/groq-batch-admission-gate) | Catalog | candidate — source review pending |
@@ -35,7 +35,7 @@
 | AI compute & datacenter | [`mistral-open-weight-eval-fence`](https://github.com/GlacierEQ/mistral-open-weight-eval-fence) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`nebius-cluster-energy-admission`](https://github.com/GlacierEQ/nebius-cluster-energy-admission) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`nvidia-deep-reasoning`](https://github.com/GlacierEQ/nvidia-deep-reasoning) | Catalog | candidate — source review pending |
-| AI compute & datacenter | [`nvidia-gpu-health`](https://github.com/GlacierEQ/nvidia-gpu-health) | Live metadata | README inspected |
+| AI compute & datacenter | [`nvidia-gpu-health`](https://github.com/GlacierEQ/nvidia-gpu-health) | Live metadata | static source inspected (not executed) |
 | AI compute & datacenter | [`nvidia-gradient-integrity-quorum`](https://github.com/GlacierEQ/nvidia-gradient-integrity-quorum) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`nvidia-nan-circuit-breaker`](https://github.com/GlacierEQ/nvidia-nan-circuit-breaker) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`openai-reasoning-budget-futures`](https://github.com/GlacierEQ/openai-reasoning-budget-futures) | Live metadata | candidate — source review pending |
@@ -55,8 +55,8 @@
 | Agents, reliability & evaluation | [`the-tower-of-babel`](https://github.com/GlacierEQ/the-tower-of-babel) | Live metadata | candidate — source review pending |
 | Colossus & Grok supporting | [`autonomous-grok-build`](https://github.com/GlacierEQ/autonomous-grok-build) | Live metadata | candidate — source review pending |
 | Colossus & Grok supporting | [`awesome-grok-build`](https://github.com/GlacierEQ/awesome-grok-build) | Live metadata | candidate — source review pending |
-| Colossus & Grok supporting | [`colossus-gateway`](https://github.com/GlacierEQ/colossus-gateway) | Live metadata | README inspected |
-| Colossus & Grok supporting | [`colossus-training-flux`](https://github.com/GlacierEQ/colossus-training-flux) | Live metadata | README inspected |
+| Colossus & Grok supporting | [`colossus-gateway`](https://github.com/GlacierEQ/colossus-gateway) | Live metadata | static source inspected (not executed) |
+| Colossus & Grok supporting | [`colossus-training-flux`](https://github.com/GlacierEQ/colossus-training-flux) | Live metadata | static source inspected (not executed) |
 | Colossus & Grok supporting | [`grok-build-nix`](https://github.com/GlacierEQ/grok-build-nix) | Live metadata | candidate — source review pending |
 | Colossus & Grok supporting | [`grok-cli`](https://github.com/GlacierEQ/grok-cli) | Live metadata | candidate — source review pending |
 | Colossus & Grok supporting | [`vscode-grok`](https://github.com/GlacierEQ/vscode-grok) | Live metadata | candidate — source review pending |
@@ -70,8 +70,8 @@
 | Mission, aerospace & robotics | [`lockheed-martin-mission-assurance-gateway`](https://github.com/GlacierEQ/lockheed-martin-mission-assurance-gateway) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`lockheed-mission-thread-isolator`](https://github.com/GlacierEQ/lockheed-mission-thread-isolator) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`nasa-command-authority-half-life`](https://github.com/GlacierEQ/nasa-command-authority-half-life) | Live metadata | candidate — source review pending |
-| Mission, aerospace & robotics | [`nasa-telemetry-anomaly-receipt`](https://github.com/GlacierEQ/nasa-telemetry-anomaly-receipt) | Live metadata | README inspected |
-| Mission, aerospace & robotics | [`robotics-vla-torque-sentinel`](https://github.com/GlacierEQ/robotics-vla-torque-sentinel) | Live metadata | README inspected |
+| Mission, aerospace & robotics | [`nasa-telemetry-anomaly-receipt`](https://github.com/GlacierEQ/nasa-telemetry-anomaly-receipt) | Live metadata | static source inspected (not executed) |
+| Mission, aerospace & robotics | [`robotics-vla-torque-sentinel`](https://github.com/GlacierEQ/robotics-vla-torque-sentinel) | Live metadata | static source inspected (not executed) |
 | Mission, aerospace & robotics | [`rocket-lab-launch-hold-receipt`](https://github.com/GlacierEQ/rocket-lab-launch-hold-receipt) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`waymo-uncertainty-lane-graph`](https://github.com/GlacierEQ/waymo-uncertainty-lane-graph) | Catalog | candidate — source review pending |
 | Mission, aerospace & robotics | [`zoox-fleet-skill-promotion-gate`](https://github.com/GlacierEQ/zoox-fleet-skill-promotion-gate) | Live metadata | candidate — source review pending |
@@ -84,6 +84,14 @@
 4. **Agent runtime / evaluations:** Source-review `apex-control-plane`, `anthropic-agent-coordinator`, `tasklet-micro-agent-engine`, `ECHO`, and relevant reliability/eval candidates before claim promotion. Do not confuse tool/API names with deployment evidence.
 
 **Existing exact-revision proof:** [68-thread first rescue](./xAI_SpaceX_Rescue_Wave_Report.md) · [10-card source review extension](./xAI_SpaceX_Source_Review_Extension.md).
+
+## Supplemental static source review (not executed)
+
+Selected repository source and test contracts were read at these current GitHub heads: `colossus-training-flux` (`390aba988c63`), `colossus-gateway` (`d5120e59fbb7`), `nvidia-gpu-health` (`2db44a8c656d`, `master`), `deepmind-tpu-mesh-optimizer` (`56195669a53f`), `nasa-telemetry-anomaly-receipt` (`cf00b34764dc`), and `robotics-vla-torque-sentinel` (`9a434245ca38`).
+
+- The first five expose bounded local models, protocol composition, synthetic policy, or test contracts; **none establishes xAI/SpaceX/NASA/NVIDIA/DeepMind infrastructure access**.
+- **Robotics verification debt:** the README's suggested `tests/test_torque_sentinel.py` was absent from the repository's `tests/` listing. Source inspection also found no `joint_id < 0` guard in the C++ `TorqueSafetyController::apply()` array access path. The README's ISO compliance and real-time safety claims must not be repeated as verified without independent validation.
+- No tests were executed during this cross-repository review; these six are not additions to the historic 10 source-reviewed EvidenceCards.
 
 ## Next verification
 
