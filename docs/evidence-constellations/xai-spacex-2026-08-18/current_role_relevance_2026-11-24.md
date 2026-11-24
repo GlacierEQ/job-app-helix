@@ -7,11 +7,11 @@
 ## Reconciliation scope
 
 - Historical direct constellation: 52 xAI-targeted and 16 SpaceX-targeted identities, 10 static source-reviewed and 58 inventory/lineage, linked at the source above.
-- Current expanded relevance register: 176 distinct project records (68 historical + 108 additional), retained in the operator's internal project working register with visibility controls.
-- This public annex lists **80 additional projects confirmed public in the current owner inventory** (7 Colossus/Grok, 25 AI compute/datacenter, 16 mission/aerospace/robotics, 11 agent/reliability, plus 21 transferable second-pass additions). It deliberately omits **27 private** and **1 visibility-unconfirmed** supplemental identity. Historic sources remain authoritative for the original 68.
+- Current expanded relevance register: 375 distinct project records (68 historical + 307 additional), retained in the operator's internal project working register with visibility controls.
+- This public annex lists **116 additional projects confirmed public in the current owner inventory** (59 first-wave public additions, 21 focused second-pass public additions, plus 36 broad APEX/systems corrections). It deliberately omits **190 private** and **1 visibility-unconfirmed** supplemental identity. Historic sources remain authoritative for the original 68.
 - Sources: authenticated GitHub 2026-11-24 owner enumeration (1,450 GlacierEQ identities plus six hchscasey organization identities; complete connected-account metadata read), [2026-08-30 estate catalog](https://docs.google.com/document/d/1tCL0digYGbfRDF9elKmZCJI-Rnem0bnD/edit), and [2026-08-28 curated Helix manifest](../../../manifests/unified_deserving_manifest.json). The combined current/historical working scan exposed 1,466 names, **a complete currently accessible repository-metadata enumeration, not** a full source-code audit.
 
-## Public additional-project register (80, de-duplicated from the 68)
+## Public additional-project register (116, de-duplicated from the 68)
 
 **Readiness:** Candidates are relevance matches, not technical claims. Six candidate READMEs and selected primary code/test files were inspected in this pass; source/test execution remains unverified. `Live metadata` indicates 2026-11-24 GitHub merged enumeration; `Catalog` is historical August 30 metadata.
 
@@ -98,6 +98,42 @@
 | Deployment evidence | [`vercel-deploy-claim-compiler`](https://github.com/GlacierEQ/vercel-deploy-claim-compiler) | GitHub owner metadata + selected README | README inspected — claim/receipt design; execution unverified |
 | Preview verification | [`vercel-preview-truth-gate`](https://github.com/GlacierEQ/vercel-preview-truth-gate) | GitHub owner metadata + selected README | README inspected — preview evidence contract; execution unverified |
 | Bot intent receipts | [`cloudflare-bot-intent-receipt`](https://github.com/GlacierEQ/cloudflare-bot-intent-receipt) | GitHub owner metadata + selected README | README inspected — proposed local receipts; execution unverified |
+| agent runtime/operations | [`apex-merge`](https://github.com/GlacierEQ/apex-merge) | GitHub head tree `2875b8a8b366` | README/tree inspected (7 code paths; tests not run) |
+| agent runtime/operations | [`apex-command-center`](https://github.com/GlacierEQ/apex-command-center) | GitHub head tree `4672fd2f413a` | README/tree inspected (6 code paths; tests not run) |
+| agent runtime/operations | [`apex-omniversal-dev-process`](https://github.com/GlacierEQ/apex-omniversal-dev-process) | GitHub head tree `46b965c64a3f` | README/tree inspected (30 code paths; tests not run) |
+| agent runtime/operations | [`APEX-IMPACT-ENGINE`](https://github.com/GlacierEQ/APEX-IMPACT-ENGINE) | GitHub head tree `b42f681a8a11` | README/tree inspected (6 code paths; tests not run) |
+| agent runtime/operations | [`apex-telecommunications`](https://github.com/GlacierEQ/apex-telecommunications) | GitHub head tree `c01f0e1840e4` | README/tree inspected (4 code paths; tests not run) |
+| agent runtime/operations | [`GlacierEQ_Swarm`](https://github.com/GlacierEQ/GlacierEQ_Swarm) | GitHub head tree `ada0b1a43af9` | README/tree inspected (55 code paths; tests not run) |
+| durable context and MCP substrate | [`persistent-ai-memory`](https://github.com/GlacierEQ/persistent-ai-memory) | GitHub head tree `953d06165cd8` | README/tree inspected (27 code paths; tests not run) |
+| durable context and MCP substrate | [`mcp-ecosystem-platform`](https://github.com/GlacierEQ/mcp-ecosystem-platform) | GitHub head tree `e7ca41d4b946` | README/tree inspected (134 code paths; tests not run) |
+| computer-use, verification and agent engineering | [`Genius-Mastery`](https://github.com/GlacierEQ/Genius-Mastery) | GitHub head tree `ebc5ced7963a` | README/tree inspected (78 code paths; tests not run) |
+| computer-use, verification and agent engineering | [`Genius-Code`](https://github.com/GlacierEQ/Genius-Code) | GitHub head tree `1a18ea0bbd06` | README/tree inspected (5 code paths; tests not run) |
+| computer-use, verification and agent engineering | [`Genius-Verification`](https://github.com/GlacierEQ/Genius-Verification) | GitHub head tree `0aa4540543aa` | static source inspected (not executed) |
+| computer-use, verification and agent engineering | [`computer-user-storage`](https://github.com/GlacierEQ/computer-user-storage) | GitHub head tree `7735ae37e732` | README/tree inspected (6 code paths; tests not run) |
+| computer-use, verification and agent engineering | [`Ai-Personalization_Kernel`](https://github.com/GlacierEQ/Ai-Personalization_Kernel) | GitHub head tree `04baf4517b20` | README/tree inspected (39 code paths; tests not run) |
+| computer-use, verification and agent engineering | [`ai-auto-driller-unified`](https://github.com/GlacierEQ/ai-auto-driller-unified) | GitHub head tree `43edc6b1bc06` | README/tree inspected (19 code paths; tests not run) |
+| computer-use, verification and agent engineering | [`multiagent-optimization`](https://github.com/GlacierEQ/multiagent-optimization) | GitHub head tree `974f1c0a1e14` | README/tree inspected (77 code paths; tests not run) |
+| distributed systems and simulations | [`apex-raft-forge`](https://github.com/GlacierEQ/apex-raft-forge) | GitHub head tree `668547fbfce8` | static source inspected (not executed) |
+| distributed systems and simulations | [`apex-zk-receipt-chain`](https://github.com/GlacierEQ/apex-zk-receipt-chain) | GitHub head tree `320fed98a517` | static source inspected (not executed) |
+| distributed systems and simulations | [`apex-ebpf-sentinel`](https://github.com/GlacierEQ/apex-ebpf-sentinel) | GitHub head tree `159b12c3629f` | static source inspected (not executed) |
+| distributed systems and simulations | [`apex-metal-compute`](https://github.com/GlacierEQ/apex-metal-compute) | GitHub head tree `4aa7c4b5c163` | static source inspected (not executed) |
+| distributed systems and simulations | [`pipeline-forge`](https://github.com/GlacierEQ/pipeline-forge) | GitHub head tree `64468444593b` | README/tree inspected (4 code paths; tests not run) |
+| distributed systems and simulations | [`pipeline-architect`](https://github.com/GlacierEQ/pipeline-architect) | GitHub head tree `f857a6c98331` | README/tree inspected (3 code paths; tests not run) |
+| distributed systems and simulations | [`hyper-pipeline`](https://github.com/GlacierEQ/hyper-pipeline) | GitHub head tree `31d072e05350` | README/tree inspected (21 code paths; tests not run) |
+| distributed systems and simulations | [`motherduck-local-cloud-query-passport`](https://github.com/GlacierEQ/motherduck-local-cloud-query-passport) | GitHub head tree `f927a8f2e54c` | README/tree inspected (13 code paths; tests not run) |
+| distributed systems and simulations | [`vercel-edge-agent-cap-token`](https://github.com/GlacierEQ/vercel-edge-agent-cap-token) | GitHub head tree `13b6cab7bb35` | README/tree inspected (9 code paths; tests not run) |
+| distributed systems and simulations | [`tesla-fsd-occupancy-stream`](https://github.com/GlacierEQ/tesla-fsd-occupancy-stream) | GitHub head tree `29502f0fe544` | static source inspected (not executed) |
+| distributed systems and simulations | [`microsoft-identity-zero-trust`](https://github.com/GlacierEQ/microsoft-identity-zero-trust) | GitHub head tree `9656f35d7694` | README/tree inspected (19 code paths; tests not run) |
+| distributed systems and simulations | [`microsoft-azure-ops`](https://github.com/GlacierEQ/microsoft-azure-ops) | GitHub head tree `7dd272c78344` | README/tree inspected (10 code paths; tests not run) |
+| distributed systems and simulations | [`openrouter-free-gateway`](https://github.com/GlacierEQ/openrouter-free-gateway) | GitHub head tree `e4cc2a4ff435` | README/tree inspected (9 code paths; tests not run) |
+| hiring evidence and technical claims | [`job-app-helix`](https://github.com/GlacierEQ/job-app-helix) | GitHub head tree `6cc399cab0ee` | README/tree inspected (359 code paths; tests not run) |
+| hiring evidence and technical claims | [`job-application`](https://github.com/GlacierEQ/job-application) | GitHub head tree `2ba58b83e2fb` | README/tree inspected (121 code paths; tests not run) |
+| runtime/CI engineering | [`public-actions-runner-host`](https://github.com/GlacierEQ/public-actions-runner-host) | GitHub head tree `a37d2b23eccc` | README/tree inspected (94 code paths; tests not run) |
+| enterprise guardrails and provenance | [`adobe-creative-provenance-gate`](https://github.com/GlacierEQ/adobe-creative-provenance-gate) | GitHub head tree `c3e36efdfd10` | README/tree inspected (13 code paths; tests not run) |
+| enterprise guardrails and provenance | [`glean-enterprise-search-claim-fence`](https://github.com/GlacierEQ/glean-enterprise-search-claim-fence) | GitHub head tree `e2d79b040535` | README/tree inspected (10 code paths; tests not run) |
+| enterprise guardrails and provenance | [`ibm-governed-tool-catalog`](https://github.com/GlacierEQ/ibm-governed-tool-catalog) | GitHub head tree `cac7e6a00ae1` | README/tree inspected (13 code paths; tests not run) |
+| enterprise guardrails and provenance | [`oracle-sovereign-data-boundary-gate`](https://github.com/GlacierEQ/oracle-sovereign-data-boundary-gate) | GitHub head tree `027c14dee820` | README/tree inspected (11 code paths; tests not run) |
+| enterprise guardrails and provenance | [`salesforce-crm-action-authority`](https://github.com/GlacierEQ/salesforce-crm-action-authority) | GitHub head tree `a0819bd2a1fb` | README/tree inspected (11 code paths; tests not run) |
 
 ## Full-estate second-pass scope and source fences
 
@@ -107,6 +143,17 @@
 - **Evaluation boundary:** `grokodile` uses rule/pattern local claim screening rather than semantic model truth; model-fidelity passports and eval-poison checks are bounded local demonstrations, not live frontier-model, datacenter or training attestations. The Rust MLIR/CRDT projects have not been verified on hardware or a deployed mesh.
 - Scaffold-only operator projects and apparent upstream forks were excluded from this shortlist until original implementation ownership and execution evidence can be distinguished. Company/product names indicate the problem space, **not** affiliation, access or deployed integrations.
 
+
+## Broader APEX, systems, and source-history correction
+
+Casey's direction was to identify **all relevant work**, not merely repositories named for target employers. The 176-project shortlist missed substantial GlacierEQ software engineering. A wider check of named engineering families, selected repository trees, code files, historical backups and fork metadata raised the **private canonical role-relevance register to 375 distinct records** (143 public, 231 private, one historical visibility-unconfirmed). The public table above now holds **116 additional public projects** beyond the original 68 historical cards.
+
+- The correction added **199 repository identities**: 118 core APEX/operator/memory/Genius/systems projects; 44 additional connector/engineering/fork/lineage projects; 37 archived APEX source snapshots. **36 are public**, included in this annex; the other **163 are private**, kept off the public surface.
+- Relevant code recovered in private repositories includes `apex-home-base/INFRASTRUCTURE/colossus_twin_composer.py` (modeled xAI Colossus digital-twin telemetry) and `apex-mcp-servers/servers/colossus_gatekeeper_mcp.py` (local configuration/state gate). These are simulations and local tools—not xAI access, live Kafka data, or proof of a working integrated data center.
+- Strong public candidates include `Genius-Verification`, `apex-raft-forge`, `apex-metal-compute`, `tesla-fsd-occupancy-stream`, `GlacierEQ_Swarm`, `Genius-Code`, `Ai-Personalization_Kernel`, `public-actions-runner-host`, and the existing `job-app-helix`. Each needs source-native test receipts before recruiter-claim promotion.
+- **Source fences:** `apex-raft-forge`'s claimed gRPC transport contains a stub path and named TLA+ tests have empty bodies; `apex-zk-receipt-chain` currently implements SHA-256 receipt chaining, **not a verified zero-knowledge proof**; `apex-ebpf-sentinel` has an eBPF C probe but the inspected non-Linux loader generates synthetic events; `apex-metal-compute` has Metal source but no verified GPU benchmark or hardware result in this review. `tesla-fsd-occupancy-stream` is a local deterministic simulation, not Tesla data/control.
+- This second correction checked source trees for **198 of the 199 added identities**; 194 exposed code-named paths and 148 exposed test-named paths. Paths and READMEs are **not test execution or demonstrated production use**. The six adapted upstream fork candidates remain internal and must not be presented as original authored implementations without commit-diff verification. Historical `Z-BACKUP-*` snapshots are preservation/source lineage, not current releases.
+- The public annex remains a **candidate index**, not the public recruiter-ready `/atlas` gate. Scaffold and unverified entries must not be promoted to the recruiter site merely because their repository is public.
 
 ## Evidence-first recruiter presentation
 
@@ -127,6 +174,6 @@ Selected repository source and test contracts were read at these current GitHub 
 
 ## Next verification
 
-- The full 1,456-identity connected-account enumeration is complete at metadata level. Maintain the 176-project role register and review source/test evidence before claim promotion; the legacy `grok-build` pointer remains visibility-unconfirmed. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
+- The full 1,456-identity connected-account enumeration is complete at metadata level. Maintain the 375-project role register and review source/test evidence before claim promotion; the legacy `grok-build` pointer remains visibility-unconfirmed. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
 - For each candidate promoted into recruiter claims, inspect source/test contracts at exact revision, run safe local tests where practical, and capture runnable receipt + known limit. README text alone is not execution proof.
 - Keep the full private/operator register available for role strategy while exposing only source-supported public evidence in application materials.
