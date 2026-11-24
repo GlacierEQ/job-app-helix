@@ -236,7 +236,7 @@ assert arch.verify_receipt(result['receipt_id'])
 | [FORWARD_DEPLOYED.md](FORWARD_DEPLOYED.md) | All 24 forward-deployed capabilities detailed |
 | [AGENT_ENGINEERING.md](AGENT_ENGINEERING.md) | Agent framework: roles, modes, workflows, skills |
 | [VALIDATION.md](VALIDATION.md) | All validators, receipts, verification ladder |
-| [SpaceX / xAI current role-relevance reconciliation](docs/evidence-constellations/xai-spacex-2026-08-18/current_role_relevance_2026-11-24.md) | 68 historic evidence cards + 58 additional public candidates; evidence limits and visibility guards |
+| [SpaceX / xAI current role-relevance reconciliation](docs/evidence-constellations/xai-spacex-2026-08-18/current_role_relevance_2026-11-24.md) | 68 historic evidence cards + 59 additional public candidates; evidence limits and visibility guards |
 | [DEPLOYMENT.md](DEPLOYMENT.md) | Forward-deployed deployment to Anthropic/NVIDIA/SpaceX |
 | [API_REFERENCE.md](API_REFERENCE.md) | Complete Python/CLI API for all interfaces |
 | [VALIDATION.md](VALIDATION.md) | Validators, receipts, verification ladder |
