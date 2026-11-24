@@ -6,8 +6,8 @@ import json
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
-from xml.etree import ElementTree
 from types import ModuleType
+from xml.etree import ElementTree
 
 import pytest
 
