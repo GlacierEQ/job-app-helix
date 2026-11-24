@@ -1,0 +1,75 @@
+{
+  "schema": "glaciereq.estate-evolution.mo5-kanban-harmonization.v1",
+  "task": "MO-5",
+  "repository": "GlacierEQ/job-app-helix",
+  "main_sha": "23ac70cf0a451f14b2fdb25179477be97dc11d66",
+  "assessed_at": "2026-11-24T06:20:00Z",
+  "method": "branch_steward + git-cherry against origin/main; no blind merge of diverged tips",
+  "verifier": {
+    "commands": [
+      "python3 -m pytest -q tests/test_branch_steward.py tests/test_recruiter_site_deployment.py"
+    ],
+    "outcome": "pass",
+    "tests_run": 15,
+    "tests_failed": 0
+  },
+  "branches": [
+    {
+      "ref": "fix/recruiter-atlas-sitemap-gate-20261120",
+      "unique_cherry_commits": 1,
+      "decision": "port_minimal_delta",
+      "rationale": "Recruiter sitemap/atlas gate fixes already on main via rebased SHAs; only style(tests) import order remains unique (f7e586a).",
+      "action": "cherry-pick f7e586a onto fresh main ancestry in this PR"
+    },
+    {
+      "ref": "cursor/hx28-official-legal-hire",
+      "unique_cherry_commits": 5,
+      "decision": "no_port",
+      "rationale": "Restores public hire-package and OFFICIAL_SKILLS surfaces main deliberately retired; violates current public privacy boundary."
+    },
+    {
+      "ref": "innovation/helix-compiler-workstation",
+      "unique_cherry_commits": 126,
+      "decision": "defer_synthesis",
+      "rationale": "Large diverged compiler/workstation line; requires piecemeal synthesis onto current main, not kanban merge."
+    },
+    {
+      "ref": "feat/estate-feature-lineage-reconciliation-20261018",
+      "unique_cherry_commits": 28,
+      "decision": "no_port",
+      "rationale": "Superseded by main excellence and privacy reconciliation commits; would reintroduce retired public workflows."
+    },
+    {
+      "ref": "chore/neutralize-public-legal-wording-20261023",
+      "unique_cherry_commits": 44,
+      "decision": "no_port",
+      "rationale": "Diverged parallel tip; neutralization themes already reflected on main HEAD."
+    },
+    {
+      "ref": "fix/hire-package-relative-links-20261023",
+      "unique_cherry_commits": 44,
+      "decision": "no_port",
+      "rationale": "Hire-package tree removed from public main; branch preserves obsolete layout."
+    },
+    {
+      "ref": "fix/ruff-import-order-20261023",
+      "unique_cherry_commits": 44,
+      "decision": "no_port",
+      "rationale": "Same diverged ancestry as hire-package branch; import hygiene covered by minimal port above."
+    },
+    {
+      "ref": "repair/public-privacy-boundary-enforcement",
+      "unique_cherry_commits": 18,
+      "decision": "no_port",
+      "rationale": "Privacy boundary enforcement already on main (93ae30d lineage)."
+    },
+    {
+      "ref": "cursor/official-legal-hire-hx28-cddb",
+      "unique_cherry_commits": 0,
+      "decision": "retire_candidate",
+      "rationale": "Fully contained in main; safe to retire ref when deletion unblocked."
+    }
+  ],
+  "conclusion": "Elite kanban harmonization complete with no substantive blind merge: one hygiene cherry-pick, honest no-port on diverged elite branches.",
+  "monolith_pointer": "status/CODING_SKILLS_POINTER.md MO-5"
+}
