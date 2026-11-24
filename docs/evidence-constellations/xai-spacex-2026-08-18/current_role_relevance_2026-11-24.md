@@ -7,13 +7,13 @@
 ## Reconciliation scope
 
 - Historical direct constellation: 52 xAI-targeted and 16 SpaceX-targeted identities, 10 static source-reviewed and 58 inventory/lineage, linked at the source above.
-- Current expanded relevance register: 150 distinct project records (68 historical + 82 additional), retained in the operator's internal project working register with visibility controls.
-- This public annex lists **58 additional projects previously marked public** (7 Colossus/Grok, 25 AI compute/datacenter, 15 mission/aerospace/robotics, 11 agent/reliability). It deliberately omits **22 private** and **2 visibility-unconfirmed** supplemental identities. Historic sources remain authoritative for the original 68.
-- Sources: authenticated GitHub 2026-11-24 metadata (1,000 records, search pagination ended after page 10), [2026-08-30 estate catalog](https://docs.google.com/document/d/1tCL0digYGbfRDF9elKmZCJI-Rnem0bnD/edit), and [2026-08-28 curated Helix manifest](../../../manifests/unified_deserving_manifest.json). The combined working scan exposed 1,325 names, **not** a fully verified exhaustive current owner enumeration or source-code audit.
+- Current expanded relevance register: 151 distinct project records (68 historical + 83 additional), retained in the operator's internal project working register with visibility controls.
+- This public annex lists **59 additional projects previously marked public** (7 Colossus/Grok, 25 AI compute/datacenter, 16 mission/aerospace/robotics, 11 agent/reliability). It deliberately omits **22 private** and **2 visibility-unconfirmed** supplemental identities. Historic sources remain authoritative for the original 68.
+- Sources: authenticated GitHub 2026-11-24 metadata (1,450 merged current repository identities from 1,000 search results plus a cursor stream reaching position 1,456; six cursor positions unresolved), [2026-08-30 estate catalog](https://docs.google.com/document/d/1tCL0digYGbfRDF9elKmZCJI-Rnem0bnD/edit), and [2026-08-28 curated Helix manifest](../../../manifests/unified_deserving_manifest.json). The combined current/historical working scan exposed 1,465 names, **not** a fully verified exhaustive current owner enumeration or source-code audit.
 
-## Public additional-project register (58, de-duplicated from the 68)
+## Public additional-project register (59, de-duplicated from the 68)
 
-**Readiness:** Candidates are relevance matches, not technical claims. Six candidate READMEs and selected primary code/test files were inspected in this pass; source/test execution remains unverified. `Live metadata` indicates current 2026-11-24 GitHub enumeration; `Catalog` is historical August 30 metadata.
+**Readiness:** Candidates are relevance matches, not technical claims. Six candidate READMEs and selected primary code/test files were inspected in this pass; source/test execution remains unverified. `Live metadata` indicates 2026-11-24 GitHub merged enumeration; `Catalog` is historical August 30 metadata.
 
 | Relevance family | Independent project | Inventory receipt | Review level |
 |---|---|---|---|
@@ -75,6 +75,7 @@
 | Mission, aerospace & robotics | [`rocket-lab-launch-hold-receipt`](https://github.com/GlacierEQ/rocket-lab-launch-hold-receipt) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`waymo-uncertainty-lane-graph`](https://github.com/GlacierEQ/waymo-uncertainty-lane-graph) | Catalog | candidate — source review pending |
 | Mission, aerospace & robotics | [`zoox-fleet-skill-promotion-gate`](https://github.com/GlacierEQ/zoox-fleet-skill-promotion-gate) | Live metadata | candidate — source review pending |
+| Mission, aerospace & robotics | [`waymo-phantom-freespace-certificate`](https://github.com/GlacierEQ/waymo-phantom-freespace-certificate) | Live metadata | candidate (README checked; simulation grid, no road test claim) |
 
 ## Evidence-first recruiter presentation
 
@@ -95,6 +96,6 @@ Selected repository source and test contracts were read at these current GitHub 
 
 ## Next verification
 
-- Complete public GitHub owner inventory through an uncapped enumeration when available; current search yielded only 1,000 results and its next page was empty. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
+- Resolve the six unmatched stream positions through an independent owner enumeration when available; the 1,000-result search ceiling was supplemented by a cursor stream and merged into 1,450 current repository identities. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
 - For each candidate promoted into recruiter claims, inspect source/test contracts at exact revision, run safe local tests where practical, and capture runnable receipt + known limit. README text alone is not execution proof.
 - Keep the full private/operator register available for role strategy while exposing only source-supported public evidence in application materials.
