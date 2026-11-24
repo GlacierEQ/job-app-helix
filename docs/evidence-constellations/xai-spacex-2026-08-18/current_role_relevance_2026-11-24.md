@@ -8,8 +8,8 @@
 
 - Historical direct constellation: 52 xAI-targeted and 16 SpaceX-targeted identities, 10 static source-reviewed and 58 inventory/lineage, linked at the source above.
 - Current expanded relevance register: 151 distinct project records (68 historical + 83 additional), retained in the operator's internal project working register with visibility controls.
-- This public annex lists **59 additional projects previously marked public** (7 Colossus/Grok, 25 AI compute/datacenter, 16 mission/aerospace/robotics, 11 agent/reliability). It deliberately omits **22 private** and **2 visibility-unconfirmed** supplemental identities. Historic sources remain authoritative for the original 68.
-- Sources: authenticated GitHub 2026-11-24 metadata (1,450 merged current repository identities from 1,000 search results plus a cursor stream reaching position 1,456; six cursor positions unresolved), [2026-08-30 estate catalog](https://docs.google.com/document/d/1tCL0digYGbfRDF9elKmZCJI-Rnem0bnD/edit), and [2026-08-28 curated Helix manifest](../../../manifests/unified_deserving_manifest.json). The combined current/historical working scan exposed 1,465 names, **not** a fully verified exhaustive current owner enumeration or source-code audit.
+- This public annex lists **59 additional projects confirmed public in the current owner inventory** (7 Colossus/Grok, 25 AI compute/datacenter, 16 mission/aerospace/robotics, 11 agent/reliability). It deliberately omits **23 private** and **1 visibility-unconfirmed** supplemental identity. Historic sources remain authoritative for the original 68.
+- Sources: authenticated GitHub 2026-11-24 owner enumeration (1,450 GlacierEQ identities plus six hchscasey organization identities; complete connected-account metadata read), [2026-08-30 estate catalog](https://docs.google.com/document/d/1tCL0digYGbfRDF9elKmZCJI-Rnem0bnD/edit), and [2026-08-28 curated Helix manifest](../../../manifests/unified_deserving_manifest.json). The combined current/historical working scan exposed 1,466 names, **a complete currently accessible repository-metadata enumeration, not** a full source-code audit.
 
 ## Public additional-project register (59, de-duplicated from the 68)
 
@@ -17,10 +17,10 @@
 
 | Relevance family | Independent project | Inventory receipt | Review level |
 |---|---|---|---|
-| AI compute & datacenter | [`amd-hetero-placement-contract`](https://github.com/GlacierEQ/amd-hetero-placement-contract) | Catalog | candidate — source review pending |
+| AI compute & datacenter | [`amd-hetero-placement-contract`](https://github.com/GlacierEQ/amd-hetero-placement-contract) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`apple-ane-kv-quantizer`](https://github.com/GlacierEQ/apple-ane-kv-quantizer) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`aws-trainium-neuron-sentinel`](https://github.com/GlacierEQ/aws-trainium-neuron-sentinel) | Live metadata | candidate — source review pending |
-| AI compute & datacenter | [`baseten-serving-slo-circuit`](https://github.com/GlacierEQ/baseten-serving-slo-circuit) | Catalog | candidate — source review pending |
+| AI compute & datacenter | [`baseten-serving-slo-circuit`](https://github.com/GlacierEQ/baseten-serving-slo-circuit) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`cerebras-wafer-batch-admission-gate`](https://github.com/GlacierEQ/cerebras-wafer-batch-admission-gate) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`cohere-retrieval-claim-fence`](https://github.com/GlacierEQ/cohere-retrieval-claim-fence) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`coreweave-rack-power-autopilot`](https://github.com/GlacierEQ/coreweave-rack-power-autopilot) | Live metadata | candidate — source review pending |
@@ -28,29 +28,29 @@
 | AI compute & datacenter | [`deepmind-tpu-mesh-optimizer`](https://github.com/GlacierEQ/deepmind-tpu-mesh-optimizer) | Live metadata | static source inspected (not executed) |
 | AI compute & datacenter | [`deepseek-mla-moe-sentinel`](https://github.com/GlacierEQ/deepseek-mla-moe-sentinel) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`fireworks-ai-optimization-safety-envelope`](https://github.com/GlacierEQ/fireworks-ai-optimization-safety-envelope) | Live metadata | candidate — source review pending |
-| AI compute & datacenter | [`groq-batch-admission-gate`](https://github.com/GlacierEQ/groq-batch-admission-gate) | Catalog | candidate — source review pending |
+| AI compute & datacenter | [`groq-batch-admission-gate`](https://github.com/GlacierEQ/groq-batch-admission-gate) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`groq-jitter-envelope-contract`](https://github.com/GlacierEQ/groq-jitter-envelope-contract) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`hugging-face-model-card-provenance-seal`](https://github.com/GlacierEQ/hugging-face-model-card-provenance-seal) | Live metadata | candidate — source review pending |
-| AI compute & datacenter | [`lambda-useful-gpu-minute-contract`](https://github.com/GlacierEQ/lambda-useful-gpu-minute-contract) | Catalog | candidate — source review pending |
+| AI compute & datacenter | [`lambda-useful-gpu-minute-contract`](https://github.com/GlacierEQ/lambda-useful-gpu-minute-contract) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`mistral-open-weight-eval-fence`](https://github.com/GlacierEQ/mistral-open-weight-eval-fence) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`nebius-cluster-energy-admission`](https://github.com/GlacierEQ/nebius-cluster-energy-admission) | Live metadata | candidate — source review pending |
-| AI compute & datacenter | [`nvidia-deep-reasoning`](https://github.com/GlacierEQ/nvidia-deep-reasoning) | Catalog | candidate — source review pending |
+| AI compute & datacenter | [`nvidia-deep-reasoning`](https://github.com/GlacierEQ/nvidia-deep-reasoning) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`nvidia-gpu-health`](https://github.com/GlacierEQ/nvidia-gpu-health) | Live metadata | static source inspected (not executed) |
 | AI compute & datacenter | [`nvidia-gradient-integrity-quorum`](https://github.com/GlacierEQ/nvidia-gradient-integrity-quorum) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`nvidia-nan-circuit-breaker`](https://github.com/GlacierEQ/nvidia-nan-circuit-breaker) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`openai-reasoning-budget-futures`](https://github.com/GlacierEQ/openai-reasoning-budget-futures) | Live metadata | candidate — source review pending |
-| AI compute & datacenter | [`openai-reasoning-kv-sentinel`](https://github.com/GlacierEQ/openai-reasoning-kv-sentinel) | Catalog | candidate — source review pending |
+| AI compute & datacenter | [`openai-reasoning-kv-sentinel`](https://github.com/GlacierEQ/openai-reasoning-kv-sentinel) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`pinecone-retrieval-outcome-optimizer`](https://github.com/GlacierEQ/pinecone-retrieval-outcome-optimizer) | Live metadata | candidate — source review pending |
 | AI compute & datacenter | [`replicate-model-version-pin-gate`](https://github.com/GlacierEQ/replicate-model-version-pin-gate) | Live metadata | candidate — source review pending |
 | Agents, reliability & evaluation | [`anthropic-agent-coordinator`](https://github.com/GlacierEQ/anthropic-agent-coordinator) | Live metadata | candidate — source review pending |
-| Agents, reliability & evaluation | [`anthropic-safety-monitor`](https://github.com/GlacierEQ/anthropic-safety-monitor) | Catalog | candidate — source review pending |
+| Agents, reliability & evaluation | [`anthropic-safety-monitor`](https://github.com/GlacierEQ/anthropic-safety-monitor) | Live metadata | candidate — source review pending |
 | Agents, reliability & evaluation | [`apex-cli`](https://github.com/GlacierEQ/apex-cli) | Live metadata | candidate — source review pending |
 | Agents, reliability & evaluation | [`apex-control-plane`](https://github.com/GlacierEQ/apex-control-plane) | Live metadata | candidate — source review pending |
 | Agents, reliability & evaluation | [`ECHO`](https://github.com/GlacierEQ/ECHO) | Live metadata | candidate — source review pending |
-| Agents, reliability & evaluation | [`glaciereq-excellence-core`](https://github.com/GlacierEQ/glaciereq-excellence-core) | Catalog | candidate — source review pending |
+| Agents, reliability & evaluation | [`glaciereq-excellence-core`](https://github.com/GlacierEQ/glaciereq-excellence-core) | Live metadata | candidate — source review pending |
 | Agents, reliability & evaluation | [`operator-runtime`](https://github.com/GlacierEQ/operator-runtime) | Live metadata | candidate — source review pending |
 | Agents, reliability & evaluation | [`Pro-comet-agent`](https://github.com/GlacierEQ/Pro-comet-agent) | Live metadata | candidate — source review pending |
-| Agents, reliability & evaluation | [`sigma-glue`](https://github.com/GlacierEQ/sigma-glue) | Catalog | candidate — source review pending |
+| Agents, reliability & evaluation | [`sigma-glue`](https://github.com/GlacierEQ/sigma-glue) | Live metadata | candidate — source review pending |
 | Agents, reliability & evaluation | [`tasklet-micro-agent-engine`](https://github.com/GlacierEQ/tasklet-micro-agent-engine) | Live metadata | candidate — source review pending |
 | Agents, reliability & evaluation | [`the-tower-of-babel`](https://github.com/GlacierEQ/the-tower-of-babel) | Live metadata | candidate — source review pending |
 | Colossus & Grok supporting | [`autonomous-grok-build`](https://github.com/GlacierEQ/autonomous-grok-build) | Live metadata | candidate — source review pending |
@@ -60,7 +60,7 @@
 | Colossus & Grok supporting | [`grok-build-nix`](https://github.com/GlacierEQ/grok-build-nix) | Live metadata | candidate — source review pending |
 | Colossus & Grok supporting | [`grok-cli`](https://github.com/GlacierEQ/grok-cli) | Live metadata | candidate — source review pending |
 | Colossus & Grok supporting | [`vscode-grok`](https://github.com/GlacierEQ/vscode-grok) | Live metadata | candidate — source review pending |
-| Mission, aerospace & robotics | [`anduril-lattice-dissent-freeze`](https://github.com/GlacierEQ/anduril-lattice-dissent-freeze) | Catalog | candidate — source review pending |
+| Mission, aerospace & robotics | [`anduril-lattice-dissent-freeze`](https://github.com/GlacierEQ/anduril-lattice-dissent-freeze) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`anduril-sensor-health-quorum`](https://github.com/GlacierEQ/anduril-sensor-health-quorum) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`anduril-track-envelope-compiler`](https://github.com/GlacierEQ/anduril-track-envelope-compiler) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`blue-origin-cryo-telemetry-half-life`](https://github.com/GlacierEQ/blue-origin-cryo-telemetry-half-life) | Live metadata | candidate — source review pending |
@@ -73,7 +73,7 @@
 | Mission, aerospace & robotics | [`nasa-telemetry-anomaly-receipt`](https://github.com/GlacierEQ/nasa-telemetry-anomaly-receipt) | Live metadata | static source inspected (not executed) |
 | Mission, aerospace & robotics | [`robotics-vla-torque-sentinel`](https://github.com/GlacierEQ/robotics-vla-torque-sentinel) | Live metadata | static source inspected (not executed) |
 | Mission, aerospace & robotics | [`rocket-lab-launch-hold-receipt`](https://github.com/GlacierEQ/rocket-lab-launch-hold-receipt) | Live metadata | candidate — source review pending |
-| Mission, aerospace & robotics | [`waymo-uncertainty-lane-graph`](https://github.com/GlacierEQ/waymo-uncertainty-lane-graph) | Catalog | candidate — source review pending |
+| Mission, aerospace & robotics | [`waymo-uncertainty-lane-graph`](https://github.com/GlacierEQ/waymo-uncertainty-lane-graph) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`zoox-fleet-skill-promotion-gate`](https://github.com/GlacierEQ/zoox-fleet-skill-promotion-gate) | Live metadata | candidate — source review pending |
 | Mission, aerospace & robotics | [`waymo-phantom-freespace-certificate`](https://github.com/GlacierEQ/waymo-phantom-freespace-certificate) | Live metadata | candidate (README checked; simulation grid, no road test claim) |
 
@@ -96,6 +96,6 @@ Selected repository source and test contracts were read at these current GitHub 
 
 ## Next verification
 
-- Resolve the six unmatched stream positions through an independent owner enumeration when available; the 1,000-result search ceiling was supplemented by a cursor stream and merged into 1,450 current repository identities. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
+- The full 1,456-identity connected-account enumeration is complete at metadata level. Maintain the 151-project role register and review source/test evidence before claim promotion; the legacy `grok-build` pointer remains visibility-unconfirmed. Reconcile by canonical owner/repo identity, preserving non-matches as unconfirmed rather than deleting them.
 - For each candidate promoted into recruiter claims, inspect source/test contracts at exact revision, run safe local tests where practical, and capture runnable receipt + known limit. README text alone is not execution proof.
 - Keep the full private/operator register available for role strategy while exposing only source-supported public evidence in application materials.
