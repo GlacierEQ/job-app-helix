@@ -4,7 +4,7 @@
   "control_plane": "GlacierEQ/job-app-helix",
   "default_branch": "main",
   "generated_at_policy": "runtime_receipt_only",
-  "latest_execution_receipt": "status/priority-spine-wave-2-2026-07-31.json",
+  "latest_execution_receipt": "status/priority-spine-wave-2-2026-07-31-safe-projection-20261112.json",
   "scopes": {
     "priority_spine": {"kind":"curated","exact":true,"purpose":"Named high-leverage repositories that seed estate-wide capability elevation; this list is a priority queue, not authority over unlisted repositories."},
     "recruiter_portfolio": {"kind":"manifest","exact":true,"source":"manifests/portfolio_repositories.json","rollout":"manifests/portfolio_rollout.json"},

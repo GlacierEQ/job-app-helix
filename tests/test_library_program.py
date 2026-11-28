@@ -16,7 +16,7 @@ from job_app_helix.library_program import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PROGRAM = ROOT / "manifests" / "library_priority_spine.json"
-RECEIPT = ROOT / "status" / "priority-spine-wave-1-2026-07-30.json"
+RECEIPT = ROOT / "status" / "priority-spine-wave-2-2026-07-31-safe-projection-20261112.json"
 
 
 def _write_program(tmp_path: Path, payload: dict[str, object]) -> Path:
